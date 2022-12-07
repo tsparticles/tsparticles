@@ -6,9 +6,9 @@ importers:
     specifiers:
       '@commitlint/cli': ^17.3.0
       '@commitlint/config-conventional': ^17.3.0
-      '@nrwl/cli': ^15.2.4
+      '@nrwl/cli': ^15.3.0
       '@nrwl/nx-cloud': ^15.0.2
-      '@nrwl/workspace': ^15.2.4
+      '@nrwl/workspace': ^15.3.0
       '@parcel/core': ^2.8.0
       '@parcel/transformer-sass': ^2.8.0
       '@tsparticles/prettier-config': ^1.4.0
@@ -17,7 +17,7 @@ importers:
       husky: ^8.0.2
       ini: ^3.0.1
       lerna: ^6.1.0
-      nx: ^15.2.4
+      nx: ^15.3.0
       parcel: ^2.8.0
       prettier: ^2.8.0
       rimraf: ^3.0.2
@@ -32,9 +32,9 @@ importers:
     devDependencies:
       '@commitlint/cli': 17.3.0
       '@commitlint/config-conventional': 17.3.0
-      '@nrwl/cli': 15.2.4
+      '@nrwl/cli': 15.3.0
       '@nrwl/nx-cloud': 15.0.2
-      '@nrwl/workspace': 15.2.4_uf7ur4xvpkq7xbobfxd2xaxn5y
+      '@nrwl/workspace': 15.3.0_brpckf4sz23pco3jyty2eys3iq
       '@parcel/core': 2.8.0
       '@parcel/transformer-sass': 2.8.0_@parcel+core@2.8.0
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
@@ -43,7 +43,7 @@ importers:
       husky: 8.0.2
       ini: 3.0.1
       lerna: 6.1.0
-      nx: 15.2.4
+      nx: 15.3.0
       parcel: 2.8.0
       prettier: 2.8.0
       rimraf: 3.0.2
@@ -59,7 +59,7 @@ importers:
   bundles/full:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -88,7 +88,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
@@ -102,7 +102,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -121,13 +121,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   bundles/pjs:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -147,12 +147,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -171,13 +171,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   bundles/slim:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -228,7 +228,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
@@ -264,7 +264,7 @@ importers:
       tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -283,7 +283,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   components/angular:
@@ -670,7 +670,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.45.1
       '@typescript-eslint/parser': ^5.45.1
       babel-loader: ^9.1.0
-      babel-preset-solid: ^1.6.2
+      babel-preset-solid: ^1.6.3
       clean-webpack-plugin: ^4.0.0
       css-loader: ^6.7.2
       eslint: ^8.29.0
@@ -680,7 +680,7 @@ importers:
       node-sass: ^8.0.0
       prettier: ^2.8.0
       sass-loader: ^13.2.0
-      solid-js: ^1.6.2
+      solid-js: ^1.6.3
       source-map-loader: ^4.0.1
       style-loader: ^3.3.1
       tsparticles-engine: ^2.6.0
@@ -690,7 +690,7 @@ importers:
       webpack-dev-server: ^4.11.1
     dependencies:
       fast-deep-equal: 3.1.3
-      solid-js: 1.6.2
+      solid-js: 1.6.3
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
@@ -703,7 +703,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.45.1_tdm6ms4ntwhlpozn7kjqrhum74
       '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
       babel-loader: 9.1.0_ztqwsvkb6z73luspkai6ilstpu
-      babel-preset-solid: 1.6.2_@babel+core@7.20.5
+      babel-preset-solid: 1.6.3_@babel+core@7.20.5
       clean-webpack-plugin: 4.0.0_webpack@5.75.0
       css-loader: 6.7.2_webpack@5.75.0
       eslint: 8.29.0
@@ -731,7 +731,7 @@ importers:
       rollup: ^3.6.0
       rollup-plugin-svelte: ^7.1.0
       rollup-plugin-terser: ^7.0.2
-      svelte: ^3.53.1
+      svelte: ^3.54.0
       svelte-check: ^2.10.1
       svelte-preprocess: ^4.10.7
       tslib: ^2.4.1
@@ -746,13 +746,13 @@ importers:
       '@tsconfig/svelte': 3.0.0
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       prettier: 2.8.0
-      prettier-plugin-svelte: 2.8.1_3ndnxlh52lolrqe4kgjgbxb3xa
+      prettier-plugin-svelte: 2.8.1_kaioqtfwjumrsfopsgfoca65re
       rollup: 3.6.0
-      rollup-plugin-svelte: 7.1.0_rollup@3.6.0+svelte@3.53.1
+      rollup-plugin-svelte: 7.1.0_rollup@3.6.0+svelte@3.54.0
       rollup-plugin-terser: 7.0.2_rollup@3.6.0
-      svelte: 3.53.1
-      svelte-check: 2.10.1_svelte@3.53.1
-      svelte-preprocess: 4.10.7_7dvewpees4iyn2tkw2qzal77a4
+      svelte: 3.54.0
+      svelte-check: 2.10.1_svelte@3.54.0
+      svelte-preprocess: 4.10.7_gf4dcx76vtk2o62ixxeqx7chra
       tslib: 2.4.1
       typescript: 4.9.3
 
@@ -1863,7 +1863,7 @@ importers:
     specifiers:
       '@types/jest': ^29.2.4
       '@types/node': ^18.11.11
-      solid-js: ^1.6.2
+      solid-js: ^1.6.3
       solid-particles: ^2.6.0
       solid-scripts: ^0.0.61
       tsparticles: ^2.6.0
@@ -1872,7 +1872,7 @@ importers:
     devDependencies:
       '@types/jest': 29.2.4
       '@types/node': 18.11.11
-      solid-js: 1.6.2
+      solid-js: 1.6.3
       solid-particles: link:../../components/solid
       solid-scripts: 0.0.61_t5doefn7w4ujvjnqe2l7o7g4cm
       tsparticles: link:../../bundles/full/dist
@@ -1891,7 +1891,7 @@ importers:
       rollup-plugin-svelte: ^7.1.0
       rollup-plugin-terser: ^7.0.2
       sirv-cli: ^2.0.2
-      svelte: ^3.53.1
+      svelte: ^3.54.0
       svelte-check: ^2.10.1
       svelte-particles: ^2.6.0
       svelte-preprocess: ^4.10.7
@@ -1910,11 +1910,11 @@ importers:
       rollup: 3.6.0
       rollup-plugin-css-only: 4.3.0_rollup@3.6.0
       rollup-plugin-livereload: 2.0.5
-      rollup-plugin-svelte: 7.1.0_rollup@3.6.0+svelte@3.53.1
+      rollup-plugin-svelte: 7.1.0_rollup@3.6.0+svelte@3.54.0
       rollup-plugin-terser: 7.0.2_rollup@3.6.0
-      svelte: 3.53.1
-      svelte-check: 2.10.1_svelte@3.53.1
-      svelte-preprocess: 4.10.7_7dvewpees4iyn2tkw2qzal77a4
+      svelte: 3.54.0
+      svelte-check: 2.10.1_svelte@3.54.0
+      svelte-preprocess: 4.10.7_gf4dcx76vtk2o62ixxeqx7chra
       tslib: 2.4.1
       typescript: 4.9.3
 
@@ -2313,7 +2313,7 @@ importers:
   editor:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2348,7 +2348,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       object-gui: 2.0.2
       tsparticles-engine: link:../engine/dist
@@ -2368,7 +2368,7 @@ importers:
       tsparticles-plugin-infection: link:../plugins/infection/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2387,13 +2387,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   engine:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2430,10 +2430,10 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2470,13 +2470,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/attract:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2496,12 +2496,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2520,13 +2520,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/bounce:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2546,12 +2546,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2570,13 +2570,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/bubble:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2596,12 +2596,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2620,13 +2620,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/connect:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2646,12 +2646,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2670,13 +2670,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/grab:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2696,12 +2696,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2720,13 +2720,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/pause:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2746,12 +2746,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2770,13 +2770,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/push:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2796,12 +2796,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2820,13 +2820,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/remove:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2846,12 +2846,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2870,13 +2870,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/repulse:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2896,12 +2896,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2920,13 +2920,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/slow:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2946,12 +2946,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -2970,13 +2970,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/external/trail:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -2996,12 +2996,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3020,13 +3020,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/light:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3046,12 +3046,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3070,13 +3070,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/particles/attract:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3096,12 +3096,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3120,13 +3120,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/particles/collisions:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3146,12 +3146,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3170,13 +3170,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/particles/links:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3196,12 +3196,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3220,13 +3220,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   interactions/particles/repulse:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3246,12 +3246,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3270,13 +3270,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   move/base:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3296,12 +3296,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3320,13 +3320,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   move/parallax:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3346,12 +3346,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3370,13 +3370,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   paths/curves:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3396,12 +3396,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3420,13 +3420,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   paths/perlinNoise:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3446,12 +3446,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3470,13 +3470,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   paths/polygon:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3496,12 +3496,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3520,13 +3520,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   paths/simplexNoise:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3546,12 +3546,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3570,13 +3570,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/absorbers:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3596,12 +3596,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3620,13 +3620,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/canvasMask:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3646,12 +3646,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3670,13 +3670,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/back:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3696,12 +3696,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3720,13 +3720,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/circ:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3746,12 +3746,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3770,13 +3770,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/cubic:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3796,12 +3796,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3820,13 +3820,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/expo:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3846,12 +3846,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3870,13 +3870,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/quad:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3896,12 +3896,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3920,13 +3920,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/quart:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3946,12 +3946,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -3970,13 +3970,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/quint:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -3996,12 +3996,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4020,13 +4020,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/easings/sine:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4046,12 +4046,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4070,13 +4070,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/emitters:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4096,12 +4096,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4120,13 +4120,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/hsvColor:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4146,12 +4146,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4170,13 +4170,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/infection:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4196,12 +4196,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4220,13 +4220,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/motion:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4246,12 +4246,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4270,13 +4270,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   plugins/polygonMask:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4296,12 +4296,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4320,13 +4320,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/bigCircles:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4353,7 +4353,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4365,7 +4365,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4384,13 +4384,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/bubbles:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4417,7 +4417,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4429,7 +4429,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4448,13 +4448,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/confetti:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4488,7 +4488,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4507,7 +4507,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4526,13 +4526,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/fire:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4559,7 +4559,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-push: link:../../interactions/external/push/dist
@@ -4571,7 +4571,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4590,13 +4590,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/firefly:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4623,7 +4623,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
@@ -4635,7 +4635,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4654,13 +4654,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/fireworks:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4692,7 +4692,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4709,7 +4709,7 @@ importers:
       tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4728,13 +4728,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/fountain:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4762,7 +4762,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4775,7 +4775,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4794,13 +4794,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/links:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4827,7 +4827,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
@@ -4839,7 +4839,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4858,13 +4858,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/seaAnemone:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4892,7 +4892,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4905,7 +4905,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4924,13 +4924,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/snow:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -4957,7 +4957,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4969,7 +4969,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -4988,13 +4988,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/stars:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5020,7 +5020,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -5031,7 +5031,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5050,13 +5050,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   presets/triangles:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5083,7 +5083,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
@@ -5095,7 +5095,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5114,13 +5114,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/bubble:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5140,12 +5140,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5164,13 +5164,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/cards:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5190,12 +5190,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5214,13 +5214,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/circle:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5240,12 +5240,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5264,13 +5264,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/heart:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5290,12 +5290,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5314,13 +5314,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/image:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5340,12 +5340,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5364,13 +5364,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/line:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5390,12 +5390,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5414,13 +5414,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/multiline-text:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5440,12 +5440,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5464,13 +5464,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/polygon:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5490,12 +5490,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5514,13 +5514,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/rounded-rect:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5540,12 +5540,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5564,13 +5564,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/spiral:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5590,12 +5590,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5614,13 +5614,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/square:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5640,12 +5640,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5664,13 +5664,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/star:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5690,12 +5690,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5714,13 +5714,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   shapes/text:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5740,12 +5740,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5764,7 +5764,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   templates/react:
@@ -5800,7 +5800,7 @@ importers:
   updaters/angle:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5820,12 +5820,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5844,13 +5844,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/color:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5870,12 +5870,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5894,13 +5894,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/destroy:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5920,12 +5920,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5944,13 +5944,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/gradient:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -5970,12 +5970,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -5994,13 +5994,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/life:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6020,12 +6020,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6044,13 +6044,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/opacity:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6070,12 +6070,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6094,13 +6094,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/orbit:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6120,12 +6120,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6144,13 +6144,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/outModes:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6170,12 +6170,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6194,13 +6194,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/roll:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6220,12 +6220,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6244,13 +6244,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/size:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6270,12 +6270,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6294,13 +6294,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/strokeColor:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6320,12 +6320,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6344,13 +6344,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/tilt:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6370,12 +6370,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6394,13 +6394,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/twinkle:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6420,12 +6420,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6444,13 +6444,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   updaters/wobble:
     specifiers:
       '@babel/core': ^7.20.5
-      '@tsparticles/build': ^1.5.0
+      '@tsparticles/build': ^1.5.1
       '@tsparticles/eslint-config': ^1.4.0
       '@tsparticles/prettier-config': ^1.4.0
       '@tsparticles/tsconfig': ^1.5.0
@@ -6470,12 +6470,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
-      '@tsparticles/build': 1.5.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.5.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@tsparticles/tsconfig': 1.5.0_typescript@4.9.3
@@ -6494,7 +6494,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   utils/configs:
@@ -6519,7 +6519,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
@@ -6542,7 +6542,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     publishDirectory: dist
 
   utils/options-updater:
@@ -6638,7 +6638,7 @@ importers:
       tsparticles-updater-wobble: ^2.6.0
       typescript: ^4.9.3
       webpack: ^5.75.0
-      webpack-tsparticles-plugin: ^1.5.0
+      webpack-tsparticles-plugin: ^1.5.1
     dependencies:
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
@@ -6723,7 +6723,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
       typescript: 4.9.3
       webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     devDependencies:
       '@types/eslint': 8.4.10
       '@types/fs-extra': 9.0.13
@@ -7521,7 +7521,7 @@ packages:
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@babel/code-frame': 7.18.6
-      '@babel/generator': 7.20.5
+      '@babel/generator': 7.20.4
       '@babel/helper-compilation-targets': 7.20.0_@babel+core@7.20.2
       '@babel/helper-module-transforms': 7.20.2
       '@babel/helpers': 7.20.6
@@ -10492,18 +10492,6 @@ packages:
       slash: 3.0.0
     dev: true
 
-  /@jest/console/28.1.3:
-    resolution: {integrity: sha512-QPAkP5EwKdK/bxIr6C1I4Vs0rm2nHiANzj/Z5X2JQkrZo6IqvC4ldZ9K95tF0HdidhA8Bo6egxSzUFPYKcEXLw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      chalk: 4.1.2
-      jest-message-util: 28.1.3
-      jest-util: 28.1.3
-      slash: 3.0.0
-    dev: true
-
   /@jest/core/26.6.3:
     resolution: {integrity: sha512-xvV1kKbhfUqFVuZ8Cyo+JPpipAHHAV3kcDBftiduK8EICXmTFddryy3P7NfZt8Pv37rA9nEJBKCCkglCPt/Xjw==}
     engines: {node: '>= 10.14.2'}
@@ -10609,38 +10597,11 @@ packages:
       jest-mock: 27.5.1
     dev: true
 
-  /@jest/environment/28.1.3:
-    resolution: {integrity: sha512-1bf40cMFTEkKyEf585R9Iz1WayDjHoHqvts0XFYEqyKM3cFWDpeMoqKKTAF9LSYQModPUlh8FKptoM2YcMWAXA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/fake-timers': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      jest-mock: 28.1.3
-    dev: true
-
-  /@jest/expect-utils/28.1.3:
-    resolution: {integrity: sha512-wvbi9LUrHJLn3NlDW6wF2hvIMtd4JUl2QNVrjq+IBSHirgfrR3o9RnVtxzdEGO2n9JyIWwHnLfby5KzqBGg2YA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      jest-get-type: 28.0.2
-    dev: true
-
   /@jest/expect-utils/29.3.1:
     resolution: {integrity: sha512-wlrznINZI5sMjwvUoLVk617ll/UYfGIZNxmbU+Pa7wmkL4vYzhV9R2pwVqUh4NWWuLQWkI8+8mOkxs//prKQ3g==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dependencies:
       jest-get-type: 29.2.0
-    dev: true
-
-  /@jest/expect/28.1.3:
-    resolution: {integrity: sha512-lzc8CpUbSoE4dqT0U+g1qODQjBRHPpCPXissXD4mS9+sWQdmmpeJ9zSH1rS1HEkrsMN0fb7nKrJ9giAR1d3wBw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      expect: 28.1.3
-      jest-snapshot: 28.1.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@jest/fake-timers/26.6.2:
@@ -10667,18 +10628,6 @@ packages:
       jest-util: 27.5.1
     dev: true
 
-  /@jest/fake-timers/28.1.3:
-    resolution: {integrity: sha512-D/wOkL2POHv52h+ok5Oj/1gOG9HSywdoPtFsRCUmlCILXNn5eIWmcnd3DIiWlJnpGvQtmajqBP95Ei0EimxfLw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
-      '@sinonjs/fake-timers': 9.1.2
-      '@types/node': 18.11.11
-      jest-message-util: 28.1.3
-      jest-mock: 28.1.3
-      jest-util: 28.1.3
-    dev: true
-
   /@jest/globals/26.6.2:
     resolution: {integrity: sha512-85Ltnm7HlB/KesBUuALwQ68YTU72w9H2xW9FjZ1eL1U3lhtefjjl5c2MiUbpXt/i6LaPRvoOFJ22yCBSfQ0JIA==}
     engines: {node: '>= 10.14.2'}
@@ -10695,17 +10644,6 @@ packages:
       '@jest/environment': 27.5.1
       '@jest/types': 27.5.1
       expect: 27.5.1
-    dev: true
-
-  /@jest/globals/28.1.3:
-    resolution: {integrity: sha512-XFU4P4phyryCXu1pbcqMO0GSQcYe1IsalYCDzRNyhetyeyxMcIxa11qPNDpVNLeretItNqEmYYQn1UYz/5x1NA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/environment': 28.1.3
-      '@jest/expect': 28.1.3
-      '@jest/types': 28.1.3
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /@jest/reporters/26.6.2:
@@ -10780,51 +10718,6 @@ packages:
       - supports-color
     dev: true
 
-  /@jest/reporters/28.1.1:
-    resolution: {integrity: sha512-597Zj4D4d88sZrzM4atEGLuO7SdA/YrOv9SRXHXRNC+/FwPCWxZhBAEzhXoiJzfRwn8zes/EjS8Lo6DouGN5Gg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    peerDependencies:
-      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-    peerDependenciesMeta:
-      node-notifier:
-        optional: true
-    dependencies:
-      '@bcoe/v8-coverage': 0.2.3
-      '@jest/console': 28.1.3
-      '@jest/test-result': 28.1.1
-      '@jest/transform': 28.1.3
-      '@jest/types': 28.1.3
-      '@jridgewell/trace-mapping': 0.3.17
-      '@types/node': 18.11.11
-      chalk: 4.1.2
-      collect-v8-coverage: 1.0.1
-      exit: 0.1.2
-      glob: 7.2.3
-      graceful-fs: 4.2.10
-      istanbul-lib-coverage: 3.2.0
-      istanbul-lib-instrument: 5.2.1
-      istanbul-lib-report: 3.0.0
-      istanbul-lib-source-maps: 4.0.1
-      istanbul-reports: 3.1.5
-      jest-message-util: 28.1.3
-      jest-util: 28.1.1
-      jest-worker: 28.1.3
-      slash: 3.0.0
-      string-length: 4.0.2
-      strip-ansi: 6.0.1
-      terminal-link: 2.1.1
-      v8-to-istanbul: 9.0.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /@jest/schemas/28.1.3:
-    resolution: {integrity: sha512-/l/VWsdt/aBXgjshLWOFyFt3IVdYypu5y2Wn2rOO1un6nkqIn8SLXzgIMYXFyYsRWDyF5EthmKJMIdJvk08grg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@sinclair/typebox': 0.24.51
-    dev: true
-
   /@jest/schemas/29.0.0:
     resolution: {integrity: sha512-3Ab5HgYIIAnS0HjqJHQYZS+zXc4tUmTmBH3z83ajI6afXp8X3ZtdLX+nXx+I7LNkJD7uN9LAVhgnjDgZa2z0kA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -10850,15 +10743,6 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /@jest/source-map/28.1.2:
-    resolution: {integrity: sha512-cV8Lx3BeStJb8ipPHnqVw/IM2VCMWO3crWZzYodSIkxXnRcXJipCdx1JCK0K5MsJJouZQTH73mzf4vgxRaH9ww==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.17
-      callsites: 3.1.0
-      graceful-fs: 4.2.10
-    dev: true
-
   /@jest/test-result/26.6.2:
     resolution: {integrity: sha512-5O7H5c/7YlojphYNrK02LlDIV2GNPYisKwHm2QTKjNZeEzezCbwYs9swJySv2UfPMyZ0VdsmMv7jIlD/IKYQpQ==}
     engines: {node: '>= 10.14.2'}
@@ -10875,26 +10759,6 @@ packages:
     dependencies:
       '@jest/console': 27.5.1
       '@jest/types': 27.5.1
-      '@types/istanbul-lib-coverage': 2.0.4
-      collect-v8-coverage: 1.0.1
-    dev: true
-
-  /@jest/test-result/28.1.1:
-    resolution: {integrity: sha512-hPmkugBktqL6rRzwWAtp1JtYT4VHwv8OQ+9lE5Gymj6dHzubI/oJHMUpPOt8NrdVWSrz9S7bHjJUmv2ggFoUNQ==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/console': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/istanbul-lib-coverage': 2.0.4
-      collect-v8-coverage: 1.0.1
-    dev: true
-
-  /@jest/test-result/28.1.3:
-    resolution: {integrity: sha512-kZAkxnSE+FqE8YjW8gNuoVkkC9I7S1qmenl8sGcDOLropASP+BkcGKwhXoyqQuGOGeYY0y/ixjrd/iERpEXHNg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/console': 28.1.3
-      '@jest/types': 28.1.3
       '@types/istanbul-lib-coverage': 2.0.4
       collect-v8-coverage: 1.0.1
     dev: true
@@ -10926,16 +10790,6 @@ packages:
       jest-runtime: 27.5.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@jest/test-sequencer/28.1.3:
-    resolution: {integrity: sha512-NIMPEqqa59MWnDi1kvXXpYbqsfQmSJsIbnd85mdVGkiDfQ9WQQTXOLsvISUfonmnBT+w85WEgneCigEEdHDFxw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/test-result': 28.1.3
-      graceful-fs: 4.2.10
-      jest-haste-map: 28.1.3
-      slash: 3.0.0
     dev: true
 
   /@jest/transform/26.6.2:
@@ -10984,29 +10838,6 @@ packages:
       - supports-color
     dev: true
 
-  /@jest/transform/28.1.3:
-    resolution: {integrity: sha512-u5dT5di+oFI6hfcLOHGTAfmUxFRrjK+vnaP0kkVow9Md/M7V/MxqQMOz/VV25UZO8pzeA9PjfTpOu6BDuwSPQA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@babel/core': 7.20.5
-      '@jest/types': 28.1.3
-      '@jridgewell/trace-mapping': 0.3.17
-      babel-plugin-istanbul: 6.1.1
-      chalk: 4.1.2
-      convert-source-map: 1.9.0
-      fast-json-stable-stringify: 2.1.0
-      graceful-fs: 4.2.10
-      jest-haste-map: 28.1.3
-      jest-regex-util: 28.0.2
-      jest-util: 28.1.3
-      micromatch: 4.0.5
-      pirates: 4.0.5
-      slash: 3.0.0
-      write-file-atomic: 4.0.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /@jest/types/26.6.2:
     resolution: {integrity: sha512-fC6QCp7Sc5sX6g8Tvbmj4XUTbyrik0akgRy03yjXbQaBWWNWGE7SGtJk98m0N8nzegD/7SggrUlivxo5ax4KWQ==}
     engines: {node: '>= 10.14.2'}
@@ -11026,18 +10857,6 @@ packages:
       '@types/istanbul-reports': 3.0.1
       '@types/node': 18.11.11
       '@types/yargs': 16.0.4
-      chalk: 4.1.2
-    dev: true
-
-  /@jest/types/28.1.3:
-    resolution: {integrity: sha512-RyjiyMUZrKz/c+zlMFO1pm70DcIlST8AeWTkoUdZevew44wcNZQHsEVOiCVtgVnlFFD82FPaXycys58cf2muVQ==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/schemas': 28.1.3
-      '@types/istanbul-lib-coverage': 2.0.4
-      '@types/istanbul-reports': 3.0.1
-      '@types/node': 18.11.11
-      '@types/yargs': 17.0.16
       chalk: 4.1.2
     dev: true
 
@@ -11620,7 +11439,7 @@ packages:
       npmlog: 6.0.2
     dev: true
 
-  /@lerna/publish/6.1.0_nx@15.2.4+typescript@4.9.3:
+  /@lerna/publish/6.1.0_nx@15.3.0+typescript@4.9.3:
     resolution: {integrity: sha512-XtvuydtU0IptbAapLRgoN1AZj/WJR+e3UKnx9BQ1Dwc+Fpg2oqPxR/vi+6hxAsr95pdQ5CnWBdgS+dg2wEUJ7Q==}
     engines: {node: ^14.15.0 || >=16.0.0}
     dependencies:
@@ -11642,7 +11461,7 @@ packages:
       '@lerna/run-lifecycle': 6.1.0
       '@lerna/run-topologically': 6.1.0
       '@lerna/validation-error': 6.1.0
-      '@lerna/version': 6.1.0_nx@15.2.4+typescript@4.9.3
+      '@lerna/version': 6.1.0_nx@15.3.0+typescript@4.9.3
       fs-extra: 9.1.0
       libnpmaccess: 6.0.4
       npm-package-arg: 8.1.1
@@ -11774,7 +11593,7 @@ packages:
       npmlog: 6.0.2
     dev: true
 
-  /@lerna/version/6.1.0_nx@15.2.4+typescript@4.9.3:
+  /@lerna/version/6.1.0_nx@15.3.0+typescript@4.9.3:
     resolution: {integrity: sha512-RUxVFdzHt0739lRNMrAbo6HWcFrcyG7atM1pn+Eo61fUoA5R/9N4bCk4m9xUGkJ/mOcROjuwAGe+wT1uOs58Bg==}
     engines: {node: ^14.15.0 || >=16.0.0}
     dependencies:
@@ -11792,7 +11611,7 @@ packages:
       '@lerna/run-topologically': 6.1.0
       '@lerna/temp-write': 6.1.0
       '@lerna/validation-error': 6.1.0
-      '@nrwl/devkit': 15.2.4_nx@15.2.4+typescript@4.9.3
+      '@nrwl/devkit': 15.3.0_nx@15.3.0+typescript@4.9.3
       chalk: 4.1.2
       dedent: 0.7.0
       load-json-file: 6.2.0
@@ -11953,49 +11772,49 @@ packages:
       json5: 2.2.1
     dev: true
 
-  /@motionone/animation/10.15.0:
-    resolution: {integrity: sha512-FllQ9ogoATxEEiq7TFKuh2uPEvcw9658IYCpOTGnu53HYCrFQS61eKwsn7TqR4NEnTql2I+NGNipFqw3UZo1AA==}
+  /@motionone/animation/10.15.1:
+    resolution: {integrity: sha512-mZcJxLjHor+bhcPuIFErMDNyrdb2vJur8lSfMCsuCB4UyV8ILZLvK+t+pg56erv8ud9xQGK/1OGPt10agPrCyQ==}
     dependencies:
-      '@motionone/easing': 10.15.0
-      '@motionone/types': 10.15.0
-      '@motionone/utils': 10.15.0
+      '@motionone/easing': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
       tslib: 2.4.1
     dev: true
 
   /@motionone/dom/10.12.0:
     resolution: {integrity: sha512-UdPTtLMAktHiqV0atOczNYyDd/d8Cf5fFsd1tua03PqTwwCe/6lwhLSQ8a7TbnQ5SN0gm44N1slBfj+ORIhrqw==}
     dependencies:
-      '@motionone/animation': 10.15.0
-      '@motionone/generators': 10.15.0
-      '@motionone/types': 10.15.0
-      '@motionone/utils': 10.15.0
+      '@motionone/animation': 10.15.1
+      '@motionone/generators': 10.15.1
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
       hey-listen: 1.0.8
       tslib: 2.4.1
     dev: true
 
-  /@motionone/easing/10.15.0:
-    resolution: {integrity: sha512-VA1a0sa81euSeki2JgVl/t4MygeqfJn7GsMfewoGCln7gp/iZR12HbSo6RaWsHxPkUBRxSRUo+8zeuYRxv6oZQ==}
+  /@motionone/easing/10.15.1:
+    resolution: {integrity: sha512-6hIHBSV+ZVehf9dcKZLT7p5PEKHGhDwky2k8RKkmOvUoYP3S+dXsKupyZpqx5apjd9f+php4vXk4LuS+ADsrWw==}
     dependencies:
-      '@motionone/utils': 10.15.0
+      '@motionone/utils': 10.15.1
       tslib: 2.4.1
     dev: true
 
-  /@motionone/generators/10.15.0:
-    resolution: {integrity: sha512-bE4lEd/RIQ+DwlLC2IfF/FBOSPwjxV5AbwQuatMg/bWtndps66YMvX1NbvD0wzg+EIpPwi8i8YnYy7usdb8apg==}
+  /@motionone/generators/10.15.1:
+    resolution: {integrity: sha512-67HLsvHJbw6cIbLA/o+gsm7h+6D4Sn7AUrB/GPxvujse1cGZ38F5H7DzoH7PhX+sjvtDnt2IhFYF2Zp1QTMKWQ==}
     dependencies:
-      '@motionone/types': 10.15.0
-      '@motionone/utils': 10.15.0
+      '@motionone/types': 10.15.1
+      '@motionone/utils': 10.15.1
       tslib: 2.4.1
     dev: true
 
-  /@motionone/types/10.15.0:
-    resolution: {integrity: sha512-uNjSt2/Ud1Ld5TuZ98empFFgHNPysIcUQE3F/YuWxDQR/UO86sCqvnAHBkxUhpc2FVE6hb+3RpFmFxAUDwn11w==}
+  /@motionone/types/10.15.1:
+    resolution: {integrity: sha512-iIUd/EgUsRZGrvW0jqdst8st7zKTzS9EsKkP+6c6n4MPZoQHwiHuVtTQLD6Kp0bsBLhNzKIBlHXponn/SDT4hA==}
     dev: true
 
-  /@motionone/utils/10.15.0:
-    resolution: {integrity: sha512-M1PCJ533xpjuEmhTVZYw+KPU6/lDZP9d2NpJDcMMUH/TYPnL3w9CYCTn+b4KKdSUJB2KO7t3xfspJsLqj35SRQ==}
+  /@motionone/utils/10.15.1:
+    resolution: {integrity: sha512-p0YncgU+iklvYr/Dq4NobTRdAPv9PveRDUXabPEeOjBLSO/1FNB2phNTZxOxpi1/GZwYpAoECEa0Wam+nsmhSw==}
     dependencies:
-      '@motionone/types': 10.15.0
+      '@motionone/types': 10.15.1
       hey-listen: 1.0.8
       tslib: 2.4.1
     dev: true
@@ -12454,77 +12273,45 @@ packages:
       - supports-color
     dev: true
 
-  /@nrwl/cli/15.2.4:
-    resolution: {integrity: sha512-Urhkzj/hzhTlJqOHFZyibYGjvzHvSQhkjN3keHiYCNEOaAGp9DPF+oC5cYrPcqWbu3ZkldDWTk7aVBbeqwDWZQ==}
+  /@nrwl/cli/15.3.0:
+    resolution: {integrity: sha512-WAki2+puBp6qel/VAxdQmr/L/sLyw8K6bynYNmMl4eIlR5hjefrUChPzUiJDAS9/CUYQNOyva2VV5wofzdv95w==}
     dependencies:
-      nx: 15.2.4
+      nx: 15.3.0
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
     dev: true
 
-  /@nrwl/devkit/15.2.4_nx@15.2.4+typescript@4.9.3:
-    resolution: {integrity: sha512-5JZWB4ydnu+NKNIfj958nML8AWwhareQ+Q1hLXoOIS/7brqfALNP3y/Ef1ljrLIo1f3xc484TPclqwSH7aRdvQ==}
+  /@nrwl/devkit/15.3.0_nx@15.3.0+typescript@4.9.3:
+    resolution: {integrity: sha512-1O9QLB/eYS6ddw4MZnV4yj4CEqLIbpleZZiG/9w1TaiVO/jfNfXVaxc8EA87XSzMpk2W+/4Qggmabt6gAQaabA==}
     peerDependencies:
       nx: '>= 14 <= 16'
     dependencies:
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.9.3
       ejs: 3.1.8
       ignore: 5.2.1
-      nx: 15.2.4
+      nx: 15.3.0
       semver: 7.3.4
       tslib: 2.4.1
     transitivePeerDependencies:
       - typescript
     dev: true
 
-  /@nrwl/jest/15.2.4_mvurwutqjky6gqsjiakl6juv24:
-    resolution: {integrity: sha512-b2GoUPPs4/EAGhJvUn41sphD0Ln9P3ybX2Cyb1U5upM9glOGU5qdGYO20ZMl7IJhEL17QRcojUudWTnk1RejHA==}
-    dependencies:
-      '@jest/reporters': 28.1.1
-      '@jest/test-result': 28.1.1
-      '@nrwl/devkit': 15.2.4_nx@15.2.4+typescript@4.9.3
-      '@phenomnomnominal/tsquery': 4.1.1_typescript@4.9.3
-      chalk: 4.1.0
-      dotenv: 10.0.0
-      identity-obj-proxy: 3.0.0
-      jest-config: 28.1.1_k7quxe733nexnlgzi4yxvxoplq
-      jest-resolve: 28.1.1
-      jest-util: 28.1.1
-      resolve.exports: 1.1.0
-      tslib: 2.4.1
-    transitivePeerDependencies:
-      - '@types/node'
-      - node-notifier
-      - nx
-      - supports-color
-      - ts-node
-      - typescript
-    dev: true
-
-  /@nrwl/linter/15.2.4_7o3zmy2l7r5fhtajqqtxmepoga:
-    resolution: {integrity: sha512-EINxMgb7uEYW2rhj8MomHLktUsVAVlGBSTEZSg7SC32vgzY+QJ144qubLNlCHzSV1O5J/LMugoAHt3E+0eNHyA==}
+  /@nrwl/linter/15.3.0_nx@15.3.0+typescript@4.9.3:
+    resolution: {integrity: sha512-pxmL9taYRjKsQC3/XAD9JJCoIRGiuAs+xW4798kD/SFCRQEs5CddA3J4M1y9YoyPjiocNDfUE2AvVMOuM2qbDw==}
     peerDependencies:
       eslint: ^8.0.0
     peerDependenciesMeta:
       eslint:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.2.4_nx@15.2.4+typescript@4.9.3
-      '@nrwl/jest': 15.2.4_mvurwutqjky6gqsjiakl6juv24
+      '@nrwl/devkit': 15.3.0_nx@15.3.0+typescript@4.9.3
       '@phenomnomnominal/tsquery': 4.1.1_typescript@4.9.3
-      nx: 15.2.4
       tmp: 0.2.1
       tslib: 2.4.1
     transitivePeerDependencies:
-      - '@swc-node/register'
-      - '@swc/core'
-      - '@types/node'
-      - debug
-      - node-notifier
-      - supports-color
-      - ts-node
+      - nx
       - typescript
     dev: true
 
@@ -12544,28 +12331,27 @@ packages:
       - debug
     dev: true
 
-  /@nrwl/tao/15.2.4:
-    resolution: {integrity: sha512-ebGJCkg84yfptuNhGMnIrgHvnknJkeyxWLqRQ7AlMXTzxXOfMS+whjVImM9XjfVYVpBVFWc5QBU5gaKQtzLHmA==}
+  /@nrwl/tao/15.3.0:
+    resolution: {integrity: sha512-alyzKKSgfgPwQ/FUozvk43VGOZHyNMiSM6Udl49ZaQwT77GXRFkrOu21odW6dciWPd3iUOUjfJISNqrEJmxvpw==}
     hasBin: true
     dependencies:
-      nx: 15.2.4
+      nx: 15.3.0
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
     dev: true
 
-  /@nrwl/workspace/15.2.4_uf7ur4xvpkq7xbobfxd2xaxn5y:
-    resolution: {integrity: sha512-h35+NwG2zCeJpQzLevw8q9frrKCwsQyOfUxzyP7nApoxQNO70iGdTwRli/dvB7jVIckp3x78yLuu32D9oqiKEA==}
+  /@nrwl/workspace/15.3.0_brpckf4sz23pco3jyty2eys3iq:
+    resolution: {integrity: sha512-MjDRzDZLke3A44FeMjaV9Zyc3XcgbZJlrvFe0nDj7lo3/aLP/SvltE30kfkTwlg7EwvyCSv61lt9zz2NMxpHQw==}
     peerDependencies:
       prettier: ^2.6.2
     peerDependenciesMeta:
       prettier:
         optional: true
     dependencies:
-      '@nrwl/devkit': 15.2.4_nx@15.2.4+typescript@4.9.3
-      '@nrwl/jest': 15.2.4_mvurwutqjky6gqsjiakl6juv24
-      '@nrwl/linter': 15.2.4_7o3zmy2l7r5fhtajqqtxmepoga
+      '@nrwl/devkit': 15.3.0_nx@15.3.0+typescript@4.9.3
+      '@nrwl/linter': 15.3.0_nx@15.3.0+typescript@4.9.3
       '@parcel/watcher': 2.0.4
       chalk: 4.1.0
       chokidar: 3.5.3
@@ -12580,7 +12366,7 @@ packages:
       ignore: 5.2.1
       minimatch: 3.0.5
       npm-run-path: 4.0.1
-      nx: 15.2.4
+      nx: 15.3.0
       open: 8.4.0
       prettier: 2.8.0
       rxjs: 6.6.7
@@ -12592,12 +12378,8 @@ packages:
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
-      - '@types/node'
       - debug
       - eslint
-      - node-notifier
-      - supports-color
-      - ts-node
       - typescript
     dev: true
 
@@ -13984,12 +13766,6 @@ packages:
       '@sinonjs/commons': 1.8.6
     dev: true
 
-  /@sinonjs/fake-timers/9.1.2:
-    resolution: {integrity: sha512-BPS4ynJW/o92PUR4wgriz2Ud5gpST5vz6GQfMixEDK0Z8ZCUv2M7SkBLykH56T++Xs+8ln9zTGbOvNGIe02/jw==}
-    dependencies:
-      '@sinonjs/commons': 1.8.6
-    dev: true
-
   /@socket.io/component-emitter/3.1.0:
     resolution: {integrity: sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg==}
     dev: true
@@ -14266,8 +14042,8 @@ packages:
     resolution: {integrity: sha512-pYrtLtOwku/7r1i9AMONsJMVYAtk3hzOfiGNekhtq5tYBGA7unMve8RvUclKLMT3PrihvJqUmzsRGh0RP84hKg==}
     dev: true
 
-  /@tsparticles/build/1.5.0_webpack-cli@5.0.1:
-    resolution: {integrity: sha512-1TE0Wtd8x6CjksCzIRRHwkDc8+ekczpu3+nBHTgH7AKbISw1pHayOvlPTdB+T5/9WVp+SoQvdLA7vuuqMLbCgg==}
+  /@tsparticles/build/1.5.1_webpack-cli@5.0.1:
+    resolution: {integrity: sha512-WuFWD3lEHa5ml8UhQxlSMvCvL7+iSmVcJluOlVAlrBrrBGWshQJ4X/+bfcJ/MS33KC2Cl8QRi1Kbtj1X1Wzgmg==}
     hasBin: true
     dependencies:
       '@tsparticles/eslint-config': 1.4.0_k4no56dex7zbuk5vxtxtgxs27m
@@ -14283,7 +14059,7 @@ packages:
       rimraf: 3.0.2
       typescript: 4.9.3
       webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-tsparticles-plugin: 1.5.0
+      webpack-tsparticles-plugin: 1.5.1
     transitivePeerDependencies:
       - '@swc/core'
       - '@webpack-cli/generators'
@@ -14388,7 +14164,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 18.11.11
+      '@types/node': 16.18.6
       '@types/responselike': 1.0.0
     dev: true
 
@@ -14421,7 +14197,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 1.0.0
+      '@types/estree': 0.0.51
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
@@ -14562,7 +14338,7 @@ packages:
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.11.11
+      '@types/node': 16.18.6
     dev: true
 
   /@types/klaw/3.0.3:
@@ -14700,7 +14476,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.11.11
+      '@types/node': 16.18.6
     dev: true
 
   /@types/retry/0.12.0:
@@ -14849,7 +14625,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 18.11.11
+      '@types/node': 16.18.6
     dev: true
     optional: true
 
@@ -18274,24 +18050,6 @@ packages:
       - supports-color
     dev: true
 
-  /babel-jest/28.1.3_@babel+core@7.20.5:
-    resolution: {integrity: sha512-epUaPOEWMk3cWX0M/sPvCHHCe9fMFAa/9hXEgKP8nFfNl/jlGkE9ucq9NqkZGXLDduCJYS0UvSlPUwC0S+rH6Q==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    peerDependencies:
-      '@babel/core': ^7.8.0
-    dependencies:
-      '@babel/core': 7.20.5
-      '@jest/transform': 28.1.3
-      '@types/babel__core': 7.1.20
-      babel-plugin-istanbul: 6.1.1
-      babel-preset-jest: 28.1.3_@babel+core@7.20.5
-      chalk: 4.1.2
-      graceful-fs: 4.2.10
-      slash: 3.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /babel-loader/8.3.0_em3sh5kto35xuanci4cvhzqfay:
     resolution: {integrity: sha512-H8SvsMF+m9t15HNLMipppzkC+Y2Yq+v3SonZyU70RBL/h1gxPkH08Ot8pEE9Z4Kd+czyWJClmFS8qzIP9OZ04Q==}
     engines: {node: '>= 8.9'}
@@ -18401,16 +18159,6 @@ packages:
   /babel-plugin-jest-hoist/27.5.1:
     resolution: {integrity: sha512-50wCwD5EMNW4aRpOwtqzyZHIewTYNxLA4nhB+09d8BIssfNfzBRhkBIHiaPv1Si226TQSvp8gxAJm2iY2qs2hQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
-    dependencies:
-      '@babel/template': 7.18.10
-      '@babel/types': 7.20.5
-      '@types/babel__core': 7.1.20
-      '@types/babel__traverse': 7.18.3
-    dev: true
-
-  /babel-plugin-jest-hoist/28.1.3:
-    resolution: {integrity: sha512-Ys3tUKAmfnkRUpPdpa98eYrAR0nV+sSFUZZEGuQ2EbFd1y4SOLtD5QDNHAq+bb9a+bbXvYQC4b+ID/THIMcU6Q==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dependencies:
       '@babel/template': 7.18.10
       '@babel/types': 7.20.5
@@ -18835,19 +18583,8 @@ packages:
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.20.5
     dev: true
 
-  /babel-preset-jest/28.1.3_@babel+core@7.20.5:
-    resolution: {integrity: sha512-L+fupJvlWAHbQfn74coNX3zf60LXMJsezNvvx8eIh7iOR1luJ1poxYgQk1F8PYtNq/6QODDHCqsSnTFSWC491A==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    peerDependencies:
-      '@babel/core': ^7.0.0
-    dependencies:
-      '@babel/core': 7.20.5
-      babel-plugin-jest-hoist: 28.1.3
-      babel-preset-current-node-syntax: 1.0.1_@babel+core@7.20.5
-    dev: true
-
-  /babel-preset-solid/1.6.2_@babel+core@7.20.5:
-    resolution: {integrity: sha512-5sFI34g7Jtp4r04YFWkuC1o+gnekBdPXQTJb5/6lmxi5YwzazVgKAXRwEAToC3zRaPyIYJbZUVLpOi5mDzPEuw==}
+  /babel-preset-solid/1.6.3_@babel+core@7.20.5:
+    resolution: {integrity: sha512-AQ6aaKQlDAZc3aAS+nFfXbNBf+NeJwKlRA55clj9PQI+Mkqv8JvTOnAEIGfYa0OW0sntMWhNWx+ih/4PK2s3/w==}
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
@@ -19408,7 +19145,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -22295,11 +22032,6 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dev: true
 
-  /diff-sequences/28.1.1:
-    resolution: {integrity: sha512-FU0iFaH/E23a+a718l8Qa/19bF9p06kgE0KipMOMadwa3SjnaElKzPaUC0vnibs6/B/9ni97s61mcejk8W1fQw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dev: true
-
   /diff-sequences/29.3.1:
     resolution: {integrity: sha512-hlM3QR272NXCi4pq+N4Kok4kOp6EsgOM3ZSpJI7Da3UAs+Ttsi8MRmB6trM/lhyzUxGfOgnpkHtgqm5Q/CTcfQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -22642,11 +22374,6 @@ packages:
 
   /email-addresses/3.1.0:
     resolution: {integrity: sha512-k0/r7GrWVL32kZlGwfPNgB2Y/mMXVTq/decgLczm/j34whdaspNrZO8CnXPf1laaHxI6ptUlsnAxN+UAPw+fzg==}
-
-  /emittery/0.10.2:
-    resolution: {integrity: sha512-aITqOwnLanpHLNXZJENbOgjUBeHocD+xsSJmNrjovKBW5HbSpW3d1pEls7GFQPUWXiwG9+0P4GtHfEqC/4M0Iw==}
-    engines: {node: '>=12'}
-    dev: true
 
   /emittery/0.7.2:
     resolution: {integrity: sha512-A8OG5SR/ij3SsJdWDJdkkSYUjQdCUx6APQXem0SaEePBSRg4eymGYwBkKo1Y6DU+af/Jn2dBQqDBvjnr9Vi8nQ==}
@@ -24176,17 +23903,6 @@ packages:
       jest-message-util: 27.5.1
     dev: true
 
-  /expect/28.1.3:
-    resolution: {integrity: sha512-eEh0xn8HlsuOBxFgIss+2mX85VAS4Qy3OSkjV7rlBWljtA4oWH37glVGyOZSZvErDT/yBywZdPGwCXuTvSG85g==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/expect-utils': 28.1.3
-      jest-get-type: 28.0.2
-      jest-matcher-utils: 28.1.3
-      jest-message-util: 28.1.3
-      jest-util: 28.1.3
-    dev: true
-
   /expect/29.3.1:
     resolution: {integrity: sha512-gGb1yTgU30Q0O/tQq+z30KBWv24ApkMgFUpvKBkyLUBL68Wv8dHdJxTBZFl/iT8K/bqDHvUYRH6IIN3rToopPA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -25481,7 +25197,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.1.2
+      minimatch: 3.0.5
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -27630,9 +27346,9 @@ packages:
     hasBin: true
     dependencies:
       async: 3.2.4
-      chalk: 4.1.2
+      chalk: 4.1.0
       filelist: 1.0.4
-      minimatch: 3.1.2
+      minimatch: 3.0.5
     dev: true
 
   /jasmine-core/2.8.0:
@@ -27712,33 +27428,6 @@ packages:
       slash: 3.0.0
       stack-utils: 2.0.6
       throat: 6.0.1
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /jest-circus/28.1.3:
-    resolution: {integrity: sha512-cZ+eS5zc79MBwt+IhQhiEp0OeBddpc1n8MBo1nMB8A7oPMKEO+Sre+wHaLJexQUj9Ya/8NOBY0RESUgYjB6fow==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/environment': 28.1.3
-      '@jest/expect': 28.1.3
-      '@jest/test-result': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      chalk: 4.1.2
-      co: 4.6.0
-      dedent: 0.7.0
-      is-generator-fn: 2.1.0
-      jest-each: 28.1.3
-      jest-matcher-utils: 28.1.3
-      jest-message-util: 28.1.3
-      jest-runtime: 28.1.3
-      jest-snapshot: 28.1.3
-      jest-util: 28.1.3
-      p-limit: 3.1.0
-      pretty-format: 28.1.3
-      slash: 3.0.0
-      stack-utils: 2.0.6
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -27873,46 +27562,6 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jest-config/28.1.1_k7quxe733nexnlgzi4yxvxoplq:
-    resolution: {integrity: sha512-tASynMhS+jVV85zKvjfbJ8nUyJS/jUSYZ5KQxLUN2ZCvcQc/OmhQl2j6VEL3ezQkNofxn5pQ3SPYWPHb0unTZA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    peerDependencies:
-      '@types/node': '*'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      '@babel/core': 7.20.5
-      '@jest/test-sequencer': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      babel-jest: 28.1.3_@babel+core@7.20.5
-      chalk: 4.1.2
-      ci-info: 3.7.0
-      deepmerge: 4.2.2
-      glob: 7.2.3
-      graceful-fs: 4.2.10
-      jest-circus: 28.1.3
-      jest-environment-node: 28.1.3
-      jest-get-type: 28.0.2
-      jest-regex-util: 28.0.2
-      jest-resolve: 28.1.1
-      jest-runner: 28.1.3
-      jest-util: 28.1.1
-      jest-validate: 28.1.3
-      micromatch: 4.0.5
-      parse-json: 5.2.0
-      pretty-format: 28.1.3
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-      ts-node: 10.9.1_zhirybrk4zoofuxp64necizyzy
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /jest-dev-server/6.1.1:
     resolution: {integrity: sha512-z5LnaGDvlIkdMv/rppSO4+rq+GyQKf1xI9oiBxf9/2EBeN2hxRaWiMvaLNDnHPZj2PAhBXsycrKslDDoZO2Xtw==}
     dependencies:
@@ -27948,16 +27597,6 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /jest-diff/28.1.3:
-    resolution: {integrity: sha512-8RqP1B/OXzjjTWkqMX67iqgwBVJRgCyKD3L9nq+6ZqJMdvjE8RgHktqZ6jNrkdMT+dJuYNI3rhQpxaz7drJHfw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      chalk: 4.1.2
-      diff-sequences: 28.1.1
-      jest-get-type: 28.0.2
-      pretty-format: 28.1.3
-    dev: true
-
   /jest-diff/29.3.1:
     resolution: {integrity: sha512-vU8vyiO7568tmin2lA3r2DP8oRvzhvRcD4DjpXc6uGveQodyk7CKLhQlCSiwgx3g0pFaE88/KLZ0yaTWMc4Uiw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -27982,13 +27621,6 @@ packages:
       detect-newline: 3.1.0
     dev: true
 
-  /jest-docblock/28.1.1:
-    resolution: {integrity: sha512-3wayBVNiOYx0cwAbl9rwm5kKFP8yHH3d/fkEaL02NPTkDojPtheGB7HZSFY4wzX+DxyrvhXz0KSCVksmCknCuA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      detect-newline: 3.1.0
-    dev: true
-
   /jest-each/26.6.2:
     resolution: {integrity: sha512-Mer/f0KaATbjl8MCJ+0GEpNdqmnVmDYqCTJYTvoo7rqmRiDllmp2AYN+06F93nXcY3ur9ShIjS+CO/uD+BbH4A==}
     engines: {node: '>= 10.14.2'}
@@ -28009,17 +27641,6 @@ packages:
       jest-get-type: 27.5.1
       jest-util: 27.5.1
       pretty-format: 27.5.1
-    dev: true
-
-  /jest-each/28.1.3:
-    resolution: {integrity: sha512-arT1z4sg2yABU5uogObVPvSlSMQlDA48owx07BDPAiasW0yYpYHYOo4HHLz9q0BVzDVU4hILFjzJw0So9aCL/g==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
-      chalk: 4.1.2
-      jest-get-type: 28.0.2
-      jest-util: 28.1.3
-      pretty-format: 28.1.3
     dev: true
 
   /jest-environment-jsdom/26.6.2:
@@ -28082,18 +27703,6 @@ packages:
       jest-util: 27.5.1
     dev: true
 
-  /jest-environment-node/28.1.3:
-    resolution: {integrity: sha512-ugP6XOhEpjAEhGYvp5Xj989ns5cB1K6ZdjBYuS30umT4CQEETaxSiPcZ/E1kFktX4GkrcM4qu07IIlDYX1gp+A==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/environment': 28.1.3
-      '@jest/fake-timers': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      jest-mock: 28.1.3
-      jest-util: 28.1.3
-    dev: true
-
   /jest-get-type/26.3.0:
     resolution: {integrity: sha512-TpfaviN1R2pQWkIihlfEanwOXK0zcxrKEE4MlU6Tn7keoXdN6/3gK/xl0yEh8DOunn5pOVGKf8hB4R9gVh04ig==}
     engines: {node: '>= 10.14.2'}
@@ -28102,11 +27711,6 @@ packages:
   /jest-get-type/27.5.1:
     resolution: {integrity: sha512-2KY95ksYSaK7DMBWQn6dQz3kqAf3BB64y2udeG+hv4KfSOb9qwcYQstTJc1KCbsix+wLZWZYN8t7nwX3GOBLRw==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
-    dev: true
-
-  /jest-get-type/28.0.2:
-    resolution: {integrity: sha512-ioj2w9/DxSYHfOm5lJKCdcAmPJzQXmbM/Url3rhlghrPvT3tt+7a/+oXc9azkKmLvoiXjtV83bEWqi+vs5nlPA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dev: true
 
   /jest-get-type/29.2.0:
@@ -28151,25 +27755,6 @@ packages:
       jest-serializer: 27.5.1
       jest-util: 27.5.1
       jest-worker: 27.5.1
-      micromatch: 4.0.5
-      walker: 1.0.8
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: true
-
-  /jest-haste-map/28.1.3:
-    resolution: {integrity: sha512-3S+RQWDXccXDKSWnkHa/dPwt+2qwA8CJzR61w3FoYCvoo3Pn8tvGcysmMF0Bj0EX5RYvAI2EIvC57OmotfdtKA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
-      '@types/graceful-fs': 4.1.5
-      '@types/node': 18.11.11
-      anymatch: 3.1.3
-      fb-watchman: 2.0.2
-      graceful-fs: 4.2.10
-      jest-regex-util: 28.0.2
-      jest-util: 28.1.3
-      jest-worker: 28.1.3
       micromatch: 4.0.5
       walker: 1.0.8
     optionalDependencies:
@@ -28247,14 +27832,6 @@ packages:
       pretty-format: 27.5.1
     dev: true
 
-  /jest-leak-detector/28.1.3:
-    resolution: {integrity: sha512-WFVJhnQsiKtDEo5lG2mM0v40QWnBM+zMdHHyJs8AWZ7J0QZJS59MsyKeJHWhpBZBH32S48FOVvGyOFT1h0DlqA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      jest-get-type: 28.0.2
-      pretty-format: 28.1.3
-    dev: true
-
   /jest-matcher-utils/26.6.2:
     resolution: {integrity: sha512-llnc8vQgYcNqDrqRDXWwMr9i7rS5XFiCwvh6DTP7Jqa2mqpcCBBlpCbn+trkG0KNhPu/h8rzyBkriOtBstvWhw==}
     engines: {node: '>= 10.14.2'}
@@ -28273,16 +27850,6 @@ packages:
       jest-diff: 27.5.1
       jest-get-type: 27.5.1
       pretty-format: 27.5.1
-    dev: true
-
-  /jest-matcher-utils/28.1.3:
-    resolution: {integrity: sha512-kQeJ7qHemKfbzKoGjHHrRKH6atgxMk8Enkk2iPQ3XwO6oE/KYD8lMYOziCkeSB9G4adPM4nR1DE8Tf5JeWH6Bw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      chalk: 4.1.2
-      jest-diff: 28.1.3
-      jest-get-type: 28.0.2
-      pretty-format: 28.1.3
     dev: true
 
   /jest-matcher-utils/29.3.1:
@@ -28325,21 +27892,6 @@ packages:
       stack-utils: 2.0.6
     dev: true
 
-  /jest-message-util/28.1.3:
-    resolution: {integrity: sha512-PFdn9Iewbt575zKPf1286Ht9EPoJmYT7P0kY+RibeYZ2XtOr53pDLEFoTWXbd1h4JiGiWpTBC84fc8xMXQMb7g==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@babel/code-frame': 7.18.6
-      '@jest/types': 28.1.3
-      '@types/stack-utils': 2.0.1
-      chalk: 4.1.2
-      graceful-fs: 4.2.10
-      micromatch: 4.0.5
-      pretty-format: 28.1.3
-      slash: 3.0.0
-      stack-utils: 2.0.6
-    dev: true
-
   /jest-message-util/29.3.1:
     resolution: {integrity: sha512-lMJTbgNcDm5z+6KDxWtqOFWlGQxD6XaYwBqHR8kmpkP+WWWG90I35kdtQHY67Ay5CSuydkTBbJG+tH9JShFCyA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -28371,14 +27923,6 @@ packages:
       '@types/node': 18.11.11
     dev: true
 
-  /jest-mock/28.1.3:
-    resolution: {integrity: sha512-o3J2jr6dMMWYVH4Lh/NKmDXdosrsJgi4AviS8oXLujcjpCMBb1FMsblDnOXKZKfSiHLxYub1eS0IHuRXsio9eA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-    dev: true
-
   /jest-pnp-resolver/1.2.3_jest-resolve@26.6.2:
     resolution: {integrity: sha512-+3NpwQEnRoIBtx4fyhblQDPgJI0H1IEIkX7ShLUjPGA7TtUTvI1oiKi3SR4oBR0hQhQR80l4WAe5RrXBwWMA8w==}
     engines: {node: '>=6'}
@@ -28403,30 +27947,6 @@ packages:
       jest-resolve: 27.5.1
     dev: true
 
-  /jest-pnp-resolver/1.2.3_jest-resolve@28.1.1:
-    resolution: {integrity: sha512-+3NpwQEnRoIBtx4fyhblQDPgJI0H1IEIkX7ShLUjPGA7TtUTvI1oiKi3SR4oBR0hQhQR80l4WAe5RrXBwWMA8w==}
-    engines: {node: '>=6'}
-    peerDependencies:
-      jest-resolve: '*'
-    peerDependenciesMeta:
-      jest-resolve:
-        optional: true
-    dependencies:
-      jest-resolve: 28.1.1
-    dev: true
-
-  /jest-pnp-resolver/1.2.3_jest-resolve@28.1.3:
-    resolution: {integrity: sha512-+3NpwQEnRoIBtx4fyhblQDPgJI0H1IEIkX7ShLUjPGA7TtUTvI1oiKi3SR4oBR0hQhQR80l4WAe5RrXBwWMA8w==}
-    engines: {node: '>=6'}
-    peerDependencies:
-      jest-resolve: '*'
-    peerDependenciesMeta:
-      jest-resolve:
-        optional: true
-    dependencies:
-      jest-resolve: 28.1.3
-    dev: true
-
   /jest-regex-util/26.0.0:
     resolution: {integrity: sha512-Gv3ZIs/nA48/Zvjrl34bf+oD76JHiGDUxNOVgUjh3j890sblXryjY4rss71fPtD/njchl6PSE2hIhvyWa1eT0A==}
     engines: {node: '>= 10.14.2'}
@@ -28435,11 +27955,6 @@ packages:
   /jest-regex-util/27.5.1:
     resolution: {integrity: sha512-4bfKq2zie+x16okqDXjXn9ql2B0dScQu+vcwe4TvFVhkVyuWLqpZrZtXxLLWoXYgn0E87I6r6GRYHF7wFZBUvg==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
-    dev: true
-
-  /jest-regex-util/28.0.2:
-    resolution: {integrity: sha512-4s0IgyNIy0y9FK+cjoVYoxamT7Zeo7MhzqRGx7YDYmaQn1wucY9rotiGkBzzcMXTtjrCAP/f7f+E0F7+fxPNdw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     dev: true
 
   /jest-resolve-dependencies/26.6.3:
@@ -28489,36 +28004,6 @@ packages:
       jest-pnp-resolver: 1.2.3_jest-resolve@27.5.1
       jest-util: 27.5.1
       jest-validate: 27.5.1
-      resolve: 1.22.1
-      resolve.exports: 1.1.0
-      slash: 3.0.0
-    dev: true
-
-  /jest-resolve/28.1.1:
-    resolution: {integrity: sha512-/d1UbyUkf9nvsgdBildLe6LAD4DalgkgZcKd0nZ8XUGPyA/7fsnaQIlKVnDiuUXv/IeZhPEDrRJubVSulxrShA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      chalk: 4.1.2
-      graceful-fs: 4.2.10
-      jest-haste-map: 28.1.3
-      jest-pnp-resolver: 1.2.3_jest-resolve@28.1.1
-      jest-util: 28.1.1
-      jest-validate: 28.1.3
-      resolve: 1.22.1
-      resolve.exports: 1.1.0
-      slash: 3.0.0
-    dev: true
-
-  /jest-resolve/28.1.3:
-    resolution: {integrity: sha512-Z1W3tTjE6QaNI90qo/BJpfnvpxtaFTFw5CDgwpyE/Kz8U/06N1Hjf4ia9quUhCh39qIGWF1ZuxFiBiJQwSEYKQ==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      chalk: 4.1.2
-      graceful-fs: 4.2.10
-      jest-haste-map: 28.1.3
-      jest-pnp-resolver: 1.2.3_jest-resolve@28.1.3
-      jest-util: 28.1.3
-      jest-validate: 28.1.3
       resolve: 1.22.1
       resolve.exports: 1.1.0
       slash: 3.0.0
@@ -28588,35 +28073,6 @@ packages:
       - utf-8-validate
     dev: true
 
-  /jest-runner/28.1.3:
-    resolution: {integrity: sha512-GkMw4D/0USd62OVO0oEgjn23TM+YJa2U2Wu5zz9xsQB1MxWKDOlrnykPxnMsN0tnJllfLPinHTka61u0QhaxBA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/console': 28.1.3
-      '@jest/environment': 28.1.3
-      '@jest/test-result': 28.1.3
-      '@jest/transform': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      chalk: 4.1.2
-      emittery: 0.10.2
-      graceful-fs: 4.2.10
-      jest-docblock: 28.1.1
-      jest-environment-node: 28.1.3
-      jest-haste-map: 28.1.3
-      jest-leak-detector: 28.1.3
-      jest-message-util: 28.1.3
-      jest-resolve: 28.1.3
-      jest-runtime: 28.1.3
-      jest-util: 28.1.3
-      jest-watcher: 28.1.3
-      jest-worker: 28.1.3
-      p-limit: 3.1.0
-      source-map-support: 0.5.13
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /jest-runtime/26.6.3:
     resolution: {integrity: sha512-lrzyR3N8sacTAMeonbqpnSka1dHNux2uk0qqDXVkMv2c/A3wYnvQ4EXuI013Y6+gSKSCxdaczvf4HF0mVXHRdw==}
     engines: {node: '>= 10.14.2'}
@@ -28681,36 +28137,6 @@ packages:
       jest-resolve: 27.5.1
       jest-snapshot: 27.5.1
       jest-util: 27.5.1
-      slash: 3.0.0
-      strip-bom: 4.0.0
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /jest-runtime/28.1.3:
-    resolution: {integrity: sha512-NU+881ScBQQLc1JHG5eJGU7Ui3kLKrmwCPPtYsJtBykixrM2OhVQlpMmFWJjMyDfdkGgBMNjXCGB/ebzsgNGQw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/environment': 28.1.3
-      '@jest/fake-timers': 28.1.3
-      '@jest/globals': 28.1.3
-      '@jest/source-map': 28.1.2
-      '@jest/test-result': 28.1.3
-      '@jest/transform': 28.1.3
-      '@jest/types': 28.1.3
-      chalk: 4.1.2
-      cjs-module-lexer: 1.2.2
-      collect-v8-coverage: 1.0.1
-      execa: 5.1.1
-      glob: 7.2.3
-      graceful-fs: 4.2.10
-      jest-haste-map: 28.1.3
-      jest-message-util: 28.1.3
-      jest-mock: 28.1.3
-      jest-regex-util: 28.0.2
-      jest-resolve: 28.1.3
-      jest-snapshot: 28.1.3
-      jest-util: 28.1.3
       slash: 3.0.0
       strip-bom: 4.0.0
     transitivePeerDependencies:
@@ -28787,37 +28213,6 @@ packages:
       - supports-color
     dev: true
 
-  /jest-snapshot/28.1.3:
-    resolution: {integrity: sha512-4lzMgtiNlc3DU/8lZfmqxN3AYD6GGLbl+72rdBpXvcV+whX7mDrREzkPdp2RnmfIiWBg1YbuFSkXduF2JcafJg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@babel/core': 7.20.5
-      '@babel/generator': 7.20.5
-      '@babel/plugin-syntax-typescript': 7.20.0_@babel+core@7.20.5
-      '@babel/traverse': 7.20.5
-      '@babel/types': 7.20.5
-      '@jest/expect-utils': 28.1.3
-      '@jest/transform': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/babel__traverse': 7.18.3
-      '@types/prettier': 2.7.1
-      babel-preset-current-node-syntax: 1.0.1_@babel+core@7.20.5
-      chalk: 4.1.2
-      expect: 28.1.3
-      graceful-fs: 4.2.10
-      jest-diff: 28.1.3
-      jest-get-type: 28.0.2
-      jest-haste-map: 28.1.3
-      jest-matcher-utils: 28.1.3
-      jest-message-util: 28.1.3
-      jest-util: 28.1.3
-      natural-compare: 1.4.0
-      pretty-format: 28.1.3
-      semver: 7.3.8
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /jest-util/26.6.2:
     resolution: {integrity: sha512-MDW0fKfsn0OI7MS7Euz6h8HNDXVQ0gaM9uW6RjfDmd1DAFcaxX9OqIakHIqhbnmF08Cf2DLDG+ulq8YQQ0Lp0Q==}
     engines: {node: '>= 10.14.2'}
@@ -28835,30 +28230,6 @@ packages:
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dependencies:
       '@jest/types': 27.5.1
-      '@types/node': 18.11.11
-      chalk: 4.1.2
-      ci-info: 3.7.0
-      graceful-fs: 4.2.10
-      picomatch: 2.3.1
-    dev: true
-
-  /jest-util/28.1.1:
-    resolution: {integrity: sha512-FktOu7ca1DZSyhPAxgxB6hfh2+9zMoJ7aEQA759Z6p45NuO8mWcqujH+UdHlCm/V6JTWwDztM2ITCzU1ijJAfw==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      chalk: 4.1.2
-      ci-info: 3.7.0
-      graceful-fs: 4.2.10
-      picomatch: 2.3.1
-    dev: true
-
-  /jest-util/28.1.3:
-    resolution: {integrity: sha512-XdqfpHwpcSRko/C35uLYFM2emRAltIIKZiJ9eAmhjsj0CqZMa0p1ib0R5fWIqGhn1a103DebTbpqIaP1qCQ6tQ==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
       '@types/node': 18.11.11
       chalk: 4.1.2
       ci-info: 3.7.0
@@ -28900,18 +28271,6 @@ packages:
       jest-get-type: 27.5.1
       leven: 3.1.0
       pretty-format: 27.5.1
-    dev: true
-
-  /jest-validate/28.1.3:
-    resolution: {integrity: sha512-SZbOGBWEsaTxBGCOpsRWlXlvNkvTkY0XxRfh7zYmvd8uL5Qzyg0CHAXiXKROflh801quA6+/DsT4ODDthOC/OA==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/types': 28.1.3
-      camelcase: 6.3.0
-      chalk: 4.1.2
-      jest-get-type: 28.0.2
-      leven: 3.1.0
-      pretty-format: 28.1.3
     dev: true
 
   /jest-watch-typeahead/0.6.5_jest@26.6.3:
@@ -28956,20 +28315,6 @@ packages:
       string-length: 4.0.2
     dev: true
 
-  /jest-watcher/28.1.3:
-    resolution: {integrity: sha512-t4qcqj9hze+jviFPUN3YAtAEeFnr/azITXQEMARf5cMwKY2SMBRnCQTXLixTl20OR6mLh9KLMrgVJgJISym+1g==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/test-result': 28.1.3
-      '@jest/types': 28.1.3
-      '@types/node': 18.11.11
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      emittery: 0.10.2
-      jest-util: 28.1.3
-      string-length: 4.0.2
-    dev: true
-
   /jest-worker/25.5.0:
     resolution: {integrity: sha512-/dsSmUkIy5EBGfv/IjjqmFxrNAUpBERfGs1oHROyD7yxjG/w+t0GOJDX8O1k32ySmd7+a5IhnJU2qQFcJ4n1vw==}
     engines: {node: '>= 8.3'}
@@ -28994,15 +28339,6 @@ packages:
       '@types/node': 18.11.11
       merge-stream: 2.0.0
       supports-color: 8.1.1
-
-  /jest-worker/28.1.3:
-    resolution: {integrity: sha512-CqRA220YV/6jCo8VWvAt1KKx6eek1VIHMPeLEbpcfSfkEeWyBNppynM/o6q+Wmw+sOhos2ml34wZbSX3G13//g==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@types/node': 18.11.11
-      merge-stream: 2.0.0
-      supports-color: 8.1.1
-    dev: true
 
   /jest/26.6.3:
     resolution: {integrity: sha512-lGS5PXGAzR4RF7V5+XObhqz2KZIDUA1yD0DG6pBVmy10eh0ZIXQImRuzocsI/N2XZ1GrLFwTS27In2i2jlpq1Q==}
@@ -29729,14 +29065,14 @@ packages:
       '@lerna/init': 6.1.0
       '@lerna/link': 6.1.0
       '@lerna/list': 6.1.0
-      '@lerna/publish': 6.1.0_nx@15.2.4+typescript@4.9.3
+      '@lerna/publish': 6.1.0_nx@15.3.0+typescript@4.9.3
       '@lerna/run': 6.1.0
-      '@lerna/version': 6.1.0_nx@15.2.4+typescript@4.9.3
-      '@nrwl/devkit': 15.2.4_nx@15.2.4+typescript@4.9.3
+      '@lerna/version': 6.1.0_nx@15.3.0+typescript@4.9.3
+      '@nrwl/devkit': 15.3.0_nx@15.3.0+typescript@4.9.3
       import-local: 3.1.0
       inquirer: 8.2.5
       npmlog: 6.0.2
-      nx: 15.2.4
+      nx: 15.3.0
       typescript: 4.9.3
     transitivePeerDependencies:
       - '@swc-node/register'
@@ -30544,8 +29880,8 @@ packages:
       markdown-it: 12.3.2
     dev: true
 
-  /marked/4.2.3:
-    resolution: {integrity: sha512-slWRdJkbTZ+PjkyJnE30Uid64eHwbwa1Q25INCAYfZlK4o6ylagBy/Le9eWntqJFoFT93ikUKMv47GZ4gTwHkw==}
+  /marked/4.2.4:
+    resolution: {integrity: sha512-Wcc9ikX7Q5E4BYDPvh1C6QNSxrjC9tBgz+A/vAhp59KXUgachw++uMvMKiSW8oA85nopmPZcEvBoex/YLMsiyA==}
     engines: {node: '>= 12'}
     hasBin: true
     dev: true
@@ -32087,8 +31423,8 @@ packages:
   /nwsapi/2.2.2:
     resolution: {integrity: sha512-90yv+6538zuvUMnN+zCr8LuV6bPFdq50304114vJYJ8RDyK8D5O9Phpbd6SZWgI7PwzmmfN1upeOJlvybDSgCw==}
 
-  /nx/15.2.4:
-    resolution: {integrity: sha512-8rTLo5WGmM6hEo5R/u03Jllkyj4vIUbBk2MRAppCvVRXWLS4xJUEOityXJ5BAvaKoLYm6sWUP1gqU7xlldnT5A==}
+  /nx/15.3.0:
+    resolution: {integrity: sha512-5tBrEF2zDkGBDfe8wThazJqBDhsVkRrxc6OttzfBmkXP4VPp8w5MMtUEOry181AXKfjDGkw//UnCSkUNynTDlw==}
     hasBin: true
     requiresBuild: true
     peerDependencies:
@@ -32100,8 +31436,8 @@ packages:
       '@swc/core':
         optional: true
     dependencies:
-      '@nrwl/cli': 15.2.4
-      '@nrwl/tao': 15.2.4
+      '@nrwl/cli': 15.3.0
+      '@nrwl/tao': 15.3.0
       '@parcel/watcher': 2.0.4
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.32
@@ -34500,14 +33836,14 @@ packages:
       fast-diff: 1.2.0
     dev: true
 
-  /prettier-plugin-svelte/2.8.1_3ndnxlh52lolrqe4kgjgbxb3xa:
+  /prettier-plugin-svelte/2.8.1_kaioqtfwjumrsfopsgfoca65re:
     resolution: {integrity: sha512-KA3K1J3/wKDnCxW7ZDRA/QL2Q67N7Xs3gOERqJ5X1qFjq1DdnN3K1R29scSKwh+kA8FF67pXbYytUpvN/i3iQw==}
     peerDependencies:
       prettier: ^1.16.4 || ^2.0.0
       svelte: ^3.2.0
     dependencies:
       prettier: 2.8.0
-      svelte: 3.53.1
+      svelte: 3.54.0
     dev: true
 
   /prettier/2.8.0:
@@ -34556,16 +33892,6 @@ packages:
       ansi-regex: 5.0.1
       ansi-styles: 5.2.0
       react-is: 17.0.2
-    dev: true
-
-  /pretty-format/28.1.3:
-    resolution: {integrity: sha512-8gFb/To0OmxHR9+ZTb14Df2vNxdGCX8g1xWGUTqUw5TiZvcQf5sHKObd5UcPyLLyowNwDAMTF3XWOG1B6mxl1Q==}
-    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
-    dependencies:
-      '@jest/schemas': 28.1.3
-      ansi-regex: 5.0.1
-      ansi-styles: 5.2.0
-      react-is: 18.2.0
     dev: true
 
   /pretty-format/29.3.1:
@@ -34666,6 +33992,17 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
     dev: true
 
   /promise-polyfill/8.2.3:
@@ -36222,7 +35559,7 @@ packages:
       source-map-resolve: 0.6.0
     dev: true
 
-  /rollup-plugin-svelte/7.1.0_rollup@3.6.0+svelte@3.53.1:
+  /rollup-plugin-svelte/7.1.0_rollup@3.6.0+svelte@3.54.0:
     resolution: {integrity: sha512-vopCUq3G+25sKjwF5VilIbiY6KCuMNHP1PFvx2Vr3REBNMDllKHFZN2B9jwwC+MqNc3UPKkjXnceLPEjTjXGXg==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -36232,7 +35569,7 @@ packages:
       require-relative: 0.8.7
       rollup: 3.6.0
       rollup-pluginutils: 2.8.2
-      svelte: 3.53.1
+      svelte: 3.54.0
     dev: true
 
   /rollup-plugin-terser/7.0.2_rollup@2.79.1:
@@ -37395,8 +36732,8 @@ packages:
       smart-buffer: 4.2.0
     dev: true
 
-  /solid-js/1.6.2:
-    resolution: {integrity: sha512-AZBsj+Yn1xliniTTeuQKG9V7VQVkQ8lZmSKvBjpcVSoZeF7nvt/N5f7Kcsx6QSufioa2YgvBjkIiA0cM0qhotw==}
+  /solid-js/1.6.3:
+    resolution: {integrity: sha512-YoieThdhAKt83O86+DjpKXNlVSU5JYdi21RdYqiEIsWxahOphiAfao8e/zRTLyZEM5ZgyZ3ZHPPgW1HO5537Rw==}
     dependencies:
       csstype: 3.1.1
 
@@ -37413,7 +36750,7 @@ packages:
       acorn: 6.4.1
       babel-jest: 26.6.3_@babel+core@7.20.5
       babel-loader: 8.3.0_em3sh5kto35xuanci4cvhzqfay
-      babel-preset-solid: 1.6.2_@babel+core@7.20.5
+      babel-preset-solid: 1.6.3_@babel+core@7.20.5
       case-sensitive-paths-webpack-plugin: 2.4.0
       component-register-loader: 0.0.2_component-register@0.7.1
       css-loader: 2.1.1_webpack@4.46.0
@@ -37549,13 +36886,6 @@ packages:
     resolution: {integrity: sha512-try0/JqxPLF9nOjvSta7tVondkP5dwgyLDjVoyMDlmjugT2lRZ1OfsrYTkCd2hkDnJTKRbO/Rl3orm8vlsUzbA==}
     dependencies:
       source-map: 0.5.7
-    dev: true
-
-  /source-map-support/0.5.13:
-    resolution: {integrity: sha512-SHSKFHadjVA5oR4PPqhtAVdcBWwRYVd6g6cAXnIbRiIwc2EhPrTuKUBdSLvlEKyIP3GCf89fltvcZiP9MMFA1w==}
-    dependencies:
-      buffer-from: 1.1.2
-      source-map: 0.6.1
     dev: true
 
   /source-map-support/0.5.21:
@@ -38362,7 +37692,7 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
-  /svelte-check/2.10.1_svelte@3.53.1:
+  /svelte-check/2.10.1_svelte@3.54.0:
     resolution: {integrity: sha512-uscZovyuOPA89NuAkc4vO27mzx//2wFBNtwTsgYcNs7JwaFpJ2TqBawQ/avG7gkieYQ3QXqFUggJZ+s51fQGDQ==}
     hasBin: true
     peerDependencies:
@@ -38374,8 +37704,8 @@ packages:
       import-fresh: 3.3.0
       picocolors: 1.0.0
       sade: 1.8.1
-      svelte: 3.53.1
-      svelte-preprocess: 4.10.7_7dvewpees4iyn2tkw2qzal77a4
+      svelte: 3.54.0
+      svelte-preprocess: 4.10.7_gf4dcx76vtk2o62ixxeqx7chra
       typescript: 4.9.3
     transitivePeerDependencies:
       - '@babel/core'
@@ -38390,7 +37720,7 @@ packages:
       - sugarss
     dev: true
 
-  /svelte-preprocess/4.10.7_7dvewpees4iyn2tkw2qzal77a4:
+  /svelte-preprocess/4.10.7_gf4dcx76vtk2o62ixxeqx7chra:
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
     engines: {node: '>= 9.11.2'}
     requiresBuild: true
@@ -38437,12 +37767,12 @@ packages:
       magic-string: 0.25.9
       sorcery: 0.10.0
       strip-indent: 3.0.0
-      svelte: 3.53.1
+      svelte: 3.54.0
       typescript: 4.9.3
     dev: true
 
-  /svelte/3.53.1:
-    resolution: {integrity: sha512-Q4/hHkktZogGhN5iqxqSi9sjEVoe/NbIxX4hXEHoasTxj+TxEQVAq66LnDMdAZxjmsodkoI5F3slqsS68U7FNw==}
+  /svelte/3.54.0:
+    resolution: {integrity: sha512-tdrgeJU0hob0ZWAMoKXkhcxXA7dpTg6lZGxUeko5YqvPdJBiyRspGsCwV27kIrbrqPP2WUoSV9ca0gnLlw8YzQ==}
     engines: {node: '>= 8'}
     dev: true
 
@@ -39395,7 +38725,7 @@ packages:
       typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x
     dependencies:
       lunr: 2.3.9
-      marked: 4.2.3
+      marked: 4.2.4
       minimatch: 5.1.1
       shiki: 0.11.1
       typescript: 4.9.3
@@ -39915,15 +39245,6 @@ packages:
       '@types/istanbul-lib-coverage': 2.0.4
       convert-source-map: 1.9.0
       source-map: 0.7.4
-    dev: true
-
-  /v8-to-istanbul/9.0.1:
-    resolution: {integrity: sha512-74Y4LqY74kLE6IFyIjPtkSTWzUZmj8tdHT9Ii/26dvQ6K9Dl2NbEfj0XgU2sHCtKgt5VupqhlO/5aWuqS+IY1w==}
-    engines: {node: '>=10.12.0'}
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.17
-      '@types/istanbul-lib-coverage': 2.0.4
-      convert-source-map: 1.9.0
     dev: true
 
   /v8flags/3.2.0:
@@ -40725,7 +40046,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.75.0_webpack-cli@5.0.1
+      webpack: 5.75.0
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
     resolution: {integrity: sha512-3x31rjbEQWKMNzacUZRE6wXvUFuGpH7vr0lIEbYpMAG9BOxi0928QU1BBswOAP3kg3H1O4hiS+sq4YyAn6ANnA==}
@@ -41104,8 +40425,8 @@ packages:
       webpack: 5.75.0
     dev: true
 
-  /webpack-tsparticles-plugin/1.5.0:
-    resolution: {integrity: sha512-NeieLEoASXwEqq5ETGyiRj1/MHH0G73cSsFevxdAwWIZwOsO/cVkBdBovTRlO8BPLhH1Dfmj8k33HKJedSd3vg==}
+  /webpack-tsparticles-plugin/1.5.1:
+    resolution: {integrity: sha512-NsOUP2vAlBBO/5sWD3Cboh4Xn4/ghxBBIQjH7XRBCDPH9M9GbXQ+EJI5a862q/yAdluw8uRHy6Ygy8r8VMJhmw==}
     dependencies:
       '@babel/core': 7.20.5
       '@babel/preset-env': 7.20.2_@babel+core@7.20.5
@@ -41220,7 +40541,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-    dev: true
 
   /webpack/5.75.0_webpack-cli@4.10.0:
     resolution: {integrity: sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==}
