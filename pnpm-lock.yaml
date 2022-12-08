@@ -1027,6 +1027,7 @@ importers:
       tsparticles-preset-stars: ^2.6.0
       tsparticles-preset-triangles: ^2.6.0
       tsparticles-shape-bubble: ^2.6.0
+      tsparticles-shape-cards: ^2.6.0
       tsparticles-shape-circle: ^2.6.0
       tsparticles-shape-heart: ^2.6.0
       tsparticles-shape-image: ^2.6.0
@@ -1108,6 +1109,7 @@ importers:
       tsparticles-preset-stars: link:../../presets/stars/dist
       tsparticles-preset-triangles: link:../../presets/triangles/dist
       tsparticles-shape-bubble: link:../../shapes/bubble/dist
+      tsparticles-shape-cards: link:../../shapes/cards/dist
       tsparticles-shape-circle: link:../../shapes/circle/dist
       tsparticles-shape-heart: link:../../shapes/heart/dist
       tsparticles-shape-image: link:../../shapes/image/dist
@@ -19145,7 +19147,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -33992,17 +33994,6 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
-    dev: true
-
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
     dev: true
 
   /promise-polyfill/8.2.3:

@@ -16,6 +16,18 @@ const group = __('Shapes'),
 			},
 		},
 		{
+			name: 'shape-cards',
+			description: __('Cards'),
+			group,
+			load: async (engine) => {
+				const { loadCardsShape } = await import(
+					'tsparticles-shape-cards'
+					);
+
+				await loadCardsShape(engine);
+			},
+		},
+		{
 			name: 'shape-circle',
 			description: __('Circle'),
 			group,

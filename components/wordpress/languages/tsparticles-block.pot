@@ -421,3 +421,7 @@ msgstr ""
 #. Links
 msgid "Links"
 msgstr ""
+
+#. Cards
+msgid "Cards"
+msgstr ""

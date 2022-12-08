@@ -78,6 +78,7 @@
         "tsparticles-preset-stars": "^2.6.0",
         "tsparticles-preset-triangles": "^2.6.0",
         "tsparticles-shape-bubble": "^2.6.0",
+	  	"tsparticles-shape-cards": "^2.6.0",
         "tsparticles-shape-circle": "^2.6.0",
         "tsparticles-shape-heart": "^2.6.0",
         "tsparticles-shape-image": "^2.6.0",

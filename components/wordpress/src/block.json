@@ -203,6 +203,10 @@
 	  "type": "boolean",
 	  "default": false
 	},
+	"shape-cards": {
+	  "type": "boolean",
+	  "default": false
+	},
 	"shape-circle": {
 	  "type": "boolean",
 	  "default": false
