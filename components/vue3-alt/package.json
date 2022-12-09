@@ -98,7 +98,7 @@
         "@tsparticles/prettier-config": "^1.4.0",
         "@types/node": "^18.11.11",
         "@vitejs/plugin-vue": "^3.2.0",
-        "@vitejs/plugin-vue-jsx": "^2.1.1",
+        "@vitejs/plugin-vue-jsx": "^3.0.0",
         "@vue/eslint-config-prettier": "^7.0.0",
         "@vue/eslint-config-typescript": "^11.0.2",
         "@vue/tsconfig": "^0.1.3",

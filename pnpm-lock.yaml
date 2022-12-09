@@ -872,7 +872,7 @@ importers:
       '@tsparticles/prettier-config': ^1.4.0
       '@types/node': ^18.11.11
       '@vitejs/plugin-vue': ^3.2.0
-      '@vitejs/plugin-vue-jsx': ^2.1.1
+      '@vitejs/plugin-vue-jsx': ^3.0.0
       '@vue/eslint-config-prettier': ^7.0.0
       '@vue/eslint-config-typescript': ^11.0.2
       '@vue/tsconfig': ^0.1.3
@@ -893,7 +893,7 @@ importers:
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@types/node': 18.11.11
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
-      '@vitejs/plugin-vue-jsx': 2.1.1_vite@3.2.5+vue@3.2.45
+      '@vitejs/plugin-vue-jsx': 3.0.0_vite@3.2.5+vue@3.2.45
       '@vue/eslint-config-prettier': 7.0.0_yz7jvh5l5mgl5xhpwlgtkgcccy
       '@vue/eslint-config-typescript': 11.0.2_sb3redb42nwkq4q6vnqovjecl4
       '@vue/tsconfig': 0.1.3_@types+node@18.11.11
@@ -911,7 +911,7 @@ importers:
       '@tsparticles/prettier-config': ^1.4.0
       '@types/node': ^18.11.11
       '@vitejs/plugin-vue': ^3.2.0
-      '@vitejs/plugin-vue-jsx': ^2.1.1
+      '@vitejs/plugin-vue-jsx': ^3.0.0
       '@vue/eslint-config-prettier': ^7.0.0
       '@vue/eslint-config-typescript': ^11.0.2
       '@vue/tsconfig': ^0.1.3
@@ -932,7 +932,7 @@ importers:
       '@tsparticles/prettier-config': 1.4.0_prettier@2.8.0
       '@types/node': 18.11.11
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
-      '@vitejs/plugin-vue-jsx': 2.1.1_vite@3.2.5+vue@3.2.45
+      '@vitejs/plugin-vue-jsx': 3.0.0_vite@3.2.5+vue@3.2.45
       '@vue/eslint-config-prettier': 7.0.0_yz7jvh5l5mgl5xhpwlgtkgcccy
       '@vue/eslint-config-typescript': 11.0.2_sb3redb42nwkq4q6vnqovjecl4
       '@vue/tsconfig': 0.1.3_@types+node@18.11.11
@@ -2238,7 +2238,7 @@ importers:
       '@rushstack/eslint-patch': ^1.2.0
       '@types/node': ^18.11.11
       '@vitejs/plugin-vue': ^3.2.0
-      '@vitejs/plugin-vue-jsx': ^2.1.1
+      '@vitejs/plugin-vue-jsx': ^3.0.0
       '@vue/eslint-config-prettier': ^7.0.0
       '@vue/eslint-config-typescript': ^11.0.2
       '@vue/tsconfig': ^0.1.3
@@ -2265,7 +2265,7 @@ importers:
       '@rushstack/eslint-patch': 1.2.0
       '@types/node': 18.11.11
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
-      '@vitejs/plugin-vue-jsx': 2.1.1_vite@3.2.5+vue@3.2.45
+      '@vitejs/plugin-vue-jsx': 3.0.0_vite@3.2.5+vue@3.2.45
       '@vue/eslint-config-prettier': 7.0.0_yz7jvh5l5mgl5xhpwlgtkgcccy
       '@vue/eslint-config-typescript': 11.0.2_sb3redb42nwkq4q6vnqovjecl4
       '@vue/tsconfig': 0.1.3_@types+node@18.11.11
@@ -15020,11 +15020,11 @@ packages:
       react: 17.0.2
     dev: true
 
-  /@vitejs/plugin-vue-jsx/2.1.1_vite@3.2.5+vue@3.2.45:
-    resolution: {integrity: sha512-JgDhxstQlwnHBvZ1BSnU5mbmyQ14/t5JhREc6YH5kWyu2QdAAOsLF6xgHoIWarj8tddaiwFrNzLbWJPudpXKYA==}
+  /@vitejs/plugin-vue-jsx/3.0.0_vite@3.2.5+vue@3.2.45:
+    resolution: {integrity: sha512-vurkuzgac5SYuxd2HUZqAFAWGTF10diKBwJNbCvnWijNZfXd+7jMtqjPFbGt7idOJUn584fP1Ar9j/GN2jQ3Ew==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: ^3.0.0
+      vite: ^4.0.0
       vue: ^3.0.0
     dependencies:
       '@babel/core': 7.20.5
@@ -19199,7 +19199,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -34046,6 +34046,17 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
     dev: true
 
   /promise-polyfill/8.2.3:
