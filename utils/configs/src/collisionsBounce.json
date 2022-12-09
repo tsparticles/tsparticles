@@ -1,4 +1,5 @@
 {
+    "name": "Collisions Bounce",
     "particles": {
         "number": {
             "value": 80,

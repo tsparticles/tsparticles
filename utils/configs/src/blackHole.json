@@ -1,4 +1,5 @@
 {
+    "name": "Black Hole",
     "particles": {
         "number": {
             "value": 1000,

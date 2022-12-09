@@ -1,4 +1,5 @@
 {
+    "name": "Data URI Images",
     "interactivity": {
         "events": {
             "onClick": {

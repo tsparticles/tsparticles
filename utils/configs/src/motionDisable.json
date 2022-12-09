@@ -1,4 +1,5 @@
 {
+    "name": "Motion Disable",
     "motion": {
         "disable": true
     },

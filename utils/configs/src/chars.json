@@ -1,4 +1,5 @@
 {
+    "name": "Chars",
     "particles": {
         "number": {
             "value": 80,

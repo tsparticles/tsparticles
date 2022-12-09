@@ -1,4 +1,5 @@
 {
+    "name": "Delay",
     "delay": 5,
     "particles": {
         "number": {

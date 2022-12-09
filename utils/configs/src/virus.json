@@ -1,4 +1,5 @@
 {
+    "name": "Virus",
     "interactivity": {
         "events": {
             "onClick": {

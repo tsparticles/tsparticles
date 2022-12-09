@@ -1,4 +1,5 @@
 {
+    "name": "Polygon Shape",
     "particles": {
         "number": {
             "value": 80,

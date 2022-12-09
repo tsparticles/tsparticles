@@ -1,4 +1,5 @@
 {
+    "name": "Grab Random Color",
     "particles": {
         "number": {
             "value": 80,

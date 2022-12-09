@@ -1,4 +1,5 @@
 {
+    "name": "Repulse Circ",
     "particles": {
         "number": {
             "value": 200,

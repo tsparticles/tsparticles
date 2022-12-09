@@ -1,4 +1,5 @@
 {
+    "name": "Emitter Images",
     "particles": {
         "move": {
             "direction": "none",

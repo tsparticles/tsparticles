@@ -1,4 +1,5 @@
 {
+    "name": "SVG Replace",
     "interactivity": {
         "events": {
             "onClick": {

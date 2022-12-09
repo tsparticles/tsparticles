@@ -1,4 +1,5 @@
 {
+    "name": "Spin",
     "particles": {
         "number": {
             "value": 80,

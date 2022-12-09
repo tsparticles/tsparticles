@@ -1,4 +1,5 @@
 {
+    "name": "Snow",
     "particles": {
         "number": {
             "value": 400,

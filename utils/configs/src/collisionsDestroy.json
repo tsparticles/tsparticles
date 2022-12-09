@@ -1,4 +1,5 @@
 {
+    "name": "Collisions Destroy",
     "particles": {
         "number": {
             "value": 80,

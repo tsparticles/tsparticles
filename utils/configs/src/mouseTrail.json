@@ -1,4 +1,5 @@
 {
+    "name": "Mouse Trail",
     "particles": {
         "number": {
             "value": 80,

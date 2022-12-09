@@ -1,4 +1,5 @@
 {
+    "name": "Background Mask",
     "particles": {
         "number": {
             "value": 80,

@@ -1,4 +1,5 @@
 {
+    "name": "Speed Decay",
     "particles": {
         "number": {
             "value": 0

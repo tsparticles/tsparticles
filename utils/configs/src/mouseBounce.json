@@ -1,4 +1,5 @@
 {
+    "name": "Mouse Bounce",
     "particles": {
         "number": {
             "value": 80,

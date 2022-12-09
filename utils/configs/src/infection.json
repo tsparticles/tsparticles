@@ -1,4 +1,5 @@
 {
+    "name": "Infection",
     "infection": {
         "enable": true,
         "infections": 10,

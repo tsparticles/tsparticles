@@ -1,4 +1,5 @@
 {
+    "name": "Random Colors",
     "interactivity": {
         "events": {
             "onClick": {

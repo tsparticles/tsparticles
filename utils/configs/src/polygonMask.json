@@ -1,5 +1,5 @@
 {
-    "detectRetina": false,
+    "name": "Polygon Mask",
     "interactivity": {
         "events": {
             "onClick": {

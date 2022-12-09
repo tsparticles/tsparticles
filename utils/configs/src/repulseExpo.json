@@ -1,4 +1,5 @@
 {
+    "name": "Repulse Expo",
     "particles": {
         "number": {
             "value": 200,

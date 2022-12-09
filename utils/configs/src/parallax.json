@@ -1,4 +1,5 @@
 {
+    "name": "Parallax",
     "particles": {
         "number": {
             "value": 100,

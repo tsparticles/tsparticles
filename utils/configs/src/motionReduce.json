@@ -1,4 +1,5 @@
 {
+    "name": "Motion Reduce",
     "motion": {
         "disable": false,
         "reduce": {

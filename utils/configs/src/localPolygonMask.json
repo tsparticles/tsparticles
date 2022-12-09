@@ -1,4 +1,5 @@
 {
+    "name": "Local Polygon Mask",
     "interactivity": {
         "events": {
             "onHover": {

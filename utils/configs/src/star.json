@@ -1,4 +1,5 @@
 {
+    "name": "Star",
     "particles": {
         "number": {
             "value": 10,

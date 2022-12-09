@@ -1,4 +1,5 @@
 {
+    "name": "Connect",
     "interactivity": {
         "events": {
             "onClick": {

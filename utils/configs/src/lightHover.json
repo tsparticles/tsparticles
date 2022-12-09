@@ -1,4 +1,5 @@
 {
+    "name": "Light Hover",
     "particles": {
         "number": {
             "value": 30,

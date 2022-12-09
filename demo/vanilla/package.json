@@ -103,6 +103,7 @@
         "tsparticles-shape-image": "^2.6.0",
         "tsparticles-shape-line": "^2.6.0",
         "tsparticles-shape-multiline-text": "^2.6.0",
+        "tsparticles-shape-path": "^2.6.0",
         "tsparticles-shape-polygon": "^2.6.0",
         "tsparticles-shape-rounded-rect": "^2.6.0",
         "tsparticles-shape-spiral": "^2.6.0",

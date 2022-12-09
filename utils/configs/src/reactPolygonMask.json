@@ -1,4 +1,5 @@
 {
+    "name": "React Polygon Mask",
     "interactivity": {
         "events": {
             "onHover": {

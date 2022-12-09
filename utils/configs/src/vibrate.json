@@ -1,4 +1,5 @@
 {
+    "name": "Vibrate",
     "particles": {
         "number": {
             "value": 80,

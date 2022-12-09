@@ -93,6 +93,7 @@ import shapeBubble from "./shapeBubble.json";
 import shapeHeart from "./shapeHeart.json";
 import shapeMultilineText from "./shapeMultilineText.json";
 import shapeOptions from "./shapeOptions.json";
+import shapePath from "./shapePath.json";
 import shapeRoundedRect from "./shapeRoundedRect.json";
 import shapeSpiral from "./shapeSpiral.json";
 import slow from "./slow.json";
@@ -215,6 +216,7 @@ mainConfigs.configs = {
     shapeHeart,
     shapeMultilineText,
     shapeOptions,
+    shapePath,
     shapeRoundedRect,
     shapeSpiral,
     slow,

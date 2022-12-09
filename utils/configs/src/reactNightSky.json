@@ -1,4 +1,5 @@
 {
+    "name": "React Night Sky",
     "interactivity": {
         "events": {
             "onClick": {

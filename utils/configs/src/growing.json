@@ -1,4 +1,5 @@
 {
+    "name": "Growing",
     "emitters": {
         "direction": "top",
         "size": {

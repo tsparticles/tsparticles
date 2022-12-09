@@ -162,8 +162,19 @@
         await loadCardsShape(tsParticles);
         await loadHeartShape(tsParticles);
         await loadMultilineTextShape(tsParticles);
+        await loadPathShape(tsParticles);
         await loadRoundedRectShape(tsParticles);
         await loadSpiralShape(tsParticles);
+
+        for (const presetId in tsParticles.configs) {
+            const preset = tsParticles.configs[presetId];
+
+            const option = document.createElement('option');
+            option.value = presetId;
+            option.text = preset.name || presetId;
+
+            document.getElementById('presets').appendChild(option);
+        }
 
         const element = document.getElementById('editor');
         const options = {

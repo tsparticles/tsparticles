@@ -1,4 +1,5 @@
 {
+    "name": "Repulse Back",
     "particles": {
         "number": {
             "value": 200,

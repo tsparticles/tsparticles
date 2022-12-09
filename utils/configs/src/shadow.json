@@ -1,4 +1,6 @@
 {
+    "name": "Shadow",
+    "smooth": true,
     "particles": {
         "number": {
             "value": 80,

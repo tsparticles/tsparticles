@@ -1,4 +1,5 @@
 {
+    "name": "Ring",
     "particles": {
         "number": {
             "value": 0,

@@ -1,4 +1,5 @@
 {
+    "name": "Shape Spiral",
     "particles": {
         "number": {
             "value": 80,

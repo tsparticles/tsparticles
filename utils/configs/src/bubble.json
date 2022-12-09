@@ -1,4 +1,5 @@
 {
+    "name": "Bubble",
     "particles": {
         "number": {
             "value": 6,

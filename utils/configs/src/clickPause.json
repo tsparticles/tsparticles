@@ -1,4 +1,5 @@
 {
+    "name": "Click Pause",
     "particles": {
         "number": {
             "value": 80,

@@ -1,4 +1,5 @@
 {
+    "name": "Emitter and Absorber",
     "particles": {
         "number": {
             "value": 0

@@ -1,4 +1,5 @@
 {
+    "name": "Cards",
     "particles": {
         "number": {
             "value": 80,
