@@ -31,7 +31,7 @@ export interface IMove {
      */
     collisions: boolean;
 
-    decay: number;
+    decay: RangeValue;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: number | Partial<IDistance>;
     drift: RangeValue;
