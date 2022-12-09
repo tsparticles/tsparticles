@@ -97,7 +97,7 @@
         "@rushstack/eslint-patch": "^1.2.0",
         "@tsparticles/prettier-config": "^1.4.0",
         "@types/node": "^18.11.11",
-        "@vitejs/plugin-vue": "^3.2.0",
+        "@vitejs/plugin-vue": "^4.0.0",
         "@vitejs/plugin-vue-jsx": "^3.0.0",
         "@vue/eslint-config-prettier": "^7.0.0",
         "@vue/eslint-config-typescript": "^11.0.2",
