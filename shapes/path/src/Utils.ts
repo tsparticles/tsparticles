@@ -31,6 +31,27 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
                     segment.values[2].y * radius
                 );
                 break;
+
+            case SegmentType.arc:
+                ctx.arc(
+                    segment.values[0].x * radius,
+                    segment.values[0].y * radius,
+                    segment.values[1].x * radius,
+                    segment.values[2].x,
+                    segment.values[2].y
+                );
+                break;
+
+            case SegmentType.ellipse:
+                ctx.ellipse(
+                    segment.values[0].x * radius,
+                    segment.values[0].y * radius,
+                    segment.values[1].x * radius,
+                    segment.values[1].y * radius,
+                    segment.values[2].x,
+                    segment.values[3].x,
+                    segment.values[3].y
+                );
         }
     }
 
