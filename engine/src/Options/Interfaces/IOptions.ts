@@ -3,7 +3,6 @@ import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
 import type { IInteractivity } from "./Interactivity/IInteractivity";
 import type { IManualParticle } from "./IManualParticle";
-import type { IMotion } from "./Motion/IMotion";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions";
 import type { IResponsive } from "./IResponsive";
 import type { ITheme } from "./Theme/ITheme";
@@ -44,6 +43,11 @@ export interface IOptions {
     backgroundMode: RecursivePartial<IFullScreen> | boolean;
 
     /**
+     * The initial delay before starting the animation
+     */
+    delay: RangeValue;
+
+    /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
      */
     detectRetina: boolean;
@@ -80,11 +84,6 @@ export interface IOptions {
     manualParticles: IManualParticle[];
 
     /**
-     * Handles user's preferences about motion
-     */
-    motion: IMotion;
-
-    /**
      * The particles options
      */
     particles: IParticlesOptions;
@@ -114,6 +113,18 @@ export interface IOptions {
      * @deprecated use the new detectRetina instead
      */
     retina_detect: boolean;
+
+    /**
+     * Enables a smooth effect, by default it's disabled
+     * When enabled the animation will speed up or slow down depending on fps
+     * The [[fpsLimit]] field will be used as a reference for the animation speed
+     * Some examples:
+     *      - with a [[fpsLimit]] of 60 the animation will be twice faster on 120 fps devices
+     *      - with a [[fpsLimit]] of 120 the animation will be twice slower on 60 fps devices
+     * The animation will be always smooth, but the behavior could be affected by the user screen refresh rate
+     * It's recommended to keep this disabled, be careful.
+     */
+    smooth: boolean;
 
     style: RecursivePartial<CSSStyleDeclaration>;
 

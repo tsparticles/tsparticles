@@ -96,7 +96,6 @@ import { tsParticles } from "tsparticles-engine";
 **index.html**
 
 ```html
-
 <div id="tsparticles"></div>
 
 <script src="tsparticles.min.js"></script>
@@ -315,7 +314,7 @@ _Не нажимайте! НЕ НАЖИМАЙТЕ! О НЕТ, ОНО РАСПР�
 
 **particles.json**
 
-[Здесь](https://github.com/matteobruni/tsparticles/tree/main/website/presets) вы сможете найти образец конфигурации 📖
+[Здесь](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) вы сможете найти образец конфигурации 📖
 
 ---
 
@@ -374,7 +373,7 @@ tsParticles поддерживает дополнительные настрой
 
 **Вы можете создавать свои собственные плагины**
 
-_Подробности [здесь](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
+\_Подробности [здесь](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.html)...\_
 
 ---
 

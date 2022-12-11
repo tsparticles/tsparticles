@@ -1,6 +1,5 @@
 import type { IContainerPlugin, IOptionsColor, Particle } from "tsparticles-engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
-import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 import { Infecter } from "./Infecter";
 import { itemFromArray } from "tsparticles-engine";
 
@@ -9,17 +8,16 @@ export class InfectionInstance implements IContainerPlugin {
         this.container.infecter = new Infecter(this.container);
     }
 
-    particleFillColor(particle: Particle): string | IOptionsColor | undefined {
-        const infParticle = particle as unknown as InfectableParticle;
-        const options = this.container.actualOptions as unknown as IInfectionOptions;
+    particleFillColor(particle: InfectableParticle): string | IOptionsColor | undefined {
+        const options = this.container.actualOptions;
 
-        if (!infParticle.infection) {
+        if (!particle.infection || !options.infection) {
             return;
         }
 
-        const infectionStage = infParticle.infection.stage;
-        const infection = options.infection;
-        const infectionStages = infection.stages;
+        const infectionStage = particle.infection.stage,
+            infection = options.infection,
+            infectionStages = infection.stages;
 
         return infectionStage !== undefined ? infectionStages[infectionStage].color : undefined;
     }
@@ -29,7 +27,11 @@ export class InfectionInstance implements IContainerPlugin {
     }
 
     particlesSetup(): void {
-        const options = this.container.actualOptions as unknown as IInfectionOptions;
+        const options = this.container.actualOptions;
+
+        if (!options.infection) {
+            return;
+        }
 
         for (let i = 0; i < options.infection.infections; i++) {
             const notInfected = this.container.particles.array.filter((p) => {

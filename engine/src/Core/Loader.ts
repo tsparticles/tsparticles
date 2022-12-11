@@ -1,26 +1,18 @@
 import { Container } from "./Container";
 import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { LoaderParams } from "./Interfaces/LoaderParams";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { generatedAttribute } from "./Utils/Constants";
-import { itemFromArray } from "../Utils/Utils";
-import { tspRandom } from "../Utils/NumberUtils";
-
-/**
- * Default fetch error catcher
- * @param statusCode the fecth status code error
- */
-function fetchError(statusCode: number): void {
-    console.error(`Error tsParticles - fetch status: ${statusCode}`);
-    console.error("Error tsParticles - File config not found");
-}
+import { getRandom } from "../Utils/NumberUtils";
+import { itemFromSingleOrMultiple } from "../Utils/Utils";
 
 async function getDataFromUrl(
     jsonUrl?: SingleOrMultiple<string>,
     index?: number
 ): Promise<SingleOrMultiple<RecursivePartial<IOptions>> | undefined> {
-    const url = jsonUrl instanceof Array ? itemFromArray(jsonUrl, index) : jsonUrl;
+    const url = itemFromSingleOrMultiple(jsonUrl, index);
 
     if (!url) {
         return;
@@ -28,48 +20,11 @@ async function getDataFromUrl(
 
     const response = await fetch(url);
 
-    if (!response.ok) {
-        fetchError(response.status);
-
-        return;
+    if (response.ok) {
+        return response.json();
     }
 
-    return response.json();
-}
-
-/**
- * Loader params for options local object
- */
-interface LoaderParams {
-    /**
-     * The container HTML element, could be a canvas or any other element that will contain the canvas
-     */
-    element?: HTMLElement;
-
-    /**
-     * The index of the chosen element of the options array, if an array is given. If not specified, a random index will be used
-     */
-    index?: number;
-
-    /**
-     * The options object or the options array to laod
-     */
-    options?: SingleOrMultiple<RecursivePartial<IOptions>>;
-
-    /**
-     * Used for loading options locally or remotely
-     */
-    remote: boolean;
-
-    /**
-     * The id assigned to the container
-     */
-    tagId?: string;
-
-    /**
-     * The url or the url array used to get options
-     */
-    url?: SingleOrMultiple<string>;
+    console.error(`tsParticles - Error ${response.status} while retrieving config file`);
 }
 
 /**
@@ -81,14 +36,14 @@ export class Loader {
      * The engine containing this Loader instance
      * @private
      */
-    readonly #engine;
+    private readonly _engine;
 
     /**
      * Loader constructor, assigns the engine
      * @param engine the engine containing this Loader instance
      */
     constructor(engine: Engine) {
-        this.#engine = engine;
+        this._engine = engine;
     }
 
     /**
@@ -149,7 +104,7 @@ export class Loader {
      * @param params all the parameters required for loading options in the current animation
      */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
-        const tagId = params.tagId ?? `tsparticles${Math.floor(tspRandom() * 10000)}`,
+        const tagId = params.tagId ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
             { index, url: jsonUrl, remote } = params,
             options = remote ? await getDataFromUrl(jsonUrl, index) : params.options;
 
@@ -164,15 +119,16 @@ export class Loader {
             document.querySelector("body")?.append(domContainer);
         }
 
-        const currentOptions = options instanceof Array ? itemFromArray(options, index) : options,
-            dom = this.#engine.dom(),
+        const currentOptions = itemFromSingleOrMultiple(options, index),
+            dom = this._engine.dom(),
             oldIndex = dom.findIndex((v) => v.id === tagId);
 
         if (oldIndex >= 0) {
-            const old = this.#engine.domItem(oldIndex);
+            const old = this._engine.domItem(oldIndex);
 
             if (old && !old.destroyed) {
                 old.destroy();
+
                 dom.splice(oldIndex, 1);
             }
         }
@@ -211,7 +167,7 @@ export class Loader {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(this.#engine, tagId, currentOptions);
+        const newItem = new Container(this._engine, tagId, currentOptions);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);

@@ -9,14 +9,6 @@
         "zIndex": -1
     },
     "particles": {
-        "bounce": {
-            "vertical": {
-                "value": 0
-            },
-            "horizontal": {
-                "value": 0
-            }
-        },
         "color": {
             "value": ["#1E00FF", "#FF0061", "#E1FF00", "#00FF9E"],
             "animation": {
@@ -35,8 +27,7 @@
             },
             "outModes": {
                 "top": "none",
-                "default": "destroy",
-                "bottom": "bounce"
+                "default": "destroy"
             },
             "speed": {
                 "min": 50,
@@ -83,7 +74,7 @@
             }
         },
         "shape": {
-            "type": ["circle", "square", "polygon", "character", "character", "character"],
+            "type": ["circle", "square", "polygon"],
             "options": {
                 "polygon": [
                     {
@@ -91,11 +82,6 @@
                     },
                     {
                         "sides": 6
-                    }
-                ],
-                "character": [
-                    {
-                        "value": ["💩", "🤡", "🍀", "🍙"]
                     }
                 ]
             }

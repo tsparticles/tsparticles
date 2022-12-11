@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "ES2017",
     "lib": [
       "ESNext",
       "ES2020",
@@ -10,6 +10,12 @@
       "ES2016",
       "ES2015",
       "DOM"
+    ],
+    "types": [
+      "jsdom",
+      "mocha",
+      "chai",
+      "node"
     ],
     "allowJs": true,
     "rootDir": "./test",

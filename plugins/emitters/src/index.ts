@@ -1,4 +1,6 @@
-import type { IOptions, IPlugin, Options, RecursivePartial } from "tsparticles-engine";
+import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types";
+import type { IOptions, IPlugin, RecursivePartial } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, isInArray } from "tsparticles-engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
@@ -7,61 +9,47 @@ import { EmitterShapeType } from "./Enums/EmitterShapeType";
 import { Emitters } from "./Emitters";
 import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
-import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 import type { IEmitterShape } from "./IEmitterShape";
 import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
-import { isInArray } from "tsparticles-engine";
 
 /**
  * @category Emitters Plugin
  */
 class EmittersPlugin implements IPlugin {
-    readonly #engine;
     readonly id;
 
+    private readonly _engine;
+
     constructor(engine: EmittersEngine) {
-        this.#engine = engine;
+        this._engine = engine;
         this.id = "emitters";
     }
 
     getPlugin(container: EmitterContainer): Emitters {
-        return new Emitters(this.#engine, container);
+        return new Emitters(this._engine, container);
     }
 
-    loadOptions(options: Options, source?: RecursivePartial<IOptions & IEmitterOptions>): void {
+    loadOptions(options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 
-        const optionsCast = options as unknown as IEmitterOptions;
-
         if (source?.emitters) {
-            if (source?.emitters instanceof Array) {
-                optionsCast.emitters = source?.emitters.map((s) => {
-                    const tmp = new Emitter();
+            options.emitters = executeOnSingleOrMultiple(source.emitters, (emitter) => {
+                const tmp = new Emitter();
 
-                    tmp.load(s);
+                tmp.load(emitter);
 
-                    return tmp;
-                });
-            } else {
-                let emitterOptions = optionsCast.emitters as Emitter;
-
-                if (emitterOptions?.load === undefined) {
-                    optionsCast.emitters = emitterOptions = new Emitter();
-                }
-
-                emitterOptions.load(source?.emitters);
-            }
+                return tmp;
+            });
         }
 
         const interactivityEmitters = source?.interactivity?.modes?.emitters;
 
         if (interactivityEmitters) {
             if (interactivityEmitters instanceof Array) {
-                optionsCast.interactivity.modes.emitters = {
+                options.interactivity.modes.emitters = {
                     random: {
                         count: 1,
                         enable: true,
@@ -79,7 +67,7 @@ class EmittersPlugin implements IPlugin {
 
                 if (emitterMode.value !== undefined) {
                     if (emitterMode.value instanceof Array) {
-                        optionsCast.interactivity.modes.emitters = {
+                        options.interactivity.modes.emitters = {
                             random: {
                                 count: emitterMode.random.count ?? 1,
                                 enable: emitterMode.random.enable ?? false,
@@ -97,7 +85,7 @@ class EmittersPlugin implements IPlugin {
 
                         tmp.load(emitterMode.value);
 
-                        optionsCast.interactivity.modes.emitters = {
+                        options.interactivity.modes.emitters = {
                             random: {
                                 count: emitterMode.random.count ?? 1,
                                 enable: emitterMode.random.enable ?? false,
@@ -106,7 +94,7 @@ class EmittersPlugin implements IPlugin {
                         };
                     }
                 } else {
-                    const emitterOptions = (optionsCast.interactivity.modes.emitters = {
+                    const emitterOptions = (options.interactivity.modes.emitters = {
                         random: {
                             count: 1,
                             enable: false,
@@ -159,5 +147,3 @@ export * from "./EmitterContainer";
 export * from "./EmittersEngine";
 export * from "./Enums/EmitterClickMode";
 export * from "./Enums/EmitterShapeType";
-export * from "./Options/Interfaces/IEmitterOptions";
-export type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";

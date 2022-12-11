@@ -11,13 +11,13 @@ export class ImageDrawer implements IShapeDrawer {
      * The image set collection
      * @private
      */
-    #images: ContainerImage[];
+    private _images: ContainerImage[];
 
     /**
      * Image drawer constructor, initializing the image set collection
      */
     constructor() {
-        this.#images = [];
+        this._images = [];
     }
 
     /**
@@ -35,7 +35,7 @@ export class ImageDrawer implements IShapeDrawer {
      * Resets the image general collection
      */
     destroy(): void {
-        this.#images = [];
+        this._images = [];
     }
 
     /**
@@ -72,10 +72,10 @@ export class ImageDrawer implements IShapeDrawer {
      * @returns the container image collection
      */
     getImages(container: Container): ContainerImage {
-        const containerImages = this.#images.find((t) => t.id === container.id);
+        const containerImages = this._images.find((t) => t.id === container.id);
 
         if (!containerImages) {
-            this.#images.push({
+            this._images.push({
                 id: container.id,
                 images: [],
             });
@@ -108,12 +108,6 @@ export class ImageDrawer implements IShapeDrawer {
             this.loadImageShape(container, imageData).then(() => {
                 this.loadShape(particle);
             });
-
-            return;
-        }
-
-        if (image.error) {
-            return;
         }
     }
 
@@ -148,7 +142,7 @@ export class ImageDrawer implements IShapeDrawer {
         (async (): Promise<void> => {
             let imageRes: IParticleImage;
 
-            if (image.svgData && replaceColor && color) {
+            if (image.svgData && color) {
                 imageRes = await replaceImageColor(image, imageData, color, particle);
             } else {
                 imageRes = {

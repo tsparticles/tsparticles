@@ -11,35 +11,35 @@ Exploremos todos los valores válidos.
 ### hex (sintáxis corta
 
 ```javascript
-color: '#fff'
+color: "#fff";
 ```
 
 ### hex (sintáxis completa)
 
 ```javascript
-color: '#ffffff'
+color: "#ffffff";
 ```
 
 ### Sintáxis rgb
 
-*alpha será ignorado, la propiedad `opacity` está para eso*
+_alpha será ignorado, la propiedad `opacity` está para eso_
 
 ```javascript
-color: 'rgb(255, 255, 255)'
+color: "rgb(255, 255, 255)";
 ```
 
 ### Sintáxis hsl
 
-*alpha será ignorado, la propiedad `opacity` está para eso*
+_alpha será ignorado, la propiedad `opacity` está para eso_
 
 ```javascript
-color: 'hsl(0, 100%, 100%)'
+color: "hsl(0, 100%, 100%)";
 ```
 
 ### Aleatorio
 
 ```javascript
-random: 'random' // se elegirá un color aleatorio
+random: "random"; // se elegirá un color aleatorio
 ```
 
 Esa es la parte sencilla, ahora vamos un poco más profundo.
@@ -52,7 +52,7 @@ Esa es la parte sencilla, ahora vamos un poco más profundo.
 
 ```javascript
 color: {
-  value: '#fff' // No repetiré lo que ya dije, todos los valores string de antes son válidos aquí también
+  value: "#fff"; // No repetiré lo que ya dije, todos los valores string de antes son válidos aquí también
 }
 ```
 
@@ -91,7 +91,7 @@ color: {
 }
 ```
 
-*si definimos las propiedades `rgb` y `hsl` al mismo tiempo, solo se usará `rgb`.*
+_si definimos las propiedades `rgb` y `hsl` al mismo tiempo, solo se usará `rgb`._
 
 ---
 

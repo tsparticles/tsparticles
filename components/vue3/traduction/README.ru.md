@@ -28,10 +28,10 @@ createApp(App).use(Particles);
 
 ```html
 <template>
-  <div id="app">
-    <Particles
-      id="tsparticles"
-      :options="{
+    <div id="app">
+        <Particles
+            id="tsparticles"
+            :options="{
             background: {
                 color: {
                     value: '#0d47a1'
@@ -108,8 +108,8 @@ createApp(App).use(Particles);
             },
             detectRetina: true
         }"
-    />
-  </div>
+        />
+    </div>
 </template>
 ```
 

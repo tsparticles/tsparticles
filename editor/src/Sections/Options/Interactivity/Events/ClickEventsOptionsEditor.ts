@@ -8,30 +8,28 @@ import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 
 export class ClickEventsOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IClickEvent;
+    private options!: () => IClickEvent;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("onClick", "Click Events");
-        this.options = this.group.data as IClickEvent;
+        this.options = this.group.data as () => IClickEvent;
 
         this.addProperties();
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         const modeSelectInput = this.group
             .addProperty("mode", "Mode", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {

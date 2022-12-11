@@ -1,2 +1,2 @@
 tasks:
-  - init: yarn && npx lerna bootstrap && npx lerna run build
+  - init: pnpm i && npx lerna run build

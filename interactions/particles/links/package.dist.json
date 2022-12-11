@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-particles-links",
-  "version": "2.1.4",
+  "version": "2.6.0",
   "description": "tsParticles links particles interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -9,6 +9,8 @@
     "directory": "interactions/particles/links"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -72,6 +74,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.6.0"
   }
 }

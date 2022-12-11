@@ -36,124 +36,124 @@ Beispiel:
 import Particles from "preact-particles";
 
 class App extends Component {
-  render() {
-    return (
-      <Particles
-        id="tsparticles"
-        params={{
-          background: {
-            color: {
-              value: "#0d47a1",
-            },
-          },
+    render() {
+        return (
+            <Particles
+                id="tsparticles"
+                params={{
+                    background: {
+                        color: {
+                            value: "#0d47a1",
+                        },
+                    },
 
-          fpsLimit: 120,
+                    fpsLimit: 120,
 
-          interactivity: {
-            events: {
-              onClick: {
-                enable: true,
+                    interactivity: {
+                        events: {
+                            onClick: {
+                                enable: true,
 
-                mode: "push",
-              },
+                                mode: "push",
+                            },
 
-              onHover: {
-                enable: true,
+                            onHover: {
+                                enable: true,
 
-                mode: "repulse",
-              },
+                                mode: "repulse",
+                            },
 
-              resize: true,
-            },
+                            resize: true,
+                        },
 
-            modes: {
-              bubble: {
-                distance: 400,
+                        modes: {
+                            bubble: {
+                                distance: 400,
 
-                duration: 2,
+                                duration: 2,
 
-                opacity: 0.8,
+                                opacity: 0.8,
 
-                size: 40,
-              },
+                                size: 40,
+                            },
 
-              push: {
-                quantity: 4,
-              },
+                            push: {
+                                quantity: 4,
+                            },
 
-              repulse: {
-                distance: 200,
+                            repulse: {
+                                distance: 200,
 
-                duration: 0.4,
-              },
-            },
-          },
+                                duration: 0.4,
+                            },
+                        },
+                    },
 
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
+                    particles: {
+                        color: {
+                            value: "#ffffff",
+                        },
 
-            links: {
-              color: "#ffffff",
+                        links: {
+                            color: "#ffffff",
 
-              distance: 150,
+                            distance: 150,
 
-              enable: true,
+                            enable: true,
 
-              opacity: 0.5,
+                            opacity: 0.5,
 
-              width: 1,
-            },
+                            width: 1,
+                        },
 
-            collisions: {
-              enable: true,
-            },
+                        collisions: {
+                            enable: true,
+                        },
 
-            move: {
-              direction: "none",
+                        move: {
+                            direction: "none",
 
-              enable: true,
+                            enable: true,
 
-              outMode: "bounce",
+                            outMode: "bounce",
 
-              random: false,
+                            random: false,
 
-              speed: 6,
+                            speed: 6,
 
-              straight: false,
-            },
+                            straight: false,
+                        },
 
-            number: {
-              density: {
-                enable: true,
+                        number: {
+                            density: {
+                                enable: true,
 
-                area: 800,
-              },
+                                area: 800,
+                            },
 
-              value: 80,
-            },
+                            value: 80,
+                        },
 
-            opacity: {
-              value: 0.5,
-            },
+                        opacity: {
+                            value: 0.5,
+                        },
 
-            shape: {
-              type: "circle",
-            },
+                        shape: {
+                            type: "circle",
+                        },
 
-            size: {
-              random: true,
+                        size: {
+                            random: true,
 
-              value: 5,
-            },
-          },
+                            value: 5,
+                        },
+                    },
 
-          detectRetina: true,
-        }}
-      />
-    );
-  }
+                    detectRetina: true,
+                }}
+            />
+        );
+    }
 }
 ```
 

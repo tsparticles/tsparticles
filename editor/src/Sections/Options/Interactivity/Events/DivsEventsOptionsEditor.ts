@@ -6,21 +6,21 @@ import { EditorType } from "object-gui";
 
 export class DivsEventsOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: SingleOrMultiple<IDivEvent>;
+    private options!: () => SingleOrMultiple<IDivEvent>;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("onDiv", "Divs Events");
-        this.options = this.group.data as SingleOrMultiple<IDivEvent>;
+        this.options = this.group.data as () => SingleOrMultiple<IDivEvent>;
 
         this.addDivs();
 
-        if (this.options instanceof Array) {
+        if (this.options() instanceof Array) {
             this.group.addButton("addDiv", "Add Div", false).click(async () => {
-                const arr = this.options as IDivEvent[];
+                const arr = this.options() as IDivEvent[];
                 const divGroup = this.group.addGroup(
                     arr.length.toString(10),
                     `Div ${arr.length + 1}`,
@@ -30,39 +30,38 @@ export class DivsEventsOptionsEditor extends EditorBase {
 
                 this.addDiv(divGroup);
 
-                await this.particles.refresh();
+                await this.particles().refresh();
             });
         }
     }
 
     private addDiv(group: EditorGroup): void {
-        const particles = this.particles;
-        const options = group.data as IDivEvent;
+        const options = group.data as () => IDivEvent;
 
-        if (options.selectors instanceof Array) {
+        if (options().selectors instanceof Array) {
             const selectorsGroup = group.addGroup("selectors", "Selectors");
 
             selectorsGroup.addButton("addSelector", "Add Selector", false).click(async () => {
-                const arr = options.selectors as string[];
+                const arr = options().selectors as string[];
 
                 selectorsGroup
                     .addProperty(arr.length.toString(10), `Selector ${arr.length + 1}`, EditorType.string)
                     .change(async () => {
-                        await particles.refresh();
+                        await this.particles().refresh();
                     });
 
-                await this.particles.refresh();
+                await this.particles().refresh();
             });
         } else {
             group.addProperty("selectors", "Selectors", EditorType.string).change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             });
         }
 
         group
             .addProperty("enable", "Enable", EditorType.boolean)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .step(0.01)
             .min(0)
@@ -71,7 +70,7 @@ export class DivsEventsOptionsEditor extends EditorBase {
         this.group
             .addProperty("mode", "Mode", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -88,7 +87,7 @@ export class DivsEventsOptionsEditor extends EditorBase {
         group
             .addProperty("type", "Type", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -103,7 +102,7 @@ export class DivsEventsOptionsEditor extends EditorBase {
     private addDivs(): void {
         const options = this.options;
 
-        if (options instanceof Array) {
+        if (options() instanceof Array) {
             for (let i = 0; i < options.length; i++) {
                 const group = this.group.addGroup(i.toString(10), `Div_${i + 1}`, true, options);
 

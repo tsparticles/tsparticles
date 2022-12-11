@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-multiline-text",
-  "version": "2.1.4",
+  "version": "2.6.0",
   "description": "tsParticles multiline text shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -9,6 +9,8 @@
     "directory": "shapes/multiline-text"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -81,6 +83,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.6.0"
   }
 }

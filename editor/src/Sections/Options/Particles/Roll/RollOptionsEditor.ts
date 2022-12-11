@@ -5,9 +5,9 @@ import { EditorType } from "object-gui";
 
 export class RollOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: unknown;
+    private options!: () => unknown;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
@@ -21,34 +21,32 @@ export class RollOptionsEditor extends EditorBase {
     }
 
     private addDarken(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("darken", "Darken");
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addEnlighten(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("enlighten", "Enlighten");
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addProperties(): void {
-        const particles = this.particles,
-            options = this.options as {
+        const optionsFunc = this.options as () => unknown,
+            options = optionsFunc() as {
                 backColor: string | unknown[] | { value: unknown };
             },
             color =
@@ -61,6 +59,10 @@ export class RollOptionsEditor extends EditorBase {
         this.group
             .addProperty("backColor", "Back Color", EditorType.color, color, false)
             .change(async (value: unknown) => {
+                const options = optionsFunc() as {
+                    backColor: string | unknown[] | { value: unknown };
+                };
+
                 if (typeof value === "string") {
                     if (typeof options.backColor === "string") {
                         options.backColor = value;
@@ -81,15 +83,15 @@ export class RollOptionsEditor extends EditorBase {
                     }
                 }
 
-                await particles.refresh();
+                await this.particles().refresh();
             });
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("speed", "Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

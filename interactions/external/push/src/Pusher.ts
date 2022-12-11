@@ -1,15 +1,17 @@
 import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
+import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
+import type { IPushMode, PushContainer, PushMode } from "./Types";
+import { Push } from "./Options/Classes/Push";
 import { itemFromArray } from "tsparticles-engine";
 
 /**
  * Particle attract manager
  * @category Interactions
  */
-export class Pusher extends ExternalInteractorBase {
+export class Pusher extends ExternalInteractorBase<PushContainer> {
     handleClickMode: (mode: string) => void;
 
-    constructor(container: Container) {
+    constructor(container: PushContainer) {
         super(container);
 
         this.handleClickMode = (mode): void => {
@@ -17,17 +19,22 @@ export class Pusher extends ExternalInteractorBase {
                 return;
             }
 
-            const container = this.container;
-            const options = container.actualOptions;
-            const pushNb = options.interactivity.modes.push.quantity;
+            const container = this.container,
+                options = container.actualOptions,
+                pushOptions = options.interactivity.modes.push;
+
+            if (!pushOptions) {
+                return;
+            }
+
+            const pushNb = pushOptions.quantity;
 
             if (pushNb <= 0) {
                 return;
             }
 
-            const pushOptions = options.interactivity.modes.push;
-            const group = itemFromArray([undefined, ...pushOptions.groups]);
-            const groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
+            const group = itemFromArray([undefined, ...pushOptions.groups]),
+                groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
 
             container.particles.push(pushNb, container.interactivity.mouse, groupOptions, group);
         };
@@ -47,6 +54,16 @@ export class Pusher extends ExternalInteractorBase {
 
     isEnabled(): boolean {
         return true;
+    }
+
+    loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {
+        if (!options.push) {
+            options.push = new Push();
+        }
+
+        for (const source of sources) {
+            options.push.load(source?.push);
+        }
     }
 
     reset(): void {

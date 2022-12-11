@@ -25,8 +25,9 @@ yarn add riot-particles riot
 ## Хэрхэн ашиглах
 
 ```html
-
-<riot-particles id="tsparticles" options='{{
+<riot-particles
+    id="tsparticles"
+    options='{{
         background: {
             color: "#000"
         },
@@ -41,24 +42,29 @@ yarn add riot-particles riot
                 enable: true
             }
         }
-    }}' particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+    }}'
+    particlesInit="{(main) => console.log(main)}"
+    particlesLoaded="{(container) => console.log(container)}"
+/>
 
 <script>
-    import RiotParticles from 'riot-particles';
+    import RiotParticles from "riot-particles";
 
     export default {
         components: {
-            RiotParticles
-        }
-    }
+            RiotParticles,
+        },
+    };
 </script>
 
 <!-- эсвэл -->
 
 <riot-particles
-        id="tsparticles"
-        url="https://foo.bar/particles.json"
-        particlesInit='{(main) => console.log(main)}' particlesLoaded='{(container) => console.log(container)}'/>
+    id="tsparticles"
+    url="https://foo.bar/particles.json"
+    particlesInit="{(main) => console.log(main)}"
+    particlesLoaded="{(container) => console.log(container)}"
+/>
 />
 ```
 

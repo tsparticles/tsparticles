@@ -5,9 +5,9 @@ import { EditorType } from "object-gui";
 
 export class TiltOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: unknown;
+    private options!: () => unknown;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
@@ -21,28 +21,25 @@ export class TiltOptionsEditor extends EditorBase {
 
     private addAnimation(): void {
         const group = this.group.addGroup("animation", "Animation");
-        const particles = this.particles;
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("speed", "Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group
             .addProperty("direction", "Direction", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -57,15 +54,15 @@ export class TiltOptionsEditor extends EditorBase {
             ]);
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("random", "Random", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

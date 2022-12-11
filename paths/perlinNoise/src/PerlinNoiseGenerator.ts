@@ -1,5 +1,5 @@
 import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
-import { Vector, tspRandom } from "tsparticles-engine";
+import { Vector, getRandom } from "tsparticles-engine";
 import type { IPerlinOptions } from "./IPerlinOptions";
 import { PerlinNoise } from "./PerlinNoise";
 
@@ -25,20 +25,20 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         };
     }
 
-    generate(p: Particle): Vector {
-        const pos = p.getPosition();
+    generate(particle: Particle): Vector {
+        const pos = particle.getPosition(),
+            point = {
+                x: Math.max(Math.floor(pos.x / this.options.size), 0),
+                y: Math.max(Math.floor(pos.y / this.options.size), 0),
+            },
+            v = Vector.origin;
 
-        const px = Math.max(Math.floor(pos.x / this.options.size), 0);
-        const py = Math.max(Math.floor(pos.y / this.options.size), 0);
-
-        const v = Vector.origin;
-
-        if (!this.field || !this.field[px] || !this.field[px][py]) {
+        if (!this.field || !this.field[point.x] || !this.field[point.x][point.y]) {
             return v;
         }
 
-        v.length = this.field[px][py][1];
-        v.angle = this.field[px][py][0];
+        v.length = this.field[point.x][point.y][1];
+        v.angle = this.field[point.x][point.y][0];
 
         return v;
     }
@@ -47,6 +47,10 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.container = container;
 
         this.setup(container);
+    }
+
+    reset(): void {
+        // nothing to do
     }
 
     update(): void {
@@ -81,15 +85,16 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 const angle = this.field[x][y][0];
                 const length = this.field[x][y][1];
 
-                ctx.save();
-                ctx.translate(x * this.options.size, y * this.options.size);
+                //ctx.save();
+                ctx.setTransform(1, 0, 0, 1, x * this.options.size, y * this.options.size);
                 ctx.rotate(angle);
                 ctx.strokeStyle = "white";
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(0, this.options.size * length);
                 ctx.stroke();
-                ctx.restore();
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                //ctx.restore();
             }
         }
     }
@@ -106,7 +111,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         }
     }
 
-    private reset(container: Container): void {
+    private resetField(container: Container): void {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
         this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
@@ -115,7 +120,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.options.width = container.canvas.size.width;
         this.options.height = container.canvas.size.height;
 
-        this.noiseGen.seed((sourceOptions.seed as number) ?? tspRandom());
+        this.noiseGen.seed((sourceOptions.seed as number) ?? getRandom());
 
         this.options.columns = Math.floor(this.options.width / this.options.size) + 1;
         this.options.rows = Math.floor(this.options.height / this.options.size) + 1;
@@ -126,8 +131,8 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
     private setup(container: Container): void {
         this.noiseZ = 0;
 
-        this.reset(container);
+        this.resetField(container);
 
-        window.addEventListener("resize", () => this.reset(container));
+        window.addEventListener("resize", () => this.resetField(container));
     }
 }

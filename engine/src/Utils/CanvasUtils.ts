@@ -1,4 +1,3 @@
-import { getStyleFromHsl, getStyleFromRgb } from "./ColorUtils";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
@@ -6,17 +5,17 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IHsl } from "../Core/Interfaces/Colors";
-import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
 import type { IParticleTransformValues } from "../Core/Interfaces/IParticleTransformValues";
 import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Particle } from "../Core/Particle";
+import { getStyleFromRgb } from "./ColorUtils";
 
 /**
  * Draws a line between two points using canvas API in the given context.
  * @hidden
  * @param context - The canvas context to draw on.
- * @param begin - The begin point of the line.
+ * @param begin - The start point of the line.
  * @param end - The end point of the line.
  */
 export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
@@ -53,10 +52,8 @@ export function drawTriangle(
  * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
  */
 export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
-    context.save();
     context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
     context.fillRect(0, 0, dimension.width, dimension.height);
-    context.restore();
 }
 
 /**
@@ -134,28 +131,22 @@ export function drawParticle(data: DrawParticleParams): void {
         transform,
     } = data;
 
-    const pos = particle.getPosition();
+    const pos = particle.getPosition(),
+        angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : 0),
+        rotateData = {
+            sin: Math.sin(angle),
+            cos: Math.cos(angle),
+        },
+        transformData = {
+            a: rotateData.cos * (transform.a ?? 1),
+            b: rotateData.sin * (transform.b ?? 1),
+            c: -rotateData.sin * (transform.c ?? 1),
+            d: rotateData.cos * (transform.d ?? 1),
+        };
 
-    context.save();
-
-    if (
-        transform.a !== undefined ||
-        transform.b !== undefined ||
-        transform.c !== undefined ||
-        transform.d !== undefined
-    ) {
-        context.setTransform(transform.a ?? 1, transform.b ?? 0, transform.c ?? 0, transform.d ?? 1, pos.x, pos.y);
-    } else {
-        context.translate(pos.x, pos.y);
-    }
+    context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
     context.beginPath();
-
-    const angle = particle.rotation + (particle.options.rotate.path ? particle.velocity.angle : 0);
-
-    if (angle !== 0) {
-        context.rotate(angle);
-    }
 
     if (backgroundMask) {
         context.globalCompositeOperation = composite;
@@ -174,7 +165,7 @@ export function drawParticle(data: DrawParticleParams): void {
         context.fillStyle = colorStyles.fill;
     }
 
-    const stroke = particle.stroke;
+    const strokeWidth = particle.strokeWidth;
 
     context.lineWidth = particle.strokeWidth ?? 0;
 
@@ -184,7 +175,7 @@ export function drawParticle(data: DrawParticleParams): void {
 
     drawShape(container, context, particle, radius, opacity, delta);
 
-    if ((stroke?.width ?? 0) > 0) {
+    if ((strokeWidth ?? 0) > 0) {
         context.stroke();
     }
 
@@ -196,32 +187,10 @@ export function drawParticle(data: DrawParticleParams): void {
         context.fill();
     }
 
-    context.restore();
-
-    context.save();
-
-    if (
-        transform.a !== undefined ||
-        transform.b !== undefined ||
-        transform.c !== undefined ||
-        transform.d !== undefined
-    ) {
-        context.setTransform(transform.a ?? 1, transform.b ?? 0, transform.c ?? 0, transform.d ?? 1, pos.x, pos.y);
-    } else {
-        context.translate(pos.x, pos.y);
-    }
-
-    if (particle.rotation) {
-        context.rotate(particle.rotation);
-    }
-
-    if (backgroundMask) {
-        context.globalCompositeOperation = composite;
-    }
-
     drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
 
-    context.restore();
+    context.globalCompositeOperation = "source-over";
+    context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 /**
@@ -295,9 +264,7 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
         return;
     }
 
-    context.save();
     plugin.draw(context, delta);
-    context.restore();
 }
 
 /**
@@ -317,51 +284,7 @@ export function drawParticlePlugin(
         return;
     }
 
-    context.save();
     plugin.drawParticle(context, particle, delta);
-    context.restore();
-}
-
-/**
- * Draws an ellipse for the given particle.
- * @param context The canvas context.
- * @param particle The particle to draw.
- * @param fillColorValue The particle fill color.
- * @param radius The radius of the particle.
- * @param opacity The opacity of the particle.
- * @param width The width of the particle.
- * @param rotation The rotation of the particle.
- * @param start The start angle of the particle.
- * @param end The end angle of the particle.
- */
-export function drawEllipse(
-    context: CanvasRenderingContext2D,
-    particle: IParticle,
-    fillColorValue: IHsl | undefined,
-    radius: number,
-    opacity: number,
-    width: number,
-    rotation: number,
-    start: number,
-    end: number
-): void {
-    if (width <= 0) {
-        return;
-    }
-
-    const pos = particle.getPosition();
-
-    if (fillColorValue) {
-        context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
-    }
-
-    context.lineWidth = width;
-
-    const rotationRadian = (rotation * Math.PI) / 180;
-
-    context.beginPath();
-    context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
-    context.stroke();
 }
 
 /**

@@ -1,4 +1,4 @@
-import { ICoordinates, ICoordinates3d, tspRandom } from "../../src";
+import { ICoordinates, ICoordinates3d, getRandom } from "../../src";
 import { Container } from "../../src";
 import { Particle } from "../../src";
 import { getRangeValue } from "../../src";
@@ -31,9 +31,9 @@ export class TestParticle {
         const sizeValue = getRangeValue(container.actualOptions.particles.size.value) * container.retina.pixelRatio;
         const width = container.canvas.size.width;
         const height = container.canvas.size.height;
-        let x = width * tspRandom();
+        let x = width * getRandom();
         x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
-        let y = height * tspRandom();
+        let y = height * getRandom();
         y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
         return { x, y, z: 0 };
     }
@@ -91,7 +91,7 @@ export class TestParticle {
      * @param particles
      */
     static sortedPositions(particles: Particle[]): ICoordinates[] {
-        return particles.sort(TestParticle.sort).map((particle) => particle.getPosition());
+        return particles.sort(TestParticle.sort).map(particle => particle.getPosition());
     }
 
     /**
@@ -112,7 +112,7 @@ export class TestParticle {
                     return TestParticle.sort(result1.particle, result2.particle);
                 }
             )
-            .map((sortedResult) => {
+            .map(sortedResult => {
                 return {
                     distance: sortedResult.distance,
                     position: sortedResult.particle.getPosition(),

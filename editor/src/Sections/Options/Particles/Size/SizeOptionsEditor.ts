@@ -6,15 +6,15 @@ import { EditorType } from "object-gui";
 
 export class SizeOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: ISize;
+    private options!: () => ISize;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("size", "Size");
-        this.options = this.group.data as ISize;
+        this.options = this.group.data as () => ISize;
 
         this.addAnimation();
         this.addRandom();
@@ -22,13 +22,12 @@ export class SizeOptionsEditor extends EditorBase {
     }
 
     private addAnimation(): void {
-        const particles = this.particles;
         const group = this.group.addGroup("animation", "Animation");
 
         group
             .addProperty("destroy", "Destroy", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -43,21 +42,21 @@ export class SizeOptionsEditor extends EditorBase {
             ]);
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("speed", "Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group
             .addProperty("startValue", "Start Value", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {
@@ -72,28 +71,25 @@ export class SizeOptionsEditor extends EditorBase {
             ]);
 
         group.addProperty("sync", "Sync", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group.addProperty("value", "Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 
     private addRandom(): void {
         const group = this.group.addGroup("random", "Random");
-        const particles = this.particles;
 
         group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         group.addProperty("minimumValue", "Minimum Value", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

@@ -1,5 +1,6 @@
-import { Circle, CircleWarp, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
+import { Circle, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
 import type { ICoordinates, IDimension, IRgb, RecursivePartial } from "tsparticles-engine";
+import { CircleWarp } from "./CircleWarp";
 import type { IParticlesLinkOptions } from "./Options/Interfaces/IParticlesLinkOptions";
 import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";
@@ -65,6 +66,7 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     init(): void {
+        this.linkContainer.particles.linksColor = undefined;
         this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
     }
 
@@ -140,18 +142,12 @@ export class Linker extends ParticlesInteractorBase {
         options: ParticlesLinkOptions,
         ...sources: (RecursivePartial<IParticlesLinkOptions> | undefined)[]
     ): void {
+        if (!options.links) {
+            options.links = new Links();
+        }
+
         for (const source of sources) {
-            const sourceLinks = source?.links ?? source?.lineLinked ?? source?.line_linked;
-
-            if (!sourceLinks) {
-                return;
-            }
-
-            if (!options.links) {
-                options.links = new Links();
-            }
-
-            options.links.load(sourceLinks);
+            options.links.load(source?.links ?? source?.lineLinked ?? source?.line_linked);
         }
     }
 

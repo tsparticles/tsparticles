@@ -7,24 +7,27 @@ import type { Particle } from "../Particle";
 /**
  * Particles interactions manager, base abstract class
  */
-export abstract class ParticlesInteractorBase implements IParticlesInteractor {
+export abstract class ParticlesInteractorBase<TContainer extends Container = Container>
+    implements IParticlesInteractor
+{
     /**
      * Particles interactions type
      */
-    type: InteractorType = InteractorType.Particles;
+    type: InteractorType = InteractorType.particles;
 
     /**
      * The particles interactions manager constructor
      * @param container the parent container
      * @protected
      */
-    protected constructor(protected readonly container: Container) {}
+    protected constructor(protected readonly container: TContainer) {}
 
     /**
      * Before interaction clear
      * @param particle the particle to clear
+     * @param delta this variable contains the delta between the current frame and the previous frame
      */
-    abstract clear(particle: Particle): void;
+    abstract clear(particle: Particle, delta: IDelta): void;
 
     /**
      * Initializes the interactivity manager

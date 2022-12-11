@@ -1,7 +1,7 @@
 # Particles Move
 
 | key         | option type | example                                                                                                                                                            | notes                                                                                                                                             |
-| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |---------------------------------------------------------------------------------------------------------------------------------------------------|
+| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `angle`     | `object`    |                                                                                                                                                                    | See angle documentation below                                                                                                                     |
 | `attract`   | `object`    |                                                                                                                                                                    | See attract documentation below                                                                                                                   |
 | `direction` | `string`    | `"none"` <br /> `"top"` <br /> `"top-right"` <br /> `"right"` <br /> `"bottom-right"` <br /> `"bottom"` <br /> `"bottom-left"` <br /> `"left"` <br /> `"top-left"` |                                                                                                                                                   |
@@ -50,12 +50,12 @@
 
 ## Particles Move Noise
 
-| key                         | option type          | example                        | notes |
-| --------------------------- |----------------------|--------------------------------| ----- |
-| `clamp`                     | `boolean`            | `true` / `false`               |       |
-| `delay.value`               | `number` / `object`  | `1` / `{ min: 0.5, max: 1.5 }` |       |
-| `enable`                    | `boolean`            | `true` / `false`               |       |
-| `generator`                 | `string`             | `"generator name"`             |       |
+| key           | option type         | example                        | notes |
+| ------------- | ------------------- | ------------------------------ | ----- |
+| `clamp`       | `boolean`           | `true` / `false`               |       |
+| `delay.value` | `number` / `object` | `1` / `{ min: 0.5, max: 1.5 }` |       |
+| `enable`      | `boolean`           | `true` / `false`               |       |
+| `generator`   | `string`            | `"generator name"`             |       |
 
 ## Particles Move Out Modes
 
@@ -77,8 +77,8 @@
 
 ## Particles Move Trail
 
-| key         | option type    | example          | notes                                                            |
-| ----------- | -------------- | ---------------- | ---------------------------------------------------------------- |
-| `enable`    | `boolean`      | `true` / `false` |                                                                  |
-| `length`    | `number`       | `10`             |                                                                  |
+| key         | option type    | example          | notes                                                    |
+| ----------- | -------------- | ---------------- | -------------------------------------------------------- | ----- |
+| `enable`    | `boolean`      | `true` / `false` |                                                          |
+| `length`    | `number`       | `10`             |                                                          |
 | `fillColor` | `color object` |                  | This `color` object is the same described {@links IColor | here} |

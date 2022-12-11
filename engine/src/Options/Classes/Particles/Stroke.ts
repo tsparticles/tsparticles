@@ -1,7 +1,9 @@
 import { AnimatableColor } from "../AnimatableColor";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IStroke } from "../../Interfaces/Particles/IStroke";
+import type { RangeValue } from "../../../Types/RangeValue";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import { setRangeValue } from "../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Stroke.md]]
@@ -9,8 +11,8 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
  */
 export class Stroke implements IStroke, IOptionLoader<IStroke> {
     color?: AnimatableColor;
-    opacity?: number;
-    width;
+    opacity?: RangeValue;
+    width: RangeValue;
 
     constructor() {
         this.width = 0;
@@ -26,11 +28,11 @@ export class Stroke implements IStroke, IOptionLoader<IStroke> {
         }
 
         if (data.width !== undefined) {
-            this.width = data.width;
+            this.width = setRangeValue(data.width);
         }
 
         if (data.opacity !== undefined) {
-            this.opacity = data.opacity;
+            this.opacity = setRangeValue(data.opacity);
         }
     }
 }

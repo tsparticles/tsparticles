@@ -1,3 +1,4 @@
+import type { BounceContainer, BounceMode, IBounceMode } from "./Types";
 import {
     Circle,
     DivMode,
@@ -15,10 +16,11 @@ import {
     mouseMoveEvent,
     rectBounce,
 } from "tsparticles-engine";
-import type { Container, DivEvent, ICoordinates, Particle, Range } from "tsparticles-engine";
+import type { DivEvent, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
+import { Bounce } from "./Options/Classes/Bounce";
 
-export class Bouncer extends ExternalInteractorBase {
-    constructor(container: Container) {
+export class Bouncer extends ExternalInteractorBase<BounceContainer> {
+    constructor(container: BounceContainer) {
         super(container);
     }
 
@@ -27,7 +29,14 @@ export class Bouncer extends ExternalInteractorBase {
     }
 
     init(): void {
-        // do nothing
+        const container = this.container,
+            bounce = container.actualOptions.interactivity.modes.bounce;
+
+        if (!bounce) {
+            return;
+        }
+
+        container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
     }
 
     async interact(): Promise<void> {
@@ -59,6 +68,19 @@ export class Bouncer extends ExternalInteractorBase {
         );
     }
 
+    loadModeOptions(
+        options: Modes & BounceMode,
+        ...sources: RecursivePartial<(IModes & IBounceMode) | undefined>[]
+    ): void {
+        if (!options.bounce) {
+            options.bounce = new Bounce();
+        }
+
+        for (const source of sources) {
+            options.bounce.load(source?.bounce);
+        }
+    }
+
     reset(): void {
         // do nothing
     }
@@ -88,9 +110,11 @@ export class Bouncer extends ExternalInteractorBase {
             mousePos = container.interactivity.mouse.position,
             radius = container.retina.bounceModeDistance;
 
-        if (mousePos) {
-            this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
+        if (!radius || radius < 0 || !mousePos) {
+            return;
         }
+
+        this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
     }
 
     private singleSelectorBounce(selector: string, div: DivEvent): void {

@@ -7,24 +7,25 @@ import type { Particle } from "../Particle";
 /**
  * External Interactivity manager, base abstract class
  */
-export abstract class ExternalInteractorBase implements IExternalInteractor {
+export abstract class ExternalInteractorBase<TContainer extends Container = Container> implements IExternalInteractor {
     /**
      * External Interactivity type
      */
-    type: InteractorType = InteractorType.External;
+    type: InteractorType = InteractorType.external;
 
     /**
      * Constructor of external interactivity manager
      * @param container the parent container
      * @protected
      */
-    protected constructor(protected readonly container: Container) {}
+    protected constructor(protected readonly container: TContainer) {}
 
     /**
      * Before interaction clear
      * @param particle the particle to clear
+     * @param delta this variable contains the delta between the current frame and the previous frame
      */
-    abstract clear(particle: Particle): void;
+    abstract clear(particle: Particle, delta: IDelta): void;
 
     /**
      * Initializes the interactivity manager

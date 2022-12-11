@@ -27,23 +27,22 @@ Vue.use(Particles);
 ### Demo config
 
 ```html
-
 <template>
     <div id="app">
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                url="http://foo.bar/particles.json"
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            url="http://foo.bar/particles.json"
         />
 
         <!-- or -->
 
         <Particles
-                id="tsparticles"
-                :particlesInit="particlesInit"
-                :particlesLoaded="particlesLoaded"
-                :options="{
+            id="tsparticles"
+            :particlesInit="particlesInit"
+            :particlesLoaded="particlesLoaded"
+            :options="{
                     background: {
                         color: {
                             value: '#0d47a1'
@@ -114,8 +113,7 @@ Vue.use(Particles);
                             type: 'circle'
                         },
                         size: {
-                            random: true,
-                            value: 5
+                            value: { min: 1, max: 5 },
                         }
                     },
                     detectRetina: true
@@ -128,13 +126,13 @@ Vue.use(Particles);
 ```javascript
 import { loadFull } from "tsparticles";
 
-const particlesInit = async (engine) => {
+const particlesInit = async engine => {
     await loadFull(engine);
-}
+};
 
-const particlesLoaded = async (container) => {
+const particlesLoaded = async container => {
     console.log("Particles container loaded", container);
-}
+};
 ```
 
 ### TypeScript errors

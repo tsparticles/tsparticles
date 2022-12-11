@@ -5,9 +5,9 @@ import { EditorType } from "object-gui";
 
 export class WobbleOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: unknown;
+    private options!: () => unknown;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
@@ -19,18 +19,16 @@ export class WobbleOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group.addProperty("distance", "Distance", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("enable", "Enable", EditorType.boolean).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
 
         this.group.addProperty("speed", "Speed", EditorType.number).change(async () => {
-            await particles.refresh();
+            await this.particles().refresh();
         });
     }
 }

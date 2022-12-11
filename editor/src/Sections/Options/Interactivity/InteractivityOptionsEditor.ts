@@ -8,15 +8,15 @@ import { ModesOptionsEditor } from "./Modes/ModesOptionsEditor";
 
 export class InteractivityOptionsEditor extends EditorBase {
     group!: EditorGroup;
-    private options!: IInteractivity;
+    private options!: () => IInteractivity;
 
-    constructor(particles: Container) {
+    constructor(particles: () => Container) {
         super(particles);
     }
 
     addToGroup(parent: EditorGroup): void {
         this.group = parent.addGroup("interactivity", "Interactivity");
-        this.options = this.group.data as IInteractivity;
+        this.options = this.group.data as () => IInteractivity;
 
         this.addEvents();
         this.addModes();
@@ -37,12 +37,10 @@ export class InteractivityOptionsEditor extends EditorBase {
     }
 
     private addProperties(): void {
-        const particles = this.particles;
-
         this.group
             .addProperty("detectsOn", "Detects On", EditorType.select)
             .change(async () => {
-                await particles.refresh();
+                await this.particles().refresh();
             })
             .addItems([
                 {

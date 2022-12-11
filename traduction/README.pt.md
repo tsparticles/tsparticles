@@ -15,33 +15,33 @@ React.js, Vue.js (2.x e 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.js,
 
 ## Índice
 
-- [Utilize no seu website](#Deseja-utilizá-la-no-seu-website)
-  - [Instalação da biblioteca](#Instalação-da-biblioteca)
-- [Componentes oficiais para algumas das frameworks mais utilizadas](#Componentes-oficiais-para-algumas-das-frameworks-mais-utilizadas)
-  - [Angular](#Angular)
-  - [Inferno](#Inferno)
-  - [jQuery](#jQuery)
-  - [Preact](#Preact)
-  - [ReactJS](#ReactJS)
-  - [Svelte](#Svelte)
-  - [VueJS 2.x](#VueJS-2x)
-  - [VueJS 3.x](#VueJS-3x)
-  - [WordPress](#WordPress)
-- [Modelos e Recursos](#Modelos-e-Recursos)
-- [Demo / Gerador](#Demo--Gerador)
+-   [Utilize no seu website](#Deseja-utilizá-la-no-seu-website)
+    -   [Instalação da biblioteca](#Instalação-da-biblioteca)
+-   [Componentes oficiais para algumas das frameworks mais utilizadas](#Componentes-oficiais-para-algumas-das-frameworks-mais-utilizadas)
+    -   [Angular](#Angular)
+    -   [Inferno](#Inferno)
+    -   [jQuery](#jQuery)
+    -   [Preact](#Preact)
+    -   [ReactJS](#ReactJS)
+    -   [Svelte](#Svelte)
+    -   [VueJS 2.x](#VueJS-2x)
+    -   [VueJS 3.x](#VueJS-3x)
+    -   [WordPress](#WordPress)
+-   [Modelos e Recursos](#Modelos-e-Recursos)
+-   [Demo / Gerador](#Demo--Gerador)
 
-  - [Caracteres como partículas](#Caracteres-como-partículas)
-  - [Ligações ao passar o rato](#Ligações-ao-passar-o-rato)
-  - [Máscara de polígonos](#Máscara-de-polígonos)
-  - [Estrelas animadas](#Estrelas-animadas)
-  - [Gato Nyan a voar sobre estrelas passantes](#Gato-Nyan-a-voar-sobre-estrelas-passantes)
-  - [Partículas de neve](#Partículas-de-neve)
-  - [Partículas de máscara de fundo](#Partículas-de-máscara-de-fundo)
-  - [Partículas COVID-19 SARS-CoV-2](#Partículas-COVID-19-SARS-CoV-2)
+    -   [Caracteres como partículas](#Caracteres-como-partículas)
+    -   [Ligações ao passar o rato](#Ligações-ao-passar-o-rato)
+    -   [Máscara de polígonos](#Máscara-de-polígonos)
+    -   [Estrelas animadas](#Estrelas-animadas)
+    -   [Gato Nyan a voar sobre estrelas passantes](#Gato-Nyan-a-voar-sobre-estrelas-passantes)
+    -   [Partículas de neve](#Partículas-de-neve)
+    -   [Partículas de máscara de fundo](#Partículas-de-máscara-de-fundo)
+    -   [Partículas COVID-19 SARS-CoV-2](#Partículas-COVID-19-SARS-CoV-2)
 
-- [Migrar de Particles.js](#Migrar-de-Particles.js)
+-   [Migrar de Particles.js](#Migrar-de-Particles.js)
 
-- [Plugins/Personalizações](#PluginsPersonalizações)
+-   [Plugins/Personalizações](#PluginsPersonalizações)
 
 ## Deseja utilizá-la no seu website?
 
@@ -102,11 +102,11 @@ A partir da versão 1.12.11 `import` e `require` podem ser utilizados para impor
 Agora pode escrever algo deste género
 
 ```javascript
-const tsParticles = require('tsparticles')
+const tsParticles = require("tsparticles");
 
 // ou
 
-import { tsParticles } from 'tsparticles-engine'
+import { tsParticles } from "tsparticles-engine";
 ```
 
 A `tsParticles` importada é a mesma instância que tem quando inclui o script.
@@ -140,48 +140,48 @@ Carregue `tsParticles` e configure as partículas:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (opcional)); */
 
 tsParticles
-  .loadJSON('tsparticles', 'presets/default.json')
-  .then(container => {
-    console.log('callback - configuração tsparticles carregada')
-  })
-  .catch(error => {
-    console.error(error)
-  })
+    .loadJSON("tsparticles", "presets/default.json")
+    .then(container => {
+        console.log("callback - configuração tsparticles carregada");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 //ou
 
 /* tsParticles.load(@dom-id, @options); */
 
-tsParticles.load('tsparticles', {
-  /* opções aqui */
-})
+tsParticles.load("tsparticles", {
+    /* opções aqui */
+});
 
 //ou
 
 /* tsParticles.loadFromArray(@dom-id, @options, @index (opcional)); */
 
-tsParticles.loadFromArray('tsparticles', [
-  {
-    /* opções aqui */
-  },
-  {
-    /* outras opções aqui */
-  }
-])
+tsParticles.loadFromArray("tsparticles", [
+    {
+        /* opções aqui */
+    },
+    {
+        /* outras opções aqui */
+    },
+]);
 //objeto aleatório
 
 tsParticles.loadFromArray(
-  'tsparticles',
-  [
-    {
-      /* opções aqui */
-    },
-    {
-      /* outras opções aqui */
-    }
-  ],
-  1
-) //o segundo
+    "tsparticles",
+    [
+        {
+            /* opções aqui */
+        },
+        {
+            /* outras opções aqui */
+        },
+    ],
+    1
+); //o segundo
 // Importante! Se o index não estiver no range 0...<array.length, o index será ignorado.
 
 // após a inicialização isto pode ser utilizado.
@@ -191,19 +191,19 @@ tsParticles.loadFromArray(
 /* isto será disparado por todas as partículas carregadas */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* handler personalizado no clique */
-})
+    /* handler personalizado no clique */
+});
 
 // agora também poderá controlar as animações, é possível pausar e retomar as animações
 // estes métodos não alteram a configuração por isso todas as suas configurações estarão salvaguardadas
 // domItem(0) retorna a primeira instância tsParticles carregada no dom
-const particles = tsParticles.domItem(0)
+const particles = tsParticles.domItem(0);
 
 // play irá iniciar as animações, se o movimento não estiver ativo ele não será ativado, apenas irá atualizar a frame
-particles.play()
+particles.play();
 
 // pause irá parar todas as animações
-particles.pause()
+particles.pause();
 ```
 
 ---
@@ -366,7 +366,7 @@ _Não clique! NÃO CLIQUE! OH NÃO ESTÁ-SE A ESPALHAR!!!!_
 
 **particles.json**
 
-Pode encontrar uns exemplos de configuração [aqui](https://github.com/matteobruni/tsparticles/tree/main/website/presets) 📖
+Pode encontrar uns exemplos de configuração [aqui](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
 
 ---
 

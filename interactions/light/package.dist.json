@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-interaction-light",
-  "version": "2.1.4",
+  "version": "2.6.0",
   "description": "tsParticles Light interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -9,6 +9,8 @@
     "directory": "interactions/light"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -82,6 +84,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.6.0"
   }
 }

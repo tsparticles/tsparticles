@@ -1,5 +1,4 @@
 import type { InfectableContainer, InfectableParticle } from "./Types";
-import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
 /**
  * @category Core
@@ -8,8 +7,13 @@ export class Infecter {
     constructor(private readonly container: InfectableContainer) {}
 
     startInfection(particle: InfectableParticle, stage: number): void {
-        const options = this.container.actualOptions as unknown as IInfectionOptions,
-            stages = options.infection.stages,
+        const options = this.container.actualOptions;
+
+        if (!options.infection || !particle.infection) {
+            return;
+        }
+
+        const stages = options.infection.stages,
             stagesCount = stages.length;
 
         if (stage > stagesCount || stage < 0) {
@@ -21,9 +25,13 @@ export class Infecter {
     }
 
     updateInfection(particle: InfectableParticle, delta: number): void {
-        const options = this.container.actualOptions as unknown as IInfectionOptions,
-            infection = options.infection,
-            stages = options.infection.stages,
+        const infection = this.container.actualOptions.infection;
+
+        if (!infection || !particle.infection) {
+            return;
+        }
+
+        const stages = infection.stages,
             stagesCount = stages.length;
 
         if (particle.infection.delay !== undefined && particle.infection.delayStage !== undefined) {
@@ -66,8 +74,13 @@ export class Infecter {
     }
 
     updateInfectionStage(particle: InfectableParticle, stage: number): void {
-        const options = this.container.actualOptions as unknown as IInfectionOptions,
-            stagesCount = options.infection.stages.length;
+        const options = this.container.actualOptions;
+
+        if (!options.infection || !particle.infection) {
+            return;
+        }
+
+        const stagesCount = options.infection.stages.length;
 
         if (
             stage > stagesCount ||
@@ -82,8 +95,13 @@ export class Infecter {
     }
 
     private nextInfectionStage(particle: InfectableParticle): void {
-        const options = this.container.actualOptions as unknown as IInfectionOptions,
-            stagesCount = options.infection.stages.length;
+        const options = this.container.actualOptions;
+
+        if (!options.infection || !particle.infection) {
+            return;
+        }
+
+        const stagesCount = options.infection.stages.length;
 
         if (stagesCount <= 0 || particle.infection.stage === undefined) {
             return;

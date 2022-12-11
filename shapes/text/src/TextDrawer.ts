@@ -1,5 +1,5 @@
 import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
-import { isInArray, itemFromArray, loadFont } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, isInArray, itemFromSingleOrMultiple, loadFont } from "tsparticles-engine";
 import type { ICharacterShape } from "./ICharacterShape";
 import type { TextParticle } from "./TextParticle";
 
@@ -25,8 +25,7 @@ export class TextDrawer implements IShapeDrawer {
         const textParticle = particle as TextParticle;
 
         if (textParticle.text === undefined) {
-            textParticle.text =
-                textData instanceof Array ? itemFromArray(textData, particle.randomIndexData) : textData;
+            textParticle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
         }
 
         const text = textParticle.text,
@@ -64,26 +63,15 @@ export class TextDrawer implements IShapeDrawer {
 
         if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
             const shapeOptions = validTypes
-                .map((t) => options.particles.shape.options[t])
-                .find((t) => !!t) as SingleOrMultiple<ICharacterShape>;
+                    .map((t) => options.particles.shape.options[t])
+                    .find((t) => !!t) as SingleOrMultiple<ICharacterShape>,
+                promises: Promise<void>[] = [];
 
-            if (shapeOptions instanceof Array) {
-                const promises: Promise<void>[] = [];
+            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+                promises.push(loadFont(shape.font, shape.weight));
+            });
 
-                for (const character of shapeOptions) {
-                    const charShape = character;
-
-                    promises.push(loadFont(charShape.font, charShape.weight));
-                }
-
-                await Promise.allSettled(promises);
-            } else {
-                if (shapeOptions !== undefined) {
-                    const charShape = shapeOptions;
-
-                    await loadFont(charShape.font, charShape.weight);
-                }
-            }
+            await Promise.all(promises);
         }
     }
 }

@@ -1,10 +1,10 @@
 import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveAngle } from "./MoveAngle";
 import { MoveAttract } from "./MoveAttract";
+import { MoveCenter } from "./MoveCenter";
 import { MoveDirection } from "../../../../Enums/Directions/MoveDirection";
 import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
 import { MoveGravity } from "./MoveGravity";
@@ -14,7 +14,6 @@ import { OutModes } from "./OutModes";
 import type { RangeValue } from "../../../../Types/RangeValue";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { Spin } from "./Spin";
-import { deepExtend } from "../../../../Utils/Utils";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
@@ -24,8 +23,8 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 export class Move implements IMove, IOptionLoader<IMove> {
     angle;
     attract;
-    center: ICoordinates & { radius: number };
-    decay;
+    center: MoveCenter;
+    decay: RangeValue;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
     drift: RangeValue;
@@ -45,11 +44,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     constructor() {
         this.angle = new MoveAngle();
         this.attract = new MoveAttract();
-        this.center = {
-            x: 50,
-            y: 50,
-            radius: 0,
-        };
+        this.center = new MoveCenter();
         this.decay = 0;
         this.distance = {};
         this.direction = MoveDirection.none;
@@ -92,9 +87,9 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
+     * @param _
      */
-    set collisions(value: boolean) {
+    set collisions(_: boolean) {
         // deprecated
     }
 
@@ -151,20 +146,13 @@ export class Move implements IMove, IOptionLoader<IMove> {
             return;
         }
 
-        if (data.angle !== undefined) {
-            if (typeof data.angle === "number") {
-                this.angle.value = data.angle;
-            } else {
-                this.angle.load(data.angle);
-            }
-        }
-
+        this.angle.load(typeof data.angle === "number" ? { value: data.angle } : data.angle);
         this.attract.load(data.attract);
 
-        this.center = deepExtend(this.center, data.center) as ICoordinates & { radius: number };
+        this.center.load(data.center);
 
         if (data.decay !== undefined) {
-            this.decay = data.decay;
+            this.decay = setRangeValue(data.decay);
         }
 
         if (data.direction !== undefined) {
@@ -178,7 +166,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
                           horizontal: data.distance,
                           vertical: data.distance,
                       }
-                    : (deepExtend({}, data.distance) as IDistance);
+                    : { ...data.distance };
         }
 
         if (data.drift !== undefined) {
@@ -191,15 +179,15 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.gravity.load(data.gravity);
 
-        const outMode = data.outMode ?? data.out_mode;
+        const outModes = data.outModes ?? data.outMode ?? data.out_mode;
 
-        if (data.outModes !== undefined || outMode !== undefined) {
-            if (typeof data.outModes === "string" || (data.outModes === undefined && outMode !== undefined)) {
-                this.outModes.load({
-                    default: data.outModes ?? outMode,
-                });
+        if (outModes !== undefined) {
+            if (typeof outModes === "object") {
+                this.outModes.load(outModes);
             } else {
-                this.outModes.load(data.outModes);
+                this.outModes.load({
+                    default: outModes,
+                });
             }
         }
 

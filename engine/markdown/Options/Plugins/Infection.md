@@ -11,8 +11,8 @@
 ## Infection Stage
 
 | key             | option type    | example | notes                                                                               |
-| --------------- | -------------- | ------- | ----------------------------------------------------------------------------------- |
-| `color`         | `color object` |         | This `color` object is the same described {@link IColor | here}                     |
+| --------------- | -------------- | ------- | ----------------------------------------------------------------------------------- | ----- |
+| `color`         | `color object` |         | This `color` object is the same described {@link IColor                             | here} |
 | `radius`        | `number`       | `1`     | an outer radius for spreading the infection without touch                           |
 | `rate`          | `number`       | `1`     | chances of infecting other particles                                                |
 | `duration`      | `number`       | `1`     | how many seconds does the stage should last                                         |

@@ -1,4 +1,4 @@
 {
-  "fpsLimit": 60,
-  "preset": "fire"
+    "name": "Custom Preset",
+    "preset": "fire"
 }

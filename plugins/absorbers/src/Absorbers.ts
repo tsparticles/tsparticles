@@ -1,18 +1,10 @@
-import type {
-    IContainerPlugin,
-    ICoordinates,
-    IOptions,
-    Particle,
-    RecursivePartial,
-    SingleOrMultiple,
-} from "tsparticles-engine";
-import { Absorber } from "./Options/Classes/Absorber";
+import type { IContainerPlugin, ICoordinates, Particle, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, itemFromSingleOrMultiple } from "tsparticles-engine";
+import type { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";
 import { AbsorberInstance } from "./AbsorberInstance";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import type { IAbsorberOptions } from "./Options/Interfaces/IAbsorberOptions";
-import { itemFromArray } from "tsparticles-engine";
 
 /**
  * @category Absorbers Plugin
@@ -46,9 +38,7 @@ export class Absorbers implements IContainerPlugin {
 
     draw(context: CanvasRenderingContext2D): void {
         for (const absorber of this.array) {
-            context.save();
             absorber.draw(context);
-            context.restore();
         }
     }
 
@@ -57,75 +47,21 @@ export class Absorbers implements IContainerPlugin {
             modeAbsorbers = this.interactivityAbsorbers;
 
         if (mode === AbsorberClickMode.absorber) {
-            let absorbersModeOptions: IAbsorber | undefined;
-
-            if (modeAbsorbers instanceof Array) {
-                if (modeAbsorbers.length > 0) {
-                    absorbersModeOptions = itemFromArray(modeAbsorbers);
-                }
-            } else {
-                absorbersModeOptions = modeAbsorbers;
-            }
-
-            const absorbersOptions =
-                    absorbersModeOptions ??
-                    (absorberOptions instanceof Array ? itemFromArray(absorberOptions) : absorberOptions),
+            const absorbersModeOptions = itemFromSingleOrMultiple(modeAbsorbers),
+                absorbersOptions = absorbersModeOptions ?? itemFromSingleOrMultiple(absorberOptions),
                 aPosition = this.container.interactivity.mouse.clickPosition;
 
             this.addAbsorber(absorbersOptions, aPosition);
         }
     }
 
-    init(options?: RecursivePartial<IOptions & IAbsorberOptions>): void {
-        if (!options) {
-            return;
-        }
+    async init(): Promise<void> {
+        this.absorbers = this.container.actualOptions.absorbers;
+        this.interactivityAbsorbers = this.container.actualOptions.interactivity.modes.absorbers;
 
-        if (options.absorbers) {
-            if (options.absorbers instanceof Array) {
-                this.absorbers = options.absorbers.map((s) => {
-                    const tmp = new Absorber();
-
-                    tmp.load(s);
-
-                    return tmp;
-                });
-            } else {
-                if (this.absorbers instanceof Array) {
-                    this.absorbers = new Absorber();
-                }
-
-                this.absorbers.load(options.absorbers);
-            }
-        }
-
-        const interactivityAbsorbers = options.interactivity?.modes?.absorbers;
-
-        if (interactivityAbsorbers) {
-            if (interactivityAbsorbers instanceof Array) {
-                this.interactivityAbsorbers = interactivityAbsorbers.map((s) => {
-                    const tmp = new Absorber();
-
-                    tmp.load(s);
-
-                    return tmp;
-                });
-            } else {
-                if (this.interactivityAbsorbers instanceof Array) {
-                    this.interactivityAbsorbers = new Absorber();
-                }
-
-                this.interactivityAbsorbers.load(interactivityAbsorbers);
-            }
-        }
-
-        if (this.absorbers instanceof Array) {
-            for (const absorberOptions of this.absorbers) {
-                this.addAbsorber(absorberOptions);
-            }
-        } else {
-            this.addAbsorber(this.absorbers);
-        }
+        executeOnSingleOrMultiple(this.absorbers, (absorber) => {
+            this.addAbsorber(absorber);
+        });
     }
 
     particleUpdate(particle: Particle): void {

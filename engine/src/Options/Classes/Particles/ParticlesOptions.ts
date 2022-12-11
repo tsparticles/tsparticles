@@ -1,7 +1,7 @@
+import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils";
 import { AnimatableColor } from "../AnimatableColor";
 import { Collisions } from "./Collisions/Collisions";
 import type { Container } from "../../../Core/Container";
-import { Destroy } from "./Destroy/Destroy";
 import type { Engine } from "../../../engine";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
@@ -11,16 +11,13 @@ import { Opacity } from "./Opacity/Opacity";
 import { ParticlesBounce } from "./Bounce/ParticlesBounce";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import { ParticlesNumber } from "./Number/ParticlesNumber";
-import { ParticlesRepulse } from "./Repulse/ParticlesRepulse";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Rotate } from "./Rotate/Rotate";
 import { Shadow } from "./Shadow";
 import { Shape } from "./Shape/Shape";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
 import { ZIndex } from "./ZIndex/ZIndex";
-import { deepExtend } from "../../../Utils/Utils";
 
 /**
  * [[include:Options/Particles.md]]
@@ -32,39 +29,34 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     bounce;
     collisions;
     color;
-    readonly #container;
-    destroy;
-    readonly #engine;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
     move;
     number;
     opacity;
     reduceDuplicates;
-    repulse;
-    rotate;
     shadow;
     shape;
     size;
     stroke: SingleOrMultiple<Stroke>;
     zIndex;
 
+    private readonly _container;
+    private readonly _engine;
+
     constructor(engine: Engine, container?: Container) {
-        this.#engine = engine;
-        this.#container = container;
+        this._engine = engine;
+        this._container = container;
 
         this.bounce = new ParticlesBounce();
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.color.value = "#fff";
-        this.destroy = new Destroy();
         this.groups = {};
         this.move = new Move();
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
-        this.repulse = new ParticlesRepulse();
-        this.rotate = new Rotate();
         this.shadow = new Shadow();
         this.shape = new Shape();
         this.size = new Size();
@@ -79,8 +71,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
         this.bounce.load(data.bounce);
         this.color.load(AnimatableColor.create(this.color, data.color));
-
-        this.destroy.load(data.destroy);
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {
@@ -100,8 +90,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
             this.reduceDuplicates = data.reduceDuplicates;
         }
 
-        this.repulse.load(data.repulse);
-        this.rotate.load(data.rotate);
         this.shape.load(data.shape);
         this.size.load(data.size);
         this.shadow.load(data.shadow);
@@ -122,25 +110,17 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         const strokeToLoad = data.stroke ?? data.shape?.stroke;
 
         if (strokeToLoad) {
-            if (strokeToLoad instanceof Array) {
-                this.stroke = strokeToLoad.map((s) => {
-                    const tmp = new Stroke();
+            this.stroke = executeOnSingleOrMultiple(strokeToLoad, (t) => {
+                const tmp = new Stroke();
 
-                    tmp.load(s);
+                tmp.load(t);
 
-                    return tmp;
-                });
-            } else {
-                if (this.stroke instanceof Array) {
-                    this.stroke = new Stroke();
-                }
-
-                this.stroke.load(strokeToLoad);
-            }
+                return tmp;
+            });
         }
 
-        if (this.#container) {
-            const updaters = this.#engine.plugins.updaters.get(this.#container);
+        if (this._container) {
+            const updaters = this._engine.plugins.updaters.get(this._container);
 
             if (updaters) {
                 for (const updater of updaters) {
@@ -150,7 +130,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 }
             }
 
-            const interactors = this.#engine.plugins.interactors.get(this.#container);
+            const interactors = this._engine.plugins.interactors.get(this._container);
 
             if (interactors) {
                 for (const interactor of interactors) {

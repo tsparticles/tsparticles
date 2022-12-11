@@ -1,4 +1,3 @@
-import type { Container, ICoordinates, IRgb, OptionsColor, Particle } from "tsparticles-engine";
 import {
     ExternalInteractorBase,
     HoverMode,
@@ -10,6 +9,9 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
+import type { GrabContainer, GrabMode, IGrabMode } from "./Types";
+import type { ICoordinates, IModes, IRgb, Modes, OptionsColor, Particle, RecursivePartial } from "tsparticles-engine";
+import { Grab } from "./Options/Classes/Grab";
 
 type LinkParticle = Particle & {
     options: {
@@ -39,18 +41,15 @@ export function drawGrabLine(
     colorLine: IRgb,
     opacity: number
 ): void {
-    context.save();
-
     drawLine(context, begin, end);
 
     context.strokeStyle = getStyleFromRgb(colorLine, opacity);
     context.lineWidth = width;
     context.stroke();
-    context.restore();
 }
 
 function drawGrab(
-    container: Container,
+    container: GrabContainer,
     particle: LinkParticle,
     lineColor: IRgb,
     opacity: number,
@@ -67,8 +66,8 @@ function drawGrab(
  * Particle grab manager
  * @category Interactions
  */
-export class Grabber extends ExternalInteractorBase {
-    constructor(container: Container) {
+export class Grabber extends ExternalInteractorBase<GrabContainer> {
+    constructor(container: GrabContainer) {
         super(container);
     }
 
@@ -77,7 +76,14 @@ export class Grabber extends ExternalInteractorBase {
     }
 
     init(): void {
-        // do nothing
+        const container = this.container,
+            grab = container.actualOptions.interactivity.modes.grab;
+
+        if (!grab) {
+            return;
+        }
+
+        container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
     }
 
     async interact(): Promise<void> {
@@ -85,7 +91,11 @@ export class Grabber extends ExternalInteractorBase {
             options = container.actualOptions,
             interactivity = options.interactivity;
 
-        if (!interactivity.events.onHover.enable || container.interactivity.status !== mouseMoveEvent) {
+        if (
+            !interactivity.modes.grab ||
+            !interactivity.events.onHover.enable ||
+            container.interactivity.status !== mouseMoveEvent
+        ) {
             return;
         }
 
@@ -95,10 +105,15 @@ export class Grabber extends ExternalInteractorBase {
             return;
         }
 
-        const distance = container.retina.grabModeDistance,
-            query = container.particles.quadTree.queryCircle(mousePos, distance, (p) =>
-                this.isEnabled(p)
-            ) as LinkParticle[];
+        const distance = container.retina.grabModeDistance;
+
+        if (!distance || distance < 0) {
+            return;
+        }
+
+        const query = container.particles.quadTree.queryCircle(mousePos, distance, (p) =>
+            this.isEnabled(p)
+        ) as LinkParticle[];
 
         for (const particle of query) {
             /*
@@ -123,7 +138,7 @@ export class Grabber extends ExternalInteractorBase {
             const optColor = grabLineOptions.color ?? particle.options.links?.color;
 
             if (!container.particles.grabLineColor && optColor) {
-                const linksOptions = options.interactivity.modes.grab.links;
+                const linksOptions = interactivity.modes.grab.links;
 
                 container.particles.grabLineColor = getLinkRandomColor(
                     optColor,
@@ -148,6 +163,16 @@ export class Grabber extends ExternalInteractorBase {
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
+    }
+
+    loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {
+        if (!options.grab) {
+            options.grab = new Grab();
+        }
+
+        for (const source of sources) {
+            options.grab.load(source?.grab);
+        }
     }
 
     reset(): void {

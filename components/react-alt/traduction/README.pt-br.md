@@ -26,8 +26,8 @@ yarn add react-tsparticles
 
 A partir da versão 1.17.0, existem dois templates oficiais para `create-react-app`:
 
-- `cra-template-particles`: Template ReactJS simples com partículas em tela cheia, utilizando JavaScript
-- `cra-template-particles-typescript`: Template ReactJS simples com partículas em tela cheia, utilizando TypeScript
+-   `cra-template-particles`: Template ReactJS simples com partículas em tela cheia, utilizando JavaScript
+-   `cra-template-particles-typescript`: Template ReactJS simples com partículas em tela cheia, utilizando TypeScript
 
 Você pode facilmente instalar utilizando o comando `create-react-app` desta forma:
 
@@ -51,15 +51,15 @@ Exemplo:
 import Particles from "react-tsparticles";
 
 const App = () => {
-    const particlesInit = (main) => {
+    const particlesInit = main => {
         console.log(main);
 
         // você pode inicializar a instância tsParticles (main) aqui, adicionando formas personalizadas ou predefinições
-    }
-    
-    const particlesLoaded = (container) => {
+    };
+
+    const particlesLoaded = container => {
         console.log(container);
-    }
+    };
     return (
         <Particles
             id="tsparticles"
@@ -144,19 +144,19 @@ const App = () => {
             }}
         />
     );
-}
+};
 ```
 
 ### Propriedades
 
-| Prop            | Tipo   | Definição                                                                                                           |
-| --------------- | ------ | -------------------------------------------------------------------------------------------------------------------- |
-| width           | string | A largura do canvas.                                                                                             |
-| height          | string | A altura do canvas.                                                                                            |
-| options         | object | As options das instâncias de partículas.                                                                               |
-| style           | object | O estilo do elemento canvas.                                                                                     |
-| className       | string | Nome da classe do elemento que contém o canvas.                                                                                |
-| canvasClassName | string | Nome da classe do canvas.                                                                                        |
+| Prop            | Tipo   | Definição                                                                                       |
+| --------------- | ------ | ----------------------------------------------------------------------------------------------- |
+| width           | string | A largura do canvas.                                                                            |
+| height          | string | A altura do canvas.                                                                             |
+| options         | object | As options das instâncias de partículas.                                                        |
+| style           | object | O estilo do elemento canvas.                                                                    |
+| className       | string | Nome da classe do elemento que contém o canvas.                                                 |
+| canvasClassName | string | Nome da classe do canvas.                                                                       |
 | container       | object | Instância do [particles container](https://particles.js.org/docs/modules/_core_container_.html) |
 
 Veja as configurações dos parâmetros [aqui](https://particles.js.org).

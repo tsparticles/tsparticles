@@ -25,11 +25,11 @@ creator.
 
 All the shapes have in common these properties
 
-| key         | option type | example          | notes                                                                     |
-| ----------- | ----------- | ---------------- | ------------------------------------------------------------------------- |
-| `particles` | `object`    |                  | See Particles options [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html-Particles)                                               |
-| `fill`      | `boolean`   | `true` / `false` | Used to specify if its shape particles should be filled with color or not |
-| `close`     | `boolean`   | `true` / `false` | Used to specify if its shape particles should have a closed shape         |
+| key         | option type | example          | notes                                                                                                                        |
+| ----------- | ----------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `particles` | `object`    |                  | See Particles options [here](https://particles.js.org/docs/interfaces/_options_interfaces_ioptions_.ioptions.html-Particles) |
+| `fill`      | `boolean`   | `true` / `false` | Used to specify if its shape particles should be filled with color or not                                                    |
+| `close`     | `boolean`   | `true` / `false` | Used to specify if its shape particles should have a closed shape                                                            |
 
 Below you'll find the options of some shape types that need additional properties, you can add to the object below the 3
 properties above.
@@ -38,7 +38,7 @@ properties above.
 
 ```javascript
 polygon: {
-    sides: 5 // the number of sides of the polygon
+    sides: 5; // the number of sides of the polygon
 }
 ```
 
@@ -78,7 +78,7 @@ polygon: {
         // the pixel height of the image, you can use any value, the image will be scaled
         "height": 100,
         // if true and the image type is SVG, it will replace all the colors with the particle color
-        "replaceColor": false 
+        "replaceColor": false
     }
 }
 ```

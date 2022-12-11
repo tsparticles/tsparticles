@@ -1,4 +1,4 @@
-import type { Container, ISourceOptions, Engine, RecursivePartial } from "tsparticles-engine";
+import type { Container, ISourceOptions, Engine } from "tsparticles-engine";
 
 declare global {
     interface Window {
@@ -7,23 +7,25 @@ declare global {
 }
 
 export class Particles extends HTMLElement {
-    get url(): string | undefined {
+    get url(): string | null | undefined {
         return this._url;
     }
 
-    set url(value: string | undefined) {
+    set url(value: string | null | undefined) {
         this._url = value;
 
         this.container.current?.destroy();
 
-        window.tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
+        window.tsParticles
+            .setJSON(this.id, this, this._url ?? undefined)
+            .then(container => this.notifyParticlesLoaded(container));
     }
 
-    get options(): RecursivePartial<ISourceOptions> | undefined {
+    get options(): ISourceOptions | undefined {
         return this._options;
     }
 
-    set options(value: RecursivePartial<ISourceOptions> | undefined) {
+    set options(value: ISourceOptions | undefined) {
         this._options = value;
 
         this.container.current?.destroy();
@@ -31,11 +33,11 @@ export class Particles extends HTMLElement {
         window.tsParticles.set(this.id, this, this._options).then(container => this.notifyParticlesLoaded(container));
     }
 
-    private _options?: RecursivePartial<ISourceOptions>;
-    private _url?: string;
+    private _options?: ISourceOptions;
+    private _url?: string | null;
 
     public container: {
-        current?: Container
+        current?: Container;
     };
 
     constructor() {
@@ -48,14 +50,15 @@ export class Particles extends HTMLElement {
         if (options) {
             try {
                 this._options = JSON.parse(options);
-            } catch {
-            }
+            } catch {}
         }
         this._url = this.getAttribute("url");
 
-        this.dispatchEvent(new CustomEvent("particlesInit", {
-            detail: window.tsParticles
-        }));
+        this.dispatchEvent(
+            new CustomEvent("particlesInit", {
+                detail: window.tsParticles,
+            })
+        );
     }
 
     connectedCallback() {
@@ -64,18 +67,24 @@ export class Particles extends HTMLElement {
         }
 
         if (this._url) {
-            window.tsParticles.setJSON(this.id, this, this._url).then(container => this.notifyParticlesLoaded(container));
+            window.tsParticles
+                .setJSON(this.id, this, this._url)
+                .then(container => this.notifyParticlesLoaded(container));
         } else if (this._options) {
-            window.tsParticles.set(this.id, this, this._options).then(container => this.notifyParticlesLoaded(container));
+            window.tsParticles
+                .set(this.id, this, this._options)
+                .then(container => this.notifyParticlesLoaded(container));
         }
     }
 
     private notifyParticlesLoaded(container?: Container): void {
         this.container.current = container;
 
-        this.dispatchEvent(new CustomEvent("particlesLoaded", {
-            detail: container
-        }));
+        this.dispatchEvent(
+            new CustomEvent("particlesLoaded", {
+                detail: container,
+            })
+        );
     }
 }
 

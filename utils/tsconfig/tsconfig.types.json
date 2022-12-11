@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "module": "esnext",
-    "declaration": true,
-    "emitDeclarationOnly": true
-  }
-}

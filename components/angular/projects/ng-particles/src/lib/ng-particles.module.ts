@@ -3,11 +3,10 @@ import { NgParticlesComponent, ParticlesComponent } from './ng-particles.compone
 import type { ISourceOptions } from 'tsparticles-engine';
 
 @NgModule({
-  declarations: [ NgParticlesComponent, ParticlesComponent ],
-  exports: [ NgParticlesComponent, ParticlesComponent ]
+    declarations: [NgParticlesComponent, ParticlesComponent],
+    exports: [NgParticlesComponent, ParticlesComponent],
 })
-export class NgParticlesModule {
-}
+export class NgParticlesModule {}
 
 export type IParticlesProps = ISourceOptions;
 export type IParticlesParams = IParticlesProps;

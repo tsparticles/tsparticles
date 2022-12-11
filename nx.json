@@ -1,70 +1,56 @@
 {
-  "extends": "@nrwl/workspace/presets/npm.json",
-  "npmScope": "tsparticles-workspace",
-  "tasksRunnerOptions": {
-    "cloud": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
-        "cacheableOperations": [
-          "build",
-          "build:ci",
-          "build:docs",
-          "build-docs",
-          "test",
-          "lint",
-          "package",
-          "prepare"
-        ]
-      }
+    "extends": "@nrwl/workspace/presets/npm.json",
+    "npmScope": "tsparticles-workspace",
+    "tasksRunnerOptions": {
+        "cloud": {
+            "runner": "@nrwl/nx-cloud",
+            "options": {
+                "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
+                "cacheableOperations": [
+                    "build",
+                    "build:ci",
+                    "build:docs",
+                    "build-docs",
+                    "test",
+                    "lint",
+                    "package",
+                    "prepare"
+                ]
+            }
+        },
+        "default": {
+            "runner": "nx/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "build:ci", "build:docs", "build-docs", "lint", "test", "e2e"]
+            }
+        }
     },
-    "default": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "build:ci",
-          "build:docs",
-          "build-docs",
-          "lint",
-          "test",
-          "e2e"
-        ]
-      }
+    "affected": {
+        "defaultBase": "main"
+    },
+    "pluginsConfig": {
+        "@nrwl/js": {
+            "analyzeSourceFiles": false
+        }
+    },
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "targetDefaults": {
+        "build": {
+            "dependsOn": ["^build"]
+        },
+        "build:ci": {
+            "dependsOn": ["^build:ci"]
+        },
+        "prepare": {
+            "dependsOn": ["^build", "^prepare"]
+        },
+        "package": {
+            "dependsOn": ["^build", "^prepare", "^package"]
+        }
+    },
+    "namedInputs": {
+        "default": ["{projectRoot}/**/*", "sharedGlobals"],
+        "sharedGlobals": [],
+        "production": ["default"]
     }
-  },
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ],
-    "build:ci": [
-      {
-        "target": "build:ci",
-        "projects": "dependencies"
-      }
-    ],
-    "prepare": [
-      {
-        "target": "prepare",
-        "projects": "dependencies"
-      }
-    ],
-    "package": [
-      {
-        "target": "package",
-        "projects": "dependencies"
-      }
-    ]
-  },
-  "affected": {
-    "defaultBase": "main"
-  },
-  "pluginsConfig": {
-    "@nrwl/js": {
-      "analyzeSourceFiles": false
-    }
-  }
 }

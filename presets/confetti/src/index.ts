@@ -1,5 +1,5 @@
 import type { Engine, RecursivePartial } from "tsparticles-engine";
-import { tsParticles, tspRandom } from "tsparticles-engine";
+import { getRandom, tsParticles } from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
@@ -7,6 +7,7 @@ import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadLifeUpdater } from "tsparticles-updater-life";
+import { loadMotionPlugin } from "tsparticles-plugin-motion";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOptions } from "./options";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
@@ -29,6 +30,7 @@ async function loadPreset(
     await loadOpacityUpdater(engine);
     await loadOutModesUpdater(engine);
     await loadEmittersPlugin(engine);
+    await loadMotionPlugin(engine);
     await loadWobbleUpdater(engine);
     await loadRollUpdater(engine);
     await loadAngleUpdater(engine);
@@ -56,7 +58,7 @@ export async function confetti(
         id = idOrOptions;
         options = confettiOptions ?? {};
     } else {
-        id = `tsparticles_${Math.floor(tspRandom() * 1000)}`;
+        id = `tsparticles_${Math.floor(getRandom() * 1000)}`;
         options = idOrOptions;
     }
 

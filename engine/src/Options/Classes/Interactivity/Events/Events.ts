@@ -4,7 +4,9 @@ import { HoverEvent } from "./HoverEvent";
 import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { ResizeEvent } from "./ResizeEvent";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
@@ -20,7 +22,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         this.onClick = new ClickEvent();
         this.onDiv = new DivEvent();
         this.onHover = new HoverEvent();
-        this.resize = true;
+        this.resize = new ResizeEvent();
     }
 
     /**
@@ -84,25 +86,21 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         const onDiv = data.onDiv ?? data.ondiv;
 
         if (onDiv !== undefined) {
-            if (onDiv instanceof Array) {
-                this.onDiv = onDiv.map((div) => {
-                    const tmp = new DivEvent();
+            this.onDiv = executeOnSingleOrMultiple(onDiv, (t) => {
+                const tmp = new DivEvent();
 
-                    tmp.load(div);
+                tmp.load(t);
 
-                    return tmp;
-                });
-            } else {
-                this.onDiv = new DivEvent();
-
-                this.onDiv.load(onDiv);
-            }
+                return tmp;
+            });
         }
 
         this.onHover.load(data.onHover ?? data.onhover);
 
-        if (data.resize !== undefined) {
-            this.resize = data.resize;
+        if (typeof data.resize === "boolean") {
+            this.resize.enable = data.resize;
+        } else {
+            this.resize.load(data.resize);
         }
     }
 }

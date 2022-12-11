@@ -8,19 +8,10 @@ import { isSsr } from "../Utils/Utils";
  */
 export class Retina {
     attractDistance!: number;
-    attractModeDistance!: number;
-    bounceModeDistance!: number;
-    bubbleModeDistance!: number;
-    bubbleModeSize?: number;
-    connectModeDistance!: number;
-    connectModeRadius!: number;
-    grabModeDistance!: number;
     maxSpeed!: number;
     pixelRatio!: number;
     reduceFactor!: number;
-    repulseModeDistance!: number;
     sizeAnimationSpeed!: number;
-    slowModeRadius!: number;
 
     constructor(private readonly container: Container) {}
 
@@ -32,38 +23,7 @@ export class Retina {
             options = container.actualOptions;
 
         this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
-
-        const motionOptions = this.container.actualOptions.motion;
-
-        if (motionOptions && (motionOptions.disable || motionOptions.reduce.value)) {
-            if (isSsr() || typeof matchMedia === "undefined" || !matchMedia) {
-                this.reduceFactor = 1;
-            } else {
-                const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
-
-                if (mediaQuery) {
-                    // Check if the media query matches or is not available.
-                    this.handleMotionChange(mediaQuery);
-
-                    // Ads an event listener to check for changes in the media query's value.
-                    const handleChange = (): void => {
-                        this.handleMotionChange(mediaQuery);
-
-                        container.refresh().catch(() => {
-                            // ignore
-                        });
-                    };
-
-                    if (mediaQuery.addEventListener !== undefined) {
-                        mediaQuery.addEventListener("change", handleChange);
-                    } else if (mediaQuery.addListener !== undefined) {
-                        mediaQuery.addListener(handleChange);
-                    }
-                }
-            }
-        } else {
-            this.reduceFactor = 1;
-        }
+        this.reduceFactor = 1;
 
         const ratio = this.pixelRatio;
 
@@ -79,20 +39,6 @@ export class Retina {
         this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
         this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
         this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
-
-        const modes = options.interactivity.modes;
-
-        this.connectModeDistance = modes.connect.distance * ratio;
-        this.connectModeRadius = modes.connect.radius * ratio;
-        this.grabModeDistance = modes.grab.distance * ratio;
-        this.bounceModeDistance = modes.bounce.distance * ratio;
-        this.attractModeDistance = modes.attract.distance * ratio;
-        this.slowModeRadius = modes.slow.radius * ratio;
-        this.bubbleModeDistance = modes.bubble.distance * ratio;
-
-        if (modes.bubble.size) {
-            this.bubbleModeSize = modes.bubble.size * ratio;
-        }
     }
 
     initParticle(particle: Particle): void {
@@ -112,17 +58,5 @@ export class Retina {
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
 
         props.maxSpeed = getRangeValue(options.move.gravity.maxSpeed) * ratio;
-    }
-
-    private handleMotionChange(mediaQuery: MediaQueryList): void {
-        const options = this.container.actualOptions;
-
-        if (mediaQuery.matches) {
-            const motion = options.motion;
-
-            this.reduceFactor = motion.disable ? 0 : motion.reduce.value ? 1 / motion.reduce.factor : 1;
-        } else {
-            this.reduceFactor = 1;
-        }
     }
 }

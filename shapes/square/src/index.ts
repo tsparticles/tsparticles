@@ -4,6 +4,5 @@ import { SquareDrawer } from "./SquareDrawer";
 export async function loadSquareShape(engine: Engine): Promise<void> {
     const drawer = new SquareDrawer();
 
-    await engine.addShape("edge", drawer);
-    await engine.addShape("square", drawer);
+    await engine.addShape(["edge", "square"], drawer);
 }

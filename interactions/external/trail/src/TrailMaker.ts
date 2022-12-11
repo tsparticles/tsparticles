@@ -6,18 +6,14 @@ import { Trail } from "./Options/Classes/Trail";
 /**
  * @category Interactions
  */
-export class TrailMaker extends ExternalInteractorBase {
-    readonly #container;
-
-    private delay: number;
-    private lastPosition?: ICoordinates;
+export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
+    private _delay: number;
+    private _lastPosition?: ICoordinates;
 
     constructor(container: TrailContainer) {
         super(container);
 
-        this.#container = container;
-
-        this.delay = 0;
+        this._delay = 0;
     }
 
     clear(): void {
@@ -33,7 +29,7 @@ export class TrailMaker extends ExternalInteractorBase {
             return;
         }
 
-        const container = this.#container,
+        const container = this.container,
             options = container.actualOptions,
             trailOptions = options.interactivity.modes.trail;
 
@@ -43,11 +39,11 @@ export class TrailMaker extends ExternalInteractorBase {
 
         const optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
 
-        if (this.delay < optDelay) {
-            this.delay += delta.value;
+        if (this._delay < optDelay) {
+            this._delay += delta.value;
         }
 
-        if (this.delay < optDelay) {
+        if (this._delay < optDelay) {
             return;
         }
 
@@ -55,28 +51,28 @@ export class TrailMaker extends ExternalInteractorBase {
 
         if (trailOptions.pauseOnStop) {
             if (
-                container.interactivity.mouse.position === this.lastPosition ||
-                (container.interactivity.mouse.position?.x === this.lastPosition?.x &&
-                    container.interactivity.mouse.position?.y === this.lastPosition?.y)
+                container.interactivity.mouse.position === this._lastPosition ||
+                (container.interactivity.mouse.position?.x === this._lastPosition?.x &&
+                    container.interactivity.mouse.position?.y === this._lastPosition?.y)
             ) {
                 canEmit = false;
             }
         }
 
         if (container.interactivity.mouse.position) {
-            this.lastPosition = {
+            this._lastPosition = {
                 x: container.interactivity.mouse.position.x,
                 y: container.interactivity.mouse.position.y,
             };
         } else {
-            delete this.lastPosition;
+            delete this._lastPosition;
         }
 
         if (canEmit) {
             container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
         }
 
-        this.delay -= optDelay;
+        this._delay -= optDelay;
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -95,11 +91,11 @@ export class TrailMaker extends ExternalInteractorBase {
         options: Modes & TrailMode,
         ...sources: RecursivePartial<(IModes & ITrailMode) | undefined>[]
     ): void {
-        for (const source of sources) {
-            if (!options.trail) {
-                options.trail = new Trail();
-            }
+        if (!options.trail) {
+            options.trail = new Trail();
+        }
 
+        for (const source of sources) {
             options.trail.load(source?.trail);
         }
     }

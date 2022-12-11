@@ -1,6 +1,7 @@
 import type { IClickEvent } from "./IClickEvent";
 import type { IDivEvent } from "./IDivEvent";
 import type { IHoverEvent } from "./IHoverEvent";
+import type { IResizeEvent } from "./IResizeEvent";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
@@ -27,5 +28,5 @@ export interface IEvents {
      */
     onhover: IHoverEvent;
 
-    resize: boolean;
+    resize: boolean | IResizeEvent;
 }

@@ -1,29 +1,19 @@
-import type { ICoordinates, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { ICoordinates, IShapeDrawer, Particle } from "tsparticles-engine";
 import type { IPolygonShape } from "./IPolygonShape";
-
-export interface ISideCount {
-    denominator: number;
-    numerator: number;
-}
-
-export interface ISide {
-    count: ISideCount;
-    length: number;
-}
+import type { ISide } from "./ISide";
+import { getRangeValue } from "tsparticles-engine";
 
 /**
  * @category Shape Drawers
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
-        const start = this.getCenter(particle, radius);
-        const side = this.getSidesData(particle, radius);
-
-        // By Programming Thomas - https://programmingthomas.wordpress.com/2013/04/03/n-sided-shapes/
-        const sideCount = side.count.numerator * side.count.denominator;
-        const decimalSides = side.count.numerator / side.count.denominator;
-        const interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides;
-        const interiorAngle = Math.PI - (Math.PI * interiorAngleDegrees) / 180; // convert to radians
+    draw(context: CanvasRenderingContext2D, particle: Particle, radius: number): void {
+        const start = this.getCenter(particle, radius),
+            side = this.getSidesData(particle, radius),
+            sideCount = side.count.numerator * side.count.denominator,
+            decimalSides = side.count.numerator / side.count.denominator,
+            interiorAngleDegrees = (180 * (decimalSides - 2)) / decimalSides,
+            interiorAngle = Math.PI - (Math.PI * interiorAngleDegrees) / 180; // convert to radians
 
         if (!context) {
             return;
@@ -40,13 +30,14 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
         }
     }
 
-    getSidesCount(particle: IParticle): number {
-        const polygon = particle.shapeData as IPolygonShape;
+    getSidesCount(particle: Particle): number {
+        const polygon = particle.shapeData as IPolygonShape,
+            sides = Math.round(getRangeValue(polygon?.sides ?? polygon?.nb_sides ?? 5));
 
-        return polygon?.sides ?? polygon?.nb_sides ?? 5;
+        return sides;
     }
 
-    abstract getCenter(particle: IParticle, radius: number): ICoordinates;
+    abstract getCenter(particle: Particle, radius: number): ICoordinates;
 
-    abstract getSidesData(particle: IParticle, radius: number): ISide;
+    abstract getSidesData(particle: Particle, radius: number): ISide;
 }

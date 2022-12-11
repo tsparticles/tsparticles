@@ -1,5 +1,4 @@
 import {
-    DestroyMode,
     DestroyType,
     MoveDirection,
     OutMode,
@@ -36,8 +35,8 @@ const fireworksOptions: RecursivePartial<IParticlesOptions>[] = ["#ff595e", "#ff
         }
 
         const hsl = rgbToHsl(rgb),
-            sRange = fixRange({ min: hsl.s - 20, max: hsl.s + 20 }, 0, 100),
-            lRange = fixRange({ min: hsl.l - 20, max: hsl.l + 20 }, 0, 100);
+            sRange = fixRange({ min: hsl.s - 30, max: hsl.s + 30 }, 0, 100),
+            lRange = fixRange({ min: hsl.l - 30, max: hsl.l + 30 }, 0, 100);
 
         return {
             color: {
@@ -52,9 +51,6 @@ const fireworksOptions: RecursivePartial<IParticlesOptions>[] = ["#ff595e", "#ff
             },
             number: {
                 value: 0,
-            },
-            collisions: {
-                enable: false,
             },
             opacity: {
                 value: {
@@ -93,14 +89,14 @@ const fireworksOptions: RecursivePartial<IParticlesOptions>[] = ["#ff595e", "#ff
                 },
             },
             move: {
-                decay: 0.05,
+                decay: { min: 0.075, max: 0.1 },
                 enable: true,
                 gravity: {
                     enable: true,
                     inverse: false,
                     acceleration: 5,
                 },
-                speed: { min: 5, max: 10 },
+                speed: { min: 5, max: 15 },
                 direction: "none",
                 outModes: OutMode.destroy,
             },
@@ -122,7 +118,7 @@ export const options: ISourceOptions = {
             delay: 0.1,
         },
         rate: {
-            delay: 0.15,
+            delay: 0.05,
             quantity: 1,
         },
         size: {
@@ -139,14 +135,18 @@ export const options: ISourceOptions = {
             value: 0,
         },
         destroy: {
-            mode: DestroyMode.split,
+            mode: "split",
+            bounds: {
+                top: { min: 10, max: 30 },
+            },
             split: {
+                sizeOffset: false,
                 count: 1,
                 factor: {
                     value: 0.333333,
                 },
                 rate: {
-                    value: 100,
+                    value: { min: 75, max: 150 },
                 },
                 particles: fireworksOptions,
             },

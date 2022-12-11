@@ -14,7 +14,6 @@ a `tsparticles-engine` instance.
 - [tsparticles-interaction-external-trail](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/trail)
 - [tsparticles-plugin-absorbers](https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers)
 - [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
-- [tsparticles-plugin-polygon-mask](https://github.com/matteobruni/tsparticles/tree/main/plugins/polygonMask)
 - [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
 - [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
 - [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
@@ -152,8 +151,6 @@ async function particlesInit(engine: Engine): Promise<void> {
 
 ```sveltehtml
 
-<script>
-</script>
 <Particles
         id="tsparticles"
         options={options}

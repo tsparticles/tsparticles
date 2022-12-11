@@ -94,18 +94,22 @@
                 "rotateY": 1200
             }
         },
+        "wobble": {
+            "enable": false
+        },
+        "tilt": {
+            "enable": false
+        },
+        "roll": {
+            "enable": false
+        },
         "zIndex": {
             "value": 5,
             "opacityRate": 0.5
         }
     },
-    "detectRetina": true,
     "background": {
-        "color": "#000000",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#000000"
     },
     "emitters": {
         "position": {

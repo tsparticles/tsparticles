@@ -8,9 +8,11 @@ import type { IRangeValueColor } from "../Core/Interfaces/Colors";
 import type { IValueColor } from "../Core/Interfaces/Colors";
 
 export class HslColorManager implements IColorManager {
-    stringPrefix: string;
+    readonly key;
+    readonly stringPrefix;
 
     constructor() {
+        this.key = "hsl";
         this.stringPrefix = "hsl";
     }
 
@@ -18,7 +20,7 @@ export class HslColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             hslColor = colorValue.hsl ?? (color.value as IHsl);
 
-        if (hslColor.h !== undefined && hslColor.l !== undefined) {
+        if (hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
             return hslToRgb(hslColor);
         }
     }

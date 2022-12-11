@@ -1,12 +1,11 @@
 import type { InfectableContainer, InfectableParticle } from "./Types";
-import { ParticlesInteractorBase, tspRandom } from "tsparticles-engine";
+import { ParticlesInteractorBase, getRandom } from "tsparticles-engine";
 import type { IDelta } from "tsparticles-engine";
-import type { IInfectionOptions } from "./Options/Interfaces/IInfectionOptions";
 
 /**
  * @category Interactions
  */
-export class ParticlesInfecter extends ParticlesInteractorBase {
+export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContainer> {
     constructor(container: InfectableContainer) {
         super(container);
     }
@@ -20,7 +19,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
     }
 
     async interact(p1: InfectableParticle, delta: IDelta): Promise<void> {
-        const infecter = (this.container as InfectableContainer).infecter;
+        const infecter = this.container.infecter;
 
         if (!infecter) {
             return;
@@ -28,15 +27,15 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
 
         infecter.updateInfection(p1, delta.value);
 
-        if (p1.infection.stage === undefined) {
+        if (p1.infection?.stage === undefined) {
             return;
         }
 
         const container = this.container,
-            options = container.actualOptions as unknown as IInfectionOptions,
+            options = container.actualOptions,
             infectionOptions = options.infection;
 
-        if (!infectionOptions.enable || infectionOptions.stages.length < 1) {
+        if (!infectionOptions?.enable || infectionOptions.stages.length < 1) {
             return;
         }
 
@@ -56,13 +55,13 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
                 infP2 === p1 ||
                 infP2.destroyed ||
                 infP2.spawning ||
-                !(infP2.infection.stage === undefined || infP2.infection.stage !== p1.infection.stage)
+                !(infP2.infection?.stage === undefined || infP2.infection.stage !== p1.infection.stage)
             ) {
                 continue;
             }
 
-            if (tspRandom() < infections / neighbors) {
-                if (infP2.infection.stage === undefined) {
+            if (getRandom() < infections / neighbors) {
+                if (infP2.infection?.stage === undefined) {
                     infecter.startInfection(infP2, infectedStage1);
                 } else if (infP2.infection.stage < p1.infection.stage) {
                     infecter.updateInfectionStage(infP2, infectedStage1);
@@ -77,7 +76,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase {
     }
 
     isEnabled(): boolean {
-        return (this.container.actualOptions as unknown as IInfectionOptions)?.infection?.enable ?? false;
+        return this.container.actualOptions?.infection?.enable ?? false;
     }
 
     reset(): void {

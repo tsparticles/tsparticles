@@ -1,4 +1,4 @@
-import { ClickMode, HoverMode, MoveDirection, Options, OutMode, RotateDirection, ThemeMode, tsParticles } from "../src";
+import { ClickMode, HoverMode, MoveDirection, Options, OutMode, ThemeMode, tsParticles } from "../src";
 import { describe, it } from "mocha";
 import { TestContainer } from "./Fixture/TestContainer";
 import { expect } from "chai";
@@ -67,7 +67,7 @@ describe("Themes", () => {
             },
             rotate: {
                 value: 0,
-                direction: RotateDirection.random,
+                direction: "random",
                 animation: {
                     speed: 5,
                     enable: true,
@@ -102,7 +102,7 @@ describe("Themes", () => {
 
     it("Set theme", () => {
         options.setTheme();
-        const theme = options.themes.find((t) => t.default);
+        const theme = options.themes.find(t => t.default);
 
         expect(options.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
     });
@@ -112,7 +112,7 @@ describe("Themes", () => {
 
         options.setTheme(themeName);
 
-        const theme = options.themes.find((t) => t.name === themeName);
+        const theme = options.themes.find(t => t.name === themeName);
 
         if (!theme?.options) {
             // no theme
@@ -127,7 +127,7 @@ describe("Themes", () => {
 
         options.setTheme(themeName);
 
-        const theme = options.themes.find((t) => t.name === themeName);
+        const theme = options.themes.find(t => t.name === themeName);
 
         if (!theme?.options) {
             // no theme

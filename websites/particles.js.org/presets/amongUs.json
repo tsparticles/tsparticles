@@ -39,42 +39,19 @@
             }
         },
         "number": {
-            "value": 200,
-            "density": {
-                "enable": false,
-                "value_area": 800
-            }
+            "value": 200
         },
         "color": {
-            "value": "#fff",
-            "animation": {
-                "enable": false,
-                "speed": 20,
-                "sync": true
-            }
+            "value": "#fff"
         },
         "shape": {
             "type": "circle"
         },
         "opacity": {
-            "value": 1,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 3,
-                "minimumValue": 0.1,
-                "sync": false
-            }
+            "value": 1
         },
         "size": {
             "value": 3
-        },
-        "links": {
-            "enable": false,
-            "distance": 100,
-            "color": "#ffffff",
-            "opacity": 0.4,
-            "width": 1
         },
         "move": {
             "angle": {
@@ -84,16 +61,7 @@
             "enable": true,
             "speed": 5,
             "direction": "right",
-            "random": false,
-            "straight": false,
-            "outModes": {
-                "default": "out"
-            },
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+            "outModes": "out"
         },
         "zIndex": {
             "value": 5,
@@ -102,10 +70,6 @@
     },
     "interactivity": {
         "events": {
-            "onHover": {
-                "enable": false,
-                "mode": "repulse"
-            },
             "onClick": {
                 "enable": true,
                 "mode": "push"
@@ -113,37 +77,14 @@
             "resize": true
         },
         "modes": {
-            "grab": {
-                "distance": 400,
-                "links": {
-                    "opacity": 1
-                }
-            },
-            "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 0.8
-            },
-            "repulse": {
-                "distance": 200
-            },
             "push": {
                 "quantity": 4,
                 "groups": ["z5000", "z7500", "z2500", "z1000"]
-            },
-            "remove": {
-                "quantity": 2
             }
         }
     },
-    "detectRetina": true,
     "background": {
-        "color": "#000000",
-        "image": "",
-        "position": "50% 50%",
-        "repeat": "no-repeat",
-        "size": "cover"
+        "color": "#000000"
     },
     "emitters": {
         "position": {

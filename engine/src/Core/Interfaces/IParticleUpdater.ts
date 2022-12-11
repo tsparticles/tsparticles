@@ -22,6 +22,10 @@ export interface IParticleUpdater {
 
     loadOptions?: (options: ParticlesOptions, ...sources: (RecursivePartial<IParticlesOptions> | undefined)[]) => void;
 
+    particleDestroyed?: (particle: Particle, override?: boolean) => void;
+
+    reset?: (particle: Particle) => void;
+
     init(particle: Particle): void;
 
     isEnabled(particle: Particle): boolean;

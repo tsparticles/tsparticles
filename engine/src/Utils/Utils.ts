@@ -1,4 +1,4 @@
-import { collisionVelocity, getDistances, getValue, tspRandom } from "./NumberUtils";
+import { collisionVelocity, getDistances, getRandom, getValue } from "./NumberUtils";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
@@ -12,21 +12,6 @@ import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { Vector } from "../Core/Utils/Vector";
-
-declare global {
-    interface Window {
-        customCancelRequestAnimationFrame: (handle: number) => void;
-        customRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        mozCancelRequestAnimationFrame: (handle: number) => void;
-        mozRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        msCancelRequestAnimationFrame: (handle: number) => void;
-        msRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        oCancelRequestAnimationFrame: (handle: number) => void;
-        oRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-        webkitCancelRequestAnimationFrame: (handle: number) => void;
-        webkitRequestAnimationFrame: (callback: FrameRequestCallback) => number;
-    }
-}
 
 /**
  * Calculates the bounce on a rectangle side
@@ -75,17 +60,11 @@ function rectSideBounce(
  * @param selectors selectors to check
  */
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
-    if (!(selectors instanceof Array)) {
-        return element.matches(selectors);
-    }
+    const res = executeOnSingleOrMultiple(selectors, (selector) => {
+        return element.matches(selector);
+    });
 
-    for (const selector of selectors) {
-        if (element.matches(selector)) {
-            return true;
-        }
-    }
-
-    return false;
+    return res instanceof Array ? res.some((t) => t) : res;
 }
 
 /**
@@ -95,21 +74,25 @@ export function isSsr(): boolean {
     return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
 }
 
+export function hasMatchMedia(): boolean {
+    return !isSsr() && typeof matchMedia !== "undefined";
+}
+
+export function safeMatchMedia(query: string): MediaQueryList | undefined {
+    if (!hasMatchMedia()) {
+        return;
+    }
+
+    return matchMedia(query);
+}
+
 /**
  * Calls the requestAnimationFrame function or a polyfill
  */
 export function animate(): (callback: FrameRequestCallback) => number {
     return isSsr()
         ? (callback: FrameRequestCallback): number => setTimeout(callback)
-        : (callback: FrameRequestCallback): number =>
-              (
-                  window.requestAnimationFrame ||
-                  window.webkitRequestAnimationFrame ||
-                  window.mozRequestAnimationFrame ||
-                  window.oRequestAnimationFrame ||
-                  window.msRequestAnimationFrame ||
-                  window.setTimeout
-              )(callback);
+        : (callback: FrameRequestCallback): number => (requestAnimationFrame || setTimeout)(callback);
 }
 
 /**
@@ -118,15 +101,7 @@ export function animate(): (callback: FrameRequestCallback) => number {
 export function cancelAnimation(): (handle: number) => void {
     return isSsr()
         ? (handle: number): void => clearTimeout(handle)
-        : (handle: number): void =>
-              (
-                  window.cancelAnimationFrame ||
-                  window.webkitCancelRequestAnimationFrame ||
-                  window.mozCancelRequestAnimationFrame ||
-                  window.oCancelRequestAnimationFrame ||
-                  window.msCancelRequestAnimationFrame ||
-                  window.clearTimeout
-              )(handle);
+        : (handle: number): void => (cancelAnimationFrame || clearTimeout)(handle);
 }
 
 /**
@@ -158,7 +133,7 @@ export async function loadFont(font?: string, weight?: string): Promise<void> {
  * @returns a random array index
  */
 export function arrayRandomIndex<T>(array: T[]): number {
-    return Math.floor(tspRandom() * array.length);
+    return Math.floor(getRandom() * array.length);
 }
 
 /**
@@ -168,9 +143,7 @@ export function arrayRandomIndex<T>(array: T[]): number {
  * @param useIndex if true, the index will be used instead of a random index
  */
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
-    const fixedIndex = index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array);
-
-    return array[fixedIndex];
+    return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
 }
 
 /**
@@ -294,7 +267,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
  * @returns true if the div mode is enabled
  */
 export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
-    return divs instanceof Array ? !!divs.find((t) => t.enable && isInArray(mode, t.mode)) : isInArray(mode, divs.mode);
+    return !!findItemFromSingleOrMultiple(divs, (t) => t.enable && isInArray(mode, t.mode));
 }
 
 /**
@@ -308,23 +281,14 @@ export function divModeExecute(
     divs: SingleOrMultiple<DivEvent>,
     callback: (id: string, div: DivEvent) => void
 ): void {
-    if (divs instanceof Array) {
-        for (const div of divs) {
-            const divMode = div.mode,
-                divEnabled = div.enable;
-
-            if (divEnabled && isInArray(mode, divMode)) {
-                singleDivModeExecute(div, callback);
-            }
-        }
-    } else {
-        const divMode = divs.mode,
-            divEnabled = divs.enable;
+    executeOnSingleOrMultiple(divs, (div) => {
+        const divMode = div.mode,
+            divEnabled = div.enable;
 
         if (divEnabled && isInArray(mode, divMode)) {
-            singleDivModeExecute(divs, callback);
+            singleDivModeExecute(div, callback);
         }
-    }
+    });
 }
 
 /**
@@ -335,13 +299,9 @@ export function divModeExecute(
 export function singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
     const selectors = div.selectors;
 
-    if (selectors instanceof Array) {
-        for (const selector of selectors) {
-            callback(selector, div);
-        }
-    } else {
-        callback(selectors, div);
-    }
+    executeOnSingleOrMultiple(selectors, (selector) => {
+        callback(selector, div);
+    });
 }
 
 /**
@@ -355,11 +315,9 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
         return;
     }
 
-    if (divs instanceof Array) {
-        return divs.find((d) => checkSelector(element, d.selectors));
-    } else if (checkSelector(element, divs.selectors)) {
-        return divs;
-    }
+    return findItemFromSingleOrMultiple(divs, (div) => {
+        return checkSelector(element, div.selectors);
+    });
 }
 
 /**
@@ -416,28 +374,27 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
         size = particle.getRadius(),
-        bounds = calculateBounds(pPos, size);
-
-    const resH = rectSideBounce(
-        {
-            min: bounds.left,
-            max: bounds.right,
-        },
-        {
-            min: bounds.top,
-            max: bounds.bottom,
-        },
-        {
-            min: divBounds.left,
-            max: divBounds.right,
-        },
-        {
-            min: divBounds.top,
-            max: divBounds.bottom,
-        },
-        particle.velocity.x,
-        getValue(particle.options.bounce.horizontal)
-    );
+        bounds = calculateBounds(pPos, size),
+        resH = rectSideBounce(
+            {
+                min: bounds.left,
+                max: bounds.right,
+            },
+            {
+                min: bounds.top,
+                max: bounds.bottom,
+            },
+            {
+                min: divBounds.left,
+                max: divBounds.right,
+            },
+            {
+                min: divBounds.top,
+                max: divBounds.bottom,
+            },
+            particle.velocity.x,
+            getValue(particle.options.bounce.horizontal)
+        );
 
     if (resH.bounced) {
         if (resH.velocity !== undefined) {
@@ -479,4 +436,22 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             particle.position.y = resV.position;
         }
     }
+}
+
+export function executeOnSingleOrMultiple<T, U = void>(
+    obj: SingleOrMultiple<T>,
+    callback: (obj: T) => U
+): SingleOrMultiple<U> {
+    return obj instanceof Array ? obj.map((item) => callback(item)) : callback(obj);
+}
+
+export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
+    return obj instanceof Array ? itemFromArray(obj, index, useIndex) : obj;
+}
+
+export function findItemFromSingleOrMultiple<T>(
+    obj: SingleOrMultiple<T>,
+    callback: (obj: T) => boolean
+): T | undefined {
+    return obj instanceof Array ? obj.find((t) => callback(t)) : callback(obj) ? obj : undefined;
 }

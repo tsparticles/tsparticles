@@ -1,4 +1,4 @@
-(function () {
+(async function () {
     let schema = {};
     const stats = new Stats();
 
@@ -8,8 +8,7 @@
             maxParticles = Math.max(container.particles.count, maxParticles);
 
             return {
-                value: container.particles.count,
-                maxValue: maxParticles
+                value: container.particles.count, maxValue: maxParticles
             };
         }
     });
@@ -36,8 +35,8 @@
         return self.indexOf(value) === index;
     }
 
-    let updateParticles = function (editor) {
-        let presetId = localStorage.presetId || 'default';
+    let updateParticles = async function (editor) {
+        let presetId = localStorage.presetId || 'basic';
 
         if (presetId === "divEvents") {
             document.querySelectorAll('.bubble').forEach(elem => {
@@ -67,11 +66,38 @@
             });
         }
 
-        tsParticles.loadJSON('tsparticles', `/presets/${presetId}.json`).then((particles) => {
-            localStorage.presetId = presetId;
-            editor.set(particles.options);
-            editor.expandAll();
-        });
+        const particles = await tsParticles.load('tsparticles', tsParticles.configs[presetId]);
+
+        localStorage.presetId = presetId;
+
+        const omit = (obj) => {
+            return _.omitBy(obj, (value, key) => {
+                return _.startsWith(key, "_");
+            })
+        };
+
+        const transform = (obj) => {
+            return _.transform(omit(obj), function (result, value, key) {
+                result[key] = _.isObject(value) ? transform(omit(value)) : value;
+            })
+        };
+
+        editor.update(transform(particles.options));
+        editor.expandAll();
+    };
+
+    const omit = (obj, keys) => {
+        if (!keys.length) return obj;
+        const key = keys.pop();
+        const parts = key.split(".");
+        if (parts.length > 1) {
+            const { [parts[0]]: todo, ...rest } = obj;
+            return {
+                ...omit(rest, keys), [parts[0]]: omit(todo, [ parts[1] ]),
+            };
+        }
+        const { [key]: omitted, ...rest } = obj;
+        return omit(rest, keys);
     };
 
     let initSidebar = function () {
@@ -108,35 +134,71 @@
         tsParticles.domItem(0).refresh();
     };
 
-    window.addEventListener('load', function () {
+    window.addEventListener('load', async function () {
+        await loadHsvColorPlugin();
+
+        await loadFull(tsParticles);
+
+        await loadCanvasMaskPlugin(tsParticles);
+        await loadEasingBackPlugin(tsParticles);
+        await loadEasingCircPlugin(tsParticles);
+        await loadEasingCubicPlugin(tsParticles);
+        await loadEasingExpoPlugin(tsParticles);
+        await loadEasingQuartPlugin(tsParticles);
+        await loadEasingQuintPlugin(tsParticles);
+        await loadEasingSinePlugin(tsParticles);
+        await loadInfectionPlugin(tsParticles);
+        await loadMotionPlugin(tsParticles);
+        await loadPolygonMaskPlugin(tsParticles);
+        await loadLightInteraction(tsParticles);
+        await loadParticlesRepulseInteraction(tsParticles);
+        await loadGradientUpdater(tsParticles);
+        await loadOrbitUpdater(tsParticles);
+        await loadCurvesPath(tsParticles);
+        await loadPolygonPath(tsParticles);
+        await loadPerlinNoisePath(tsParticles);
+        await loadSimplexNoisePath(tsParticles);
+        await loadBubbleShape(tsParticles);
+        await loadCardsShape(tsParticles);
+        await loadHeartShape(tsParticles);
+        await loadMultilineTextShape(tsParticles);
+        await loadPathShape(tsParticles);
+        await loadRoundedRectShape(tsParticles);
+        await loadSpiralShape(tsParticles);
+
+        for (const presetId in tsParticles.configs) {
+            const preset = tsParticles.configs[presetId];
+
+            const option = document.createElement('option');
+            option.value = presetId;
+            option.text = preset.name || presetId;
+
+            document.getElementById('presets').appendChild(option);
+        }
+
         const element = document.getElementById('editor');
         const options = {
-            mode: 'form',
-            modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
+            mode: 'form', modes: [ 'code', 'form', 'view', 'preview', 'text' ], // allowed modes
             autocomplete: {
-                filter: 'contain',
-                trigger: 'focus'
-            },
-            onError: function (err) {
+                filter: 'contain', trigger: 'focus'
+            }, onError: function (err) {
                 alert(err.toString())
-            },
-            onModeChange: function (newMode, oldMode) {
-            },
-            onChange: function () {
+            }, onModeChange: function (newMode, oldMode) {
+            }, onChange: function () {
             }
         };
         const editor = new JSONEditor(element, options);
 
         const cmbPresets = document.getElementById('presets');
 
-        cmbPresets.onchange = function () {
+        cmbPresets.onchange = async function () {
             localStorage.presetId = this.value;
 
-            updateParticles(editor);
+            await updateParticles(editor);
         };
 
         if (!localStorage.presetId) {
-            localStorage.presetId = 'default';
+            localStorage.presetId = 'basic';
         }
 
         cmbPresets.value = localStorage.presetId;
@@ -269,24 +331,13 @@ canvas {
 
         initSidebar();
         initStats();
-
-        loadHsvColorPlugin();
-
-        loadFull(tsParticles);
-
-        loadInfectionPlugin(tsParticles);
-        loadLightInteraction(tsParticles);
-        loadParticlesRepulseInteraction(tsParticles);
-        loadGradientUpdater(tsParticles);
-        loadOrbitUpdater(tsParticles);
-        loadCurvesPath(tsParticles);
-        loadPolygonPath(tsParticles);
-        loadPerlinNoisePath(tsParticles);
-        loadSimplexNoisePath(tsParticles);
-        loadBubbleShape(tsParticles);
-        loadHeartShape(tsParticles);
-        loadMultilineTextShape(tsParticles);
-        loadRoundedRectShape(tsParticles);
-        loadSpiralShape(tsParticles);
     });
 })();
+
+function pixelFilter(pixel) {
+    return pixel.r < 30 && pixel.g < 30 && pixel.b < 30 ? false : pixel.a > 0;
+}
+
+function pixelTextFilter(pixel) {
+    return pixel.a > 0;
+}

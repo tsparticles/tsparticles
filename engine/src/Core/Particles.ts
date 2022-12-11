@@ -1,12 +1,3 @@
-import {
-    calcPositionFromSize,
-    getRangeMax,
-    getRangeMin,
-    getValue,
-    randomInRange,
-    setRangeValue,
-    tspRandom,
-} from "../Utils/NumberUtils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
@@ -14,18 +5,15 @@ import { EventType } from "../Enums/Types/EventType";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IMouseData } from "./Interfaces/IMouseData";
-import type { IParticle } from "./Interfaces/IParticle";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity";
-import type { IParticlesFrequencies } from "./Interfaces/IParticlesFrequencies";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import type { IRgb } from "./Interfaces/Colors";
 import { InteractionManager } from "./Utils/InteractionManager";
 import { Particle } from "./Particle";
 import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { loadParticlesOptions } from "../Utils/OptionsUtils";
+import { calcPositionFromSize } from "../Utils/NumberUtils";
 
 /**
  * Particles manager object
@@ -37,13 +25,13 @@ export class Particles {
      */
     array: Particle[];
 
-    readonly #engine;
-
-    grabLineColor?: IRgb | string;
     lastZIndex;
     limit;
     movers;
     needsSort;
+
+    pool: Particle[];
+
     pushing?: boolean;
 
     /**
@@ -55,23 +43,21 @@ export class Particles {
 
     zArray: Particle[];
 
-    private readonly freqs: IParticlesFrequencies;
+    private readonly _engine;
+
     private readonly interactionManager;
     private nextId;
 
     constructor(engine: Engine, private readonly container: Container) {
-        this.#engine = engine;
+        this._engine = engine;
         this.nextId = 0;
         this.array = [];
         this.zArray = [];
+        this.pool = [];
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
-        this.freqs = {
-            links: new Map<string, number>(),
-            triangles: new Map<string, number>(),
-        };
-        this.interactionManager = new InteractionManager(this.#engine, container);
+        this.interactionManager = new InteractionManager(this._engine, container);
 
         const canvasSize = this.container.canvas.size;
 
@@ -85,8 +71,8 @@ export class Particles {
             4
         );
 
-        this.movers = this.#engine.plugins.getMovers(container, true);
-        this.updaters = this.#engine.plugins.getUpdaters(container, true);
+        this.movers = this._engine.plugins.getMovers(container, true);
+        this.updaters = this._engine.plugins.getUpdaters(container, true);
     }
 
     get count(): number {
@@ -111,7 +97,8 @@ export class Particles {
     addParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
+        group?: string,
+        initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         const container = this.container,
             options = container.actualOptions,
@@ -125,53 +112,7 @@ export class Particles {
             }
         }
 
-        return this.pushParticle(position, overrideOptions, group);
-    }
-
-    addSplitParticle(
-        parent: Particle,
-        splitParticlesOptions?: RecursivePartial<IParticlesOptions>
-    ): Particle | undefined {
-        const splitOptions = parent.options.destroy.split,
-            options = loadParticlesOptions(this.#engine, this.container, parent.options),
-            factor = getValue(splitOptions.factor);
-
-        options.color.load({
-            value: {
-                hsl: parent.getFillColor(),
-            },
-        });
-
-        if (typeof options.size.value === "number") {
-            options.size.value /= factor;
-        } else {
-            options.size.value.min /= factor;
-            options.size.value.max /= factor;
-        }
-
-        options.load(splitParticlesOptions);
-
-        const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
-            position = {
-                x: parent.position.x + randomInRange(offset),
-                y: parent.position.y + randomInRange(offset),
-            };
-
-        return this.pushParticle(position, options, parent.group, (particle) => {
-            if (particle.size.value < 0.5) {
-                return false;
-            }
-
-            particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
-            particle.splitCount = parent.splitCount + 1;
-            particle.unbreakable = true;
-
-            setTimeout(() => {
-                particle.unbreakable = false;
-            }, 500);
-
-            return true;
-        });
+        return this._pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**
@@ -230,49 +171,6 @@ export class Particles {
         }
     }
 
-    getLinkFrequency(p1: IParticle, p2: IParticle): number {
-        const range = setRangeValue(p1.id, p2.id),
-            key = `${getRangeMin(range)}_${getRangeMax(range)}`;
-
-        let res = this.freqs.links.get(key);
-
-        if (res === undefined) {
-            res = tspRandom();
-
-            this.freqs.links.set(key, res);
-        }
-
-        return res;
-    }
-
-    getTriangleFrequency(p1: IParticle, p2: IParticle, p3: IParticle): number {
-        let [id1, id2, id3] = [p1.id, p2.id, p3.id];
-
-        if (id1 > id2) {
-            [id2, id1] = [id1, id2];
-        }
-
-        if (id2 > id3) {
-            [id3, id2] = [id2, id3];
-        }
-
-        if (id1 > id3) {
-            [id3, id1] = [id1, id3];
-        }
-
-        const key = `${id1}_${id2}_${id3}`;
-
-        let res = this.freqs.triangles.get(key);
-
-        if (res === undefined) {
-            res = tspRandom();
-
-            this.freqs.triangles.set(key, res);
-        }
-
-        return res;
-    }
-
     handleClickMode(mode: ClickMode | string): void {
         this.interactionManager.handleClickMode(mode);
     }
@@ -284,12 +182,10 @@ export class Particles {
 
         this.lastZIndex = 0;
         this.needsSort = false;
-        this.freqs.links = new Map<string, number>();
-        this.freqs.triangles = new Map<string, number>();
 
         let handled = false;
 
-        this.updaters = this.#engine.plugins.getUpdaters(container, true);
+        this.updaters = this._engine.plugins.getUpdaters(container, true);
         this.interactionManager.init();
 
         for (const [, plugin] of container.plugins) {
@@ -342,6 +238,7 @@ export class Particles {
     async redraw(): Promise<void> {
         this.clear();
         this.init();
+
         await this.draw({ value: 0, factor: 0 });
     }
 
@@ -350,7 +247,7 @@ export class Particles {
     }
 
     removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
-        if (!(index >= 0 && index <= this.count)) {
+        if (index < 0 || index > this.count) {
             return;
         }
 
@@ -368,10 +265,11 @@ export class Particles {
             this.array.splice(i--, 1);
             const zIdx = this.zArray.indexOf(particle);
             this.zArray.splice(zIdx, 1);
+            this.pool.push(particle);
 
             deleted++;
 
-            this.#engine.dispatchEvent(EventType.particleRemoved, {
+            this._engine.dispatchEvent(EventType.particleRemoved, {
                 container: this.container,
                 data: {
                     particle,
@@ -388,10 +286,10 @@ export class Particles {
         const options = this.container.actualOptions;
 
         for (const group in options.particles.groups) {
-            this.applyDensity(options.particles.groups[group], 0, group);
+            this._applyDensity(options.particles.groups[group], 0, group);
         }
 
-        this.applyDensity(options.particles, options.manualParticles.length);
+        this._applyDensity(options.particles, options.manualParticles.length);
     }
 
     async update(delta: IDelta): Promise<void> {
@@ -407,20 +305,13 @@ export class Particles {
         }
 
         for (const particle of this.array) {
-            // let d = ( dx = container.interactivity.mouse.click_pos_x - p.x ) * dx +
-            //         ( dy = container.interactivity.mouse.click_pos_y - p.y ) * dy;
-            // let f = -BANG_SIZE / d;
-            // if ( d < BANG_SIZE ) {
-            //     let t = Math.atan2( dy, dx );
-            //     p.vx = f * Math.cos(t);
-            //     p.vy = f * Math.sin(t);
-            // }
-
             const resizeFactor = container.canvas.resizeFactor;
 
             if (resizeFactor && !particle.ignoresResizeRatio) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
+                particle.initialPosition.x *= resizeFactor.width;
+                particle.initialPosition.y *= resizeFactor.height;
             }
 
             particle.ignoresResizeRatio = false;
@@ -443,6 +334,7 @@ export class Particles {
 
             if (particle.destroyed) {
                 particlesToDelete.push(particle);
+
                 continue;
             }
 
@@ -456,7 +348,7 @@ export class Particles {
         await this.interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
-        for (const particle of container.particles.array) {
+        for (const particle of this.array) {
             for (const updater of this.updaters) {
                 updater.update(particle, delta);
             }
@@ -469,13 +361,13 @@ export class Particles {
         delete container.canvas.resizeFactor;
     }
 
-    private applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
+    private _applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
         if (!options.number.density?.enable) {
             return;
         }
 
         const numberOptions = options.number,
-            densityFactor = this.initDensityFactor(numberOptions.density),
+            densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
             optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
@@ -490,7 +382,7 @@ export class Particles {
         }
     }
 
-    private initDensityFactor(densityOptions: IParticlesDensity): number {
+    private _initDensityFactor(densityOptions: IParticlesDensity): number {
         const container = this.container;
 
         if (!container.canvas.element || !densityOptions.enable) {
@@ -503,14 +395,20 @@ export class Particles {
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
     }
 
-    private pushParticle(
+    private _pushParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean
     ): Particle | undefined {
         try {
-            const particle = new Particle(this.#engine, this.nextId, this.container, position, overrideOptions, group);
+            let particle = this.pool.pop();
+
+            if (particle) {
+                particle.init(this.nextId, position, overrideOptions, group);
+            } else {
+                particle = new Particle(this._engine, this.nextId, this.container, position, overrideOptions, group);
+            }
 
             let canAdd = true;
 
@@ -527,7 +425,7 @@ export class Particles {
 
             this.nextId++;
 
-            this.#engine.dispatchEvent(EventType.particleAdded, {
+            this._engine.dispatchEvent(EventType.particleAdded, {
                 container: this.container,
                 data: {
                     particle,

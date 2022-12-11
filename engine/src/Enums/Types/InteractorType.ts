@@ -1,4 +1,4 @@
 export const enum InteractorType {
-    External,
-    Particles,
+    external = "external",
+    particles = "particles",
 }

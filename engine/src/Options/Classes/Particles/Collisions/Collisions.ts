@@ -1,4 +1,5 @@
 import { CollisionMode } from "../../../../Enums/Modes/CollisionMode";
+import { CollisionsAbsorb } from "./CollisionsAbsorb";
 import { CollisionsOverlap } from "./CollisionsOverlap";
 import type { ICollisions } from "../../../Interfaces/Particles/Collisions/ICollisions";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
@@ -10,12 +11,14 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
+    absorb;
     bounce;
     enable;
     mode: CollisionMode | keyof typeof CollisionMode;
     overlap;
 
     constructor() {
+        this.absorb = new CollisionsAbsorb();
         this.bounce = new ParticlesBounce();
         this.enable = false;
         this.mode = CollisionMode.bounce;
@@ -27,6 +30,7 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
             return;
         }
 
+        this.absorb.load(data.absorb);
         this.bounce.load(data.bounce);
 
         if (data.enable !== undefined) {

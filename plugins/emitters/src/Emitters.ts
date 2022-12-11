@@ -1,20 +1,12 @@
-import type {
-    IContainerPlugin,
-    ICoordinates,
-    IDelta,
-    IOptions,
-    RecursivePartial,
-    SingleOrMultiple,
-} from "tsparticles-engine";
-import { arrayRandomIndex, deepExtend, itemFromArray } from "tsparticles-engine";
+import type { IContainerPlugin, ICoordinates, IDelta, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import { arrayRandomIndex, executeOnSingleOrMultiple, itemFromArray } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
 import { EmitterInstance } from "./EmitterInstance";
+import type { EmitterModeOptions } from "./types";
 import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { IEmitterModeOptions } from "./Options/Interfaces/IEmitterModeOptions";
-import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 
 /**
  * @category Emitters Plugin
@@ -22,11 +14,12 @@ import type { IEmitterOptions } from "./Options/Interfaces/IEmitterOptions";
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];
     emitters: SingleOrMultiple<Emitter>;
-    readonly #engine;
-    interactivityEmitters: IEmitterModeOptions;
+    interactivityEmitters: EmitterModeOptions;
+
+    private readonly _engine;
 
     constructor(engine: EmittersEngine, private readonly container: EmitterContainer) {
-        this.#engine = engine;
+        this._engine = engine;
         this.array = [];
         this.emitters = [];
         this.interactivityEmitters = {
@@ -75,7 +68,7 @@ export class Emitters implements IContainerPlugin {
 
         emitterOptions.load(options);
 
-        const emitter = new EmitterInstance(this.#engine, this, this.container, emitterOptions, position);
+        const emitter = new EmitterInstance(this._engine, this, this.container, emitterOptions, position);
 
         this.array.push(emitter);
 
@@ -115,102 +108,15 @@ export class Emitters implements IContainerPlugin {
             const emittersOptions = emittersModeOptions ?? emitterOptions,
                 ePosition = this.container.interactivity.mouse.clickPosition;
 
-            if (emittersOptions instanceof Array) {
-                for (const emitterOptions of emittersOptions) {
-                    this.addEmitter(emitterOptions, ePosition);
-                }
-            } else {
-                this.addEmitter(deepExtend({}, emittersOptions) as IEmitter, ePosition);
-            }
+            executeOnSingleOrMultiple(emittersOptions, (emitter) => {
+                this.addEmitter(emitter, ePosition);
+            });
         }
     }
 
-    init(options?: RecursivePartial<IOptions & IEmitterOptions>): void {
-        if (!options) {
-            return;
-        }
-
-        if (options.emitters) {
-            if (options.emitters instanceof Array) {
-                this.emitters = options.emitters.map((s) => {
-                    const tmp = new Emitter();
-
-                    tmp.load(s);
-
-                    return tmp;
-                });
-            } else {
-                if (this.emitters instanceof Array) {
-                    this.emitters = new Emitter();
-                }
-
-                this.emitters.load(options.emitters);
-            }
-        }
-
-        const interactivityEmitters = options.interactivity?.modes?.emitters;
-
-        if (interactivityEmitters) {
-            if (interactivityEmitters instanceof Array) {
-                this.interactivityEmitters = {
-                    random: {
-                        count: 1,
-                        enable: true,
-                    },
-                    value: interactivityEmitters.map((s) => {
-                        const tmp = new Emitter();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    }),
-                };
-            } else {
-                const emitterMode = interactivityEmitters as IEmitterModeOptions;
-
-                if (emitterMode.value !== undefined) {
-                    if (emitterMode.value instanceof Array) {
-                        this.interactivityEmitters = {
-                            random: {
-                                count: this.interactivityEmitters.random.count ?? 1,
-                                enable: this.interactivityEmitters.random.enable ?? false,
-                            },
-                            value: emitterMode.value.map((s) => {
-                                const tmp = new Emitter();
-
-                                tmp.load(s);
-
-                                return tmp;
-                            }),
-                        };
-                    } else {
-                        const tmp = new Emitter();
-
-                        tmp.load(emitterMode.value);
-
-                        this.interactivityEmitters = {
-                            random: {
-                                count: this.interactivityEmitters.random.count ?? 1,
-                                enable: this.interactivityEmitters.random.enable ?? false,
-                            },
-                            value: tmp,
-                        };
-                    }
-                } else {
-                    const tmp = new Emitter();
-
-                    tmp.load(interactivityEmitters as IEmitter);
-
-                    this.interactivityEmitters = {
-                        random: {
-                            count: this.interactivityEmitters.random.count ?? 1,
-                            enable: this.interactivityEmitters.random.enable ?? false,
-                        },
-                        value: tmp,
-                    };
-                }
-            }
-        }
+    async init(): Promise<void> {
+        this.emitters = this.container.actualOptions.emitters;
+        this.interactivityEmitters = this.container.actualOptions.interactivity.modes.emitters;
 
         if (this.emitters instanceof Array) {
             for (const emitterOptions of this.emitters) {

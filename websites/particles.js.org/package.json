@@ -1,41 +1,41 @@
 {
-  "name": "tsparticles-website",
-  "version": "2.1.4",
-  "private": true,
-  "description": "tsParticles Official Website",
-  "main": "index.html",
-  "type": "module",
-  "scripts": {
-    "clear:cache": "rimraf -f ./node_modules/.cache",
-    "clear:docs": "rimraf -f ./docs",
-    "lint": "prettier --write ./configs && prettier --write ./css/*.scss && prettier --write ./js/404.js && prettier --write ./js/demo.js && prettier --write ./presets && prettier --write ./samples && prettier --write index.html && prettier --write privacy.html && prettier --write 404.html && prettier --write video.html",
-    "lint:ci": "prettier --check ./configs && prettier --check ./css/*.scss && prettier --check ./js/404.js && prettier --check ./js/demo.js && prettier --check ./presets && prettier --check ./samples && prettier --check index.html && prettier --check privacy.html && prettier --check 404.html && prettier --check video.html",
-    "build:js": "minify ./js/demo.js > ./js/demo.min.js && minify ./js/404.js > ./js/404.min.js",
-    "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/presets.scss ./css/presets.css && minify ./css/presets.css > ./css/presets.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
-    "build": " yarn clear:cache && yarn lint && yarn build:css && yarn build:js",
-    "build:ci": " yarn clear:cache && yarn lint:ci && yarn build:css && yarn build:js",
-    "deploy": "yarn build && yarn clear:docs && lerna run build-docs && node deploy.cjs"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git"
-  },
-  "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
-  },
-  "homepage": "https://particles.js.org",
-  "dependencies": {
-    "fs-extra": "^10.0.0",
-    "gh-pages": "^4.0.0",
-    "minify": "^9.0.0",
-    "prettier": "^2.6.2",
-    "rimraf": "^3.0.2",
-    "sass": "^1.52.0",
-    "tsparticles": "^2.1.4",
-    "tsparticles-editor": "^2.1.4",
-    "tsparticles-engine": "^2.1.4",
-    "tsparticles-preset-links": "^2.1.4"
-  }
+    "name": "@tsparticles/website",
+    "version": "2.6.0",
+    "private": true,
+    "description": "tsParticles Official Website",
+    "main": "index.html",
+    "type": "module",
+    "scripts": {
+        "clear:cache": "rimraf -f ./node_modules/.cache",
+        "clear:docs": "rimraf -f ./docs",
+        "lint": "prettier --write ./configs && prettier --write ./css/*.scss && prettier --write ./js/404.js && prettier --write ./js/demo.js && prettier --write ./presets && prettier --write ./samples && prettier --write index.html && prettier --write privacy.html && prettier --write 404.html && prettier --write video.html",
+        "lint:ci": "prettier --check ./configs && prettier --check ./css/*.scss && prettier --check ./js/404.js && prettier --check ./js/demo.js && prettier --check ./presets && prettier --check ./samples && prettier --check index.html && prettier --check privacy.html && prettier --check 404.html && prettier --check video.html",
+        "build:js": "minify ./js/demo.js > ./js/demo.min.js && minify ./js/404.js > ./js/404.min.js",
+        "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/presets.scss ./css/presets.css && minify ./css/presets.css > ./css/presets.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
+        "build": " pnpm run clear:cache && pnpm run lint && pnpm run build:css && pnpm run build:js",
+        "build:ci": " pnpm run clear:cache && pnpm run lint:ci && pnpm run build:css && pnpm run build:js",
+        "deploy": "pnpm run build && pnpm run clear:docs && lerna run build-docs && node deploy.cjs"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/matteobruni/tsparticles.git"
+    },
+    "author": "Matteo Bruni <matteo.bruni@me.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/matteobruni/tsparticles/issues"
+    },
+    "homepage": "https://particles.js.org",
+    "dependencies": {
+        "fs-extra": "^11.1.0",
+        "gh-pages": "^4.0.0",
+        "minify": "^9.1.0",
+        "prettier": "^2.8.0",
+        "rimraf": "^3.0.2",
+        "sass": "^1.56.1",
+        "tsparticles": "^2.6.0",
+        "tsparticles-editor": "^2.6.0",
+        "tsparticles-engine": "^2.6.0",
+        "tsparticles-preset-links": "^2.6.0"
+    }
 }

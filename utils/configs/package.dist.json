@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-demo-configs",
-  "version": "1.1.4",
+  "version": "2.6.0",
   "description": "tsParticles demo configurations",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -9,6 +9,8 @@
     "directory": "utils/configs"
   },
   "keywords": [
+    "front-end",
+    "frontend",
     "tsparticles",
     "particles.js",
     "particlesjs",
@@ -80,6 +82,6 @@
   "module": "index.js",
   "types": "index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.1.4"
+    "tsparticles-engine": "^2.6.0"
   }
 }

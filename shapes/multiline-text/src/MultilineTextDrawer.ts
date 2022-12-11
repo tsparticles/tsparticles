@@ -1,10 +1,10 @@
 import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
-import { isInArray, itemFromArray, loadFont } from "tsparticles-engine";
+import { executeOnSingleOrMultiple, isInArray, itemFromSingleOrMultiple, loadFont } from "tsparticles-engine";
 import type { IMultilineTextShape } from "./IMultilineTextShape";
 import type { MultilineTextParticle } from "./MultilineTextParticle";
 
 export class MultilineTextDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
+    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
         const character = particle.shapeData as IMultilineTextShape;
 
         if (character === undefined) {
@@ -20,59 +20,67 @@ export class MultilineTextDrawer implements IShapeDrawer {
         const textParticle = particle as MultilineTextParticle;
 
         if (textParticle.text === undefined) {
-            textParticle.text =
-                textData instanceof Array ? itemFromArray(textData, particle.randomIndexData) : textData;
+            textParticle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
         }
 
-        const text = textParticle.text;
-        const style = character.style;
-        const weight = character.weight;
-        const size = Math.round(radius) * 2;
-        const font = character.font;
-        const fill = particle.fill;
+        const text = textParticle.text,
+            style = character.style ?? "",
+            weight = character.weight ?? "400",
+            size = Math.round(radius) * 2,
+            font = character.font ?? "Verdana",
+            fill = particle.fill;
 
         context.font = `${style} ${weight} ${size}px "${font}"`;
 
-        if (fill) {
-            text?.split("\n").forEach((line, index) => {
-                const offsetX = (line.length * radius) / 2;
+        const lines = text?.split("\n");
 
-                const pos = {
-                    x: -offsetX,
-                    y: radius / 2,
-                };
-
-                context.fillText(line, pos.x, pos.y + radius * 2 * index);
-            });
-        } else {
-            text?.split("\n").forEach((line, index) => {
-                const offsetX = (line.length * radius) / 2;
-
-                const pos = {
-                    x: -offsetX,
-                    y: radius / 2,
-                };
-
-                context.strokeText(line, pos.x, pos.y + radius * 2 * index);
-            });
+        if (!lines) {
+            return;
         }
+
+        context.globalAlpha = opacity;
+
+        for (let i = 0; i < lines.length; i++) {
+            this._drawLine(context, lines[i], radius, opacity, i, fill);
+        }
+
+        context.globalAlpha = 1;
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.options;
-        const shapeType = "multiline-text";
+        const options = container.options,
+            shapeType = "multiline-text";
 
         if (isInArray(shapeType, options.particles.shape.type)) {
-            const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>;
-            if (shapeOptions instanceof Array) {
-                for (const character of shapeOptions) {
-                    await loadFont(character.font, character.weight);
-                }
-            } else {
-                if (shapeOptions !== undefined) {
-                    await loadFont(shapeOptions.font, shapeOptions.weight);
-                }
-            }
+            const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>,
+                promises: Promise<void>[] = [];
+
+            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+                promises.push(loadFont(shape.font, shape.weight));
+            });
+
+            await Promise.all(promises);
+        }
+    }
+
+    private _drawLine(
+        context: CanvasRenderingContext2D,
+        line: string,
+        radius: number,
+        opacity: number,
+        index: number,
+        fill: boolean
+    ): void {
+        const offsetX = (line.length * radius) / 2,
+            pos = {
+                x: -offsetX,
+                y: radius / 2,
+            };
+
+        if (fill) {
+            context.fillText(line, pos.x, pos.y + radius * 2 * index);
+        } else {
+            context.strokeText(line, pos.x, pos.y + radius * 2 * index);
         }
     }
 }

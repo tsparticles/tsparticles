@@ -33,158 +33,152 @@ yarn add ng-particles
 _template.html_
 
 ```html
-<Particles
-  [id]="id"
-  [options]="particlesOptions"
-  (particlesLoaded)="particlesLoaded($event)"
-></Particles>
+<Particles [id]="id" [options]="particlesOptions" (particlesLoaded)="particlesLoaded($event)"></Particles>
 ```
 
 _app.ts_
 
 ```typescript
 export class AppComponent {
-  id = 'tsparticles';
+    id = "tsparticles";
 
-  particlesOptions = {
-    background: {
-      color: {
-        value: '#0d47a1',
-      },
-    },
-
-    fpsLimit: 120,
-
-    interactivity: {
-      events: {
-        onClick: {
-          enable: true,
-
-          mode: 'push',
+    particlesOptions = {
+        background: {
+            color: {
+                value: "#0d47a1",
+            },
         },
 
-        onHover: {
-          enable: true,
+        fpsLimit: 120,
 
-          mode: 'repulse',
+        interactivity: {
+            events: {
+                onClick: {
+                    enable: true,
+
+                    mode: "push",
+                },
+
+                onHover: {
+                    enable: true,
+
+                    mode: "repulse",
+                },
+
+                resize: true,
+            },
+
+            modes: {
+                bubble: {
+                    distance: 400,
+
+                    duration: 2,
+
+                    opacity: 0.8,
+
+                    size: 40,
+                },
+
+                push: {
+                    quantity: 4,
+                },
+
+                repulse: {
+                    distance: 200,
+
+                    duration: 0.4,
+                },
+            },
         },
 
-        resize: true,
-      },
+        particles: {
+            color: {
+                value: "#ffffff",
+            },
 
-      modes: {
-        bubble: {
-          distance: 400,
+            links: {
+                color: "#ffffff",
 
-          duration: 2,
+                distance: 150,
 
-          opacity: 0.8,
+                enable: true,
 
-          size: 40,
+                opacity: 0.5,
+
+                width: 1,
+            },
+
+            collisions: {
+                enable: true,
+            },
+
+            move: {
+                direction: "none",
+
+                enable: true,
+
+                outModes: "bounce",
+
+                random: false,
+
+                speed: 6,
+
+                straight: false,
+            },
+
+            number: {
+                density: {
+                    enable: true,
+
+                    area: 800,
+                },
+
+                value: 80,
+            },
+
+            opacity: {
+                value: 0.5,
+            },
+
+            shape: {
+                type: "circle",
+            },
+
+            size: {
+                random: true,
+
+                value: 5,
+            },
         },
 
-        push: {
-          quantity: 4,
-        },
+        detectRetina: true,
+    };
 
-        repulse: {
-          distance: 200,
-
-          duration: 0.4,
-        },
-      },
-    },
-
-    particles: {
-      color: {
-        value: '#ffffff',
-      },
-
-      links: {
-        color: '#ffffff',
-
-        distance: 150,
-
-        enable: true,
-
-        opacity: 0.5,
-
-        width: 1,
-      },
-
-      collisions: {
-        enable: true,
-      },
-
-      move: {
-        direction: 'none',
-
-        enable: true,
-
-        outModes: 'bounce',
-
-        random: false,
-
-        speed: 6,
-
-        straight: false,
-      },
-
-      number: {
-        density: {
-          enable: true,
-
-          area: 800,
-        },
-
-        value: 80,
-      },
-
-      opacity: {
-        value: 0.5,
-      },
-
-      shape: {
-        type: 'circle',
-      },
-
-      size: {
-        random: true,
-
-        value: 5,
-      },
-    },
-
-    detectRetina: true,
-  };
-
-  particlesLoaded(container: Container): void {
-    console.log(container);
-  }
+    particlesLoaded(container: Container): void {
+        console.log(container);
+    }
 }
 ```
 
 _app.module.ts_
 
 ```typescript
-import { NgParticlesModule } from 'ng-particles';
+import { NgParticlesModule } from "ng-particles";
 
-import { NgModule } from '@angular/core';
+import { NgModule } from "@angular/core";
 
 @NgModule({
-  declarations: [
-    /* App-Komponent */
-  ],
+    declarations: [
+        /* App-Komponent */
+    ],
 
-  imports: [
-    /* weitere Imports */ NgParticlesModule /* NgParticlesModule ist erforderlich */,
-  ],
+    imports: [/* weitere Imports */ NgParticlesModule /* NgParticlesModule ist erforderlich */],
 
-  providers: [],
+    providers: [],
 
-  bootstrap: [
-    /* App-Komponent */
-  ],
+    bootstrap: [
+        /* App-Komponent */
+    ],
 })
 export class AppModule {}
 ```

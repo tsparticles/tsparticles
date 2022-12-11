@@ -372,6 +372,7 @@ coverage/
 .codacy-coverage/
 
 package-lock.json
+yarn.lock
 components/preact/cjs/
 components/preact/umd/
 components/react/cjs/
@@ -386,32 +387,14 @@ options.schema.json
 website/js/404.min.js
 website/js/demo.min.js
 
-demo/vanilla_new/js/tsparticles.min.js
-demo/vanilla_new/js/tsparticles.interaction.light.min.js
-demo/vanilla_new/js/tsparticles.interaction.particles.repulse.min.js
-demo/vanilla_new/js/tsparticles.path.curves.min.js
-demo/vanilla_new/js/tsparticles.path.perlin.noise.min.js
-demo/vanilla_new/js/tsparticles.path.polygon.min.js
-demo/vanilla_new/js/tsparticles.path.simplex.noise.min.js
-demo/vanilla_new/js/tsparticles.plugin.infection.min.js
-demo/vanilla_new/js/tsparticles.updater.gradient.min.js
-demo/vanilla_new/js/tsparticles.updater.orbit.min.js
-demo/vanilla_new/js/tsparticles.bundle.min.js
 .parcel-cache
 demo/vanilla/views/index.html
-demo/vanilla_new/css/main.min.css
-demo/vanilla_new/css/404.min.css
 website/css/main.min.css
 website/css/presets.min.css
 website/css/404.min.css
-demo/vanilla_new/js/404.min.js
-demo/vanilla_new/css/404.css.map
-demo/vanilla_new/css/main.css.map
 website/css/404.css.map
 website/css/main.css.map
 website/css/presets.css.map
-demo/vanilla_new/css/404.css
-demo/vanilla_new/css/main.css
 website/css/presets.css
 website/css/404.css
 website/css/main.css

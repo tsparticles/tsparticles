@@ -30,7 +30,7 @@ import { loadOptions } from "../Utils/OptionsUtils";
  * @returns true if the container is still usable
  */
 function guardCheck(container: Container): boolean {
-    return !container.destroyed;
+    return container && !container.destroyed;
 }
 
 function loadContainerOptions(
@@ -58,6 +58,9 @@ const defaultPathGeneratorKey = "default",
             // nothing required
         },
         update: (): void => {
+            // nothing required
+        },
+        reset: (): void => {
             // nothing required
         },
     };
@@ -93,9 +96,6 @@ export class Container {
      */
     duration;
 
-    readonly #engine;
-    readonly #eventListeners;
-
     /**
      * The container fps limit, coming from options
      */
@@ -114,7 +114,7 @@ export class Container {
     lastFrameTime?: number;
 
     /**
-     * The container life time
+     * The container lifetime
      */
     lifeTime;
 
@@ -139,6 +139,8 @@ export class Container {
 
     readonly retina;
 
+    smooth;
+
     /**
      * Check if the particles container is started
      */
@@ -146,14 +148,18 @@ export class Container {
 
     zLayers;
 
+    private _currentTheme?: string;
+    private _delay: number;
+    private _delayTimeout?: number | NodeJS.Timeout;
+    private _drawAnimationFrame?: number;
+    private readonly _engine;
+    private readonly _eventListeners;
+    private _firstStart;
     private readonly _initialSourceOptions;
+    private readonly _intersectionObserver;
     private _options;
+    private _paused;
     private _sourceOptions;
-    private currentTheme?: string;
-    private drawAnimationFrame?: number;
-    private firstStart;
-    private readonly intersectionObserver?;
-    private paused;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
@@ -163,14 +169,16 @@ export class Container {
      * @param sourceOptions the options to load
      */
     constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
-        this.#engine = engine;
+        this._engine = engine;
         this.fpsLimit = 120;
+        this.smooth = false;
+        this._delay = 0;
         this.duration = 0;
         this.lifeTime = 0;
-        this.firstStart = true;
+        this._firstStart = true;
         this.started = false;
         this.destroyed = false;
-        this.paused = true;
+        this._paused = true;
         this.lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
@@ -178,7 +186,7 @@ export class Container {
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
-        this.particles = new Particles(this.#engine, this);
+        this.particles = new Particles(this._engine, this);
         this.frameManager = new FrameManager(this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {
@@ -190,17 +198,17 @@ export class Container {
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
         /* tsParticles variables with default values */
-        this._options = loadContainerOptions(this.#engine, this);
-        this.actualOptions = loadContainerOptions(this.#engine, this);
+        this._options = loadContainerOptions(this._engine, this);
+        this.actualOptions = loadContainerOptions(this._engine, this);
 
         /* ---------- tsParticles - start ------------ */
-        this.#eventListeners = new EventListeners(this);
+        this._eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this.intersectionObserver = new IntersectionObserver((entries) => this.intersectionManager(entries));
+            this._intersectionObserver = new IntersectionObserver((entries) => this._intersectionManager(entries));
         }
 
-        this.#engine.dispatchEvent(EventType.containerBuilt, { container: this });
+        this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
     /**
@@ -295,10 +303,11 @@ export class Container {
                     }
                 }
 
-                const canvasRect = this.canvas.element?.getBoundingClientRect(),
+                const element = this.canvas.element,
+                    canvasRect = element ? element.getBoundingClientRect() : undefined,
                     pos = {
-                        x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                        y: lastTouch.clientY - (canvasRect?.top ?? 0),
+                        x: lastTouch.clientX - (canvasRect ? canvasRect.left : 0),
+                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : 0),
                     };
 
                 clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
@@ -317,8 +326,8 @@ export class Container {
             touchMoved = false;
         };
 
-        let touched = false;
-        let touchMoved = false;
+        let touched = false,
+            touchMoved = false;
 
         el.addEventListener("click", clickHandler);
         el.addEventListener("touchstart", touchStartHandler);
@@ -366,18 +375,18 @@ export class Container {
             this.drawers.delete(key);
         }
 
-        this.#engine.plugins.destroy(this);
+        this._engine.plugins.destroy(this);
 
         this.destroyed = true;
 
-        const mainArr = this.#engine.dom(),
+        const mainArr = this._engine.dom(),
             idx = mainArr.findIndex((t) => t === this);
 
         if (idx >= 0) {
             mainArr.splice(idx, 1);
         }
 
-        this.#engine.dispatchEvent(EventType.containerDestroyed, { container: this });
+        this._engine.dispatchEvent(EventType.containerDestroyed, { container: this });
     }
 
     /**
@@ -390,7 +399,7 @@ export class Container {
 
         let refreshTime = force;
 
-        this.drawAnimationFrame = animate()(async (timestamp) => {
+        this._drawAnimationFrame = animate()(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
@@ -406,7 +415,17 @@ export class Container {
      * @returns a JSON string created from `options` property
      */
     exportConfiguration(): string {
-        return JSON.stringify(this.actualOptions, undefined, 2);
+        return JSON.stringify(
+            this.actualOptions,
+            (key, value) => {
+                if (key === "_engine" || key === "_container") {
+                    return;
+                }
+
+                return value;
+            },
+            2
+        );
     }
 
     /**
@@ -416,7 +435,11 @@ export class Container {
      * @param quality The exported image quality
      */
     exportImage(callback: BlobCallback, type?: string, quality?: number): void {
-        return this.canvas.element?.toBlob(callback, type ?? "image/png", quality);
+        const element = this.canvas.element;
+
+        if (element) {
+            element.toBlob(callback, type ?? "image/png", quality);
+        }
     }
 
     /**
@@ -432,7 +455,7 @@ export class Container {
      * @returns `true` is playing, `false` is paused
      */
     getAnimationStatus(): boolean {
-        return !this.paused && !this.pageHidden && guardCheck(this);
+        return !this._paused && !this.pageHidden && guardCheck(this);
     }
 
     /**
@@ -461,10 +484,10 @@ export class Container {
             return;
         }
 
-        const shapes = this.#engine.plugins.getSupportedShapes();
+        const shapes = this._engine.plugins.getSupportedShapes();
 
         for (const type of shapes) {
-            const drawer = this.#engine.plugins.getShapeDrawer(type);
+            const drawer = this._engine.plugins.getShapeDrawer(type);
 
             if (drawer) {
                 this.drawers.set(type, drawer);
@@ -472,8 +495,14 @@ export class Container {
         }
 
         /* options settings */
-        this._options = loadContainerOptions(this.#engine, this, this._initialSourceOptions, this.sourceOptions);
-        this.actualOptions = loadContainerOptions(this.#engine, this, this._options);
+        this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
+        this.actualOptions = loadContainerOptions(this._engine, this, this._options);
+
+        const availablePlugins = this._engine.plugins.getAvailablePlugins(this);
+
+        for (const [id, plugin] of availablePlugins) {
+            this.plugins.set(id, plugin);
+        }
 
         /* init canvas + particles */
         this.retina.init();
@@ -485,16 +514,11 @@ export class Container {
         this.canvas.resize();
 
         this.zLayers = this.actualOptions.zLayers;
-
-        this.duration = getRangeValue(this.actualOptions.duration);
+        this.duration = getRangeValue(this.actualOptions.duration) * 1000;
+        this._delay = getRangeValue(this.actualOptions.delay) * 1000;
         this.lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
-
-        const availablePlugins = this.#engine.plugins.getAvailablePlugins(this);
-
-        for (const [id, plugin] of availablePlugins) {
-            this.plugins.set(id, plugin);
-        }
+        this.smooth = this.actualOptions.smooth;
 
         for (const [, drawer] of this.drawers) {
             if (drawer.init) {
@@ -504,24 +528,22 @@ export class Container {
 
         for (const [, plugin] of this.plugins) {
             if (plugin.init) {
-                plugin.init(this.actualOptions);
-            } else if (plugin.initAsync !== undefined) {
-                await plugin.initAsync(this.actualOptions);
+                await plugin.init();
             }
         }
 
-        this.#engine.dispatchEvent(EventType.containerInit, { container: this });
+        this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
         this.particles.init();
         this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.particlesSetup !== undefined) {
+            if (plugin.particlesSetup) {
                 plugin.particlesSetup();
             }
         }
 
-        this.#engine.dispatchEvent(EventType.particlesSetup, { container: this });
+        this._engine.dispatchEvent(EventType.particlesSetup, { container: this });
     }
 
     /**
@@ -533,7 +555,7 @@ export class Container {
             return;
         }
 
-        this.currentTheme = name;
+        this._currentTheme = name;
 
         await this.refresh();
     }
@@ -546,13 +568,13 @@ export class Container {
             return;
         }
 
-        if (this.drawAnimationFrame !== undefined) {
-            cancelAnimation()(this.drawAnimationFrame);
+        if (this._drawAnimationFrame !== undefined) {
+            cancelAnimation()(this._drawAnimationFrame);
 
-            delete this.drawAnimationFrame;
+            delete this._drawAnimationFrame;
         }
 
-        if (this.paused) {
+        if (this._paused) {
             return;
         }
 
@@ -563,10 +585,10 @@ export class Container {
         }
 
         if (!this.pageHidden) {
-            this.paused = true;
+            this._paused = true;
         }
 
-        this.#engine.dispatchEvent(EventType.containerPaused, { container: this });
+        this._engine.dispatchEvent(EventType.containerPaused, { container: this });
     }
 
     /**
@@ -578,15 +600,15 @@ export class Container {
             return;
         }
 
-        const needsUpdate = this.paused || force;
+        const needsUpdate = this._paused || force;
 
-        if (this.firstStart && !this.actualOptions.autoPlay) {
-            this.firstStart = false;
+        if (this._firstStart && !this.actualOptions.autoPlay) {
+            this._firstStart = false;
             return;
         }
 
-        if (this.paused) {
-            this.paused = false;
+        if (this._paused) {
+            this._paused = false;
         }
 
         if (needsUpdate) {
@@ -597,7 +619,7 @@ export class Container {
             }
         }
 
-        this.#engine.dispatchEvent(EventType.containerPlay, { container: this });
+        this._engine.dispatchEvent(EventType.containerPlay, { container: this });
 
         this.draw(needsUpdate || false);
     }
@@ -612,6 +634,7 @@ export class Container {
 
         /* restart */
         this.stop();
+
         return this.start();
     }
 
@@ -620,7 +643,7 @@ export class Container {
             return;
         }
 
-        this._options = loadContainerOptions(this.#engine, this);
+        this._options = loadContainerOptions(this._engine, this);
 
         return this.refresh();
     }
@@ -687,7 +710,7 @@ export class Container {
      * Starts the container, initializes what are needed to create animations and event handling
      */
     async start(): Promise<void> {
-        if (this.started || !guardCheck(this)) {
+        if (!guardCheck(this) || this.started) {
             return;
         }
 
@@ -695,42 +718,52 @@ export class Container {
 
         this.started = true;
 
-        this.#eventListeners.addListeners();
+        await new Promise<void>((resolve) => {
+            this._delayTimeout = setTimeout(async () => {
+                this._eventListeners.addListeners();
 
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.observe(this.interactivity.element);
-        }
+                if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
+                    this._intersectionObserver.observe(this.interactivity.element);
+                }
 
-        for (const [, plugin] of this.plugins) {
-            if (plugin.startAsync !== undefined) {
-                await plugin.startAsync();
-            } else if (plugin.start !== undefined) {
-                plugin.start();
-            }
-        }
+                for (const [, plugin] of this.plugins) {
+                    if (plugin.start) {
+                        await plugin.start();
+                    }
+                }
 
-        this.#engine.dispatchEvent(EventType.containerStarted, { container: this });
+                this._engine.dispatchEvent(EventType.containerStarted, { container: this });
 
-        this.play();
+                this.play();
+
+                resolve();
+            }, this._delay);
+        });
     }
 
     /**
      * Stops the container, opposite to `start`. Clears some resources and stops events.
      */
     stop(): void {
-        if (!this.started || !guardCheck(this)) {
+        if (!guardCheck(this) || !this.started) {
             return;
         }
 
-        this.firstStart = true;
+        if (this._delayTimeout) {
+            clearTimeout(this._delayTimeout);
+
+            delete this._delayTimeout;
+        }
+
+        this._firstStart = true;
         this.started = false;
-        this.#eventListeners.removeListeners();
+        this._eventListeners.removeListeners();
         this.pause();
         this.particles.clear();
         this.canvas.clear();
 
-        if (this.interactivity.element instanceof HTMLElement && this.intersectionObserver) {
-            this.intersectionObserver.unobserve(this.interactivity.element);
+        if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
+            this._intersectionObserver.unobserve(this.interactivity.element);
         }
 
         for (const [, plugin] of this.plugins) {
@@ -743,11 +776,9 @@ export class Container {
             this.plugins.delete(key);
         }
 
-        delete this.particles.grabLineColor;
-
         this._sourceOptions = this._options;
 
-        this.#engine.dispatchEvent(EventType.containerStopped, { container: this });
+        this._engine.dispatchEvent(EventType.containerStopped, { container: this });
     }
 
     /**
@@ -755,24 +786,26 @@ export class Container {
      */
     updateActualOptions(): boolean {
         this.actualOptions.responsive = [];
+
         const newMaxWidth = this.actualOptions.setResponsive(
             this.canvas.size.width,
             this.retina.pixelRatio,
             this._options
         );
-        this.actualOptions.setTheme(this.currentTheme);
 
-        if (this.responsiveMaxWidth != newMaxWidth) {
-            this.responsiveMaxWidth = newMaxWidth;
+        this.actualOptions.setTheme(this._currentTheme);
 
-            return true;
+        if (this.responsiveMaxWidth === newMaxWidth) {
+            return false;
         }
 
-        return false;
+        this.responsiveMaxWidth = newMaxWidth;
+
+        return true;
     }
 
-    private intersectionManager(entries: IntersectionObserverEntry[]): void {
-        if (!this.actualOptions.pauseOnOutsideViewport) {
+    private _intersectionManager(entries: IntersectionObserverEntry[]): void {
+        if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
 
@@ -781,11 +814,7 @@ export class Container {
                 continue;
             }
 
-            if (entry.isIntersecting) {
-                this.play();
-            } else {
-                this.pause();
-            }
+            (entry.isIntersecting ? this.play : this.pause)();
         }
     }
 }

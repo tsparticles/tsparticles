@@ -1,7 +1,8 @@
 import type { IColor, IRangeColor, IRgb, IRgba } from "./Colors";
 
 export interface IColorManager {
-    stringPrefix: string;
+    readonly key: string;
+    readonly stringPrefix: string;
 
     handleColor(color: IColor): IRgb | undefined;
 
