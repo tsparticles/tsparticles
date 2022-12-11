@@ -11,6 +11,7 @@ import clickPause from "./clickPause.json";
 import collisionsAbsorb from "./collisionsAbsorb.json";
 import collisionsBounce from "./collisionsBounce.json";
 import collisionsDestroy from "./collisionsDestroy.json";
+import colorAnimation from "./colorAnimation.json";
 import connect from "./connect.json";
 import customPreset from "./customPreset.json";
 import customShape from "./customShape.json";
@@ -134,6 +135,7 @@ mainConfigs.configs = {
     collisionsAbsorb,
     collisionsBounce,
     collisionsDestroy,
+    colorAnimation,
     connect,
     customPreset,
     customShape,

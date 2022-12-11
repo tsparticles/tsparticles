@@ -1,5 +1,6 @@
 import type { IAnimatableColor } from "../IAnimatableColor";
 import type { IColor } from "../../../Core/Interfaces/Colors";
+import type { RangeValue } from "../../../Types/RangeValue";
 
 /**
  * Particle stroke, outlines the particle with a customizable line
@@ -15,10 +16,10 @@ export interface IStroke {
     /**
      * The stroke opacity
      */
-    opacity?: number;
+    opacity?: RangeValue;
 
     /**
      * The stroke line width
      */
-    width: number;
+    width: RangeValue;
 }

@@ -41,7 +41,6 @@ import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOpt
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { SizeMode } from "../Enums/Modes/SizeMode";
 import { StartValueType } from "../Enums/Types/StartValueType";
-import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
@@ -238,14 +237,14 @@ export class Particle implements IParticle {
     spawning!: boolean;
 
     /**
-     * Gets the particle stroke options
-     */
-    stroke?: Stroke;
-
-    /**
      * Sets the particle stroke color
      */
     strokeColor?: IParticleHslAnimation;
+
+    /**
+     * Sets the particle stroke opacity
+     */
+    strokeOpacity?: number;
 
     /**
      * Sets the particle stroke width
@@ -482,6 +481,8 @@ export class Particle implements IParticle {
                     break;
             }
         }
+
+        this.size.initialValue = this.size.value;
 
         /* position */
         this.bubble = {

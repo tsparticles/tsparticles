@@ -165,7 +165,7 @@ export function drawParticle(data: DrawParticleParams): void {
         context.fillStyle = colorStyles.fill;
     }
 
-    const stroke = particle.stroke;
+    const strokeWidth = particle.strokeWidth;
 
     context.lineWidth = particle.strokeWidth ?? 0;
 
@@ -175,7 +175,7 @@ export function drawParticle(data: DrawParticleParams): void {
 
     drawShape(container, context, particle, radius, opacity, delta);
 
-    if ((stroke?.width ?? 0) > 0) {
+    if ((strokeWidth ?? 0) > 0) {
         context.stroke();
     }
 

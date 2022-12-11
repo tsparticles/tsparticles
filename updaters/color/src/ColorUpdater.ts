@@ -17,7 +17,14 @@ function updateColorValue(
 ): void {
     const colorValue = value;
 
-    if (!colorValue || !valueAnimation.enable) {
+    if (
+        !colorValue ||
+        !valueAnimation.enable ||
+        (colorValue.loops !== undefined &&
+            colorValue.maxLoops !== undefined &&
+            colorValue.maxLoops > 0 &&
+            colorValue.loops >= colorValue.maxLoops)
+    ) {
         return;
     }
 
@@ -28,14 +35,28 @@ function updateColorValue(
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
 
-        if (decrease && colorValue.value > max) {
-            colorValue.status = AnimationStatus.decreasing;
-            colorValue.value -= colorValue.value % max;
+        if (colorValue.value > max) {
+            if (!colorValue.loops) {
+                colorValue.loops = 0;
+            }
+
+            colorValue.loops++;
+
+            if (decrease) {
+                colorValue.status = AnimationStatus.decreasing;
+                colorValue.value -= colorValue.value % max;
+            }
         }
     } else {
         colorValue.value -= velocity;
 
         if (colorValue.value < 0) {
+            if (!colorValue.loops) {
+                colorValue.loops = 0;
+            }
+
+            colorValue.loops++;
+
             colorValue.status = AnimationStatus.increasing;
             colorValue.value += colorValue.value;
         }
@@ -53,16 +74,20 @@ function updateColorValue(
 function updateColor(particle: Particle, delta: IDelta): void {
     const animationOptions = particle.options.color.animation;
 
-    if (particle.color?.h !== undefined) {
-        updateColorValue(delta, particle.color.h, animationOptions.h, 360, false);
+    const h = particle.color?.h,
+        s = particle.color?.s,
+        l = particle.color?.l;
+
+    if (h) {
+        updateColorValue(delta, h, animationOptions.h, 360, false);
     }
 
-    if (particle.color?.s !== undefined) {
-        updateColorValue(delta, particle.color.s, animationOptions.s, 100, true);
+    if (s) {
+        updateColorValue(delta, s, animationOptions.s, 100, true);
     }
 
-    if (particle.color?.l !== undefined) {
-        updateColorValue(delta, particle.color.l, animationOptions.l, 100, true);
+    if (l) {
+        updateColorValue(delta, l, animationOptions.l, 100, true);
     }
 }
 

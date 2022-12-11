@@ -179,7 +179,7 @@ export class Canvas {
                 zIndexOptions = particle.options.zIndex,
                 zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
                 opacity = particle.bubble.opacity ?? particle.opacity?.value ?? 1,
-                strokeOpacity = particle.stroke?.opacity ?? opacity,
+                strokeOpacity = particle.strokeOpacity ?? opacity,
                 zOpacity = opacity * zOpacityFactor,
                 zStrokeOpacity = strokeOpacity * zOpacityFactor,
                 transform: IParticleTransformValues = {},

@@ -6,6 +6,7 @@ import type { AnimationStatus } from "../../Enums/AnimationStatus";
 export interface IParticleValueAnimation<T> {
     decay?: number;
     enable: boolean;
+    initialValue?: number;
     loops?: number;
     maxLoops?: number;
     status?: AnimationStatus;
