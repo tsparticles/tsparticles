@@ -1171,6 +1171,7 @@ importers:
       rxjs: ~7.6.0
       tslib: ^2.4.1
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       tsparticles-interaction-external-attract: ^2.6.0
       tsparticles-interaction-external-bounce: ^2.6.0
@@ -1227,6 +1228,7 @@ importers:
       rxjs: 7.6.0
       tslib: 2.4.1
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist

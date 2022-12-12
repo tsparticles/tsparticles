@@ -59,7 +59,6 @@
     "alwaysStrict": true,
     /* Parse in strict mode and emit "use strict" for each source file. */
     "useUnknownInCatchVariables": true,
-
     /* Additional Checks */
     // "noUnusedLocals": true,                /* Report errors on unused locals. */
     // "noUnusedParameters": true,            /* Report errors on unused parameters. */
@@ -92,5 +91,16 @@
     // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
     "resolveJsonModule": true
-  }
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "./tests/",
+    "./node_modules/**/*",
+    "../../node_modules/**/*",
+    "./dist/",
+    "./typedoc/",
+    "./docs/"
+  ]
 }
