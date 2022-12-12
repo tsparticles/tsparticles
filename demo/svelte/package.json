@@ -10,6 +10,7 @@
         "check": "svelte-check --tsconfig ./tsconfig.json"
     },
     "devDependencies": {
+        "@rollup/plugin-json": "^5.0.2",
         "@rollup/plugin-commonjs": "^23.0.4",
         "@rollup/plugin-node-resolve": "^15.0.1",
         "@rollup/plugin-typescript": "^10.0.1",
@@ -28,6 +29,7 @@
     "dependencies": {
         "sirv-cli": "^2.0.2",
         "svelte-particles": "^2.6.0",
-        "tsparticles": "^2.6.0"
+        "tsparticles": "^2.6.0",
+        "tsparticles-demo-configs": "^2.6.0"
     }
 }

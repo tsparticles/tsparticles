@@ -3,6 +3,7 @@ import './App.css';
 import Particles from "solid-particles";
 import type { Engine } from "tsparticles-engine";
 import { loadFull } from "tsparticles";
+import { basic } from "tsparticles-demo-configs";
 
 async function particlesInit(engine: Engine): Promise<void> {
     await loadFull(engine);
@@ -25,22 +26,7 @@ function App() {
                     Learn Solid
                 </a>
             </header>
-            <Particles id="tsparticles" options={{
-                background: {
-                    color: "#000"
-                },
-                fullScreen: {
-                    enable: true
-                },
-                particles: {
-                    links: {
-                        enable: true
-                    },
-                    move: {
-                        enable: true
-                    }
-                }
-            }} init={particlesInit}/>
+            <Particles id="tsparticles" options={basic} init={particlesInit}/>
         </div>
     );
 }

@@ -6,9 +6,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "resolveJsonModule": true
   },
-
   "references": [
     {
       "path": "./tsconfig.config.json"

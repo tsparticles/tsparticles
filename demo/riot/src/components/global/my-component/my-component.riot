@@ -7,27 +7,13 @@
     <script>
         import RiotParticles from "riot-particles";
         import { loadFull } from "tsparticles";
+        import { basic } from "tsparticles-demo-configs";
 
         export default {
             components: {
                 RiotParticles
             },
-            particlesConfig: {
-                background: {
-                    color: "#000"
-                },
-                fullScreen: {
-                    enable: true
-                },
-                particles: {
-                    links: {
-                        enable: true
-                    },
-                    move: {
-                        enable: true
-                    }
-                }
-            },
+            particlesConfig: basic,
             particlesInit: async (main) => {
                 await loadFull(main);
             },

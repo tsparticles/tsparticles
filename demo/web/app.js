@@ -6,13 +6,14 @@ const app = express();
 
 // app.use(helmet()); // Safari requires https, probably a bug
 
-const port = 3000;
+const port = 3005;
 
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
+app.use("/tsparticles-demo-configs", express.static("./node_modules/tsparticles-demo-configs"));
 app.use("/web-particles", express.static("./node_modules/web-particles/dist"));
 app.use("/webcomponentsjs", express.static("./node_modules/@webcomponents/webcomponentsjs/"));
 

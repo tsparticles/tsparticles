@@ -27,7 +27,7 @@
             "type": "image",
             "options": {
                 "image": {
-                    "src": "images/arrow.png",
+                    "src": "https://particles.js.org/images/arrow.png",
                     "width": 512,
                     "height": 512,
                     "replaceColor": true

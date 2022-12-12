@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "tsparticles": "^2.6.0",
+        "tsparticles-demo-configs": "^2.6.0",
         "tsparticles-engine": "^2.6.0",
         "vue": "^2.7.14",
         "vue-class-component": "^7.2.6",
@@ -32,6 +33,7 @@
         "@babel/core": "^7.20.5",
         "@babel/plugin-proposal-class-properties": "^7.18.6",
         "@babel/plugin-proposal-decorators": "^7.20.5",
+        "@rollup/plugin-json":"^5.0.2",
         "@rollup/plugin-node-resolve": "^15.0.1",
         "@rollup/plugin-replace": "^5.0.1",
         "@typescript-eslint/eslint-plugin": "^5.46.0",

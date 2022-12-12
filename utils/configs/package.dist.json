@@ -79,8 +79,8 @@
   "main": "index.js",
   "jsdelivr": "tsparticles.configs.min.js",
   "unpkg": "tsparticles.configs.min.js",
-  "module": "index.js",
-  "types": "index.d.ts",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "dependencies": {
     "tsparticles-engine": "^2.6.0"
   }

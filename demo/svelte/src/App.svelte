@@ -1,23 +1,11 @@
 <script lang="ts">
     import Particles from "svelte-particles";
     import { loadFull } from "tsparticles";
+    import { basic } from "tsparticles-demo-configs";
 
     export let name: string;
 
-    let particlesConfig = {
-        particles: {
-            color: {
-                value: '#000'
-            },
-            links: {
-                enable: true,
-                color: '#000'
-            },
-            move: {
-                enable: true
-            }
-        }
-    };
+    let particlesConfig = basic;
 
     let ref = {};
 

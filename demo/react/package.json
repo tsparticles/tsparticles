@@ -50,6 +50,7 @@
         "react-particles": "^2.6.0",
         "rxjs": "^7.6.0",
         "tsparticles": "^2.6.0",
+        "tsparticles-demo-configs": "^2.6.0",
         "tsparticles-engine": "^2.6.0",
         "tsparticles-interaction-external-attract": "^2.6.0",
         "tsparticles-interaction-external-bounce": "^2.6.0",

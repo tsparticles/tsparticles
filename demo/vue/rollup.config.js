@@ -1,5 +1,6 @@
 import vue from 'rollup-plugin-vue';
 import typescript from 'rollup-plugin-typescript';
+import json from '@rollup/plugin-json';
 import {terser} from 'rollup-plugin-terser';
 
 export default [{
@@ -15,7 +16,8 @@ export default [{
             // experimentalDecorators: true,
             // module: 'es2015'
         }),
-        vue()
+        vue(),
+        json()
     ]
 },
     {
@@ -32,6 +34,7 @@ export default [{
                 // module: 'es2015'
             }),
             vue(),
+            json(),
             terser()
         ]
     }];

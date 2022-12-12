@@ -5,41 +5,13 @@ import Header from './header';
 import Home from '../routes/home';
 import Profile from '../routes/profile';
 import { loadFull } from "tsparticles";
+import { basic, planes } from "tsparticles-demo-configs";
 
 export default class App extends Component {
-    key = "simple1";
+    key = "basic";
     options = {
-        simple1: {
-            background: {
-                color: "#000000",
-            },
-            particles: {
-                number: { value: 100 },
-                links: {
-                    enable: true,
-                },
-                move: { enable: true }
-            }
-        },
-        simple2: {
-            background: {
-                color: "#000000",
-            },
-            particles: {
-                number: { value: 100 },
-                move: { enable: true },
-                links: {
-                    enable: true,
-                },
-                color: {
-                    value: "#ff0000",
-                    animation: {
-                        enable: true,
-                        speed: 20
-                    }
-                }
-            }
-        }
+        basic,
+        planes
     }
 
     state = {
@@ -70,14 +42,14 @@ export default class App extends Component {
                 <div style="position: absolute; top: 50%; right: 10px; z-index: 3000;">
                     <div>
                         <button onClick={() => {
-                            this.switchFrame('simple1');
-                        }}>Sample 1
+                            this.switchFrame('basic');
+                        }}>Basic
                         </button>
                     </div>
                     <div>
                         <button onClick={() => {
-                            this.switchFrame('simple2');
-                        }}>Sample 2
+                            this.switchFrame('planes');
+                        }}>Planes
                         </button>
                     </div>
                 </div>

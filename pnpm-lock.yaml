@@ -1664,6 +1664,7 @@ importers:
       prettier: ^2.8.1
       sirv-cli: ^2.0.2
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
     dependencies:
       preact: 10.11.3
@@ -1671,6 +1672,7 @@ importers:
       preact-render-to-string: 5.2.6_preact@10.11.3
       preact-router: 4.1.0_preact@10.11.3
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@typescript-eslint/eslint-plugin': 5.46.0_5mle7isnkfgjmrghnnczirv6iy
@@ -1710,6 +1712,7 @@ importers:
       rimraf: ^3.0.2
       rxjs: ^7.6.0
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       tsparticles-interaction-external-attract: ^2.6.0
       tsparticles-interaction-external-bounce: ^2.6.0
@@ -1758,6 +1761,7 @@ importers:
       react-particles: link:../../components/react/dist
       rxjs: 7.6.0
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
@@ -1839,6 +1843,7 @@ importers:
       riot: ^7.1.0
       riot-particles: ^2.6.0
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       webpack: ^5.75.0
       webpack-cli: ^5.0.1
@@ -1851,6 +1856,7 @@ importers:
       riot: 7.1.0
       riot-particles: link:../../components/riot
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@riotjs/compiler': 6.4.2
@@ -1877,6 +1883,7 @@ importers:
       solid-particles: ^2.6.0
       solid-scripts: ^0.0.61
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       typescript: ^4.9.4
     devDependencies:
@@ -1886,12 +1893,14 @@ importers:
       solid-particles: link:../../components/solid
       solid-scripts: 0.0.61_winybbhjfui5fbqfjr4ivaquw4
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       typescript: 4.9.4
 
   demo/svelte:
     specifiers:
       '@rollup/plugin-commonjs': ^23.0.4
+      '@rollup/plugin-json': ^5.0.2
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-typescript': ^10.0.1
       '@tsconfig/svelte': ^3.0.0
@@ -1907,13 +1916,16 @@ importers:
       svelte-preprocess: ^5.0.0
       tslib: ^2.4.1
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       typescript: ^4.9.4
     dependencies:
       sirv-cli: 2.0.2
       svelte-particles: link:../../components/svelte
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
     devDependencies:
       '@rollup/plugin-commonjs': 23.0.4_rollup@3.7.3
+      '@rollup/plugin-json': 5.0.2_rollup@3.7.3
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.3
       '@rollup/plugin-typescript': 10.0.1_gf4pps3eltjonviaibug5x6klu
       '@tsconfig/svelte': 3.0.0
@@ -2183,6 +2195,7 @@ importers:
       '@babel/core': ^7.20.5
       '@babel/plugin-proposal-class-properties': ^7.18.6
       '@babel/plugin-proposal-decorators': ^7.20.5
+      '@rollup/plugin-json': ^5.0.2
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-replace': ^5.0.1
       '@typescript-eslint/eslint-plugin': ^5.46.0
@@ -2202,6 +2215,7 @@ importers:
       rollup-plugin-vue: ^5.1.9
       tslib: ^2.4.1
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       typescript: ^4.9.4
       vue: ^2.7.14
@@ -2211,6 +2225,7 @@ importers:
       vue2-particles: ^2.6.0
     dependencies:
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       vue: 2.7.14
       vue-class-component: 7.2.6_vue@2.7.14
@@ -2220,6 +2235,7 @@ importers:
       '@babel/core': 7.20.5
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.20.5
       '@babel/plugin-proposal-decorators': 7.20.5_@babel+core@7.20.5
+      '@rollup/plugin-json': 5.0.2_rollup@3.7.3
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.3
       '@rollup/plugin-replace': 5.0.1_rollup@3.7.3
       '@typescript-eslint/eslint-plugin': 5.46.0_5mle7isnkfgjmrghnnczirv6iy
@@ -2256,6 +2272,7 @@ importers:
       npm-run-all: ^4.1.5
       prettier: ^2.8.1
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       typescript: ~4.9.4
       vite: ^4.0.0
@@ -2265,6 +2282,7 @@ importers:
       vue3-particles: ^2.6.0
     dependencies:
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       vue: 3.2.45
       vue-router: 4.1.6_vue@3.2.45
@@ -2301,6 +2319,7 @@ importers:
       pug-cli: ^1.0.0-alpha6
       stylus: ^0.59.0
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       typescript: ^4.9.4
       web-particles: ^2.6.0
@@ -2318,6 +2337,7 @@ importers:
       pug-cli: 1.0.0-alpha6
       stylus: 0.59.0
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       typescript: 4.9.4
       web-particles: link:../../components/web
@@ -14438,7 +14458,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
