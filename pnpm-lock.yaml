@@ -1354,6 +1354,7 @@ importers:
       source-map-loader: ^4.0.1
       style-loader: ^3.3.1
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       typescript: ^4.9.4
       webpack: ^5.75.0
@@ -1363,6 +1364,7 @@ importers:
       inferno: 8.0.5
       inferno-particles: link:../../components/inferno
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.5
@@ -1433,6 +1435,7 @@ importers:
       ts-node: ~10.9.1
       tslib: ^2.4.1
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       tsparticles-interaction-external-attract: ^2.6.0
       tsparticles-interaction-external-bounce: ^2.6.0
@@ -1495,6 +1498,7 @@ importers:
       rxjs: 7.6.0
       tslib: 2.4.1
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce: link:../../interactions/external/bounce/dist
