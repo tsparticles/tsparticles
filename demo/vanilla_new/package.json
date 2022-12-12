@@ -39,7 +39,7 @@
         "fs-extra": "^11.1.0",
         "minify": "^9.1.0",
         "rimraf": "^3.0.2",
-        "sass": "^1.56.1",
+        "sass": "^1.56.2",
         "tsparticles": "^2.6.0",
         "tsparticles-demo-configs": "^2.6.0",
         "tsparticles-engine": "^2.6.0",

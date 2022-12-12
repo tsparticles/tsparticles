@@ -82,19 +82,19 @@ function updateStrokeColor(particle: StrokeParticle, delta: IDelta): void {
         return;
     }
 
-    const h = particle.strokeColor?.h ?? particle.color?.h;
+    const h = particle.strokeColor.h;
 
     if (h) {
         updateColorValue(delta, h, particle.strokeAnimation.h, 360, false);
     }
 
-    const s = particle.strokeColor?.s ?? particle.color?.s;
+    const s = particle.strokeColor.s;
 
     if (s) {
         updateColorValue(delta, s, particle.strokeAnimation.s, 100, true);
     }
 
-    const l = particle.strokeColor?.l ?? particle.color?.l;
+    const l = particle.strokeColor.l;
 
     if (l) {
         updateColorValue(delta, l, particle.strokeAnimation.l, 100, true);

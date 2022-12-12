@@ -15,7 +15,7 @@ fs.readFile(libPackage, function (error, data) {
 
     const dependencies = Object.fromEntries(Object.keys(mainInfo.dependencies).filter(t => t.indexOf("react") === -1).map(t => [t, mainInfo.dependencies[t]]));
 
-    libObj.dependencies = JSON.parse(JSON.stringify(dependencies).replaceAll("", ""));
+    libObj.dependencies = JSON.parse(JSON.stringify(dependencies).replaceAll("workspace:", ""));
 
     fs.writeFileSync(libPackage, JSON.stringify(libObj, undefined, 2), "utf8");
 
