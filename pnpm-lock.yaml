@@ -1325,10 +1325,12 @@ importers:
     specifiers:
       electron: ^22.0.0
       tsparticles: ^2.6.0
+      tsparticles-demo-configs: ^2.6.0
       tsparticles-engine: ^2.6.0
       webpack: ^5.75.0
     dependencies:
       tsparticles: link:../../bundles/full/dist
+      tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       electron: 22.0.0

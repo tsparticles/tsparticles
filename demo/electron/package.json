@@ -15,6 +15,7 @@
     "license": "MIT",
     "dependencies": {
         "tsparticles": "^2.6.0",
+        "tsparticles-demo-configs": "^2.6.0",
         "tsparticles-engine": "^2.6.0"
     },
     "devDependencies": {
