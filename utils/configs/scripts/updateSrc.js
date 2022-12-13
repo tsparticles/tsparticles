@@ -32,11 +32,11 @@ importsNames.sort(checkStrings);
 
 const text = `${importsNames.join("\n")}
 
-const ${exportsNames.map(t => `${t} = _${t.trim()} as unknown as ISourceOptions`).join(",\n")};
+const ${exportsNames.map((t, idx) => `${idx === 0 ? t.trim() : t} = _${t.trim()} as unknown as ISourceOptions`).join(",\n")};
 
 export type ExportedConfigurations = {
 ${exportsNames.map(t => `${t}: ISourceOptions;`).join("\n")}
-}
+};
 
 const mainConfigs = tsParticles as {
     configs?: ExportedConfigurations;
@@ -48,7 +48,7 @@ ${exportsNames.join(",\n")},
 
 export {
 ${exportsNames.join(",\n")},
-}
+};
 `;
 
 fs.writeFileSync("./src/index.ts", text);
