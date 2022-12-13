@@ -15,6 +15,18 @@ body
   height 100%
   min-height 1vh
 
+#editor
+  background-color white
+  z-index 1
+
+#editor-container
+  z-index 1
+  position fixed
+  top 0
+  left 0
+  height 100%
+  max-width 400px
+
 #tsparticles-container
   position relative
   flex 3
@@ -48,10 +60,10 @@ body
   display flex
 
   select
-    flex: 2
+    flex 2
 
   button
-    flex: 1
+    flex 1
     white-space nowrap
 
 /* ---- stats.js ---- */
@@ -79,7 +91,11 @@ body
 
 #stats
   border-radius 3px 3px 0 0
-  overflow: hidden
+  overflow hidden
+  display none
+
+  *
+    display none
 
 .count-particles
   border-radius 0 0 3px 3px

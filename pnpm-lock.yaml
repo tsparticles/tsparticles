@@ -1588,6 +1588,7 @@ importers:
       jquery: ^3.6.1
       jquery-particles: ^2.6.0
       jsoneditor: ^9.9.2
+      lodash: ^4.17.21
       prettier: ^2.8.1
       pug: ^3.0.2
       pug-cli: ^1.0.0-alpha6
@@ -1616,6 +1617,7 @@ importers:
       express-rate-limit: 6.7.0_express@4.18.2
       helmet: 6.0.1
       jsoneditor: 9.9.2
+      lodash: 4.17.21
       prettier: 2.8.1
       pug: 3.0.2
       pug-cli: 1.0.0-alpha6
@@ -40288,7 +40290,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.75.0
+      webpack: 5.75.0_webpack-cli@5.0.1
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
     resolution: {integrity: sha512-3x31rjbEQWKMNzacUZRE6wXvUFuGpH7vr0lIEbYpMAG9BOxi0928QU1BBswOAP3kg3H1O4hiS+sq4YyAn6ANnA==}
@@ -40783,6 +40785,7 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
+    dev: true
 
   /webpack/5.75.0_webpack-cli@4.10.0:
     resolution: {integrity: sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==}

@@ -29,44 +29,41 @@ let updateStats = function () {
     requestAnimationFrame(update);
 };
 
-let updateBackground = function () {
-    const el = $("#tsparticles");
-    const options = tsParticles.domItem(0).sourceOptions;
-    const config = options.config_demo;
-    let backgroundImage;
-
-    if (config.background_image) {
-        if (config.background_image.startsWith("url(")) {
-            backgroundImage = config.background_image;
-        } else {
-            backgroundImage = `url('${config.background_image}')`;
-        }
-    } else {
-        backgroundImage = '';
-    }
-
-    el.css({
-        "background-color": config.background_color,
-        "background-image": backgroundImage,
-        "background-position": config.background_position,
-        "background-repeat": config.background_repeat,
-        "background-size": config.background_size
-    });
-};
-
 let updateParticles = function (editor) {
     let presetId = localStorage.presetId || 'basic';
 
     $('#tsparticles').particles().init(tsParticles.configs[presetId], (particles) => {
         localStorage.presetId = presetId;
-        editor.set(particles.options);
+
+        const omit = (obj) => {
+            return _.omitBy(obj, (value, key) => {
+                return _.startsWith(key, "_");
+            })
+        };
+
+        const transform = (obj) => {
+            return _.transform(omit(obj), function (result, value, key) {
+                result[key] = _.isObject(value) ? transform(omit(value)) : value;
+            })
+        };
+
+        editor.update(transform(particles.options));
         editor.expandAll();
-        updateBackground();
         updateStats();
     });
 };
 
 $(document).ready(function () {
+    for (const presetId in tsParticles.configs) {
+        const preset = tsParticles.configs[presetId];
+
+        const option = document.createElement('option');
+        option.value = presetId;
+        option.text = preset.name || presetId;
+
+        document.getElementById('presets').appendChild(option);
+    }
+
     const element = document.getElementById('editor');
     const options = {
         mode: 'tree',
@@ -77,9 +74,9 @@ $(document).ready(function () {
         onModeChange: function (newMode, oldMode) {
         },
         onChange: function () {
-            updateBackground();
         }
     };
+
     const editor = new JSONEditor(element, options);
 
     const cmbPresets = $('#presets');
@@ -103,9 +100,7 @@ $(document).ready(function () {
 
         particles.options = editor.get();
         particles.refresh();
-
-        updateBackground();
     });
 
-    document.body.querySelector('#tsparticles-container').appendChild(stats.dom);
+    //document.body.querySelector('#tsparticles-container').appendChild(stats.dom);
 });

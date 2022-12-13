@@ -10,15 +10,16 @@ const limiter = rateLimit({
     max: 100 // limit each IP to 100 requests per windowMs
 });
 
-app.use(limiter);
+//app.use(limiter);
 //app.use(helmet());
 
-const port = 3000;
+const port = 3002;
 
 app.set('views', './views');
 app.set('view engine', 'pug');
 app.use(stylus.middleware('./public'));
 app.use(express.static('./public'));
+app.use("/lodash", express.static("./node_modules/lodash"));
 app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-free"));
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
