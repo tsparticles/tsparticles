@@ -20,7 +20,7 @@
         "@riotjs/register": "^6.0.1",
         "@riotjs/webpack-loader": "^6.0.0",
         "chai": "^4.3.7",
-        "css-loader": "^6.7.2",
+        "css-loader": "^6.7.3",
         "esm": "^3.2.25",
         "html-webpack-plugin": "^5.5.0",
         "jsdom": "^20.0.3",

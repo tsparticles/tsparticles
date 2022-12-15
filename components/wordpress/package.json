@@ -110,7 +110,7 @@
         "@babel/runtime": "^7.20.6",
         "@wordpress/block-editor": "^11.0.0",
         "@wordpress/blocks": "^12.0.0",
-        "@wordpress/i18n": "^4.22.0",
+        "@wordpress/i18n": "^4.23.0",
         "@wordpress/scripts": "^25.0.0",
         "fs-extra": "^11.1.0",
         "gulp": "^4.0.2",

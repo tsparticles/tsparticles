@@ -27,7 +27,7 @@
 		"babel-loader": "^9.1.0",
 		"babel-plugin-inferno": "^6.5.0",
 		"clean-webpack-plugin": "^4.0.0",
-		"css-loader": "^6.7.2",
+		"css-loader": "^6.7.3",
 		"html-webpack-plugin": "^5.5.0",
 		"node-sass": "^8.0.0",
 		"sass-loader": "^13.2.0",
