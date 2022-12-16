@@ -468,7 +468,7 @@ export class Particle implements IParticle {
                     break;
 
                 case StartValueType.random:
-                    this.size.value = randomInRange(this.size) * pxRatio;
+                    this.size.value = randomInRange(this.size);
                     this.size.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
