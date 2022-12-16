@@ -4,8 +4,7 @@
         "number": {
             "value": 1,
             "density": {
-                "enable": false,
-                "area": 800
+                "enable": false
             }
         },
         "color": {

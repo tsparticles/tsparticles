@@ -5,11 +5,7 @@
     },
     "particles": {
         "number": {
-            "value": 1,
-            "density": {
-                "enable": false,
-                "value_area": 800
-            }
+            "value": 1
         },
         "color": {
             "value": "#ffffff"

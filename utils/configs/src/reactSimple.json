@@ -60,10 +60,6 @@
             }
         },
         "number": {
-            "density": {
-                "enable": false,
-                "area": 1200
-            },
             "limit": -1,
             "value": 50
         },

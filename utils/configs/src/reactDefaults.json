@@ -3,11 +3,7 @@
     "particles": {
         "number": {
             "value": 40,
-            "max": -1,
-            "density": {
-                "enable": false,
-                "area": 1200
-            }
+            "max": -1
         },
         "color": {
             "value": "#FFF"

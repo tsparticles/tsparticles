@@ -60,8 +60,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 1500
+                "enable": true
             },
             "limit": -1,
             "value": 60

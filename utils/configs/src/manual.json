@@ -36,8 +36,7 @@
         "number": {
             "value": 0,
             "density": {
-                "enable": false,
-                "area": 800
+                "enable": false
             }
         },
         "color": {

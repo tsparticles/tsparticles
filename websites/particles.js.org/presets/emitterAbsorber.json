@@ -6,11 +6,7 @@
     "fpsLimit": 120,
     "particles": {
         "number": {
-            "value": 0,
-            "density": {
-                "enable": false,
-                "value_area": 800
-            }
+            "value": 0
         },
         "color": {
             "value": "#000"

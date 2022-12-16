@@ -325,25 +325,7 @@ export class Particle implements IParticle {
     }
 
     getFillColor(): IHsl | undefined {
-        const color = this.bubble.color ?? getHslFromAnimation(this.color);
-
-        if (color && this.roll && (this.backColor || this.roll.alter)) {
-            const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
-                backSum = this.roll.horizontal ? Math.PI / 2 : 0,
-                rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
-
-            if (rolled) {
-                if (this.backColor) {
-                    return this.backColor;
-                }
-
-                if (this.roll.alter) {
-                    return alterHsl(color, this.roll.alter.type, this.roll.alter.value);
-                }
-            }
-        }
-
-        return color;
+        return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.color));
     }
 
     getMass(): number {
@@ -363,7 +345,7 @@ export class Particle implements IParticle {
     }
 
     getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
+        return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
     }
 
     init(
@@ -713,6 +695,30 @@ export class Particle implements IParticle {
         }
 
         return overlaps;
+    }
+
+    private _getRollColor(color?: IHsl): IHsl | undefined {
+        if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
+            return color;
+        }
+
+        const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
+            backSum = this.roll.horizontal ? Math.PI / 2 : 0,
+            rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
+
+        if (!rolled) {
+            return color;
+        }
+
+        if (this.backColor) {
+            return this.backColor;
+        }
+
+        if (this.roll.alter) {
+            return alterHsl(color, this.roll.alter.type, this.roll.alter.value);
+        }
+
+        return color;
     }
 
     private _loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
