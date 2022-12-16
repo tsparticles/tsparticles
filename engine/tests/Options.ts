@@ -111,7 +111,8 @@ describe("Options tests", () => {
         expect(options.particles.move.trail.length).to.equal(10);
 
         /* particles number */
-        expect(options.particles.number.density.area).to.equal(800);
+        expect(options.particles.number.density.width).to.equal(1920);
+        expect(options.particles.number.density.height).to.equal(1080);
         expect(options.particles.number.density.enable).to.be.false;
         expect(options.particles.number.limit).to.equal(0);
         expect(options.particles.number.value).to.equal(100);
@@ -228,7 +229,6 @@ describe("Options tests", () => {
                     value: 80,
                     density: {
                         enable: true,
-                        area: 800,
                     },
                 },
                 shape: {
@@ -307,7 +307,8 @@ describe("Options tests", () => {
         expect(options.particles.move.straight).to.be.false;
 
         /* particles number */
-        expect(options.particles.number.density.area).to.equal(800);
+        expect(options.particles.number.density.width).to.equal(1920);
+        expect(options.particles.number.density.height).to.equal(1080);
         expect(options.particles.number.density.enable).to.be.true;
         expect(options.particles.number.value).to.equal(80);
 
@@ -403,7 +404,6 @@ describe("Options tests", () => {
                     value: 100,
                     density: {
                         enable: false,
-                        area: 800,
                     },
                 },
                 shape: {
@@ -490,7 +490,8 @@ describe("Options tests", () => {
         expect(options.particles.move.trail.length).to.equal(10);
 
         /* particles number */
-        expect(options.particles.number.density.area).to.equal(800);
+        expect(options.particles.number.density.width).to.equal(1920);
+        expect(options.particles.number.density.height).to.equal(1080);
         expect(options.particles.number.density.enable).to.be.false;
         expect(options.particles.number.value).to.equal(100);
 
@@ -528,7 +529,6 @@ describe("Options tests", () => {
                 value: 100,
                 density: {
                     enable: false,
-                    area: 800,
                 },
             },
             color: {
