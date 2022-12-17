@@ -36,7 +36,7 @@
         "browserslist": "^4.21.4",
         "eslint": "^8.29.0",
         "eslint-config-prettier": "^8.5.0",
-        "node-sass": "^7.0.3",
+        "node-sass": "^8.0.0",
         "parcel": "^2.8.2",
         "prettier": "^2.8.1",
         "process": "^0.11.10",
