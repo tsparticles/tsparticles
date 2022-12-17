@@ -7,7 +7,7 @@ export const options: ISourceOptions = {
         number: {
             value: 200,
             density: {
-                enable: true
+                enable: true,
             },
         },
         color: {
