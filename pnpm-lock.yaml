@@ -721,7 +721,7 @@ importers:
 
   components/svelte:
     specifiers:
-      '@rollup/plugin-commonjs': ^23.0.5
+      '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-typescript': ^10.0.1
       '@tsconfig/svelte': ^3.0.0
@@ -740,7 +740,7 @@ importers:
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
-      '@rollup/plugin-commonjs': 23.0.5_rollup@3.7.4
+      '@rollup/plugin-commonjs': 24.0.0_rollup@3.7.4
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.4
       '@rollup/plugin-typescript': 10.0.1_ksuudmkloucy44p3irodiuckje
       '@tsconfig/svelte': 3.0.0
@@ -1901,8 +1901,8 @@ importers:
 
   demo/svelte:
     specifiers:
-      '@rollup/plugin-commonjs': ^23.0.5
-      '@rollup/plugin-json': ^5.0.2
+      '@rollup/plugin-commonjs': ^24.0.0
+      '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-typescript': ^10.0.1
       '@tsconfig/svelte': ^3.0.0
@@ -1926,8 +1926,8 @@ importers:
       tsparticles: link:../../bundles/full/dist
       tsparticles-demo-configs: link:../../utils/configs/dist
     devDependencies:
-      '@rollup/plugin-commonjs': 23.0.5_rollup@3.7.4
-      '@rollup/plugin-json': 5.0.2_rollup@3.7.4
+      '@rollup/plugin-commonjs': 24.0.0_rollup@3.7.4
+      '@rollup/plugin-json': 6.0.0_rollup@3.7.4
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.4
       '@rollup/plugin-typescript': 10.0.1_ksuudmkloucy44p3irodiuckje
       '@tsconfig/svelte': 3.0.0
@@ -2197,7 +2197,7 @@ importers:
       '@babel/core': ^7.20.5
       '@babel/plugin-proposal-class-properties': ^7.18.6
       '@babel/plugin-proposal-decorators': ^7.20.5
-      '@rollup/plugin-json': ^5.0.2
+      '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-replace': ^5.0.1
       '@typescript-eslint/eslint-plugin': ^5.46.1
@@ -2237,7 +2237,7 @@ importers:
       '@babel/core': 7.20.5
       '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.20.5
       '@babel/plugin-proposal-decorators': 7.20.5_@babel+core@7.20.5
-      '@rollup/plugin-json': 5.0.2_rollup@3.7.4
+      '@rollup/plugin-json': 6.0.0_rollup@3.7.4
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.4
       '@rollup/plugin-replace': 5.0.1_rollup@3.7.4
       '@typescript-eslint/eslint-plugin': 5.46.1_imrg37k3svwu377c6q7gkarwmi
@@ -13742,8 +13742,8 @@ packages:
       rollup: 2.79.1
     dev: true
 
-  /@rollup/plugin-commonjs/23.0.5_rollup@3.7.4:
-    resolution: {integrity: sha512-IwI51j5kCmLMYsErEvZAID/pg7Z1qgyVJ+QIPDDIg1AOPbIGbdTCjuHDWIBCtoF1dvMkXfQv7B2eTadjnLRbmA==}
+  /@rollup/plugin-commonjs/24.0.0_rollup@3.7.4:
+    resolution: {integrity: sha512-0w0wyykzdyRRPHOb0cQt14mIBLujfAv6GgP6g8nvg/iBxEm112t3YPPq+Buqe2+imvElTka+bjNlJ/gB56TD8g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
@@ -13756,12 +13756,25 @@ packages:
       estree-walker: 2.0.2
       glob: 8.0.3
       is-reference: 1.2.1
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       rollup: 3.7.4
     dev: true
 
   /@rollup/plugin-json/5.0.2_rollup@3.7.4:
     resolution: {integrity: sha512-D1CoOT2wPvadWLhVcmpkDnesTzjhNIQRWLsc3fA49IFOP2Y84cFOOJ+nKGYedvXHKUsPeq07HR4hXpBBr+CHlA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 5.0.2_rollup@3.7.4
+      rollup: 3.7.4
+    dev: true
+
+  /@rollup/plugin-json/6.0.0_rollup@3.7.4:
+    resolution: {integrity: sha512-i/4C5Jrdr1XUarRhVu27EEwjt4GObltD7c+MkCIpO2QIbojw8MUs+CCTqOphQi3Qtg1FLmYt+l+6YeoIf51J7w==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0||^3.0.0
@@ -14458,7 +14471,7 @@ packages:
     resolution: {integrity: sha512-9K4zoImiZc3HlIp6AVUDE4CWYx22a+lhSZMYNpbjW04+YF0KWj4pJXnEMjdnFTiQibFFmElcsasJXDbdI/EPhA==}
     dependencies:
       '@types/eslint': 8.4.10
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
 
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
