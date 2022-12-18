@@ -79,6 +79,7 @@ export * from "./Enums/Types/ParticleOutType";
 export * from "./Enums/Types/StartValueType";
 export * from "./Enums/Types/DivType";
 export * from "./Enums/Types/EasingType";
+export * from "./Enums/Types/EventType";
 export * from "./Enums/AnimationStatus";
 export * from "./Enums/InteractivityDetect";
 export * from "./Options/Classes/AnimatableColor";
