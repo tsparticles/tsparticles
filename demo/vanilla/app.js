@@ -101,6 +101,7 @@ app.use("/plugin-easing-sine", express.static("./node_modules/tsparticles-plugin
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/tsparticles-plugin-motion"));
+app.use("/plugin-sounds", express.static("./node_modules/tsparticles-plugin-sounds"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));
 app.use("/preset-confetti", express.static("./node_modules/tsparticles-preset-confetti"));

@@ -150,6 +150,7 @@
         await loadInfectionPlugin(tsParticles);
         await loadMotionPlugin(tsParticles);
         await loadPolygonMaskPlugin(tsParticles);
+        await loadSoundsPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
         await loadParticlesRepulseInteraction(tsParticles);
         await loadGradientUpdater(tsParticles);

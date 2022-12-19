@@ -84,6 +84,7 @@
         "tsparticles-plugin-infection": "^2.6.0",
         "tsparticles-plugin-motion": "^2.6.0",
         "tsparticles-plugin-polygon-mask": "^2.6.0",
+        "tsparticles-plugin-sounds": "^2.6.0",
         "tsparticles-preset-big-circles": "^2.6.0",
         "tsparticles-preset-bubbles": "^2.6.0",
         "tsparticles-preset-confetti": "^2.6.0",

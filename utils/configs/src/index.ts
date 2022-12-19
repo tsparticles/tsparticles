@@ -100,6 +100,7 @@ import _shapeRoundedRect from "./shapeRoundedRect.json";
 import _shapeSpiral from "./shapeSpiral.json";
 import _slow from "./slow.json";
 import _snow from "./snow.json";
+import _sounds from "./sounds.json";
 import _speedDecay from "./speedDecay.json";
 import _spin from "./spin.json";
 import _star from "./star.json";
@@ -219,6 +220,7 @@ const absorbers = _absorbers as unknown as ISourceOptions,
     shapeSpiral = _shapeSpiral as unknown as ISourceOptions,
     slow = _slow as unknown as ISourceOptions,
     snow = _snow as unknown as ISourceOptions,
+    sounds = _sounds as unknown as ISourceOptions,
     speedDecay = _speedDecay as unknown as ISourceOptions,
     spin = _spin as unknown as ISourceOptions,
     star = _star as unknown as ISourceOptions,
@@ -338,6 +340,7 @@ export type ExportedConfigurations = {
     shapeSpiral: ISourceOptions;
     slow: ISourceOptions;
     snow: ISourceOptions;
+    sounds: ISourceOptions;
     speedDecay: ISourceOptions;
     spin: ISourceOptions;
     star: ISourceOptions;
@@ -462,6 +465,7 @@ mainConfigs.configs = {
     shapeSpiral,
     slow,
     snow,
+    sounds,
     speedDecay,
     spin,
     star,
@@ -582,6 +586,7 @@ export {
     shapeSpiral,
     slow,
     snow,
+    sounds,
     speedDecay,
     spin,
     star,
