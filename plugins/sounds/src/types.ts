@@ -12,5 +12,8 @@ export type SoundsOptions = Options & {
 
 export type SoundsContainer = Container & {
     actualOptions: SoundsOptions;
+    audioContext?: AudioContext;
+    maxOscillators?: number;
     muted?: boolean;
+    oscillators?: OscillatorNode[];
 };

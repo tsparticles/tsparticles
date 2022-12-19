@@ -49,6 +49,26 @@
         }
     },
     "sounds": {
-        "enable": true
+        "enable": true,
+        "events": [
+            {
+                "event": "particleAdded",
+                "notes": [
+                    {
+                        "duration": 1000,
+                        "value": "C5"
+                    }
+                ]
+            },
+            {
+                "event": "particleRemoved",
+                "notes": [
+                    {
+                        "duration": 500,
+                        "value": "G5"
+                    }
+                ]
+            }
+        ]
     }
 }
