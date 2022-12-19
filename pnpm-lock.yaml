@@ -721,7 +721,7 @@ importers:
 
   components/svelte:
     specifiers:
-      '@rollup/plugin-commonjs': ^23.0.5
+      '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-typescript': ^10.0.1
       '@tsconfig/svelte': ^3.0.0
@@ -740,7 +740,7 @@ importers:
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
-      '@rollup/plugin-commonjs': 23.0.5_rollup@3.7.4
+      '@rollup/plugin-commonjs': 24.0.0_rollup@3.7.4
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.4
       '@rollup/plugin-typescript': 10.0.1_ksuudmkloucy44p3irodiuckje
       '@tsconfig/svelte': 3.0.0
@@ -1901,7 +1901,7 @@ importers:
 
   demo/svelte:
     specifiers:
-      '@rollup/plugin-commonjs': ^23.0.5
+      '@rollup/plugin-commonjs': ^24.0.0
       '@rollup/plugin-json': ^6.0.0
       '@rollup/plugin-node-resolve': ^15.0.1
       '@rollup/plugin-typescript': ^10.0.1
@@ -1926,7 +1926,7 @@ importers:
       tsparticles: link:../../bundles/full/dist
       tsparticles-demo-configs: link:../../utils/configs/dist
     devDependencies:
-      '@rollup/plugin-commonjs': 23.0.5_rollup@3.7.4
+      '@rollup/plugin-commonjs': 24.0.0_rollup@3.7.4
       '@rollup/plugin-json': 6.0.0_rollup@3.7.4
       '@rollup/plugin-node-resolve': 15.0.1_rollup@3.7.4
       '@rollup/plugin-typescript': 10.0.1_ksuudmkloucy44p3irodiuckje
@@ -13794,8 +13794,8 @@ packages:
       rollup: 2.79.1
     dev: true
 
-  /@rollup/plugin-commonjs/23.0.5_rollup@3.7.4:
-    resolution: {integrity: sha512-IwI51j5kCmLMYsErEvZAID/pg7Z1qgyVJ+QIPDDIg1AOPbIGbdTCjuHDWIBCtoF1dvMkXfQv7B2eTadjnLRbmA==}
+  /@rollup/plugin-commonjs/24.0.0_rollup@3.7.4:
+    resolution: {integrity: sha512-0w0wyykzdyRRPHOb0cQt14mIBLujfAv6GgP6g8nvg/iBxEm112t3YPPq+Buqe2+imvElTka+bjNlJ/gB56TD8g==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^2.68.0||^3.0.0
@@ -13808,7 +13808,7 @@ packages:
       estree-walker: 2.0.2
       glob: 8.0.3
       is-reference: 1.2.1
-      magic-string: 0.26.7
+      magic-string: 0.27.0
       rollup: 3.7.4
     dev: true
 
@@ -40198,7 +40198,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.75.0_webpack-cli@5.0.1
+      webpack: 5.75.0
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
     resolution: {integrity: sha512-3x31rjbEQWKMNzacUZRE6wXvUFuGpH7vr0lIEbYpMAG9BOxi0928QU1BBswOAP3kg3H1O4hiS+sq4YyAn6ANnA==}
@@ -40693,7 +40693,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-    dev: true
 
   /webpack/5.75.0_webpack-cli@4.10.0:
     resolution: {integrity: sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==}
