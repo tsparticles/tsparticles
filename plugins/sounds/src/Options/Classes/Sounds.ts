@@ -7,11 +7,13 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
     enable;
     events: SoundsEvent[];
     icons;
+    volume;
 
     constructor() {
         this.enable = false;
         this.events = [];
         this.icons = new SoundsIcons();
+        this.volume = 100;
     }
 
     load(data?: RecursivePartial<ISounds>): void {
@@ -34,5 +36,9 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
         }
 
         this.icons.load(data.icons);
+
+        if (data.volume !== undefined) {
+            this.volume = data.volume;
+        }
     }
 }

@@ -24,6 +24,7 @@ export class SoundsInstance implements IContainerPlugin {
     private readonly _engine;
     private _muteImg?: HTMLImageElement;
     private _oscillators: OscillatorNode[];
+    private _source?: AudioNode;
     private _unmuteImg?: HTMLImageElement;
 
     constructor(container: SoundsContainer, engine: Engine) {
@@ -166,25 +167,13 @@ export class SoundsInstance implements IContainerPlugin {
     }
 
     private async _playFrequency(frequency: number, duration: number): Promise<void> {
-        if (!this._container.audioContext) {
+        if (!this._container.audioContext || !this._source) {
             return;
         }
 
         const oscillator = this._addOscillator(this._container.audioContext);
 
-        const needsGain = true;
-
-        if (needsGain) {
-            const gain = this._container.audioContext.createGain();
-
-            gain.connect(this._container.audioContext.destination);
-
-            gain.gain.value = 0.1;
-
-            oscillator.connect(gain);
-        } else {
-            oscillator.connect(this._container.audioContext.destination);
-        }
+        oscillator.connect(this._source);
 
         oscillator.type = "sine";
         oscillator.frequency.value = frequency;
@@ -248,7 +237,13 @@ export class SoundsInstance implements IContainerPlugin {
     }
 
     private _unmute(): void {
-        const container = this._container;
+        const container = this._container,
+            options = container.actualOptions,
+            soundsOptions = options.sounds;
+
+        if (!soundsOptions) {
+            return;
+        }
 
         if (!container.audioContext) {
             container.audioContext = new AudioContext();
@@ -257,6 +252,14 @@ export class SoundsInstance implements IContainerPlugin {
         if (!this._oscillators) {
             this._oscillators = [];
         }
+
+        const gain = container.audioContext.createGain();
+
+        gain.connect(container.audioContext.destination);
+
+        gain.gain.value = soundsOptions.volume / 100;
+
+        this._source = gain;
 
         this._initEvents();
     }

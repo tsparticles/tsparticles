@@ -7,4 +7,6 @@ export interface ISounds {
     events: ISoundsEvent[];
 
     icons: ISoundsIcons;
+
+    volume: number;
 }
