@@ -95,6 +95,8 @@ export class SoundsInstance implements IContainerPlugin {
 
                     setTimeout(() => {
                         oscillator.stop();
+                        oscillator.disconnect();
+                        gain.disconnect();
                     });
                 }
             }
@@ -116,6 +118,14 @@ export class SoundsInstance implements IContainerPlugin {
         }
     }
 
+    private _addOscillator(audioCtx: AudioContext): OscillatorNode {
+        const oscillator = audioCtx.createOscillator();
+
+        this._oscillators.push(oscillator);
+
+        return oscillator;
+    }
+
     private _initEvents(): void {
         const container = this._container,
             soundsOptions = container.actualOptions.sounds;
@@ -125,14 +135,12 @@ export class SoundsInstance implements IContainerPlugin {
         }
 
         for (const event of soundsOptions.events) {
-            const cb = (args: CustomEventArgs): void => {
+            const cb = async (args: CustomEventArgs): Promise<void> => {
                 if (this._container !== args.container) {
                     return;
                 }
 
                 if (!this._container || this._container.muted || this._container.destroyed) {
-                    console.log("invalid container");
-
                     executeOnSingleOrMultiple(event.event, (item) => {
                         this._engine.removeEventListener(item, cb);
                     });
@@ -140,7 +148,7 @@ export class SoundsInstance implements IContainerPlugin {
                     return;
                 }
 
-                this._playNote(event, 0);
+                await this._playNote(event, 0);
             };
 
             executeOnSingleOrMultiple(event.event, (item) => {
@@ -157,32 +165,42 @@ export class SoundsInstance implements IContainerPlugin {
         }
     }
 
-    private _playFrequency(frequency: number, duration: number): void {
+    private async _playFrequency(frequency: number, duration: number): Promise<void> {
         if (!this._container.audioContext) {
             return;
         }
 
-        const oscillator = this._container.audioContext.createOscillator();
+        const oscillator = this._addOscillator(this._container.audioContext);
 
-        oscillator.connect(this._container.audioContext.destination);
+        const needsGain = true;
 
-        this._oscillators.push(oscillator);
+        if (needsGain) {
+            const gain = this._container.audioContext.createGain();
+
+            gain.connect(this._container.audioContext.destination);
+
+            gain.gain.value = 0.1;
+
+            oscillator.connect(gain);
+        } else {
+            oscillator.connect(this._container.audioContext.destination);
+        }
 
         oscillator.type = "sine";
         oscillator.frequency.value = frequency;
 
         oscillator.start();
 
-        setTimeout(() => {
-            oscillator.stop();
+        return new Promise<void>((resolve) => {
+            setTimeout(() => {
+                this._removeOscillator(oscillator);
 
-            this._oscillators.splice(this._oscillators.indexOf(oscillator), 1);
-        }, duration);
+                resolve();
+            }, duration);
+        });
     }
 
-    private _playNote(event: SoundsEvent, noteIdx: number): void {
-        console.log("play note", noteIdx);
-
+    private async _playNote(event: SoundsEvent, noteIdx: number): Promise<void> {
         const note = event.notes[noteIdx];
 
         if (!note) {
@@ -191,16 +209,16 @@ export class SoundsInstance implements IContainerPlugin {
 
         const value = note.value;
 
-        executeOnSingleOrMultiple(value, (_, idx) => {
-            this._playNoteValue(event, noteIdx, idx);
+        const promises = executeOnSingleOrMultiple(value, async (_, idx) => {
+            return this._playNoteValue(event, noteIdx, idx);
         });
 
-        setTimeout(() => {
-            this._playNote(event, noteIdx + 1);
-        }, note.duration);
+        await (promises instanceof Array ? Promise.allSettled(promises) : promises);
+
+        await this._playNote(event, noteIdx + 1);
     }
 
-    private _playNoteValue(event: SoundsEvent, noteIdx: number, valueIdx: number): void {
+    private async _playNoteValue(event: SoundsEvent, noteIdx: number, valueIdx: number): Promise<void> {
         const note = event.notes[noteIdx];
 
         if (!note) {
@@ -216,10 +234,17 @@ export class SoundsInstance implements IContainerPlugin {
                 return;
             }
 
-            this._playFrequency(freq, note.duration);
+            await this._playFrequency(freq, note.duration);
         } catch (e) {
             console.error(e);
         }
+    }
+
+    private _removeOscillator(oscillator: OscillatorNode): void {
+        oscillator.stop();
+        oscillator.disconnect();
+
+        this._oscillators.splice(this._oscillators.indexOf(oscillator), 1);
     }
 
     private _unmute(): void {

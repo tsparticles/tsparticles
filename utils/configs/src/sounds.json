@@ -41,7 +41,7 @@
         },
         "rate": {
             "quantity": 1,
-            "delay": 2
+            "delay": 0.3
         },
         "size": {
             "width": 0,
@@ -55,8 +55,12 @@
                 "event": "particleAdded",
                 "notes": [
                     {
+                        "duration": 500,
+                        "value": ["C5", "E5", "G5"]
+                    },
+                    {
                         "duration": 1000,
-                        "value": "C5"
+                        "value": ["D5", "F5", "A5"]
                     }
                 ]
             },
@@ -65,7 +69,7 @@
                 "notes": [
                     {
                         "duration": 500,
-                        "value": "G5"
+                        "value": ["E5", "G5", "B5"]
                     }
                 ]
             }

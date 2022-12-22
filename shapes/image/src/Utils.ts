@@ -91,7 +91,7 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): stri
  * @param image the image to load
  */
 export async function loadImage(image: IImage): Promise<void> {
-    return new Promise((resolve: () => void) => {
+    return new Promise<void>((resolve: () => void) => {
         image.loading = true;
 
         const img = new Image();
