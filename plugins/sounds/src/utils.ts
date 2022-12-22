@@ -17,8 +17,6 @@ export function getNoteFrequency(note: string): number | undefined {
     const regex = /([A-G]b?)(\d)/i,
         result = regex.exec(note);
 
-    console.log(result);
-
     if (!result || result.length !== 3) {
         return;
     }

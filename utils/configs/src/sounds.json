@@ -40,8 +40,8 @@
             "y": 50
         },
         "rate": {
-            "quantity": 5,
-            "delay": 0.3
+            "quantity": 1,
+            "delay": 2
         },
         "size": {
             "width": 0,
