@@ -1,5 +1,5 @@
 {
-    "name": "Sounds",
+    "name": "Sounds Melodies",
     "particles": {
         "number": {
             "value": 0
@@ -53,23 +53,31 @@
         "events": [
             {
                 "event": "particleAdded",
-                "notes": [
+                "melodies": [
                     {
-                        "duration": 500,
-                        "value": ["C5", "E5", "G5"]
-                    },
-                    {
-                        "duration": 1000,
-                        "value": ["D5", "F5", "A5"]
+                        "notes": [
+                            {
+                                "duration": 500,
+                                "value": ["C5", "E5", "G5"]
+                            },
+                            {
+                                "duration": 1000,
+                                "value": ["D5", "F5", "A5"]
+                            }
+                        ]
                     }
                 ]
             },
             {
                 "event": "particleRemoved",
-                "notes": [
+                "melodies": [
                     {
-                        "duration": 500,
-                        "value": ["E5", "G5", "B5"]
+                        "notes": [
+                            {
+                                "duration": 500,
+                                "value": ["E5", "G5", "B5"]
+                            }
+                        ]
                     }
                 ]
             }

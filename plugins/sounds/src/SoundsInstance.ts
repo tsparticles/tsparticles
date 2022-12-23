@@ -1,8 +1,9 @@
 import type { CustomEventArgs, Engine, IContainerPlugin } from "tsparticles-engine";
 import type { SoundsContainer } from "./types";
-import type { SoundsEvent } from "./Options/Classes/SoundsEvent";
+import type { SoundsNote } from "./Options/Classes/SoundsNote";
 import { executeOnSingleOrMultiple } from "tsparticles-engine";
 import { getNoteFrequency } from "./utils";
+import { itemFromArray } from "tsparticles-engine";
 import { itemFromSingleOrMultiple } from "tsparticles-engine";
 
 function setIconStyle(
@@ -20,6 +21,7 @@ function setIconStyle(
 }
 
 export class SoundsInstance implements IContainerPlugin {
+    private _audioMap: Map<string, AudioBuffer>;
     private readonly _container;
     private readonly _engine;
     private _muteImg?: HTMLImageElement;
@@ -31,6 +33,43 @@ export class SoundsInstance implements IContainerPlugin {
         this._container = container;
         this._engine = engine;
         this._oscillators = [];
+        this._audioMap = new Map<string, AudioBuffer>();
+    }
+
+    async init(): Promise<void> {
+        const container = this._container,
+            options = container.actualOptions,
+            soundsOptions = options.sounds;
+
+        if (!soundsOptions?.enable) {
+            return;
+        }
+
+        const events = soundsOptions.events;
+
+        this._audioMap = new Map<string, AudioBuffer>();
+
+        for (const event of events) {
+            if (!event.audio) {
+                continue;
+            }
+
+            executeOnSingleOrMultiple(event.audio, async (audio) => {
+                const response = await fetch(audio);
+
+                if (!response.ok) {
+                    return;
+                }
+
+                const arrayBuffer = await response.arrayBuffer();
+
+                container.audioContext = new AudioContext();
+
+                const audioBuffer = await container.audioContext.decodeAudioData(arrayBuffer);
+
+                this._audioMap.set(audio, audioBuffer);
+            });
+        }
     }
 
     async start(): Promise<void> {
@@ -149,7 +188,17 @@ export class SoundsInstance implements IContainerPlugin {
                     return;
                 }
 
-                await this._playNote(event, 0);
+                if (event.audio) {
+                    this._playBuffer(itemFromSingleOrMultiple(event.audio));
+                } else if (event.melodies) {
+                    const melody = itemFromArray(event.melodies);
+
+                    await this._playNote(melody.notes, 0);
+                } else if (event.notes) {
+                    const note = itemFromArray(event.notes);
+
+                    await this._playNote([note], 0);
+                }
             };
 
             executeOnSingleOrMultiple(event.event, (item) => {
@@ -164,6 +213,27 @@ export class SoundsInstance implements IContainerPlugin {
         if (container.audioContext) {
             container.audioContext = undefined;
         }
+    }
+
+    private _playBuffer(audio: string): void {
+        const audioBuffer = this._audioMap.get(audio);
+
+        if (!audioBuffer) {
+            return;
+        }
+
+        const audioCtx = this._container.audioContext;
+
+        if (!audioCtx) {
+            return;
+        }
+
+        const source = audioCtx.createBufferSource();
+
+        source.buffer = audioBuffer;
+
+        source.connect(this._source ?? audioCtx.destination);
+        source.start();
     }
 
     private async _playFrequency(frequency: number, duration: number): Promise<void> {
@@ -189,8 +259,8 @@ export class SoundsInstance implements IContainerPlugin {
         });
     }
 
-    private async _playNote(event: SoundsEvent, noteIdx: number): Promise<void> {
-        const note = event.notes[noteIdx];
+    private async _playNote(notes: SoundsNote[], noteIdx: number): Promise<void> {
+        const note = notes[noteIdx];
 
         if (!note) {
             return;
@@ -199,16 +269,16 @@ export class SoundsInstance implements IContainerPlugin {
         const value = note.value;
 
         const promises = executeOnSingleOrMultiple(value, async (_, idx) => {
-            return this._playNoteValue(event, noteIdx, idx);
+            return this._playNoteValue(notes, noteIdx, idx);
         });
 
         await (promises instanceof Array ? Promise.allSettled(promises) : promises);
 
-        await this._playNote(event, noteIdx + 1);
+        await this._playNote(notes, noteIdx + 1);
     }
 
-    private async _playNoteValue(event: SoundsEvent, noteIdx: number, valueIdx: number): Promise<void> {
-        const note = event.notes[noteIdx];
+    private async _playNoteValue(notes: SoundsNote[], noteIdx: number, valueIdx: number): Promise<void> {
+        const note = notes[noteIdx];
 
         if (!note) {
             return;
