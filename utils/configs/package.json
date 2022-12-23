@@ -109,7 +109,7 @@
     "devDependencies": {
         "@babel/core": "^7.20.7",
         "@tsparticles/eslint-config": "^1.5.0",
-        "@tsparticles/options-updater": "^2.7.0",
+        "@tsparticles/options-updater": "^2.6.0",
         "@tsparticles/prettier-config": "^1.5.0",
         "@types/webpack-env": "^1.18.0",
         "@typescript-eslint/eslint-plugin": "^5.47.0",
