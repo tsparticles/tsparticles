@@ -12,13 +12,15 @@ function setIconStyle(
     top: number,
     left: number,
     display: "block" | "none",
-    zIndex: number
+    zIndex: number,
+    width: number,
+    margin: number
 ): void {
     icon.style.userSelect = "none";
     icon.style.webkitUserSelect = "none";
     icon.style.position = "absolute";
-    icon.style.top = `${top + 10}px`;
-    icon.style.left = `${left - 34}px`;
+    icon.style.top = `${top + margin}px`;
+    icon.style.left = `${left - margin - width}px`;
     icon.style.display = display;
     icon.style.zIndex = `${zIndex + 1}`;
 }
@@ -115,28 +117,36 @@ export class SoundsInstance implements IContainerPlugin {
             containerTop + margin,
             containerRight - margin * 3 - muteOptions.width - volumeDownOptions.width - volumeUpOptions.width,
             "block",
-            options.fullScreen.zIndex + 1
+            options.fullScreen.zIndex + 1,
+            muteOptions.width,
+            margin
         );
         setIconStyle(
             unmuteImg,
             containerTop + margin,
             containerRight - margin * 3 - unmuteOptions.width - volumeDownOptions.width - volumeUpOptions.width,
             "none",
-            options.fullScreen.zIndex + 1
+            options.fullScreen.zIndex + 1,
+            unmuteOptions.width,
+            margin
         );
         setIconStyle(
             volumeDownImg,
             containerTop + margin,
             containerRight - margin * 2 - volumeDownOptions.width - volumeUpOptions.width,
             "block",
-            options.fullScreen.zIndex + 1
+            options.fullScreen.zIndex + 1,
+            volumeDownOptions.width,
+            margin
         );
         setIconStyle(
             volumeUpImg,
             containerTop + margin,
             containerRight - margin - volumeUpOptions.width,
             "block",
-            options.fullScreen.zIndex + 1
+            options.fullScreen.zIndex + 1,
+            volumeUpOptions.width,
+            margin
         );
 
         muteImg.src = muteOptions.path ?? (muteOptions.svg ? `data:image/svg+xml;base64,${btoa(muteOptions.svg)}` : "");
