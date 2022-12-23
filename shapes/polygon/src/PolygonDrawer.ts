@@ -1,24 +1,20 @@
-import type { ICoordinates, IParticle } from "tsparticles-engine";
-import type { IPolygonShape } from "./IPolygonShape";
-import type { ISide } from "./PolygonDrawerBase";
+import type { ICoordinates, Particle } from "tsparticles-engine";
+import type { ISide } from "./ISide";
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
 
 /**
  * @category Shape Drawers
  */
 export class PolygonDrawer extends PolygonDrawerBase {
-    getCenter(particle: IParticle, radius: number): ICoordinates {
-        const sides = this.getSidesCount(particle);
-
+    getCenter(particle: Particle, radius: number): ICoordinates {
         return {
-            x: -radius / (sides / 3.5),
+            x: -radius / (particle.sides / 3.5),
             y: -radius / (2.66 / 3.5),
         };
     }
 
-    getSidesData(particle: IParticle, radius: number): ISide {
-        const polygon = particle.shapeData as IPolygonShape;
-        const sides = polygon?.sides ?? polygon?.nb_sides ?? 5;
+    getSidesData(particle: Particle, radius: number): ISide {
+        const sides = particle.sides;
 
         return {
             count: {

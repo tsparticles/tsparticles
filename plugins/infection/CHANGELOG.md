@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@2.6.0...tsparticles-plugin-infection@2.7.0) (2022-12-23)
+
+### Features
+
+-   created sounds plugin, no sounds yet, added only mute/unmute icon ([5a5970d](https://github.com/matteobruni/tsparticles/commit/5a5970d31682c62197608757cfd66b4b9c876e06))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@2.5.3...tsparticles-plugin-infection@2.6.0) (2022-12-06)
 
 **Note:** Version bump only for package tsparticles-plugin-infection

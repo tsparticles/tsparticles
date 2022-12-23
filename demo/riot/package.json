@@ -1,7 +1,7 @@
 {
     "name": "riot-particles-demo",
     "private": true,
-    "version": "2.6.0",
+    "version": "2.7.0",
     "description": "",
     "main": "index.js",
     "scripts": {
@@ -11,7 +11,7 @@
         "build": "webpack --mode production",
         "build:ci": "webpack --mode production",
         "prepublishOnly": "npm test",
-        "start": "webpack serve --mode development --hot --port 3000"
+        "start": "webpack serve --mode development --hot --port 3003"
     },
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "license": "MIT",
@@ -20,13 +20,13 @@
         "@riotjs/register": "^6.0.1",
         "@riotjs/webpack-loader": "^6.0.0",
         "chai": "^4.3.7",
-        "css-loader": "^6.7.2",
+        "css-loader": "^6.7.3",
         "esm": "^3.2.25",
         "html-webpack-plugin": "^5.5.0",
         "jsdom": "^20.0.3",
         "jsdom-global": "^3.0.2",
         "mini-css-extract-plugin": "^2.7.2",
-        "mocha": "^10.1.0",
+        "mocha": "^10.2.0",
         "nyc": "^15.1.0",
         "webpack": "^5.75.0",
         "webpack-cli": "^5.0.1",
@@ -38,8 +38,9 @@
         "@riotjs/route": "^8.0.2",
         "path": "^0.12.7",
         "riot": "^7.1.0",
-        "riot-particles": "^2.6.0",
-        "tsparticles": "^2.6.0",
-        "tsparticles-engine": "^2.6.0"
+        "riot-particles": "^2.7.0",
+        "tsparticles": "^2.7.0",
+        "tsparticles-demo-configs": "^2.7.0",
+        "tsparticles-engine": "^2.7.0"
     }
 }

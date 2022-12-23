@@ -150,6 +150,7 @@
         await loadInfectionPlugin(tsParticles);
         await loadMotionPlugin(tsParticles);
         await loadPolygonMaskPlugin(tsParticles);
+        await loadSoundsPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
         await loadParticlesRepulseInteraction(tsParticles);
         await loadGradientUpdater(tsParticles);
@@ -159,10 +160,22 @@
         await loadPerlinNoisePath(tsParticles);
         await loadSimplexNoisePath(tsParticles);
         await loadBubbleShape(tsParticles);
+        await loadCardsShape(tsParticles);
         await loadHeartShape(tsParticles);
         await loadMultilineTextShape(tsParticles);
+        await loadPathShape(tsParticles);
         await loadRoundedRectShape(tsParticles);
         await loadSpiralShape(tsParticles);
+
+        for (const presetId in tsParticles.configs) {
+            const preset = tsParticles.configs[presetId];
+
+            const option = document.createElement('option');
+            option.value = presetId;
+            option.text = preset.name || presetId;
+
+            document.getElementById('presets').appendChild(option);
+        }
 
         const element = document.getElementById('editor');
         const options = {
@@ -328,4 +341,8 @@ function pixelFilter(pixel) {
 
 function pixelTextFilter(pixel) {
     return pixel.a > 0;
+}
+
+function explodeSoundCheck(args) {
+    return args.data.particle.shape === "line";
 }

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-circle@2.6.0...tsparticles-shape-circle@2.7.0) (2022-12-23)
+
+### Features
+
+-   added shape options to circle, added range values to polygon and star shape options ([694e728](https://github.com/matteobruni/tsparticles/commit/694e728118ed42301dff6d310959cfcc1343c1d3))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-circle@2.5.3...tsparticles-shape-circle@2.6.0) (2022-12-06)
 
 **Note:** Version bump only for package tsparticles-shape-circle

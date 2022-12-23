@@ -41,7 +41,6 @@ import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOpt
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { SizeMode } from "../Enums/Modes/SizeMode";
 import { StartValueType } from "../Enums/Types/StartValueType";
-import type { Stroke } from "../Options/Classes/Particles/Stroke";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
@@ -238,14 +237,14 @@ export class Particle implements IParticle {
     spawning!: boolean;
 
     /**
-     * Gets the particle stroke options
-     */
-    stroke?: Stroke;
-
-    /**
      * Sets the particle stroke color
      */
     strokeColor?: IParticleHslAnimation;
+
+    /**
+     * Sets the particle stroke opacity
+     */
+    strokeOpacity?: number;
 
     /**
      * Sets the particle stroke width
@@ -326,25 +325,7 @@ export class Particle implements IParticle {
     }
 
     getFillColor(): IHsl | undefined {
-        const color = this.bubble.color ?? getHslFromAnimation(this.color);
-
-        if (color && this.roll && (this.backColor || this.roll.alter)) {
-            const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
-                backSum = this.roll.horizontal ? Math.PI / 2 : 0,
-                rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
-
-            if (rolled) {
-                if (this.backColor) {
-                    return this.backColor;
-                }
-
-                if (this.roll.alter) {
-                    return alterHsl(color, this.roll.alter.type, this.roll.alter.value);
-                }
-            }
-        }
-
-        return color;
+        return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.color));
     }
 
     getMass(): number {
@@ -364,7 +345,7 @@ export class Particle implements IParticle {
     }
 
     getStrokeColor(): IHsl | undefined {
-        return this.bubble.color ?? getHslFromAnimation(this.strokeColor) ?? this.getFillColor();
+        return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
     }
 
     init(
@@ -469,7 +450,7 @@ export class Particle implements IParticle {
                     break;
 
                 case StartValueType.random:
-                    this.size.value = randomInRange(this.size) * pxRatio;
+                    this.size.value = randomInRange(this.size);
                     this.size.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                     break;
@@ -482,6 +463,8 @@ export class Particle implements IParticle {
                     break;
             }
         }
+
+        this.size.initialValue = this.size.value;
 
         /* position */
         this.bubble = {
@@ -712,6 +695,30 @@ export class Particle implements IParticle {
         }
 
         return overlaps;
+    }
+
+    private _getRollColor(color?: IHsl): IHsl | undefined {
+        if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
+            return color;
+        }
+
+        const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
+            backSum = this.roll.horizontal ? Math.PI / 2 : 0,
+            rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
+
+        if (!rolled) {
+            return color;
+        }
+
+        if (this.backColor) {
+            return this.backColor;
+        }
+
+        if (this.roll.alter) {
+            return alterHsl(color, this.roll.alter.type, this.roll.alter.value);
+        }
+
+        return color;
     }
 
     private _loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {

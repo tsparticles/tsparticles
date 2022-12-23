@@ -141,6 +141,8 @@ export class OpacityUpdater implements IParticleUpdater {
                 particle.opacity.velocity *= getRandom();
             }
         }
+
+        particle.opacity.initialValue = particle.opacity.value;
     }
 
     isEnabled(particle: Particle): boolean {

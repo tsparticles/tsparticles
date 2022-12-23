@@ -1,14 +1,15 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
 import type { IStarShape } from "./IStarShape";
+import type { StarParticle } from "./StarParticle";
+import { getRangeValue } from "tsparticles-engine";
 
 /**
  * @category Shape Drawers
  */
 export class StarDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
-        const star = particle.shapeData as IStarShape,
-            sides = this.getSidesCount(particle),
-            inset = star?.inset ?? 2;
+    draw(context: CanvasRenderingContext2D, particle: StarParticle, radius: number): void {
+        const sides = particle.sides,
+            inset = particle.starInset ?? 2;
 
         context.moveTo(0, 0 - radius);
 
@@ -20,9 +21,16 @@ export class StarDrawer implements IShapeDrawer {
         }
     }
 
-    getSidesCount(particle: IParticle): number {
+    getSidesCount(particle: Particle): number {
         const star = particle.shapeData as IStarShape;
 
-        return star?.sides ?? star?.nb_sides ?? 5;
+        return Math.round(getRangeValue(star?.sides ?? star?.nb_sides ?? 5));
+    }
+
+    particleInit(container: Container, particle: StarParticle): void {
+        const star = particle.shapeData as IStarShape,
+            inset = getRangeValue(star?.inset ?? 2);
+
+        particle.starInset = inset;
     }
 }

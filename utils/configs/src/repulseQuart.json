@@ -1,10 +1,10 @@
 {
+    "name": "Repulse Quart",
     "particles": {
         "number": {
             "value": 200,
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             }
         },
         "color": {

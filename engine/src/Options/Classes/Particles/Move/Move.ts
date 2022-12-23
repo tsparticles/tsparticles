@@ -24,7 +24,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     angle;
     attract;
     center: MoveCenter;
-    decay;
+    decay: RangeValue;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
     drift: RangeValue;
@@ -152,7 +152,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.center.load(data.center);
 
         if (data.decay !== undefined) {
-            this.decay = data.decay;
+            this.decay = setRangeValue(data.decay);
         }
 
         if (data.direction !== undefined) {

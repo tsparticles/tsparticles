@@ -1,4 +1,5 @@
 {
+    "name": "Motion Reduce",
     "motion": {
         "disable": false,
         "reduce": {
@@ -10,8 +11,7 @@
         "number": {
             "value": 80,
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             }
         },
         "color": {

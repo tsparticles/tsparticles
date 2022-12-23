@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.6.0...tsparticles-engine@2.7.0) (2022-12-23)
+
+### Bug Fixes
+
+-   added missing export ([a2ce9df](https://github.com/matteobruni/tsparticles/commit/a2ce9df6793a5f3b9e061c920b486ba2974a664a))
+-   fixed exports of engine ([f8a676b](https://github.com/matteobruni/tsparticles/commit/f8a676be85be237098712cb94387677a5ff0cf4d))
+-   fixed issue with animation random size, multiplying again the pixel ratio ([3e89c7b](https://github.com/matteobruni/tsparticles/commit/3e89c7bbc3380defd333253cc7a0cb36ab6d1592))
+-   fixed move decay type, it should be ranged ([113b6c0](https://github.com/matteobruni/tsparticles/commit/113b6c089ffda8b34188386332161f384e709a4a))
+
+### Features
+
+-   added ranged values in stroke width and opacity properties ([5d3806d](https://github.com/matteobruni/tsparticles/commit/5d3806dd5d097f2913b0f7f480eaeaab512d0be1))
+-   added support for multiple shapes declared at once ([463d099](https://github.com/matteobruni/tsparticles/commit/463d099b9e50cfe99b494a49329f9431a5e1ced3))
+-   improved density values, now is 1:1 with number on 1080 resolution with pixel ratio of 1 ([3ff8fbf](https://github.com/matteobruni/tsparticles/commit/3ff8fbfefb01f1d6fe8be836c3c2909b74630475))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-engine@2.5.2...tsparticles-engine@2.6.0) (2022-12-06)
 
 ### Bug Fixes

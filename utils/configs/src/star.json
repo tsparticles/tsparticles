@@ -1,10 +1,10 @@
 {
+    "name": "Star",
     "particles": {
         "number": {
             "value": 10,
             "density": {
-                "enable": false,
-                "area": 800
+                "enable": false
             }
         },
         "color": {

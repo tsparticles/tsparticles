@@ -1,10 +1,10 @@
 {
+    "name": "Emitter",
     "particles": {
         "number": {
             "value": 100,
             "density": {
-                "enable": false,
-                "area": 800
+                "enable": false
             }
         },
         "color": {

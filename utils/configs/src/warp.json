@@ -1,4 +1,5 @@
 {
+    "name": "Warp",
     "fullScreen": false,
     "fpsLimit": 120,
     "manualParticles": [

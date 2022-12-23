@@ -1,4 +1,5 @@
 {
+    "name": "Multiple Polygon Masks",
     "interactivity": {
         "events": {
             "onClick": {
@@ -87,10 +88,6 @@
             "straight": false
         },
         "number": {
-            "density": {
-                "enable": false,
-                "area": 2000
-            },
             "limit": 0,
             "value": 200
         },

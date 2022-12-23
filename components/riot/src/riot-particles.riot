@@ -5,11 +5,11 @@
         let oldId;
 
         export default {
-            onMounted(props) {
+            async onMounted(props) {
                 tsParticles.init();
 
                 if (props.particlesInit) {
-                    props.particlesInit(tsParticles);
+                    await props.particlesInit(tsParticles);
                 }
 
                 if (oldId) {

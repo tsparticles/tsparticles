@@ -440,9 +440,9 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
 
 export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
-    callback: (obj: T) => U
+    callback: (obj: T, index: number) => U
 ): SingleOrMultiple<U> {
-    return obj instanceof Array ? obj.map((item) => callback(item)) : callback(obj);
+    return obj instanceof Array ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
 }
 
 export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
@@ -451,7 +451,7 @@ export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: nu
 
 export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,
-    callback: (obj: T) => boolean
+    callback: (obj: T, index: number) => boolean
 ): T | undefined {
-    return obj instanceof Array ? obj.find((t) => callback(t)) : callback(obj) ? obj : undefined;
+    return obj instanceof Array ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
 }

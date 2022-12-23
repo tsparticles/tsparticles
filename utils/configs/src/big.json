@@ -1,4 +1,5 @@
 {
+    "name": "Big Particles",
     "particles": {
         "number": {
             "value": 30

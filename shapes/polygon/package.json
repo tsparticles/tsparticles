@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-shape-polygon",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "description": "tsParticles polygon shape",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -61,29 +61,29 @@
     },
     "prettier": "@tsparticles/prettier-config",
     "devDependencies": {
-        "@babel/core": "^7.20.5",
-        "@tsparticles/build": "^1.5.0",
-        "@tsparticles/eslint-config": "^1.4.0",
-        "@tsparticles/prettier-config": "^1.4.0",
-        "@tsparticles/tsconfig": "^1.5.0",
+        "@babel/core": "^7.20.7",
+        "@tsparticles/build": "^1.6.0",
+        "@tsparticles/eslint-config": "^1.5.0",
+        "@tsparticles/prettier-config": "^1.5.0",
+        "@tsparticles/tsconfig": "^1.6.0",
         "@types/webpack-env": "^1.18.0",
-        "@typescript-eslint/eslint-plugin": "^5.45.1",
-        "@typescript-eslint/parser": "^5.45.1",
+        "@typescript-eslint/eslint-plugin": "^5.47.0",
+        "@typescript-eslint/parser": "^5.47.0",
         "babel-loader": "^9.1.0",
         "browserslist": "^4.21.4",
         "copyfiles": "^2.4.1",
-        "eslint": "^8.29.0",
+        "eslint": "^8.30.0",
         "eslint-config-prettier": "^8.5.0",
-        "prettier": "^2.8.0",
+        "prettier": "^2.8.1",
         "rimraf": "^3.0.2",
         "terser-webpack-plugin": "^5.3.6",
-        "typescript": "^4.9.3",
+        "typescript": "^4.9.4",
         "webpack": "^5.75.0",
         "webpack-bundle-analyzer": "^4.7.0",
         "webpack-cli": "^5.0.1",
-        "webpack-tsparticles-plugin": "^1.5.0"
+        "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.6.0"
+        "tsparticles-engine": "^2.7.0"
     }
 }

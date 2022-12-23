@@ -1,4 +1,5 @@
 {
+    "name": "Images",
     "interactivity": {
         "events": {
             "onClick": {
@@ -32,8 +33,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             },
             "limit": 0,
             "value": 80

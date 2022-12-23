@@ -1,4 +1,5 @@
 {
+    "name": "Noise Planes",
     "background": {
         "color": "#000"
     },
@@ -51,8 +52,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             },
             "value": 80
         },

@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.6.0...tsparticles-demo@2.7.0) (2022-12-23)
+
+### Features
+
+-   added filter option to sounds event, it's a function that checks if an event can play a sound ([a0be41b](https://github.com/matteobruni/tsparticles/commit/a0be41b616d42217d8a57798a3ff3d3cafd6b6a0))
+-   added new cards shape, containing all 4 suits ([79c625e](https://github.com/matteobruni/tsparticles/commit/79c625ed818d42616bb8fbc0d5c098f5f8cf1a69))
+-   created path shape ([d46adbf](https://github.com/matteobruni/tsparticles/commit/d46adbfaabad01bd5487bb96a6849bba034f49b6))
+-   created sounds plugin, no sounds yet, added only mute/unmute icon ([5a5970d](https://github.com/matteobruni/tsparticles/commit/5a5970d31682c62197608757cfd66b4b9c876e06))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.5.3...tsparticles-demo@2.6.0) (2022-12-06)
 
 ### Bug Fixes

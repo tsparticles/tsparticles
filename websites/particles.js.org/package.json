@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/website",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "private": true,
     "description": "tsParticles Official Website",
     "main": "index.html",
@@ -30,12 +30,12 @@
         "fs-extra": "^11.1.0",
         "gh-pages": "^4.0.0",
         "minify": "^9.1.0",
-        "prettier": "^2.8.0",
+        "prettier": "^2.8.1",
         "rimraf": "^3.0.2",
-        "sass": "^1.56.1",
-        "tsparticles": "^2.6.0",
-        "tsparticles-editor": "^2.6.0",
-        "tsparticles-engine": "^2.6.0",
-        "tsparticles-preset-links": "^2.6.0"
+        "sass": "^1.57.1",
+        "tsparticles": "^2.7.0",
+        "tsparticles-editor": "^2.7.0",
+        "tsparticles-engine": "^2.7.0",
+        "tsparticles-preset-links": "^2.7.0"
     }
 }

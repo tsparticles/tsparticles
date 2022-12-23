@@ -151,6 +151,10 @@
 	  "type": "boolean",
 	  "default": false
 	},
+	"plugin-sounds": {
+	  "type": "boolean",
+	  "default": false
+	},
 	"preset-big-circles": {
 	  "type": "boolean",
 	  "default": false
@@ -200,6 +204,10 @@
 	  "default": false
 	},
 	"shape-bubble": {
+	  "type": "boolean",
+	  "default": false
+	},
+	"shape-cards": {
 	  "type": "boolean",
 	  "default": false
 	},

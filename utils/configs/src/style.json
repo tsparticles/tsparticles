@@ -1,4 +1,5 @@
 {
+    "name": "Style",
     "particles": {
         "number": {
             "value": 200,

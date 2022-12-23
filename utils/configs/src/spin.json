@@ -1,10 +1,10 @@
 {
+    "name": "Spin",
     "particles": {
         "number": {
             "value": 80,
             "density": {
-                "enable": false,
-                "area": 800
+                "enable": false
             }
         },
         "color": {

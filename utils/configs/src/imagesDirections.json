@@ -1,4 +1,5 @@
 {
+    "name": "Images with Custom Directions",
     "interactivity": {
         "events": {
             "onClick": {
@@ -30,8 +31,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             },
             "value": 80
         },

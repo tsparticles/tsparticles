@@ -1,4 +1,5 @@
 {
+    "name": "Absorbers",
     "particles": {
         "number": {
             "value": 300

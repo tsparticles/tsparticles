@@ -1,4 +1,5 @@
 {
+    "name": "Hexagon Path",
     "particles": {
         "color": {
             "value": "#FF0000",
@@ -45,8 +46,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             },
             "value": 0
         },

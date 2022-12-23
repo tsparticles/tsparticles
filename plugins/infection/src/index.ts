@@ -7,7 +7,7 @@ import { ParticlesInfecter } from "./ParticlesInfecter";
 /**
  * @category Infection Plugin
  */
-class Plugin implements IPlugin {
+class InfectionPlugin implements IPlugin {
     readonly id;
 
     constructor() {
@@ -38,7 +38,7 @@ class Plugin implements IPlugin {
 }
 
 export async function loadInfectionPlugin(engine: Engine): Promise<void> {
-    const plugin = new Plugin();
+    const plugin = new InfectionPlugin();
 
     await engine.addPlugin(plugin);
     await engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));

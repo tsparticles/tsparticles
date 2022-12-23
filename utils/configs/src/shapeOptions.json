@@ -1,4 +1,5 @@
 {
+    "name": "Shape Options",
     "particles": {
         "color": {
             "value": "#000"
@@ -22,12 +23,12 @@
             "image": [
                 {
                     "height": 128,
-                    "src": "images/plane_alt.png",
+                    "src": "https://particles.js.org/images/plane_alt.png",
                     "width": 128
                 },
                 {
                     "height": 128,
-                    "src": "images/plane_alt.png",
+                    "src": "https://particles.js.org/images/plane_alt.png",
                     "width": 128,
                     "particles": {
                         "rotate": {

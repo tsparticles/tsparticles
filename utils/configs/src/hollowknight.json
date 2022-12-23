@@ -1,4 +1,5 @@
 {
+    "name": "Hollow Knight",
     "interactivity": {
         "events": {
             "onHover": {
@@ -74,8 +75,7 @@
         },
         "number": {
             "density": {
-                "enable": false,
-                "area": 2000
+                "enable": false
             },
             "limit": 0,
             "value": 400

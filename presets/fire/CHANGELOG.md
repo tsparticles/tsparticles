@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@2.6.0...tsparticles-preset-fire@2.7.0) (2022-12-23)
+
+### Bug Fixes
+
+-   fixed fire preset using the new density values ([94c1648](https://github.com/matteobruni/tsparticles/commit/94c1648dd85afb447c309f04f7cea8041aebf895))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fire@2.5.3...tsparticles-preset-fire@2.6.0) (2022-12-06)
 
 **Note:** Version bump only for package tsparticles-preset-fire

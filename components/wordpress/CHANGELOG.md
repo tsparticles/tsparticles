@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/wordpress-particles@2.6.0...wordpress-particles@2.7.0) (2022-12-23)
+
+### Features
+
+-   added cards to wordpress plugin ([27ed9c3](https://github.com/matteobruni/tsparticles/commit/27ed9c344c26da592a83595837dea891b74d0b8b))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/wordpress-particles@2.5.3...wordpress-particles@2.6.0) (2022-12-06)
 
 ### Bug Fixes

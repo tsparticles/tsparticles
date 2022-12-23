@@ -1,4 +1,5 @@
 {
+    "name": "React Multiple Images",
     "particles": {
         "color": {
             "value": "#CCC"
@@ -22,8 +23,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             },
             "value": 8
         },

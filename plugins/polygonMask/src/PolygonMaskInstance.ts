@@ -18,7 +18,6 @@ const noPolygonDataLoaded = "No polygon data loaded.",
 export class PolygonMaskInstance implements IContainerPlugin {
     dimension: IDimension;
     offset?: ICoordinates;
-    readonly path2DSupported;
     paths?: ISvgPath[];
     raw?: ICoordinates[];
     redrawTimeout?: number;
@@ -34,7 +33,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
             height: 0,
             width: 0,
         };
-        this.path2DSupported = !!window.Path2D;
         this._polygonMaskMoveRadius = 0;
     }
 
@@ -69,14 +67,13 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const rawData = this.raw;
 
         for (const path of this.paths) {
-            const path2d = path.path2d,
-                path2dSupported = this.path2DSupported;
+            const path2d = path.path2d;
 
             if (!context) {
                 continue;
             }
 
-            if (path2dSupported && path2d && this.offset) {
+            if (path2d && this.offset) {
                 drawPolygonMaskPath(context, path2d, polygonDraw.stroke, this.offset);
             } else if (rawData) {
                 drawPolygonMask(context, rawData, polygonDraw.stroke);
@@ -175,7 +172,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         let inside = false;
 
-        // if (this.path2DSupported && this.polygonPath && position) {
+        // if (this.polygonPath && position) {
         //     inside = container.canvas.isPointInPath(this.polygonPath, position);
         // } else {
         for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
@@ -199,7 +196,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     private createPath2D(): void {
         const options = this._container.actualOptions.polygon;
 
-        if (!options || !this.path2DSupported || !this.paths?.length) {
+        if (!options || !this.paths?.length) {
             return;
         }
 

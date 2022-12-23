@@ -1,10 +1,10 @@
-import type { IShapeValues } from "tsparticles-engine";
+import type { IShapeValues, RangeValue } from "tsparticles-engine";
 
 /**
  * @category Options
  */
 export interface IStarShape extends IShapeValues {
-    inset: number;
+    inset: RangeValue;
 
-    sides: number;
+    sides: RangeValue;
 }

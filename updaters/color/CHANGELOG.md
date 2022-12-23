@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-color@2.6.0...tsparticles-updater-color@2.7.0) (2022-12-23)
+
+### Features
+
+-   added ranged values in stroke width and opacity properties ([5d3806d](https://github.com/matteobruni/tsparticles/commit/5d3806dd5d097f2913b0f7f480eaeaab512d0be1))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-color@2.5.3...tsparticles-updater-color@2.6.0) (2022-12-06)
 
 **Note:** Version bump only for package tsparticles-updater-color

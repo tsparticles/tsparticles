@@ -5,10 +5,9 @@ export const options: ISourceOptions = {
     fpsLimit: 40,
     particles: {
         number: {
-            value: 80,
+            value: 200,
             density: {
                 enable: true,
-                area: 800,
             },
         },
         color: {

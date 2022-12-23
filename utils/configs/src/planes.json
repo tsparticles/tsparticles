@@ -1,4 +1,5 @@
 {
+    "name": "Planes",
     "interactivity": {
         "events": {
             "onClick": {
@@ -31,8 +32,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             },
             "value": 80
         },
@@ -53,7 +53,7 @@
         "shape": {
             "image": {
                 "height": 128,
-                "src": "images/plane_alt.png",
+                "src": "https://particles.js.org/images/plane_alt.png",
                 "width": 128
             },
             "type": "image"

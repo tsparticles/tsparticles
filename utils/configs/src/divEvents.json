@@ -1,4 +1,5 @@
 {
+    "name": "Div Events",
     "background": {
         "color": "#0d47a1"
     },
@@ -95,8 +96,7 @@
         },
         "number": {
             "density": {
-                "enable": true,
-                "area": 800
+                "enable": true
             },
             "value": 80
         },

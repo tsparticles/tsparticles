@@ -101,6 +101,7 @@ app.use("/plugin-easing-sine", express.static("./node_modules/tsparticles-plugin
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/tsparticles-plugin-motion"));
+app.use("/plugin-sounds", express.static("./node_modules/tsparticles-plugin-sounds"));
 app.use("/preset-big-circles", express.static("./node_modules/tsparticles-preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/tsparticles-preset-bubbles"));
 app.use("/preset-confetti", express.static("./node_modules/tsparticles-preset-confetti"));
@@ -114,8 +115,10 @@ app.use("/preset-snow", express.static("./node_modules/tsparticles-preset-snow")
 app.use("/preset-stars", express.static("./node_modules/tsparticles-preset-stars"));
 app.use("/preset-triangles", express.static("./node_modules/tsparticles-preset-triangles"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble"));
+app.use("/shape-cards", express.static("./node_modules/tsparticles-shape-cards"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
+app.use("/shape-path", express.static("./node_modules/tsparticles-shape-path"));
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect"));
 app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
