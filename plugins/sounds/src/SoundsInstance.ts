@@ -22,17 +22,17 @@ function setIconStyle(
 
 export class SoundsInstance implements IContainerPlugin {
     private _audioMap: Map<string, AudioBuffer>;
+    private _audioSources: AudioScheduledSourceNode[];
     private readonly _container;
     private readonly _engine;
     private _muteImg?: HTMLImageElement;
-    private _oscillators: OscillatorNode[];
     private _source?: AudioNode;
     private _unmuteImg?: HTMLImageElement;
 
     constructor(container: SoundsContainer, engine: Engine) {
         this._container = container;
         this._engine = engine;
-        this._oscillators = [];
+        this._audioSources = [];
         this._audioMap = new Map<string, AudioBuffer>();
     }
 
@@ -117,28 +117,7 @@ export class SoundsInstance implements IContainerPlugin {
             } else {
                 this._unmute();
 
-                if (container.audioContext) {
-                    const gain = container.audioContext.createGain();
-
-                    gain.connect(container.audioContext.destination);
-
-                    gain.gain.value = 0;
-
-                    const oscillator = container.audioContext.createOscillator();
-
-                    oscillator.connect(gain);
-
-                    oscillator.type = "sine";
-                    oscillator.frequency.value = 1;
-
-                    oscillator.start();
-
-                    setTimeout(() => {
-                        oscillator.stop();
-                        oscillator.disconnect();
-                        gain.disconnect();
-                    });
-                }
+                this._playMuteSound();
             }
         };
 
@@ -149,6 +128,8 @@ export class SoundsInstance implements IContainerPlugin {
     stop(): void {
         this._container.muted = true;
 
+        this._mute();
+
         if (this._muteImg) {
             this._muteImg.remove();
         }
@@ -158,10 +139,18 @@ export class SoundsInstance implements IContainerPlugin {
         }
     }
 
+    private _addBuffer(audioCtx: AudioContext): AudioBufferSourceNode {
+        const buffer = audioCtx.createBufferSource();
+
+        this._audioSources.push(buffer);
+
+        return buffer;
+    }
+
     private _addOscillator(audioCtx: AudioContext): OscillatorNode {
         const oscillator = audioCtx.createOscillator();
 
-        this._oscillators.push(oscillator);
+        this._audioSources.push(oscillator);
 
         return oscillator;
     }
@@ -210,9 +199,20 @@ export class SoundsInstance implements IContainerPlugin {
     private _mute(): void {
         const container = this._container;
 
-        if (container.audioContext) {
-            container.audioContext = undefined;
+        if (!container.audioContext) {
+            return;
         }
+
+        for (const source of this._audioSources) {
+            this._removeAudioSource(source);
+        }
+
+        if (this._source) {
+            this._source.disconnect();
+        }
+
+        container.audioContext.close();
+        container.audioContext = undefined;
     }
 
     private _playBuffer(audio: string): void {
@@ -228,7 +228,7 @@ export class SoundsInstance implements IContainerPlugin {
             return;
         }
 
-        const source = audioCtx.createBufferSource();
+        const source = this._addBuffer(audioCtx);
 
         source.buffer = audioBuffer;
 
@@ -252,10 +252,36 @@ export class SoundsInstance implements IContainerPlugin {
 
         return new Promise<void>((resolve) => {
             setTimeout(() => {
-                this._removeOscillator(oscillator);
+                this._removeAudioSource(oscillator);
 
                 resolve();
             }, duration);
+        });
+    }
+
+    private _playMuteSound(): void {
+        const container = this._container;
+
+        if (!container.audioContext) {
+            return;
+        }
+
+        const gain = container.audioContext.createGain();
+
+        gain.connect(container.audioContext.destination);
+        gain.gain.value = 0;
+
+        const oscillator = container.audioContext.createOscillator();
+
+        oscillator.connect(gain);
+        oscillator.type = "sine";
+        oscillator.frequency.value = 1;
+        oscillator.start();
+
+        setTimeout(() => {
+            oscillator.stop();
+            oscillator.disconnect();
+            gain.disconnect();
         });
     }
 
@@ -299,11 +325,11 @@ export class SoundsInstance implements IContainerPlugin {
         }
     }
 
-    private _removeOscillator(oscillator: OscillatorNode): void {
-        oscillator.stop();
-        oscillator.disconnect();
+    private _removeAudioSource(source: AudioScheduledSourceNode): void {
+        source.stop();
+        source.disconnect();
 
-        this._oscillators.splice(this._oscillators.indexOf(oscillator), 1);
+        this._audioSources.splice(this._audioSources.indexOf(source), 1);
     }
 
     private _unmute(): void {
@@ -319,8 +345,8 @@ export class SoundsInstance implements IContainerPlugin {
             container.audioContext = new AudioContext();
         }
 
-        if (!this._oscillators) {
-            this._oscillators = [];
+        if (!this._audioSources) {
+            this._audioSources = [];
         }
 
         const gain = container.audioContext.createGain();
