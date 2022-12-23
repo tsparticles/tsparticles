@@ -1,12 +1,12 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles Canvas Mask Plugin
+# tsParticles Sounds Plugin
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-plugin-sounds/badge)](https://www.jsdelivr.com/package/npm/tsparticles-plugin-sounds)
 [![npmjs](https://badge.fury.io/js/tsparticles-plugin-sounds.svg)](https://www.npmjs.com/package/tsparticles-plugin-sounds)
 [![npmjs](https://img.shields.io/npm/dt/tsparticles-plugin-sounds)](https://www.npmjs.com/package/tsparticles-plugin-sounds) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for particles canvas mask effect.
+[tsParticles](https://github.com/matteobruni/tsparticles) plugin for particles sounds effect.
 
 ## How to use it
 

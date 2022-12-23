@@ -1,7 +1,7 @@
 {
     "name": "tsparticles-plugin-sounds",
     "version": "2.6.0",
-    "description": "tsParticles canvas mask plugin",
+    "description": "tsParticles sounds plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
         "build": "tsparticles-build",
@@ -83,7 +83,7 @@
     "types": "dist/types/index.d.ts",
     "typedoc": {
         "entryPoint": "./src/index.ts",
-        "displayName": "tsParticles canvas mask plugin",
+        "displayName": "tsParticles sounds plugin",
         "readmeFile": "./README.md"
     },
     "prettier": "@tsparticles/prettier-config",
