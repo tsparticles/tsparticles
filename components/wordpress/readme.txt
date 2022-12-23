@@ -61,6 +61,78 @@ Nothing to say
 
 == Changelog ==
 
+= 2.7.0 =
+
+## Bug Fixes
+
+- Fixed issue with animation random size, multiplying again the pixel ratio
+- Added missing export `EventType`
+- Fixed Engine package exports
+
+## New Features
+
+- Added shape options to circle, added range (min/max object) values to polygon and star shape options
+- Changed default file for slim and full bundles, using the bundled file
+- Added support for multiple shape drawers declared at once instead of adding a shape drawer multiple times
+- Added ranged values in stroke width and opacity properties
+- Added loops count to color animations
+- Improved density values, now is 1:1 with number on 1080p resolution with pixel ratio of 1 (this is not a breaking change since nothing breaks, but it changes the behavior of existing values)
+- Density values now has width/height values instead of area/factor, for compatibility reason `width` is mapped to `area` and `height` to `factor`.
+- Created sounds plugin, with mute/unmute icons
+- Added explosion sounds to fireworks preset
+
+---
+
+## Circle Options
+
+In `particle.shape` now it's possible to set another option to the `circle` shape, `angle`. The new property accepts a `number` or a `{ min: number; max: number }` object, when only `number` it's going to be `{ min: 0, max: <value> }`.
+
+This creates partial circles starting from `min` to `max`, both values must be specified in degrees. If this value is ignored the default value is: `{ min: 0, max: 360 }` (the full circle).
+
+### Examples
+
+```
+...
+  shape: {
+    type: "circle",
+    options: {
+      circle: {
+        angle: 180
+      }
+    }
+  }
+...
+```
+
+This examples creates horizontal half circles
+
+```
+...
+  shape: {
+    type: "circle",
+    options: {
+      circle: {
+        angle: { min: 90, max: 270 }
+      }
+    }
+  }
+...
+```
+
+This examples creates vertical half circles
+
+## Density options
+
+The density options are changed a bit, instead of `area`/`factor` values, the `width`/`height` values are introduced and mapped respectively. The default values are changed to `width` `1920` and `height` `1080`, so on a FullHD resolution on device pixel ratio `1` the particles number is the one specified in the options. Since `width` and `height` are multiplied together, they can be swapped and nothing changes.
+
+The formula for the density is:
+
+(canvasWidth * canvasHeight) / (densityWidth * densityHeight * devicePixelRatio^2)
+
+### Notes on existing configurations
+
+Since many configs had a `density.area` value of `800`, you'll see less particles, just a few less. If you have also a `factor` value, you won't notice any difference. When only `area` is set, if you want to keep the previous configuration, set `factor` to `1000`. Since the default `factor` (`height`) value is `1080` now, the difference should be barely noticeable.
+
 = 2.6.0 =
 
 ## Bug Fixes

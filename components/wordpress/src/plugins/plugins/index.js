@@ -89,6 +89,18 @@ const group = __('Plugins'),
 				await loadPolygonMaskPlugin(engine);
 			},
 		},
+		{
+			name: 'plugin-sounds',
+			description: __('Sounds'),
+			group,
+			load: async (engine) => {
+				const { loadSoundsPlugin } = await import(
+					'tsparticles-plugin-sounds'
+					);
+
+				await loadSoundsPlugin(engine);
+			},
+		},
 	];
 
 export function getPlugins() {

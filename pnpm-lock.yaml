@@ -1014,6 +1014,7 @@ importers:
       tsparticles-plugin-infection: ^2.6.0
       tsparticles-plugin-motion: ^2.6.0
       tsparticles-plugin-polygon-mask: ^2.6.0
+      tsparticles-plugin-sounds: ^2.6.0
       tsparticles-preset-big-circles: ^2.6.0
       tsparticles-preset-bubbles: ^2.6.0
       tsparticles-preset-confetti: ^2.6.0
@@ -1096,6 +1097,7 @@ importers:
       tsparticles-plugin-infection: link:../../plugins/infection/dist
       tsparticles-plugin-motion: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
+      tsparticles-plugin-sounds: link:../../plugins/sounds/dist
       tsparticles-preset-big-circles: link:../../presets/bigCircles/dist
       tsparticles-preset-bubbles: link:../../presets/bubbles/dist
       tsparticles-preset-confetti: link:../../presets/confetti/dist

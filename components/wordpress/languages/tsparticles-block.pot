@@ -425,3 +425,7 @@ msgstr ""
 #. Cards
 msgid "Cards"
 msgstr ""
+
+#. Sounds
+msgid "Sounds"
+msgstr ""
