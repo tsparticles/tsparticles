@@ -1,29 +1,29 @@
 {
-  "name": "solid-particles-demo",
-  "version": "2.6.0",
-  "private": true,
-  "devDependencies": {
-    "@types/jest": "^29.2.4",
-    "@types/node": "^18.11.17",
-    "solid-js": "^1.6.6",
-    "solid-particles": "^2.6.0",
-    "solid-scripts": "^0.0.61",
-    "tsparticles": "^2.6.0",
-    "tsparticles-demo-configs": "^2.6.0",
-    "tsparticles-engine": "^2.6.0",
-    "typescript": "^4.9.4"
-  },
-  "scripts": {
-    "start": "solid-scripts start",
-    "build": "solid-scripts build",
-    "build:ci": "solid-scripts build",
-    "test": "solid-scripts test"
-  },
-  "browserslist": [
-    "Chrome 74",
-    "Firefox 63",
-    "Safari 11",
-    "Edge 17",
-    "Node 10"
-  ]
+    "name": "solid-particles-demo",
+    "version": "2.7.0",
+    "private": true,
+    "devDependencies": {
+        "@types/jest": "^29.2.4",
+        "@types/node": "^18.11.17",
+        "solid-js": "^1.6.6",
+        "solid-particles": "^2.7.0",
+        "solid-scripts": "^0.0.61",
+        "tsparticles": "^2.7.0",
+        "tsparticles-demo-configs": "^2.7.0",
+        "tsparticles-engine": "^2.7.0",
+        "typescript": "^4.9.4"
+    },
+    "scripts": {
+        "start": "solid-scripts start",
+        "build": "solid-scripts build",
+        "build:ci": "solid-scripts build",
+        "test": "solid-scripts test"
+    },
+    "browserslist": [
+        "Chrome 74",
+        "Firefox 63",
+        "Safari 11",
+        "Edge 17",
+        "Node 10"
+    ]
 }

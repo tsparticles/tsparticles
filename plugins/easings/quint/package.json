@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-plugin-easing-quint",
-    "version": "2.6.0",
+    "version": "2.7.0",
     "description": "tsParticles easing quint plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -121,6 +121,6 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.6.0"
+        "tsparticles-engine": "^2.7.0"
     }
 }

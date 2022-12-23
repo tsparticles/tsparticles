@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/electron-particles-demo@2.6.0...electron-particles-demo@2.7.0) (2022-12-23)
+
+**Note:** Version bump only for package electron-particles-demo
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/electron-particles-demo@2.5.3...electron-particles-demo@2.6.0) (2022-12-06)
 
 **Note:** Version bump only for package electron-particles-demo

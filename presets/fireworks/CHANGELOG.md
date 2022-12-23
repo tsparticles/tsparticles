@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@2.6.0...tsparticles-preset-fireworks@2.7.0) (2022-12-23)
+
+### Features
+
+-   added filter option to sounds event, it's a function that checks if an event can play a sound ([a0be41b](https://github.com/matteobruni/tsparticles/commit/a0be41b616d42217d8a57798a3ff3d3cafd6b6a0))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-preset-fireworks@2.5.3...tsparticles-preset-fireworks@2.6.0) (2022-12-06)
 
 ### Bug Fixes

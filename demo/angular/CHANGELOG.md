@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@2.6.0...ng-particles-demo@2.7.0) (2022-12-23)
+
+### Bug Fixes
+
+-   **deps:** update dependency rxjs to ~7.8.0 ([0345e0b](https://github.com/matteobruni/tsparticles/commit/0345e0becfd68e7e785e3a47007b9ea362934b49))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/ng-particles-demo@2.5.3...ng-particles-demo@2.6.0) (2022-12-06)
 
 ### Bug Fixes

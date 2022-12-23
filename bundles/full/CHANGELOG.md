@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@2.6.0...tsparticles@2.7.0) (2022-12-23)
+
+### Bug Fixes
+
+-   used getRandom in canvas mask plugin for shuffling ([0161280](https://github.com/matteobruni/tsparticles/commit/0161280614b56461a87bfe06ed02c38982cda361))
+
 # [2.6.0](https://github.com/matteobruni/tsparticles/compare/tsparticles@2.5.3...tsparticles@2.6.0) (2022-12-06)
 
 ### Bug Fixes
