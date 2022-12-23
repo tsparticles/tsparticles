@@ -1,5 +1,7 @@
 import type { CustomEventArgs, Engine, IContainerPlugin } from "tsparticles-engine";
+import type { SoundsAudio } from "./Options/Classes/SoundsAudio";
 import type { SoundsContainer } from "./types";
+import { SoundsEventType } from "./enums";
 import type { SoundsNote } from "./Options/Classes/SoundsNote";
 import { executeOnSingleOrMultiple } from "tsparticles-engine";
 import { getNoteFrequency } from "./utils";
@@ -55,7 +57,7 @@ export class SoundsInstance implements IContainerPlugin {
             }
 
             executeOnSingleOrMultiple(event.audio, async (audio) => {
-                const response = await fetch(audio);
+                const response = await fetch(audio.source);
 
                 if (!response.ok) {
                     return;
@@ -67,7 +69,7 @@ export class SoundsInstance implements IContainerPlugin {
 
                 const audioBuffer = await container.audioContext.decodeAudioData(arrayBuffer);
 
-                this._audioMap.set(audio, audioBuffer);
+                this._audioMap.set(audio.source, audioBuffer);
             });
         }
     }
@@ -217,10 +219,12 @@ export class SoundsInstance implements IContainerPlugin {
 
         container.audioContext.close();
         container.audioContext = undefined;
+
+        this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
     }
 
-    private _playBuffer(audio: string): void {
-        const audioBuffer = this._audioMap.get(audio);
+    private _playBuffer(audio: SoundsAudio): void {
+        const audioBuffer = this._audioMap.get(audio.source);
 
         if (!audioBuffer) {
             return;
@@ -234,6 +238,7 @@ export class SoundsInstance implements IContainerPlugin {
 
         const source = this._addBuffer(audioCtx);
 
+        source.loop = audio.loop;
         source.buffer = audioBuffer;
 
         source.connect(this._source ?? audioCtx.destination);
@@ -362,5 +367,7 @@ export class SoundsInstance implements IContainerPlugin {
         this._source = gain;
 
         this._initEvents();
+
+        this._engine.dispatchEvent(SoundsEventType.unmute, { container: this._container });
     }
 }
