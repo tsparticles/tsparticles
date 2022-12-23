@@ -94,8 +94,8 @@
         "tsparticles-engine": "^2.6.0"
     },
     "devDependencies": {
-        "@tsparticles/prettier-config": "^1.4.0",
-        "rollup": "^3.7.4",
+        "@tsparticles/prettier-config": "^1.5.0",
+        "rollup": "^3.8.1",
         "rollup-plugin-node-resolve": "^5.2.0",
         "rollup-plugin-typescript2": "^0.34.1",
         "ts-node": "^10.9.1",

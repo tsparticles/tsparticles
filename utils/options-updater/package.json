@@ -26,12 +26,12 @@
         "prepack": "pnpm run build"
     },
     "dependencies": {
-        "@tsparticles/eslint-config": "^1.4.0",
-        "@tsparticles/prettier-config": "^1.4.0",
-        "@tsparticles/tsconfig": "^1.5.0",
-        "@typescript-eslint/eslint-plugin": "^5.46.1",
-        "@typescript-eslint/parser": "^5.46.1",
-        "eslint": "^8.29.0",
+        "@tsparticles/eslint-config": "^1.5.0",
+        "@tsparticles/prettier-config": "^1.5.0",
+        "@tsparticles/tsconfig": "^1.6.0",
+        "@typescript-eslint/eslint-plugin": "^5.47.0",
+        "@typescript-eslint/parser": "^5.47.0",
+        "eslint": "^8.30.0",
         "eslint-config-prettier": "^8.5.0",
         "fs-extra": "^11.1.0",
         "jsdom": "^20.0.3",
@@ -108,7 +108,7 @@
         "tsparticles-updater-wobble": "^2.6.0",
         "typescript": "^4.9.4",
         "webpack": "^5.75.0",
-        "webpack-tsparticles-plugin": "^1.5.1"
+        "webpack-tsparticles-plugin": "^1.6.0"
     },
     "devDependencies": {
         "@types/eslint": "^8.4.10",
@@ -116,8 +116,8 @@
         "@types/jsdom": "^20.0.1",
         "@types/klaw": "^3.0.3",
         "@types/lodash": "^4.14.191",
-        "@types/node": "^18.11.15",
-        "@types/prettier": "^2.7.1",
+        "@types/node": "^18.11.17",
+        "@types/prettier": "^2.7.2",
         "@types/rimraf": "^3.0.2"
     }
 }
