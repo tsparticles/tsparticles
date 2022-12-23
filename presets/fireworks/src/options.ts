@@ -1,5 +1,15 @@
+import type {
+    CustomEventArgs,
+    IParticlesOptions,
+    IRangeValue,
+    ISourceOptions,
+    Particle,
+    RangeValue,
+    RecursivePartial,
+} from "tsparticles-engine";
 import {
     DestroyType,
+    EventType,
     MoveDirection,
     OutMode,
     StartValueType,
@@ -7,7 +17,12 @@ import {
     setRangeValue,
     stringToRgb,
 } from "tsparticles-engine";
-import type { IParticlesOptions, IRangeValue, ISourceOptions, RangeValue, RecursivePartial } from "tsparticles-engine";
+
+const explodeSoundCheck = (args: CustomEventArgs): boolean => {
+    const data = args.data as { particle: Particle };
+
+    return data.particle.shape === "line";
+};
 
 const fixRange = (value: IRangeValue, min: number, max: number): RangeValue => {
     const diffSMax = value.max > max ? value.max - max : 0;
@@ -201,5 +216,20 @@ export const options: ISourceOptions = {
                 length: 10,
             },
         },
+    },
+    sounds: {
+        enable: true,
+        events: [
+            {
+                event: EventType.particleRemoved,
+                filter: explodeSoundCheck,
+                audio: [
+                    "https://particles.js.org/audio/explosion0.mp3",
+                    "https://particles.js.org/audio/explosion1.mp3",
+                    "https://particles.js.org/audio/explosion2.mp3",
+                ],
+            },
+        ],
+        volume: 50,
     },
 };

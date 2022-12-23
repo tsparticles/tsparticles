@@ -10,12 +10,14 @@ import { loadLineShape } from "tsparticles-shape-line";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadSizeUpdater } from "tsparticles-updater-size";
+import { loadSoundsPlugin } from "tsparticles-plugin-sounds";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { options } from "./options";
 
 export async function loadFireworksPreset(engine: Engine): Promise<void> {
     await loadBaseMover(engine);
     await loadEmittersPlugin(engine);
+    await loadSoundsPlugin(engine);
     await loadCircleShape(engine);
     await loadLineShape(engine);
     await loadAngleUpdater(engine);

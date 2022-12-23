@@ -177,6 +177,10 @@ export class SoundsInstance implements IContainerPlugin {
                     return;
                 }
 
+                if (event.filter && !event.filter(args)) {
+                    return;
+                }
+
                 if (event.audio) {
                     this._playBuffer(itemFromSingleOrMultiple(event.audio));
                 } else if (event.melodies) {

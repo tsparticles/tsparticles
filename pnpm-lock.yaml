@@ -4764,6 +4764,7 @@ importers:
       tsparticles-engine: ^2.6.0
       tsparticles-move-base: ^2.6.0
       tsparticles-plugin-emitters: ^2.6.0
+      tsparticles-plugin-sounds: ^2.6.0
       tsparticles-shape-circle: ^2.6.0
       tsparticles-shape-line: ^2.6.0
       tsparticles-updater-angle: ^2.6.0
@@ -4783,6 +4784,7 @@ importers:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
       tsparticles-plugin-emitters: link:../../plugins/emitters/dist
+      tsparticles-plugin-sounds: link:../../plugins/sounds/dist
       tsparticles-shape-circle: link:../../shapes/circle/dist
       tsparticles-shape-line: link:../../shapes/line/dist
       tsparticles-updater-angle: link:../../updaters/angle/dist

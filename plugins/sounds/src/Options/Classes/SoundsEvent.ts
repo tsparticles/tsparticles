@@ -1,12 +1,21 @@
 import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { FilterFunction } from "../../types";
 import type { ISoundsEvent } from "../Interfaces/ISoundsEvent";
 import { SoundsMelody } from "./SoundsMelody";
 import { SoundsNote } from "./SoundsNote";
+
+declare global {
+    interface Window {
+        [key: string]: unknown;
+    }
+}
 
 export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
     audio?: SingleOrMultiple<string>;
 
     event: SingleOrMultiple<string>;
+
+    filter?: FilterFunction;
 
     melodies?: SoundsMelody[];
 
@@ -48,6 +57,16 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
 
                 return tmp;
             });
+        }
+
+        if (data.filter !== undefined) {
+            if (typeof data.filter === "string") {
+                if (typeof window[data.filter] === "function") {
+                    this.filter = window[data.filter] as FilterFunction;
+                }
+            } else {
+                this.filter = data.filter;
+            }
         }
     }
 }

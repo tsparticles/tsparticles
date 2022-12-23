@@ -342,3 +342,7 @@ function pixelFilter(pixel) {
 function pixelTextFilter(pixel) {
     return pixel.a > 0;
 }
+
+function explodeSoundCheck(args) {
+    return args.data.particle.shape === "line";
+}
