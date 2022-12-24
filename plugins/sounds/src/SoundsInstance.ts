@@ -260,11 +260,15 @@ export class SoundsInstance implements IContainerPlugin {
                 } else if (event.melodies) {
                     const melody = itemFromArray(event.melodies);
 
-                    await this._playNote(melody.notes, 0);
+                    if (melody.melodies.length) {
+                        await Promise.allSettled(melody.melodies.map((m) => this._playNote(m.notes, 0, melody.loop)));
+                    } else {
+                        await this._playNote(melody.notes, 0, melody.loop);
+                    }
                 } else if (event.notes) {
                     const note = itemFromArray(event.notes);
 
-                    await this._playNote([note], 0);
+                    await this._playNote([note], 0, false);
                 }
             };
 
@@ -366,7 +370,11 @@ export class SoundsInstance implements IContainerPlugin {
         });
     }
 
-    private async _playNote(notes: SoundsNote[], noteIdx: number): Promise<void> {
+    private async _playNote(notes: SoundsNote[], noteIdx: number, loop: boolean): Promise<void> {
+        if (this._container.muted) {
+            return;
+        }
+
         const note = notes[noteIdx];
 
         if (!note) {
@@ -381,7 +389,17 @@ export class SoundsInstance implements IContainerPlugin {
 
         await (promises instanceof Array ? Promise.allSettled(promises) : promises);
 
-        await this._playNote(notes, noteIdx + 1);
+        let nextNoteIdx = noteIdx + 1;
+
+        if (loop && nextNoteIdx >= notes.length) {
+            nextNoteIdx = nextNoteIdx % notes.length;
+        }
+
+        if (this._container.muted) {
+            return;
+        }
+
+        await this._playNote(notes, nextNoteIdx, loop);
     }
 
     private async _playNoteValue(notes: SoundsNote[], noteIdx: number, valueIdx: number): Promise<void> {

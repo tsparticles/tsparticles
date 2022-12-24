@@ -3,15 +3,33 @@ import type { ISoundsMelody } from "../Interfaces/ISoundsMelody";
 import { SoundsNote } from "./SoundsNote";
 
 export class SoundsMelody implements ISoundsMelody, IOptionLoader<ISoundsMelody> {
+    loop;
+    melodies: SoundsMelody[];
     notes: SoundsNote[];
 
     constructor() {
+        this.loop = false;
+        this.melodies = [];
         this.notes = [];
     }
 
     load(data?: RecursivePartial<ISoundsMelody>): void {
         if (data === undefined) {
             return;
+        }
+
+        if (data.loop !== undefined) {
+            this.loop = data.loop;
+        }
+
+        if (data.melodies !== undefined) {
+            this.melodies = data.melodies.map((s) => {
+                const tmp = new SoundsMelody();
+
+                tmp.load(s);
+
+                return tmp;
+            });
         }
 
         if (data.notes !== undefined) {
