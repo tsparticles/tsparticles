@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.6.1](https://github.com/matteobruni/confetti/compare/@tsparticles/confetti-website@1.6.0...@tsparticles/confetti-website@1.6.1) (2022-12-25)
+
+**Note:** Version bump only for package @tsparticles/confetti-website
+
 # [1.6.0](https://github.com/matteobruni/confetti/compare/@tsparticles/confetti-website@1.5.0...@tsparticles/confetti-website@1.6.0) (2022-12-23)
 
 **Note:** Version bump only for package @tsparticles/confetti-website

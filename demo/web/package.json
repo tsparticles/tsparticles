@@ -1,7 +1,7 @@
 {
     "name": "web-particles-demo",
     "private": true,
-    "version": "2.7.0",
+    "version": "2.7.1",
     "description": "> TODO: description",
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "homepage": "https://particles.js.org",
@@ -37,10 +37,10 @@
         "pug": "^3.0.2",
         "pug-cli": "1.0.0-alpha6",
         "stylus": "^0.59.0",
-        "tsparticles": "^2.7.0",
-        "tsparticles-demo-configs": "^2.7.0",
-        "tsparticles-engine": "^2.7.0",
+        "tsparticles": "^2.7.1",
+        "tsparticles-demo-configs": "^2.7.1",
+        "tsparticles-engine": "^2.7.1",
         "typescript": "^4.9.4",
-        "web-particles": "^2.7.0"
+        "web-particles": "^2.7.1"
     }
 }

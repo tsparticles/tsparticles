@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-path-curves",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "tsParticles curves path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -88,6 +88,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.7.0"
+    "tsparticles-engine": "^2.7.1"
   }
 }
