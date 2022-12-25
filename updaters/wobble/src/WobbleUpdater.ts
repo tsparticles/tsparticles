@@ -11,6 +11,12 @@ import { getRandom, getRangeValue } from "tsparticles-engine";
 import type { IWobble } from "./Options/Interfaces/IWobble";
 import { Wobble } from "./Options/Classes/Wobble";
 
+interface IParticleWobble {
+    angle: number;
+    angleSpeed: number;
+    moveSpeed: number;
+}
+
 /**
  * Wobble particle extension type
  */
@@ -26,6 +32,8 @@ type WobbleParticle = Particle & {
          */
         wobbleDistance?: number;
     };
+
+    wobble?: IParticleWobble;
 };
 
 type IWobbleParticlesOptions = IParticlesOptions & {

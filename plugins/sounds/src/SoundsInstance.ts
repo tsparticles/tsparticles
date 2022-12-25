@@ -211,6 +211,14 @@ export class SoundsInstance implements IContainerPlugin {
         if (this._unmuteImg) {
             this._unmuteImg.remove();
         }
+
+        if (this._volumeDownImg) {
+            this._volumeDownImg.remove();
+        }
+
+        if (this._volumeUpImg) {
+            this._volumeUpImg.remove();
+        }
     }
 
     private _addBuffer(audioCtx: AudioContext): AudioBufferSourceNode {

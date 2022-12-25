@@ -43,7 +43,6 @@ export * from "./Core/Interfaces/IParticleRoll";
 export * from "./Core/Interfaces/IParticleTransformValues";
 export * from "./Core/Interfaces/IParticleUpdater";
 export * from "./Core/Interfaces/IParticleValueAnimation";
-export * from "./Core/Interfaces/IParticleWobble";
 export * from "./Core/Interfaces/IParticlesMover";
 export * from "./Core/Interfaces/IPlugin";
 export * from "./Core/Interfaces/IRangeValue";

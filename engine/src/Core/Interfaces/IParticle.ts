@@ -8,7 +8,6 @@ import type { IParticleHslAnimation } from "./IParticleHslAnimation";
 import type { IParticleNumericValueAnimation } from "./IParticleValueAnimation";
 import type { IParticleRetinaProps } from "./IParticleRetinaProps";
 import type { IParticleRoll } from "./IParticleRoll";
-import type { IParticleWobble } from "./IParticleWobble";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { IShapeValues } from "./IShapeValues";
 import type { Interactivity } from "../../Options/Classes/Interactivity/Interactivity";
@@ -43,7 +42,6 @@ export interface IParticle {
     readonly strokeOpacity?: number;
     readonly strokeWidth?: number;
     readonly velocity: Vector;
-    readonly wobble?: IParticleWobble;
 
     getFillColor(): IHsl | undefined;
 
