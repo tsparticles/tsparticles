@@ -27,7 +27,6 @@ import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll";
-import type { IParticleWobble } from "./Interfaces/IParticleWobble";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
 import type { IShapeValues } from "./Interfaces/IShapeValues";
@@ -260,11 +259,6 @@ export class Particle implements IParticle {
      * Gets particle current velocity
      */
     velocity!: Vector;
-
-    /**
-     * Gets the particle wobble options
-     */
-    wobble?: IParticleWobble;
 
     /**
      * Gets the particle Z-Index factor

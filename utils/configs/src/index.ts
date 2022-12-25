@@ -101,7 +101,9 @@ import _shapeSpiral from "./shapeSpiral.json";
 import _slow from "./slow.json";
 import _snow from "./snow.json";
 import _soundsAudio from "./soundsAudio.json";
+import _soundsLoop from "./soundsLoop.json";
 import _soundsMelodies from "./soundsMelodies.json";
+import _soundsMelodyLoop from "./soundsMelodyLoop.json";
 import _soundsNotes from "./soundsNotes.json";
 import _speedDecay from "./speedDecay.json";
 import _spin from "./spin.json";
@@ -223,7 +225,9 @@ const absorbers = _absorbers as unknown as ISourceOptions,
     slow = _slow as unknown as ISourceOptions,
     snow = _snow as unknown as ISourceOptions,
     soundsAudio = _soundsAudio as unknown as ISourceOptions,
+    soundsLoop = _soundsLoop as unknown as ISourceOptions,
     soundsMelodies = _soundsMelodies as unknown as ISourceOptions,
+    soundsMelodyLoop = _soundsMelodyLoop as unknown as ISourceOptions,
     soundsNotes = _soundsNotes as unknown as ISourceOptions,
     speedDecay = _speedDecay as unknown as ISourceOptions,
     spin = _spin as unknown as ISourceOptions,
@@ -345,7 +349,9 @@ export type ExportedConfigurations = {
     slow: ISourceOptions;
     snow: ISourceOptions;
     soundsAudio: ISourceOptions;
+    soundsLoop: ISourceOptions;
     soundsMelodies: ISourceOptions;
+    soundsMelodyLoop: ISourceOptions;
     soundsNotes: ISourceOptions;
     speedDecay: ISourceOptions;
     spin: ISourceOptions;
@@ -472,7 +478,9 @@ mainConfigs.configs = {
     slow,
     snow,
     soundsAudio,
+    soundsLoop,
     soundsMelodies,
+    soundsMelodyLoop,
     soundsNotes,
     speedDecay,
     spin,
@@ -595,7 +603,9 @@ export {
     slow,
     snow,
     soundsAudio,
+    soundsLoop,
     soundsMelodies,
+    soundsMelodyLoop,
     soundsNotes,
     speedDecay,
     spin,

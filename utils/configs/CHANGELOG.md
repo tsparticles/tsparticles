@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.7.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@2.7.0...tsparticles-demo-configs@2.7.1) (2022-12-25)
+
+### Features
+
+-   added loop options to sounds audio values ([3f017b6](https://github.com/matteobruni/tsparticles/commit/3f017b6f93ac8e3a539184ab8d30b4f67db1b1f2))
+-   added multiple melodies to melody for creating two handed melodies, für elise demo ([b2ed85f](https://github.com/matteobruni/tsparticles/commit/b2ed85f12961091280b4a98b528dc92f6846070e))
+
 # [2.7.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@2.6.0...tsparticles-demo-configs@2.7.0) (2022-12-23)
 
 ### Features

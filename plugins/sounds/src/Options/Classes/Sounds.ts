@@ -2,6 +2,7 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { ISounds } from "../Interfaces/ISounds";
 import { SoundsEvent } from "./SoundsEvent";
 import { SoundsIcons } from "./SoundsIcons";
+import { SoundsVolume } from "./SoundsVolume";
 
 export class Sounds implements ISounds, IOptionLoader<ISounds> {
     enable;
@@ -13,7 +14,7 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
         this.enable = false;
         this.events = [];
         this.icons = new SoundsIcons();
-        this.volume = 100;
+        this.volume = new SoundsVolume();
     }
 
     load(data?: RecursivePartial<ISounds>): void {
@@ -38,7 +39,7 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
         this.icons.load(data.icons);
 
         if (data.volume !== undefined) {
-            this.volume = data.volume;
+            this.volume.load(data.volume);
         }
     }
 }

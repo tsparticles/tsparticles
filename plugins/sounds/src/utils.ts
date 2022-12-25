@@ -12,21 +12,24 @@ notes.set("Ab", [25.96, 51.91, 103.83, 207.65, 415.3, 830.61, 1661.22, 3322.44, 
 notes.set("A", [27.5, 55.0, 110.0, 220.0, 440.0, 880.0, 1760.0, 3520.0, 7040.0]);
 notes.set("Bb", [29.14, 58.27, 116.54, 233.08, 466.16, 932.33, 1864.66, 3729.31, 7458.62]);
 notes.set("B", [30.87, 61.74, 123.47, 246.94, 493.88, 987.77, 1975.53, 3951.07, 7902.13]);
+notes.set("pause", [0]);
 
 export function getNoteFrequency(note: string): number | undefined {
-    const regex = /([A-G]b?)(\d)/i,
+    const regex = /(([A-G]b?)(\d))|pause/i,
         result = regex.exec(note);
 
-    if (!result || result.length !== 3) {
+    if (!result || !result.length) {
         return;
     }
 
-    const noteKey = result[1],
+    console.log(result);
+
+    const noteKey = result[2] || result[0],
         noteItem = notes.get(noteKey);
 
     if (!noteItem) {
         return;
     }
 
-    return noteItem[parseInt(result[2])];
+    return noteItem[parseInt(result[3] || "0")];
 }
