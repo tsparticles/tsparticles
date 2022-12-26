@@ -61,6 +61,17 @@ Nothing to say
 
 == Changelog ==
 
+= 2.7.1
+
+## New features
+
+- Added loop options to sounds audio values
+- Added volume buttons to sounds plugin
+
+## Other Changes
+
+- Moved out some plugin specific code from the engine to the dedicated plugin
+
 = 2.7.0 =
 
 ## Bug Fixes
