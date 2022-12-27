@@ -179,12 +179,12 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+#### `@tsparticles/angular`
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Você pode encontrar as
-instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
+instruções [aqui](https://github.com/tsparticles/angular#readme)
 
 ### Inferno
 

@@ -18,7 +18,7 @@ After that, you can start coding. Here is the folder layout
 - `updaters` contains some additional updater plugins.
 - `website` contains the website source.
 
-The `components` folder contains all the javascript frameworks & components built around tsParticles: Angular, jQuery, Preact, React, Vue.
+The `components` folder contains all the javascript frameworks & components built around tsParticles: jQuery, Preact, React, Vue.
 
 The `plugins` folder contains all external presets and shapes.
 

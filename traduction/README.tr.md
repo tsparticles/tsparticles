@@ -29,7 +29,7 @@
         -   [**_Kullanım_**](#kullanım)
     -   [Popüler çerçevelerden bazıları için resmi bileşenler](#popüler-çerçevelerden-bazıları-için-resmi-bileşenler)
         -   [Angular](#angular)
-            -   [`ng-particles`](#ng-particles)
+            -   [`@tsparticles/angular`](#@tsparticles/angular)
         -   [Inferno](#inferno)
             -   [`inferno-particles`](#inferno-particles)
         -   [jQuery](#jquery)
@@ -230,11 +230,11 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+#### `@tsparticles/angular`
 
-[![npm](https://img.shields.io/npm/v/ng-particles)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
-Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md) bulabilirsiniz.
+Talimatları [burada](https://github.com/tsparticles/angular#readme) bulabilirsiniz.
 
 ### Inferno
 

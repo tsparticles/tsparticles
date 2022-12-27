@@ -150,7 +150,7 @@ async function particlesInit(engine: Engine) {
 ### Angular
 
 ```html
-<ng-particles [id]="id" [options]="options" [particlesInit]="particlesInit"></ng-particles>
+<angular-particles [id]="id" [options]="options" [particlesInit]="particlesInit"></angular-particles>
 ```
 
 ```ts

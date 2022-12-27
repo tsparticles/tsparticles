@@ -125,7 +125,7 @@ async function particlesInit(engine: Engine): Promise<void> {
 ### Angular
 
 ```html
-<ng-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></ng-particles>
+<angular-particles [id]="id" [options]="particlesOptions" [particlesInit]="particlesInit"></angular-particles>
 ```
 
 ```ts

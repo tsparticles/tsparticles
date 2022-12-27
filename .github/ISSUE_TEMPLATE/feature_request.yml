@@ -44,7 +44,7 @@ body:
         - React.js (react-particles, react-tsparticles, react-particles-js)
         - Vue.js 2.x (vue2-particles, particles.vue)
         - Vue.js 3.x (vue3-particles, particles.vue3)
-        - Angular (ng-particles)
+        - Angular (@tsparticles/angular, @tsparticles/angular)
         - Svelte (svelte-particles)
         - jQuery (jquery-particles)
         - Preact (preact-particles)
