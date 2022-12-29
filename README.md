@@ -274,13 +274,21 @@ particles.pause();
 
 Instructions available [here](https://github.com/tsparticles/angular#readme)
 
+### Ember
+
+`@tsparticles/ember`
+
+[![npm](https://img.shields.io/npm/v/@tsparticles/ember?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/ember) [![npm](https://img.shields.io/npm/dm/@tsparticles/ember?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/ember)
+
+Instructions available [here](https://github.com/tsparticles/ember#readme)
+
 ### Inferno
 
-`inferno-particles`
+`@tsparticles/inferno`
 
-[![npm](https://img.shields.io/npm/v/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/inferno?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/inferno)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
+Instructions available [here](https://github.com/tsparticles/inferno#readme)
 
 ### jQuery
 
@@ -825,4 +833,4 @@ code.
 **Automate code reviews on your commits and pull requests**
 
 Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
-integrated within your development workflow.\*\*
+integrated within your development workflow.

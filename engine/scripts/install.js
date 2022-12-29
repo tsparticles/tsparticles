@@ -77,8 +77,8 @@ try {
     }
 
     if (dependencies["inferno"]) {
-        if (!dependencies["inferno-particles"]) {
-            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Inferno installed. Please Download inferno-particles to use tsParticles with a component ready to use and easier to configure.");
+        if (!dependencies["@tsparticles/inferno"] && !dependencies["inferno-particles"]) {
+            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Inferno installed. Please Download @tsparticles/inferno to use tsParticles with a component ready to use and easier to configure.");
             console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md");
         }
     }

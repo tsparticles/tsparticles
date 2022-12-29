@@ -31,7 +31,7 @@
         -   [Angular](#angular)
             -   [`@tsparticles/angular`](#@tsparticles/angular)
         -   [Inferno](#inferno)
-            -   [`inferno-particles`](#inferno-particles)
+            -   [`@tsparticles/inferno`](#@tsparticles/inferno)
         -   [jQuery](#jquery)
             -   [`jquery-particles`](#jquery-particles)
         -   [Preact](#preact)
@@ -238,9 +238,9 @@ Talimatları [burada](https://github.com/tsparticles/angular#readme) bulabilirsi
 
 ### Inferno
 
-#### `inferno-particles`
+#### `@tsparticles/inferno`
 
-[![npm](https://img.shields.io/npm/v/inferno-particles)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles)](https://www.npmjs.com/package/inferno-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
 Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md) bulabilirsiniz.
 

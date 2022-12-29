@@ -49,7 +49,6 @@ body:
         - Preact (preact-particles)
         - Solid (solid-particles)
         - Riot.js (riot-particles)
-        - Inferno (inferno-particles)
         - Web Components (web-particles)
     validations:
       required: true
