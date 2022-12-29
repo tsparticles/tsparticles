@@ -222,11 +222,11 @@ particles.pause();
 
 ### Svelte
 
-#### `svelte-particles`
+#### `@tsparticles/svelte`
 
-[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md) вы можете ознакомиться с
+[Здесь](https://github.com/tsparticles/svelte#readme) вы можете ознакомиться с
 инструкциями.
 
 ### VueJS

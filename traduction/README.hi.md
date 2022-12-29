@@ -217,10 +217,10 @@ particles.pause();
 
 #### `स्वेलेट-कण`
 
-[! [npm] (https://img.shields.io/npm/v/svelte-particles)] (https://www.npmjs.com/package/svelte-particles) [! [npm डाउनलोड] (
-https) : //img.shields.io/npm/dm/svelte-particles)] (https://www.npmjs.com/package/svelte-particles)
+[! [npm] (https://img.shields.io/npm/v/@tsparticles/svelte)] (https://www.npmjs.com/package/@tsparticles/svelte) [! [npm डाउनलोड] (
+https) : //img.shields.io/npm/dm/@tsparticles/svelte)] (https://www.npmjs.com/package/@tsparticles/svelte)
 
-आप [here] (https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md) निर्देश पा सकते हैं
+आप [here] (https://github.com/tsparticles/svelte#readme) निर्देश पा सकते हैं
 
 ### VueJS
 

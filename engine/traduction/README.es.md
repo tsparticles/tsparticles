@@ -228,12 +228,12 @@ instrucciones [aquí](https://github.com/tsparticles/react#readme)
 
 ### Svelte
 
-#### `svelte-particles`
+#### `@tsparticles/svelte`
 
-[![npm](https://img.shields.io/npm/v/svelte-particles)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte)
 
 Puedes encontrar las
-instrucciones [aquí](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
+instrucciones [aquí](https://github.com/tsparticles/svelte#readme)
 
 ### VueJS
 

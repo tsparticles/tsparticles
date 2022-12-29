@@ -70,9 +70,9 @@ try {
     }
 
     if (dependencies["svelte"]) {
-        if (!dependencies["svelte-particles"]) {
-            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Svelte installed. Please Download svelte-particles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md");
+        if (!dependencies["svelte-particles"] && !dependencies["@tsparticles/svelte"]) {
+            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Svelte installed. Please Download @tsparticles/svelte to use tsParticles with a component ready to use and easier to configure.");
+            console.log("You can read more about the component here: https://github.com/tsparticles/svelte#readme");
         }
     }
 
