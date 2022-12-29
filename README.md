@@ -316,11 +316,11 @@ Instructions available [here](https://github.com/tsparticles/react#readme)
 
 ### RiotJS
 
-#### `riot-particles`
+#### `@tsparticles/riot`
 
-[![npm](https://img.shields.io/npm/v/riot-particles?style=for-the-badge)](https://www.npmjs.com/package/riot-particles) [![npm](https://img.shields.io/npm/dm/riot-particles?style=for-the-badge)](https://www.npmjs.com/package/riot-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/riot?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/riot) [![npm](https://img.shields.io/npm/dm/@tsparticles/riot?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/riot)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/riot/README.md)
+You can find the instructions [here](https://github.com/tsparticles/riot#readme)
 
 ### SolidJS
 

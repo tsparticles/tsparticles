@@ -402,4 +402,3 @@ demo/jquery/views/index.html
 demo/web/views/index.html
 demo/editor/views/index.html
 demo/vanilla/public/stylesheets/*.css
-components/riot/riot-particles.js

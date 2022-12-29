@@ -45,7 +45,6 @@ body:
         - Vue.js 3.x (vue3-particles, particles.vue3)
         - Svelte (svelte-particles)
         - Solid (solid-particles)
-        - Riot.js (riot-particles)
         - Web Components (web-particles)
     validations:
       required: true
