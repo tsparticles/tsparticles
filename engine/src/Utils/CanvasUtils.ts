@@ -1,15 +1,67 @@
+import type { IHsl, IRgba } from "../Core/Interfaces/Colors";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { IHsl } from "../Core/Interfaces/Colors";
-import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
-import type { IParticleTransformValues } from "../Core/Interfaces/IParticleTransformValues";
-import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
+import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams";
+import type { Options } from "../Options/Classes/Options";
 import type { Particle } from "../Core/Particle";
 import { getStyleFromRgb } from "./ColorUtils";
+
+/**
+ * Fills a rectangle with the given color for the whole canvas.
+ * @param context - The canvas context to draw on.
+ * @param dimension - The dimension of the rectangle.
+ * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
+ */
+function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
+    context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
+    context.fillRect(0, 0, dimension.width, dimension.height);
+}
+
+export function getContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
+    const context = canvas.getContext("2d");
+
+    if (!context) {
+        throw new Error("Error tsParticles - No canvas context found");
+    }
+
+    return context;
+}
+
+export function clearCanvas(
+    context: CanvasRenderingContext2D,
+    size: IDimension,
+    options: Options,
+    trailFillColor?: IRgba
+): void {
+    const trail = options.particles.move.trail;
+
+    if (options.backgroundMask.enable) {
+        paintCanvas(context, size, options);
+    } else if (trail.enable && trail.length > 0 && trailFillColor) {
+        paintBase(context, size, getStyleFromRgb(trailFillColor, 1 / trail.length));
+    } else {
+        clear(context, size);
+    }
+}
+
+export function paintCanvas(
+    context: CanvasRenderingContext2D,
+    size: IDimension,
+    options: Options,
+    coverColorStyle?: string
+): void {
+    if (options.backgroundMask.enable && options.backgroundMask.cover) {
+        clear(context, size);
+
+        paintBase(context, size, coverColorStyle);
+    } else {
+        paintBase(context, size);
+    }
+}
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -46,17 +98,6 @@ export function drawTriangle(
 }
 
 /**
- * Fills a rectangle with the given color for the whole canvas.
- * @param context - The canvas context to draw on.
- * @param dimension - The dimension of the rectangle.
- * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
- */
-export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
-    context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
-    context.fillRect(0, 0, dimension.width, dimension.height);
-}
-
-/**
  * Clears the canvas.
  * @param context - The canvas context to clear.
  * @param dimension - The dimension of the canvas.
@@ -65,58 +106,11 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
     context.clearRect(0, 0, dimension.width, dimension.height);
 }
 
-interface DrawParticleParams {
-    /**
-     * If enabled, the composite value will be used for blending the particle in the canvas
-     */
-    backgroundMask: boolean;
-    /**
-     * The color styles value
-     */
-    colorStyles: IParticleColorStyle;
-    /**
-     * The composite value to use for blending the particle in the canvas
-     */
-    composite: GlobalCompositeOperation;
-    /**
-     * The container of the particle
-     */
-    container: Container;
-    /**
-     * The canvas context to draw on
-     */
-    context: CanvasRenderingContext2D;
-    /**
-     * This variable contains the delta between the current frame and the previous frame
-     */
-    delta: IDelta;
-    /**
-     * The opacity of the particle
-     */
-    opacity: number;
-    /**
-     * The particle to draw
-     */
-    particle: Particle;
-    /**
-     * The radius of the particle
-     */
-    radius: number;
-    /**
-     * The shadow of the particle
-     */
-    shadow: IShadow;
-    /**
-     * The particle transform values
-     */
-    transform: IParticleTransformValues;
-}
-
 /**
  * Draws the particle using canvas API in the given context.
  * @param data - The function parameters.
  */
-export function drawParticle(data: DrawParticleParams): void {
+export function drawParticle(data: IDrawParticleParams): void {
     const {
         container,
         context,

@@ -1,5 +1,13 @@
 import type { IHsl, IRgba } from "./Interfaces/Colors";
-import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase } from "../Utils/CanvasUtils";
+import {
+    clear,
+    clearCanvas,
+    drawParticle,
+    drawParticlePlugin,
+    drawPlugin,
+    getContext,
+    paintCanvas,
+} from "../Utils/CanvasUtils";
 import { deepExtend, isSsr } from "../Utils/Utils";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
@@ -93,18 +101,9 @@ export class Canvas {
      * Clears the canvas content
      */
     clear(): void {
-        const options = this.container.actualOptions,
-            trail = options.particles.move.trail;
-
-        if (options.backgroundMask.enable) {
-            this.paint();
-        } else if (trail.enable && trail.length > 0 && this._trailFillColor) {
-            this._paintBase(getStyleFromRgb(this._trailFillColor, 1 / trail.length));
-        } else {
-            this.draw((ctx) => {
-                clear(ctx, this.size);
-            });
-        }
+        this.draw((ctx) => {
+            clearCanvas(ctx, this.size, this.container.actualOptions, this._trailFillColor);
+        });
     }
 
     /**
@@ -331,7 +330,7 @@ export class Canvas {
         this._originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
-        this._context = this.element.getContext("2d");
+        this._context = getContext(canvas);
         this._mutationObserver?.observe(this.element, { attributes: true });
         this.container.retina.init();
         this.initBackground();
@@ -341,16 +340,8 @@ export class Canvas {
      * Paints the canvas background
      */
     paint(): void {
-        const options = this.container.actualOptions;
-
         this.draw((ctx) => {
-            if (options.backgroundMask.enable && options.backgroundMask.cover) {
-                clear(ctx, this.size);
-
-                this._paintBase(this._coverColorStyle);
-            } else {
-                this._paintBase();
-            }
+            paintCanvas(ctx, this.size, this.container.actualOptions, this._coverColorStyle);
         });
     }
 
@@ -544,12 +535,6 @@ export class Canvas {
                 a: 1 / trail.length,
             };
         }
-    }
-
-    private _paintBase(baseColor?: string): void {
-        this.draw((ctx) => {
-            paintBase(ctx, this.size, baseColor);
-        });
     }
 
     private _repairStyle(): void {

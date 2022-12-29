@@ -29,6 +29,7 @@ export * from "./Core/Interfaces/ICoordinates";
 export * from "./Core/Interfaces/IDelta";
 export * from "./Core/Interfaces/IDimension";
 export * from "./Core/Interfaces/IDistance";
+export * from "./Core/Interfaces/IDrawParticleParams";
 export * from "./Core/Interfaces/IExternalInteractor";
 export * from "./Core/Interfaces/IInteractor";
 export * from "./Core/Interfaces/IMouseData";
