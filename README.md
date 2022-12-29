@@ -324,11 +324,11 @@ You can find the instructions [here](https://github.com/tsparticles/riot#readme)
 
 ### SolidJS
 
-#### `solid-particles`
+#### `@tsparticles/solid`
 
-[![npm](https://img.shields.io/npm/v/solid-particles?style=for-the-badge)](https://www.npmjs.com/package/solid-particles) [![npm](https://img.shields.io/npm/dm/solid-particles?style=for-the-badge)](https://www.npmjs.com/package/solid-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/solid?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/solid) [![npm](https://img.shields.io/npm/dm/@tsparticles/solid?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/solid)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/solid/README.md)
+You can find the instructions [here](https://github.com/tsparticles/solid#readme)
 
 ### Svelte
 
