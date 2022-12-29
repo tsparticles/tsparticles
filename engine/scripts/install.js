@@ -43,7 +43,7 @@ try {
     }
 
     if (dependencies["@angular/core"]) {
-        if (!dependencies["@tsparticles/angular"] || !dependencies["@tsparticles/angular"]) {
+        if (!dependencies["@tsparticles/angular"] && !dependencies["ng-particles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Angular installed. Please download @tsparticles/angular to use tsParticles with a component ready to use and easier to configure.");
             console.log("You can read more about the component here: https://github.com/tsparticles/angular#readme");
         }
