@@ -238,7 +238,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) вы можете ознакомиться с
+[Здесь](https://github.com/tsparticles/vue2#readme) вы можете ознакомиться с
 инструкциями.
 
 ### VueJS 3.x
@@ -247,7 +247,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md) вы можете ознакомиться с
+[Здесь](https://github.com/tsparticles/vue3#readme) вы можете ознакомиться с
 инструкциями.
 
 ---

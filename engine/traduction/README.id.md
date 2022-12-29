@@ -230,7 +230,7 @@ Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/svelt
 
 [![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/particles)
 
-Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
+Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/vue2#readme)
 
 ### VueJS 3.x
 
@@ -238,7 +238,7 @@ Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tspar
 
 [![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
 
-Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/vue3#readme)
 
 ---
 

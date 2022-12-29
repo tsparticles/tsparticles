@@ -344,7 +344,7 @@ Instructions available [here](https://github.com/tsparticles/svelte#readme)
 
 [![npm](https://img.shields.io/npm/v/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
+Instructions available [here](https://github.com/tsparticles/vue2#readme)
 
 ### VueJS 3.x
 
@@ -352,7 +352,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles)
 
-Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+Instruction available [here](https://github.com/tsparticles/vue3#readme)
 
 ### Web Components
 

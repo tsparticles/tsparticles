@@ -237,7 +237,7 @@ intrucciones [aqui](https://github.com/tsparticles/svelte#readme)
 
 [![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/tsparticles/vue2#readme)
 
 ### VueJS 3.x
 
@@ -245,7 +245,7 @@ Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tspartic
 
 [![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
 
-Puedes encontrar las intrucciones [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+Puedes encontrar las intrucciones [aqui](https://github.com/tsparticles/vue3#readme)
 
 ---
 

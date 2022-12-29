@@ -282,7 +282,7 @@ Talimatları [burada](https://github.com/tsparticles/svelte#readme) bulabilirsin
 
 [![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
-Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) bulabilirsiniz.
+Talimatları [burada](https://github.com/tsparticles/vue2#readme) bulabilirsiniz.
 
 ### VueJS 3.x
 
@@ -290,7 +290,7 @@ Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/compo
 
 [![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
 
-Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md) bulabilirsiniz.
+Talimatları [burada](https://github.com/tsparticles/vue3#readme) bulabilirsiniz.
 
 ### WordPress
 

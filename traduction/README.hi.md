@@ -228,7 +228,7 @@ https) : //img.shields.io/npm/dm/@tsparticles/svelte)] (https://www.npmjs.com/pa
 
 [! [npm] (https://img.shields.io/npm/v/vue2-particles)] (https://www.npmjs.com/package/vue2-particles) [! [npm] (https:) //img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
-आप निर्देश [here] (https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) पा सकते हैं
+आप निर्देश [here] (https://github.com/tsparticles/vue2#readme) पा सकते हैं
 
 ---
 
