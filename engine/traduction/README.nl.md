@@ -187,7 +187,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular)](https://www.npmjs.com/package/@tsparticles/angular)
 
-Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/angular/traduction/README.nl.md) de
+Je kunt [hier](https://github.com/tsparticles/angular#readme) de
 instructies vinden
 
 ### Inferno
@@ -196,7 +196,7 @@ instructies vinden
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
-Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/traduction/README.nl.md) de
+Je kunt [hier](https://github.com/tsparticles/inferno#readme) de
 instructies vinden
 
 ### jQuery
@@ -205,7 +205,7 @@ instructies vinden
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
-Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/traduction/README.nl.md) de
+Je kunt [hier](https://github.com/tsparticles/jquery#readme) de
 instructies vinden
 
 ### Preact
@@ -214,7 +214,7 @@ instructies vinden
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
-Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/preact/traduction/README.nl.md) de
+Je kunt [hier](https://github.com/tsparticles/preact#readme) de
 instructies vinden
 
 ### ReactJS
@@ -223,7 +223,7 @@ instructies vinden
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
-Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/react/traduction/README.nl.md) de
+Je kunt [hier](https://github.com/tsparticles/react#readme) de
 instructies vinden
 
 ### Svelte
@@ -232,7 +232,7 @@ instructies vinden
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte)](https://www.npmjs.com/package/@tsparticles/svelte)
 
-Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/traduction/README.nl.md) de
+Je kunt [hier](https://github.com/tsparticles/svelte#readme) de
 instructies vinden
 
 ### VueJS
@@ -241,7 +241,7 @@ instructies vinden
 
 [![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
 
-Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/vue/traduction/README.nl.md) de
+Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md) de
 instructies vinden
 
 ---

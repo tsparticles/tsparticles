@@ -43,7 +43,6 @@ body:
         - Vanilla (tsparticles)
         - Vue.js 2.x (vue2-particles, particles.vue)
         - Vue.js 3.x (vue3-particles, particles.vue3)
-        - Web Components (web-particles)
     validations:
       required: true
   - type: checkboxes

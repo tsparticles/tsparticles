@@ -468,27 +468,6 @@ importers:
       vite-plugin-dts: 1.7.1_vite@4.0.3
       vue-tsc: 1.0.16_typescript@4.9.4
 
-  components/web:
-    specifiers:
-      '@tsparticles/prettier-config': ^1.5.0
-      rollup: ^3.8.1
-      rollup-plugin-node-resolve: ^5.2.0
-      rollup-plugin-typescript2: ^0.34.1
-      ts-node: ^10.9.1
-      tslib: ^2.4.1
-      tsparticles-engine: ^2.7.1
-      typescript: ^4.9.4
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-    devDependencies:
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      rollup: 3.8.1
-      rollup-plugin-node-resolve: 5.2.0_rollup@3.8.1
-      rollup-plugin-typescript2: 0.34.1_q6nddm75e3egjsxnhzkgx66xvi
-      ts-node: 10.9.1_moeqx3xmzxqxagf2sz6mqkbb7m
-      tslib: 2.4.1
-      typescript: 4.9.4
-
   components/wordpress:
     specifiers:
       '@babel/runtime': ^7.20.7
@@ -1088,44 +1067,6 @@ importers:
       typescript: 4.9.4
       vite: 4.0.3_@types+node@18.11.17
       vue-tsc: 1.0.16_typescript@4.9.4
-
-  demo/web:
-    specifiers:
-      '@fortawesome/fontawesome-free': ^6.2.1
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      '@webcomponents/webcomponentsjs': ^2.7.0
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      express: ^4.18.2
-      helmet: ^6.0.1
-      prettier: ^2.8.1
-      pug: ^3.0.2
-      pug-cli: 1.0.0-alpha6
-      stylus: ^0.59.0
-      tsparticles: ^2.7.1
-      tsparticles-demo-configs: ^2.7.1
-      tsparticles-engine: ^2.7.1
-      typescript: ^4.9.4
-      web-particles: ^2.7.1
-    devDependencies:
-      '@fortawesome/fontawesome-free': 6.2.1
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      '@webcomponents/webcomponentsjs': 2.7.0
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      express: 4.18.2
-      helmet: 6.0.1
-      prettier: 2.8.1
-      pug: 3.0.2
-      pug-cli: 1.0.0-alpha6
-      stylus: 0.59.0
-      tsparticles: link:../../bundles/full/dist
-      tsparticles-demo-configs: link:../../utils/configs/dist
-      tsparticles-engine: link:../../engine/dist
-      typescript: 4.9.4
-      web-particles: link:../../components/web
 
   editor:
     specifiers:
@@ -9913,12 +9854,6 @@ packages:
       csstype: 3.1.1
     dev: true
 
-  /@types/resolve/0.0.8:
-    resolution: {integrity: sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ==}
-    dependencies:
-      '@types/node': 18.11.17
-    dev: true
-
   /@types/resolve/1.20.2:
     resolution: {integrity: sha512-60BCwRFOZCQhDncwQdxxeOEEkbc5dIMccYLwbxsS4TUNeVECQ/pBJ0j09mrHOl/JJvpRPGwO9SvE4nR2Nb/a4Q==}
     dev: true
@@ -11300,10 +11235,6 @@ packages:
     dependencies:
       '@webassemblyjs/ast': 1.11.1
       '@xtuc/long': 4.2.2
-
-  /@webcomponents/webcomponentsjs/2.7.0:
-    resolution: {integrity: sha512-j161Z9oiy8k74vchdrQGihfSp7QulrTclCUiPo0D7JF6/RjpXAmB0ThlTAFlSElkgqg0vdFgNAXaX9ZHZy25wQ==}
-    dev: true
 
   /@webpack-cli/configtest/1.2.0_pda42hcaj7d62cr262fr632kue:
     resolution: {integrity: sha512-4FB8Tj6xyVkyqjj1OaTqCjXYULB9FMkqQ8yGrZjRDrYh0nOE+7Lhs45WioWQQMV+ceFlE368Ukhe6xdvJM9Egg==}
@@ -23198,20 +23129,6 @@ packages:
       sprintf-js: 1.1.2
     dev: true
     optional: true
-
-  /rollup-plugin-node-resolve/5.2.0_rollup@3.8.1:
-    resolution: {integrity: sha512-jUlyaDXts7TW2CqQ4GaO5VJ4PwwaV8VUGA7+km3n6k6xtOEacf61u0VXwN80phY/evMcaS+9eIeJ9MOyDxt5Zw==}
-    deprecated: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-node-resolve.
-    peerDependencies:
-      rollup: '>=1.11.0'
-    dependencies:
-      '@types/resolve': 0.0.8
-      builtin-modules: 3.3.0
-      is-module: 1.0.0
-      resolve: 1.22.1
-      rollup: 3.8.1
-      rollup-pluginutils: 2.8.2
-    dev: true
 
   /rollup-plugin-terser/7.0.2_rollup@3.8.1:
     resolution: {integrity: sha512-w3iIaU4OxcF52UUXiZNsNeuXIMDvFrr+ZXK6bFZ0Q60qyVfq4uLptoS4bbq3paG3x216eQllFZX7zt6TIImguQ==}

@@ -356,11 +356,11 @@ Instruction available [here](https://github.com/matteobruni/tsparticles/blob/mai
 
 ### Web Components
 
-#### `web-particles`
+#### `@tsparticles/webcomponents`
 
-[![npm](https://img.shields.io/npm/v/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles) [![npm](https://img.shields.io/npm/dm/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/webcomponents?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/webcomponents) [![npm](https://img.shields.io/npm/dm/@tsparticles/webcomponents?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/webcomponents)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/web/README.md)
+You can find the instructions [here](https://github.com/tsparticles/webcomponents#readme)
 
 ### WordPress
 
