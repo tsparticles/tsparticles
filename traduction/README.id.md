@@ -195,25 +195,25 @@ lengkap [disini](https://github.com/tsparticles/angular#readme)
 [![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
 Kamu dapat menemukan instruksi
-lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
+lengkap [disini](https://github.com/tsparticles/inferno#readme)
 
 ### jQuery
 
-#### `jquery-particles`
+#### `@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
 Kamu dapat menemukan instruksi
-lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
+lengkap [disini](https://github.com/tsparticles/jquery#readme)
 
 ### Preact
 
-#### `preact-particles`
+#### `@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
 Kamu dapat menemukan instruksi
-lengkap [disini](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
+lengkap [disini](https://github.com/tsparticles/preact#readme)
 
 ### ReactJS
 

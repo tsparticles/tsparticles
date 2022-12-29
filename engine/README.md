@@ -292,19 +292,19 @@ Instructions available [here](https://github.com/tsparticles/inferno#readme)
 
 ### jQuery
 
-`jquery-particles`
+`@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/jquery)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
+Instructions available [here](https://github.com/tsparticles/jquery#readme)
 
 ### Preact
 
-`preact-particles`
+`@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/preact)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
+Instructions available [here](https://github.com/tsparticles/preact#readme)
 
 ### ReactJS
 

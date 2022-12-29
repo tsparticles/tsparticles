@@ -1092,7 +1092,7 @@ importers:
       express-rate-limit: ^6.7.0
       helmet: ^6.0.1
       jquery: ^3.6.3
-      jquery-particles: ^2.7.1
+      @tsparticles/jquery: ^2.7.1
       jsoneditor: ^9.9.2
       lodash: ^4.17.21
       prettier: ^2.8.1
@@ -1107,7 +1107,7 @@ importers:
       typescript: ^4.9.4
     dependencies:
       jquery: 3.6.3
-      jquery-particles: link:../../components/jquery
+      @tsparticles/jquery: link:../../components/jquery
       tsparticles: link:../../bundles/full/dist
       tsparticles-demo-configs: link:../../utils/configs/dist
       tsparticles-engine: link:../../engine/dist
@@ -1198,7 +1198,7 @@ importers:
       identity-obj-proxy: ^3.0.0
       preact: ^10.11.3
       preact-cli: ^3.4.3
-      preact-particles: ^2.7.1
+      @tsparticles/preact: ^2.7.1
       preact-render-to-string: ^5.2.6
       preact-router: ^4.1.0
       prettier: ^2.8.1
@@ -1208,7 +1208,7 @@ importers:
       tsparticles-engine: ^2.7.1
     dependencies:
       preact: 10.11.3
-      preact-particles: link:../../components/preact
+      @tsparticles/preact: link:../../components/preact
       preact-render-to-string: 5.2.6_preact@10.11.3
       preact-router: 4.1.0_preact@10.11.3
       tsparticles: link:../../bundles/full/dist

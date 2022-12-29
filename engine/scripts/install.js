@@ -79,21 +79,21 @@ try {
     if (dependencies["inferno"]) {
         if (!dependencies["@tsparticles/inferno"] && !dependencies["inferno-particles"]) {
             console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Inferno installed. Please Download @tsparticles/inferno to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md");
+            console.log("You can read more about the component here: https://github.com/tsparticles/inferno#readme");
         }
     }
 
     if (dependencies["preact"]) {
-        if (!dependencies["preact-particles"]) {
-            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Preact installed. Please Download preact-particles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md");
+        if (!dependencies["@tsparticles/preact"]) {
+            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Preact installed. Please Download @tsparticles/preact to use tsParticles with a component ready to use and easier to configure.");
+            console.log("You can read more about the component here: https://github.com/tsparticles/preact#readme");
         }
     }
 
     if (dependencies["jquery"]) {
-        if (!dependencies["jquery-particles"]) {
-            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found jQuery installed. Please Download jquery-particles to use tsParticles with a plugin ready to use and easier to configure.");
-            console.log("You can read more about the plugin here: https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md");
+        if (!dependencies["@tsparticles/jquery"]) {
+            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found jQuery installed. Please Download @tsparticles/jquery to use tsParticles with a plugin ready to use and easier to configure.");
+            console.log("You can read more about the plugin here: https://github.com/tsparticles/jquery#readme");
         }
     }
 } catch (error) {

@@ -210,23 +210,23 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
-[Hier](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md) findest du die Anleitung.
+[Hier](https://github.com/tsparticles/inferno#readme) findest du die Anleitung.
 
 ### jQuery
 
-#### `jquery-particles`
+#### `@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
-[Hier](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md) findest du die Anleitung.
+[Hier](https://github.com/tsparticles/jquery#readme) findest du die Anleitung.
 
 ### Preact
 
-#### `preact-particles`
+#### `@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
-[Hier](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md) findest du die Anleitung.
+[Hier](https://github.com/tsparticles/preact#readme) findest du die Anleitung.
 
 ### ReactJS
 

@@ -45,8 +45,6 @@ body:
         - Vue.js 2.x (vue2-particles, particles.vue)
         - Vue.js 3.x (vue3-particles, particles.vue3)
         - Svelte (svelte-particles)
-        - jQuery (jquery-particles)
-        - Preact (preact-particles)
         - Solid (solid-particles)
         - Riot.js (riot-particles)
         - Web Components (web-particles)

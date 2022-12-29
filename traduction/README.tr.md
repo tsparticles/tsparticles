@@ -33,9 +33,9 @@
         -   [Inferno](#inferno)
             -   [`@tsparticles/inferno`](#@tsparticles/inferno)
         -   [jQuery](#jquery)
-            -   [`jquery-particles`](#jquery-particles)
+            -   [`@tsparticles/jquery`](#@tsparticles/jquery)
         -   [Preact](#preact)
-            -   [`preact-particles`](#preact-particles)
+            -   [`@tsparticles/preact`](#@tsparticles/preact)
         -   [ReactJS](#reactjs)
             -   [`react-particles`](#react-particles)
         -   [Svelte](#svelte)
@@ -242,23 +242,23 @@ Talimatları [burada](https://github.com/tsparticles/angular#readme) bulabilirsi
 
 [![npm](https://img.shields.io/npm/v/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno) [![npm](https://img.shields.io/npm/dm/@tsparticles/inferno)](https://www.npmjs.com/package/@tsparticles/inferno)
 
-Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md) bulabilirsiniz.
+Talimatları [burada](https://github.com/tsparticles/inferno#readme) bulabilirsiniz.
 
 ### jQuery
 
-#### `jquery-particles`
+#### `@tsparticles/jquery`
 
-[![npm](https://img.shields.io/npm/v/jquery-particles)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles)](https://www.npmjs.com/package/jquery-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery) [![npm](https://img.shields.io/npm/dm/@tsparticles/jquery)](https://www.npmjs.com/package/@tsparticles/jquery)
 
-Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md) bulabilirsiniz.
+Talimatları [burada](https://github.com/tsparticles/jquery#readme) bulabilirsiniz.
 
 ### Preact
 
-#### `preact-particles`
+#### `@tsparticles/preact`
 
-[![npm](https://img.shields.io/npm/v/preact-particles)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles)](https://www.npmjs.com/package/preact-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact) [![npm](https://img.shields.io/npm/dm/@tsparticles/preact)](https://www.npmjs.com/package/@tsparticles/preact)
 
-Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md) bulabilirsiniz.
+Talimatları [burada](https://github.com/tsparticles/preact#readme) bulabilirsiniz.
 
 ### ReactJS
 
