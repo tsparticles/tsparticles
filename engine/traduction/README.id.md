@@ -210,11 +210,11 @@ Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/preac
 
 ### ReactJS
 
-#### `react-particles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
-Anda dapat menemukan instruksinya di [sini](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/react#readme)
 
 ### Svelte
 

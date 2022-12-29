@@ -215,9 +215,9 @@ instructies vinden
 
 ### ReactJS
 
-#### `react-particles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
 Je kunt [hier](https://github.com/matteobruni/tsparticles/blob/main/components/react/traduction/README.nl.md) de
 instructies vinden

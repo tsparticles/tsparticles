@@ -82,7 +82,7 @@ Like in the sample above, the circles will be replaced by squares.
 
 ### React.js / Preact / react-particles
 
-_The syntax for `React.js`, `Preact` and `react-particles` is the same_.
+_The syntax for `React.js`, `Preact` and `@tsparticles/react` is the same_.
 
 This sample uses the class component syntax, but you can use hooks as well (if the library supports it).
 

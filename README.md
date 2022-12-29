@@ -308,11 +308,11 @@ Instructions available [here](https://github.com/tsparticles/preact#readme)
 
 ### ReactJS
 
-`react-particles`
+`@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+Instructions available [here](https://github.com/tsparticles/react#readme)
 
 ### RiotJS
 

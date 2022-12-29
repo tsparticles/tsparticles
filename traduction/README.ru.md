@@ -213,11 +213,11 @@ particles.pause();
 
 ### ReactJS
 
-#### `react-particles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
-[Здесь](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) вы можете ознакомиться с
+[Здесь](https://github.com/tsparticles/react#readme) вы можете ознакомиться с
 инструкциями.
 
 ### Svelte

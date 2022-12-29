@@ -24,21 +24,21 @@ try {
     if (dependencies["particles.js"]) {
         console.error("\x1b[31m%s\x1b[0m", "The package particles.js can't be installed with tsparticles, since it can lead to unexpected behaviors, please uninstall particles.js and remove it from the package.json file.");
 
-        throw new Error(reactParticlesJsFoundError);
+        throw new Error(particlesJsFoundError);
     }
 
     if (dependencies["react-particles-js"]) {
         console.error("\x1b[31m%s\x1b[0m", "The package react-particles-js has been deprecated and is not supported anymore.");
-        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to react-particles package.")
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/react package.")
         console.error("\x1b[31m%s\x1b[0m", "This error will be fixed once react-particles-js is removed from the package.json file.");
 
         throw new Error(reactParticlesJsFoundError);
     }
 
     if (dependencies["react"] || dependencies["next"]) {
-        if (!dependencies["react-particles"]) {
-            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found React installed. Please download react-particles to use tsParticles with a component ready to use and easier to configure.");
-            console.log("You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md");
+        if (!dependencies["react-particles"] && !dependencies["react-tsparticles"] && !dependencies["@tsparticles/react"]) {
+            console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found React installed. Please download @tsparticles/react to use tsParticles with a component ready to use and easier to configure.");
+            console.log("You can read more about the component here: https://github.com/tsparticles/react#readme");
         }
     }
 

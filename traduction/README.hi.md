@@ -209,9 +209,9 @@ particles.pause();
 
 #### `प्रतिक्रिया-क्षिप्रहृदयता '
 
-[! [npm] (https://img.shields.io/npm/v/react-particles)] (https://www.npmjs.com/package/react-particles) [! npm] (https) //img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
+[! [npm] (https://img.shields.io/npm/v/@tsparticles/react)] (https://www.npmjs.com/package/@tsparticles/react) [! npm] (https) //img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
-आप [यहाँ] (https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) निर्देश पा सकते हैं
+आप [यहाँ] (https://github.com/tsparticles/react#readme) निर्देश पा सकते हैं
 
 ### स्वेल्ट
 

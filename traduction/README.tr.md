@@ -37,7 +37,7 @@
         -   [Preact](#preact)
             -   [`@tsparticles/preact`](#@tsparticles/preact)
         -   [ReactJS](#reactjs)
-            -   [`react-particles`](#react-particles)
+            -   [`@tsparticles/react`](#@tsparticles/react)
         -   [Svelte](#svelte)
             -   [`svelte-particles`](#svelte-particles)
         -   [VueJS 2.x](#vuejs-2x)
@@ -262,11 +262,11 @@ Talimatları [burada](https://github.com/tsparticles/preact#readme) bulabilirsin
 
 ### ReactJS
 
-#### `react-particles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
-Talimatları [burada](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md) bulabilirsiniz.
+Talimatları [burada](https://github.com/tsparticles/react#readme) bulabilirsiniz.
 
 ### Svelte
 

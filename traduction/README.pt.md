@@ -244,11 +244,11 @@ Poderá encontrar as instruções [aqui](https://github.com/tsparticles/preact#r
 
 ### ReactJS
 
-#### `react-particles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react)](https://www.npmjs.com/package/@tsparticles/react)
 
-Poderá encontrar as instruções [aqui](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+Poderá encontrar as instruções [aqui](https://github.com/tsparticles/react#readme)
 
 ### Svelte
 
