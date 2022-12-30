@@ -362,8 +362,6 @@ demo/vanilla/report.html
 demo/vanilla/report.htm
 demo/vanilla/report.*.html
 demo/vanilla/report.*.htm
-components/preact/report.html
-components/react/report.html
 
 .idea/
 .vscode/
@@ -373,10 +371,6 @@ coverage/
 
 package-lock.json
 yarn.lock
-components/preact/cjs/
-components/preact/umd/
-components/react/cjs/
-components/react/umd/
 
 size-plugin.json
 size-plugin-ssr.json

@@ -1,7 +1,6 @@
 {
   "packages": [
     "bundles/*",
-    "components/*",
     "demo/**/*",
     "editor",
     "engine",

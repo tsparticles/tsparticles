@@ -364,9 +364,9 @@ You can find the instructions [here](https://github.com/tsparticles/webcomponent
 
 ### WordPress
 
-#### `wordpress-particles`
+#### `@tsparticles/wordpress`
 
-[![npm](https://img.shields.io/npm/v/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![npm](https://img.shields.io/npm/dm/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
+[![npm](https://img.shields.io/npm/v/@tsparticles/wordpress?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/wordpress) [![npm](https://img.shields.io/npm/dm/@tsparticles/wordpress?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/wordpress) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
 
 The plugin page hosted on WordPress.org can be
 found [here](https://wordpress.org/plugins/tsparticles-block/#description)
