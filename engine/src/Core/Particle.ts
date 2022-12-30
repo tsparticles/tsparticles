@@ -260,6 +260,8 @@ export class Particle implements IParticle {
      */
     velocity!: Vector;
 
+    zId!: number;
+
     /**
      * Gets the particle Z-Index factor
      */
@@ -505,6 +507,8 @@ export class Particle implements IParticle {
 
         particles.needsSort = particles.needsSort || particles.lastZIndex < this.position.z;
         particles.lastZIndex = this.position.z;
+
+        this.zId = particles.zArray.length - 1;
 
         // Scale z-index factor
         this.zIndexFactor = this.position.z / container.zLayers;

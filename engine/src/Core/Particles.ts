@@ -147,6 +147,11 @@ export class Particles {
         /* clear canvas */
         container.canvas.clear();
 
+        /* draw polygon shape in debug mode */
+        for (const [, plugin] of container.plugins) {
+            container.canvas.drawPlugin(plugin, delta);
+        }
+
         /* update each particles param */
         await this.update(delta);
 
@@ -156,19 +161,16 @@ export class Particles {
             this.needsSort = false;
         }
 
-        /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
-            container.canvas.drawPlugin(plugin, delta);
-        }
-
         /*if (container.canvas.context) {
             this.quadTree.draw(container.canvas.context);
         }*/
 
         /* draw each particle */
-        for (const p of this.zArray) {
+        this.zArray.forEach((p, idx) => {
+            p.zId = idx;
+
             p.draw(delta);
-        }
+        });
     }
 
     handleClickMode(mode: ClickMode | string): void {
@@ -263,8 +265,7 @@ export class Particles {
             particle.destroy(override);
 
             this.array.splice(i--, 1);
-            const zIdx = this.zArray.indexOf(particle);
-            this.zArray.splice(zIdx, 1);
+            this.zArray.splice(particle.zId, 1);
             this.pool.push(particle);
 
             deleted++;
