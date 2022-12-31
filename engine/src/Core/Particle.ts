@@ -7,16 +7,13 @@ import {
     getParticleBaseVelocity,
     getParticleDirectionAngle,
     getRandom,
-    getRangeMax,
-    getRangeMin,
     getRangeValue,
     getValue,
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { deepExtend, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
+import { deepExtend, initParticleNumericAnimationValue, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
-import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
@@ -39,7 +36,6 @@ import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { SizeMode } from "../Enums/Modes/SizeMode";
-import { StartValueType } from "../Enums/Types/StartValueType";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
@@ -416,51 +412,10 @@ export class Particle implements IParticle {
             }
         }
 
-        const zIndexValue = getRangeValue(this.options.zIndex.value);
-
         container.retina.initParticle(this);
 
         /* size */
-        const sizeOptions = this.options.size,
-            sizeRange = sizeOptions.value,
-            sizeAnimation = sizeOptions.animation;
-
-        this.size = {
-            enable: sizeOptions.animation.enable,
-            value: getRangeValue(sizeOptions.value) * container.retina.pixelRatio,
-            max: getRangeMax(sizeRange) * pxRatio,
-            min: getRangeMin(sizeRange) * pxRatio,
-            loops: 0,
-            maxLoops: getRangeValue(sizeOptions.animation.count),
-        };
-
-        if (sizeAnimation.enable) {
-            this.size.status = AnimationStatus.increasing;
-            this.size.decay = 1 - getRangeValue(sizeAnimation.decay);
-
-            switch (sizeAnimation.startValue) {
-                case StartValueType.min:
-                    this.size.value = this.size.min;
-                    this.size.status = AnimationStatus.increasing;
-
-                    break;
-
-                case StartValueType.random:
-                    this.size.value = randomInRange(this.size);
-                    this.size.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-                    break;
-
-                case StartValueType.max:
-                default:
-                    this.size.value = this.size.max;
-                    this.size.status = AnimationStatus.decreasing;
-
-                    break;
-            }
-        }
-
-        this.size.initialValue = this.size.value;
+        this.size = initParticleNumericAnimationValue(this.options.size, pxRatio);
 
         /* position */
         this.bubble = {
@@ -471,37 +426,12 @@ export class Particle implements IParticle {
             factor: 1,
         };
 
-        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
-        this.initialPosition = this.position.copy();
-
-        const canvasSize = container.canvas.size,
-            moveCenter = { ...this.options.move.center },
-            isCenterPercent = moveCenter.mode === SizeMode.percent;
-
-        this.moveCenter = {
-            x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
-            y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
-            radius: this.options.move.center.radius ?? 0,
-            mode: this.options.move.center.mode ?? SizeMode.percent,
-        };
-        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
-
-        switch (this.options.move.direction) {
-            case MoveDirection.inside:
-                this.outType = ParticleOutType.inside;
-                break;
-            case MoveDirection.outside:
-                this.outType = ParticleOutType.outside;
-                break;
-        }
+        this._initPosition(position);
 
         /* animation - velocity for speed */
         this.initialVelocity = this._calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
-
-        /* parallax */
-        this.offset = Vector.origin;
 
         const particles = container.particles;
 
@@ -717,6 +647,38 @@ export class Particle implements IParticle {
         }
 
         return color;
+    }
+
+    private _initPosition(position?: ICoordinates): void {
+        const container = this.container,
+            zIndexValue = getRangeValue(this.options.zIndex.value);
+
+        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.initialPosition = this.position.copy();
+
+        const canvasSize = container.canvas.size,
+            moveCenter = { ...this.options.move.center },
+            isCenterPercent = moveCenter.mode === SizeMode.percent;
+
+        this.moveCenter = {
+            x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
+            y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
+            radius: this.options.move.center.radius ?? 0,
+            mode: this.options.move.center.mode ?? SizeMode.percent,
+        };
+        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
+
+        switch (this.options.move.direction) {
+            case MoveDirection.inside:
+                this.outType = ParticleOutType.inside;
+                break;
+            case MoveDirection.outside:
+                this.outType = ParticleOutType.outside;
+                break;
+        }
+
+        /* parallax */
+        this.offset = Vector.origin;
     }
 
     private _loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
