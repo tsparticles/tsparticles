@@ -35,16 +35,19 @@ export function clearCanvas(
     context: CanvasRenderingContext2D,
     size: IDimension,
     options: Options,
-    trailFillColor?: IRgba
+    trailFillColor?: IRgba,
+    coverColorStyle?: string
 ): void {
-    const trail = options.particles.move.trail;
-
     if (options.backgroundMask.enable) {
-        paintCanvas(context, size, options);
-    } else if (trail.enable && trail.length > 0 && trailFillColor) {
-        paintBase(context, size, getStyleFromRgb(trailFillColor, 1 / trail.length));
+        paintCanvas(context, size, options, coverColorStyle);
     } else {
-        clear(context, size);
+        const trail = options.particles.move.trail;
+
+        if (trail.enable && trail.length > 0 && trailFillColor) {
+            paintBase(context, size, getStyleFromRgb(trailFillColor, 1 / trail.length));
+        } else {
+            clear(context, size);
+        }
     }
 }
 
@@ -54,7 +57,7 @@ export function paintCanvas(
     options: Options,
     coverColorStyle?: string
 ): void {
-    if (options.backgroundMask.enable && options.backgroundMask.cover) {
+    if (options.backgroundMask.enable && coverColorStyle) {
         clear(context, size);
 
         paintBase(context, size, coverColorStyle);

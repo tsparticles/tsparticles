@@ -33,14 +33,7 @@
             "value": 1
         },
         "size": {
-            "value": 1
-        },
-        "links": {
-            "enable": false,
-            "distance": 150,
-            "color": "#ffffff",
-            "opacity": 0.4,
-            "width": 1
+            "value": 3
         },
         "move": {
             "enable": true,
@@ -48,10 +41,7 @@
             "direction": "none",
             "random": false,
             "straight": false,
-            "outModes": {
-                "default": "destroy"
-            },
-            "bounce": false,
+            "outModes": "destroy",
             "path": {
                 "enable": true,
                 "delay": {

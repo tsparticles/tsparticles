@@ -102,7 +102,7 @@ export class Canvas {
      */
     clear(): void {
         this.draw((ctx) => {
-            clearCanvas(ctx, this.size, this.container.actualOptions, this._trailFillColor);
+            clearCanvas(ctx, this.size, this.container.actualOptions, this._trailFillColor, this._coverColorStyle);
         });
     }
 

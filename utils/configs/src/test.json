@@ -1,5 +1,8 @@
 {
     "name": "Test",
+    "fullScreen": {
+        "enable": false
+    },
     "background": {
         "color": "#000"
     },
@@ -8,29 +11,14 @@
             "value": "#ffffff"
         },
         "size": {
-            "value": {
-                "min": 0,
-                "max": 6
-            },
-            "animation": {
-                "enable": true,
-                "speed": 3,
-                "sync": false,
-                "destroy": "none",
-                "startValue": "min"
-            }
+            "value": 6
         },
-        "move": {
+        "links": {
             "enable": true,
-            "speed": 3,
-            "random": false,
-            "size": true
+            "distance": 200
         },
         "number": {
-            "density": {
-                "enable": true
-            },
-            "value": 80
+            "value": 30
         },
         "opacity": {
             "value": 0.5

@@ -19,14 +19,7 @@
             "type": "circle"
         },
         "opacity": {
-            "value": 0.5,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 3,
-                "opacity_min": 0.1,
-                "sync": false
-            }
+            "value": 0.5
         },
         "size": {
             "value": 3,
@@ -108,6 +101,17 @@
                     },
                     "move": {
                         "outModes": "destroy"
+                    },
+                    "opacity": {
+                        "value": {
+                            "min": 0.1,
+                            "max": 1
+                        },
+                        "animation": {
+                            "enable": true,
+                            "speed": 3,
+                            "sync": true
+                        }
                     },
                     "size": {
                         "random": true,
