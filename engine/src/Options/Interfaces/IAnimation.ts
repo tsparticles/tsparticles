@@ -32,10 +32,5 @@ export interface IRangedAnimation extends IAnimation {
      */
     minimumValue?: number;
 
-    /**
-     * @deprecated use the new minimumValue instead
-     */
-    size_min?: number;
-
     startValue: StartValueType | keyof typeof StartValueType;
 }

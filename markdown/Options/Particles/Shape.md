@@ -72,7 +72,7 @@ polygon: {
 {
     "image": {
         // any path or url to your image that will be used as a particle
-        "src": "http://mywebsite.com/assets/img/image.png",
+        "src": "https://mywebsite.com/assets/img/image.png",
         // the pixel width of the image, you can use any value, the image will be scaled
         "width": 100,
         // the pixel height of the image, you can use any value, the image will be scaled

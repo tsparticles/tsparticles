@@ -35,6 +35,10 @@ export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimat
     }
 
     load(data?: RecursivePartial<ISizeAnimation>): void {
+        if (data?.size_min !== undefined && data.minimumValue === undefined) {
+            data.minimumValue = data.size_min;
+        }
+
         super.load(data);
 
         if (!data) {

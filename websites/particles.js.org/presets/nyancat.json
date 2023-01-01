@@ -108,7 +108,7 @@
     "retina_detect": true,
     "background": {
         "color": "#0d47a1",
-        "image": "url('http://fc06.deviantart.net/fs71/f/2011/187/1/0/nyan_cat_background_by_kento1-d3l6i50.jpg')",
+        "image": "url('https://fc06.deviantart.net/fs71/f/2011/187/1/0/nyan_cat_background_by_kento1-d3l6i50.jpg')",
         "position": "50% 50%",
         "repeat": "no-repeat",
         "size": "cover"

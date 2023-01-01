@@ -68,10 +68,8 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
             return;
         }
 
-        const minValue = data.minimumValue ?? data.size_min;
-
-        if (minValue !== undefined) {
-            this.minimumValue = minValue;
+        if (data.minimumValue !== undefined) {
+            this.minimumValue = data.minimumValue;
         }
 
         if (data.startValue !== undefined) {
