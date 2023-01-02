@@ -22,10 +22,9 @@
             "value": 1
         },
         "size": {
-            "value": 30,
-            "random": {
-                "enable": true,
-                "minimumValue": 15
+            "value": {
+                "min": 15,
+                "max": 30
             }
         },
         "rotate": {

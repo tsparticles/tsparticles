@@ -31,7 +31,6 @@
             "enable": true,
             "speed": 10,
             "direction": "outside",
-            "random": false,
             "straight": true
         }
     },

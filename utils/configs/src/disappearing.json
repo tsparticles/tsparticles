@@ -31,18 +31,19 @@
             "type": "circle"
         },
         "opacity": {
-            "value": 0.8,
-            "random": {
-                "enable": true,
-                "minimumValue": 0.3
+            "value": {
+                "min": 0.3,
+                "max": 0.8
             }
         },
         "size": {
-            "value": 50,
+            "value": {
+                "min": 1,
+                "max": 50
+            },
             "animation": {
                 "enable": true,
                 "speed": 30,
-                "size_min": 2,
                 "sync": true,
                 "startValue": "max",
                 "destroy": "min"
@@ -51,15 +52,7 @@
         "move": {
             "enable": true,
             "speed": 5,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "outModes": "destroy",
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+            "outModes": "destroy"
         }
     },
     "interactivity": {

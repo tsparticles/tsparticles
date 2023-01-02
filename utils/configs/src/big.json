@@ -30,9 +30,7 @@
         "move": {
             "enable": true,
             "speed": 10,
-            "direction": "top",
-            "random": false,
-            "straight": false
+            "direction": "top"
         }
     },
     "background": {

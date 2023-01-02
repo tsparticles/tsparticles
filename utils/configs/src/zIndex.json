@@ -50,14 +50,7 @@
             "type": "circle"
         },
         "opacity": {
-            "value": 1,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 3,
-                "minimumValue": 0.1,
-                "sync": false
-            }
+            "value": 1
         },
         "size": {
             "value": 3

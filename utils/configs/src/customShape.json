@@ -25,8 +25,10 @@
             "value": 20
         },
         "rotate": {
-            "value": 0,
-            "random": true,
+            "value": {
+                "min": 0,
+                "max": 360
+            },
             "direction": "clockwise",
             "animation": {
                 "enable": true,

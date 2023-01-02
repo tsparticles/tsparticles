@@ -24,24 +24,18 @@
             }
         },
         "opacity": {
-            "value": 0.5,
-            "random": false,
+            "value": {
+                "min": 0.1,
+                "max": 0.5
+            },
             "animation": {
                 "enable": true,
                 "speed": 1,
-                "opacity_min": 0.1,
                 "sync": false
             }
         },
         "size": {
-            "value": 1,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0,
-                "sync": false
-            }
+            "value": 1
         },
         "links": {
             "enable": true,
@@ -58,11 +52,10 @@
         "move": {
             "enable": true,
             "speed": 3,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "outModes": "bounce",
-            "bounce": true
+            "outModes": "bounce"
+        },
+        "collisions": {
+            "enable": true
         }
     },
     "background": {

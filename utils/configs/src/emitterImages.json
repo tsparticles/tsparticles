@@ -2,12 +2,9 @@
     "name": "Emitter Images",
     "particles": {
         "move": {
-            "direction": "none",
             "enable": true,
             "outModes": "destroy",
-            "random": false,
-            "speed": 2,
-            "straight": false
+            "speed": 2
         },
         "number": {
             "density": {
@@ -17,13 +14,6 @@
             "value": 80
         },
         "opacity": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 0.1,
-                "speed": 1,
-                "sync": false
-            },
-            "random": false,
             "value": 1
         },
         "rotate": {
@@ -33,20 +23,15 @@
                 "sync": false
             },
             "direction": "random",
-            "random": true,
-            "value": 0
+            "value": {
+                "min": 0,
+                "max": 360
+            }
         },
         "shape": {
             "type": "circle"
         },
         "size": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 0.1,
-                "speed": 40,
-                "sync": false
-            },
-            "random": false,
             "value": 16
         }
     },

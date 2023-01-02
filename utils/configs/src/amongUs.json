@@ -62,9 +62,7 @@
             },
             "enable": true,
             "speed": 5,
-            "direction": "right",
-            "random": false,
-            "straight": false
+            "direction": "right"
         },
         "zIndex": {
             "value": 5,

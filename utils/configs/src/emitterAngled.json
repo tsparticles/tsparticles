@@ -14,10 +14,9 @@
             "value": 0.3
         },
         "size": {
-            "value": 10,
-            "random": {
-                "enable": true,
-                "minimumValue": 5
+            "value": {
+                "min": 5,
+                "max": 10
             }
         },
         "move": {
@@ -28,8 +27,6 @@
             "enable": true,
             "speed": 15,
             "direction": "top",
-            "random": false,
-            "straight": false,
             "outModes": {
                 "default": "destroy"
             }

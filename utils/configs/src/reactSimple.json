@@ -37,27 +37,12 @@
             "width": 1
         },
         "move": {
-            "attract": {
-                "enable": false,
-                "rotate": {
-                    "x": 3000,
-                    "y": 3000
-                }
-            },
-            "collisions": true,
-            "direction": "none",
             "enable": true,
             "outModes": "bounce",
-            "random": false,
-            "speed": 3,
-            "straight": false,
-            "trail": {
-                "enable": false,
-                "length": 10,
-                "fillColor": {
-                    "value": "#000000"
-                }
-            }
+            "speed": 3
+        },
+        "collisions": {
+            "enable": true
         },
         "number": {
             "limit": -1,
@@ -66,62 +51,18 @@
         "opacity": {
             "animation": {
                 "enable": true,
-                "minimumValue": 0.1,
                 "speed": 1,
                 "sync": false
             },
-            "random": {
-                "enable": false,
-                "minimumValue": 1
-            },
-            "value": 0.5
-        },
-        "rotate": {
-            "animation": {
-                "enable": false,
-                "speed": 0,
-                "sync": false
-            },
-            "direction": "clockwise",
-            "random": false,
-            "value": 0
+            "value": {
+                "min": 0.1,
+                "max": 0.5
+            }
         },
         "shape": {
-            "character": {
-                "fill": true,
-                "font": "Verdana",
-                "style": "",
-                "value": "*",
-                "weight": "400",
-                "close": true
-            },
-            "image": {
-                "height": 100,
-                "replaceColor": true,
-                "src": "",
-                "width": 100,
-                "fill": true,
-                "close": true
-            },
-            "polygon": {
-                "close": true,
-                "fill": true,
-                "sides": 5
-            },
-            "type": "circle",
-            "custom": {}
+            "type": "circle"
         },
         "size": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 0,
-                "speed": 40,
-                "sync": false
-            },
-            "random": {
-                "enable": false,
-                "minimumValue": 1
-            },
             "value": 3
         },
         "shadow": {

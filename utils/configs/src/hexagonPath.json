@@ -35,9 +35,7 @@
                     "angle": 30
                 }
             },
-            "random": false,
             "speed": 3,
-            "straight": false,
             "trail": {
                 "fillColor": "#000",
                 "length": 20,

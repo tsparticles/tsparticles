@@ -66,26 +66,12 @@
             "width": 1
         },
         "move": {
-            "attract": {
-                "enable": false,
-                "rotate": {
-                    "x": 3000,
-                    "y": 3000
-                }
-            },
-            "collisions": true,
             "direction": "bottom",
             "enable": true,
-            "random": false,
-            "speed": 3,
-            "straight": false,
-            "trail": {
-                "enable": false,
-                "length": 10,
-                "fillColor": {
-                    "value": "#000000"
-                }
-            }
+            "speed": 3
+        },
+        "collisions": {
+            "enable": true
         },
         "number": {
             "limit": -1,
@@ -94,112 +80,23 @@
         "opacity": {
             "animation": {
                 "enable": true,
-                "minimumValue": 0.1,
                 "speed": 1,
                 "sync": false
             },
-            "random": {
-                "enable": false,
-                "minimumValue": 1
-            },
-            "value": 0.5
-        },
-        "rotate": {
-            "animation": {
-                "enable": false,
-                "speed": 0,
-                "sync": false
-            },
-            "direction": "clockwise",
-            "random": false,
-            "value": 0
+            "value": {
+                "min": 0.1,
+                "max": 0.5
+            }
         },
         "shape": {
-            "character": {
-                "fill": true,
-                "font": "Verdana",
-                "style": "",
-                "value": "*",
-                "weight": "400",
-                "close": true
-            },
-            "image": {
-                "height": 100,
-                "replaceColor": true,
-                "src": "",
-                "width": 100,
-                "fill": true,
-                "close": true
-            },
-            "polygon": {
-                "close": true,
-                "fill": true,
-                "sides": 5
-            },
-            "type": "circle",
-            "custom": {}
+            "type": "circle"
         },
         "size": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 0,
-                "speed": 40,
-                "sync": false
-            },
-            "random": {
-                "enable": true,
-                "minimumValue": 1
-            },
-            "value": 10
-        },
-        "shadow": {
-            "blur": 0,
-            "color": {
-                "value": "#000000"
-            },
-            "enable": false,
-            "offset": {
-                "x": 0,
-                "y": 0
+            "value": {
+                "min": 1,
+                "max": 10
             }
-        },
-        "stroke": {
-            "color": {
-                "value": "#ff0000"
-            },
-            "width": 0,
-            "opacity": 1
         }
-    },
-    "polygon": {
-        "draw": {
-            "enable": false,
-            "stroke": {
-                "color": "rgba(255, 255, 255, .1)",
-                "width": 0.5,
-                "opacity": 0.1
-            }
-        },
-        "enable": false,
-        "inline": {
-            "arrangement": "one-per-point"
-        },
-        "move": {
-            "radius": 10,
-            "type": "path"
-        },
-        "scale": 1,
-        "type": "inline",
-        "url": ""
-    },
-    "backgroundMask": {
-        "cover": {
-            "color": {
-                "value": "#fff"
-            },
-            "opacity": 1
-        },
-        "enable": false
     },
     "pauseOnBlur": true,
     "background": {

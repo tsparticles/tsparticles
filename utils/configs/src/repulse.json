@@ -70,27 +70,10 @@
             "type": "circle"
         },
         "opacity": {
-            "value": 1,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 3,
-                "minimumValue": 0.1,
-                "sync": false
-            }
+            "value": 1
         },
         "size": {
-            "value": 14,
-            "random": {
-                "enable": false,
-                "minimumValue": 7
-            },
-            "animation": {
-                "enable": false,
-                "speed": 20,
-                "minimumValue": 0.1,
-                "sync": false
-            }
+            "value": 14
         },
         "links": {
             "enable": true,

@@ -24,23 +24,12 @@
             "type": "circle"
         },
         "opacity": {
-            "value": 0.5,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-            }
+            "value": 0.5
         },
         "size": {
-            "value": 5,
-            "random": true,
-            "animation": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
+            "value": {
+                "min": 1,
+                "max": 5
             }
         },
         "links": {
@@ -57,15 +46,7 @@
         },
         "move": {
             "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+            "speed": 2
         }
     },
     "interactivity": {

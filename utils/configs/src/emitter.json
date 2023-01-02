@@ -14,23 +14,12 @@
             "type": "circle"
         },
         "opacity": {
-            "value": 0.5,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-            }
+            "value": 0.5
         },
         "size": {
-            "value": 5,
-            "random": true,
-            "animation": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
+            "value": {
+                "min": 1,
+                "max": 5
             }
         },
         "links": {
@@ -42,27 +31,14 @@
         },
         "move": {
             "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+            "speed": 2
         }
     },
     "interactivity": {
         "events": {
             "onHover": {
                 "enable": false,
-                "mode": "repulse",
-                "parallax": {
-                    "enable": false,
-                    "force": 60,
-                    "smooth": 10
-                }
+                "mode": "repulse"
             },
             "onClick": {
                 "enable": true,
@@ -84,8 +60,10 @@
                         }
                     },
                     "rotate": {
-                        "value": 0,
-                        "random": true,
+                        "value": {
+                            "min": 0,
+                            "max": 360
+                        },
                         "direction": "clockwise",
                         "animation": {
                             "enable": true,
@@ -103,12 +81,10 @@
                         "value": 1
                     },
                     "size": {
-                        "value": 15,
-                        "random": false
+                        "value": 15
                     },
                     "move": {
                         "speed": 20,
-                        "random": false,
                         "outModes": "destroy"
                     }
                 }
@@ -154,8 +130,10 @@
                     }
                 },
                 "rotate": {
-                    "value": 0,
-                    "random": true,
+                    "value": {
+                        "min": 0,
+                        "max": 360
+                    },
                     "direction": "clockwise",
                     "animation": {
                         "enable": true,
@@ -173,12 +151,10 @@
                     "value": 1
                 },
                 "size": {
-                    "value": 15,
-                    "random": false
+                    "value": 15
                 },
                 "move": {
                     "speed": 20,
-                    "random": false,
                     "outModes": "destroy"
                 }
             }
@@ -207,8 +183,10 @@
                     "value": 0.3
                 },
                 "rotate": {
-                    "value": 0,
-                    "random": true,
+                    "value": {
+                        "min": 0,
+                        "max": 360
+                    },
                     "direction": "counter-clockwise",
                     "animation": {
                         "enable": true,
@@ -217,14 +195,13 @@
                     }
                 },
                 "size": {
-                    "value": 10,
-                    "random": {
-                        "enable": true
+                    "value": {
+                        "min": 1,
+                        "max": 10
                     }
                 },
                 "move": {
                     "speed": 10,
-                    "random": false,
                     "outModes": "destroy"
                 }
             }
@@ -240,8 +217,10 @@
                     "type": "square"
                 },
                 "rotate": {
-                    "value": 0,
-                    "random": true,
+                    "value": {
+                        "min": 0,
+                        "max": 360
+                    },
                     "direction": "clockwise",
                     "animation": {
                         "enable": true,
@@ -259,12 +238,10 @@
                     "value": 0.8
                 },
                 "size": {
-                    "value": 15,
-                    "random": false
+                    "value": 15
                 },
                 "move": {
                     "speed": 20,
-                    "random": false,
                     "outModes": "destroy"
                 }
             }

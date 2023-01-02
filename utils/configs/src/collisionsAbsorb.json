@@ -14,26 +14,12 @@
             "type": "circle"
         },
         "opacity": {
-            "value": 0.5,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 1,
-                "minimumValue": 0.1,
-                "sync": false
-            }
+            "value": 0.5
         },
         "size": {
-            "value": 15,
-            "random": {
-                "enable": true,
-                "minimumValue": 10
-            },
-            "animation": {
-                "enable": false,
-                "speed": 40,
-                "minimumValue": 0.1,
-                "sync": false
+            "value": {
+                "min": 10,
+                "max": 15
             }
         },
         "links": {
@@ -52,15 +38,7 @@
         },
         "move": {
             "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+            "speed": 2
         }
     },
     "interactivity": {

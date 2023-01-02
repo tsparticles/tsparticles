@@ -19,28 +19,16 @@
             }
         },
         "opacity": {
-            "value": 0.8,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-            }
+            "value": 0.8
         },
         "size": {
-            "value": 4,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
-            }
+            "value": 4
         },
         "rotate": {
-            "value": 0,
-            "random": true,
+            "value": {
+                "min": 0,
+                "max": 360
+            },
             "direction": "clockwise",
             "animation": {
                 "enable": true,
@@ -57,15 +45,7 @@
         },
         "move": {
             "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+            "speed": 2
         }
     },
     "interactivity": {

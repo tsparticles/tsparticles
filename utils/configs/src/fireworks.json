@@ -105,8 +105,6 @@
                             "max": 25
                         },
                         "direction": "outside",
-                        "random": true,
-                        "straight": false,
                         "outModes": "destroy"
                     }
                 }

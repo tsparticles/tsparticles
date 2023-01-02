@@ -8,9 +8,7 @@
             "direction": "none",
             "enable": true,
             "outModes": "bounce",
-            "random": false,
-            "speed": 2,
-            "straight": false
+            "speed": 2
         },
         "number": {
             "value": 16

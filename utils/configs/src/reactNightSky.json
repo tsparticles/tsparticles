@@ -43,20 +43,13 @@
                     "y": 3000
                 }
             },
-            "collisions": true,
             "direction": "right",
             "enable": true,
             "outModes": "bounce",
-            "random": false,
-            "speed": 0.05,
-            "straight": false,
-            "trail": {
-                "enable": false,
-                "length": 10,
-                "fillColor": {
-                    "value": "#000000"
-                }
-            }
+            "speed": 0.05
+        },
+        "collisions": {
+            "enable": true
         },
         "number": {
             "density": {
@@ -68,112 +61,20 @@
         "opacity": {
             "animation": {
                 "enable": true,
-                "minimumValue": 0.05,
                 "speed": 1,
                 "sync": false
             },
-            "random": {
-                "enable": false,
-                "minimumValue": 1
-            },
-            "value": 0.5
-        },
-        "rotate": {
-            "animation": {
-                "enable": false,
-                "speed": 0,
-                "sync": false
-            },
-            "direction": "clockwise",
-            "random": false,
-            "value": 0
+            "value": {
+                "min": 0.05,
+                "max": 0.5
+            }
         },
         "shape": {
-            "character": {
-                "fill": true,
-                "font": "Verdana",
-                "style": "",
-                "value": "*",
-                "weight": "400",
-                "close": true
-            },
-            "image": {
-                "height": 100,
-                "replaceColor": true,
-                "src": "",
-                "width": 100,
-                "fill": true,
-                "close": true
-            },
-            "polygon": {
-                "close": true,
-                "fill": true,
-                "sides": 5
-            },
-            "type": "circle",
-            "custom": {}
+            "type": "circle"
         },
         "size": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 0,
-                "speed": 40,
-                "sync": false
-            },
-            "random": {
-                "enable": false,
-                "minimumValue": 1
-            },
             "value": 1
-        },
-        "shadow": {
-            "blur": 0,
-            "color": {
-                "value": "#000000"
-            },
-            "enable": false,
-            "offset": {
-                "x": 0,
-                "y": 0
-            }
-        },
-        "stroke": {
-            "color": {
-                "value": "#ff0000"
-            },
-            "width": 0,
-            "opacity": 1
         }
-    },
-    "polygon": {
-        "draw": {
-            "enable": false,
-            "stroke": {
-                "color": "rgba(255, 255, 255, .1)",
-                "width": 0.5,
-                "opacity": 0.1
-            }
-        },
-        "enable": false,
-        "inline": {
-            "arrangement": "one-per-point"
-        },
-        "move": {
-            "radius": 10,
-            "type": "path"
-        },
-        "scale": 1,
-        "type": "inline",
-        "url": ""
-    },
-    "backgroundMask": {
-        "cover": {
-            "color": {
-                "value": "#fff"
-            },
-            "opacity": 1
-        },
-        "enable": false
     },
     "pauseOnBlur": true,
     "background": {

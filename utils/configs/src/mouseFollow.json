@@ -36,9 +36,7 @@
         "move": {
             "direction": "none",
             "enable": true,
-            "random": false,
-            "speed": 2,
-            "straight": false
+            "speed": 2
         },
         "number": {
             "density": {
@@ -53,11 +51,10 @@
             "type": "circle"
         },
         "size": {
-            "random": {
-                "enable": true,
-                "minimumValue": 10
-            },
-            "value": 15
+            "value": {
+                "min": 10,
+                "max": 15
+            }
         }
     },
     "detectRetina": true

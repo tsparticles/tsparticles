@@ -4,6 +4,9 @@
         "color": {
             "value": "#CCC"
         },
+        "collisions": {
+            "enable": true
+        },
         "links": {
             "blink": false,
             "color": "#fff",
@@ -14,12 +17,8 @@
             "width": 1
         },
         "move": {
-            "collisions": true,
-            "direction": "none",
             "enable": true,
-            "random": false,
-            "speed": 1,
-            "straight": false
+            "speed": 1
         },
         "number": {
             "density": {
@@ -39,32 +38,34 @@
             }
         },
         "shape": {
-            "image": [
-                {
-                    "height": 20,
-                    "replaceColor": true,
-                    "src": "https://particles.js.org/images/fruits/cherry.png",
-                    "width": 23,
-                    "fill": true,
-                    "close": true
-                },
-                {
-                    "height": 20,
-                    "replaceColor": true,
-                    "src": "https://particles.js.org/images/fruits/grapes.png",
-                    "width": 20,
-                    "fill": true,
-                    "close": true
-                },
-                {
-                    "height": 20,
-                    "replaceColor": true,
-                    "src": "https://particles.js.org/images/fruits/lemon.png",
-                    "width": 20,
-                    "fill": true,
-                    "close": true
-                }
-            ],
+            "options": {
+                "image": [
+                    {
+                        "height": 20,
+                        "replaceColor": true,
+                        "src": "https://particles.js.org/images/fruits/cherry.png",
+                        "width": 23,
+                        "fill": true,
+                        "close": true
+                    },
+                    {
+                        "height": 20,
+                        "replaceColor": true,
+                        "src": "https://particles.js.org/images/fruits/grapes.png",
+                        "width": 20,
+                        "fill": true,
+                        "close": true
+                    },
+                    {
+                        "height": 20,
+                        "replaceColor": true,
+                        "src": "https://particles.js.org/images/fruits/lemon.png",
+                        "width": 20,
+                        "fill": true,
+                        "close": true
+                    }
+                ]
+            },
             "type": ["image", "circle"]
         },
         "size": {
@@ -77,55 +78,7 @@
                 "min": 10,
                 "max": 30
             }
-        },
-        "shadow": {
-            "blur": 0,
-            "color": {
-                "value": "#000000"
-            },
-            "enable": false,
-            "offset": {
-                "x": 0,
-                "y": 0
-            }
-        },
-        "stroke": {
-            "color": {
-                "value": "#ff0000"
-            },
-            "width": 0,
-            "opacity": 1
         }
-    },
-    "polygon": {
-        "draw": {
-            "enable": false,
-            "stroke": {
-                "color": "rgba(255, 255, 255, .1)",
-                "width": 0.5,
-                "opacity": 0.1
-            }
-        },
-        "enable": false,
-        "inline": {
-            "arrangement": "one-per-point"
-        },
-        "move": {
-            "radius": 10,
-            "type": "path"
-        },
-        "scale": 1,
-        "type": "inline",
-        "url": ""
-    },
-    "backgroundMask": {
-        "cover": {
-            "color": {
-                "value": "#fff"
-            },
-            "opacity": 1
-        },
-        "enable": false
     },
     "pauseOnBlur": true,
     "background": {

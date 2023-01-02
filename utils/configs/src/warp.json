@@ -79,9 +79,6 @@
         "move": {
             "enable": false,
             "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
             "outModes": "out",
             "warp": true
         }

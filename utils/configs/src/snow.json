@@ -23,7 +23,6 @@
             "enable": true,
             "speed": 2,
             "direction": "bottom",
-            "random": false,
             "straight": true
         },
         "wobble": {

@@ -16,8 +16,10 @@
             }
         },
         "rotate": {
-            "value": 0,
-            "random": true,
+            "value": {
+                "min": 0,
+                "max": 360
+            },
             "direction": "clockwise",
             "animation": {
                 "enable": true,
@@ -34,24 +36,14 @@
             }
         },
         "opacity": {
-            "value": 0.5,
-            "random": false,
-            "animation": {
-                "enable": false,
-                "speed": 3,
-                "opacity_min": 0.1,
-                "sync": false
-            }
+            "value": 0.5
         },
         "size": {
             "value": 30
         },
         "move": {
             "enable": true,
-            "speed": 6,
-            "direction": "none",
-            "random": false,
-            "straight": false
+            "speed": 6
         }
     },
     "interactivity": {

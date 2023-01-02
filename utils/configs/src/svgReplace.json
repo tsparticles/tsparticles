@@ -67,19 +67,8 @@
             "width": 1
         },
         "move": {
-            "attract": {
-                "enable": false,
-                "rotate": {
-                    "x": 600,
-                    "y": 1200
-                }
-            },
-            "bounce": false,
-            "direction": "none",
             "enable": true,
-            "random": false,
-            "speed": 2,
-            "straight": false
+            "speed": 2
         },
         "number": {
             "density": {
@@ -89,11 +78,6 @@
             "value": 80
         },
         "opacity": {
-            "animation": {
-                "enable": false,
-                "speed": 1,
-                "sync": false
-            },
             "value": {
                 "min": 0.1,
                 "max": 1
@@ -106,8 +90,10 @@
                 "sync": false
             },
             "direction": "random",
-            "random": true,
-            "value": 0
+            "value": {
+                "min": 0,
+                "max": 360
+            }
         },
         "shape": {
             "options": {
@@ -121,13 +107,6 @@
             "type": "image"
         },
         "size": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 0.1,
-                "speed": 40,
-                "sync": false
-            },
-            "random": false,
             "value": 16
         }
     },

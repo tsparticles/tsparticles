@@ -40,24 +40,9 @@
             "width": 1
         },
         "move": {
-            "attract": {
-                "enable": false,
-                "rotate": {
-                    "x": 600,
-                    "y": 1200
-                }
-            },
-            "collisions": false,
             "direction": "none",
             "enable": true,
-            "random": false,
-            "speed": 2,
-            "straight": false,
-            "trail": {
-                "enable": false,
-                "length": 10,
-                "fillColor": "#000000"
-            }
+            "speed": 2
         },
         "number": {
             "density": {
@@ -69,22 +54,13 @@
         "opacity": {
             "animation": {
                 "enable": true,
-                "minimumValue": 0.1,
                 "speed": 1,
                 "sync": false
             },
-            "random": false,
-            "value": 0.5
-        },
-        "rotate": {
-            "animation": {
-                "enable": false,
-                "speed": 0,
-                "sync": false
-            },
-            "direction": "clockwise",
-            "random": false,
-            "value": 0
+            "value": {
+                "min": 0.1,
+                "max": 0.5
+            }
         },
         "shape": {
             "character": [
@@ -110,38 +86,8 @@
             "width": 1
         },
         "size": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 10,
-                "speed": 10,
-                "sync": false
-            },
-            "random": false,
             "value": 16
         }
-    },
-    "polygon": {
-        "draw": {
-            "enable": false,
-            "stroke": {
-                "color": "#ffffff",
-                "width": 0.5
-            }
-        },
-        "enable": false,
-        "inline": {
-            "arrangement": "one-per-point"
-        },
-        "move": {
-            "radius": 10,
-            "type": "path"
-        },
-        "scale": 1,
-        "type": "none",
-        "url": ""
-    },
-    "backgroundMask": {
-        "enable": false
     },
     "pauseOnBlur": true,
     "background": {

@@ -29,7 +29,6 @@
             "enable": true,
             "speed": 0.5,
             "direction": "top",
-            "random": false,
             "straight": true,
             "warp": true
         }

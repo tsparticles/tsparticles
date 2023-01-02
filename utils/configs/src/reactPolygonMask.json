@@ -39,27 +39,9 @@
             "width": 1
         },
         "move": {
-            "attract": {
-                "enable": false,
-                "rotate": {
-                    "x": 3000,
-                    "y": 3000
-                }
-            },
-            "collisions": false,
-            "direction": "none",
             "enable": true,
             "outModes": "bounce",
-            "random": false,
-            "speed": 1,
-            "straight": false,
-            "trail": {
-                "enable": false,
-                "length": 10,
-                "fillColor": {
-                    "value": "#000000"
-                }
-            }
+            "speed": 1
         },
         "number": {
             "limit": -1,
@@ -68,81 +50,19 @@
         "opacity": {
             "animation": {
                 "enable": true,
-                "minimumValue": 0.05,
                 "speed": 2,
                 "sync": false
             },
-            "random": {
-                "enable": false,
-                "minimumValue": 1
-            },
-            "value": 0.4
-        },
-        "rotate": {
-            "animation": {
-                "enable": false,
-                "speed": 0,
-                "sync": false
-            },
-            "direction": "clockwise",
-            "random": false,
-            "value": 0
-        },
-        "shape": {
-            "character": {
-                "fill": true,
-                "font": "Verdana",
-                "style": "",
-                "value": "*",
-                "weight": "400",
-                "close": true
-            },
-            "image": {
-                "height": 100,
-                "replaceColor": true,
-                "src": "",
-                "width": 100,
-                "fill": true,
-                "close": true
-            },
-            "polygon": {
-                "close": true,
-                "fill": true,
-                "sides": 5
-            },
-            "type": "circle",
-            "custom": {}
-        },
-        "size": {
-            "animation": {
-                "enable": false,
-                "minimumValue": 0,
-                "speed": 40,
-                "sync": false
-            },
-            "random": {
-                "enable": false,
-                "minimumValue": 1
-            },
-            "value": 1
-        },
-        "shadow": {
-            "blur": 0,
-            "color": {
-                "value": "#000000"
-            },
-            "enable": false,
-            "offset": {
-                "x": 0,
-                "y": 0
+            "value": {
+                "min": 0.05,
+                "max": 0.4
             }
         },
-        "stroke": {
-            "color": {
-                "value": "#ff0000"
-            },
-            "width": 0,
-            "opacity": 1
+        "shape": {
+            "type": "circle"
+        },
+        "size": {
+            "value": 1
         }
     },
     "polygon": {
@@ -165,15 +85,6 @@
         "scale": 0.5,
         "type": "inline",
         "url": "https://particles.js.org/images/smalldeer.svg"
-    },
-    "backgroundMask": {
-        "cover": {
-            "color": {
-                "value": "#fff"
-            },
-            "opacity": 1
-        },
-        "enable": false
     },
     "pauseOnBlur": true,
     "background": {
