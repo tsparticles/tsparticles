@@ -226,17 +226,17 @@ Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/svelt
 
 ### VueJS 2.x
 
-#### `vue2-particles`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/particles)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/vue2#readme)
 
 ### VueJS 3.x
 
-#### `vue3-particles`
+#### `@tsparticles/vue3`
 
-[![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Anda dapat menemukan instruksinya di [sini](https://github.com/tsparticles/vue3#readme)
 

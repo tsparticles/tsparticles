@@ -41,9 +41,9 @@
         -   [Svelte](#svelte)
             -   [`@tsparticles/svelte`](#@tsparticles/svelte)
         -   [VueJS 2.x](#vuejs-2x)
-            -   [`vue2-particles`](#vue2-particles)
+            -   [`@tsparticles/vue2`](#@tsparticles/vue2)
         -   [VueJS 3.x](#vuejs-3x)
-            -   [`vue3-particles`](#vue3-particles)
+            -   [`@tsparticles/vue3`](#@tsparticles/vue3)
         -   [WordPress](#wordpress)
     -   [Şablonlar ve Kaynaklar](#şablonlar-ve-kaynaklar)
     -   [**_Demo / Üretici_**](#demo--üretici)
@@ -278,17 +278,17 @@ Talimatları [burada](https://github.com/tsparticles/svelte#readme) bulabilirsin
 
 ### VueJS 2.x
 
-#### `vue2-particles`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Talimatları [burada](https://github.com/tsparticles/vue2#readme) bulabilirsiniz.
 
 ### VueJS 3.x
 
-#### `vue3-particles`
+#### `@tsparticles/vue3`
 
-[![npm](https://img.shields.io/npm/v/vue3-particles)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles)](https://www.npmjs.com/package/vue3-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Talimatları [burada](https://github.com/tsparticles/vue3#readme) bulabilirsiniz.
 

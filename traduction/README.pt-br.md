@@ -231,9 +231,9 @@ instruções [aqui](https://github.com/tsparticles/svelte#readme)
 
 ### VueJS
 
-#### `vue2-particles`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Você pode encontrar as instruções [aqui](https://github.com/tsparticles/vue2#readme)
 

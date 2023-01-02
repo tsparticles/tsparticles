@@ -1,5 +1,41 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Angular Repository
+    url: https://github.com/tsparticles/angular
+    about: Please open an issue in the Angular repository for the Angular component.
+  - name: Ember Repository
+    url: https://github.com/tsparticles/ember
+    about: Please open an issue in the Ember repository for the Ember component.
+  - name: Inferno Repository
+    url: https://github.com/tsparticles/inferno
+    about: Please open an issue in the Inferno repository for the Inferno component.
+  - name: jQuery Repository
+    url: https://github.com/tsparticles/jquery
+    about: Please open an issue in the jQuery repository for the jQuery component.
+  - name: Lit Repository
+    url: https://github.com/tsparticles/lit
+    about: Please open an issue in the Lit repository for the Lit component.
+  - name: Preact Repository
+    url: https://github.com/tsparticles/preact
+    about: Please open an issue in the Preact repository for the Preact component.
+  - name: React Repository
+    url: https://github.com/tsparticles/react
+    about: Please open an issue in the React repository for the React component.
+  - name: Svelte Repository
+    url: https://github.com/tsparticles/svelte
+    about: Please open an issue in the Svelte repository for the Svelte component.
+  - name: Vue 2.x Repository
+    url: https://github.com/tsparticles/vue2
+    about: Please open an issue in the Vue 2.x repository for the Vue 2.x component.
+  - name: Vue 3.x Repository
+    url: https://github.com/tsparticles/vue3
+    about: Please open an issue in the Vue 3.x repository for the Vue 3.x component.
+  - name: Web Components Repository
+    url: https://github.com/tsparticles/webcomponents
+    about: Please open an issue in the Web Components repository for the Web Components component.
+  - name: WordPress Repository
+    url: https://github.com/tsparticles/wordpress
+    about: Please open an issue in the WordPress repository for the WordPress plugin.
   - name: GitHub Discussions
     url: https://github.com/matteobruni/tsparticles/discussions
     about: The official tsParticles Q&A, idea discussions or sharing awesome configurations. If you have some general questions this is the right place to ask.
@@ -9,3 +45,9 @@ contact_links:
   - name: Official tsParticles Discord
     url: https://discord.com/invite/hACwv45Hme
     about: The official Discord offers more direct support.
+  - name: Official tsParticles Telegram
+    url: https://t.me/tsparticles
+    about: The official Telegram offers more direct support.
+  - name: Official tsParticles Reddit
+    url: https://reddit/r/tsParticles
+    about: The official Reddit to find other questions and answers.

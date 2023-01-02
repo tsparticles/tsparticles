@@ -34,17 +34,6 @@ body:
       placeholder: tsParticles Version (eg. 1.0.0)
     validations:
       required: true
-  - type: dropdown
-    id: library
-    attributes:
-      label: Which library are you using?
-      multiple: true
-      options:
-        - Vanilla (tsparticles)
-        - Vue.js 2.x (vue2-particles, particles.vue)
-        - Vue.js 3.x (vue3-particles, particles.vue3)
-    validations:
-      required: true
   - type: textarea
     id: configuration
     attributes:

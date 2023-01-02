@@ -231,9 +231,9 @@ particles.pause();
 
 ### VueJS
 
-#### `vue2-particles`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/vue2-particles)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles)](https://www.npmjs.com/package/vue2-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 [Здесь](https://github.com/tsparticles/vue2#readme) вы можете ознакомиться с
 инструкциями.

@@ -56,13 +56,13 @@ try {
         const vueMajor = (vueVersion || nuxtVersion).split(".")[0];
 
         if (vueMajor > 2) {
-            if (!dependencies["vue3-particles"]) {
-                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 3.x installed. Please Download vue3-particles to use tsParticles with a component ready to use and easier to configure.");
+            if (!dependencies["@tsparticles/vue3"] || !dependencies["vue3-particles"]) {
+                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 3.x installed. Please Download @tsparticles/vue3 to use tsParticles with a component ready to use and easier to configure.");
                 console.log("You can read more about the component here: https://github.com/tsparticles/vue3#readme");
             }
         } else {
-            if (!dependencies["vue2-particles"]) {
-                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 2.x installed. Please Download vue2-particles to use tsParticles with a component ready to use and easier to configure.");
+            if (!dependencies["@tsparticles/vue2"] || !dependencies["vue2-particles"]) {
+                console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 2.x installed. Please Download @tsparticles/vue2 to use tsParticles with a component ready to use and easier to configure.");
                 console.log("You can read more about the component here: https://github.com/tsparticles/vue2#readme");
             }
         }
