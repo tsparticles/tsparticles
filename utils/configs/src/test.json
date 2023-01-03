@@ -18,7 +18,10 @@
             "distance": 200
         },
         "number": {
-            "value": 30
+            "value": 80,
+            "density": {
+                "enable": true
+            }
         },
         "opacity": {
             "value": 0.5
