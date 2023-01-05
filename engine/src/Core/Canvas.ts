@@ -235,81 +235,24 @@ export class Canvas {
      * Initializes the canvas element
      */
     init(): void {
-        this.resize();
+        this._resize();
         this._initStyle();
         this._initCover();
         this._initTrail();
-        this.initBackground();
+        this._initBackground();
 
         if (this.element) {
             this._mutationObserver?.observe(this.element, { attributes: true });
         }
 
-        this.initUpdaters();
-        this.initPlugins();
-        this.paint();
-    }
+        this._initUpdaters();
+        this._initPlugins();
+        this._paint();
 
-    /**
-     * Initializes the canvas background
-     */
-    initBackground(): void {
-        const options = this.container.actualOptions,
-            background = options.background,
-            element = this.element,
-            elementStyle = element?.style;
+        this.container.updateActualOptions();
 
-        if (!elementStyle) {
-            return;
-        }
-
-        if (background.color) {
-            const color = rangeColorToRgb(background.color);
-
-            elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
-        } else {
-            elementStyle.backgroundColor = "";
-        }
-
-        elementStyle.backgroundImage = background.image || "";
-        elementStyle.backgroundPosition = background.position || "";
-        elementStyle.backgroundRepeat = background.repeat || "";
-        elementStyle.backgroundSize = background.size || "";
-    }
-
-    /**
-     * Initializes the plugins needed by canvas
-     */
-    initPlugins(): void {
-        this._resizePlugins = [];
-
-        for (const [, plugin] of this.container.plugins) {
-            if (plugin.resize) {
-                this._resizePlugins.push(plugin);
-            }
-
-            if (plugin.particleFillColor || plugin.particleStrokeColor) {
-                this._colorPlugins.push(plugin);
-            }
-        }
-    }
-
-    /**
-     * Initializes the updaters needed by canvas
-     */
-    initUpdaters(): void {
-        this._preDrawUpdaters = [];
-        this._postDrawUpdaters = [];
-
-        for (const updater of this.container.particles.updaters) {
-            if (updater.afterDraw) {
-                this._postDrawUpdaters.push(updater);
-            }
-
-            if (updater.getColorStyles || updater.getTransformValues || updater.beforeDraw) {
-                this._preDrawUpdaters.push(updater);
-            }
-        }
+        this._resize();
+        this._initBackground();
     }
 
     /**
@@ -333,54 +276,7 @@ export class Canvas {
         this._context = getContext(canvas);
         this._mutationObserver?.observe(this.element, { attributes: true });
         this.container.retina.init();
-        this.initBackground();
-    }
-
-    /**
-     * Paints the canvas background
-     */
-    paint(): void {
-        this.draw((ctx) => {
-            paintCanvas(ctx, this.size, this.container.actualOptions, this._coverColorStyle);
-        });
-    }
-
-    /**
-     * Calculates the size of the canvas
-     */
-    resize(): void {
-        if (!this.element) {
-            return;
-        }
-
-        const container = this.container,
-            pxRatio = container.retina.pixelRatio,
-            size = container.canvas.size,
-            newSize = {
-                width: this.element.offsetWidth * pxRatio,
-                height: this.element.offsetHeight * pxRatio,
-            };
-
-        if (
-            newSize.height === size.height &&
-            newSize.width === size.width &&
-            newSize.height === this.element.height &&
-            newSize.width === this.element.width
-        ) {
-            return;
-        }
-
-        const oldSize = { ...size };
-
-        this.element.width = size.width = this.element.offsetWidth * pxRatio;
-        this.element.height = size.height = this.element.offsetHeight * pxRatio;
-
-        if (this.container.started) {
-            this.resizeFactor = {
-                width: size.width / oldSize.width,
-                height: size.height / oldSize.height,
-            };
-        }
+        this._initBackground();
     }
 
     /**
@@ -391,7 +287,7 @@ export class Canvas {
             return;
         }
 
-        this.resize();
+        this._resize();
 
         const container = this.container,
             needsRefresh = container.updateActualOptions();
@@ -473,6 +369,33 @@ export class Canvas {
         return [fColor, sColor];
     }
 
+    /**
+     * Initializes the canvas background
+     */
+    private _initBackground(): void {
+        const options = this.container.actualOptions,
+            background = options.background,
+            element = this.element,
+            elementStyle = element?.style;
+
+        if (!elementStyle) {
+            return;
+        }
+
+        if (background.color) {
+            const color = rangeColorToRgb(background.color);
+
+            elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
+        } else {
+            elementStyle.backgroundColor = "";
+        }
+
+        elementStyle.backgroundImage = background.image || "";
+        elementStyle.backgroundPosition = background.position || "";
+        elementStyle.backgroundRepeat = background.repeat || "";
+        elementStyle.backgroundSize = background.size || "";
+    }
+
     private _initCover(): void {
         const options = this.container.actualOptions,
             cover = options.backgroundMask.cover,
@@ -488,6 +411,23 @@ export class Canvas {
             };
 
             this._coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+        }
+    }
+
+    /**
+     * Initializes the plugins needed by canvas
+     */
+    private _initPlugins(): void {
+        this._resizePlugins = [];
+
+        for (const [, plugin] of this.container.plugins) {
+            if (plugin.resize) {
+                this._resizePlugins.push(plugin);
+            }
+
+            if (plugin.particleFillColor || plugin.particleStrokeColor) {
+                this._colorPlugins.push(plugin);
+            }
         }
     }
 
@@ -537,6 +477,33 @@ export class Canvas {
         }
     }
 
+    /**
+     * Initializes the updaters needed by canvas
+     */
+    private _initUpdaters(): void {
+        this._preDrawUpdaters = [];
+        this._postDrawUpdaters = [];
+
+        for (const updater of this.container.particles.updaters) {
+            if (updater.afterDraw) {
+                this._postDrawUpdaters.push(updater);
+            }
+
+            if (updater.getColorStyles || updater.getTransformValues || updater.beforeDraw) {
+                this._preDrawUpdaters.push(updater);
+            }
+        }
+    }
+
+    /**
+     * Paints the canvas background
+     */
+    private _paint(): void {
+        this.draw((ctx) => {
+            paintCanvas(ctx, this.size, this.container.actualOptions, this._coverColorStyle);
+        });
+    }
+
     private _repairStyle(): void {
         const element = this.element;
 
@@ -547,7 +514,7 @@ export class Canvas {
         this._mutationObserver?.disconnect();
 
         this._initStyle();
-        this.initBackground();
+        this._initBackground();
 
         this._mutationObserver?.observe(element, { attributes: true });
     }
@@ -566,6 +533,44 @@ export class Canvas {
         element.style.left = originalStyle.left;
         element.style.width = originalStyle.width;
         element.style.height = originalStyle.height;
+    }
+
+    /**
+     * Calculates the size of the canvas
+     */
+    private _resize(): void {
+        if (!this.element) {
+            return;
+        }
+
+        const container = this.container,
+            pxRatio = container.retina.pixelRatio,
+            size = container.canvas.size,
+            newSize = {
+                width: this.element.offsetWidth * pxRatio,
+                height: this.element.offsetHeight * pxRatio,
+            };
+
+        if (
+            newSize.height === size.height &&
+            newSize.width === size.width &&
+            newSize.height === this.element.height &&
+            newSize.width === this.element.width
+        ) {
+            return;
+        }
+
+        const oldSize = { ...size };
+
+        this.element.width = size.width = this.element.offsetWidth * pxRatio;
+        this.element.height = size.height = this.element.offsetHeight * pxRatio;
+
+        if (this.container.started) {
+            this.resizeFactor = {
+                width: size.width / oldSize.width,
+                height: size.height / oldSize.height,
+            };
+        }
     }
 
     private _setFullScreenStyle(): void {

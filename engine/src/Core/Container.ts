@@ -508,11 +508,6 @@ export class Container {
         this.retina.init();
         this.canvas.init();
 
-        this.updateActualOptions();
-
-        this.canvas.initBackground();
-        this.canvas.resize();
-
         this.zLayers = this.actualOptions.zLayers;
         this.duration = getRangeValue(this.actualOptions.duration) * 1000;
         this._delay = getRangeValue(this.actualOptions.delay) * 1000;
