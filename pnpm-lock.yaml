@@ -687,7 +687,7 @@ importers:
       eslint-config-prettier: ^8.5.0
       fs-extra: ^11.1.0
       install: ^0.13.0
-      jsdom: ^20.0.3
+      jsdom: ^21.0.0
       jsdom-global: ^3.0.2
       mocha: ^10.2.0
       nyc: ^15.1.0
@@ -727,8 +727,8 @@ importers:
       eslint-config-prettier: 8.5.0_eslint@8.30.0
       fs-extra: 11.1.0
       install: 0.13.0
-      jsdom: 20.0.3_canvas@2.11.0
-      jsdom-global: 3.0.2_jsdom@20.0.3
+      jsdom: 21.0.0_canvas@2.11.0
+      jsdom-global: 3.0.2_jsdom@21.0.0
       mocha: 10.2.0
       nyc: 15.1.0
       prettier: 2.8.1
@@ -4908,7 +4908,7 @@ importers:
       eslint: ^8.30.0
       eslint-config-prettier: ^8.5.0
       fs-extra: ^11.1.0
-      jsdom: ^20.0.3
+      jsdom: ^21.0.0
       klaw: ^4.0.1
       lodash: ^4.17.21
       prettier: ^2.8.1
@@ -4992,7 +4992,7 @@ importers:
       eslint: 8.30.0
       eslint-config-prettier: 8.5.0_eslint@8.30.0
       fs-extra: 11.1.0
-      jsdom: 20.0.3
+      jsdom: 21.0.0
       klaw: 4.0.1
       lodash: 4.17.21
       prettier: 2.8.1
@@ -11152,16 +11152,16 @@ packages:
     dependencies:
       argparse: 2.0.1
 
-  /jsdom-global/3.0.2_jsdom@20.0.3:
+  /jsdom-global/3.0.2_jsdom@21.0.0:
     resolution: {integrity: sha512-t1KMcBkz/pT5JrvcJbpUR2u/w1kO9jXctaaGJ0vZDzwFnIvGWw9IDSRciT83kIs8Bnw4qpOl8bQK08V01YgMPg==}
     peerDependencies:
       jsdom: '>=10.0.0'
     dependencies:
-      jsdom: 20.0.3_canvas@2.11.0
+      jsdom: 21.0.0_canvas@2.11.0
     dev: true
 
-  /jsdom/20.0.3:
-    resolution: {integrity: sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ==}
+  /jsdom/21.0.0:
+    resolution: {integrity: sha512-AIw+3ZakSUtDYvhwPwWHiZsUi3zHugpMEKlNPaurviseYoBqo0zBd3zqoUi3LPCNtPFlEP8FiW9MqCZdjb2IYA==}
     engines: {node: '>=14'}
     peerDependencies:
       canvas: ^2.5.0
@@ -11201,8 +11201,8 @@ packages:
       - utf-8-validate
     dev: false
 
-  /jsdom/20.0.3_canvas@2.11.0:
-    resolution: {integrity: sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ==}
+  /jsdom/21.0.0_canvas@2.11.0:
+    resolution: {integrity: sha512-AIw+3ZakSUtDYvhwPwWHiZsUi3zHugpMEKlNPaurviseYoBqo0zBd3zqoUi3LPCNtPFlEP8FiW9MqCZdjb2IYA==}
     engines: {node: '>=14'}
     peerDependencies:
       canvas: ^2.5.0
