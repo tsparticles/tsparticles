@@ -34,7 +34,7 @@
         "eslint": "^8.30.0",
         "eslint-config-prettier": "^8.5.0",
         "fs-extra": "^11.1.0",
-        "jsdom": "^20.0.3",
+        "jsdom": "^21.0.0",
         "klaw": "^4.0.1",
         "lodash": "^4.17.21",
         "prettier": "^2.8.1",
