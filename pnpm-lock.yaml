@@ -396,18 +396,6 @@ importers:
       tsparticles-plugin-motion: ^2.7.1
       tsparticles-plugin-polygon-mask: ^2.7.1
       tsparticles-plugin-sounds: ^2.7.1
-      tsparticles-preset-big-circles: ^2.7.1
-      tsparticles-preset-bubbles: ^2.7.1
-      tsparticles-preset-confetti: ^2.7.1
-      tsparticles-preset-fire: ^2.7.1
-      tsparticles-preset-firefly: ^2.7.1
-      tsparticles-preset-fireworks: ^2.7.1
-      tsparticles-preset-fountain: ^2.7.1
-      tsparticles-preset-links: ^2.7.1
-      tsparticles-preset-sea-anemone: ^2.7.1
-      tsparticles-preset-snow: ^2.7.1
-      tsparticles-preset-stars: ^2.7.1
-      tsparticles-preset-triangles: ^2.7.1
       tsparticles-shape-bubble: ^2.7.1
       tsparticles-shape-cards: ^2.7.1
       tsparticles-shape-circle: ^2.7.1
@@ -502,18 +490,6 @@ importers:
       tsparticles-plugin-motion: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask: link:../../plugins/polygonMask/dist
       tsparticles-plugin-sounds: link:../../plugins/sounds/dist
-      tsparticles-preset-big-circles: link:../../presets/bigCircles/dist
-      tsparticles-preset-bubbles: link:../../presets/bubbles/dist
-      tsparticles-preset-confetti: link:../../presets/confetti/dist
-      tsparticles-preset-fire: link:../../presets/fire/dist
-      tsparticles-preset-firefly: link:../../presets/firefly/dist
-      tsparticles-preset-fireworks: link:../../presets/fireworks/dist
-      tsparticles-preset-fountain: link:../../presets/fountain/dist
-      tsparticles-preset-links: link:../../presets/links/dist
-      tsparticles-preset-sea-anemone: link:../../presets/seaAnemone/dist
-      tsparticles-preset-snow: link:../../presets/snow/dist
-      tsparticles-preset-stars: link:../../presets/stars/dist
-      tsparticles-preset-triangles: link:../../presets/triangles/dist
       tsparticles-shape-bubble: link:../../shapes/bubble/dist
       tsparticles-shape-cards: link:../../shapes/cards/dist
       tsparticles-shape-circle: link:../../shapes/circle/dist
@@ -2646,802 +2622,6 @@ importers:
       webpack-tsparticles-plugin: 1.6.0
     publishDirectory: dist
 
-  presets/bigCircles:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/bubbles:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/confetti:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-plugin-motion: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-shape-square: ^2.7.1
-      tsparticles-updater-angle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-life: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-roll: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      tsparticles-updater-tilt: ^2.7.1
-      tsparticles-updater-wobble: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
-      tsparticles-plugin-motion: link:../../plugins/motion/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-shape-square: link:../../shapes/square/dist
-      tsparticles-updater-angle: link:../../updaters/angle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-life: link:../../updaters/life/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-roll: link:../../updaters/roll/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-      tsparticles-updater-tilt: link:../../updaters/tilt/dist
-      tsparticles-updater-wobble: link:../../updaters/wobble/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/fire:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-external-push: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-interaction-external-push: link:../../interactions/external/push/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/firefly:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-external-trail: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-life: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-life: link:../../updaters/life/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/fireworks:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-plugin-sounds: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-shape-line: ^2.7.1
-      tsparticles-updater-angle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-destroy: ^2.7.1
-      tsparticles-updater-life: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      tsparticles-updater-stroke-color: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
-      tsparticles-plugin-sounds: link:../../plugins/sounds/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-shape-line: link:../../shapes/line/dist
-      tsparticles-updater-angle: link:../../updaters/angle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-destroy: link:../../updaters/destroy/dist
-      tsparticles-updater-life: link:../../updaters/life/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-      tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/fountain:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-destroy: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-destroy: link:../../updaters/destroy/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/links:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-particles-links: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/seaAnemone:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-path-curves: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-path-curves: link:../../paths/curves/dist
-      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/snow:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      tsparticles-updater-wobble: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-      tsparticles-updater-wobble: link:../../updaters/wobble/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/stars:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
-  presets/triangles:
-    specifiers:
-      '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.6.0
-      '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/prettier-config': ^1.5.0
-      '@tsparticles/tsconfig': ^1.6.0
-      '@types/webpack-env': ^1.18.0
-      '@typescript-eslint/eslint-plugin': ^5.47.0
-      '@typescript-eslint/parser': ^5.47.0
-      babel-loader: ^9.1.0
-      browserslist: ^4.21.4
-      copyfiles: ^2.4.1
-      eslint: ^8.30.0
-      eslint-config-prettier: ^8.5.0
-      prettier: ^2.8.1
-      rimraf: ^3.0.2
-      terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-particles-links: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      typescript: ^4.9.4
-      webpack: ^5.75.0
-      webpack-bundle-analyzer: ^4.7.0
-      webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.6.0
-    dependencies:
-      tsparticles-engine: link:../../engine/dist
-      tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
-      tsparticles-move-base: link:../../move/base/dist
-      tsparticles-shape-circle: link:../../shapes/circle/dist
-      tsparticles-updater-color: link:../../updaters/color/dist
-      tsparticles-updater-opacity: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes: link:../../updaters/outModes/dist
-      tsparticles-updater-size: link:../../updaters/size/dist
-    devDependencies:
-      '@babel/core': 7.20.7
-      '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
-      '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
-      '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@tsparticles/tsconfig': 1.6.0_typescript@4.9.4
-      '@types/webpack-env': 1.18.0
-      '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
-      '@typescript-eslint/parser': 5.47.0_lzzuuodtsqwxnvqeq4g4likcqa
-      babel-loader: 9.1.0_lkd654lvpl423ugsqn5olungie
-      browserslist: 4.21.4
-      copyfiles: 2.4.1
-      eslint: 8.30.0
-      eslint-config-prettier: 8.5.0_eslint@8.30.0
-      prettier: 2.8.1
-      rimraf: 3.0.2
-      terser-webpack-plugin: 5.3.6_webpack@5.75.0
-      typescript: 4.9.4
-      webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-bundle-analyzer: 4.7.0
-      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.6.0
-    publishDirectory: dist
-
   shapes/bubble:
     specifiers:
       '@babel/core': ^7.20.7
@@ -5110,7 +4290,7 @@ importers:
       tsparticles: link:../../bundles/full/dist
       tsparticles-editor: link:../../editor/dist
       tsparticles-engine: link:../../engine/dist
-      tsparticles-preset-links: link:../../presets/links/dist
+      tsparticles-preset-links: 2.7.1
 
 packages:
 
@@ -14300,6 +13480,66 @@ packages:
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+
+  /tsparticles-engine/2.7.1:
+    resolution: {integrity: sha512-iUjaagXDyYuJi107yADrLegIQ1jHe658JJQUv6+Fd/DRLrmuBU4XrzaxlERv72LHUrZtk1E/WmnOpeIw1AJzFQ==}
+    requiresBuild: true
+    dev: false
+
+  /tsparticles-interaction-particles-links/2.7.1:
+    resolution: {integrity: sha512-ugHzaONF3sFzD+44oToQbthbewj7HUfakMJ7WS+iba5IF0qmA4d95cuipjhONiiqbgD7zk8uALyeTqZUkFTffw==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+    dev: false
+
+  /tsparticles-move-base/2.7.1:
+    resolution: {integrity: sha512-RqxMN0j/YzPOABeKNOsvQ9cgGeoQKWV1pl9sInCUzvyOpKjeXtv+dN4+NjF6s78hcVYt3yFKmr4jsaD0RJBpNw==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+    dev: false
+
+  /tsparticles-preset-links/2.7.1:
+    resolution: {integrity: sha512-iUTIDEGSiM+GO3gvlCm/RD2dnIlGjo/bBv0/xSc3idDZiWkPYNxhbVKXCibM04jwI4pthRmpYMw8x/NV8IotFA==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+      tsparticles-interaction-particles-links: 2.7.1
+      tsparticles-move-base: 2.7.1
+      tsparticles-shape-circle: 2.7.1
+      tsparticles-updater-color: 2.7.1
+      tsparticles-updater-opacity: 2.7.1
+      tsparticles-updater-out-modes: 2.7.1
+      tsparticles-updater-size: 2.7.1
+    dev: false
+
+  /tsparticles-shape-circle/2.7.1:
+    resolution: {integrity: sha512-rTNjH8EwP1tL+oOqgu8b0FDdhGKXDPBVqRIew6H3APVVP/5HNbVb9fwpBPLvHtHC0cpfg/WgXanx9QqZxrEXWQ==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+    dev: false
+
+  /tsparticles-updater-color/2.7.1:
+    resolution: {integrity: sha512-0xxIGdYTpMnG1l6xpCo3FsIlQTuThH+FqsWjtPOb3HTLL7Z2gPbaQAwjVJwZ9VYfIwz3GhdjWXK6P9/iXLBzrA==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+    dev: false
+
+  /tsparticles-updater-opacity/2.7.1:
+    resolution: {integrity: sha512-ELlZHFJZrUaiW+h5x4IZ5Gkog6FaBz9rHdlqcQaXTJnDvdXTR6qe8Au9B6aL6DnOidJ1mRacTf8IcpGchpFqXw==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+    dev: false
+
+  /tsparticles-updater-out-modes/2.7.1:
+    resolution: {integrity: sha512-HbwFoDFYPv77x6P3uDCgg2WuMXeQnLmd6m3HVSwvsFd5/PDdkunQljGmsEG36ZRHRWIaXtBDq5m5vB15gvlz6Q==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+    dev: false
+
+  /tsparticles-updater-size/2.7.1:
+    resolution: {integrity: sha512-Sy9Tkq8AkdbasxgrCzouMc8triS03ZLJ9vrp0OrKd/15e9oOJ7knTYDZtNb13IgAt2K0gKt5YvXYYTiQBPXveA==}
+    dependencies:
+      tsparticles-engine: 2.7.1
+    dev: false
 
   /tsutils/3.21.0_typescript@4.9.4:
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
