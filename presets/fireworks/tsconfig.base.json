@@ -1,9 +1,0 @@
-{
-  "extends": "@tsparticles/tsconfig/tsconfig.base.json",
-  "compilerOptions": {
-    "rootDir": "./src"
-  },
-  "include": [
-    "./src"
-  ]
-}
