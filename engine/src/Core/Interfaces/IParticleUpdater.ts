@@ -1,11 +1,11 @@
 import type { IDelta } from "./IDelta";
 import type { IParticleColorStyle } from "./IParticleColorStyle";
+import type { IParticleOverride } from "./IParticleOverride";
 import type { IParticleTransformValues } from "./IParticleTransformValues";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { Particle } from "../Particle";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
-import type { IParticleOverride } from "./IParticleOverride";
 
 export interface IParticleUpdater {
     afterDraw?: (particle: Particle) => void;
