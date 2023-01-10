@@ -305,7 +305,7 @@
                     }
                     return value;
                 })});`,
-                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.6.0/tsparticles.bundle.min.js",
+                js_external: "https://cdn.jsdelivr.net/npm/tsparticles@2.7.1/tsparticles.bundle.min.js",
                 title: "tsParticles example",
                 description: "This pen was created with tsParticles from https://particles.js.org",
                 tags: "tsparticles, javascript, typescript, design, animation",

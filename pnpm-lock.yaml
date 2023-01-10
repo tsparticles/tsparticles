@@ -4076,7 +4076,7 @@ importers:
       '@tsparticles/prettier-config': ^1.5.0
       '@tsparticles/tsconfig': ^1.6.0
       '@types/eslint': ^8.4.10
-      '@types/fs-extra': ^9.0.13
+      '@types/fs-extra': ^11.0.0
       '@types/jsdom': ^20.0.1
       '@types/klaw': ^3.0.3
       '@types/lodash': ^4.14.191
@@ -4249,7 +4249,7 @@ importers:
       webpack-tsparticles-plugin: 1.6.0
     devDependencies:
       '@types/eslint': 8.4.10
-      '@types/fs-extra': 9.0.13
+      '@types/fs-extra': 11.0.0
       '@types/jsdom': 20.0.1
       '@types/klaw': 3.0.3
       '@types/lodash': 4.14.191
@@ -4270,23 +4270,33 @@ importers:
 
   websites/particles.js.org:
     specifiers:
+      '@pnpm/exec': ^2.0.0
+      '@types/fs-extra': ^11.0.0
+      '@types/gh-pages': ^3.2.1
+      '@types/node': ^18.11.18
       fs-extra: ^11.1.0
       gh-pages: ^4.0.0
       minify: ^9.1.0
       prettier: ^2.8.1
       rimraf: ^3.0.2
       sass: ^1.57.1
+      simple-git: ^3.15.1
       tsparticles: ^2.7.1
       tsparticles-editor: ^2.7.1
       tsparticles-engine: ^2.7.1
       tsparticles-preset-links: ^2.7.1
     dependencies:
+      '@pnpm/exec': 2.0.0
+      '@types/fs-extra': 11.0.0
+      '@types/gh-pages': 3.2.1
+      '@types/node': 18.11.18
       fs-extra: 11.1.0
       gh-pages: 4.0.0
       minify: 9.1.0
       prettier: 2.8.1
       rimraf: 3.0.2
       sass: 1.57.1
+      simple-git: 3.15.1
       tsparticles: link:../../bundles/full/dist
       tsparticles-editor: link:../../editor/dist
       tsparticles-engine: link:../../engine/dist
@@ -5653,6 +5663,18 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
+  /@kwsites/file-exists/1.1.1:
+    resolution: {integrity: sha512-m9/5YGR18lIwxSFDwfE3oA7bWuq9kdau6ugN4H2rJeyhFQZcG9AgSHkQtSD15a8WvTgfz9aikZMrKPHvbpqFiw==}
+    dependencies:
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /@kwsites/promise-deferred/1.1.1:
+    resolution: {integrity: sha512-GaHYm+c0O9MjZRu0ongGBRbinu8gVAMd2UZjji6jVmqKtZluZnptXGWhz1E8j8D2HJ3f/yMxKAUC0b+57wncIw==}
+    dev: false
+
   /@lerna/add/6.3.0:
     resolution: {integrity: sha512-TlekKVN/qyEhQfSuo38jcC0h86wxfTDJh7/7FU1H/ja9zJEWmph5uN2DmYjifSmGBH2zGYr6ZjKtfgpQMM22nw==}
     engines: {node: ^14.15.0 || >=16.0.0}
@@ -6805,6 +6827,21 @@ packages:
       typescript: 4.9.4
     dev: true
 
+  /@pnpm/exec/2.0.0:
+    resolution: {integrity: sha512-b5ALfWEOFQprWKntN7MF8XWCyslBk2c8u20GEDcDDQOs6c0HyHlWxX5lig8riQKdS000U6YyS4L4b32NOleXAQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      '@pnpm/self-installer': 2.2.1
+      command-exists: 1.2.9
+      cross-spawn: 7.0.3
+    dev: false
+
+  /@pnpm/self-installer/2.2.1:
+    resolution: {integrity: sha512-aefLe96wAWghkx6q1PwbVS1Iz1iGE+HKwkTmtzWLFXeGhbknaIdG2voMwaBGIYGCSxm8sDKR1uLO4aRRAYuc+Q==}
+    engines: {node: '>=4'}
+    hasBin: true
+    dev: false
+
   /@polka/url/1.0.0-next.21:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
 
@@ -6926,7 +6963,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 18.11.17
+      '@types/node': 18.11.18
       '@types/responselike': 1.0.0
     dev: true
 
@@ -6952,11 +6989,15 @@ packages:
   /@types/estree/1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
 
-  /@types/fs-extra/9.0.13:
-    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+  /@types/fs-extra/11.0.0:
+    resolution: {integrity: sha512-zdV5odfHf95B4qr6bdpshG4VMm/3xgnPhSJLa3xh75CYr35e34k+4FQli82Q48sPqwHazJGy+6+jl4T+Vw1AMg==}
     dependencies:
+      '@types/jsonfile': 6.1.1
       '@types/node': 18.11.17
-    dev: true
+
+  /@types/gh-pages/3.2.1:
+    resolution: {integrity: sha512-y5ULkwfoOEUa6sp2te+iEODv2S//DRiKmxpeXboXhhv+s758rSSxLUiBd6NnlR7aAY4nw1X4FGovLrSWEXWLow==}
+    dev: false
 
   /@types/glob/8.0.0:
     resolution: {integrity: sha512-l6NQsDDyQUVeoTynNpC9uRvCUint/gSUXQA2euwmTuWGvPY5LSDUu6tkCtJB2SvGQlJQzLaKqcGZP4//7EDveA==}
@@ -6984,10 +7025,15 @@ packages:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
     dev: true
 
+  /@types/jsonfile/6.1.1:
+    resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
+    dependencies:
+      '@types/node': 18.11.18
+
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.11.17
+      '@types/node': 18.11.18
     dev: true
 
   /@types/klaw/3.0.3:
@@ -7027,6 +7073,9 @@ packages:
   /@types/node/18.11.17:
     resolution: {integrity: sha512-HJSUJmni4BeDHhfzn6nF0sVmd1SMezP7/4F0Lq+aXzmp2xm9O7WXrUtHW/CHlYVtZUbByEvWidHqRtcJXGF2Ng==}
 
+  /@types/node/18.11.18:
+    resolution: {integrity: sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==}
+
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
     dev: true
@@ -7042,7 +7091,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.11.17
+      '@types/node': 18.11.18
     dev: true
 
   /@types/rimraf/3.0.2:
@@ -7062,7 +7111,7 @@ packages:
   /@types/webpack-bundle-analyzer/4.6.0_webpack-cli@5.0.1:
     resolution: {integrity: sha512-XeQmQCCXdZdap+A/60UKmxW5Mz31Vp9uieGlHB3T4z/o2OLVLtTI3bvTuS6A2OWd/rbAAQiGGWIEFQACu16szA==}
     dependencies:
-      '@types/node': 18.11.17
+      '@types/node': 18.11.18
       tapable: 2.2.1
       webpack: 5.75.0_webpack-cli@5.0.1
     transitivePeerDependencies:
@@ -7078,7 +7127,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 18.11.17
+      '@types/node': 18.11.18
     dev: true
     optional: true
 
@@ -8255,6 +8304,10 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
+
+  /command-exists/1.2.9:
+    resolution: {integrity: sha512-LTQ/SGc+s0Xc0Fu5WaKnR0YiygZkm9eKFvyS+fRsU7/ZWFF8ykFM6Pc9aCVf1+xasOOZpO3BAVgVrKvsqKHV7w==}
+    dev: false
 
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -10291,7 +10344,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 18.11.17
+      '@types/node': 18.11.18
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -12882,6 +12935,16 @@ packages:
       simple-concat: 1.0.1
     dev: true
 
+  /simple-git/3.15.1:
+    resolution: {integrity: sha512-73MVa5984t/JP4JcQt0oZlKGr42ROYWC3BcUZfuHtT3IHKPspIvL0cZBnvPXF7LL3S/qVeVHVdYYmJ3LOTw4Rg==}
+    dependencies:
+      '@kwsites/file-exists': 1.1.1
+      '@kwsites/promise-deferred': 1.1.1
+      debug: 4.3.4
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /simple-update-notifier/1.1.0:
     resolution: {integrity: sha512-VpsrsJSUcJEseSbMHkrsrAVSdvVS5I96Qo1QAQ4FxQ9wXFcB+pjj7FB7/us9+GcgfW4ziHtYMc1J0PLczb55mg==}
     engines: {node: '>=8.10.0'}
@@ -13989,7 +14052,7 @@ packages:
       '@babel/preset-env': 7.20.2_@babel+core@7.20.7
       '@tsparticles/eslint-config': 1.5.0_ec24gqclhvfsuwdmrik4xucjia
       '@tsparticles/prettier-config': 1.5.0_prettier@2.8.1
-      '@types/node': 18.11.17
+      '@types/node': 18.11.18
       '@types/webpack-bundle-analyzer': 4.6.0_webpack-cli@5.0.1
       '@types/webpack-env': 1.18.0
       '@typescript-eslint/eslint-plugin': 5.47.0_ncmi6noazr3nzas7jxykisekym
