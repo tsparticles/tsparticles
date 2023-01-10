@@ -5,6 +5,7 @@ import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IPart
 import type { Particle } from "../Particle";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IParticleOverride } from "./IParticleOverride";
 
 export interface IParticleUpdater {
     afterDraw?: (particle: Particle) => void;
@@ -17,6 +18,13 @@ export interface IParticleUpdater {
         radius: number,
         opacity: number
     ) => IParticleColorStyle;
+
+    getOverrides?: (
+        particle: Particle,
+        context: CanvasRenderingContext2D,
+        radius: number,
+        opacity: number
+    ) => IParticleOverride;
 
     getTransformValues?: (particle: Particle) => IParticleTransformValues;
 
