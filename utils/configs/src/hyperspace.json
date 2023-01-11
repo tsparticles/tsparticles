@@ -14,7 +14,7 @@
             },
             "speed": 3,
             "trail": {
-                "fillColor": "#000",
+                "fill": { "color": "#000" },
                 "length": 30,
                 "enable": true
             }

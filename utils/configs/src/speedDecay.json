@@ -44,7 +44,7 @@
             },
             "trail": {
                 "enable": true,
-                "fillColor": "#000000",
+                "fill": { "color": "#000000" },
                 "length": 10
             }
         }

@@ -31,7 +31,10 @@
             "direction": "none",
             "trail": {
                 "enable": true,
-                "length": 50
+                "length": 50,
+                "fill": {
+                    "color": "#000"
+                }
             },
             "path": {
                 "enable": true,

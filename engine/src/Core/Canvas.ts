@@ -1,4 +1,3 @@
-import type { IHsl, IRgba } from "./Interfaces/Colors";
 import {
     clear,
     clearCanvas,
@@ -14,9 +13,11 @@ import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IDimension } from "./Interfaces/IDimension";
+import type { IHsl } from "./Interfaces/Colors";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
+import type { ITrailFillData } from "./Interfaces/ITrailFillData";
 import type { Particle } from "./Particle";
 import { generatedAttribute } from "./Utils/Constants";
 
@@ -63,7 +64,7 @@ export class Canvas {
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
-    private _trailFillColor?: IRgba;
+    private _trailFill?: ITrailFillData;
 
     /**
      * Constructor of canvas manager
@@ -102,7 +103,7 @@ export class Canvas {
      */
     clear(): void {
         this.draw((ctx) => {
-            clearCanvas(ctx, this.size, this.container.actualOptions, this._trailFillColor, this._coverColorStyle);
+            clearCanvas(ctx, this.size, this.container.actualOptions, this._trailFill, this._coverColorStyle);
         });
     }
 
@@ -234,11 +235,11 @@ export class Canvas {
     /**
      * Initializes the canvas element
      */
-    init(): void {
+    async init(): Promise<void> {
         this._resize();
         this._initStyle();
         this._initCover();
-        this._initTrail();
+        await this._initTrail();
         this._initBackground();
 
         if (this.element) {
@@ -462,18 +463,49 @@ export class Canvas {
         }
     }
 
-    private _initTrail(): void {
+    private async _initTrail(): Promise<void> {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
-            fillColor = rangeColorToRgb(trail.fillColor);
+            trailFill = trail.fill;
 
-        if (fillColor) {
+        if (trailFill.color) {
+            const fillColor = rangeColorToRgb(trailFill.color);
+
+            if (!fillColor) {
+                return;
+            }
+
             const trail = options.particles.move.trail;
 
-            this._trailFillColor = {
-                ...fillColor,
-                a: 1 / trail.length,
+            this._trailFill = {
+                color: {
+                    ...fillColor,
+                },
+                opacity: 1 / trail.length,
             };
+        } else {
+            await new Promise<void>((resolve, reject) => {
+                if (!trailFill.image) {
+                    return;
+                }
+
+                const img = new HTMLImageElement();
+
+                img.addEventListener("load", () => {
+                    this._trailFill = {
+                        image: img,
+                        opacity: 1 / trail.length,
+                    };
+
+                    resolve();
+                });
+
+                img.addEventListener("error", (evt) => {
+                    reject(evt.error);
+                });
+
+                img.src = trailFill.image;
+            });
         }
     }
 

@@ -1,4 +1,3 @@
-import type { IHsl, IRgba } from "../Core/Interfaces/Colors";
 import { AlterType } from "../Enums/Types/AlterType";
 import type { Container } from "../Core/Container";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
@@ -6,6 +5,8 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams";
+import type { IHsl } from "../Core/Interfaces/Colors";
+import type { ITrailFillData } from "../Core/Interfaces/ITrailFillData";
 import type { Options } from "../Options/Classes/Options";
 import type { Particle } from "../Core/Particle";
 import { getStyleFromRgb } from "./ColorUtils";
@@ -19,6 +20,28 @@ import { getStyleFromRgb } from "./ColorUtils";
 function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
     context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
     context.fillRect(0, 0, dimension.width, dimension.height);
+}
+
+/**
+ * Fills a rectangle with the given color for the whole canvas.
+ * @param context - The canvas context to draw on.
+ * @param dimension - The dimension of the rectangle.
+ * @param image - The image to draw on the rectangle.
+ * @param opacity - The opacity of the image.
+ */
+function paintImage(
+    context: CanvasRenderingContext2D,
+    dimension: IDimension,
+    image: HTMLImageElement | undefined,
+    opacity: number
+): void {
+    if (!image) {
+        return;
+    }
+
+    context.globalAlpha = opacity;
+    context.drawImage(image, 0, 0, dimension.width, dimension.height);
+    context.globalAlpha = 1;
 }
 
 export function getContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
@@ -35,7 +58,7 @@ export function clearCanvas(
     context: CanvasRenderingContext2D,
     size: IDimension,
     options: Options,
-    trailFillColor?: IRgba,
+    trailFill?: ITrailFillData,
     coverColorStyle?: string
 ): void {
     if (options.backgroundMask.enable) {
@@ -43,8 +66,12 @@ export function clearCanvas(
     } else {
         const trail = options.particles.move.trail;
 
-        if (trail.enable && trail.length > 0 && trailFillColor) {
-            paintBase(context, size, getStyleFromRgb(trailFillColor, 1 / trail.length));
+        if (trail.enable && trail.length > 0 && trailFill) {
+            if (trailFill.color) {
+                paintBase(context, size, getStyleFromRgb(trailFill.color, trailFill.opacity));
+            } else if (trailFill.image) {
+                paintImage(context, size, trailFill.image, trailFill.opacity);
+            }
         } else {
             clear(context, size);
         }

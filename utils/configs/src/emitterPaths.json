@@ -11,7 +11,7 @@
             "enable": true,
             "trail": {
                 "enable": true,
-                "fillColor": "#fff",
+                "fill": { "color": "#fff" },
                 "length": 20
             },
             "outModes": "destroy"
