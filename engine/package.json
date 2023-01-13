@@ -136,7 +136,7 @@
         "nyc": "^15.1.0",
         "prettier": "^2.8.1",
         "reflect-metadata": "^0.1.13",
-        "rimraf": "^3.0.2",
+        "rimraf": "^4.0.4",
         "source-map-support": "^0.5.21",
         "terser-webpack-plugin": "^5.3.6",
         "ts-json-schema-generator": "^1.2.0",
