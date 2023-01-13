@@ -5,7 +5,7 @@
   "scripts": {
     "build": "pnpm run prettify:readme && lerna run build",
     "build:ci": "pnpm run prettify:ci:readme && lerna run build:ci",
-    "build:docs": "rimraf -f docs && npx typedoc",
+    "build:docs": "rimraf docs && npx typedoc",
     "prettify:ci:readme": "prettier --check ./README.md && prettier --check ./traduction/* && prettier --check ./markdown/*",
     "prettify:readme": "prettier --write ./README.md && prettier --write ./traduction/* && prettier --write ./markdown/*",
     "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",

@@ -21,7 +21,7 @@
         "distfiles": "node ./scripts/distfiles.js",
         "build": "node ./scripts/updateSrc.js && pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run prettify:readme && pnpm run distfiles",
         "build:ci": "node ./scripts/updateSrc.js && pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile && pnpm run bundle && pnpm run prettify:ci:readme && pnpm run distfiles",
-        "clear:dist": "rimraf -f ./dist",
+        "clear:dist": "rimraf ./dist",
         "version": "pnpm run distfiles && git add package.dist.json",
         "prepack": "pnpm run build"
     },

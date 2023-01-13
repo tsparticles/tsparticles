@@ -6,7 +6,7 @@
     "scripts": {
         "build": "tsparticles-build",
         "build:ci": "tsparticles-build --ci",
-        "build:docs": "rimraf -f docs && npx typedoc",
+        "build:docs": "rimraf docs && npx typedoc",
         "version": "tsparticles-build -d && git add package.dist.json",
         "prepack": "pnpm run build"
     },
