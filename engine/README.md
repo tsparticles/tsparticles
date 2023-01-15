@@ -817,19 +817,3 @@ e --> pr
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
 
 ---
-
-## Sponsors
-
-<p>
-  <a href="https://www.codacy.com">
-    <img src="https://particles.js.org/images/codacy-logos/codacy-white.jpeg" alt="Codacy" height="100" />
-  </a>
-</p>
-
-[Codacy](https://www.codacy.com) is a code quality platform that helps you to detect and fix code quality issues in your
-code.
-
-**Automate code reviews on your commits and pull requests**
-
-Check your code quality and keep track of your technical debt for more than 40 programming languages. Seamlessly
-integrated within your development workflow.
