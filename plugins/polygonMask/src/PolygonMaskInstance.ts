@@ -133,8 +133,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     resize(): void {
-        console.log("polygonMask resize");
-
         const container = this._container,
             options = container.actualOptions.polygon;
 
