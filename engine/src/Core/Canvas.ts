@@ -239,7 +239,11 @@ export class Canvas {
         this._resize();
         this._initStyle();
         this._initCover();
-        await this._initTrail();
+        try {
+            await this._initTrail();
+        } catch (e) {
+            console.error(e);
+        }
         this._initBackground();
 
         if (this.element) {
@@ -467,6 +471,10 @@ export class Canvas {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
             trailFill = trail.fill;
+
+        if (!trail.enable) {
+            return;
+        }
 
         if (trailFill.color) {
             const fillColor = rangeColorToRgb(trailFill.color);

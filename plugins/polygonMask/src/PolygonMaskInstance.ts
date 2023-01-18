@@ -25,6 +25,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     private readonly _container;
     private readonly _engine;
     private _polygonMaskMoveRadius;
+    private _scale;
 
     constructor(container: PolygonMaskContainer, engine: Engine) {
         this._container = container;
@@ -34,6 +35,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             width: 0,
         };
         this._polygonMaskMoveRadius = 0;
+        this._scale = 1;
     }
 
     clickPositionValid(position: ICoordinates): boolean {
@@ -82,13 +84,16 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     async init(): Promise<void> {
-        const polygonMaskOptions = this._container.actualOptions.polygon;
+        const container = this._container,
+            polygonMaskOptions = container.actualOptions.polygon,
+            pxRatio = container.retina.pixelRatio;
 
         if (!polygonMaskOptions) {
             return;
         }
 
-        this._polygonMaskMoveRadius = polygonMaskOptions.move.radius * this._container.retina.pixelRatio;
+        this._polygonMaskMoveRadius = polygonMaskOptions.move.radius * pxRatio;
+        this._scale = polygonMaskOptions.scale * pxRatio;
 
         /* If is set the url of svg element, load it and parse into raw polygon data */
         if (polygonMaskOptions.enable) {
@@ -128,6 +133,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     resize(): void {
+        console.log("polygonMask resize");
+
         const container = this._container,
             options = container.actualOptions.polygon;
 
@@ -194,7 +201,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private createPath2D(): void {
-        const options = this._container.actualOptions.polygon;
+        const container = this._container,
+            options = container.actualOptions.polygon;
 
         if (!options || !this.paths?.length) {
             return;
@@ -207,7 +215,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 const path2d = new Path2D(pathData),
                     matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix(),
                     finalPath = new Path2D(),
-                    transform = matrix.scale(options.scale);
+                    transform = matrix.scale(this._scale);
 
                 if (finalPath.addPath) {
                     finalPath.addPath(path2d, transform);
@@ -281,7 +289,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private getEquidistantPointByIndex(index: number): ICoordinates | undefined {
-        const options = this._container.actualOptions,
+        const container = this._container,
+            options = container.actualOptions,
             polygonMaskOptions = options.polygon;
 
         if (!polygonMaskOptions) {
@@ -308,9 +317,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
         }
 
+        const scale = this._scale;
+
         return {
-            x: (point?.x ?? 0) * polygonMaskOptions.scale + (this.offset?.x ?? 0),
-            y: (point?.y ?? 0) * polygonMaskOptions.scale + (this.offset?.y ?? 0),
+            x: (point?.x ?? 0) * scale + (this.offset?.x ?? 0),
+            y: (point?.y ?? 0) * scale + (this.offset?.y ?? 0),
         };
     }
 
@@ -341,7 +352,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     private getRandomPointByLength(): ICoordinates | undefined {
-        const options = this._container.actualOptions.polygon;
+        const container = this._container,
+            options = container.actualOptions.polygon;
 
         if (!options) {
             return;
@@ -353,11 +365,12 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         const path = itemFromArray(this.paths),
             distance = Math.floor(getRandom() * path.length) + 1,
-            point = path.element.getPointAtLength(distance);
+            point = path.element.getPointAtLength(distance),
+            scale = this._scale;
 
         return {
-            x: point.x * options.scale + (this.offset?.x || 0),
-            y: point.y * options.scale + (this.offset?.y || 0),
+            x: point.x * scale + (this.offset?.x || 0),
+            y: point.y * scale + (this.offset?.y || 0),
         };
     }
 
@@ -435,8 +448,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
         }
 
-        const pxRatio = container.retina.pixelRatio,
-            scale = options.scale / pxRatio;
+        const scale = this._scale;
 
         this.dimension.width = parseFloat(svg.getAttribute("width") ?? "0") * scale;
         this.dimension.height = parseFloat(svg.getAttribute("height") ?? "0") * scale;
@@ -448,8 +460,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         /* centering of the polygon mask */
         this.offset = {
-            x: (container.canvas.size.width * position.x) / (100 * pxRatio) - this.dimension.width / 2,
-            y: (container.canvas.size.height * position.y) / (100 * pxRatio) - this.dimension.height / 2,
+            x: (container.canvas.size.width * position.x) / 100 - this.dimension.width / 2,
+            y: (container.canvas.size.height * position.y) / 100 - this.dimension.height / 2,
         };
 
         return parsePaths(this.paths, scale, this.offset);
