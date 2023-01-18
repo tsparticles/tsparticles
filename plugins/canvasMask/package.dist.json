@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-canvas-mask",
-  "version": "2.7.1",
+  "version": "2.8.0",
   "description": "tsParticles canvas mask plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -77,6 +77,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.7.1"
+    "tsparticles-engine": "^2.8.0"
   }
 }
