@@ -1,3 +1,4 @@
+import type { IMoveTrailFill } from "./IMoveTrailFill";
 import type { IOptionsColor } from "../../IOptionsColor";
 
 /**
@@ -5,6 +6,13 @@ import type { IOptionsColor } from "../../IOptionsColor";
  */
 export interface IMoveTrail {
     enable: boolean;
-    fillColor: string | IOptionsColor;
+
+    fill: IMoveTrailFill;
+
+    /**
+     * @deprecated use the new fill property instead
+     */
+    fillColor?: string | IOptionsColor;
+
     length: number;
 }

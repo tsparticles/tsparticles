@@ -1,7 +1,7 @@
 import type { ISourceOptions } from "tsparticles-engine";
 import _absorbers from "./absorbers.json";
 import _amongUs from "./amongUs.json";
-import _background from "./background.json";
+import _backgroundMask from "./backgroundMask.json";
 import _basic from "./basic.json";
 import _big from "./big.json";
 import _blackHole from "./blackHole.json";
@@ -115,6 +115,7 @@ import _test from "./test.json";
 import _textMask from "./textMask.json";
 import _textMaskMultiline from "./textMaskMultiline.json";
 import _trail from "./trail.json";
+import _trailImage from "./trailImage.json";
 import _twinkle from "./twinkle.json";
 import _vibrate from "./vibrate.json";
 import _virus from "./virus.json";
@@ -125,7 +126,7 @@ import { tsParticles } from "tsparticles-engine";
 
 const absorbers = _absorbers as unknown as ISourceOptions,
     amongUs = _amongUs as unknown as ISourceOptions,
-    background = _background as unknown as ISourceOptions,
+    backgroundMask = _backgroundMask as unknown as ISourceOptions,
     basic = _basic as unknown as ISourceOptions,
     big = _big as unknown as ISourceOptions,
     blackHole = _blackHole as unknown as ISourceOptions,
@@ -239,6 +240,7 @@ const absorbers = _absorbers as unknown as ISourceOptions,
     textMask = _textMask as unknown as ISourceOptions,
     textMaskMultiline = _textMaskMultiline as unknown as ISourceOptions,
     trail = _trail as unknown as ISourceOptions,
+    trailImage = _trailImage as unknown as ISourceOptions,
     twinkle = _twinkle as unknown as ISourceOptions,
     vibrate = _vibrate as unknown as ISourceOptions,
     virus = _virus as unknown as ISourceOptions,
@@ -249,7 +251,7 @@ const absorbers = _absorbers as unknown as ISourceOptions,
 export type ExportedConfigurations = {
     absorbers: ISourceOptions;
     amongUs: ISourceOptions;
-    background: ISourceOptions;
+    backgroundMask: ISourceOptions;
     basic: ISourceOptions;
     big: ISourceOptions;
     blackHole: ISourceOptions;
@@ -363,6 +365,7 @@ export type ExportedConfigurations = {
     textMask: ISourceOptions;
     textMaskMultiline: ISourceOptions;
     trail: ISourceOptions;
+    trailImage: ISourceOptions;
     twinkle: ISourceOptions;
     vibrate: ISourceOptions;
     virus: ISourceOptions;
@@ -378,7 +381,7 @@ const mainConfigs = tsParticles as {
 mainConfigs.configs = {
     absorbers,
     amongUs,
-    background,
+    backgroundMask,
     basic,
     big,
     blackHole,
@@ -492,6 +495,7 @@ mainConfigs.configs = {
     textMask,
     textMaskMultiline,
     trail,
+    trailImage,
     twinkle,
     vibrate,
     virus,
@@ -503,7 +507,7 @@ mainConfigs.configs = {
 export {
     absorbers,
     amongUs,
-    background,
+    backgroundMask,
     basic,
     big,
     blackHole,
@@ -617,6 +621,7 @@ export {
     textMask,
     textMaskMultiline,
     trail,
+    trailImage,
     twinkle,
     vibrate,
     virus,

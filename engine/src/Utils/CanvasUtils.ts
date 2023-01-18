@@ -57,6 +57,28 @@ export function paintBase(context: CanvasRenderingContext2D, dimension: IDimensi
 }
 
 /**
+ * Fills a rectangle with the given color for the whole canvas.
+ * @param context - The canvas context to draw on.
+ * @param dimension - The dimension of the rectangle.
+ * @param image - The image to draw on the rectangle.
+ * @param opacity - The opacity of the image.
+ */
+export function paintImage(
+    context: CanvasRenderingContext2D,
+    dimension: IDimension,
+    image: HTMLImageElement | undefined,
+    opacity: number
+): void {
+    if (!image) {
+        return;
+    }
+
+    context.globalAlpha = opacity;
+    context.drawImage(image, 0, 0, dimension.width, dimension.height);
+    context.globalAlpha = 1;
+}
+
+/**
  * Clears the canvas.
  * @param context - The canvas context to clear.
  * @param dimension - The dimension of the canvas.

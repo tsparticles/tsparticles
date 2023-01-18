@@ -41,7 +41,7 @@ export function drawPolygonMaskPath(
     stroke: IPolygonMaskDrawStroke,
     position: ICoordinates
 ): void {
-    context.translate(position.x, position.y);
+    context.setTransform(1, 0, 0, 1, position.x, position.y);
 
     const color = rangeColorToRgb(stroke.color);
 
@@ -52,6 +52,7 @@ export function drawPolygonMaskPath(
     context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
+    context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
 export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {

@@ -506,7 +506,7 @@ export class Container {
 
         /* init canvas + particles */
         this.retina.init();
-        this.canvas.init();
+        await this.canvas.init();
 
         this.updateActualOptions();
 

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.7.1...tsparticles-plugin-polygon-mask@2.8.0) (2023-01-18)
+
+### Features
+
+-   reworked move.trail options, created an object with color and image, closes [#4882](https://github.com/matteobruni/tsparticles/issues/4882) ([b26505b](https://github.com/matteobruni/tsparticles/commit/b26505b1235980120a98c05b1c5151838b562987))
+
 ## [2.7.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.7.0...tsparticles-plugin-polygon-mask@2.7.1) (2022-12-25)
 
 **Note:** Version bump only for package tsparticles-plugin-polygon-mask

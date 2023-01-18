@@ -1,14 +1,15 @@
-import type { IHsl, IRgba } from "./Interfaces/Colors";
-import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase } from "../Utils/CanvasUtils";
+import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils";
 import { deepExtend, isSsr } from "../Utils/Utils";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IDimension } from "./Interfaces/IDimension";
+import type { IHsl } from "./Interfaces/Colors";
 import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
 import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
+import type { ITrailFillData } from "./Interfaces/ITrailFillData";
 import type { Particle } from "./Particle";
 import { generatedAttribute } from "./Utils/Constants";
 
@@ -55,7 +56,7 @@ export class Canvas {
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
-    private _trailFillColor?: IRgba;
+    private _trailFill?: ITrailFillData;
 
     /**
      * Constructor of canvas manager
@@ -94,12 +95,17 @@ export class Canvas {
      */
     clear(): void {
         const options = this.container.actualOptions,
-            trail = options.particles.move.trail;
+            trail = options.particles.move.trail,
+            trailFill = this._trailFill;
 
         if (options.backgroundMask.enable) {
             this.paint();
-        } else if (trail.enable && trail.length > 0 && this._trailFillColor) {
-            this._paintBase(getStyleFromRgb(this._trailFillColor, 1 / trail.length));
+        } else if (trail.enable && trail.length > 0 && trailFill) {
+            if (trailFill.color) {
+                this._paintBase(getStyleFromRgb(trailFill.color, trailFill.opacity));
+            } else if (trailFill.image) {
+                this._paintImage(trailFill.image, trailFill.opacity);
+            }
         } else {
             this.draw((ctx) => {
                 clear(ctx, this.size);
@@ -235,11 +241,15 @@ export class Canvas {
     /**
      * Initializes the canvas element
      */
-    init(): void {
+    async init(): Promise<void> {
         this.resize();
         this._initStyle();
         this._initCover();
-        this._initTrail();
+        try {
+            await this._initTrail();
+        } catch (e) {
+            console.error(e);
+        }
         this.initBackground();
 
         if (this.element) {
@@ -531,24 +541,62 @@ export class Canvas {
         }
     }
 
-    private _initTrail(): void {
+    private async _initTrail(): Promise<void> {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
-            fillColor = rangeColorToRgb(trail.fillColor);
+            trailFill = trail.fill;
 
-        if (fillColor) {
+        if (!trail.enable) {
+            return;
+        }
+
+        if (trailFill.color) {
+            const fillColor = rangeColorToRgb(trailFill.color);
+
+            if (!fillColor) {
+                return;
+            }
             const trail = options.particles.move.trail;
-
-            this._trailFillColor = {
-                ...fillColor,
-                a: 1 / trail.length,
+            this._trailFill = {
+                color: {
+                    ...fillColor,
+                },
+                opacity: 1 / trail.length,
             };
+        } else {
+            await new Promise<void>((resolve, reject) => {
+                if (!trailFill.image) {
+                    return;
+                }
+
+                const img = document.createElement("img");
+
+                img.addEventListener("load", () => {
+                    this._trailFill = {
+                        image: img,
+                        opacity: 1 / trail.length,
+                    };
+                    resolve();
+                });
+
+                img.addEventListener("error", (evt) => {
+                    reject(evt.error);
+                });
+
+                img.src = trailFill.image;
+            });
         }
     }
 
     private _paintBase(baseColor?: string): void {
         this.draw((ctx) => {
             paintBase(ctx, this.size, baseColor);
+        });
+    }
+
+    private _paintImage(image: HTMLImageElement, opacity: number): void {
+        this.draw((ctx) => {
+            paintImage(ctx, this.size, image, opacity);
         });
     }
 
