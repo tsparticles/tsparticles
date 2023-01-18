@@ -1,21 +1,19 @@
+const cluster = require('node:cluster');
 const express = require('express');
 const helmet = require('helmet');
 const stylus = require('stylus');
-const livereload = require("livereload");
-const connectLiveReload = require("connect-livereload");
+const livereload = require('livereload');
+const connectLiveReload = require('connect-livereload');
+const os = require('os');
+const winston = require('winston');
+const { SeqTransport } = require('@datalust/winston-seq');
+const dotenv = require('dotenv');
 //const rateLimit = require("express-rate-limit");
 
 const app = express();
+const numCpus = os.cpus().length;
 
-const liveReloadServer = livereload.createServer();
-
-liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
-});
-
-app.use(connectLiveReload());
+dotenv.config();
 
 /*const limiter = rateLimit({
     windowMs: 1000, // 15 minutes
@@ -25,7 +23,33 @@ app.use(connectLiveReload());
 app.use(limiter);*/
 // app.use(helmet()); // Safari requires https, probably a bug
 
-const port = 3000;
+let seqTransport = undefined;
+
+if (process.env.USE_SEQ) {
+    seqTransport = new SeqTransport({
+        serverUrl: `http${process.env.SEQ_SSL === "true" ? "s" : ""}://${process.env.SEQ_HOST}:${process.env.SEQ_PORT}`,
+        apiKey: process.env.SEQ_KEY,
+        onError: (e => {
+            console.error(e)
+        }),
+        handleExceptions: true,
+        handleRejections: true,
+    });
+}
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.combine(  /* This is required to get errors to log with stack traces. See https://github.com/winstonjs/winston/issues/1498 */
+        winston.format.errors({ stack: true }),
+        winston.format.json(),
+    ),
+    defaultMeta: { /* application: 'your-app-name' */ },
+    transports: [
+        seqTransport || new winston.transports.Console({
+            format: winston.format.simple(),
+        }),
+    ]
+});
 
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -135,4 +159,40 @@ app.get('/noid', function (req, res) {
     res.render('noid');
 });
 
-app.listen(port, () => console.log(`Demo app listening on port ${port}!`));
+const port = 3000;
+
+if (cluster.isMaster) {
+    for (let i = 0; i < numCpus; i++) {
+        cluster.fork();
+    }
+
+    cluster.on('exit', (worker, code, signal) => {
+        logger.info(`worker ${worker.process.pid} died`);
+
+        cluster.fork();
+    });
+
+    process.on("SIGHUP", function () {
+        for (const worker of Object.values(cluster.workers)) {
+            worker.process.kill("SIGTERM");
+        }
+    });
+
+    const liveReloadServer = livereload.createServer();
+
+    liveReloadServer.server.once("connection", () => {
+        setTimeout(() => {
+            liveReloadServer.refresh("/");
+        }, 100);
+    });
+
+    logger.info(`Cluster started with pid ${process.pid}`);
+} else {
+    process.on("SIGHUP", function () {
+        //no-op
+    })
+
+    app.use(connectLiveReload());
+
+    app.listen(port, () => logger.info(`Server working with pid ${process.pid} at localhost with port ${port}`));
+}

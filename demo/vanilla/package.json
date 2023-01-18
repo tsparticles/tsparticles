@@ -22,11 +22,13 @@
         "watch": "nodemon app.js"
     },
     "devDependencies": {
+        "@datalust/winston-seq": "^1.0.2",
         "@fortawesome/fontawesome-free": "^6.2.1",
         "@typescript-eslint/eslint-plugin": "^5.47.0",
         "@typescript-eslint/parser": "^5.47.0",
         "bootstrap": "^5.2.3",
         "connect-livereload": "^0.6.1",
+        "dotenv": "^16.0.3",
         "eslint": "^8.30.0",
         "eslint-config-prettier": "^8.5.0",
         "express": "^4.18.2",
@@ -114,6 +116,7 @@
         "tsparticles-updater-tilt": "^2.8.0",
         "tsparticles-updater-twinkle": "^2.8.0",
         "tsparticles-updater-wobble": "^2.8.0",
-        "typescript": "^4.9.4"
+        "typescript": "^4.9.4",
+        "winston": "^3.8.2"
     }
 }
