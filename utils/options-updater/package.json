@@ -39,7 +39,7 @@
         "lodash": "^4.17.21",
         "prettier": "^2.8.1",
         "rimraf": "4.1.1",
-        "tsparticles": "^2.8.0",
+        "tsparticles": "^2.7.1",
         "tsparticles-engine": "^2.8.0",
         "tsparticles-interaction-external-attract": "^2.8.0",
         "tsparticles-interaction-external-bounce": "^2.8.0",

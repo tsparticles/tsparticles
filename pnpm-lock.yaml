@@ -283,7 +283,7 @@ importers:
   demo/electron:
     specifiers:
       electron: ^22.0.0
-      tsparticles: ^2.8.0
+      tsparticles: ^2.7.1
       tsparticles-demo-configs: ^2.8.0
       tsparticles-engine: ^2.8.0
       webpack: ^5.75.0
@@ -318,7 +318,7 @@ importers:
       pug-cli: 1.0.0-alpha6
       stats.ts: ^1.1.0
       stylus: ^0.59.0
-      tsparticles: ^2.8.0
+      tsparticles: ^2.7.1
       tsparticles-demo-configs: ^2.8.0
       tsparticles-engine: ^2.8.0
       tsparticles-interaction-external-attract: ^2.8.0
@@ -492,7 +492,7 @@ importers:
       minify: ^9.1.0
       rimraf: 4.1.1
       sass: ^1.57.1
-      tsparticles: ^2.8.0
+      tsparticles: ^2.7.1
       tsparticles-demo-configs: ^2.8.0
       tsparticles-engine: ^2.8.0
       tsparticles-interaction-light: ^2.8.0
@@ -3977,7 +3977,7 @@ importers:
       lodash: ^4.17.21
       prettier: ^2.8.1
       rimraf: 4.1.1
-      tsparticles: ^2.8.0
+      tsparticles: ^2.7.1
       tsparticles-engine: ^2.8.0
       tsparticles-interaction-external-attract: ^2.8.0
       tsparticles-interaction-external-bounce: ^2.8.0
