@@ -504,7 +504,6 @@ export class Canvas {
                         image: img,
                         opacity: 1 / trail.length,
                     };
-
                     resolve();
                 });
 

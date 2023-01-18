@@ -24,7 +24,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
     private readonly _container;
     private readonly _engine;
-    private _polygonMaskMoveRadius;
+    private _moveRadius;
     private _scale;
 
     constructor(container: PolygonMaskContainer, engine: Engine) {
@@ -34,7 +34,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             height: 0,
             width: 0,
         };
-        this._polygonMaskMoveRadius = 0;
+        this._moveRadius = 0;
         this._scale = 1;
     }
 
@@ -92,7 +92,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        this._polygonMaskMoveRadius = polygonMaskOptions.move.radius * pxRatio;
+        this._moveRadius = polygonMaskOptions.move.radius * pxRatio;
         this._scale = polygonMaskOptions.scale * pxRatio;
 
         /* If is set the url of svg element, load it and parse into raw polygon data */
@@ -514,7 +514,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         } else if (options.type === PolygonMaskType.inline && particle.initialPosition) {
             const dist = getDistance(particle.initialPosition, particle.getPosition());
 
-            if (dist > this._polygonMaskMoveRadius) {
+            if (dist > this._moveRadius) {
                 particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
                 particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
 
