@@ -497,7 +497,7 @@ export class Canvas {
                     return;
                 }
 
-                const img = new HTMLImageElement();
+                const img = document.createElement("img");
 
                 img.addEventListener("load", () => {
                     this._trailFill = {
