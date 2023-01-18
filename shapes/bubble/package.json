@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-shape-bubble",
-    "version": "2.7.1",
+    "version": "2.8.0",
     "description": "tsParticles bubble shape",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -121,6 +121,6 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.7.1"
+        "tsparticles-engine": "^2.8.0"
     }
 }
