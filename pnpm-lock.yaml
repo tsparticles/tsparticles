@@ -68,16 +68,16 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-external-trail: ^2.7.1
-      tsparticles-plugin-absorbers: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-slim: ^2.7.1
-      tsparticles-updater-destroy: ^2.7.1
-      tsparticles-updater-roll: ^2.7.1
-      tsparticles-updater-tilt: ^2.7.1
-      tsparticles-updater-twinkle: ^2.7.1
-      tsparticles-updater-wobble: ^2.7.1
+      tsparticles-engine: ^2.8.0
+      tsparticles-interaction-external-trail: ^2.8.0
+      tsparticles-plugin-absorbers: ^2.8.0
+      tsparticles-plugin-emitters: ^2.8.0
+      tsparticles-slim: ^2.8.0
+      tsparticles-updater-destroy: ^2.8.0
+      tsparticles-updater-roll: ^2.8.0
+      tsparticles-updater-tilt: ^2.8.0
+      tsparticles-updater-twinkle: ^2.8.0
+      tsparticles-updater-wobble: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -136,7 +136,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -186,38 +186,38 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-external-attract: ^2.7.1
-      tsparticles-interaction-external-bounce: ^2.7.1
-      tsparticles-interaction-external-bubble: ^2.7.1
-      tsparticles-interaction-external-connect: ^2.7.1
-      tsparticles-interaction-external-grab: ^2.7.1
-      tsparticles-interaction-external-pause: ^2.7.1
-      tsparticles-interaction-external-push: ^2.7.1
-      tsparticles-interaction-external-remove: ^2.7.1
-      tsparticles-interaction-external-repulse: ^2.7.1
-      tsparticles-interaction-external-slow: ^2.7.1
-      tsparticles-interaction-particles-attract: ^2.7.1
-      tsparticles-interaction-particles-collisions: ^2.7.1
-      tsparticles-interaction-particles-links: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-move-parallax: ^2.7.1
-      tsparticles-particles.js: ^2.7.1
-      tsparticles-plugin-easing-quad: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-shape-image: ^2.7.1
-      tsparticles-shape-line: ^2.7.1
-      tsparticles-shape-polygon: ^2.7.1
-      tsparticles-shape-square: ^2.7.1
-      tsparticles-shape-star: ^2.7.1
-      tsparticles-shape-text: ^2.7.1
-      tsparticles-updater-angle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-life: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      tsparticles-updater-stroke-color: ^2.7.1
+      tsparticles-engine: ^2.8.0
+      tsparticles-interaction-external-attract: ^2.8.0
+      tsparticles-interaction-external-bounce: ^2.8.0
+      tsparticles-interaction-external-bubble: ^2.8.0
+      tsparticles-interaction-external-connect: ^2.8.0
+      tsparticles-interaction-external-grab: ^2.8.0
+      tsparticles-interaction-external-pause: ^2.8.0
+      tsparticles-interaction-external-push: ^2.8.0
+      tsparticles-interaction-external-remove: ^2.8.0
+      tsparticles-interaction-external-repulse: ^2.8.0
+      tsparticles-interaction-external-slow: ^2.8.0
+      tsparticles-interaction-particles-attract: ^2.8.0
+      tsparticles-interaction-particles-collisions: ^2.8.0
+      tsparticles-interaction-particles-links: ^2.8.0
+      tsparticles-move-base: ^2.8.0
+      tsparticles-move-parallax: ^2.8.0
+      tsparticles-particles.js: ^2.8.0
+      tsparticles-plugin-easing-quad: ^2.8.0
+      tsparticles-shape-circle: ^2.8.0
+      tsparticles-shape-image: ^2.8.0
+      tsparticles-shape-line: ^2.8.0
+      tsparticles-shape-polygon: ^2.8.0
+      tsparticles-shape-square: ^2.8.0
+      tsparticles-shape-star: ^2.8.0
+      tsparticles-shape-text: ^2.8.0
+      tsparticles-updater-angle: ^2.8.0
+      tsparticles-updater-color: ^2.8.0
+      tsparticles-updater-life: ^2.8.0
+      tsparticles-updater-opacity: ^2.8.0
+      tsparticles-updater-out-modes: ^2.8.0
+      tsparticles-updater-size: ^2.8.0
+      tsparticles-updater-stroke-color: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -283,9 +283,9 @@ importers:
   demo/electron:
     specifiers:
       electron: ^22.0.0
-      tsparticles: ^2.7.1
-      tsparticles-demo-configs: ^2.7.1
-      tsparticles-engine: ^2.7.1
+      tsparticles: ^2.8.0
+      tsparticles-demo-configs: ^2.8.0
+      tsparticles-engine: ^2.8.0
       webpack: ^5.75.0
     dependencies:
       tsparticles: link:../../bundles/full/dist
@@ -318,77 +318,77 @@ importers:
       pug-cli: 1.0.0-alpha6
       stats.ts: ^1.1.0
       stylus: ^0.59.0
-      tsparticles: ^2.7.1
-      tsparticles-demo-configs: ^2.7.1
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-external-attract: ^2.7.1
-      tsparticles-interaction-external-bounce: ^2.7.1
-      tsparticles-interaction-external-bubble: ^2.7.1
-      tsparticles-interaction-external-connect: ^2.7.1
-      tsparticles-interaction-external-grab: ^2.7.1
-      tsparticles-interaction-external-pause: ^2.7.1
-      tsparticles-interaction-external-push: ^2.7.1
-      tsparticles-interaction-external-remove: ^2.7.1
-      tsparticles-interaction-external-repulse: ^2.7.1
-      tsparticles-interaction-external-slow: ^2.7.1
-      tsparticles-interaction-external-trail: ^2.7.1
-      tsparticles-interaction-light: ^2.7.1
-      tsparticles-interaction-particles-attract: ^2.7.1
-      tsparticles-interaction-particles-collisions: ^2.7.1
-      tsparticles-interaction-particles-links: ^2.7.1
-      tsparticles-interaction-particles-repulse: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-move-parallax: ^2.7.1
-      tsparticles-particles.js: ^2.7.1
-      tsparticles-path-curves: ^2.7.1
-      tsparticles-path-perlin-noise: ^2.7.1
-      tsparticles-path-polygon: ^2.7.1
-      tsparticles-path-simplex-noise: ^2.7.1
-      tsparticles-plugin-absorbers: ^2.7.1
-      tsparticles-plugin-canvas-mask: ^2.7.1
-      tsparticles-plugin-easing-back: ^2.7.1
-      tsparticles-plugin-easing-circ: ^2.7.1
-      tsparticles-plugin-easing-cubic: ^2.7.1
-      tsparticles-plugin-easing-expo: ^2.7.1
-      tsparticles-plugin-easing-quad: ^2.7.1
-      tsparticles-plugin-easing-quart: ^2.7.1
-      tsparticles-plugin-easing-quint: ^2.7.1
-      tsparticles-plugin-easing-sine: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-plugin-hsv-color: ^2.7.1
-      tsparticles-plugin-infection: ^2.7.1
-      tsparticles-plugin-motion: ^2.7.1
-      tsparticles-plugin-polygon-mask: ^2.7.1
-      tsparticles-plugin-sounds: ^2.7.1
-      tsparticles-shape-bubble: ^2.7.1
-      tsparticles-shape-cards: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-shape-heart: ^2.7.1
-      tsparticles-shape-image: ^2.7.1
-      tsparticles-shape-line: ^2.7.1
-      tsparticles-shape-multiline-text: ^2.7.1
-      tsparticles-shape-path: ^2.7.1
-      tsparticles-shape-polygon: ^2.7.1
-      tsparticles-shape-rounded-rect: ^2.7.1
-      tsparticles-shape-spiral: ^2.7.1
-      tsparticles-shape-square: ^2.7.1
-      tsparticles-shape-star: ^2.7.1
-      tsparticles-shape-text: ^2.7.1
-      tsparticles-slim: ^2.7.1
-      tsparticles-updater-angle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-destroy: ^2.7.1
-      tsparticles-updater-gradient: ^2.7.1
-      tsparticles-updater-life: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-orbit: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-roll: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      tsparticles-updater-stroke-color: ^2.7.1
-      tsparticles-updater-tilt: ^2.7.1
-      tsparticles-updater-twinkle: ^2.7.1
-      tsparticles-updater-wobble: ^2.7.1
+      tsparticles: ^2.8.0
+      tsparticles-demo-configs: ^2.8.0
+      tsparticles-engine: ^2.8.0
+      tsparticles-interaction-external-attract: ^2.8.0
+      tsparticles-interaction-external-bounce: ^2.8.0
+      tsparticles-interaction-external-bubble: ^2.8.0
+      tsparticles-interaction-external-connect: ^2.8.0
+      tsparticles-interaction-external-grab: ^2.8.0
+      tsparticles-interaction-external-pause: ^2.8.0
+      tsparticles-interaction-external-push: ^2.8.0
+      tsparticles-interaction-external-remove: ^2.8.0
+      tsparticles-interaction-external-repulse: ^2.8.0
+      tsparticles-interaction-external-slow: ^2.8.0
+      tsparticles-interaction-external-trail: ^2.8.0
+      tsparticles-interaction-light: ^2.8.0
+      tsparticles-interaction-particles-attract: ^2.8.0
+      tsparticles-interaction-particles-collisions: ^2.8.0
+      tsparticles-interaction-particles-links: ^2.8.0
+      tsparticles-interaction-particles-repulse: ^2.8.0
+      tsparticles-move-base: ^2.8.0
+      tsparticles-move-parallax: ^2.8.0
+      tsparticles-particles.js: ^2.8.0
+      tsparticles-path-curves: ^2.8.0
+      tsparticles-path-perlin-noise: ^2.8.0
+      tsparticles-path-polygon: ^2.8.0
+      tsparticles-path-simplex-noise: ^2.8.0
+      tsparticles-plugin-absorbers: ^2.8.0
+      tsparticles-plugin-canvas-mask: ^2.8.0
+      tsparticles-plugin-easing-back: ^2.8.0
+      tsparticles-plugin-easing-circ: ^2.8.0
+      tsparticles-plugin-easing-cubic: ^2.8.0
+      tsparticles-plugin-easing-expo: ^2.8.0
+      tsparticles-plugin-easing-quad: ^2.8.0
+      tsparticles-plugin-easing-quart: ^2.8.0
+      tsparticles-plugin-easing-quint: ^2.8.0
+      tsparticles-plugin-easing-sine: ^2.8.0
+      tsparticles-plugin-emitters: ^2.8.0
+      tsparticles-plugin-hsv-color: ^2.8.0
+      tsparticles-plugin-infection: ^2.8.0
+      tsparticles-plugin-motion: ^2.8.0
+      tsparticles-plugin-polygon-mask: ^2.8.0
+      tsparticles-plugin-sounds: ^2.8.0
+      tsparticles-shape-bubble: ^2.8.0
+      tsparticles-shape-cards: ^2.8.0
+      tsparticles-shape-circle: ^2.8.0
+      tsparticles-shape-heart: ^2.8.0
+      tsparticles-shape-image: ^2.8.0
+      tsparticles-shape-line: ^2.8.0
+      tsparticles-shape-multiline-text: ^2.8.0
+      tsparticles-shape-path: ^2.8.0
+      tsparticles-shape-polygon: ^2.8.0
+      tsparticles-shape-rounded-rect: ^2.8.0
+      tsparticles-shape-spiral: ^2.8.0
+      tsparticles-shape-square: ^2.8.0
+      tsparticles-shape-star: ^2.8.0
+      tsparticles-shape-text: ^2.8.0
+      tsparticles-slim: ^2.8.0
+      tsparticles-updater-angle: ^2.8.0
+      tsparticles-updater-color: ^2.8.0
+      tsparticles-updater-destroy: ^2.8.0
+      tsparticles-updater-gradient: ^2.8.0
+      tsparticles-updater-life: ^2.8.0
+      tsparticles-updater-opacity: ^2.8.0
+      tsparticles-updater-orbit: ^2.8.0
+      tsparticles-updater-out-modes: ^2.8.0
+      tsparticles-updater-roll: ^2.8.0
+      tsparticles-updater-size: ^2.8.0
+      tsparticles-updater-stroke-color: ^2.8.0
+      tsparticles-updater-tilt: ^2.8.0
+      tsparticles-updater-twinkle: ^2.8.0
+      tsparticles-updater-wobble: ^2.8.0
       typescript: ^4.9.4
     devDependencies:
       '@fortawesome/fontawesome-free': 6.2.1
@@ -492,18 +492,18 @@ importers:
       minify: ^9.1.0
       rimraf: 4.1.1
       sass: ^1.57.1
-      tsparticles: ^2.7.1
-      tsparticles-demo-configs: ^2.7.1
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-light: ^2.7.1
-      tsparticles-interaction-particles-repulse: ^2.7.1
-      tsparticles-path-curves: ^2.7.1
-      tsparticles-path-perlin-noise: ^2.7.1
-      tsparticles-path-polygon: ^2.7.1
-      tsparticles-path-simplex-noise: ^2.7.1
-      tsparticles-plugin-infection: ^2.7.1
-      tsparticles-updater-gradient: ^2.7.1
-      tsparticles-updater-orbit: ^2.7.1
+      tsparticles: ^2.8.0
+      tsparticles-demo-configs: ^2.8.0
+      tsparticles-engine: ^2.8.0
+      tsparticles-interaction-light: ^2.8.0
+      tsparticles-interaction-particles-repulse: ^2.8.0
+      tsparticles-path-curves: ^2.8.0
+      tsparticles-path-perlin-noise: ^2.8.0
+      tsparticles-path-polygon: ^2.8.0
+      tsparticles-path-simplex-noise: ^2.8.0
+      tsparticles-plugin-infection: ^2.8.0
+      tsparticles-updater-gradient: ^2.8.0
+      tsparticles-updater-orbit: ^2.8.0
     dependencies:
       copyfiles: 2.4.1
       fs-extra: 11.1.0
@@ -624,7 +624,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -674,7 +674,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -724,7 +724,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -774,7 +774,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -824,7 +824,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -874,7 +874,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -924,7 +924,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -974,7 +974,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1024,7 +1024,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1074,7 +1074,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1124,7 +1124,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1174,7 +1174,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1224,7 +1224,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1274,7 +1274,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1324,7 +1324,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1374,7 +1374,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1424,7 +1424,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1474,7 +1474,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1524,7 +1524,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1574,7 +1574,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1624,7 +1624,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1674,7 +1674,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1724,7 +1724,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1774,7 +1774,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1824,7 +1824,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1874,7 +1874,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1924,7 +1924,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -1974,7 +1974,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2024,7 +2024,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2074,7 +2074,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2124,7 +2124,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2174,7 +2174,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2224,7 +2224,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2274,7 +2274,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2324,7 +2324,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2374,7 +2374,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2424,7 +2424,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2474,7 +2474,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2524,7 +2524,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2574,7 +2574,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2624,7 +2624,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2674,7 +2674,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2724,7 +2724,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2774,7 +2774,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2824,7 +2824,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2874,7 +2874,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2924,7 +2924,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -2974,7 +2974,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3024,7 +3024,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3074,7 +3074,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3124,7 +3124,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3174,7 +3174,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3224,7 +3224,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3274,7 +3274,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3324,7 +3324,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3374,7 +3374,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3424,7 +3424,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3474,7 +3474,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3524,7 +3524,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3574,7 +3574,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3624,7 +3624,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3674,7 +3674,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3724,7 +3724,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3774,7 +3774,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3824,7 +3824,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3874,7 +3874,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3910,7 +3910,7 @@ importers:
     specifiers:
       '@babel/core': ^7.20.7
       '@tsparticles/eslint-config': ^1.5.0
-      '@tsparticles/options-updater': ^2.7.1
+      '@tsparticles/options-updater': ^2.8.0
       '@tsparticles/prettier-config': ^1.5.0
       '@types/webpack-env': ^1.18.0
       '@typescript-eslint/eslint-plugin': ^5.47.0
@@ -3923,7 +3923,7 @@ importers:
       prettier: ^2.8.1
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
-      tsparticles-engine: ^2.7.1
+      tsparticles-engine: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -3977,73 +3977,73 @@ importers:
       lodash: ^4.17.21
       prettier: ^2.8.1
       rimraf: 4.1.1
-      tsparticles: ^2.7.1
-      tsparticles-engine: ^2.7.1
-      tsparticles-interaction-external-attract: ^2.7.1
-      tsparticles-interaction-external-bounce: ^2.7.1
-      tsparticles-interaction-external-bubble: ^2.7.1
-      tsparticles-interaction-external-connect: ^2.7.1
-      tsparticles-interaction-external-grab: ^2.7.1
-      tsparticles-interaction-external-pause: ^2.7.1
-      tsparticles-interaction-external-push: ^2.7.1
-      tsparticles-interaction-external-remove: ^2.7.1
-      tsparticles-interaction-external-repulse: ^2.7.1
-      tsparticles-interaction-external-slow: ^2.7.1
-      tsparticles-interaction-external-trail: ^2.7.1
-      tsparticles-interaction-light: ^2.7.1
-      tsparticles-interaction-particles-attract: ^2.7.1
-      tsparticles-interaction-particles-collisions: ^2.7.1
-      tsparticles-interaction-particles-links: ^2.7.1
-      tsparticles-interaction-particles-repulse: ^2.7.1
-      tsparticles-move-base: ^2.7.1
-      tsparticles-move-parallax: ^2.7.1
-      tsparticles-particles.js: ^2.7.1
-      tsparticles-path-curves: ^2.7.1
-      tsparticles-path-perlin-noise: ^2.7.1
-      tsparticles-path-polygon: ^2.7.1
-      tsparticles-path-simplex-noise: ^2.7.1
-      tsparticles-plugin-absorbers: ^2.7.1
-      tsparticles-plugin-canvas-mask: ^2.7.1
-      tsparticles-plugin-easing-back: ^2.7.1
-      tsparticles-plugin-easing-circ: ^2.7.1
-      tsparticles-plugin-easing-cubic: ^2.7.1
-      tsparticles-plugin-easing-expo: ^2.7.1
-      tsparticles-plugin-easing-quad: ^2.7.1
-      tsparticles-plugin-easing-quart: ^2.7.1
-      tsparticles-plugin-easing-quint: ^2.7.1
-      tsparticles-plugin-easing-sine: ^2.7.1
-      tsparticles-plugin-emitters: ^2.7.1
-      tsparticles-plugin-hsv-color: ^2.7.1
-      tsparticles-plugin-infection: ^2.7.1
-      tsparticles-plugin-motion: ^2.7.1
-      tsparticles-plugin-polygon-mask: ^2.7.1
-      tsparticles-shape-bubble: ^2.7.1
-      tsparticles-shape-circle: ^2.7.1
-      tsparticles-shape-heart: ^2.7.1
-      tsparticles-shape-image: ^2.7.1
-      tsparticles-shape-line: ^2.7.1
-      tsparticles-shape-multiline-text: ^2.7.1
-      tsparticles-shape-polygon: ^2.7.1
-      tsparticles-shape-rounded-rect: ^2.7.1
-      tsparticles-shape-spiral: ^2.7.1
-      tsparticles-shape-square: ^2.7.1
-      tsparticles-shape-star: ^2.7.1
-      tsparticles-shape-text: ^2.7.1
-      tsparticles-slim: ^2.7.1
-      tsparticles-updater-angle: ^2.7.1
-      tsparticles-updater-color: ^2.7.1
-      tsparticles-updater-destroy: ^2.7.1
-      tsparticles-updater-gradient: ^2.7.1
-      tsparticles-updater-life: ^2.7.1
-      tsparticles-updater-opacity: ^2.7.1
-      tsparticles-updater-orbit: ^2.7.1
-      tsparticles-updater-out-modes: ^2.7.1
-      tsparticles-updater-roll: ^2.7.1
-      tsparticles-updater-size: ^2.7.1
-      tsparticles-updater-stroke-color: ^2.7.1
-      tsparticles-updater-tilt: ^2.7.1
-      tsparticles-updater-twinkle: ^2.7.1
-      tsparticles-updater-wobble: ^2.7.1
+      tsparticles: ^2.8.0
+      tsparticles-engine: ^2.8.0
+      tsparticles-interaction-external-attract: ^2.8.0
+      tsparticles-interaction-external-bounce: ^2.8.0
+      tsparticles-interaction-external-bubble: ^2.8.0
+      tsparticles-interaction-external-connect: ^2.8.0
+      tsparticles-interaction-external-grab: ^2.8.0
+      tsparticles-interaction-external-pause: ^2.8.0
+      tsparticles-interaction-external-push: ^2.8.0
+      tsparticles-interaction-external-remove: ^2.8.0
+      tsparticles-interaction-external-repulse: ^2.8.0
+      tsparticles-interaction-external-slow: ^2.8.0
+      tsparticles-interaction-external-trail: ^2.8.0
+      tsparticles-interaction-light: ^2.8.0
+      tsparticles-interaction-particles-attract: ^2.8.0
+      tsparticles-interaction-particles-collisions: ^2.8.0
+      tsparticles-interaction-particles-links: ^2.8.0
+      tsparticles-interaction-particles-repulse: ^2.8.0
+      tsparticles-move-base: ^2.8.0
+      tsparticles-move-parallax: ^2.8.0
+      tsparticles-particles.js: ^2.8.0
+      tsparticles-path-curves: ^2.8.0
+      tsparticles-path-perlin-noise: ^2.8.0
+      tsparticles-path-polygon: ^2.8.0
+      tsparticles-path-simplex-noise: ^2.8.0
+      tsparticles-plugin-absorbers: ^2.8.0
+      tsparticles-plugin-canvas-mask: ^2.8.0
+      tsparticles-plugin-easing-back: ^2.8.0
+      tsparticles-plugin-easing-circ: ^2.8.0
+      tsparticles-plugin-easing-cubic: ^2.8.0
+      tsparticles-plugin-easing-expo: ^2.8.0
+      tsparticles-plugin-easing-quad: ^2.8.0
+      tsparticles-plugin-easing-quart: ^2.8.0
+      tsparticles-plugin-easing-quint: ^2.8.0
+      tsparticles-plugin-easing-sine: ^2.8.0
+      tsparticles-plugin-emitters: ^2.8.0
+      tsparticles-plugin-hsv-color: ^2.8.0
+      tsparticles-plugin-infection: ^2.8.0
+      tsparticles-plugin-motion: ^2.8.0
+      tsparticles-plugin-polygon-mask: ^2.8.0
+      tsparticles-shape-bubble: ^2.8.0
+      tsparticles-shape-circle: ^2.8.0
+      tsparticles-shape-heart: ^2.8.0
+      tsparticles-shape-image: ^2.8.0
+      tsparticles-shape-line: ^2.8.0
+      tsparticles-shape-multiline-text: ^2.8.0
+      tsparticles-shape-polygon: ^2.8.0
+      tsparticles-shape-rounded-rect: ^2.8.0
+      tsparticles-shape-spiral: ^2.8.0
+      tsparticles-shape-square: ^2.8.0
+      tsparticles-shape-star: ^2.8.0
+      tsparticles-shape-text: ^2.8.0
+      tsparticles-slim: ^2.8.0
+      tsparticles-updater-angle: ^2.8.0
+      tsparticles-updater-color: ^2.8.0
+      tsparticles-updater-destroy: ^2.8.0
+      tsparticles-updater-gradient: ^2.8.0
+      tsparticles-updater-life: ^2.8.0
+      tsparticles-updater-opacity: ^2.8.0
+      tsparticles-updater-orbit: ^2.8.0
+      tsparticles-updater-out-modes: ^2.8.0
+      tsparticles-updater-roll: ^2.8.0
+      tsparticles-updater-size: ^2.8.0
+      tsparticles-updater-stroke-color: ^2.8.0
+      tsparticles-updater-tilt: ^2.8.0
+      tsparticles-updater-twinkle: ^2.8.0
+      tsparticles-updater-wobble: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-tsparticles-plugin: ^1.6.0
