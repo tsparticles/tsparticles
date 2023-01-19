@@ -1,7 +1,7 @@
 import { Container } from "./Container";
 import type { Engine } from "../engine";
+import type { ILoadParams } from "./Interfaces/ILoadParams";
 import type { ISourceOptions } from "../Types/ISourceOptions";
-import type { LoaderParams } from "./Interfaces/LoaderParams";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { generatedAttribute } from "./Utils/Constants";
 import { getRandom } from "../Utils/NumberUtils";
@@ -56,7 +56,7 @@ export class Loader {
         options?: SingleOrMultiple<ISourceOptions> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const params: LoaderParams = { index, remote: false };
+        const params: ILoadParams = { index, remote: false };
 
         if (typeof tagId === "string") {
             params.tagId = tagId;
@@ -95,14 +95,14 @@ export class Loader {
             url = jsonUrl;
         }
 
-        return this.loadRemoteOptions({ tagId: id, url, index, remote: true });
+        return this.loadOptions({ tagId: id, url, index, remote: true });
     }
 
     /**
      * Starts an animation in a container, starting from the given options
      * @param params all the parameters required for loading options in the current animation
      */
-    async loadOptions(params: LoaderParams): Promise<Container | undefined> {
+    async loadOptions(params: ILoadParams): Promise<Container | undefined> {
         const tagId = params.tagId ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
             { index, url: jsonUrl, remote } = params,
             options = remote ? await getDataFromUrl(jsonUrl, index) : params.options;
@@ -182,14 +182,6 @@ export class Loader {
     }
 
     /**
-     * Starts an animation in a container, starting from the given remote options
-     * @param params all the parameters required for loading a remote url into options in the current animation
-     */
-    async loadRemoteOptions(params: LoaderParams): Promise<Container | undefined> {
-        return this.loadOptions(params);
-    }
-
-    /**
      * Loads the provided options to create a [[Container]] object.
      * @param id the particles container element id
      * @param domContainer the dom container
@@ -202,7 +194,7 @@ export class Loader {
         options?: SingleOrMultiple<ISourceOptions> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const params: LoaderParams = { index, remote: false };
+        const params: ILoadParams = { index, remote: false };
 
         if (typeof id === "string") {
             params.tagId = id;
@@ -256,6 +248,6 @@ export class Loader {
             newIndex = index;
         }
 
-        return this.loadRemoteOptions({ tagId: newId, url, index: newIndex, element, remote: true });
+        return this.loadOptions({ tagId: newId, url, index: newIndex, element, remote: true });
     }
 }

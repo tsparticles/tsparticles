@@ -4,7 +4,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 /**
  * Loader params for options local object
  */
-export interface LoaderParams {
+export interface ILoadParams {
     /**
      * The container HTML element, could be a canvas or any other element that will contain the canvas
      */

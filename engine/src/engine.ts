@@ -14,8 +14,8 @@ import type { CustomEventArgs } from "./Types/CustomEventArgs";
 import type { CustomEventListener } from "./Types/CustomEventListener";
 import { EventDispatcher } from "./Utils/EventDispatcher";
 import type { IInteractor } from "./Core/Interfaces/IInteractor";
+import type { ILoadParams } from "./Core/Interfaces/ILoadParams";
 import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
-import type { IOptions } from "./Options/Interfaces/IOptions";
 import type { IParticleMover } from "./Core/Interfaces/IParticlesMover";
 import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
@@ -24,7 +24,6 @@ import type { ISourceOptions } from "./Types/ISourceOptions";
 import { Loader } from "./Core/Loader";
 import type { Particle } from "./Core/Particle";
 import { Plugins } from "./Core/Utils/Plugins";
-import type { RecursivePartial } from "./Types/RecursivePartial";
 import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
 /**
@@ -232,10 +231,6 @@ export class Engine {
         dom.splice(index, 1);
     }
 
-    getConfig(name: string): ISourceOptions | undefined {
-        return this._configs.get(name);
-    }
-
     /**
      * init method, used by imports
      */
@@ -283,6 +278,10 @@ export class Engine {
         index?: number
     ): Promise<Container | undefined> {
         return this._loader.loadJSON(tagId, pathConfigJson, index);
+    }
+
+    async newLoad(params: ILoadParams): Promise<Container | undefined> {
+        return this._loader.loadOptions(params);
     }
 
     /**
