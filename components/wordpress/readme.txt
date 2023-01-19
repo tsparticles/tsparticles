@@ -61,6 +61,17 @@ Nothing to say
 
 == Changelog ==
 
+= 2.8.0
+
+## New Features
+
+- Reworked move.trail options, created a `fill` property that is an object with color and image, closes #4882
+
+## Bug Fixes
+
+- Fixed polygon mask position issues
+- Fixed polygon mask scaling issues
+
 = 2.7.1
 
 ## New features
