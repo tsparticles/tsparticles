@@ -1,8 +1,7 @@
 import { Container } from "./Container";
 import type { Engine } from "../engine";
-import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { ISourceOptions } from "../Types/ISourceOptions";
 import type { LoaderParams } from "./Interfaces/LoaderParams";
-import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { generatedAttribute } from "./Utils/Constants";
 import { getRandom } from "../Utils/NumberUtils";
@@ -11,7 +10,7 @@ import { itemFromSingleOrMultiple } from "../Utils/Utils";
 async function getDataFromUrl(
     jsonUrl?: SingleOrMultiple<string>,
     index?: number
-): Promise<SingleOrMultiple<RecursivePartial<IOptions>> | undefined> {
+): Promise<SingleOrMultiple<ISourceOptions> | undefined> {
     const url = itemFromSingleOrMultiple(jsonUrl, index);
 
     if (!url) {
@@ -53,8 +52,8 @@ export class Loader {
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
     load(
-        tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
+        tagId: string | SingleOrMultiple<ISourceOptions>,
+        options?: SingleOrMultiple<ISourceOptions> | number,
         index?: number
     ): Promise<Container | undefined> {
         const params: LoaderParams = { index, remote: false };
@@ -199,8 +198,8 @@ export class Loader {
      */
     async set(
         id: string | HTMLElement,
-        domContainer: HTMLElement | SingleOrMultiple<RecursivePartial<IOptions>>,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
+        domContainer: HTMLElement | SingleOrMultiple<ISourceOptions>,
+        options?: SingleOrMultiple<ISourceOptions> | number,
         index?: number
     ): Promise<Container | undefined> {
         const params: LoaderParams = { index, remote: false };

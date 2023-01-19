@@ -39,7 +39,7 @@ export class Engine {
      */
     readonly plugins: Plugins;
 
-    private readonly _configs: Map<string, RecursivePartial<IOptions>>;
+    private readonly _configs: Map<string, ISourceOptions>;
 
     /**
      * Contains all the [[Container]] instances of the current engine instance
@@ -160,7 +160,7 @@ export class Engine {
      * @param options the options to add to the preset
      * @param override if true, the preset will override any existing with the same name
      */
-    async addPreset(preset: string, options: RecursivePartial<IOptions>, override = false): Promise<void> {
+    async addPreset(preset: string, options: ISourceOptions, override = false): Promise<void> {
         this.plugins.addPreset(preset, options, override);
 
         await this.refresh();
@@ -252,8 +252,8 @@ export class Engine {
      * @returns A Promise with the [[Container]] object created
      */
     async load(
-        tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>
+        tagId: string | SingleOrMultiple<ISourceOptions>,
+        options?: SingleOrMultiple<ISourceOptions>
     ): Promise<Container | undefined> {
         return this._loader.load(tagId, options);
     }
@@ -265,11 +265,7 @@ export class Engine {
      * @param index If provided gets the corresponding item from the array
      * @returns A Promise with the [[Container]] object created
      */
-    async loadFromArray(
-        tagId: string,
-        options: RecursivePartial<IOptions>[],
-        index?: number
-    ): Promise<Container | undefined> {
+    async loadFromArray(tagId: string, options: ISourceOptions[], index?: number): Promise<Container | undefined> {
         return this._loader.load(tagId, options, index);
     }
 
@@ -315,8 +311,8 @@ export class Engine {
      */
     async set(
         id: string | HTMLElement,
-        element: HTMLElement | RecursivePartial<IOptions>,
-        options?: RecursivePartial<IOptions>
+        element: HTMLElement | ISourceOptions,
+        options?: ISourceOptions
     ): Promise<Container | undefined> {
         return this._loader.set(id, element, options);
     }

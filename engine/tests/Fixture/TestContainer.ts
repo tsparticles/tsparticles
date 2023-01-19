@@ -1,4 +1,4 @@
-import { Options, RecursivePartial, tsParticles } from "../../src";
+import { ISourceOptions, Options, RecursivePartial, tsParticles } from "../../src";
 import { Container } from "../../src/Core/Container";
 import type { IOptions } from "../../src";
 import { TestWindow } from "./Window";
@@ -11,16 +11,16 @@ declare global {
 
 export class TestContainer {
     private readonly id: string;
-    private options: RecursivePartial<IOptions> | undefined;
+    private options: ISourceOptions | undefined;
     container: Container;
 
-    constructor(options?: RecursivePartial<IOptions>) {
+    constructor(options?: ISourceOptions) {
         globalThis.window = TestWindow;
 
         window.SVGPathSeg = {} as any;
         tsParticles.init();
 
-        const defaultOptions: RecursivePartial<IOptions> = { particles: { size: { value: 0 } } };
+        const defaultOptions: ISourceOptions = { particles: { size: { value: 0 } } };
 
         this.id = "test-container";
 
@@ -35,7 +35,7 @@ export class TestContainer {
      *
      * @param options
      */
-    reset(options?: RecursivePartial<IOptions>): void {
+    reset(options?: ISourceOptions): void {
         if (options !== undefined) {
             this.options = options;
         }

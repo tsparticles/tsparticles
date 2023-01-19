@@ -3,12 +3,12 @@ import type { Engine } from "../../engine";
 import type { IContainerPlugin } from "../Interfaces/IContainerPlugin";
 import type { IInteractor } from "../Interfaces/IInteractor";
 import type { IMovePathGenerator } from "../Interfaces/IMovePathGenerator";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IParticleMover } from "../Interfaces/IParticleMover";
 import type { IParticleUpdater } from "../Interfaces/IParticleUpdater";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { IPlugin } from "../Interfaces/IPlugin";
 import type { IShapeDrawer } from "../Interfaces/IShapeDrawer";
+import type { ISourceOptions } from "../../Types/ISourceOptions";
 import type { Options } from "../../Options/Classes/Options";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
@@ -112,7 +112,7 @@ export class Plugins {
         this.interactors = new Map<Container, IInteractor[]>();
         this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
-        this.presets = new Map<string, RecursivePartial<IOptions>>();
+        this.presets = new Map<string, ISourceOptions>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.pathGenerators = new Map<string, IMovePathGenerator>();
     }
@@ -166,7 +166,7 @@ export class Plugins {
      * @param options the options to load with the preset name
      * @param override if true, overwrites the existing preset
      */
-    addPreset(presetKey: string, options: RecursivePartial<IOptions>, override = false): void {
+    addPreset(presetKey: string, options: ISourceOptions, override = false): void {
         if (override || !this.getPreset(presetKey)) {
             this.presets.set(presetKey, options);
         }
@@ -247,7 +247,7 @@ export class Plugins {
      * @param preset the preset name to search
      * @returns the preset if found, or undefined
      */
-    getPreset(preset: string): RecursivePartial<IOptions> | undefined {
+    getPreset(preset: string): ISourceOptions | undefined {
         return this.presets.get(preset);
     }
 
@@ -283,7 +283,7 @@ export class Plugins {
      * @param options the actual options to set
      * @param sourceOptions the source options to read
      */
-    loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
+    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
         for (const plugin of this.plugins) {
             plugin.loadOptions(options, sourceOptions);
         }

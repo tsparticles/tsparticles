@@ -1,6 +1,6 @@
 import type { IDelta } from "./IDelta";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
+import type { ISourceOptions } from "../../Types/ISourceOptions";
 import type { InteractorType } from "../../Enums/Types/InteractorType";
 import type { Options } from "../../Options/Classes/Options";
 import type { Particle } from "../Particle";
@@ -11,7 +11,7 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
  * @category Interfaces
  */
 export interface IInteractor {
-    loadOptions?: (options: Options, ...sources: (RecursivePartial<IOptions> | undefined)[]) => void;
+    loadOptions?: (options: Options, ...sources: (ISourceOptions | undefined)[]) => void;
 
     loadParticlesOptions?: (
         options: ParticlesOptions,

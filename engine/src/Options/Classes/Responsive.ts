@@ -1,6 +1,6 @@
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IOptions } from "../Interfaces/IOptions";
 import type { IResponsive } from "../Interfaces/IResponsive";
+import type { ISourceOptions } from "../../Types/ISourceOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
 import { deepExtend } from "../../Utils/Utils";
@@ -8,7 +8,7 @@ import { deepExtend } from "../../Utils/Utils";
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;
     mode: ResponsiveMode;
-    options: RecursivePartial<IOptions>;
+    options: ISourceOptions;
 
     constructor() {
         this.maxWidth = Infinity;
@@ -35,7 +35,7 @@ export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
         }
 
         if (data.options !== undefined) {
-            this.options = deepExtend({}, data.options) as RecursivePartial<IOptions>;
+            this.options = deepExtend({}, data.options) as ISourceOptions;
         }
     }
 }

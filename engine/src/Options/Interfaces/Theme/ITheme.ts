@@ -1,6 +1,5 @@
-import type { IOptions } from "../IOptions";
+import type { ISourceOptions } from "../../../Types/ISourceOptions";
 import type { IThemeDefault } from "./IThemeDefault";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * The options to configure themes that can be easily switched
@@ -21,5 +20,5 @@ export interface ITheme {
     /**
      * All options the theme will override
      */
-    options?: RecursivePartial<IOptions>;
+    options?: ISourceOptions;
 }

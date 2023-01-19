@@ -1,5 +1,4 @@
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { ISourceOptions } from "../../Types/ISourceOptions";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
@@ -19,7 +18,7 @@ export interface LoaderParams {
     /**
      * The options object or the options array to laod
      */
-    options?: SingleOrMultiple<RecursivePartial<IOptions>>;
+    options?: SingleOrMultiple<ISourceOptions>;
 
     /**
      * Used for loading options locally or remotely

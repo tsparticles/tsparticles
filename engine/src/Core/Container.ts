@@ -13,12 +13,11 @@ import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivi
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
-import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import type { ISourceOptions } from "../Types/ISourceOptions";
 import { Options } from "../Options/Classes/Options";
 import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
-import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Retina } from "./Retina";
 import type { Vector } from "./Utils/Vector";
 import { getRangeValue } from "../Utils/NumberUtils";
@@ -36,7 +35,7 @@ function guardCheck(container: Container): boolean {
 function loadContainerOptions(
     engine: Engine,
     container: Container,
-    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
+    ...sourceOptionsArr: (ISourceOptions | undefined)[]
 ): Options {
     const options = new Options(engine, container);
 
@@ -168,7 +167,7 @@ export class Container {
      * @param id the id to identify this instance
      * @param sourceOptions the options to load
      */
-    constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
+    constructor(engine: Engine, readonly id: string, sourceOptions?: ISourceOptions) {
         this._engine = engine;
         this.fpsLimit = 120;
         this.smooth = false;
@@ -221,7 +220,7 @@ export class Container {
     /**
      * The options that were initially passed to the container
      */
-    get sourceOptions(): RecursivePartial<IOptions> | undefined {
+    get sourceOptions(): ISourceOptions | undefined {
         return this._sourceOptions;
     }
 

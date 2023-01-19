@@ -1,7 +1,5 @@
 import { Engine } from "./engine";
 import { HslColorManager } from "./Utils/HslColorManager";
-import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { RecursivePartial } from "./Types/RecursivePartial";
 import { RgbColorManager } from "./Utils/RgbColorManager";
 import { addColorManager } from "./Utils/ColorUtils";
 
@@ -62,6 +60,7 @@ export * from "./Core/Utils/Range";
 export * from "./Core/Utils/Rectangle";
 export * from "./Core/Utils/Vector";
 export * from "./Core/Utils/Vector3d";
+
 export type { EventListeners } from "./Core/Utils/EventListeners";
 export type { FrameManager } from "./Core/Utils/FrameManager";
 export type { InteractionManager } from "./Core/Utils/InteractionManager";

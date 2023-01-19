@@ -25,6 +25,7 @@ export * from "./Core/Utils/Range";
 export * from "./Core/Utils/Rectangle";
 export * from "./Core/Utils/Vector";
 export * from "./Core/Utils/Vector3d";
+
 export * from "./Enums/Directions/MoveDirection";
 export * from "./Enums/Directions/RotateDirection";
 export * from "./Enums/Directions/OutModeDirection";
@@ -46,6 +47,7 @@ export * from "./Enums/Types/DivType";
 export * from "./Enums/Types/EasingType";
 export * from "./Enums/AnimationStatus";
 export * from "./Enums/InteractivityDetect";
+
 export * from "./Options/Classes/AnimatableColor";
 export * from "./Options/Classes/AnimationOptions";
 export * from "./Options/Classes/Background/Background";
@@ -97,6 +99,7 @@ export * from "./Options/Classes/Responsive";
 export * from "./Options/Classes/Theme/Theme";
 export * from "./Options/Classes/Theme/ThemeDefault";
 export * from "./Options/Classes/ValueWithRandom";
+
 export * from "./Utils/CanvasUtils";
 export * from "./Utils/ColorUtils";
 export * from "./Utils/HslColorManager";
@@ -104,4 +107,5 @@ export * from "./Utils/NumberUtils";
 export * from "./Utils/OptionsUtils";
 export * from "./Utils/RgbColorManager";
 export * from "./Utils/Utils";
+
 export { tsParticles };
