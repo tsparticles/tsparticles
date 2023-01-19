@@ -206,6 +206,7 @@ export * from "./Options/Interfaces/Theme/IThemeDefault";
 
 export * from "./Types/CustomEventArgs";
 export * from "./Types/CustomEventListener";
+export * from "./Types/ISourceOptions";
 export * from "./Types/ParticlesGroups";
 export * from "./Types/PathOptions";
 export * from "./Types/RangeValue";
@@ -225,8 +226,3 @@ export * from "./Utils/Utils";
 export { tsParticles };
 
 export type { Engine, Engine as Main };
-
-/**
- * tsParticles source options alias type, supporting partial objects
- */
-export type ISourceOptions = RecursivePartial<IOptions>;

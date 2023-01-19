@@ -41,6 +41,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     fullScreen;
     interactivity;
     manualParticles: ManualParticle[];
+    name;
     particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
@@ -68,6 +69,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.fpsLimit = 120;
         this.interactivity = new Interactivity(engine, container);
         this.manualParticles = [];
+        this.name = "default";
         this.particles = loadParticlesOptions(this._engine, this._container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;

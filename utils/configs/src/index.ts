@@ -248,261 +248,129 @@ const absorbers = _absorbers as unknown as ISourceOptions,
     wobble = _wobble as unknown as ISourceOptions,
     zIndex = _zIndex as unknown as ISourceOptions;
 
-export type ExportedConfigurations = {
-    absorbers: ISourceOptions;
-    amongUs: ISourceOptions;
-    backgroundMask: ISourceOptions;
-    basic: ISourceOptions;
-    big: ISourceOptions;
-    blackHole: ISourceOptions;
-    bubble: ISourceOptions;
-    cards: ISourceOptions;
-    chars: ISourceOptions;
-    clickPause: ISourceOptions;
-    collisionsAbsorb: ISourceOptions;
-    collisionsBounce: ISourceOptions;
-    collisionsDestroy: ISourceOptions;
-    colorAnimation: ISourceOptions;
-    connect: ISourceOptions;
-    customPreset: ISourceOptions;
-    customShape: ISourceOptions;
-    dataImages: ISourceOptions;
-    delay: ISourceOptions;
-    destroy: ISourceOptions;
-    disappearing: ISourceOptions;
-    divEvents: ISourceOptions;
-    emitter: ISourceOptions;
-    emitterAbsorber: ISourceOptions;
-    emitterAngled: ISourceOptions;
-    emitterImages: ISourceOptions;
-    emitterPaths: ISourceOptions;
-    emitterShapes: ISourceOptions;
-    fireworks: ISourceOptions;
-    fontawesome: ISourceOptions;
-    forward: ISourceOptions;
-    grabRandomColor: ISourceOptions;
-    gradients: ISourceOptions;
-    gravity: ISourceOptions;
-    growing: ISourceOptions;
-    hexagonPath: ISourceOptions;
-    hollowknight: ISourceOptions;
-    hyperspace: ISourceOptions;
-    imageMask: ISourceOptions;
-    images: ISourceOptions;
-    imagesDirections: ISourceOptions;
-    infection: ISourceOptions;
-    life: ISourceOptions;
-    lightHover: ISourceOptions;
-    linkTriangles: ISourceOptions;
-    localPolygonMask: ISourceOptions;
-    manual: ISourceOptions;
-    motionDisable: ISourceOptions;
-    motionReduce: ISourceOptions;
-    mouseAttract: ISourceOptions;
-    mouseBounce: ISourceOptions;
-    mouseFollow: ISourceOptions;
-    mouseTrail: ISourceOptions;
-    moveAngle: ISourceOptions;
-    moveDistance: ISourceOptions;
-    moveInside: ISourceOptions;
-    moveOutside: ISourceOptions;
-    multipleClickEmitters: ISourceOptions;
-    multiplePolygonMasks: ISourceOptions;
-    nasa: ISourceOptions;
-    noconfig: ISourceOptions;
-    noisePlanes: ISourceOptions;
-    nyancat: ISourceOptions;
-    nyancat2: ISourceOptions;
-    orbit: ISourceOptions;
-    parallax: ISourceOptions;
-    pathPolygonMask: ISourceOptions;
-    planes: ISourceOptions;
-    plasma: ISourceOptions;
-    polygonMask: ISourceOptions;
-    polygons: ISourceOptions;
-    random: ISourceOptions;
-    reactBubbles: ISourceOptions;
-    reactDefaults: ISourceOptions;
-    reactMultipleImages: ISourceOptions;
-    reactNightSky: ISourceOptions;
-    reactPolygonMask: ISourceOptions;
-    reactSimple: ISourceOptions;
-    reactSnow: ISourceOptions;
-    reduceDuplicates: ISourceOptions;
-    repulse: ISourceOptions;
-    repulseBack: ISourceOptions;
-    repulseCirc: ISourceOptions;
-    repulseCubic: ISourceOptions;
-    repulseExpo: ISourceOptions;
-    repulseQuart: ISourceOptions;
-    repulseQuint: ISourceOptions;
-    repulseSine: ISourceOptions;
-    responsive: ISourceOptions;
-    ring: ISourceOptions;
-    seaAnemone: ISourceOptions;
-    shadow: ISourceOptions;
-    shapeBubble: ISourceOptions;
-    shapeHeart: ISourceOptions;
-    shapeMultilineText: ISourceOptions;
-    shapeOptions: ISourceOptions;
-    shapePath: ISourceOptions;
-    shapeRoundedRect: ISourceOptions;
-    shapeSpiral: ISourceOptions;
-    slow: ISourceOptions;
-    snow: ISourceOptions;
-    soundsAudio: ISourceOptions;
-    soundsLoop: ISourceOptions;
-    soundsMelodies: ISourceOptions;
-    soundsMelodyLoop: ISourceOptions;
-    soundsNotes: ISourceOptions;
-    speedDecay: ISourceOptions;
-    spin: ISourceOptions;
-    star: ISourceOptions;
-    strokeAnimation: ISourceOptions;
-    style: ISourceOptions;
-    svgReplace: ISourceOptions;
-    test: ISourceOptions;
-    textMask: ISourceOptions;
-    textMaskMultiline: ISourceOptions;
-    trail: ISourceOptions;
-    trailImage: ISourceOptions;
-    twinkle: ISourceOptions;
-    vibrate: ISourceOptions;
-    virus: ISourceOptions;
-    warp: ISourceOptions;
-    wobble: ISourceOptions;
-    zIndex: ISourceOptions;
-};
-
-const mainConfigs = tsParticles as {
-    configs?: ExportedConfigurations;
-};
-
-mainConfigs.configs = {
-    absorbers,
-    amongUs,
-    backgroundMask,
-    basic,
-    big,
-    blackHole,
-    bubble,
-    cards,
-    chars,
-    clickPause,
-    collisionsAbsorb,
-    collisionsBounce,
-    collisionsDestroy,
-    colorAnimation,
-    connect,
-    customPreset,
-    customShape,
-    dataImages,
-    delay,
-    destroy,
-    disappearing,
-    divEvents,
-    emitter,
-    emitterAbsorber,
-    emitterAngled,
-    emitterImages,
-    emitterPaths,
-    emitterShapes,
-    fireworks,
-    fontawesome,
-    forward,
-    grabRandomColor,
-    gradients,
-    gravity,
-    growing,
-    hexagonPath,
-    hollowknight,
-    hyperspace,
-    imageMask,
-    images,
-    imagesDirections,
-    infection,
-    life,
-    lightHover,
-    linkTriangles,
-    localPolygonMask,
-    manual,
-    motionDisable,
-    motionReduce,
-    mouseAttract,
-    mouseBounce,
-    mouseFollow,
-    mouseTrail,
-    moveAngle,
-    moveDistance,
-    moveInside,
-    moveOutside,
-    multipleClickEmitters,
-    multiplePolygonMasks,
-    nasa,
-    noconfig,
-    noisePlanes,
-    nyancat,
-    nyancat2,
-    orbit,
-    parallax,
-    pathPolygonMask,
-    planes,
-    plasma,
-    polygonMask,
-    polygons,
-    random,
-    reactBubbles,
-    reactDefaults,
-    reactMultipleImages,
-    reactNightSky,
-    reactPolygonMask,
-    reactSimple,
-    reactSnow,
-    reduceDuplicates,
-    repulse,
-    repulseBack,
-    repulseCirc,
-    repulseCubic,
-    repulseExpo,
-    repulseQuart,
-    repulseQuint,
-    repulseSine,
-    responsive,
-    ring,
-    seaAnemone,
-    shadow,
-    shapeBubble,
-    shapeHeart,
-    shapeMultilineText,
-    shapeOptions,
-    shapePath,
-    shapeRoundedRect,
-    shapeSpiral,
-    slow,
-    snow,
-    soundsAudio,
-    soundsLoop,
-    soundsMelodies,
-    soundsMelodyLoop,
-    soundsNotes,
-    speedDecay,
-    spin,
-    star,
-    strokeAnimation,
-    style,
-    svgReplace,
-    test,
-    textMask,
-    textMaskMultiline,
-    trail,
-    trailImage,
-    twinkle,
-    vibrate,
-    virus,
-    warp,
-    wobble,
-    zIndex,
-};
+tsParticles.addConfig(absorbers);
+tsParticles.addConfig(amongUs);
+tsParticles.addConfig(backgroundMask);
+tsParticles.addConfig(basic);
+tsParticles.addConfig(big);
+tsParticles.addConfig(blackHole);
+tsParticles.addConfig(bubble);
+tsParticles.addConfig(cards);
+tsParticles.addConfig(chars);
+tsParticles.addConfig(clickPause);
+tsParticles.addConfig(collisionsAbsorb);
+tsParticles.addConfig(collisionsBounce);
+tsParticles.addConfig(collisionsDestroy);
+tsParticles.addConfig(colorAnimation);
+tsParticles.addConfig(connect);
+tsParticles.addConfig(customPreset);
+tsParticles.addConfig(customShape);
+tsParticles.addConfig(dataImages);
+tsParticles.addConfig(delay);
+tsParticles.addConfig(destroy);
+tsParticles.addConfig(disappearing);
+tsParticles.addConfig(divEvents);
+tsParticles.addConfig(emitter);
+tsParticles.addConfig(emitterAbsorber);
+tsParticles.addConfig(emitterAngled);
+tsParticles.addConfig(emitterImages);
+tsParticles.addConfig(emitterPaths);
+tsParticles.addConfig(emitterShapes);
+tsParticles.addConfig(fireworks);
+tsParticles.addConfig(fontawesome);
+tsParticles.addConfig(forward);
+tsParticles.addConfig(grabRandomColor);
+tsParticles.addConfig(gradients);
+tsParticles.addConfig(gravity);
+tsParticles.addConfig(growing);
+tsParticles.addConfig(hexagonPath);
+tsParticles.addConfig(hollowknight);
+tsParticles.addConfig(hyperspace);
+tsParticles.addConfig(imageMask);
+tsParticles.addConfig(images);
+tsParticles.addConfig(imagesDirections);
+tsParticles.addConfig(infection);
+tsParticles.addConfig(life);
+tsParticles.addConfig(lightHover);
+tsParticles.addConfig(linkTriangles);
+tsParticles.addConfig(localPolygonMask);
+tsParticles.addConfig(manual);
+tsParticles.addConfig(motionDisable);
+tsParticles.addConfig(motionReduce);
+tsParticles.addConfig(mouseAttract);
+tsParticles.addConfig(mouseBounce);
+tsParticles.addConfig(mouseFollow);
+tsParticles.addConfig(mouseTrail);
+tsParticles.addConfig(moveAngle);
+tsParticles.addConfig(moveDistance);
+tsParticles.addConfig(moveInside);
+tsParticles.addConfig(moveOutside);
+tsParticles.addConfig(multipleClickEmitters);
+tsParticles.addConfig(multiplePolygonMasks);
+tsParticles.addConfig(nasa);
+tsParticles.addConfig(noconfig);
+tsParticles.addConfig(noisePlanes);
+tsParticles.addConfig(nyancat);
+tsParticles.addConfig(nyancat2);
+tsParticles.addConfig(orbit);
+tsParticles.addConfig(parallax);
+tsParticles.addConfig(pathPolygonMask);
+tsParticles.addConfig(planes);
+tsParticles.addConfig(plasma);
+tsParticles.addConfig(polygonMask);
+tsParticles.addConfig(polygons);
+tsParticles.addConfig(random);
+tsParticles.addConfig(reactBubbles);
+tsParticles.addConfig(reactDefaults);
+tsParticles.addConfig(reactMultipleImages);
+tsParticles.addConfig(reactNightSky);
+tsParticles.addConfig(reactPolygonMask);
+tsParticles.addConfig(reactSimple);
+tsParticles.addConfig(reactSnow);
+tsParticles.addConfig(reduceDuplicates);
+tsParticles.addConfig(repulse);
+tsParticles.addConfig(repulseBack);
+tsParticles.addConfig(repulseCirc);
+tsParticles.addConfig(repulseCubic);
+tsParticles.addConfig(repulseExpo);
+tsParticles.addConfig(repulseQuart);
+tsParticles.addConfig(repulseQuint);
+tsParticles.addConfig(repulseSine);
+tsParticles.addConfig(responsive);
+tsParticles.addConfig(ring);
+tsParticles.addConfig(seaAnemone);
+tsParticles.addConfig(shadow);
+tsParticles.addConfig(shapeBubble);
+tsParticles.addConfig(shapeHeart);
+tsParticles.addConfig(shapeMultilineText);
+tsParticles.addConfig(shapeOptions);
+tsParticles.addConfig(shapePath);
+tsParticles.addConfig(shapeRoundedRect);
+tsParticles.addConfig(shapeSpiral);
+tsParticles.addConfig(slow);
+tsParticles.addConfig(snow);
+tsParticles.addConfig(soundsAudio);
+tsParticles.addConfig(soundsLoop);
+tsParticles.addConfig(soundsMelodies);
+tsParticles.addConfig(soundsMelodyLoop);
+tsParticles.addConfig(soundsNotes);
+tsParticles.addConfig(speedDecay);
+tsParticles.addConfig(spin);
+tsParticles.addConfig(star);
+tsParticles.addConfig(strokeAnimation);
+tsParticles.addConfig(style);
+tsParticles.addConfig(svgReplace);
+tsParticles.addConfig(test);
+tsParticles.addConfig(textMask);
+tsParticles.addConfig(textMaskMultiline);
+tsParticles.addConfig(trail);
+tsParticles.addConfig(trailImage);
+tsParticles.addConfig(twinkle);
+tsParticles.addConfig(vibrate);
+tsParticles.addConfig(virus);
+tsParticles.addConfig(warp);
+tsParticles.addConfig(wobble);
+tsParticles.addConfig(zIndex);
 
 export {
     absorbers,

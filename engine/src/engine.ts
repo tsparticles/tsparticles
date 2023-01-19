@@ -20,6 +20,7 @@ import type { IParticleMover } from "./Core/Interfaces/IParticlesMover";
 import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import type { ISourceOptions } from "./Types/ISourceOptions";
 import { Loader } from "./Core/Loader";
 import type { Particle } from "./Core/Particle";
 import { Plugins } from "./Core/Utils/Plugins";
@@ -37,6 +38,8 @@ export class Engine {
      * Contains the [[Plugins]] engine instance
      */
     readonly plugins: Plugins;
+
+    private readonly _configs: Map<string, RecursivePartial<IOptions>>;
 
     /**
      * Contains all the [[Container]] instances of the current engine instance
@@ -60,11 +63,34 @@ export class Engine {
      * Engine constructor, initializes plugins, loader and the containers array
      */
     constructor() {
+        this._configs = new Map<string, ISourceOptions>();
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
         this._initialized = false;
         this._loader = new Loader(this);
         this.plugins = new Plugins(this);
+    }
+
+    get configs(): Record<string, ISourceOptions> {
+        const res: { [key: string]: ISourceOptions } = {};
+
+        for (const [name, config] of this._configs) {
+            res[name] = config;
+        }
+
+        return res;
+    }
+
+    addConfig(nameOrConfig: string | ISourceOptions, config?: ISourceOptions): void {
+        if (typeof nameOrConfig === "string") {
+            if (config) {
+                config.name = nameOrConfig;
+
+                this._configs.set(nameOrConfig, config);
+            }
+        } else {
+            this._configs.set(nameOrConfig.name ?? "default", nameOrConfig);
+        }
     }
 
     /**
@@ -204,6 +230,10 @@ export class Engine {
         }
 
         dom.splice(index, 1);
+    }
+
+    getConfig(name: string): ISourceOptions | undefined {
+        return this._configs.get(name);
     }
 
     /**

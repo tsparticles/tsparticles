@@ -34,17 +34,7 @@ const text = `${importsNames.join("\n")}
 
 const ${exportsNames.map((t, idx) => `${idx === 0 ? t.trim() : t} = _${t.trim()} as unknown as ISourceOptions`).join(",\n")};
 
-export type ExportedConfigurations = {
-${exportsNames.map(t => `${t}: ISourceOptions;`).join("\n")}
-};
-
-const mainConfigs = tsParticles as {
-    configs?: ExportedConfigurations;
-};
-
-mainConfigs.configs = {
-${exportsNames.join(",\n")},
-};
+${exportsNames.map(t => `tsParticles.addConfig(${t});`).join("\n")}
 
 export {
 ${exportsNames.join(",\n")},

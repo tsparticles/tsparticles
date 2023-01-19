@@ -84,6 +84,11 @@ export interface IOptions {
     manualParticles: IManualParticle[];
 
     /**
+     * The object name used in the configs array
+     */
+    name: string;
+
+    /**
      * The particles options
      */
     particles: IParticlesOptions;
