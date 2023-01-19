@@ -1,6 +1,5 @@
-import { ISourceOptions, Options, RecursivePartial, tsParticles } from "../../src";
+import { ISourceOptions, Options, tsParticles } from "../../src";
 import { Container } from "../../src/Core/Container";
-import type { IOptions } from "../../src";
 import { TestWindow } from "./Window";
 
 declare global {
