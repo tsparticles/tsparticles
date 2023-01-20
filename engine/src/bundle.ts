@@ -14,8 +14,6 @@ addColorManager(hslColorManager);
  */
 const tsParticles = new Engine();
 
-tsParticles.init();
-
 export * from "./Core/Utils/Circle";
 export * from "./Core/Utils/Constants";
 export * from "./Core/Utils/ExternalInteractorBase";

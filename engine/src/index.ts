@@ -14,8 +14,6 @@ addColorManager(hslColorManager);
  */
 const tsParticles = new Engine();
 
-tsParticles.init();
-
 export * from "./Core/Interfaces/Colors";
 export * from "./Core/Interfaces/IBounds";
 export * from "./Core/Interfaces/IBubbleParticleData";
@@ -224,4 +222,4 @@ export * from "./Utils/Utils";
 
 export { tsParticles };
 
-export type { Engine, Engine as Main };
+export type { Engine };

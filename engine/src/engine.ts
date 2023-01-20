@@ -72,18 +72,12 @@ export class Engine {
     private readonly _eventDispatcher;
 
     /**
-     * Checks if the engine instance is initialized
-     */
-    private _initialized: boolean;
-
-    /**
      * Engine constructor, initializes plugins, loader and the containers array
      */
     constructor() {
         this._configs = new Map<string, ISourceOptions>();
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
-        this._initialized = false;
         this.plugins = new Plugins(this);
     }
 
@@ -246,15 +240,6 @@ export class Engine {
         }
 
         dom.splice(index, 1);
-    }
-
-    /**
-     * init method, used by imports
-     */
-    init(): void {
-        if (!this._initialized) {
-            this._initialized = true;
-        }
     }
 
     /**

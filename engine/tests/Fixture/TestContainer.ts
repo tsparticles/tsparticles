@@ -17,7 +17,6 @@ export class TestContainer {
         globalThis.window = TestWindow;
 
         window.SVGPathSeg = {} as any;
-        tsParticles.init();
 
         const defaultOptions: ISourceOptions = { particles: { size: { value: 0 } } };
 
