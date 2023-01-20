@@ -107,10 +107,10 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
             this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;
         }
 
-        const strokeToLoad = data.stroke ?? data.shape?.stroke;
+        const stroke = data.stroke;
 
-        if (strokeToLoad) {
-            this.stroke = executeOnSingleOrMultiple(strokeToLoad, (t) => {
+        if (stroke) {
+            this.stroke = executeOnSingleOrMultiple(stroke, (t) => {
                 const tmp = new Stroke();
 
                 tmp.load(t);
