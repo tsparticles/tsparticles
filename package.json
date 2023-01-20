@@ -13,6 +13,7 @@
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
     "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta",
     "publish:next": "lerna publish from-package --dist-tag next",
+    "publish:v2": "lerna publish from-package --dist-tag v2",
     "publish:v1": "lerna publish from-package --dist-tag v1",
     "deploy:site": "lerna run deploy --scope website",
     "prepare": "husky install"
