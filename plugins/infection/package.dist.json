@@ -62,10 +62,6 @@
     "canvas-confetti",
     "@tsparticles/plugin"
   ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -86,6 +82,9 @@
   "unpkg": "tsparticles.plugin.infection.min.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@tsparticles/engine": "^3.0.0-alpha.0"
   }

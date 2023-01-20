@@ -83,5 +83,8 @@
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.engine.min.js",
   "unpkg": "tsparticles.engine.min.js",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  }
 }

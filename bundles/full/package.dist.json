@@ -75,6 +75,9 @@
   "jsdelivr": "tsparticles.bundle.min.js",
   "unpkg": "tsparticles.bundle.min.js",
   "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@tsparticles/engine": "^3.0.0-alpha.0",
     "@tsparticles/interaction-external-trail": "^3.0.0-alpha.0",

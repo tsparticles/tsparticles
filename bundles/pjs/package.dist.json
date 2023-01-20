@@ -70,12 +70,15 @@
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
   },
-  "dependencies": {
-    "@tsparticles/engine": "^3.0.0-alpha.0"
-  },
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.pjs.min.js",
   "unpkg": "tsparticles.pjs.min.js",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^3.0.0-alpha.0"
+  }
 }

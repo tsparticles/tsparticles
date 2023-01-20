@@ -73,6 +73,9 @@
   "unpkg": "tsparticles.interaction.external.bubble.min.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@tsparticles/engine": "^3.0.0-alpha.0"
   }

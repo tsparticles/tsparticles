@@ -70,6 +70,14 @@
     "type": "github",
     "url": "https://github.com/sponsors/matteobruni"
   },
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "jsdelivr": "tsparticles.slim.bundle.min.js",
+  "unpkg": "tsparticles.slim.bundle.min.js",
+  "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@tsparticles/engine": "^3.0.0-alpha.0",
     "@tsparticles/interaction-external-attract": "^3.0.0-alpha.0",
@@ -103,10 +111,5 @@
     "@tsparticles/updater-out-modes": "^3.0.0-alpha.0",
     "@tsparticles/updater-size": "^3.0.0-alpha.0",
     "@tsparticles/updater-stroke-color": "^3.0.0-alpha.0"
-  },
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "jsdelivr": "tsparticles.slim.bundle.min.js",
-  "unpkg": "tsparticles.slim.bundle.min.js",
-  "types": "types/index.d.ts"
+  }
 }
