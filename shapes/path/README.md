@@ -25,13 +25,17 @@ loadPathShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadPathShape(tsParticles);
+(async () => {
+  await loadPathShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: ["heart", "diamond", "spade", "club"] *
-  /*   or you can use particles.shape.type: ["hearts", "diamonds", "spades", "clubs"] */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "path" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

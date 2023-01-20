@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { Options, tsParticles } from "tsparticles-engine";
+import { ISourceOptions, Options, tsParticles } from "tsparticles-engine";
 import { JSDOM } from "jsdom";
 import _ from "lodash";
 import fs from "fs-extra";
@@ -151,7 +151,10 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
         if (fileStat.isFile()) {
             const fileContent = await fs.readFile(srcPath, "utf8"),
                 fileData = JSON.parse(fileContent),
-                fileContainer = await tsParticles.load("file-tmp", fileData);
+                fileContainer = await tsParticles.load({
+                    id: "file-tmp",
+                    options: fileData,
+                });
 
             if (fileContainer) {
                 const fileOptions = fileContainer.actualOptions;
@@ -179,7 +182,10 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
 
                 const fileContent = await fs.readFile(filePath, "utf8"),
                     fileData = JSON.parse(fileContent),
-                    fileContainer = await tsParticles.load(`file-${file}`, fileData);
+                    fileContainer = await tsParticles.load({
+                        id: `file-${file}`,
+                        options: fileData,
+                    });
 
                 if (fileContainer) {
                     const fileOptions = fileContainer.options;

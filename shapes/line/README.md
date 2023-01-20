@@ -25,12 +25,17 @@ loadLineShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadLineShape(tsParticles);
+(async () => {
+  await loadLineShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "line" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "line" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

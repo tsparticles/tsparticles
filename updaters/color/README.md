@@ -25,11 +25,16 @@ loadColorUpdater;
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadColorUpdater(tsParticles);
+(async () => {
+  await loadColorUpdater();
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

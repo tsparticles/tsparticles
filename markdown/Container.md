@@ -6,7 +6,7 @@ Otherwise you can retrieve any loaded instance using {@link Engine.dom | tsParti
 
 ## Properties
 
-{@link Container.id}: the {@link Container} id, normally is the related DOM element {@link Container.id} attribute. It's set by {@link Engine.load | tsParticles.load()} and {@link Engine.loadJSON | tsParticles.loadJSON()}.
+{@link Container.id}: the {@link Container} id, normally is the related DOM element {@link Container.id} attribute. It's set by {@link Engine.load | tsParticles.load()}.
 
 {@link Container.options}: Where to find the current options loaded. Changing this options while playing can result in an unexpected behavior. A {@link refresh | refresh()} after the change is the best thing to do.<br />
 {@link Container.sourceOptions}: The options used when the {@link Container} was created, these options will be used only in the constructor.

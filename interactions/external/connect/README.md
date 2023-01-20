@@ -29,8 +29,11 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 ```javascript
 loadExternalConnectInteraction(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    /* options */
+  },
 });
 ```
 

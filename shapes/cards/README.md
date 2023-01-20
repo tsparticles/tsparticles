@@ -25,13 +25,18 @@ loadCardsShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadCardsShape(tsParticles);
+(async () => {
+  await loadCardsShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: ["heart", "diamond", "spade", "club"] *
-  /*   or you can use particles.shape.type: ["hearts", "diamonds", "spades", "clubs"] */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: ["heart", "diamond", "spade", "club"] */
+      /*   or you can use particles.shape.type: ["hearts", "diamonds", "spades", "clubs"] */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

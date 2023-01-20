@@ -191,10 +191,13 @@ Load tsParticles and configure the particles:
 
 ```javascript
 // @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
-/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
+/* tsParticles.load(@params); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
+  .load({
+    id: "tsparticles",
+    url: "presets/default.json",
+  })
   .then((container) => {
     console.log("callback - tsparticles config loaded");
   })
@@ -204,29 +207,18 @@ tsParticles
 
 //or
 
-/* tsParticles.load(@dom-id, @options); */
-
-tsParticles.load("tsparticles", {
-  /* options here */
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    /* options here */
+  },
 });
 
 //or
 
-/* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
-
-tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options here */
-  },
-  {
-    /* other options here */
-  },
-]);
-//random object
-
-tsParticles.loadFromArray(
-  "tsparticles",
-  [
+tsParticles.load({
+  id: "tsparticles",
+  options: [
     {
       /* options here */
     },
@@ -234,8 +226,21 @@ tsParticles.loadFromArray(
       /* other options here */
     },
   ],
-  1
-); //the second one
+});
+//random object
+
+tsParticles.load({
+  id: "tsparticles",
+  options: [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  index: 1,
+}); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
 // after initialization this can be used.

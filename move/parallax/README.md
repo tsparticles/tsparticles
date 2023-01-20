@@ -28,8 +28,11 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 (async () => {
   await loadParallaxMover(tsParticles);
 
-  await tsParticles.load("tsparticles", {
-    /* options */
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
   });
 })();
 ```

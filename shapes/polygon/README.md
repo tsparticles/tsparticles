@@ -25,12 +25,17 @@ loadPolygonShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadPolygonShape(tsParticles);
+(async () => {
+  await loadPolygonShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "polygon" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "polygon" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

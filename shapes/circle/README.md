@@ -25,12 +25,17 @@ loadCircleShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadCircleShape(tsParticles);
+(async () => {
+  await loadCircleShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "circle" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "circle" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

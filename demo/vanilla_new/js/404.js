@@ -1,4 +1,6 @@
-tsParticles.load("tsparticles", {
+tsParticles.load({
+    id: "tsparticles",
+    options: {
         "fullScreen": {
             "enable": true,
             "zIndex": -1
@@ -63,4 +65,4 @@ tsParticles.load("tsparticles", {
             "color": "#ffffff"
         }
     }
-);
+});

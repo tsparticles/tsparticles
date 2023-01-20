@@ -25,11 +25,16 @@ loadEmittersPlugin;
 Once the scripts are loaded you can set up `tsParticles` and the plugin like this:
 
 ```javascript
-loadEmittersPlugin(tsParticles);
+(async () => {
+  await loadEmittersPlugin(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

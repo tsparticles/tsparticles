@@ -28,7 +28,7 @@ const initPjs = (
      * @param options the options object to initialize the [[Container]]
      */
     const particlesJS = (tagId: string, options: ISourceOptions): Promise<Container | undefined> => {
-        return engine.load(tagId, options);
+        return engine.load({ id: tagId, options: options });
     };
 
     /**
@@ -41,7 +41,7 @@ const initPjs = (
      */
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         engine
-            .loadJSON(tagId, pathConfigJson)
+            .load({ id: tagId, url: pathConfigJson })
             .then((container) => {
                 if (container) {
                     callback(container);

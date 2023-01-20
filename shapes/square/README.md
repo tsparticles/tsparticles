@@ -25,12 +25,17 @@ loadSquareShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadSquareShape(tsParticles);
+(async () => {
+  await loadSquareShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "square" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "square" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

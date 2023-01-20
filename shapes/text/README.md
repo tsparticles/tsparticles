@@ -25,12 +25,17 @@ loadTextShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadTextShape(tsParticles);
+(async () => {
+  await loadTextShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "text" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "text" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

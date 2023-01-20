@@ -193,7 +193,10 @@
         })();
 
         const loadPreset = async (preset) => {
-            await tsParticles.load("tsparticles", tsParticles.configs[preset]);
+            await tsParticles.load({
+                id: "tsparticles",
+                options: tsParticles.configs[preset]
+            });
         }
 
         let preset = sessionStorage.preset || "basic";

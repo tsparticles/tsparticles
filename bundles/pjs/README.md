@@ -42,7 +42,10 @@ particlesJS("tsparticles", {
 
 // or
 
-tsParticles.load("tsparticles", {
-  /* options */
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    /* options */
+  },
 });
 ```

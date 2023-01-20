@@ -9,7 +9,7 @@ import type {
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
 } from "./Types/ShapeDrawerFunctions";
-import type { Container } from "./Core/Container";
+import { Container } from "./Core/Container";
 import type { CustomEventArgs } from "./Types/CustomEventArgs";
 import type { CustomEventListener } from "./Types/CustomEventListener";
 import { EventDispatcher } from "./Utils/EventDispatcher";
@@ -21,10 +21,34 @@ import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import type { ISourceOptions } from "./Types/ISourceOptions";
-import { Loader } from "./Core/Loader";
 import type { Particle } from "./Core/Particle";
 import { Plugins } from "./Core/Utils/Plugins";
 import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
+import { generatedAttribute } from "./Core/Utils/Constants";
+import { getRandom } from "./Utils/NumberUtils";
+import { itemFromSingleOrMultiple } from "./Utils/Utils";
+
+async function getDataFromUrl(data: {
+    fallback?: SingleOrMultiple<ISourceOptions>;
+    index?: number;
+    url: SingleOrMultiple<string>;
+}): Promise<SingleOrMultiple<ISourceOptions> | undefined> {
+    const url = itemFromSingleOrMultiple(data.url, data.index);
+
+    if (!url) {
+        return data.fallback;
+    }
+
+    const response = await fetch(url);
+
+    if (response.ok) {
+        return response.json();
+    }
+
+    console.error(`tsParticles - Error ${response.status} while retrieving config file`);
+
+    return data.fallback;
+}
 
 /**
  * Engine class for creating the singleton on window.
@@ -53,12 +77,6 @@ export class Engine {
     private _initialized: boolean;
 
     /**
-     * Contains the [[Loader]] engine instance
-     * @private
-     */
-    private readonly _loader: Loader;
-
-    /**
      * Engine constructor, initializes plugins, loader and the containers array
      */
     constructor() {
@@ -66,7 +84,6 @@ export class Engine {
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
         this._initialized = false;
-        this._loader = new Loader(this);
         this.plugins = new Plugins(this);
     }
 
@@ -241,47 +258,92 @@ export class Engine {
     }
 
     /**
-     * Loads the provided options to create a [[Container]] object.
-     * @param tagId The particles container element id
-     * @param options The options object to initialize the [[Container]]
-     * @returns A Promise with the [[Container]] object created
+     * Starts an animation in a container, starting from the given options
+     * @param params all the parameters required for loading options in the current animation
      */
-    async load(
-        tagId: string | SingleOrMultiple<ISourceOptions>,
-        options?: SingleOrMultiple<ISourceOptions>
-    ): Promise<Container | undefined> {
-        return this._loader.load(tagId, options);
-    }
+    async load(params: ILoadParams): Promise<Container | undefined> {
+        const id = params.id ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
+            { index, url } = params,
+            options = url
+                ? await getDataFromUrl({
+                      fallback: params.options,
+                      index,
+                      url: url,
+                  })
+                : params.options;
 
-    /**
-     * Loads an options object from the provided array to create a [[Container]] object.
-     * @param tagId The particles container element id
-     * @param options The options array to get the item from
-     * @param index If provided gets the corresponding item from the array
-     * @returns A Promise with the [[Container]] object created
-     */
-    async loadFromArray(tagId: string, options: ISourceOptions[], index?: number): Promise<Container | undefined> {
-        return this._loader.load(tagId, options, index);
-    }
+        /* elements */
+        let domContainer = params.element ?? document.getElementById(id);
 
-    /**
-     * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
-     * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     * @param tagId the particles container element id
-     * @param pathConfigJson the json path (or paths array) to use in the GET request
-     * @param index the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the [[Container]] object created
-     */
-    async loadJSON(
-        tagId: string | SingleOrMultiple<string>,
-        pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number
-    ): Promise<Container | undefined> {
-        return this._loader.loadJSON(tagId, pathConfigJson, index);
-    }
+        if (!domContainer) {
+            domContainer = document.createElement("div");
 
-    async newLoad(params: ILoadParams): Promise<Container | undefined> {
-        return this._loader.loadOptions(params);
+            domContainer.id = id;
+
+            document.querySelector("body")?.append(domContainer);
+        }
+
+        const currentOptions = itemFromSingleOrMultiple(options, index),
+            dom = this.dom(),
+            oldIndex = dom.findIndex((v) => v.id === id);
+
+        if (oldIndex >= 0) {
+            const old = this.domItem(oldIndex);
+
+            if (old && !old.destroyed) {
+                old.destroy();
+
+                dom.splice(oldIndex, 1);
+            }
+        }
+
+        let canvasEl: HTMLCanvasElement;
+
+        if (domContainer.tagName.toLowerCase() === "canvas") {
+            canvasEl = domContainer as HTMLCanvasElement;
+
+            canvasEl.dataset[generatedAttribute] = "false";
+        } else {
+            const existingCanvases = domContainer.getElementsByTagName("canvas");
+
+            /* get existing canvas if present, otherwise a new one will be created */
+            if (existingCanvases.length) {
+                canvasEl = existingCanvases[0];
+
+                canvasEl.dataset[generatedAttribute] = "false";
+            } else {
+                /* create canvas element */
+                canvasEl = document.createElement("canvas");
+
+                canvasEl.dataset[generatedAttribute] = "true";
+
+                /* append canvas */
+                domContainer.appendChild(canvasEl);
+            }
+        }
+
+        if (!canvasEl.style.width) {
+            canvasEl.style.width = "100%";
+        }
+
+        if (!canvasEl.style.height) {
+            canvasEl.style.height = "100%";
+        }
+
+        /* launch tsParticles */
+        const newItem = new Container(this, id, currentOptions);
+
+        if (oldIndex >= 0) {
+            dom.splice(oldIndex, 0, newItem);
+        } else {
+            dom.push(newItem);
+        }
+
+        newItem.canvas.loadCanvas(canvasEl);
+
+        await newItem.start();
+
+        return newItem;
     }
 
     /**
@@ -303,37 +365,6 @@ export class Engine {
     }
 
     /**
-     * Loads the provided option to create a [[Container]] object using the element parameter as a container
-     * @param id The particles container id
-     * @param element The dom element used to contain the particles
-     * @param options The options object to initialize the [[Container]]
-     */
-    async set(
-        id: string | HTMLElement,
-        element: HTMLElement | ISourceOptions,
-        options?: ISourceOptions
-    ): Promise<Container | undefined> {
-        return this._loader.set(id, element, options);
-    }
-
-    /**
-     * Loads the provided option to create a [[Container]] object using the element parameter as a container
-     * @param id The particles container id
-     * @param element The dom element used to contain the particles
-     * @param pathConfigJson the json path (or paths array) to use in the GET request
-     * @param index the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the [[Container]] object created
-     */
-    async setJSON(
-        id: string | HTMLElement,
-        element: HTMLElement | SingleOrMultiple<string>,
-        pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number
-    ): Promise<Container | undefined> {
-        return this._loader.setJSON(id, element, pathConfigJson, index);
-    }
-
-    /**
      * Adds an additional click handler to all the loaded [[Container]] objects.
      * @param callback The function called after the click event is fired
      */
@@ -341,7 +372,7 @@ export class Engine {
         const dom = this.dom();
 
         if (!dom.length) {
-            throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
+            throw new Error("Can only set click handlers after calling tsParticles.load()");
         }
 
         for (const domItem of dom) {

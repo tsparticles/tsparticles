@@ -25,11 +25,16 @@ loadOpacityUpdater;
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadOpacityUpdater(tsParticles);
+(async () => {
+  await loadOpacityUpdater();
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

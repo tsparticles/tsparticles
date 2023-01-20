@@ -14,7 +14,8 @@
 
 The CDN/Vanilla version JS has one required file in vanilla configuration:
 
-Including the `tsparticles.interaction.particles.collisions.min.js` file will export the function to load the interaction
+Including the `tsparticles.interaction.particles.collisions.min.js` file will export the function to load the
+interaction
 plugin:
 
 ```javascript
@@ -28,8 +29,11 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 ```javascript
 loadParticlesCollisionsInteraction(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    /* options */
+  },
 });
 ```
 

@@ -25,12 +25,17 @@ loadMultilineTextShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadMultilineTextShape(tsParticles);
+(async () => {
+  await loadMultilineTextShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "multiline-text" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "multiline-text" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

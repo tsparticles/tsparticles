@@ -11,6 +11,11 @@ export interface ILoadParams {
     element?: HTMLElement;
 
     /**
+     * The id assigned to the container
+     */
+    id?: string;
+
+    /**
      * The index of the chosen element of the options array, if an array is given. If not specified, a random index will be used
      */
     index?: number;
@@ -19,16 +24,6 @@ export interface ILoadParams {
      * The options object or the options array to laod
      */
     options?: SingleOrMultiple<ISourceOptions>;
-
-    /**
-     * Used for loading options locally or remotely
-     */
-    remote: boolean;
-
-    /**
-     * The id assigned to the container
-     */
-    tagId?: string;
 
     /**
      * The url or the url array used to get options

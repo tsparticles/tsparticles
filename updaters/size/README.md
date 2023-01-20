@@ -25,11 +25,16 @@ loadSizeUpdater;
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadSizeUpdater(tsParticles);
+(async () => {
+  await loadSizeUpdater();
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

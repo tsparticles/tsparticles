@@ -25,11 +25,16 @@ loadSimplexNoisePath
 Once the scripts are loaded you can set up `tsParticles` and the path plugin like this:
 
 ```javascript
-loadSimplexNoisePath(tsParticles);
+(async () => {
+  await loadSimplexNoisePath(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

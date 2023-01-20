@@ -25,11 +25,16 @@ loadPerlinNoisePath
 Once the scripts are loaded you can set up `tsParticles` and the path plugin like this:
 
 ```javascript
-loadPerlinNoisePath(tsParticles);
+(async () => {
+  await loadPerlinNoisePath(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

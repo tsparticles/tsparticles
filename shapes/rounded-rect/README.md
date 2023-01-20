@@ -25,12 +25,17 @@ loadRoundedRectShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadRoundedRectShape(tsParticles);
+(async () => {
+  await loadRoundedRectShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "rounded-rect" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "rounded-rect" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

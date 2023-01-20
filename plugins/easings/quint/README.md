@@ -25,11 +25,16 @@ loadEasingQuintPlugin
 Once the scripts are loaded you can set up `tsParticles` and the plugin like this:
 
 ```javascript
-loadEasingQuintPlugin();
+(async () => {
+  await loadEasingQuintPlugin();
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

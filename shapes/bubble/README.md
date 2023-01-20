@@ -25,12 +25,17 @@ loadBubbleShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadBubbleShape(tsParticles);
+(async () => {
+  await loadBubbleShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "bubble" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "bubble" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

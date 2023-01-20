@@ -25,11 +25,16 @@ loadGradientUpdater
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadGradientUpdater(tsParticles);
+(async () => {
+  await loadGradientUpdater();
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

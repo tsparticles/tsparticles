@@ -25,12 +25,17 @@ loadImageShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadImageShape(tsParticles);
+(async () => {
+  await loadImageShape();
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "image" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "image" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS

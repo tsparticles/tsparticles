@@ -38,9 +38,11 @@ And you're done. Easy isn't it?
 
 ## Advanced solution
 
-Probably you noticed some warnings in the console. Well yes, it's really easy doing the migration but new features requires new configs and bug fixes can mess up some things.
+Probably you noticed some warnings in the console. Well yes, it's really easy doing the migration but new features
+requires new configs and bug fixes can mess up some things.
 
-If you're not familiar with Javascript don't worry, you can skip this part and keep the warnings, everything will work fine.
+If you're not familiar with Javascript don't worry, you can skip this part and keep the warnings, everything will work
+fine.
 
 If you care about console warnings well you are in the right place.
 
@@ -63,13 +65,13 @@ particlesJS("particles-js", {
 });
 ```
 
-All you have to do to use the new identifiers it replacing the function
+All you have to do to use the new identifiers replacing the function
 
-`particlesJS()` into `tsParticles.load()`
+`particlesJS()` into `tsParticles.load({ options: value })`
 
 or the function
 
-`particlesJS.load()` into `tsParticles.loadJSON()`
+`particlesJS.load()` into `tsParticles.load({ url: "value" })`
 
 **Warning here, the `loadJSON` doesn't have a third parameter, if you need a callback use the `then` function.**
 
@@ -78,18 +80,27 @@ Still really simple.
 Let's convert the sample provided above to understand
 
 ```javascript
-/* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
-tsParticles.loadJSON("particles-js", "assets/particles.json").then(function (p) {
-    // p is the loaded container, for using it later
-    console.log("callback - particles.js config loaded");
-});
+/* particlesJS.load(@params); */
+tsParticles
+    .load({
+        id: "particles-js",
+        url: "assets/particles.json",
+    })
+    .then(function (p) {
+        // p is the loaded container, for using it later
+        console.log("callback - particles.js config loaded");
+    });
 
-tsParticles.load("particles-js", {
-    /* your options here */
+tsParticles.load({
+    id: "particles-js",
+    options: {
+        /* your options here */
+    },
 });
 ```
 
-But probably you noticed that your warnings are still there, well the options are changed too but like the identifier this is not an issue.
+But probably you noticed that your warnings are still there, well the options are changed too but like the identifier
+this is not an issue.
 
 ## Transforming Options
 
@@ -97,7 +108,8 @@ Let's checkout the options warning. They suggest you to change the old property 
 
 The changed properties still continues to work, but they will be dropped probably for new features.
 
-If you find a property with a `_` in the name, that property was renamed. We can take `line_linked` property as sample. It's renamed `lineLinked` now.
+If you find a property with a `_` in the name, that property was renamed. We can take `line_linked` property as sample.
+It's renamed `lineLinked` now.
 
 Boom. Another warning gone!
 
