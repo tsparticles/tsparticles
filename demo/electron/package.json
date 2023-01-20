@@ -1,5 +1,5 @@
 {
-    "name": "electron-particles-demo",
+    "name": "@tsparticles/electron-demo",
     "version": "2.8.0",
     "description": "",
     "main": "app/index.js",
