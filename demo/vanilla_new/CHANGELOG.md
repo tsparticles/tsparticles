@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Bug Fixes
+
+-   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+-   **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+-   **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/matteobruni/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+-   **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/matteobruni/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
+-   **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/matteobruni/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
+-   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/matteobruni/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+-   **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/matteobruni/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+-   **deps:** update dependency rimraf to v4 ([e9c71c1](https://github.com/matteobruni/tsparticles/commit/e9c71c1b09ae07fa3412d6c3638efc6c66fd9b98))
+-   fixed issue with size and opacity range ([84e9c16](https://github.com/matteobruni/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
+-   improved images loading ([2690f4a](https://github.com/matteobruni/tsparticles/commit/2690f4a33eeb5950af13ded2cd3be18ecae66984))
+-   upgrade fs-extra from 10.0.0 to 10.0.1 ([35e46c6](https://github.com/matteobruni/tsparticles/commit/35e46c6dc0f3a35a582ef62dd94cca9b7fbc9bd3))
+-   upgrade minify from 8.0.3 to 8.0.4 ([f91828c](https://github.com/matteobruni/tsparticles/commit/f91828c8321505d8861bbf154794eb4e8f061d72))
+-   upgrade sass from 1.38.0 to 1.49.9 ([ff3f4fa](https://github.com/matteobruni/tsparticles/commit/ff3f4fadb6e3858985b810c14983258a8d8f16a3))
+-   upgrade sass from 1.52.3 to 1.53.0 ([fb2ec98](https://github.com/matteobruni/tsparticles/commit/fb2ec98631e18673b008cd14e6b7c4cb4e40d94c))
+
+### Features
+
+-   added localization support to wordpress plugin, fixes [#4807](https://github.com/matteobruni/tsparticles/issues/4807) ([8a93b8a](https://github.com/matteobruni/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+-   bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/matteobruni/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   changed particles move distance to an horizontal/vertical object, single number still valid ([a0b16ed](https://github.com/matteobruni/tsparticles/commit/a0b16ed6df01371d8f00f29047efc04aad10bdbe))
+-   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+-   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.7.1...tsparticles-demo-new@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-demo-new

@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Bug Fixes
+
+-   added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/matteobruni/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
+-   **deps:** pin dependencies ([23be870](https://github.com/matteobruni/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+-   **deps:** update all ([d9f0ff2](https://github.com/matteobruni/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+-   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+-   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+-   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+-   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+-   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+-   fixed flashing issue with background mask, closes [#3514](https://github.com/matteobruni/tsparticles/issues/3514) ([6f74bf1](https://github.com/matteobruni/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+-   fixed frozen frames (more than 1 seconds), this will fix the issue with pause on blur ([5a933c1](https://github.com/matteobruni/tsparticles/commit/5a933c130d85593e9d0772bb9eb2b7a61f643712))
+-   fixed some components init functions, they must be async ([0541dfa](https://github.com/matteobruni/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+-   fixes build scripts, closes [#3909](https://github.com/matteobruni/tsparticles/issues/3909), closes [#3911](https://github.com/matteobruni/tsparticles/issues/3911) ([d2c3fb3](https://github.com/matteobruni/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+-   moved some specific code to the relative project, removing it from the generic engine ([09fe635](https://github.com/matteobruni/tsparticles/commit/09fe63568adc244d11b7eff009626b905d5b05e4))
+-   removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/matteobruni/tsparticles/issues/3094) ([1415875](https://github.com/matteobruni/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+-   updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/matteobruni/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
+
+### Features
+
+-   added new methods to particle class ([5743453](https://github.com/matteobruni/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+-   added orbits as a plugin from v2, closes [#188](https://github.com/matteobruni/tsparticles/issues/188) ([a78aaac](https://github.com/matteobruni/tsparticles/commit/a78aaac436e14a196031c4a0fe3da16a65b91ad1)), closes [#609](https://github.com/matteobruni/tsparticles/issues/609)
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+-   moved more code out from engine to specific plugins ([ea70ea2](https://github.com/matteobruni/tsparticles/commit/ea70ea22ebc03579b31d0b926bfac8bcfb9606c5))
+-   moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+-   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-repulse@2.7.1...tsparticles-interaction-particles-repulse@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-interaction-particles-repulse

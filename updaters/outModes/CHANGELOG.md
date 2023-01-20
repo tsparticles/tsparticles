@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Bug Fixes
+
+-   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+-   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+-   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+-   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+-   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+-   fixed out mode when particles are moved outside the canvas bounds, closes [#4247](https://github.com/matteobruni/tsparticles/issues/4247) ([c54e2c6](https://github.com/matteobruni/tsparticles/commit/c54e2c6da7b79782e231efd7384285fd9771a9eb))
+-   fixes build scripts, closes [#3909](https://github.com/matteobruni/tsparticles/issues/3909), closes [#3911](https://github.com/matteobruni/tsparticles/issues/3911) ([d2c3fb3](https://github.com/matteobruni/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+
+### Features
+
+-   added new move direction: inside and outside, out modes needs more fixes ([32a70a6](https://github.com/matteobruni/tsparticles/commit/32a70a68a155db1ed796519addd7298e33a39094))
+-   added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+-   added outside and inside movement to out modes ([8d648e2](https://github.com/matteobruni/tsparticles/commit/8d648e2876249d8acd6b5e5a56455200ab03f117))
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   moving all updaters to external packages, breaking ([94bdde6](https://github.com/matteobruni/tsparticles/commit/94bdde67d0b546c22b7841ff8e969d15ddef3430))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-out-modes@2.7.1...tsparticles-updater-out-modes@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-updater-out-modes

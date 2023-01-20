@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Bug Fixes
+
+-   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+-   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+-   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+-   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+-   fixes build scripts, closes [#3909](https://github.com/matteobruni/tsparticles/issues/3909), closes [#3911](https://github.com/matteobruni/tsparticles/issues/3911) ([d2c3fb3](https://github.com/matteobruni/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+
+### Features
+
+-   added more easing types ([5f8f1c4](https://github.com/matteobruni/tsparticles/commit/5f8f1c43503b022494b28dbff229337da9f45fd1))
+-   added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   containers now can have more than one path generator, each particle will keep its own ([94f2985](https://github.com/matteobruni/tsparticles/commit/94f29855b6fd646a61bf2c7bd2df8ffe18990c77))
+-   created and implemented move plugins ([752483a](https://github.com/matteobruni/tsparticles/commit/752483aeeb94dd851dc27fe75e4c258fd87f0a90))
+-   moved gravity data from engine to base mover ([ead8f6e](https://github.com/matteobruni/tsparticles/commit/ead8f6e7d6e8fc579b6a5f45949b196b523c26f7))
+-   moved out all the external interactors from the engine ([9d3c325](https://github.com/matteobruni/tsparticles/commit/9d3c32514c8682fa6ed466185751de80c4fe0baa))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.7.1...tsparticles-move-base@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-move-base

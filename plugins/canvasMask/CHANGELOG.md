@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Bug Fixes
+
+-   fixed canvas mask plugin size output with new multiline support ([9b00acc](https://github.com/matteobruni/tsparticles/commit/9b00acced4f670da880a045a6b963a19a38b4e3b))
+-   used getRandom in canvas mask plugin for shuffling ([0161280](https://github.com/matteobruni/tsparticles/commit/0161280614b56461a87bfe06ed02c38982cda361))
+
+### Features
+
+-   added element options to canvas mask, for using an external created canvas ([0770c13](https://github.com/matteobruni/tsparticles/commit/0770c13fa7e22e6ffd286c97f0854415f9cc450d))
+-   added font options to text mask ([ddcfa6d](https://github.com/matteobruni/tsparticles/commit/ddcfa6d68e3b8030bbbf8085a2177b845b0d86df))
+-   added position options to canvas mask ([8759b84](https://github.com/matteobruni/tsparticles/commit/8759b84f7abbbfe374c0ba570d2ca27b69316896))
+-   added support for multiline text in canvas mask text options ([eceacbe](https://github.com/matteobruni/tsparticles/commit/eceacbe1a66974518e6179bb9ea7199787bef220))
+-   added support to text and generic canvas input to canvas mask plugin ([c576656](https://github.com/matteobruni/tsparticles/commit/c57665631903623b18832387a3e73e77841c0b69))
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   created motion plugin for handling motion sickness ([c8b5b09](https://github.com/matteobruni/tsparticles/commit/c8b5b090f5059219c8ab1578e7a52ebc1fac6e14))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-canvas-mask@2.7.1...tsparticles-plugin-canvas-mask@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-plugin-canvas-mask

@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-polygon-mask",
-  "version": "2.8.0",
+  "version": "3.0.0-alpha.0",
   "description": "tsParticles polygon mask plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -77,6 +77,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "@tsparticles/engine": "^2.8.0"
+    "@tsparticles/engine": "^3.0.0-alpha.0"
   }
 }

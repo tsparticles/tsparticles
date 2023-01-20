@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Bug Fixes
+
+-   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+-   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+-   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+-   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+-   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+-   fixes build scripts, closes [#3909](https://github.com/matteobruni/tsparticles/issues/3909), closes [#3911](https://github.com/matteobruni/tsparticles/issues/3911) ([d2c3fb3](https://github.com/matteobruni/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+
+### Features
+
+-   added v1 plugins to slim and full bundle, fixed some stuff in pjs plugin ([411ddce](https://github.com/matteobruni/tsparticles/commit/411ddcec5e47940546884bf3135800e06b267a21))
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   changed particles.js compatibility with a new plugin ([4b7c90b](https://github.com/matteobruni/tsparticles/commit/4b7c90bfd5d4299f828bc855d08fb1c4781cbdf2))
+-   moved particles.js compatibility to another package ([70404b7](https://github.com/matteobruni/tsparticles/commit/70404b74b26da4b9a28b5d6d646cd9ed6c0635f1))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+-   restored particles.js compatibility ([88b9dfe](https://github.com/matteobruni/tsparticles/commit/88b9dfebef79d1f826215449ddc9197692f15a2a))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.7.1...tsparticles-particles.js@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-particles.js

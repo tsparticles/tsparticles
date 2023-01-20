@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Features
+
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   created motion plugin for handling motion sickness ([c8b5b09](https://github.com/matteobruni/tsparticles/commit/c8b5b090f5059219c8ab1578e7a52ebc1fac6e14))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-motion@2.7.1...tsparticles-plugin-motion@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-plugin-motion

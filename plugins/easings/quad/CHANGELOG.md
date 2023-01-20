@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Features
+
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   moved all easings to plugin packages, slim now depends on easing-quad since it's the default ([d4e4b8f](https://github.com/matteobruni/tsparticles/commit/d4e4b8f6685ab748e82322877bf1e9d2d23574d4))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-easing-quad@2.7.1...tsparticles-plugin-easing-quad@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-plugin-easing-quad

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
+
+### Features
+
+-   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+-   created destroy updater, moved all particles destroy (split and similar) code from engine ([f8642fd](https://github.com/matteobruni/tsparticles/commit/f8642fda3f43688ae7a0df55f5b06bb2a45d9e80))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-destroy@2.7.1...tsparticles-updater-destroy@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-updater-destroy
