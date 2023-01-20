@@ -1,4 +1,4 @@
-import type { IOptionLoader, IRgba, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, IRgba, RecursivePartial } from "@tsparticles/engine";
 import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels";
 
 export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanvasMaskPixels> {

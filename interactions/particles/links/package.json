@@ -1,5 +1,5 @@
 {
-    "name": "tsparticles-interaction-particles-links",
+    "name": "@tsparticles/interaction-particles-links",
     "version": "2.8.0",
     "description": "tsParticles links particles interaction",
     "homepage": "https://particles.js.org",
@@ -67,8 +67,8 @@
         "confettijs",
         "fireworksjs",
         "canvas-confetti",
-        "tsparticles-plugin",
-        "tsparticles-interaction"
+        "@tsparticles/plugin",
+        "@tsparticles/interaction"
     ],
     "publishConfig": {
         "directory": "dist",
@@ -112,6 +112,6 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.8.0"
+        "@tsparticles/engine": "^2.8.0"
     }
 }

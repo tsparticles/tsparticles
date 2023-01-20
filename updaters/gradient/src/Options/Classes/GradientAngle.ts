@@ -1,7 +1,7 @@
-import type { IAnimatable, IAnimation, IOptionLoader, RecursivePartial, RotateDirectionAlt } from "tsparticles-engine";
+import type { IAnimatable, IAnimation, IOptionLoader, RecursivePartial, RotateDirectionAlt } from "@tsparticles/engine";
 import { GradientAngleAnimation } from "./GradientAngleAnimation";
 import type { IGradientAngle } from "../Interfaces/Gradients";
-import { RotateDirection } from "tsparticles-engine";
+import { RotateDirection } from "@tsparticles/engine";
 
 export class GradientAngle
     implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>>

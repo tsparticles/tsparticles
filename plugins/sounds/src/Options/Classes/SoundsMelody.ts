@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import type { ISoundsMelody } from "../Interfaces/ISoundsMelody";
 import { SoundsNote } from "./SoundsNote";
 

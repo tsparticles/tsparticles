@@ -1,4 +1,4 @@
-import type { ICoordinates, IShapeValues } from "tsparticles-engine";
+import type { ICoordinates, IShapeValues } from "@tsparticles/engine";
 import type { SegmentType } from "./SegmentType";
 
 export interface IPathData extends IShapeValues {

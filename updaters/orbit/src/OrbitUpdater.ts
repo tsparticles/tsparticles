@@ -9,8 +9,8 @@ import type {
     ParticlesOptions,
     RecursivePartial,
     Retina,
-} from "tsparticles-engine";
-import { getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import { getRangeValue, getStyleFromHsl, rangeColorToHsl } from "@tsparticles/engine";
 import type { IOrbit } from "./Options/Interfaces/IOrbit";
 import { Orbit } from "./Options/Classes/Orbit";
 

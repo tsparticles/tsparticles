@@ -1,4 +1,4 @@
-import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { Container, IParticle, IShapeDrawer } from "@tsparticles/engine";
 import type { IRoundedParticle } from "./IRoundedParticle";
 import type { IRoundedRectData } from "./IRoundedRectData";
 import type { RadiusInfo } from "./RadiusInfo";

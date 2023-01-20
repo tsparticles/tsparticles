@@ -1,5 +1,5 @@
 {
-    "name": "tsparticles-path-polygon",
+    "name": "@tsparticles/path-polygon",
     "version": "2.8.0",
     "description": "tsParticles polygon path",
     "homepage": "https://particles.js.org",
@@ -67,8 +67,8 @@
         "confettijs",
         "fireworksjs",
         "canvas-confetti",
-        "tsparticles-plugin",
-        "tsparticles-path"
+        "@tsparticles/plugin",
+        "@tsparticles/path"
     ],
     "publishConfig": {
         "directory": "dist",
@@ -122,6 +122,6 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.8.0"
+        "@tsparticles/engine": "^2.8.0"
     }
 }

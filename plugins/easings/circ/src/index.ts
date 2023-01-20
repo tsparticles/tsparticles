@@ -1,4 +1,4 @@
-import { EasingType, addEasing } from "tsparticles-engine";
+import { EasingType, addEasing } from "@tsparticles/engine";
 
 export function loadEasingCircPlugin(): void {
     addEasing(EasingType.easeInCirc, (value) => 1 - Math.sqrt(1 - value ** 2));

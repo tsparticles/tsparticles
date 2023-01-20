@@ -1,4 +1,4 @@
-import type { Container, IOptions, IParticle, Options, Particle } from "tsparticles-engine";
+import type { Container, IOptions, IParticle, Options, Particle } from "@tsparticles/engine";
 import type { IInfection } from "./Options/Interfaces/IInfection";
 import type { Infecter } from "./Infecter";
 import type { Infection } from "./Options/Classes/Infection";

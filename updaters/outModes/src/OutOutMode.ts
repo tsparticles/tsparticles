@@ -1,4 +1,4 @@
-import type { Container, IDelta, OutModeAlt, Particle } from "tsparticles-engine";
+import type { Container, IDelta, OutModeAlt, Particle } from "@tsparticles/engine";
 import {
     OutMode,
     OutModeDirection,
@@ -9,7 +9,7 @@ import {
     getRandom,
     isPointInside,
     randomInRange,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager";
 
 export class OutOutMode implements IOutModeManager {

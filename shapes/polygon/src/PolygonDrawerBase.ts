@@ -1,7 +1,7 @@
-import type { ICoordinates, IShapeDrawer, Particle } from "tsparticles-engine";
+import type { ICoordinates, IShapeDrawer, Particle } from "@tsparticles/engine";
 import type { IPolygonShape } from "./IPolygonShape";
 import type { ISide } from "./ISide";
-import { getRangeValue } from "tsparticles-engine";
+import { getRangeValue } from "@tsparticles/engine";
 
 /**
  * @category Shape Drawers

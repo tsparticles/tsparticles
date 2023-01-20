@@ -1,6 +1,6 @@
-import type { IHsl, Particle } from "tsparticles-engine";
+import type { IHsl, Particle } from "@tsparticles/engine";
 import type { IImageShape } from "./IImageShape";
-import { getStyleFromHsl } from "tsparticles-engine";
+import { getStyleFromHsl } from "@tsparticles/engine";
 
 /**
  * @category Interfaces

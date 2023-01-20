@@ -1,4 +1,4 @@
-import type { Container, IRgb } from "tsparticles-engine";
+import type { Container, IRgb } from "@tsparticles/engine";
 import type { Grab } from "./Options/Classes/Grab";
 import type { GrabOptions } from "./Options/Classes/GrabOptions";
 import type { IGrab } from "./Options/Interfaces/IGrab";

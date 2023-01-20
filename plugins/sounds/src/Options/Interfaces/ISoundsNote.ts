@@ -1,4 +1,4 @@
-import type { SingleOrMultiple } from "tsparticles-engine";
+import type { SingleOrMultiple } from "@tsparticles/engine";
 
 export interface ISoundsNote {
     duration: number;

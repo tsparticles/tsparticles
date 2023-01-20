@@ -1,4 +1,4 @@
-import type { Container, IOptions, Options } from "tsparticles-engine";
+import type { Container, IOptions, Options } from "@tsparticles/engine";
 import type { CanvasMask } from "./Options/Classes/CanvasMask";
 import type { ICanvasMask } from "./Options/Interfaces/ICanvasMask";
 

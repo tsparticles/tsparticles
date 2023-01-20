@@ -1,4 +1,4 @@
-import { getRandom } from "tsparticles-engine";
+import { getRandom } from "@tsparticles/engine";
 
 export function CurvesPathGen(
     rndFunc: (() => number) | null | undefined,

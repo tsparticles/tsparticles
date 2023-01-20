@@ -1,4 +1,4 @@
-import type { Container, Particle } from "tsparticles-engine";
+import type { Container, Particle } from "@tsparticles/engine";
 import type { Attract } from "./Options/Classes/Attract";
 import type { AttractOptions } from "./Options/Classes/AttractOptions";
 import type { IAttract } from "./Options/Interfaces/IAttract";

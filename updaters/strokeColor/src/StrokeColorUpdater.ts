@@ -5,7 +5,7 @@ import {
     itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type {
     Container,
     HslAnimation,
@@ -14,7 +14,7 @@ import type {
     IParticleUpdater,
     IParticleValueAnimation,
     Particle,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 function updateColorValue(
     delta: IDelta,

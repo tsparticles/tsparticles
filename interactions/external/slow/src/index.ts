@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { Slower } from "./Slower";
 
 export async function loadExternalSlowInteraction(engine: Engine): Promise<void> {

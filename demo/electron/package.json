@@ -15,8 +15,8 @@
     "license": "MIT",
     "dependencies": {
         "tsparticles": "^2.8.0",
-        "tsparticles-demo-configs": "^2.8.0",
-        "tsparticles-engine": "^2.8.0"
+        "@tsparticles/demo-configs": "^2.8.0",
+        "@tsparticles/engine": "^2.8.0"
     },
     "devDependencies": {
         "electron": "^22.0.0",

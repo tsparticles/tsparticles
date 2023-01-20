@@ -1,5 +1,5 @@
 {
-    "name": "tsparticles-particles.js",
+    "name": "@tsparticles/pjs",
     "version": "2.8.0",
     "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
     "homepage": "https://particles.js.org",
@@ -110,7 +110,7 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.8.0"
+        "@tsparticles/engine": "^2.8.0"
     },
     "publishConfig": {
         "directory": "dist",

@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-plugin-sounds",
+  "name": "@tsparticles/plugin-sounds",
   "version": "2.8.0",
   "description": "tsParticles sounds plugin",
   "homepage": "https://particles.js.org",
@@ -60,7 +60,7 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin"
+    "@tsparticles/plugin"
   ],
   "publishConfig": {
     "directory": "dist",
@@ -77,6 +77,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.8.0"
+    "@tsparticles/engine": "^2.8.0"
   }
 }

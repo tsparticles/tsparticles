@@ -1,4 +1,4 @@
-import { EasingType, addEasing } from "tsparticles-engine";
+import { EasingType, addEasing } from "@tsparticles/engine";
 
 export function loadEasingQuintPlugin(): void {
     addEasing(EasingType.easeInQuint, (value) => value ** 5);

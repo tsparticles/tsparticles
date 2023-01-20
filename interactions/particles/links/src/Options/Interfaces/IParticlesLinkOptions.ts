@@ -1,5 +1,5 @@
 import type { ILinks } from "./ILinks";
-import type { IParticlesOptions } from "tsparticles-engine";
+import type { IParticlesOptions } from "@tsparticles/engine";
 
 export type IParticlesLinkOptions = IParticlesOptions & {
     /**

@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-shape-square",
+  "name": "@tsparticles/shape-square",
   "version": "2.8.0",
   "description": "tsParticles square shape",
   "homepage": "https://particles.js.org",
@@ -33,7 +33,7 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-shape"
+    "@tsparticles/shape"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -46,6 +46,6 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "tsparticles-engine": "^2.8.0"
+    "@tsparticles/engine": "^2.8.0"
   }
 }

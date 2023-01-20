@@ -20,8 +20,8 @@ import {
     mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
-} from "tsparticles-engine";
-import type { DivEvent, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { DivEvent, IDelta, IModes, Modes, Particle, RecursivePartial } from "@tsparticles/engine";
 import { Bubble } from "./Options/Classes/Bubble";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";

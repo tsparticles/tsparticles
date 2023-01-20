@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import { GrabLinks } from "./GrabLinks";
 import type { IGrab } from "../Interfaces/IGrab";
 

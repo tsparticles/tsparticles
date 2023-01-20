@@ -13,7 +13,7 @@ import {
     itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type {
     IDelta,
     IParticleColorStyle,
@@ -26,7 +26,7 @@ import type {
     ParticlesOptions,
     RecursivePartial,
     SingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient";
 import type { IAnimatableGradient } from "./Options/Interfaces/IAnimatableGradient";
 

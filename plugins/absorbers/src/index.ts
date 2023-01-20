@@ -1,6 +1,6 @@
 import type { AbsorberOptions, IAbsorberOptions } from "./types";
-import type { Engine, IOptions, IPlugin, RecursivePartial } from "tsparticles-engine";
-import { executeOnSingleOrMultiple, isInArray } from "tsparticles-engine";
+import type { Engine, IOptions, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import { executeOnSingleOrMultiple, isInArray } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";

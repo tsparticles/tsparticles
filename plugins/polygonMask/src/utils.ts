@@ -6,8 +6,8 @@ import type {
     SVGPathSegLinetoVerticalRel,
 } from "./pathseg";
 import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
-import { Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "tsparticles-engine";
-import type { ICoordinates } from "tsparticles-engine";
+import { Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "@tsparticles/engine";
+import type { ICoordinates } from "@tsparticles/engine";
 import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 

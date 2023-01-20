@@ -1,4 +1,4 @@
-import type { Container, IRgb } from "tsparticles-engine";
+import type { Container, IRgb } from "@tsparticles/engine";
 
 export type LinkContainer = Container & {
     particles: {

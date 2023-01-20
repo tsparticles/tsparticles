@@ -1,4 +1,4 @@
-import { AlterType, getRandom, getRangeValue, rangeColorToHsl } from "tsparticles-engine";
+import { AlterType, getRandom, getRangeValue, rangeColorToHsl } from "@tsparticles/engine";
 import type {
     IDelta,
     IParticleTransformValues,
@@ -7,7 +7,7 @@ import type {
     Particle,
     ParticlesOptions,
     RecursivePartial,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRoll } from "./Options/Interfaces/IRoll";
 import { Roll } from "./Options/Classes/Roll";
 import { RollMode } from "./RollMode";

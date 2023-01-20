@@ -1,6 +1,6 @@
 import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types";
-import type { IOptions, IPlugin, RecursivePartial } from "tsparticles-engine";
-import { executeOnSingleOrMultiple, isInArray } from "tsparticles-engine";
+import type { IOptions, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import { executeOnSingleOrMultiple, isInArray } from "@tsparticles/engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";

@@ -1,4 +1,4 @@
-import { AnimationStatus, getRandom, getRangeValue } from "tsparticles-engine";
+import { AnimationStatus, getRandom, getRangeValue } from "@tsparticles/engine";
 import type {
     Container,
     IDelta,
@@ -9,7 +9,7 @@ import type {
     Particle,
     ParticlesOptions,
     RecursivePartial,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ITilt } from "./Options/Interfaces/ITilt";
 import { Tilt } from "./Options/Classes/Tilt";
 import { TiltDirection } from "./TiltDirection";

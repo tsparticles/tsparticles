@@ -1,6 +1,6 @@
-import { ExternalInteractorBase, HoverMode, isInArray, rangeColorToRgb } from "tsparticles-engine";
+import { ExternalInteractorBase, HoverMode, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import type { ILightMode, LightMode } from "./Types";
-import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
+import type { IModes, Modes, RecursivePartial } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types";
 import { Light } from "./Options/Classes/Light";
 import { drawLight } from "./Utils";

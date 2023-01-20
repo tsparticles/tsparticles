@@ -1,5 +1,5 @@
-import type { IContainerPlugin, ICoordinates, Particle, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
-import { executeOnSingleOrMultiple, itemFromSingleOrMultiple } from "tsparticles-engine";
+import type { IContainerPlugin, ICoordinates, Particle, RecursivePartial, SingleOrMultiple } from "@tsparticles/engine";
+import { executeOnSingleOrMultiple, itemFromSingleOrMultiple } from "@tsparticles/engine";
 import type { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";

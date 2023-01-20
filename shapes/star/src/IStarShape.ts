@@ -1,4 +1,4 @@
-import type { IShapeValues, RangeValue } from "tsparticles-engine";
+import type { IShapeValues, RangeValue } from "@tsparticles/engine";
 
 /**
  * @category Options

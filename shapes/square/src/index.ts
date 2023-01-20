@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { SquareDrawer } from "./SquareDrawer";
 
 export async function loadSquareShape(engine: Engine): Promise<void> {

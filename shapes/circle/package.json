@@ -1,5 +1,5 @@
 {
-    "name": "tsparticles-shape-circle",
+    "name": "@tsparticles/shape-circle",
     "version": "2.8.0",
     "description": "tsParticles circle shape",
     "homepage": "https://particles.js.org",
@@ -40,7 +40,7 @@
         "css3",
         "animated",
         "background",
-        "tsparticles-shape"
+        "@tsparticles/shape"
     ],
     "publishConfig": {
         "directory": "dist",
@@ -84,6 +84,6 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.8.0"
+        "@tsparticles/engine": "^2.8.0"
     }
 }

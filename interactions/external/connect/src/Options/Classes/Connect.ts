@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import { ConnectLinks } from "./ConnectLinks";
 import type { IConnect } from "../Interfaces/IConnect";
 

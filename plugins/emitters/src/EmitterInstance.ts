@@ -7,7 +7,7 @@ import type {
     IHsl,
     IParticlesOptions,
     RecursivePartial,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import {
     SizeMode,
     Vector,
@@ -18,7 +18,7 @@ import {
     itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterSize } from "./Options/Classes/EmitterSize";
 import type { Emitters } from "./Emitters";

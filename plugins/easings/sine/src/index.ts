@@ -1,4 +1,4 @@
-import { EasingType, addEasing } from "tsparticles-engine";
+import { EasingType, addEasing } from "@tsparticles/engine";
 
 export function loadEasingSinePlugin(): void {
     addEasing(EasingType.easeInSine, (value) => 1 - Math.cos((value * Math.PI) / 2));

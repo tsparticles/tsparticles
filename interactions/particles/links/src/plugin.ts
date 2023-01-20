@@ -1,4 +1,4 @@
-import type { Engine, IPlugin } from "tsparticles-engine";
+import type { Engine, IPlugin } from "@tsparticles/engine";
 import type { LinkContainer } from "./LinkContainer";
 import { LinkInstance } from "./LinkInstance";
 

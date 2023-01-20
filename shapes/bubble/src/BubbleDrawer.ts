@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { IParticle, IShapeDrawer } from "@tsparticles/engine";
 
 export class BubbleDrawer implements IShapeDrawer {
     afterEffect(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {

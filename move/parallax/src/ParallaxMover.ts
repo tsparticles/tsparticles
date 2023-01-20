@@ -1,5 +1,5 @@
-import type { IParticleMover, Particle } from "tsparticles-engine";
-import { isSsr } from "tsparticles-engine";
+import type { IParticleMover, Particle } from "@tsparticles/engine";
+import { isSsr } from "@tsparticles/engine";
 
 export class ParallaxMover implements IParticleMover {
     init(): void {

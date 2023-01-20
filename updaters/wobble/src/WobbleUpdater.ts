@@ -6,8 +6,8 @@ import type {
     Particle,
     ParticlesOptions,
     RecursivePartial,
-} from "tsparticles-engine";
-import { getRandom, getRangeValue } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import { getRandom, getRangeValue } from "@tsparticles/engine";
 import type { IWobble } from "./Options/Interfaces/IWobble";
 import { Wobble } from "./Options/Classes/Wobble";
 

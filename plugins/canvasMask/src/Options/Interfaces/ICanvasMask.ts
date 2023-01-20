@@ -1,6 +1,6 @@
 import type { ICanvasMaskOverride } from "./ICanvasMaskOverride";
 import type { ICanvasMaskPixels } from "./ICanvasMaskPixels";
-import type { ICoordinates } from "tsparticles-engine";
+import type { ICoordinates } from "@tsparticles/engine";
 import type { IImageMask } from "./IImageMask";
 import type { ITextMask } from "./ITextMask";
 

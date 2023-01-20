@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { IParticle, IShapeDrawer } from "@tsparticles/engine";
 import { drawPath, paths } from "./Utils";
 
 export class SpadeDrawer implements IShapeDrawer {

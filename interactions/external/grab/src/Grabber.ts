@@ -8,9 +8,9 @@ import {
     getStyleFromRgb,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { GrabContainer, GrabMode, IGrabMode } from "./Types";
-import type { ICoordinates, IModes, IRgb, Modes, OptionsColor, Particle, RecursivePartial } from "tsparticles-engine";
+import type { ICoordinates, IModes, IRgb, Modes, OptionsColor, Particle, RecursivePartial } from "@tsparticles/engine";
 import { Grab } from "./Options/Classes/Grab";
 
 type LinkParticle = Particle & {

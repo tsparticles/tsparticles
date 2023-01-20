@@ -1,5 +1,5 @@
 {
-    "name": "tsparticles-plugin-motion",
+    "name": "@tsparticles/plugin-motion",
     "version": "2.8.0",
     "description": "tsParticles motion sickness plugin",
     "homepage": "https://particles.js.org",
@@ -67,7 +67,7 @@
         "confettijs",
         "fireworksjs",
         "canvas-confetti",
-        "tsparticles-plugin"
+        "@tsparticles/plugin"
     ],
     "publishConfig": {
         "directory": "dist",
@@ -111,6 +111,6 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.8.0"
+        "@tsparticles/engine": "^2.8.0"
     }
 }

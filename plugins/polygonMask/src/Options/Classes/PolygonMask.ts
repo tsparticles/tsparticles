@@ -1,4 +1,4 @@
-import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ICoordinates, IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import type {
     PolygonMaskInlineArrangement,
     PolygonMaskInlineArrangementAlt,
@@ -9,7 +9,7 @@ import { PolygonMaskInline } from "./PolygonMaskInline";
 import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg";
 import { PolygonMaskMove } from "./PolygonMaskMove";
 import { PolygonMaskType } from "../../Enums/PolygonMaskType";
-import { deepExtend } from "tsparticles-engine";
+import { deepExtend } from "@tsparticles/engine";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]

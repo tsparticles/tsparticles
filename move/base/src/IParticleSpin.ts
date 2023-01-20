@@ -1,4 +1,4 @@
-import type { ICoordinates, RotateDirection } from "tsparticles-engine";
+import type { ICoordinates, RotateDirection } from "@tsparticles/engine";
 
 export interface IParticleSpin {
     acceleration: number;

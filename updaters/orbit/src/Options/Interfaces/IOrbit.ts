@@ -1,4 +1,4 @@
-import type { IAnimatable, IAnimation, IOptionsColor, IValueWithRandom, RangeValue } from "tsparticles-engine";
+import type { IAnimatable, IAnimation, IOptionsColor, IValueWithRandom, RangeValue } from "@tsparticles/engine";
 
 /**
  * @category Options

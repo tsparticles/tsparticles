@@ -5,8 +5,8 @@ const files = fs.readdirSync("./src").filter(t => t.endsWith(".json"));
 const importsNames = files.map(t => `import _${toCamelCase(t.substring(0, t.length - 5))} from "./${t}";`);
 const exportsNames = files.map(t => `    ${toCamelCase(t.substring(0, t.length - 5))}`);
 
-importsNames.push("import type { ISourceOptions } from \"tsparticles-engine\";");
-importsNames.push("import { tsParticles } from \"tsparticles-engine\";");
+importsNames.push(`import type { ISourceOptions } from "@tsparticles/engine";`);
+importsNames.push(`import { tsParticles } from "@tsparticles/engine";`);
 
 const regex = /import (type )?\{?\s?(_?\w+)\s?}? from/i;
 

@@ -1,4 +1,4 @@
-import type { ICoordinates } from "tsparticles-engine";
+import type { ICoordinates } from "@tsparticles/engine";
 
 export interface IPathSegment {
     values: ICoordinates[];

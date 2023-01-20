@@ -1,4 +1,4 @@
-import type { IParticle } from "tsparticles-engine";
+import type { IParticle } from "@tsparticles/engine";
 
 export interface IRoundedParticle extends IParticle {
     borderRadius: number;

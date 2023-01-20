@@ -1,4 +1,4 @@
-import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IMotionOptions, MotionOptions } from "./types";
 import { Motion } from "./Options/Classes/Motion";
 import { MotionInstance } from "./MotionInstance";

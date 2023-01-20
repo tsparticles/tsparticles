@@ -1,4 +1,4 @@
-import type { IValueWithRandom, RotateDirection, RotateDirectionAlt } from "tsparticles-engine";
+import type { IValueWithRandom, RotateDirection, RotateDirectionAlt } from "@tsparticles/engine";
 import type { IRotateAnimation } from "./IRotateAnimation";
 
 /**

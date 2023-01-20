@@ -1,5 +1,5 @@
-import type { IDelta, Particle } from "tsparticles-engine";
-import { clamp } from "tsparticles-engine";
+import type { IDelta, Particle } from "@tsparticles/engine";
+import { clamp } from "@tsparticles/engine";
 
 function updateAbsorb(p1: Particle, r1: number, p2: Particle, r2: number, delta: IDelta, pixelRatio: number): void {
     const factor = clamp((p1.options.collisions.absorb.speed * delta.factor) / 10, 0, r2);

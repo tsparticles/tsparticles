@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { PolygonPathGenerator } from "./PolygonPathGenerator";
 
 export const polygonPathName = "polygonPathGenerator";

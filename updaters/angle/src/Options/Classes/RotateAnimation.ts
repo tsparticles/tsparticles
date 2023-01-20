@@ -1,6 +1,6 @@
-import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "@tsparticles/engine";
 import type { IRotateAnimation } from "../Interfaces/IRotateAnimation";
-import { setRangeValue } from "tsparticles-engine";
+import { setRangeValue } from "@tsparticles/engine";
 
 /**
  * @category Options

@@ -1,5 +1,5 @@
-import { AnimationStatus, DestroyType, clamp, getRandom } from "tsparticles-engine";
-import type { IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
+import { AnimationStatus, DestroyType, clamp, getRandom } from "@tsparticles/engine";
+import type { IDelta, IParticleUpdater, Particle } from "@tsparticles/engine";
 
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.size.animation.destroy) {

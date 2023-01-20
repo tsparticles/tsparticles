@@ -10,8 +10,8 @@ import {
     getEasing,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type { Engine, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { Engine, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract";
 
 /**

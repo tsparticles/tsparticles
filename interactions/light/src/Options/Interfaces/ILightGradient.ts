@@ -1,4 +1,4 @@
-import type { IOptionsColor } from "tsparticles-engine";
+import type { IOptionsColor } from "@tsparticles/engine";
 
 export interface ILightGradient {
     start: string | IOptionsColor;

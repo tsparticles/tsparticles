@@ -6,8 +6,8 @@ import type {
     Particle,
     ParticlesOptions,
     RecursivePartial,
-} from "tsparticles-engine";
-import { getRandom, getRangeValue, randomInRange, setRangeValue } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import { getRandom, getRangeValue, randomInRange, setRangeValue } from "@tsparticles/engine";
 import type { ILife } from "./Options/Interfaces/ILife";
 import { Life } from "./Options/Classes/Life";
 

@@ -7,7 +7,7 @@ import type {
     Particle,
     ParticlesOptions,
     RecursivePartial,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import {
     SizeMode,
     getRangeValue,
@@ -16,7 +16,7 @@ import {
     loadParticlesOptions,
     randomInRange,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Destroy } from "./Options/Classes/Destroy";
 import { DestroyMode } from "./Enums/DestroyMode";
 import type { IDestroy } from "./Options/Interfaces/IDestroy";

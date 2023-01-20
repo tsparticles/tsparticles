@@ -1,4 +1,4 @@
-import type { IParticlesOptions, ParticlesOptions } from "tsparticles-engine";
+import type { IParticlesOptions, ParticlesOptions } from "@tsparticles/engine";
 import type { IParticlesRepulse } from "./Options/Interfaces/IParticlesRepulse";
 import type { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse";
 

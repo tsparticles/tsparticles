@@ -1,5 +1,5 @@
-import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
-import { Vector, getRandom } from "tsparticles-engine";
+import type { Container, IMovePathGenerator, Particle } from "@tsparticles/engine";
+import { Vector, getRandom } from "@tsparticles/engine";
 import type { IPerlinOptions } from "./IPerlinOptions";
 import { PerlinNoise } from "./PerlinNoise";
 

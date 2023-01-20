@@ -5,10 +5,10 @@ import type {
     IParticlesOptions,
     IRgba,
     RecursivePartial,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { TextMask } from "./Options/Classes/TextMask";
-import { getRandom } from "tsparticles-engine";
+import { getRandom } from "@tsparticles/engine";
 
 export type CanvasPixelData = {
     height: number;

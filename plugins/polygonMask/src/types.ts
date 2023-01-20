@@ -1,4 +1,4 @@
-import type { Container, IOptions, Options } from "tsparticles-engine";
+import type { Container, IOptions, Options } from "@tsparticles/engine";
 import type {
     SVGPathSegArcAbs,
     SVGPathSegArcRel,

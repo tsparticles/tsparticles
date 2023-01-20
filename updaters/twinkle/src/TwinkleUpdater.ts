@@ -5,8 +5,8 @@ import type {
     Particle,
     ParticlesOptions,
     RecursivePartial,
-} from "tsparticles-engine";
-import { getRandom, getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import { getRandom, getRangeValue, getStyleFromHsl, rangeColorToHsl } from "@tsparticles/engine";
 import type { ITwinkle } from "./Options/Interfaces/ITwinkle";
 import { Twinkle } from "./Options/Classes/Twinkle";
 

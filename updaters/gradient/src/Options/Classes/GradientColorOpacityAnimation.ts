@@ -1,5 +1,5 @@
-import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
-import { StartValueType, setRangeValue } from "tsparticles-engine";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "@tsparticles/engine";
+import { StartValueType, setRangeValue } from "@tsparticles/engine";
 import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient";
 
 export class GradientColorOpacityAnimation

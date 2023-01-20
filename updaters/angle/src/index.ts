@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { RotateUpdater } from "./RotateUpdater";
 
 export async function loadAngleUpdater(engine: Engine): Promise<void> {

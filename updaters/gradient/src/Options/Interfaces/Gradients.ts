@@ -1,4 +1,4 @@
-import type { GradientType, IOptionsColor, RangeValue, RotateDirection, RotateDirectionAlt } from "tsparticles-engine";
+import type { GradientType, IOptionsColor, RangeValue, RotateDirection, RotateDirectionAlt } from "@tsparticles/engine";
 
 export interface IGradientColorOpacity {
     value: RangeValue;

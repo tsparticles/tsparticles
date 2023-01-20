@@ -1,4 +1,4 @@
-import type { IParticlesOptions, IValueWithRandom, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { IParticlesOptions, IValueWithRandom, RecursivePartial, SingleOrMultiple } from "@tsparticles/engine";
 
 export interface ISplit {
     count: number;

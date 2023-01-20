@@ -1,7 +1,7 @@
-import type { Container, IShapeDrawer } from "tsparticles-engine";
+import type { Container, IShapeDrawer } from "@tsparticles/engine";
 import type { IPathData } from "./IPathData";
 import type { PathParticle } from "./PathParticle";
-import { deepExtend } from "tsparticles-engine";
+import { deepExtend } from "@tsparticles/engine";
 import { drawPath } from "./Utils";
 
 export class PathDrawer implements IShapeDrawer {

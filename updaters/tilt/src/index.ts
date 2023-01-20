@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { TiltUpdater } from "./TiltUpdater";
 
 export async function loadTiltUpdater(engine: Engine): Promise<void> {

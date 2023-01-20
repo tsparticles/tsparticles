@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import { DestroyBounds } from "./DestroyBounds";
 import { DestroyMode } from "../../Enums/DestroyMode";
 import type { IDestroy } from "../Interfaces/IDestroy";

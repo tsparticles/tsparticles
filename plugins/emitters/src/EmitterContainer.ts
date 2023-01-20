@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, RecursivePartial } from "tsparticles-engine";
+import type { Container, ICoordinates, RecursivePartial } from "@tsparticles/engine";
 import type { EmitterInstance } from "./EmitterInstance";
 import type { EmitterOptions } from "./types";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";

@@ -1,6 +1,6 @@
-import type { IContainerPlugin, IRangeColor, IRgb, RangeValue } from "tsparticles-engine";
+import type { IContainerPlugin, IRangeColor, IRgb, RangeValue } from "@tsparticles/engine";
 import { drawLinkLine, drawLinkTriangle } from "./Utils";
-import { getDistance, getLinkColor, getRandom, getRangeValue, rangeColorToRgb } from "tsparticles-engine";
+import { getDistance, getLinkColor, getRandom, getRangeValue, rangeColorToRgb } from "@tsparticles/engine";
 import type { ILink } from "./ILink";
 import type { LinkContainer } from "./LinkContainer";
 import type { LinkParticle } from "./LinkParticle";

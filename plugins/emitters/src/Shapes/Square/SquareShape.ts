@@ -1,6 +1,6 @@
-import type { ICoordinates, IDimension } from "tsparticles-engine";
+import type { ICoordinates, IDimension } from "@tsparticles/engine";
 import type { IEmitterShape } from "../../IEmitterShape";
-import { getRandom } from "tsparticles-engine";
+import { getRandom } from "@tsparticles/engine";
 
 function randomSquareCoordinate(position: number, offset: number): number {
     return position + offset * (getRandom() - 0.5);

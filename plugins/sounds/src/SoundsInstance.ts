@@ -1,10 +1,10 @@
-import type { CustomEventArgs, Engine, IContainerPlugin } from "tsparticles-engine";
-import { clamp, itemFromArray, itemFromSingleOrMultiple } from "tsparticles-engine";
+import type { CustomEventArgs, Engine, IContainerPlugin } from "@tsparticles/engine";
+import { clamp, itemFromArray, itemFromSingleOrMultiple } from "@tsparticles/engine";
 import type { SoundsAudio } from "./Options/Classes/SoundsAudio";
 import type { SoundsContainer } from "./types";
 import { SoundsEventType } from "./enums";
 import type { SoundsNote } from "./Options/Classes/SoundsNote";
-import { executeOnSingleOrMultiple } from "tsparticles-engine";
+import { executeOnSingleOrMultiple } from "@tsparticles/engine";
 import { getNoteFrequency } from "./utils";
 
 function setIconStyle(

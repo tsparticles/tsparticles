@@ -1,4 +1,4 @@
-import type { ICoordinates, IDimension, IRgb } from "tsparticles-engine";
+import type { ICoordinates, IDimension, IRgb } from "@tsparticles/engine";
 import {
     drawLine,
     drawTriangle,
@@ -6,7 +6,7 @@ import {
     getDistances,
     getStyleFromRgb,
     rangeColorToRgb,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
 export function drawLinkLine(

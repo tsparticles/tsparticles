@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { Repulser } from "./Repulser";
 
 export async function loadExternalRepulseInteraction(engine: Engine): Promise<void> {

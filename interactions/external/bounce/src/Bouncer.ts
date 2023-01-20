@@ -15,8 +15,8 @@ import {
     isInArray,
     mouseMoveEvent,
     rectBounce,
-} from "tsparticles-engine";
-import type { DivEvent, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { DivEvent, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "@tsparticles/engine";
 import { Bounce } from "./Options/Classes/Bounce";
 
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {

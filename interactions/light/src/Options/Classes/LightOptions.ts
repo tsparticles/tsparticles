@@ -1,4 +1,4 @@
-import type { Options, ParticlesOptions } from "tsparticles-engine";
+import type { Options, ParticlesOptions } from "@tsparticles/engine";
 import type { LightMode } from "../../Types";
 
 export type LightOptions = Options & {

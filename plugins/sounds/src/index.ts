@@ -1,4 +1,4 @@
-import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { ISoundsOptions, SoundsOptions } from "./types";
 import { Sounds } from "./Options/Classes/Sounds";
 import { SoundsInstance } from "./SoundsInstance";

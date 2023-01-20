@@ -1,5 +1,5 @@
 {
-    "name": "tsparticles-demo-configs",
+    "name": "@tsparticles/demo-configs",
     "version": "2.8.0",
     "description": "tsParticles demo configurations",
     "homepage": "https://particles.js.org",
@@ -129,6 +129,6 @@
         "webpack-tsparticles-plugin": "^1.6.0"
     },
     "dependencies": {
-        "tsparticles-engine": "^2.8.0"
+        "@tsparticles/engine": "^2.8.0"
     }
 }

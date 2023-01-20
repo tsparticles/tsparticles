@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { IParticle, IShapeDrawer } from "@tsparticles/engine";
 
 const fixFactor = Math.sqrt(2);
 

@@ -1,4 +1,4 @@
-import type { Options } from "tsparticles-engine";
+import type { Options } from "@tsparticles/engine";
 import type { RepulseMode } from "../../Types";
 
 export type RepulseOptions = Options & {

@@ -1,6 +1,6 @@
-import type { Container, Particle, RecursivePartial } from "tsparticles-engine";
+import type { Container, Particle, RecursivePartial } from "@tsparticles/engine";
 import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types";
-import { ParticlesInteractorBase, Vector, clamp, getDistances, getRangeValue } from "tsparticles-engine";
+import { ParticlesInteractorBase, Vector, clamp, getDistances, getRangeValue } from "@tsparticles/engine";
 import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse";
 
 type RepulseParticle = Particle & {

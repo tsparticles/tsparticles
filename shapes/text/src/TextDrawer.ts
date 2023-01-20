@@ -1,5 +1,5 @@
-import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
-import { executeOnSingleOrMultiple, isInArray, itemFromSingleOrMultiple, loadFont } from "tsparticles-engine";
+import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "@tsparticles/engine";
+import { executeOnSingleOrMultiple, isInArray, itemFromSingleOrMultiple, loadFont } from "@tsparticles/engine";
 import type { ICharacterShape } from "./ICharacterShape";
 import type { TextParticle } from "./TextParticle";
 

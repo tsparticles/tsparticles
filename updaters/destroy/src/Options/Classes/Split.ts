@@ -1,5 +1,5 @@
-import type { IOptionLoader, IParticlesOptions, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
-import { deepExtend, executeOnSingleOrMultiple } from "tsparticles-engine";
+import type { IOptionLoader, IParticlesOptions, RecursivePartial, SingleOrMultiple } from "@tsparticles/engine";
+import { deepExtend, executeOnSingleOrMultiple } from "@tsparticles/engine";
 import type { ISplit } from "../Interfaces/ISplit";
 import { SplitFactor } from "./SplitFactor";
 import { SplitRate } from "./SplitRate";

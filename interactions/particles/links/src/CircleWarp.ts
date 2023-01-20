@@ -1,5 +1,5 @@
-import { Circle, Rectangle } from "tsparticles-engine";
-import type { ICoordinates, IDimension, Range } from "tsparticles-engine";
+import { Circle, Rectangle } from "@tsparticles/engine";
+import type { ICoordinates, IDimension, Range } from "@tsparticles/engine";
 
 /**
  * @category Utils

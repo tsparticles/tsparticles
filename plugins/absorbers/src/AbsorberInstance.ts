@@ -1,4 +1,4 @@
-import type { Container, ICoordinates, IRgb, Particle, RecursivePartial } from "tsparticles-engine";
+import type { Container, ICoordinates, IRgb, Particle, RecursivePartial } from "@tsparticles/engine";
 import {
     RotateDirection,
     Vector,
@@ -11,7 +11,7 @@ import {
     getStyleFromRgb,
     isPointInside,
     rangeColorToRgb,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import type { Absorbers } from "./Absorbers";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";

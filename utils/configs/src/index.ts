@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 import _absorbers from "./absorbers.json";
 import _amongUs from "./amongUs.json";
 import _backgroundMask from "./backgroundMask.json";
@@ -122,7 +122,7 @@ import _virus from "./virus.json";
 import _warp from "./warp.json";
 import _wobble from "./wobble.json";
 import _zIndex from "./zIndex.json";
-import { tsParticles } from "tsparticles-engine";
+import { tsParticles } from "@tsparticles/engine";
 
 const absorbers = _absorbers as unknown as ISourceOptions,
     amongUs = _amongUs as unknown as ISourceOptions,

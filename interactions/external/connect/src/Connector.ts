@@ -7,8 +7,8 @@ import {
     getStyleFromHsl,
     getStyleFromRgb,
     isInArray,
-} from "tsparticles-engine";
-import type { ICoordinates, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+} from "@tsparticles/engine";
+import type { ICoordinates, IModes, Modes, Particle, RecursivePartial } from "@tsparticles/engine";
 import { Connect } from "./Options/Classes/Connect";
 
 type LinkParticle = Particle & {

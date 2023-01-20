@@ -1,6 +1,6 @@
-import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RangeValue, RecursivePartial } from "@tsparticles/engine";
 import type { ITiltAnimation } from "../Interfaces/ITiltAnimation";
-import { setRangeValue } from "tsparticles-engine";
+import { setRangeValue } from "@tsparticles/engine";
 
 /**
  * @category Options
