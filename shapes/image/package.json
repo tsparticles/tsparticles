@@ -44,7 +44,8 @@
     ],
     "publishConfig": {
         "directory": "dist",
-        "linkDirectory": true
+        "linkDirectory": true,
+        "access": "public"
     },
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "license": "MIT",
