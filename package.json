@@ -24,7 +24,7 @@
     "@nrwl/cli": "^15.5.2",
     "@nrwl/nx-cloud": "^15.0.2",
     "@nrwl/workspace": "^15.5.2",
-    "@tsparticles/prettier-config": "^1.5.0",
+    "@tsparticles/prettier-config": "^1.6.0",
     "@types/node": "^18.11.18",
     "copyfiles": "^2.4.1",
     "husky": "^8.0.3",
