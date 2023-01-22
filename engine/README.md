@@ -30,48 +30,67 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-- [Use for your website](#Do-you-want-to-use-it-on-your-website)
-  - [Library installation](#Library-installation)
-- [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-  - [Angular](#Angular)
-  - [Inferno](#Inferno)
-  - [jQuery](#jQuery)
-  - [Preact](#Preact)
-  - [ReactJS](#ReactJS)
-  - [RiotJS](#RiotJS)
-  - [SolidJS](#SolidJS)
-  - [Svelte](#Svelte)
-  - [VueJS 2.x](#VueJS-2x)
-  - [VueJS 3.x](#VueJS-3x)
-  - [Web Components](#Web-Components)
-  - [WordPress](#WordPress)
-  - [Elementor](#Elementor)
-- [Presets](#Presets)
-  - [Big Circles](#Big-Circles)
-  - [Bubbles](#Bubbles)
-  - [Confetti](#Confetti)
-  - [Fire](#Fire)
-  - [Firefly](#Firefly)
-  - [Fireworks](#Fireworks)
-  - [Fountain](#fountain)
-  - [Links](#links)
-  - [Sea Anemone](#Sea-Anemone)
-  - [Snow](#Snow)
-  - [Stars](#Stars)
-  - [Triangles](#Triangles)
-- [Templates and Resources](#Templates-and-Resources)
-- [Demo / Generator](#Demo--Generator)
-  - [Characters as particles](#Characters-as-particles)
-  - [Mouse hover connections](#Mouse-hover-connections)
-  - [Polygon mask](#Polygon-mask)
-  - [Animated stars](#Animated-stars)
-  - [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
-  - [Background Mask particles](#Background-Mask-particles)
-- [Video Tutorials](#Video-Tutorials)
-- [Migrating from Particles.js](#Migrating-from-Particlesjs)
-- [Plugins/Customizations](#PluginsCustomizations)
-- [Dependency Graphs](#Dependency-Graphs)
-- [Sponsors](#Sponsors)
+- [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
+- [Table of Contents](#table-of-contents)
+- [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+- [**_Library installation_**](#library-installation)
+- [**_Hosting / CDN_**](#hosting--cdn)
+- [jsDelivr](#jsdelivr)
+- [cdnjs](#cdnjs)
+- [unpkg](#unpkg)
+- [**_npm_**](#npm)
+- [**_yarn_**](#yarn)
+- [**_pnpm_**](#pnpm)
+- [Import and require](#import-and-require)
+- [**_NuGet_**](#nuget)
+- [**_Usage_**](#usage)
+- [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+- [Angular](#angular)
+- [Ember](#ember)
+- [Inferno](#inferno)
+- [jQuery](#jquery)
+- [Preact](#preact)
+- [ReactJS](#reactjs)
+- [RiotJS](#riotjs)
+- [`@tsparticles/riot`](#tsparticlesriot)
+- [SolidJS](#solidjs)
+- [`@tsparticles/solid`](#tsparticlessolid)
+- [Svelte](#svelte)
+- [VueJS 2.x](#vuejs-2x)
+- [VueJS 3.x](#vuejs-3x)
+- [Web Components](#web-components)
+- [`@tsparticles/webcomponents`](#tsparticleswebcomponents)
+- [WordPress](#wordpress)
+- [`@tsparticles/wordpress`](#tsparticleswordpress)
+- [Elementor](#elementor)
+- [Presets](#presets)
+- [Big Circles](#big-circles)
+- [Bubbles](#bubbles)
+- [Confetti](#confetti)
+- [Fire](#fire)
+- [Firefly](#firefly)
+- [Fireworks](#fireworks)
+- [Fountain](#fountain)
+- [Links](#links)
+- [Sea Anemone](#sea-anemone)
+- [Snow](#snow)
+- [Stars](#stars)
+- [Triangles](#triangles)
+- [Templates and Resources](#templates-and-resources)
+- [**_Demo / Generator_**](#demo--generator)
+- [**_Video Tutorials_**](#video-tutorials)
+- [Characters as particles](#characters-as-particles)
+- [Polygon mask](#polygon-mask)
+- [Animated stars](#animated-stars)
+- [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+- [Snow particles](#snow-particles)
+- [Background Mask particles](#background-mask-particles)
+- [**_Options_**](#options)
+- [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+- [Migrating from Particles.js](#migrating-from-particlesjs)
+- [Plugins/Customizations](#pluginscustomizations)
+- [Dependency Graphs](#dependency-graphs)
+- [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -636,28 +655,7 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 
 ---
 
-## Dependency Graphs
-
-```mermaid
-flowchart TD
-
-subgraph c [Components]
-ca[Angular]
-ci[Inferno.js]
-cj[JQuery]
-cp[Preact]
-cre[React.js]
-cri[Riot.js]
-cso[Solid.js]
-csv[Svelte]
-cv2[Vue.js 2.x]
-cv3[Vue.js 3.x]
-cwc[Web Components]
-cwp[WordPress]
-end
-
-e[tsParticles Engine] --> c
-```
+## Dependency Graph
 
 ```mermaid
 flowchart LR
@@ -787,23 +785,6 @@ uw[Wobble]
 end
 
 e --> u
-
-subgraph pr [Presets]
-prbi[Big Circles]
-prbu[Bubbles]
-prc[Confetti]
-prf[Fire]
-prff[Firefly]
-prfw[Fireworks]
-prfo[Fountain]
-prl[Links]
-prsa[Sea Anemone]
-prsn[Snow]
-prst[Stars]
-prt[Triangles]
-end
-
-e --> pr
 ```
 
 ---
@@ -820,5 +801,3 @@ e --> pr
 ### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2022 Open Source Licenses!
 
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.
-
----
