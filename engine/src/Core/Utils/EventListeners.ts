@@ -84,19 +84,19 @@ export class EventListeners {
         this.canPush = true;
 
         this.handlers = {
-            mouseMove: (e): void => this.mouseTouchMove(e),
-            touchStart: (e): void => this.mouseTouchMove(e),
-            touchMove: (e): void => this.mouseTouchMove(e),
-            touchEnd: (): void => this.mouseTouchFinish(),
-            mouseLeave: (): void => this.mouseTouchFinish(),
-            touchCancel: (): void => this.mouseTouchFinish(),
-            touchEndClick: (e): void => this.mouseTouchClick(e),
-            mouseUp: (e): void => this.mouseTouchClick(e),
-            mouseDown: (): void => this.mouseDown(),
-            visibilityChange: (): void => this.handleVisibilityChange(),
-            themeChange: (e): void => this.handleThemeChange(e),
-            oldThemeChange: (e): void => this.handleThemeChange(e),
-            resize: (): void => this.handleWindowResize(),
+            mouseMove: (e): void => this._mouseTouchMove(e),
+            touchStart: (e): void => this._mouseTouchMove(e),
+            touchMove: (e): void => this._mouseTouchMove(e),
+            touchEnd: (): void => this._mouseTouchFinish(),
+            mouseLeave: (): void => this._mouseTouchFinish(),
+            touchCancel: (): void => this._mouseTouchFinish(),
+            touchEndClick: (e): void => this._mouseTouchClick(e),
+            mouseUp: (e): void => this._mouseTouchClick(e),
+            mouseDown: (): void => this._mouseDown(),
+            visibilityChange: (): void => this._handleVisibilityChange(),
+            themeChange: (e): void => this._handleThemeChange(e),
+            oldThemeChange: (e): void => this._handleThemeChange(e),
+            resize: (): void => this._handleWindowResize(),
         };
     }
 
@@ -104,21 +104,21 @@ export class EventListeners {
      * Adding all listeners
      */
     addListeners(): void {
-        this.manageListeners(true);
+        this._manageListeners(true);
     }
 
     /**
      * Removing all listeners
      */
     removeListeners(): void {
-        this.manageListeners(false);
+        this._manageListeners(false);
     }
 
     /**
      * Mouse/Touch click/tap event implementation
      * @param e the click event arguments
      */
-    private doMouseTouchClick(e: Event): void {
+    private _doMouseTouchClick(e: Event): void {
         const container = this.container,
             options = container.actualOptions;
 
@@ -135,11 +135,11 @@ export class EventListeners {
 
             const onClick = options.interactivity.events.onClick;
 
-            executeOnSingleOrMultiple(onClick.mode, (mode) => this.handleClickMode(mode));
+            executeOnSingleOrMultiple(onClick.mode, (mode) => this._handleClickMode(mode));
         }
 
         if (e.type === "touchend") {
-            setTimeout(() => this.mouseTouchFinish(), 500);
+            setTimeout(() => this._mouseTouchFinish(), 500);
         }
     }
 
@@ -148,7 +148,7 @@ export class EventListeners {
      * @param mode Click mode type
      * @private
      */
-    private handleClickMode(mode: ClickMode | string): void {
+    private _handleClickMode(mode: ClickMode | string): void {
         this.container.handleClickMode(mode);
     }
 
@@ -157,7 +157,7 @@ export class EventListeners {
      * @param e the media query event
      * @private
      */
-    private handleThemeChange(e: Event): void {
+    private _handleThemeChange(e: Event): void {
         const mediaEvent = e as MediaQueryListEvent,
             container = this.container,
             options = container.options,
@@ -174,23 +174,21 @@ export class EventListeners {
      * Handles blur event
      * @private
      */
-    private handleVisibilityChange(): void {
+    private _handleVisibilityChange(): void {
         const container = this.container,
             options = container.actualOptions;
 
-        this.mouseTouchFinish();
+        this._mouseTouchFinish();
 
         if (!options.pauseOnBlur) {
             return;
         }
 
-        if (document?.hidden) {
-            container.pageHidden = true;
+        container.pageHidden = document?.hidden || false;
 
+        if (container.pageHidden) {
             container.pause();
         } else {
-            container.pageHidden = false;
-
             if (container.getAnimationStatus()) {
                 container.play(true);
             } else {
@@ -203,7 +201,7 @@ export class EventListeners {
      * Handles window resize event
      * @private
      */
-    private handleWindowResize(): void {
+    private _handleWindowResize(): void {
         if (this.resizeTimeout) {
             clearTimeout(this.resizeTimeout);
 
@@ -216,10 +214,7 @@ export class EventListeners {
         );
     }
 
-    /**
-     * Initializing event listeners
-     */
-    private manageListeners(add: boolean): void {
+    private _manageInteractivityEvents(add: boolean): void {
         const handlers = this.handlers,
             container = this.container,
             options = container.actualOptions,
@@ -237,20 +232,6 @@ export class EventListeners {
             container.interactivity.element = canvasEl.parentElement ?? canvasEl.parentNode;
         } else {
             container.interactivity.element = container.canvas.element;
-        }
-
-        const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
-
-        if (mediaMatch) {
-            if (mediaMatch.addEventListener !== undefined) {
-                manageListener(mediaMatch, "change", handlers.themeChange, add);
-            } else if (mediaMatch.addListener !== undefined) {
-                if (add) {
-                    mediaMatch.addListener(handlers.oldThemeChange);
-                } else {
-                    mediaMatch.removeListener(handlers.oldThemeChange);
-                }
-            }
         }
 
         const interactivityEl = container.interactivity.element;
@@ -291,45 +272,92 @@ export class EventListeners {
         if (container.canvas.element) {
             container.canvas.element.style.pointerEvents = html === container.canvas.element ? "initial" : "none";
         }
+    }
 
-        if (options.interactivity.events.resize) {
-            if (typeof ResizeObserver !== "undefined") {
-                if (this.resizeObserver && !add) {
-                    if (container.canvas.element) {
-                        this.resizeObserver.unobserve(container.canvas.element);
-                    }
+    /**
+     * Initializing event listeners
+     */
+    private _manageListeners(add: boolean): void {
+        this._manageMediaEvents(add);
+        this._manageInteractivityEvents(add);
+        this._manageResizeEvent(add);
+        this._manageVisibilityEvent(add);
+    }
 
-                    this.resizeObserver.disconnect();
+    private _manageMediaEvents(add: boolean): void {
+        const handlers = this.handlers,
+            mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
 
-                    delete this.resizeObserver;
-                } else if (!this.resizeObserver && add && container.canvas.element) {
-                    this.resizeObserver = new ResizeObserver((entries) => {
-                        const entry = entries.find((e) => e.target === container.canvas.element);
+        if (!mediaMatch) {
+            return;
+        }
 
-                        if (!entry) {
-                            return;
-                        }
+        if (mediaMatch.addEventListener !== undefined) {
+            manageListener(mediaMatch, "change", handlers.themeChange, add);
 
-                        this.handleWindowResize();
-                    });
+            return;
+        }
 
-                    this.resizeObserver.observe(container.canvas.element);
-                }
+        if (mediaMatch.addListener !== undefined) {
+            if (add) {
+                mediaMatch.addListener(handlers.oldThemeChange);
             } else {
-                manageListener(window, resizeEvent, handlers.resize, add);
+                mediaMatch.removeListener(handlers.oldThemeChange);
             }
         }
+    }
 
-        if (document) {
-            manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
+    private _manageResizeEvent(add: boolean): void {
+        const handlers = this.handlers,
+            container = this.container,
+            options = container.actualOptions;
+
+        if (!options.interactivity.events.resize) {
+            return;
         }
+
+        if (typeof ResizeObserver === "undefined") {
+            manageListener(window, resizeEvent, handlers.resize, add);
+
+            return;
+        }
+
+        if (this.resizeObserver && !add) {
+            if (container.canvas.element) {
+                this.resizeObserver.unobserve(container.canvas.element);
+            }
+
+            this.resizeObserver.disconnect();
+
+            delete this.resizeObserver;
+        } else if (!this.resizeObserver && add && container.canvas.element) {
+            this.resizeObserver = new ResizeObserver((entries) => {
+                const entry = entries.find((e) => e.target === container.canvas.element);
+
+                if (!entry) {
+                    return;
+                }
+
+                this._handleWindowResize();
+            });
+
+            this.resizeObserver.observe(container.canvas.element);
+        }
+    }
+
+    private _manageVisibilityEvent(add: boolean): void {
+        if (!document) {
+            return;
+        }
+
+        manageListener(document, visibilityChangeEvent, this.handlers.visibilityChange, add);
     }
 
     /**
      * Handle mouse down event
      * @private
      */
-    private mouseDown(): void {
+    private _mouseDown(): void {
         const interactivity = this.container.interactivity;
 
         if (interactivity) {
@@ -344,7 +372,7 @@ export class EventListeners {
      * Mouse/Touch click/tap event
      * @param e the click event arguments
      */
-    private mouseTouchClick(e: Event): void {
+    private _mouseTouchClick(e: Event): void {
         const container = this.container,
             options = container.actualOptions,
             mouse = container.interactivity.mouse;
@@ -372,7 +400,7 @@ export class EventListeners {
         }
 
         if (!handled) {
-            this.doMouseTouchClick(e);
+            this._doMouseTouchClick(e);
         }
 
         mouse.clicking = false;
@@ -381,7 +409,7 @@ export class EventListeners {
     /**
      * Mouse/Touch event finish
      */
-    private mouseTouchFinish(): void {
+    private _mouseTouchFinish(): void {
         const interactivity = this.container.interactivity;
 
         if (!interactivity) {
@@ -403,7 +431,7 @@ export class EventListeners {
      * Mouse/Touch move event
      * @param e the event arguments
      */
-    private mouseTouchMove(e: Event): void {
+    private _mouseTouchMove(e: Event): void {
         const container = this.container,
             options = container.actualOptions;
 

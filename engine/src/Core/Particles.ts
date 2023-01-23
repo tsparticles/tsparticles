@@ -254,7 +254,7 @@ export class Particles {
         let deleted = 0;
 
         for (let i = index; deleted < quantity && i < this.count; i++) {
-            if (this._removeParticle(i, group, override)) {
+            if (this._removeParticle(i--, group, override)) {
                 deleted++;
             }
         }
@@ -431,7 +431,7 @@ export class Particles {
 
         particle.destroy(override);
 
-        this.array.splice(index--, 1);
+        this.array.splice(index, 1);
 
         const zIdx = this.zArray.indexOf(particle);
 
