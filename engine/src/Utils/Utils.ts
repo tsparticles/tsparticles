@@ -8,6 +8,7 @@ import {
     getValue,
     randomInRange,
 } from "./NumberUtils";
+import { AnimationMode } from "../Enums/Modes/AnimationMode";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { DivMode } from "../Enums/Modes/DivMode";
@@ -486,26 +487,57 @@ export function initParticleNumericAnimationValue(
     };
 
     if (animationOptions.enable) {
-        res.status = AnimationStatus.increasing;
         res.decay = 1 - getRangeValue(animationOptions.decay);
+
+        let autoStatus = false;
+
+        switch (animationOptions.mode) {
+            case AnimationMode.increase:
+                res.status = AnimationStatus.increasing;
+
+                break;
+            case AnimationMode.decrease:
+                res.status = AnimationStatus.decreasing;
+
+                break;
+
+            case AnimationMode.random:
+                res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+
+                break;
+
+            case AnimationMode.auto:
+                autoStatus = true;
+
+                break;
+        }
 
         switch (animationOptions.startValue) {
             case StartValueType.min:
                 res.value = res.min;
-                res.status = AnimationStatus.increasing;
+
+                if (autoStatus) {
+                    res.status = AnimationStatus.increasing;
+                }
 
                 break;
 
             case StartValueType.random:
                 res.value = randomInRange(res);
-                res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+
+                if (autoStatus) {
+                    res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                }
 
                 break;
 
             case StartValueType.max:
             default:
                 res.value = res.max;
-                res.status = AnimationStatus.decreasing;
+
+                if (autoStatus) {
+                    res.status = AnimationStatus.decreasing;
+                }
 
                 break;
         }

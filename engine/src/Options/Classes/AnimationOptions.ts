@@ -1,4 +1,5 @@
 import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation";
+import { AnimationMode } from "../../Enums/Modes/AnimationMode";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { RangeValue } from "../../Types/RangeValue";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
@@ -53,11 +54,14 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
      */
     minimumValue?: number;
 
+    mode: AnimationMode | keyof typeof AnimationMode;
+
     startValue: StartValueType | keyof typeof StartValueType;
 
     constructor() {
         super();
 
+        this.mode = AnimationMode.auto;
         this.startValue = StartValueType.random;
     }
 
@@ -70,6 +74,10 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
 
         if (data.minimumValue !== undefined) {
             this.minimumValue = data.minimumValue;
+        }
+
+        if (data.mode !== undefined) {
+            this.mode = data.mode;
         }
 
         if (data.startValue !== undefined) {

@@ -11,17 +11,29 @@ import { deepExtend } from "../../../../Utils/Utils";
  * @category Options
  */
 export class Shape implements IShape, IOptionLoader<IShape> {
+    close;
+    fill;
     options: ShapeData;
     type: SingleOrMultiple<string>;
 
     constructor() {
         this.options = {};
         this.type = "circle";
+        this.close = true;
+        this.fill = true;
     }
 
     load(data?: RecursivePartial<IShape>): void {
         if (!data) {
             return;
+        }
+
+        if (data.close !== undefined) {
+            this.close = data.close;
+        }
+
+        if (data.fill !== undefined) {
+            this.fill = data.fill;
         }
 
         const options = data.options;

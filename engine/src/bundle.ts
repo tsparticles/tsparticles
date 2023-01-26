@@ -27,6 +27,7 @@ export * from "./Core/Utils/Vector3d";
 export * from "./Enums/Directions/MoveDirection";
 export * from "./Enums/Directions/RotateDirection";
 export * from "./Enums/Directions/OutModeDirection";
+export * from "./Enums/Modes/AnimationMode";
 export * from "./Enums/Modes/ClickMode";
 export * from "./Enums/Modes/DivMode";
 export * from "./Enums/Modes/HoverMode";

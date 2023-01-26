@@ -6,6 +6,10 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * @category Options
  */
 export interface IShape {
+    close: boolean;
+
+    fill: boolean;
+
     options: ShapeData;
 
     type: SingleOrMultiple<string>;
