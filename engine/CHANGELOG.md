@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-alpha.1](https://github.com/matteobruni/tsparticles/compare/v3.0.0-alpha.0...v3.0.0-alpha.1) (2023-01-26)
+
+### Features
+
+-   added mode to animation options, it makes the animation value inc/dec configurable ([98c556d](https://github.com/matteobruni/tsparticles/commit/98c556de20ff2bc14c76296ff22b95c004b65cba))
+-   adding sizemode to more position fields ([7694bea](https://github.com/matteobruni/tsparticles/commit/7694beac3a13e2223d90f058310da4cc031cc2f1))
+
 # [3.0.0-alpha.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v3.0.0-alpha.0) (2023-01-20)
 
 ### Bug Fixes

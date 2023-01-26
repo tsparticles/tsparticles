@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-life",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.1",
   "description": "tsParticles particles life updater",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -77,6 +77,6 @@
     "access": "public"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.0.0-alpha.0"
+    "@tsparticles/engine": "^3.0.0-alpha.1"
   }
 }
