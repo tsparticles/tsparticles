@@ -13,6 +13,7 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
+import { SizeMode } from "../Enums/Modes/SizeMode";
 import { calcPositionFromSize } from "../Utils/NumberUtils";
 
 /**
@@ -85,10 +86,14 @@ export class Particles {
 
         for (const particle of options.manualParticles) {
             this.addParticle(
-                calcPositionFromSize({
-                    size: container.canvas.size,
-                    position: particle.position,
-                }),
+                particle.position
+                    ? particle.position.mode === SizeMode.precise
+                        ? particle.position
+                        : calcPositionFromSize({
+                              size: container.canvas.size,
+                              position: particle.position,
+                          })
+                    : undefined,
                 particle.options
             );
         }

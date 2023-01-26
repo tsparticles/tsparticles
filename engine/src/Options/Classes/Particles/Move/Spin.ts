@@ -1,4 +1,4 @@
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
+import type { ICoordinatesWithMode } from "../../../../Core/Interfaces/ICoordinates";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISpin } from "../../../Interfaces/Particles/Move/ISpin";
 import type { RangeValue } from "../../../../Types/RangeValue";
@@ -9,7 +9,7 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 export class Spin implements ISpin, IOptionLoader<ISpin> {
     acceleration: RangeValue;
     enable;
-    position?: ICoordinates;
+    position?: ICoordinatesWithMode;
 
     constructor() {
         this.acceleration = 0;
@@ -29,6 +29,6 @@ export class Spin implements ISpin, IOptionLoader<ISpin> {
             this.enable = data.enable;
         }
 
-        this.position = data.position ? (deepExtend({}, data.position) as ICoordinates | undefined) : undefined;
+        this.position = data.position ? (deepExtend({}, data.position) as ICoordinatesWithMode | undefined) : undefined;
     }
 }
