@@ -1,6 +1,24 @@
 const fs = require("fs");
 const mainInfo = require("../package.json");
 
+fs.readdir("./dist/cjs", function (error, files) {
+    if (error) {
+        throw error;
+    }
+
+    const skip = [ "index.js", "bundle.js" ]
+
+    files.forEach(function (file) {
+        if (skip.includes(file)) {
+            return;
+        }
+
+        const data = require(`../dist/cjs/${file}`);
+
+        fs.writeFileSync(`./dist/${file.replace(".js", ".json")}`, JSON.stringify(data), "utf8");
+    });
+});
+
 const libPackage = "./package.dist.json";
 
 fs.readFile(libPackage, function (error, data) {

@@ -19,8 +19,8 @@
         "build:ts:umd": "tsc -b tsconfig.umd.json",
         "bundle": "webpack --mode production",
         "distfiles": "node ./scripts/distfiles.js",
-        "build": "node ./scripts/updateSrc.js && pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run prettify:readme && pnpm run distfiles",
-        "build:ci": "node ./scripts/updateSrc.js && pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile && pnpm run bundle && pnpm run prettify:ci:readme && pnpm run distfiles",
+        "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run prettify:readme && pnpm run distfiles",
+        "build:ci": "pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile && pnpm run bundle && pnpm run prettify:ci:readme && pnpm run distfiles",
         "clear:dist": "rimraf ./dist",
         "version": "pnpm run distfiles && git add package.dist.json",
         "prepack": "pnpm run build"
@@ -103,9 +103,9 @@
             "url": "https://www.buymeacoffee.com/matteobruni"
         }
     ],
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/types/index.d.ts",
     "prettier": "@tsparticles/prettier-config",
     "devDependencies": {
         "@babel/core": "^7.20.12",

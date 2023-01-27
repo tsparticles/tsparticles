@@ -16,7 +16,6 @@ import type { IStroke } from "./IStroke";
 import type { IZIndex } from "./ZIndex/IZIndex";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles.md]]
@@ -37,6 +36,6 @@ export interface IParticlesOptions {
     shadow: IShadow;
     shape: IShape;
     size: ISize;
-    stroke: SingleOrMultiple<IStroke>;
+    stroke: IStroke;
     zIndex: IZIndex;
 }

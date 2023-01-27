@@ -1,4 +1,3 @@
-import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils";
 import { AnimatableColor } from "../AnimatableColor";
 import { Collisions } from "./Collisions/Collisions";
 import type { Container } from "../../../Core/Container";
@@ -14,10 +13,10 @@ import { ParticlesNumber } from "./Number/ParticlesNumber";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 import { Shadow } from "./Shadow";
 import { Shape } from "./Shape/Shape";
-import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
 import { ZIndex } from "./ZIndex/ZIndex";
+import { deepExtend } from "../../../Utils/Utils";
 
 /**
  * [[include:Options/Particles.md]]
@@ -38,7 +37,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     shadow;
     shape;
     size;
-    stroke: SingleOrMultiple<Stroke>;
+    stroke;
     zIndex;
 
     private readonly _container;
@@ -107,17 +106,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
             this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;
         }
 
-        const stroke = data.stroke;
-
-        if (stroke) {
-            this.stroke = executeOnSingleOrMultiple(stroke, (t) => {
-                const tmp = new Stroke();
-
-                tmp.load(t);
-
-                return tmp;
-            });
-        }
+        this.stroke.load(data.stroke);
 
         if (this._container) {
             const updaters = this._engine.plugins.updaters.get(this._container);

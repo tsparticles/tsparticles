@@ -1,378 +1,130 @@
 import type { ISourceOptions } from "@tsparticles/engine";
-import _absorbers from "./absorbers.json";
-import _amongUs from "./amongUs.json";
-import _backgroundMask from "./backgroundMask.json";
-import _basic from "./basic.json";
-import _big from "./big.json";
-import _blackHole from "./blackHole.json";
-import _bubble from "./bubble.json";
-import _cards from "./cards.json";
-import _chars from "./chars.json";
-import _clickPause from "./clickPause.json";
-import _collisionsAbsorb from "./collisionsAbsorb.json";
-import _collisionsBounce from "./collisionsBounce.json";
-import _collisionsDestroy from "./collisionsDestroy.json";
-import _colorAnimation from "./colorAnimation.json";
-import _connect from "./connect.json";
-import _customPreset from "./customPreset.json";
-import _customShape from "./customShape.json";
-import _dataImages from "./dataImages.json";
-import _delay from "./delay.json";
-import _destroy from "./destroy.json";
-import _disappearing from "./disappearing.json";
-import _divEvents from "./divEvents.json";
-import _emitter from "./emitter.json";
-import _emitterAbsorber from "./emitterAbsorber.json";
-import _emitterAngled from "./emitterAngled.json";
-import _emitterImages from "./emitterImages.json";
-import _emitterPaths from "./emitterPaths.json";
-import _emitterShapes from "./emitterShapes.json";
-import _fireworks from "./fireworks.json";
-import _fontawesome from "./fontawesome.json";
-import _forward from "./forward.json";
-import _grabRandomColor from "./grabRandomColor.json";
-import _gradients from "./gradients.json";
-import _gravity from "./gravity.json";
-import _growing from "./growing.json";
-import _hexagonPath from "./hexagonPath.json";
-import _hollowknight from "./hollowknight.json";
-import _hyperspace from "./hyperspace.json";
-import _imageMask from "./imageMask.json";
-import _images from "./images.json";
-import _imagesDirections from "./imagesDirections.json";
-import _infection from "./infection.json";
-import _life from "./life.json";
-import _lightHover from "./lightHover.json";
-import _linkTriangles from "./linkTriangles.json";
-import _localPolygonMask from "./localPolygonMask.json";
-import _manual from "./manual.json";
-import _motionDisable from "./motionDisable.json";
-import _motionReduce from "./motionReduce.json";
-import _mouseAttract from "./mouseAttract.json";
-import _mouseBounce from "./mouseBounce.json";
-import _mouseFollow from "./mouseFollow.json";
-import _mouseTrail from "./mouseTrail.json";
-import _moveAngle from "./moveAngle.json";
-import _moveDistance from "./moveDistance.json";
-import _moveInside from "./moveInside.json";
-import _moveOutside from "./moveOutside.json";
-import _multipleClickEmitters from "./multipleClickEmitters.json";
-import _multiplePolygonMasks from "./multiplePolygonMasks.json";
-import _nasa from "./nasa.json";
-import _noconfig from "./noconfig.json";
-import _noisePlanes from "./noisePlanes.json";
-import _nyancat from "./nyancat.json";
-import _nyancat2 from "./nyancat2.json";
-import _orbit from "./orbit.json";
-import _parallax from "./parallax.json";
-import _pathPolygonMask from "./pathPolygonMask.json";
-import _planes from "./planes.json";
-import _plasma from "./plasma.json";
-import _polygonMask from "./polygonMask.json";
-import _polygons from "./polygons.json";
-import _random from "./random.json";
-import _reactBubbles from "./reactBubbles.json";
-import _reactDefaults from "./reactDefaults.json";
-import _reactMultipleImages from "./reactMultipleImages.json";
-import _reactNightSky from "./reactNightSky.json";
-import _reactPolygonMask from "./reactPolygonMask.json";
-import _reactSimple from "./reactSimple.json";
-import _reactSnow from "./reactSnow.json";
-import _reduceDuplicates from "./reduceDuplicates.json";
-import _repulse from "./repulse.json";
-import _repulseBack from "./repulseBack.json";
-import _repulseCirc from "./repulseCirc.json";
-import _repulseCubic from "./repulseCubic.json";
-import _repulseExpo from "./repulseExpo.json";
-import _repulseQuart from "./repulseQuart.json";
-import _repulseQuint from "./repulseQuint.json";
-import _repulseSine from "./repulseSine.json";
-import _responsive from "./responsive.json";
-import _ring from "./ring.json";
-import _seaAnemone from "./seaAnemone.json";
-import _shadow from "./shadow.json";
-import _shapeBubble from "./shapeBubble.json";
-import _shapeHeart from "./shapeHeart.json";
-import _shapeMultilineText from "./shapeMultilineText.json";
-import _shapeOptions from "./shapeOptions.json";
-import _shapePath from "./shapePath.json";
-import _shapeRoundedRect from "./shapeRoundedRect.json";
-import _shapeSpiral from "./shapeSpiral.json";
-import _slow from "./slow.json";
-import _snow from "./snow.json";
-import _soundsAudio from "./soundsAudio.json";
-import _soundsLoop from "./soundsLoop.json";
-import _soundsMelodies from "./soundsMelodies.json";
-import _soundsMelodyLoop from "./soundsMelodyLoop.json";
-import _soundsNotes from "./soundsNotes.json";
-import _speedDecay from "./speedDecay.json";
-import _spin from "./spin.json";
-import _star from "./star.json";
-import _strokeAnimation from "./strokeAnimation.json";
-import _style from "./style.json";
-import _svgReplace from "./svgReplace.json";
-import _test from "./test.json";
-import _textMask from "./textMask.json";
-import _textMaskMultiline from "./textMaskMultiline.json";
-import _trail from "./trail.json";
-import _trailImage from "./trailImage.json";
-import _twinkle from "./twinkle.json";
-import _vibrate from "./vibrate.json";
-import _virus from "./virus.json";
-import _warp from "./warp.json";
-import _wobble from "./wobble.json";
-import _zIndex from "./zIndex.json";
+import absorbers from "./absorbers";
+import amongUs from "./amongUs";
+import backgroundMask from "./backgroundMask";
+import basic from "./basic";
+import big from "./big";
+import blackHole from "./blackHole";
+import bubble from "./bubble";
+import cards from "./cards";
+import chars from "./chars";
+import clickPause from "./clickPause";
+import collisionsAbsorb from "./collisionsAbsorb";
+import collisionsBounce from "./collisionsBounce";
+import collisionsDestroy from "./collisionsDestroy";
+import colorAnimation from "./colorAnimation";
+import connect from "./connect";
+import customPreset from "./customPreset";
+import customShape from "./customShape";
+import dataImages from "./dataImages";
+import delay from "./delay";
+import destroy from "./destroy";
+import disappearing from "./disappearing";
+import divEvents from "./divEvents";
+import emitter from "./emitter";
+import emitterAbsorber from "./emitterAbsorber";
+import emitterAngled from "./emitterAngled";
+import emitterImages from "./emitterImages";
+import emitterPaths from "./emitterPaths";
+import emitterShapes from "./emitterShapes";
+import fireworks from "./fireworks";
+import fontawesome from "./fontawesome";
+import forward from "./forward";
+import grabRandomColor from "./grabRandomColor";
+import gradients from "./gradients";
+import gravity from "./gravity";
+import growing from "./growing";
+import hexagonPath from "./hexagonPath";
+import hollowknight from "./hollowknight";
+import hyperspace from "./hyperspace";
+import imageMask from "./imageMask";
+import images from "./images";
+import imagesDirections from "./imagesDirections";
+import infection from "./infection";
+import life from "./life";
+import lightHover from "./lightHover";
+import linkTriangles from "./linkTriangles";
+import localPolygonMask from "./localPolygonMask";
+import manual from "./manual";
+import motionDisable from "./motionDisable";
+import motionReduce from "./motionReduce";
+import mouseAttract from "./mouseAttract";
+import mouseBounce from "./mouseBounce";
+import mouseFollow from "./mouseFollow";
+import mouseTrail from "./mouseTrail";
+import moveAngle from "./moveAngle";
+import moveDistance from "./moveDistance";
+import moveInside from "./moveInside";
+import moveOutside from "./moveOutside";
+import multipleClickEmitters from "./multipleClickEmitters";
+import multiplePolygonMasks from "./multiplePolygonMasks";
+import nasa from "./nasa";
+import noconfig from "./noconfig";
+import noisePlanes from "./noisePlanes";
+import nyancat from "./nyancat";
+import nyancat2 from "./nyancat2";
+import orbit from "./orbit";
+import parallax from "./parallax";
+import pathPolygonMask from "./pathPolygonMask";
+import planes from "./planes";
+import plasma from "./plasma";
+import polygonMask from "./polygonMask";
+import polygons from "./polygons";
+import random from "./random";
+import reactBubbles from "./reactBubbles";
+import reactDefaults from "./reactDefaults";
+import reactMultipleImages from "./reactMultipleImages";
+import reactNightSky from "./reactNightSky";
+import reactPolygonMask from "./reactPolygonMask";
+import reactSimple from "./reactSimple";
+import reactSnow from "./reactSnow";
+import reduceDuplicates from "./reduceDuplicates";
+import repulse from "./repulse";
+import repulseBack from "./repulseBack";
+import repulseCirc from "./repulseCirc";
+import repulseCubic from "./repulseCubic";
+import repulseExpo from "./repulseExpo";
+import repulseQuart from "./repulseQuart";
+import repulseQuint from "./repulseQuint";
+import repulseSine from "./repulseSine";
+import responsive from "./responsive";
+import ring from "./ring";
+import seaAnemone from "./seaAnemone";
+import shadow from "./shadow";
+import shapeBubble from "./shapeBubble";
+import shapeHeart from "./shapeHeart";
+import shapeMultilineText from "./shapeMultilineText";
+import shapeOptions from "./shapeOptions";
+import shapePath from "./shapePath";
+import shapeRoundedRect from "./shapeRoundedRect";
+import shapeSpiral from "./shapeSpiral";
+import slow from "./slow";
+import snow from "./snow";
+import soundsAudio from "./soundsAudio";
+import soundsLoop from "./soundsLoop";
+import soundsMelodies from "./soundsMelodies";
+import soundsMelodyLoop from "./soundsMelodyLoop";
+import soundsNotes from "./soundsNotes";
+import speedDecay from "./speedDecay";
+import spin from "./spin";
+import star from "./star";
+import strokeAnimation from "./strokeAnimation";
+import style from "./style";
+import svgReplace from "./svgReplace";
+import test from "./test";
+import textMask from "./textMask";
+import textMaskMultiline from "./textMaskMultiline";
+import trail from "./trail";
+import trailImage from "./trailImage";
 import { tsParticles } from "@tsparticles/engine";
+import twinkle from "./twinkle";
+import vibrate from "./vibrate";
+import virus from "./virus";
+import warp from "./warp";
+import wobble from "./wobble";
+import zIndex from "./zIndex";
 
-const absorbers = _absorbers as unknown as ISourceOptions,
-    amongUs = _amongUs as unknown as ISourceOptions,
-    backgroundMask = _backgroundMask as unknown as ISourceOptions,
-    basic = _basic as unknown as ISourceOptions,
-    big = _big as unknown as ISourceOptions,
-    blackHole = _blackHole as unknown as ISourceOptions,
-    bubble = _bubble as unknown as ISourceOptions,
-    cards = _cards as unknown as ISourceOptions,
-    chars = _chars as unknown as ISourceOptions,
-    clickPause = _clickPause as unknown as ISourceOptions,
-    collisionsAbsorb = _collisionsAbsorb as unknown as ISourceOptions,
-    collisionsBounce = _collisionsBounce as unknown as ISourceOptions,
-    collisionsDestroy = _collisionsDestroy as unknown as ISourceOptions,
-    colorAnimation = _colorAnimation as unknown as ISourceOptions,
-    connect = _connect as unknown as ISourceOptions,
-    customPreset = _customPreset as unknown as ISourceOptions,
-    customShape = _customShape as unknown as ISourceOptions,
-    dataImages = _dataImages as unknown as ISourceOptions,
-    delay = _delay as unknown as ISourceOptions,
-    destroy = _destroy as unknown as ISourceOptions,
-    disappearing = _disappearing as unknown as ISourceOptions,
-    divEvents = _divEvents as unknown as ISourceOptions,
-    emitter = _emitter as unknown as ISourceOptions,
-    emitterAbsorber = _emitterAbsorber as unknown as ISourceOptions,
-    emitterAngled = _emitterAngled as unknown as ISourceOptions,
-    emitterImages = _emitterImages as unknown as ISourceOptions,
-    emitterPaths = _emitterPaths as unknown as ISourceOptions,
-    emitterShapes = _emitterShapes as unknown as ISourceOptions,
-    fireworks = _fireworks as unknown as ISourceOptions,
-    fontawesome = _fontawesome as unknown as ISourceOptions,
-    forward = _forward as unknown as ISourceOptions,
-    grabRandomColor = _grabRandomColor as unknown as ISourceOptions,
-    gradients = _gradients as unknown as ISourceOptions,
-    gravity = _gravity as unknown as ISourceOptions,
-    growing = _growing as unknown as ISourceOptions,
-    hexagonPath = _hexagonPath as unknown as ISourceOptions,
-    hollowknight = _hollowknight as unknown as ISourceOptions,
-    hyperspace = _hyperspace as unknown as ISourceOptions,
-    imageMask = _imageMask as unknown as ISourceOptions,
-    images = _images as unknown as ISourceOptions,
-    imagesDirections = _imagesDirections as unknown as ISourceOptions,
-    infection = _infection as unknown as ISourceOptions,
-    life = _life as unknown as ISourceOptions,
-    lightHover = _lightHover as unknown as ISourceOptions,
-    linkTriangles = _linkTriangles as unknown as ISourceOptions,
-    localPolygonMask = _localPolygonMask as unknown as ISourceOptions,
-    manual = _manual as unknown as ISourceOptions,
-    motionDisable = _motionDisable as unknown as ISourceOptions,
-    motionReduce = _motionReduce as unknown as ISourceOptions,
-    mouseAttract = _mouseAttract as unknown as ISourceOptions,
-    mouseBounce = _mouseBounce as unknown as ISourceOptions,
-    mouseFollow = _mouseFollow as unknown as ISourceOptions,
-    mouseTrail = _mouseTrail as unknown as ISourceOptions,
-    moveAngle = _moveAngle as unknown as ISourceOptions,
-    moveDistance = _moveDistance as unknown as ISourceOptions,
-    moveInside = _moveInside as unknown as ISourceOptions,
-    moveOutside = _moveOutside as unknown as ISourceOptions,
-    multipleClickEmitters = _multipleClickEmitters as unknown as ISourceOptions,
-    multiplePolygonMasks = _multiplePolygonMasks as unknown as ISourceOptions,
-    nasa = _nasa as unknown as ISourceOptions,
-    noconfig = _noconfig as unknown as ISourceOptions,
-    noisePlanes = _noisePlanes as unknown as ISourceOptions,
-    nyancat = _nyancat as unknown as ISourceOptions,
-    nyancat2 = _nyancat2 as unknown as ISourceOptions,
-    orbit = _orbit as unknown as ISourceOptions,
-    parallax = _parallax as unknown as ISourceOptions,
-    pathPolygonMask = _pathPolygonMask as unknown as ISourceOptions,
-    planes = _planes as unknown as ISourceOptions,
-    plasma = _plasma as unknown as ISourceOptions,
-    polygonMask = _polygonMask as unknown as ISourceOptions,
-    polygons = _polygons as unknown as ISourceOptions,
-    random = _random as unknown as ISourceOptions,
-    reactBubbles = _reactBubbles as unknown as ISourceOptions,
-    reactDefaults = _reactDefaults as unknown as ISourceOptions,
-    reactMultipleImages = _reactMultipleImages as unknown as ISourceOptions,
-    reactNightSky = _reactNightSky as unknown as ISourceOptions,
-    reactPolygonMask = _reactPolygonMask as unknown as ISourceOptions,
-    reactSimple = _reactSimple as unknown as ISourceOptions,
-    reactSnow = _reactSnow as unknown as ISourceOptions,
-    reduceDuplicates = _reduceDuplicates as unknown as ISourceOptions,
-    repulse = _repulse as unknown as ISourceOptions,
-    repulseBack = _repulseBack as unknown as ISourceOptions,
-    repulseCirc = _repulseCirc as unknown as ISourceOptions,
-    repulseCubic = _repulseCubic as unknown as ISourceOptions,
-    repulseExpo = _repulseExpo as unknown as ISourceOptions,
-    repulseQuart = _repulseQuart as unknown as ISourceOptions,
-    repulseQuint = _repulseQuint as unknown as ISourceOptions,
-    repulseSine = _repulseSine as unknown as ISourceOptions,
-    responsive = _responsive as unknown as ISourceOptions,
-    ring = _ring as unknown as ISourceOptions,
-    seaAnemone = _seaAnemone as unknown as ISourceOptions,
-    shadow = _shadow as unknown as ISourceOptions,
-    shapeBubble = _shapeBubble as unknown as ISourceOptions,
-    shapeHeart = _shapeHeart as unknown as ISourceOptions,
-    shapeMultilineText = _shapeMultilineText as unknown as ISourceOptions,
-    shapeOptions = _shapeOptions as unknown as ISourceOptions,
-    shapePath = _shapePath as unknown as ISourceOptions,
-    shapeRoundedRect = _shapeRoundedRect as unknown as ISourceOptions,
-    shapeSpiral = _shapeSpiral as unknown as ISourceOptions,
-    slow = _slow as unknown as ISourceOptions,
-    snow = _snow as unknown as ISourceOptions,
-    soundsAudio = _soundsAudio as unknown as ISourceOptions,
-    soundsLoop = _soundsLoop as unknown as ISourceOptions,
-    soundsMelodies = _soundsMelodies as unknown as ISourceOptions,
-    soundsMelodyLoop = _soundsMelodyLoop as unknown as ISourceOptions,
-    soundsNotes = _soundsNotes as unknown as ISourceOptions,
-    speedDecay = _speedDecay as unknown as ISourceOptions,
-    spin = _spin as unknown as ISourceOptions,
-    star = _star as unknown as ISourceOptions,
-    strokeAnimation = _strokeAnimation as unknown as ISourceOptions,
-    style = _style as unknown as ISourceOptions,
-    svgReplace = _svgReplace as unknown as ISourceOptions,
-    test = _test as unknown as ISourceOptions,
-    textMask = _textMask as unknown as ISourceOptions,
-    textMaskMultiline = _textMaskMultiline as unknown as ISourceOptions,
-    trail = _trail as unknown as ISourceOptions,
-    trailImage = _trailImage as unknown as ISourceOptions,
-    twinkle = _twinkle as unknown as ISourceOptions,
-    vibrate = _vibrate as unknown as ISourceOptions,
-    virus = _virus as unknown as ISourceOptions,
-    warp = _warp as unknown as ISourceOptions,
-    wobble = _wobble as unknown as ISourceOptions,
-    zIndex = _zIndex as unknown as ISourceOptions;
-
-tsParticles.addConfig(absorbers);
-tsParticles.addConfig(amongUs);
-tsParticles.addConfig(backgroundMask);
-tsParticles.addConfig(basic);
-tsParticles.addConfig(big);
-tsParticles.addConfig(blackHole);
-tsParticles.addConfig(bubble);
-tsParticles.addConfig(cards);
-tsParticles.addConfig(chars);
-tsParticles.addConfig(clickPause);
-tsParticles.addConfig(collisionsAbsorb);
-tsParticles.addConfig(collisionsBounce);
-tsParticles.addConfig(collisionsDestroy);
-tsParticles.addConfig(colorAnimation);
-tsParticles.addConfig(connect);
-tsParticles.addConfig(customPreset);
-tsParticles.addConfig(customShape);
-tsParticles.addConfig(dataImages);
-tsParticles.addConfig(delay);
-tsParticles.addConfig(destroy);
-tsParticles.addConfig(disappearing);
-tsParticles.addConfig(divEvents);
-tsParticles.addConfig(emitter);
-tsParticles.addConfig(emitterAbsorber);
-tsParticles.addConfig(emitterAngled);
-tsParticles.addConfig(emitterImages);
-tsParticles.addConfig(emitterPaths);
-tsParticles.addConfig(emitterShapes);
-tsParticles.addConfig(fireworks);
-tsParticles.addConfig(fontawesome);
-tsParticles.addConfig(forward);
-tsParticles.addConfig(grabRandomColor);
-tsParticles.addConfig(gradients);
-tsParticles.addConfig(gravity);
-tsParticles.addConfig(growing);
-tsParticles.addConfig(hexagonPath);
-tsParticles.addConfig(hollowknight);
-tsParticles.addConfig(hyperspace);
-tsParticles.addConfig(imageMask);
-tsParticles.addConfig(images);
-tsParticles.addConfig(imagesDirections);
-tsParticles.addConfig(infection);
-tsParticles.addConfig(life);
-tsParticles.addConfig(lightHover);
-tsParticles.addConfig(linkTriangles);
-tsParticles.addConfig(localPolygonMask);
-tsParticles.addConfig(manual);
-tsParticles.addConfig(motionDisable);
-tsParticles.addConfig(motionReduce);
-tsParticles.addConfig(mouseAttract);
-tsParticles.addConfig(mouseBounce);
-tsParticles.addConfig(mouseFollow);
-tsParticles.addConfig(mouseTrail);
-tsParticles.addConfig(moveAngle);
-tsParticles.addConfig(moveDistance);
-tsParticles.addConfig(moveInside);
-tsParticles.addConfig(moveOutside);
-tsParticles.addConfig(multipleClickEmitters);
-tsParticles.addConfig(multiplePolygonMasks);
-tsParticles.addConfig(nasa);
-tsParticles.addConfig(noconfig);
-tsParticles.addConfig(noisePlanes);
-tsParticles.addConfig(nyancat);
-tsParticles.addConfig(nyancat2);
-tsParticles.addConfig(orbit);
-tsParticles.addConfig(parallax);
-tsParticles.addConfig(pathPolygonMask);
-tsParticles.addConfig(planes);
-tsParticles.addConfig(plasma);
-tsParticles.addConfig(polygonMask);
-tsParticles.addConfig(polygons);
-tsParticles.addConfig(random);
-tsParticles.addConfig(reactBubbles);
-tsParticles.addConfig(reactDefaults);
-tsParticles.addConfig(reactMultipleImages);
-tsParticles.addConfig(reactNightSky);
-tsParticles.addConfig(reactPolygonMask);
-tsParticles.addConfig(reactSimple);
-tsParticles.addConfig(reactSnow);
-tsParticles.addConfig(reduceDuplicates);
-tsParticles.addConfig(repulse);
-tsParticles.addConfig(repulseBack);
-tsParticles.addConfig(repulseCirc);
-tsParticles.addConfig(repulseCubic);
-tsParticles.addConfig(repulseExpo);
-tsParticles.addConfig(repulseQuart);
-tsParticles.addConfig(repulseQuint);
-tsParticles.addConfig(repulseSine);
-tsParticles.addConfig(responsive);
-tsParticles.addConfig(ring);
-tsParticles.addConfig(seaAnemone);
-tsParticles.addConfig(shadow);
-tsParticles.addConfig(shapeBubble);
-tsParticles.addConfig(shapeHeart);
-tsParticles.addConfig(shapeMultilineText);
-tsParticles.addConfig(shapeOptions);
-tsParticles.addConfig(shapePath);
-tsParticles.addConfig(shapeRoundedRect);
-tsParticles.addConfig(shapeSpiral);
-tsParticles.addConfig(slow);
-tsParticles.addConfig(snow);
-tsParticles.addConfig(soundsAudio);
-tsParticles.addConfig(soundsLoop);
-tsParticles.addConfig(soundsMelodies);
-tsParticles.addConfig(soundsMelodyLoop);
-tsParticles.addConfig(soundsNotes);
-tsParticles.addConfig(speedDecay);
-tsParticles.addConfig(spin);
-tsParticles.addConfig(star);
-tsParticles.addConfig(strokeAnimation);
-tsParticles.addConfig(style);
-tsParticles.addConfig(svgReplace);
-tsParticles.addConfig(test);
-tsParticles.addConfig(textMask);
-tsParticles.addConfig(textMaskMultiline);
-tsParticles.addConfig(trail);
-tsParticles.addConfig(trailImage);
-tsParticles.addConfig(twinkle);
-tsParticles.addConfig(vibrate);
-tsParticles.addConfig(virus);
-tsParticles.addConfig(warp);
-tsParticles.addConfig(wobble);
-tsParticles.addConfig(zIndex);
-
-export {
+const configs = {
     absorbers,
     amongUs,
     backgroundMask,
@@ -497,3 +249,9 @@ export {
     wobble,
     zIndex,
 };
+
+for (const key of Object.keys(configs)) {
+    tsParticles.addConfig((configs as { [key: string]: ISourceOptions })[key]);
+}
+
+export default configs;

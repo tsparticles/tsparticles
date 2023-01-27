@@ -116,52 +116,71 @@ export class Engine {
      *
      * @param name
      * @param interactorInitializer
+     * @param refresh
      */
-    async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
+    async addInteractor(
+        name: string,
+        interactorInitializer: (container: Container) => IInteractor,
+        refresh = true
+    ): Promise<void> {
         this.plugins.addInteractor(name, interactorInitializer);
 
-        await this.refresh();
+        await this.refresh(refresh);
     }
 
-    async addMover(name: string, moverInitializer: (container: Container) => IParticleMover): Promise<void> {
+    /**
+     *
+     * @param name
+     * @param moverInitializer
+     * @param refresh
+     */
+    async addMover(
+        name: string,
+        moverInitializer: (container: Container) => IParticleMover,
+        refresh = true
+    ): Promise<void> {
         this.plugins.addParticleMover(name, moverInitializer);
 
-        await this.refresh();
+        await this.refresh(refresh);
     }
 
     /**
      *
      * @param name
      * @param updaterInitializer
+     * @param refresh
      */
     async addParticleUpdater(
         name: string,
-        updaterInitializer: (container: Container) => IParticleUpdater
+        updaterInitializer: (container: Container) => IParticleUpdater,
+        refresh = true
     ): Promise<void> {
         this.plugins.addParticleUpdater(name, updaterInitializer);
 
-        await this.refresh();
+        await this.refresh(refresh);
     }
 
     /**
      * addPathGenerator adds a named path generator to tsParticles, this can be called by options
      * @param name the path generator name
      * @param generator the path generator object
+     * @param refresh if true, all the instances will be refreshed
      */
-    async addPathGenerator(name: string, generator: IMovePathGenerator): Promise<void> {
+    async addPathGenerator(name: string, generator: IMovePathGenerator, refresh = true): Promise<void> {
         this.plugins.addPathGenerator(name, generator);
 
-        await this.refresh();
+        await this.refresh(refresh);
     }
 
     /**
-     * addPlugin adds plugin to tsParticles, if an instance needs it it will be loaded
+     * addPlugin adds plugin to tsParticles, if an instance needs it will be loaded
      * @param plugin the plugin implementation of [[IPlugin]]
+     * @param refresh if true, all the instances will be refreshed
      */
-    async addPlugin(plugin: IPlugin): Promise<void> {
+    async addPlugin(plugin: IPlugin, refresh = true): Promise<void> {
         this.plugins.addPlugin(plugin);
 
-        await this.refresh();
+        await this.refresh(refresh);
     }
 
     /**
@@ -169,11 +188,12 @@ export class Engine {
      * @param preset the preset name
      * @param options the options to add to the preset
      * @param override if true, the preset will override any existing with the same name
+     * @param refresh if true, all the instances will be refreshed
      */
-    async addPreset(preset: string, options: ISourceOptions, override = false): Promise<void> {
+    async addPreset(preset: string, options: ISourceOptions, override = false, refresh: true): Promise<void> {
         this.plugins.addPreset(preset, options, override);
 
-        await this.refresh();
+        await this.refresh(refresh);
     }
 
     /**
@@ -183,13 +203,15 @@ export class Engine {
      * @param init Optional: the shape drawer init function, used only if the drawer parameter is a function
      * @param afterEffect Optional: the shape drawer after effect function, used only if the drawer parameter is a function
      * @param destroy Optional: the shape drawer destroy function, used only if the drawer parameter is a function
+     * @param refresh if true, all the instances will be refreshed
      */
     async addShape(
         shape: SingleOrMultiple<string>,
         drawer: IShapeDrawer | ShapeDrawerDrawFunction,
         init?: ShapeDrawerInitFunction,
         afterEffect?: ShapeDrawerAfterEffectFunction,
-        destroy?: ShapeDrawerDestroyFunction
+        destroy?: ShapeDrawerDestroyFunction,
+        refresh = true
     ): Promise<void> {
         let customDrawer: IShapeDrawer;
 
@@ -206,7 +228,7 @@ export class Engine {
 
         this.plugins.addShapeDrawer(shape, customDrawer);
 
-        await this.refresh();
+        await this.refresh(refresh);
     }
 
     /**
@@ -334,7 +356,11 @@ export class Engine {
     /**
      * Reloads all existing tsParticles loaded instances
      */
-    async refresh(): Promise<void> {
+    async refresh(refresh = true): Promise<void> {
+        if (!refresh) {
+            return;
+        }
+
         for (const instance of this.dom()) {
             await instance.refresh();
         }
