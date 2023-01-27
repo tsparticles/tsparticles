@@ -109,7 +109,8 @@ export class StrokeColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
 
     init(particle: StrokeParticle): void {
-        const container = this.container, stroke = particle.options.stroke;
+        const container = this.container,
+            stroke = particle.options.stroke;
 
         particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
         particle.strokeOpacity = getRangeValue(stroke.opacity ?? 1);
