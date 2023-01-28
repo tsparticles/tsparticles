@@ -2,7 +2,6 @@ import {
     AnimationStatus,
     getHslAnimationFromHsl,
     getRangeValue,
-    itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
 } from "@tsparticles/engine";
