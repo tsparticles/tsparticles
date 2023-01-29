@@ -19,15 +19,18 @@ const options: ISourceOptions = {
         },
         shape: {
             type: "ribbon",
+            options: {
+                ribbon: {
+                    distance: 4,
+                    length: 30,
+                },
+            },
         },
         opacity: {
             value: 1,
         },
         size: {
-            value: {
-                min: 30,
-                max: 50,
-            },
+            value: 4,
         },
         move: {
             enable: true,
