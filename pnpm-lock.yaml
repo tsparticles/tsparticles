@@ -349,6 +349,7 @@ importers:
       '@tsparticles/shape-multiline-text': ^3.0.0-alpha.1
       '@tsparticles/shape-path': ^3.0.0-alpha.1
       '@tsparticles/shape-polygon': ^3.0.0-alpha.1
+      '@tsparticles/shape-ribbon': ^3.0.0-alpha.1
       '@tsparticles/shape-rounded-rect': ^3.0.0-alpha.1
       '@tsparticles/shape-spiral': ^3.0.0-alpha.1
       '@tsparticles/shape-square': ^3.0.0-alpha.1
@@ -446,6 +447,7 @@ importers:
       '@tsparticles/shape-multiline-text': link:../../shapes/multiline-text/dist
       '@tsparticles/shape-path': link:../../shapes/path/dist
       '@tsparticles/shape-polygon': link:../../shapes/polygon/dist
+      '@tsparticles/shape-ribbon': link:../../shapes/ribbon/dist
       '@tsparticles/shape-rounded-rect': link:../../shapes/rounded-rect/dist
       '@tsparticles/shape-spiral': link:../../shapes/spiral/dist
       '@tsparticles/shape-square': link:../../shapes/square/dist
@@ -2913,6 +2915,56 @@ importers:
     publishDirectory: dist
 
   shapes/polygon:
+    specifiers:
+      '@babel/core': ^7.20.12
+      '@tsparticles/build': ^1.7.0
+      '@tsparticles/engine': ^3.0.0-alpha.1
+      '@tsparticles/eslint-config': ^1.6.0
+      '@tsparticles/prettier-config': ^1.6.0
+      '@tsparticles/tsconfig': ^1.7.0
+      '@types/webpack-env': ^1.18.0
+      '@typescript-eslint/eslint-plugin': ^5.48.2
+      '@typescript-eslint/parser': ^5.48.2
+      babel-loader: ^9.1.2
+      browserslist: ^4.21.4
+      copyfiles: ^2.4.1
+      eslint: ^8.32.0
+      eslint-config-prettier: ^8.6.0
+      prettier: ^2.8.3
+      rimraf: 4.1.2
+      terser-webpack-plugin: ^5.3.6
+      typescript: ^4.9.4
+      webpack: ^5.75.0
+      webpack-bundle-analyzer: ^4.7.0
+      webpack-cli: ^5.0.1
+      webpack-tsparticles-plugin: ^1.7.0
+    dependencies:
+      '@tsparticles/engine': link:../../engine/dist
+    devDependencies:
+      '@babel/core': 7.20.12
+      '@tsparticles/build': 1.7.0_webpack-cli@5.0.1
+      '@tsparticles/eslint-config': 1.6.0_nsdkwo2kyctynl2heus2ldlgom
+      '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
+      '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
+      '@types/webpack-env': 1.18.0
+      '@typescript-eslint/eslint-plugin': 5.48.2_caon6io6stgpr7lz2rtbhekxqy
+      '@typescript-eslint/parser': 5.48.2_7uibuqfxkfaozanbtbziikiqje
+      babel-loader: 9.1.2_la66t7xldg4uecmyawueag5wkm
+      browserslist: 4.21.4
+      copyfiles: 2.4.1
+      eslint: 8.32.0
+      eslint-config-prettier: 8.6.0_eslint@8.32.0
+      prettier: 2.8.3
+      rimraf: 4.1.2
+      terser-webpack-plugin: 5.3.6_webpack@5.75.0
+      typescript: 4.9.4
+      webpack: 5.75.0_webpack-cli@5.0.1
+      webpack-bundle-analyzer: 4.7.0
+      webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
+      webpack-tsparticles-plugin: 1.7.0
+    publishDirectory: dist
+
+  shapes/ribbon:
     specifiers:
       '@babel/core': ^7.20.12
       '@tsparticles/build': ^1.7.0
@@ -6810,7 +6862,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 16.18.11
+      '@types/node': 18.11.18
       '@types/responselike': 1.0.0
     dev: true
 
@@ -6874,7 +6926,7 @@ packages:
   /@types/keyv/3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 16.18.11
+      '@types/node': 18.11.18
     dev: true
 
   /@types/klaw/3.0.3:
@@ -6925,7 +6977,7 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 16.18.11
+      '@types/node': 18.11.18
     dev: true
 
   /@types/rimraf/3.0.2:
@@ -6961,7 +7013,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.18.11
+      '@types/node': 18.11.18
     dev: true
     optional: true
 
@@ -9467,9 +9519,10 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+    dev: true
 
   /glob/7.2.0:
     resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
@@ -10162,7 +10215,7 @@ packages:
       async: 3.2.4
       chalk: 4.1.2
       filelist: 1.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /javascript-natural-sort/0.7.1:
@@ -10891,6 +10944,7 @@ packages:
     resolution: {integrity: sha512-tUpxzX0VAzJHjLu0xUfFv1gwVp9ba3IOuRAVH2EGuRW8a5emA2FlACLqiT/lDVtS1W+TGNwqz3sWaNyLgDJWuw==}
     dependencies:
       brace-expansion: 1.1.11
+    dev: true
 
   /minimatch/3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -12528,7 +12582,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.1.4
+      glob: 7.2.3
 
   /rimraf/4.1.1:
     resolution: {integrity: sha512-Z4Y81w8atcvaJuJuBB88VpADRH66okZAuEm+Jtaufa+s7rZmIz+Hik2G53kGaNytE7lsfXyWktTmfVz0H9xuDg==}

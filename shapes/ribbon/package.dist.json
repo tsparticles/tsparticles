@@ -1,0 +1,54 @@
+{
+  "name": "@tsparticles/shape-ribbon",
+  "version": "3.0.0-alpha.1",
+  "description": "tsParticles ribbon shape",
+  "homepage": "https://particles.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "shapes/ribbon"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "@tsparticles/shape"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "cjs/index.js",
+  "jsdelivr": "tsparticles.shape.ribbon.min.js",
+  "unpkg": "tsparticles.shape.ribbon.min.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^3.0.0-alpha.1"
+  }
+}

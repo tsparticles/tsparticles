@@ -74,6 +74,7 @@
         "@tsparticles/shape-multiline-text": "^3.0.0-alpha.1",
         "@tsparticles/shape-path": "^3.0.0-alpha.1",
         "@tsparticles/shape-polygon": "^3.0.0-alpha.1",
+        "@tsparticles/shape-ribbon": "^3.0.0-alpha.1",
         "@tsparticles/shape-rounded-rect": "^3.0.0-alpha.1",
         "@tsparticles/shape-spiral": "^3.0.0-alpha.1",
         "@tsparticles/shape-square": "^3.0.0-alpha.1",

@@ -190,6 +190,17 @@ export class Vector3d implements ICoordinates3d {
         this.z *= n;
     }
 
+    normalize(): void {
+        const length = this.length;
+
+        if (length != 0) {
+            const factor = 1.0 / length;
+
+            this.x *= factor;
+            this.y *= factor;
+        }
+    }
+
     /**
      * Creates a new vector, rotating the current one, without modifying it
      * @param angle the rotation angle

@@ -167,6 +167,7 @@
         await loadHeartShape(tsParticles);
         await loadMultilineTextShape(tsParticles);
         await loadPathShape(tsParticles);
+        await loadRibbonShape(tsParticles);
         await loadRoundedRectShape(tsParticles);
         await loadSpiralShape(tsParticles);
 
