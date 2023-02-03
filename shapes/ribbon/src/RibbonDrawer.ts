@@ -158,8 +158,8 @@ export class RibbonDrawer implements IShapeDrawer {
 
         for (let i = 0; i < particle.ribbonLength; i++) {
             particle.ribbonSteps[i] = new EulerMass(
-                particle.position.x,
-                particle.position.y - i * (particle.ribbonStepDistance ?? 0),
+                0,
+                0 - i * (particle.ribbonStepDistance ?? 0),
                 particle.size.value,
                 particle.ribbonDrag ?? 0
             );

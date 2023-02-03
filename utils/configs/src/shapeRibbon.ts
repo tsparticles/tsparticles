@@ -36,6 +36,19 @@ const options: ISourceOptions = {
             enable: true,
             speed: 6,
         },
+        roll: {
+            darken: {
+                enable: true,
+                value: 30,
+            },
+            enlighten: {
+                enable: true,
+                value: 30,
+            },
+            enable: true,
+            mode: "horizontal",
+            speed: 0,
+        },
     },
     background: {
         color: "#000000",
