@@ -4090,7 +4090,6 @@ importers:
       '@types/lodash': ^4.14.191
       '@types/node': ^18.11.18
       '@types/prettier': ^2.7.2
-      '@types/rimraf': ^3.0.2
       '@typescript-eslint/eslint-plugin': ^5.48.2
       '@typescript-eslint/parser': ^5.48.2
       eslint: ^8.32.0
@@ -4197,7 +4196,6 @@ importers:
       '@types/lodash': 4.14.191
       '@types/node': 18.11.18
       '@types/prettier': 2.7.2
-      '@types/rimraf': 3.0.2
 
 packages:
 
@@ -6895,13 +6893,6 @@ packages:
       '@types/node': 18.11.18
     dev: true
 
-  /@types/glob/8.0.1:
-    resolution: {integrity: sha512-8bVUjXZvJacUFkJXHdyZ9iH1Eaj5V7I8c4NdH5sQJsdXkqT4CA5Dhb4yb4VE/3asyx4L9ayZr1NIhTsWHczmMw==}
-    dependencies:
-      '@types/minimatch': 5.1.2
-      '@types/node': 18.11.18
-    dev: true
-
   /@types/http-cache-semantics/4.0.1:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
     dev: true
@@ -6943,10 +6934,6 @@ packages:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
     dev: true
 
-  /@types/minimatch/5.1.2:
-    resolution: {integrity: sha512-K0VQKziLUWkVKiRVrx4a40iPaxTUefQmjtkQofBkYRcoaaL/8rhwDWww9qWbrgicNOgnpIsMxyNIUM4+n6dUIA==}
-    dev: true
-
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
@@ -6977,13 +6964,6 @@ packages:
   /@types/responselike/1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.11.18
-    dev: true
-
-  /@types/rimraf/3.0.2:
-    resolution: {integrity: sha512-F3OznnSLAUxFrCEu/L5PY8+ny8DtcFRjx7fZZ9bycvXRi3KPTRS9HOitGZwvPg0juRhXFWIeKX58cnX5YqLohQ==}
-    dependencies:
-      '@types/glob': 8.0.1
       '@types/node': 18.11.18
     dev: true
 
