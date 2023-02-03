@@ -118,6 +118,6 @@
         "@types/lodash": "^4.14.191",
         "@types/node": "^18.11.18",
         "@types/prettier": "^2.7.2",
-        "@types/rimraf": "^3.0.2"
+        "@types/rimraf": "^4.0.5"
     }
 }
