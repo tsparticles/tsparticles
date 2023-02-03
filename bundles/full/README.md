@@ -14,8 +14,10 @@ a `tsparticles-engine` instance.
 - [tsparticles-interaction-external-trail](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/trail)
 - [tsparticles-plugin-absorbers](https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers)
 - [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
+- [tsparticles-updater-destroy](https://github.com/matteobruni/tsparticles/tree/main/updaters/destroy)
 - [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
 - [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
+- [tsparticles-updater-twinkle](https://github.com/matteobruni/tsparticles/tree/main/updaters/twinkle)
 - [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
 
 ## How to use it
