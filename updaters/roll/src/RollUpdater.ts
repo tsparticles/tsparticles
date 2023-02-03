@@ -61,7 +61,7 @@ export class RollUpdater implements IParticleUpdater {
                 enable: rollOpt.enable,
                 horizontal: rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
                 vertical: rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
-                angle: getRandom() * Math.PI * 2,
+                angle: getRangeValue(rollOpt.value) * Math.PI * 2,
                 speed: getRangeValue(rollOpt.speed) / 360,
             };
 

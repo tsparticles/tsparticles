@@ -48,6 +48,7 @@ const options: ISourceOptions = {
             enable: true,
             mode: "horizontal",
             speed: 0,
+            value: 0,
         },
     },
     background: {

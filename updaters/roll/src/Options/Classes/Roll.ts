@@ -1,10 +1,10 @@
 import type { IOptionLoader, RangeValue, RecursivePartial } from "@tsparticles/engine";
-import { OptionsColor, setRangeValue } from "@tsparticles/engine";
+import { OptionsColor, ValueWithRandom, setRangeValue } from "@tsparticles/engine";
 import type { IRoll } from "../Interfaces/IRoll";
 import { RollLight } from "./RollLight";
 import { RollMode } from "../../RollMode";
 
-export class Roll implements IRoll, IOptionLoader<IRoll> {
+export class Roll extends ValueWithRandom implements IRoll, IOptionLoader<IRoll> {
     backColor?: OptionsColor;
     darken;
     enable;
@@ -13,14 +13,19 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
     speed: RangeValue;
 
     constructor() {
+        super();
+
         this.darken = new RollLight();
         this.enable = false;
         this.enlighten = new RollLight();
         this.mode = RollMode.vertical;
         this.speed = 25;
+        this.value = 0;
     }
 
     load(data?: RecursivePartial<IRoll>): void {
+        super.load(data);
+
         if (!data) {
             return;
         }
