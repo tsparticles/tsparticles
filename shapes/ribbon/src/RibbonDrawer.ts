@@ -23,7 +23,7 @@ export class RibbonDrawer implements IShapeDrawer {
         delta: IDelta,
         ratio: number
     ): void {
-        //this._update(particle, delta);
+        this._update(particle, delta);
 
         if (!particle.ribbonLength || !particle.ribbonSteps || !particle.ribbonOffset) {
             console.log("missing data");
@@ -166,19 +166,19 @@ export class RibbonDrawer implements IShapeDrawer {
         }
     }
 
-    /*private _reset(particle: RibbonParticle): void {
-        particle.position.y = -getRandom() * particle.container.canvas.size.height
-        particle.position.x = getRandom() * particle.container.canvas.size.width
+    private _reset(particle: RibbonParticle): void {
+        particle.position.y = -getRandom() * particle.container.canvas.size.height;
+        particle.position.x = getRandom() * particle.container.canvas.size.width;
 
-        particle.prevPosition = Vector.create(particle.position.x, particle.position.y)
+        particle.prevPosition = Vector.create(particle.position.x, particle.position.y);
 
-        particle.velocityInherit = getRandom() * 2 + 4
-        particle.time = getRandom() * 100
-        particle.oscillationSpeed = getRandom() * 2.0 + 1.5
-        particle.oscillationDistance = getRandom() * 40 + 40
-        particle.ySpeed = getRandom() * 40 + 80
+        particle.velocityInherit = getRandom() * 2 + 4;
+        particle.time = getRandom() * 100;
+        particle.oscillationSpeed = getRandom() * 2.0 + 1.5;
+        particle.oscillationDistance = getRandom() * 40 + 40;
+        particle.ySpeed = getRandom() * 40 + 80;
 
-        particle.ribbonSteps = []
+        particle.ribbonSteps = [];
 
         if (!particle.ribbonLength) {
             return;
@@ -186,68 +186,69 @@ export class RibbonDrawer implements IShapeDrawer {
 
         for (let i = 0; i < particle.ribbonLength; i++) {
             particle.ribbonSteps[i] = new EulerMass(
-                particle.position.x,
-                particle.position.y - i * (particle.ribbonStepDistance ?? 0),
+                0,
+                0 - i * (particle.ribbonStepDistance ?? 0),
                 particle.size.value,
-                (particle.ribbonDrag ?? 0),
-            )
+                particle.ribbonDrag ?? 0
+            );
         }
-    }*/
+    }
 
     private _side(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number): number {
         return (x1 - x2) * (y3 - y2) - (y1 - y2) * (x3 - x2);
     }
 
-    /*private _update(particle: RibbonParticle, delta: IDelta): void {
+    private _update(particle: RibbonParticle, delta: IDelta): void {
         if (!particle.ribbonSteps || !particle.ribbonLength || !particle.ribbonStepDistance) {
             return;
         }
 
-        let i = 0
+        let i = 0;
 
         const dt = delta.value;
 
-        particle.time += dt * particle.oscillationSpeed
-        particle.position.y += particle.ySpeed * dt
-        particle.position.x += Math.cos(particle.time) * particle.oscillationDistance * dt
-        particle.ribbonSteps[0].position = particle.position
+        if (!particle.time) {
+            particle.time = 0;
+        }
 
-        const distance = getDistance(particle.prevPosition, particle.position);
+        particle.time += dt * (particle.oscillationSpeed ?? 0);
+        particle.position.y += (particle.ySpeed ?? 0) * dt;
+        particle.position.x += Math.cos(particle.time) * (particle.oscillationDistance ?? 0) * dt;
+        particle.ribbonSteps[0].position = Vector.origin;
 
-        particle.prevPosition = Vector.create(particle.position.x, particle.position.y)
+        const distance = particle.prevPosition ? getDistance(particle.prevPosition, particle.position) : 0;
+
+        particle.prevPosition = particle.position.copy();
 
         for (i = 1; i < particle.ribbonLength; i++) {
-            const dirP = particle.ribbonSteps[i - 1].position.sub(particle.ribbonSteps[i].position)
+            const dirP = particle.ribbonSteps[i - 1].position.sub(particle.ribbonSteps[i].position);
 
-            dirP.normalize()
-            dirP.multTo((distance / dt) * particle.velocityInherit)
+            dirP.normalize();
+            dirP.multTo((distance / dt) * (particle.velocityInherit ?? 0));
 
-            particle.ribbonSteps[i].addForce(dirP)
+            particle.ribbonSteps[i].addForce(dirP);
         }
 
         for (i = 1; i < particle.ribbonLength; i++) {
-            particle.ribbonSteps[i].integrate(dt)
+            particle.ribbonSteps[i].integrate(dt);
         }
 
         for (i = 1; i < particle.ribbonLength; i++) {
-            const rp2 = Vector.create(
-                particle.ribbonSteps[i].position.x,
-                particle.ribbonSteps[i].position.y,
-            )
+            const rp2 = particle.ribbonSteps[i].position.copy();
 
-            rp2.subFrom(particle.ribbonSteps[i - 1].position)
-            rp2.normalize()
-            rp2.multTo(particle.ribbonStepDistance)
-            rp2.addTo(particle.ribbonSteps[i - 1].position)
+            rp2.subFrom(particle.ribbonSteps[i - 1].position);
+            rp2.normalize();
+            rp2.multTo(particle.ribbonStepDistance);
+            rp2.addTo(particle.ribbonSteps[i - 1].position);
 
-            particle.ribbonSteps[i].position = rp2
+            particle.ribbonSteps[i].position = rp2;
         }
 
         if (
             particle.position.y >
             particle.container.canvas.size.height + particle.ribbonStepDistance * particle.ribbonLength
         ) {
-            this._reset(particle)
+            this._reset(particle);
         }
-    }*/
+    }
 }
