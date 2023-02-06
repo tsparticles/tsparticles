@@ -539,7 +539,7 @@ importers:
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
       '@types/chai': ^4.3.4
-      '@types/jsdom': ^20.0.1
+      '@types/jsdom': ^21.0.0
       '@types/mocha': ^10.0.1
       '@types/node': ^18.11.18
       '@types/webpack-env': ^1.18.0
@@ -579,7 +579,7 @@ importers:
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
       '@types/chai': 4.3.4
-      '@types/jsdom': 20.0.1
+      '@types/jsdom': 21.1.0
       '@types/mocha': 10.0.1
       '@types/node': 18.11.18
       '@types/webpack-env': 1.18.0
@@ -4085,7 +4085,7 @@ importers:
       '@tsparticles/updater-wobble': ^3.0.0-alpha.1
       '@types/eslint': ^8.4.10
       '@types/fs-extra': ^11.0.1
-      '@types/jsdom': ^20.0.1
+      '@types/jsdom': ^21.0.0
       '@types/klaw': ^3.0.3
       '@types/lodash': ^4.14.191
       '@types/node': ^18.11.18
@@ -4191,7 +4191,7 @@ importers:
     devDependencies:
       '@types/eslint': 8.4.10
       '@types/fs-extra': 11.0.1
-      '@types/jsdom': 20.0.1
+      '@types/jsdom': 21.1.0
       '@types/klaw': 3.0.3
       '@types/lodash': 4.14.191
       '@types/node': 18.11.18
@@ -6897,8 +6897,8 @@ packages:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
     dev: true
 
-  /@types/jsdom/20.0.1:
-    resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
+  /@types/jsdom/21.1.0:
+    resolution: {integrity: sha512-leWreJOdnuIxq9Y70tBVm/bvTuh31DSlF/r4l7Cfi4uhVQqLHD0Q4v301GMisEMwwbMgF7ZKxuZ+Jbd4NcdmRw==}
     dependencies:
       '@types/node': 18.11.18
       '@types/tough-cookie': 4.0.2

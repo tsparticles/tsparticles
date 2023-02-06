@@ -113,7 +113,7 @@
   "devDependencies": {
     "@types/eslint": "^8.4.10",
     "@types/fs-extra": "^11.0.1",
-    "@types/jsdom": "^20.0.1",
+    "@types/jsdom": "^21.0.0",
     "@types/klaw": "^3.0.3",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.18",
