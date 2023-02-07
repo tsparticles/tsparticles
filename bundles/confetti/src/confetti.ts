@@ -13,37 +13,33 @@ let init = false;
 
 const ids = new Map<string, Container | undefined>();
 
-export async function confetti(
-    idOrOptions: ConfettiFirstParam,
-    confettiOptions?: RecursivePartial<IConfettiOptions>
-): Promise<Container | undefined> {
-    if (!init) {
-        init = true;
+type ConfettiParams = {
+    canvas?: HTMLCanvasElement;
+    id: string;
+    options: RecursivePartial<IConfettiOptions>;
+};
 
-        await loadConfettiPreset(tsParticles);
-        await loadCardsShape(tsParticles);
-        await loadHeartShape(tsParticles);
+async function initPlugins(): Promise<void> {
+    if (init) {
+        return;
     }
 
-    let options: RecursivePartial<IConfettiOptions>;
-    let id: string;
+    init = true;
 
-    if (typeof idOrOptions === "string") {
-        id = idOrOptions;
-        options = confettiOptions ?? {};
-    } else {
-        id = `confetti`;
-        options = idOrOptions;
-    }
+    await loadConfettiPreset(tsParticles);
+    await loadHeartShape(tsParticles);
+    await loadCardsShape(tsParticles);
+}
 
+async function setConfetti(params: ConfettiParams): Promise<Container | undefined> {
     const actualOptions = new ConfettiOptions();
 
-    actualOptions.load(options);
+    actualOptions.load(params.options);
 
     let container;
 
-    if (ids.has(id)) {
-        container = ids.get(id);
+    if (ids.has(params.id)) {
+        container = ids.get(params.id);
 
         if (container && !container.destroyed) {
             const alias = container as EmitterContainer;
@@ -104,9 +100,10 @@ export async function confetti(
         }
     }
 
-    container = await tsParticles.load(id, {
+    const particlesOptions = {
         preset: "confetti",
         fullScreen: {
+            enable: !params.canvas,
             zIndex: actualOptions.zIndex,
         },
         particles: {
@@ -161,9 +158,59 @@ export async function confetti(
                 count: 1,
             },
         },
-    });
+    };
 
-    ids.set(id, container);
+    if (params.id) {
+        container = await tsParticles.load(params.id, particlesOptions);
+    } else if (params.canvas) {
+        container = await tsParticles.set(params.id, params.canvas, particlesOptions);
+    }
+
+    ids.set(params.id, container);
 
     return container;
 }
+
+export async function confetti(
+    idOrOptions: ConfettiFirstParam,
+    confettiOptions?: RecursivePartial<IConfettiOptions>
+): Promise<Container | undefined> {
+    await initPlugins();
+
+    let options: RecursivePartial<IConfettiOptions>;
+    let id: string;
+
+    if (typeof idOrOptions === "string") {
+        id = idOrOptions;
+        options = confettiOptions ?? {};
+    } else {
+        id = "confetti";
+        options = idOrOptions;
+    }
+
+    return setConfetti({
+        id,
+        options,
+    });
+}
+
+confetti.create = async (
+    canvas: HTMLCanvasElement,
+    options: RecursivePartial<IConfettiOptions>
+): Promise<Container | undefined> => {
+    if (!canvas) {
+        return;
+    }
+
+    await initPlugins();
+
+    const id = canvas.getAttribute("id") || "confetti";
+
+    canvas.setAttribute("id", id);
+
+    return setConfetti({
+        id,
+        canvas,
+        options,
+    });
+};
