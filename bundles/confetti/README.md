@@ -47,13 +47,13 @@ A note about `tsparticles-preset-confetti` can be made: it's not mandatory to in
 
 Once the scripts are loaded you can set up `tsParticles` like the following examples:
 
-```javascript
+````javascript
 
 ** Easiest Way **
 
 ```javascript
 confetti()
-```
+````
 
 ** Async Way, best practice **
 
@@ -136,8 +136,8 @@ The `confetti` first parameter can be an id and the second parameter a single `o
   - `clubs`
   - `diamonds`
   - `text`
-  The default is to use both shapes in an even mix. You can even change the mix by providing a value such
-  as `['circle', 'circle', 'square']` to use two third circles and one third squares.
+    The default is to use both shapes in an even mix. You can even change the mix by providing a value such
+    as `['circle', 'circle', 'square']` to use two third circles and one third squares.
 - `scalar` _Number (default: 1)_: Scale factor for each confetti particle. Use decimals to make the confetti smaller. Go
   on, try teeny tiny confetti, they are adorable!
 - `zIndex` _Integer (default: 100)_: The confetti should be on top, after all. But if you have a crazy high page, you
