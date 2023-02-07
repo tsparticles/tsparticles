@@ -26,6 +26,8 @@ import { Plugins } from "./Core/Utils/Plugins";
 import type { RecursivePartial } from "./Types/RecursivePartial";
 import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
+declare const __VERSION__: string;
+
 /**
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the Loader class for initializing [[Container]] instances,
@@ -65,6 +67,10 @@ export class Engine {
         this._initialized = false;
         this._loader = new Loader(this);
         this.plugins = new Plugins(this);
+    }
+
+    get version(): string {
+        return __VERSION__;
     }
 
     /**

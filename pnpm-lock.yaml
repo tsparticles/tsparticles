@@ -59,7 +59,7 @@ importers:
   bundles/confetti:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -87,7 +87,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-plugin-emitters: link:../../plugins/emitters/dist
@@ -100,7 +100,7 @@ importers:
       tsparticles-shape-text: link:../../shapes/text/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -119,13 +119,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   bundles/fireworks:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -154,7 +154,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
@@ -168,7 +168,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -187,13 +187,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   bundles/full:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -222,7 +222,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
@@ -236,7 +236,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -255,13 +255,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   bundles/pjs:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -281,12 +281,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -305,13 +305,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   bundles/slim:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -362,7 +362,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-attract: link:../../interactions/external/attract/dist
@@ -398,7 +398,7 @@ importers:
       tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -417,7 +417,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   components/angular:
@@ -2521,7 +2521,7 @@ importers:
   editor:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2556,7 +2556,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       object-gui: 2.0.2
       tsparticles-engine: link:../engine/dist
@@ -2576,7 +2576,7 @@ importers:
       tsparticles-plugin-infection: link:../plugins/infection/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2595,13 +2595,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   engine:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2638,10 +2638,10 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2678,13 +2678,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/attract:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2704,12 +2704,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2728,13 +2728,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/bounce:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2754,12 +2754,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2778,13 +2778,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/bubble:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2804,12 +2804,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2828,13 +2828,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/connect:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2854,12 +2854,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2878,13 +2878,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/grab:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2904,12 +2904,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2928,13 +2928,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/pause:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -2954,12 +2954,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -2978,13 +2978,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/push:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3004,12 +3004,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3028,13 +3028,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/remove:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3054,12 +3054,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3078,13 +3078,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/repulse:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3104,12 +3104,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3128,13 +3128,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/slow:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3154,12 +3154,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3178,13 +3178,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/external/trail:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3204,12 +3204,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3228,13 +3228,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/light:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3254,12 +3254,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3278,13 +3278,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/particles/attract:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3304,12 +3304,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3328,13 +3328,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/particles/collisions:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3354,12 +3354,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3378,13 +3378,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/particles/links:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3404,12 +3404,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3428,13 +3428,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   interactions/particles/repulse:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3454,12 +3454,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3478,13 +3478,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   move/base:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3504,12 +3504,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3528,13 +3528,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   move/parallax:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3554,12 +3554,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3578,13 +3578,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   paths/curves:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3604,12 +3604,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3628,13 +3628,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   paths/perlinNoise:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3654,12 +3654,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3678,13 +3678,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   paths/polygon:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3704,12 +3704,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3728,13 +3728,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   paths/simplexNoise:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3754,12 +3754,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3778,13 +3778,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/absorbers:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3804,12 +3804,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3828,13 +3828,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/canvasMask:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3854,12 +3854,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3878,13 +3878,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/back:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3904,12 +3904,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3928,13 +3928,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/circ:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -3954,12 +3954,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -3978,13 +3978,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/cubic:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4004,12 +4004,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4028,13 +4028,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/expo:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4054,12 +4054,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4078,13 +4078,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/quad:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4104,12 +4104,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4128,13 +4128,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/quart:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4154,12 +4154,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4178,13 +4178,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/quint:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4204,12 +4204,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4228,13 +4228,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/easings/sine:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4254,12 +4254,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4278,13 +4278,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/emitters:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4304,12 +4304,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4328,13 +4328,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/hsvColor:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4354,12 +4354,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4378,13 +4378,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/infection:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4404,12 +4404,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4428,13 +4428,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/motion:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4454,12 +4454,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4478,13 +4478,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/polygonMask:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4504,12 +4504,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4528,13 +4528,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   plugins/sounds:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4554,12 +4554,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4578,13 +4578,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/bigCircles:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4611,7 +4611,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4623,7 +4623,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4642,13 +4642,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/bubbles:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4675,7 +4675,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4687,7 +4687,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4706,13 +4706,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/confetti:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4746,7 +4746,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4765,7 +4765,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4784,13 +4784,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/fire:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4817,7 +4817,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-push: link:../../interactions/external/push/dist
@@ -4829,7 +4829,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4848,13 +4848,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/firefly:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4881,7 +4881,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
@@ -4893,7 +4893,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4912,13 +4912,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/fireworks:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -4951,7 +4951,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -4969,7 +4969,7 @@ importers:
       tsparticles-updater-stroke-color: link:../../updaters/strokeColor/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -4988,13 +4988,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/fountain:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5022,7 +5022,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -5035,7 +5035,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5054,13 +5054,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/links:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5087,7 +5087,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
@@ -5099,7 +5099,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5118,13 +5118,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/seaAnemone:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5152,7 +5152,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -5165,7 +5165,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5184,13 +5184,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/snow:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5217,7 +5217,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -5229,7 +5229,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5248,13 +5248,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/stars:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5280,7 +5280,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-move-base: link:../../move/base/dist
@@ -5291,7 +5291,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5310,13 +5310,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   presets/triangles:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5343,7 +5343,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
       tsparticles-interaction-particles-links: link:../../interactions/particles/links/dist
@@ -5355,7 +5355,7 @@ importers:
       tsparticles-updater-size: link:../../updaters/size/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5374,13 +5374,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/bubble:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5400,12 +5400,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5424,13 +5424,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/cards:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5450,12 +5450,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5474,13 +5474,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/circle:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5500,12 +5500,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5524,13 +5524,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/heart:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5550,12 +5550,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5574,13 +5574,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/image:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5600,12 +5600,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5624,13 +5624,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/line:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5650,12 +5650,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5674,13 +5674,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/multiline-text:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5700,12 +5700,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5724,13 +5724,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/path:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5750,12 +5750,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5774,13 +5774,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/polygon:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5800,12 +5800,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5824,13 +5824,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/rounded-rect:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5850,12 +5850,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5874,13 +5874,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/spiral:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5900,12 +5900,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5924,13 +5924,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/square:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -5950,12 +5950,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -5974,13 +5974,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/star:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6000,12 +6000,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6024,13 +6024,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   shapes/text:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6050,12 +6050,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6074,7 +6074,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   templates/react:
@@ -6110,7 +6110,7 @@ importers:
   updaters/angle:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6130,12 +6130,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6154,13 +6154,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/color:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6180,12 +6180,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6204,13 +6204,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/destroy:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6230,12 +6230,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6254,13 +6254,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/gradient:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6280,12 +6280,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6304,13 +6304,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/life:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6330,12 +6330,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6354,13 +6354,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/opacity:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6380,12 +6380,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6404,13 +6404,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/orbit:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6430,12 +6430,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6454,13 +6454,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/outModes:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6480,12 +6480,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6504,13 +6504,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/roll:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6530,12 +6530,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6554,13 +6554,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/size:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6580,12 +6580,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6604,13 +6604,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/strokeColor:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6630,12 +6630,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6654,13 +6654,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/tilt:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6680,12 +6680,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6704,13 +6704,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/twinkle:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6730,12 +6730,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6754,13 +6754,13 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   updaters/wobble:
     specifiers:
       '@babel/core': ^7.20.7
-      '@tsparticles/build': ^1.8.0
+      '@tsparticles/build': ^1.8.1
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
       '@tsparticles/tsconfig': ^1.7.0
@@ -6780,12 +6780,12 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
       '@babel/core': 7.20.7
-      '@tsparticles/build': 1.8.0_webpack-cli@5.0.1
+      '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
       '@tsparticles/tsconfig': 1.7.0_typescript@4.9.4
@@ -6804,7 +6804,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   utils/configs:
@@ -6829,7 +6829,7 @@ importers:
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
       webpack-cli: ^5.0.1
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
     devDependencies:
@@ -6852,7 +6852,7 @@ importers:
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-bundle-analyzer: 4.7.0
       webpack-cli: 5.0.1_zfjer5eiwvoit4zaxwbfe5plkm
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     publishDirectory: dist
 
   utils/options-updater:
@@ -6947,7 +6947,7 @@ importers:
       tsparticles-updater-wobble: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
-      webpack-tsparticles-plugin: ^1.8.0
+      webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
@@ -7031,7 +7031,7 @@ importers:
       tsparticles-updater-wobble: link:../../updaters/wobble/dist
       typescript: 4.9.4
       webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     devDependencies:
       '@types/eslint': 8.4.10
       '@types/fs-extra': 9.0.13
@@ -7820,7 +7820,7 @@ packages:
       '@babel/helper-compilation-targets': 7.20.7_@babel+core@7.20.2
       '@babel/helper-module-transforms': 7.20.11
       '@babel/helpers': 7.20.7
-      '@babel/parser': 7.20.7
+      '@babel/parser': 7.20.15
       '@babel/template': 7.20.7
       '@babel/traverse': 7.20.13
       '@babel/types': 7.20.7
@@ -10992,7 +10992,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/code-frame': 7.18.6
-      '@babel/parser': 7.20.7
+      '@babel/parser': 7.20.15
       '@babel/types': 7.20.7
     dev: true
 
@@ -15595,8 +15595,8 @@ packages:
     resolution: {integrity: sha512-pYrtLtOwku/7r1i9AMONsJMVYAtk3hzOfiGNekhtq5tYBGA7unMve8RvUclKLMT3PrihvJqUmzsRGh0RP84hKg==}
     dev: true
 
-  /@tsparticles/build/1.8.0_webpack-cli@5.0.1:
-    resolution: {integrity: sha512-bbLjuDcShTno3wLi475oYESWmyYWvSTB5pPlEyOzfl9NxnzxDz4sqC4jly1Z7kT2HOeMm9Iz6BALbEnnV3qc1w==}
+  /@tsparticles/build/1.8.1_webpack-cli@5.0.1:
+    resolution: {integrity: sha512-ed1SIuGcude32l1m6Ie9ZSjUgd57ZaePHbdiisEsAscMXT62O+gC2JhODqAWdt5QtRk87/oOzpLDUpmFiPSyAg==}
     hasBin: true
     dependencies:
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
@@ -15612,7 +15612,7 @@ packages:
       rimraf: 4.1.1
       typescript: 4.9.4
       webpack: 5.75.0_webpack-cli@5.0.1
-      webpack-tsparticles-plugin: 1.8.0
+      webpack-tsparticles-plugin: 1.8.1
     transitivePeerDependencies:
       - '@swc/core'
       - '@webpack-cli/generators'
@@ -16648,7 +16648,7 @@ packages:
       '@babel/helper-module-imports': 7.18.6
       '@babel/plugin-syntax-jsx': 7.18.6_@babel+core@7.20.7
       '@babel/template': 7.20.7
-      '@babel/traverse': 7.20.8
+      '@babel/traverse': 7.20.13
       '@babel/types': 7.20.7
       '@vue/babel-helper-vue-transform-on': 1.0.2
       camelcase: 6.3.0
@@ -17264,7 +17264,7 @@ packages:
   /@vue/compiler-sfc/3.2.45:
     resolution: {integrity: sha512-1jXDuWah1ggsnSAOGsec8cFjT/K6TMZ0sPL3o3d84Ft2AYZi2jWJgRMjw4iaK0rBfA89L5gw427H4n1RZQBu6Q==}
     dependencies:
-      '@babel/parser': 7.20.7
+      '@babel/parser': 7.20.15
       '@vue/compiler-core': 3.2.45
       '@vue/compiler-dom': 3.2.45
       '@vue/compiler-ssr': 3.2.45
@@ -41941,8 +41941,8 @@ packages:
       webpack: 5.75.0
     dev: true
 
-  /webpack-tsparticles-plugin/1.8.0:
-    resolution: {integrity: sha512-s8+elbhmX+2XTk8CD585F1kimwa2RF3iAjGP0vFy57gFe3ptiKdnESNBknkdoT45IU+lsorDybrnTjWD/81o8Q==}
+  /webpack-tsparticles-plugin/1.8.1:
+    resolution: {integrity: sha512-W5he97xqFdTMkG4qwl4ep4ihqnnSrlQbMHcptuh871yRpOBr5FjQ4X6zQaqzX7kSRW5qJl/rgEWqJPm3mpjfNA==}
     dependencies:
       '@babel/core': 7.20.12
       '@babel/preset-env': 7.20.2_@babel+core@7.20.12
