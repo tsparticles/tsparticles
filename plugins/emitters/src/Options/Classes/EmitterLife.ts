@@ -15,7 +15,7 @@ export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
     }
 
     load(data?: RecursivePartial<IEmitterLife>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 

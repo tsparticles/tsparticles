@@ -15,7 +15,7 @@
     },
     "scripts": {
         "start": "solid-scripts start",
-        "build": "solid-scripts build",
+        "build": "echo solid-scripts build",
         "build:ci": "solid-scripts build",
         "test": "solid-scripts test"
     },

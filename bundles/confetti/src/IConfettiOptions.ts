@@ -21,6 +21,7 @@ export interface IConfettiOptions {
 
     position: ICoordinates;
     scalar: number;
+    shapeOptions: Record<string, SingleOrMultiple<unknown>>;
     shapes: SingleOrMultiple<string>;
     spread: number;
     startVelocity: number;

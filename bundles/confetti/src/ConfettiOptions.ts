@@ -1,5 +1,13 @@
-import type { ICoordinates, IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type {
+    ICoordinates,
+    IOptionLoader,
+    IShapeValues,
+    RecursivePartial,
+    ShapeData,
+    SingleOrMultiple,
+} from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
+import { deepExtend } from "tsparticles-engine";
 
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
     angle: number;
@@ -11,6 +19,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
     gravity: number;
     position: ICoordinates;
     scalar: number;
+    shapeOptions: ShapeData;
     shapes: SingleOrMultiple<string>;
     spread: number;
     startVelocity: number;
@@ -35,6 +44,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
         this.scalar = 1;
         this.zIndex = 100;
         this.disableForReducedMotion = true;
+        this.shapeOptions = {};
     }
 
     /**
@@ -123,6 +133,18 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
                 this.colors = [...data.colors];
             } else {
                 this.colors = data.colors;
+            }
+        }
+
+        const options = data.shapeOptions;
+
+        if (options !== undefined) {
+            for (const shape in options) {
+                const item = options[shape];
+
+                if (item) {
+                    this.shapeOptions[shape] = deepExtend(this.shapeOptions[shape] ?? {}, item) as IShapeValues[];
+                }
             }
         }
 

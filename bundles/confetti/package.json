@@ -112,7 +112,9 @@
     "dependencies": {
         "tsparticles-engine": "^2.8.0",
         "tsparticles-plugin-emitters": "^2.8.0",
-        "tsparticles-preset-confetti": "^2.8.0"
+        "tsparticles-preset-confetti": "^2.8.0",
+        "tsparticles-shape-cards": "^2.8.0",
+        "tsparticles-shape-heart": "^2.8.0"
     },
     "publishConfig": {
         "directory": "dist",
