@@ -79,7 +79,10 @@ importers:
       tsparticles-preset-confetti: ^2.8.0
       tsparticles-shape-cards: ^2.8.0
       tsparticles-shape-heart: ^2.8.0
+      tsparticles-shape-image: ^2.8.0
+      tsparticles-shape-polygon: ^2.8.0
       tsparticles-shape-star: ^2.8.0
+      tsparticles-shape-text: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -91,7 +94,10 @@ importers:
       tsparticles-preset-confetti: link:../../presets/confetti/dist
       tsparticles-shape-cards: link:../../shapes/cards/dist
       tsparticles-shape-heart: link:../../shapes/heart/dist
+      tsparticles-shape-image: link:../../shapes/image/dist
+      tsparticles-shape-polygon: link:../../shapes/polygon/dist
       tsparticles-shape-star: link:../../shapes/star/dist
+      tsparticles-shape-text: link:../../shapes/text/dist
     devDependencies:
       '@babel/core': 7.20.7
       '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
