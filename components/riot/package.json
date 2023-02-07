@@ -96,14 +96,14 @@
         "@babel/preset-typescript": "^7.18.6",
         "@riotjs/cli": "^6.1.0",
         "@riotjs/compiler": "^6.4.2",
-        "@tsparticles/prettier-config": "^1.5.0",
+        "@tsparticles/prettier-config": "^1.6.0",
         "chai": "^4.3.7",
         "esm": "^3.2.25",
         "jsdom": "^20.0.3",
         "jsdom-global": "^3.0.2",
         "mocha": "^10.2.0",
         "nyc": "^15.1.0",
-        "prettier": "^2.8.1",
+        "prettier": "^2.8.3",
         "riot": "^7.1.0"
     }
 }

@@ -92,7 +92,7 @@
         "@angular-devkit/build-angular": "~15.0.4",
         "@angular/cli": "~15.0.4",
         "@angular/compiler-cli": "~15.0.4",
-        "@tsparticles/prettier-config": "^1.5.0",
+        "@tsparticles/prettier-config": "^1.6.0",
         "@types/jasmine": "~4.3.1",
         "@types/node": "^18.11.17",
         "jasmine-core": "~4.5.0",

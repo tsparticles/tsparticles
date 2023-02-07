@@ -108,7 +108,7 @@
         "@babel/plugin-proposal-decorators": "^7.20.7",
         "@rollup/plugin-node-resolve": "^15.0.1",
         "@rollup/plugin-replace": "^5.0.2",
-        "@tsparticles/prettier-config": "^1.5.0",
+        "@tsparticles/prettier-config": "^1.6.0",
         "@vue/cli-plugin-babel": "~5.0.8",
         "@vue/cli-plugin-typescript": "~5.0.8",
         "@vue/cli-service": "~5.0.8",
