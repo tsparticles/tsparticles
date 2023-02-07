@@ -284,7 +284,7 @@ importers:
     specifiers:
       '@tsparticles/demo-configs': ^3.0.0-alpha.1
       '@tsparticles/engine': ^3.0.0-alpha.1
-      electron: ^22.0.3
+      electron: ^23.0.0
       tsparticles: ^3.0.0-alpha.1
       webpack: ^5.75.0
     dependencies:
@@ -292,7 +292,7 @@ importers:
       '@tsparticles/engine': link:../../engine/dist
       tsparticles: link:../../bundles/full/dist
     devDependencies:
-      electron: 22.0.3
+      electron: 23.0.0
       webpack: 5.75.0
 
   demo/vanilla:
@@ -8751,8 +8751,8 @@ packages:
   /electron-to-chromium/1.4.284:
     resolution: {integrity: sha512-M8WEXFuKXMYMVr45fo8mq0wUrrJHheiKZf6BArTKk9ZBYCKJEOU5H8cdWgDT+qCVZf7Na4lVUaZsA+h6uA9+PA==}
 
-  /electron/22.0.3:
-    resolution: {integrity: sha512-eETrJTINTzlXgQrnJSrKiF2Xdt5EHpxZ6Kk+WUjFCE0zUztdVm+hrngUecqhj8TPFlYScTANzPwRwUIjOChl+g==}
+  /electron/23.0.0:
+    resolution: {integrity: sha512-S6hVtTAjauMiiWP9sBVR5RpcUC464cNZ06I2EMUjeZBq+KooS6tLmNsfw0zLpAXDp1qosjlBP3v71NTZ3gd9iA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
