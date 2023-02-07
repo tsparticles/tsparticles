@@ -115,7 +115,7 @@ describe("Options tests", () => {
         expect(options.particles.number.density.height).to.equal(1080);
         expect(options.particles.number.density.enable).to.be.false;
         expect(options.particles.number.limit).to.equal(0);
-        expect(options.particles.number.value).to.equal(100);
+        expect(options.particles.number.value).to.equal(0);
 
         /* particles opacity */
         expect(options.particles.opacity.animation.enable).to.be.false;

@@ -1,16 +1,10 @@
-import type { ISourceOptions, RecursivePartial } from "tsparticles-engine";
-import { ConfettiOptions } from "./ConfettiOptions";
-import type { IConfettiOptions } from "./IConfettiOptions";
+import type { ISourceOptions } from "tsparticles-engine";
 
-export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>): ISourceOptions => {
-    const actualOptions = new ConfettiOptions();
-
-    actualOptions.load(confettiOptions);
-
+export const loadOptions = (): ISourceOptions => {
     return {
         fullScreen: {
             enable: true,
-            zIndex: actualOptions.zIndex,
+            zIndex: 100,
         },
         fpsLimit: 120,
         particles: {
@@ -18,10 +12,10 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 value: 0,
             },
             color: {
-                value: actualOptions.colors,
+                value: ["#ffffff", "#ff0000"],
             },
             shape: {
-                type: actualOptions.shapes,
+                type: ["square", "circle"],
             },
             opacity: {
                 value: { min: 0, max: 1 },
@@ -33,7 +27,7 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
                 },
             },
             size: {
-                value: 5 * actualOptions.scalar,
+                value: 5,
             },
             links: {
                 enable: false,
@@ -41,27 +35,24 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
             life: {
                 duration: {
                     sync: true,
-                    value: actualOptions.ticks / 60,
+                    value: 20 / 6,
                 },
                 count: 1,
             },
             move: {
                 angle: {
-                    value: actualOptions.spread,
+                    value: 45,
                     offset: 0,
                 },
-                drift: {
-                    min: -actualOptions.drift,
-                    max: actualOptions.drift,
-                },
+                drift: 0,
                 enable: true,
                 gravity: {
                     enable: true,
-                    acceleration: actualOptions.gravity * 9.81,
+                    acceleration: 9.81,
                 },
-                speed: actualOptions.startVelocity,
-                decay: 1 - actualOptions.decay,
-                direction: -actualOptions.angle,
+                speed: 45,
+                decay: 0.1,
+                direction: -90,
                 random: true,
                 straight: false,
                 outModes: {
@@ -114,11 +105,14 @@ export const loadOptions = (confettiOptions: RecursivePartial<IConfettiOptions>)
         },
         detectRetina: true,
         motion: {
-            disable: actualOptions.disableForReducedMotion,
+            disable: true,
         },
         emitters: {
-            startCount: actualOptions.count,
-            position: actualOptions.position,
+            startCount: 50,
+            position: {
+                x: 50,
+                y: 50,
+            },
             size: {
                 width: 0,
                 height: 0,
