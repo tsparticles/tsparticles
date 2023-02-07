@@ -7,15 +7,15 @@ import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadMotionPlugin } from "tsparticles-plugin-motion";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadOptions } from "./options";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadRollUpdater } from "tsparticles-updater-roll";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
+import { options } from "./options";
 
-async function loadPreset(engine: Engine, override = false): Promise<void> {
+async function loadPreset(engine: Engine): Promise<void> {
     await loadBaseMover(engine);
     await loadCircleShape(engine);
     await loadSquareShape(engine);
@@ -31,9 +31,9 @@ async function loadPreset(engine: Engine, override = false): Promise<void> {
     await loadTiltUpdater(engine);
     await loadLifeUpdater(engine);
 
-    await engine.addPreset("confetti", loadOptions(), override);
+    await engine.addPreset("confetti", options);
 }
 
 export async function loadConfettiPreset(main: Engine): Promise<void> {
-    await loadPreset(main, true);
+    await loadPreset(main);
 }

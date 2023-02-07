@@ -111,6 +111,7 @@
     },
     "dependencies": {
         "tsparticles-engine": "^2.8.0",
+        "tsparticles-plugin-emitters": "^2.8.0",
         "tsparticles-preset-confetti": "^2.8.0"
     },
     "publishConfig": {

@@ -75,6 +75,7 @@ importers:
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.8.0
+      tsparticles-plugin-emitters: ^2.8.0
       tsparticles-preset-confetti: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
@@ -83,6 +84,7 @@ importers:
       webpack-tsparticles-plugin: ^1.6.0
     dependencies:
       tsparticles-engine: link:../../engine/dist
+      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
       tsparticles-preset-confetti: link:../../presets/confetti/dist
     devDependencies:
       '@babel/core': 7.20.7
