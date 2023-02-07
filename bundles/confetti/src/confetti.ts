@@ -10,7 +10,8 @@ import { tsParticles } from "tsparticles-engine";
 
 export type ConfettiFirstParam = string | ConfettiOptions;
 
-let init = false;
+let initialized = false;
+let initializing = false;
 
 const ids = new Map<string, Container | undefined>();
 
@@ -21,16 +22,30 @@ type ConfettiParams = {
 };
 
 async function initPlugins(): Promise<void> {
-    if (init) {
+    if (initialized) {
         return;
     }
 
-    init = true;
+    if (initializing) {
+        return new Promise<void>((resolve) => {
+            const interval = setInterval(() => {
+                if (initialized) {
+                    clearInterval(interval);
+                    resolve();
+                }
+            }, 100);
+        });
+    }
+
+    initializing = true;
 
     await loadConfettiPreset(tsParticles);
     await loadStarShape(tsParticles);
     await loadHeartShape(tsParticles);
     await loadCardsShape(tsParticles);
+
+    initializing = false;
+    initialized = true;
 }
 
 async function setConfetti(params: ConfettiParams): Promise<Container | undefined> {
