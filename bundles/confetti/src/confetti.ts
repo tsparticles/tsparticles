@@ -5,6 +5,7 @@ import type { IConfettiOptions } from "./IConfettiOptions";
 import { loadCardsShape } from "tsparticles-shape-cards";
 import { loadConfettiPreset } from "tsparticles-preset-confetti";
 import { loadHeartShape } from "tsparticles-shape-heart";
+import { loadStarShape } from "tsparticles-shape-star";
 import { tsParticles } from "tsparticles-engine";
 
 export type ConfettiFirstParam = string | ConfettiOptions;
@@ -27,6 +28,7 @@ async function initPlugins(): Promise<void> {
     init = true;
 
     await loadConfettiPreset(tsParticles);
+    await loadStarShape(tsParticles);
     await loadHeartShape(tsParticles);
     await loadCardsShape(tsParticles);
 }
@@ -88,7 +90,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             gravity: {
                                 acceleration: actualOptions.gravity * 9.81,
                             },
-                            speed: actualOptions.startVelocity,
+                            speed: actualOptions.startVelocity * 3,
                             decay: 1 - actualOptions.decay,
                             direction: -actualOptions.angle,
                         },
@@ -133,7 +135,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 gravity: {
                     acceleration: actualOptions.gravity * 9.81,
                 },
-                speed: actualOptions.startVelocity,
+                speed: actualOptions.startVelocity * 3,
                 decay: 1 - actualOptions.decay,
                 direction: -actualOptions.angle,
             },
@@ -171,6 +173,11 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
     return container;
 }
 
+type ConfettiFunc = (
+    idOrOptions: ConfettiFirstParam,
+    confettiOptions?: RecursivePartial<IConfettiOptions>
+) => Promise<Container | undefined>;
+
 export async function confetti(
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>
@@ -197,9 +204,9 @@ export async function confetti(
 confetti.create = async (
     canvas: HTMLCanvasElement,
     options: RecursivePartial<IConfettiOptions>
-): Promise<Container | undefined> => {
+): Promise<ConfettiFunc> => {
     if (!canvas) {
-        return;
+        return confetti;
     }
 
     await initPlugins();
@@ -208,9 +215,11 @@ confetti.create = async (
 
     canvas.setAttribute("id", id);
 
-    return setConfetti({
+    setConfetti({
         id,
         canvas,
         options,
     });
+
+    return confetti;
 };

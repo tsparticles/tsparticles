@@ -79,6 +79,7 @@ importers:
       tsparticles-preset-confetti: ^2.8.0
       tsparticles-shape-cards: ^2.8.0
       tsparticles-shape-heart: ^2.8.0
+      tsparticles-shape-star: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -90,6 +91,7 @@ importers:
       tsparticles-preset-confetti: link:../../presets/confetti/dist
       tsparticles-shape-cards: link:../../shapes/cards/dist
       tsparticles-shape-heart: link:../../shapes/heart/dist
+      tsparticles-shape-star: link:../../shapes/star/dist
     devDependencies:
       '@babel/core': 7.20.7
       '@tsparticles/build': 1.6.0_webpack-cli@5.0.1
@@ -40282,7 +40284,7 @@ packages:
       mime-types: 2.1.35
       range-parser: 1.2.1
       schema-utils: 4.0.0
-      webpack: 5.75.0_webpack-cli@5.0.1
+      webpack: 5.75.0
 
   /webpack-dev-server/3.11.3_webpack@4.46.0:
     resolution: {integrity: sha512-3x31rjbEQWKMNzacUZRE6wXvUFuGpH7vr0lIEbYpMAG9BOxi0928QU1BBswOAP3kg3H1O4hiS+sq4YyAn6ANnA==}
@@ -40777,7 +40779,6 @@ packages:
       - '@swc/core'
       - esbuild
       - uglify-js
-    dev: true
 
   /webpack/5.75.0_webpack-cli@4.10.0:
     resolution: {integrity: sha512-piaIaoVJlqMsPtX/+3KTTO6jfvrSYgauFVdt8cr9LTHKmcq/AMd4mhzsiP7ZF/PGRNPGA8336jldh9l2Kt2ogQ==}

@@ -39,7 +39,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
             x: 50,
             y: 50,
         };
-        this.colors = ["#ffffff", "#ff0000"];
+        this.colors = ["#26ccff", "#a25afd", "#ff5e7e", "#88ff5a", "#fcff42", "#ffa62d", "#ff36ff"];
         this.shapes = ["square", "circle"];
         this.scalar = 1;
         this.zIndex = 100;
@@ -118,7 +118,14 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
             this.ticks = data.ticks;
         }
 
-        const position = data.position ?? this.position;
+        if (data.origin && !data.position) {
+            data.position = {
+                x: data.origin.x !== undefined ? data.origin.x * 100 : undefined,
+                y: data.origin.y !== undefined ? data.origin.y * 100 : undefined,
+            };
+        }
+
+        const position = data.position;
 
         if (position?.x !== undefined) {
             this.position.x = position.x;

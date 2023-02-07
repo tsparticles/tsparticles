@@ -23,16 +23,10 @@ html(lang="en")
         link(href="/stylesheets/main.css" rel="stylesheet" type="text/css")
 
     body(style="background-color: #000;")
-        canvas#confetti(style="width: 500px; height: 500px")
         script(src="/jquery/jquery.slim.min.js")
         script(src="/bootstrap/js/bootstrap.bundle.min.js")
         script(src="/fontawesome/js/all.js")
         script(src="/jsoneditor/jsoneditor.js")
         script(src="/lodash/lodash.min.js")
         script(src="/tsparticles-confetti/tsparticles.confetti.bundle.js")
-        script.
-            const canvas = document.querySelector("#confetti");
-
-            setInterval(() => {
-                confetti.create(canvas);
-            }, 200);
+        script(src="/javascripts/confetti.js")
