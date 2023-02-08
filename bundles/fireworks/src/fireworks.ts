@@ -1,4 +1,6 @@
-import type { Container } from "tsparticles-engine";
+import type { Container, RecursivePartial } from "tsparticles-engine";
+import { FireworkOptions } from "./FireworkOptions";
+import type { IFireworkOptions } from "./IFireworkOptions";
 import { loadFireworksPreset } from "tsparticles-preset-fireworks";
 import { tsParticles } from "tsparticles-engine";
 
@@ -31,7 +33,7 @@ async function initPlugins(): Promise<void> {
     }
 
     if (initializing) {
-        return new Promise<void>((resolve) => {
+        return new Promise<void>(resolve => {
             const interval = setInterval(() => {
                 if (initialized) {
                     clearInterval(interval);
@@ -49,10 +51,25 @@ async function initPlugins(): Promise<void> {
     initialized = true;
 }
 
-export async function fireworks(): Promise<FireworksInstance | undefined> {
+export async function fireworks(
+    idOrOptions: string | RecursivePartial<IFireworkOptions>,
+    sourceOptions?: RecursivePartial<IFireworkOptions>
+): Promise<FireworksInstance | undefined> {
     await initPlugins();
 
-    const container = await tsParticles.load({ preset: "fireworks" });
+    let id: string;
+
+    const options = new FireworkOptions();
+
+    if (typeof idOrOptions === "string") {
+        id = idOrOptions;
+        options.load(sourceOptions);
+    } else {
+        id = "fireworks";
+        options.load(idOrOptions);
+    }
+
+    const container = await tsParticles.load(id, { preset: "fireworks" });
 
     if (!container) {
         return;
