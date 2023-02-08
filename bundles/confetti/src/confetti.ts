@@ -1,11 +1,24 @@
-import type { Container, RecursivePartial } from "tsparticles-engine";
+import type { Container, ISourceOptions, RecursivePartial } from "tsparticles-engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
+import { loadAngleUpdater } from "tsparticles-updater-angle";
+import { loadBaseMover } from "tsparticles-move-base";
 import { loadCardsShape } from "tsparticles-shape-cards";
-import { loadConfettiPreset } from "tsparticles-preset-confetti";
+import { loadCircleShape } from "tsparticles-shape-circle";
+import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadHeartShape } from "tsparticles-shape-heart";
+import { loadLifeUpdater } from "tsparticles-updater-life";
+import { loadMotionPlugin } from "tsparticles-plugin-motion";
+import { loadOpacityUpdater } from "tsparticles-updater-opacity";
+import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadRollUpdater } from "tsparticles-updater-roll";
+import { loadSizeUpdater } from "tsparticles-updater-size";
+import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
+import { loadTiltUpdater } from "tsparticles-updater-tilt";
+import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 import { tsParticles } from "tsparticles-engine";
 
 export type ConfettiFirstParam = string | ConfettiOptions;
@@ -39,7 +52,20 @@ async function initPlugins(): Promise<void> {
 
     initializing = true;
 
-    await loadConfettiPreset(tsParticles);
+    await loadBaseMover(tsParticles);
+    await loadCircleShape(tsParticles);
+    await loadSquareShape(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadOutModesUpdater(tsParticles);
+    await loadEmittersPlugin(tsParticles);
+    await loadMotionPlugin(tsParticles);
+    await loadWobbleUpdater(tsParticles);
+    await loadRollUpdater(tsParticles);
+    await loadAngleUpdater(tsParticles);
+    await loadTiltUpdater(tsParticles);
+    await loadLifeUpdater(tsParticles);
     await loadStarShape(tsParticles);
     await loadHeartShape(tsParticles);
     await loadCardsShape(tsParticles);
@@ -117,26 +143,43 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
         }
     }
 
-    const particlesOptions = {
-        preset: "confetti",
+    const particlesOptions: ISourceOptions = {
         fullScreen: {
             enable: !params.canvas,
             zIndex: actualOptions.zIndex,
         },
+        fpsLimit: 120,
         particles: {
+            number: {
+                value: 0,
+            },
             color: {
                 value: actualOptions.colors,
             },
             shape: {
                 type: actualOptions.shapes,
             },
+            opacity: {
+                value: { min: 0, max: 1 },
+                animation: {
+                    enable: true,
+                    speed: 0.5,
+                    startValue: "max",
+                    destroy: "min",
+                },
+            },
             size: {
                 value: 5 * actualOptions.scalar,
             },
+            links: {
+                enable: false,
+            },
             life: {
                 duration: {
+                    sync: true,
                     value: actualOptions.ticks / 60,
                 },
+                count: 1,
             },
             move: {
                 angle: {
@@ -147,14 +190,65 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                     min: -actualOptions.drift,
                     max: actualOptions.drift,
                 },
+                enable: true,
                 gravity: {
+                    enable: true,
                     acceleration: actualOptions.gravity * 9.81,
                 },
                 speed: actualOptions.startVelocity * 3,
                 decay: 1 - actualOptions.decay,
                 direction: -actualOptions.angle,
+                random: true,
+                straight: false,
+                outModes: {
+                    default: "none",
+                    bottom: "destroy",
+                },
+            },
+            rotate: {
+                value: {
+                    min: 0,
+                    max: 360,
+                },
+                direction: "random",
+                animation: {
+                    enable: true,
+                    speed: 60,
+                },
+            },
+            tilt: {
+                direction: "random",
+                enable: true,
+                value: {
+                    min: 0,
+                    max: 360,
+                },
+                animation: {
+                    enable: true,
+                    speed: 60,
+                },
+            },
+            roll: {
+                darken: {
+                    enable: true,
+                    value: 25,
+                },
+                enable: true,
+                speed: {
+                    min: 15,
+                    max: 25,
+                },
+            },
+            wobble: {
+                distance: 30,
+                enable: true,
+                speed: {
+                    min: -15,
+                    max: 15,
+                },
             },
         },
+        detectRetina: true,
         motion: {
             disable: actualOptions.disableForReducedMotion,
         },

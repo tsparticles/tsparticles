@@ -1,7 +1,7 @@
 (async () => {
-    const f = await fireworks();
+    /*const f =*/ await fireworks();
 
-    setTimeout(() => {
+    /*setTimeout(() => {
         f.stop();
-    }, 5000);
+    }, 5000);*/
 })();

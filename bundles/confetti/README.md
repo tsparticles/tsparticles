@@ -9,14 +9,26 @@
 **Included Packages**
 
 - [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
-- [tsparticles-preset-confetti (and all its dependencies)](https://github.com/matteobruni/tsparticles/tree/main/presets/confetti)
+- [tsparticles-move-base](https://github.com/matteobruni/tsparticles/tree/main/move/base)
 - [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
+- [tsparticles-plugin-motion](https://github.com/matteobruni/tsparticles/tree/main/plugins/motion)
 - [tsparticles-shape-cards](https://github.com/matteobruni/tsparticles/tree/main/shapes/cards)
+- [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
 - [tsparticles-shape-heart](https://github.com/matteobruni/tsparticles/tree/main/shapes/heart)
 - [tsparticles-shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
 - [tsparticles-shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
+- [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
 - [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
 - [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
+- [tsparticles-updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
+- [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
+- [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
+- [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
+- [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
+- [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
+- [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
+- [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
+- [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
 
 ## How to use it
 

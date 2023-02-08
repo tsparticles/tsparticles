@@ -138,13 +138,28 @@ export class DestroyUpdater implements IParticleUpdater {
 
         const splitOptions = destroyOptions.split,
             options = loadParticlesOptions(this.engine, this.container, parent.options),
-            factor = getValue(splitOptions.factor);
+            factor = getValue(splitOptions.factor),
+            parentColor = parent.getFillColor();
 
-        options.color.load({
-            value: {
-                hsl: parent.getFillColor(),
-            },
-        });
+        if (splitOptions.color) {
+            options.color.load(splitOptions.color);
+        } else if (splitOptions.colorOffset && parentColor) {
+            options.color.load({
+                value: {
+                    hsl: {
+                        h: parentColor.h + getRangeValue(splitOptions.colorOffset.h ?? 0),
+                        s: parentColor.s + getRangeValue(splitOptions.colorOffset.s ?? 0),
+                        l: parentColor.l + getRangeValue(splitOptions.colorOffset.l ?? 0),
+                    },
+                },
+            });
+        } else {
+            options.color.load({
+                value: {
+                    hsl: parent.getFillColor(),
+                },
+            });
+        }
 
         options.move.load({
             center: {
