@@ -141,15 +141,7 @@ importers:
       rimraf: 4.1.1
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.8.0
-      tsparticles-interaction-external-trail: ^2.8.0
-      tsparticles-plugin-absorbers: ^2.8.0
-      tsparticles-plugin-emitters: ^2.8.0
-      tsparticles-slim: ^2.8.0
-      tsparticles-updater-destroy: ^2.8.0
-      tsparticles-updater-roll: ^2.8.0
-      tsparticles-updater-tilt: ^2.8.0
-      tsparticles-updater-twinkle: ^2.8.0
-      tsparticles-updater-wobble: ^2.8.0
+      tsparticles-preset-fireworks: ^2.8.0
       typescript: ^4.9.4
       webpack: ^5.75.0
       webpack-bundle-analyzer: ^4.7.0
@@ -157,15 +149,7 @@ importers:
       webpack-tsparticles-plugin: ^1.8.1
     dependencies:
       tsparticles-engine: link:../../engine/dist
-      tsparticles-interaction-external-trail: link:../../interactions/external/trail/dist
-      tsparticles-plugin-absorbers: link:../../plugins/absorbers/dist
-      tsparticles-plugin-emitters: link:../../plugins/emitters/dist
-      tsparticles-slim: link:../slim/dist
-      tsparticles-updater-destroy: link:../../updaters/destroy/dist
-      tsparticles-updater-roll: link:../../updaters/roll/dist
-      tsparticles-updater-tilt: link:../../updaters/tilt/dist
-      tsparticles-updater-twinkle: link:../../updaters/twinkle/dist
-      tsparticles-updater-wobble: link:../../updaters/wobble/dist
+      tsparticles-preset-fireworks: link:../../presets/fireworks/dist
     devDependencies:
       '@babel/core': 7.20.7
       '@tsparticles/build': 1.8.1_webpack-cli@5.0.1
