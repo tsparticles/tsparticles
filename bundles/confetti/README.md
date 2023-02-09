@@ -53,8 +53,6 @@ You can still add additional packages, loading them like all the other packages.
 This installation requires more work since all dependencies must be included in the page. Some lines above are all
 specified in the **Included Packages** section.
 
-A note about `tsparticles-preset-confetti` can be made: it's not mandatory to include all of its dependencies, the `preset-confetti` bundle file is enough, and if this is done the `tsparticles-engine` is not needed, since it's already bundled in the `preset-confetti` bundle.
-
 ### Usage
 
 Once the scripts are loaded you can set up `tsParticles` like the following examples:
