@@ -70,7 +70,7 @@ fireworks()
 
 ```javascript
 fireworks({
-  colors: ["#ffffff", "#ff0000"]
+  colors: ["#ffffff", "#ff0000"],
 });
 ```
 
@@ -79,4 +79,3 @@ fireworks({
 The `fireworks` has only a single `options` object parameter, with the following properties:
 
 - `colors` String or _Array&lt;String&gt;_: An array of color strings, in the HEX format... you know, like `#bada55`.
-
