@@ -51,10 +51,10 @@ const logger = winston.createLogger({
     ]
 });
 
-app.set('views', './views');
-app.set('view engine', 'pug');
-app.use(stylus.middleware('./public'));
-app.use(express.static('./public'));
+app.set("views", "./views");
+app.set("view engine", "pug");
+app.use(stylus.middleware("./public"));
+app.use(express.static("./public"));
 app.use("/docs", express.static("../../engine/docs"));
 app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-free"));
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
@@ -65,6 +65,8 @@ app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles-engine", express.static("./node_modules/@tsparticles/engine"));
 app.use("/tsparticles-pjs", express.static("./node_modules/@tsparticles/pjs"));
 app.use("/tsparticles-slim", express.static("./node_modules/@tsparticles/slim"));
+app.use("/tsparticles-confetti", express.static("./node_modules/tsparticles-confetti"));
+app.use("/tsparticles-fireworks", express.static("./node_modules/tsparticles-fireworks"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/demo-configs", express.static("./node_modules/@tsparticles/demo-configs"));
 app.use("/interaction-external-attract", express.static("./node_modules/@tsparticles/interaction-external-attract"));
@@ -136,28 +138,36 @@ app.use("/shape-rounded-rect", express.static("./node_modules/@tsparticles/shape
 app.use("/shape-spiral", express.static("./node_modules/@tsparticles/shape-spiral"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
-app.get('/', function (req, res) {
-    res.render('index');
+app.get("/", function (req, res) {
+    res.render("index");
 });
 
-app.get('/domEmitters', function (req, res) {
-    res.render('domEmitters');
+app.get("/confetti", function (req, res) {
+    res.render("confetti");
 });
 
-app.get('/slim', function (req, res) {
-    res.render('slim');
+app.get("/fireworks", function (req, res) {
+    res.render("fireworks");
 });
 
-app.get('/themes', function (req, res) {
-    res.render('themes');
+app.get("/domEmitters", function (req, res) {
+    res.render("domEmitters");
 });
 
-app.get('/click', function (req, res) {
-    res.render('click');
+app.get("/slim", function (req, res) {
+    res.render("slim");
 });
 
-app.get('/noid', function (req, res) {
-    res.render('noid');
+app.get("/themes", function (req, res) {
+    res.render("themes");
+});
+
+app.get("/click", function (req, res) {
+    res.render("click");
+});
+
+app.get("/noid", function (req, res) {
+    res.render("noid");
 });
 
 const port = 3000;

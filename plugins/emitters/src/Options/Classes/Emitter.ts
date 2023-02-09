@@ -43,7 +43,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     }
 
     load(data?: RecursivePartial<IEmitter>): void {
-        if (data === undefined) {
+        if (!data) {
             return;
         }
 
@@ -52,7 +52,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         if (data.size !== undefined) {
-            if (this.size === undefined) {
+            if (!this.size) {
                 this.size = new EmitterSize();
             }
 

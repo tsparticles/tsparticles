@@ -100,7 +100,7 @@
     "prettier": "@tsparticles/prettier-config",
     "devDependencies": {
         "@babel/core": "^7.20.12",
-        "@tsparticles/build": "^1.7.0",
+        "@tsparticles/build": "^1.8.2",
         "@tsparticles/eslint-config": "^1.6.0",
         "@tsparticles/prettier-config": "^1.6.0",
         "@tsparticles/tsconfig": "^1.7.0",

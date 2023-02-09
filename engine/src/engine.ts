@@ -50,6 +50,8 @@ async function getDataFromUrl(data: {
     return data.fallback;
 }
 
+declare const __VERSION__: string;
+
 /**
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the Loader class for initializing [[Container]] instances,
@@ -89,6 +91,10 @@ export class Engine {
         }
 
         return res;
+    }
+
+    get version(): string {
+        return __VERSION__;
     }
 
     addConfig(nameOrConfig: string | ISourceOptions, config?: ISourceOptions): void {
@@ -292,7 +298,7 @@ export class Engine {
 
         const currentOptions = itemFromSingleOrMultiple(options, index),
             dom = this.dom(),
-            oldIndex = dom.findIndex((v) => v.id === id);
+            oldIndex = dom.findIndex(v => v.id === id);
 
         if (oldIndex >= 0) {
             const old = this.domItem(oldIndex);

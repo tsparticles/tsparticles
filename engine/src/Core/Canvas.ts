@@ -119,9 +119,7 @@ export class Canvas {
             this._resetOriginalStyle();
         }
 
-        this.draw((ctx) => {
-            clear(ctx, this.size);
-        });
+        this.stop();
 
         this._preDrawUpdaters = [];
         this._postDrawUpdaters = [];
@@ -282,6 +280,12 @@ export class Canvas {
         this._mutationObserver?.observe(this.element, { attributes: true });
         this.container.retina.init();
         this._initBackground();
+    }
+
+    stop(): void {
+        this.draw((ctx) => {
+            clear(ctx, this.size);
+        });
     }
 
     /**
