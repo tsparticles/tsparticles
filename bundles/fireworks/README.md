@@ -78,4 +78,7 @@ fireworks({
 
 The `fireworks` has only a single `options` object parameter, with the following properties:
 
+- `brightness` Number or { min: number; max: number; }: The brightness offset applied to the particles color, from -100 to 100.
 - `colors` String or _Array&lt;String&gt;_: An array of color strings, in the HEX format... you know, like `#bada55`.
+- `saturation` Number or { min: number; max: number; }: The saturation offset applied to the particles color, from -100 to 100.
+- `splitCount` Number or { min: number; max: number; }: The number of particles to split the emitter in.
