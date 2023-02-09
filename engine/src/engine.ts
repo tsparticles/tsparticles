@@ -298,7 +298,7 @@ export class Engine {
 
         const currentOptions = itemFromSingleOrMultiple(options, index),
             dom = this.dom(),
-            oldIndex = dom.findIndex(v => v.id === id);
+            oldIndex = dom.findIndex((v) => v.id === id);
 
         if (oldIndex >= 0) {
             const old = this.domItem(oldIndex);
