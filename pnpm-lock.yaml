@@ -66,7 +66,7 @@ importers:
       eslint: ^8.33.0
       eslint-config-prettier: ^8.6.0
       prettier: ^2.8.4
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.8.0
       tsparticles-move-base: ^2.8.0
@@ -131,7 +131,7 @@ importers:
       eslint: 8.33.0
       eslint-config-prettier: 8.6.0_eslint@8.33.0
       prettier: 2.8.4
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.9.5
       webpack: 5.75.0_webpack-cli@5.0.1
@@ -156,7 +156,7 @@ importers:
       eslint: ^8.33.0
       eslint-config-prettier: ^8.6.0
       prettier: ^2.8.4
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       terser-webpack-plugin: ^5.3.6
       tsparticles-engine: ^2.8.0
       tsparticles-move-base: ^2.8.0
@@ -207,7 +207,7 @@ importers:
       eslint: 8.33.0
       eslint-config-prettier: 8.6.0_eslint@8.33.0
       prettier: 2.8.4
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       terser-webpack-plugin: 5.3.6_webpack@5.75.0
       typescript: 4.9.5
       webpack: 5.75.0_webpack-cli@5.0.1
@@ -6969,7 +6969,7 @@ packages:
       fs-extra: 11.1.0
       klaw: 4.1.0
       prettier: 2.8.4
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       typescript: 4.9.5
       webpack: 5.75.0_webpack-cli@5.0.1
       webpack-tsparticles-plugin: 1.8.1
@@ -12737,12 +12737,6 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
-
-  /rimraf/4.1.1:
-    resolution: {integrity: sha512-Z4Y81w8atcvaJuJuBB88VpADRH66okZAuEm+Jtaufa+s7rZmIz+Hik2G53kGaNytE7lsfXyWktTmfVz0H9xuDg==}
-    engines: {node: '>=14'}
-    hasBin: true
-    dev: true
 
   /rimraf/4.1.2:
     resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
