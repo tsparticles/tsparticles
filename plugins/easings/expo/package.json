@@ -113,7 +113,7 @@
         "eslint": "^8.33.0",
         "eslint-config-prettier": "^8.6.0",
         "prettier": "^2.8.4",
-        "rimraf": "4.1.2",
+        "rimraf": "^4.1.2",
         "terser-webpack-plugin": "^5.3.6",
         "typescript": "^4.9.5",
         "webpack": "^5.75.0",
