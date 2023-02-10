@@ -1,5 +1,15 @@
 import type { Container, CustomEventArgs, ISourceOptions, Particle, RecursivePartial } from "tsparticles-engine";
-import { DestroyType, EventType, MoveDirection, OutMode, StartValueType, tsParticles } from "tsparticles-engine";
+import {
+    DestroyType,
+    EventType,
+    MoveDirection,
+    OutMode,
+    StartValueType,
+    getRangeMax,
+    getRangeMin,
+    setRangeValue,
+    tsParticles,
+} from "tsparticles-engine";
 import { FireworkOptions } from "./FireworkOptions";
 import type { IFireworkOptions } from "./IFireworkOptions";
 import { loadAngleUpdater } from "tsparticles-updater-angle";
@@ -113,7 +123,10 @@ export async function fireworks(
                 delay: 0.1,
             },
             rate: {
-                delay: 0.05,
+                delay:
+                    typeof options.rate === "number"
+                        ? 1 / options.rate
+                        : { min: 1 / getRangeMin(options.rate), max: 1 / getRangeMax(options.rate) },
                 quantity: 1,
             },
             size: {
@@ -135,7 +148,7 @@ export async function fireworks(
             destroy: {
                 mode: "split",
                 bounds: {
-                    top: { min: 10, max: 30 },
+                    top: setRangeValue(options.minHeight),
                 },
                 split: {
                     sizeOffset: false,
@@ -199,9 +212,9 @@ export async function fireworks(
                             gravity: {
                                 enable: true,
                                 inverse: false,
-                                acceleration: 5,
+                                acceleration: setRangeValue(options.gravity),
                             },
-                            speed: { min: 5, max: 15 },
+                            speed: setRangeValue(options.speed),
                             direction: "none",
                             outModes: OutMode.destroy,
                         },
@@ -260,7 +273,7 @@ export async function fireworks(
             },
         },
         sounds: {
-            enable: true,
+            enable: options.sounds,
             events: [
                 {
                     event: EventType.particleRemoved,
