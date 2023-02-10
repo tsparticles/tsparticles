@@ -1,7 +1,7 @@
 {
     "name": "vue2-particles-demo",
     "private": true,
-    "version": "2.8.0",
+    "version": "2.9.0",
     "description": "VueJS Demo",
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "homepage": "https://particles.js.org",
@@ -21,13 +21,13 @@
         "url": "https://github.com/matteobruni/tsparticles/issues"
     },
     "dependencies": {
-        "tsparticles": "^2.8.0",
-        "tsparticles-demo-configs": "^2.8.0",
-        "tsparticles-engine": "^2.8.0",
+        "tsparticles": "^2.9.0",
+        "tsparticles-demo-configs": "^2.9.0",
+        "tsparticles-engine": "^2.9.0",
         "vue": "^2.7.14",
         "vue-class-component": "^7.2.6",
         "vue-property-decorator": "^9.1.2",
-        "vue2-particles": "^2.8.0"
+        "vue2-particles": "^2.9.0"
     },
     "devDependencies": {
         "@babel/core": "^7.20.7",
@@ -36,16 +36,16 @@
         "@rollup/plugin-json": "^6.0.0",
         "@rollup/plugin-node-resolve": "^15.0.1",
         "@rollup/plugin-replace": "^5.0.2",
-        "@typescript-eslint/eslint-plugin": "^5.47.0",
-        "@typescript-eslint/parser": "^5.47.0",
+        "@typescript-eslint/eslint-plugin": "^5.48.2",
+        "@typescript-eslint/parser": "^5.48.2",
         "@vue/cli-plugin-babel": "^5.0.8",
         "@vue/cli-plugin-typescript": "^5.0.8",
         "@vue/cli-service": "^5.0.8",
         "babel-loader": "^9.1.0",
-        "eslint": "^8.30.0",
-        "eslint-config-prettier": "^8.5.0",
+        "eslint": "^8.32.0",
+        "eslint-config-prettier": "^8.6.0",
         "postcss": "^8.4.20",
-        "prettier": "^2.8.1",
+        "prettier": "^2.8.3",
         "rollup": "^3.8.1",
         "rollup-plugin-terser": "^7.0.2",
         "rollup-plugin-typescript": "^1.0.1",

@@ -1,8 +1,8 @@
-import { confetti, loadConfettiPreset } from "./index";
-import type { ConfettiOptions } from "./index";
+import { loadConfettiPreset } from "./index";
 import { tsParticles } from "tsparticles-engine";
 
-loadConfettiPreset(tsParticles);
+(async (): Promise<void> => {
+    await loadConfettiPreset(tsParticles);
+})();
 
-export type { ConfettiOptions };
-export { confetti, loadConfettiPreset, tsParticles };
+export { loadConfettiPreset, tsParticles };

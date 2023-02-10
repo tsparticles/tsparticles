@@ -1,6 +1,6 @@
-const express = require('express');
-const helmet = require('helmet');
-const stylus = require('stylus');
+const express = require("express");
+const helmet = require("helmet");
+const stylus = require("stylus");
 const livereload = require("livereload");
 const connectLiveReload = require("connect-livereload");
 //const rateLimit = require("express-rate-limit");
@@ -27,10 +27,10 @@ app.use(limiter);*/
 
 const port = 3000;
 
-app.set('views', './views');
-app.set('view engine', 'pug');
-app.use(stylus.middleware('./public'));
-app.use(express.static('./public'));
+app.set("views", "./views");
+app.set("view engine", "pug");
+app.use(stylus.middleware("./public"));
+app.use(express.static("./public"));
 app.use("/docs", express.static("../../engine/docs"));
 app.use("/fontawesome", express.static("./node_modules/@fortawesome/fontawesome-free"));
 app.use("/jsoneditor", express.static("./node_modules/jsoneditor/dist"));
@@ -41,6 +41,8 @@ app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
 app.use("/tsparticles-engine", express.static("./node_modules/tsparticles-engine"));
 app.use("/tsparticles-particles.js", express.static("./node_modules/tsparticles-particles.js"));
 app.use("/tsparticles-slim", express.static("./node_modules/tsparticles-slim"));
+app.use("/tsparticles-confetti", express.static("./node_modules/tsparticles-confetti"));
+app.use("/tsparticles-fireworks", express.static("./node_modules/tsparticles-fireworks"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/demo-configs", express.static("./node_modules/tsparticles-demo-configs"));
 app.use("/interaction-external-attract", express.static("./node_modules/tsparticles-interaction-external-attract"));
@@ -54,7 +56,10 @@ app.use("/interaction-external-remove", express.static("./node_modules/tsparticl
 app.use("/interaction-external-repulse", express.static("./node_modules/tsparticles-interaction-external-repulse"));
 app.use("/interaction-external-slow", express.static("./node_modules/tsparticles-interaction-external-slow"));
 app.use("/interaction-particles-attract", express.static("./node_modules/tsparticles-interaction-particles-attract"));
-app.use("/interaction-particles-collisions", express.static("./node_modules/tsparticles-interaction-particles-collisions"));
+app.use(
+    "/interaction-particles-collisions",
+    express.static("./node_modules/tsparticles-interaction-particles-collisions")
+);
 app.use("/interaction-particles-links", express.static("./node_modules/tsparticles-interaction-particles-links"));
 app.use("/shape-circle", express.static("./node_modules/tsparticles-shape-circle"));
 app.use("/shape-image", express.static("./node_modules/tsparticles-shape-image"));
@@ -71,14 +76,14 @@ app.use("/updater-color", express.static("./node_modules/tsparticles-updater-col
 app.use("/updater-destroy", express.static("./node_modules/tsparticles-updater-destroy"));
 app.use("/updater-stroke-color", express.static("./node_modules/tsparticles-updater-stroke-color"));
 app.use("/updater-out-modes", express.static("./node_modules/tsparticles-updater-out-modes"));
-app.use("/updater-tilt", express.static("./node_modules/tsparticles-updater-tilt"))
-app.use("/updater-twinkle", express.static("./node_modules/tsparticles-updater-twinkle"))
-app.use("/updater-roll", express.static("./node_modules/tsparticles-updater-roll"))
-app.use("/updater-wobble", express.static("./node_modules/tsparticles-updater-wobble"))
-app.use("/interaction-external-trail", express.static("./node_modules/tsparticles-interaction-external-trail"))
-app.use("/plugin-absorbers", express.static("./node_modules/tsparticles-plugin-absorbers"))
-app.use("/plugin-emitters", express.static("./node_modules/tsparticles-plugin-emitters"))
-app.use("/plugin-polygon-mask", express.static("./node_modules/tsparticles-plugin-polygon-mask"))
+app.use("/updater-tilt", express.static("./node_modules/tsparticles-updater-tilt"));
+app.use("/updater-twinkle", express.static("./node_modules/tsparticles-updater-twinkle"));
+app.use("/updater-roll", express.static("./node_modules/tsparticles-updater-roll"));
+app.use("/updater-wobble", express.static("./node_modules/tsparticles-updater-wobble"));
+app.use("/interaction-external-trail", express.static("./node_modules/tsparticles-interaction-external-trail"));
+app.use("/plugin-absorbers", express.static("./node_modules/tsparticles-plugin-absorbers"));
+app.use("/plugin-emitters", express.static("./node_modules/tsparticles-plugin-emitters"));
+app.use("/plugin-polygon-mask", express.static("./node_modules/tsparticles-plugin-polygon-mask"));
 app.use("/interaction-light", express.static("./node_modules/tsparticles-interaction-light"));
 app.use("/interaction-particles-repulse", express.static("./node_modules/tsparticles-interaction-particles-repulse"));
 app.use("/updater-gradient", express.static("./node_modules/tsparticles-updater-gradient"));
@@ -123,28 +128,36 @@ app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-
 app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
-app.get('/', function (req, res) {
-    res.render('index');
+app.get("/", function (req, res) {
+    res.render("index");
 });
 
-app.get('/domEmitters', function (req, res) {
-    res.render('domEmitters');
+app.get("/confetti", function (req, res) {
+    res.render("confetti");
 });
 
-app.get('/slim', function (req, res) {
-    res.render('slim');
+app.get("/fireworks", function (req, res) {
+    res.render("fireworks");
 });
 
-app.get('/themes', function (req, res) {
-    res.render('themes');
+app.get("/domEmitters", function (req, res) {
+    res.render("domEmitters");
 });
 
-app.get('/click', function (req, res) {
-    res.render('click');
+app.get("/slim", function (req, res) {
+    res.render("slim");
 });
 
-app.get('/noid', function (req, res) {
-    res.render('noid');
+app.get("/themes", function (req, res) {
+    res.render("themes");
+});
+
+app.get("/click", function (req, res) {
+    res.render("click");
+});
+
+app.get("/noid", function (req, res) {
+    res.render("noid");
 });
 
 app.get("/presets", function (req, res) {

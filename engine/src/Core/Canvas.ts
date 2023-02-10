@@ -125,9 +125,7 @@ export class Canvas {
             this._resetOriginalStyle();
         }
 
-        this.draw((ctx) => {
-            clear(ctx, this.size);
-        });
+        this.stop();
 
         this._preDrawUpdaters = [];
         this._postDrawUpdaters = [];
@@ -400,6 +398,12 @@ export class Canvas {
                 height: size.height / oldSize.height,
             };
         }
+    }
+
+    stop(): void {
+        this.draw((ctx) => {
+            clear(ctx, this.size);
+        });
     }
 
     /**

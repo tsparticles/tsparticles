@@ -760,7 +760,7 @@ export class Container {
         this._eventListeners.removeListeners();
         this.pause();
         this.particles.clear();
-        this.canvas.clear();
+        this.canvas.stop();
 
         if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
             this._intersectionObserver.unobserve(this.interactivity.element);

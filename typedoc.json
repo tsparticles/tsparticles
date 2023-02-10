@@ -70,7 +70,7 @@
     "presets/triangles"
   ],
   "entryPointStrategy": "packages",
-  "name": "tsParticles",
+  "name": "tsParticles Confetti",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

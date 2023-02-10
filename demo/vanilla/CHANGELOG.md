@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.8.0...tsparticles-demo@2.9.0) (2023-02-10)
+
+### Features
+
+-   added color and colorOffset options to split options ([74902b3](https://github.com/matteobruni/tsparticles/commit/74902b33cdd37839b48dbd694c2e070735f9956b))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.7.1...tsparticles-demo@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-demo
