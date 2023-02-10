@@ -30,6 +30,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved more code out from engine to specific plugins ([e28e28d](https://github.com/matteobruni/tsparticles/commit/e28e28d7b1a2d3d49334024c012bd49c3b0a40a6))
 -   moved out click interactions to external packages, breaking ([466973d](https://github.com/matteobruni/tsparticles/commit/466973ddbcc382c27c03f7b3518dea99c5e1949c))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-attract@2.8.0...tsparticles-interaction-external-attract@2.9.0) (2023-02-10)
+
+### Features
+
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
 
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-attract@2.7.1...tsparticles-interaction-external-attract@2.8.0) (2023-01-18)
 

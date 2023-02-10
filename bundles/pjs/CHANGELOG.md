@@ -27,6 +27,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 -   restored particles.js compatibility ([88b9dfe](https://github.com/matteobruni/tsparticles/commit/88b9dfebef79d1f826215449ddc9197692f15a2a))
 
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.8.0...tsparticles-particles.js@2.9.0) (2023-02-10)
+
+### Features
+
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-particles.js@2.7.1...tsparticles-particles.js@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-particles.js

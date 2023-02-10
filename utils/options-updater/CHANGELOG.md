@@ -17,6 +17,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 ### Features
 
 -   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/@tsparticles/options-updater@2.8.0...@tsparticles/options-updater@2.9.0) (2023-02-10)
+
+### Features
+
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
 
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/@tsparticles/options-updater@2.7.1...@tsparticles/options-updater@2.8.0) (2023-01-18)
 

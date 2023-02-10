@@ -25,6 +25,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   changed collision absorb code, added absorb.speed option to collisions section ([346b5be](https://github.com/matteobruni/tsparticles/commit/346b5be40b5e7384f54378f3f4fcf67bd0af3488))
 -   moved all interactions in external packages, breaking ([76c44df](https://github.com/matteobruni/tsparticles/commit/76c44dfa64cae994ddb1a004e7ff6cdbe3a4b5a9))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-collisions@2.8.0...tsparticles-interaction-particles-collisions@2.9.0) (2023-02-10)
+
+### Features
+
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
 
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-particles-collisions@2.7.1...tsparticles-interaction-particles-collisions@2.8.0) (2023-01-18)
 

@@ -38,6 +38,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved orbit options to orbit updater package ([8542054](https://github.com/matteobruni/tsparticles/commit/8542054c3a71ed17341411efd88353a1dbb94072))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 -   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-orbit@2.8.0...tsparticles-updater-orbit@2.9.0) (2023-02-10)
+
+### Features
+
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
 
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-orbit@2.7.1...tsparticles-updater-orbit@2.8.0) (2023-01-18)
 

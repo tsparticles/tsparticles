@@ -36,6 +36,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   changed particles move distance to an horizontal/vertical object, single number still valid ([a0b16ed](https://github.com/matteobruni/tsparticles/commit/a0b16ed6df01371d8f00f29047efc04aad10bdbe))
 -   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 -   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.8.0...tsparticles-demo-new@2.9.0) (2023-02-10)
+
+**Note:** Version bump only for package tsparticles-demo-new
 
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-new@2.7.1...tsparticles-demo-new@2.8.0) (2023-01-18)
 

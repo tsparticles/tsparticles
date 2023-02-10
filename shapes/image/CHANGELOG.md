@@ -27,6 +27,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 -   reworked image shape, now supports multiple colors in svg replace color, random value too ([3173ebc](https://github.com/matteobruni/tsparticles/commit/3173ebc14716b241fbb84ae9f1a2cd3c5567f846))
 -   reworking image shape for supporting multiple colors in svg replace color ([c28bc85](https://github.com/matteobruni/tsparticles/commit/c28bc85fded04a54a3d4cb25dca1701f1f6b1f01))
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-image@2.8.0...tsparticles-shape-image@2.9.0) (2023-02-10)
+
+### Features
+
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
 
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-image@2.7.1...tsparticles-shape-image@2.8.0) (2023-01-18)
 

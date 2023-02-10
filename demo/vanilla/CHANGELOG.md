@@ -102,6 +102,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 -   zIndex, closes [#979](https://github.com/matteobruni/tsparticles/issues/979) ([09e4932](https://github.com/matteobruni/tsparticles/commit/09e4932222177dd9453759ff6a35b3a1cf5fd037))
 
+# [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.8.0...tsparticles-demo@2.9.0) (2023-02-10)
+
+### Features
+
+-   added color and colorOffset options to split options ([74902b3](https://github.com/matteobruni/tsparticles/commit/74902b33cdd37839b48dbd694c2e070735f9956b))
+
 # [2.8.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.7.1...tsparticles-demo@2.8.0) (2023-01-18)
 
 **Note:** Version bump only for package tsparticles-demo
