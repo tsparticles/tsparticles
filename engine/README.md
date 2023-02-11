@@ -24,14 +24,11 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![Reddit](https://img.shields.io/reddit/subreddit-subscribers/tsParticles?style=for-the-badge)](https://www.reddit.com/r/tsParticles/)
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
-[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00")](https://www.buymeacoffee.com/matteobruni) <a href="https://linktr.ee/tsparticles"><img alt="Linktree" height="30" src="https://particles.js.org/images/linktree.svg" /></a>
+[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00")](https://www.buymeacoffee.com/matteobruni)
 
 ---
 
 ## Table of Contents
-
-⚠️⚠️ \_This readme refers to **v2**
-version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
 
 - [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
   - [Table of Contents](#table-of-contents)
@@ -101,7 +98,8 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
 
 _Documentation and Development references [here](https://particles.js.org/docs/) 📖_
 
-**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using particles.js
+**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using
+particles.js
 it's even easier**.
 
 You'll find the
@@ -222,55 +220,55 @@ Load tsParticles and configure the particles:
 
 ```javascript
 // @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
-/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
+/* tsParticles.load(@params); */
 
 tsParticles
-  .load({
-    id: "tsparticles",
-    url: "presets/default.json",
-  })
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .load({
+        id: "tsparticles",
+        url: "presets/default.json",
+    })
+    .then(container => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 //or
 
 tsParticles.load({
-  id: "tsparticles",
-  options: {
-    /* options here */
-  },
+    id: "tsparticles",
+    options: {
+        /* options here */
+    },
 });
 
 //or
 
 tsParticles.load({
-  id: "tsparticles",
-  options: [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
+    id: "tsparticles",
+    options: [
+        {
+            /* options here */
+        },
+        {
+            /* other options here */
+        },
+    ],
 });
 //random object
 
 tsParticles.load({
-  id: "tsparticles",
-  options: [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
-  index: 1,
+    id: "tsparticles",
+    options: [
+        {
+            /* options here */
+        },
+        {
+            /* other options here */
+        },
+    ],
+    index: 1,
 }); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -281,7 +279,7 @@ tsParticles.load({
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* custom on click handler */
+    /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -414,8 +412,8 @@ the `Premium Addons for Elementor` plugin collection.
     <img width="64" alt="Premium Addons for Elementor" src="https://particles.js.org/images/premium-addons-wordpress-plugin.png" />
 </div>
 <div>
-    Premium Addons for Elementor is one of the most common plugins for Elementor that offers 55+ highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in the Premium Particles Section Add-on for the Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
-    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
+    Premium Addons for Elementor is one of the most common plugins for Elementor that offers more than 55 highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in Premium Particles Section Add-on for Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
+    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without the need to write a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
 </div>
 <div style="clear: both;"></div>
 
@@ -423,8 +421,8 @@ the `Premium Addons for Elementor` plugin collection.
 
 ## Presets
 
-There are some presets ready to be used in this repository, and they also have a bundle file that contains everything
-needed to run.
+There are some presets ready to be used in [this repository](https://github.com/tsparticles/presets), and they also have
+a bundle file that contains everything needed to run.
 
 ### Big Circles
 
