@@ -118,21 +118,25 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
             this.ticks = data.ticks;
         }
 
-        if (data.origin && !data.position) {
+        const origin = data.origin;
+
+        if (origin && !data.position) {
             data.position = {
-                x: data.origin.x !== undefined ? data.origin.x * 100 : undefined,
-                y: data.origin.y !== undefined ? data.origin.y * 100 : undefined,
+                x: origin.x !== undefined ? origin.x * 100 : undefined,
+                y: origin.y !== undefined ? origin.y * 100 : undefined,
             };
         }
 
         const position = data.position;
 
-        if (position?.x !== undefined) {
-            this.position.x = position.x;
-        }
+        if (position) {
+            if (position.x !== undefined) {
+                this.position.x = position.x;
+            }
 
-        if (position?.y !== undefined) {
-            this.position.y = position.y;
+            if (position.y !== undefined) {
+                this.position.y = position.y;
+            }
         }
 
         if (data.colors !== undefined) {
