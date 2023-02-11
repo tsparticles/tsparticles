@@ -21,7 +21,7 @@ import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 import { tsParticles } from "tsparticles-engine";
 
-export type ConfettiFirstParam = string | ConfettiOptions;
+export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
 
 let initialized = false;
 let initializing = false;
@@ -324,11 +324,25 @@ confetti.create = async (
 
     canvas.setAttribute("id", id);
 
-    setConfetti({
-        id,
-        canvas,
-        options,
-    });
+    return async (
+        idOrOptions: ConfettiFirstParam,
+        confettiOptions?: RecursivePartial<IConfettiOptions>
+    ): Promise<Container | undefined> => {
+        let subOptions: RecursivePartial<IConfettiOptions>;
+        let subId: string;
 
-    return confetti;
+        if (typeof idOrOptions === "string") {
+            subId = idOrOptions;
+            subOptions = confettiOptions ?? options;
+        } else {
+            subId = id;
+            subOptions = idOrOptions;
+        }
+
+        return setConfetti({
+            id: subId,
+            canvas,
+            options: subOptions,
+        });
+    };
 };

@@ -135,6 +135,38 @@
 	  "type": "boolean",
 	  "default": false
 	},
+	"plugin-easing-back": {
+		"type": "boolean",
+		"default": false
+	},
+	"plugin-easing-circ": {
+		"type": "boolean",
+		"default": false
+	},
+	"plugin-easing-cubic": {
+		"type": "boolean",
+		"default": false
+	},
+	"plugin-easing-expo": {
+		"type": "boolean",
+		"default": false
+	},
+	"plugin-easing-quad": {
+		"type": "boolean",
+		"default": false
+	},
+	"plugin-easing-quart": {
+		"type": "boolean",
+		"default": false
+	},
+	"plugin-easing-quint": {
+		"type": "boolean",
+		"default": false
+	},
+	"plugin-easing-sine": {
+		"type": "boolean",
+		"default": false
+	},
 	"plugin-emitters": {
 	  "type": "boolean",
 	  "default": false
@@ -147,6 +179,10 @@
 	  "type": "boolean",
 	  "default": false
 	},
+	"plugin-motion": {
+		"type": "boolean",
+		"default": false
+	  },
 	"plugin-polygon-mask": {
 	  "type": "boolean",
 	  "default": false
