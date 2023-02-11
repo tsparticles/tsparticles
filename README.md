@@ -24,7 +24,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![Reddit](https://img.shields.io/reddit/subreddit-subscribers/tsParticles?style=for-the-badge)](https://www.reddit.com/r/tsParticles/)
 
 [![tsParticles Product Hunt](https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=186113&theme=light)](https://www.producthunt.com/posts/tsparticles?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-tsparticles")
-[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00")](https://www.buymeacoffee.com/matteobruni) <a href="https://linktr.ee/tsparticles"><img alt="Linktree" height="30" src="https://particles.js.org/images/linktree.svg" /></a>
+[![Buy Me A Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20beer&emoji=🍺&slug=matteobruni&button_colour=5F7FFF&font_colour=ffffff&font_family=Arial&outline_colour=000000&coffee_colour=FFDD00")](https://www.buymeacoffee.com/matteobruni)
 
 ---
 
@@ -33,48 +33,66 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 ⚠️⚠️ \_This readme refers to **v2**
 version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
 
--   [Use for your website](#Do-you-want-to-use-it-on-your-website)
-    -   [Library installation](#Library-installation)
--   [Official components for some of the most used frameworks](#Official-components-for-some-of-the-most-used-frameworks)
-    -   [Angular](#Angular)
-    -   [Inferno](#Inferno)
-    -   [jQuery](#jQuery)
-    -   [Preact](#Preact)
-    -   [ReactJS](#ReactJS)
-    -   [RiotJS](#RiotJS)
-    -   [SolidJS](#SolidJS)
-    -   [Svelte](#Svelte)
-    -   [VueJS 2.x](#VueJS-2x)
-    -   [VueJS 3.x](#VueJS-3x)
-    -   [Web Components](#Web-Components)
-    -   [WordPress](#WordPress)
-    -   [Elementor](#Elementor)
--   [Presets](#Presets)
-    -   [Big Circles](#Big-Circles)
-    -   [Bubbles](#Bubbles)
-    -   [Confetti](#Confetti)
-    -   [Fire](#Fire)
-    -   [Firefly](#Firefly)
-    -   [Fireworks](#Fireworks)
-    -   [Fountain](#fountain)
-    -   [Links](#links)
-    -   [Sea Anemone](#Sea-Anemone)
-    -   [Snow](#Snow)
-    -   [Stars](#Stars)
-    -   [Triangles](#Triangles)
--   [Templates and Resources](#Templates-and-Resources)
--   [Demo / Generator](#Demo--Generator)
-    -   [Characters as particles](#Characters-as-particles)
-    -   [Mouse hover connections](#Mouse-hover-connections)
-    -   [Polygon mask](#Polygon-mask)
-    -   [Animated stars](#Animated-stars)
-    -   [Nyan cat flying on scrolling stars](#Nyan-cat-flying-on-scrolling-stars)
-    -   [Background Mask particles](#Background-Mask-particles)
--   [Video Tutorials](#Video-Tutorials)
--   [Migrating from Particles.js](#Migrating-from-Particlesjs)
--   [Plugins/Customizations](#PluginsCustomizations)
--   [Dependency Graphs](#Dependency-Graphs)
--   [Sponsors](#Sponsors)
+-   [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
+    -   [Table of Contents](#table-of-contents)
+    -   [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+    -   [**_Library installation_**](#library-installation)
+        -   [**_Hosting / CDN_**](#hosting--cdn)
+            -   [jsDelivr](#jsdelivr)
+            -   [cdnjs](#cdnjs)
+            -   [unpkg](#unpkg)
+        -   [**_npm_**](#npm)
+        -   [**_yarn_**](#yarn)
+        -   [**_pnpm_**](#pnpm)
+            -   [Import and require](#import-and-require)
+        -   [**_NuGet_**](#nuget)
+        -   [**_Usage_**](#usage)
+    -   [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+        -   [Angular](#angular)
+        -   [Inferno](#inferno)
+        -   [jQuery](#jquery)
+        -   [Preact](#preact)
+        -   [ReactJS](#reactjs)
+        -   [RiotJS](#riotjs)
+            -   [`riot-particles`](#riot-particles)
+        -   [SolidJS](#solidjs)
+            -   [`solid-particles`](#solid-particles)
+        -   [Svelte](#svelte)
+        -   [VueJS 2.x](#vuejs-2x)
+        -   [VueJS 3.x](#vuejs-3x)
+        -   [Web Components](#web-components)
+            -   [`web-particles`](#web-particles)
+        -   [WordPress](#wordpress)
+            -   [`wordpress-particles`](#wordpress-particles)
+        -   [Elementor](#elementor)
+    -   [Presets](#presets)
+        -   [Big Circles](#big-circles)
+        -   [Bubbles](#bubbles)
+        -   [Confetti](#confetti)
+        -   [Fire](#fire)
+        -   [Firefly](#firefly)
+        -   [Fireworks](#fireworks)
+        -   [Fountain](#fountain)
+        -   [Links](#links)
+        -   [Sea Anemone](#sea-anemone)
+        -   [Snow](#snow)
+        -   [Stars](#stars)
+        -   [Triangles](#triangles)
+    -   [Templates and Resources](#templates-and-resources)
+    -   [**_Demo / Generator_**](#demo--generator)
+    -   [**_Video Tutorials_**](#video-tutorials)
+        -   [Characters as particles](#characters-as-particles)
+        -   [Polygon mask](#polygon-mask)
+        -   [Animated stars](#animated-stars)
+        -   [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+        -   [Snow particles](#snow-particles)
+        -   [Background Mask particles](#background-mask-particles)
+    -   [**_Options_**](#options)
+    -   [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+    -   [Migrating from Particles.js](#migrating-from-particlesjs)
+    -   [Plugins/Customizations](#pluginscustomizations)
+    -   [Dependency Graphs](#dependency-graphs)
+        -   [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -107,7 +125,9 @@ migrate from the old particles.js library.
 
 #### jsDelivr
 
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-confetti)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-engine/badge)](https://www.jsdelivr.com/package/npm/tsparticles-engine)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-fireworks)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
 
@@ -117,15 +137,23 @@ migrate from the old particles.js library.
 
 #### unpkg
 
-<https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/>
+<https://unpkg.com/tsparticles-confetti/> <https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-fireworks/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/>
 
 ---
 
 ### **_npm_**
 
+_tsParticles Confetti_
+
+[![npm](https://img.shields.io/npm/v/tsparticles-confetti?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-confetti?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-confetti)
+
 _tsParticles Engine_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine)
+
+_tsParticles Fireworks_
+
+[![npm](https://img.shields.io/npm/v/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks)
 
 _tsParticles Slim_
 
@@ -372,8 +400,8 @@ the `Premium Addons for Elementor` plugin collection.
     <img width="64" alt="Premium Addons for Elementor" src="https://particles.js.org/images/premium-addons-wordpress-plugin.png" />
 </div>
 <div>
-    Premium Addons for Elementor is one of the most common plugins for Elementor that offers 55+ highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in the Premium Particles Section Add-on for the Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
-    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without writing a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
+    Premium Addons for Elementor is one of the most common plugins for Elementor that offers more than 55 highly customizable Elementor Widgets and Section Add-ons. tsParticles is exclusively included in Premium Particles Section Add-on for Elementor Page Builder. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">Check It Now</a>.<br />
+    Use Premium Addons for Elementor Page Builder and get the chance to include tsParticles in your next WordPress website without the need to write a single line of code. <a href="https://premiumaddons.com/particles-section-addon-for-elementor-page-builder/" target="_blank">See a Live Example</a>.
 </div>
 <div style="clear: both;"></div>
 

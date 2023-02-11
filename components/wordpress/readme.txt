@@ -4,7 +4,7 @@ Donate link:       https://github.com/sponsors/matteobruni
 Tags:              block, particles, confetti, fireworks, animations, javascript, tsparticles, particles js, background, particle background, animated background, particlesjs
 Requires at least: 5.9
 Tested up to:      6.1
-Stable tag:        2.9.0
+Stable tag:        2.9.1
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,27 @@ There are some ways to ask for support:
 Nothing to say
 
 == Changelog ==
+
+= 2.9.1
+
+## Bug Fixes
+
+- Fixed missing plugins in wordpress component
+- Fixed confetti bundle package.json
+- Fixed confetti.create function in confetti bundle
+
+= 2.9.0
+
+## New Features
+
+- Creating confetti bundle, easier confetti animations usage. Removed `confetti` function from the preset, this bundle replaces this feature.
+- Creating fireworks bundle, easier fireworks animations usage.
+
+## Minor Changes
+
+- Added version to the `Engine` object.
+- Added `color` and `colorOffset` properties to `split` options.
+- Changed default particles `number` value to `0`, the previous default value was meaningless. You must specify a number now, it's easier to implement `emitters` plugin since you can declare just the `emitters` property without specifying `0` particles. If you need any number, you declare it ignoring the default value.
 
 = 2.8.0
 

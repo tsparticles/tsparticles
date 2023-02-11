@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-confetti@2.9.0...tsparticles-confetti@2.9.1) (2023-02-11)
+
+### Bug Fixes
+
+-   fixed missing plugins in wordpress component ([093460b](https://github.com/matteobruni/tsparticles/commit/093460b7716276644ec72666af7fcaf1efe0bddd))
+
 # 2.9.0 (2023-02-10)
 
 ### Features
