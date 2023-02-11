@@ -30,67 +30,70 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
+⚠️⚠️ \_This readme refers to **v2**
+version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
+
 - [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
-- [Table of Contents](#table-of-contents)
-- [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
-- [**_Library installation_**](#library-installation)
-- [**_Hosting / CDN_**](#hosting--cdn)
-- [jsDelivr](#jsdelivr)
-- [cdnjs](#cdnjs)
-- [unpkg](#unpkg)
-- [**_npm_**](#npm)
-- [**_yarn_**](#yarn)
-- [**_pnpm_**](#pnpm)
-- [Import and require](#import-and-require)
-- [**_NuGet_**](#nuget)
-- [**_Usage_**](#usage)
-- [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
-- [Angular](#angular)
-- [Ember](#ember)
-- [Inferno](#inferno)
-- [jQuery](#jquery)
-- [Preact](#preact)
-- [ReactJS](#reactjs)
-- [RiotJS](#riotjs)
-- [`@tsparticles/riot`](#tsparticlesriot)
-- [SolidJS](#solidjs)
-- [`@tsparticles/solid`](#tsparticlessolid)
-- [Svelte](#svelte)
-- [VueJS 2.x](#vuejs-2x)
-- [VueJS 3.x](#vuejs-3x)
-- [Web Components](#web-components)
-- [`@tsparticles/webcomponents`](#tsparticleswebcomponents)
-- [WordPress](#wordpress)
-- [`@tsparticles/wordpress`](#tsparticleswordpress)
-- [Elementor](#elementor)
-- [Presets](#presets)
-- [Big Circles](#big-circles)
-- [Bubbles](#bubbles)
-- [Confetti](#confetti)
-- [Fire](#fire)
-- [Firefly](#firefly)
-- [Fireworks](#fireworks)
-- [Fountain](#fountain)
-- [Links](#links)
-- [Sea Anemone](#sea-anemone)
-- [Snow](#snow)
-- [Stars](#stars)
-- [Triangles](#triangles)
-- [Templates and Resources](#templates-and-resources)
-- [**_Demo / Generator_**](#demo--generator)
-- [**_Video Tutorials_**](#video-tutorials)
-- [Characters as particles](#characters-as-particles)
-- [Polygon mask](#polygon-mask)
-- [Animated stars](#animated-stars)
-- [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
-- [Snow particles](#snow-particles)
-- [Background Mask particles](#background-mask-particles)
-- [**_Options_**](#options)
-- [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
-- [Migrating from Particles.js](#migrating-from-particlesjs)
-- [Plugins/Customizations](#pluginscustomizations)
-- [Dependency Graphs](#dependency-graphs)
-- [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
+  - [Table of Contents](#table-of-contents)
+  - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+  - [**_Library installation_**](#library-installation)
+    - [**_Hosting / CDN_**](#hosting--cdn)
+      - [jsDelivr](#jsdelivr)
+      - [cdnjs](#cdnjs)
+      - [unpkg](#unpkg)
+    - [**_npm_**](#npm)
+    - [**_yarn_**](#yarn)
+    - [**_pnpm_**](#pnpm)
+      - [Import and require](#import-and-require)
+    - [**_NuGet_**](#nuget)
+    - [**_Usage_**](#usage)
+  - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+    - [Angular](#angular)
+    - [Ember](#ember)
+    - [Inferno](#inferno)
+    - [jQuery](#jquery)
+    - [Preact](#preact)
+    - [ReactJS](#reactjs)
+    - [RiotJS](#riotjs)
+      - [`@tsparticles/riot`](#tsparticlesriot)
+    - [SolidJS](#solidjs)
+      - [`@tsparticles/solid`](#tsparticlessolid)
+    - [Svelte](#svelte)
+    - [VueJS 2.x](#vuejs-2x)
+    - [VueJS 3.x](#vuejs-3x)
+    - [Web Components](#web-components)
+      - [`@tsparticles/webcomponents`](#tsparticleswebcomponents)
+    - [WordPress](#wordpress)
+      - [`@tsparticles/wordpress`](#tsparticleswordpress)
+    - [Elementor](#elementor)
+  - [Presets](#presets)
+    - [Big Circles](#big-circles)
+    - [Bubbles](#bubbles)
+    - [Confetti](#confetti)
+    - [Fire](#fire)
+    - [Firefly](#firefly)
+    - [Fireworks](#fireworks)
+    - [Fountain](#fountain)
+    - [Links](#links)
+    - [Sea Anemone](#sea-anemone)
+    - [Snow](#snow)
+    - [Stars](#stars)
+    - [Triangles](#triangles)
+  - [Templates and Resources](#templates-and-resources)
+  - [**_Demo / Generator_**](#demo--generator)
+  - [**_Video Tutorials_**](#video-tutorials)
+    - [Characters as particles](#characters-as-particles)
+    - [Polygon mask](#polygon-mask)
+    - [Animated stars](#animated-stars)
+    - [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+    - [Snow particles](#snow-particles)
+    - [Background Mask particles](#background-mask-particles)
+  - [**_Options_**](#options)
+  - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+  - [Migrating from Particles.js](#migrating-from-particlesjs)
+  - [Plugins/Customizations](#pluginscustomizations)
+  - [Dependency Graph](#dependency-graph)
+    - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -98,8 +101,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 _Documentation and Development references [here](https://particles.js.org/docs/) 📖_
 
-**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using
-particles.js
+**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using particles.js
 it's even easier**.
 
 You'll find the
@@ -124,7 +126,9 @@ migrate from the old particles.js library.
 
 #### jsDelivr
 
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-confetti)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-engine/badge)](https://www.jsdelivr.com/package/npm/tsparticles-engine)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-fireworks)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
 
@@ -134,15 +138,23 @@ migrate from the old particles.js library.
 
 #### unpkg
 
-<https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/>
+<https://unpkg.com/tsparticles-confetti/> <https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-fireworks/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/>
 
 ---
 
 ### **_npm_**
 
+_tsParticles Confetti_
+
+[![npm](https://img.shields.io/npm/v/tsparticles-confetti?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-confetti?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-confetti)
+
 _tsParticles Engine_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine)
+
+_tsParticles Fireworks_
+
+[![npm](https://img.shields.io/npm/v/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks)
 
 _tsParticles Slim_
 
@@ -210,7 +222,7 @@ Load tsParticles and configure the particles:
 
 ```javascript
 // @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
-/* tsParticles.load(@params); */
+/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
   .load({
@@ -411,8 +423,8 @@ the `Premium Addons for Elementor` plugin collection.
 
 ## Presets
 
-There are some presets ready to be used in [this repository](https://github.com/tsparticles/presets), and they also have
-a bundle file that contains everything needed to run.
+There are some presets ready to be used in this repository, and they also have a bundle file that contains everything
+needed to run.
 
 ### Big Circles
 
