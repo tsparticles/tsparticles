@@ -223,16 +223,16 @@ Load tsParticles and configure the particles:
 /* tsParticles.load(@params); */
 
 tsParticles
-        .load({
-          id: "tsparticles",
-          url: "presets/default.json",
-        })
-        .then(container => {
-          console.log("callback - tsparticles config loaded");
-        })
-        .catch(error => {
-          console.error(error);
-        });
+  .load({
+    id: "tsparticles",
+    url: "presets/default.json",
+  })
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //or
 
