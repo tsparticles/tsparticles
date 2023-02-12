@@ -4,7 +4,7 @@ Donate link:       https://github.com/sponsors/matteobruni
 Tags:              block, particles, confetti, fireworks, animations, javascript, tsparticles, particles js, background, particle background, animated background, particlesjs
 Requires at least: 5.9
 Tested up to:      6.1
-Stable tag:        2.9.1
+Stable tag:        2.9.2
 Requires PHP:      7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,13 @@ There are some ways to ask for support:
 Nothing to say
 
 == Changelog ==
+
+= 2.9.2
+
+## Bug Fixes
+
+- Added missing shapes to confetti bundle
+- Fixed issue with emitters plugin that spawned an unwanted emitters, fixes #4905
 
 = 2.9.1
 

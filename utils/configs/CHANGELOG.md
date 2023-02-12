@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@2.9.1...tsparticles-demo-configs@2.9.2) (2023-02-12)
+
+### Bug Fixes
+
+-   added missing shapes to confetti bundle ([b299012](https://github.com/matteobruni/tsparticles/commit/b2990122b280e09dc56418e0f454dd299f3ad0a1)), closes [#4905](https://github.com/matteobruni/tsparticles/issues/4905)
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@2.9.0...tsparticles-demo-configs@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-demo-configs

@@ -208,6 +208,7 @@ The imported `tsParticles` is the same instance you have when including the scri
 Load tsParticles and configure the particles:
 
 [![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.js.org)
+[![tsParticles Confetti demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://confetti.js.org)
 
 **index.html**
 
