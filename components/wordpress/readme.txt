@@ -61,6 +61,13 @@ Nothing to say
 
 == Changelog ==
 
+= 2.9.2
+
+## Bug Fixes
+
+- Added missing shapes to confetti bundle
+- Fixed issue with emitters plugin that spawned an unwanted emitters, fixes #4905
+
 = 2.9.1
 
 ## Bug Fixes
