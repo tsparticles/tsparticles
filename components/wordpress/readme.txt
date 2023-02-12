@@ -61,6 +61,12 @@ Nothing to say
 
 == Changelog ==
 
+= 2.9.3
+
+## Bug Fixes
+
+- Fixed some plugins, they weren't loading correctly the options
+
 = 2.9.2
 
 ## Bug Fixes
