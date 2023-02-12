@@ -33,66 +33,65 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 ⚠️⚠️ \_This readme refers to **v2**
 version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
 
--   [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
-    -   [Table of Contents](#table-of-contents)
-    -   [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
-    -   [**_Library installation_**](#library-installation)
-        -   [**_Hosting / CDN_**](#hosting--cdn)
-            -   [jsDelivr](#jsdelivr)
-            -   [cdnjs](#cdnjs)
-            -   [unpkg](#unpkg)
-        -   [**_npm_**](#npm)
-        -   [**_yarn_**](#yarn)
-        -   [**_pnpm_**](#pnpm)
-            -   [Import and require](#import-and-require)
-        -   [**_NuGet_**](#nuget)
-        -   [**_Usage_**](#usage)
-    -   [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
-        -   [Angular](#angular)
-        -   [Inferno](#inferno)
-        -   [jQuery](#jquery)
-        -   [Preact](#preact)
-        -   [ReactJS](#reactjs)
-        -   [RiotJS](#riotjs)
-            -   [`riot-particles`](#riot-particles)
-        -   [SolidJS](#solidjs)
-            -   [`solid-particles`](#solid-particles)
-        -   [Svelte](#svelte)
-        -   [VueJS 2.x](#vuejs-2x)
-        -   [VueJS 3.x](#vuejs-3x)
-        -   [Web Components](#web-components)
-            -   [`web-particles`](#web-particles)
-        -   [WordPress](#wordpress)
-            -   [`wordpress-particles`](#wordpress-particles)
-        -   [Elementor](#elementor)
-    -   [Presets](#presets)
-        -   [Big Circles](#big-circles)
-        -   [Bubbles](#bubbles)
-        -   [Confetti](#confetti)
-        -   [Fire](#fire)
-        -   [Firefly](#firefly)
-        -   [Fireworks](#fireworks)
-        -   [Fountain](#fountain)
-        -   [Links](#links)
-        -   [Sea Anemone](#sea-anemone)
-        -   [Snow](#snow)
-        -   [Stars](#stars)
-        -   [Triangles](#triangles)
-    -   [Templates and Resources](#templates-and-resources)
-    -   [**_Demo / Generator_**](#demo--generator)
-    -   [**_Video Tutorials_**](#video-tutorials)
-        -   [Characters as particles](#characters-as-particles)
-        -   [Polygon mask](#polygon-mask)
-        -   [Animated stars](#animated-stars)
-        -   [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
-        -   [Snow particles](#snow-particles)
-        -   [Background Mask particles](#background-mask-particles)
-    -   [**_Options_**](#options)
-    -   [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
-    -   [Migrating from Particles.js](#migrating-from-particlesjs)
-    -   [Plugins/Customizations](#pluginscustomizations)
-    -   [Dependency Graphs](#dependency-graphs)
-        -   [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
+- [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
+  - [Table of Contents](#table-of-contents)
+  - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+  - [**_Library installation_**](#library-installation)
+    - [**_Hosting / CDN_**](#hosting--cdn)
+      - [jsDelivr](#jsdelivr)
+      - [cdnjs](#cdnjs)
+      - [unpkg](#unpkg)
+    - [**_npm_**](#npm)
+    - [**_yarn_**](#yarn)
+    - [**_pnpm_**](#pnpm)
+      - [Import and require](#import-and-require)
+    - [**_Usage_**](#usage)
+  - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+    - [Angular](#angular)
+    - [Inferno](#inferno)
+    - [jQuery](#jquery)
+    - [Preact](#preact)
+    - [ReactJS](#reactjs)
+    - [RiotJS](#riotjs)
+      - [`riot-particles`](#riot-particles)
+    - [SolidJS](#solidjs)
+      - [`solid-particles`](#solid-particles)
+    - [Svelte](#svelte)
+    - [VueJS 2.x](#vuejs-2x)
+    - [VueJS 3.x](#vuejs-3x)
+    - [Web Components](#web-components)
+      - [`web-particles`](#web-particles)
+    - [WordPress](#wordpress)
+      - [`wordpress-particles`](#wordpress-particles)
+    - [Elementor](#elementor)
+  - [Presets](#presets)
+    - [Big Circles](#big-circles)
+    - [Bubbles](#bubbles)
+    - [Confetti](#confetti)
+    - [Fire](#fire)
+    - [Firefly](#firefly)
+    - [Fireworks](#fireworks)
+    - [Fountain](#fountain)
+    - [Links](#links)
+    - [Sea Anemone](#sea-anemone)
+    - [Snow](#snow)
+    - [Stars](#stars)
+    - [Triangles](#triangles)
+  - [Templates and Resources](#templates-and-resources)
+  - [**_Demo / Generator_**](#demo--generator)
+  - [**_Video Tutorials_**](#video-tutorials)
+    - [Characters as particles](#characters-as-particles)
+    - [Polygon mask](#polygon-mask)
+    - [Animated stars](#animated-stars)
+    - [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+    - [Snow particles](#snow-particles)
+    - [Background Mask particles](#background-mask-particles)
+  - [**_Options_**](#options)
+  - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+  - [Migrating from Particles.js](#migrating-from-particlesjs)
+  - [Plugins/Customizations](#pluginscustomizations)
+  - [Dependency Graphs](#dependency-graphs)
+    - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -181,10 +180,6 @@ pnpm install tsparticles-engine
 
 #### Import and require
 
-Starting from version 1.12.11 `import` and `require` can be used to import `tsParticles` .
-
-Now you can write something like this
-
 ```javascript
 const tsParticles = require("tsparticles-engine");
 
@@ -193,13 +188,7 @@ const tsParticles = require("tsparticles-engine");
 import { tsParticles } from "tsparticles-engine";
 ```
 
-The imported `tsParticles` is the same instance you have when including the script.
-
----
-
-### **_NuGet_**
-
-[![Nuget](https://img.shields.io/nuget/v/tsParticles?style=for-the-badge)](https://www.nuget.org/packages/tsParticles/)
+The imported `tsParticles` is the same instance you have when including the script in the page using the `<script>` tag.
 
 ---
 
@@ -225,20 +214,20 @@ Load tsParticles and configure the particles:
 /* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
 
 tsParticles
-    .loadJSON("tsparticles", "presets/default.json")
-    .then(container => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch(error => {
-        console.error(error);
-    });
+  .loadJSON("tsparticles", "presets/default.json")
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //or
 
 /* tsParticles.load(@dom-id, @options); */
 
 tsParticles.load("tsparticles", {
-    /* options here */
+  /* options here */
 });
 
 //or
@@ -246,26 +235,26 @@ tsParticles.load("tsparticles", {
 /* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
 
 tsParticles.loadFromArray("tsparticles", [
-    {
-        /* options here */
-    },
-    {
-        /* other options here */
-    },
+  {
+    /* options here */
+  },
+  {
+    /* other options here */
+  },
 ]);
 //random object
 
 tsParticles.loadFromArray(
-    "tsparticles",
-    [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        },
-    ],
-    1
+  "tsparticles",
+  [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  1
 ); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -276,7 +265,7 @@ tsParticles.loadFromArray(
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* custom on click handler */
+  /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
