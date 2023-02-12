@@ -8,6 +8,7 @@ import _blackHole from "./blackHole.json";
 import _bubble from "./bubble.json";
 import _cards from "./cards.json";
 import _chars from "./chars.json";
+import _clickConfetti from "./clickConfetti.json";
 import _clickPause from "./clickPause.json";
 import _collisionsAbsorb from "./collisionsAbsorb.json";
 import _collisionsBounce from "./collisionsBounce.json";
@@ -133,6 +134,7 @@ const absorbers = _absorbers as unknown as ISourceOptions,
     bubble = _bubble as unknown as ISourceOptions,
     cards = _cards as unknown as ISourceOptions,
     chars = _chars as unknown as ISourceOptions,
+    clickConfetti = _clickConfetti as unknown as ISourceOptions,
     clickPause = _clickPause as unknown as ISourceOptions,
     collisionsAbsorb = _collisionsAbsorb as unknown as ISourceOptions,
     collisionsBounce = _collisionsBounce as unknown as ISourceOptions,
@@ -258,6 +260,7 @@ export type ExportedConfigurations = {
     bubble: ISourceOptions;
     cards: ISourceOptions;
     chars: ISourceOptions;
+    clickConfetti: ISourceOptions;
     clickPause: ISourceOptions;
     collisionsAbsorb: ISourceOptions;
     collisionsBounce: ISourceOptions;
@@ -388,6 +391,7 @@ mainConfigs.configs = {
     bubble,
     cards,
     chars,
+    clickConfetti,
     clickPause,
     collisionsAbsorb,
     collisionsBounce,
@@ -514,6 +518,7 @@ export {
     bubble,
     cards,
     chars,
+    clickConfetti,
     clickPause,
     collisionsAbsorb,
     collisionsBounce,

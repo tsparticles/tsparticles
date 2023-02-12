@@ -9,14 +9,17 @@ import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadHeartShape } from "tsparticles-shape-heart";
+import { loadImageShape } from "tsparticles-shape-image";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadMotionPlugin } from "tsparticles-plugin-motion";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadRollUpdater } from "tsparticles-updater-roll";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
+import { loadTextShape } from "tsparticles-shape-text";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 import { tsParticles } from "tsparticles-engine";
@@ -53,22 +56,25 @@ async function initPlugins(): Promise<void> {
     initializing = true;
 
     await loadBaseMover(tsParticles);
-    await loadCircleShape(tsParticles);
-    await loadSquareShape(tsParticles);
-    await loadColorUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
     await loadEmittersPlugin(tsParticles);
     await loadMotionPlugin(tsParticles);
-    await loadWobbleUpdater(tsParticles);
-    await loadRollUpdater(tsParticles);
-    await loadAngleUpdater(tsParticles);
-    await loadTiltUpdater(tsParticles);
-    await loadLifeUpdater(tsParticles);
-    await loadStarShape(tsParticles);
-    await loadHeartShape(tsParticles);
     await loadCardsShape(tsParticles);
+    await loadCircleShape(tsParticles);
+    await loadHeartShape(tsParticles);
+    await loadImageShape(tsParticles);
+    await loadPolygonShape(tsParticles);
+    await loadSquareShape(tsParticles);
+    await loadStarShape(tsParticles);
+    await loadTextShape(tsParticles);
+    await loadAngleUpdater(tsParticles);
+    await loadColorUpdater(tsParticles);
+    await loadLifeUpdater(tsParticles);
+    await loadOpacityUpdater(tsParticles);
+    await loadOutModesUpdater(tsParticles);
+    await loadRollUpdater(tsParticles);
+    await loadSizeUpdater(tsParticles);
+    await loadTiltUpdater(tsParticles);
+    await loadWobbleUpdater(tsParticles);
 
     initializing = false;
     initialized = true;
@@ -158,6 +164,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             },
             shape: {
                 type: actualOptions.shapes,
+                options: actualOptions.shapeOptions,
             },
             opacity: {
                 value: { min: 0, max: 1 },
