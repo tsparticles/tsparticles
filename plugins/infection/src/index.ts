@@ -19,7 +19,7 @@ class InfectionPlugin implements IPlugin {
     }
 
     loadOptions(options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 
