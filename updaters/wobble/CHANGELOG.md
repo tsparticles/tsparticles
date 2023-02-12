@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-wobble@2.9.1...tsparticles-updater-wobble@2.9.2) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-updater-wobble
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-wobble@2.9.0...tsparticles-updater-wobble@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-updater-wobble
