@@ -101,6 +101,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 -   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/matteobruni/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 -   zIndex, closes [#979](https://github.com/matteobruni/tsparticles/issues/979) ([09e4932](https://github.com/matteobruni/tsparticles/commit/09e4932222177dd9453759ff6a35b3a1cf5fd037))
+## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.9.0...tsparticles-demo@2.9.1) (2023-02-11)
+
+**Note:** Version bump only for package tsparticles-demo
 
 # [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo@2.8.0...tsparticles-demo@2.9.0) (2023-02-10)
 

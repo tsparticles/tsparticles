@@ -21,6 +21,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   added volume buttons to sounds plugin ([3c914c1](https://github.com/matteobruni/tsparticles/commit/3c914c1c24ccda0bdda37ebe507ae0abb1ecf050))
 -   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
 -   created sounds plugin, no sounds yet, added only mute/unmute icon ([5a5970d](https://github.com/matteobruni/tsparticles/commit/5a5970d31682c62197608757cfd66b4b9c876e06))
+## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-sounds@2.9.0...tsparticles-plugin-sounds@2.9.1) (2023-02-11)
+
+**Note:** Version bump only for package tsparticles-plugin-sounds
+
 # [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-sounds@2.8.0...tsparticles-plugin-sounds@2.9.0) (2023-02-10)
 
 ### Features

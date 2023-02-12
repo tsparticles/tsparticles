@@ -35,6 +35,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved out click interactions to external packages, breaking ([466973d](https://github.com/matteobruni/tsparticles/commit/466973ddbcc382c27c03f7b3518dea99c5e1949c))
 -   refactor click repulse, now it uses the same algorithm as the hover and div events ([b552869](https://github.com/matteobruni/tsparticles/commit/b55286956bbf8217af7338842528884abfdbdda4))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-repulse@2.9.0...tsparticles-interaction-external-repulse@2.9.1) (2023-02-11)
+
+**Note:** Version bump only for package tsparticles-interaction-external-repulse
+
 # [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-external-repulse@2.8.0...tsparticles-interaction-external-repulse@2.9.0) (2023-02-10)
 
 ### Features

@@ -27,6 +27,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved gravity data from engine to base mover ([ead8f6e](https://github.com/matteobruni/tsparticles/commit/ead8f6e7d6e8fc579b6a5f45949b196b523c26f7))
 -   moved out all the external interactors from the engine ([9d3c325](https://github.com/matteobruni/tsparticles/commit/9d3c32514c8682fa6ed466185751de80c4fe0baa))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.9.0...tsparticles-move-base@2.9.1) (2023-02-11)
+
+**Note:** Version bump only for package tsparticles-move-base
+
 # [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-move-base@2.8.0...tsparticles-move-base@2.9.0) (2023-02-10)
 
 ### Features

@@ -33,6 +33,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   removed dynamic import of the pathseg polyfill, used the standard one ([c8ecc89](https://github.com/matteobruni/tsparticles/commit/c8ecc899b961cdf8888a347b11c1e29cdbe3a76d))
 -   removed some constants from engine that are relative only to polygon mask plugin ([2920980](https://github.com/matteobruni/tsparticles/commit/29209805481f2d6a7704ec73800bc416233b3362))
 -   reworked move.trail options, created an object with color and image, closes [#4882](https://github.com/matteobruni/tsparticles/issues/4882) ([b26505b](https://github.com/matteobruni/tsparticles/commit/b26505b1235980120a98c05b1c5151838b562987))
+## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.9.0...tsparticles-plugin-polygon-mask@2.9.1) (2023-02-11)
+
+**Note:** Version bump only for package tsparticles-plugin-polygon-mask
+
 # [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-polygon-mask@2.8.0...tsparticles-plugin-polygon-mask@2.9.0) (2023-02-10)
 
 ### Features

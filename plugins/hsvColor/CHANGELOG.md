@@ -20,6 +20,10 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved all easings to plugin packages, slim now depends on easing-quad since it's the default ([d4e4b8f](https://github.com/matteobruni/tsparticles/commit/d4e4b8f6685ab748e82322877bf1e9d2d23574d4))
 -   moved hsv color management to external plugin since it's not commonly used ([d2cf77b](https://github.com/matteobruni/tsparticles/commit/d2cf77b6b4a81c09ed46c137941e7d6eddf5ea43))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-hsv-color@2.9.0...tsparticles-plugin-hsv-color@2.9.1) (2023-02-11)
+
+**Note:** Version bump only for package tsparticles-plugin-hsv-color
+
 # [2.9.0](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-hsv-color@2.8.0...tsparticles-plugin-hsv-color@2.9.0) (2023-02-10)
 
 ### Features
