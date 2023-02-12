@@ -19,7 +19,7 @@
         "build:schema": "echo ts-json-schema-generator --path 'src/**/*.ts' --type 'IOptions' -f tsconfig.schema.json --additional-properties true --out ./schema/options.schema.json",
         "test": "nyc mocha",
         "preversion": "pnpm run test",
-        "version": "node ./scripts/postversion.js && tsparticles-build -d && git add tsParticles.nuspec && git add package.dist.json",
+        "version": "tsparticles-build -d && git add package.dist.json",
         "postversion": "git push && git push --tags",
         "prepack": "pnpm run build",
         "release:alpha": "pnpm run version --prerelease --preid alpha",
