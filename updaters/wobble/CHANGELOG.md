@@ -28,6 +28,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
 -   moving all updaters to external packages, breaking ([94bdde6](https://github.com/matteobruni/tsparticles/commit/94bdde67d0b546c22b7841ff8e969d15ddef3430))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-wobble@2.9.2...tsparticles-updater-wobble@2.9.3) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-updater-wobble
+
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-wobble@2.9.1...tsparticles-updater-wobble@2.9.2) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-updater-wobble
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-wobble@2.9.0...tsparticles-updater-wobble@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-updater-wobble

@@ -42,6 +42,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved more code out from engine to specific plugins, added new method to interactors ([c3aab68](https://github.com/matteobruni/tsparticles/commit/c3aab68c6ce3317ece3f76e6cd8745db8a7dd6d7))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 -   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-light@2.9.2...tsparticles-interaction-light@2.9.3) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-interaction-light
+
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-light@2.9.1...tsparticles-interaction-light@2.9.2) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-interaction-light
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-interaction-light@2.9.0...tsparticles-interaction-light@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-interaction-light

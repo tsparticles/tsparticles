@@ -22,7 +22,7 @@ class SoundsPlugin implements IPlugin {
     }
 
     loadOptions(options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 

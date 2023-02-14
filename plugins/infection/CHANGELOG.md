@@ -37,6 +37,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   improved move path generators ([9b67377](https://github.com/matteobruni/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 -   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@2.9.2...tsparticles-plugin-infection@2.9.3) (2023-02-12)
+
+### Bug Fixes
+
+-   fixed some plugins, they weren't loading correctly the options ([00053b4](https://github.com/matteobruni/tsparticles/commit/00053b4ea90fcc4385637b6a1aad955643a712b1))
+
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@2.9.1...tsparticles-plugin-infection@2.9.2) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-plugin-infection
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-infection@2.9.0...tsparticles-plugin-infection@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-plugin-infection

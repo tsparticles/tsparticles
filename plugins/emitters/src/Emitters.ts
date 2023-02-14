@@ -79,44 +79,50 @@ export class Emitters implements IContainerPlugin {
         const emitterOptions = this.emitters,
             modeEmitters = this.interactivityEmitters;
 
-        if (mode === EmitterClickMode.emitter) {
-            let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
+        if (mode !== EmitterClickMode.emitter) {
+            return;
+        }
 
-            if (modeEmitters && modeEmitters.value instanceof Array) {
-                if (modeEmitters.value.length > 0 && modeEmitters.random.enable) {
-                    emittersModeOptions = [];
-                    const usedIndexes: number[] = [];
+        let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
 
-                    for (let i = 0; i < modeEmitters.random.count; i++) {
-                        const idx = arrayRandomIndex(modeEmitters.value);
+        if (modeEmitters && modeEmitters.value instanceof Array) {
+            if (modeEmitters.value.length > 0 && modeEmitters.random.enable) {
+                emittersModeOptions = [];
+                const usedIndexes: number[] = [];
 
-                        if (usedIndexes.includes(idx) && usedIndexes.length < modeEmitters.value.length) {
-                            i--;
-                            continue;
-                        }
+                for (let i = 0; i < modeEmitters.random.count; i++) {
+                    const idx = arrayRandomIndex(modeEmitters.value);
 
-                        usedIndexes.push(idx);
-                        emittersModeOptions.push(itemFromArray(modeEmitters.value, idx));
+                    if (usedIndexes.includes(idx) && usedIndexes.length < modeEmitters.value.length) {
+                        i--;
+                        continue;
                     }
-                } else {
-                    emittersModeOptions = modeEmitters.value;
+
+                    usedIndexes.push(idx);
+                    emittersModeOptions.push(itemFromArray(modeEmitters.value, idx));
                 }
             } else {
-                emittersModeOptions = modeEmitters?.value;
+                emittersModeOptions = modeEmitters.value;
             }
-
-            const emittersOptions = emittersModeOptions ?? emitterOptions,
-                ePosition = this.container.interactivity.mouse.clickPosition;
-
-            executeOnSingleOrMultiple(emittersOptions, (emitter) => {
-                this.addEmitter(emitter, ePosition);
-            });
+        } else {
+            emittersModeOptions = modeEmitters?.value;
         }
+
+        const emittersOptions = emittersModeOptions ?? emitterOptions,
+            ePosition = this.container.interactivity.mouse.clickPosition;
+
+        executeOnSingleOrMultiple(emittersOptions, (emitter) => {
+            this.addEmitter(emitter, ePosition);
+        });
     }
 
     async init(): Promise<void> {
         this.emitters = this.container.actualOptions.emitters;
         this.interactivityEmitters = this.container.actualOptions.interactivity.modes.emitters;
+
+        if (!this.emitters) {
+            return;
+        }
 
         if (this.emitters instanceof Array) {
             for (const emitterOptions of this.emitters) {

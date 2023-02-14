@@ -35,6 +35,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   reworked move.trail options, created an object with color and image, closes [#4882](https://github.com/matteobruni/tsparticles/issues/4882) ([b26505b](https://github.com/matteobruni/tsparticles/commit/b26505b1235980120a98c05b1c5151838b562987))
 -   reworked move.trail options, created an object with color and image, closes [#4882](https://github.com/matteobruni/tsparticles/issues/4882) ([4831fc4](https://github.com/matteobruni/tsparticles/commit/4831fc47780cc2307c6c24b5a0a9104b7b2e5ff6))
 -   some options refactoring (breaking) ([eff3c17](https://github.com/matteobruni/tsparticles/commit/eff3c17a81344d76b677aa5134aff0705ba57410))
+## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@2.9.2...tsparticles-demo-configs@2.9.3) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-demo-configs
+
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@2.9.1...tsparticles-demo-configs@2.9.2) (2023-02-12)
+
+### Bug Fixes
+
+-   added missing shapes to confetti bundle ([b299012](https://github.com/matteobruni/tsparticles/commit/b2990122b280e09dc56418e0f454dd299f3ad0a1)), closes [#4905](https://github.com/matteobruni/tsparticles/issues/4905)
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-demo-configs@2.9.0...tsparticles-demo-configs@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-demo-configs

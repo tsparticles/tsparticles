@@ -42,7 +42,6 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
         -   [**_yarn_**](#yarn)
         -   [**_pnpm_**](#pnpm)
             -   [Import and require](#import-and-require)
-        -   [**_NuGet_**](#nuget)
         -   [**_Usage_**](#usage)
     -   [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
         -   [Angular](#angular)
@@ -180,10 +179,6 @@ pnpm install tsparticles-engine
 
 #### Import and require
 
-Starting from version 1.12.11 `import` and `require` can be used to import `tsParticles` .
-
-Now you can write something like this
-
 ```javascript
 const tsParticles = require("tsparticles-engine");
 
@@ -192,13 +187,7 @@ const tsParticles = require("tsparticles-engine");
 import { tsParticles } from "tsparticles-engine";
 ```
 
-The imported `tsParticles` is the same instance you have when including the script.
-
----
-
-### **_NuGet_**
-
-[![Nuget](https://img.shields.io/nuget/v/tsParticles?style=for-the-badge)](https://www.nuget.org/packages/tsParticles/)
+The imported `tsParticles` is the same instance you have when including the script in the page using the `<script>` tag.
 
 ---
 
@@ -207,6 +196,7 @@ The imported `tsParticles` is the same instance you have when including the scri
 Load tsParticles and configure the particles:
 
 [![tsParticles demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://particles.js.org)
+[![tsParticles Confetti demo](https://media.giphy.com/media/ftHwBpp3b0qNyCXRuu/giphy.gif)](https://confetti.js.org)
 
 **index.html**
 

@@ -36,6 +36,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   changed all tsParticles load methods to a single one using a single param, breaking change ([104d5f4](https://github.com/matteobruni/tsparticles/commit/104d5f41d19611ef882be0ecc417c7f1e925fd31))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 -   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@2.9.2...tsparticles-path-polygon@2.9.3) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-path-polygon
+
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@2.9.1...tsparticles-path-polygon@2.9.2) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-path-polygon
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-path-polygon@2.9.0...tsparticles-path-polygon@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-path-polygon

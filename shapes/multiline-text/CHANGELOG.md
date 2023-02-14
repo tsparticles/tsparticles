@@ -38,6 +38,14 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 -   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/matteobruni/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@2.9.2...tsparticles-shape-multiline-text@2.9.3) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-shape-multiline-text
+
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@2.9.1...tsparticles-shape-multiline-text@2.9.2) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-shape-multiline-text
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-multiline-text@2.9.0...tsparticles-shape-multiline-text@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-shape-multiline-text

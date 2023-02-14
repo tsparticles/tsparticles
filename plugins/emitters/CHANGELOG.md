@@ -32,6 +32,16 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 -   loading updater options in updaters instead of in the engine, started from wobble ([85abd01](https://github.com/matteobruni/tsparticles/commit/85abd01a618efd3afd17f6fd605d46005cd842dd))
 -   moved all plugins to external packages, breaking ([a3edcec](https://github.com/matteobruni/tsparticles/commit/a3edcecd129009e7d9af138dd9a1285360e7003d))
 -   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-emitters@2.9.2...tsparticles-plugin-emitters@2.9.3) (2023-02-12)
+
+**Note:** Version bump only for package tsparticles-plugin-emitters
+
+## [2.9.2](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-emitters@2.9.1...tsparticles-plugin-emitters@2.9.2) (2023-02-12)
+
+### Bug Fixes
+
+-   added missing shapes to confetti bundle ([b299012](https://github.com/matteobruni/tsparticles/commit/b2990122b280e09dc56418e0f454dd299f3ad0a1)), closes [#4905](https://github.com/matteobruni/tsparticles/issues/4905)
+
 ## [2.9.1](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-emitters@2.9.0...tsparticles-plugin-emitters@2.9.1) (2023-02-11)
 
 **Note:** Version bump only for package tsparticles-plugin-emitters
