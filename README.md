@@ -290,7 +290,7 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/angular/README.md)
+Instructions available [here](https://github.com/tsparticles/angular/README.md)
 
 ### Inferno
 

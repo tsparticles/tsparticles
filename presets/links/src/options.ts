@@ -3,6 +3,9 @@ export const options = {
         color: "#000000",
     },
     particles: {
+        number: {
+            value: 100,
+        },
         links: {
             distance: 150,
             enable: true,

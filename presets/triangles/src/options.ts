@@ -5,6 +5,9 @@ export const options: ISourceOptions = {
         color: "#000000",
     },
     particles: {
+        number: {
+            value: 100,
+        },
         links: {
             distance: 125,
             enable: true,

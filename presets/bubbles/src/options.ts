@@ -4,9 +4,6 @@ import type { ISourceOptions } from "tsparticles-engine";
 export const options: ISourceOptions = {
     fpsLimit: 120,
     particles: {
-        number: {
-            value: 0,
-        },
         color: {
             value: "random",
         },

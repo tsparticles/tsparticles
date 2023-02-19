@@ -5,6 +5,9 @@ export const options = {
         color: "#333",
     },
     particles: {
+        number: {
+            value: 100,
+        },
         move: {
             direction: MoveDirection.bottom,
             enable: true,
