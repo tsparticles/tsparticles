@@ -48,6 +48,8 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
     - [**_Usage_**](#usage)
   - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
     - [Angular](#angular)
+    - [Astro](#astro)
+    - [Ember.js](#emberjs)
     - [Inferno](#inferno)
     - [jQuery](#jquery)
     - [Preact](#preact)
@@ -290,7 +292,23 @@ particles.pause();
 
 [![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles)
 
-Instructions available [here](https://github.com/tsparticles/angular/README.md)
+Instructions available [here](https://github.com/tsparticles/angular/#readme)
+
+### Astro
+
+`astro-particles`
+
+[![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles) [![npm](https://img.shields.io/npm/dm/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles)
+
+Instructions available [here](https://github.com/tsparticles/astro/#readme)
+
+### Ember.js
+
+`ember-tsparticles`
+
+[![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles) [![npm](https://img.shields.io/npm/dm/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles)
+
+Instructions available [here](https://github.com/tsparticles/ember/#readme)
 
 ### Inferno
 
@@ -298,7 +316,7 @@ Instructions available [here](https://github.com/tsparticles/angular/README.md)
 
 [![npm](https://img.shields.io/npm/v/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md)
+Instructions available [here](https://github.com/tsparticles/inferno/#readme)
 
 ### jQuery
 
@@ -306,7 +324,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md)
+Instructions available [here](https://github.com/tsparticles/jquery/#readme)
 
 ### Preact
 
@@ -314,7 +332,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md)
+Instructions available [here](https://github.com/tsparticles/preact/#readme)
 
 ### ReactJS
 
@@ -322,7 +340,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md)
+Instructions available [here](https://github.com/tsparticles/react/#readme)
 
 ### RiotJS
 
@@ -330,7 +348,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/riot-particles?style=for-the-badge)](https://www.npmjs.com/package/riot-particles) [![npm](https://img.shields.io/npm/dm/riot-particles?style=for-the-badge)](https://www.npmjs.com/package/riot-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/riot/README.md)
+You can find the instructions [here](https://github.com/tsparticles/riot/#readme)
 
 ### SolidJS
 
@@ -338,7 +356,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/solid-particles?style=for-the-badge)](https://www.npmjs.com/package/solid-particles) [![npm](https://img.shields.io/npm/dm/solid-particles?style=for-the-badge)](https://www.npmjs.com/package/solid-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/solid/README.md)
+You can find the instructions [here](https://github.com/tsparticles/solid/#readme)
 
 ### Svelte
 
@@ -346,7 +364,7 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 [![npm](https://img.shields.io/npm/v/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md)
+Instructions available [here](https://github.com/tsparticles/svelte/#readme)
 
 ### VueJS 2.x
 
@@ -354,7 +372,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles)
 
-Instructions available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md)
+Instructions available [here](https://github.com/tsparticles/vue2/#readme)
 
 ### VueJS 3.x
 
@@ -362,7 +380,7 @@ Instructions available [here](https://github.com/matteobruni/tsparticles/blob/ma
 
 [![npm](https://img.shields.io/npm/v/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles)
 
-Instruction available [here](https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md)
+Instruction available [here](https://github.com/tsparticles/vue3/#readme)
 
 ### Web Components
 
@@ -370,7 +388,7 @@ Instruction available [here](https://github.com/matteobruni/tsparticles/blob/mai
 
 [![npm](https://img.shields.io/npm/v/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles) [![npm](https://img.shields.io/npm/dm/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/components/web/README.md)
+You can find the instructions [here](https://github.com/tsparticles/webcomponents/#readme)
 
 ### WordPress
 
@@ -408,9 +426,9 @@ needed to run.
 
 This preset loads big colored circles moving upwards on a white background.
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/bigCircles/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/bigCircles#readme)
 
 ### Bubbles
 
@@ -418,9 +436,9 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 This preset loads colored bubbles coming from the bottom of the screen on a white background.
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/bubbles/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/bubbles#readme)
 
 ### Confetti
 
@@ -428,9 +446,9 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 This preset loads white and red confetti launched from the screen center on a transparent background.
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/confetti/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confetti#readme)
 
 ### Fire
 
@@ -438,9 +456,9 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 This preset loads a faded red to a black background with particles colored like fire and ash sparks.
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fire/images/sample.png)](https://particles.js.org/samples/presets/fire)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/fire/images/sample.png)](https://particles.js.org/samples/presets/fire)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fire/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fire#readme)
 
 ### Firefly
 
@@ -448,9 +466,9 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 This preset loads a mouse trail made with small fading particles like little fireflies.
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/firefly/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/firefly#readme)
 
 ### Fireworks
 
@@ -458,57 +476,57 @@ You can find the instructions [here](https://github.com/matteobruni/tsparticles/
 
 This preset loads a beautiful fireworks effect.
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fireworks/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fireworks#readme)
 
 ### Fountain
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fountain/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fountain) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fountain.svg)](https://www.npmjs.com/package/tsparticles-preset-fountain) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fountain)](https://www.npmjs.com/package/tsparticles-preset-fountain)
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/fountain/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fountain#readme)
 
 ### Links
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-links/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-links) [![npmjs](https://badge.fury.io/js/tsparticles-preset-links.svg)](https://www.npmjs.com/package/tsparticles-preset-links) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-links)](https://www.npmjs.com/package/tsparticles-preset-links)
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/links/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/links#readme)
 
 ### Sea Anemone
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-sea-anemone) [![npmjs](https://badge.fury.io/js/tsparticles-preset-sea-anemone.svg)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-sea-anemone)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone)
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/seaAnemone/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/seaAnemone#readme)
 
 ### Snow
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-snow/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-snow) [![npmjs](https://badge.fury.io/js/tsparticles-preset-snow.svg)](https://www.npmjs.com/package/tsparticles-preset-snow) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-snow)](https://www.npmjs.com/package/tsparticles-preset-snow)
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/snow/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/snow#readme)
 
 ### Stars
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-stars/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-stars) [![npmjs](https://badge.fury.io/js/tsparticles-preset-stars.svg)](https://www.npmjs.com/package/tsparticles-preset-stars) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-stars)](https://www.npmjs.com/package/tsparticles-preset-stars)
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/stars/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/stars#readme)
 
 ### Triangles
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-triangles/badge?style=for-the-badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-triangles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-triangles.svg)](https://www.npmjs.com/package/tsparticles-preset-triangles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-triangles)](https://www.npmjs.com/package/tsparticles-preset-triangles)
 
-[![demo](https://raw.githubusercontent.com/matteobruni/tsparticles/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
+[![demo](https://raw.githubusercontent.com/tsparticles/presets/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
 
-You can find the instructions [here](https://github.com/matteobruni/tsparticles/blob/main/presets/triangles/README.md)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/triangles#readme)
 
 ---
 
@@ -581,7 +599,7 @@ _More videos are coming soon! Check every day if there are some new contents._
 
 **particles.json**
 
-You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
+You can find some config samples [here](https://github.com/tsparticles/website/tree/main/presets) 📖
 
 ---
 
