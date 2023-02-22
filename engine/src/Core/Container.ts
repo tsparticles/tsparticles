@@ -155,7 +155,7 @@ export class Container {
     private readonly _engine;
     private readonly _eventListeners;
     private _firstStart;
-    private readonly _initialSourceOptions;
+    private _initialSourceOptions;
     private readonly _intersectionObserver;
     private _options;
     private _paused;
@@ -643,7 +643,9 @@ export class Container {
             return;
         }
 
+        this._initialSourceOptions = undefined;
         this._options = loadContainerOptions(this._engine, this);
+        this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
         return this.refresh();
     }
