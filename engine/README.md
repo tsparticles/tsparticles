@@ -298,7 +298,7 @@ Instructions available [here](https://github.com/tsparticles/angular/#readme)
 
 `astro-particles`
 
-[![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles) [![npm](https://img.shields.io/npm/dm/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles)
+[![npm](https://img.shields.io/npm/v/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles) [![npm](https://img.shields.io/npm/dm/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles)
 
 Instructions available [here](https://github.com/tsparticles/astro/#readme)
 
@@ -306,7 +306,7 @@ Instructions available [here](https://github.com/tsparticles/astro/#readme)
 
 `ember-tsparticles`
 
-[![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles) [![npm](https://img.shields.io/npm/dm/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles)
+[![npm](https://img.shields.io/npm/v/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles) [![npm](https://img.shields.io/npm/dm/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles)
 
 Instructions available [here](https://github.com/tsparticles/ember/#readme)
 
