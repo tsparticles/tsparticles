@@ -164,8 +164,8 @@ export class Shape implements IShape, IOptionLoader<IShape> {
             return;
         }
 
-        const isArray = item instanceof Array;
-        const emptyValue = isArray ? [] : {},
+        const isArray = item instanceof Array,
+            emptyValue = isArray ? [] : {},
             mainDifferentValues = isArray !== this.options[mainKey] instanceof Array,
             altDifferentValues = isArray !== this.options[altKey] instanceof Array;
 
