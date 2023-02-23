@@ -696,6 +696,7 @@ importers:
   engine:
     specifiers:
       '@babel/core': ^7.20.7
+      '@skypack/package-check': ^0.2.2
       '@tsparticles/build': ^1.8.2
       '@tsparticles/eslint-config': ^1.6.0
       '@tsparticles/prettier-config': ^1.6.0
@@ -736,6 +737,7 @@ importers:
       webpack-tsparticles-plugin: ^1.8.1
     devDependencies:
       '@babel/core': 7.20.7
+      '@skypack/package-check': 0.2.2
       '@tsparticles/build': 1.8.2_webpack-cli@5.0.1
       '@tsparticles/eslint-config': 1.6.0_3q5tl6b5ze257qcomoalbxrvo4
       '@tsparticles/prettier-config': 1.6.0_prettier@2.8.3
@@ -6341,6 +6343,14 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /@skypack/package-check/0.2.2:
+    resolution: {integrity: sha512-T4Wyi9lUuz0a1C2OHuzqZ0aFOCI0AmaGTb2LP9sHgWdoHXlB3JU02gfBpa0Y081G/gFsJYpQ/R0iCJRzF/nknw==}
+    hasBin: true
+    dependencies:
+      kleur: 4.1.5
+      yargs-parser: 20.2.9
+    dev: true
+
   /@sphinxxxx/color-conversion/2.2.2:
     resolution: {integrity: sha512-XExJS3cLqgrmNBIP3bBw6+1oQ1ksGjFh0+oClDKFYpCCqx/hlqwWO5KO/S63fzUo67SxI9dMrF0y5T/Ey7h8Zw==}
     dev: true
@@ -10085,6 +10095,11 @@ packages:
   /klaw/4.1.0:
     resolution: {integrity: sha512-1zGZ9MF9H22UnkpVeuaGKOjfA2t6WrfdrJmGjy16ykcjnKQDmHVX+KI477rpbGevz/5FD4MC3xf1oxylBgcaQw==}
     engines: {node: '>=14.14.0'}
+    dev: true
+
+  /kleur/4.1.5:
+    resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
+    engines: {node: '>=6'}
     dev: true
 
   /lazy-cache/1.0.4:

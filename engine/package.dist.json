@@ -83,5 +83,15 @@
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.engine.min.js",
   "unpkg": "tsparticles.engine.min.js",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "default": "./cjs/index.js",
+      "types": "./types/index.d.ts",
+      "umd": "./umd/index.js"
+    },
+    "./package.json": "./package.json"
+  }
 }

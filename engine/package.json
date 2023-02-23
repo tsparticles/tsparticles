@@ -109,6 +109,7 @@
     "prettier": "@tsparticles/prettier-config",
     "devDependencies": {
         "@babel/core": "^7.20.7",
+        "@skypack/package-check": "^0.2.2",
         "@tsparticles/build": "^1.8.2",
         "@tsparticles/eslint-config": "^1.6.0",
         "@tsparticles/prettier-config": "^1.6.0",
@@ -151,5 +152,15 @@
     "publishConfig": {
         "directory": "dist",
         "linkDirectory": true
+    },
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": {
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js"
+        },
+        "./package.json": "./dist/package.json"
     }
 }
