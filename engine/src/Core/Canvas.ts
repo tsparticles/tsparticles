@@ -365,9 +365,9 @@ export class Canvas {
     /**
      * Calculates the size of the canvas
      */
-    resize(): void {
+    resize(): boolean {
         if (!this.element) {
-            return;
+            return false;
         }
 
         const container = this.container,
@@ -384,7 +384,7 @@ export class Canvas {
             newSize.height === this.element.height &&
             newSize.width === this.element.width
         ) {
-            return;
+            return false;
         }
 
         const oldSize = { ...size };
@@ -398,6 +398,8 @@ export class Canvas {
                 height: size.height / oldSize.height,
             };
         }
+
+        return true;
     }
 
     stop(): void {
@@ -414,7 +416,9 @@ export class Canvas {
             return;
         }
 
-        this.resize();
+        if (!this.resize()) {
+            return;
+        }
 
         const container = this.container,
             needsRefresh = container.updateActualOptions();

@@ -22,8 +22,9 @@
             "type": "spiral",
             "options": {
                 "spiral": {
-                    "innerRadius": 0.5,
-                    "lineSpacing": 0.5,
+                    "innerRadius": 1,
+                    "lineSpacing": 1,
+                    "widthFactor": 10,
                     "fill": false,
                     "close": false
                 }
@@ -40,17 +41,7 @@
             }
         },
         "size": {
-            "value": 10,
-            "random": {
-                "enable": true,
-                "minimumValue": 5
-            },
-            "animation": {
-                "enable": false,
-                "speed": 20,
-                "size_min": 0.1,
-                "sync": false
-            }
+            "value": { "min": 10, "max": 20 }
         },
         "links": {
             "enable": false,
@@ -71,12 +62,7 @@
             "speed": 6,
             "direction": "none",
             "random": false,
-            "straight": false,
-            "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-            }
+            "straight": false
         }
     },
     "interactivity": {

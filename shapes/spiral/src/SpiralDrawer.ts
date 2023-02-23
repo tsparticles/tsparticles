@@ -1,28 +1,39 @@
-import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
+import type { Container, IShapeDrawer } from "tsparticles-engine";
 import type { ISpiralData } from "./ISpiralData";
-import type { ISpiralParticle } from "./ISpiralParticle";
+import type { SpiralParticle } from "./SpiralParticle";
+import { getRangeValue } from "tsparticles-engine";
 
 export class SpiralDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
-        const spiral = particle as ISpiralParticle,
-            realWidth = (radius - spiral.spiralInnerRadius) / spiral.spiralLineSpacing;
+    draw(context: CanvasRenderingContext2D, particle: SpiralParticle, radius: number): void {
+        if (
+            particle.spiralInnerRadius === undefined ||
+            particle.spiralLineSpacing === undefined ||
+            particle.spiralWidthFactor === undefined
+        ) {
+            return;
+        }
 
-        for (let i = 0; i < realWidth * 10; i++) {
-            const angle = 0.1 * i,
-                positionFactor = spiral.spiralInnerRadius + spiral.spiralLineSpacing * angle,
-                x = positionFactor * Math.cos(angle),
-                y = positionFactor * Math.sin(angle);
+        const realWidth = (radius - particle.spiralInnerRadius) / particle.spiralLineSpacing,
+            widthFactor = 10;
 
-            context.lineTo(x, y);
+        for (let i = 0; i < realWidth * widthFactor; i++) {
+            const angle = i / widthFactor,
+                factor = particle.spiralInnerRadius + particle.spiralLineSpacing * angle,
+                pos = {
+                    x: factor * Math.cos(angle),
+                    y: factor * Math.sin(angle),
+                };
+
+            context.lineTo(pos.x, pos.y);
         }
     }
 
-    particleInit(container: Container, particle: IParticle): void {
+    particleInit(container: Container, particle: SpiralParticle): void {
         const pixelRatio = container.retina.pixelRatio,
-            shapeData = particle.shapeData as ISpiralData,
-            spiral = particle as ISpiralParticle;
+            shapeData = particle.shapeData as ISpiralData;
 
-        spiral.spiralInnerRadius = (shapeData.innerRadius ?? 1) * pixelRatio;
-        spiral.spiralLineSpacing = (shapeData.lineSpacing ?? 1) * pixelRatio;
+        particle.spiralInnerRadius = getRangeValue(shapeData.innerRadius ?? 1) * pixelRatio;
+        particle.spiralLineSpacing = getRangeValue(shapeData.lineSpacing ?? 1) * pixelRatio;
+        particle.spiralWidthFactor = getRangeValue(shapeData.widthFactor ?? 10);
     }
 }

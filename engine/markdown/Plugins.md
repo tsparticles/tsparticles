@@ -21,15 +21,18 @@ _spiral.js_ - The custom shape script, you can distribute it or reuse in all you
 // parameters: shape name, drawing method
 // opacity is just for shapes that needs a differenc opacity handling like images
 tsParticles.addShape("spiral", function (context, particle, radius, opacity) {
-  const shapeData = particle.shapeData;
-  const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
+  const data = particle.shapeData,
+    realWidth = (radius - data.innerRadius) / data.lineSpacing;
 
   for (let i = 0; i < realWidth * 10; i++) {
-    const angle = 0.1 * i;
-    const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
-    const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
+    const angle = 0.1 * i,
+      factor = data.innerRadius + data.lineSpacing * angle,
+      pos = {
+        x: factor * Math.cos(angle),
+        y: factor * Math.sin(angle),
+      };
 
-    context.lineTo(x, y);
+    context.lineTo(pos.x, pos.y);
   }
 });
 ```
@@ -39,15 +42,17 @@ If you prefer using classes you can, {@link IShapeDrawer} interface can be imple
 ```javascript
 class SpiralDrawer {
   draw(context, particle, radius, opacity, delta) {
-    const shapeData = particle.shapeData;
-    const realWidth = (radius - shapeData.innerRadius) / shapeData.lineSpacing;
+    const data = (particle.shapeData = realWidth = (radius - data.innerRadius) / data.lineSpacing);
 
     for (let i = 0; i < realWidth * 10; i++) {
-      const angle = 0.1 * i;
-      const x = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.cos(angle);
-      const y = (shapeData.innerRadius + shapeData.lineSpacing * angle) * Math.sin(angle);
+      const angle = 0.1 * i,
+        factor = data.innerRadius + data.lineSpacing * angle,
+        pos = {
+          x: factor * Math.cos(angle),
+          y: factor * Math.sin(angle),
+        };
 
-      context.lineTo(x, y);
+      context.lineTo(pos.x, pos.y);
     }
   }
 }
@@ -93,7 +98,7 @@ _config.json_ - The config section to add to your config or in your plugin readm
     // [... omitted for brevity]
     "shape": {
       "type": "spiral", // this must match the name above, the type works as always, you can use an array with your custom shape inside
-      "custom": {
+      "options": {
         // this must match the name above, these are the values set in particle.shapeData (the first line of the method above)
         // you can use array as value here too, the values will be random picked, like in standard shapes
         "spiral": {

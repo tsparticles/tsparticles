@@ -398,8 +398,8 @@ export class Particle implements IParticle {
         this.interactivity.load(container.actualOptions.interactivity);
         this.interactivity.load(particlesOptions.interactivity);
 
-        this.fill = this.shapeData?.fill ?? this.fill;
-        this.close = this.shapeData?.close ?? this.close;
+        this.fill = this.shapeData?.fill ?? particlesOptions.shape.fill;
+        this.close = this.shapeData?.close ?? particlesOptions.shape.close;
         this.options = particlesOptions;
 
         const pathOptions = this.options.move.path;

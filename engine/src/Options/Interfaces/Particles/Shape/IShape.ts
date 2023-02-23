@@ -16,9 +16,21 @@ export interface IShape {
     character: SingleOrMultiple<ICharacterShape>;
 
     /**
+     * Set this property to false for creating an open shape
+     * @default true
+     */
+    close: boolean;
+
+    /**
      * @deprecated this property has been renamed to options
      */
     custom: ShapeData;
+
+    /**
+     * Set this property to false for creating an empty shape
+     * @default true
+     */
+    fill: boolean;
 
     /**
      * @deprecated this property was integrated in custom shape management
