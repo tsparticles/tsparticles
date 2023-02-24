@@ -161,6 +161,7 @@
         await loadSimplexNoisePath(tsParticles);
         await loadBubbleShape(tsParticles);
         await loadCardsShape(tsParticles);
+        await loadCogShape(tsParticles);
         await loadHeartShape(tsParticles);
         await loadMultilineTextShape(tsParticles);
         await loadPathShape(tsParticles);

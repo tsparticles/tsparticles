@@ -93,6 +93,7 @@ import _ring from "./ring.json";
 import _seaAnemone from "./seaAnemone.json";
 import _shadow from "./shadow.json";
 import _shapeBubble from "./shapeBubble.json";
+import _shapeCog from "./shapeCog.json";
 import _shapeHeart from "./shapeHeart.json";
 import _shapeMultilineText from "./shapeMultilineText.json";
 import _shapeOptions from "./shapeOptions.json";
@@ -219,6 +220,7 @@ const absorbers = _absorbers as unknown as ISourceOptions,
     seaAnemone = _seaAnemone as unknown as ISourceOptions,
     shadow = _shadow as unknown as ISourceOptions,
     shapeBubble = _shapeBubble as unknown as ISourceOptions,
+    shapeCog = _shapeCog as unknown as ISourceOptions,
     shapeHeart = _shapeHeart as unknown as ISourceOptions,
     shapeMultilineText = _shapeMultilineText as unknown as ISourceOptions,
     shapeOptions = _shapeOptions as unknown as ISourceOptions,
@@ -345,6 +347,7 @@ export type ExportedConfigurations = {
     seaAnemone: ISourceOptions;
     shadow: ISourceOptions;
     shapeBubble: ISourceOptions;
+    shapeCog: ISourceOptions;
     shapeHeart: ISourceOptions;
     shapeMultilineText: ISourceOptions;
     shapeOptions: ISourceOptions;
@@ -476,6 +479,7 @@ mainConfigs.configs = {
     seaAnemone,
     shadow,
     shapeBubble,
+    shapeCog,
     shapeHeart,
     shapeMultilineText,
     shapeOptions,
@@ -603,6 +607,7 @@ export {
     seaAnemone,
     shadow,
     shapeBubble,
+    shapeCog,
     shapeHeart,
     shapeMultilineText,
     shapeOptions,

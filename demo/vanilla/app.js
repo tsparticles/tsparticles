@@ -109,6 +109,7 @@ app.use("/plugin-motion", express.static("./node_modules/tsparticles-plugin-moti
 app.use("/plugin-sounds", express.static("./node_modules/tsparticles-plugin-sounds"));
 app.use("/shape-bubble", express.static("./node_modules/tsparticles-shape-bubble"));
 app.use("/shape-cards", express.static("./node_modules/tsparticles-shape-cards"));
+app.use("/shape-cog", express.static("./node_modules/tsparticles-shape-cog"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
 app.use("/shape-path", express.static("./node_modules/tsparticles-shape-path"));
