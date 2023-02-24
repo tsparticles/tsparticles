@@ -83,6 +83,8 @@ export interface IOptions {
      */
     manualParticles: IManualParticle[];
 
+    name?: string;
+
     /**
      * The particles options
      */

@@ -41,6 +41,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     fullScreen;
     interactivity;
     manualParticles: ManualParticle[];
+    name?: string;
     particles;
     pauseOnBlur;
     pauseOnOutsideViewport;

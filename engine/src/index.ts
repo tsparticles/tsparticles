@@ -1,7 +1,5 @@
 import { Engine } from "./engine";
 import { HslColorManager } from "./Utils/HslColorManager";
-import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { RecursivePartial } from "./Types/RecursivePartial";
 import { RgbColorManager } from "./Utils/RgbColorManager";
 import { addColorManager } from "./Utils/ColorUtils";
 
@@ -184,6 +182,7 @@ export * from "./Options/Interfaces/Theme/ITheme";
 export * from "./Options/Interfaces/Theme/IThemeDefault";
 export * from "./Types/CustomEventArgs";
 export * from "./Types/CustomEventListener";
+export * from "./Types/ISourceOptions";
 export * from "./Types/ParticlesGroups";
 export * from "./Types/PathOptions";
 export * from "./Types/RangeValue";
@@ -214,7 +213,6 @@ export type { Engine, Engine as Main };
 /**
  * tsParticles source options alias type, supporting partial objects
  */
-export type ISourceOptions = RecursivePartial<IOptions>;
 export type { ICollisionsAbsorb } from "./Options/Interfaces/Particles/Collisions/ICollisionsAbsorb";
 export { CollisionsAbsorb } from "./Options/Classes/Particles/Collisions/CollisionsAbsorb";
 export type { IResizeEvent } from "./Options/Interfaces/Interactivity/Events/IResizeEvent";

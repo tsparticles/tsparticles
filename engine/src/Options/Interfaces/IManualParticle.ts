@@ -1,4 +1,4 @@
-import type { ICoordinates } from "../../Core/Interfaces/ICoordinates";
+import type { ICoordinatesWithMode } from "../../Core/Interfaces/ICoordinates";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
@@ -16,5 +16,5 @@ export interface IManualParticle {
     /**
      * Particle position in canvas size percent, if undefined a random position will be used
      */
-    position?: ICoordinates;
+    position?: ICoordinatesWithMode;
 }

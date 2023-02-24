@@ -23,6 +23,10 @@ export interface IRangedCoordinates3d extends IRangedCoordinates {
     z: RangeValue;
 }
 
+export interface ICoordinatesWithMode extends ICoordinates {
+    mode: SizeMode;
+}
+
 export interface ICenterCoordinates extends ICoordinates {
     mode: SizeMode;
     radius: number;

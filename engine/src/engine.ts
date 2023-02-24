@@ -20,6 +20,7 @@ import type { IParticleMover } from "./Core/Interfaces/IParticlesMover";
 import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
+import type { ISourceOptions } from "./Types/ISourceOptions";
 import { Loader } from "./Core/Loader";
 import type { Particle } from "./Core/Particle";
 import { Plugins } from "./Core/Utils/Plugins";
@@ -40,6 +41,7 @@ export class Engine {
      */
     readonly plugins: Plugins;
 
+    private readonly _configs: Map<string, ISourceOptions>;
     /**
      * Contains all the [[Container]] instances of the current engine instance
      */
@@ -62,6 +64,7 @@ export class Engine {
      * Engine constructor, initializes plugins, loader and the containers array
      */
     constructor() {
+        this._configs = new Map();
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
         this._initialized = false;
@@ -69,8 +72,30 @@ export class Engine {
         this.plugins = new Plugins(this);
     }
 
+    get configs(): Record<string, ISourceOptions> {
+        const res: { [key: string]: ISourceOptions } = {};
+
+        for (const [name, config] of this._configs) {
+            res[name] = config;
+        }
+
+        return res;
+    }
+
     get version(): string {
         return __VERSION__;
+    }
+
+    addConfig(nameOrConfig: string | ISourceOptions, config?: ISourceOptions): void {
+        if (typeof nameOrConfig === "string") {
+            if (config) {
+                config.name = nameOrConfig;
+
+                this._configs.set(nameOrConfig, config);
+            }
+        } else {
+            this._configs.set(nameOrConfig.name ?? "default", nameOrConfig);
+        }
     }
 
     /**
