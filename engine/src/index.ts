@@ -16,6 +16,8 @@ const tsParticles = new Engine();
 
 tsParticles.init();
 
+window.tsParticles = tsParticles;
+
 export * from "./Core/Interfaces/Colors";
 export * from "./Core/Interfaces/IBounds";
 export * from "./Core/Interfaces/IBubbleParticleData";

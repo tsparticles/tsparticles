@@ -26,6 +26,15 @@ import { tsParticles } from "tsparticles-engine";
 
 export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
 
+declare global {
+    interface Window {
+        confetti: ConfettiFunc & {
+            create: (canvas: HTMLCanvasElement, options: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
+            version: string;
+        };
+    }
+}
+
 let initialized = false;
 let initializing = false;
 
@@ -353,3 +362,7 @@ confetti.create = async (
         });
     };
 };
+
+confetti.version = tsParticles.version;
+
+window.confetti = confetti;

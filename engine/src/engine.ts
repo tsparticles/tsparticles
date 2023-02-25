@@ -29,6 +29,12 @@ import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
 
 declare const __VERSION__: string;
 
+declare global {
+    interface Window {
+        tsParticles: Engine;
+    }
+}
+
 /**
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the Loader class for initializing [[Container]] instances,

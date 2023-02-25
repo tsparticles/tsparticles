@@ -29,6 +29,17 @@ import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 let initialized = false;
 let initializing = false;
 
+declare global {
+    interface Window {
+        fireworks: ((
+            idOrOptions: string | RecursivePartial<IFireworkOptions>,
+            sourceOptions?: RecursivePartial<IFireworkOptions>
+        ) => Promise<FireworksInstance | undefined>) & {
+            version: string;
+        };
+    }
+}
+
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
     const data = args.data as { particle: Particle };
 
@@ -61,7 +72,7 @@ async function initPlugins(): Promise<void> {
     }
 
     if (initializing) {
-        return new Promise<void>((resolve) => {
+        return new Promise<void>(resolve => {
             const interval = setInterval(() => {
                 if (initialized) {
                     clearInterval(interval);
@@ -297,3 +308,7 @@ export async function fireworks(
 
     return new FireworksInstance(container);
 }
+
+fireworks.version = tsParticles.version;
+
+window.fireworks = fireworks;
