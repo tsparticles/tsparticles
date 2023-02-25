@@ -5,6 +5,22 @@
 import type { Container, Engine, ISourceOptions, Particle } from "tsparticles-engine";
 import type { IParticlesJS } from "./IParticlesJS";
 
+declare global {
+    interface Window {
+        /**
+         * @deprecated this method is obsolete, please use the new [[tsParticles.dom]]
+         * The particles.js compatibility dom array
+         */
+        pJSDom: Container[];
+
+        /**
+         * @deprecated this method is obsolete, please use the new [[tsParticles.load]]
+         * The particles.js compatibility instance
+         */
+        particlesJS: IParticlesJS;
+    }
+}
+
 /**
  * Initializes particles.js compatibility to the given engine
  * @param engine the engine that requires particles.js compatibility
@@ -17,6 +33,7 @@ const initPjs = (
      * The particles.js compatibility dom array
      */
     pJSDom: Container[];
+
     /**
      * @deprecated this method is obsolete, please use the new [[tsParticles.load]]
      * The particles.js compatibility instance
@@ -44,7 +61,7 @@ const initPjs = (
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         engine
             .loadJSON(tagId, pathConfigJson)
-            .then((container) => {
+            .then(container => {
                 if (container) {
                     callback(container);
                 }
@@ -68,6 +85,9 @@ const initPjs = (
      * @deprecated this method is obsolete, please use the new [[tsParticles.dom]]
      */
     const pJSDom = engine.dom();
+
+    window.particlesJS = particlesJS;
+    window.pJSDom = pJSDom;
 
     return { particlesJS, pJSDom };
 };
