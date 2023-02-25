@@ -613,17 +613,17 @@ available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOp
 I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can check out
 my [profile](https://codepen.io/matteobruni)
 
-Otherwise, there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
+Otherwise, there's the demo page link below.
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/)
 
 Want to see even more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
 $ pnpm i
-$ npx lerna run build
+$ pnpm run build
 $ cd demo/vanilla
-$ pnpm run start
+$ pnpm start
 ```
 
 **Boom! 💥** <http://localhost:3000> and you can check out other demos.
