@@ -14,6 +14,9 @@ export interface IImage {
     element?: HTMLImageElement;
     error: boolean;
     loading: boolean;
+    name: string;
+    ratio?: number;
+    replaceColor?: boolean;
     source: string;
     svgData?: string;
     type: string;

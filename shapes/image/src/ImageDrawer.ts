@@ -1,7 +1,7 @@
 import type { Container, IShapeDrawer } from "tsparticles-engine";
 import type { IImage, IParticleImage, ImageParticle } from "./Utils";
+import type { ImageContainer, ImageEngine } from "./types";
 import type { IImageShape } from "./IImageShape";
-import type { ImageEngine } from "./types";
 import { errorPrefix } from "tsparticles-engine";
 import { replaceImageColor } from "./Utils";
 
@@ -67,6 +67,18 @@ export class ImageDrawer implements IShapeDrawer {
         return 12;
     }
 
+    async init(container: ImageContainer): Promise<void> {
+        const options = container.actualOptions;
+
+        if (!options.preload || !this._engine.loadImage) {
+            return;
+        }
+
+        for (const imageData of options.preload) {
+            this._engine.loadImage(imageData);
+        }
+    }
+
     loadShape(particle: ImageParticle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
@@ -77,7 +89,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
 
         const imageData = particle.shapeData as IImageShape,
-            image = this._engine.images.find((t: IImage) => t.source === imageData.src);
+            image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
             this.loadImageShape(imageData).then(() => {
@@ -103,12 +115,13 @@ export class ImageDrawer implements IShapeDrawer {
         const images = this._engine.images,
             imageData = particle.shapeData as IImageShape,
             color = particle.getFillColor(),
-            replaceColor = imageData.replaceColor ?? imageData.replace_color,
-            image = images.find((t: IImage) => t.source === imageData.src);
+            image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
             return;
         }
+
+        const replaceColor = imageData.replaceColor ?? imageData.replace_color ?? image.replaceColor;
 
         if (image.loading) {
             setTimeout((): void => {
@@ -129,7 +142,7 @@ export class ImageDrawer implements IShapeDrawer {
                     data: image,
                     element: image.element,
                     loaded: true,
-                    ratio: imageData.width / imageData.height,
+                    ratio: imageData.width && imageData.height ? imageData.width / imageData.height : image.ratio,
                     replaceColor: replaceColor,
                     source: imageData.src,
                 };
@@ -163,6 +176,10 @@ export class ImageDrawer implements IShapeDrawer {
             throw new Error(`${errorPrefix} image shape not initialized`);
         }
 
-        await this._engine.loadImage(imageShape.src, imageShape.replaceColor ?? imageShape.replace_color ?? false);
+        await this._engine.loadImage({
+            name: imageShape.name,
+            replaceColor: imageShape.replaceColor ?? imageShape.replace_color ?? false,
+            src: imageShape.src,
+        });
     }
 }

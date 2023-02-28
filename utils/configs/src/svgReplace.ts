@@ -100,10 +100,7 @@ const options: ISourceOptions = {
         shape: {
             options: {
                 image: {
-                    src: "/images/canine.svg",
-                    width: 32,
-                    height: 32,
-                    replaceColor: true,
+                    name: "canine",
                 },
             },
             type: "image",
@@ -112,19 +109,15 @@ const options: ISourceOptions = {
             value: 16,
         },
     },
-    polygon: {
-        draw: {
-            enable: false,
-            lineColor: "#ffffff",
-            lineWidth: 0.5,
+    preload: [
+        {
+            name: "canine",
+            src: "/images/canine.svg",
+            width: 32,
+            height: 32,
+            replaceColor: true,
         },
-        move: {
-            radius: 10,
-        },
-        scale: 1,
-        type: "none",
-        url: "",
-    },
+    ],
     background: {
         color: "#fff",
         image: "",

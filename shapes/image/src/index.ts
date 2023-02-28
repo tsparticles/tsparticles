@@ -1,7 +1,9 @@
 import { downloadSvgImage, loadImage } from "./Utils";
 import type { IImage } from "./Utils";
+import type { IPreload } from "./Options/Interfaces/IPreload";
 import { ImageDrawer } from "./ImageDrawer";
 import type { ImageEngine } from "./types";
+import { ImagePreloaderPlugin } from "./ImagePreloader";
 import { errorPrefix } from "tsparticles-engine";
 
 /**
@@ -10,33 +12,43 @@ import { errorPrefix } from "tsparticles-engine";
  */
 export async function loadImageShape(engine: ImageEngine): Promise<void> {
     if (!engine.loadImage) {
-        engine.loadImage = async (url: string, replaceColor = false): Promise<void> => {
-            if (!url) {
+        engine.loadImage = async (data: IPreload): Promise<void> => {
+            if (!data.name && !data.src) {
                 throw new Error(`${errorPrefix} no image source provided`);
+            }
+
+            if (!engine.images) {
+                engine.images = [];
+            }
+
+            if (engine.images.find((t: IImage) => t.name === data.name || t.source === data.src)) {
+                return;
             }
 
             try {
                 const image: IImage = {
-                    source: url,
-                    type: url.substring(url.length - 3),
+                    name: data.name ?? data.src,
+                    source: data.src,
+                    type: data.src.substring(data.src.length - 3),
                     error: false,
                     loading: true,
+                    replaceColor: data.replaceColor,
+                    ratio: data.width && data.height ? data.width / data.height : undefined,
                 };
-
-                if (!engine.images) {
-                    engine.images = [];
-                }
 
                 engine.images.push(image);
 
-                const imageFunc = replaceColor ? downloadSvgImage : loadImage;
+                const imageFunc = data.replaceColor ? downloadSvgImage : loadImage;
 
                 await imageFunc(image);
             } catch {
-                throw new Error(`${errorPrefix} ${url} not found`);
+                throw new Error(`${errorPrefix} ${data.name ?? data.src} not found`);
             }
         };
     }
 
+    const preloader = new ImagePreloaderPlugin(engine);
+
+    await engine.addPlugin(preloader);
     await engine.addShape(["image", "images"], new ImageDrawer(engine));
 }
