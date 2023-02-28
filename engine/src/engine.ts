@@ -26,6 +26,7 @@ import type { Particle } from "./Core/Particle";
 import { Plugins } from "./Core/Utils/Plugins";
 import type { RecursivePartial } from "./Types/RecursivePartial";
 import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
+import { errorPrefix } from "./Core/Utils/Constants";
 
 declare const __VERSION__: string;
 
@@ -353,7 +354,9 @@ export class Engine {
         const dom = this.dom();
 
         if (!dom.length) {
-            throw new Error("Can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()");
+            throw new Error(
+                `${errorPrefix} can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()`
+            );
         }
 
         for (const domItem of dom) {

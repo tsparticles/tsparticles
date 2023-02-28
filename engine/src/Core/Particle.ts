@@ -43,6 +43,7 @@ import { StartValueType } from "../Enums/Types/StartValueType";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
+import { errorPrefix } from "./Utils/Constants";
 import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
@@ -676,7 +677,7 @@ export class Particle implements IParticle {
         const retries = overlapOptions.retries;
 
         if (retries >= 0 && tryCount > retries) {
-            throw new Error("Particle is overlapping and can't be placed");
+            throw new Error(`${errorPrefix} particle is overlapping and can't be placed`);
         }
 
         let overlaps = false;

@@ -1,10 +1,10 @@
+import { errorPrefix, generatedAttribute } from "./Utils/Constants";
 import { Container } from "./Container";
 import type { Engine } from "../engine";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { LoaderParams } from "./Interfaces/LoaderParams";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
-import { generatedAttribute } from "./Utils/Constants";
 import { getRandom } from "../Utils/NumberUtils";
 import { itemFromSingleOrMultiple } from "../Utils/Utils";
 
@@ -24,7 +24,7 @@ async function getDataFromUrl(
         return response.json();
     }
 
-    console.error(`tsParticles - Error ${response.status} while retrieving config file`);
+    console.error(`${errorPrefix} ${response.status} while retrieving config file`);
 }
 
 /**

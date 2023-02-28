@@ -15,3 +15,5 @@ export const mouseOutEvent = "pointerout";
 export const touchCancelEvent = "touchcancel";
 export const resizeEvent = "resize";
 export const visibilityChangeEvent = "visibilitychange";
+
+export const errorPrefix = "tsParticles - Error";

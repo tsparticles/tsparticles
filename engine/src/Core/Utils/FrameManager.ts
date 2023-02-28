@@ -1,5 +1,6 @@
 import type { Container } from "../Container";
 import type { IDelta } from "../Interfaces/IDelta";
+import { errorPrefix } from "./Constants";
 
 function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
     return {
@@ -57,7 +58,7 @@ export class FrameManager {
                 container.draw(false);
             }
         } catch (e) {
-            console.error("tsParticles error in animation loop", e);
+            console.error(`${errorPrefix} in animation loop`, e);
         }
     }
 }

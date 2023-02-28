@@ -1,6 +1,6 @@
 import type { Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
-import { deepExtend, getDistance, getDistances, getRandom, itemFromArray } from "tsparticles-engine";
+import { deepExtend, errorPrefix, getDistance, getDistances, getRandom, itemFromArray } from "tsparticles-engine";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import { OutModeDirection } from "tsparticles-engine";
 import type { Particle } from "tsparticles-engine";
@@ -8,8 +8,8 @@ import type { PolygonMaskContainer } from "./types";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
 
-const noPolygonDataLoaded = "No polygon data loaded.",
-    noPolygonFound = "No polygon found, you need to specify SVG url in config.";
+const noPolygonDataLoaded = `${errorPrefix} No polygon data loaded.`,
+    noPolygonFound = `${errorPrefix} No polygon found, you need to specify SVG url in config.`;
 
 /**
  * Polygon Mask manager
@@ -267,7 +267,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const req = await fetch(url);
 
         if (!req.ok) {
-            throw new Error("tsParticles Error - Error occurred during polygon mask download");
+            throw new Error(`${errorPrefix} occurred during polygon mask download`);
         }
 
         return this.parseSvgPath(await req.text(), force);

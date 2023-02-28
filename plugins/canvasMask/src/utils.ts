@@ -6,9 +6,9 @@ import type {
     IRgba,
     RecursivePartial,
 } from "tsparticles-engine";
+import { errorPrefix, getRandom } from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { TextMask } from "./Options/Classes/TextMask";
-import { getRandom } from "tsparticles-engine";
 
 export type CanvasPixelData = {
     height: number;
@@ -146,7 +146,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                return reject(new Error("Could not get canvas context"));
+                return reject(new Error(`${errorPrefix} Could not get canvas context`));
             }
 
             context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);

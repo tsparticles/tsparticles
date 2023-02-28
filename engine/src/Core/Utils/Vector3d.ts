@@ -1,4 +1,5 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
+import { errorPrefix } from "./Constants";
 
 /**
  * @category Utils
@@ -39,7 +40,7 @@ export class Vector3d implements ICoordinates3d {
             this.y = y;
             this.z = z ?? 0;
         } else {
-            throw new Error("tsParticles - Vector3d not initialized correctly");
+            throw new Error(`${errorPrefix} Vector3d not initialized correctly`);
         }
     }
 

@@ -1,6 +1,6 @@
 import type { IHsl, Particle } from "tsparticles-engine";
+import { errorPrefix, getStyleFromHsl } from "tsparticles-engine";
 import type { IImageShape } from "./IImageShape";
-import { getStyleFromHsl } from "tsparticles-engine";
 
 /**
  * @category Interfaces
@@ -30,21 +30,6 @@ export interface IParticleImage {
     ratio: number;
     replaceColor: boolean;
     source: string;
-}
-
-/*
- * The container image collection
- */
-export interface ContainerImage {
-    /**
-     * The container id, used key
-     */
-    id: string;
-
-    /**
-     * The image collection of the given container
-     */
-    images: IImage[];
 }
 
 /**
@@ -109,7 +94,7 @@ export async function loadImage(image: IImage): Promise<void> {
             image.error = true;
             image.loading = false;
 
-            console.error(`Error tsParticles - loading image: ${image.source}`);
+            console.error(`${errorPrefix} loading image: ${image.source}`);
 
             resolve();
         });
@@ -134,7 +119,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     const response = await fetch(image.source);
 
     if (!response.ok) {
-        console.error("Error tsParticles - Image not found");
+        console.error(`${errorPrefix} Image not found`);
 
         image.error = true;
     }

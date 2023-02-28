@@ -14,6 +14,7 @@ import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { calcPositionFromSize } from "../Utils/NumberUtils";
+import { errorPrefix } from "./Utils/Constants";
 
 /**
  * Particles manager object
@@ -434,7 +435,7 @@ export class Particles {
 
             return particle;
         } catch (e) {
-            console.warn(`error adding particle: ${e}`);
+            console.warn(`${errorPrefix} adding particle: ${e}`);
 
             return;
         }

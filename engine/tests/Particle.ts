@@ -1,5 +1,5 @@
 import { describe, it } from "mocha";
-import type { ICoordinates } from "../src";
+import { errorPrefix, ICoordinates } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
@@ -99,7 +99,7 @@ describe("Particle", () => {
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options["polygon"];
                         break;
                     default:
-                        throw new Error(`Unexpected shape type "${testParticle.particle?.shape}"`);
+                        throw new Error(`${errorPrefix} Unexpected shape type "${testParticle.particle?.shape}"`);
                 }
 
                 expect(testParticle.particle?.close).to.eql(expectedShapeData.close);
