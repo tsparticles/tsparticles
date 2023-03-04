@@ -142,7 +142,7 @@ export class ImageDrawer implements IShapeDrawer {
                     data: image,
                     element: image.element,
                     loaded: true,
-                    ratio: imageData.width && imageData.height ? imageData.width / imageData.height : image.ratio,
+                    ratio: imageData.width && imageData.height ? imageData.width / imageData.height : image.ratio ?? 1,
                     replaceColor: replaceColor,
                     source: imageData.src,
                 };
