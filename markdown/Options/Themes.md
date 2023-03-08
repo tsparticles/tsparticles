@@ -6,8 +6,13 @@
 
 ## Default
 
+-   [auto](#auto)
 -   [mode](#mode)
 -   [value](#value)
+
+### Auto
+
+If set to true, this theme will be switched when the mode matches the user OS theme.
 
 ### Mode
 
