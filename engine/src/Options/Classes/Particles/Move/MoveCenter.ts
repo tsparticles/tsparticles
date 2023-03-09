@@ -4,7 +4,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeMode } from "../../../../Enums/Modes/SizeMode";
 
 export class MoveCenter implements IMoveCenter, IOptionLoader<IMoveCenter> {
-    mode;
+    mode: SizeMode | keyof typeof SizeMode;
     radius;
     x;
     y;

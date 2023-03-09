@@ -24,10 +24,9 @@ export interface IRangedCoordinates3d extends IRangedCoordinates {
 }
 
 export interface ICoordinatesWithMode extends ICoordinates {
-    mode: SizeMode;
+    mode: SizeMode | keyof typeof SizeMode;
 }
 
-export interface ICenterCoordinates extends ICoordinates {
-    mode: SizeMode;
+export interface ICenterCoordinates extends ICoordinatesWithMode {
     radius: number;
 }
