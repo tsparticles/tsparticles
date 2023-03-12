@@ -79,7 +79,7 @@ function stringToRgba(input: string): IRgba | undefined {
 
 /**
  * Gets the particles color
- * @param input the input color to convert in [[IRgb]] object
+ * @param input the input color to convert in {@link IRgb} object
  * @param index the array index, if needed
  * @param useIndex set to false for ignoring the index parameter
  */
@@ -111,7 +111,7 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
 
 /**
  * Gets the particles color
- * @param input the input color to convert in [[IRgb]] object
+ * @param input the input color to convert in {@link IRgb} object
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
  */
@@ -143,10 +143,10 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
 
 /**
  * Gets the particles color
- * @param color the input color to convert in [[IHsl]] object
+ * @param color the input color to convert in {@link IHsl} object
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
- * @returns the [[IHsl]] object
+ * @returns the {@link IHsl} object
  */
 export function colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
     const rgb = colorToRgb(color, index, useIndex);
@@ -156,10 +156,10 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
 
 /**
  * Gets the particles color
- * @param color the input color to convert in [[IHsl]] object
+ * @param color the input color to convert in {@link IHsl} object
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
- * @returns the [[IHsl]] object
+ * @returns the {@link IHsl} object
  */
 export function rangeColorToHsl(
     color: string | IRangeColor | undefined,
@@ -224,18 +224,18 @@ export function stringToAlpha(input: string): number | undefined {
 }
 
 /**
- * Converts hexadecimal string (HTML color code) in a [[IRgb]] object
+ * Converts hexadecimal string (HTML color code) in a {@link IRgb} object
  * @param input the hexadecimal string (#f70 or #ff7700)
- * @returns the [[IRgb]] object
+ * @returns the {@link IRgb} object
  */
 export function stringToRgb(input: string): IRgb | undefined {
     return stringToRgba(input);
 }
 
 /**
- * Converts a Hue Saturation Lightness ([[IHsl]]) object in a [[IRgb]] object
- * @param hsl the Hue Saturation Lightness ([[IHsl]]) object
- * @returns the [[IRgb]] object
+ * Converts a Hue Saturation Lightness ({@link IHsl}) object in a {@link IRgb} object
+ * @param hsl the Hue Saturation Lightness ({@link IHsl}) object
+ * @returns the {@link IRgb} object
  */
 export function hslToRgb(hsl: IHsl): IRgb {
     const result: IRgb = { b: 0, g: 0, r: 0 },
@@ -285,9 +285,9 @@ export function hslaToRgba(hsla: IHsla): IRgba {
 }
 
 /**
- * Returns a random ([[IRgb]]) color
+ * Returns a random ({@link IRgb}) color
  * @param min the minimum value for the color
- * @returns the random ([[IRgb]]) color
+ * @returns the random ({@link IRgb}) color
  */
 export function getRandomRgbColor(min?: number): IRgb {
     const fixedMin = min ?? 0;
@@ -300,8 +300,8 @@ export function getRandomRgbColor(min?: number): IRgb {
 }
 
 /**
- * Gets a CSS style string from a [[IRgb]] object and opacity value
- * @param color the [[IRgb]] input color
+ * Gets a CSS style string from a {@link IRgb} object and opacity value
+ * @param color the {@link IRgb} input color
  * @param opacity the opacity value
  * @returns the CSS style string
  */
@@ -310,8 +310,8 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
 }
 
 /**
- * Gets a CSS style string from a [[IHsl]] object and opacity value
- * @param color the [[IHsl]] input color
+ * Gets a CSS style string from a {@link IHsl} object and opacity value
+ * @param color the {@link IHsl} input color
  * @param opacity the opacity value
  * @returns the CSS style string
  */

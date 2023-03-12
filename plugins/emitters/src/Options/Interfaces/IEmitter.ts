@@ -24,7 +24,7 @@ export interface IEmitter {
     autoPlay: boolean;
 
     /**
-     * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
+     * The direction of the emitted particles, {@link MoveDirection} is the enum used for values
      */
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
 

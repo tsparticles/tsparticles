@@ -27,7 +27,7 @@ export interface IInfection {
     infections: number;
 
     /**
-     * This property contains all the infection stages configurations, array of [[IInfectionStage]]
+     * This property contains all the infection stages configurations, array of {@link IInfectionStage}
      */
     stages: IInfectionStage[];
 }

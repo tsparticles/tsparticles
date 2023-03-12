@@ -14,7 +14,7 @@ export class Motion implements IMotion, IOptionLoader<IMotion> {
 
     /**
      * Reduce motion settings for users with `prefer-reduced-motion` enabled
-     * If [[disable]] is `true` these values will be ignored
+     * If {@link disable} is `true` these values will be ignored
      */
     reduce;
 

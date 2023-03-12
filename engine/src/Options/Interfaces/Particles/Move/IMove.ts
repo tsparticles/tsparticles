@@ -39,7 +39,7 @@ export interface IMove {
     gravity: IMoveGravity;
 
     /**
-     * @deprecated use the new [[path]] property instead
+     * @deprecated use the new {@link path} property instead
      */
     noise: IMovePath;
 

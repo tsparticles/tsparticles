@@ -1,5 +1,5 @@
-import { Canvas } from "../../src";
-import { Container } from "../../src";
+import type { Canvas } from "../../src";
+import type { Container } from "../../src";
 import { createCanvas } from "canvas";
 
 export class TestCanvas {
@@ -7,6 +7,7 @@ export class TestCanvas {
     private container: Container;
 
     constructor(container: Container, width: number, height: number) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const newCanvas = createCanvas(width, height) as any;
         newCanvas.dataset = {};
         newCanvas.offsetHeight = newCanvas.height;
@@ -17,8 +18,8 @@ export class TestCanvas {
     }
 
     /**
-     * If [[container]] is provided, then the new particle will be initialized with
-     * this [[container]]. Otherwise the last-used [[container]] will be used.
+     * If {@link container} is provided, then the new particle will be initialized with
+     * this {@link container}. Otherwise the last-used {@link container} will be used.
      *
      * @param width
      * @param height
@@ -28,6 +29,7 @@ export class TestCanvas {
         if (container !== undefined) {
             this.container = container;
         }
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const newCanvas = createCanvas(width, height) as any;
         newCanvas.offsetHeight = newCanvas.height;
         newCanvas.offsetWidth = newCanvas.width;

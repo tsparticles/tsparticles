@@ -20,7 +20,7 @@ export interface IAlphaColor {
  */
 export interface IColor {
     /**
-     * Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string
+     * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
      */
     value: SingleOrMultiple<IValueColor | IRgb | IHsl | IHsv | SingleOrMultiple<string>>;
 }
@@ -32,7 +32,7 @@ export interface IColor {
  */
 export interface IRangeColor {
     /**
-     * Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string
+     * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
      */
     value: SingleOrMultiple<IRangeValueColor | IRangeRgb | IRangeHsl | IRangeHsv | SingleOrMultiple<string>>;
 }

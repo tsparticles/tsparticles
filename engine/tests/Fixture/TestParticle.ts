@@ -1,12 +1,13 @@
-import { ICoordinates, ICoordinates3d, getRandom } from "../../src";
-import { Container } from "../../src";
-import { Particle } from "../../src";
+import { type ICoordinates, type ICoordinates3d, getRandom } from "../../src";
+import type { Container } from "../../src";
+import type { Particle } from "../../src";
 import { getRangeValue } from "../../src";
 
 export class TestParticle {
+    particle?: Particle;
+
     private container: Container;
     private position?: ICoordinates;
-    particle?: Particle;
 
     constructor(container: Container, position?: ICoordinates) {
         this.container = container;
@@ -15,49 +16,7 @@ export class TestParticle {
     }
 
     /**
-     * When creating a particle, the private method `Particle.calcPosition` ensures
-     * the particle is completely inside the canvas. It does this by shifting the
-     * position if any part of the particle is outsize the canvas. This function
-     * returns random positions of particles that are guaranteed to lie completely
-     * inside the canvas.
-     *
-     * @param container
-     */
-    randomPositionInCanvas(container?: Container): ICoordinates3d {
-        if (container === undefined) {
-            container = this.container;
-        }
-
-        const sizeValue = getRangeValue(container.actualOptions.particles.size.value) * container.retina.pixelRatio;
-        const width = container.canvas.size.width;
-        const height = container.canvas.size.height;
-        let x = width * getRandom();
-        x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
-        let y = height * getRandom();
-        y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
-        return { x, y, z: 0 };
-    }
-
-    /**
-     * If [[container]] is provided, then the new particle will be initialized with
-     * this [[container]]. Otherwise the last-used [[container]] will be used.
-     *
-     * [[position]] will be used verbatim, even if it is not provided. The last-used
-     * [[position]] will not be used.
-     *
-     * @param container
-     * @param position
-     */
-    reset(container?: Container, position?: ICoordinates): void {
-        if (container !== undefined) {
-            this.container = container;
-        }
-        this.position = position;
-        this.particle = this.container.particles.addParticle(this.position);
-    }
-
-    /**
-     * A function that will be passed to [[Array.sort]] to sort particles.
+     * A function that will be passed to {@link Array.sort} to sort particles.
      * It orders them in increasing order based on position, giving priority
      * to x and then y.
      *
@@ -118,5 +77,47 @@ export class TestParticle {
                     position: sortedResult.particle.getPosition(),
                 };
             });
+    }
+
+    /**
+     * When creating a particle, the private method `Particle.calcPosition` ensures
+     * the particle is completely inside the canvas. It does this by shifting the
+     * position if any part of the particle is outsize the canvas. This function
+     * returns random positions of particles that are guaranteed to lie completely
+     * inside the canvas.
+     *
+     * @param container
+     */
+    randomPositionInCanvas(container?: Container): ICoordinates3d {
+        if (container === undefined) {
+            container = this.container;
+        }
+
+        const sizeValue = getRangeValue(container.actualOptions.particles.size.value) * container.retina.pixelRatio;
+        const width = container.canvas.size.width;
+        const height = container.canvas.size.height;
+        let x = width * getRandom();
+        x = Math.min(Math.max(x, sizeValue * 2), width - sizeValue * 2);
+        let y = height * getRandom();
+        y = Math.min(Math.max(y, sizeValue * 2), height - sizeValue * 2);
+        return { x, y, z: 0 };
+    }
+
+    /**
+     * If {@link container} is provided, then the new particle will be initialized with
+     * this {@link container}. Otherwise the last-used {@link container} will be used.
+     *
+     * {@link position} will be used verbatim, even if it is not provided. The last-used
+     * {@link position} will not be used.
+     *
+     * @param container
+     * @param position
+     */
+    reset(container?: Container, position?: ICoordinates): void {
+        if (container !== undefined) {
+            this.container = container;
+        }
+        this.position = position;
+        this.particle = this.container.particles.addParticle(this.position);
     }
 }

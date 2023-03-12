@@ -7,7 +7,7 @@ import { Vector3d } from "./Vector3d";
 export class Vector extends Vector3d {
     /**
      * Vector constructor, creating an instance with the given coordinates
-     * @param xOrCoords X coordinate or the whole [[ICoordinates]] object
+     * @param xOrCoords X coordinate or the whole {@link ICoordinates} object
      * @param y Y coordinate
      * @protected
      */

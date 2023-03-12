@@ -119,10 +119,10 @@ export interface IOptions {
     /**
      * Enables a smooth effect, by default it's disabled
      * When enabled the animation will speed up or slow down depending on fps
-     * The [[fpsLimit]] field will be used as a reference for the animation speed
+     * The {@link fpsLimit} field will be used as a reference for the animation speed
      * Some examples:
-     *      - with a [[fpsLimit]] of 60 the animation will be twice faster on 120 fps devices
-     *      - with a [[fpsLimit]] of 120 the animation will be twice slower on 60 fps devices
+     *      - with a {@link fpsLimit} of 60 the animation will be twice faster on 120 fps devices
+     *      - with a {@link fpsLimit} of 120 the animation will be twice slower on 60 fps devices
      * The animation will be always smooth, but the behavior could be affected by the user screen refresh rate
      * It's recommended to keep this disabled, be careful.
      */
@@ -131,7 +131,7 @@ export interface IOptions {
     style: RecursivePartial<CSSStyleDeclaration>;
 
     /**
-     * User-defined themes that can be retrieved by the particles [[Container]]
+     * User-defined themes that can be retrieved by the particles {@link Container}
      */
     themes: ITheme[];
 

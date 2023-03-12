@@ -1,6 +1,6 @@
 /**
  * Engine class for creating the singleton on window.
- * It's a singleton proxy to the [[Loader]] class for initializing [[Container]] instances
+ * It's a singleton proxy to the {@link Loader} class for initializing {@link Container} instances
  * @category Engine
  */
 import type {
@@ -38,19 +38,19 @@ declare global {
 
 /**
  * Engine class for creating the singleton on window.
- * It's a singleton proxy to the Loader class for initializing [[Container]] instances,
+ * It's a singleton proxy to the Loader class for initializing {@link Container} instances,
  * and for Plugins class responsible for every external feature
  * @category Engine
  */
 export class Engine {
     /**
-     * Contains the [[Plugins]] engine instance
+     * Contains the {@link Plugins} engine instance
      */
     readonly plugins: Plugins;
 
     private readonly _configs: Map<string, ISourceOptions>;
     /**
-     * Contains all the [[Container]] instances of the current engine instance
+     * Contains all the {@link Container} instances of the current engine instance
      */
     private readonly _domArray: Container[];
 
@@ -62,7 +62,7 @@ export class Engine {
     private _initialized: boolean;
 
     /**
-     * Contains the [[Loader]] engine instance
+     * Contains the {@link Loader} engine instance
      * @private
      */
     private readonly _loader: Loader;
@@ -158,7 +158,7 @@ export class Engine {
 
     /**
      * addPlugin adds plugin to tsParticles, if an instance needs it it will be loaded
-     * @param plugin the plugin implementation of [[IPlugin]]
+     * @param plugin the plugin implementation of {@link IPlugin}
      */
     async addPlugin(plugin: IPlugin): Promise<void> {
         this.plugins.addPlugin(plugin);
@@ -221,17 +221,17 @@ export class Engine {
     }
 
     /**
-     * All the [[Container]] objects loaded
-     * @returns All the [[Container]] objects loaded
+     * All the {@link Container} objects loaded
+     * @returns All the {@link Container} objects loaded
      */
     dom(): Container[] {
         return this._domArray;
     }
 
     /**
-     * Retrieves a [[Container]] from all the objects loaded
+     * Retrieves a {@link Container} from all the objects loaded
      * @param index The object index
-     * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
+     * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
      */
     domItem(index: number): Container | undefined {
         const dom = this.dom(),
@@ -254,10 +254,10 @@ export class Engine {
     }
 
     /**
-     * Loads the provided options to create a [[Container]] object.
+     * Loads the provided options to create a {@link Container} object.
      * @param tagId The particles container element id
-     * @param options The options object to initialize the [[Container]]
-     * @returns A Promise with the [[Container]] object created
+     * @param options The options object to initialize the {@link Container}
+     * @returns A Promise with the {@link Container} object created
      */
     async load(
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
@@ -267,11 +267,11 @@ export class Engine {
     }
 
     /**
-     * Loads an options object from the provided array to create a [[Container]] object.
+     * Loads an options object from the provided array to create a {@link Container} object.
      * @param tagId The particles container element id
      * @param options The options array to get the item from
      * @param index If provided gets the corresponding item from the array
-     * @returns A Promise with the [[Container]] object created
+     * @returns A Promise with the {@link Container} object created
      */
     async loadFromArray(
         tagId: string,
@@ -282,12 +282,12 @@ export class Engine {
     }
 
     /**
-     * Loads the provided json with a GET request. The content will be used to create a [[Container]] object.
+     * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
      * @param pathConfigJson the json path (or paths array) to use in the GET request
      * @param index the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the [[Container]] object created
+     * @returns A Promise with the {@link Container} object created
      */
     async loadJSON(
         tagId: string | SingleOrMultiple<string>,
@@ -316,10 +316,10 @@ export class Engine {
     }
 
     /**
-     * Loads the provided option to create a [[Container]] object using the element parameter as a container
+     * Loads the provided option to create a {@link Container} object using the element parameter as a container
      * @param id The particles container id
      * @param element The dom element used to contain the particles
-     * @param options The options object to initialize the [[Container]]
+     * @param options The options object to initialize the {@link Container}
      */
     async set(
         id: string | HTMLElement,
@@ -330,12 +330,12 @@ export class Engine {
     }
 
     /**
-     * Loads the provided option to create a [[Container]] object using the element parameter as a container
+     * Loads the provided option to create a {@link Container} object using the element parameter as a container
      * @param id The particles container id
      * @param element The dom element used to contain the particles
      * @param pathConfigJson the json path (or paths array) to use in the GET request
      * @param index the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the [[Container]] object created
+     * @returns A Promise with the {@link Container} object created
      */
     async setJSON(
         id: string | HTMLElement,
@@ -347,7 +347,7 @@ export class Engine {
     }
 
     /**
-     * Adds an additional click handler to all the loaded [[Container]] objects.
+     * Adds an additional click handler to all the loaded {@link Container} objects.
      * @param callback The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {

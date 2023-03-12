@@ -15,7 +15,7 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     enable;
 
     /**
-     * Click mode values described in [[ClickMode]], an array of these values is also valid
+     * Click mode values described in {@link ClickMode}, an array of these values is also valid
      */
     mode: SingleOrMultiple<ClickMode | keyof typeof ClickMode | string>;
 
