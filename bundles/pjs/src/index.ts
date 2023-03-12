@@ -43,6 +43,12 @@ const initPjs = (
     engine: Engine
 ): {
     /**
+     * @deprecated this method is obsolete, please use the new [[tsParticles.load]]
+     * The particles.js compatibility object
+     */
+    Particles: typeof Particles;
+
+    /**
      * @deprecated this method is obsolete, please use the new [[tsParticles.dom]]
      * The particles.js compatibility dom array
      */
@@ -102,8 +108,9 @@ const initPjs = (
 
     window.particlesJS = particlesJS;
     window.pJSDom = pJSDom;
+    window.Particles = Particles;
 
-    return { particlesJS, pJSDom };
+    return { particlesJS, pJSDom, Particles };
 };
 
 interface ResponsiveOptions {
@@ -126,10 +133,21 @@ class Particles {
     private _container?: Container;
 
     static init(options: RecursivePartial<ParticlesOptions>): Particles {
-        const particles = new Particles();
+        const particles = new Particles(),
+            selector = options.selector;
+
+        if (!selector) {
+            throw new Error("No selector provided");
+        }
+
+        const el = document.querySelector(selector) as HTMLElement;
+
+        if (!el) {
+            throw new Error("No element found for selector");
+        }
 
         tsParticles
-            .load(options.selector ?? "tsparticles", {
+            .set(selector.replace(".", "").replace("#", ""), el, {
                 fullScreen: {
                     enable: false,
                 },
@@ -138,6 +156,7 @@ class Particles {
                         value: options.color ?? "#000000",
                     },
                     links: {
+                        color: "random",
                         distance: options.minDistance ?? 120,
                         enable: options.connectParticles ?? false,
                     },
@@ -197,6 +216,4 @@ class Particles {
     }
 }
 
-window.Particles = Particles;
-
-export { initPjs, Particles };
+export { initPjs };

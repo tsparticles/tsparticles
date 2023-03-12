@@ -46,3 +46,45 @@ tsParticles.load("tsparticles", {
   /* options */
 });
 ```
+
+#### Options
+
+Here you can use ParticlesJS or tsParticles options, they will work both fine.
+
+### Alternative Usage
+
+```javascript
+const { Particles } = initPjs(tsParticles); // not needed if using the bundle script, required for any other installation
+
+Particles.init({
+  /* options */
+});
+```
+
+#### Particles Options (only for Particles.init)
+
+| Option             | Type               | Default   | Description                                                           |
+| ------------------ | ------------------ | --------- | --------------------------------------------------------------------- |
+| `selector`         | string             | -         | _Required:_ The CSS selector of your canvas element                   |
+| `maxParticles`     | integer            | `100`     | _Optional:_ Maximum amount of particles                               |
+| `sizeVariations`   | integer            | `3`       | _Optional:_ Amount of size variations                                 |
+| `speed`            | integer            | `0.5`     | _Optional:_ Movement speed of the particles                           |
+| `color`            | string or string[] | `#000000` | _Optional:_ Color(s) of the particles and connecting lines            |
+| `minDistance`      | integer            | `120`     | _Optional:_ Distance in `px` for connecting lines                     |
+| `connectParticles` | boolean            | `false`   | _Optional:_ `true`/`false` if connecting lines should be drawn or not |
+| `responsive`       | array              | `null`    | _Optional:_ Array of objects containing breakpoints and options       |
+
+##### Responsive Options
+
+| Option       | Type    | Default | Description                                               |
+| ------------ | ------- | ------- | --------------------------------------------------------- |
+| `breakpoint` | integer | -       | _Required:_ Breakpoint in `px`                            |
+| `options`    | object  | -       | _Required:_ Options object, that overrides default values |
+
+#### Methods
+
+| Method            | Description                         |
+| ----------------- | ----------------------------------- |
+| `pauseAnimation`  | Pauses/stops the particle animation |
+| `resumeAnimation` | Continues the particle animation    |
+| `destroy`         | Destroys the plugin                 |

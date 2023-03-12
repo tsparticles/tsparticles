@@ -149,4 +149,12 @@ app.get("/noid", function (req, res) {
     res.render("noid");
 });
 
+app.get("/pjs", function (req, res) {
+    res.render("pjs");
+});
+
+app.get("/pjs2", function (req, res) {
+    res.render("pjs2");
+});
+
 app.listen(port, () => console.log(`Demo app listening on port ${port}!`));
