@@ -1,5 +1,53 @@
 blank_issues_enabled: false
 contact_links:
+  - name: Angular (ng-particles)
+    url: https://github.com/tsparticles/angular
+    about: The official tsParticles Angular component repository
+  - name: Astro (astro-particles)
+    url: https://github.com/tsparticles/astro
+    about: The official tsParticles Astro component repository
+  - name: Ember.js (ember-tsparticles)
+    url: https://github.com/tsparticles/ember
+    about: The official tsParticles Ember.js component repository
+  - name: Inferno (inferno-particles)
+    url: https://github.com/tsparticles/inferno
+    about: The official tsParticles Inferno component repository
+  - name: jQuery (jquery-particles)
+    url: https://github.com/tsparticles/jquery
+    about: The official tsParticles jQuery component repository
+  - name: Lit (lit-tsparticles)
+    url: https://github.com/tsparticles/lit
+    about: The official tsParticles Lit component repository
+  - name: Preact (preact-particles)
+    url: https://github.com/tsparticles/preact
+    about: The official tsParticles Preact component repository
+  - name: React.js (react-particles)
+    url: https://github.com/tsparticles/react
+    about: The official tsParticles React.js component repository
+  - name: Riot.js (riot-particles)
+    url: https://github.com/tsparticles/riot
+    about: The official tsParticles Riot.js component repository
+  - name: Solid.js (solid-particles)
+    url: https://github.com/tsparticles/solid
+    about: The official tsParticles Solid.js component repository
+  - name: Stencil.js (stencil-particles)
+    url: https://github.com/tsparticles/stencil
+    about: The official tsParticles Stencil.js component repository
+  - name: Svelte (svelte-particles)
+    url: https://github.com/tsparticles/svelte
+    about: The official tsParticles Svelte component repository
+  - name: Vue.js 2.x (vue2-particles)
+    url: https://github.com/tsparticles/vue2
+    about: The official tsParticles Vue.js 2.x component repository
+  - name: Vue.js 3.x (vue3-particles)
+    url: https://github.com/tsparticles/vue3
+    about: The official tsParticles Vue.js 3.x component repository
+  - name: Web Components (web-particles)
+    url: https://github.com/tsparticles/webcomponents
+    about: The official tsParticles Web Components component repository
+  - name: WordPress (wordpress-particles)
+    url: https://github.com/tsparticles/wordpress
+    about: The official tsParticles WordPress component repository
   - name: GitHub Discussions
     url: https://github.com/matteobruni/tsparticles/discussions
     about: The official tsParticles Q&A, idea discussions or sharing awesome configurations. If you have some general questions this is the right place to ask.
