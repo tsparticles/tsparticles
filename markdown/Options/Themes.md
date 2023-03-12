@@ -1,26 +1,21 @@
 # Theme Options
 
--   [default](#default)
--   [name](#name)
--   [options](#options)
+- [default](#default)
+- [name](#name)
+- [options](#options)
 
 ## Default
 
--   [auto](#auto)
--   [mode](#mode)
--   [value](#value)
-
-### Auto
-
-If set to true, this theme will be switched when the mode matches the user OS theme.
+- [mode](#mode)
+- [value](#value)
 
 ### Mode
 
 Values accepted
 
--   `"any"`
--   `"dark"`
--   `"light"`
+- `"any"`
+- `"dark"`
+- `"light"`
 
 ### Value
 

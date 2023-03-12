@@ -19,7 +19,7 @@
     "utils/*",
     "websites/*"
   ],
-  "version": "independent",
+  "version": "2.9.3",
   "npmClient": "pnpm",
   "useWorkspaces": true,
   "conventionalCommits": true,
