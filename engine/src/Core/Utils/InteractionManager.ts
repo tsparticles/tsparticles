@@ -113,13 +113,13 @@ export class InteractionManager {
     async reset(particle: Particle): Promise<void> {
         for (const interactor of this._externalInteractors) {
             if (interactor.isEnabled()) {
-                await interactor.reset(particle);
+                interactor.reset(particle);
             }
         }
 
         for (const interactor of this._particleInteractors) {
             if (interactor.isEnabled(particle)) {
-                await interactor.reset(particle);
+                interactor.reset(particle);
             }
         }
     }

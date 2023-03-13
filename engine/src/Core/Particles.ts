@@ -324,7 +324,9 @@ export class Particles {
                     break;
                 }
 
-                plugin.particleUpdate?.(particle, delta);
+                if (plugin.particleUpdate) {
+                    plugin.particleUpdate(particle, delta);
+                }
             }
 
             for (const mover of this.movers) {

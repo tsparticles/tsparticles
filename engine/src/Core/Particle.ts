@@ -62,9 +62,11 @@ const fixOutMode = (data: {
         return;
     }
 
-    if (data.coord > data.maxCoord - data.radius * 2) {
+    const diameter = data.radius * 2;
+
+    if (data.coord > data.maxCoord - diameter) {
         data.setCb(-data.radius);
-    } else if (data.coord < data.radius * 2) {
+    } else if (data.coord < diameter) {
         data.setCb(data.radius);
     }
 };
@@ -294,19 +296,24 @@ export class Particle implements IParticle {
         this.bubble.inRange = false;
         this.slow.inRange = false;
 
-        for (const [, plugin] of this.container.plugins) {
+        const container = this.container,
+            pathGenerator = this.pathGenerator;
+
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
         }
 
-        for (const updater of this.container.particles.updaters) {
+        for (const updater of container.particles.updaters) {
             if (updater.particleDestroyed) {
                 updater.particleDestroyed(this, override);
             }
         }
 
-        this.pathGenerator?.reset(this);
+        if (pathGenerator) {
+            pathGenerator.reset(this);
+        }
     }
 
     draw(delta: IDelta): void {
@@ -394,10 +401,12 @@ export class Particle implements IParticle {
         particlesOptions.load(overrideOptions);
         particlesOptions.load(this.shapeData?.particles);
 
-        this.interactivity = new Interactivity(engine, container);
+        const interactivity = new Interactivity(engine, container);
 
-        this.interactivity.load(container.actualOptions.interactivity);
-        this.interactivity.load(particlesOptions.interactivity);
+        interactivity.load(container.actualOptions.interactivity);
+        interactivity.load(particlesOptions.interactivity);
+
+        this.interactivity = interactivity;
 
         this.fill = this.shapeData?.fill ?? particlesOptions.shape.fill;
         this.close = this.shapeData?.close ?? particlesOptions.shape.close;
@@ -521,8 +530,8 @@ export class Particle implements IParticle {
             }
         }
 
-        if (drawer?.loadShape) {
-            drawer?.loadShape(this);
+        if (drawer && drawer.loadShape) {
+            drawer.loadShape(this);
         }
 
         const sideCountFunc = drawer?.getSidesCount;
@@ -542,7 +551,7 @@ export class Particle implements IParticle {
             mover.init?.(this);
         }
 
-        if (drawer?.particleInit) {
+        if (drawer && drawer.particleInit) {
             drawer.particleInit(container, this);
         }
 
@@ -553,13 +562,14 @@ export class Particle implements IParticle {
 
     isInsideCanvas(): boolean {
         const radius = this.getRadius(),
-            canvasSize = this.container.canvas.size;
+            canvasSize = this.container.canvas.size,
+            position = this.position;
 
         return (
-            this.position.x >= -radius &&
-            this.position.y >= -radius &&
-            this.position.y <= canvasSize.height + radius &&
-            this.position.x <= canvasSize.width + radius
+            position.x >= -radius &&
+            position.y >= -radius &&
+            position.y <= canvasSize.height + radius &&
+            position.x <= canvasSize.width + radius
         );
     }
 
@@ -586,7 +596,7 @@ export class Particle implements IParticle {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
-            if (pluginPos !== undefined) {
+            if (pluginPos) {
                 return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
             }
         }
