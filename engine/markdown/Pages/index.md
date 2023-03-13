@@ -1,3 +1,0 @@
-# tsParticles
-
-## Index Page

@@ -6,22 +6,13 @@
             "runner": "@nrwl/nx-cloud",
             "options": {
                 "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
-                "cacheableOperations": [
-                    "build",
-                    "build:ci",
-                    "build:docs",
-                    "build-docs",
-                    "test",
-                    "lint",
-                    "package",
-                    "prepare"
-                ]
+                "cacheableOperations": ["build", "build:ci", "test", "lint", "package", "prepare"]
             }
         },
         "local": {
             "runner": "nx/tasks-runners/default",
             "options": {
-                "cacheableOperations": ["build", "build:ci", "build:docs", "build-docs", "lint", "test", "e2e"]
+                "cacheableOperations": ["build", "build:ci", "lint", "test", "e2e"]
             }
         }
     },
