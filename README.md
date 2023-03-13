@@ -663,27 +663,6 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 ## Dependency Graphs
 
 ```mermaid
-flowchart TD
-
-subgraph c [Components]
-ca[Angular]
-ci[Inferno.js]
-cj[JQuery]
-cp[Preact]
-cre[React.js]
-cri[Riot.js]
-cso[Solid.js]
-csv[Svelte]
-cv2[Vue.js 2.x]
-cv3[Vue.js 3.x]
-cwc[Web Components]
-cwp[WordPress]
-end
-
-e[tsParticles Engine] --> c
-```
-
-```mermaid
 flowchart LR
 
 subgraph b [Bundles]
@@ -811,23 +790,6 @@ uw[Wobble]
 end
 
 e --> u
-
-subgraph pr [Presets]
-prbi[Big Circles]
-prbu[Bubbles]
-prc[Confetti]
-prf[Fire]
-prff[Firefly]
-prfw[Fireworks]
-prfo[Fountain]
-prl[Links]
-prsa[Sea Anemone]
-prsn[Snow]
-prst[Stars]
-prt[Triangles]
-end
-
-e --> pr
 ```
 
 ---
