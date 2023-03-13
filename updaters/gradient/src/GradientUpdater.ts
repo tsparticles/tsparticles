@@ -1,7 +1,18 @@
 import {
     AnimationStatus,
     GradientType,
+    type IDelta,
+    type IParticleColorStyle,
+    type IParticleHslAnimation,
+    type IParticleNumericValueAnimation,
+    type IParticleUpdater,
+    type IParticleValueAnimation,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
     RotateDirection,
+    type SingleOrMultiple,
     StartValueType,
     executeOnSingleOrMultiple,
     getHslAnimationFromHsl,
@@ -13,19 +24,6 @@ import {
     itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
-} from "tsparticles-engine";
-import type {
-    IDelta,
-    IParticleColorStyle,
-    IParticleHslAnimation,
-    IParticleNumericValueAnimation,
-    IParticleUpdater,
-    IParticleValueAnimation,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
-    SingleOrMultiple,
 } from "tsparticles-engine";
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient";
 import type { IAnimatableGradient } from "./Options/Interfaces/IAnimatableGradient";

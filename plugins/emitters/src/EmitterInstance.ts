@@ -1,14 +1,12 @@
-import type {
-    Container,
-    IColorAnimation,
-    ICoordinates,
-    IDelta,
-    IDimension,
-    IHsl,
-    IParticlesOptions,
-    RecursivePartial,
-} from "tsparticles-engine";
 import {
+    type Container,
+    type IColorAnimation,
+    type ICoordinates,
+    type IDelta,
+    type IDimension,
+    type IHsl,
+    type IParticlesOptions,
+    type RecursivePartial,
     SizeMode,
     Vector,
     calcPositionOrRandomFromSizeRanged,

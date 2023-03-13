@@ -1,5 +1,4 @@
-import type { IDelta, Particle } from "tsparticles-engine";
-import { RotateDirection, clamp, getDistances, getRandom } from "tsparticles-engine";
+import { type IDelta, type Particle, RotateDirection, clamp, getDistances, getRandom } from "tsparticles-engine";
 import type { MoveParticle } from "./Types";
 
 export function applyDistance(particle: MoveParticle): void {

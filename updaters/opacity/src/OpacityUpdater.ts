@@ -1,6 +1,10 @@
 import {
     AnimationStatus,
+    type Container,
     DestroyType,
+    type IDelta,
+    type IParticleUpdater,
+    type Particle,
     StartValueType,
     clamp,
     getRandom,
@@ -9,7 +13,6 @@ import {
     getRangeValue,
     randomInRange,
 } from "tsparticles-engine";
-import type { Container, IDelta, IParticleUpdater, Particle } from "tsparticles-engine";
 
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.opacity.animation.destroy) {

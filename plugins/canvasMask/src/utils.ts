@@ -1,12 +1,13 @@
-import type {
-    Container,
-    ICoordinates,
-    IDimension,
-    IParticlesOptions,
-    IRgba,
-    RecursivePartial,
+import {
+    type Container,
+    type ICoordinates,
+    type IDimension,
+    type IParticlesOptions,
+    type IRgba,
+    type RecursivePartial,
+    errorPrefix,
+    getRandom,
 } from "tsparticles-engine";
-import { errorPrefix, getRandom } from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { TextMask } from "./Options/Classes/TextMask";
 

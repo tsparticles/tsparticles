@@ -1,5 +1,10 @@
-import type { IOptionLoader, RecursivePartial, RotateDirectionAlt } from "tsparticles-engine";
-import { RotateDirection, ValueWithRandom } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    type RecursivePartial,
+    RotateDirection,
+    type RotateDirectionAlt,
+    ValueWithRandom,
+} from "tsparticles-engine";
 import type { IRotate } from "../Interfaces/IRotate";
 import { RotateAnimation } from "./RotateAnimation";
 

@@ -1,11 +1,18 @@
 import type { BounceContainer, BounceMode, IBounceMode } from "./Types";
 import {
     Circle,
+    type DivEvent,
     DivMode,
     DivType,
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IModes,
+    type Modes,
+    type Particle,
+    type Range,
     Rectangle,
+    type RecursivePartial,
     Vector,
     calculateBounds,
     circleBounce,
@@ -16,7 +23,6 @@ import {
     mouseMoveEvent,
     rectBounce,
 } from "tsparticles-engine";
-import type { DivEvent, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
 import { Bounce } from "./Options/Classes/Bounce";
 
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {

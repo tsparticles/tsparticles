@@ -1,6 +1,5 @@
+import { type IDelta, ParticlesInteractorBase, getRandom } from "tsparticles-engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
-import { ParticlesInteractorBase, getRandom } from "tsparticles-engine";
-import type { IDelta } from "tsparticles-engine";
 
 /**
  * @category Interactions

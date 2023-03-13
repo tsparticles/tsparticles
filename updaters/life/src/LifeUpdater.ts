@@ -1,13 +1,16 @@
-import type {
-    Container,
-    IDelta,
-    IParticleUpdater,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
+import {
+    type Container,
+    type IDelta,
+    type IParticleUpdater,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
+    getRandom,
+    getRangeValue,
+    randomInRange,
+    setRangeValue,
 } from "tsparticles-engine";
-import { getRandom, getRangeValue, randomInRange, setRangeValue } from "tsparticles-engine";
 import type { ILife } from "./Options/Interfaces/ILife";
 import { Life } from "./Options/Classes/Life";
 

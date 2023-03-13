@@ -1,5 +1,7 @@
-import type { ICoordinates, IDimension, IRgb } from "tsparticles-engine";
 import {
+    type ICoordinates,
+    type IDimension,
+    type IRgb,
     drawLine,
     drawTriangle,
     getDistance,

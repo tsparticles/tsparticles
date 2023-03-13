@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import { type ISourceOptions, tsParticles } from "tsparticles-engine";
 import absorbers from "./absorbers";
 import amongUs from "./amongUs";
 import backgroundMask from "./backgroundMask";
@@ -117,7 +117,6 @@ import textMask from "./textMask";
 import textMaskMultiline from "./textMaskMultiline";
 import trail from "./trail";
 import trailImage from "./trailImage";
-import { tsParticles } from "tsparticles-engine";
 import twinkle from "./twinkle";
 import vibrate from "./vibrate";
 import virus from "./virus";

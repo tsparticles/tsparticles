@@ -1,5 +1,14 @@
-import { ExternalInteractorBase, HoverMode, getDistance, isInArray } from "tsparticles-engine";
-import type { IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import {
+    ExternalInteractorBase,
+    HoverMode,
+    type IDelta,
+    type IModes,
+    type Modes,
+    type Particle,
+    type RecursivePartial,
+    getDistance,
+    isInArray,
+} from "tsparticles-engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types";
 import { Slow } from "./Options/Classes/Slow";
 

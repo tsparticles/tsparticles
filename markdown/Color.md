@@ -60,7 +60,7 @@ That's the easier part, now we go deeper.
 
 ```javascript
 color: {
-  value: "#fff"; // I won't repeat myself, all the string values above will be valid here too
+    value: "#fff"; // I won't repeat myself, all the string values above will be valid here too
 }
 ```
 

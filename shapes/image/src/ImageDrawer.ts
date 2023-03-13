@@ -1,8 +1,7 @@
-import type { Container, IShapeDrawer } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, errorPrefix } from "tsparticles-engine";
 import type { IImage, IParticleImage, ImageParticle } from "./Utils";
 import type { ImageContainer, ImageEngine } from "./types";
 import type { IImageShape } from "./IImageShape";
-import { errorPrefix } from "tsparticles-engine";
 import { replaceImageColor } from "./Utils";
 
 /**

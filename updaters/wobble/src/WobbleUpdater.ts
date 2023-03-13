@@ -1,13 +1,14 @@
-import type {
-    Container,
-    IDelta,
-    IParticleUpdater,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
+import {
+    type Container,
+    type IDelta,
+    type IParticleUpdater,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
+    getRandom,
+    getRangeValue,
 } from "tsparticles-engine";
-import { getRandom, getRangeValue } from "tsparticles-engine";
 import type { IWobble } from "./Options/Interfaces/IWobble";
 import { Wobble } from "./Options/Classes/Wobble";
 

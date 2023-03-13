@@ -1,6 +1,5 @@
-import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "tsparticles-engine";
 import type { IDestroyBounds } from "../Interfaces/IDestroyBounds";
-import { setRangeValue } from "tsparticles-engine";
 
 export class DestroyBounds implements IDestroyBounds, IOptionLoader<IDestroyBounds> {
     bottom?: RangeValue;

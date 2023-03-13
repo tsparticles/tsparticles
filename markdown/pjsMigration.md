@@ -22,7 +22,7 @@ If you have customized the css like this:
 
 ```css
 .particles-js-canvas-element {
-  /* your awesome CSS code */
+    /* your awesome CSS code */
 }
 ```
 
@@ -30,7 +30,7 @@ You have to change it like this
 
 ```css
 .tsparticles-canvas-element {
-  /* your awesome CSS code */
+    /* your awesome CSS code */
 }
 ```
 
@@ -51,7 +51,7 @@ Now let's checkout the Javascript code, you should have something like this
 ```javascript
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
 particlesJS.load("particles-js", "assets/particles.json", function () {
-  console.log("callback - particles.js config loaded");
+    console.log("callback - particles.js config loaded");
 });
 ```
 
@@ -59,7 +59,7 @@ or something like this
 
 ```javascript
 particlesJS("particles-js", {
-  /* your options here */
+    /* your options here */
 });
 ```
 
@@ -80,12 +80,12 @@ Let's convert the sample provided above to understand
 ```javascript
 /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
 tsParticles.loadJSON("particles-js", "assets/particles.json").then(function (p) {
-  // p is the loaded container, for using it later
-  console.log("callback - particles.js config loaded");
+    // p is the loaded container, for using it later
+    console.log("callback - particles.js config loaded");
 });
 
 tsParticles.load("particles-js", {
-  /* your options here */
+    /* your options here */
 });
 ```
 

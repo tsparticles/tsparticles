@@ -1,14 +1,16 @@
-import { AnimationStatus, getRandom, getRangeValue } from "tsparticles-engine";
-import type {
-    Container,
-    IDelta,
-    IParticleTransformValues,
-    IParticleUpdater,
-    IParticleValueAnimation,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
+import {
+    AnimationStatus,
+    type Container,
+    type IDelta,
+    type IParticleTransformValues,
+    type IParticleUpdater,
+    type IParticleValueAnimation,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
+    getRandom,
+    getRangeValue,
 } from "tsparticles-engine";
 import type { ITilt } from "./Options/Interfaces/ITilt";
 import { Tilt } from "./Options/Classes/Tilt";

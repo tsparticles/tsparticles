@@ -1,9 +1,20 @@
-import type { Engine, IContainerPlugin, ICoordinates, IDelta, IDimension } from "tsparticles-engine";
+import {
+    type Engine,
+    type IContainerPlugin,
+    type ICoordinates,
+    type IDelta,
+    type IDimension,
+    OutModeDirection,
+    type Particle,
+    deepExtend,
+    errorPrefix,
+    getDistance,
+    getDistances,
+    getRandom,
+    itemFromArray,
+} from "tsparticles-engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
-import { deepExtend, errorPrefix, getDistance, getDistances, getRandom, itemFromArray } from "tsparticles-engine";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
-import { OutModeDirection } from "tsparticles-engine";
-import type { Particle } from "tsparticles-engine";
 import type { PolygonMaskContainer } from "./types";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";

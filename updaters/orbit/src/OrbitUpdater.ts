@@ -1,16 +1,18 @@
-import type {
-    Container,
-    IDelta,
-    IHsl,
-    IParticleRetinaProps,
-    IParticleUpdater,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
-    Retina,
+import {
+    type Container,
+    type IDelta,
+    type IHsl,
+    type IParticleRetinaProps,
+    type IParticleUpdater,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
+    type Retina,
+    getRangeValue,
+    getStyleFromHsl,
+    rangeColorToHsl,
 } from "tsparticles-engine";
-import { getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
 import type { IOrbit } from "./Options/Interfaces/IOrbit";
 import { Orbit } from "./Options/Classes/Orbit";
 

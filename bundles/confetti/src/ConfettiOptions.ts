@@ -1,13 +1,13 @@
-import type {
-    ICoordinates,
-    IOptionLoader,
-    IShapeValues,
-    RecursivePartial,
-    ShapeData,
-    SingleOrMultiple,
+import {
+    type ICoordinates,
+    type IOptionLoader,
+    type IShapeValues,
+    type RecursivePartial,
+    type ShapeData,
+    type SingleOrMultiple,
+    deepExtend,
 } from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
-import { deepExtend } from "tsparticles-engine";
 
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
     angle: number;

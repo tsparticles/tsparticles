@@ -2,8 +2,15 @@ import type { AttractContainer, AttractMode, IAttractMode } from "./Types";
 import {
     Circle,
     ClickMode,
+    type Engine,
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IModes,
+    type Modes,
+    type Particle,
+    type Range,
+    type RecursivePartial,
     Vector,
     clamp,
     getDistances,
@@ -11,7 +18,6 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Engine, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
 import { Attract } from "./Options/Classes/Attract";
 
 /**

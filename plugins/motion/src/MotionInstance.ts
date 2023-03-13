@@ -1,6 +1,5 @@
-import type { Engine, IContainerPlugin } from "tsparticles-engine";
+import { type Engine, type IContainerPlugin, safeMatchMedia } from "tsparticles-engine";
 import type { MotionContainer } from "./types";
-import { safeMatchMedia } from "tsparticles-engine";
 
 export class MotionInstance implements IContainerPlugin {
     private readonly _container;

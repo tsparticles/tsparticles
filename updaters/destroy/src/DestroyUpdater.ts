@@ -1,14 +1,12 @@
-import type {
-    Container,
-    Engine,
-    IBounds,
-    IParticleUpdater,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
-} from "tsparticles-engine";
 import {
+    type Container,
+    type Engine,
+    type IBounds,
+    type IParticleUpdater,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
     SizeMode,
     getRangeValue,
     getValue,

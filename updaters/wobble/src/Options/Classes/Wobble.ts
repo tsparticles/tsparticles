@@ -1,8 +1,13 @@
-import type { IOptionLoader, IRangeValue, RangeValue, RecursivePartial } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    type IRangeValue,
+    type RangeValue,
+    type RecursivePartial,
+    setRangeValue,
+} from "tsparticles-engine";
 import type { IWobble } from "../Interfaces/IWobble";
 import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed";
 import { WobbleSpeed } from "./WobbleSpeed";
-import { setRangeValue } from "tsparticles-engine";
 
 export class Wobble implements IWobble, IOptionLoader<IWobble> {
     distance: RangeValue;

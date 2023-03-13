@@ -1,5 +1,10 @@
-import type { IAnimation, IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
-import { setRangeValue } from "tsparticles-engine";
+import {
+    type IAnimation,
+    type IOptionLoader,
+    type RangeValue,
+    type RecursivePartial,
+    setRangeValue,
+} from "tsparticles-engine";
 
 export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;

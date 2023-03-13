@@ -1,13 +1,16 @@
-import { AnimationStatus, RotateDirection, getRandom, getRangeValue } from "tsparticles-engine";
-import type {
-    Container,
-    IDelta,
-    IParticleUpdater,
-    IParticleValueAnimation,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
+import {
+    AnimationStatus,
+    type Container,
+    type IDelta,
+    type IParticleUpdater,
+    type IParticleValueAnimation,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
+    RotateDirection,
+    getRandom,
+    getRangeValue,
 } from "tsparticles-engine";
 import type { IRotate } from "./Options/Interfaces/IRotate";
 import { Rotate } from "./Options/Classes/Rotate";

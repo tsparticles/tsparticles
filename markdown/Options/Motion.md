@@ -1,7 +1,7 @@
 # Motion
 
-- [disable](#disable)
-- [reduce](#reduce)
+-   [disable](#disable)
+-   [reduce](#reduce)
 
 ## Disable
 
@@ -9,8 +9,8 @@ If set to `true`, disables animations for users with `prefer-reduced-motion` ena
 
 ## Reduce
 
-- [factor](#factor)
-- [value](#value)
+-   [factor](#factor)
+-   [value](#value)
 
 ### Factor
 

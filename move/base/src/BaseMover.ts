@@ -1,5 +1,12 @@
-import type { IDelta, IParticleMover, Particle } from "tsparticles-engine";
-import { RotateDirection, getDistance, getRangeMax, getRangeValue } from "tsparticles-engine";
+import {
+    type IDelta,
+    type IParticleMover,
+    type Particle,
+    RotateDirection,
+    getDistance,
+    getRangeMax,
+    getRangeValue,
+} from "tsparticles-engine";
 import { applyDistance, applyPath, getProximitySpeedFactor, spin } from "./Utils";
 import type { MoveParticle } from "./Types";
 

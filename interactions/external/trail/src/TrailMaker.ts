@@ -1,5 +1,15 @@
-import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
-import type { ICoordinates, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import {
+    ClickMode,
+    ExternalInteractorBase,
+    HoverMode,
+    type ICoordinates,
+    type IDelta,
+    type IModes,
+    type Modes,
+    type Particle,
+    type RecursivePartial,
+    isInArray,
+} from "tsparticles-engine";
 import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
 import { Trail } from "./Options/Classes/Trail";
 

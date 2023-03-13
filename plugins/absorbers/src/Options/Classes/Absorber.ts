@@ -1,5 +1,10 @@
-import type { IOptionLoader, IRangedCoordinates, RecursivePartial } from "tsparticles-engine";
-import { OptionsColor, setRangeValue } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    type IRangedCoordinates,
+    OptionsColor,
+    type RecursivePartial,
+    setRangeValue,
+} from "tsparticles-engine";
 import { AbsorberSize } from "./AbsorberSize";
 import type { IAbsorber } from "../Interfaces/IAbsorber";
 

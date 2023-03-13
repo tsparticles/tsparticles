@@ -2,13 +2,17 @@ import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types";
 import {
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IModes,
+    type Modes,
+    type Particle,
+    type RecursivePartial,
     colorMix,
     drawLine,
     getStyleFromHsl,
     getStyleFromRgb,
     isInArray,
 } from "tsparticles-engine";
-import type { ICoordinates, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
 import { Connect } from "./Options/Classes/Connect";
 
 type LinkParticle = Particle & {

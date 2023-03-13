@@ -1,5 +1,4 @@
-import type { IHsl, Particle } from "tsparticles-engine";
-import { errorPrefix, getStyleFromHsl } from "tsparticles-engine";
+import { type IHsl, type Particle, errorPrefix, getStyleFromHsl } from "tsparticles-engine";
 import type { IImageShape } from "./IImageShape";
 
 /**

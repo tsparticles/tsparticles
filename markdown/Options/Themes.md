@@ -1,21 +1,21 @@
 # Theme Options
 
-- [default](#default)
-- [name](#name)
-- [options](#options)
+-   [default](#default)
+-   [name](#name)
+-   [options](#options)
 
 ## Default
 
-- [mode](#mode)
-- [value](#value)
+-   [mode](#mode)
+-   [value](#value)
 
 ### Mode
 
 Values accepted
 
-- `"any"`
-- `"dark"`
-- `"light"`
+-   `"any"`
+-   `"dark"`
+-   `"light"`
 
 ### Value
 

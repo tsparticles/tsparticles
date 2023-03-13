@@ -1,5 +1,4 @@
-import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
-import type { Container } from "tsparticles-engine";
+import { ClickMode, type Container, ExternalInteractorBase } from "tsparticles-engine";
 
 /**
  * Particle attract manager

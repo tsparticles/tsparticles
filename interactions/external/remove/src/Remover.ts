@@ -1,5 +1,4 @@
-import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
-import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
+import { ClickMode, ExternalInteractorBase, type IModes, type Modes, type RecursivePartial } from "tsparticles-engine";
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types";
 import { Remove } from "./Options/Classes/Remove";
 

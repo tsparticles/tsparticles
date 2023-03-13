@@ -1,9 +1,13 @@
-import type { Container, CustomEventArgs, ISourceOptions, Particle, RecursivePartial } from "tsparticles-engine";
 import {
+    type Container,
+    type CustomEventArgs,
     DestroyType,
     EventType,
+    type ISourceOptions,
     MoveDirection,
     OutMode,
+    type Particle,
+    type RecursivePartial,
     StartValueType,
     getRangeMax,
     getRangeMin,

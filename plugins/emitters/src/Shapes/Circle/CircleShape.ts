@@ -1,6 +1,5 @@
-import type { ICoordinates, IDimension } from "tsparticles-engine";
+import { type ICoordinates, type IDimension, getRandom } from "tsparticles-engine";
 import type { IEmitterShape } from "../../IEmitterShape";
-import { getRandom } from "tsparticles-engine";
 
 export class CircleShape implements IEmitterShape {
     randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {

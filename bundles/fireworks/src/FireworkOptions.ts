@@ -1,6 +1,11 @@
-import type { IOptionLoader, RangeValue, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    type RangeValue,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    setRangeValue,
+} from "tsparticles-engine";
 import type { IFireworkOptions } from "./IFireworkOptions";
-import { setRangeValue } from "tsparticles-engine";
 
 export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFireworkOptions> {
     brightness: RangeValue;

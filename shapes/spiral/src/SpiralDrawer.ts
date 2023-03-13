@@ -1,7 +1,6 @@
-import type { Container, IShapeDrawer } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, getRangeValue } from "tsparticles-engine";
 import type { ISpiralData } from "./ISpiralData";
 import type { SpiralParticle } from "./SpiralParticle";
-import { getRangeValue } from "tsparticles-engine";
 
 export class SpiralDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: SpiralParticle, radius: number): void {

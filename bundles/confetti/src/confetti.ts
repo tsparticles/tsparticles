@@ -1,4 +1,4 @@
-import type { Container, ISourceOptions, RecursivePartial } from "tsparticles-engine";
+import { type Container, type ISourceOptions, type RecursivePartial, tsParticles } from "tsparticles-engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
@@ -22,7 +22,6 @@ import { loadStarShape } from "tsparticles-shape-star";
 import { loadTextShape } from "tsparticles-shape-text";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
-import { tsParticles } from "tsparticles-engine";
 
 export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
 

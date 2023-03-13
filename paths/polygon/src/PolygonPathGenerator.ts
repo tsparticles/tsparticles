@@ -1,5 +1,4 @@
-import type { Container, ICoordinates, IMovePathGenerator } from "tsparticles-engine";
-import { Vector, getRandom } from "tsparticles-engine";
+import { type Container, type ICoordinates, type IMovePathGenerator, Vector, getRandom } from "tsparticles-engine";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions";
 import type { PolygonPathParticle } from "./PolygonPathParticle";
 

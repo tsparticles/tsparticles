@@ -2,11 +2,17 @@ import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types";
 import {
     Circle,
     ClickMode,
+    type DivEvent,
     DivMode,
     DivType,
     ExternalInteractorBase,
     HoverMode,
+    type IDelta,
+    type IModes,
+    type Modes,
+    type Particle,
     Rectangle,
+    type RecursivePartial,
     clamp,
     colorMix,
     divMode,
@@ -21,7 +27,6 @@ import {
     rangeColorToHsl,
     rgbToHsl,
 } from "tsparticles-engine";
-import type { DivEvent, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
 import { Bubble } from "./Options/Classes/Bubble";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";

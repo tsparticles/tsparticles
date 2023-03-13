@@ -1,7 +1,6 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { GradientType, type IOptionLoader, type RecursivePartial } from "tsparticles-engine";
 import { AnimatableGradientColor } from "./AnimatableGradientColor";
 import { GradientAngle } from "./GradientAngle";
-import { GradientType } from "tsparticles-engine";
 import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient";
 
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {

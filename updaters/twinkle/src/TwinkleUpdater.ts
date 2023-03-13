@@ -1,12 +1,15 @@
-import type {
-    IParticleColorStyle,
-    IParticleUpdater,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
+import {
+    type IParticleColorStyle,
+    type IParticleUpdater,
+    type IParticlesOptions,
+    type Particle,
+    type ParticlesOptions,
+    type RecursivePartial,
+    getRandom,
+    getRangeValue,
+    getStyleFromHsl,
+    rangeColorToHsl,
 } from "tsparticles-engine";
-import { getRandom, getRangeValue, getStyleFromHsl, rangeColorToHsl } from "tsparticles-engine";
 import type { ITwinkle } from "./Options/Interfaces/ITwinkle";
 import { Twinkle } from "./Options/Classes/Twinkle";
 

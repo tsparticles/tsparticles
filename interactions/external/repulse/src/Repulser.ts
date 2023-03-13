@@ -1,11 +1,19 @@
 import {
     Circle,
     ClickMode,
+    type DivEvent,
     DivMode,
     DivType,
+    type Engine,
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IModes,
+    type Modes,
+    type Particle,
+    type Range,
     Rectangle,
+    type RecursivePartial,
     Vector,
     clamp,
     divMode,
@@ -15,16 +23,6 @@ import {
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type {
-    DivEvent,
-    Engine,
-    ICoordinates,
-    IModes,
-    Modes,
-    Particle,
-    Range,
-    RecursivePartial,
 } from "tsparticles-engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
@@ -303,11 +301,19 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 /*import {
     Circle,
     ClickMode,
+    type DivEvent,
     DivMode,
     DivType,
+    type Engine,
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IDelta,
+    type IModes,
+    type Modes,
+    type Range,
     Rectangle,
+    type RecursivePartial
     Vector,
     clamp,
     divMode,
@@ -318,7 +324,6 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { DivEvent, Engine, ICoordinates, IDelta, IModes, Modes, Range, RecursivePartial } from "tsparticles-engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";

@@ -1,8 +1,13 @@
-import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
-import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
+import {
+    ClickMode,
+    ExternalInteractorBase,
+    type IModes,
+    type Modes,
+    type RecursivePartial,
+    itemFromArray,
+} from "tsparticles-engine";
 import type { IPushMode, PushContainer, PushMode } from "./Types";
 import { Push } from "./Options/Classes/Push";
-import { itemFromArray } from "tsparticles-engine";
 
 /**
  * Particle attract manager

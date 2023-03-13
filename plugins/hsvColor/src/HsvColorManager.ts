@@ -1,18 +1,20 @@
-import type {
-    IColor,
-    IColorManager,
-    IHsl,
-    IHsla,
-    IHsv,
-    IHsva,
-    IRangeColor,
-    IRangeHsv,
-    IRangeValueColor,
-    IRgb,
-    IRgba,
-    IValueColor,
+import {
+    type IColor,
+    type IColorManager,
+    type IHsl,
+    type IHsla,
+    type IHsv,
+    type IHsva,
+    type IRangeColor,
+    type IRangeHsv,
+    type IRangeValueColor,
+    type IRgb,
+    type IRgba,
+    type IValueColor,
+    getRangeValue,
+    getStyleFromHsl,
+    parseAlpha,
 } from "tsparticles-engine";
-import { getRangeValue, getStyleFromHsl, parseAlpha } from "tsparticles-engine";
 
 /**
  * Converts a RGB ({@link IRgb}) object in a {@link IHsv} object

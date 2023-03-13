@@ -1,6 +1,13 @@
 import {
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IModes,
+    type IRgb,
+    type Modes,
+    type OptionsColor,
+    type Particle,
+    type RecursivePartial,
     drawLine,
     getDistance,
     getLinkColor,
@@ -10,7 +17,6 @@ import {
     mouseMoveEvent,
 } from "tsparticles-engine";
 import type { GrabContainer, GrabMode, IGrabMode } from "./Types";
-import type { ICoordinates, IModes, IRgb, Modes, OptionsColor, Particle, RecursivePartial } from "tsparticles-engine";
 import { Grab } from "./Options/Classes/Grab";
 
 type LinkParticle = Particle & {

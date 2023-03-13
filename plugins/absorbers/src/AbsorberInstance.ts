@@ -1,5 +1,9 @@
-import type { Container, ICoordinates, IRgb, Particle, RecursivePartial } from "tsparticles-engine";
 import {
+    type Container,
+    type ICoordinates,
+    type IRgb,
+    type Particle,
+    type RecursivePartial,
     RotateDirection,
     Vector,
     calcPositionOrRandomFromSize,
