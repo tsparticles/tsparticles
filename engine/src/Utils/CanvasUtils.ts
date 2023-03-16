@@ -268,7 +268,7 @@ export function drawShapeAfterEffect(
 
     const drawer = container.drawers.get(particle.shape);
 
-    if (!drawer?.afterEffect) {
+    if (!drawer || !drawer.afterEffect) {
         return;
     }
 

@@ -116,7 +116,7 @@ export class Loader {
 
             domContainer.id = tagId;
 
-            document.querySelector("body")?.append(domContainer);
+            document.body.append(domContainer);
         }
 
         const currentOptions = itemFromSingleOrMultiple(options, index),

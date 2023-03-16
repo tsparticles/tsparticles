@@ -117,10 +117,12 @@ export class Canvas {
      * Destroying object actions
      */
     destroy(): void {
-        this._mutationObserver?.disconnect();
+        this._safeMutationObserver((obs) => obs.disconnect());
 
         if (this._generated) {
-            this.element?.remove();
+            const element = this.element;
+
+            element && element.remove();
         } else {
             this._resetOriginalStyle();
         }
@@ -250,9 +252,13 @@ export class Canvas {
         }
         this.initBackground();
 
-        if (this.element) {
-            this._mutationObserver?.observe(this.element, { attributes: true });
-        }
+        this._safeMutationObserver((obs) => {
+            if (!this.element) {
+                return;
+            }
+
+            obs.observe(this.element, { attributes: true });
+        });
 
         this.initUpdaters();
         this.initPlugins();
@@ -265,8 +271,13 @@ export class Canvas {
     initBackground(): void {
         const options = this.container.actualOptions,
             background = options.background,
-            element = this.element,
-            elementStyle = element?.style;
+            element = this.element;
+
+        if (!element) {
+            return;
+        }
+
+        const elementStyle = element.style;
 
         if (!elementStyle) {
             return;
@@ -326,8 +337,8 @@ export class Canvas {
      * @param canvas the canvas html element
      */
     loadCanvas(canvas: HTMLCanvasElement): void {
-        if (this._generated) {
-            this.element?.remove();
+        if (this._generated && this.element) {
+            this.element.remove();
         }
 
         this._generated =
@@ -340,7 +351,15 @@ export class Canvas {
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
         this._context = this.element.getContext("2d");
-        this._mutationObserver?.observe(this.element, { attributes: true });
+
+        this._safeMutationObserver((obs) => {
+            if (!this.element) {
+                return;
+            }
+
+            obs.observe(this.element, { attributes: true });
+        });
+
         this.container.retina.init();
         this.initBackground();
     }
@@ -435,7 +454,7 @@ export class Canvas {
 
     private _applyPostDrawUpdaters(particle: Particle): void {
         for (const updater of this._postDrawUpdaters) {
-            updater.afterDraw?.(particle);
+            updater.afterDraw && updater.afterDraw(particle);
         }
     }
 
@@ -468,7 +487,7 @@ export class Canvas {
                 }
             }
 
-            updater.beforeDraw?.(particle);
+            updater.beforeDraw && updater.beforeDraw(particle);
         }
     }
 
@@ -615,12 +634,12 @@ export class Canvas {
             return;
         }
 
-        this._mutationObserver?.disconnect();
+        this._safeMutationObserver((observer) => observer.disconnect());
 
         this._initStyle();
         this.initBackground();
 
-        this._mutationObserver?.observe(element, { attributes: true });
+        this._safeMutationObserver((observer) => observer.observe(element, { attributes: true }));
     }
 
     private _resetOriginalStyle(): void {
@@ -637,6 +656,14 @@ export class Canvas {
         element.style.left = originalStyle.left;
         element.style.width = originalStyle.width;
         element.style.height = originalStyle.height;
+    }
+
+    private _safeMutationObserver(callback: (observer: MutationObserver) => void): void {
+        if (!this._mutationObserver) {
+            return;
+        }
+
+        callback(this._mutationObserver);
     }
 
     private _setFullScreenStyle(): void {

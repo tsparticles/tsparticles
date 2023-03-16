@@ -302,7 +302,7 @@ export class Particles {
         }
 
         for (const [, plugin] of container.plugins) {
-            plugin.update?.(delta);
+            plugin.update && plugin.update(delta);
         }
 
         for (const particle of this.array) {

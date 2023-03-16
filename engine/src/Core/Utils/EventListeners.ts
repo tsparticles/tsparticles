@@ -184,7 +184,7 @@ export class EventListeners {
             return;
         }
 
-        if (document?.hidden) {
+        if (document && document.hidden) {
             container.pageHidden = true;
 
             container.pause();
@@ -210,10 +210,11 @@ export class EventListeners {
             delete this.resizeTimeout;
         }
 
-        this.resizeTimeout = setTimeout(
-            async () => this.container.canvas?.windowResize(),
-            this.container.actualOptions.interactivity.events.resize.delay * 1000
-        );
+        this.resizeTimeout = setTimeout(async () => {
+            const canvas = this.container.canvas;
+
+            canvas && canvas.windowResize();
+        }, this.container.actualOptions.interactivity.events.resize.delay * 1000);
     }
 
     /**
@@ -405,13 +406,14 @@ export class EventListeners {
      */
     private mouseTouchMove(e: Event): void {
         const container = this.container,
-            options = container.actualOptions;
+            options = container.actualOptions,
+            interactivity = container.interactivity;
 
-        if (!container.interactivity?.element) {
+        if (!interactivity || !interactivity.element) {
             return;
         }
 
-        container.interactivity.mouse.inside = true;
+        interactivity.mouse.inside = true;
 
         let pos: ICoordinates | undefined;
 
@@ -422,7 +424,7 @@ export class EventListeners {
 
             const mouseEvent = e as MouseEvent;
 
-            if (container.interactivity.element === window) {
+            if (interactivity.element === window) {
                 if (canvas) {
                     const clientRect = canvas.getBoundingClientRect();
 
@@ -460,14 +462,16 @@ export class EventListeners {
         } else {
             this.canPush = e.type !== "touchmove";
 
-            const touchEvent = e as TouchEvent,
-                lastTouch = touchEvent.touches[touchEvent.touches.length - 1],
-                canvasRect = canvas?.getBoundingClientRect();
+            if (canvas) {
+                const touchEvent = e as TouchEvent,
+                    lastTouch = touchEvent.touches[touchEvent.touches.length - 1],
+                    canvasRect = canvas.getBoundingClientRect();
 
-            pos = {
-                x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                y: lastTouch.clientY - (canvasRect?.top ?? 0),
-            };
+                pos = {
+                    x: lastTouch.clientX - (canvasRect.left ?? 0),
+                    y: lastTouch.clientY - (canvasRect.top ?? 0),
+                };
+            }
         }
 
         const pxRatio = container.retina.pixelRatio;
@@ -477,7 +481,7 @@ export class EventListeners {
             pos.y *= pxRatio;
         }
 
-        container.interactivity.mouse.position = pos;
-        container.interactivity.status = mouseMoveEvent;
+        interactivity.mouse.position = pos;
+        interactivity.status = mouseMoveEvent;
     }
 }

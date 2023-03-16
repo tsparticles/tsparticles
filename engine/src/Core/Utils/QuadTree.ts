@@ -12,30 +12,6 @@ import { getDistance } from "../../Utils/NumberUtils";
  */
 export class QuadTree {
     /**
-     * The North East subtree
-     * @private
-     */
-    private _NE?: QuadTree;
-
-    /**
-     * the North West subtree
-     * @private
-     */
-    private _NW?: QuadTree;
-
-    /**
-     * the South East subtree
-     * @private
-     */
-    private _SE?: QuadTree;
-
-    /**
-     * the South West subtree
-     * @private
-     */
-    private _SW?: QuadTree;
-
-    /**
      * Used to know if the current instance is divided or not (branch or leaf)
      * @private
      */
@@ -46,6 +22,8 @@ export class QuadTree {
      */
     private readonly _points: Point[];
 
+    private readonly _subs: QuadTree[];
+
     /**
      * Initializes the instance with a rectangle and a capacity
      * @param rectangle the instance rectangle area
@@ -54,6 +32,7 @@ export class QuadTree {
     constructor(readonly rectangle: Rectangle, readonly capacity: number) {
         this._points = [];
         this._divided = false;
+        this._subs = [];
     }
 
     /**
@@ -76,13 +55,13 @@ export class QuadTree {
             this.subdivide();
         }
 
-        return (
-            (this._NE?.insert(point) ||
-                this._NW?.insert(point) ||
-                this._SE?.insert(point) ||
-                this._SW?.insert(point)) ??
-            false
-        );
+        for (const sub of this._subs) {
+            if (sub.insert(point)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -112,10 +91,9 @@ export class QuadTree {
         }
 
         if (this._divided) {
-            this._NE?.query(range, check, res);
-            this._NW?.query(range, check, res);
-            this._SE?.query(range, check, res);
-            this._SW?.query(range, check, res);
+            for (const sub of this._subs) {
+                sub.query(range, check, res);
+            }
         }
 
         return res;
@@ -149,14 +127,15 @@ export class QuadTree {
     private subdivide(): void {
         const x = this.rectangle.position.x,
             y = this.rectangle.position.y,
-            w = this.rectangle.size.width,
-            h = this.rectangle.size.height,
+            w = this.rectangle.size.width / 2,
+            h = this.rectangle.size.height / 2,
             capacity = this.capacity;
 
-        this._NE = new QuadTree(new Rectangle(x, y, w / 2, h / 2), capacity);
-        this._NW = new QuadTree(new Rectangle(x + w / 2, y, w / 2, h / 2), capacity);
-        this._SE = new QuadTree(new Rectangle(x, y + h / 2, w / 2, h / 2), capacity);
-        this._SW = new QuadTree(new Rectangle(x + w / 2, y + h / 2, w / 2, h / 2), capacity);
+        this._subs.push(new QuadTree(new Rectangle(x, y, w, h), capacity));
+        this._subs.push(new QuadTree(new Rectangle(x + w, y, w, h), capacity));
+        this._subs.push(new QuadTree(new Rectangle(x, y + h, w, h), capacity));
+        this._subs.push(new QuadTree(new Rectangle(x + w, y + h, w, h), capacity));
+
         this._divided = true;
     }
 }

@@ -399,7 +399,12 @@ export class Particle implements IParticle {
         this.shapeData = this._loadShapeData(shapeOptions, reduceDuplicates);
 
         particlesOptions.load(overrideOptions);
-        particlesOptions.load(this.shapeData?.particles);
+
+        const shapeData = this.shapeData;
+
+        if (shapeData) {
+            particlesOptions.load(shapeData.particles);
+        }
 
         const interactivity = new Interactivity(engine, container);
 
@@ -408,8 +413,8 @@ export class Particle implements IParticle {
 
         this.interactivity = interactivity;
 
-        this.fill = this.shapeData?.fill ?? particlesOptions.shape.fill;
-        this.close = this.shapeData?.close ?? particlesOptions.shape.close;
+        this.fill = shapeData?.fill ?? particlesOptions.shape.fill;
+        this.close = shapeData?.close ?? particlesOptions.shape.close;
         this.options = particlesOptions;
 
         const pathOptions = this.options.move.path;
@@ -548,7 +553,7 @@ export class Particle implements IParticle {
         }
 
         for (const mover of container.particles.movers) {
-            mover.init?.(this);
+            mover.init && mover.init(this);
         }
 
         if (drawer && drawer.particleInit) {
@@ -556,7 +561,7 @@ export class Particle implements IParticle {
         }
 
         for (const [, plugin] of container.plugins) {
-            plugin.particleCreated?.(this);
+            plugin.particleCreated && plugin.particleCreated(this);
         }
     }
 
@@ -582,7 +587,7 @@ export class Particle implements IParticle {
      */
     reset(): void {
         for (const updater of this.container.particles.updaters) {
-            updater.reset?.(this);
+            updater.reset && updater.reset(this);
         }
     }
 
