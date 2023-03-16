@@ -35,6 +35,23 @@ export class QuadTree {
         this._subs = [];
     }
 
+    /*draw(context: CanvasRenderingContext2D): void {
+        context.strokeStyle = "#fff";
+        context.lineWidth = 1;
+        context.strokeRect(
+            this.rectangle.position.x,
+            this.rectangle.position.y,
+            this.rectangle.size.width,
+            this.rectangle.size.height
+        );
+
+        if (this._divided) {
+            for (const sub of this._subs) {
+                sub.draw(context);
+            }
+        }
+    }*/
+
     /**
      * Inserts the given point in the instance, or to its subtrees
      * @param point the point to insert
