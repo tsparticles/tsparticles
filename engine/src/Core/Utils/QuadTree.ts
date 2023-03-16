@@ -125,16 +125,17 @@ export class QuadTree {
      * Creates the subtrees, making the instance a branch
      */
     private subdivide(): void {
-        const x = this.rectangle.position.x,
-            y = this.rectangle.position.y,
-            w = this.rectangle.size.width / 2,
-            h = this.rectangle.size.height / 2,
+        const rect = this.rectangle,
+            size = rect.size,
+            { x, y } = rect.position,
+            { w, h } = { w: size.width / 2, h: size.height / 2 },
             capacity = this.capacity;
 
-        this._subs.push(new QuadTree(new Rectangle(x, y, w, h), capacity));
-        this._subs.push(new QuadTree(new Rectangle(x + w, y, w, h), capacity));
-        this._subs.push(new QuadTree(new Rectangle(x, y + h, w, h), capacity));
-        this._subs.push(new QuadTree(new Rectangle(x + w, y + h, w, h), capacity));
+        for (let i = 0; i < 4; i++) {
+            this._subs.push(
+                new QuadTree(new Rectangle(x + w * (i % 2), y + h * (Math.round(i / 2) - (i % 2)), w, h), capacity)
+            );
+        }
 
         this._divided = true;
     }
