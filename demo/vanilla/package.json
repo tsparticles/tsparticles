@@ -119,7 +119,7 @@
         "stats.ts": "^1.1.0",
         "stylus": "^0.59.0",
         "tsparticles": "^3.0.0-alpha.1",
-        "typescript": "^4.9.5",
+        "typescript": "^5.0.0",
         "winston": "^3.8.2"
     }
 }
