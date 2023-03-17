@@ -81,7 +81,7 @@ const initPjs = (
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         engine
             .loadJSON(tagId, pathConfigJson)
-            .then(container => {
+            .then((container) => {
                 if (container) {
                     callback(container);
                 }
@@ -171,7 +171,7 @@ class Particles {
                         value: { min: 1, max: options.sizeVariations ?? 3 },
                     },
                 },
-                responsive: options.responsive?.map(responsive => ({
+                responsive: options.responsive?.map((responsive) => ({
                     maxWidth: responsive.breakpoint,
                     options: {
                         particles: {
@@ -196,7 +196,7 @@ class Particles {
                     },
                 })),
             })
-            .then(container => {
+            .then((container) => {
                 particles._container = container;
             });
 
