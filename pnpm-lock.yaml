@@ -13,7 +13,7 @@ importers:
       '@types/node': ^18.13.0
       copyfiles: ^2.4.1
       husky: ^8.0.3
-      ini: ^3.0.1
+      ini: ^4.0.0
       lerna: ^6.5.1
       nx: ^15.6.3
       prettier: ^2.8.4
@@ -36,7 +36,7 @@ importers:
       '@types/node': 18.13.0
       copyfiles: 2.4.1
       husky: 8.0.3
-      ini: 3.0.1
+      ini: 4.0.0
       lerna: 6.5.1
       nx: 15.6.3
       prettier: 2.8.4
@@ -9576,9 +9576,9 @@ packages:
     resolution: {integrity: sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==}
     dev: true
 
-  /ini/3.0.1:
-    resolution: {integrity: sha512-it4HyVAUTKBc6m8e1iXWvXSTdndF7HbdN713+kvLrymxTaU4AUBWrJ4vEooP+V7fexnVD3LKcBshjGGPefSMUQ==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
+  /ini/4.0.0:
+    resolution: {integrity: sha512-t0ikzf5qkSFqRl1e6ejKBe+Tk2bsQd8ivEkcisyGXsku2t8NvXZ1Y3RRz5vxrDgOrTBOi13CvGsVoI5wVpd7xg==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
 
   /init-package-json/3.0.2:
