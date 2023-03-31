@@ -19,7 +19,7 @@
         "tsparticles-engine": "workspace:^2.9.3"
     },
     "devDependencies": {
-        "electron": "^22.3.3",
+        "electron": "^23.0.0",
         "webpack": "^5.76.2"
     }
 }
