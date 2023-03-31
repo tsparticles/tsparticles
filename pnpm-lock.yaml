@@ -1033,8 +1033,8 @@ importers:
         specifier: ^4.3.4
         version: 4.3.4
       '@types/jsdom':
-        specifier: ^20.0.1
-        version: 20.0.1
+        specifier: ^21.0.0
+        version: 21.1.0
       '@types/mocha':
         specifier: ^10.0.1
         version: 10.0.1
@@ -1081,11 +1081,11 @@ importers:
         specifier: ^0.13.0
         version: 0.13.0
       jsdom:
-        specifier: ^20.0.3
-        version: 20.0.3(canvas@2.11.0)
+        specifier: ^21.0.0
+        version: 21.0.0(canvas@2.11.0)
       jsdom-global:
         specifier: ^3.0.2
-        version: 3.0.2(jsdom@20.0.3)
+        version: 3.0.2(jsdom@21.0.0)
       mocha:
         specifier: ^10.2.0
         version: 10.2.0
@@ -5985,8 +5985,8 @@ importers:
         specifier: ^11.1.0
         version: 11.1.0
       jsdom:
-        specifier: ^20.0.3
-        version: 20.0.3(canvas@2.11.0)
+        specifier: ^21.0.0
+        version: 21.0.0(canvas@2.11.0)
       klaw:
         specifier: ^4.1.0
         version: 4.1.0
@@ -6217,8 +6217,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
       '@types/jsdom':
-        specifier: ^20.0.1
-        version: 20.0.1
+        specifier: ^21.0.0
+        version: 21.1.0
       '@types/klaw':
         specifier: ^3.0.3
         version: 3.0.3
@@ -8505,8 +8505,8 @@ packages:
     resolution: {integrity: sha512-SZs7ekbP8CN0txVG2xVRH6EgKmEm31BOxA07vkFaETzZz1xh+cbt8BcI0slpymvwhx5dlFnQG2rTlPVQn+iRPQ==}
     dev: true
 
-  /@types/jsdom@20.0.1:
-    resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
+  /@types/jsdom@21.1.0:
+    resolution: {integrity: sha512-leWreJOdnuIxq9Y70tBVm/bvTuh31DSlF/r4l7Cfi4uhVQqLHD0Q4v301GMisEMwwbMgF7ZKxuZ+Jbd4NcdmRw==}
     dependencies:
       '@types/node': 18.15.3
       '@types/tough-cookie': 4.0.2
@@ -11872,16 +11872,16 @@ packages:
     dependencies:
       argparse: 2.0.1
 
-  /jsdom-global@3.0.2(jsdom@20.0.3):
+  /jsdom-global@3.0.2(jsdom@21.0.0):
     resolution: {integrity: sha512-t1KMcBkz/pT5JrvcJbpUR2u/w1kO9jXctaaGJ0vZDzwFnIvGWw9IDSRciT83kIs8Bnw4qpOl8bQK08V01YgMPg==}
     peerDependencies:
       jsdom: '>=10.0.0'
     dependencies:
-      jsdom: 20.0.3(canvas@2.11.0)
+      jsdom: 21.0.0(canvas@2.11.0)
     dev: true
 
-  /jsdom@20.0.3(canvas@2.11.0):
-    resolution: {integrity: sha512-SYhBvTh89tTfCD/CRdSOm13mOBa42iTaTyfyEWBdKcGdPxPtLFBXuHR8XHb33YNYaP+lLbmSvBTsnoesCNJEsQ==}
+  /jsdom@21.0.0(canvas@2.11.0):
+    resolution: {integrity: sha512-AIw+3ZakSUtDYvhwPwWHiZsUi3zHugpMEKlNPaurviseYoBqo0zBd3zqoUi3LPCNtPFlEP8FiW9MqCZdjb2IYA==}
     engines: {node: '>=14'}
     peerDependencies:
       canvas: ^2.5.0
