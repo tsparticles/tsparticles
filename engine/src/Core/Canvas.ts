@@ -181,7 +181,8 @@ export class Canvas {
         }
 
         this.draw((ctx) => {
-            const options = this.container.actualOptions,
+            const container = this.container,
+                options = container.actualOptions,
                 zIndexOptions = particle.options.zIndex,
                 zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
                 opacity = particle.bubble.opacity ?? particle.opacity?.value ?? 1,
@@ -198,7 +199,7 @@ export class Canvas {
             this._applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
 
             drawParticle({
-                container: this.container,
+                container,
                 context: ctx,
                 particle,
                 delta,
@@ -222,9 +223,7 @@ export class Canvas {
      * @param delta the frame delta time values
      */
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        this.draw((ctx) => {
-            drawParticlePlugin(ctx, plugin, particle, delta);
-        });
+        this.draw((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
     }
 
     /**
@@ -233,9 +232,7 @@ export class Canvas {
      * @param delta the frame delta time values
      */
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
-        this.draw((ctx) => {
-            drawPlugin(ctx, plugin, delta);
-        });
+        this.draw((ctx) => drawPlugin(ctx, plugin, delta));
     }
 
     /**
@@ -245,11 +242,13 @@ export class Canvas {
         this.resize();
         this._initStyle();
         this._initCover();
+
         try {
             await this._initTrail();
         } catch (e) {
             console.error(e);
         }
+
         this.initBackground();
 
         this._safeMutationObserver((obs) => {
@@ -422,20 +421,14 @@ export class Canvas {
     }
 
     stop(): void {
-        this.draw((ctx) => {
-            clear(ctx, this.size);
-        });
+        this.draw((ctx) => clear(ctx, this.size));
     }
 
     /**
      * The window resize event handler
      */
     async windowResize(): Promise<void> {
-        if (!this.element) {
-            return;
-        }
-
-        if (!this.resize()) {
+        if (!this.element || !this.resize()) {
             return;
         }
 
@@ -493,9 +486,7 @@ export class Canvas {
 
     private _applyResizePlugins(): void {
         for (const plugin of this._resizePlugins) {
-            if (plugin.resize) {
-                plugin.resize();
-            }
+            plugin.resize && plugin.resize();
         }
     }
 
@@ -527,9 +518,7 @@ export class Canvas {
 
         if (coverRgb) {
             const coverColor = {
-                r: coverRgb.r,
-                g: coverRgb.g,
-                b: coverRgb.b,
+                ...coverRgb,
                 a: cover.opacity,
             };
 
@@ -583,7 +572,9 @@ export class Canvas {
             if (!fillColor) {
                 return;
             }
+
             const trail = options.particles.move.trail;
+
             this._trailFill = {
                 color: {
                     ...fillColor,
@@ -616,15 +607,11 @@ export class Canvas {
     }
 
     private _paintBase(baseColor?: string): void {
-        this.draw((ctx) => {
-            paintBase(ctx, this.size, baseColor);
-        });
+        this.draw((ctx) => paintBase(ctx, this.size, baseColor));
     }
 
     private _paintImage(image: HTMLImageElement, opacity: number): void {
-        this.draw((ctx) => {
-            paintImage(ctx, this.size, image, opacity);
-        });
+        this.draw((ctx) => paintImage(ctx, this.size, image, opacity));
     }
 
     private _repairStyle(): void {
@@ -650,12 +637,14 @@ export class Canvas {
             return;
         }
 
-        element.style.position = originalStyle.position;
-        element.style.zIndex = originalStyle.zIndex;
-        element.style.top = originalStyle.top;
-        element.style.left = originalStyle.left;
-        element.style.width = originalStyle.width;
-        element.style.height = originalStyle.height;
+        const style = element.style;
+
+        style.position = originalStyle.position;
+        style.zIndex = originalStyle.zIndex;
+        style.top = originalStyle.top;
+        style.left = originalStyle.left;
+        style.width = originalStyle.width;
+        style.height = originalStyle.height;
     }
 
     private _safeMutationObserver(callback: (observer: MutationObserver) => void): void {
@@ -673,13 +662,14 @@ export class Canvas {
             return;
         }
 
-        const priority = "important";
+        const priority = "important",
+            style = element.style;
 
-        element.style.setProperty("position", "fixed", priority);
-        element.style.setProperty("z-index", this.container.actualOptions.fullScreen.zIndex.toString(10), priority);
-        element.style.setProperty("top", "0", priority);
-        element.style.setProperty("left", "0", priority);
-        element.style.setProperty("width", "100%", priority);
-        element.style.setProperty("height", "100%", priority);
+        style.setProperty("position", "fixed", priority);
+        style.setProperty("z-index", this.container.actualOptions.fullScreen.zIndex.toString(10), priority);
+        style.setProperty("top", "0", priority);
+        style.setProperty("left", "0", priority);
+        style.setProperty("width", "100%", priority);
+        style.setProperty("height", "100%", priority);
     }
 }
