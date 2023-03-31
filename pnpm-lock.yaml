@@ -6214,8 +6214,8 @@ importers:
         specifier: ^8.21.2
         version: 8.21.2
       '@types/fs-extra':
-        specifier: ^9.0.13
-        version: 9.0.13
+        specifier: ^11.0.0
+        version: 11.0.0
       '@types/jsdom':
         specifier: ^20.0.1
         version: 20.0.1
@@ -8461,7 +8461,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 16.18.16
+      '@types/node': 18.15.3
       '@types/responselike': 1.0.0
     dev: true
 
@@ -8487,9 +8487,10 @@ packages:
   /@types/estree@1.0.0:
     resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
 
-  /@types/fs-extra@9.0.13:
-    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+  /@types/fs-extra@11.0.0:
+    resolution: {integrity: sha512-zdV5odfHf95B4qr6bdpshG4VMm/3xgnPhSJLa3xh75CYr35e34k+4FQli82Q48sPqwHazJGy+6+jl4T+Vw1AMg==}
     dependencies:
+      '@types/jsonfile': 6.1.1
       '@types/node': 18.15.3
     dev: true
 
@@ -8515,10 +8516,16 @@ packages:
   /@types/json-schema@7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
 
+  /@types/jsonfile@6.1.1:
+    resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
+    dependencies:
+      '@types/node': 18.15.3
+    dev: true
+
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 16.18.16
+      '@types/node': 18.15.3
     dev: true
 
   /@types/klaw@3.0.3:
@@ -8569,7 +8576,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 16.18.16
+      '@types/node': 18.15.3
     dev: true
 
   /@types/rimraf@3.0.2:
@@ -8605,7 +8612,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 16.18.16
+      '@types/node': 18.15.3
     dev: true
     optional: true
 
