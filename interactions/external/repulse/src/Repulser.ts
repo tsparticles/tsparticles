@@ -73,13 +73,15 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             container.repulse.finish = false;
 
             setTimeout(() => {
-                if (!container.destroyed) {
-                    if (!container.repulse) {
-                        container.repulse = { particles: [] };
-                    }
-
-                    container.repulse.clicking = false;
+                if (container.destroyed) {
+                    return;
                 }
+
+                if (!container.repulse) {
+                    container.repulse = { particles: [] };
+                }
+
+                container.repulse.clicking = false;
             }, repulse.duration * 1000);
         };
     }
@@ -195,7 +197,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             }
 
             const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
-                query = container.particles.quadTree.query(range, (p) => this.isEnabled(p));
+                query = container.particles.quadTree.query(range, p => this.isEnabled(p));
 
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
@@ -235,7 +237,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
     private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
         const container = this.container,
-            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
+            query = container.particles.quadTree.query(area, p => this.isEnabled(p)),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulseOptions) {
@@ -273,7 +275,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        query.forEach((item) => {
+        query.forEach(item => {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {

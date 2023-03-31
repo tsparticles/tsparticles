@@ -205,7 +205,7 @@ export class Container {
         this._eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this._intersectionObserver = new IntersectionObserver((entries) => this._intersectionManager(entries));
+            this._intersectionObserver = new IntersectionObserver(entries => this._intersectionManager(entries));
         }
 
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
@@ -380,7 +380,7 @@ export class Container {
         this.destroyed = true;
 
         const mainArr = this._engine.dom(),
-            idx = mainArr.findIndex((t) => t === this);
+            idx = mainArr.findIndex(t => t === this);
 
         if (idx >= 0) {
             mainArr.splice(idx, 1);
@@ -399,7 +399,7 @@ export class Container {
 
         let refreshTime = force;
 
-        this._drawAnimationFrame = animate()(async (timestamp) => {
+        this._drawAnimationFrame = animate()(async timestamp => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
@@ -720,7 +720,7 @@ export class Container {
 
         this.started = true;
 
-        await new Promise<void>((resolve) => {
+        await new Promise<void>(resolve => {
             this._delayTimeout = setTimeout(async () => {
                 this._eventListeners.addListeners();
 
@@ -729,9 +729,7 @@ export class Container {
                 }
 
                 for (const [, plugin] of this.plugins) {
-                    if (plugin.start) {
-                        await plugin.start();
-                    }
+                    plugin.start && (await plugin.start());
                 }
 
                 this._engine.dispatchEvent(EventType.containerStarted, { container: this });

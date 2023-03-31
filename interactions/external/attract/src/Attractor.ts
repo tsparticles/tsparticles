@@ -65,13 +65,15 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             container.attract.finish = false;
 
             setTimeout(() => {
-                if (!container.destroyed) {
-                    if (!container.attract) {
-                        container.attract = { particles: [] };
-                    }
-
-                    container.attract.clicking = false;
+                if (container.destroyed) {
+                    return;
                 }
+
+                if (!container.attract) {
+                    container.attract = { particles: [] };
+                }
+
+                container.attract.clicking = false;
             }, attract.duration * 1000);
         };
     }
@@ -196,7 +198,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             return;
         }
 
-        const query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
+        const query = container.particles.quadTree.query(area, p => this.isEnabled(p));
 
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position);
