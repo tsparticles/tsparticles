@@ -198,7 +198,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             return;
         }
 
-        const query = container.particles.quadTree.query(area, p => this.isEnabled(p));
+        const query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position);

@@ -48,9 +48,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
         this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions,
-                repulse = options.interactivity.modes.repulse;
+                repulseOpts = options.interactivity.modes.repulse;
 
-            if (!repulse || mode !== ClickMode.repulse) {
+            if (!repulseOpts || mode !== ClickMode.repulse) {
                 return;
             }
 
@@ -58,8 +58,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 container.repulse = { particles: [] };
             }
 
-            container.repulse.clicking = true;
-            container.repulse.count = 0;
+            const repulse = container.repulse;
+
+            repulse.clicking = true;
+            repulse.count = 0;
 
             for (const particle of container.repulse.particles) {
                 if (!this.isEnabled(particle)) {
@@ -69,8 +71,8 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 particle.velocity.setTo(particle.initialVelocity);
             }
 
-            container.repulse.particles = [];
-            container.repulse.finish = false;
+            repulse.particles = [];
+            repulse.finish = false;
 
             setTimeout(() => {
                 if (container.destroyed) {
@@ -82,7 +84,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 }
 
                 container.repulse.clicking = false;
-            }, repulse.duration * 1000);
+            }, repulseOpts.duration * 1000);
         };
     }
 
@@ -106,10 +108,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             events = options.interactivity.events,
-            hoverEnabled = events.onHover.enable,
-            hoverMode = events.onHover.mode,
-            clickEnabled = events.onClick.enable,
-            clickMode = events.onClick.mode,
+            hover = events.onHover,
+            hoverEnabled = hover.enable,
+            hoverMode = hover.mode,
+            click = events.onClick,
+            clickEnabled = click.enable,
+            clickMode = click.mode,
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
@@ -127,16 +131,16 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
+            hover = events.onHover,
+            click = events.onClick,
             divRepulse = isDivModeEnabled(DivMode.repulse, divs);
 
-        if (
-            !(divRepulse || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
-        ) {
+        if (!(divRepulse || (hover.enable && mouse.position) || (click.enable && mouse.clickPosition))) {
             return false;
         }
 
-        const hoverMode = events.onHover.mode,
-            clickMode = events.onClick.mode;
+        const hoverMode = hover.mode,
+            clickMode = click.mode;
 
         return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
     }
@@ -197,7 +201,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             }
 
             const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
-                query = container.particles.quadTree.query(range, p => this.isEnabled(p));
+                query = container.particles.quadTree.query(range, (p) => this.isEnabled(p));
 
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
@@ -237,7 +241,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
     private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
         const container = this.container,
-            query = container.particles.quadTree.query(area, p => this.isEnabled(p)),
+            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulseOptions) {
@@ -275,7 +279,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        query.forEach(item => {
+        query.forEach((item) => {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {

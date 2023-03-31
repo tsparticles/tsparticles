@@ -51,7 +51,7 @@ async function initPlugins(): Promise<void> {
     }
 
     if (initializing) {
-        return new Promise<void>(resolve => {
+        return new Promise<void>((resolve) => {
             const interval = setInterval(() => {
                 if (!initialized) {
                     return;
