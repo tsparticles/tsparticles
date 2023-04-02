@@ -71,7 +71,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * @deprecated this property is obsolete, please use the new ids
      */
     get ids(): SingleOrMultiple<string> {
-        return executeOnSingleOrMultiple(this.selectors, t => t.replace("#", ""));
+        return executeOnSingleOrMultiple(this.selectors, (t) => t.replace("#", ""));
 
         // this is the best we can do, if a non-id selector is used the old property won't work
         // but ids is deprecated so who cares.
@@ -83,7 +83,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
      * @param value
      */
     set ids(value: SingleOrMultiple<string>) {
-        this.selectors = executeOnSingleOrMultiple(value, t => `#${t}`);
+        this.selectors = executeOnSingleOrMultiple(value, (t) => `#${t}`);
     }
 
     load(data?: RecursivePartial<IDivEvent>): void {
