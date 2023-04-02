@@ -16,19 +16,19 @@ import type { IParticlesJS } from "./IParticlesJS";
 declare global {
     interface Window {
         /**
-         * @deprecated this method is obsolete, please use the new {@link tsParticles.load}
+         * @deprecated this method is obsolete, please use the new {@link tsparticles-engine!Engine.load | tsParticles.load}
          * The particles.js compatibility object
          */
         Particles: typeof Particles;
 
         /**
-         * @deprecated this method is obsolete, please use the new {@link tsParticles.dom}
+         * @deprecated this method is obsolete, please use the new {@link tsparticles-engine!Engine.dom | tsParticles.dom}
          * The particles.js compatibility dom array
          */
         pJSDom: Container[];
 
         /**
-         * @deprecated this method is obsolete, please use the new {@link tsParticles.load}
+         * @deprecated this method is obsolete, please use the new {@link tsparticles-engine!Engine.load | tsParticles.load}
          * The particles.js compatibility instance
          */
         particlesJS: IParticlesJS;
@@ -43,28 +43,28 @@ const initPjs = (
     engine: Engine
 ): {
     /**
-     * @deprecated this method is obsolete, please use the new {@link tsParticles.load}
+     * @deprecated this method is obsolete, please use the new {@link tsparticles-engine!Engine.load | tsParticles.load}
      * The particles.js compatibility object
      */
     Particles: typeof Particles;
 
     /**
-     * @deprecated this method is obsolete, please use the new {@link tsParticles.dom}
+     * @deprecated this method is obsolete, please use the new {@link tsparticles-engine!Engine.dom | tsParticles.dom}
      * The particles.js compatibility dom array
      */
     pJSDom: Container[];
 
     /**
-     * @deprecated this method is obsolete, please use the new {@link tsParticles.load}
+     * @deprecated this method is obsolete, please use the new {@link tsparticles-engine!Engine.load | tsParticles.load}
      * The particles.js compatibility instance
      */
     particlesJS: IParticlesJS;
 } => {
     /**
-     * Loads the provided options to create a {@link Container} object.
+     * Loads the provided options to create a {@link tsparticles-engine!Container} object.
      * @deprecated this method is obsolete, please use the new tsParticles.load
      * @param tagId the particles container element id
-     * @param options the options object to initialize the {@link Container}
+     * @param options the options object to initialize the {@link tsparticles-engine!Container}
      */
     const particlesJS = (tagId: string, options: ISourceOptions): Promise<Container | undefined> => {
         return engine.load(tagId, options);
@@ -72,11 +72,11 @@ const initPjs = (
 
     /**
      * Loads the provided json with a GET request.
-     * The content will be used to create a {@link Container} object.
+     * The content will be used to create a {@link tsparticles-engine!Container} object.
      * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
      * @param tagId the particles container element id
      * @param pathConfigJson the json path to use in the GET request
-     * @param callback called after the {@link Container} is loaded and it will be passed as a parameter
+     * @param callback called after the {@link tsparticles-engine!Container} is loaded and it will be passed as a parameter
      */
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         engine
@@ -92,7 +92,7 @@ const initPjs = (
     };
 
     /**
-     * Adds a click handler to all the loaded {@link Container} objects.
+     * Adds a click handler to all the loaded {@link tsparticles-engine!Container} objects.
      * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
      * @param callback the function called after the click event is fired
      */
@@ -101,8 +101,8 @@ const initPjs = (
     };
 
     /**
-     * All the {@link Container} objects loaded
-     * @deprecated this method is obsolete, please use the new {@link tsParticles.dom}
+     * All the {@link tsparticles-engine!Container} objects loaded
+     * @deprecated this method is obsolete, please use the new {@link tsparticles-engine!Engine.dom | tsParticles.dom}
      */
     const pJSDom = engine.dom();
 
@@ -147,13 +147,13 @@ class Particles {
         }
 
         tsParticles
-            .set(selector.replace(".", "").replace("#", ""), el, {
+            .set(selector.replace(".", "").replace("!", ""), el, {
                 fullScreen: {
                     enable: false,
                 },
                 particles: {
                     color: {
-                        value: options.color ?? "#000000",
+                        value: options.color ?? "!000000",
                     },
                     links: {
                         color: "random",

@@ -22,7 +22,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Vector3d constructor, creating an instance with the given coordinates
-     * @param xOrCoords X coordinate or the whole {@link ICoordinates} object
+     * @param xOrCoords X coordinate or the whole {@link Core/Interfaces/ICoordinates!ICoordinates} object
      * @param y Y coordinate
      * @param z Z coordinate
      * @protected

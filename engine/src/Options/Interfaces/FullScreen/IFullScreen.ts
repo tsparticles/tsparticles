@@ -1,6 +1,6 @@
 /**
  * The options to set the particles in the background using CSS `fixed` position
- * The {@link zIndex} property sets the background CSS `z-index` property
+ * The {@link IFullScreen.zIndex} property sets the background CSS `z-index` property
  * [[include:Options/FullScreen.md]]
  * @category Options
  */

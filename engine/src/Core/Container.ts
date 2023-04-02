@@ -72,7 +72,7 @@ const defaultPathGeneratorKey = "default",
  */
 export class Container {
     /**
-     * The options loaded by the container, it's a full {@link Options} object
+     * The options loaded by the container, it's a full {@link Options/Classes/Options!Options} object
      */
     actualOptions;
 
@@ -205,14 +205,14 @@ export class Container {
         this._eventListeners = new EventListeners(this);
 
         if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this._intersectionObserver = new IntersectionObserver((entries) => this._intersectionManager(entries));
+            this._intersectionObserver = new IntersectionObserver(entries => this._intersectionManager(entries));
         }
 
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
     /**
-     * The options used by the container, it's a full {@link Options} object
+     * The options used by the container, it's a full {@link Options/Classes/Options!Options} object
      */
     get options(): Options {
         return this._options;
@@ -380,7 +380,7 @@ export class Container {
         this.destroyed = true;
 
         const mainArr = this._engine.dom(),
-            idx = mainArr.findIndex((t) => t === this);
+            idx = mainArr.findIndex(t => t === this);
 
         if (idx >= 0) {
             mainArr.splice(idx, 1);
@@ -399,7 +399,7 @@ export class Container {
 
         let refreshTime = force;
 
-        this._drawAnimationFrame = animate()(async (timestamp) => {
+        this._drawAnimationFrame = animate()(async timestamp => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
@@ -653,9 +653,9 @@ export class Container {
     /**
      * Customise path generation
      * @deprecated Use the new setPath
-     * @param noiseOrGenerator the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
-     * @param init the {@link IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update the {@link IMovePathGenerator} update function, if the first parameter is a generator function
+     * @param noiseOrGenerator the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} object or a function that generates a {@link Core/Utils/Vector!Vector} object from {@link Core/Particle!Particle}
+     * @param init the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setNoise(
         noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
@@ -672,9 +672,9 @@ export class Container {
     /**
      * Customise path generation
      * @deprecated Use the new addPath
-     * @param pathOrGenerator the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
-     * @param init the {@link IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update the {@link IMovePathGenerator} update function, if the first parameter is a generator function
+     * @param pathOrGenerator the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} object or a function that generates a {@link Core/Utils/Vector!Vector} object from {@link Core/Particle!Particle}
+     * @param init the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setPath(
         pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
@@ -720,7 +720,7 @@ export class Container {
 
         this.started = true;
 
-        await new Promise<void>((resolve) => {
+        await new Promise<void>(resolve => {
             this._delayTimeout = setTimeout(async () => {
                 this._eventListeners.addListeners();
 

@@ -28,7 +28,7 @@ async function getDataFromUrl(
 }
 
 /**
- * Main class for creating the {@link Container} objects
+ * Main class for creating the {@link Core/Container!Container} objects
  * @category Core
  */
 export class Loader {
@@ -47,9 +47,9 @@ export class Loader {
     }
 
     /**
-     * Loads the provided options to create a {@link Container} object.
+     * Loads the provided options to create a {@link Core/Container!Container} object.
      * @param tagId the particles container element id
-     * @param options the options object to initialize the {@link Container}
+     * @param options the options object to initialize the {@link Core/Container!Container}
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
     load(
@@ -75,12 +75,12 @@ export class Loader {
     }
 
     /**
-     * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
+     * Loads the provided json with a GET request. The content will be used to create a {@link Core/Container!Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param tagId the particles container element id
      * @param jsonUrl the json path (or paths array) to use in the GET request
      * @param index the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the {@link Container} object created
+     * @returns A Promise with the {@link Core/Container!Container} object created
      */
     async loadJSON(
         tagId: string | SingleOrMultiple<string>,
@@ -191,10 +191,10 @@ export class Loader {
     }
 
     /**
-     * Loads the provided options to create a {@link Container} object.
+     * Loads the provided options to create a {@link Core/Container!Container} object.
      * @param id the particles container element id
      * @param domContainer the dom container
-     * @param options the options object to initialize the {@link Container}
+     * @param options the options object to initialize the {@link Core/Container!Container}
      * @param index if an options array is provided, this will retrieve the exact index of that array
      */
     async set(
@@ -227,13 +227,13 @@ export class Loader {
     }
 
     /**
-     * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
+     * Loads the provided json with a GET request. The content will be used to create a {@link Core/Container!Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
      * @param id the particles container element id
      * @param domContainer the container used to contains the particles
      * @param jsonUrl the json path (or paths array) to use in the GET request
      * @param index the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the {@link Container} object created
+     * @returns A Promise with the {@link Core/Container!Container} object created
      */
     async setJSON(
         id: string | HTMLElement,

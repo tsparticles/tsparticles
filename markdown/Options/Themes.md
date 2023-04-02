@@ -1,8 +1,11 @@
 # Theme Options
 
--   [default](#default)
--   [name](#name)
--   [options](#options)
+- [Theme Options](#theme-options)
+  - [Default](#default)
+    - [Mode](#mode)
+    - [Value](#value)
+  - [Name](#name)
+  - [Options](#options)
 
 ## Default
 

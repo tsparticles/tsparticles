@@ -131,7 +131,7 @@ export interface IOptions {
     style: RecursivePartial<CSSStyleDeclaration>;
 
     /**
-     * User-defined themes that can be retrieved by the particles {@link Container}
+     * User-defined themes that can be retrieved by the particles {@link Core/Container!Container}
      */
     themes: ITheme[];
 

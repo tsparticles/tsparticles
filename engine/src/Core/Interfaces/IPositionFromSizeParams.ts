@@ -2,7 +2,7 @@ import type { ICoordinates, IRangedCoordinates } from "./ICoordinates";
 import type { IDimension } from "./IDimension";
 
 /**
- * {@link IRangedPositionFromSizeParams} describes the parameters for {@link calcPositionFromSize} and {@link calcPositionOrRandomFromSize} functions.
+ * {@link IRangedPositionFromSizeParams} describes the parameters for {@link Utils/NumberUtils!calcPositionFromSize} and {@link Utils/NumberUtils!calcPositionOrRandomFromSize} functions.
  */
 export interface IPositionFromSizeParams {
     /**
@@ -17,7 +17,7 @@ export interface IPositionFromSizeParams {
 }
 
 /**
- * {@link IRangedPositionFromSizeParams} describes the parameters for {@link calcPositionFromSize} and {@link calcPositionOrRandomFromSize} functions.
+ * {@link IRangedPositionFromSizeParams} describes the parameters for {@link Utils/NumberUtils!calcPositionFromSize} and {@link Utils/NumberUtils!calcPositionOrRandomFromSize} functions.
  */
 export interface IRangedPositionFromSizeParams {
     /**
