@@ -17,10 +17,10 @@ export interface IBackgroundMask {
     composite: GlobalCompositeOperation;
 
     /**
-     * The `cover` property can be set to a HEX string or to a {@link Core/Interfaces/Colors!IColor | color object}, that is the same as the one used
+     * The `cover` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used
      * in `particles.color` options.
      *
-     * The `cover` can also be a {@link Options/Interfaces/BackgroundMask/IBackgroundMaskCover!IBackgroundMaskCover | cover object} like the one described below.
+     * The `cover` can also be a {@link IBackgroundMaskCover | cover object} like the one described below.
      */
     cover: IBackgroundMaskCover | IColor | string;
 

@@ -72,7 +72,7 @@ const defaultPathGeneratorKey = "default",
  */
 export class Container {
     /**
-     * The options loaded by the container, it's a full {@link Options/Classes/Options!Options} object
+     * The options loaded by the container, it's a full {@link Options} object
      */
     actualOptions;
 
@@ -212,7 +212,7 @@ export class Container {
     }
 
     /**
-     * The options used by the container, it's a full {@link Options/Classes/Options!Options} object
+     * The options used by the container, it's a full {@link Options} object
      */
     get options(): Options {
         return this._options;
@@ -653,9 +653,9 @@ export class Container {
     /**
      * Customise path generation
      * @deprecated Use the new setPath
-     * @param noiseOrGenerator the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} object or a function that generates a {@link Core/Utils/Vector!Vector} object from {@link Core/Particle!Particle}
-     * @param init the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} update function, if the first parameter is a generator function
+     * @param noiseOrGenerator the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
+     * @param init the {@link IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update the {@link IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setNoise(
         noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
@@ -672,9 +672,9 @@ export class Container {
     /**
      * Customise path generation
      * @deprecated Use the new addPath
-     * @param pathOrGenerator the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} object or a function that generates a {@link Core/Utils/Vector!Vector} object from {@link Core/Particle!Particle}
-     * @param init the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update the {@link Core/Interfaces/IMovePathGenerator!IMovePathGenerator} update function, if the first parameter is a generator function
+     * @param pathOrGenerator the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
+     * @param init the {@link IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update the {@link IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setPath(
         pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),

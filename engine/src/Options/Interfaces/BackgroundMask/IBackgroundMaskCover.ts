@@ -6,7 +6,7 @@ import type { IOptionsColor } from "../IOptionsColor";
  */
 export interface IBackgroundMaskCover {
     /**
-     * The background color hiding all elements behind, string or {@link Core/Interfaces/Colors!IColor} value.
+     * The background color hiding all elements behind, string or {@link IColor} value.
      */
     color: string | IOptionsColor;
 

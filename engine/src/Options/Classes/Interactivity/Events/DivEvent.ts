@@ -17,7 +17,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     enable;
 
     /**
-     * Div mode values described in {@link Enums/Modes/DivMode!DivMode}, an array of these values is also valid.
+     * Div mode values described in {@link DivMode}, an array of these values is also valid.
      */
     mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 

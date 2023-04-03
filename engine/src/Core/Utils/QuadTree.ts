@@ -82,7 +82,7 @@ export class QuadTree {
     }
 
     /**
-     * Queries the instance using a {@link Core/Utils/Rectangle!Rectangle} object, with the given position and the given size
+     * Queries the instance using a {@link Rectangle} object, with the given position and the given size
      * @param range the range to use for querying the tree
      * @param check the function to check if the particle can be added to the result
      * @param found found particles array, output parameter
@@ -117,7 +117,7 @@ export class QuadTree {
     }
 
     /**
-     * Queries the instance using a {@link Core/Utils/Circle!Circle} object, with the given position and the given radius
+     * Queries the instance using a {@link Circle} object, with the given position and the given radius
      * @param position the circle position
      * @param radius the circle radius
      * @param check the function to check if the particle can be added to the result
@@ -128,7 +128,7 @@ export class QuadTree {
     }
 
     /**
-     * Queries the instance using a {@link Core/Utils/Rectangle!Rectangle} object, with the given position and the given size
+     * Queries the instance using a {@link Rectangle} object, with the given position and the given size
      * @param position the rectangle position
      * @param size the rectangle size
      * @param check the function to check if the particle can be added to the result

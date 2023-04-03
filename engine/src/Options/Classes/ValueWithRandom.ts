@@ -7,7 +7,7 @@ import { setRangeValue } from "../../Utils/NumberUtils";
 
 export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
     /**
-     * @deprecated use the new {@link Types/RangeValue!RangeValue} type instead
+     * @deprecated use the new {@link RangeValue} type instead
      */
     random: Random;
 

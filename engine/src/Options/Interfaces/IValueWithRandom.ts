@@ -3,7 +3,7 @@ import type { RangeValue } from "../../Types/RangeValue";
 
 export interface IValueWithRandom {
     /**
-     * @deprecated Use the new {@link Types/RangeValue!RangeValue} type instead of random
+     * @deprecated Use the new {@link RangeValue} type instead of random
      */
     random: boolean | IRandom;
 
