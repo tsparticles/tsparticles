@@ -1,5 +1,4 @@
 (async function () {
-    let schema = {};
     const stats = new Stats();
 
     stats.addPanel("count", "#ff8", 0, () => {
@@ -15,6 +14,7 @@
     });
 
     let maxParticles = 0;
+
     stats.showPanel(0);
     stats.dom.style.position = "absolute";
     stats.dom.style.left = "3px";
@@ -33,60 +33,17 @@
     };
 
     let updateParticles = async function (editor) {
-        let presetId = localStorage.presetId || "basic";
-
-        if (presetId === "divEvents") {
-            document.querySelectorAll(".bubble").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-            document.querySelectorAll(".repulse").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-            document.querySelectorAll(".bounce").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-        } else {
-            document.querySelectorAll(".bubble").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
-            document.querySelectorAll(".repulse").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
-            document.querySelectorAll(".bounce").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
-        }
-
-        const particles = await tsParticles.load("tsparticles", tsParticles.configs[presetId]);
-
-        localStorage.presetId = presetId;
-
-        const omit = obj => {
-            return _.omitBy(obj, (value, key) => {
-                return _.startsWith(key, "_");
-            });
-        };
-
-        const transform = obj => {
-            return _.transform(omit(obj), function (result, value, key) {
-                result[key] = !_.isArray(value) && _.isObject(value) ? transform(omit(value)) : value;
-            });
-        };
-
-        editor.update(transform(particles.options));
-        editor.expandAll();
+        await tsParticles.load("tsparticles", editor.get());
     };
 
     const omit = (obj, keys) => {
-        if (!keys.length) return obj;
-        const key = keys.pop();
-        const parts = key.split(".");
+        if (!keys.length) {
+            return obj;
+        }
+
+        const key = keys.pop(),
+            parts = key.split(".");
+
         if (parts.length > 1) {
             const { [parts[0]]: todo, ...rest } = obj;
             return {
@@ -94,15 +51,17 @@
                 [parts[0]]: omit(todo, [parts[1]]),
             };
         }
+
         const { [key]: omitted, ...rest } = obj;
+
         return omit(rest, keys);
     };
 
     let initSidebar = function () {
-        const rightCaret = document.body.querySelector(".caret-right");
-        const leftCaret = document.body.querySelector(".caret-left");
-        const sidebar = document.getElementById("sidebar");
-        const sidebarHidden = sidebar.hasAttribute("hidden");
+        const rightCaret = document.body.querySelector(".caret-right"),
+            leftCaret = document.body.querySelector(".caret-left"),
+            sidebar = document.getElementById("sidebar"),
+            sidebarHidden = sidebar.hasAttribute("hidden");
 
         if (sidebarHidden) {
             leftCaret.setAttribute("hidden", "");
@@ -114,10 +73,10 @@
     };
 
     let toggleSidebar = function () {
-        const rightCaret = document.body.querySelector(".caret-right");
-        const leftCaret = document.body.querySelector(".caret-left");
-        const sidebar = document.getElementById("sidebar");
-        const sidebarHidden = sidebar.hasAttribute("hidden");
+        const rightCaret = document.body.querySelector(".caret-right"),
+            leftCaret = document.body.querySelector(".caret-left"),
+            sidebar = document.getElementById("sidebar"),
+            sidebarHidden = sidebar.hasAttribute("hidden");
 
         if (sidebarHidden) {
             rightCaret.setAttribute("hidden", "");
@@ -166,58 +125,49 @@
         await loadRoundedRectShape(tsParticles);
         await loadSpiralShape(tsParticles);
 
-        for (const presetId in tsParticles.configs) {
-            const preset = tsParticles.configs[presetId];
+        let editor;
 
-            const option = document.createElement("option");
-            option.value = presetId;
-            option.text = preset.name || presetId;
+        const element = document.getElementById("editor"),
+            options = {
+                mode: "form",
+                modes: ["code", "form"], // allowed modes
+                onError: function (err) {
+                    alert(err.toString());
+                },
+                onModeChange: function (newMode, oldMode) {},
+                onChange: function () {
+                    updateParticles(editor);
+                },
+            };
 
-            document.getElementById("presets").appendChild(option);
-        }
+        editor = new JSONEditor(element, options);
 
-        const element = document.getElementById("editor");
-        const options = {
-            mode: "form",
-            modes: ["code", "form", "view", "preview", "text"], // allowed modes
-            onError: function (err) {
-                alert(err.toString());
+        editor.set({
+            background: {
+                color: "#000",
             },
-            onModeChange: function (newMode, oldMode) {},
-            onChange: function () {},
-        };
-        const editor = new JSONEditor(element, options);
+            particles: {
+                move: {
+                    enable: true,
+                },
+                number: {
+                    value: 100,
+                },
+            },
+        });
 
-        const cmbPresets = document.getElementById("presets");
-
-        cmbPresets.onchange = async function () {
-            localStorage.presetId = this.value;
-
-            await updateParticles(editor);
-        };
-
-        if (!localStorage.presetId) {
-            localStorage.presetId = "basic";
-        }
-
-        cmbPresets.value = localStorage.presetId;
-
-        // Create a new 'change' event
-        const event = new Event("change");
-
-        // Dispatch it.
-        cmbPresets.dispatchEvent(event);
+        updateParticles(editor);
 
         const btnUpdate = document.getElementById("btnUpdate");
 
-        btnUpdate.onclick = function () {
+        btnUpdate.addEventListener("click", function () {
             const particles = tsParticles.domItem(0);
 
             particles.options.load(editor.get());
             particles.refresh().then(() => {
                 // do nothing
             });
-        };
+        });
 
         document.body.querySelector("#stats").appendChild(stats.dom);
 
@@ -225,6 +175,7 @@
 
         statsToggler.addEventListener("click", function () {
             const statsEl = document.body.querySelector("#stats");
+
             if (statsEl.hasAttribute("hidden")) {
                 statsEl.removeAttribute("hidden");
             } else {

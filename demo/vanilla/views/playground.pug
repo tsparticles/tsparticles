@@ -1,0 +1,162 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(name="description", content= "tsParticles")
+        meta(name="author", content= "Matteo Bruni")
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
+        meta(name="twitter:card" content="summary_large_image")
+        meta(name="twitter:creator" content="@HollowMatt_ITA")
+        meta(name="twitter:image:src" content="https://particles.js.org/images/demo2.png")
+        meta(property="og:title" content="tsParticles - A lightweight TypeScript library for creating particles")
+        meta(property="og:site_name" content="tsParticles")
+        meta(property="og:url" content="https://particles.js.org/")
+        meta(property="og:description" content="A lightweight TypeScript library for creating particles.")
+        meta(property="og:image" content="https://particles.js.org/images/demo2.png")
+
+        title tsParticles
+        link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css")
+        link(href="/fontawesome/css/all.css" rel="stylesheet" type="text/css")
+        link(href="/jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css")
+        link(href="/stylesheets/main.css" rel="stylesheet" type="text/css")
+
+    body
+        .container-fluid.m-0.vh-100
+            .row.h-100
+                #sidebar.col-3.p-0.h-100(style="overflow: auto; z-index: 10000;")
+                    .row.p-1
+                        .col
+                            .input-group
+                                .btn-group.input-group-append
+                                    button#btnUpdate.btn.btn-primary.btn-xs(type="button") Reload Particles
+                                    .btn-group
+                                        button.btn.btn-primary.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Share
+                                        .dropdown-menu
+                                            a.dropdown-item(target="_blank" href="https://www.facebook.com/dialog/feed?app_id=508841200049663&link=https://particles.js.org&picture=https://particles.js.org/images/demo2.png&name=tsParticles&description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&redirect_uri=https://particles.js.org") Facebook
+                                            a.dropdown-item(target="_blank" href="https://twitter.com/intent/tweet?text=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&url=https://particles.js.org&hashtags=typescript,particles,html5,webdesign&via=HollowMatt_ITA") Twitter
+                                            a.dropdown-item(target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://particles.js.org&title=tsParticles&summary=A%20lightweight%20TypeScript%20library%20for%20creating%20particles&source=https://particles.js.org") LinkedIn
+                                            a.dropdown-item(target="_blank" href="https://dev.to/new?prefill=---%5Cn%20title%3A%20tsParticles%5Cn%20published%3A%20false%5Cn%20tags%3A%20javascript%2C%20showdev%2C%20webdesign%2C%20github%5Cn%20---%5Cn%20%5Cn%20%5Cn%20%5Cn%20tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org%5Cn") Dev
+                                            a.dropdown-item(target="_blank" href="http://www.pinterest.com/pin/create/button/?url=https://particles.js.org&media=https://particles.js.org/images/demo2.png&description=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org" data-pin-do="buttonPin" data-pin-config="above") Pinterest
+                                            a.dropdown-item(target="_blank" href="mailto:steve@jobs.com?subject=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles&body=tsParticles%20-%20A%20lightweight%20TypeScript%20library%20for%20creating%20particles%20https://particles.js.org") Email
+                                    .btn-group
+                                        button.btn.btn-primary.dropdown-toggle(type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Other
+                                        .dropdown-menu
+                                            a#export-image.dropdown-item(href="#") Export Image
+                                            a#export-config.dropdown-item(href="#") Export Config
+                                            .dropdown-divider
+                                            a#toggle-stats.dropdown-item(href="#") Toggle Stats
+                                            .dropdown-divider
+                                            a#codepen-export.dropdown-item(href="#") Export to CodePen
+                    .row(style="height: calc(100% - 50px)")
+                        .col.h-100
+                            #editor.h-100
+                #tsparticles-container.col.p-0.h-100
+                    #tsparticles
+                    .github
+                        a.btn.btn-link(href="https://github.com/matteobruni/tsparticles" title="Find more info on GitHub")
+                            img#gh-mark.img-fluid(src="https://particles.js.org/images/GitHub-Mark-120px-plus.png" alt="")
+                            span#gh-project tsParticles
+                    span.toggle-sidebar
+                        span.caret-right
+                            i.fas.fa-caret-right
+                        span.caret-left
+                            i.fas.fa-caret-left
+                    #stats(hidden)
+
+        #exportModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true")
+            .modal-dialog.modal-lg(role="document")
+                .modal-content
+                    .modal-header
+                        h5#exportModalLabel.modal-title Export
+                        button.close(type="button" data-dismiss="modal" aria-label="Close")
+                        span(aria-hidden="true") &times;
+                    .modal-body
+                        .modal-body-content
+                    .modal-footer
+                        button.btn.btn-primary(type="button" data-dismiss="modal") Close
+
+        form(action="https://codepen.io/pen/define" method="POST" target="_blank" hidden id="code-pen-form")
+            input(type="hidden" name="data" value="" id="code-pen-data")
+            input(type="submit" value="Create Pen")
+
+        script(src="/jquery/jquery.slim.min.js")
+        script(src="/bootstrap/js/bootstrap.bundle.min.js")
+        script(src="/fontawesome/js/all.js")
+        script(src="/jsoneditor/jsoneditor.js")
+        script(src="/lodash/lodash.min.js")
+        script(src="/stats.ts/dist/stats.min.js")
+        script(src="/tsparticles-engine/tsparticles.engine.js")
+        script(src="/demo-configs/tsparticles.configs.min.js")
+        script(src="/tsparticles-particles.js/tsparticles.pjs.js")
+        script(src="/tsparticles-slim/tsparticles.slim.js")
+        script(src="/tsparticles/tsparticles.js")
+        script(src="/interaction-external-attract/tsparticles.interaction.external.attract.js")
+        script(src="/interaction-external-bounce/tsparticles.interaction.external.bounce.js")
+        script(src="/interaction-external-bubble/tsparticles.interaction.external.bubble.js")
+        script(src="/interaction-external-connect/tsparticles.interaction.external.connect.js")
+        script(src="/interaction-external-grab/tsparticles.interaction.external.grab.js")
+        script(src="/interaction-external-pause/tsparticles.interaction.external.pause.js")
+        script(src="/interaction-external-push/tsparticles.interaction.external.push.js")
+        script(src="/interaction-external-remove/tsparticles.interaction.external.remove.js")
+        script(src="/interaction-external-repulse/tsparticles.interaction.external.repulse.js")
+        script(src="/interaction-external-slow/tsparticles.interaction.external.slow.js")
+        script(src="/interaction-particles-attract/tsparticles.interaction.particles.attract.js")
+        script(src="/interaction-particles-collisions/tsparticles.interaction.particles.collisions.js")
+        script(src="/interaction-particles-links/tsparticles.interaction.particles.links.js")
+        script(src="/move-base/tsparticles.move.base.js")
+        script(src="/move-parallax/tsparticles.move.parallax.js")
+        script(src="/shape-circle/tsparticles.shape.circle.js")
+        script(src="/shape-image/tsparticles.shape.image.js")
+        script(src="/shape-line/tsparticles.shape.line.js")
+        script(src="/shape-polygon/tsparticles.shape.polygon.js")
+        script(src="/shape-square/tsparticles.shape.square.js")
+        script(src="/shape-star/tsparticles.shape.star.js")
+        script(src="/shape-text/tsparticles.shape.text.js")
+        script(src="/updater-angle/tsparticles.updater.angle.js")
+        script(src="/updater-color/tsparticles.updater.color.js")
+        script(src="/updater-destroy/tsparticles.updater.destroy.js")
+        script(src="/updater-life/tsparticles.updater.life.js")
+        script(src="/updater-opacity/tsparticles.updater.opacity.js")
+        script(src="/updater-out-modes/tsparticles.updater.out-modes.js")
+        script(src="/updater-size/tsparticles.updater.size.js")
+        script(src="/updater-stroke-color/tsparticles.updater.stroke-color.js")
+        script(src="/updater-tilt/tsparticles.updater.tilt.js")
+        script(src="/updater-twinkle/tsparticles.updater.twinkle.js")
+        script(src="/updater-roll/tsparticles.updater.roll.js")
+        script(src="/updater-wobble/tsparticles.updater.wobble.js")
+        script(src="/interaction-external-trail/tsparticles.interaction.external.trail.js")
+        script(src="/plugin-absorbers/tsparticles.plugin.absorbers.js")
+        script(src="/plugin-emitters/tsparticles.plugin.emitters.js")
+        script(src="/plugin-polygon-mask/tsparticles.plugin.polygon-mask.js")
+        script(src="/interaction-light/tsparticles.interaction.light.js")
+        script(src="/interaction-particles-repulse/tsparticles.interaction.particles.repulse.js")
+        script(src="/updater-gradient/tsparticles.updater.gradient.js")
+        script(src="/updater-orbit/tsparticles.updater.orbit.js")
+        script(src="/plugin-canvas-mask/tsparticles.plugin.canvas-mask.js")
+        script(src="/plugin-easing-back/tsparticles.plugin.easing.back.js")
+        script(src="/plugin-easing-circ/tsparticles.plugin.easing.circ.js")
+        script(src="/plugin-easing-cubic/tsparticles.plugin.easing.cubic.js")
+        script(src="/plugin-easing-expo/tsparticles.plugin.easing.expo.js")
+        script(src="/plugin-easing-quad/tsparticles.plugin.easing.quad.js")
+        script(src="/plugin-easing-quart/tsparticles.plugin.easing.quart.js")
+        script(src="/plugin-easing-quint/tsparticles.plugin.easing.quint.js")
+        script(src="/plugin-easing-sine/tsparticles.plugin.easing.sine.js")
+        script(src="/plugin-hsv-color/tsparticles.plugin.hsvColor.js")
+        script(src="/plugin-infection/tsparticles.plugin.infection.js")
+        script(src="/plugin-motion/tsparticles.plugin.motion.js")
+        script(src="/plugin-sounds/tsparticles.plugin.sounds.js")
+        script(src="/shape-bubble/tsparticles.shape.bubble.js")
+        script(src="/shape-cards/tsparticles.shape.cards.js")
+        script(src="/shape-cog/tsparticles.shape.cog.js")
+        script(src="/shape-heart/tsparticles.shape.heart.js")
+        script(src="/shape-multiline-text/tsparticles.shape.multiline-text.js")
+        script(src="/shape-path/tsparticles.shape.path.js")
+        script(src="/shape-rounded-rect/tsparticles.shape.rounded-rect.js")
+        script(src="/shape-spiral/tsparticles.shape.spiral.js")
+        script(src="/path-curves/tsparticles.path.curves.js")
+        script(src="/path-polygon/tsparticles.path.polygon.js")
+        script(src="/path-perlin-noise/tsparticles.path.perlin.noise.js")
+        script(src="/path-simplex-noise/tsparticles.path.simplex.noise.js")
+        script(src="/javascripts/playground.js")

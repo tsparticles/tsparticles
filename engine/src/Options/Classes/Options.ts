@@ -187,7 +187,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.backgroundMask.load(data.backgroundMask);
         this.interactivity.load(data.interactivity);
 
-        if (data.manualParticles !== undefined) {
+        if (data.manualParticles) {
             this.manualParticles = data.manualParticles.map((t) => {
                 const tmp = new ManualParticle();
 

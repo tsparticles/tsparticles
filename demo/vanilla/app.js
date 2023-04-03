@@ -121,6 +121,10 @@ app.get("/", function (req, res) {
     res.render("index");
 });
 
+app.get("/playground", function (req, res) {
+    res.render("playground");
+});
+
 app.get("/confetti", function (req, res) {
     res.render("confetti");
 });
