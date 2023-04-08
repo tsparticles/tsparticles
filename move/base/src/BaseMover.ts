@@ -10,12 +10,12 @@ import {
 import { applyDistance, applyPath, getProximitySpeedFactor, spin } from "./Utils";
 import type { MoveParticle } from "./Types";
 
+const diffFactor = 2;
+
 export class BaseMover implements IParticleMover {
     init(particle: MoveParticle): void {
-        const container = particle.container,
-            options = particle.options,
-            gravityOptions = options.move.gravity,
-            spinOptions = options.move.spin;
+        const options = particle.options,
+            gravityOptions = options.move.gravity;
 
         particle.gravity = {
             enable: gravityOptions.enable,
@@ -23,26 +23,7 @@ export class BaseMover implements IParticleMover {
             inverse: gravityOptions.inverse,
         };
 
-        if (spinOptions.enable) {
-            const spinPos = spinOptions.position ?? { x: 50, y: 50 },
-                spinCenter = {
-                    x: (spinPos.x / 100) * container.canvas.size.width,
-                    y: (spinPos.y / 100) * container.canvas.size.height,
-                },
-                pos = particle.getPosition(),
-                distance = getDistance(pos, spinCenter),
-                spinAcceleration = getRangeValue(spinOptions.acceleration);
-
-            particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
-
-            particle.spin = {
-                center: spinCenter,
-                direction: particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-                angle: particle.velocity.angle,
-                radius: distance,
-                acceleration: particle.retina.spinAcceleration,
-            };
-        }
+        this._initSpin(particle);
     }
 
     isEnabled(particle: Particle): boolean {
@@ -66,9 +47,7 @@ export class BaseMover implements IParticleMover {
                 getRangeValue(particle.options.move.drift) * container.retina.pixelRatio),
             maxSize = getRangeMax(particleOptions.size.value) * container.retina.pixelRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
-            speedFactor = sizeFactor * slowFactor * (delta.factor || 1),
-            diffFactor = 2,
-            moveSpeed = (baseSpeed * speedFactor) / diffFactor;
+            moveSpeed = (baseSpeed * sizeFactor * slowFactor * (delta.factor || 1)) / diffFactor;
 
         if (moveOptions.spin.enable) {
             spin(particle, moveSpeed);
@@ -89,9 +68,7 @@ export class BaseMover implements IParticleMover {
 
             const decay = particle.moveDecay;
 
-            if (decay != 1) {
-                particle.velocity.multTo(decay);
-            }
+            particle.velocity.multTo(decay);
 
             const velocity = particle.velocity.mult(moveSpeed),
                 maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
@@ -112,9 +89,7 @@ export class BaseMover implements IParticleMover {
             const zIndexOptions = particle.options.zIndex,
                 zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
 
-            if (zVelocityFactor != 1) {
-                velocity.multTo(zVelocityFactor);
-            }
+            velocity.multTo(zVelocityFactor);
 
             particle.position.addTo(velocity);
 
@@ -125,5 +100,34 @@ export class BaseMover implements IParticleMover {
         }
 
         applyDistance(particle);
+    }
+
+    private _initSpin(particle: MoveParticle): void {
+        const container = particle.container,
+            options = particle.options,
+            spinOptions = options.move.spin;
+
+        if (!spinOptions.enable) {
+            return;
+        }
+
+        const spinPos = spinOptions.position ?? { x: 50, y: 50 },
+            spinCenter = {
+                x: (spinPos.x / 100) * container.canvas.size.width,
+                y: (spinPos.y / 100) * container.canvas.size.height,
+            },
+            pos = particle.getPosition(),
+            distance = getDistance(pos, spinCenter),
+            spinAcceleration = getRangeValue(spinOptions.acceleration);
+
+        particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
+
+        particle.spin = {
+            center: spinCenter,
+            direction: particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
+            angle: particle.velocity.angle,
+            radius: distance,
+            acceleration: particle.retina.spinAcceleration,
+        };
     }
 }

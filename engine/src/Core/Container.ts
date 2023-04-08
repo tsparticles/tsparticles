@@ -366,9 +366,7 @@ export class Container {
         this.canvas.destroy();
 
         for (const [, drawer] of this.drawers) {
-            if (drawer.destroy) {
-                drawer.destroy(this);
-            }
+            drawer.destroy && drawer.destroy(this);
         }
 
         for (const key of this.drawers.keys()) {
@@ -470,9 +468,7 @@ export class Container {
         this.particles.handleClickMode(mode);
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.handleClickMode) {
-                plugin.handleClickMode(mode);
-            }
+            plugin.handleClickMode && plugin.handleClickMode(mode);
         }
     }
 
@@ -521,15 +517,11 @@ export class Container {
         this.smooth = this.actualOptions.smooth;
 
         for (const [, drawer] of this.drawers) {
-            if (drawer.init) {
-                await drawer.init(this);
-            }
+            drawer.init && (await drawer.init(this));
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.init) {
-                await plugin.init();
-            }
+            plugin.init && (await plugin.init());
         }
 
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
@@ -538,9 +530,7 @@ export class Container {
         this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.particlesSetup) {
-                plugin.particlesSetup();
-            }
+            plugin.particlesSetup && plugin.particlesSetup();
         }
 
         this._engine.dispatchEvent(EventType.particlesSetup, { container: this });
@@ -579,9 +569,7 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.pause) {
-                plugin.pause();
-            }
+            plugin.pause && plugin.pause();
         }
 
         if (!this.pageHidden) {
@@ -767,9 +755,7 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.stop) {
-                plugin.stop();
-            }
+            plugin.stop && plugin.stop();
         }
 
         for (const key of this.plugins.keys()) {
