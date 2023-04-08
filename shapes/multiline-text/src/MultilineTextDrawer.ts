@@ -1,6 +1,5 @@
 import {
     type Container,
-    type IParticle,
     type IShapeDrawer,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
@@ -12,7 +11,7 @@ import type { IMultilineTextShape } from "./IMultilineTextShape";
 import type { MultilineTextParticle } from "./MultilineTextParticle";
 
 export class MultilineTextDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+    draw(context: CanvasRenderingContext2D, particle: MultilineTextParticle, radius: number, opacity: number): void {
         const character = particle.shapeData as IMultilineTextShape;
 
         if (character === undefined) {
@@ -25,13 +24,11 @@ export class MultilineTextDrawer implements IShapeDrawer {
             return;
         }
 
-        const textParticle = particle as MultilineTextParticle;
-
-        if (textParticle.text === undefined) {
-            textParticle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
+        if (particle.text === undefined) {
+            particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
         }
 
-        const text = textParticle.text,
+        const text = particle.text,
             style = character.style ?? "",
             weight = character.weight ?? "400",
             size = Math.round(radius) * 2,
@@ -63,12 +60,37 @@ export class MultilineTextDrawer implements IShapeDrawer {
             const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>,
                 promises: Promise<void>[] = [];
 
-            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+            executeOnSingleOrMultiple(shapeOptions, shape => {
                 promises.push(loadFont(shape.font, shape.weight));
             });
 
             await Promise.all(promises);
         }
+    }
+
+    /**
+     * Loads the text shape to the given particle
+     * @param container the particles container
+     * @param particle the particle loading the text shape
+     */
+    particleInit(container: Container, particle: MultilineTextParticle): void {
+        if (particle.shape !== "multiline-text") {
+            return;
+        }
+
+        const character = particle.shapeData as IMultilineTextShape;
+
+        if (character === undefined) {
+            return;
+        }
+
+        const textData = character.value;
+
+        if (textData === undefined) {
+            return;
+        }
+
+        particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
     }
 
     private _drawLine(

@@ -14,9 +14,9 @@ const drawRoundedRect = (
         topLeft: 4,
     }
 ): void => {
-    const { x, y, width, height } = info;
-    const r = x + width;
-    const b = y + height;
+    const { x, y, width, height } = info,
+        r = x + width,
+        b = y + height;
 
     ctx.moveTo(x + radius.topLeft, y);
     ctx.lineTo(r - radius.topRight, y);
@@ -51,8 +51,8 @@ export class RoundedRectDrawer implements IShapeDrawer {
     }
 
     particleInit(container: Container, particle: IParticle): void {
-        const shapeData = particle.shapeData as IRoundedRectData;
-        const roundedRect = particle as IRoundedParticle;
+        const shapeData = particle.shapeData as IRoundedRectData,
+            roundedRect = particle as IRoundedParticle;
 
         roundedRect.borderRadius = (shapeData?.radius ?? 4) * container.retina.pixelRatio;
     }
