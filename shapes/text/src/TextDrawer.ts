@@ -1,6 +1,5 @@
 import {
     type Container,
-    type IParticle,
     type IShapeDrawer,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
@@ -17,7 +16,7 @@ export const validTypes = ["text", "character", "char"];
  * @category Shape Drawers
  */
 export class TextDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+    draw(context: CanvasRenderingContext2D, particle: TextParticle, radius: number, opacity: number): void {
         const character = particle.shapeData as ICharacterShape;
 
         if (character === undefined) {
@@ -30,13 +29,11 @@ export class TextDrawer implements IShapeDrawer {
             return;
         }
 
-        const textParticle = particle as TextParticle;
-
-        if (textParticle.text === undefined) {
-            textParticle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
+        if (particle.text === undefined) {
+            particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
         }
 
-        const text = textParticle.text,
+        const text = particle.text,
             style = character.style ?? "",
             weight = character.weight ?? "400",
             size = Math.round(radius) * 2,
@@ -81,5 +78,30 @@ export class TextDrawer implements IShapeDrawer {
 
             await Promise.all(promises);
         }
+    }
+
+    /**
+     * Loads the text shape to the given particle
+     * @param container the particles container
+     * @param particle the particle loading the text shape
+     */
+    particleInit(container: Container, particle: TextParticle): void {
+        if (!particle.shape || !validTypes.includes(particle.shape)) {
+            return;
+        }
+
+        const character = particle.shapeData as ICharacterShape;
+
+        if (character === undefined) {
+            return;
+        }
+
+        const textData = character.value;
+
+        if (textData === undefined) {
+            return;
+        }
+
+        particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
     }
 }
