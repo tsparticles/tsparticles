@@ -60,7 +60,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
             const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>,
                 promises: Promise<void>[] = [];
 
-            executeOnSingleOrMultiple(shapeOptions, shape => {
+            executeOnSingleOrMultiple(shapeOptions, (shape) => {
                 promises.push(loadFont(shape.font, shape.weight));
             });
 
