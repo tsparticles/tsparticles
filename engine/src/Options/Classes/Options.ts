@@ -140,7 +140,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         if (data.preset !== undefined) {
-            executeOnSingleOrMultiple(data.preset, preset => this._importPreset(preset));
+            executeOnSingleOrMultiple(data.preset, (preset) => this._importPreset(preset));
         }
 
         if (data.autoPlay !== undefined) {
@@ -193,7 +193,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity.load(data.interactivity);
 
         if (data.manualParticles) {
-            this.manualParticles = data.manualParticles.map(t => {
+            this.manualParticles = data.manualParticles.map((t) => {
                 const tmp = new ManualParticle();
 
                 tmp.load(t);
@@ -234,7 +234,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
-                const existingTheme = this.themes.find(t => t.name === theme.name);
+                const existingTheme = this.themes.find((t) => t.name === theme.name);
 
                 if (!existingTheme) {
                     const optTheme = new Theme();
@@ -255,7 +255,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
         this.load(defaultOptions);
 
-        const responsiveOptions = this.responsive.find(t =>
+        const responsiveOptions = this.responsive.find((t) =>
             t.mode === ResponsiveMode.screen && screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width
         );
 
@@ -266,7 +266,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     setTheme(name?: string): void {
         if (name) {
-            const chosenTheme = this.themes.find(theme => theme.name === name);
+            const chosenTheme = this.themes.find((theme) => theme.name === name);
 
             if (chosenTheme) {
                 this.load(chosenTheme.options);
@@ -284,8 +284,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     private _findDefaultTheme(mode: ThemeMode): Theme | undefined {
         return (
-            this.themes.find(theme => theme.default.value && theme.default.mode === mode) ??
-            this.themes.find(theme => theme.default.value && theme.default.mode === ThemeMode.any)
+            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
+            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
         );
     }
 
