@@ -7,6 +7,9 @@ import type { IRangeHsl } from "../Core/Interfaces/Colors";
 import type { IRangeValueColor } from "../Core/Interfaces/Colors";
 import type { IValueColor } from "../Core/Interfaces/Colors";
 
+/**
+ *
+ */
 export class HslColorManager implements IColorManager {
     readonly key;
     readonly stringPrefix;
