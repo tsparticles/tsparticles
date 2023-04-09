@@ -46,7 +46,7 @@ export class FrameManager {
 
             const delta = initDelta(timestamp - container.lastFrameTime, container.fpsLimit, container.smooth);
 
-            container.lifeTime += delta.value;
+            container.addLifeTime(delta.value);
             container.lastFrameTime = timestamp;
 
             if (delta.value > 1000) {
@@ -56,7 +56,7 @@ export class FrameManager {
 
             await container.particles.draw(delta);
 
-            if (container.duration > 0 && container.lifeTime > container.duration) {
+            if (!container.alive()) {
                 container.destroy();
                 return;
             }

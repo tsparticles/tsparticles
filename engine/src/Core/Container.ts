@@ -101,11 +101,6 @@ export class Container {
     readonly drawers;
 
     /**
-     * The container duration
-     */
-    duration;
-
-    /**
      * The container fps limit, coming from options
      */
     fpsLimit;
@@ -121,11 +116,6 @@ export class Container {
      * Last frame time, used for delta values, for keeping animation correct in lower frame rates
      */
     lastFrameTime?: number;
-
-    /**
-     * The container lifetime
-     */
-    lifeTime;
 
     /**
      * The container check if it's hidden on the web page
@@ -161,11 +151,19 @@ export class Container {
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
     private _drawAnimationFrame?: number;
+    /**
+     * The container duration
+     */
+    private _duration;
     private readonly _engine;
     private readonly _eventListeners;
     private _firstStart;
     private _initialSourceOptions;
     private readonly _intersectionObserver;
+    /**
+     * The container lifetime
+     */
+    private _lifeTime;
     private _options;
     private _paused;
     private _sourceOptions;
@@ -183,8 +181,8 @@ export class Container {
         this.fpsLimit = 120;
         this.smooth = false;
         this._delay = 0;
-        this.duration = 0;
-        this.lifeTime = 0;
+        this._duration = 0;
+        this._lifeTime = 0;
         this._firstStart = true;
         this.started = false;
         this.destroyed = false;
@@ -347,6 +345,10 @@ export class Container {
         el.addEventListener("touchcancel", touchCancelHandler);
     }
 
+    addLifeTime(value: number): void {
+        this._lifeTime += value;
+    }
+
     /**
      * Add a new path generator to the container
      *
@@ -362,6 +364,10 @@ export class Container {
         this.pathGenerators.set(key, generator ?? defaultPathGenerator);
 
         return true;
+    }
+
+    alive(): boolean {
+        return !this._duration || this._lifeTime <= this._duration;
     }
 
     /**
@@ -528,9 +534,9 @@ export class Container {
         this.canvas.resize();
 
         this.zLayers = this.actualOptions.zLayers;
-        this.duration = getRangeValue(this.actualOptions.duration) * 1000;
+        this._duration = getRangeValue(this.actualOptions.duration) * 1000;
         this._delay = getRangeValue(this.actualOptions.delay) * 1000;
-        this.lifeTime = 0;
+        this._lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
         this.smooth = this.actualOptions.smooth;
 
