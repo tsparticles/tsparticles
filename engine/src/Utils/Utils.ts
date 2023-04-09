@@ -23,6 +23,7 @@ import { Vector } from "../Core/Utils/Vector";
  * @param rectOtherSide - rectangle bounce other side
  * @param velocity - particle velocity
  * @param factor - bounce factor
+ * @returns the rectangle side bounce values
  */
 function rectSideBounce(
     pSide: IRangeValue,
@@ -60,6 +61,7 @@ function rectSideBounce(
  * @hidden
  * @param element - element to check
  * @param selectors - selectors to check
+ * @returns true or false, if the selector has found something
  */
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
     const res = executeOnSingleOrMultiple(selectors, (selector) => {
@@ -71,13 +73,15 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
 
 /**
  * Checks if the script is executed server side
+ *
+ * @returns true if the environment is server side
  */
 export function isSsr(): boolean {
     return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
 }
 
 /**
- *
+ * @returns true if the environment supports matchMedia feature
  */
 export function hasMatchMedia(): boolean {
     return !isSsr() && typeof matchMedia !== "undefined";
@@ -85,7 +89,8 @@ export function hasMatchMedia(): boolean {
 
 /**
  *
- * @param query
+ * @param query -
+ * @returns the media query list, if supported
  */
 export function safeMatchMedia(query: string): MediaQueryList | undefined {
     if (!hasMatchMedia()) {
@@ -97,6 +102,8 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 
 /**
  * Calls the requestAnimationFrame function or a polyfill
+ *
+ * @returns the animation callback id, so it can be canceled
  */
 export function animate(): (callback: FrameRequestCallback) => number {
     return isSsr()
@@ -106,6 +113,8 @@ export function animate(): (callback: FrameRequestCallback) => number {
 
 /**
  * Cancels the requestAnimationFrame function or a polyfill
+ *
+ * @returns the animation cancelling function
  */
 export function cancelAnimation(): (handle: number) => void {
     return isSsr()
@@ -154,6 +163,7 @@ export function arrayRandomIndex<T>(array: T[]): number {
  * @param array - the array to get the object from
  * @param index - the index to get the object from
  * @param useIndex - if true, the index will be used instead of a random index
+ * @returns the item found
  */
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
     return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
@@ -186,6 +196,7 @@ export function isPointInside(
  * @param size - the rectangle size
  * @param offset - position offset
  * @param direction - the shape direction
+ * @returns true if the given bounds are inside the given area, false if not
  */
 export function areBoundsInside(
     bounds: IBounds,
@@ -464,8 +475,9 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
 
 /**
  *
- * @param obj
- * @param callback
+ * @param obj -
+ * @param callback -
+ * @returns the transformed SingleOrMultiple data
  */
 export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
@@ -476,9 +488,10 @@ export function executeOnSingleOrMultiple<T, U = void>(
 
 /**
  *
- * @param obj
- * @param index
- * @param useIndex
+ * @param obj -
+ * @param index -
+ * @param useIndex -
+ * @returns the selected item
  */
 export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
     return obj instanceof Array ? itemFromArray(obj, index, useIndex) : obj;
@@ -486,8 +499,9 @@ export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: nu
 
 /**
  *
- * @param obj
- * @param callback
+ * @param obj -
+ * @param callback -
+ * @returns the item found, if present
  */
 export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,

@@ -120,8 +120,8 @@ export class Engine {
 
     /**
      *
-     * @param name
-     * @param interactorInitializer
+     * @param name -
+     * @param interactorInitializer -
      */
     async addInteractor(name: string, interactorInitializer: (container: Container) => IInteractor): Promise<void> {
         this.plugins.addInteractor(name, interactorInitializer);
@@ -137,8 +137,8 @@ export class Engine {
 
     /**
      *
-     * @param name
-     * @param updaterInitializer
+     * @param name -
+     * @param updaterInitializer -
      */
     async addParticleUpdater(
         name: string,

@@ -14,7 +14,6 @@ import { getStyleFromRgb } from "./ColorUtils";
 /**
  * Draws a line between two points using canvas API in the given context.
  *
- * @hidden
  * @param context - The canvas context to draw on.
  * @param begin - The start point of the line.
  * @param end - The end point of the line.
@@ -325,6 +324,7 @@ export function drawParticlePlugin(
  * @param color - The color to enlighten or darken.
  * @param type - The type of alteration.
  * @param value - The value of the alteration.
+ * @returns the altered {@link IHsl} color
  */
 export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
     return {

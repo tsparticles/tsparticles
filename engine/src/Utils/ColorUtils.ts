@@ -16,7 +16,7 @@ const randomColorValue = "random",
 
 /**
  *
- * @param manager
+ * @param manager -
  */
 export function addColorManager(manager: IColorManager): void {
     colorManagers.set(manager.key, manager);
@@ -26,9 +26,10 @@ export function addColorManager(manager: IColorManager): void {
  * Converts hue to RGB values.
  *
  * @hidden
- * @param p
- * @param q
- * @param t
+ * @param p -
+ * @param q -
+ * @param t -
+ * @returns the hue calculated from the rgb values
  */
 function hue2rgb(p: number, q: number, t: number): number {
     if (t < 0) {
@@ -58,6 +59,7 @@ function hue2rgb(p: number, q: number, t: number): number {
  * Converts a string to a RGBA color.
  *
  * @param input - A string that represents a color.
+ * @returns the converted color from string to {@link IRgba} interfaec
  */
 function stringToRgba(input: string): IRgba | undefined {
     for (const [, manager] of colorManagers) {
@@ -89,6 +91,7 @@ function stringToRgba(input: string): IRgba | undefined {
  * @param input - the input color to convert in {@link IRgb} object
  * @param index - the array index, if needed
  * @param useIndex - set to false for ignoring the index parameter
+ * @returns returns a RGB color in the given range
  */
 export function rangeColorToRgb(input?: string | IRangeColor, index?: number, useIndex = true): IRgb | undefined {
     if (!input) {
@@ -122,6 +125,7 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
  * @param input - the input color to convert in {@link IRgb} object
  * @param index - the array index, if needed
  * @param useIndex - set to false to ignore the index parameter
+ * @returns returns an RGB color taken from a {@link IColor} object
  */
 export function colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
     if (!input) {
@@ -260,9 +264,7 @@ export function hslToRgb(hsl: IHsl): IRgb {
         };
 
     if (!hslPercent.s) {
-        result.b = hslPercent.l; // achromatic
-        result.g = hslPercent.l;
-        result.r = hslPercent.l;
+        result.r = result.g = result.b = hslPercent.l; // achromatic
     } else {
         const q =
                 hslPercent.l < 0.5
@@ -339,10 +341,11 @@ export function getStyleFromHsl(color: IHsl, opacity?: number): string {
 
 /**
  *
- * @param color1
- * @param color2
- * @param size1
- * @param size2
+ * @param color1 -
+ * @param color2 -
+ * @param size1 -
+ * @param size2 -
+ * @returns the return value is a color mix between the two parameters, using sizes to mix more the biggest value
  */
 export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
     let rgb1 = color1 as IRgb,
@@ -365,9 +368,10 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
 
 /**
  *
- * @param p1
- * @param p2
- * @param linkColor
+ * @param p1 -
+ * @param p2 -
+ * @param linkColor -
+ * @returns the link color calculated using the two linked particles
  */
 export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
     if (linkColor === randomColorValue) {
@@ -392,9 +396,10 @@ export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string |
 
 /**
  *
- * @param optColor
- * @param blink
- * @param consent
+ * @param optColor -
+ * @param blink -
+ * @param consent -
+ * @returns returns a link random color, if needed
  */
 export function getLinkRandomColor(
     optColor: string | IOptionsColor,
@@ -426,7 +431,8 @@ export function getLinkRandomColor(
 
 /**
  *
- * @param animation
+ * @param animation -
+ * @returns returns an animatable HSL color, if needed
  */
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
     return animation !== undefined
@@ -440,9 +446,10 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
 
 /**
  *
- * @param hsl
- * @param animationOptions
- * @param reduceFactor
+ * @param hsl -
+ * @param animationOptions -
+ * @param reduceFactor -
+ * @returns returns the particle HSL animation values
  */
 export function getHslAnimationFromHsl(
     hsl: IHsl,
@@ -476,9 +483,9 @@ export function getHslAnimationFromHsl(
 
 /**
  *
- * @param colorValue
- * @param colorAnimation
- * @param reduceFactor
+ * @param colorValue -
+ * @param colorAnimation -
+ * @param reduceFactor -
  */
 function setColorAnimation(
     colorValue: IParticleValueAnimation<number>,
