@@ -16,19 +16,29 @@ let _random = Math.random;
 
 const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>();
 
+/**
+ *
+ * @param name
+ * @param easing
+ */
 export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
     if (!easings.get(name)) {
         easings.set(name, easing);
     }
 }
 
+/**
+ *
+ * @param name
+ */
 export function getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
     return easings.get(name) || ((value: number): number => value);
 }
 
 /**
  * Replaces the library random function with a custom one.
- * @param rnd A random function that returns a number between 0 and 1.
+ *
+ * @param rnd - A random function that returns a number between 0 and 1.
  */
 export function setRandom(rnd: () => number = Math.random): void {
     _random = rnd;
@@ -43,9 +53,10 @@ export function getRandom(): number {
 
 /**
  * Clamps a number between a minimum and maximum value
- * @param num the source number
- * @param min the minimum value
- * @param max the maximum value
+ *
+ * @param num - the source number
+ * @param min - the minimum value
+ * @param max - the maximum value
  */
 export function clamp(num: number, min: number, max: number): number {
     return Math.min(Math.max(num, min), max);
@@ -62,6 +73,10 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
     return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
 }
 
+/**
+ *
+ * @param r
+ */
 export function randomInRange(r: RangeValue): number {
     const max = getRangeMax(r);
     let min = getRangeMin(r);
@@ -73,18 +88,35 @@ export function randomInRange(r: RangeValue): number {
     return getRandom() * (max - min) + min;
 }
 
+/**
+ *
+ * @param value
+ */
 export function getRangeValue(value: RangeValue): number {
     return typeof value === "number" ? value : randomInRange(value);
 }
 
+/**
+ *
+ * @param value
+ */
 export function getRangeMin(value: RangeValue): number {
     return typeof value === "number" ? value : value.min;
 }
 
+/**
+ *
+ * @param value
+ */
 export function getRangeMax(value: RangeValue): number {
     return typeof value === "number" ? value : value.max;
 }
 
+/**
+ *
+ * @param source
+ * @param value
+ */
 export function setRangeValue(source: RangeValue, value?: number): RangeValue {
     if (source === value || (value === undefined && typeof source === "number")) {
         return source;
@@ -101,6 +133,10 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
         : setRangeValue(min, max);
 }
 
+/**
+ *
+ * @param options
+ */
 export function getValue(options: IValueWithRandom): number {
     const random = options.random,
         { enable, minimumValue } =
@@ -116,8 +152,9 @@ export function getValue(options: IValueWithRandom): number {
 
 /**
  * Gets the distance between two coordinates
- * @param pointA the first coordinate
- * @param pointB the second coordinate
+ *
+ * @param pointA - the first coordinate
+ * @param pointB - the second coordinate
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
     const dx = pointA.x - pointB.x,
@@ -128,13 +165,20 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
 
 /**
  * Gets the distance between two coordinates
- * @param pointA the first coordinate
- * @param pointB the second coordinate
+ *
+ * @param pointA - the first coordinate
+ * @param pointB - the second coordinate
  */
 export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
     return getDistances(pointA, pointB).distance;
 }
 
+/**
+ *
+ * @param direction
+ * @param position
+ * @param center
+ */
 export function getParticleDirectionAngle(
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
     position: ICoordinates,
@@ -172,7 +216,8 @@ export function getParticleDirectionAngle(
 
 /**
  * Get Particle base velocity
- * @param direction the direction to use for calculating the velocity
+ *
+ * @param direction - the direction to use for calculating the velocity
  */
 export function getParticleBaseVelocity(direction: number): Vector {
     const baseVelocity = Vector.origin;
@@ -183,13 +228,21 @@ export function getParticleBaseVelocity(direction: number): Vector {
     return baseVelocity;
 }
 
+/**
+ *
+ * @param v1
+ * @param v2
+ * @param m1
+ * @param m2
+ */
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
     return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
 }
 
 /**
  * Gets exact position from percent position based on the given size
- * @param data the data to use for calculating the position
+ *
+ * @param data - the data to use for calculating the position
  * @returns the exact position
  */
 export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
@@ -203,7 +256,8 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
 
 /**
  * Gets exact position from percent position, or a random one if not specified, based on the given size
- * @param data the data to use for calculating the position
+ *
+ * @param data - the data to use for calculating the position
  * @returns the exact position
  */
 export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
@@ -215,7 +269,8 @@ export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICo
 
 /**
  * Gets exact position from percent position, or a random one if not specified, based on the given size
- * @param data the data to use for calculating the position
+ *
+ * @param data - the data to use for calculating the position
  * @returns the exact position
  */
 export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
@@ -229,7 +284,8 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
 
 /**
  * Gets exact position from exact position, or a random one if not specified, based on the given size
- * @param data the data to use for calculating the position
+ *
+ * @param data - the data to use for calculating the position
  * @returns the exact position
  */
 export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
@@ -241,7 +297,8 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams)
 
 /**
  * Gets exact position from exact position, or a random one if not specified, based on the given size
- * @param data the data to use for calculating the position
+ *
+ * @param data - the data to use for calculating the position
  * @returns the exact position
  */
 export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
@@ -253,6 +310,10 @@ export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFro
     return calcExactPositionOrRandomFromSize({ size: data.size, position });
 }
 
+/**
+ *
+ * @param input
+ */
 export function parseAlpha(input?: string): number {
     return input ? (input.endsWith("%") ? parseFloat(input) / 100 : parseFloat(input)) : 1;
 }

@@ -28,6 +28,11 @@ type RotateParticlesOptions = ParticlesOptions & {
     rotate?: Rotate;
 };
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateAngle(particle: RotateParticle, delta: IDelta): void {
     const rotate = particle.rotate,
         rotateOptions = particle.options.rotate;

@@ -34,6 +34,11 @@ type TiltParticlesOptions = ParticlesOptions & {
     tilt?: Tilt;
 };
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateTilt(particle: TiltParticle, delta: IDelta): void {
     if (!particle.tilt || !particle.options.tilt) {
         return;

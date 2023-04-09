@@ -9,6 +9,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Interactivity.md]]
+ *
  * @category Options
  */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {

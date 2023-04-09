@@ -5,6 +5,11 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 
+/**
+ *
+ * @param options
+ * @param sourceOptionsArr
+ */
 export function loadOptions<T>(
     options: IOptionLoader<T>,
     ...sourceOptionsArr: RecursivePartial<T | undefined>[]
@@ -14,6 +19,12 @@ export function loadOptions<T>(
     }
 }
 
+/**
+ *
+ * @param engine
+ * @param container
+ * @param sourceOptionsArr
+ */
 export function loadParticlesOptions(
     engine: Engine,
     container: Container,

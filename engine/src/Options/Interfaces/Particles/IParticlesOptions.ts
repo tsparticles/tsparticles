@@ -1,5 +1,6 @@
 /**
  * [[include:Options/Particles.md]]
+ *
  * @category Options
  */
 import type { IAnimatableColor } from "../IAnimatableColor";
@@ -20,6 +21,7 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles.md]]
+ *
  * @category Options
  */
 export interface IParticlesOptions {

@@ -14,6 +14,13 @@ import {
     randomInRange,
 } from "tsparticles-engine";
 
+/**
+ *
+ * @param particle
+ * @param value
+ * @param minValue
+ * @param maxValue
+ */
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.opacity.animation.destroy) {
         case DestroyType.max:
@@ -29,6 +36,11 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
     }
 }
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateOpacity(particle: Particle, delta: IDelta): void {
     if (!particle.opacity) {
         return;

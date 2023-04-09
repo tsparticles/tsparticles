@@ -19,7 +19,7 @@ html(lang="en")
         title tsParticles
         link(href="/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css")
         link(href="/fontawesome/css/all.css" rel="stylesheet" type="text/css")
-        link(href="/jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css")
+        link(href="/ace/css/ace.css" rel="stylesheet" type="text/css")
         link(href="/stylesheets/main.css" rel="stylesheet" type="text/css")
 
     body
@@ -51,7 +51,23 @@ html(lang="en")
                                             a#codepen-export.dropdown-item(href="#") Export to CodePen
                     .row(style="height: calc(100% - 50px)")
                         .col.h-100
-                            #editor.h-100
+                            pre#editor.h-100.
+                                (async () => {
+                                    await tsParticles.load("tsparticles", {
+                                        background: {
+                                            color: "#000",
+                                        },
+                                        particles: {
+                                            move: {
+                                                enable: true,
+                                            },
+                                            number: {
+                                                value: 100,
+                                            },
+                                        },
+                                    });
+                                })();
+
                 #tsparticles-container.col.p-0.h-100
                     #tsparticles
                     .github
@@ -84,7 +100,7 @@ html(lang="en")
         script(src="/jquery/jquery.slim.min.js")
         script(src="/bootstrap/js/bootstrap.bundle.min.js")
         script(src="/fontawesome/js/all.js")
-        script(src="/jsoneditor/jsoneditor.js")
+        script(src="/ace/src-min/ace.js")
         script(src="/lodash/lodash.min.js")
         script(src="/stats.ts/dist/stats.min.js")
         script(src="/tsparticles-engine/tsparticles.engine.js")

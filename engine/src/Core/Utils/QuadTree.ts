@@ -13,6 +13,7 @@ import { getDistance } from "../../Utils/NumberUtils";
 export class QuadTree {
     /**
      * Used to know if the current instance is divided or not (branch or leaf)
+     *
      * @private
      */
     private _divided;
@@ -26,8 +27,9 @@ export class QuadTree {
 
     /**
      * Initializes the instance with a rectangle and a capacity
-     * @param rectangle the instance rectangle area
-     * @param capacity the points capacity
+     *
+     * @param rectangle - the instance rectangle area
+     * @param capacity - the points capacity
      */
     constructor(readonly rectangle: Rectangle, readonly capacity: number) {
         this._points = [];
@@ -54,7 +56,8 @@ export class QuadTree {
 
     /**
      * Inserts the given point in the instance, or to its subtrees
-     * @param point the point to insert
+     *
+     * @param point - the point to insert
      * @returns true if the point is added to the instance or one of its subtrees, false if it's not
      */
     insert(point: Point): boolean {
@@ -83,9 +86,10 @@ export class QuadTree {
 
     /**
      * Queries the instance using a {@link Rectangle} object, with the given position and the given size
-     * @param range the range to use for querying the tree
-     * @param check the function to check if the particle can be added to the result
-     * @param found found particles array, output parameter
+     *
+     * @param range - the range to use for querying the tree
+     * @param check - the function to check if the particle can be added to the result
+     * @param found - found particles array, output parameter
      * @returns the particles inside the given range
      */
     query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
@@ -118,9 +122,10 @@ export class QuadTree {
 
     /**
      * Queries the instance using a {@link Circle} object, with the given position and the given radius
-     * @param position the circle position
-     * @param radius the circle radius
-     * @param check the function to check if the particle can be added to the result
+     *
+     * @param position - the circle position
+     * @param radius - the circle radius
+     * @param check - the function to check if the particle can be added to the result
      * @returns the particles inside the given circle
      */
     queryCircle(position: ICoordinates, radius: number, check?: (particle: Particle) => boolean): Particle[] {
@@ -129,9 +134,10 @@ export class QuadTree {
 
     /**
      * Queries the instance using a {@link Rectangle} object, with the given position and the given size
-     * @param position the rectangle position
-     * @param size the rectangle size
-     * @param check the function to check if the particle can be added to the result
+     *
+     * @param position - the rectangle position
+     * @param size - the rectangle size
+     * @param check - the function to check if the particle can be added to the result
      * @returns the particles inside the given rectangle
      */
     queryRectangle(position: ICoordinates, size: IDimension, check?: (particle: Particle) => boolean): Particle[] {

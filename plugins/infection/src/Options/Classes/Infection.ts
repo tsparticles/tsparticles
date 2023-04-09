@@ -4,6 +4,7 @@ import { InfectionStage } from "./InfectionStage";
 
 /**
  * [[include:Options/Plugins/Infection.md]]
+ *
  * @category Options
  */
 export class Infection implements IInfection, IOptionLoader<IInfection> {

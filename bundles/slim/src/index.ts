@@ -30,6 +30,10 @@ import { loadStarShape } from "tsparticles-shape-star";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { loadTextShape } from "tsparticles-shape-text";
 
+/**
+ *
+ * @param engine
+ */
 export async function loadSlim(engine: Engine): Promise<void> {
     await loadBaseMover(engine);
     await loadParallaxMover(engine);

@@ -23,6 +23,7 @@ type LinkParticle = Particle & {
 
 /**
  * Creates a gradient using two particles colors and opacity.
+ *
  * @param context - The canvas context to draw on.
  * @param p1 - The first particle.
  * @param p2 - The second particle.
@@ -54,6 +55,14 @@ function gradient(
     return grad;
 }
 
+/**
+ *
+ * @param context
+ * @param width
+ * @param lineStyle
+ * @param begin
+ * @param end
+ */
 function drawConnectLine(
     context: CanvasRenderingContext2D,
     width: number,
@@ -68,6 +77,13 @@ function drawConnectLine(
     context.stroke();
 }
 
+/**
+ *
+ * @param container
+ * @param ctx
+ * @param p1
+ * @param p2
+ */
 function lineStyle(
     container: ConnectContainer,
     ctx: CanvasRenderingContext2D,
@@ -84,6 +100,12 @@ function lineStyle(
     return gradient(ctx, p1, p2, connectOptions.links.opacity);
 }
 
+/**
+ *
+ * @param container
+ * @param p1
+ * @param p2
+ */
 function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkParticle): void {
     container.canvas.draw((ctx) => {
         const ls = lineStyle(container, ctx, p1, p2);
@@ -101,6 +123,7 @@ function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkP
 
 /**
  * Particle connection manager
+ *
  * @category Interactions
  */
 export class Connector extends ExternalInteractorBase<ConnectContainer> {

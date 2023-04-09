@@ -19,6 +19,7 @@ const charKey = "character",
 
 /**
  * [[include:Options/Particles/Shape.md]]
+ *
  * @category Options
  */
 export class Shape implements IShape, IOptionLoader<IShape> {

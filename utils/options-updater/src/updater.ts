@@ -39,6 +39,11 @@ type CustomRecord = {
 };
 
 const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecord => {
+    /**
+     *
+     * @param object
+     * @param base
+     */
     function changes(object: CustomRecord, base: CustomRecord): CustomRecord {
         return _.transform(object, function (result: CustomRecord, value: CustomRecord, key: string) {
             if (key.startsWith("_")) {

@@ -3,6 +3,7 @@ import type { IInfectionStage } from "./IInfectionStage";
 /**
  * The particles infection animations options
  * [[include:Options/Plugins/Infection.md]]
+ *
  * @category Options
  */
 export interface IInfection {

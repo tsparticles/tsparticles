@@ -7,6 +7,7 @@ import type { PolygonMaskType } from "../../Enums/PolygonMaskType";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
+ *
  * @category Polygon Mask Plugin
  */
 export interface IPolygonMask {

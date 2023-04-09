@@ -75,6 +75,10 @@ class AbsorbersPlugin implements IPlugin {
     }
 }
 
+/**
+ *
+ * @param engine
+ */
 export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
     const plugin = new AbsorbersPlugin();
 

@@ -51,15 +51,16 @@ type OrbitParticle = Particle & {
 
 /**
  * Draws an ellipse for the given particle.
- * @param context The canvas context.
- * @param particle The particle to draw.
- * @param fillColorValue The particle fill color.
- * @param radius The radius of the particle.
- * @param opacity The opacity of the particle.
- * @param width The width of the particle.
- * @param rotation The rotation of the particle.
- * @param start The start angle of the particle.
- * @param end The end angle of the particle.
+ *
+ * @param context - The canvas context.
+ * @param particle - The particle to draw.
+ * @param fillColorValue - The particle fill color.
+ * @param radius - The radius of the particle.
+ * @param opacity - The opacity of the particle.
+ * @param width - The width of the particle.
+ * @param rotation - The rotation of the particle.
+ * @param start - The start angle of the particle.
+ * @param end - The end angle of the particle.
  */
 function drawEllipse(
     context: CanvasRenderingContext2D,

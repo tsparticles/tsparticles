@@ -35,6 +35,13 @@ type Initializers = {
     updaters: Map<string, UpdaterInitializer>;
 };
 
+/**
+ *
+ * @param container
+ * @param map
+ * @param initializers
+ * @param force
+ */
 function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
     container: Container,
     map: Map<Container, TItem[]>,
@@ -90,6 +97,7 @@ export class Plugins {
 
     /**
      * The engine used for registering plugins
+     *
      * @private
      */
     private readonly _engine;
@@ -98,7 +106,8 @@ export class Plugins {
 
     /**
      * The constructor of the plugin manager
-     * @param engine the parent engine
+     *
+     * @param engine - the parent engine
      */
     constructor(engine: Engine) {
         this._engine = engine;
@@ -119,8 +128,9 @@ export class Plugins {
 
     /**
      * Adds an interaction manager to the current collection
-     * @param name the interaction manager name
-     * @param initInteractor the interaction manager initializer
+     *
+     * @param name - the interaction manager name
+     * @param initInteractor - the interaction manager initializer
      */
     addInteractor(name: string, initInteractor: InteractorInitializer): void {
         this._initializers.interactors.set(name, initInteractor);
@@ -132,8 +142,9 @@ export class Plugins {
 
     /**
      * Adds a particle updater to the collection
-     * @param name the particle updater name used as a key
-     * @param initUpdater the particle updater initializer
+     *
+     * @param name - the particle updater name used as a key
+     * @param initUpdater - the particle updater initializer
      */
     addParticleUpdater(name: string, initUpdater: UpdaterInitializer): void {
         this._initializers.updaters.set(name, initUpdater);
@@ -141,8 +152,9 @@ export class Plugins {
 
     /**
      * Adds a path generator to the current collection
-     * @param type the type used as a key in the collection
-     * @param pathGenerator the path generator to add
+     *
+     * @param type - the type used as a key in the collection
+     * @param pathGenerator - the path generator to add
      */
     addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
         if (!this.getPathGenerator(type)) {
@@ -152,7 +164,8 @@ export class Plugins {
 
     /**
      * Adds a plugin to the plugin system, if the plugin already exists, is not added
-     * @param plugin the plugin to add
+     *
+     * @param plugin - the plugin to add
      */
     addPlugin(plugin: IPlugin): void {
         if (!this.getPlugin(plugin.id)) {
@@ -162,9 +175,10 @@ export class Plugins {
 
     /**
      * Adds a preset to the existing collection
-     * @param presetKey the preset name
-     * @param options the options to load with the preset name
-     * @param override if true, overwrites the existing preset
+     *
+     * @param presetKey - the preset name
+     * @param options - the options to load with the preset name
+     * @param override - if true, overwrites the existing preset
      */
     addPreset(presetKey: string, options: RecursivePartial<IOptions>, override = false): void {
         if (override || !this.getPreset(presetKey)) {
@@ -174,8 +188,9 @@ export class Plugins {
 
     /**
      * Adds a shape drawer (additional particle shape) to the current collection
-     * @param types the shape drawer types (particle shape names)
-     * @param drawer the shape drawer
+     *
+     * @param types - the shape drawer types (particle shape names)
+     * @param drawer - the shape drawer
      */
     addShapeDrawer(types: SingleOrMultiple<string>, drawer: IShapeDrawer): void {
         executeOnSingleOrMultiple(types, (type) => {
@@ -193,7 +208,8 @@ export class Plugins {
 
     /**
      * Gets all the available plugins, for the specified container
-     * @param container the container used to check which are the valid plugins
+     *
+     * @param container - the container used to check which are the valid plugins
      * @returns a map containing all enabled plugins, with the id as a key
      */
     getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
@@ -212,8 +228,9 @@ export class Plugins {
 
     /**
      * Returns all the container interaction managers
-     * @param container the container used to check which interaction managers are compatible
-     * @param force if true reloads the interaction managers collection for the given container
+     *
+     * @param container - the container used to check which interaction managers are compatible
+     * @param force - if true reloads the interaction managers collection for the given container
      * @returns the array of interaction managers for the given container
      */
     getInteractors(container: Container, force = false): IInteractor[] {
@@ -226,7 +243,8 @@ export class Plugins {
 
     /**
      * Searches the path generator with the given type name
-     * @param type the path generator type to search
+     *
+     * @param type - the path generator type to search
      * @returns the path generator if found, or undefined
      */
     getPathGenerator(type: string): IMovePathGenerator | undefined {
@@ -235,7 +253,8 @@ export class Plugins {
 
     /**
      * Searches if the specified plugin exists and returns it
-     * @param plugin the plugin name
+     *
+     * @param plugin - the plugin name
      * @returns the plugin if found, or undefined
      */
     getPlugin(plugin: string): IPlugin | undefined {
@@ -244,7 +263,8 @@ export class Plugins {
 
     /**
      * Searches the preset with the given name
-     * @param preset the preset name to search
+     *
+     * @param preset - the preset name to search
      * @returns the preset if found, or undefined
      */
     getPreset(preset: string): RecursivePartial<IOptions> | undefined {
@@ -253,7 +273,8 @@ export class Plugins {
 
     /**
      * Searches the given shape drawer type with the given type name
-     * @param type the shape drawer type name
+     *
+     * @param type - the shape drawer type name
      * @returns the shape drawer if found, or undefined
      */
     getShapeDrawer(type: string): IShapeDrawer | undefined {
@@ -262,6 +283,7 @@ export class Plugins {
 
     /**
      * This method returns all the supported shapes with this Plugins instance
+     *
      * @returns all the supported shapes type name
      */
     getSupportedShapes(): IterableIterator<string> {
@@ -270,8 +292,9 @@ export class Plugins {
 
     /**
      * Returns all the container particle updaters
-     * @param container the container used to check which particle updaters are enabled
-     * @param force if true reloads the updater collection for the given container
+     *
+     * @param container - the container used to check which particle updaters are enabled
+     * @param force - if true reloads the updater collection for the given container
      * @returns the array of updaters for the given container
      */
     getUpdaters(container: Container, force = false): IParticleUpdater[] {
@@ -280,8 +303,9 @@ export class Plugins {
 
     /**
      * Load the given options for all the plugins
-     * @param options the actual options to set
-     * @param sourceOptions the source options to read
+     *
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
      */
     loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
         for (const plugin of this.plugins) {
@@ -291,9 +315,10 @@ export class Plugins {
 
     /**
      * Load the given particles options for all the updaters
-     * @param container the container of the updaters
-     * @param options the actual options to set
-     * @param sourceOptions the source options to read
+     *
+     * @param container - the container of the updaters
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
      */
     loadParticlesOptions(
         container: Container,

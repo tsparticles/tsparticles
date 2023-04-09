@@ -1,5 +1,14 @@
 import { getRandom } from "tsparticles-engine";
 
+/**
+ *
+ * @param rndFunc
+ * @param period
+ * @param nbHarmonics
+ * @param attenHarmonics
+ * @param lowValue
+ * @param highValue
+ */
 export function CurvesPathGen(
     rndFunc: (() => number) | null | undefined,
     period: number,

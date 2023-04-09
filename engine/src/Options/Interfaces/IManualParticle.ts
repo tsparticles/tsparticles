@@ -5,6 +5,7 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 /**
  * Manual particles options
  * [[include:Options/ManualParticles.md]]
+ *
  * @category options
  */
 export interface IManualParticle {

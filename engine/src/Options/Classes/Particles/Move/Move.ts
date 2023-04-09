@@ -18,6 +18,7 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Move.md]]
+ *
  * @category Options
  */
 export class Move implements IMove, IOptionLoader<IMove> {

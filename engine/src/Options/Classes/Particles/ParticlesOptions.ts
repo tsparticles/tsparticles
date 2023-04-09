@@ -21,6 +21,7 @@ import { ZIndex } from "./ZIndex/ZIndex";
 
 /**
  * [[include:Options/Particles.md]]
+ *
  * @category Options
  */
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {

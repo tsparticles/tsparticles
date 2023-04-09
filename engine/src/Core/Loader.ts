@@ -8,6 +8,11 @@ import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { getRandom } from "../Utils/NumberUtils";
 import { itemFromSingleOrMultiple } from "../Utils/Utils";
 
+/**
+ *
+ * @param jsonUrl
+ * @param index
+ */
 async function getDataFromUrl(
     jsonUrl?: SingleOrMultiple<string>,
     index?: number
@@ -29,18 +34,21 @@ async function getDataFromUrl(
 
 /**
  * Main class for creating the {@link Container} objects
+ *
  * @category Core
  */
 export class Loader {
     /**
      * The engine containing this Loader instance
+     *
      * @private
      */
     private readonly _engine;
 
     /**
      * Loader constructor, assigns the engine
-     * @param engine the engine containing this Loader instance
+     *
+     * @param engine - the engine containing this Loader instance
      */
     constructor(engine: Engine) {
         this._engine = engine;
@@ -48,9 +56,10 @@ export class Loader {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     * @param tagId the particles container element id
-     * @param options the options object to initialize the {@link Container}
-     * @param index if an options array is provided, this will retrieve the exact index of that array
+     *
+     * @param tagId - the particles container element id
+     * @param options - the options object to initialize the {@link Container}
+     * @param index - if an options array is provided, this will retrieve the exact index of that array
      */
     load(
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,
@@ -77,9 +86,10 @@ export class Loader {
     /**
      * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     * @param tagId the particles container element id
-     * @param jsonUrl the json path (or paths array) to use in the GET request
-     * @param index the index of the paths array, if a single path is passed this value is ignored
+     *
+     * @param tagId - the particles container element id
+     * @param jsonUrl - the json path (or paths array) to use in the GET request
+     * @param index - the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the {@link Container} object created
      */
     async loadJSON(
@@ -101,7 +111,8 @@ export class Loader {
 
     /**
      * Starts an animation in a container, starting from the given options
-     * @param params all the parameters required for loading options in the current animation
+     *
+     * @param params - all the parameters required for loading options in the current animation
      */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
         const tagId = params.tagId ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
@@ -184,7 +195,8 @@ export class Loader {
 
     /**
      * Starts an animation in a container, starting from the given remote options
-     * @param params all the parameters required for loading a remote url into options in the current animation
+     *
+     * @param params - all the parameters required for loading a remote url into options in the current animation
      */
     async loadRemoteOptions(params: LoaderParams): Promise<Container | undefined> {
         return this.loadOptions(params);
@@ -192,10 +204,11 @@ export class Loader {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     * @param id the particles container element id
-     * @param domContainer the dom container
-     * @param options the options object to initialize the {@link Container}
-     * @param index if an options array is provided, this will retrieve the exact index of that array
+     *
+     * @param id - the particles container element id
+     * @param domContainer - the dom container
+     * @param options - the options object to initialize the {@link Container}
+     * @param index - if an options array is provided, this will retrieve the exact index of that array
      */
     async set(
         id: string | HTMLElement,
@@ -229,10 +242,11 @@ export class Loader {
     /**
      * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     * @param id the particles container element id
-     * @param domContainer the container used to contains the particles
-     * @param jsonUrl the json path (or paths array) to use in the GET request
-     * @param index the index of the paths array, if a single path is passed this value is ignored
+     *
+     * @param id - the particles container element id
+     * @param domContainer - the container used to contains the particles
+     * @param jsonUrl - the json path (or paths array) to use in the GET request
+     * @param index - the index of the paths array, if a single path is passed this value is ignored
      * @returns A Promise with the {@link Container} object created
      */
     async setJSON(

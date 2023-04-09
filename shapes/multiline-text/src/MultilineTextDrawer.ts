@@ -70,8 +70,9 @@ export class MultilineTextDrawer implements IShapeDrawer {
 
     /**
      * Loads the text shape to the given particle
-     * @param container the particles container
-     * @param particle the particle loading the text shape
+     *
+     * @param container - the particles container
+     * @param particle - the particle loading the text shape
      */
     particleInit(container: Container, particle: MultilineTextParticle): void {
         if (particle.shape !== "multiline-text") {

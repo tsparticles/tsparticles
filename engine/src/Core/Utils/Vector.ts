@@ -7,8 +7,9 @@ import { Vector3d } from "./Vector3d";
 export class Vector extends Vector3d {
     /**
      * Vector constructor, creating an instance with the given coordinates
-     * @param xOrCoords X coordinate or the whole {@link ICoordinates} object
-     * @param y Y coordinate
+     *
+     * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
+     * @param y - Y coordinate
      * @protected
      */
     protected constructor(xOrCoords: number | ICoordinates, y?: number) {
@@ -24,7 +25,8 @@ export class Vector extends Vector3d {
 
     /**
      * Clones the given vector
-     * @param source the vector to clone
+     *
+     * @param source - the vector to clone
      * @returns a new vector instance, created from the given one
      */
     static clone(source: Vector): Vector {
@@ -33,8 +35,9 @@ export class Vector extends Vector3d {
 
     /**
      * Creates a new vector instance
-     * @param x X coordinate
-     * @param y Y coordinate
+     *
+     * @param x - X coordinate
+     * @param y - Y coordinate
      * @returns the new vector created
      */
     static create(x: number | ICoordinates, y?: number): Vector {

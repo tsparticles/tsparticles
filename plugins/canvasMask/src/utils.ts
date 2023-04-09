@@ -24,6 +24,10 @@ type TextLineData = {
     width: number;
 };
 
+/**
+ *
+ * @param array
+ */
 export function shuffle<T>(array: T[]): T[] {
     for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
         const randomIndex = Math.floor(getRandom() * currentIndex);
@@ -34,6 +38,15 @@ export function shuffle<T>(array: T[]): T[] {
     return array;
 }
 
+/**
+ *
+ * @param container
+ * @param data
+ * @param position
+ * @param scale
+ * @param override
+ * @param filter
+ */
 export function addParticlesFromCanvasPixels(
     container: Container,
     data: CanvasPixelData,
@@ -91,6 +104,13 @@ export function addParticlesFromCanvasPixels(
     }
 }
 
+/**
+ *
+ * @param ctx
+ * @param size
+ * @param offset
+ * @param clear
+ */
 export function getCanvasImageData(
     ctx: CanvasRenderingContext2D,
     size: IDimension,
@@ -131,6 +151,11 @@ export function getCanvasImageData(
     };
 }
 
+/**
+ *
+ * @param src
+ * @param offset
+ */
 export function getImageData(src: string, offset: number): Promise<CanvasPixelData> {
     const image = new Image();
 
@@ -161,6 +186,11 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     return p;
 }
 
+/**
+ *
+ * @param textOptions
+ * @param offset
+ */
 export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
     const canvas = document.createElement("canvas"),
         context = canvas.getContext("2d"),

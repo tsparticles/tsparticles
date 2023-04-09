@@ -24,6 +24,7 @@ const noPolygonDataLoaded = `${errorPrefix} No polygon data loaded.`,
 
 /**
  * Polygon Mask manager
+ *
  * @category Polygon Mask Plugin
  */
 export class PolygonMaskInstance implements IContainerPlugin {
@@ -259,6 +260,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
      * Android WebView release 62
      * Opera release 49
      * Opera for Android release 49
+     *
+     * @param svgUrl
+     * @param force
      */
     private async downloadSvgPath(svgUrl?: string, force?: boolean): Promise<ICoordinates[] | undefined> {
         const options = this._container.actualOptions.polygon;

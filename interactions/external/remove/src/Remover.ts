@@ -4,6 +4,7 @@ import { Remove } from "./Options/Classes/Remove";
 
 /**
  * Particle attract manager
+ *
  * @category Interactions
  */
 export class Remover extends ExternalInteractorBase<RemoveContainer> {

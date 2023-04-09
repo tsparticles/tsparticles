@@ -14,6 +14,11 @@ const fixBounceSpeed = (p: BounceParticle): void => {
     }
 };
 
+/**
+ *
+ * @param p1
+ * @param p2
+ */
 export function bounce(p1: BounceParticle, p2: BounceParticle): void {
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
 

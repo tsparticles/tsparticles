@@ -13,6 +13,7 @@ import { getStyleFromRgb } from "./ColorUtils";
 
 /**
  * Draws a line between two points using canvas API in the given context.
+ *
  * @hidden
  * @param context - The canvas context to draw on.
  * @param begin - The start point of the line.
@@ -27,6 +28,7 @@ export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates,
 
 /**
  * Draws a triangle with three points using canvas API in the given context.
+ *
  * @param context - The canvas context to draw on.
  * @param p1 - The first point of the triangle.
  * @param p2 - The second point of the triangle.
@@ -47,6 +49,7 @@ export function drawTriangle(
 
 /**
  * Fills a rectangle with the given color for the whole canvas.
+ *
  * @param context - The canvas context to draw on.
  * @param dimension - The dimension of the rectangle.
  * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
@@ -58,6 +61,7 @@ export function paintBase(context: CanvasRenderingContext2D, dimension: IDimensi
 
 /**
  * Fills a rectangle with the given color for the whole canvas.
+ *
  * @param context - The canvas context to draw on.
  * @param dimension - The dimension of the rectangle.
  * @param image - The image to draw on the rectangle.
@@ -80,6 +84,7 @@ export function paintImage(
 
 /**
  * Clears the canvas.
+ *
  * @param context - The canvas context to clear.
  * @param dimension - The dimension of the canvas.
  */
@@ -136,6 +141,7 @@ interface DrawParticleParams {
 
 /**
  * Draws the particle using canvas API in the given context.
+ *
  * @param data - The function parameters.
  */
 export function drawParticle(data: DrawParticleParams): void {
@@ -217,12 +223,13 @@ export function drawParticle(data: DrawParticleParams): void {
 
 /**
  * Draws the particle shape using the plugin's shape renderer.
- * @param container The container of the particle.
- * @param context The canvas context.
- * @param particle The particle to draw.
- * @param radius The radius of the particle.
- * @param opacity The opacity of the particle.
- * @param delta this variable contains the delta between the current frame and the previous frame
+ *
+ * @param container - The container of the particle.
+ * @param context - The canvas context.
+ * @param particle - The particle to draw.
+ * @param radius - The radius of the particle.
+ * @param opacity - The opacity of the particle.
+ * @param delta - this variable contains the delta between the current frame and the previous frame
  */
 export function drawShape(
     container: Container,
@@ -247,12 +254,13 @@ export function drawShape(
 
 /**
  * Draws the particle effect after the plugin's shape renderer.
- * @param container The container of the particle.
- * @param context The canvas context.
- * @param particle The particle to draw.
- * @param radius The radius of the particle.
- * @param opacity The opacity of the particle.
- * @param delta this variable contains the delta between the current frame and the previous frame
+ *
+ * @param container - The container of the particle.
+ * @param context - The canvas context.
+ * @param particle - The particle to draw.
+ * @param radius - The radius of the particle.
+ * @param opacity - The opacity of the particle.
+ * @param delta - this variable contains the delta between the current frame and the previous frame
  */
 export function drawShapeAfterEffect(
     container: Container,
@@ -277,9 +285,10 @@ export function drawShapeAfterEffect(
 
 /**
  * Draws the given plugin in the canvas.
- * @param context The canvas context.
- * @param plugin The plugin to draw.
- * @param delta this variable contains the delta between the current frame and the previous frame
+ *
+ * @param context - The canvas context.
+ * @param plugin - The plugin to draw.
+ * @param delta - this variable contains the delta between the current frame and the previous frame
  */
 export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
     if (!plugin.draw) {
@@ -291,10 +300,11 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
 
 /**
  * Draws the given particle plugin in the canvas.
- * @param context The canvas context.
- * @param plugin The particle plugin to draw.
- * @param particle The particle to draw.
- * @param delta this variable contains the delta between the current frame and the previous frame
+ *
+ * @param context - The canvas context.
+ * @param plugin - The particle plugin to draw.
+ * @param particle - The particle to draw.
+ * @param delta - this variable contains the delta between the current frame and the previous frame
  */
 export function drawParticlePlugin(
     context: CanvasRenderingContext2D,
@@ -311,9 +321,10 @@ export function drawParticlePlugin(
 
 /**
  * Alters HSL values for enlighten or darken the given color.
- * @param color The color to enlighten or darken.
- * @param type The type of alteration.
- * @param value The value of the alteration.
+ *
+ * @param color - The color to enlighten or darken.
+ * @param type - The type of alteration.
+ * @param value - The value of the alteration.
  */
 export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
     return {

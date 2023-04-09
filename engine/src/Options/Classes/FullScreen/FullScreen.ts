@@ -6,6 +6,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
  * The options to set the particles in the background using CSS `fixed` position
  * The {@link FullScreen.zIndex} property sets the background CSS `z-index` property
  * [[include:Options/FullScreen.md]]
+ *
  * @category Options
  */
 export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {

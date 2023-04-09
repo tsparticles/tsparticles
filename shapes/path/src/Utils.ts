@@ -1,6 +1,12 @@
 import type { IPathData } from "./IPathData";
 import { SegmentType } from "./SegmentType";
 
+/**
+ *
+ * @param ctx
+ * @param radius
+ * @param path
+ */
 export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IPathData): void {
     ctx.moveTo(path.segments[0].values[0].x * radius, path.segments[0].values[0].y * radius);
 

@@ -15,13 +15,14 @@ import { Vector } from "../Core/Utils/Vector";
 
 /**
  * Calculates the bounce on a rectangle side
+ *
  * @hidden
- * @param pSide particle bounce side
- * @param pOtherSide particle bounce other side
- * @param rectSide rectangle bounce side
- * @param rectOtherSide rectangle bounce other side
- * @param velocity particle velocity
- * @param factor bounce factor
+ * @param pSide - particle bounce side
+ * @param pOtherSide - particle bounce other side
+ * @param rectSide - rectangle bounce side
+ * @param rectOtherSide - rectangle bounce other side
+ * @param velocity - particle velocity
+ * @param factor - bounce factor
  */
 function rectSideBounce(
     pSide: IRangeValue,
@@ -55,9 +56,10 @@ function rectSideBounce(
 
 /**
  * Checks if the given selectors matches the element
+ *
  * @hidden
- * @param element element to check
- * @param selectors selectors to check
+ * @param element - element to check
+ * @param selectors - selectors to check
  */
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
     const res = executeOnSingleOrMultiple(selectors, (selector) => {
@@ -74,10 +76,17 @@ export function isSsr(): boolean {
     return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
 }
 
+/**
+ *
+ */
 export function hasMatchMedia(): boolean {
     return !isSsr() && typeof matchMedia !== "undefined";
 }
 
+/**
+ *
+ * @param query
+ */
 export function safeMatchMedia(query: string): MediaQueryList | undefined {
     if (!hasMatchMedia()) {
         return;
@@ -106,8 +115,9 @@ export function cancelAnimation(): (handle: number) => void {
 
 /**
  * Checks if a value is equal to the destination, if same type, or is in the provided array
- * @param value the value to check
- * @param array the data array or single value
+ *
+ * @param value - the value to check
+ * @param array - the data array or single value
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
@@ -116,8 +126,9 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 
 /**
  * Loads a font for the canvas
- * @param font font name
- * @param weight font weight
+ *
+ * @param font - font name
+ * @param weight - font weight
  */
 export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
@@ -129,7 +140,8 @@ export async function loadFont(font?: string, weight?: string): Promise<void> {
 
 /**
  * Returns a random array index
- * @param array the array to get the index from
+ *
+ * @param array - the array to get the index from
  * @returns a random array index
  */
 export function arrayRandomIndex<T>(array: T[]): number {
@@ -138,9 +150,10 @@ export function arrayRandomIndex<T>(array: T[]): number {
 
 /**
  * Returns a random object from the given array
- * @param array the array to get the object from
- * @param index the index to get the object from
- * @param useIndex if true, the index will be used instead of a random index
+ *
+ * @param array - the array to get the object from
+ * @param index - the index to get the object from
+ * @param useIndex - if true, the index will be used instead of a random index
  */
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
     return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
@@ -148,11 +161,12 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 
 /**
  * Checks if the given point is inside the given rectangle
- * @param point the point to check
- * @param size the rectangle size
- * @param offset position offset
- * @param radius the point radius
- * @param direction the point direction
+ *
+ * @param point - the point to check
+ * @param size - the rectangle size
+ * @param offset - position offset
+ * @param radius - the point radius
+ * @param direction - the point direction
  * @returns true if the point is inside the rectangle
  */
 export function isPointInside(
@@ -167,10 +181,11 @@ export function isPointInside(
 
 /**
  * Checks if the given shape bounds are inside the given rectangle
- * @param bounds the shape bounds to check
- * @param size the rectangle size
- * @param offset position offset
- * @param direction the shape direction
+ *
+ * @param bounds - the shape bounds to check
+ * @param size - the rectangle size
+ * @param offset - position offset
+ * @param direction - the shape direction
  */
 export function areBoundsInside(
     bounds: IBounds,
@@ -201,8 +216,9 @@ export function areBoundsInside(
 
 /**
  * Calculates the bounds of the given point
- * @param point the point to calculate the bounds from
- * @param radius the point radius
+ *
+ * @param point - the point to calculate the bounds from
+ * @param radius - the point radius
  * @returns the bounds of the given point
  */
 export function calculateBounds(point: ICoordinates, radius: number): IBounds {
@@ -216,8 +232,9 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
 
 /**
  * Merges the whole source objects into the destination object
- * @param destination the destination object
- * @param sources the source objects
+ *
+ * @param destination - the destination object
+ * @param sources - the source objects
  * @returns the merged destination object
  */
 export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
@@ -262,8 +279,9 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
 /**
  * Checks if the given div mode is enabled in the given div elements
- * @param mode the div mode to check
- * @param divs the div elements to check
+ *
+ * @param mode - the div mode to check
+ * @param divs - the div elements to check
  * @returns true if the div mode is enabled
  */
 export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
@@ -272,9 +290,10 @@ export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>
 
 /**
  * Execute the given callback if div mode in the given div elements is enabled
- * @param mode the div mode to check
- * @param divs the div elements to check
- * @param callback the callback to execute
+ *
+ * @param mode - the div mode to check
+ * @param divs - the div elements to check
+ * @param callback - the callback to execute
  */
 export function divModeExecute(
     mode: DivMode,
@@ -293,8 +312,9 @@ export function divModeExecute(
 
 /**
  * Execute the given callback for the given div event
- * @param div the div event to execute the callback for
- * @param callback the callback to execute
+ *
+ * @param div - the div event to execute the callback for
+ * @param callback - the callback to execute
  */
 export function singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
     const selectors = div.selectors;
@@ -306,8 +326,9 @@ export function singleDivModeExecute(div: DivEvent, callback: (selector: string,
 
 /**
  * Checks if the given element targets any of the div modes
- * @param divs the div elements to check
- * @param element the element to check
+ *
+ * @param divs - the div elements to check
+ * @param element - the element to check
  * @returns true if the element targets any of the div modes
  */
 export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
@@ -322,7 +343,8 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
 
 /**
  * Returns circle bounce data for the given particle
- * @param p the particle to get the circle bounds data for
+ *
+ * @param p - the particle to get the circle bounds data for
  * @returns the circle bounce data for the given particle
  */
 export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
@@ -337,8 +359,9 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
 
 /**
  * Executes the circle bounce between two particles
- * @param p1 the first particle
- * @param p2 the second particle
+ *
+ * @param p1 - the first particle
+ * @param p2 - the second particle
  */
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
     const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity),
@@ -368,8 +391,9 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 
 /**
  * Executes the bounce between a particle and div bounds
- * @param particle the particle to bounce
- * @param divBounds the div bounds to bounce
+ *
+ * @param particle - the particle to bounce
+ * @param divBounds - the div bounds to bounce
  */
 export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
@@ -438,6 +462,11 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     }
 }
 
+/**
+ *
+ * @param obj
+ * @param callback
+ */
 export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => U
@@ -445,10 +474,21 @@ export function executeOnSingleOrMultiple<T, U = void>(
     return obj instanceof Array ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
 }
 
+/**
+ *
+ * @param obj
+ * @param index
+ * @param useIndex
+ */
 export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
     return obj instanceof Array ? itemFromArray(obj, index, useIndex) : obj;
 }
 
+/**
+ *
+ * @param obj
+ * @param callback
+ */
 export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => boolean

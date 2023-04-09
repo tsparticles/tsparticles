@@ -13,6 +13,12 @@ import type { ITrailFillData } from "./Interfaces/ITrailFillData";
 import type { Particle } from "./Particle";
 import { generatedAttribute } from "./Utils/Constants";
 
+/**
+ *
+ * @param factor
+ * @param newFactor
+ * @param key
+ */
 function setTransformValue(
     factor: IParticleTransformValues,
     newFactor: IParticleTransformValues,
@@ -27,6 +33,7 @@ function setTransformValue(
 
 /**
  * Canvas manager
+ *
  * @category Core
  */
 export class Canvas {
@@ -60,7 +67,8 @@ export class Canvas {
 
     /**
      * Constructor of canvas manager
-     * @param container the parent container
+     *
+     * @param container - the parent container
      */
     constructor(private readonly container: Container) {
         this.size = {
@@ -137,6 +145,7 @@ export class Canvas {
 
     /**
      * Generic draw method, for drawing stuff on the canvas context
+     *
      * @param cb
      */
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
@@ -149,8 +158,9 @@ export class Canvas {
 
     /**
      * Draws the specified particle in the canvas
-     * @param particle the particle to draw
-     * @param delta the frame delta time values
+     *
+     * @param particle - the particle to draw
+     * @param delta - the frame delta time values
      */
     drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.spawning || particle.destroyed) {
@@ -218,9 +228,10 @@ export class Canvas {
 
     /**
      * Draws stuff using the given plugin, using the given particle
-     * @param plugin the plugin to use for drawing stuff
-     * @param particle the particle used
-     * @param delta the frame delta time values
+     *
+     * @param plugin - the plugin to use for drawing stuff
+     * @param particle - the particle used
+     * @param delta - the frame delta time values
      */
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
         this.draw((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
@@ -228,8 +239,9 @@ export class Canvas {
 
     /**
      * Draws stuff using the given plugin
-     * @param plugin the plugin to use for drawing stuff
-     * @param delta the frame delta time values
+     *
+     * @param plugin - the plugin to use for drawing stuff
+     * @param delta - the frame delta time values
      */
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw((ctx) => drawPlugin(ctx, plugin, delta));
@@ -333,7 +345,8 @@ export class Canvas {
 
     /**
      * Loads the canvas html element
-     * @param canvas the canvas html element
+     *
+     * @param canvas - the canvas html element
      */
     loadCanvas(canvas: HTMLCanvasElement): void {
         if (this._generated && this.element) {

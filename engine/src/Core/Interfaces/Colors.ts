@@ -4,6 +4,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 /**
  * Alpha Color
  * [[include:Color.md]]
+ *
  * @category Interfaces
  */
 export interface IAlphaColor {
@@ -16,6 +17,7 @@ export interface IAlphaColor {
 /**
  * Color
  * [[include:Color.md]]
+ *
  * @category Interfaces
  */
 export interface IColor {
@@ -28,6 +30,7 @@ export interface IColor {
 /**
  * Color
  * [[include:Color.md]]
+ *
  * @category Interfaces
  */
 export interface IRangeColor {

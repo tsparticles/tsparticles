@@ -18,6 +18,7 @@ import { errorPrefix } from "./Utils/Constants";
 
 /**
  * Particles manager object
+ *
  * @category Core
  */
 export class Particles {

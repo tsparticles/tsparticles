@@ -9,6 +9,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles/Color.md]]
+ *
  * @category Options
  */
 export class AnimatableColor extends OptionsColor implements IAnimatableColor, IOptionLoader<IAnimatableColor> {

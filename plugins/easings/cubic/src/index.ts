@@ -1,5 +1,8 @@
 import { EasingType, addEasing } from "tsparticles-engine";
 
+/**
+ *
+ */
 export function loadEasingCubicPlugin(): void {
     addEasing(EasingType.easeInCubic, (value) => value ** 3);
     addEasing(EasingType.easeOutCubic, (value) => 1 - (1 - value) ** 3);

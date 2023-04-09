@@ -12,6 +12,8 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Image drawer constructor, initializing the image set collection
+     *
+     * @param engine
      */
     constructor(engine: ImageEngine) {
         this._engine = engine;
@@ -19,8 +21,9 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Adds an image to the given container
-     * @param container the container where the image is going to be added
-     * @param image the image to add to the container collection
+     *
+     * @param container - the container where the image is going to be added
+     * @param image - the image to add to the container collection
      */
     addImage(image: IImage): void {
         if (!this._engine.images) {
@@ -32,10 +35,11 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * The draw image method
-     * @param context the context used for drawing
-     * @param particle the particle to be drawn
-     * @param radius the particle radius
-     * @param opacity the particle opacity
+     *
+     * @param context - the context used for drawing
+     * @param particle - the particle to be drawn
+     * @param radius - the particle radius
+     * @param opacity - the particle opacity
      */
     draw(context: CanvasRenderingContext2D, particle: ImageParticle, radius: number, opacity: number): void {
         const image = particle.image,
@@ -99,8 +103,9 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Loads the image shape to the given particle
-     * @param container the particles container
-     * @param particle the particle loading the image shape
+     *
+     * @param container - the particles container
+     * @param particle - the particle loading the image shape
      */
     particleInit(container: Container, particle: ImageParticle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
@@ -167,7 +172,8 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Loads the image shape
-     * @param imageShape the image shape to load
+     *
+     * @param imageShape - the image shape to load
      * @private
      */
     private async loadImageShape(imageShape: IImageShape): Promise<void> {

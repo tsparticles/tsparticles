@@ -49,9 +49,10 @@ const currentColorRegex =
 
 /**
  * Replaces the color in SVG files when replace color is set
- * @param imageShape the image used for replacing SVG data
- * @param color the replace color value
- * @param opacity the color opacity
+ *
+ * @param imageShape - the image used for replacing SVG data
+ * @param color - the replace color value
+ * @param opacity - the color opacity
  * @returns the new SVG data
  */
 function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
@@ -75,7 +76,8 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): stri
 
 /**
  * Loads the given image
- * @param image the image to load
+ *
+ * @param image - the image to load
  */
 export async function loadImage(image: IImage): Promise<void> {
     return new Promise<void>((resolve: () => void) => {
@@ -107,7 +109,8 @@ export async function loadImage(image: IImage): Promise<void> {
 
 /**
  * Downloads the SVG image data, using `fetch`
- * @param image the image to download
+ *
+ * @param image - the image to download
  */
 export async function downloadSvgImage(image: IImage): Promise<void> {
     if (image.type !== "svg") {
@@ -135,10 +138,11 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
 
 /**
  * Replaces the color in a SVG image
- * @param image the SVG image to replace
- * @param imageData the image shape data
- * @param color the replace color
- * @param particle the particle where the replaced data is going to be used
+ *
+ * @param image - the SVG image to replace
+ * @param imageData - the image shape data
+ * @param color - the replace color
+ * @param particle - the particle where the replaced data is going to be used
  */
 export function replaceImageColor(
     image: IImage,

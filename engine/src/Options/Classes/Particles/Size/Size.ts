@@ -7,6 +7,7 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Size.md]]
+ *
  * @category Options
  */
 export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {

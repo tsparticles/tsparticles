@@ -1,5 +1,6 @@
 /**
  * [[include:Plugins.md]]
+ *
  * @packageDocumentation
  */
 import type { Container } from "../Container";
@@ -10,6 +11,7 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
  * [[include:Plugins.md]]
+ *
  * @category Interfaces
  */
 export interface IPlugin {

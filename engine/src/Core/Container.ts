@@ -1,5 +1,6 @@
 /**
  * [[include:Container.md]]
+ *
  * @packageDocumentation
  */
 import { animate, cancelAnimation } from "../Utils/Utils";
@@ -26,13 +27,20 @@ import { loadOptions } from "../Utils/OptionsUtils";
 
 /**
  * Checks if the container is still usable
- * @param container the container to check
+ *
+ * @param container - the container to check
  * @returns true if the container is still usable
  */
 function guardCheck(container: Container): boolean {
     return container && !container.destroyed;
 }
 
+/**
+ *
+ * @param engine
+ * @param container
+ * @param sourceOptionsArr
+ */
 function loadContainerOptions(
     engine: Engine,
     container: Container,
@@ -68,6 +76,7 @@ const defaultPathGeneratorKey = "default",
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
+ *
  * @category Core
  */
 export class Container {
@@ -163,10 +172,11 @@ export class Container {
 
     /**
      * This is the core class, create an instance to have a new working particles manager
-     * @constructor
-     * @param engine the engine used by container
-     * @param id the id to identify this instance
-     * @param sourceOptions the options to load
+     *
+     * @class
+     * @param engine - the engine used by container
+     * @param id - the id to identify this instance
+     * @param sourceOptions - the options to load
      */
     constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
         this._engine = engine;
@@ -227,7 +237,8 @@ export class Container {
 
     /**
      * Adds a click handler to the container
-     * @param callback the callback to be called when the click event occurs
+     *
+     * @param callback - the callback to be called when the click event occurs
      */
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
         if (!guardCheck(this)) {
@@ -338,9 +349,10 @@ export class Container {
 
     /**
      * Add a new path generator to the container
-     * @param key the key to identify the path generator
-     * @param generator the path generator
-     * @param override if true, override the existing path generator
+     *
+     * @param key - the key to identify the path generator
+     * @param generator - the path generator
+     * @param override - if true, override the existing path generator
      */
     addPath(key: string, generator?: IMovePathGenerator, override = false): boolean {
         if (!guardCheck(this) || (!override && this.pathGenerators.has(key))) {
@@ -389,6 +401,8 @@ export class Container {
 
     /**
      * Draws a frame
+     *
+     * @param force
      */
     draw(force: boolean): void {
         if (!guardCheck(this)) {
@@ -410,6 +424,7 @@ export class Container {
 
     /**
      * Exports the current configuration using `options` property
+     *
      * @returns a JSON string created from `options` property
      */
     exportConfiguration(): string {
@@ -428,9 +443,10 @@ export class Container {
 
     /**
      * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
-     * @param callback The callback to handle the image
-     * @param type The exported image type
-     * @param quality The exported image quality
+     *
+     * @param callback - The callback to handle the image
+     * @param type - The exported image type
+     * @param quality - The exported image quality
      */
     exportImage(callback: BlobCallback, type?: string, quality?: number): void {
         const element = this.canvas.element;
@@ -442,7 +458,7 @@ export class Container {
 
     /**
      * @deprecated this method is deprecated, please use the exportImage method
-     * @param callback The callback to handle the image
+     * @param callback - The callback to handle the image
      */
     exportImg(callback: BlobCallback): void {
         this.exportImage(callback);
@@ -450,6 +466,7 @@ export class Container {
 
     /**
      * Gets the animation status
+     *
      * @returns `true` is playing, `false` is paused
      */
     getAnimationStatus(): boolean {
@@ -458,7 +475,8 @@ export class Container {
 
     /**
      * Handles click event in the container
-     * @param mode click mode to handle
+     *
+     * @param mode - click mode to handle
      */
     handleClickMode(mode: ClickMode | string): void {
         if (!guardCheck(this)) {
@@ -538,7 +556,8 @@ export class Container {
 
     /**
      * Loads the given theme, overriding the options
-     * @param name the theme name, if `undefined` resets the default options or the default theme
+     *
+     * @param name - the theme name, if `undefined` resets the default options or the default theme
      */
     async loadTheme(name?: string): Promise<void> {
         if (!guardCheck(this)) {
@@ -581,6 +600,7 @@ export class Container {
 
     /**
      * Starts animations and resume from pause
+     *
      * @param force
      */
     play(force?: boolean): void {
@@ -640,10 +660,11 @@ export class Container {
 
     /**
      * Customise path generation
+     *
      * @deprecated Use the new setPath
-     * @param noiseOrGenerator the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
-     * @param init the {@link IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update the {@link IMovePathGenerator} update function, if the first parameter is a generator function
+     * @param noiseOrGenerator - the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
+     * @param init - the {@link IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update - the {@link IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setNoise(
         noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
@@ -659,10 +680,11 @@ export class Container {
 
     /**
      * Customise path generation
+     *
      * @deprecated Use the new addPath
-     * @param pathOrGenerator the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
-     * @param init the {@link IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update the {@link IMovePathGenerator} update function, if the first parameter is a generator function
+     * @param pathOrGenerator - the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
+     * @param init - the {@link IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update - the {@link IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setPath(
         pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),

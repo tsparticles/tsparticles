@@ -7,6 +7,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles/Shape.md]]
+ *
  * @category Options
  */
 export interface IShape {
@@ -17,6 +18,7 @@ export interface IShape {
 
     /**
      * Set this property to false for creating an open shape
+     *
      * @default true
      */
     close: boolean;
@@ -28,6 +30,7 @@ export interface IShape {
 
     /**
      * Set this property to false for creating an empty shape
+     *
      * @default true
      */
     fill: boolean;

@@ -27,6 +27,11 @@ type IRollParticlesOptions = IParticlesOptions & {
     roll?: IRoll;
 };
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateRoll(particle: RollParticle, delta: IDelta): void {
     const roll = particle.options.roll;
 

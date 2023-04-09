@@ -6,10 +6,11 @@ import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } fro
 export class CircleWarp extends Circle {
     /**
      * Circle constructor, initialized position and radius
-     * @param x X coordinate of the position
-     * @param y Y coordinate of the position
-     * @param radius Circle's radius
-     * @param canvasSize the canvas size, used for warp formulas
+     *
+     * @param x - X coordinate of the position
+     * @param y - Y coordinate of the position
+     * @param radius - Circle's radius
+     * @param canvasSize - the canvas size, used for warp formulas
      */
     constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
         super(x, y, radius);
@@ -19,7 +20,8 @@ export class CircleWarp extends Circle {
 
     /**
      * Check if the given point is inside the circle
-     * @param point the point to check
+     *
+     * @param point - the point to check
      * @returns true or false, checking if the given point is inside the circle
      */
     contains(point: ICoordinates): boolean {
@@ -55,7 +57,8 @@ export class CircleWarp extends Circle {
 
     /**
      * Check if the given range intersects the circle
-     * @param range the range to check
+     *
+     * @param range - the range to check
      * @returns true or false, checking if the range is intersecting with the circle
      */
     intersects(range: Range): boolean {

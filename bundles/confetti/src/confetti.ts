@@ -39,12 +39,18 @@ let initializing = false;
 
 const ids = new Map<string, Container | undefined>();
 
+/**
+ * The {@link confetti} parameter object definition
+ */
 type ConfettiParams = {
     canvas?: HTMLCanvasElement;
     id: string;
     options: RecursivePartial<IConfettiOptions>;
 };
 
+/**
+ * This function prepares all the plugins needed by the confetti bundle
+ */
 async function initPlugins(): Promise<void> {
     if (initialized) {
         return;
@@ -90,6 +96,11 @@ async function initPlugins(): Promise<void> {
     initialized = true;
 }
 
+/**
+ *
+ * @param params - the parameters object used for the confetti animation
+ * @returns the tsParticles Container for more customizations
+ */
 async function setConfetti(params: ConfettiParams): Promise<Container | undefined> {
     const actualOptions = new ConfettiOptions();
 
@@ -304,6 +315,11 @@ type ConfettiFunc = (
     confettiOptions?: RecursivePartial<IConfettiOptions>
 ) => Promise<Container | undefined>;
 
+/**
+ *
+ * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
+ * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
+ */
 export async function confetti(
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>

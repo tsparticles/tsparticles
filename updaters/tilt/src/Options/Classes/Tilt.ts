@@ -6,6 +6,7 @@ import type { TiltDirectionAlt } from "../../TiltDirection";
 
 /**
  * [[include:Options/Particles/Rotate.md]]
+ *
  * @category Options
  */
 export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt> {

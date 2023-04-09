@@ -5,6 +5,7 @@ import type { IColor } from "../../../Core/Interfaces/Colors";
  * The options to apply a base color to canvas to cover what's behind
  * The particles will unveil what is covered by the canvas
  * [[include:Options/BackgroundMask.md]]
+ *
  * @category Options
  */
 export interface IBackgroundMask {

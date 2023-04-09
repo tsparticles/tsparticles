@@ -33,7 +33,7 @@
     };
 
     let updateParticles = async function (editor) {
-        await tsParticles.load("tsparticles", editor.get());
+        eval(editor.getValue());
     };
 
     const omit = (obj, keys) => {
@@ -125,48 +125,17 @@
         await loadRoundedRectShape(tsParticles);
         await loadSpiralShape(tsParticles);
 
-        let editor;
+        const editor = ace.edit("editor");
 
-        const element = document.getElementById("editor"),
-            options = {
-                mode: "form",
-                modes: ["code", "form"], // allowed modes
-                onError: function (err) {
-                    alert(err.toString());
-                },
-                onModeChange: function (newMode, oldMode) {},
-                onChange: function () {
-                    updateParticles(editor);
-                },
-            };
-
-        editor = new JSONEditor(element, options);
-
-        editor.set({
-            background: {
-                color: "#000",
-            },
-            particles: {
-                move: {
-                    enable: true,
-                },
-                number: {
-                    value: 100,
-                },
-            },
-        });
+        //editor.setTheme("ace/theme/twilight");
+        editor.session.setMode("ace/mode/javascript");
 
         updateParticles(editor);
 
         const btnUpdate = document.getElementById("btnUpdate");
 
         btnUpdate.addEventListener("click", function () {
-            const particles = tsParticles.domItem(0);
-
-            particles.options.load(editor.get());
-            particles.refresh().then(() => {
-                // do nothing
-            });
+            updateParticles(editor);
         });
 
         document.body.querySelector("#stats").appendChild(stats.dom);
@@ -236,40 +205,19 @@
             const container = tsParticles.domItem(0);
 
             if (container) {
-                const form = document.getElementById("code-pen-form");
-                const inputData = document.getElementById("code-pen-data");
-                const particlesContainer = document.getElementById("tsparticles");
-                const data = {
-                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
+                const form = document.getElementById("code-pen-form"),
+                    inputData = document.getElementById("code-pen-data"),
+                    data = {
+                        html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
 <div id="tsparticles"></div>`,
-                    css: `/* ---- reset ---- */
-body {
-    margin: 0;
-    font: normal 75% Arial, Helvetica, sans-serif;
-}
-
-canvas {
-    display: block;
-    vertical-align: bottom;
-}
-/* ---- tsparticles container ---- */
-#tsparticles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: ${particlesContainer.style.backgroundColor};
-    background-image: ${particlesContainer.style.backgroundImage};
-    background-repeat: ${particlesContainer.style.backgroundRepeat};
-    background-size: ${particlesContainer.style.backgroundSize};
-    background-position: ${particlesContainer.style.backgroundPosition};
-}`,
-                    js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
-                    js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
-                    title: "tsParticles example",
-                    description: "This pen was created with tsParticles from https://particles.js.org",
-                    tags: "tsparticles, javascript, typescript, design, animation",
-                    editors: "001",
-                };
+                        css: "",
+                        js: editor.getValue(),
+                        js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
+                        title: "tsParticles example",
+                        description: "This pen was created with tsParticles from https://particles.js.org",
+                        tags: "tsparticles, javascript, typescript, design, animation",
+                        editors: "001",
+                    };
 
                 inputData.value = JSON.stringify(data).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 

@@ -5,6 +5,7 @@ import { LinksTriangle } from "./LinksTriangle";
 
 /**
  * [[include:Options/Particles/Links.md]]
+ *
  * @category Options
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {

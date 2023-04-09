@@ -10,6 +10,7 @@ import type { IAbsorber } from "../Interfaces/IAbsorber";
 
 /**
  * [[include:Options/Plugins/Absorbers.md]]
+ *
  * @category Absorbers Plugin
  */
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {

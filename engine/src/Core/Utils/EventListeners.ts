@@ -19,11 +19,12 @@ import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 
 /**
  * Manage the given event listeners
- * @param element the event listener receiver
- * @param event the event to listen
- * @param handler the handler called once the event is triggered
- * @param add flag for adding or removing the event listener
- * @param options event listener options object
+ *
+ * @param element - the event listener receiver
+ * @param event - the event to listen
+ * @param handler - the handler called once the event is triggered
+ * @param add - flag for adding or removing the event listener
+ * @param options - event listener options object
  */
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,
@@ -67,6 +68,7 @@ type EventListenersHandlers = {
 
 /**
  * Particles container event listeners manager
+ *
  * @category Utils
  */
 export class EventListeners {
@@ -78,7 +80,8 @@ export class EventListeners {
 
     /**
      * Events listener constructor
-     * @param container the calling container
+     *
+     * @param container - the calling container
      */
     constructor(private readonly container: Container) {
         this.canPush = true;
@@ -116,7 +119,8 @@ export class EventListeners {
 
     /**
      * Mouse/Touch click/tap event implementation
-     * @param e the click event arguments
+     *
+     * @param e - the click event arguments
      */
     private doMouseTouchClick(e: Event): void {
         const container = this.container,
@@ -145,7 +149,8 @@ export class EventListeners {
 
     /**
      * Handles click mode event
-     * @param mode Click mode type
+     *
+     * @param mode - Click mode type
      * @private
      */
     private handleClickMode(mode: ClickMode | string): void {
@@ -154,7 +159,8 @@ export class EventListeners {
 
     /**
      * Handle browser theme change
-     * @param e the media query event
+     *
+     * @param e - the media query event
      * @private
      */
     private handleThemeChange(e: Event): void {
@@ -172,6 +178,7 @@ export class EventListeners {
 
     /**
      * Handles blur event
+     *
      * @private
      */
     private handleVisibilityChange(): void {
@@ -201,6 +208,7 @@ export class EventListeners {
 
     /**
      * Handles window resize event
+     *
      * @private
      */
     private handleWindowResize(): void {
@@ -219,6 +227,8 @@ export class EventListeners {
 
     /**
      * Initializing event listeners
+     *
+     * @param add
      */
     private manageListeners(add: boolean): void {
         const handlers = this.handlers,
@@ -328,6 +338,7 @@ export class EventListeners {
 
     /**
      * Handle mouse down event
+     *
      * @private
      */
     private mouseDown(): void {
@@ -343,7 +354,8 @@ export class EventListeners {
 
     /**
      * Mouse/Touch click/tap event
-     * @param e the click event arguments
+     *
+     * @param e - the click event arguments
      */
     private mouseTouchClick(e: Event): void {
         const container = this.container,
@@ -402,7 +414,8 @@ export class EventListeners {
 
     /**
      * Mouse/Touch move event
-     * @param e the event arguments
+     *
+     * @param e - the event arguments
      */
     private mouseTouchMove(e: Event): void {
         const container = this.container,

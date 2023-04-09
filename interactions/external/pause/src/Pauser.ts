@@ -2,6 +2,7 @@ import { ClickMode, type Container, ExternalInteractorBase } from "tsparticles-e
 
 /**
  * Particle attract manager
+ *
  * @category Interactions
  */
 export class Pauser extends ExternalInteractorBase {

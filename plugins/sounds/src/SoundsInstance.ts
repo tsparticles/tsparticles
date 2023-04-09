@@ -13,6 +13,16 @@ import { SoundsEventType } from "./enums";
 import type { SoundsNote } from "./Options/Classes/SoundsNote";
 import { getNoteFrequency } from "./utils";
 
+/**
+ *
+ * @param icon
+ * @param top
+ * @param left
+ * @param display
+ * @param zIndex
+ * @param width
+ * @param margin
+ */
 function setIconStyle(
     icon: HTMLImageElement,
     top: number,

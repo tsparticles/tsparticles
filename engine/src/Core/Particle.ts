@@ -48,7 +48,14 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
  * fixes out mode, calling the given callback if needed
+ *
  * @param data
+ * @param data.checkModes
+ * @param data.coord
+ * @param data.maxCoord
+ * @param data.outMode
+ * @param data.radius
+ * @param data.setCb
  */
 const fixOutMode = (data: {
     checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
@@ -73,6 +80,7 @@ const fixOutMode = (data: {
 
 /**
  * The single particle object
+ *
  * @category Core
  */
 export class Particle implements IParticle {
@@ -270,6 +278,7 @@ export class Particle implements IParticle {
 
     /**
      * Gets the particle containing engine instance
+     *
      * @private
      */
     private readonly _engine;

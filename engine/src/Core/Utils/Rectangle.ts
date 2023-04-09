@@ -14,10 +14,11 @@ export class Rectangle extends Range {
 
     /**
      * The rectangle constructor, initializes position and size
-     * @param x X coordinate of the position
-     * @param y Y coordinate of the position
-     * @param width Rectangle width
-     * @param height Rectangle height
+     *
+     * @param x - X coordinate of the position
+     * @param y - Y coordinate of the position
+     * @param width - Rectangle width
+     * @param height - Rectangle height
      */
     constructor(x: number, y: number, width: number, height: number) {
         super(x, y);
@@ -30,7 +31,8 @@ export class Rectangle extends Range {
 
     /**
      * Check if the given point is inside the rectangle
-     * @param point the point to check
+     *
+     * @param point - the point to check
      * @returns true or false, checking if the given point is inside the rectangle
      */
     contains(point: ICoordinates): boolean {
@@ -43,7 +45,8 @@ export class Rectangle extends Range {
 
     /**
      * Check if another range intersects the rectangle
-     * @param range the range to check
+     *
+     * @param range - the range to check
      * @returns true or false, checking if the range is intersecting with the rectangle
      */
     intersects(range: Range): boolean {

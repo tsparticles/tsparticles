@@ -13,6 +13,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
  * [[include:Options.md]]
+ *
  * @category Options
  */
 export interface IOptions {
@@ -38,6 +39,7 @@ export interface IOptions {
 
     /**
      * Sets the animated background mode for particles canvas bringing it to the back
+     *
      * @deprecated use the new fullScreen instead
      */
     backgroundMode: RecursivePartial<IFullScreen> | boolean;
@@ -64,6 +66,7 @@ export interface IOptions {
 
     /**
      * The Frame Per Second limit applied to all particles animations.
+     *
      * @deprecated use the new fpsLimit instead
      */
     fps_limit: number;
@@ -112,6 +115,7 @@ export interface IOptions {
 
     /**
      * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
+     *
      * @deprecated use the new detectRetina instead
      */
     retina_detect: boolean;
