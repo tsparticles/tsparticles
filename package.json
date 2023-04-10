@@ -33,7 +33,7 @@
     "lerna": "^6.5.1",
     "nx": "^15.6.3",
     "prettier": "^2.8.4",
-    "rimraf": "^4.1.2",
+    "rimraf": "^5.0.0",
     "typedoc": "^0.24.0",
     "typedoc-plugin-carbon-ads": "^1.1.6",
     "typedoc-plugin-clarity": "^1.1.0",
