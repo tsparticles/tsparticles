@@ -38,7 +38,7 @@
         "klaw": "^4.1.0",
         "lodash": "^4.17.21",
         "prettier": "^2.8.7",
-        "rimraf": "4.4.1",
+        "rimraf": "5.0.0",
         "tsparticles": "^2.9.3",
         "tsparticles-engine": "^2.9.3",
         "tsparticles-interaction-external-attract": "^2.9.3",
