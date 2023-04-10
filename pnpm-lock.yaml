@@ -44,8 +44,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: ^4.4.1
-        version: 4.4.1
+        specifier: ^5.0.0
+        version: 5.0.0
       typedoc:
         specifier: ^0.24.1
         version: 0.24.1(typescript@5.0.4)
@@ -180,8 +180,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -290,8 +290,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -388,8 +388,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -459,8 +459,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -623,8 +623,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -970,8 +970,8 @@ importers:
         specifier: ^9.2.0
         version: 9.2.0
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       sass:
         specifier: ^1.61.0
         version: 1.61.0
@@ -1108,8 +1108,8 @@ importers:
         specifier: ^0.1.13
         version: 0.1.13
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       source-map-support:
         specifier: ^0.5.21
         version: 0.5.21
@@ -1191,8 +1191,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1262,8 +1262,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1333,8 +1333,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1404,8 +1404,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1475,8 +1475,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1546,8 +1546,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1617,8 +1617,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1688,8 +1688,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1759,8 +1759,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1830,8 +1830,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1901,8 +1901,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -1972,8 +1972,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2043,8 +2043,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2114,8 +2114,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2185,8 +2185,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2256,8 +2256,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2327,8 +2327,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2398,8 +2398,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2469,8 +2469,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2540,8 +2540,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2611,8 +2611,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2682,8 +2682,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2753,8 +2753,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2824,8 +2824,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2895,8 +2895,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -2966,8 +2966,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3037,8 +3037,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3108,8 +3108,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3179,8 +3179,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3250,8 +3250,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3321,8 +3321,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3392,8 +3392,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3463,8 +3463,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3534,8 +3534,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3605,8 +3605,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3676,8 +3676,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3747,8 +3747,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3818,8 +3818,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3889,8 +3889,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -3960,8 +3960,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4031,8 +4031,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4102,8 +4102,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4173,8 +4173,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4244,8 +4244,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4315,8 +4315,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4386,8 +4386,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4457,8 +4457,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4528,8 +4528,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4599,8 +4599,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4670,8 +4670,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4741,8 +4741,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4812,8 +4812,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4883,8 +4883,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -4954,8 +4954,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5025,8 +5025,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5096,8 +5096,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5167,8 +5167,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5238,8 +5238,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5309,8 +5309,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5380,8 +5380,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5451,8 +5451,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5522,8 +5522,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5593,8 +5593,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5664,8 +5664,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5735,8 +5735,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5806,8 +5806,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5877,8 +5877,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -5945,8 +5945,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       terser-webpack-plugin:
         specifier: ^5.3.7
         version: 5.3.7(webpack@5.78.0)
@@ -6006,8 +6006,8 @@ importers:
         specifier: ^2.8.7
         version: 2.8.7
       rimraf:
-        specifier: 4.4.1
-        version: 4.4.1
+        specifier: 5.0.0
+        version: 5.0.0
       tsparticles:
         specifier: ^2.9.3
         version: link:../../bundles/full/dist
@@ -11186,13 +11186,22 @@ packages:
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
+  /glob@10.0.0:
+    resolution: {integrity: sha512-zmp9ZDC6NpDNLujV2W2n+3lH+BafIVZ4/ct+Yj3BMZTH/+bgm/eVjHzeFLwxJrrIGgjjS2eiQLlpurHsNlEAtQ==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      fs.realpath: 1.0.0
+      minimatch: 9.0.0
+      minipass: 5.0.0
+      path-scurry: 1.6.4
+
   /glob@7.1.4:
     resolution: {integrity: sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==}
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -11941,7 +11950,7 @@ packages:
       async: 3.2.4
       chalk: 4.1.2
       filelist: 1.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /javascript-natural-sort@0.7.1:
@@ -12497,6 +12506,10 @@ packages:
     resolution: {integrity: sha512-jumlc0BIUrS3qJGgIkWZsyfAM7NCWiBcCDhnd+3NNM5KbBmLTgHVfWBcg6W+rLUsIpzpERPsvwUP7CckAQSOoA==}
     engines: {node: '>=12'}
 
+  /lru-cache@9.0.1:
+    resolution: {integrity: sha512-C8QsKIN1UIXeOs3iWmiZ1lQY+EnKDojWd37fXy1aSbJvH4iSma1uy2OWuoB3m4SYRli5+CUjDv3Dij5DVoetmg==}
+    engines: {node: 14 || >=16.14}
+
   /lunr@2.3.9:
     resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
     dev: true
@@ -12741,6 +12754,12 @@ packages:
     dependencies:
       brace-expansion: 2.0.1
 
+  /minimatch@9.0.0:
+    resolution: {integrity: sha512-0jJj8AvgKqWN05mrwuqi8QYKx1WmYSUoKSxu5Qhs9prezTz10sxAHGNZe9J9cqIJzta8DWsleh2KaVaLl6Ru2w==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      brace-expansion: 2.0.1
+
   /minimist-options@4.1.0:
     resolution: {integrity: sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==}
     engines: {node: '>= 6'}
@@ -12819,6 +12838,10 @@ packages:
 
   /minipass@4.2.5:
     resolution: {integrity: sha512-+yQl7SX3bIT83Lhb4BVorMAHVuqsskxRdlmO9kTpyukp8vsm2Sn/fUOV9xlnG8/a5JsypJzap21lz/y3FBMJ8Q==}
+    engines: {node: '>=8'}
+
+  /minipass@5.0.0:
+    resolution: {integrity: sha512-3FnjYuehv9k6ovOEbyOswadCDPX1piCfhV8ncmYtHOjuPwylVWsghTLo7rabjC3Rx5xD4HDx8Wm1xnMF7S5qFQ==}
     engines: {node: '>=8'}
 
   /minizlib@2.1.2:
@@ -12909,7 +12932,7 @@ packages:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /mute-stream@0.0.8:
@@ -13794,6 +13817,13 @@ packages:
       lru-cache: 7.18.3
       minipass: 4.2.5
 
+  /path-scurry@1.6.4:
+    resolution: {integrity: sha512-Qp/9IHkdNiXJ3/Kon++At2nVpnhRiPq/aSvQN+H3U1WZbvNRK0RIQK/o4HMqPoXjpuGJUEWpHSs6Mnjxqh3TQg==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    dependencies:
+      lru-cache: 9.0.1
+      minipass: 5.0.0
+
   /path-to-regexp@0.1.7:
     resolution: {integrity: sha512-5DFkuoqlv1uYQKxy8omFBeJPQcdoE07Kv2sferDCrAq1ohOU+MSDswDIbnx3YAM60qIOnYa53wBhXW0EbMonrQ==}
     dev: true
@@ -14553,6 +14583,13 @@ packages:
     hasBin: true
     dependencies:
       glob: 9.3.4
+
+  /rimraf@5.0.0:
+    resolution: {integrity: sha512-Jf9llaP+RvaEVS5nPShYFhtXIrb3LRKP281ib3So0KkeZKo2wIKyq0Re7TOSwanasA423PSr6CCIL4bP6T040g==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      glob: 10.0.0
 
   /roarr@2.15.4:
     resolution: {integrity: sha512-CHhPh+UNHD2GTXNYhPWLnU8ONHdI+5DI+4EYIAOaiD63rHeYlZvyh8P+in5999TTSFgUYuKUAjzRI4mdh/p+2A==}
