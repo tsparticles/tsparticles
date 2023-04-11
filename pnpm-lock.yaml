@@ -1025,7 +1025,7 @@ importers:
         version: 1.10.0(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.8.0
-        version: 1.8.0(@tsparticles/prettier-config@1.7.0)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@40.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.8.0(@tsparticles/prettier-config@1.7.0)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.7.0
         version: 1.7.0(prettier@2.8.7)
@@ -1078,8 +1078,8 @@ importers:
         specifier: ^8.8.0
         version: 8.8.0(eslint@8.38.0)
       eslint-plugin-jsdoc:
-        specifier: ^40.1.2
-        version: 40.1.2(eslint@8.38.0)
+        specifier: ^41.0.0
+        version: 41.0.0(eslint@8.38.0)
       eslint-plugin-tsdoc:
         specifier: ^0.2.17
         version: 0.2.17
@@ -1139,7 +1139,7 @@ importers:
         version: 5.0.1(webpack-bundle-analyzer@4.8.0)(webpack@5.78.0)
       webpack-tsparticles-plugin:
         specifier: ^1.10.0
-        version: 1.10.0(eslint-plugin-jsdoc@40.1.2)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.10.0(eslint-plugin-jsdoc@41.0.0)(eslint-plugin-tsdoc@0.2.17)
     publishDirectory: dist
 
   interactions/external/attract:
@@ -8429,6 +8429,30 @@ packages:
       prettier: 2.8.7
       typescript: 5.0.4
 
+  /@tsparticles/eslint-config@1.8.0(@tsparticles/prettier-config@1.7.0)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4):
+    resolution: {integrity: sha512-I3APJ4MoS2P4Cd8sJA7BowU15t87DGgT/P9ZgLUStr/g3AzAaxI5h0S0A7A3opoZpULBHOWITQFkddNh276k5w==}
+    peerDependencies:
+      '@tsparticles/prettier-config': ^1.5.0
+      '@typescript-eslint/eslint-plugin': ^5.57.1
+      '@typescript-eslint/parser': ^5.57.1
+      eslint: ^8.38.0
+      eslint-config-prettier: ^8.8.0
+      eslint-plugin-jsdoc: ^40.1.2
+      eslint-plugin-tsdoc: ^0.2.17
+      prettier: ^2.8.7
+      typescript: ^5.0.4
+    dependencies:
+      '@tsparticles/prettier-config': 1.7.0(prettier@2.8.7)
+      '@typescript-eslint/eslint-plugin': 5.57.1(@typescript-eslint/parser@5.57.1)(eslint@8.38.0)(typescript@5.0.4)
+      '@typescript-eslint/parser': 5.57.1(eslint@8.38.0)(typescript@5.0.4)
+      eslint: 8.38.0
+      eslint-config-prettier: 8.8.0(eslint@8.38.0)
+      eslint-plugin-jsdoc: 41.0.0(eslint@8.38.0)
+      eslint-plugin-tsdoc: 0.2.17
+      prettier: 2.8.7
+      typescript: 5.0.4
+    dev: true
+
   /@tsparticles/prettier-config@1.7.0(prettier@2.8.7):
     resolution: {integrity: sha512-96P04sFfJMAzKMR0km1BiYhQJCZBSQuBVHLwtcRtiNJVMBMstjEieWQh5KWkGleYfvJt9KwKonH6TCt67kzp8g==}
     peerDependencies:
@@ -10528,6 +10552,24 @@ packages:
       spdx-expression-parse: 3.0.1
     transitivePeerDependencies:
       - supports-color
+
+  /eslint-plugin-jsdoc@41.0.0(eslint@8.38.0):
+    resolution: {integrity: sha512-1diUsqS881pGCksfcZNs9L5fboYtUJTsvlfc/01MH5Qk6Otpw9u5ngN7HlaPykBKxYpG8WI+SoCPbNBNbkZM8g==}
+    engines: {node: ^14 || ^16 || ^17 || ^18 || ^19}
+    peerDependencies:
+      eslint: ^7.0.0 || ^8.0.0
+    dependencies:
+      '@es-joy/jsdoccomment': 0.37.0
+      comment-parser: 1.3.1
+      debug: 4.3.4(supports-color@8.1.1)
+      escape-string-regexp: 4.0.0
+      eslint: 8.38.0
+      esquery: 1.5.0
+      semver: 7.3.8
+      spdx-expression-parse: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
 
   /eslint-plugin-tsdoc@0.2.17:
     resolution: {integrity: sha512-xRmVi7Zx44lOBuYqG8vzTXuL6IdGOeF9nHX17bjJ8+VE6fsxpdGem0/SBTmAwgYMKYB1WBkqRJVQ+n8GK041pA==}
@@ -15963,6 +16005,43 @@ packages:
       - uglify-js
       - utf-8-validate
       - webpack-dev-server
+
+  /webpack-tsparticles-plugin@1.10.0(eslint-plugin-jsdoc@41.0.0)(eslint-plugin-tsdoc@0.2.17):
+    resolution: {integrity: sha512-zpNDg0TmWoSAvBzpQsT5xskUY3SeYbjkFyLPYvJ/wvtJrDGC3qTYdVjlroY+66IY5b7yoZf9IQOFOCPlVX2CXg==}
+    dependencies:
+      '@babel/core': 7.21.4
+      '@babel/preset-env': 7.21.4(@babel/core@7.21.4)
+      '@tsparticles/eslint-config': 1.8.0(@tsparticles/prettier-config@1.7.0)(@typescript-eslint/eslint-plugin@5.57.1)(@typescript-eslint/parser@5.57.1)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.0.0)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+      '@tsparticles/prettier-config': 1.7.0(prettier@2.8.7)
+      '@types/node': 18.15.11
+      '@types/webpack-bundle-analyzer': 4.6.0(webpack-cli@5.0.1)
+      '@types/webpack-env': 1.18.0
+      '@typescript-eslint/eslint-plugin': 5.57.1(@typescript-eslint/parser@5.57.1)(eslint@8.38.0)(typescript@5.0.4)
+      '@typescript-eslint/parser': 5.57.1(eslint@8.38.0)(typescript@5.0.4)
+      babel-loader: 9.1.2(@babel/core@7.21.4)(webpack@5.78.0)
+      browserslist: 4.21.5
+      copyfiles: 2.4.1
+      eslint: 8.38.0
+      eslint-config-prettier: 8.8.0(eslint@8.38.0)
+      prettier: 2.8.7
+      rimraf: 4.4.1
+      terser-webpack-plugin: 5.3.7(webpack@5.78.0)
+      typescript: 5.0.4
+      webpack: 5.78.0(webpack-cli@5.0.1)
+      webpack-bundle-analyzer: 4.8.0
+      webpack-cli: 5.0.1(webpack-bundle-analyzer@4.8.0)(webpack@5.78.0)
+    transitivePeerDependencies:
+      - '@swc/core'
+      - '@webpack-cli/generators'
+      - bufferutil
+      - esbuild
+      - eslint-plugin-jsdoc
+      - eslint-plugin-tsdoc
+      - supports-color
+      - uglify-js
+      - utf-8-validate
+      - webpack-dev-server
+    dev: true
 
   /webpack@5.78.0(webpack-cli@5.0.1):
     resolution: {integrity: sha512-gT5DP72KInmE/3azEaQrISjTvLYlSM0j1Ezhht/KLVkrqtv10JoP/RXhwmX/frrutOPuSq3o5Vq0ehR/4Vmd1g==}
