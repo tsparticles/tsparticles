@@ -34,7 +34,6 @@ function setTransformValue(
 /**
  * Canvas manager
  *
- 
  */
 export class Canvas {
     /**

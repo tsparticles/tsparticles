@@ -59,7 +59,6 @@ function calculateBubbleValue(
 /**
  * Particle bubble manager
  *
- 
  */
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     handleClickMode: (mode: ClickMode | string) => void;

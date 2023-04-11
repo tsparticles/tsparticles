@@ -4,7 +4,6 @@ import type { IRotateAnimation } from "./IRotateAnimation";
 /**
  * [[include:Options/Particles/Rotate.md]]
  *
- 
  */
 export interface IRotate extends IValueWithRandom {
     animation: IRotateAnimation;

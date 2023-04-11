@@ -14,7 +14,6 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
  * The Options interface, defines all the options that can be used by `tsParticles`
  * [[include:Options.md]]
  *
- 
  */
 export interface IOptions {
     /**

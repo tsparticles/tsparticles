@@ -8,7 +8,6 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 /**
  * [[include:Options/Particles/Opacity.md]]
  *
- 
  */
 export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
     animation;

@@ -3,7 +3,6 @@ import type { IOptionsColor } from "../IOptionsColor";
 /**
  * The background cover customization
  *
- 
  */
 export interface IBackgroundMaskCover {
     /**

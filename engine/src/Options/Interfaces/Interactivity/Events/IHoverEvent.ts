@@ -5,7 +5,6 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 /**
  * [[include:Options/Interactivity/Hover.md]]
  *
- 
  */
 export interface IHoverEvent {
     enable: boolean;

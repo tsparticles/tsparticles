@@ -5,7 +5,6 @@ import { InfectionStage } from "./InfectionStage";
 /**
  * [[include:Options/Plugins/Infection.md]]
  *
- 
  */
 export class Infection implements IInfection, IOptionLoader<IInfection> {
     cure;

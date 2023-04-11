@@ -11,7 +11,6 @@ import type { IAbsorber } from "../Interfaces/IAbsorber";
 /**
  * [[include:Options/Plugins/Absorbers.md]]
  *
- 
  */
 export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     color;

@@ -8,7 +8,6 @@ import type { PolygonMaskType } from "../../Enums/PolygonMaskType";
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
  *
- 
  */
 export interface IPolygonMask {
     data?: string | IPolygonMaskLocalSvg;

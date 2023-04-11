@@ -5,7 +5,6 @@ import { TwinkleValues } from "./TwinkleValues";
 /**
  * [[include:Options/Particles/Twinkle.md]]
  *
- 
  */
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
     lines;

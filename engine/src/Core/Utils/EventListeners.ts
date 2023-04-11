@@ -69,7 +69,6 @@ type EventListenersHandlers = {
 /**
  * Particles container event listeners manager
  *
- 
  */
 export class EventListeners {
     private canPush: boolean;

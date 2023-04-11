@@ -8,7 +8,6 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 /**
  * [[include:Options/Particles/Size.md]]
  *
- 
  */
 export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
     animation;

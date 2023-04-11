@@ -7,7 +7,6 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
  * The {@link FullScreen.zIndex} property sets the background CSS `z-index` property
  * [[include:Options/FullScreen.md]]
  *
- 
  */
 export class FullScreen implements IFullScreen, IOptionLoader<IFullScreen> {
     /**

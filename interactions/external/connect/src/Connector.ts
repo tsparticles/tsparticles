@@ -124,7 +124,6 @@ function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkP
 /**
  * Particle connection manager
  *
- 
  */
 export class Connector extends ExternalInteractorBase<ConnectContainer> {
     constructor(container: ConnectContainer) {

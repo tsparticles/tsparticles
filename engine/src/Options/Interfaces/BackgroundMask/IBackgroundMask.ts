@@ -6,7 +6,6 @@ import type { IColor } from "../../../Core/Interfaces/Colors";
  * The particles will unveil what is covered by the canvas
  * [[include:Options/BackgroundMask.md]]
  *
- 
  */
 export interface IBackgroundMask {
     /**

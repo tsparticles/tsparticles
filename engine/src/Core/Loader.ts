@@ -36,7 +36,6 @@ async function getDataFromUrl(
 /**
  * Main class for creating the {@link Container} objects
  *
- 
  */
 export class Loader {
     /**

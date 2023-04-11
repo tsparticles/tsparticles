@@ -13,7 +13,6 @@ import { PolygonMaskType } from "../../Enums/PolygonMaskType";
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
  *
- 
  */
 export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     data?: string | PolygonMaskLocalSvg;

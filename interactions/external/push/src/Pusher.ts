@@ -12,7 +12,6 @@ import { Push } from "./Options/Classes/Push";
 /**
  * Particle attract manager
  *
- 
  */
 export class Pusher extends ExternalInteractorBase<PushContainer> {
     handleClickMode: (mode: string) => void;

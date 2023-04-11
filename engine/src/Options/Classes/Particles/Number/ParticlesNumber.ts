@@ -6,7 +6,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 /**
  * [[include:Options/Particles/Number.md]]
  *
- 
  */
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
     density;

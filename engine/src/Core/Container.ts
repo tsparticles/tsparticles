@@ -73,7 +73,6 @@ const defaultPathGeneratorKey = "default",
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
  *
- 
  */
 export class Container {
     /**

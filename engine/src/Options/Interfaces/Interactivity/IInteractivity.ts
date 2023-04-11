@@ -6,7 +6,6 @@ import type { InteractivityDetect } from "../../../Enums/InteractivityDetect";
  * Particles interactivity options
  * [[include:Options/Interactivity.md]]
  *
- 
  */
 export interface IInteractivity {
     [name: string]: unknown;

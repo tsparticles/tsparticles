@@ -16,7 +16,6 @@ import type { IEmitterSize } from "./IEmitterSize";
  * Particles emitter object options
  * [[include:Options/Plugins/Emitters.md]]
  *
- 
  */
 export interface IEmitter {
     /**

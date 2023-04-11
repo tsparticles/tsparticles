@@ -100,7 +100,6 @@ const fixOutMode = (data: FixOutModeParams): void => {
 /**
  * The single particle object
  *
- 
  */
 export class Particle implements IParticle {
     /**
