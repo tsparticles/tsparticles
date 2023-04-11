@@ -1,7 +1,7 @@
 import type { AnimationStatus } from "../../Enums/AnimationStatus";
 
 /**
- * @category Interfaces
+ 
  */
 export interface IParticleValueAnimation<T> {
     decay?: number;

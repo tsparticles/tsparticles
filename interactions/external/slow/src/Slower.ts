@@ -15,7 +15,7 @@ import { Slow } from "./Options/Classes/Slow";
 /**
  * Particle slow manager
  *
- * @category Interactions
+ 
  */
 export class Slower extends ExternalInteractorBase<SlowContainer> {
     constructor(container: SlowContainer) {

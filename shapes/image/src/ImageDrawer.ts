@@ -5,7 +5,7 @@ import type { IImageShape } from "./IImageShape";
 import { replaceImageColor } from "./Utils";
 
 /**
- * @category Shape Drawers
+ 
  */
 export class ImageDrawer implements IShapeDrawer {
     private readonly _engine: ImageEngine;
@@ -174,7 +174,7 @@ export class ImageDrawer implements IShapeDrawer {
      * Loads the image shape
      *
      * @param imageShape - the image shape to load
-     * @private
+     * @internal
      */
     private async loadImageShape(imageShape: IImageShape): Promise<void> {
         if (!this._engine.loadImage) {

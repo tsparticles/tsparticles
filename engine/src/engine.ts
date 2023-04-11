@@ -2,7 +2,7 @@
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the {@link Loader} class for initializing {@link Container} instances
  *
- * @category Engine
+ 
  */
 import type {
     ShapeDrawerAfterEffectFunction,
@@ -42,7 +42,7 @@ declare global {
  * It's a singleton proxy to the Loader class for initializing {@link Container} instances,
  * and for Plugins class responsible for every external feature
  *
- * @category Engine
+ 
  */
 export class Engine {
     /**
@@ -66,7 +66,7 @@ export class Engine {
     /**
      * Contains the {@link Loader} engine instance
      *
-     * @private
+     * @internal
      */
     private readonly _loader: Loader;
 

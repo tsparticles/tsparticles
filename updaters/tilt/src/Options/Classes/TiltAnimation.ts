@@ -2,7 +2,7 @@ import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeVal
 import type { ITiltAnimation } from "../Interfaces/ITiltAnimation";
 
 /**
- * @category Options
+ 
  */
 export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimation> {
     decay: RangeValue;

@@ -1,7 +1,7 @@
 import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } from "tsparticles-engine";
 
 /**
- * @category Utils
+ 
  */
 export class CircleWarp extends Circle {
     /**

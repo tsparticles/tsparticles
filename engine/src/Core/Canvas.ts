@@ -15,9 +15,9 @@ import { generatedAttribute } from "./Utils/Constants";
 
 /**
  *
- * @param factor
- * @param newFactor
- * @param key
+ * @param factor -
+ * @param newFactor -
+ * @param key -
  */
 function setTransformValue(
     factor: IParticleTransformValues,
@@ -34,7 +34,7 @@ function setTransformValue(
 /**
  * Canvas manager
  *
- * @category Core
+ 
  */
 export class Canvas {
     /**
@@ -146,7 +146,8 @@ export class Canvas {
     /**
      * Generic draw method, for drawing stuff on the canvas context
      *
-     * @param cb
+     * @param cb -
+     * @returns the result of the callback
      */
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
         if (!this._context) {
@@ -395,6 +396,8 @@ export class Canvas {
 
     /**
      * Calculates the size of the canvas
+     *
+     * @returns true if the size changed
      */
     resize(): boolean {
         if (!this.element) {

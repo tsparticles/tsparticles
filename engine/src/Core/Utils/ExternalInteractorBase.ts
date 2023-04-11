@@ -17,7 +17,7 @@ export abstract class ExternalInteractorBase<TContainer extends Container = Cont
      * Constructor of external interactivity manager
      *
      * @param container - the parent container
-     * @protected
+     * @internal
      */
     protected constructor(protected readonly container: TContainer) {}
 

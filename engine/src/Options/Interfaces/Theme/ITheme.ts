@@ -6,7 +6,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
  * The options to configure themes that can be easily switched
  * [[include:Options/Themes.md]]
  *
- * @category Options
+ 
  */
 export interface ITheme {
     /**

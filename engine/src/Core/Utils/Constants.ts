@@ -1,7 +1,7 @@
 /**
  * Project's constants
  *
- * @category Utils
+ 
  */
 export const generatedAttribute = "generated";
 

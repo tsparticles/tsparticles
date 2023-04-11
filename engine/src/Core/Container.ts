@@ -1,8 +1,3 @@
-/**
- * [[include:Container.md]]
- *
- * @packageDocumentation
- */
 import { animate, cancelAnimation } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
@@ -37,9 +32,10 @@ function guardCheck(container: Container): boolean {
 
 /**
  *
- * @param engine
- * @param container
- * @param sourceOptionsArr
+ * @param engine -
+ * @param container -
+ * @param sourceOptionsArr -
+ * @returns the options loaded
  */
 function loadContainerOptions(
     engine: Engine,
@@ -77,7 +73,7 @@ const defaultPathGeneratorKey = "default",
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
  *
- * @category Core
+ 
  */
 export class Container {
     /**
@@ -171,7 +167,6 @@ export class Container {
     /**
      * This is the core class, create an instance to have a new working particles manager
      *
-     * @class
      * @param engine - the engine used by container
      * @param id - the id to identify this instance
      * @param sourceOptions - the options to load
@@ -221,6 +216,8 @@ export class Container {
 
     /**
      * The options used by the container, it's a full {@link Options} object
+     *
+     * @returns the options used by the container
      */
     get options(): Options {
         return this._options;
@@ -228,6 +225,8 @@ export class Container {
 
     /**
      * The options that were initially passed to the container
+     *
+     * @returns the source options passed to the container
      */
     get sourceOptions(): RecursivePartial<IOptions> | undefined {
         return this._sourceOptions;
@@ -355,6 +354,7 @@ export class Container {
      * @param key - the key to identify the path generator
      * @param generator - the path generator
      * @param override - if true, override the existing path generator
+     * @returns true if the path generator was added, false otherwise
      */
     addPath(key: string, generator?: IMovePathGenerator, override = false): boolean {
         if (!guardCheck(this) || (!override && this.pathGenerators.has(key))) {
@@ -408,7 +408,7 @@ export class Container {
     /**
      * Draws a frame
      *
-     * @param force
+     * @param force -
      */
     draw(force: boolean): void {
         if (!guardCheck(this)) {
@@ -607,7 +607,7 @@ export class Container {
     /**
      * Starts animations and resume from pause
      *
-     * @param force
+     * @param force -
      */
     play(force?: boolean): void {
         if (!guardCheck(this)) {
@@ -797,6 +797,8 @@ export class Container {
 
     /**
      * Updates the container options
+     *
+     * @returns true if the options were updated, false otherwise
      */
     updateActualOptions(): boolean {
         this.actualOptions.responsive = [];

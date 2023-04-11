@@ -4,7 +4,7 @@ import type { IDimension } from "../Interfaces/IDimension";
 import { Range } from "./Range";
 
 /**
- * @category Utils
+ 
  */
 export class Rectangle extends Range {
     /**

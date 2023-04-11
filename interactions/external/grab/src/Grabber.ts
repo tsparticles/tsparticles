@@ -80,7 +80,7 @@ function drawGrab(
 /**
  * Particle grab manager
  *
- * @category Interactions
+ 
  */
 export class Grabber extends ExternalInteractorBase<GrabContainer> {
     constructor(container: GrabContainer) {

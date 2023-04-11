@@ -1,5 +1,5 @@
 /**
- * @category Options
+ 
  */
 export interface IRemove {
     /**

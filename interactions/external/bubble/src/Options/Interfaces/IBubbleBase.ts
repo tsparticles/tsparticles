@@ -1,7 +1,7 @@
 import type { IOptionsColor, SingleOrMultiple } from "tsparticles-engine";
 
 /**
- * @category Options
+ 
  */
 export interface IBubbleBase {
     color?: SingleOrMultiple<string | IOptionsColor>;

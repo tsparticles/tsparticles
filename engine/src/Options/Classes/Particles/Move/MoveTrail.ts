@@ -5,7 +5,7 @@ import type { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
- * @category Options
+ 
  */
 export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
     enable;
@@ -20,6 +20,7 @@ export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
 
     /**
      * @deprecated this property is obsolete, please use the new fill property
+     * @returns the fill color
      */
     get fillColor(): string | OptionsColor | undefined {
         return this.fill.color;

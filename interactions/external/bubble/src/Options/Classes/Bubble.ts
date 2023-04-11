@@ -9,7 +9,7 @@ import { BubbleDiv } from "./BubbleDiv";
 import type { IBubble } from "../Interfaces/IBubble";
 
 /**
- * @category Options
+ 
  */
 export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble> {
     divs?: SingleOrMultiple<BubbleDiv>;

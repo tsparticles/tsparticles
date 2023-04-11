@@ -4,9 +4,10 @@ import { errorPrefix } from "./Constants";
 
 /**
  *
- * @param value
- * @param fpsLimit
- * @param smooth
+ * @param value -
+ * @param fpsLimit -
+ * @param smooth -
+ * @returns the initialized delta value
  */
 function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
     return {
@@ -16,7 +17,7 @@ function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
 }
 
 /**
- * @category Core
+ 
  */
 export class FrameManager {
     constructor(private readonly container: Container) {}

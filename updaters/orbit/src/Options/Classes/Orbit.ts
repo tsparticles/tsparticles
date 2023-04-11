@@ -13,7 +13,7 @@ import { OrbitRotation } from "./OrbitRotation";
 /**
  * [[include:Options/Particles/Orbit.md]]
  *
- * @category Options
+ 
  */
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
     animation;

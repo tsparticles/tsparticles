@@ -2,7 +2,7 @@ import { type IOptionLoader, OptionsColor, type RecursivePartial, stringToAlpha 
 import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke";
 
 /**
- * @category Polygon Mask Plugin
+ 
  */
 export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoader<IPolygonMaskDrawStroke> {
     color;

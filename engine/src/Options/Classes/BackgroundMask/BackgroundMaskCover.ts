@@ -4,7 +4,7 @@ import { OptionsColor } from "../OptionsColor";
 import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
- * @category Options
+ 
  */
 export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<IBackgroundMaskCover> {
     color;

@@ -5,7 +5,7 @@ import { InfectionInstance } from "./InfectionInstance";
 import { ParticlesInfecter } from "./ParticlesInfecter";
 
 /**
- * @category Infection Plugin
+ 
  */
 class InfectionPlugin implements IPlugin {
     readonly id;

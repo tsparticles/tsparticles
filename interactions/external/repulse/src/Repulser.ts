@@ -31,7 +31,7 @@ import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
 /**
  * Particle repulse manager
  *
- * @category Interactions
+ 
  */
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     handleClickMode: (mode: string) => void;
@@ -337,7 +337,7 @@ import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
 
 /**
  * Particle repulse manager
- * @category Interactions
+ 
  *
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     handleClickMode: (mode: string) => void;

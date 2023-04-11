@@ -1,7 +1,7 @@
 import type { LinkParticle } from "./LinkParticle";
 
 /**
- * @category Interfaces
+ 
  */
 export interface ILink {
     destination: LinkParticle;
@@ -9,7 +9,7 @@ export interface ILink {
 }
 
 /**
- * @category Interfaces
+ 
  */
 export interface ILinkTriangle {
     opacity: number;

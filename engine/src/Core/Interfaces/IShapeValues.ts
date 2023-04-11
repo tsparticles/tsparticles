@@ -2,7 +2,7 @@ import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IPart
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
- * @category Options
+ 
  */
 
 export interface IShapeValues {

@@ -4,7 +4,7 @@ import { Motion } from "./Options/Classes/Motion";
 import { MotionInstance } from "./MotionInstance";
 
 /**
- * @category Motion Plugin
+ 
  */
 class MotionPlugin implements IPlugin {
     readonly id;

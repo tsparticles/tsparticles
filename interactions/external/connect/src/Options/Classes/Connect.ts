@@ -3,7 +3,7 @@ import { ConnectLinks } from "./ConnectLinks";
 import type { IConnect } from "../Interfaces/IConnect";
 
 /**
- * @category Options
+ 
  */
 export class Connect implements IConnect, IOptionLoader<IConnect> {
     distance;

@@ -2,7 +2,7 @@ import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeVal
 import type { IRotateAnimation } from "../Interfaces/IRotateAnimation";
 
 /**
- * @category Options
+ 
  */
 export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateAnimation> {
     decay: RangeValue;

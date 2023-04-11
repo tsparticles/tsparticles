@@ -2,7 +2,7 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IRemove } from "../Interfaces/IRemove";
 
 /**
- * @category Options
+ 
  */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
     quantity;

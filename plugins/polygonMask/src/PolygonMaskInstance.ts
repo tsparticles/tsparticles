@@ -25,7 +25,7 @@ const noPolygonDataLoaded = `${errorPrefix} No polygon data loaded.`,
 /**
  * Polygon Mask manager
  *
- * @category Polygon Mask Plugin
+ 
  */
 export class PolygonMaskInstance implements IContainerPlugin {
     dimension: IDimension;

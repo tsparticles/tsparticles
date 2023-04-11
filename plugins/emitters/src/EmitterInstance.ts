@@ -26,7 +26,7 @@ import type { IEmitterShape } from "./IEmitterShape";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
 
 /**
- * @category Emitters Plugin
+ 
  */
 export class EmitterInstance {
     fill;

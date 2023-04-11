@@ -2,7 +2,7 @@ import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursiveParti
 import type { IRepulseBase } from "../Interfaces/IRepulseBase";
 
 /**
- * @category Options
+ 
  */
 export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepulseBase> {
     distance;

@@ -4,7 +4,7 @@ import type { IValueWithRandom } from "../../IValueWithRandom";
 /**
  * [[include:Options/Particles/Opacity.md]]
  *
- * @category Options
+ 
  */
 export interface IOpacity extends IValueWithRandom {
     /**

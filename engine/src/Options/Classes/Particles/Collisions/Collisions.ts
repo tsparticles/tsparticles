@@ -9,7 +9,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
- * @category Options
+ 
  * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {

@@ -7,7 +7,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 /**
  * [[include:Color.md]]
  *
- * @category Options
+ 
  */
 export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor> {
     value: SingleOrMultiple<SingleOrMultiple<string> | IRangeValueColor | IRangeRgb | IRangeHsl | IRangeHsv>;

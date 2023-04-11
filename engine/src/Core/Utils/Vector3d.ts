@@ -2,7 +2,7 @@ import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
 import { errorPrefix } from "./Constants";
 
 /**
- * @category Utils
+ 
  */
 export class Vector3d implements ICoordinates3d {
     /**
@@ -26,7 +26,7 @@ export class Vector3d implements ICoordinates3d {
      * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
      * @param y - Y coordinate
      * @param z - Z coordinate
-     * @protected
+     * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates3d | ICoordinates, y?: number, z?: number) {
         if (typeof xOrCoords !== "number" && xOrCoords) {
@@ -47,6 +47,8 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * A new vector, with coordinates in the origin point
+     *
+     * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector3d {
         return Vector3d.create(0, 0, 0);
@@ -54,6 +56,8 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Returns the current vector angle, based on x,y values
+     *
+     * @returns the current vector angle, based on x,y values
      */
     get angle(): number {
         return Math.atan2(this.y, this.x);
@@ -70,6 +74,8 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Returns the current vector length, based on x,y values
+     *
+     * @returns the current vector length, based on x,y values
      */
     get length(): number {
         return Math.sqrt(this.getLengthSq());
@@ -160,6 +166,7 @@ export class Vector3d implements ICoordinates3d {
      * Divides the given scalar and the current vector together, without modifying it
      *
      * @param n - the scalar value to divide from the current vector
+     * @returns the divided vector
      */
     div(n: number): Vector3d {
         return Vector3d.create(this.x / n, this.y / n, this.z / n);
@@ -210,6 +217,7 @@ export class Vector3d implements ICoordinates3d {
      * Creates a new vector, rotating the current one, without modifying it
      *
      * @param angle - the rotation angle
+     * @returns the rotated vector
      */
     rotate(angle: number): Vector3d {
         return Vector3d.create(
@@ -259,7 +267,7 @@ export class Vector3d implements ICoordinates3d {
      *
      * @param angle - the new angle
      * @param length - the new length
-     * @private
+     * @internal
      */
     private updateFromAngle(angle: number, length: number): void {
         this.x = Math.cos(angle) * length;

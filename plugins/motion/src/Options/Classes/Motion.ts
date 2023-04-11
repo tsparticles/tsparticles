@@ -5,7 +5,7 @@ import { MotionReduce } from "./MotionReduce";
 /**
  * [[include:Options/Motion.md]]
  *
- * @category Options
+ 
  */
 export class Motion implements IMotion, IOptionLoader<IMotion> {
     /**

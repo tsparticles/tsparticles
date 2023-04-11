@@ -10,8 +10,9 @@ import { itemFromSingleOrMultiple } from "../Utils/Utils";
 
 /**
  *
- * @param jsonUrl
- * @param index
+ * @param jsonUrl -
+ * @param index -
+ * @returns the options object from the jsonUrl
  */
 async function getDataFromUrl(
     jsonUrl?: SingleOrMultiple<string>,
@@ -35,13 +36,13 @@ async function getDataFromUrl(
 /**
  * Main class for creating the {@link Container} objects
  *
- * @category Core
+ 
  */
 export class Loader {
     /**
      * The engine containing this Loader instance
      *
-     * @private
+     * @internal
      */
     private readonly _engine;
 
@@ -60,6 +61,7 @@ export class Loader {
      * @param tagId - the particles container element id
      * @param options - the options object to initialize the {@link Container}
      * @param index - if an options array is provided, this will retrieve the exact index of that array
+     * @returns A Promise with the {@link Container} object created
      */
     load(
         tagId: string | SingleOrMultiple<RecursivePartial<IOptions>>,

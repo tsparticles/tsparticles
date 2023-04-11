@@ -16,7 +16,6 @@ import { Vector } from "../Core/Utils/Vector";
 /**
  * Calculates the bounce on a rectangle side
  *
- * @hidden
  * @param pSide - particle bounce side
  * @param pOtherSide - particle bounce other side
  * @param rectSide - rectangle bounce side
@@ -58,7 +57,6 @@ function rectSideBounce(
 /**
  * Checks if the given selectors matches the element
  *
- * @hidden
  * @param element - element to check
  * @param selectors - selectors to check
  * @returns true or false, if the selector has found something

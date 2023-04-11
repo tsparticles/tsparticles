@@ -3,7 +3,7 @@ import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IPa
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
- * @category Options
+ 
  */
 export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParticlesDensity> {
     enable;
@@ -18,6 +18,7 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
 
     /**
      * @deprecated this property is obsolete, please use the new width/height properties
+     * @returns the area
      */
     get area(): number {
         return this.width;
@@ -25,7 +26,7 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
 
     /**
      * @deprecated this property is obsolete, please use the new width/height properties
-     * @param value
+     * @param value -
      */
     set area(value: number) {
         this.width = value;
@@ -33,6 +34,7 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
 
     /**
      * @deprecated this property is obsolete, please use the new width/height properties
+     * @returns the factor
      */
     get factor(): number {
         return this.height;
@@ -40,7 +42,7 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
 
     /**
      * @deprecated this property is obsolete, please use the new width/height properties
-     * @param value
+     * @param value -
      */
     set factor(value: number) {
         this.height = value;
@@ -48,6 +50,7 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
 
     /**
      * @deprecated this property is obsolete, please use the new area property
+     * @returns the area
      */
     get value_area(): number {
         return this.area;
@@ -55,7 +58,7 @@ export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParti
 
     /**
      * @deprecated this property is obsolete, please use the new area property
-     * @param value
+     * @param value -
      */
     set value_area(value: number) {
         this.area = value;

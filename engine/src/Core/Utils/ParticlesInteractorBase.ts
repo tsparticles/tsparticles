@@ -19,7 +19,7 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
      * The particles interactions manager constructor
      *
      * @param container - the parent container
-     * @protected
+     * @internal
      */
     protected constructor(protected readonly container: TContainer) {}
 

@@ -3,7 +3,7 @@ import { GrabLinks } from "./GrabLinks";
 import type { IGrab } from "../Interfaces/IGrab";
 
 /**
- * @category Options
+ 
  */
 export class Grab implements IGrab, IOptionLoader<IGrab> {
     distance;

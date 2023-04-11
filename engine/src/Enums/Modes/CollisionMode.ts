@@ -1,5 +1,5 @@
 /**
- * @category Enums
+ 
  */
 export const enum CollisionMode {
     absorb = "absorb",

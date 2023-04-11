@@ -1,7 +1,7 @@
 import type { InfectableContainer, InfectableParticle } from "./Types";
 
 /**
- * @category Core
+ 
  */
 export class Infecter {
     constructor(private readonly container: InfectableContainer) {}

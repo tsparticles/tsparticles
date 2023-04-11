@@ -19,7 +19,7 @@ import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
 
 /**
- * @category Emitters Plugin
+ 
  */
 class EmittersPlugin implements IPlugin {
     readonly id;

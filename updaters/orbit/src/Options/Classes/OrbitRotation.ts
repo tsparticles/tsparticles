@@ -1,7 +1,7 @@
 import { type IValueWithRandom, type RecursivePartial, ValueWithRandom } from "tsparticles-engine";
 
 /**
- * @category Options
+ 
  */
 export class OrbitRotation extends ValueWithRandom {
     constructor() {

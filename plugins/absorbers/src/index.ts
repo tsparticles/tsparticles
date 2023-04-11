@@ -13,7 +13,7 @@ import type { AbsorberContainer } from "./AbsorberContainer";
 import { Absorbers } from "./Absorbers";
 
 /**
- * @category Absorbers Plugin
+ 
  */
 class AbsorbersPlugin implements IPlugin {
     readonly id;

@@ -20,7 +20,7 @@ import type { IEmitter } from "../Interfaces/IEmitter";
 /**
  * [[include:Options/Plugins/Emitters.md]]
  *
- * @category Emitters Plugin
+ 
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;

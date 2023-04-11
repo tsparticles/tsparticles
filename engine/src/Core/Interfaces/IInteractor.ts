@@ -8,7 +8,7 @@ import type { ParticlesOptions } from "../../Options/Classes/Particles/Particles
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
- * @category Interfaces
+ 
  */
 export interface IInteractor {
     loadOptions?: (options: Options, ...sources: (RecursivePartial<IOptions> | undefined)[]) => void;

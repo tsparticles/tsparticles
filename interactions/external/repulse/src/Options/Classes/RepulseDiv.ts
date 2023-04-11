@@ -8,7 +8,7 @@ import type { IRepulseDiv } from "../Interfaces/IRepulseDiv";
 import { RepulseBase } from "./RepulseBase";
 
 /**
- * @category Options
+ 
  */
 export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoader<IRepulseDiv> {
     selectors: SingleOrMultiple<string>;

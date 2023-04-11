@@ -2,7 +2,7 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IConnectLinks } from "../Interfaces/IConnectLinks";
 
 /**
- * @category Options
+ 
  */
 export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks> {
     opacity;

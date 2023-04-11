@@ -3,7 +3,7 @@ import type { IPolygonShape } from "./IPolygonShape";
 import type { ISide } from "./ISide";
 
 /**
- * @category Shape Drawers
+ 
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: Particle, radius: number): void {

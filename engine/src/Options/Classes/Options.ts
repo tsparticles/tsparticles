@@ -26,7 +26,7 @@ interface DefaultThemes {
 /**
  * [[include:Options.md]]
  *
- * @category Options
+ 
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
     [name: string]: unknown;

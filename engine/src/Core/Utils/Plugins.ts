@@ -37,10 +37,11 @@ type Initializers = {
 
 /**
  *
- * @param container
- * @param map
- * @param initializers
- * @param force
+ * @param container -
+ * @param map -
+ * @param initializers -
+ * @param force -
+ * @returns the items from the given initializer
  */
 function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
     container: Container,
@@ -60,7 +61,7 @@ function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<
 }
 
 /**
- * @category Utils
+ 
  */
 export class Plugins {
     /**
@@ -98,7 +99,7 @@ export class Plugins {
     /**
      * The engine used for registering plugins
      *
-     * @private
+     * @internal
      */
     private readonly _engine;
 

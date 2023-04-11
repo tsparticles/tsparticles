@@ -3,7 +3,7 @@ import type { ISide } from "./ISide";
 import { PolygonDrawerBase } from "./PolygonDrawerBase";
 
 /**
- * @category Shape Drawers
+ 
  */
 export class TriangleDrawer extends PolygonDrawerBase {
     getCenter(particle: Particle, radius: number): ICoordinates {

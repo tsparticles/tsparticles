@@ -2,7 +2,7 @@ import { type IHsl, type Particle, errorPrefix, getStyleFromHsl } from "tspartic
 import type { IImageShape } from "./IImageShape";
 
 /**
- * @category Interfaces
+ 
  */
 
 /**

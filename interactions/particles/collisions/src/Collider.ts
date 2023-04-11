@@ -2,7 +2,7 @@ import { type Container, type IDelta, type Particle, ParticlesInteractorBase, ge
 import { resolveCollision } from "./ResolveCollision";
 
 /**
- * @category Interactions
+ 
  */
 export class Collider extends ParticlesInteractorBase {
     constructor(container: Container) {

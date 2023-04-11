@@ -8,13 +8,13 @@ import { Rectangle } from "./Rectangle";
 import { getDistance } from "../../Utils/NumberUtils";
 
 /**
- * @category Utils
+ 
  */
 export class QuadTree {
     /**
      * Used to know if the current instance is divided or not (branch or leaf)
      *
-     * @private
+     * @internal
      */
     private _divided;
 

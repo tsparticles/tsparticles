@@ -1,5 +1,5 @@
 /**
- * @category Core
+ 
  */
 import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
@@ -14,28 +14,28 @@ export class InteractionManager {
     /**
      * The engine used for registering the interactions managers
      *
-     * @private
+     * @internal
      */
     private readonly _engine;
 
     /**
      * Registered external interactivity managers
      *
-     * @private
+     * @internal
      */
     private _externalInteractors: IExternalInteractor[];
 
     /**
      * The interactors that are used for initialization
      *
-     * @private
+     * @internal
      */
     private readonly _interactors;
 
     /**
      * Registered particles interactions managers
      *
-     * @private
+     * @internal
      */
     private _particleInteractors: IParticlesInteractor[];
 

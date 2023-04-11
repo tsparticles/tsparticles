@@ -29,7 +29,8 @@ export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFuncti
 
 /**
  *
- * @param name
+ * @param name -
+ * @returns the easing function
  */
 export function getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
     return easings.get(name) || ((value: number): number => value);
@@ -46,6 +47,8 @@ export function setRandom(rnd: () => number = Math.random): void {
 
 /**
  * Returns a random number between 0 and 1 using the library random function.
+ *
+ * @returns a random number between 0 and 1
  */
 export function getRandom(): number {
     return clamp(_random(), 0, 1 - 1e-16);
@@ -57,6 +60,7 @@ export function getRandom(): number {
  * @param num - the source number
  * @param min - the minimum value
  * @param max - the maximum value
+ * @returns the clamped number
  */
 export function clamp(num: number, min: number, max: number): number {
     return Math.min(Math.max(num, min), max);
@@ -64,10 +68,11 @@ export function clamp(num: number, min: number, max: number): number {
 
 /**
  *
- * @param comp1
- * @param comp2
- * @param weight1
- * @param weight2
+ * @param comp1 -
+ * @param comp2 -
+ * @param weight1 -
+ * @param weight2 -
+ * @returns the mixed value
  */
 export function mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
     return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
@@ -75,7 +80,8 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
 
 /**
  *
- * @param r
+ * @param r -
+ * @returns the random value in the given range
  */
 export function randomInRange(r: RangeValue): number {
     const max = getRangeMax(r);
@@ -90,7 +96,8 @@ export function randomInRange(r: RangeValue): number {
 
 /**
  *
- * @param value
+ * @param value -
+ * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
 export function getRangeValue(value: RangeValue): number {
     return typeof value === "number" ? value : randomInRange(value);
@@ -98,7 +105,8 @@ export function getRangeValue(value: RangeValue): number {
 
 /**
  *
- * @param value
+ * @param value -
+ * @returns the minimum value of the range
  */
 export function getRangeMin(value: RangeValue): number {
     return typeof value === "number" ? value : value.min;
@@ -106,7 +114,8 @@ export function getRangeMin(value: RangeValue): number {
 
 /**
  *
- * @param value
+ * @param value -
+ * @returns the maximum value of the range
  */
 export function getRangeMax(value: RangeValue): number {
     return typeof value === "number" ? value : value.max;
@@ -114,8 +123,9 @@ export function getRangeMax(value: RangeValue): number {
 
 /**
  *
- * @param source
- * @param value
+ * @param source -
+ * @param value -
+ * @returns the range value with the new value
  */
 export function setRangeValue(source: RangeValue, value?: number): RangeValue {
     if (source === value || (value === undefined && typeof source === "number")) {
@@ -135,7 +145,8 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 
 /**
  *
- * @param options
+ * @param options -
+ * @returns the same as {@link getRangeValue}, since it calls that function, converting the parameters to a range value
  */
 export function getValue(options: IValueWithRandom): number {
     const random = options.random,
@@ -155,6 +166,7 @@ export function getValue(options: IValueWithRandom): number {
  *
  * @param pointA - the first coordinate
  * @param pointB - the second coordinate
+ * @returns the all the distance values between the two coordinates
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
     const dx = pointA.x - pointB.x,
@@ -168,6 +180,7 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
  *
  * @param pointA - the first coordinate
  * @param pointB - the second coordinate
+ * @returns the distance between the two coordinates
  */
 export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
     return getDistances(pointA, pointB).distance;
@@ -175,9 +188,10 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
 
 /**
  *
- * @param direction
- * @param position
- * @param center
+ * @param direction -
+ * @param position -
+ * @param center -
+ * @returns the angle of the direction
  */
 export function getParticleDirectionAngle(
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
@@ -218,6 +232,7 @@ export function getParticleDirectionAngle(
  * Get Particle base velocity
  *
  * @param direction - the direction to use for calculating the velocity
+ * @returns the base velocity
  */
 export function getParticleBaseVelocity(direction: number): Vector {
     const baseVelocity = Vector.origin;
@@ -230,10 +245,11 @@ export function getParticleBaseVelocity(direction: number): Vector {
 
 /**
  *
- * @param v1
- * @param v2
- * @param m1
- * @param m2
+ * @param v1 -
+ * @param v2 -
+ * @param m1 -
+ * @param m2 -
+ * @returns the velocity after collision
  */
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
     return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
@@ -312,7 +328,8 @@ export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFro
 
 /**
  *
- * @param input
+ * @param input -
+ * @returns the parsed color
  */
 export function parseAlpha(input?: string): number {
     return input ? (input.endsWith("%") ? parseFloat(input) / 100 : parseFloat(input)) : 1;

@@ -4,7 +4,7 @@ import { Sounds } from "./Options/Classes/Sounds";
 import { SoundsInstance } from "./SoundsInstance";
 
 /**
- * @category Sounds Plugin
+ 
  */
 class SoundsPlugin implements IPlugin {
     readonly id;

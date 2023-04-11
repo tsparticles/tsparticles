@@ -3,7 +3,7 @@ import type { CircleParticle } from "./CircleParticle";
 import type { ICircleShapeData } from "./ICircleShapeData";
 
 /**
- * @category Shape Drawers
+ 
  */
 export class CircleDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: CircleParticle, radius: number): void {

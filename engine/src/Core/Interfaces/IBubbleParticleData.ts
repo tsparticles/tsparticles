@@ -1,7 +1,7 @@
 import type { IHsl } from "./Colors";
 
 /**
- * @category Interfaces
+ 
  */
 export interface IBubbleParticleData {
     color?: IHsl;

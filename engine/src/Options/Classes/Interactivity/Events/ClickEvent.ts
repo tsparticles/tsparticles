@@ -7,7 +7,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 /**
  * [[include:Options/Interactivity/Click.md]]
  *
- * @category Options
+ 
  */
 export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**

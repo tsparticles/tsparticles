@@ -7,7 +7,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 /**
  * [[include:Options/Interactivity/Events.md]]
  *
- * @category Options
+ 
  */
 export interface IEvents {
     onClick: IClickEvent;

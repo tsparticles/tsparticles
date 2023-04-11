@@ -2,7 +2,7 @@ import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeVal
 import type { IEmitterRate } from "../Interfaces/IEmitterRate";
 
 /**
- * @category Emitters Plugin
+ 
  */
 export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
     delay: RangeValue;

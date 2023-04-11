@@ -3,7 +3,7 @@ import type { IAnimation } from "../../IAnimation";
 import type { StartValueType } from "../../../../Enums/Types/StartValueType";
 
 /**
- * @category Options
+ 
  */
 export interface IOpacityAnimation extends IAnimation {
     destroy: DestroyType | keyof typeof DestroyType;

@@ -1,7 +1,7 @@
 /**
  * [[include:Options/Particles.md]]
  *
- * @category Options
+ 
  */
 import type { IAnimatableColor } from "../IAnimatableColor";
 import type { ICollisions } from "./Collisions/ICollisions";
@@ -22,7 +22,7 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 /**
  * [[include:Options/Particles.md]]
  *
- * @category Options
+ 
  */
 export interface IParticlesOptions {
     [name: string]: unknown;

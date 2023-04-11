@@ -6,7 +6,7 @@ import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
 
 /**
- * @category Polygon Mask Plugin
+ 
  */
 class PolygonMaskPlugin implements IPlugin {
     readonly id;

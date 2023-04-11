@@ -2,7 +2,7 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IPush } from "../Interfaces/IPush";
 
 /**
- * @category Options
+ 
  */
 export class Push implements IPush, IOptionLoader<IPush> {
     default;

@@ -8,7 +8,7 @@ import {
 import type { IBubbleBase } from "../Interfaces/IBubbleBase";
 
 /**
- * @category Options
+ 
  */
 export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBase> {
     color?: SingleOrMultiple<OptionsColor>;

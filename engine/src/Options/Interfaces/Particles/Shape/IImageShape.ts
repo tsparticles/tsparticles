@@ -1,7 +1,7 @@
 import type { IShapeValues } from "./IShapeValues";
 
 /**
- * @category Options
+ 
  */
 export interface IImageShape extends IShapeValues {
     height: number;

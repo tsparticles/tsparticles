@@ -1,7 +1,3 @@
-/**
- * @category Interfaces
- * @module
- */
 import type { RangeValue } from "../../Types/RangeValue";
 import type { SizeMode } from "../../Enums/Modes/SizeMode";
 

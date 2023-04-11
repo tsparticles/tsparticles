@@ -1,7 +1,7 @@
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 
 /**
- * @category Utils
+ 
  */
 export abstract class Range {
     /**
@@ -14,7 +14,7 @@ export abstract class Range {
      *
      * @param x - X coordinate of the position
      * @param y - Y coordinate of the position
-     * @protected
+     * @internal
      */
     protected constructor(x: number, y: number) {
         this.position = {

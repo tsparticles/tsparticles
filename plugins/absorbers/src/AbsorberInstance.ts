@@ -42,7 +42,7 @@ type OrbitingParticle = Particle & {
 };
 
 /**
- * @category Absorbers Plugin
+ 
  */
 export class AbsorberInstance {
     /**
@@ -83,21 +83,21 @@ export class AbsorberInstance {
     /**
      * Sets if the absorber can be moved with mouse drag&drop
      *
-     * @private
+     * @internal
      */
     private dragging;
 
     /**
      * Gets the absorber initial position
      *
-     * @private
+     * @internal
      */
     private readonly initialPosition?: Vector;
 
     /**
      * Gets the absorber options
      *
-     * @private
+     * @internal
      */
     private readonly options;
 
@@ -243,7 +243,7 @@ export class AbsorberInstance {
     /**
      * This method calculate the absorber position, using the provided options and position
      *
-     * @private
+     * @internal
      */
     private calcPosition(): Vector {
         const exactPosition = calcPositionOrRandomFromSizeRanged({
@@ -259,7 +259,7 @@ export class AbsorberInstance {
      *
      * @param particle - the particle to update
      * @param v - the vector used for calculating the distance between the Absorber and the particle
-     * @private
+     * @internal
      */
     private updateParticlePosition(particle: OrbitingParticle, v: Vector): void {
         if (particle.destroyed) {

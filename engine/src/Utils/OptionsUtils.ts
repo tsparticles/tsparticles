@@ -7,8 +7,8 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 
 /**
  *
- * @param options
- * @param sourceOptionsArr
+ * @param options -
+ * @param sourceOptionsArr -
  */
 export function loadOptions<T>(
     options: IOptionLoader<T>,
@@ -21,9 +21,10 @@ export function loadOptions<T>(
 
 /**
  *
- * @param engine
- * @param container
- * @param sourceOptionsArr
+ * @param engine -
+ * @param container -
+ * @param sourceOptionsArr -
+ * @returns the newly created {@link ParticlesOptions} object
  */
 export function loadParticlesOptions(
     engine: Engine,

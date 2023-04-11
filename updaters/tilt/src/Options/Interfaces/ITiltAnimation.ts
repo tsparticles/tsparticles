@@ -1,7 +1,7 @@
 import type { RangeValue } from "tsparticles-engine";
 
 /**
- * @category Options
+ 
  */
 
 export interface ITiltAnimation {

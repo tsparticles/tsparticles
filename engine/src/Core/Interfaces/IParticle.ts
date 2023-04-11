@@ -1,5 +1,5 @@
 /**
- * @category Interfaces
+ 
  */
 import type { IHsl, IRgb } from "./Colors";
 import type { IBubbleParticleData } from "./IBubbleParticleData";

@@ -7,7 +7,7 @@ export interface IInfectionStage {
     /**
      * Infection stage particle color
      *
-     * @category Options
+     
      */
     color: string | IOptionsColor;
 

@@ -25,7 +25,6 @@ export function addColorManager(manager: IColorManager): void {
 /**
  * Converts hue to RGB values.
  *
- * @hidden
  * @param p -
  * @param q -
  * @param t -

@@ -4,7 +4,7 @@ import { getRangeValue } from "../Utils/NumberUtils";
 import { isSsr } from "../Utils/Utils";
 
 /**
- * @category Core
+ 
  */
 export class Retina {
     attractDistance!: number;

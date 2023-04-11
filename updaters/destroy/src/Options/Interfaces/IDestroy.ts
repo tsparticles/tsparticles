@@ -3,7 +3,7 @@ import type { IDestroyBounds } from "./IDestroyBounds";
 import type { ISplit } from "./ISplit";
 
 /**
- * @category Options
+ 
  * [[include:Destroy.md]]
  */
 export interface IDestroy {

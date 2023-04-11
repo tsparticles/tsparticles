@@ -2,7 +2,7 @@ import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparti
 import type { IInfectionStage } from "../Interfaces/IInfectionStage";
 
 /**
- * @category Options
+ 
  */
 export class InfectionStage implements IInfectionStage, IOptionLoader<IInfectionStage> {
     color;

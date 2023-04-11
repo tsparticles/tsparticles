@@ -2,8 +2,6 @@ import type { Container, ISourceOptions } from "tsparticles-engine";
 
 /**
  * [[include:pjsMigration.md]]
- *
- * @category Particles.js
  */
 export interface IParticlesJS {
     /**

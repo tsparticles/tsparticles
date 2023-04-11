@@ -5,7 +5,7 @@ import type { IParticlesBounce } from "../Bounce/IParticlesBounce";
 import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
- * @category Options
+ 
  * [[include:Collisions.md]]
  */
 export interface ICollisions {

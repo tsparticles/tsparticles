@@ -2,7 +2,7 @@ import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { Vector3d } from "./Vector3d";
 
 /**
- * @category Utils
+ 
  */
 export class Vector extends Vector3d {
     /**
@@ -10,7 +10,7 @@ export class Vector extends Vector3d {
      *
      * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
      * @param y - Y coordinate
-     * @protected
+     * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates, y?: number) {
         super(xOrCoords, y, 0);
@@ -18,6 +18,8 @@ export class Vector extends Vector3d {
 
     /**
      * A new vector, with coordinates in the origin point
+     *
+     * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector {
         return Vector.create(0, 0);

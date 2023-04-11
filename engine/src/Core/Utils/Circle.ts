@@ -4,7 +4,7 @@ import type { Rectangle } from "./Rectangle";
 import { getDistance } from "../../Utils/NumberUtils";
 
 /**
- * @category Utils
+ 
  */
 export class Circle extends Range {
     /**

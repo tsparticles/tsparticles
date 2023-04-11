@@ -14,7 +14,7 @@ import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
 import { Trail } from "./Options/Classes/Trail";
 
 /**
- * @category Interactions
+ 
  */
 export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     private _delay: number;

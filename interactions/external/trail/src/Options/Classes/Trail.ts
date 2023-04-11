@@ -2,7 +2,7 @@ import { type IOptionLoader, type IParticlesOptions, type RecursivePartial, deep
 import type { ITrail } from "../Interfaces/ITrail";
 
 /**
- * @category Options
+ 
  */
 export class Trail implements ITrail, IOptionLoader<ITrail> {
     delay;

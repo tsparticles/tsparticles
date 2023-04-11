@@ -5,7 +5,7 @@ import type { CanvasMaskOptions } from "./types";
 import type { ICanvasMaskOptions } from "./types";
 
 /**
- * @category Canvas Mask Plugin
+ 
  */
 class CanvasMaskPlugin implements IPlugin {
     readonly id;

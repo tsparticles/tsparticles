@@ -69,7 +69,7 @@ type EventListenersHandlers = {
 /**
  * Particles container event listeners manager
  *
- * @category Utils
+ 
  */
 export class EventListeners {
     private canPush: boolean;
@@ -151,7 +151,7 @@ export class EventListeners {
      * Handles click mode event
      *
      * @param mode - Click mode type
-     * @private
+     * @internal
      */
     private handleClickMode(mode: ClickMode | string): void {
         this.container.handleClickMode(mode);
@@ -161,7 +161,7 @@ export class EventListeners {
      * Handle browser theme change
      *
      * @param e - the media query event
-     * @private
+     * @internal
      */
     private handleThemeChange(e: Event): void {
         const mediaEvent = e as MediaQueryListEvent,
@@ -179,7 +179,7 @@ export class EventListeners {
     /**
      * Handles blur event
      *
-     * @private
+     * @internal
      */
     private handleVisibilityChange(): void {
         const container = this.container,
@@ -209,7 +209,7 @@ export class EventListeners {
     /**
      * Handles window resize event
      *
-     * @private
+     * @internal
      */
     private handleWindowResize(): void {
         if (this.resizeTimeout) {
@@ -228,7 +228,7 @@ export class EventListeners {
     /**
      * Initializing event listeners
      *
-     * @param add
+     * @param add -
      */
     private manageListeners(add: boolean): void {
         const handlers = this.handlers,
@@ -339,7 +339,7 @@ export class EventListeners {
     /**
      * Handle mouse down event
      *
-     * @private
+     * @internal
      */
     private mouseDown(): void {
         const interactivity = this.container.interactivity;

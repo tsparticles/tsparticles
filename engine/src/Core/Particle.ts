@@ -47,24 +47,43 @@ import { errorPrefix } from "./Utils/Constants";
 import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
+ * @internal
+ */
+type FixOutModeParams = {
+    /**
+     *
+     */
+    checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
+    /**
+     *
+     */
+    coord: number;
+    /**
+     *
+     */
+    maxCoord: number;
+    /**
+     *
+     */
+    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    /**
+     *
+     */
+    radius: number;
+    /**
+     *
+     * @param value -
+     */
+    setCb: (value: number) => void;
+};
+
+/**
  * fixes out mode, calling the given callback if needed
  *
- * @param data
- * @param data.checkModes
- * @param data.coord
- * @param data.maxCoord
- * @param data.outMode
- * @param data.radius
- * @param data.setCb
+ * @internal
+ * @param data -
  */
-const fixOutMode = (data: {
-    checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
-    coord: number;
-    maxCoord: number;
-    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
-    radius: number;
-    setCb: (value: number) => void;
-}): void => {
+const fixOutMode = (data: FixOutModeParams): void => {
     if (!isInArray(data.outMode, data.checkModes)) {
         return;
     }
@@ -81,7 +100,7 @@ const fixOutMode = (data: {
 /**
  * The single particle object
  *
- * @category Core
+ 
  */
 export class Particle implements IParticle {
     /**
@@ -279,7 +298,7 @@ export class Particle implements IParticle {
     /**
      * Gets the particle containing engine instance
      *
-     * @private
+     * @internal
      */
     private readonly _engine;
 
