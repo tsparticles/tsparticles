@@ -12,7 +12,14 @@ import type { MoveParticle } from "./Types";
 
 const diffFactor = 2;
 
+/**
+ *
+ */
 export class BaseMover implements IParticleMover {
+    /**
+     *
+     * @param particle -
+     */
     init(particle: MoveParticle): void {
         const options = particle.options,
             gravityOptions = options.move.gravity;
@@ -26,10 +33,20 @@ export class BaseMover implements IParticleMover {
         this._initSpin(particle);
     }
 
+    /**
+     *
+     * @param particle -
+     * @returns check if mover is enabled
+     */
     isEnabled(particle: Particle): boolean {
         return !particle.destroyed && particle.options.move.enable;
     }
 
+    /**
+     *
+     * @param particle -
+     * @param delta -
+     */
     move(particle: MoveParticle, delta: IDelta): void {
         const particleOptions = particle.options,
             moveOptions = particleOptions.move;
@@ -102,6 +119,10 @@ export class BaseMover implements IParticleMover {
         applyDistance(particle);
     }
 
+    /**
+     *
+     * @param particle -
+     */
     private _initSpin(particle: MoveParticle): void {
         const container = particle.container,
             options = particle.options,

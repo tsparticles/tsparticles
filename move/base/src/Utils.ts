@@ -3,7 +3,7 @@ import type { MoveParticle } from "./Types";
 
 /**
  *
- * @param particle
+ * @param particle -
  */
 export function applyDistance(particle: MoveParticle): void {
     const initialPosition = particle.initialPosition,
@@ -45,8 +45,8 @@ export function applyDistance(particle: MoveParticle): void {
 
 /**
  *
- * @param particle
- * @param moveSpeed
+ * @param particle -
+ * @param moveSpeed -
  */
 export function spin(particle: MoveParticle, moveSpeed: number): void {
     const container = particle.container;
@@ -79,8 +79,8 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
 
 /**
  *
- * @param particle
- * @param delta
+ * @param particle -
+ * @param delta -
  */
 export function applyPath(particle: Particle, delta: IDelta): void {
     const particlesOptions = particle.options,
@@ -113,7 +113,8 @@ export function applyPath(particle: Particle, delta: IDelta): void {
 
 /**
  *
- * @param particle
+ * @param particle -
+ * @returns proximity speed factor
  */
 export function getProximitySpeedFactor(particle: Particle): number {
     return particle.slow.inRange ? particle.slow.factor : 1;

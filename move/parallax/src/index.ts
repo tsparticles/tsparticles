@@ -3,7 +3,7 @@ import { ParallaxMover } from "./ParallaxMover";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
 export async function loadParallaxMover(engine: Engine): Promise<void> {
     engine.addMover("parallax", () => new ParallaxMover());

@@ -1,10 +1,21 @@
 import { type IParticleMover, type Particle, isSsr } from "tsparticles-engine";
 
+/**
+ *
+ */
 export class ParallaxMover implements IParticleMover {
+    /**
+     *
+     */
     init(): void {
         // nothing to init
     }
 
+    /**
+     *
+     * @param particle -
+     * @returns check if mover is enabled
+     */
     isEnabled(particle: Particle): boolean {
         return (
             !isSsr() &&
@@ -13,6 +24,10 @@ export class ParallaxMover implements IParticleMover {
         );
     }
 
+    /**
+     *
+     * @param particle -
+     */
     move(particle: Particle): void {
         const container = particle.container,
             options = container.actualOptions;
