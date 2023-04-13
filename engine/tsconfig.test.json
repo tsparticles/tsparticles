@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "target": "ES2021",
+        "module": "commonjs",
         "lib": ["ESNext", "ES2022", "ES2021", "ES2020", "ES2019", "ES2018", "ES2017", "ES2016", "ES2015", "DOM"],
         "types": ["jsdom", "mocha", "chai", "node"],
         "allowJs": true,

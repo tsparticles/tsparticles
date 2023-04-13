@@ -1,7 +1,6 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "module": "CommonJS",
-    "outDir": "./dist/cjs"
-  }
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.json"],
+    "compilerOptions": {
+        "outDir": "./dist/cjs"
+    }
 }
