@@ -4,9 +4,9 @@
     "description": "tsParticles text shape",
     "homepage": "https://particles.js.org",
     "scripts": {
-        "build": "tsparticles-build",
-        "build:ci": "tsparticles-build --ci",
-        "version": "tsparticles-build -d && git add package.dist.json",
+        "build": "tsparticles-cli build",
+        "build:ci": "tsparticles-cli build --ci",
+        "version": "tsparticles-cli build -d && git add package.dist.json",
         "prepack": "pnpm run build"
     },
     "repository": {
@@ -56,7 +56,7 @@
     "prettier": "@tsparticles/prettier-config",
     "devDependencies": {
         "@babel/core": "^7.21.4",
-        "@tsparticles/build": "^1.12.0",
+        "@tsparticles/cli": "^1.0.0",
         "@tsparticles/eslint-config": "^1.9.1",
         "@tsparticles/prettier-config": "^1.7.0",
         "@tsparticles/tsconfig": "^1.10.0",
