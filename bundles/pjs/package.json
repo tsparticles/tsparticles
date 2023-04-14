@@ -82,10 +82,11 @@
     "prettier": "@tsparticles/prettier-config",
     "devDependencies": {
         "@babel/core": "^7.21.4",
-        "@tsparticles/cli": "^1.0.0",
-        "@tsparticles/eslint-config": "^1.9.1",
-        "@tsparticles/prettier-config": "^1.7.0",
-        "@tsparticles/tsconfig": "^1.10.0",
+        "@tsparticles/cli": "^1.1.0",
+        "@tsparticles/eslint-config": "^1.10.0",
+        "@tsparticles/prettier-config": "^1.8.0",
+        "@tsparticles/tsconfig": "^1.11.0",
+        "@tsparticles/webpack-plugin": "^1.12.0",
         "@types/webpack-env": "^1.18.0",
         "@typescript-eslint/eslint-plugin": "^5.58.0",
         "@typescript-eslint/parser": "^5.58.0",
@@ -98,10 +99,9 @@
         "rimraf": "5.0.0",
         "terser-webpack-plugin": "^5.3.7",
         "typescript": "^5.0.4",
-        "webpack": "^5.78.0",
+        "webpack": "^5.79.0",
         "webpack-bundle-analyzer": "^4.8.0",
-        "webpack-cli": "^5.0.1",
-        "webpack-tsparticles-plugin": "^1.11.1"
+        "webpack-cli": "^5.0.1"
     },
     "dependencies": {
         "tsparticles-engine": "^2.9.3"

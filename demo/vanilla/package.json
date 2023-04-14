@@ -25,7 +25,7 @@
         "@fortawesome/fontawesome-free": "^6.4.0",
         "@typescript-eslint/eslint-plugin": "^5.58.0",
         "@typescript-eslint/parser": "^5.58.0",
-        "ace-builds": "^1.16.0",
+        "ace-builds": "^1.17.0",
         "bootstrap": "^5.2.3",
         "connect-livereload": "^0.6.1",
         "eslint": "^8.38.0",
