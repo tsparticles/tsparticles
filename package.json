@@ -39,7 +39,7 @@
         "typedoc-plugin-clarity": "^1.2.0",
         "typedoc-plugin-coverage": "^2.0.0",
         "typedoc-plugin-keyword": "^1.2.0",
-        "typedoc-plugin-missing-exports": "^1.0.0",
+        "typedoc-plugin-missing-exports": "^2.0.0",
         "typescript": "^5.0.4",
         "yorkie": "^2.0.0"
     }
