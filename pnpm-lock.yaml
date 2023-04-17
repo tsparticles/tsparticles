@@ -47,23 +47,23 @@ importers:
         specifier: ^5.0.0
         version: 5.0.0
       typedoc:
-        specifier: ^0.24.1
-        version: 0.24.1(typescript@5.0.4)
+        specifier: ^0.24.4
+        version: 0.24.4(typescript@5.0.4)
       typedoc-plugin-carbon-ads:
         specifier: ^1.2.0
-        version: 1.2.0(typedoc@0.24.1)
+        version: 1.2.0(typedoc@0.24.4)
       typedoc-plugin-clarity:
         specifier: ^1.2.0
-        version: 1.2.0(typedoc@0.24.1)
+        version: 1.2.0(typedoc@0.24.4)
       typedoc-plugin-coverage:
-        specifier: ^2.0.0
-        version: 2.0.0(typedoc@0.24.1)
+        specifier: ^2.0.1
+        version: 2.0.1(typedoc@0.24.4)
       typedoc-plugin-keyword:
         specifier: ^1.2.0
-        version: 1.2.0(typedoc@0.24.1)
+        version: 1.2.0(typedoc@0.24.4)
       typedoc-plugin-missing-exports:
         specifier: ^2.0.0
-        version: 2.0.0(typedoc@0.24.1)
+        version: 2.0.0(typedoc@0.24.4)
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
@@ -145,7 +145,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -154,7 +154,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -255,7 +255,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -264,7 +264,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -353,7 +353,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -362,7 +362,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -424,7 +424,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -433,7 +433,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -588,7 +588,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -597,7 +597,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -658,8 +658,8 @@ importers:
         version: link:../../engine/dist
     devDependencies:
       electron:
-        specifier: ^24.1.1
-        version: 24.1.1
+        specifier: ^24.1.2
+        version: 24.1.2
       webpack:
         specifier: ^5.79.0
         version: 5.79.0(webpack-cli@5.0.1)
@@ -1025,7 +1025,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1034,7 +1034,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/chai':
         specifier: ^4.3.4
         version: 4.3.4
@@ -1081,8 +1081,8 @@ importers:
         specifier: ^8.8.0
         version: 8.8.0(eslint@8.38.0)
       eslint-plugin-jsdoc:
-        specifier: ^41.1.1
-        version: 41.1.1(eslint@8.38.0)
+        specifier: ^41.1.2
+        version: 41.1.2(eslint@8.38.0)
       eslint-plugin-tsdoc:
         specifier: ^0.2.17
         version: 0.2.17
@@ -1156,7 +1156,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1165,7 +1165,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1227,7 +1227,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1236,7 +1236,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1298,7 +1298,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1307,7 +1307,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1369,7 +1369,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1378,7 +1378,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1440,7 +1440,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1449,7 +1449,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1511,7 +1511,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1520,7 +1520,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1582,7 +1582,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1591,7 +1591,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1653,7 +1653,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1662,7 +1662,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1724,7 +1724,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1733,7 +1733,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1795,7 +1795,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1804,7 +1804,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1866,7 +1866,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1875,7 +1875,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -1937,7 +1937,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -1946,7 +1946,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2008,7 +2008,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2017,7 +2017,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2079,7 +2079,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2088,7 +2088,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2150,7 +2150,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2159,7 +2159,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2221,7 +2221,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2230,7 +2230,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2292,7 +2292,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2301,7 +2301,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2363,7 +2363,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2372,7 +2372,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2434,7 +2434,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2443,7 +2443,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2505,7 +2505,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2514,7 +2514,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2576,7 +2576,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2585,7 +2585,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2647,7 +2647,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2656,7 +2656,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2718,7 +2718,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2727,7 +2727,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2789,7 +2789,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2798,7 +2798,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2860,7 +2860,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2869,7 +2869,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -2931,7 +2931,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -2940,7 +2940,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3002,7 +3002,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3011,7 +3011,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3073,7 +3073,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3082,7 +3082,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3144,7 +3144,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3153,7 +3153,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3215,7 +3215,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3224,7 +3224,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3286,7 +3286,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3295,7 +3295,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3357,7 +3357,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3366,7 +3366,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3428,7 +3428,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3437,7 +3437,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3499,7 +3499,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3508,7 +3508,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3570,7 +3570,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3579,7 +3579,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3641,7 +3641,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3650,7 +3650,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3712,7 +3712,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3721,7 +3721,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3783,7 +3783,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3792,7 +3792,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3854,7 +3854,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3863,7 +3863,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3925,7 +3925,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -3934,7 +3934,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -3996,7 +3996,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4005,7 +4005,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4067,7 +4067,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4076,7 +4076,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4138,7 +4138,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4147,7 +4147,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4209,7 +4209,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4218,7 +4218,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4280,7 +4280,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4289,7 +4289,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4351,7 +4351,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4360,7 +4360,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4422,7 +4422,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4431,7 +4431,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4493,7 +4493,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4502,7 +4502,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4564,7 +4564,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4573,7 +4573,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4635,7 +4635,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4644,7 +4644,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4706,7 +4706,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4715,7 +4715,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4777,7 +4777,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4786,7 +4786,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4848,7 +4848,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4857,7 +4857,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4919,7 +4919,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4928,7 +4928,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -4990,7 +4990,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -4999,7 +4999,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5061,7 +5061,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5070,7 +5070,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5132,7 +5132,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5141,7 +5141,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5203,7 +5203,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5212,7 +5212,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5274,7 +5274,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5283,7 +5283,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5345,7 +5345,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5354,7 +5354,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5416,7 +5416,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5425,7 +5425,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5487,7 +5487,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5496,7 +5496,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5558,7 +5558,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5567,7 +5567,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5629,7 +5629,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5638,7 +5638,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5700,7 +5700,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5709,7 +5709,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5771,7 +5771,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5780,7 +5780,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5842,7 +5842,7 @@ importers:
         version: 1.1.1(webpack-cli@5.0.1)
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5851,7 +5851,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5910,7 +5910,7 @@ importers:
         version: 7.21.4
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/options-updater':
         specifier: ^2.9.3
         version: link:../options-updater
@@ -5919,7 +5919,7 @@ importers:
         version: 1.8.0(prettier@2.8.7)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -5971,7 +5971,7 @@ importers:
     dependencies:
       '@tsparticles/eslint-config':
         specifier: ^1.10.0
-        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+        version: 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config':
         specifier: ^1.8.0
         version: 1.8.0(prettier@2.8.7)
@@ -5980,7 +5980,7 @@ importers:
         version: 1.11.0(typescript@5.0.4)
       '@tsparticles/webpack-plugin':
         specifier: ^1.12.0
-        version: 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+        version: 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.58.0
         version: 5.58.0(@typescript-eslint/parser@5.58.0)(eslint@8.38.0)(typescript@5.0.4)
@@ -8378,16 +8378,16 @@ packages:
     resolution: {integrity: sha512-/EBhITW4Q1yRn4r4n61XQ6GTpwIRb4SYRPz3XkWjhYpr8IXqeCtshrzzNjlu5o6V1mXL6nkNyi1htS1pbbmbfg==}
     hasBin: true
     dependencies:
-      '@tsparticles/eslint-config': 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+      '@tsparticles/eslint-config': 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config': 1.8.0(prettier@2.8.7)
       '@tsparticles/tsconfig': 1.11.0(typescript@5.0.4)
-      '@tsparticles/webpack-plugin': 1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)
+      '@tsparticles/webpack-plugin': 1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)
       '@typescript-eslint/eslint-plugin': 5.58.0(@typescript-eslint/parser@5.58.0)(eslint@8.38.0)(typescript@5.0.4)
       '@typescript-eslint/parser': 5.58.0(eslint@8.38.0)(typescript@5.0.4)
-      commander: 10.0.0
+      commander: 10.0.1
       eslint: 8.38.0
       eslint-config-prettier: 8.8.0(eslint@8.38.0)
-      eslint-plugin-jsdoc: 41.1.1(eslint@8.38.0)
+      eslint-plugin-jsdoc: 41.1.2(eslint@8.38.0)
       eslint-plugin-tsdoc: 0.2.17
       fs-extra: 11.1.1
       klaw: 4.1.0
@@ -8408,7 +8408,7 @@ packages:
       - webpack-dev-server
     dev: true
 
-  /@tsparticles/eslint-config@1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4):
+  /@tsparticles/eslint-config@1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4):
     resolution: {integrity: sha512-B4A/sAZ0BOH0nWtGo0v3kLNEcKHnh7hZDZygSYZ7Eg3M8xMgIIGDKMghTBrg5EE0qbVaTfV4LHAzqcCCtRb4tA==}
     peerDependencies:
       '@tsparticles/prettier-config': ^1.5.0
@@ -8426,7 +8426,7 @@ packages:
       '@typescript-eslint/parser': 5.58.0(eslint@8.38.0)(typescript@5.0.4)
       eslint: 8.38.0
       eslint-config-prettier: 8.8.0(eslint@8.38.0)
-      eslint-plugin-jsdoc: 41.1.1(eslint@8.38.0)
+      eslint-plugin-jsdoc: 41.1.2(eslint@8.38.0)
       eslint-plugin-tsdoc: 0.2.17
       prettier: 2.8.7
       typescript: 5.0.4
@@ -8445,12 +8445,12 @@ packages:
     dependencies:
       typescript: 5.0.4
 
-  /@tsparticles/webpack-plugin@1.12.0(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17):
+  /@tsparticles/webpack-plugin@1.12.0(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17):
     resolution: {integrity: sha512-J2JBOA3/24TKVx1HjZ7jLlCQHdNWxcCacK+TL/e0fnLKzPNf0FeZKJzrAbtZI8VJxMyX2y0GrTgCio+jkaGbLA==}
     dependencies:
       '@babel/core': 7.21.4
       '@babel/preset-env': 7.21.4(@babel/core@7.21.4)
-      '@tsparticles/eslint-config': 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.1)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
+      '@tsparticles/eslint-config': 1.10.0(@tsparticles/prettier-config@1.8.0)(@typescript-eslint/eslint-plugin@5.58.0)(@typescript-eslint/parser@5.58.0)(eslint-config-prettier@8.8.0)(eslint-plugin-jsdoc@41.1.2)(eslint-plugin-tsdoc@0.2.17)(eslint@8.38.0)(prettier@2.8.7)(typescript@5.0.4)
       '@tsparticles/prettier-config': 1.8.0(prettier@2.8.7)
       '@types/node': 18.15.11
       '@types/webpack-bundle-analyzer': 4.6.0(webpack-cli@5.0.1)
@@ -9296,7 +9296,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.4
       find-cache-dir: 3.3.2
-      schema-utils: 4.0.0
+      schema-utils: 4.0.1
       webpack: 5.79.0(webpack-cli@5.0.1)
 
   /babel-plugin-polyfill-corejs2@0.3.3(@babel/core@7.21.4):
@@ -9452,10 +9452,10 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001478
-      electron-to-chromium: 1.4.363
+      caniuse-lite: 1.0.30001480
+      electron-to-chromium: 1.4.365
       node-releases: 2.0.10
-      update-browserslist-db: 1.0.10(browserslist@4.21.5)
+      update-browserslist-db: 1.0.11(browserslist@4.21.5)
 
   /buffer-crc32@0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
@@ -9615,8 +9615,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite@1.0.30001478:
-    resolution: {integrity: sha512-gMhDyXGItTHipJj2ApIvR+iVB5hd0KP3svMWWXDvZOmjzJJassGLMfxRkQCSYgGd2gtdL/ReeiyvMSFD1Ss6Mw==}
+  /caniuse-lite@1.0.30001480:
+    resolution: {integrity: sha512-q7cpoPPvZYgtyC4VaBSN0Bt+PJ4c4EYRf0DrduInOz2SkFpHD5p3LnvEpqBp7UnJn+8x1Ogl1s38saUxe+ihQQ==}
 
   /canvas@2.11.2:
     resolution: {integrity: sha512-ItanGBMrmRV7Py2Z+Xhs7cT+FNt5K0vPL4p9EZ/UX/Mu7hFbkxSjKF2KVtPwX7UYWp7dRKnrTvReflgrItJbdw==}
@@ -9854,8 +9854,8 @@ packages:
     resolution: {integrity: sha512-qiBjkpbMLO/HL68y+lh4q0/O1MZFj2RX6X/KmMa3+gJD3z+WwI1ZzDHysvqHGS3mP6mznPckpXmw1nI9cJjyRg==}
     hasBin: true
 
-  /colorette@2.0.19:
-    resolution: {integrity: sha512-3tlv/dIP7FWvj3BsbHrGLJ6l/oKh1O3TcgBqMn+yyCagOxc23fyzDS6HypQbgxWbkpDnf52p1LuR4eWDQ/K9WQ==}
+  /colorette@2.0.20:
+    resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
 
   /columnify@1.6.0:
     resolution: {integrity: sha512-lomjuFZKfM6MSAnV9aCZC9sc0qGbmZdfygNv+nCpqVkSKdCxCklLtd16O0EILGkImHw9ZpHkAnHaB+8Zxq5W6Q==}
@@ -9871,8 +9871,8 @@ packages:
     dependencies:
       delayed-stream: 1.0.0
 
-  /commander@10.0.0:
-    resolution: {integrity: sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==}
+  /commander@10.0.1:
+    resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
 
   /commander@2.20.3:
@@ -10435,11 +10435,11 @@ packages:
       jake: 10.8.5
     dev: true
 
-  /electron-to-chromium@1.4.363:
-    resolution: {integrity: sha512-ReX5qgmSU7ybhzMuMdlJAdYnRhT90UB3k9M05O5nF5WH3wR5wgdJjXw0uDeFyKNhmglmQiOxkAbzrP0hMKM59g==}
+  /electron-to-chromium@1.4.365:
+    resolution: {integrity: sha512-FRHZO+1tUNO4TOPXmlxetkoaIY8uwHzd1kKopK/Gx2SKn1L47wJXWD44wxP5CGRyyP98z/c8e1eBzJrgPeiBOg==}
 
-  /electron@24.1.1:
-    resolution: {integrity: sha512-ymjUMe6Pvh9ytpM4lOvr+Qxd6NG5AELRtR6tw54bK3FXfKtTTKKAtZw/NbwHwkRAlWu8FNAGOuvCoap6/bm9LQ==}
+  /electron@24.1.2:
+    resolution: {integrity: sha512-V0isWbyLYiXrSCcB4lrSVhS/U56NFGfuqHyc+yEPkyhhvY+h4F85cYGdEiZlXp6XjHT+/CLHmw0ltK54g9lvDw==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
@@ -10554,8 +10554,8 @@ packages:
     dependencies:
       eslint: 8.38.0
 
-  /eslint-plugin-jsdoc@41.1.1(eslint@8.38.0):
-    resolution: {integrity: sha512-dfH97DKLGtQ5dgEMzd+GSUuY+xX/yyAfjML3O0pEWmMMpylsG6Ro65s4ziYXKmixiENYK9CTQxCVRGqZUFN2Mw==}
+  /eslint-plugin-jsdoc@41.1.2(eslint@8.38.0):
+    resolution: {integrity: sha512-MePJXdGiPW7AG06CU5GbKzYtKpoHwTq1lKijjq+RwL/cQkZtBZ59Zbv5Ep0RVxSMnq6242249/n+w4XrTZ1Afg==}
     engines: {node: ^14 || ^16 || ^17 || ^18 || ^19}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
@@ -11229,14 +11229,14 @@ packages:
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
-  /glob@10.0.0:
-    resolution: {integrity: sha512-zmp9ZDC6NpDNLujV2W2n+3lH+BafIVZ4/ct+Yj3BMZTH/+bgm/eVjHzeFLwxJrrIGgjjS2eiQLlpurHsNlEAtQ==}
+  /glob@10.1.0:
+    resolution: {integrity: sha512-daGobsYuT0G4hng24B5LbeLNvwKZYRhWyDl3RvqqAGZjJnCopWWK6PWnAGBY1M/vdA63QE+jddhZcYp+74Bq6Q==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       fs.realpath: 1.0.0
       minimatch: 9.0.0
       minipass: 5.0.0
-      path-scurry: 1.6.4
+      path-scurry: 1.7.0
 
   /glob@7.1.4:
     resolution: {integrity: sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==}
@@ -11247,7 +11247,6 @@ packages:
       minimatch: 3.0.5
       once: 1.4.0
       path-is-absolute: 1.0.1
-    dev: true
 
   /glob@7.2.0:
     resolution: {integrity: sha512-lmLf6gtyrPq8tTjSmrO94wBeQbFR3HbLHbuyD69wuyQkImp2hWqMGB47OX65FBkPffO641IP9jWa1z4ivqG26Q==}
@@ -11288,7 +11287,7 @@ packages:
       fs.realpath: 1.0.0
       minimatch: 8.0.4
       minipass: 4.2.8
-      path-scurry: 1.6.4
+      path-scurry: 1.7.0
     dev: true
 
   /global-agent@3.0.0:
@@ -11502,7 +11501,7 @@ packages:
     dependencies:
       camel-case: 4.1.2
       clean-css: 5.3.2
-      commander: 10.0.0
+      commander: 10.0.1
       entities: 4.5.0
       param-case: 3.0.4
       relateurl: 0.2.7
@@ -12161,7 +12160,7 @@ packages:
       javascript-natural-sort: 0.7.1
       jmespath: 0.16.0
       json-source-map: 0.6.1
-      jsonrepair: 3.0.2
+      jsonrepair: 3.0.3
       mobius1-selectr: 2.4.13
       picomodal: 3.0.0
       vanilla-picker: 2.12.1
@@ -12185,8 +12184,8 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  /jsonrepair@3.0.2:
-    resolution: {integrity: sha512-jf3eC13iGklfXqpER/OV6q24rMhXwNAoMg+zPZgPVHxGLoDaNaKk+9TdsRtGQSIAsbC1xafiIAKSwThhtHCpcw==}
+  /jsonrepair@3.0.3:
+    resolution: {integrity: sha512-3Rhz4/UXWBSERKVCPzbfoIQ7CPdKCKkzvcjJdtoRn+aazf1o8dnpGl+PoT58kekOP8EIaA0o/zt70qFqEE3fVA==}
     hasBin: true
     dev: true
 
@@ -12556,8 +12555,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /lru-cache@9.0.2:
-    resolution: {integrity: sha512-7zYMKApzQ9qQE13xQUzbXVY3p2C5lh+9V+bs8M9fRf1TF59id+8jkljRWtIPfBfNP4yQAol5cqh/e8clxatdXw==}
+  /lru-cache@9.0.3:
+    resolution: {integrity: sha512-cyjNRew29d4kbgnz1sjDqxg7qg8NW4s+HQzCGjeon7DV5T2yDije16W9HaUFV1dhVEMh+SjrOcK0TomBmf3Egg==}
     engines: {node: 14 || >=16.14}
 
   /lunr@2.3.9:
@@ -12763,7 +12762,6 @@ packages:
     resolution: {integrity: sha512-tUpxzX0VAzJHjLu0xUfFv1gwVp9ba3IOuRAVH2EGuRW8a5emA2FlACLqiT/lDVtS1W+TGNwqz3sWaNyLgDJWuw==}
     dependencies:
       brace-expansion: 1.1.11
-    dev: true
 
   /minimatch@3.1.2:
     resolution: {integrity: sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==}
@@ -13877,11 +13875,11 @@ packages:
   /path-parse@1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
 
-  /path-scurry@1.6.4:
-    resolution: {integrity: sha512-Qp/9IHkdNiXJ3/Kon++At2nVpnhRiPq/aSvQN+H3U1WZbvNRK0RIQK/o4HMqPoXjpuGJUEWpHSs6Mnjxqh3TQg==}
+  /path-scurry@1.7.0:
+    resolution: {integrity: sha512-UkZUeDjczjYRE495+9thsgcVgsaCPkaw80slmfVFgllxY+IO8ubTsOpFVjDPROBqJdHfVPUFRHPBV/WciOVfWg==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
-      lru-cache: 9.0.2
+      lru-cache: 9.0.3
       minipass: 5.0.0
 
   /path-to-regexp@0.1.7:
@@ -14643,7 +14641,7 @@ packages:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
     dependencies:
-      glob: 7.2.3
+      glob: 7.1.4
 
   /rimraf@4.4.1:
     resolution: {integrity: sha512-Gk8NlF062+T9CqNGn6h4tls3k6T1+/nXdOcSZVikNVtlRdYpA7wRJJMoXmuvOnLW844rPjdQ7JgXCYM6PPC/og==}
@@ -14658,7 +14656,7 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      glob: 10.0.0
+      glob: 10.1.0
 
   /roarr@2.15.4:
     resolution: {integrity: sha512-CHhPh+UNHD2GTXNYhPWLnU8ONHdI+5DI+4EYIAOaiD63rHeYlZvyh8P+in5999TTSFgUYuKUAjzRI4mdh/p+2A==}
@@ -14733,16 +14731,16 @@ packages:
     dependencies:
       xmlchars: 2.2.0
 
-  /schema-utils@3.1.1:
-    resolution: {integrity: sha512-Y5PQxS4ITlC+EahLuXaY86TXfR7Dc5lw294alXOq86JAHCihAIZfqv8nNCWvaEJvaC51uN9hbLGeV0cFBdH+Fw==}
+  /schema-utils@3.1.2:
+    resolution: {integrity: sha512-pvjEHOgWc9OWA/f/DE3ohBWTD6EleVLf7iFUkoSwAxttdBhB9QUebQgxER2kWueOvRJXPHNnyrvvh9eZINB8Eg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
       '@types/json-schema': 7.0.11
       ajv: 6.12.6
       ajv-keywords: 3.5.2(ajv@6.12.6)
 
-  /schema-utils@4.0.0:
-    resolution: {integrity: sha512-1edyXKgh6XnJsJSQ8mKWXnN/BVaIbFMLpouRUrXgVq7WYne5kw3MW7UPhO44uRXQSIpTSXoJbmrR2X0w9kUTyg==}
+  /schema-utils@4.0.1:
+    resolution: {integrity: sha512-lELhBAAly9NowEsX0yZBlw9ahZG+sK/1RJ21EpzdYHKEs13Vku3LJ+MIPhh4sMs0oCCeufZQEQbMekiA4vuVIQ==}
     engines: {node: '>= 12.13.0'}
     dependencies:
       '@types/json-schema': 7.0.11
@@ -15293,7 +15291,7 @@ packages:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.18
       jest-worker: 27.5.1
-      schema-utils: 3.1.1
+      schema-utils: 3.1.2
       serialize-javascript: 6.0.1
       terser: 5.16.9
       webpack: 5.79.0(webpack-cli@5.0.1)
@@ -15618,52 +15616,52 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-carbon-ads@1.2.0(typedoc@0.24.1):
+  /typedoc-plugin-carbon-ads@1.2.0(typedoc@0.24.4):
     resolution: {integrity: sha512-+SfgCRjPYF0gUh65zkwAJkUFcK9g/M0HGOHSZToMOLlPOKU6S47TWy45Wb+g8TW5QqMDgEIoGR45K2uQLQAGJg==}
     peerDependencies:
       typedoc: ^0.24.1
     dependencies:
-      typedoc: 0.24.1(typescript@5.0.4)
+      typedoc: 0.24.4(typescript@5.0.4)
       typescript: 5.0.4
     dev: true
 
-  /typedoc-plugin-clarity@1.2.0(typedoc@0.24.1):
+  /typedoc-plugin-clarity@1.2.0(typedoc@0.24.4):
     resolution: {integrity: sha512-Rao0X4baV5iVg9RAY4dczpmXlkentGSsx7gWzuyZss6gb0x+tIrt+swNw0CPyqjqFB12ZIiErS/3bpaGk1BxGg==}
     peerDependencies:
       typedoc: ^0.24.1
     dependencies:
-      typedoc: 0.24.1(typescript@5.0.4)
+      typedoc: 0.24.4(typescript@5.0.4)
       typescript: 5.0.4
     dev: true
 
-  /typedoc-plugin-coverage@2.0.0(typedoc@0.24.1):
-    resolution: {integrity: sha512-IJsYW0SvV2RUWfUBWuCG2cXTv+FiPDlls9+JlUlct3N41c1hV01ZOLKmZpEVelrvNSU3SnxxA8mkct3BQm2v0g==}
+  /typedoc-plugin-coverage@2.0.1(typedoc@0.24.4):
+    resolution: {integrity: sha512-p7KHspOUohOZ2JU4bjEXFdGxeZNwJ6vMhgK+/QoyKcBcPfKKJYweNi3TNuKJz2AuISf2TWFJJhIxG8huMhHVLg==}
     engines: {node: '>= 14'}
     peerDependencies:
-      typedoc: ^0.22.12 || 0.23.x
+      typedoc: ^0.22.12 || 0.23.x || 0.24.x
     dependencies:
-      typedoc: 0.24.1(typescript@5.0.4)
+      typedoc: 0.24.4(typescript@5.0.4)
     dev: true
 
-  /typedoc-plugin-keyword@1.2.0(typedoc@0.24.1):
+  /typedoc-plugin-keyword@1.2.0(typedoc@0.24.4):
     resolution: {integrity: sha512-K54SnWM3IP2xh9M2e8srELEFe0/vAKKqmNgAlv1sy/V3CiXMjAVT78jKJA8vNSUGsXgz1jHyQsS/DvewDH4vVw==}
     peerDependencies:
       typedoc: ^0.24.1
     dependencies:
-      typedoc: 0.24.1(typescript@5.0.4)
+      typedoc: 0.24.4(typescript@5.0.4)
       typescript: 5.0.4
     dev: true
 
-  /typedoc-plugin-missing-exports@2.0.0(typedoc@0.24.1):
+  /typedoc-plugin-missing-exports@2.0.0(typedoc@0.24.4):
     resolution: {integrity: sha512-t0QlKCm27/8DaheJkLo/gInSNjzBXgSciGhoLpL6sLyXZibm7SuwJtHvg4qXI2IjJfFBgW9mJvvszpoxMyB0TA==}
     peerDependencies:
       typedoc: 0.24.x
     dependencies:
-      typedoc: 0.24.1(typescript@5.0.4)
+      typedoc: 0.24.4(typescript@5.0.4)
     dev: true
 
-  /typedoc@0.24.1(typescript@5.0.4):
-    resolution: {integrity: sha512-u4HwjZcSQhQSkkhLjgcs0ooAf6HrFVLDHHrwU2xZW8WxH0KnGZlNkaWxiOcK5Gagj7mxJSgwWx0dv8ACDAOXAQ==}
+  /typedoc@0.24.4(typescript@5.0.4):
+    resolution: {integrity: sha512-vQuliyGhJEGeKzzCFHbkS3m0gHoIL6cfr0fHf6eX658iGELtq2J9mWe0b+X5McEYgFoMuHFt5Py3Zug6Sxjn/Q==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
@@ -15671,7 +15669,7 @@ packages:
     dependencies:
       lunr: 2.3.9
       marked: 4.3.0
-      minimatch: 7.4.6
+      minimatch: 9.0.0
       shiki: 0.14.1
       typescript: 5.0.4
     dev: true
@@ -15818,8 +15816,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /update-browserslist-db@1.0.10(browserslist@4.21.5):
-    resolution: {integrity: sha512-OztqDenkfFkbSG+tRxBeAnCVPckDBcvibKd35yDONx6OU8N7sqgwc7rCbkJ/WcYtVRZ4ba68d6byhC21GFh7sQ==}
+  /update-browserslist-db@1.0.11(browserslist@4.21.5):
+    resolution: {integrity: sha512-dCwEFf0/oT85M1fHBg4F0jtLwJrutGoHSQXCh7u4o2t1drG+c0a9Flnqww6XUKSfQMPpJBRjU8d4RXB09qtvaA==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
@@ -15986,7 +15984,7 @@ packages:
       '@webpack-cli/configtest': 2.0.1(webpack-cli@5.0.1)(webpack@5.79.0)
       '@webpack-cli/info': 2.0.1(webpack-cli@5.0.1)(webpack@5.79.0)
       '@webpack-cli/serve': 2.0.1(webpack-cli@5.0.1)(webpack@5.79.0)
-      colorette: 2.0.19
+      colorette: 2.0.20
       commander: 9.5.0
       cross-spawn: 7.0.3
       envinfo: 7.8.1
@@ -16038,7 +16036,7 @@ packages:
       loader-runner: 4.3.0
       mime-types: 2.1.35
       neo-async: 2.6.2
-      schema-utils: 3.1.1
+      schema-utils: 3.1.2
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.7(webpack@5.79.0)
       watchpack: 2.4.0
