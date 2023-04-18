@@ -3,8 +3,8 @@ import type { Engine } from "tsparticles-engine";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
-export function loadCogShape(engine: Engine): void {
-    engine.addShape("cog", new CogDrawer());
+export async function loadCogShape(engine: Engine): Promise<void> {
+    await engine.addShape("cog", new CogDrawer());
 }

@@ -3,8 +3,8 @@ import { GradientUpdater } from "./GradientUpdater";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
-export function loadGradientUpdater(engine: Engine): void {
+export async function loadGradientUpdater(engine: Engine): Promise<void> {
     engine.addParticleUpdater("gradient", () => new GradientUpdater());
 }

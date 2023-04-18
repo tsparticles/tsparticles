@@ -3,7 +3,7 @@ import { EasingType, addEasing } from "tsparticles-engine";
 /**
  *
  */
-export function loadEasingExpoPlugin(): void {
+export async function loadEasingExpoPlugin(): Promise<void> {
     addEasing(EasingType.easeInExpo, (value) => (!value ? 0 : 2 ** (10 * value - 10)));
     addEasing(EasingType.easeOutExpo, (value) => (value === 1 ? 1 : 1 - Math.pow(2, -10 * value)));
     addEasing(EasingType.easeInOutExpo, (value) =>

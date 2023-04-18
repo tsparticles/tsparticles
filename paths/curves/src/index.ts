@@ -7,6 +7,6 @@ export const curvesPathName = "curvesPathGenerator";
  *
  * @param engine
  */
-export function loadCurvesPath(engine: Engine): void {
-    engine.addPathGenerator(curvesPathName, new CurvesPathGenerator());
+export async function loadCurvesPath(engine: Engine): Promise<void> {
+    await engine.addPathGenerator(curvesPathName, new CurvesPathGenerator());
 }

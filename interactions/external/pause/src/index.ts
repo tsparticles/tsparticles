@@ -5,6 +5,6 @@ import { Pauser } from "./Pauser";
  *
  * @param engine
  */
-export function loadExternalPauseInteraction(engine: Engine): void {
-    engine.addInteractor("externalPause", (container) => new Pauser(container));
+export async function loadExternalPauseInteraction(engine: Engine): Promise<void> {
+    await engine.addInteractor("externalPause", (container) => new Pauser(container));
 }

@@ -22,9 +22,11 @@ const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>();
  * @param easing -
  */
 export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
-    if (!easings.get(name)) {
-        easings.set(name, easing);
+    if (easings.get(name)) {
+        return;
     }
+
+    easings.set(name, easing);
 }
 
 /**

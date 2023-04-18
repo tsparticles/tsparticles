@@ -3,8 +3,8 @@ import { SpiralDrawer } from "./SpiralDrawer";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
-export function loadSpiralShape(engine: Engine): void {
+export async function loadSpiralShape(engine: Engine): Promise<void> {
     engine.addShape("spiral", new SpiralDrawer());
 }

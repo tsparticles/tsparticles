@@ -3,8 +3,8 @@ import { OrbitUpdater } from "./OrbitUpdater";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
-export function loadOrbitUpdater(engine: Engine): void {
+export async function loadOrbitUpdater(engine: Engine): Promise<void> {
     engine.addParticleUpdater("orbit", (container) => new OrbitUpdater(container));
 }

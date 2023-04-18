@@ -3,8 +3,8 @@ import { Repulser } from "./Repulser";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
-export function loadParticlesRepulseInteraction(engine: Engine): void {
+export async function loadParticlesRepulseInteraction(engine: Engine): Promise<void> {
     engine.addInteractor("particlesRepulse", (container) => new Repulser(container));
 }

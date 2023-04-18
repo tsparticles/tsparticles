@@ -3,8 +3,8 @@ import { RoundedRectDrawer } from "./RoundedRectDrawer";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
-export function loadRoundedRectShape(engine: Engine): void {
+export async function loadRoundedRectShape(engine: Engine): Promise<void> {
     engine.addShape("rounded-rect", new RoundedRectDrawer());
 }
