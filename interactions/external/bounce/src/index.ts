@@ -2,7 +2,6 @@ import { Bouncer } from "./Bouncer";
 import type { Engine } from "tsparticles-engine";
 
 /**
- *
  * @param engine
  */
 export async function loadExternalBounceInteraction(engine: Engine): Promise<void> {

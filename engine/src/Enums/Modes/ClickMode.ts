@@ -1,5 +1,4 @@
 /**
- 
  */
 export const enum ClickMode {
     attract = "attract",

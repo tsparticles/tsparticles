@@ -17,7 +17,6 @@ import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 
 /**
- 
  */
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];

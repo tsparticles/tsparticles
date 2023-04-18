@@ -1,7 +1,6 @@
 /**
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the {@link Loader} class for initializing {@link Container} instances
- *
  */
 import type {
     ShapeDrawerAfterEffectFunction,
@@ -40,7 +39,6 @@ declare global {
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the Loader class for initializing {@link Container} instances,
  * and for Plugins class responsible for every external feature
- *
  */
 export class Engine {
     /**
@@ -63,7 +61,6 @@ export class Engine {
 
     /**
      * Contains the {@link Loader} engine instance
-     *
      * @internal
      */
     private readonly _loader: Loader;
@@ -108,7 +105,6 @@ export class Engine {
 
     /**
      * Adds a listener to the specified event
-     *
      * @param type - The event to listen to
      * @param listener - The listener of the specified event
      */
@@ -117,7 +113,6 @@ export class Engine {
     }
 
     /**
-     *
      * @param name -
      * @param interactorInitializer -
      */
@@ -134,7 +129,6 @@ export class Engine {
     }
 
     /**
-     *
      * @param name -
      * @param updaterInitializer -
      */
@@ -149,7 +143,6 @@ export class Engine {
 
     /**
      * addPathGenerator adds a named path generator to tsParticles, this can be called by options
-     *
      * @param name - the path generator name
      * @param generator - the path generator object
      */
@@ -161,7 +154,6 @@ export class Engine {
 
     /**
      * addPlugin adds plugin to tsParticles, if an instance needs it it will be loaded
-     *
      * @param plugin - the plugin implementation of {@link IPlugin}
      */
     async addPlugin(plugin: IPlugin): Promise<void> {
@@ -172,7 +164,6 @@ export class Engine {
 
     /**
      * addPreset adds preset to tsParticles, it will be available to all future instances created
-     *
      * @param preset - the preset name
      * @param options - the options to add to the preset
      * @param override - if true, the preset will override any existing with the same name
@@ -185,7 +176,6 @@ export class Engine {
 
     /**
      * addShape adds shape to tsParticles, it will be available to all future instances created
-     *
      * @param shape - the shape name
      * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
      * @param init - Optional: the shape drawer init function, used only if the drawer parameter is a function
@@ -219,7 +209,6 @@ export class Engine {
 
     /**
      * Dispatches an event that will be listened from listeners
-     *
      * @param type - The event to dispatch
      * @param args - The event parameters
      */
@@ -229,7 +218,6 @@ export class Engine {
 
     /**
      * All the {@link Container} objects loaded
-     *
      * @returns All the {@link Container} objects loaded
      */
     dom(): Container[] {
@@ -238,7 +226,6 @@ export class Engine {
 
     /**
      * Retrieves a {@link Container} from all the objects loaded
-     *
      * @param index - The object index
      * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
      */
@@ -264,7 +251,6 @@ export class Engine {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     *
      * @param tagId - The particles container element id
      * @param options - The options object to initialize the {@link Container}
      * @returns A Promise with the {@link Container} object created
@@ -278,7 +264,6 @@ export class Engine {
 
     /**
      * Loads an options object from the provided array to create a {@link Container} object.
-     *
      * @param tagId - The particles container element id
      * @param options - The options array to get the item from
      * @param index - If provided gets the corresponding item from the array
@@ -295,7 +280,6 @@ export class Engine {
     /**
      * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     *
      * @param tagId - the particles container element id
      * @param pathConfigJson - the json path (or paths array) to use in the GET request
      * @param index - the index of the paths array, if a single path is passed this value is ignored
@@ -320,7 +304,6 @@ export class Engine {
 
     /**
      * Removes a listener from the specified event
-     *
      * @param type - The event to stop listening to
      * @param listener - The listener of the specified event
      */
@@ -330,7 +313,6 @@ export class Engine {
 
     /**
      * Loads the provided option to create a {@link Container} object using the element parameter as a container
-     *
      * @param id - The particles container id
      * @param element - The dom element used to contain the particles
      * @param options - The options object to initialize the {@link Container}
@@ -345,7 +327,6 @@ export class Engine {
 
     /**
      * Loads the provided option to create a {@link Container} object using the element parameter as a container
-     *
      * @param id - The particles container id
      * @param element - The dom element used to contain the particles
      * @param pathConfigJson - the json path (or paths array) to use in the GET request
@@ -363,7 +344,6 @@ export class Engine {
 
     /**
      * Adds an additional click handler to all the loaded {@link Container} objects.
-     *
      * @param callback - The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {

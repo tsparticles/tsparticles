@@ -4,7 +4,6 @@ import { PerlinNoiseGenerator } from "./PerlinNoiseGenerator";
 export const perlinNoisePathName = "perlinNoise";
 
 /**
- *
  * @param engine -
  */
 export async function loadPerlinNoisePath(engine: Engine): Promise<void> {

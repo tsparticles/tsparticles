@@ -32,7 +32,6 @@ type LinkParticle = Particle & {
 
 /**
  * Draws a grab line between two points using canvas API in the given context.
- *
  * @param context - The canvas context to draw on.
  * @param width - The width of the line.
  * @param begin - The first position of the line.
@@ -56,7 +55,6 @@ export function drawGrabLine(
 }
 
 /**
- *
  * @param container
  * @param particle
  * @param lineColor
@@ -79,7 +77,6 @@ function drawGrab(
 
 /**
  * Particle grab manager
- *
  */
 export class Grabber extends ExternalInteractorBase<GrabContainer> {
     constructor(container: GrabContainer) {

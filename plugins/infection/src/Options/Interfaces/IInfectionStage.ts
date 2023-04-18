@@ -6,7 +6,6 @@ import type { IOptionsColor } from "tsparticles-engine";
 export interface IInfectionStage {
     /**
      * Infection stage particle color
-     *
      */
     color: string | IOptionsColor;
 

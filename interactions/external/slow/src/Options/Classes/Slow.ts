@@ -2,7 +2,6 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { ISlow } from "../Interfaces/ISlow";
 
 /**
- 
  */
 export class Slow implements ISlow, IOptionLoader<ISlow> {
     factor;

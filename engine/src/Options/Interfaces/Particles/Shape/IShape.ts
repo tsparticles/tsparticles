@@ -7,7 +7,6 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles/Shape.md]]
- *
  */
 export interface IShape {
     /**

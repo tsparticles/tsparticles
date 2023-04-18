@@ -8,7 +8,6 @@ import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Div.md]]
- *
  */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
@@ -34,7 +33,6 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     *
      * @deprecated this property is obsolete, please use the new selectors
      * @returns the element id
      */
@@ -44,7 +42,6 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     *
      * @deprecated this property is obsolete, please use the new selectors
      * @param value -
      */
@@ -54,7 +51,6 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     *
      * @deprecated this property is obsolete, please use the new selectors
      * @returns the element id
      */
@@ -64,7 +60,6 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     *
      * @deprecated this property is obsolete, please use the new selectors
      * @param value -
      */
@@ -74,7 +69,6 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     *
      * @deprecated this property is obsolete, please use the new ids
      * @returns the element id
      */
@@ -87,7 +81,6 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
-     *
      * @deprecated this property is obsolete, please use the new ids
      * @param value -
      */

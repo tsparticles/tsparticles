@@ -35,7 +35,6 @@ export interface IRangeColor {
 }
 
 /**
- 
  */
 export interface IHsl {
     /**
@@ -55,7 +54,6 @@ export interface IHsl {
 }
 
 /**
- 
  */
 export interface IRangeHsl {
     /**
@@ -75,12 +73,10 @@ export interface IRangeHsl {
 }
 
 /**
- 
  */
 export interface IHsla extends IHsl, IAlphaColor {}
 
 /**
- 
  */
 export interface IHsv {
     /**
@@ -100,7 +96,6 @@ export interface IHsv {
 }
 
 /**
- 
  */
 export interface IRangeHsv {
     /**
@@ -122,7 +117,6 @@ export interface IRangeHsv {
 export interface IHsva extends IHsv, IAlphaColor {}
 
 /**
- 
  */
 export interface IRgb {
     /**
@@ -142,7 +136,6 @@ export interface IRgb {
 }
 
 /**
- 
  */
 export interface IRangeRgb {
     /**
@@ -162,12 +155,10 @@ export interface IRangeRgb {
 }
 
 /**
- 
  */
 export interface IRgba extends IRgb, IAlphaColor {}
 
 /**
- 
  */
 export interface IValueColor {
     /**
@@ -187,7 +178,6 @@ export interface IValueColor {
 }
 
 /**
- 
  */
 export interface IRangeValueColor {
     /**

@@ -1,7 +1,6 @@
 import type { IGrabLinks } from "./IGrabLinks";
 
 /**
- 
  */
 export interface IGrab {
     distance: number;

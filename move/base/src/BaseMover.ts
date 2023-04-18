@@ -13,11 +13,9 @@ import type { MoveParticle } from "./Types";
 const diffFactor = 2;
 
 /**
- *
  */
 export class BaseMover implements IParticleMover {
     /**
-     *
      * @param particle -
      */
     init(particle: MoveParticle): void {
@@ -34,7 +32,6 @@ export class BaseMover implements IParticleMover {
     }
 
     /**
-     *
      * @param particle -
      * @returns check if mover is enabled
      */
@@ -43,7 +40,6 @@ export class BaseMover implements IParticleMover {
     }
 
     /**
-     *
      * @param particle -
      * @param delta -
      */
@@ -120,7 +116,6 @@ export class BaseMover implements IParticleMover {
     }
 
     /**
-     *
      * @param particle -
      */
     private _initSpin(particle: MoveParticle): void {

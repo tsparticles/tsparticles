@@ -4,7 +4,6 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Interactivity/Div.md]]
- *
  */
 export interface IDivEvent {
     /**

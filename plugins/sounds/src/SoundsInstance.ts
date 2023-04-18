@@ -14,7 +14,6 @@ import type { SoundsNote } from "./Options/Classes/SoundsNote";
 import { getNoteFrequency } from "./utils";
 
 /**
- *
  * @param icon
  * @param top
  * @param left

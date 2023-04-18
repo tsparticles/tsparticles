@@ -3,7 +3,6 @@ import type { IDelta } from "../Interfaces/IDelta";
 import { errorPrefix } from "./Constants";
 
 /**
- *
  * @param value -
  * @param fpsLimit -
  * @param smooth -
@@ -17,7 +16,6 @@ function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
 }
 
 /**
- 
  */
 export class FrameManager {
     constructor(private readonly container: Container) {}
@@ -25,7 +23,6 @@ export class FrameManager {
     /**
      * Handles the rAF method preparing the next animation frame to be drawn
      * limiting it if it's needed by the current configuration
-     *
      * @param timestamp - the new frame timestamp
      */
     async nextFrame(timestamp: DOMHighResTimeStamp): Promise<void> {

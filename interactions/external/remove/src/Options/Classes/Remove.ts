@@ -2,7 +2,6 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IRemove } from "../Interfaces/IRemove";
 
 /**
- 
  */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
     quantity;
@@ -12,7 +11,6 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
      */
     get particles_nb(): number {
@@ -20,7 +18,6 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
      * @param value
      */

@@ -2,7 +2,6 @@ import type { IMotionReduce } from "./IMotionReduce";
 
 /**
  * [[include:Options/Motion.md]]
- *
  */
 export interface IMotion {
     /**

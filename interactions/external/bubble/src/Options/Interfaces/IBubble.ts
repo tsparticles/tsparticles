@@ -3,7 +3,6 @@ import type { IBubbleDiv } from "./IBubbleDiv";
 import type { SingleOrMultiple } from "tsparticles-engine";
 
 /**
- 
  */
 export interface IBubble extends IBubbleBase {
     divs?: SingleOrMultiple<IBubbleDiv>;

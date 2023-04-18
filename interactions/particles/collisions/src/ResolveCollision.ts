@@ -4,7 +4,6 @@ import { bounce } from "./Bounce";
 import { destroy } from "./Destroy";
 
 /**
- *
  * @param p1
  * @param p2
  * @param delta

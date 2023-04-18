@@ -2,7 +2,6 @@ import type { Engine } from "tsparticles-engine";
 import { Grabber } from "./Grabber";
 
 /**
- *
  * @param engine
  */
 export async function loadExternalGrabInteraction(engine: Engine): Promise<void> {

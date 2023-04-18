@@ -1,7 +1,6 @@
 import type { ICardsPath, IPath } from "./ICardsPath";
 
 /**
- *
  * @param ctx
  * @param radius
  * @param path

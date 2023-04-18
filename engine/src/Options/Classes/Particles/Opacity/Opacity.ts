@@ -7,7 +7,6 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Opacity.md]]
- *
  */
 export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
     animation;
@@ -20,7 +19,6 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new animation
      * @returns the opacity animation object
      */
@@ -29,7 +27,6 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new animation
      * @param value -
      */

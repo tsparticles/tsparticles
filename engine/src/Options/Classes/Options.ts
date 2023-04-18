@@ -25,7 +25,6 @@ interface DefaultThemes {
 
 /**
  * [[include:Options.md]]
- *
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
     [name: string]: unknown;
@@ -104,7 +103,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new fpsLimit
      * @param value -
      */
@@ -130,7 +128,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     /**
      * This methods loads the source object in the current instance
-     *
      * @param data - the source data to load into the instance
      */
     load(data?: RecursivePartial<IOptions>): void {

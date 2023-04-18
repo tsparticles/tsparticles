@@ -1,12 +1,10 @@
 import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } from "tsparticles-engine";
 
 /**
- 
  */
 export class CircleWarp extends Circle {
     /**
      * Circle constructor, initialized position and radius
-     *
      * @param x - X coordinate of the position
      * @param y - Y coordinate of the position
      * @param radius - Circle's radius
@@ -20,7 +18,6 @@ export class CircleWarp extends Circle {
 
     /**
      * Check if the given point is inside the circle
-     *
      * @param point - the point to check
      * @returns true or false, checking if the given point is inside the circle
      */
@@ -57,7 +54,6 @@ export class CircleWarp extends Circle {
 
     /**
      * Check if the given range intersects the circle
-     *
      * @param range - the range to check
      * @returns true or false, checking if the range is intersecting with the circle
      */

@@ -12,7 +12,6 @@ import {
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
 /**
- *
  * @param context
  * @param width
  * @param begin
@@ -130,7 +129,6 @@ export function drawLinkLine(
 }
 
 /**
- *
  * @param context
  * @param pos1
  * @param pos2

@@ -7,7 +7,6 @@ import type { Particle } from "../Particle";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
- 
  */
 export interface IExternalInteractor extends IInteractor {
     handleClickMode?: (mode: ClickMode | string) => void;

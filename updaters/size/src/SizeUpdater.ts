@@ -9,7 +9,6 @@ import {
 } from "tsparticles-engine";
 
 /**
- *
  * @param particle
  * @param value
  * @param minValue
@@ -31,7 +30,6 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
 }
 
 /**
- *
  * @param particle
  * @param delta
  */

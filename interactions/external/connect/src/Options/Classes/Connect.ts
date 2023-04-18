@@ -3,7 +3,6 @@ import { ConnectLinks } from "./ConnectLinks";
 import type { IConnect } from "../Interfaces/IConnect";
 
 /**
- 
  */
 export class Connect implements IConnect, IOptionLoader<IConnect> {
     distance;
@@ -17,7 +16,6 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      */
     get lineLinked(): ConnectLinks {
@@ -25,7 +23,6 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
@@ -34,7 +31,6 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      */
     get line_linked(): ConnectLinks {
@@ -42,7 +38,6 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */

@@ -4,7 +4,6 @@ import type {
 } from "../../Enums/PolygonMaskInlineArrangement";
 
 /**
- 
  */
 export interface IPolygonMaskInline {
     arrangement:

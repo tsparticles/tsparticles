@@ -16,7 +16,6 @@ import { Links } from "./Options/Classes/Links";
 import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
 
 /**
- *
  * @param pos1
  * @param pos2
  * @param optDistance

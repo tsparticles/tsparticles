@@ -2,7 +2,6 @@ import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
 import { errorPrefix } from "./Constants";
 
 /**
- 
  */
 export class Vector3d implements ICoordinates3d {
     /**
@@ -22,7 +21,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Vector3d constructor, creating an instance with the given coordinates
-     *
      * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
      * @param y - Y coordinate
      * @param z - Z coordinate
@@ -47,7 +45,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * A new vector, with coordinates in the origin point
-     *
      * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector3d {
@@ -56,7 +53,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Returns the current vector angle, based on x,y values
-     *
      * @returns the current vector angle, based on x,y values
      */
     get angle(): number {
@@ -65,7 +61,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Sets the x,y values using an angle, length must be greater than 0
-     *
      * @param angle - the angle to set
      */
     set angle(angle: number) {
@@ -74,7 +69,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Returns the current vector length, based on x,y values
-     *
      * @returns the current vector length, based on x,y values
      */
     get length(): number {
@@ -83,7 +77,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Sets the x,y values using the length
-     *
      * @param length - the length to set
      */
     set length(length: number) {
@@ -92,7 +85,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Clones the given vector
-     *
      * @param source - the vector to clone
      * @returns a new vector instance, created from the given one
      */
@@ -102,7 +94,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Creates a new vector instance
-     *
      * @param x - X coordinate
      * @param y - Y coordinate
      * @param z - Z coordinate
@@ -114,7 +105,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Adds the current and the given vector together, without modifying them
-     *
      * @param v - the vector used for the sum operation
      * @returns the sum vector
      */
@@ -124,7 +114,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Adds the given vector to the current one, modifying it
-     *
      * @param v - the vector to add to the current one
      */
     addTo(v: Vector3d): void {
@@ -135,7 +124,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Copies the current vector, cloning it
-     *
      * @returns the cloned current vector
      */
     copy(): Vector3d {
@@ -144,7 +132,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Calculates the distance between the current vector and the given one
-     *
      * @param v - the vector used for calculating the distance from the current one
      * @returns the distance between the vectors
      */
@@ -154,7 +141,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Get the distance squared between two vectors
-     *
      * @param v - the vector used for calculating the distance from the current one
      * @returns the distance squared between the vectors
      */
@@ -164,7 +150,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Divides the given scalar and the current vector together, without modifying it
-     *
      * @param n - the scalar value to divide from the current vector
      * @returns the divided vector
      */
@@ -174,7 +159,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Divides the given scalar from the current vector, modifying it
-     *
      * @param n - the scalar value to divide from the current vector
      */
     divTo(n: number): void {
@@ -185,7 +169,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Get the squared length value
-     *
      * @returns the squared length value
      */
     getLengthSq(): number {
@@ -194,7 +177,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Multiplies the given scalar and the current vector together, without modifying it
-     *
      * @param n - the scalar value to multiply to the vector
      * @returns the multiplied vector
      */
@@ -204,7 +186,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Multiplies the given scalar to the current vector, modifying it
-     *
      * @param n - the scalar value to multiply to the vector
      */
     multTo(n: number): void {
@@ -215,7 +196,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Creates a new vector, rotating the current one, without modifying it
-     *
      * @param angle - the rotation angle
      * @returns the rotated vector
      */
@@ -229,7 +209,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Set the vector to the specified velocity
-     *
      * @param c - the coordinates used to set the current vector
      */
     setTo(c: ICoordinates): void {
@@ -243,7 +222,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Subtracts the current and the given vector together, without modifying them
-     *
      * @param v - the vector used for the subtract operation
      * @returns the subtracted vector
      */
@@ -253,7 +231,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Subtracts the given vector from the current one, modifying it
-     *
      * @param v - the vector to subtract from the current one
      */
     subFrom(v: Vector3d): void {
@@ -264,7 +241,6 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Updates the current vector, using angle and length values, instead of x and y
-     *
      * @param angle - the new angle
      * @param length - the new length
      * @internal

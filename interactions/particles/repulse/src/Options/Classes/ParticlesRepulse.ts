@@ -8,7 +8,6 @@ import {
 import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse";
 
 /**
- 
  */
 export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepulse, IOptionLoader<IParticlesRepulse> {
     distance: RangeValue;

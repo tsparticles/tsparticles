@@ -30,7 +30,6 @@ interface IParticlesFrequencies {
 }
 
 /**
- *
  * @param ids
  */
 function getLinkKey(ids: number[]): string {
@@ -40,7 +39,6 @@ function getLinkKey(ids: number[]): string {
 }
 
 /**
- *
  * @param particles
  * @param dictionary
  */

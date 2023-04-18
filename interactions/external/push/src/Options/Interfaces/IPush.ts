@@ -1,5 +1,4 @@
 /**
- 
  */
 export interface IPush {
     default: boolean;

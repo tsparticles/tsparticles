@@ -2,7 +2,6 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IMotionReduce } from "../Interfaces/IMotionReduce";
 
 /**
- 
  */
 export class MotionReduce implements IMotionReduce, IOptionLoader<IMotionReduce> {
     /**

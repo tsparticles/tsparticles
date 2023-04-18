@@ -1,7 +1,6 @@
 import { EasingType, addEasing } from "tsparticles-engine";
 
 /**
- *
  */
 export async function loadEasingCubicPlugin(): Promise<void> {
     addEasing(EasingType.easeInCubic, (value) => value ** 3);

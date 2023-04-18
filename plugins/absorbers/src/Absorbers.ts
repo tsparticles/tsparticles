@@ -14,7 +14,6 @@ import { AbsorberInstance } from "./AbsorberInstance";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 
 /**
- 
  */
 export class Absorbers implements IContainerPlugin {
     absorbers: SingleOrMultiple<Absorber>;

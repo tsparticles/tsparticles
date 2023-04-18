@@ -2,7 +2,6 @@ import { Connector } from "./Connector";
 import type { Engine } from "tsparticles-engine";
 
 /**
- *
  * @param engine
  */
 export async function loadExternalConnectInteraction(engine: Engine): Promise<void> {

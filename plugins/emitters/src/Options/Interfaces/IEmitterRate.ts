@@ -1,6 +1,5 @@
 /**
  * The particles emitter rate options
- *
  */
 import type { RangeValue } from "tsparticles-engine";
 

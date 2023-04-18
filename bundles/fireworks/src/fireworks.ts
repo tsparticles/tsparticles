@@ -71,7 +71,6 @@ class FireworksInstance {
 }
 
 /**
- *
  */
 async function initPlugins(): Promise<void> {
     if (initialized) {
@@ -112,7 +111,6 @@ async function initPlugins(): Promise<void> {
 }
 
 /**
- *
  * @param idOrOptions - the id used for displaying the animation, or the animation configuration if an id is not necessary
  * @param sourceOptions - the animation configuration if an id is provided
  */

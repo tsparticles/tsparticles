@@ -1,5 +1,4 @@
 /**
- 
  */
 export const enum DivMode {
     bounce = "bounce",

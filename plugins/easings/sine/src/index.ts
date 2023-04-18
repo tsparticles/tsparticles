@@ -1,7 +1,6 @@
 import { EasingType, addEasing } from "tsparticles-engine";
 
 /**
- *
  */
 export async function loadEasingSinePlugin(): Promise<void> {
     addEasing(EasingType.easeInSine, (value) => 1 - Math.cos((value * Math.PI) / 2));

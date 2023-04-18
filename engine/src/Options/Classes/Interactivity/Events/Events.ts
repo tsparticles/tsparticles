@@ -10,7 +10,6 @@ import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
- *
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
     onClick;
@@ -26,7 +25,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onClick
      * @returns the onClick event
      */
@@ -35,7 +33,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onClick
      * @param value -
      */
@@ -44,7 +41,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onDiv
      * @returns the onDiv event
      */
@@ -53,7 +49,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onDiv
      * @param value -
      */
@@ -62,7 +57,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onHover
      * @returns the onHover event
      */
@@ -71,7 +65,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onHover
      * @param value -
      */

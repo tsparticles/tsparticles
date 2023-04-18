@@ -2,7 +2,6 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IPush } from "../Interfaces/IPush";
 
 /**
- 
  */
 export class Push implements IPush, IOptionLoader<IPush> {
     default;
@@ -16,7 +15,6 @@ export class Push implements IPush, IOptionLoader<IPush> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
      */
     get particles_nb(): number {
@@ -24,7 +22,6 @@ export class Push implements IPush, IOptionLoader<IPush> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
      * @param value
      */

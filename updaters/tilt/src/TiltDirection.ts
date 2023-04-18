@@ -1,5 +1,4 @@
 /**
- 
  */
 export const enum TiltDirection {
     clockwise = "clockwise",

@@ -12,7 +12,6 @@ import {
 } from "tsparticles-engine";
 
 /**
- *
  * @param delta
  * @param value
  * @param valueAnimation
@@ -83,7 +82,6 @@ function updateColorValue(
 }
 
 /**
- *
  * @param particle
  * @param delta
  */

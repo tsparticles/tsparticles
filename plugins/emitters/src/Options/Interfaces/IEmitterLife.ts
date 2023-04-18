@@ -1,6 +1,5 @@
 /**
  * The particles emitter life options
- *
  */
 export interface IEmitterLife {
     /**

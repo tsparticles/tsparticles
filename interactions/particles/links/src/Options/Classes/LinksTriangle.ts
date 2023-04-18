@@ -2,7 +2,6 @@ import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparti
 import type { ILinksTriangle } from "../Interfaces/ILinksTriangle";
 
 /**
- 
  */
 export class LinksTriangle implements ILinksTriangle, IOptionLoader<ILinksTriangle> {
     color?: OptionsColor;

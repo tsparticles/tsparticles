@@ -19,7 +19,6 @@ import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 
 /**
  * Manage the given event listeners
- *
  * @param element - the event listener receiver
  * @param event - the event to listen
  * @param handler - the handler called once the event is triggered
@@ -68,7 +67,6 @@ type EventListenersHandlers = {
 
 /**
  * Particles container event listeners manager
- *
  */
 export class EventListeners {
     private canPush: boolean;
@@ -79,7 +77,6 @@ export class EventListeners {
 
     /**
      * Events listener constructor
-     *
      * @param container - the calling container
      */
     constructor(private readonly container: Container) {
@@ -118,7 +115,6 @@ export class EventListeners {
 
     /**
      * Mouse/Touch click/tap event implementation
-     *
      * @param e - the click event arguments
      */
     private doMouseTouchClick(e: Event): void {
@@ -148,7 +144,6 @@ export class EventListeners {
 
     /**
      * Handles click mode event
-     *
      * @param mode - Click mode type
      * @internal
      */
@@ -158,7 +153,6 @@ export class EventListeners {
 
     /**
      * Handle browser theme change
-     *
      * @param e - the media query event
      * @internal
      */
@@ -177,7 +171,6 @@ export class EventListeners {
 
     /**
      * Handles blur event
-     *
      * @internal
      */
     private handleVisibilityChange(): void {
@@ -207,7 +200,6 @@ export class EventListeners {
 
     /**
      * Handles window resize event
-     *
      * @internal
      */
     private handleWindowResize(): void {
@@ -226,7 +218,6 @@ export class EventListeners {
 
     /**
      * Initializing event listeners
-     *
      * @param add -
      */
     private manageListeners(add: boolean): void {
@@ -337,7 +328,6 @@ export class EventListeners {
 
     /**
      * Handle mouse down event
-     *
      * @internal
      */
     private mouseDown(): void {
@@ -353,7 +343,6 @@ export class EventListeners {
 
     /**
      * Mouse/Touch click/tap event
-     *
      * @param e - the click event arguments
      */
     private mouseTouchClick(e: Event): void {
@@ -413,7 +402,6 @@ export class EventListeners {
 
     /**
      * Mouse/Touch move event
-     *
      * @param e - the event arguments
      */
     private mouseTouchMove(e: Event): void {

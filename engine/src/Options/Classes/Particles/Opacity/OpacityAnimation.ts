@@ -6,7 +6,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { StartValueType } from "../../../../Enums/Types/StartValueType";
 
 /**
- 
  */
 export class OpacityAnimation extends AnimationOptions implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
     destroy: DestroyType | keyof typeof DestroyType;
@@ -28,7 +27,6 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new minimumValue
      * @returns the opacity minimum value
      */
@@ -37,7 +35,6 @@ export class OpacityAnimation extends AnimationOptions implements IOpacityAnimat
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new minimumValue
      * @param value -
      */

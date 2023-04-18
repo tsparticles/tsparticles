@@ -7,7 +7,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
- *
  */
 export class Modes implements IModes, IOptionLoader<IModes> {
     [name: string]: unknown;

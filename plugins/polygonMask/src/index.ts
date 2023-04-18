@@ -6,7 +6,6 @@ import { PolygonMaskInstance } from "./PolygonMaskInstance";
 import { PolygonMaskType } from "./Enums/PolygonMaskType";
 
 /**
- 
  */
 class PolygonMaskPlugin implements IPlugin {
     readonly id;
@@ -46,7 +45,6 @@ class PolygonMaskPlugin implements IPlugin {
 }
 
 /**
- *
  * @param engine
  */
 export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {

@@ -2,7 +2,6 @@ import type { IDimension, IOptionLoader, RecursivePartial, SingleOrMultiple } fr
 import type { IPolygonMaskLocalSvg } from "../Interfaces/IPolygonMaskLocalSvg";
 
 /**
- 
  */
 export class PolygonMaskLocalSvg implements IPolygonMaskLocalSvg, IOptionLoader<IPolygonMaskLocalSvg> {
     path: SingleOrMultiple<string>;

@@ -8,7 +8,6 @@ import { BubbleBase } from "./BubbleBase";
 import type { IBubbleDiv } from "../Interfaces/IBubbleDiv";
 
 /**
- 
  */
 export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<IBubbleDiv> {
     selectors: SingleOrMultiple<string>;

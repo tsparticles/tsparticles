@@ -24,7 +24,6 @@ const noPolygonDataLoaded = `${errorPrefix} No polygon data loaded.`,
 
 /**
  * Polygon Mask manager
- *
  */
 export class PolygonMaskInstance implements IContainerPlugin {
     dimension: IDimension;
@@ -259,7 +258,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
      * Android WebView release 62
      * Opera release 49
      * Opera for Android release 49
-     *
      * @param svgUrl
      * @param force
      */

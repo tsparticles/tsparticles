@@ -2,7 +2,6 @@ import { ColorUpdater } from "./ColorUpdater";
 import type { Engine } from "tsparticles-engine";
 
 /**
- *
  * @param engine
  */
 export async function loadColorUpdater(engine: Engine): Promise<void> {

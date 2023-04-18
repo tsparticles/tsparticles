@@ -3,7 +3,6 @@ import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove";
 import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType";
 
 /**
- 
  */
 export class PolygonMaskMove implements IPolygonMaskMove, IOptionLoader<IPolygonMaskMove> {
     radius;

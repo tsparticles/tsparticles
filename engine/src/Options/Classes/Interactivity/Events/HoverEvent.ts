@@ -7,7 +7,6 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Interactivity/Hover.md]]
- *
  */
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
     enable;

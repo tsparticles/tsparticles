@@ -2,7 +2,6 @@ import { Bubbler } from "./Bubbler";
 import type { Engine } from "tsparticles-engine";
 
 /**
- *
  * @param engine
  */
 export async function loadExternalBubbleInteraction(engine: Engine): Promise<void> {

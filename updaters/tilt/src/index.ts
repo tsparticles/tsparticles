@@ -2,7 +2,6 @@ import type { Engine } from "tsparticles-engine";
 import { TiltUpdater } from "./TiltUpdater";
 
 /**
- *
  * @param engine
  */
 export async function loadTiltUpdater(engine: Engine): Promise<void> {

@@ -1,7 +1,6 @@
 import type { IOptionsColor } from "tsparticles-engine";
 
 /**
- 
  */
 export interface IGrabLinks {
     blink: boolean;

@@ -15,7 +15,6 @@ import { Vector } from "../Core/Utils/Vector";
 
 /**
  * Calculates the bounce on a rectangle side
- *
  * @param pSide - particle bounce side
  * @param pOtherSide - particle bounce other side
  * @param rectSide - rectangle bounce side
@@ -56,7 +55,6 @@ function rectSideBounce(
 
 /**
  * Checks if the given selectors matches the element
- *
  * @param element - element to check
  * @param selectors - selectors to check
  * @returns true or false, if the selector has found something
@@ -71,7 +69,6 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
 
 /**
  * Checks if the script is executed server side
- *
  * @returns true if the environment is server side
  */
 export function isSsr(): boolean {
@@ -86,7 +83,6 @@ export function hasMatchMedia(): boolean {
 }
 
 /**
- *
  * @param query -
  * @returns the media query list, if supported
  */
@@ -100,7 +96,6 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 
 /**
  * Calls the requestAnimationFrame function or a polyfill
- *
  * @returns the animation callback id, so it can be canceled
  */
 export function animate(): (callback: FrameRequestCallback) => number {
@@ -111,7 +106,6 @@ export function animate(): (callback: FrameRequestCallback) => number {
 
 /**
  * Cancels the requestAnimationFrame function or a polyfill
- *
  * @returns the animation cancelling function
  */
 export function cancelAnimation(): (handle: number) => void {
@@ -122,7 +116,6 @@ export function cancelAnimation(): (handle: number) => void {
 
 /**
  * Checks if a value is equal to the destination, if same type, or is in the provided array
- *
  * @param value - the value to check
  * @param array - the data array or single value
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
@@ -133,7 +126,6 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 
 /**
  * Loads a font for the canvas
- *
  * @param font - font name
  * @param weight - font weight
  */
@@ -147,7 +139,6 @@ export async function loadFont(font?: string, weight?: string): Promise<void> {
 
 /**
  * Returns a random array index
- *
  * @param array - the array to get the index from
  * @returns a random array index
  */
@@ -157,7 +148,6 @@ export function arrayRandomIndex<T>(array: T[]): number {
 
 /**
  * Returns a random object from the given array
- *
  * @param array - the array to get the object from
  * @param index - the index to get the object from
  * @param useIndex - if true, the index will be used instead of a random index
@@ -169,7 +159,6 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 
 /**
  * Checks if the given point is inside the given rectangle
- *
  * @param point - the point to check
  * @param size - the rectangle size
  * @param offset - position offset
@@ -189,7 +178,6 @@ export function isPointInside(
 
 /**
  * Checks if the given shape bounds are inside the given rectangle
- *
  * @param bounds - the shape bounds to check
  * @param size - the rectangle size
  * @param offset - position offset
@@ -225,7 +213,6 @@ export function areBoundsInside(
 
 /**
  * Calculates the bounds of the given point
- *
  * @param point - the point to calculate the bounds from
  * @param radius - the point radius
  * @returns the bounds of the given point
@@ -241,7 +228,6 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
 
 /**
  * Merges the whole source objects into the destination object
- *
  * @param destination - the destination object
  * @param sources - the source objects
  * @returns the merged destination object
@@ -288,7 +274,6 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
 /**
  * Checks if the given div mode is enabled in the given div elements
- *
  * @param mode - the div mode to check
  * @param divs - the div elements to check
  * @returns true if the div mode is enabled
@@ -299,7 +284,6 @@ export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>
 
 /**
  * Execute the given callback if div mode in the given div elements is enabled
- *
  * @param mode - the div mode to check
  * @param divs - the div elements to check
  * @param callback - the callback to execute
@@ -321,7 +305,6 @@ export function divModeExecute(
 
 /**
  * Execute the given callback for the given div event
- *
  * @param div - the div event to execute the callback for
  * @param callback - the callback to execute
  */
@@ -335,7 +318,6 @@ export function singleDivModeExecute(div: DivEvent, callback: (selector: string,
 
 /**
  * Checks if the given element targets any of the div modes
- *
  * @param divs - the div elements to check
  * @param element - the element to check
  * @returns true if the element targets any of the div modes
@@ -352,7 +334,6 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
 
 /**
  * Returns circle bounce data for the given particle
- *
  * @param p - the particle to get the circle bounds data for
  * @returns the circle bounce data for the given particle
  */
@@ -368,7 +349,6 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
 
 /**
  * Executes the circle bounce between two particles
- *
  * @param p1 - the first particle
  * @param p2 - the second particle
  */
@@ -400,7 +380,6 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 
 /**
  * Executes the bounce between a particle and div bounds
- *
  * @param particle - the particle to bounce
  * @param divBounds - the div bounds to bounce
  */
@@ -472,7 +451,6 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
 }
 
 /**
- *
  * @param obj -
  * @param callback -
  * @returns the transformed SingleOrMultiple data
@@ -485,7 +463,6 @@ export function executeOnSingleOrMultiple<T, U = void>(
 }
 
 /**
- *
  * @param obj -
  * @param index -
  * @param useIndex -
@@ -496,7 +473,6 @@ export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: nu
 }
 
 /**
- *
  * @param obj -
  * @param callback -
  * @returns the item found, if present

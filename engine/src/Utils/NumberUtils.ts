@@ -17,7 +17,6 @@ let _random = Math.random;
 const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>();
 
 /**
- *
  * @param name -
  * @param easing -
  */
@@ -30,7 +29,6 @@ export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFuncti
 }
 
 /**
- *
  * @param name -
  * @returns the easing function
  */
@@ -40,7 +38,6 @@ export function getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
 
 /**
  * Replaces the library random function with a custom one.
- *
  * @param rnd - A random function that returns a number between 0 and 1.
  */
 export function setRandom(rnd: () => number = Math.random): void {
@@ -49,7 +46,6 @@ export function setRandom(rnd: () => number = Math.random): void {
 
 /**
  * Returns a random number between 0 and 1 using the library random function.
- *
  * @returns a random number between 0 and 1
  */
 export function getRandom(): number {
@@ -58,7 +54,6 @@ export function getRandom(): number {
 
 /**
  * Clamps a number between a minimum and maximum value
- *
  * @param num - the source number
  * @param min - the minimum value
  * @param max - the maximum value
@@ -69,7 +64,6 @@ export function clamp(num: number, min: number, max: number): number {
 }
 
 /**
- *
  * @param comp1 -
  * @param comp2 -
  * @param weight1 -
@@ -81,7 +75,6 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
 }
 
 /**
- *
  * @param r -
  * @returns the random value in the given range
  */
@@ -97,7 +90,6 @@ export function randomInRange(r: RangeValue): number {
 }
 
 /**
- *
  * @param value -
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
@@ -106,7 +98,6 @@ export function getRangeValue(value: RangeValue): number {
 }
 
 /**
- *
  * @param value -
  * @returns the minimum value of the range
  */
@@ -115,7 +106,6 @@ export function getRangeMin(value: RangeValue): number {
 }
 
 /**
- *
  * @param value -
  * @returns the maximum value of the range
  */
@@ -124,7 +114,6 @@ export function getRangeMax(value: RangeValue): number {
 }
 
 /**
- *
  * @param source -
  * @param value -
  * @returns the range value with the new value
@@ -146,7 +135,6 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 }
 
 /**
- *
  * @param options -
  * @returns the same as {@link getRangeValue}, since it calls that function, converting the parameters to a range value
  */
@@ -165,7 +153,6 @@ export function getValue(options: IValueWithRandom): number {
 
 /**
  * Gets the distance between two coordinates
- *
  * @param pointA - the first coordinate
  * @param pointB - the second coordinate
  * @returns the all the distance values between the two coordinates
@@ -179,7 +166,6 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
 
 /**
  * Gets the distance between two coordinates
- *
  * @param pointA - the first coordinate
  * @param pointB - the second coordinate
  * @returns the distance between the two coordinates
@@ -189,7 +175,6 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
 }
 
 /**
- *
  * @param direction -
  * @param position -
  * @param center -
@@ -232,7 +217,6 @@ export function getParticleDirectionAngle(
 
 /**
  * Get Particle base velocity
- *
  * @param direction - the direction to use for calculating the velocity
  * @returns the base velocity
  */
@@ -246,7 +230,6 @@ export function getParticleBaseVelocity(direction: number): Vector {
 }
 
 /**
- *
  * @param v1 -
  * @param v2 -
  * @param m1 -
@@ -259,7 +242,6 @@ export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number
 
 /**
  * Gets exact position from percent position based on the given size
- *
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
@@ -274,7 +256,6 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
 
 /**
  * Gets exact position from percent position, or a random one if not specified, based on the given size
- *
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
@@ -287,7 +268,6 @@ export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICo
 
 /**
  * Gets exact position from percent position, or a random one if not specified, based on the given size
- *
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
@@ -302,7 +282,6 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
 
 /**
  * Gets exact position from exact position, or a random one if not specified, based on the given size
- *
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
@@ -315,7 +294,6 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams)
 
 /**
  * Gets exact position from exact position, or a random one if not specified, based on the given size
- *
  * @param data - the data to use for calculating the position
  * @returns the exact position
  */
@@ -329,7 +307,6 @@ export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFro
 }
 
 /**
- *
  * @param input -
  * @returns the parsed color
  */

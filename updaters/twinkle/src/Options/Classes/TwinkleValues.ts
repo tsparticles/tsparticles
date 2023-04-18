@@ -8,7 +8,6 @@ import {
 import type { ITwinkleValues } from "../Interfaces/ITwinkleValues";
 
 /**
- 
  */
 export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValues> {
     color?: OptionsColor;

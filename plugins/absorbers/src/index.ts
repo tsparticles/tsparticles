@@ -13,7 +13,6 @@ import type { AbsorberContainer } from "./AbsorberContainer";
 import { Absorbers } from "./Absorbers";
 
 /**
- 
  */
 class AbsorbersPlugin implements IPlugin {
     readonly id;
@@ -76,7 +75,6 @@ class AbsorbersPlugin implements IPlugin {
 }
 
 /**
- *
  * @param engine
  */
 export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {

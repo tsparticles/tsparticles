@@ -1,7 +1,6 @@
 import { getRandom } from "tsparticles-engine";
 
 /**
- *
  * @param rndFunc
  * @param period
  * @param nbHarmonics

@@ -2,7 +2,6 @@ import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparti
 import type { ILinksShadow } from "../Interfaces/ILinksShadow";
 
 /**
- 
  */
 export class LinksShadow implements ILinksShadow, IOptionLoader<ILinksShadow> {
     blur;

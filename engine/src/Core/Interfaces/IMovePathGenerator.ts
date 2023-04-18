@@ -3,7 +3,6 @@ import type { Particle } from "../Particle";
 import type { Vector } from "../Utils/Vector";
 
 /**
- 
  */
 export interface IMovePathGenerator {
     generate: (particle: Particle) => Vector;

@@ -2,7 +2,6 @@ import { Attractor } from "./Attractor";
 import type { Engine } from "tsparticles-engine";
 
 /**
- *
  * @param engine
  */
 export async function loadExternalAttractInteraction(engine: Engine): Promise<void> {

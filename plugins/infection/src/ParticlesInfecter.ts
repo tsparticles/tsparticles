@@ -2,7 +2,6 @@ import { type IDelta, ParticlesInteractorBase, getRandom } from "tsparticles-eng
 import type { InfectableContainer, InfectableParticle } from "./Types";
 
 /**
- 
  */
 export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContainer> {
     constructor(container: InfectableContainer) {

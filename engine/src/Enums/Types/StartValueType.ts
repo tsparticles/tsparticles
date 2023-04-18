@@ -1,5 +1,4 @@
 /**
- 
  */
 export const enum StartValueType {
     max = "max",

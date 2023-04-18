@@ -13,7 +13,6 @@ import type { TextParticle } from "./TextParticle";
 export const validTypes = ["text", "character", "char"];
 
 /**
- 
  */
 export class TextDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: TextParticle, radius: number, opacity: number): void {
@@ -82,7 +81,6 @@ export class TextDrawer implements IShapeDrawer {
 
     /**
      * Loads the text shape to the given particle
-     *
      * @param container - the particles container
      * @param particle - the particle loading the text shape
      */

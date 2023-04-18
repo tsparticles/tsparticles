@@ -3,7 +3,6 @@ import type { IParallax } from "../../../Interfaces/Interactivity/Events/IParall
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
- 
  */
 export class Parallax implements IParallax, IOptionLoader<IParallax> {
     enable;

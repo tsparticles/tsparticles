@@ -1,5 +1,4 @@
 /**
- 
  */
 export const enum OutMode {
     bounce = "bounce",

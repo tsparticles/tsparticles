@@ -2,7 +2,6 @@ import type { Engine } from "tsparticles-engine";
 import { Repulser } from "./Repulser";
 
 /**
- *
  * @param engine
  */
 export async function loadExternalRepulseInteraction(engine: Engine): Promise<void> {

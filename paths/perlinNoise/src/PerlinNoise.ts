@@ -33,7 +33,6 @@ const perm = new Array(512);
 const gradP = new Array(512);
 
 /**
- *
  * @param t
  */
 function fade(t: number): number {
@@ -41,7 +40,6 @@ function fade(t: number): number {
 }
 
 /**
- *
  * @param a
  * @param b
  * @param t

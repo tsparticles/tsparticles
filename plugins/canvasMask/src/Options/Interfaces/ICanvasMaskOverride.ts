@@ -1,5 +1,4 @@
 /**
- 
  */
 export interface ICanvasMaskOverride {
     color: boolean;

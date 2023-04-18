@@ -2,7 +2,6 @@ import { type IHsl, type Particle, errorPrefix, getStyleFromHsl } from "tspartic
 import type { IImageShape } from "./IImageShape";
 
 /**
- 
  */
 
 /**
@@ -49,7 +48,6 @@ const currentColorRegex =
 
 /**
  * Replaces the color in SVG files when replace color is set
- *
  * @param imageShape - the image used for replacing SVG data
  * @param color - the replace color value
  * @param opacity - the color opacity
@@ -76,7 +74,6 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): stri
 
 /**
  * Loads the given image
- *
  * @param image - the image to load
  */
 export async function loadImage(image: IImage): Promise<void> {
@@ -109,7 +106,6 @@ export async function loadImage(image: IImage): Promise<void> {
 
 /**
  * Downloads the SVG image data, using `fetch`
- *
  * @param image - the image to download
  */
 export async function downloadSvgImage(image: IImage): Promise<void> {
@@ -138,7 +134,6 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
 
 /**
  * Replaces the color in a SVG image
- *
  * @param image - the SVG image to replace
  * @param imageData - the image shape data
  * @param color - the replace color

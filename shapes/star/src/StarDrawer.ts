@@ -3,7 +3,6 @@ import type { IStarShape } from "./IStarShape";
 import type { StarParticle } from "./StarParticle";
 
 /**
- 
  */
 export class StarDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: StarParticle, radius: number): void {

@@ -57,7 +57,6 @@ type GradientParticlesOptions = ParticlesOptions & {
 };
 
 /**
- *
  * @param delta
  * @param value
  */
@@ -93,7 +92,6 @@ function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation
 }
 
 /**
- *
  * @param delta
  * @param value
  * @param max
@@ -136,7 +134,6 @@ function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>,
 }
 
 /**
- *
  * @param delta
  * @param angle
  */
@@ -175,7 +172,6 @@ function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): voi
 }
 
 /**
- *
  * @param particle
  * @param delta
  */

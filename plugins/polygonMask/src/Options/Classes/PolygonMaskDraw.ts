@@ -3,7 +3,6 @@ import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw";
 import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
 
 /**
- 
  */
 export class PolygonMaskDraw implements IPolygonMaskDraw, IOptionLoader<IPolygonMaskDraw> {
     enable;

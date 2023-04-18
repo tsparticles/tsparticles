@@ -9,7 +9,6 @@ import { RepulseBase } from "./RepulseBase";
 import { RepulseDiv } from "./RepulseDiv";
 
 /**
- 
  */
 export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRepulse> {
     divs?: SingleOrMultiple<RepulseDiv>;

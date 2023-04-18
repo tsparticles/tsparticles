@@ -2,7 +2,6 @@ import type { Engine } from "tsparticles-engine";
 import { Remover } from "./Remover";
 
 /**
- *
  * @param engine -
  */
 export async function loadExternalRemoveInteraction(engine: Engine): Promise<void> {

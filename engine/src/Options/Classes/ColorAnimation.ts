@@ -5,7 +5,6 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 import { setRangeValue } from "../../Utils/NumberUtils";
 
 /**
- 
  */
 export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnimation> {
     count: RangeValue;

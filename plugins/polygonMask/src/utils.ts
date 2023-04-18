@@ -11,7 +11,6 @@ import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDr
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 
 /**
- *
  * @param context
  * @param rawData
  * @param stroke
@@ -41,7 +40,6 @@ export function drawPolygonMask(
 }
 
 /**
- *
  * @param context
  * @param path
  * @param stroke
@@ -68,7 +66,6 @@ export function drawPolygonMaskPath(
 }
 
 /**
- *
  * @param paths
  * @param scale
  * @param offset
@@ -153,7 +150,6 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
 }
 
 /**
- *
  * @param s1
  * @param s2
  * @param pos
@@ -190,7 +186,6 @@ export function calcClosestPtOnSegment(
 }
 
 /**
- *
  * @param start
  * @param stop
  * @param velocity

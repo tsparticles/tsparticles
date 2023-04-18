@@ -19,7 +19,6 @@ import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
 
 /**
- 
  */
 class EmittersPlugin implements IPlugin {
     readonly id;
@@ -130,7 +129,6 @@ class EmittersPlugin implements IPlugin {
 }
 
 /**
- *
  * @param engine
  */
 export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {

@@ -3,7 +3,6 @@ import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IPa
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
- 
  */
 export class ParticlesDensity implements IParticlesDensity, IOptionLoader<IParticlesDensity> {
     enable;

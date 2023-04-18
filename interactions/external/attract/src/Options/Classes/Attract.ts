@@ -2,7 +2,6 @@ import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursiveParti
 import type { IAttract } from "../Interfaces/IAttract";
 
 /**
- 
  */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
     distance;

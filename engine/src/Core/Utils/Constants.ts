@@ -1,6 +1,5 @@
 /**
  * Project's constants
- *
  */
 export const generatedAttribute = "generated";
 

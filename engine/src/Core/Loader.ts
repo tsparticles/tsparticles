@@ -9,7 +9,6 @@ import { getRandom } from "../Utils/NumberUtils";
 import { itemFromSingleOrMultiple } from "../Utils/Utils";
 
 /**
- *
  * @param jsonUrl -
  * @param index -
  * @returns the options object from the jsonUrl
@@ -35,19 +34,16 @@ async function getDataFromUrl(
 
 /**
  * Main class for creating the {@link Container} objects
- *
  */
 export class Loader {
     /**
      * The engine containing this Loader instance
-     *
      * @internal
      */
     private readonly _engine;
 
     /**
      * Loader constructor, assigns the engine
-     *
      * @param engine - the engine containing this Loader instance
      */
     constructor(engine: Engine) {
@@ -56,7 +52,6 @@ export class Loader {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     *
      * @param tagId - the particles container element id
      * @param options - the options object to initialize the {@link Container}
      * @param index - if an options array is provided, this will retrieve the exact index of that array
@@ -87,7 +82,6 @@ export class Loader {
     /**
      * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     *
      * @param tagId - the particles container element id
      * @param jsonUrl - the json path (or paths array) to use in the GET request
      * @param index - the index of the paths array, if a single path is passed this value is ignored
@@ -112,7 +106,6 @@ export class Loader {
 
     /**
      * Starts an animation in a container, starting from the given options
-     *
      * @param params - all the parameters required for loading options in the current animation
      */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
@@ -196,7 +189,6 @@ export class Loader {
 
     /**
      * Starts an animation in a container, starting from the given remote options
-     *
      * @param params - all the parameters required for loading a remote url into options in the current animation
      */
     async loadRemoteOptions(params: LoaderParams): Promise<Container | undefined> {
@@ -205,7 +197,6 @@ export class Loader {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     *
      * @param id - the particles container element id
      * @param domContainer - the dom container
      * @param options - the options object to initialize the {@link Container}
@@ -243,7 +234,6 @@ export class Loader {
     /**
      * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
      * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     *
      * @param id - the particles container element id
      * @param domContainer - the container used to contains the particles
      * @param jsonUrl - the json path (or paths array) to use in the GET request

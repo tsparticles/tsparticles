@@ -3,7 +3,6 @@ import { ExternalLighter } from "./ExternalLighter";
 import { ParticlesLighter } from "./ParticlesLighter";
 
 /**
- *
  * @param engine -
  */
 export async function loadLightInteraction(engine: Engine): Promise<void> {

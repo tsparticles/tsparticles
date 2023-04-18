@@ -6,7 +6,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
- 
  */
 export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     distance: RangeValue;
@@ -23,7 +22,6 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new rotate.x
      * @returns the rotate x value
      */
@@ -32,7 +30,6 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new rotate.x
      * @param value -
      */
@@ -41,7 +38,6 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new rotate.y
      * @returns the rotate y value
      */
@@ -50,7 +46,6 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new rotate.y
      * @param value -
      */

@@ -2,7 +2,6 @@ import { DestroyUpdater } from "./DestroyUpdater";
 import type { Engine } from "tsparticles-engine";
 
 /**
- *
  * @param engine
  */
 export async function loadDestroyUpdater(engine: Engine): Promise<void> {

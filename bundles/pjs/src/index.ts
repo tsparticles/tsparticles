@@ -1,6 +1,5 @@
 /**
  * [[include:pjsMigration.md]]
- *
  * @packageDocumentation
  */
 import {
@@ -38,7 +37,6 @@ declare global {
 
 /**
  * Initializes particles.js compatibility to the given engine
- *
  * @param engine - the engine that requires particles.js compatibility
  */
 const initPjs = (
@@ -64,7 +62,6 @@ const initPjs = (
 } => {
     /**
      * Loads the provided options to create a {@link Container} object.
-     *
      * @deprecated this method is obsolete, please use the new tsParticles.load
      * @param tagId - the particles container element id
      * @param options - the options object to initialize the {@link Container}
@@ -76,7 +73,6 @@ const initPjs = (
     /**
      * Loads the provided json with a GET request.
      * The content will be used to create a {@link Container} object.
-     *
      * @deprecated this method is obsolete, please use the new tsParticles.loadJSON
      * @param tagId - the particles container element id
      * @param pathConfigJson - the json path to use in the GET request
@@ -97,7 +93,6 @@ const initPjs = (
 
     /**
      * Adds a click handler to all the loaded {@link Container} objects.
-     *
      * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
      * @param callback - the function called after the click event is fired
      */
@@ -107,7 +102,6 @@ const initPjs = (
 
     /**
      * All the {@link Container} objects loaded
-     *
      * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
      */
     const pJSDom = engine.dom();

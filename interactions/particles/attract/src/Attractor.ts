@@ -7,7 +7,6 @@ import {
 } from "tsparticles-engine";
 
 /**
- 
  */
 export class Attractor extends ParticlesInteractorBase {
     constructor(container: Container) {

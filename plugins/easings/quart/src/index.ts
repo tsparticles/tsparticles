@@ -1,7 +1,6 @@
 import { EasingType, addEasing } from "tsparticles-engine";
 
 /**
- *
  */
 export async function loadEasingQuartPlugin(): Promise<void> {
     addEasing(EasingType.easeInQuart, (value) => value ** 4);

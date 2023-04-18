@@ -2,12 +2,10 @@ import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { Vector3d } from "./Vector3d";
 
 /**
- 
  */
 export class Vector extends Vector3d {
     /**
      * Vector constructor, creating an instance with the given coordinates
-     *
      * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
      * @param y - Y coordinate
      * @internal
@@ -18,7 +16,6 @@ export class Vector extends Vector3d {
 
     /**
      * A new vector, with coordinates in the origin point
-     *
      * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector {
@@ -27,7 +24,6 @@ export class Vector extends Vector3d {
 
     /**
      * Clones the given vector
-     *
      * @param source - the vector to clone
      * @returns a new vector instance, created from the given one
      */
@@ -37,7 +33,6 @@ export class Vector extends Vector3d {
 
     /**
      * Creates a new vector instance
-     *
      * @param x - X coordinate
      * @param y - Y coordinate
      * @returns the new vector created

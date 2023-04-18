@@ -5,7 +5,6 @@ import type { IOptionsColor } from "tsparticles-engine";
 /**
  * Particles Links options, this configures how the particles link together
  * [[include:Options/Particles/Links.md]]
- *
  */
 export interface ILinks {
     /**

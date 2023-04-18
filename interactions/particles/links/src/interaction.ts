@@ -3,7 +3,6 @@ import type { LinkContainer } from "./LinkContainer";
 import { Linker } from "./Linker";
 
 /**
- *
  * @param engine
  */
 export async function loadInteraction(engine: Engine): Promise<void> {

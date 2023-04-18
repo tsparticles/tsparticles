@@ -35,7 +35,6 @@ type TiltParticlesOptions = ParticlesOptions & {
 };
 
 /**
- *
  * @param particle
  * @param delta
  */

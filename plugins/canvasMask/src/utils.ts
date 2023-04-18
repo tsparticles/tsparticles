@@ -25,7 +25,6 @@ type TextLineData = {
 };
 
 /**
- *
  * @param array
  */
 export function shuffle<T>(array: T[]): T[] {
@@ -39,7 +38,6 @@ export function shuffle<T>(array: T[]): T[] {
 }
 
 /**
- *
  * @param container
  * @param data
  * @param position
@@ -105,7 +103,6 @@ export function addParticlesFromCanvasPixels(
 }
 
 /**
- *
  * @param ctx
  * @param size
  * @param offset
@@ -152,7 +149,6 @@ export function getCanvasImageData(
 }
 
 /**
- *
  * @param src
  * @param offset
  */
@@ -187,7 +183,6 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
 }
 
 /**
- *
  * @param textOptions
  * @param offset
  */

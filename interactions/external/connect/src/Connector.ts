@@ -23,7 +23,6 @@ type LinkParticle = Particle & {
 
 /**
  * Creates a gradient using two particles colors and opacity.
- *
  * @param context - The canvas context to draw on.
  * @param p1 - The first particle.
  * @param p2 - The second particle.
@@ -56,7 +55,6 @@ function gradient(
 }
 
 /**
- *
  * @param context
  * @param width
  * @param lineStyle
@@ -78,7 +76,6 @@ function drawConnectLine(
 }
 
 /**
- *
  * @param container
  * @param ctx
  * @param p1
@@ -101,7 +98,6 @@ function lineStyle(
 }
 
 /**
- *
  * @param container
  * @param p1
  * @param p2
@@ -123,7 +119,6 @@ function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkP
 
 /**
  * Particle connection manager
- *
  */
 export class Connector extends ExternalInteractorBase<ConnectContainer> {
     constructor(container: ConnectContainer) {

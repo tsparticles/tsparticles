@@ -2,7 +2,6 @@ import { type IDelta, type Particle, RotateDirection, clamp, getDistances, getRa
 import type { MoveParticle } from "./Types";
 
 /**
- *
  * @param particle -
  */
 export function applyDistance(particle: MoveParticle): void {
@@ -44,7 +43,6 @@ export function applyDistance(particle: MoveParticle): void {
 }
 
 /**
- *
  * @param particle -
  * @param moveSpeed -
  */
@@ -78,7 +76,6 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
 }
 
 /**
- *
  * @param particle -
  * @param delta -
  */
@@ -112,7 +109,6 @@ export function applyPath(particle: Particle, delta: IDelta): void {
 }
 
 /**
- *
  * @param particle -
  * @returns proximity speed factor
  */

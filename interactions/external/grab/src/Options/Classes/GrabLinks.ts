@@ -2,7 +2,6 @@ import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparti
 import type { IGrabLinks } from "../Interfaces/IGrabLinks";
 
 /**
- 
  */
 export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
     blink;

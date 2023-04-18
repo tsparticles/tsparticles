@@ -15,7 +15,6 @@ notes.set("B", [30.87, 61.74, 123.47, 246.94, 493.88, 987.77, 1975.53, 3951.07, 
 notes.set("pause", [0]);
 
 /**
- *
  * @param note
  */
 export function getNoteFrequency(note: string): number | undefined {

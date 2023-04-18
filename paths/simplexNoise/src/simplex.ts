@@ -1,7 +1,6 @@
 import type { Contribution4D } from "./Contribution4D";
 
 /**
- *
  * @param seed
  */
 export default function shuffleSeed(seed: Uint32Array): Uint32Array {
@@ -19,7 +18,6 @@ const STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) / 4;
 export type Noise4D = (x: number, y: number, z: number, w: number) => number;
 
 /**
- *
  * @param multiplier
  * @param xsb
  * @param ysb
@@ -40,7 +38,6 @@ function contribution4D(multiplier: number, xsb: number, ysb: number, zsb: numbe
 }
 
 /**
- *
  * @param clientSeed
  */
 export function makeNoise4D(clientSeed: number): Noise4D {

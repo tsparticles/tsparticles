@@ -6,7 +6,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { StartValueType } from "../../../../Enums/Types/StartValueType";
 
 /**
- 
  */
 export class SizeAnimation extends AnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
     destroy: DestroyType | keyof typeof DestroyType;
@@ -29,7 +28,6 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new minimumValue
      * @returns the size minimum value
      */
@@ -38,7 +36,6 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new minimumValue
      * @param value -
      */

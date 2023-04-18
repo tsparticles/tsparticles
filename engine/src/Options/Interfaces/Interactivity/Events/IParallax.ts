@@ -1,5 +1,4 @@
 /**
- 
  */
 export interface IParallax {
     enable: boolean;

@@ -42,7 +42,6 @@ type OrbitingParticle = Particle & {
 };
 
 /**
- 
  */
 export class AbsorberInstance {
     /**
@@ -82,28 +81,24 @@ export class AbsorberInstance {
 
     /**
      * Sets if the absorber can be moved with mouse drag&drop
-     *
      * @internal
      */
     private dragging;
 
     /**
      * Gets the absorber initial position
-     *
      * @internal
      */
     private readonly initialPosition?: Vector;
 
     /**
      * Gets the absorber options
-     *
      * @internal
      */
     private readonly options;
 
     /**
      * The absorber constructor, initializes the absorber based on the given options and position
-     *
      * @param absorbers - the Absorbers collection manager that will contain this absorber
      * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
      * @param options - the Absorber source options
@@ -148,7 +143,6 @@ export class AbsorberInstance {
 
     /**
      * Absorber attraction interaction, attract the particle to the absorber
-     *
      * @param particle - the particle to attract to the absorber
      */
     attract(particle: OrbitingParticle): void {
@@ -216,7 +210,6 @@ export class AbsorberInstance {
 
     /**
      * The draw method, for drawing the absorber in the canvas
-     *
      * @param context - the canvas 2d context used for drawing
      */
     draw(context: CanvasRenderingContext2D): void {
@@ -242,7 +235,6 @@ export class AbsorberInstance {
 
     /**
      * This method calculate the absorber position, using the provided options and position
-     *
      * @internal
      */
     private calcPosition(): Vector {
@@ -256,7 +248,6 @@ export class AbsorberInstance {
 
     /**
      * Updates the particle position, if the particle needs a new position
-     *
      * @param particle - the particle to update
      * @param v - the vector used for calculating the distance between the Absorber and the particle
      * @internal

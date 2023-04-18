@@ -6,7 +6,6 @@ import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
 import type { Particle } from "../Particle";
 
 /**
- 
  */
 export interface IContainerPlugin {
     clickPositionValid?: (position: ICoordinates) => boolean;

@@ -1,7 +1,6 @@
 import type { IShapeValues, SingleOrMultiple } from "tsparticles-engine";
 
 /**
- 
  */
 export interface ICharacterShape extends IShapeValues {
     font: string;

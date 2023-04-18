@@ -28,7 +28,6 @@ type IRollParticlesOptions = IParticlesOptions & {
 };
 
 /**
- *
  * @param particle
  * @param delta
  */

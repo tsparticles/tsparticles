@@ -18,7 +18,6 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Move.md]]
- *
  */
 export class Move implements IMove, IOptionLoader<IMove> {
     angle;
@@ -111,7 +110,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
      * @returns the outMode value
      */
@@ -120,7 +118,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
      * @param value -
      */
@@ -129,7 +126,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
      * @returns the outMode value
      */
@@ -138,7 +134,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
      * @param value -
      */

@@ -1,7 +1,6 @@
 import type { EasingType, EasingTypeAlt } from "tsparticles-engine";
 
 /**
- 
  */
 export interface IAttract {
     distance: number;

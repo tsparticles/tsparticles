@@ -1,7 +1,6 @@
 import { type IDelta, type Particle, clamp } from "tsparticles-engine";
 
 /**
- *
  * @param p1
  * @param r1
  * @param p2
@@ -22,7 +21,6 @@ function updateAbsorb(p1: Particle, r1: number, p2: Particle, r2: number, delta:
 }
 
 /**
- *
  * @param p1
  * @param p2
  * @param delta

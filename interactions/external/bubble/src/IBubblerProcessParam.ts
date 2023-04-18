@@ -1,7 +1,6 @@
 import type { ProcessBubbleType } from "./ProcessBubbleType";
 
 /**
- 
  */
 export interface IBubblerProcessParam {
     bubbleObj: IBubblerProcessParamObj;
@@ -10,7 +9,6 @@ export interface IBubblerProcessParam {
 }
 
 /**
- 
  */
 export interface IBubblerProcessParamObj {
     optValue?: number;

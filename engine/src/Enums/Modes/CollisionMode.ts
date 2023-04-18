@@ -1,5 +1,4 @@
 /**
- 
  */
 export const enum CollisionMode {
     absorb = "absorb",

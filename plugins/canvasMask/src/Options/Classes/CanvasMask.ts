@@ -7,7 +7,6 @@ import { TextMask } from "./TextMask";
 
 /**
  * [[include:Options/Plugins/CanvasMask.md]]
- *
  */
 export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
     element?: HTMLCanvasElement;

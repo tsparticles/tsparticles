@@ -40,7 +40,6 @@ type CustomRecord = {
 
 const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecord => {
     /**
-     *
      * @param object -
      * @param base -
      * @returns Options changes

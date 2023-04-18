@@ -6,7 +6,6 @@ import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions"
 import type { RecursivePartial } from "../Types/RecursivePartial";
 
 /**
- *
  * @param options -
  * @param sourceOptionsArr -
  */
@@ -20,7 +19,6 @@ export function loadOptions<T>(
 }
 
 /**
- *
  * @param engine -
  * @param container -
  * @param sourceOptionsArr -

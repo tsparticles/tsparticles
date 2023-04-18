@@ -3,7 +3,6 @@ import type { IRepulseDiv } from "./IRepulseDiv";
 import type { SingleOrMultiple } from "tsparticles-engine";
 
 /**
- 
  */
 export interface IRepulse extends IRepulseBase {
     divs?: SingleOrMultiple<IRepulseDiv>;

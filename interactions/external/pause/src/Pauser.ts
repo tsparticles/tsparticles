@@ -2,7 +2,6 @@ import { ClickMode, type Container, ExternalInteractorBase } from "tsparticles-e
 
 /**
  * Particle attract manager
- *
  */
 export class Pauser extends ExternalInteractorBase {
     handleClickMode: (mode: string) => void;

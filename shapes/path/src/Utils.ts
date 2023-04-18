@@ -2,7 +2,6 @@ import type { IPathData } from "./IPathData";
 import { SegmentType } from "./SegmentType";
 
 /**
- *
  * @param ctx
  * @param radius
  * @param path

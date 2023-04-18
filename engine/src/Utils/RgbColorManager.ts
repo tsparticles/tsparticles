@@ -3,7 +3,6 @@ import { getRangeValue, parseAlpha } from "./NumberUtils";
 import type { IColorManager } from "../Core/Interfaces/IColorManager";
 
 /**
- *
  */
 export class RgbColorManager implements IColorManager {
     readonly key;

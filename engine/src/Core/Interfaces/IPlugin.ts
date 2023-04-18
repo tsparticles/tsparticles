@@ -6,7 +6,6 @@ import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
  * [[include:Plugins.md]]
- *
  */
 export interface IPlugin {
     readonly id: string;

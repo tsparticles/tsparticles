@@ -7,7 +7,6 @@ import { setRangeValue } from "../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Stroke.md]]
- *
  */
 export class Stroke implements IStroke, IOptionLoader<IStroke> {
     color?: AnimatableColor;

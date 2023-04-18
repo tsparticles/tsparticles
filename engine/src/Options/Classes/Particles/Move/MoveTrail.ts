@@ -5,7 +5,6 @@ import type { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
- 
  */
 export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
     enable;

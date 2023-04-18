@@ -2,7 +2,6 @@ import type { Engine } from "tsparticles-engine";
 import { RollUpdater } from "./RollUpdater";
 
 /**
- *
  * @param engine
  */
 export async function loadRollUpdater(engine: Engine): Promise<void> {

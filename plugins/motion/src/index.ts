@@ -4,7 +4,6 @@ import { Motion } from "./Options/Classes/Motion";
 import { MotionInstance } from "./MotionInstance";
 
 /**
- 
  */
 class MotionPlugin implements IPlugin {
     readonly id;
@@ -41,7 +40,6 @@ class MotionPlugin implements IPlugin {
 }
 
 /**
- *
  * @param engine
  */
 export async function loadMotionPlugin(engine: Engine): Promise<void> {

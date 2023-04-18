@@ -13,7 +13,6 @@ import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * [[include:Options/Particles/Move.md]]
- *
  */
 export interface IMove {
     angle: number | IMoveAngle;

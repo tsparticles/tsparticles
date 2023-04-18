@@ -23,7 +23,6 @@ class LinksPlugin implements IPlugin {
 }
 
 /**
- *
  * @param engine
  */
 export async function loadPlugin(engine: Engine): Promise<void> {

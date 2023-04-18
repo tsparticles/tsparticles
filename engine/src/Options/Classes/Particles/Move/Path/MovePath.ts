@@ -6,7 +6,6 @@ import { ValueWithRandom } from "../../../ValueWithRandom";
 import { deepExtend } from "../../../../../Utils/Utils";
 
 /**
- 
  */
 export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     clamp;

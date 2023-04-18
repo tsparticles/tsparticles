@@ -4,7 +4,6 @@ import type { IValueWithRandom } from "tsparticles-engine";
 
 /**
  * [[include:Options/Particles/Rotate.md]]
- *
  */
 export interface ITilt extends IValueWithRandom {
     animation: ITiltAnimation;

@@ -5,7 +5,6 @@ import type { IImageMask } from "./IImageMask";
 import type { ITextMask } from "./ITextMask";
 
 /**
- 
  */
 export interface ICanvasMask {
     element?: HTMLCanvasElement;

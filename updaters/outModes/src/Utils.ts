@@ -2,7 +2,6 @@ import { OutMode, OutModeDirection, getValue } from "tsparticles-engine";
 import type { IBounceData } from "./IBounceData";
 
 /**
- *
  * @param data
  */
 export function bounceHorizontal(data: IBounceData): void {
@@ -53,7 +52,6 @@ export function bounceHorizontal(data: IBounceData): void {
 }
 
 /**
- *
  * @param data
  */
 export function bounceVertical(data: IBounceData): void {

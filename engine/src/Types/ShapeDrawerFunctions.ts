@@ -4,7 +4,6 @@ import type { Particle } from "../Core/Particle";
 
 /**
  * Shape draw function
- *
  * @param context - the canvas context for drawing
  * @param particle - the particle to be drawn using the shape
  * @param radius - the particle radius
@@ -23,14 +22,12 @@ export type ShapeDrawerDrawFunction = (
 
 /**
  * Shape init function
- *
  * @param container - the container initializing the shape
  */
 export type ShapeDrawerInitFunction = (container: Container) => Promise<void>;
 
 /**
  * Shape particle init function
- *
  * @param container - the container containing the shape
  * @param particle - the particle using the shape
  */
@@ -38,7 +35,6 @@ export type ShapeDrawerParticleInitFunction = (container: Container, particle: P
 
 /**
  * Shape after draw effect function
- *
  * @param context - the canvas context for drawing
  * @param particle - the particle to be drawn using the shape
  * @param radius - the particle radius
@@ -57,14 +53,12 @@ export type ShapeDrawerAfterEffectFunction = (
 
 /**
  * Shape destroy function
- *
  * @param container - the container initializing the shape
  */
 export type ShapeDrawerDestroyFunction = (container: Container) => void;
 
 /**
  * Shape sides count function
- *
  * @param particle - the particle using the shape
  * @returns the number of sides for the used shape
  */
@@ -72,7 +66,6 @@ export type ShapeDrawerSidesCountFunction = (particle: Particle) => number;
 
 /**
  * Shape load function
- *
  * @param particle - the particle using the shape
  */
 export type ShapeDrawerLoadFunction = (particle: Particle) => void;

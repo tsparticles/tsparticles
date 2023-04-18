@@ -7,7 +7,6 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/BackgroundMask.md]]
- *
  */
 export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroundMask> {
     /**

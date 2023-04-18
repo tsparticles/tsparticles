@@ -15,7 +15,6 @@ const fixBounceSpeed = (p: BounceParticle): void => {
 };
 
 /**
- *
  * @param p1
  * @param p2
  */

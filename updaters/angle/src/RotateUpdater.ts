@@ -29,7 +29,6 @@ type RotateParticlesOptions = ParticlesOptions & {
 };
 
 /**
- *
  * @param particle
  * @param delta
  */

@@ -2,7 +2,6 @@ import { ClubDrawer, DiamondDrawer, HeartDrawer, SpadeDrawer } from "./CardsSuit
 import type { Engine } from "tsparticles-engine";
 
 /**
- *
  * @param engine
  */
 export async function loadCardsShape(engine: Engine): Promise<void> {

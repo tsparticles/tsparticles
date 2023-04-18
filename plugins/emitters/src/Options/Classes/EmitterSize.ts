@@ -2,7 +2,6 @@ import { type IOptionLoader, type RecursivePartial, SizeMode } from "tsparticles
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
 
 /**
- 
  */
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     height;

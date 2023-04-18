@@ -97,7 +97,6 @@ async function initPlugins(): Promise<void> {
 }
 
 /**
- *
  * @param params - the parameters object used for the confetti animation
  * @returns the tsParticles Container for more customizations
  */
@@ -316,7 +315,6 @@ type ConfettiFunc = (
 ) => Promise<Container | undefined>;
 
 /**
- *
  * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
  * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
  */

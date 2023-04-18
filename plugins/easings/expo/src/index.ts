@@ -1,7 +1,6 @@
 import { EasingType, addEasing } from "tsparticles-engine";
 
 /**
- *
  */
 export async function loadEasingExpoPlugin(): Promise<void> {
     addEasing(EasingType.easeInExpo, (value) => (!value ? 0 : 2 ** (10 * value - 10)));
