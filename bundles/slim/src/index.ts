@@ -36,7 +36,7 @@ import { loadTextShape } from "tsparticles-shape-text";
  * This function is not mandatory, the plugins can be loaded manually, or using other plugin bundles.
  * If this function is not called, the tsparticles-slim package/dependency can be safely removed.
  * This function is called automatically using CDN bundle files.
- * 
+ *
  * @param engine - the engine to use for loading all plugins
  */
 export async function loadSlim(engine: Engine): Promise<void> {
