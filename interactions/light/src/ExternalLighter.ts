@@ -27,19 +27,22 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
 
     async interact(): Promise<void> {
         const container = this.container,
-            options = container.actualOptions;
+            options = container.actualOptions,
+            interactivity = container.interactivity;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
-            const mousePos = container.interactivity.mouse.position;
-
-            if (!mousePos) {
-                return;
-            }
-
-            container.canvas.draw((ctx) => {
-                drawLight(container, ctx, mousePos);
-            });
+        if (!options.interactivity.events.onHover.enable || interactivity.status !== "pointermove") {
+            return;
         }
+
+        const mousePos = interactivity.mouse.position;
+
+        if (!mousePos) {
+            return;
+        }
+
+        container.canvas.draw((ctx) => {
+            drawLight(container, ctx, mousePos);
+        });
     }
 
     isEnabled(particle?: LightParticle): boolean {

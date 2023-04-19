@@ -11,38 +11,44 @@ import {
 } from "tsparticles-engine";
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
+type LinkLineDrawParams = {
+    backgroundMask: boolean;
+    begin: ICoordinates;
+    canvasSize: IDimension;
+    colorLine: IRgb;
+    composite: GlobalCompositeOperation;
+    context: CanvasRenderingContext2D;
+    end: ICoordinates;
+    maxDistance: number;
+    opacity: number;
+    shadow: ILinksShadow;
+    warp: boolean;
+    width: number;
+};
+
 /**
- * @param context
- * @param width
- * @param begin
- * @param end
- * @param maxDistance
- * @param canvasSize
- * @param warp
- * @param backgroundMask
- * @param composite
- * @param colorLine
- * @param opacity
- * @param shadow
+ * @param params -
  */
-export function drawLinkLine(
-    context: CanvasRenderingContext2D,
-    width: number,
-    begin: ICoordinates,
-    end: ICoordinates,
-    maxDistance: number,
-    canvasSize: IDimension,
-    warp: boolean,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    colorLine: IRgb,
-    opacity: number,
-    shadow: ILinksShadow
-): void {
+export function drawLinkLine(params: LinkLineDrawParams): void {
     // this.ctx.lineCap = "round"; /* performance issue */
     /* path */
 
     let drawn = false;
+
+    const {
+        begin,
+        end,
+        maxDistance,
+        context,
+        warp,
+        canvasSize,
+        width,
+        backgroundMask,
+        composite,
+        colorLine,
+        opacity,
+        shadow,
+    } = params;
 
     if (getDistance(begin, end) <= maxDistance) {
         drawLine(context, begin, end);
@@ -128,26 +134,23 @@ export function drawLinkLine(
     context.stroke();
 }
 
+type LinkTriangleDrawParams = {
+    backgroundMask: boolean;
+    colorTriangle: IRgb;
+    composite: GlobalCompositeOperation;
+    context: CanvasRenderingContext2D;
+    opacityTriangle: number;
+    pos1: ICoordinates;
+    pos2: ICoordinates;
+    pos3: ICoordinates;
+};
+
 /**
- * @param context
- * @param pos1
- * @param pos2
- * @param pos3
- * @param backgroundMask
- * @param composite
- * @param colorTriangle
- * @param opacityTriangle
+ * @param params -
  */
-export function drawLinkTriangle(
-    context: CanvasRenderingContext2D,
-    pos1: ICoordinates,
-    pos2: ICoordinates,
-    pos3: ICoordinates,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    colorTriangle: IRgb,
-    opacityTriangle: number
-): void {
+export function drawLinkTriangle(params: LinkTriangleDrawParams): void {
+    const { context, pos1, pos2, pos3, backgroundMask, composite, colorTriangle, opacityTriangle } = params;
+
     // this.ctx.lineCap = "round"; /* performance issue */
     /* path */
 

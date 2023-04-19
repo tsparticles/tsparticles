@@ -30,7 +30,8 @@ interface IParticlesFrequencies {
 }
 
 /**
- * @param ids
+ * @param ids -
+ * @returns the key for the link
  */
 function getLinkKey(ids: number[]): string {
     ids.sort((a, b) => a - b);
@@ -39,8 +40,9 @@ function getLinkKey(ids: number[]): string {
 }
 
 /**
- * @param particles
- * @param dictionary
+ * @param particles -
+ * @param dictionary -
+ * @returns the frequency of the link
  */
 function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
     const key = getLinkKey(particles.map((t) => t.id));
@@ -162,20 +164,20 @@ export class LinkInstance implements IContainerPlugin {
             const width = p1.retina.linksWidth ?? 0,
                 maxDistance = p1.retina.linksDistance ?? 0;
 
-            drawLinkLine(
-                ctx,
+            drawLinkLine({
+                context: ctx,
                 width,
-                pos1,
-                pos2,
+                begin: pos1,
+                end: pos2,
                 maxDistance,
-                container.canvas.size,
-                p1.options.links.warp,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
+                canvasSize: container.canvas.size,
+                warp: p1.options.links.warp,
+                backgroundMask: options.backgroundMask.enable,
+                composite: options.backgroundMask.composite,
                 colorLine,
                 opacity,
-                p1.options.links.shadow
-            );
+                shadow: p1.options.links.shadow,
+            });
         });
     }
 
@@ -225,16 +227,16 @@ export class LinkInstance implements IContainerPlugin {
                 return;
             }
 
-            drawLinkTriangle(
-                ctx,
+            drawLinkTriangle({
+                context: ctx,
                 pos1,
                 pos2,
                 pos3,
-                options.backgroundMask.enable,
-                options.backgroundMask.composite,
+                backgroundMask: options.backgroundMask.enable,
+                composite: options.backgroundMask.composite,
                 colorTriangle,
-                opacityTriangle
-            );
+                opacityTriangle,
+            });
         });
     }
 
