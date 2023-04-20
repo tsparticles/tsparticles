@@ -23,7 +23,7 @@
     "@commitlint/cli": "^17.4.2",
     "@commitlint/config-conventional": "^17.4.2",
     "@nrwl/cli": "^15.6.3",
-    "@nrwl/nx-cloud": "^15.0.3",
+    "@nrwl/nx-cloud": "^16.0.0",
     "@nrwl/workspace": "^15.6.3",
     "@tsparticles/prettier-config": "^1.6.0",
     "@types/node": "^18.13.0",
