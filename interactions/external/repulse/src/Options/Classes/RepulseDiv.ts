@@ -20,6 +20,7 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
 
     /**
      * @deprecated This property is deprecated, please use the new selectors property
+     * @returns the targeted ids
      */
     get ids(): SingleOrMultiple<string> {
         return executeOnSingleOrMultiple(this.selectors, (t) => t.replace("#", ""));

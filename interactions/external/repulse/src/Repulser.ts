@@ -78,11 +78,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                     return;
                 }
 
-                if (!container.repulse) {
-                    container.repulse = { particles: [] };
-                }
-
-                container.repulse.clicking = false;
+                repulse.clicking = false;
             }, repulseOpts.duration * 1000);
         };
     }
@@ -163,29 +159,27 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
     private clickRepulse(): void {
         const container = this.container,
-            repulse = container.actualOptions.interactivity.modes.repulse;
+            repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
-        if (!repulse) {
+        if (!repulseOptions) {
             return;
         }
 
-        if (!container.repulse) {
-            container.repulse = { particles: [] };
-        }
+        const repulse = container.repulse || { particles: [] };
 
-        if (!container.repulse.finish) {
-            if (!container.repulse.count) {
-                container.repulse.count = 0;
+        if (!repulse.finish) {
+            if (!repulse.count) {
+                repulse.count = 0;
             }
 
-            container.repulse.count++;
+            repulse.count++;
 
-            if (container.repulse.count === container.particles.count) {
-                container.repulse.finish = true;
+            if (repulse.count === container.particles.count) {
+                repulse.finish = true;
             }
         }
 
-        if (container.repulse.clicking) {
+        if (repulse.clicking) {
             const repulseDistance = container.retina.repulseModeDistance;
 
             if (!repulseDistance || repulseDistance < 0) {
@@ -205,11 +199,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
                     d = distance ** 2,
-                    velocity = repulse.speed,
+                    velocity = repulseOptions.speed,
                     force = (-repulseRadius * velocity) / d;
 
                 if (d <= repulseRadius) {
-                    container.repulse.particles.push(particle);
+                    repulse.particles.push(particle);
 
                     const vect = Vector.create(dx, dy);
 
@@ -218,11 +212,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                     particle.velocity.setTo(vect);
                 }
             }
-        } else if (container.repulse.clicking === false) {
-            for (const particle of container.repulse.particles) {
+        } else if (repulse.clicking === false) {
+            for (const particle of repulse.particles) {
                 particle.velocity.setTo(particle.initialVelocity);
             }
-            container.repulse.particles = [];
+
+            repulse.particles = [];
         }
     }
 
