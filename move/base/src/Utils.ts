@@ -94,7 +94,7 @@ export function applyPath(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const path = particle.pathGenerator?.generate(particle);
+    const path = particle.pathGenerator?.generate(particle, delta);
 
     if (path) {
         particle.velocity.addTo(path);

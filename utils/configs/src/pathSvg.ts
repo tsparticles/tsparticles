@@ -4,12 +4,12 @@ const options: ISourceOptions = {
     name: "Path SVG",
     particles: {
         color: {
-            value: "#ffffff",
+            value: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
         },
         move: {
             enable: true,
             outModes: "bounce",
-            speed: 1,
+            speed: { min: 1, max: 3 },
             path: {
                 enable: true,
                 options: {
@@ -21,8 +21,16 @@ const options: ISourceOptions = {
                         },
                     },
                     scale: 2,
+                    width: 50,
                 },
                 generator: "svgPathGenerator",
+            },
+            trail: {
+                enable: true,
+                length: 10,
+                fill: {
+                    color: "#000000",
+                },
             },
         },
         number: {
@@ -30,21 +38,13 @@ const options: ISourceOptions = {
             value: 80,
         },
         opacity: {
-            animation: {
-                enable: true,
-                speed: 2,
-                sync: false,
-            },
-            value: {
-                min: 0.05,
-                max: 0.4,
-            },
+            value: 1,
         },
         shape: {
             type: "circle",
         },
         size: {
-            value: 1,
+            value: 3,
         },
     },
     background: {
