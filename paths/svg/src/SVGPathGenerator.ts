@@ -1,4 +1,14 @@
-import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "tsparticles-engine";
+import {
+    type Container,
+    type ICoordinatesWithMode,
+    type IDimension,
+    type IMovePathGenerator,
+    type Particle,
+    SizeMode,
+    Vector,
+    getRandom,
+    randomInRange,
+} from "tsparticles-engine";
 
 declare global {
     interface Window {
@@ -16,9 +26,9 @@ type SVGPathParticle = Particle & {
 interface SVGPathOptions {
     path?: {
         data: string[];
-        height: number;
-        width: number;
+        size: IDimension;
     };
+    position?: ICoordinatesWithMode;
     scale?: number;
     url?: string;
 }
@@ -29,14 +39,16 @@ interface SVGPathData {
 }
 
 export class SVGPathGenerator implements IMovePathGenerator {
-    private _height: number;
     private _paths: SVGPathData[];
-    private _width: number;
+    private readonly _position: ICoordinatesWithMode;
+    private _scale: number;
+    private readonly _size: IDimension;
 
     constructor() {
         this._paths = [];
-        this._height = 0;
-        this._width = 0;
+        this._size = { width: 0, height: 0 };
+        this._scale = 1;
+        this._position = { x: 50, y: 50, mode: SizeMode.percent };
     }
 
     generate(p: SVGPathParticle): Vector {
@@ -53,7 +65,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         }
 
         if (p.svgStep === undefined) {
-            p.svgStep = 0;
+            p.svgStep = randomInRange({ min: 0, max: this._paths[p.svgPathIndex].length });
         }
 
         p.velocity.x = 0;
@@ -76,17 +88,27 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
         if (path) {
             const pathElement = path.element,
-                pos = pathElement.getPointAtLength(p.svgStep);
+                pos = pathElement.getPointAtLength(p.svgStep),
+                offset = this._position,
+                canvasSize = p.container.canvas.size,
+                isPercent = offset.mode === SizeMode.percent,
+                scale = this._scale;
 
-            p.position.x = pos.x;
-            p.position.y = pos.y;
+            p.position.x = pos.x * scale + (isPercent ? (canvasSize.width * offset.x) / 100 : offset.x);
+            p.position.y = pos.y * scale + (isPercent ? (canvasSize.height * offset.y) / 100 : offset.y);
         }
 
         return Vector.origin;
     }
 
     init(container: Container): void {
-        const options = container.actualOptions.particles.move.path.options as SVGPathOptions;
+        const options = container.actualOptions.particles.move.path.options as SVGPathOptions,
+            position = options.position ?? this._position;
+
+        this._scale = options.scale ?? 1;
+        this._position.x = position.x;
+        this._position.y = position.y;
+        this._position.mode = position.mode;
 
         if (options.url && !options.path) {
             const url = options.url;
@@ -106,8 +128,6 @@ export class SVGPathGenerator implements IMovePathGenerator {
                     svgPaths = doc.getElementsByTagName("path");
                 }
 
-                const scale = options.scale ?? 1;
-
                 this._paths = [];
 
                 for (let i = 0; i < svgPaths.length; i++) {
@@ -121,8 +141,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
                     }
                 }
 
-                this._height = parseFloat(svg.getAttribute("height") ?? "0") * scale;
-                this._width = parseFloat(svg.getAttribute("width") ?? "0") * scale;
+                this._size.height = parseFloat(svg.getAttribute("height") ?? "0");
+                this._size.width = parseFloat(svg.getAttribute("width") ?? "0");
             })();
         } else if (options.path) {
             const path = options.path;
@@ -140,8 +160,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
                 });
             }
 
-            this._height = path.height;
-            this._width = path.width;
+            this._size.height = path.size.height;
+            this._size.width = path.size.width;
         }
     }
 

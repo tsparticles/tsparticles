@@ -17,7 +17,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 Including the `tsparticles.path.svg.min.js` file will export the function to load the path plugin:
 
 ```text
-loadSvgPath
+loadSVGPath
 ```
 
 ### Usage
@@ -26,7 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the path plugin lik
 
 ```javascript
 (async () => {
-  await loadSvgPath(tsParticles);
+  await loadSVGPath(tsParticles);
 
   tsParticles.load("tsparticles", {
     /* options */
@@ -52,10 +52,10 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("tsparticles-engine");
-const { loadSvgPath } = require("tsparticles-path-svg");
+const { loadSVGPath } = require("tsparticles-path-svg");
 
 (async () => {
-  await loadSvgPath(tsParticles);
+  await loadSVGPath(tsParticles);
 })();
 ```
 
@@ -63,9 +63,9 @@ or
 
 ```javascript
 import { tsParticles } from "tsparticles-engine";
-import { loadSvgPath } from "tsparticles-path-svg";
+import { loadSVGPath } from "tsparticles-path-svg";
 
 (async () => {
-  await loadSvgPath(tsParticles);
+  await loadSVGPath(tsParticles);
 })();
 ```

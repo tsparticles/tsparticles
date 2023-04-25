@@ -66,6 +66,7 @@ import nyancat2 from "./nyancat2";
 import orbit from "./orbit";
 import parallax from "./parallax";
 import pathPolygonMask from "./pathPolygonMask";
+import pathSvg from "./pathSvg";
 import planes from "./planes";
 import plasma from "./plasma";
 import polygonMask from "./polygonMask";
@@ -193,6 +194,7 @@ const configs = {
     orbit,
     parallax,
     pathPolygonMask,
+    pathSvg,
     planes,
     plasma,
     polygonMask,

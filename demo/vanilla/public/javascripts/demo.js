@@ -154,8 +154,9 @@
         await loadGradientUpdater(tsParticles);
         await loadOrbitUpdater(tsParticles);
         await loadCurvesPath(tsParticles);
-        await loadPolygonPath(tsParticles);
         await loadPerlinNoisePath(tsParticles);
+        await loadPolygonPath(tsParticles);
+        await loadSVGPath(tsParticles);
         await loadSimplexNoisePath(tsParticles);
         await loadBubbleShape(tsParticles);
         await loadCardsShape(tsParticles);

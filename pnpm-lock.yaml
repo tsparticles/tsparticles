@@ -816,6 +816,9 @@ importers:
       tsparticles-path-simplex-noise:
         specifier: ^2.9.3
         version: link:../../paths/simplexNoise/dist
+      tsparticles-path-svg:
+        specifier: ^2.9.3
+        version: link:../../paths/svg/dist
       tsparticles-plugin-absorbers:
         specifier: ^2.9.3
         version: link:../../plugins/absorbers/dist
