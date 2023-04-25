@@ -624,6 +624,7 @@ export class Container {
 
     /**
      * Restarts the container, just a {@link stop}/{@link start} alias
+     * @returns the Promise of the start method
      */
     async refresh(): Promise<void> {
         if (!guardCheck(this)) {

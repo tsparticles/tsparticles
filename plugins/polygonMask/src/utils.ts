@@ -11,9 +11,9 @@ import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDr
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 
 /**
- * @param context
- * @param rawData
- * @param stroke
+ * @param context -
+ * @param rawData -
+ * @param stroke -
  */
 export function drawPolygonMask(
     context: CanvasRenderingContext2D,
@@ -40,10 +40,10 @@ export function drawPolygonMask(
 }
 
 /**
- * @param context
- * @param path
- * @param stroke
- * @param position
+ * @param context -
+ * @param path -
+ * @param stroke -
+ * @param position -
  */
 export function drawPolygonMaskPath(
     context: CanvasRenderingContext2D,
@@ -66,9 +66,10 @@ export function drawPolygonMaskPath(
 }
 
 /**
- * @param paths
- * @param scale
- * @param offset
+ * @param paths -
+ * @param scale -
+ * @param offset -
+ * @returns the coordinates of the points
  */
 export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
     const res: ICoordinates[] = [];
@@ -150,9 +151,10 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
 }
 
 /**
- * @param s1
- * @param s2
- * @param pos
+ * @param s1 -
+ * @param s2 -
+ * @param pos -
+ * @returns the closest point on the segment
  */
 export function calcClosestPtOnSegment(
     s1: ICoordinates,
@@ -186,9 +188,9 @@ export function calcClosestPtOnSegment(
 }
 
 /**
- * @param start
- * @param stop
- * @param velocity
+ * @param start -
+ * @param stop -
+ * @param velocity -
  */
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
     const { dx, dy } = getDistances(start, stop),

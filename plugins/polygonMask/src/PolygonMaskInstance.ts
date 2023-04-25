@@ -258,8 +258,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
      * Android WebView release 62
      * Opera release 49
      * Opera for Android release 49
-     * @param svgUrl
-     * @param force
+     * @param svgUrl -
+     * @param force -
+     * @returns the coordinates of the polygon
      */
     private async downloadSvgPath(svgUrl?: string, force?: boolean): Promise<ICoordinates[] | undefined> {
         const options = this._container.actualOptions.polygon;

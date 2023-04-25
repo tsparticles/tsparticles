@@ -316,6 +316,7 @@ export class Engine {
      * @param id - The particles container id
      * @param element - The dom element used to contain the particles
      * @param options - The options object to initialize the {@link Container}
+     * @returns A Promise with the {@link Container} object created
      */
     async set(
         id: string | HTMLElement,

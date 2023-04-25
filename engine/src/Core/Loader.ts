@@ -107,6 +107,7 @@ export class Loader {
     /**
      * Starts an animation in a container, starting from the given options
      * @param params - all the parameters required for loading options in the current animation
+     * @returns A Promise with the {@link Container} object created
      */
     async loadOptions(params: LoaderParams): Promise<Container | undefined> {
         const tagId = params.tagId ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
@@ -190,6 +191,7 @@ export class Loader {
     /**
      * Starts an animation in a container, starting from the given remote options
      * @param params - all the parameters required for loading a remote url into options in the current animation
+     * @returns A Promise with the {@link Container} object created
      */
     async loadRemoteOptions(params: LoaderParams): Promise<Container | undefined> {
         return this.loadOptions(params);
@@ -201,6 +203,7 @@ export class Loader {
      * @param domContainer - the dom container
      * @param options - the options object to initialize the {@link Container}
      * @param index - if an options array is provided, this will retrieve the exact index of that array
+     * @returns A Promise with the {@link Container} object created
      */
     async set(
         id: string | HTMLElement,
