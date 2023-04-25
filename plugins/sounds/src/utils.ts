@@ -15,7 +15,8 @@ notes.set("B", [30.87, 61.74, 123.47, 246.94, 493.88, 987.77, 1975.53, 3951.07, 
 notes.set("pause", [0]);
 
 /**
- * @param note
+ * @param note -
+ * @returns frequency
  */
 export function getNoteFrequency(note: string): number | undefined {
     const regex = /(([A-G]b?)(\d))|pause/i,
@@ -24,8 +25,6 @@ export function getNoteFrequency(note: string): number | undefined {
     if (!result || !result.length) {
         return;
     }
-
-    console.log(result);
 
     const noteKey = result[2] || result[0],
         noteItem = notes.get(noteKey);
