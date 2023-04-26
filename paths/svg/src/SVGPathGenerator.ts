@@ -1,5 +1,6 @@
 import {
     type Container,
+    type ICoordinates,
     type ICoordinatesWithMode,
     type IDelta,
     type IDimension,
@@ -24,6 +25,7 @@ const enum SVGPathDirection {
 
 type SVGPathParticle = Particle & {
     svgDirection?: SVGPathDirection;
+    svgInitialPosition?: ICoordinates;
     svgOffset?: IDimension;
     svgPathIndex?: number;
     svgSpeed?: number;
@@ -60,7 +62,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         this._reverse = false;
         this._size = { width: 0, height: 0 };
         this._scale = 1;
-        this._offset = { x: 50, y: 50, mode: SizeMode.percent };
+        this._offset = { x: 0, y: 0, mode: SizeMode.percent };
         this._width = 0;
     }
 
@@ -89,6 +91,10 @@ export class SVGPathGenerator implements IMovePathGenerator {
                 width: randomInRange({ min: -this._width / 2, max: this._width / 2 }) * pxRatio,
                 height: randomInRange({ min: -this._width / 2, max: this._width / 2 }) * pxRatio,
             };
+        }
+
+        if (particle.svgInitialPosition === undefined) {
+            particle.svgInitialPosition = { ...particle.position };
         }
 
         particle.velocity.x = 0;
@@ -150,10 +156,12 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
             particle.position.x =
                 (pos.x - this._size.width / 2) * scale +
+                particle.svgInitialPosition.x +
                 (isPercent ? (canvasSize.width * offset.x) / 100 : offset.x) +
                 particle.svgOffset.width;
             particle.position.y =
                 (pos.y - this._size.height / 2) * scale +
+                particle.svgInitialPosition.y +
                 (isPercent ? (canvasSize.height * offset.y) / 100 : offset.y) +
                 particle.svgOffset.height;
         }
