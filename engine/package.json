@@ -130,7 +130,7 @@
         "eslint-config-prettier": "^8.6.0",
         "fs-extra": "^11.1.0",
         "install": "^0.13.0",
-        "jsdom": "^21.1.0",
+        "jsdom": "^22.0.0",
         "jsdom-global": "^3.0.2",
         "mocha": "^10.2.0",
         "nyc": "^15.1.0",
