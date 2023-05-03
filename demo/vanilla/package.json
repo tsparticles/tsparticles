@@ -22,7 +22,7 @@
         "watch": "nodemon app.js"
     },
     "devDependencies": {
-        "@datalust/winston-seq": "^1.0.2",
+        "@datalust/winston-seq": "^2.0.0",
         "@fortawesome/fontawesome-free": "^6.3.0",
         "@tsparticles/confetti": "^3.0.0-alpha.1",
         "@tsparticles/demo-configs": "^3.0.0-alpha.1",
