@@ -69,7 +69,7 @@
     "typedoc-plugin-carbon-ads",
     "typedoc-plugin-clarity",
     "typedoc-plugin-coverage",
-    "typedoc-plugin-keyword"
+    "typedoc-plugin-keywords"
     //"typedoc-plugin-missing-exports"
   ],
   "clarityId": "8q4bxin4tm",
