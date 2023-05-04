@@ -1,9 +1,7 @@
 {
   "packages": [
     "bundles/*",
-    "components/*",
     "demo/**/*",
-    "editor",
     "engine",
     "interactions/*",
     "interactions/external/*",
@@ -12,9 +10,7 @@
     "paths/*",
     "plugins/*",
     "plugins/easings/*",
-    "presets/*",
     "shapes/*",
-    "templates/*",
     "updaters/*",
     "utils/*",
     "websites/*"
