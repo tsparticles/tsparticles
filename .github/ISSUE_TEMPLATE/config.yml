@@ -1,5 +1,8 @@
 blank_issues_enabled: false
 contact_links:
+  - name: tsParticles GitHub Organization
+    url: https://github.com/tsparticles
+    about: The official tsParticles GitHub Organization, here can be found many repositories and demos
   - name: Angular (ng-particles)
     url: https://github.com/tsparticles/angular
     about: The official tsParticles Angular component repository
