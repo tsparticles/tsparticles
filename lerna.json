@@ -1,7 +1,7 @@
 {
   "packages": [
     "bundles/*",
-    "demo/**/*",
+    "demo/*",
     "engine",
     "interactions/*",
     "interactions/external/*",
