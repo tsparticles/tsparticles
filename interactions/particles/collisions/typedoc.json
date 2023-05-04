@@ -5,7 +5,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles",
+  "name": "tsParticles Collisions Particle Interaction",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

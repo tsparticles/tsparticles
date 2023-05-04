@@ -5,7 +5,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles",
+  "name": "tsParticles Multiline Text Shape",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

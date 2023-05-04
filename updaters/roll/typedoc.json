@@ -5,7 +5,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles",
+  "name": "tsParticles Roll Updater",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",
