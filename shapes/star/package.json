@@ -54,11 +54,6 @@
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",
-    "typedoc": {
-        "entryPoint": "./src/index.ts",
-        "displayName": "tsParticles star shape",
-        "readmeFile": "./README.md"
-    },
     "prettier": "@tsparticles/prettier-config",
     "devDependencies": {
         "@babel/core": "^7.20.7",

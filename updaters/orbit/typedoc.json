@@ -5,7 +5,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles",
+  "name": "tsParticles Orbit Updater",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

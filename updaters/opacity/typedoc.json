@@ -5,7 +5,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles",
+  "name": "tsParticles Opacity Updater",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

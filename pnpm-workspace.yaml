@@ -1,8 +1,6 @@
 packages:
   - 'bundles/*'
-  - 'components/*'
   - 'demo/**'
-  - 'editor'
   - 'engine'
   - 'interactions/*'
   - 'interactions/external/*'
@@ -11,9 +9,7 @@ packages:
   - 'paths/*'
   - 'plugins/*'
   - 'plugins/easings/*'
-  - 'presets/*'
   - 'shapes/*'
-  - 'templates/*'
   - 'updaters/*'
   - 'utils/*'
   - 'websites/*'
