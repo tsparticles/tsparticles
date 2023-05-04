@@ -63,10 +63,9 @@ try {
         } else {
             if (!dependencies["vue2-particles"]) {
                 console.warn("\x1b[43m\x1b[30m%s\x1b[0m", "Found Vue 2.x installed. Please Download vue2-particles to use tsParticles with a component ready to use and easier to configure.");
-                console.log("You can read more about the component here: https://github.com/tsparticles/vue/#readme");
+                console.log("You can read more about the component here: https://github.com/tsparticles/vue2/#readme");
             }
         }
-
     }
 
     if (dependencies["svelte"]) {

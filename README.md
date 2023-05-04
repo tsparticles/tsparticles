@@ -354,7 +354,7 @@ Instructions available [here](https://github.com/tsparticles/svelte/#readme)
 
 [![npm](https://img.shields.io/npm/v/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles)
 
-Instructions available [here](https://github.com/tsparticles/vue/#readme)
+Instructions available [here](https://github.com/tsparticles/vue2/#readme)
 
 ### VueJS 3.x
 
@@ -370,7 +370,7 @@ Instruction available [here](https://github.com/tsparticles/vue3/#readme)
 
 [![npm](https://img.shields.io/npm/v/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles) [![npm](https://img.shields.io/npm/dm/web-particles?style=for-the-badge)](https://www.npmjs.com/package/web-particles)
 
-You can find the instructions [here](https://github.com/tsparticles/web/#readme)
+You can find the instructions [here](https://github.com/tsparticles/webcomponents/#readme)
 
 ### WordPress
 
