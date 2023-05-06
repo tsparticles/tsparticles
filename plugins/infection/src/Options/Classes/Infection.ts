@@ -3,7 +3,7 @@ import type { IInfection } from "../Interfaces/IInfection";
 import { InfectionStage } from "./InfectionStage";
 
 /**
- * [[include:Options/Infection.md]]
+ * [[include:Options/Plugins/Infection.md]]
  * @category Options
  */
 export class Infection implements IInfection, IOptionLoader<IInfection> {

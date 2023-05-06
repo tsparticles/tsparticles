@@ -5,7 +5,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles",
+  "name": "tsParticles Easing Quint Plugin",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

@@ -5,7 +5,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles",
+  "name": "tsParticles Perlins Noise Path",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

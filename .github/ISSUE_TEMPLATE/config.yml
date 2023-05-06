@@ -1,41 +1,56 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Angular Repository
+  - name: tsParticles GitHub Organization
+    url: https://github.com/tsparticles
+    about: The official tsParticles GitHub Organization, here can be found many repositories and demos
+  - name: Angular (ng-particles)
     url: https://github.com/tsparticles/angular
-    about: Please open an issue in the Angular repository for the Angular component.
-  - name: Ember Repository
+    about: The official tsParticles Angular component repository
+  - name: Astro (astro-particles)
+    url: https://github.com/tsparticles/astro
+    about: The official tsParticles Astro component repository
+  - name: Ember.js (ember-tsparticles)
     url: https://github.com/tsparticles/ember
-    about: Please open an issue in the Ember repository for the Ember component.
-  - name: Inferno Repository
+    about: The official tsParticles Ember.js component repository
+  - name: Inferno (inferno-particles)
     url: https://github.com/tsparticles/inferno
-    about: Please open an issue in the Inferno repository for the Inferno component.
-  - name: jQuery Repository
+    about: The official tsParticles Inferno component repository
+  - name: jQuery (jquery-particles)
     url: https://github.com/tsparticles/jquery
-    about: Please open an issue in the jQuery repository for the jQuery component.
-  - name: Lit Repository
+    about: The official tsParticles jQuery component repository
+  - name: Lit (lit-tsparticles)
     url: https://github.com/tsparticles/lit
-    about: Please open an issue in the Lit repository for the Lit component.
-  - name: Preact Repository
+    about: The official tsParticles Lit component repository
+  - name: Preact (preact-particles)
     url: https://github.com/tsparticles/preact
-    about: Please open an issue in the Preact repository for the Preact component.
-  - name: React Repository
+    about: The official tsParticles Preact component repository
+  - name: React.js (react-particles)
     url: https://github.com/tsparticles/react
-    about: Please open an issue in the React repository for the React component.
-  - name: Svelte Repository
+    about: The official tsParticles React.js component repository
+  - name: Riot.js (riot-particles)
+    url: https://github.com/tsparticles/riot
+    about: The official tsParticles Riot.js component repository
+  - name: Solid.js (solid-particles)
+    url: https://github.com/tsparticles/solid
+    about: The official tsParticles Solid.js component repository
+  - name: Stencil.js (stencil-particles)
+    url: https://github.com/tsparticles/stencil
+    about: The official tsParticles Stencil.js component repository
+  - name: Svelte (svelte-particles)
     url: https://github.com/tsparticles/svelte
-    about: Please open an issue in the Svelte repository for the Svelte component.
-  - name: Vue 2.x Repository
+    about: The official tsParticles Svelte component repository
+  - name: Vue.js 2.x (vue2-particles)
     url: https://github.com/tsparticles/vue2
-    about: Please open an issue in the Vue 2.x repository for the Vue 2.x component.
-  - name: Vue 3.x Repository
+    about: The official tsParticles Vue.js 2.x component repository
+  - name: Vue.js 3.x (vue3-particles)
     url: https://github.com/tsparticles/vue3
-    about: Please open an issue in the Vue 3.x repository for the Vue 3.x component.
-  - name: Web Components Repository
+    about: The official tsParticles Vue.js 3.x component repository
+  - name: Web Components (web-particles)
     url: https://github.com/tsparticles/webcomponents
-    about: Please open an issue in the Web Components repository for the Web Components component.
-  - name: WordPress Repository
+    about: The official tsParticles Web Components component repository
+  - name: WordPress (wordpress-particles)
     url: https://github.com/tsparticles/wordpress
-    about: Please open an issue in the WordPress repository for the WordPress plugin.
+    about: The official tsParticles WordPress component repository
   - name: GitHub Discussions
     url: https://github.com/matteobruni/tsparticles/discussions
     about: The official tsParticles Q&A, idea discussions or sharing awesome configurations. If you have some general questions this is the right place to ask.

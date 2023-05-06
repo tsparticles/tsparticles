@@ -357,7 +357,6 @@ dist/
 tmp/
 build/
 docs/
-engine/typedoc/themes/particles/assets/js/tsparticles.min.js
 demo/vanilla/report.html
 demo/vanilla/report.htm
 demo/vanilla/report.*.html
@@ -378,21 +377,6 @@ demo/main/views/index.html
 
 options.schema.json
 
-website/js/404.min.js
-website/js/demo.min.js
-
 .parcel-cache
 demo/vanilla/views/index.html
-website/css/main.min.css
-website/css/presets.min.css
-website/css/404.min.css
-website/css/404.css.map
-website/css/main.css.map
-website/css/presets.css.map
-website/css/presets.css
-website/css/404.css
-website/css/main.css
-demo/jquery/views/index.html
-demo/web/views/index.html
-demo/editor/views/index.html
 demo/vanilla/public/stylesheets/*.css

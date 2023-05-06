@@ -6,19 +6,14 @@ Before you can start making changes, it's mandatory to run a `lerna bootstrap` f
 
 After that, you can start coding. Here is the folder layout
 
-- `components` is where all the third party components are present (React, Vue, etc.)
 - `demo` is where all the demo apps are present.
 - `editor` is the source of the GUI editor.
 - `engine` is the main source folder.
 - `interactions` contains some additional interaction plugins.
 - `paths` contains some additional path plugins.
 - `plugins` contains some additional plugins (for now, just infection, but more will be coming).
-- `presets` contains some option presets with their bundle, ready to be used.
 - `shapes` contains some additional shape plugins.
 - `updaters` contains some additional updater plugins.
-- `website` contains the website source.
-
-The `components` folder contains all the javascript frameworks & components built around tsParticles: jQuery, Preact, React, Vue.
 
 The `plugins` folder contains all external presets and shapes.
 
@@ -59,9 +54,7 @@ where the start commands returns an error (this could be another improvement)
 
 ## Testing
 
-The `components` and `plugins` all plugins, components and engines have a demo app or page.
-
-A demo folder has been created with all the demo apps needed.
+There's a `demo` folder where you can find some demo apps used for testing configurations.
 
 ---
 

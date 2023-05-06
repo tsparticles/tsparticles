@@ -66,7 +66,6 @@ try {
                 console.log("You can read more about the component here: https://github.com/tsparticles/vue2#readme");
             }
         }
-
     }
 
     if (dependencies["svelte"]) {
