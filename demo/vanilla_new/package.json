@@ -38,7 +38,7 @@
         "fs-extra": "^11.1.1",
         "minify": "^9.2.0",
         "rimraf": "5.0.0",
-        "sass": "^1.62.0",
+        "sass": "^1.62.1",
         "tsparticles": "^2.9.3",
         "tsparticles-demo-configs": "^2.9.3",
         "tsparticles-engine": "^2.9.3",
