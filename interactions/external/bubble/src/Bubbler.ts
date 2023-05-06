@@ -27,6 +27,13 @@ import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
 import type { IBubblerProcessParam } from "./IBubblerProcessParam";
 import { ProcessBubbleType } from "./ProcessBubbleType";
 
+/**
+ *
+ * @param particleValue
+ * @param modeValue
+ * @param optionsValue
+ * @param ratio
+ */
 function calculateBubbleValue(
     particleValue: number,
     modeValue: number,
@@ -46,6 +53,7 @@ function calculateBubbleValue(
 
 /**
  * Particle bubble manager
+ *
  * @category Interactions
  */
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {

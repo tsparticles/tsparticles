@@ -7,6 +7,7 @@ import { ValueWithRandom } from "@tsparticles/engine";
 
 /**
  * [[include:Options/Particles/Rotate.md]]
+ *
  * @category Options
  */
 export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt> {

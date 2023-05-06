@@ -2,6 +2,10 @@ import type { IDelta, Particle } from "@tsparticles/engine";
 import { RotateDirection, clamp, getDistances, getRandom } from "@tsparticles/engine";
 import type { MoveParticle } from "./Types";
 
+/**
+ *
+ * @param particle
+ */
 export function applyDistance(particle: MoveParticle): void {
     const initialPosition = particle.initialPosition,
         { dx, dy } = getDistances(initialPosition, particle.position),
@@ -40,6 +44,11 @@ export function applyDistance(particle: MoveParticle): void {
     }
 }
 
+/**
+ *
+ * @param particle
+ * @param moveSpeed
+ */
 export function spin(particle: MoveParticle, moveSpeed: number): void {
     const container = particle.container;
 
@@ -69,6 +78,11 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
     particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
 }
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 export function applyPath(particle: Particle, delta: IDelta): void {
     const particlesOptions = particle.options,
         pathOptions = particlesOptions.move.path,
@@ -98,6 +112,10 @@ export function applyPath(particle: Particle, delta: IDelta): void {
     particle.lastPathTime -= particle.pathDelay;
 }
 
+/**
+ *
+ * @param particle
+ */
 export function getProximitySpeedFactor(particle: Particle): number {
     return particle.slow.inRange ? particle.slow.factor : 1;
 }

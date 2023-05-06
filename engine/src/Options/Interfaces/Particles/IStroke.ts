@@ -6,6 +6,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 /**
  * Particle stroke, outlines the particle with a customizable line
  * [[include:Options/Particles/Stroke.md]]
+ *
  * @category Options
  */
 export interface IStroke {

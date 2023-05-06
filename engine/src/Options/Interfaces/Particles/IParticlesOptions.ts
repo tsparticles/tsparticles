@@ -1,5 +1,6 @@
 /**
  * [[include:Options/Particles.md]]
+ *
  * @category Options
  */
 import type { IAnimatableColor } from "../IAnimatableColor";
@@ -19,6 +20,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Particles.md]]
+ *
  * @category Options
  */
 export interface IParticlesOptions {

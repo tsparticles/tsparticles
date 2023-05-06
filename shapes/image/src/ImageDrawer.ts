@@ -9,7 +9,7 @@ import type { IImageShape } from "./IImageShape";
 export class ImageDrawer implements IShapeDrawer {
     /**
      * The image set collection
-     * @private
+     *
      */
     private _images: ContainerImage[];
 
@@ -22,6 +22,7 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Adds an image to the given container
+     *
      * @param container the container where the image is going to be added
      * @param image the image to add to the container collection
      */
@@ -40,6 +41,7 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * The draw image method
+     *
      * @param context the context used for drawing
      * @param particle the particle to be drawn
      * @param radius the particle radius
@@ -68,6 +70,7 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Gets the image collection of the given container
+     *
      * @param container the container requesting the image collection
      * @returns the container image collection
      */
@@ -113,6 +116,7 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Loads the image shape to the given particle
+     *
      * @param container the particles container
      * @param particle the particle loading the image shape
      */
@@ -176,9 +180,9 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Loads the image shape
+     *
      * @param container the container used for searching images
      * @param imageShape the image shape to load
-     * @private
      */
     private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
         const source = imageShape.src;

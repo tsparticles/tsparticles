@@ -37,6 +37,9 @@ type ConfettiParams = {
     options: RecursivePartial<IConfettiOptions>;
 };
 
+/**
+ *
+ */
 async function initPlugins(): Promise<void> {
     if (initialized) {
         return;
@@ -80,6 +83,10 @@ async function initPlugins(): Promise<void> {
     initialized = true;
 }
 
+/**
+ *
+ * @param params
+ */
 async function setConfetti(params: ConfettiParams): Promise<Container | undefined> {
     const actualOptions = new ConfettiOptions();
 
@@ -294,6 +301,11 @@ type ConfettiFunc = (
     confettiOptions?: RecursivePartial<IConfettiOptions>
 ) => Promise<Container | undefined>;
 
+/**
+ *
+ * @param idOrOptions
+ * @param confettiOptions
+ */
 export async function confetti(
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>

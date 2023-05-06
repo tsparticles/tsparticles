@@ -1,5 +1,6 @@
 /**
  * Color animation interface, these properties are used to animate colors
+ *
  * @category Options
  */
 import type { IAnimation } from "./IAnimation";

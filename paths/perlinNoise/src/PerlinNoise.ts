@@ -32,10 +32,20 @@ const p = [
 const perm = new Array(512);
 const gradP = new Array(512);
 
+/**
+ *
+ * @param t
+ */
 function fade(t: number): number {
     return t * t * t * (t * (t * 6 - 15) + 10);
 }
 
+/**
+ *
+ * @param a
+ * @param b
+ * @param t
+ */
 function lerp(a: number, b: number, t: number): number {
     return (1 - t) * a + t * b;
 }

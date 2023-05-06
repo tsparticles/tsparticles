@@ -6,6 +6,7 @@ import { itemFromArray } from "@tsparticles/engine";
 
 /**
  * Particle attract manager
+ *
  * @category Interactions
  */
 export class Pusher extends ExternalInteractorBase<PushContainer> {

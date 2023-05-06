@@ -13,30 +13,31 @@ import type { Particle } from "../Particle";
 export class InteractionManager {
     /**
      * The engine used for registering the interactions managers
-     * @private
+     *
      */
     private readonly _engine;
 
     /**
      * Registered external interactivity managers
-     * @private
+     *
      */
     private _externalInteractors: IExternalInteractor[];
 
     /**
      * The interactors that are used for initialization
-     * @private
+     *
      */
     private readonly _interactors;
 
     /**
      * Registered particles interactions managers
-     * @private
+     *
      */
     private _particleInteractors: IParticlesInteractor[];
 
     /**
      * The constructor of the interaction manager
+     *
      * @param engine the parent engine
      * @param container the parent container
      */
@@ -49,6 +50,7 @@ export class InteractionManager {
 
     /**
      * Iterates through the external interactivity manager and call the interact method, if they are enabled
+     *
      * @param delta this variable contains the delta between the current frame and the previous frame
      */
     async externalInteract(delta: IDelta): Promise<void> {
@@ -90,6 +92,7 @@ export class InteractionManager {
 
     /**
      * Iterates through the particles interactions manager and call the interact method, if they are enabled
+     *
      * @param particle the particle responsible for the current interaction
      * @param delta this variable contains the delta between the current frame and the previous frame
      */
@@ -108,6 +111,7 @@ export class InteractionManager {
 
     /**
      * Iterates through the external interactivity manager and call the interact method, if they are enabled
+     *
      * @param particle the particle to reset
      */
     async reset(particle: Particle): Promise<void> {

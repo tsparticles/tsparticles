@@ -1,6 +1,13 @@
 import { AnimationStatus, DestroyType, clamp, getRandom } from "@tsparticles/engine";
 import type { IDelta, IParticleUpdater, Particle } from "@tsparticles/engine";
 
+/**
+ *
+ * @param particle
+ * @param value
+ * @param minValue
+ * @param maxValue
+ */
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.size.animation.destroy) {
         case DestroyType.max:
@@ -16,6 +23,11 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
     }
 }
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateSize(particle: Particle, delta: IDelta): void {
     const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor,
         minValue = particle.size.min,

@@ -2,6 +2,10 @@ import type { Engine } from "@tsparticles/engine";
 import { ExternalLighter } from "./ExternalLighter";
 import { ParticlesLighter } from "./ParticlesLighter";
 
+/**
+ *
+ * @param engine
+ */
 export function loadLightInteraction(engine: Engine): void {
     engine.addInteractor("externalLight", (container) => new ExternalLighter(container));
     engine.addInteractor("particlesLight", (container) => new ParticlesLighter(container));

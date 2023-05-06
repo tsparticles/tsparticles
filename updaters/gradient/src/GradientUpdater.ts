@@ -58,6 +58,11 @@ type GradientParticlesOptions = ParticlesOptions & {
     gradient?: SingleOrMultiple<AnimatableGradient>;
 };
 
+/**
+ *
+ * @param delta
+ * @param value
+ */
 function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation): void {
     if (!value.enable) {
         return;
@@ -89,6 +94,13 @@ function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation
     }
 }
 
+/**
+ *
+ * @param delta
+ * @param value
+ * @param max
+ * @param decrease
+ */
 function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>, max: number, decrease: boolean): void {
     const colorValue = value;
 
@@ -125,6 +137,11 @@ function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>,
     }
 }
 
+/**
+ *
+ * @param delta
+ * @param angle
+ */
 function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): void {
     const speed = (angle.velocity ?? 0) * delta.factor,
         max = 2 * Math.PI,
@@ -159,6 +176,11 @@ function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): voi
     }
 }
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateGradient(particle: GradientParticle, delta: IDelta): void {
     const gradient = particle.gradient;
 

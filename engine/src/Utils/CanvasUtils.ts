@@ -13,6 +13,7 @@ import { getStyleFromRgb } from "./ColorUtils";
 
 /**
  * Fills a rectangle with the given color for the whole canvas.
+ *
  * @param context - The canvas context to draw on.
  * @param dimension - The dimension of the rectangle.
  * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
@@ -24,6 +25,7 @@ function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, bas
 
 /**
  * Fills a rectangle with the given color for the whole canvas.
+ *
  * @param context - The canvas context to draw on.
  * @param dimension - The dimension of the rectangle.
  * @param image - The image to draw on the rectangle.
@@ -44,6 +46,10 @@ function paintImage(
     context.globalAlpha = 1;
 }
 
+/**
+ *
+ * @param canvas
+ */
 export function getContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D {
     const context = canvas.getContext("2d");
 
@@ -54,6 +60,14 @@ export function getContext(canvas: HTMLCanvasElement): CanvasRenderingContext2D 
     return context;
 }
 
+/**
+ *
+ * @param context
+ * @param size
+ * @param options
+ * @param trailFill
+ * @param coverColorStyle
+ */
 export function clearCanvas(
     context: CanvasRenderingContext2D,
     size: IDimension,
@@ -78,6 +92,13 @@ export function clearCanvas(
     }
 }
 
+/**
+ *
+ * @param context
+ * @param size
+ * @param options
+ * @param coverColorStyle
+ */
 export function paintCanvas(
     context: CanvasRenderingContext2D,
     size: IDimension,
@@ -95,6 +116,7 @@ export function paintCanvas(
 
 /**
  * Draws a line between two points using canvas API in the given context.
+ *
  * @hidden
  * @param context - The canvas context to draw on.
  * @param begin - The start point of the line.
@@ -109,6 +131,7 @@ export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates,
 
 /**
  * Draws a triangle with three points using canvas API in the given context.
+ *
  * @param context - The canvas context to draw on.
  * @param p1 - The first point of the triangle.
  * @param p2 - The second point of the triangle.
@@ -129,6 +152,7 @@ export function drawTriangle(
 
 /**
  * Clears the canvas.
+ *
  * @param context - The canvas context to clear.
  * @param dimension - The dimension of the canvas.
  */
@@ -138,6 +162,7 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
 
 /**
  * Draws the particle using canvas API in the given context.
+ *
  * @param data - The function parameters.
  */
 export function drawParticle(data: IDrawParticleParams): void {
@@ -219,6 +244,7 @@ export function drawParticle(data: IDrawParticleParams): void {
 
 /**
  * Draws the particle shape using the plugin's shape renderer.
+ *
  * @param container The container of the particle.
  * @param context The canvas context.
  * @param particle The particle to draw.
@@ -249,6 +275,7 @@ export function drawShape(
 
 /**
  * Draws the particle effect after the plugin's shape renderer.
+ *
  * @param container The container of the particle.
  * @param context The canvas context.
  * @param particle The particle to draw.
@@ -279,6 +306,7 @@ export function drawShapeAfterEffect(
 
 /**
  * Draws the given plugin in the canvas.
+ *
  * @param context The canvas context.
  * @param plugin The plugin to draw.
  * @param delta this variable contains the delta between the current frame and the previous frame
@@ -293,6 +321,7 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
 
 /**
  * Draws the given particle plugin in the canvas.
+ *
  * @param context The canvas context.
  * @param plugin The particle plugin to draw.
  * @param particle The particle to draw.
@@ -313,6 +342,7 @@ export function drawParticlePlugin(
 
 /**
  * Alters HSL values for enlighten or darken the given color.
+ *
  * @param color The color to enlighten or darken.
  * @param type The type of alteration.
  * @param value The value of the alteration.

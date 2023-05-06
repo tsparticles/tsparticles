@@ -46,6 +46,7 @@ type WobbleParticlesOptions = ParticlesOptions & {
 
 /**
  * Updates particle wobbling values
+ *
  * @param particle the particle to update
  * @param delta this variable contains the delta between the current frame and the previous frame
  */
@@ -77,12 +78,14 @@ function updateWobble(particle: WobbleParticle, delta: IDelta): void {
 export class WobbleUpdater implements IParticleUpdater {
     /**
      * The Wobble updater plugin constructor, assigns the container using the plugin
+     *
      * @param container the container using the plugin
      */
     constructor(private readonly container: Container) {}
 
     /**
      * Initializing the particle for wobble animation
+     *
      * @param particle the particle to init
      */
     init(particle: WobbleParticle): void {
@@ -107,6 +110,7 @@ export class WobbleUpdater implements IParticleUpdater {
 
     /**
      * Checks if the given particle needs the wobble animation
+     *
      * @param particle
      */
     isEnabled(particle: WobbleParticle): boolean {
@@ -128,6 +132,7 @@ export class WobbleUpdater implements IParticleUpdater {
 
     /**
      * Updates the particle wobble animation
+     *
      * @param particle the particle to update
      * @param delta this variable contains the delta between the current frame and the previous frame
      */

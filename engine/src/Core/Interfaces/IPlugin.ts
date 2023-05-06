@@ -1,5 +1,6 @@
 /**
  * [[include:Plugins.md]]
+ *
  * @packageDocumentation
  */
 import type { Container } from "../Container";
@@ -9,6 +10,7 @@ import type { Options } from "../../Options/Classes/Options";
 
 /**
  * [[include:Plugins.md]]
+ *
  * @category Interfaces
  */
 export interface IPlugin {

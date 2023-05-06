@@ -8,6 +8,7 @@ import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Div.md]]
+ *
  * @category Options
  */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
@@ -34,6 +35,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
+     *
      * @deprecated this property is obsolete, please use the new selectors
      */
     get el(): SingleOrMultiple<string> {
@@ -42,6 +44,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
+     *
      * @deprecated this property is obsolete, please use the new selectors
      * @param value
      */
@@ -51,6 +54,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
+     *
      * @deprecated this property is obsolete, please use the new selectors
      */
     get elementId(): SingleOrMultiple<string> {
@@ -59,6 +63,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
+     *
      * @deprecated this property is obsolete, please use the new selectors
      * @param value
      */
@@ -68,6 +73,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
+     *
      * @deprecated this property is obsolete, please use the new ids
      */
     get ids(): SingleOrMultiple<string> {
@@ -79,6 +85,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
 
     /**
      * The element id to detect the event
+     *
      * @deprecated this property is obsolete, please use the new ids
      * @param value
      */

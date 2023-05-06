@@ -1,5 +1,8 @@
 import { EasingType, addEasing } from "@tsparticles/engine";
 
+/**
+ *
+ */
 export function loadEasingQuintPlugin(): void {
     addEasing(EasingType.easeInQuint, (value) => value ** 5);
     addEasing(EasingType.easeOutQuint, (value) => 1 - (1 - value) ** 5);

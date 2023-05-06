@@ -55,6 +55,9 @@ class FireworksInstance {
     }
 }
 
+/**
+ *
+ */
 async function initPlugins(): Promise<void> {
     if (initialized) {
         return;
@@ -91,6 +94,11 @@ async function initPlugins(): Promise<void> {
     initialized = true;
 }
 
+/**
+ *
+ * @param idOrOptions
+ * @param sourceOptions
+ */
 export async function fireworks(
     idOrOptions: string | RecursivePartial<IFireworkOptions>,
     sourceOptions?: RecursivePartial<IFireworkOptions>

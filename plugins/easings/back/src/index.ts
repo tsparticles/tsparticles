@@ -1,5 +1,8 @@
 import { EasingType, addEasing } from "@tsparticles/engine";
 
+/**
+ *
+ */
 export function loadEasingBackPlugin(): void {
     addEasing(EasingType.easeInBack, (value) => {
         const c1 = 1.70158,

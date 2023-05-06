@@ -2,6 +2,12 @@ import type { LightContainer, LightParticle } from "./Types";
 import type { ICoordinates } from "@tsparticles/engine";
 import { getStyleFromRgb } from "@tsparticles/engine";
 
+/**
+ *
+ * @param container
+ * @param context
+ * @param mousePos
+ */
 export function drawLight(container: LightContainer, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
     const lightOptions = container.actualOptions.interactivity.modes.light?.area;
 
@@ -33,6 +39,13 @@ export function drawLight(container: LightContainer, context: CanvasRenderingCon
     context.fill();
 }
 
+/**
+ *
+ * @param container
+ * @param context
+ * @param particle
+ * @param mousePos
+ */
 export function drawParticleShadow(
     container: LightContainer,
     context: CanvasRenderingContext2D,

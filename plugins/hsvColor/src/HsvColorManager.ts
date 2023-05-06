@@ -16,6 +16,7 @@ import { getRangeValue, getStyleFromHsl, parseAlpha } from "@tsparticles/engine"
 
 /**
  * Converts a RGB ([[IRgb]]) object in a [[IHsv]] object
+ *
  * @param rgb the RGB ([[IRgb]]) object
  * @returns the [[IHsv]] object
  */
@@ -51,6 +52,7 @@ export function rgbToHsv(rgb: IRgb): IHsv {
 
 /**
  * Converts a RGB ([[IRgba]]) object in a [[IHsva]] object
+ *
  * @param rgba the RGB ([[IRgba]]) object
  */
 export function rgbaToHsva(rgba: IRgba): IHsva {
@@ -62,6 +64,7 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
 
 /**
  * Gets a CSS style string from a [[IHsv]] object and opacity value
+ *
  * @param color the [[IHsv]] input color
  * @param opacity the opacity value
  * @returns the CSS style string
@@ -72,6 +75,7 @@ export function getStyleFromHsv(color: IHsv, opacity?: number): string {
 
 /**
  * Converts a Hue Saturation Lightness ([[IHsl]]) object in a [[IHsv]] object
+ *
  * @param hsl the Hue Saturation Lightness ([[IHsl]]) object
  * @returns the [[IHsv]] object
  */
@@ -90,6 +94,7 @@ export function hslToHsv(hsl: IHsl): IHsv {
 
 /**
  * Converts a Hue Saturation Lightness ([[IHsla]]) object in a [[IHsva]] object
+ *
  * @param hsla the Hue Saturation Lightness ([[IHsla]]) object
  * @returns the [[IHsva]] object
  */
@@ -102,6 +107,7 @@ export function hslaToHsva(hsla: IHsla): IHsva {
 
 /**
  * Converts a Hue Saturation Lightness ([[IHsv]]) object in a [[IHsl]] object
+ *
  * @param hsv the Hue Saturation Lightness ([[IHsv]]) object
  * @returns the [[IHsl]] object
  */
@@ -120,6 +126,7 @@ export function hsvToHsl(hsv: IHsv): IHsl {
 
 /**
  * Converts a Hue Saturation Lightness ([[IHsva]]) object in a [[IHsla]] object
+ *
  * @param hsva the Hue Saturation Lightness ([[IHsva]]) object
  * @returns the [[IHsla]] object
  */
@@ -132,6 +139,7 @@ export function hsvaToHsla(hsva: IHsva): IHsla {
 
 /**
  * Converts a Hue Saturation Lightness ([[IHsv]]) object in a [[IRgb]] object
+ *
  * @param hsv the Hue Saturation Lightness ([[IHsv]]) object
  * @returns the [[IRgb]] object
  */
@@ -198,6 +206,7 @@ export function hsvToRgb(hsv: IHsv): IRgb {
 
 /**
  * Converts a Hue Saturation Value ([[IHsva]]) object in a [[IRgba]] object
+ *
  * @param hsva the Hue Saturation Value ([[IHsva]]) object
  * @returns the [[IRgba]] object
  */

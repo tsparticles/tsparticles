@@ -14,12 +14,17 @@ const randomColorValue = "random",
     midColorValue = "mid",
     colorManagers = new Map<string, IColorManager>();
 
+/**
+ *
+ * @param manager
+ */
 export function addColorManager(manager: IColorManager): void {
     colorManagers.set(manager.key, manager);
 }
 
 /**
  * Converts hue to RGB values.
+ *
  * @hidden
  * @param p
  * @param q
@@ -51,6 +56,7 @@ function hue2rgb(p: number, q: number, t: number): number {
 
 /**
  * Converts a string to a RGBA color.
+ *
  * @param input A string that represents a color.
  */
 function stringToRgba(input: string): IRgba | undefined {
@@ -79,6 +85,7 @@ function stringToRgba(input: string): IRgba | undefined {
 
 /**
  * Gets the particles color
+ *
  * @param input the input color to convert in [[IRgb]] object
  * @param index the array index, if needed
  * @param useIndex set to false for ignoring the index parameter
@@ -111,6 +118,7 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
 
 /**
  * Gets the particles color
+ *
  * @param input the input color to convert in [[IRgb]] object
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
@@ -143,6 +151,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
 
 /**
  * Gets the particles color
+ *
  * @param color the input color to convert in [[IHsl]] object
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
@@ -156,6 +165,7 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
 
 /**
  * Gets the particles color
+ *
  * @param color the input color to convert in [[IHsl]] object
  * @param index the array index, if needed
  * @param useIndex set to false to ignore the index parameter
@@ -173,6 +183,7 @@ export function rangeColorToHsl(
 
 /**
  * Converts rgb color to hsl color
+ *
  * @param color rgb color to convert
  * @returns hsl color
  */
@@ -216,6 +227,7 @@ export function rgbToHsl(color: IRgb): IHsl {
 
 /**
  * Gets alpha value from string color
+ *
  * @param input the input color to convert in alpha value
  * @returns the alpha value
  */
@@ -225,6 +237,7 @@ export function stringToAlpha(input: string): number | undefined {
 
 /**
  * Converts hexadecimal string (HTML color code) in a [[IRgb]] object
+ *
  * @param input the hexadecimal string (#f70 or #ff7700)
  * @returns the [[IRgb]] object
  */
@@ -234,6 +247,7 @@ export function stringToRgb(input: string): IRgb | undefined {
 
 /**
  * Converts a Hue Saturation Lightness ([[IHsl]]) object in a [[IRgb]] object
+ *
  * @param hsl the Hue Saturation Lightness ([[IHsl]]) object
  * @returns the [[IRgb]] object
  */
@@ -270,6 +284,7 @@ export function hslToRgb(hsl: IHsl): IRgb {
 
 /**
  * Converts HSLA color to RGBA color
+ *
  * @param hsla the HSLA color to convert
  * @returns the RGBA color
  */
@@ -286,6 +301,7 @@ export function hslaToRgba(hsla: IHsla): IRgba {
 
 /**
  * Returns a random ([[IRgb]]) color
+ *
  * @param min the minimum value for the color
  * @returns the random ([[IRgb]]) color
  */
@@ -301,6 +317,7 @@ export function getRandomRgbColor(min?: number): IRgb {
 
 /**
  * Gets a CSS style string from a [[IRgb]] object and opacity value
+ *
  * @param color the [[IRgb]] input color
  * @param opacity the opacity value
  * @returns the CSS style string
@@ -311,6 +328,7 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
 
 /**
  * Gets a CSS style string from a [[IHsl]] object and opacity value
+ *
  * @param color the [[IHsl]] input color
  * @param opacity the opacity value
  * @returns the CSS style string
@@ -319,6 +337,13 @@ export function getStyleFromHsl(color: IHsl, opacity?: number): string {
     return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
 }
 
+/**
+ *
+ * @param color1
+ * @param color2
+ * @param size1
+ * @param size2
+ */
 export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
     let rgb1 = color1 as IRgb,
         rgb2 = color2 as IRgb;
@@ -338,6 +363,12 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
     };
 }
 
+/**
+ *
+ * @param p1
+ * @param p2
+ * @param linkColor
+ */
 export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
     if (linkColor === randomColorValue) {
         return getRandomRgbColor();
@@ -359,6 +390,12 @@ export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string |
     }
 }
 
+/**
+ *
+ * @param optColor
+ * @param blink
+ * @param consent
+ */
 export function getLinkRandomColor(
     optColor: string | IOptionsColor,
     blink: boolean,
@@ -387,6 +424,10 @@ export function getLinkRandomColor(
     }
 }
 
+/**
+ *
+ * @param animation
+ */
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
     return animation !== undefined
         ? {
@@ -397,6 +438,12 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
         : undefined;
 }
 
+/**
+ *
+ * @param hsl
+ * @param animationOptions
+ * @param reduceFactor
+ */
 export function getHslAnimationFromHsl(
     hsl: IHsl,
     animationOptions: HslAnimation | undefined,
@@ -427,6 +474,12 @@ export function getHslAnimationFromHsl(
     return resColor;
 }
 
+/**
+ *
+ * @param colorValue
+ * @param colorAnimation
+ * @param reduceFactor
+ */
 function setColorAnimation(
     colorValue: IParticleValueAnimation<number>,
     colorAnimation: IColorAnimation,

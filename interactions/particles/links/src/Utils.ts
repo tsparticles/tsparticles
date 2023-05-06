@@ -9,6 +9,21 @@ import {
 } from "@tsparticles/engine";
 import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
 
+/**
+ *
+ * @param context
+ * @param width
+ * @param begin
+ * @param end
+ * @param maxDistance
+ * @param canvasSize
+ * @param warp
+ * @param backgroundMask
+ * @param composite
+ * @param colorLine
+ * @param opacity
+ * @param shadow
+ */
 export function drawLinkLine(
     context: CanvasRenderingContext2D,
     width: number,
@@ -112,6 +127,17 @@ export function drawLinkLine(
     context.stroke();
 }
 
+/**
+ *
+ * @param context
+ * @param pos1
+ * @param pos2
+ * @param pos3
+ * @param backgroundMask
+ * @param composite
+ * @param colorTriangle
+ * @param opacityTriangle
+ */
 export function drawLinkTriangle(
     context: CanvasRenderingContext2D,
     pos1: ICoordinates,

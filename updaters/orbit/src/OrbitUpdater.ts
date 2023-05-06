@@ -49,6 +49,7 @@ type OrbitParticle = Particle & {
 
 /**
  * Draws an ellipse for the given particle.
+ *
  * @param context The canvas context.
  * @param particle The particle to draw.
  * @param fillColorValue The particle fill color.

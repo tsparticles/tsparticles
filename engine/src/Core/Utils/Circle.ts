@@ -9,6 +9,7 @@ import { getDistance } from "../../Utils/NumberUtils";
 export class Circle extends Range {
     /**
      * Circle constructor, initialized position and radius
+     *
      * @param x X coordinate of the position
      * @param y Y coordinate of the position
      * @param radius Circle's radius
@@ -19,6 +20,7 @@ export class Circle extends Range {
 
     /**
      * Check if the given point is inside the circle
+     *
      * @param point the point to check
      * @returns true or false, checking if the given point is inside the circle
      */
@@ -28,6 +30,7 @@ export class Circle extends Range {
 
     /**
      * Check if the given range intersects the circle
+     *
      * @param range the range to check
      * @returns true or false, checking if the range is intersecting with the circle
      */

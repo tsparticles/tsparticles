@@ -10,6 +10,7 @@ import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
+ *
  * @category Options
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {

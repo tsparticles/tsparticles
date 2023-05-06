@@ -14,6 +14,7 @@ export class Rectangle extends Range {
 
     /**
      * The rectangle constructor, initializes position and size
+     *
      * @param x X coordinate of the position
      * @param y Y coordinate of the position
      * @param width Rectangle width
@@ -30,6 +31,7 @@ export class Rectangle extends Range {
 
     /**
      * Check if the given point is inside the rectangle
+     *
      * @param point the point to check
      * @returns true or false, checking if the given point is inside the rectangle
      */
@@ -43,6 +45,7 @@ export class Rectangle extends Range {
 
     /**
      * Check if another range intersects the rectangle
+     *
      * @param range the range to check
      * @returns true or false, checking if the range is intersecting with the rectangle
      */

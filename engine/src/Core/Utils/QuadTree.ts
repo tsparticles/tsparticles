@@ -13,31 +13,31 @@ import { getDistance } from "../../Utils/NumberUtils";
 export class QuadTree {
     /**
      * The North East subtree
-     * @private
+     *
      */
     private _NE?: QuadTree;
 
     /**
      * the North West subtree
-     * @private
+     *
      */
     private _NW?: QuadTree;
 
     /**
      * the South East subtree
-     * @private
+     *
      */
     private _SE?: QuadTree;
 
     /**
      * the South West subtree
-     * @private
+     *
      */
     private _SW?: QuadTree;
 
     /**
      * Used to know if the current instance is divided or not (branch or leaf)
-     * @private
+     *
      */
     private _divided;
 
@@ -48,6 +48,7 @@ export class QuadTree {
 
     /**
      * Initializes the instance with a rectangle and a capacity
+     *
      * @param rectangle the instance rectangle area
      * @param capacity the points capacity
      */
@@ -58,6 +59,7 @@ export class QuadTree {
 
     /**
      * Inserts the given point in the instance, or to its subtrees
+     *
      * @param point the point to insert
      * @returns true if the point is added to the instance or one of its subtrees, false if it's not
      */
@@ -87,6 +89,7 @@ export class QuadTree {
 
     /**
      * Queries the instance using a [[Rectangle]] object, with the given position and the given size
+     *
      * @param range the range to use for querying the tree
      * @param check the function to check if the particle can be added to the result
      * @param found found particles array, output parameter
@@ -123,6 +126,7 @@ export class QuadTree {
 
     /**
      * Queries the instance using a [[Circle]] object, with the given position and the given radius
+     *
      * @param position the circle position
      * @param radius the circle radius
      * @param check the function to check if the particle can be added to the result
@@ -134,6 +138,7 @@ export class QuadTree {
 
     /**
      * Queries the instance using a [[Rectangle]] object, with the given position and the given size
+     *
      * @param position the rectangle position
      * @param size the rectangle size
      * @param check the function to check if the particle can be added to the result

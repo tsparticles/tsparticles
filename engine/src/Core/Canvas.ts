@@ -21,6 +21,12 @@ import type { ITrailFillData } from "./Interfaces/ITrailFillData";
 import type { Particle } from "./Particle";
 import { generatedAttribute } from "./Utils/Constants";
 
+/**
+ *
+ * @param factor
+ * @param newFactor
+ * @param key
+ */
 function setTransformValue(
     factor: IParticleTransformValues,
     newFactor: IParticleTransformValues,
@@ -35,6 +41,7 @@ function setTransformValue(
 
 /**
  * Canvas manager
+ *
  * @category Core
  */
 export class Canvas {
@@ -68,6 +75,7 @@ export class Canvas {
 
     /**
      * Constructor of canvas manager
+     *
      * @param container the parent container
      */
     constructor(private readonly container: Container) {
@@ -129,6 +137,7 @@ export class Canvas {
 
     /**
      * Generic draw method, for drawing stuff on the canvas context
+     *
      * @param cb
      */
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
@@ -141,6 +150,7 @@ export class Canvas {
 
     /**
      * Draws the specified particle in the canvas
+     *
      * @param particle the particle to draw
      * @param delta the frame delta time values
      */
@@ -209,6 +219,7 @@ export class Canvas {
 
     /**
      * Draws stuff using the given plugin, using the given particle
+     *
      * @param plugin the plugin to use for drawing stuff
      * @param particle the particle used
      * @param delta the frame delta time values
@@ -221,6 +232,7 @@ export class Canvas {
 
     /**
      * Draws stuff using the given plugin
+     *
      * @param plugin the plugin to use for drawing stuff
      * @param delta the frame delta time values
      */
@@ -260,6 +272,7 @@ export class Canvas {
 
     /**
      * Loads the canvas html element
+     *
      * @param canvas the canvas html element
      */
     loadCanvas(canvas: HTMLCanvasElement): void {

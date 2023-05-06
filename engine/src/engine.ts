@@ -1,6 +1,7 @@
 /**
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the [[Loader]] class for initializing [[Container]] instances
+ *
  * @category Engine
  */
 import type {
@@ -28,6 +29,13 @@ import { generatedAttribute } from "./Core/Utils/Constants";
 import { getRandom } from "./Utils/NumberUtils";
 import { itemFromSingleOrMultiple } from "./Utils/Utils";
 
+/**
+ *
+ * @param data
+ * @param data.fallback
+ * @param data.index
+ * @param data.url
+ */
 async function getDataFromUrl(data: {
     fallback?: SingleOrMultiple<ISourceOptions>;
     index?: number;
@@ -56,6 +64,7 @@ declare const __VERSION__: string;
  * Engine class for creating the singleton on window.
  * It's a singleton proxy to the Loader class for initializing [[Container]] instances,
  * and for Plugins class responsible for every external feature
+ *
  * @category Engine
  */
 export class Engine {
@@ -111,6 +120,7 @@ export class Engine {
 
     /**
      * Adds a listener to the specified event
+     *
      * @param type The event to listen to
      * @param listener The listener of the specified event
      */
@@ -168,6 +178,7 @@ export class Engine {
 
     /**
      * addPathGenerator adds a named path generator to tsParticles, this can be called by options
+     *
      * @param name the path generator name
      * @param generator the path generator object
      * @param refresh if true, all the instances will be refreshed
@@ -180,6 +191,7 @@ export class Engine {
 
     /**
      * addPlugin adds plugin to tsParticles, if an instance needs it will be loaded
+     *
      * @param plugin the plugin implementation of [[IPlugin]]
      * @param refresh if true, all the instances will be refreshed
      */
@@ -191,6 +203,7 @@ export class Engine {
 
     /**
      * addPreset adds preset to tsParticles, it will be available to all future instances created
+     *
      * @param preset the preset name
      * @param options the options to add to the preset
      * @param override if true, the preset will override any existing with the same name
@@ -204,6 +217,7 @@ export class Engine {
 
     /**
      * addShape adds shape to tsParticles, it will be available to all future instances created
+     *
      * @param shape the shape name
      * @param drawer the shape drawer function or class instance that draws the shape in the canvas
      * @param init Optional: the shape drawer init function, used only if the drawer parameter is a function
@@ -239,6 +253,7 @@ export class Engine {
 
     /**
      * Dispatches an event that will be listened from listeners
+     *
      * @param type The event to dispatch
      * @param args The event parameters
      */
@@ -248,6 +263,7 @@ export class Engine {
 
     /**
      * All the [[Container]] objects loaded
+     *
      * @returns All the [[Container]] objects loaded
      */
     dom(): Container[] {
@@ -256,6 +272,7 @@ export class Engine {
 
     /**
      * Retrieves a [[Container]] from all the objects loaded
+     *
      * @param index The object index
      * @returns The [[Container]] object at specified index, if present or not destroyed, otherwise undefined
      */
@@ -272,6 +289,7 @@ export class Engine {
 
     /**
      * Starts an animation in a container, starting from the given options
+     *
      * @param params all the parameters required for loading options in the current animation
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
@@ -361,6 +379,8 @@ export class Engine {
 
     /**
      * Reloads all existing tsParticles loaded instances
+     *
+     * @param refresh
      */
     async refresh(refresh = true): Promise<void> {
         if (!refresh) {
@@ -374,6 +394,7 @@ export class Engine {
 
     /**
      * Removes a listener from the specified event
+     *
      * @param type The event to stop listening to
      * @param listener The listener of the specified event
      */
@@ -383,6 +404,7 @@ export class Engine {
 
     /**
      * Adds an additional click handler to all the loaded [[Container]] objects.
+     *
      * @param callback The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {

@@ -8,6 +8,7 @@ import { deepExtend } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Particles/Shape.md]]
+ *
  * @category Options
  */
 export class Shape implements IShape, IOptionLoader<IShape> {

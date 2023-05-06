@@ -5,6 +5,7 @@ import { SizeAnimation } from "./SizeAnimation";
 
 /**
  * [[include:Options/Particles/Size.md]]
+ *
  * @category Options
  */
 export class Size extends RangedAnimationValueWithRandom implements ISize, IOptionLoader<ISize> {

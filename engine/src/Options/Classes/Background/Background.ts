@@ -5,6 +5,7 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Background.md]]
+ *
  * @category Options
  */
 export class Background implements IBackground, IOptionLoader<IBackground> {

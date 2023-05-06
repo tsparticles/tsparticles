@@ -15,6 +15,14 @@ import type {
     Particle,
 } from "@tsparticles/engine";
 
+/**
+ *
+ * @param delta
+ * @param value
+ * @param valueAnimation
+ * @param max
+ * @param decrease
+ */
 function updateColorValue(
     delta: IDelta,
     value: IParticleValueAnimation<number>,
@@ -76,6 +84,11 @@ function updateColorValue(
     }
 }
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateStrokeColor(particle: StrokeParticle, delta: IDelta): void {
     if (!particle.strokeColor || !particle.strokeAnimation) {
         return;

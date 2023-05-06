@@ -124,6 +124,10 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
+/**
+ *
+ * @param engine
+ */
 export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
     if (!engine.emitterShapeManager) {
         engine.emitterShapeManager = new ShapeManager(engine);

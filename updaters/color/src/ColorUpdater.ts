@@ -8,6 +8,14 @@ import type {
     Particle,
 } from "@tsparticles/engine";
 
+/**
+ *
+ * @param delta
+ * @param value
+ * @param valueAnimation
+ * @param max
+ * @param decrease
+ */
 function updateColorValue(
     delta: IDelta,
     value: IParticleValueAnimation<number>,
@@ -71,6 +79,11 @@ function updateColorValue(
     }
 }
 
+/**
+ *
+ * @param particle
+ * @param delta
+ */
 function updateColor(particle: Particle, delta: IDelta): void {
     const animationOptions = particle.options.color.animation;
 

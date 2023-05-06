@@ -5,6 +5,7 @@ import { RangedAnimationValueWithRandom } from "../../ValueWithRandom";
 
 /**
  * [[include:Options/Particles/Opacity.md]]
+ *
  * @category Options
  */
 export class Opacity extends RangedAnimationValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {

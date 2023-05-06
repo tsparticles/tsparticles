@@ -16,6 +16,7 @@ import { Attract } from "./Options/Classes/Attract";
 
 /**
  * Particle external attract manager
+ *
  * @category Interactions
  */
 export class Attractor extends ExternalInteractorBase<AttractContainer> {

@@ -5,6 +5,7 @@ import { RotateAnimation } from "./RotateAnimation";
 
 /**
  * [[include:Options/Particles/Rotate.md]]
+ *
  * @category Options
  */
 export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IRotate> {

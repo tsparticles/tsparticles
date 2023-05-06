@@ -3,6 +3,7 @@ import type { IOptionsColor } from "../IOptionsColor";
 /**
  * The background options used by the canvas element, it's not drawn, it's applied in the style
  * [[include:Options/Background.md]]
+ *
  * @category Options
  */
 export interface IBackground {

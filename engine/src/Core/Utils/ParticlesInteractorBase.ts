@@ -17,13 +17,14 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
 
     /**
      * The particles interactions manager constructor
+     *
      * @param container the parent container
-     * @protected
      */
     protected constructor(protected readonly container: TContainer) {}
 
     /**
      * Before interaction clear
+     *
      * @param particle the particle to clear
      * @param delta this variable contains the delta between the current frame and the previous frame
      */
@@ -36,6 +37,7 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
 
     /**
      * Interaction handler
+     *
      * @param particle the particle responsible for interactions
      * @param delta this variable contains the delta between the current frame and the previous frame
      */
@@ -43,6 +45,7 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
 
     /**
      * Interaction enable check
+     *
      * @param particle the particle responsible for interactions
      * @returns true or false, checking if the options enable this interaction manager
      */
@@ -50,6 +53,7 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
 
     /**
      * Before interaction reset
+     *
      * @param particle the particle to be reset
      */
     abstract reset(particle: Particle): void;

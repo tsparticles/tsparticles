@@ -3,6 +3,7 @@ import type { Container } from "@tsparticles/engine";
 
 /**
  * Particle attract manager
+ *
  * @category Interactions
  */
 export class Pauser extends ExternalInteractorBase {

@@ -18,6 +18,7 @@ import { calcPositionFromSize } from "../Utils/NumberUtils";
 
 /**
  * Particles manager object
+ *
  * @category Core
  */
 export class Particles {

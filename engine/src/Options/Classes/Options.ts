@@ -26,6 +26,7 @@ interface DefaultThemes {
 
 /**
  * [[include:Options.md]]
+ *
  * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
@@ -129,6 +130,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     /**
      * This methods loads the source object in the current instance
+     *
      * @param data the source data to load into the instance
      */
     load(data?: ISourceOptions): void {

@@ -9,6 +9,10 @@ import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 import { loadTwinkleUpdater } from "@tsparticles/updater-twinkle";
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
+/**
+ *
+ * @param engine
+ */
 export async function loadFull(engine: Engine): Promise<void> {
     await loadSlim(engine);
 

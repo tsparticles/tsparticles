@@ -20,6 +20,7 @@ import { deepExtend } from "../../../Utils/Utils";
 
 /**
  * [[include:Options/Particles.md]]
+ *
  * @category Options
  */
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
