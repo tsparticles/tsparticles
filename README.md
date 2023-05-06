@@ -606,7 +606,7 @@ You can find some config samples [here](https://github.com/tsparticles/website/t
 ## **_Options_**
 
 You can find all options
-available [here](https://particles.js.org/docs/interfaces/Options_Interfaces_IOptions.IOptions.html) 📖
+available [here](https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html) 📖
 
 ## Want to see it in action and try it?
 
