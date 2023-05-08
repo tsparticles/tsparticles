@@ -35,7 +35,7 @@
     "nx": "^16.1.1",
     "prettier": "^2.8.8",
     "rimraf": "^5.0.0",
-    "typedoc": "^0.24.6",
+    "typedoc": "^0.24.7",
     "typedoc-plugin-carbon-ads": "^1.4.0",
     "typedoc-plugin-clarity": "^1.4.0",
     "typedoc-plugin-coverage": "^2.1.0",
