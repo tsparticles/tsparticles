@@ -23,12 +23,31 @@ import { loadTextShape } from "tsparticles-shape-text";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
 
+/**
+ *
+ */
 export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
 
 declare global {
+    /**
+     *
+     */
     interface Window {
+        /**
+         *
+         */
         confetti: ConfettiFunc & {
+            /**
+             *
+             * @param canvas -
+             * @param options -
+             * @returns the confetti function
+             */
             create: (canvas: HTMLCanvasElement, options: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
+
+            /**
+             * the confetti version number
+             */
             version: string;
         };
     }
@@ -43,8 +62,19 @@ const ids = new Map<string, Container | undefined>();
  * The {@link confetti} parameter object definition
  */
 type ConfettiParams = {
+    /**
+     *
+     */
     canvas?: HTMLCanvasElement;
+
+    /**
+     *
+     */
     id: string;
+
+    /**
+     *
+     */
     options: RecursivePartial<IConfettiOptions>;
 };
 
@@ -317,6 +347,12 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
     return container;
 }
 
+/**
+ *
+ * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
+ * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
+ * @returns the container of the animation, or undefined if no canvas was found
+ */
 type ConfettiFunc = (
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>
@@ -350,6 +386,12 @@ export async function confetti(
     });
 }
 
+/**
+ *
+ * @param canvas -
+ * @param options -
+ * @returns the confetti function to use for the given canvas animations
+ */
 confetti.create = async (
     canvas: HTMLCanvasElement,
     options: RecursivePartial<IConfettiOptions>
@@ -387,6 +429,9 @@ confetti.create = async (
     };
 };
 
+/**
+ *
+ */
 confetti.version = tsParticles.version;
 
 window.confetti = confetti;

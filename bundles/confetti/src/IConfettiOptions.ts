@@ -1,12 +1,42 @@
 import type { ICoordinates, SingleOrMultiple } from "tsparticles-engine";
 
+/**
+ *
+ */
 export interface IConfettiOptions {
+    /**
+     *
+     */
     angle: number;
+
+    /**
+     *
+     */
     colors: SingleOrMultiple<string>;
+
+    /**
+     *
+     */
     count: number;
+
+    /**
+     *
+     */
     decay: number;
+
+    /**
+     *
+     */
     disableForReducedMotion: boolean;
+
+    /**
+     *
+     */
     drift: number;
+
+    /**
+     *
+     */
     gravity: number;
 
     /**
@@ -19,12 +49,43 @@ export interface IConfettiOptions {
      */
     particleCount: number;
 
+    /**
+     *
+     */
     position: ICoordinates;
+
+    /**
+     *
+     */
     scalar: number;
+
+    /**
+     *
+     */
     shapeOptions: Record<string, SingleOrMultiple<unknown>>;
+
+    /**
+     *
+     */
     shapes: SingleOrMultiple<string>;
+
+    /**
+     *
+     */
     spread: number;
+
+    /**
+     *
+     */
     startVelocity: number;
+
+    /**
+     *
+     */
     ticks: number;
+
+    /**
+     *
+     */
     zIndex: number;
 }
