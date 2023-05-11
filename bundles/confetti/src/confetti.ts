@@ -107,6 +107,9 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
 
     let container;
 
+    const fpsLimit = 120,
+        opacitySpeed = (actualOptions.ticks * 1000) / (3600 * fpsLimit);
+
     if (ids.has(params.id)) {
         container = ids.get(params.id);
 
@@ -137,13 +140,21 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             type: actualOptions.shapes,
                             options: actualOptions.shapeOptions,
                         },
+                        life: {
+                            count: 1,
+                        },
+                        opacity: {
+                            value: { min: 0, max: 1 },
+                            animation: {
+                                enable: true,
+                                sync: true,
+                                speed: opacitySpeed,
+                                startValue: "max",
+                                destroy: "min",
+                            },
+                        },
                         size: {
                             value: 5 * actualOptions.scalar,
-                        },
-                        life: {
-                            duration: {
-                                value: actualOptions.ticks / 60,
-                            },
                         },
                         move: {
                             angle: {
@@ -190,7 +201,8 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 value: { min: 0, max: 1 },
                 animation: {
                     enable: true,
-                    speed: 0.5,
+                    sync: true,
+                    speed: opacitySpeed,
                     startValue: "max",
                     destroy: "min",
                 },
@@ -202,10 +214,6 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 enable: false,
             },
             life: {
-                duration: {
-                    sync: true,
-                    value: actualOptions.ticks / 60,
-                },
                 count: 1,
             },
             move: {
@@ -317,6 +325,7 @@ type ConfettiFunc = (
 /**
  * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
  * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
+ * @returns the container of the animation, or undefined if no canvas was found
  */
 export async function confetti(
     idOrOptions: ConfettiFirstParam,

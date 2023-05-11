@@ -15,10 +15,10 @@ import {
 } from "tsparticles-engine";
 
 /**
- * @param particle
- * @param value
- * @param minValue
- * @param maxValue
+ * @param particle -
+ * @param value -
+ * @param minValue -
+ * @param maxValue -
  */
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.opacity.animation.destroy) {
@@ -36,8 +36,8 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
 }
 
 /**
- * @param particle
- * @param delta
+ * @param particle -
+ * @param delta -
  */
 function updateOpacity(particle: Particle, delta: IDelta): void {
     if (!particle.opacity) {
@@ -98,9 +98,20 @@ function updateOpacity(particle: Particle, delta: IDelta): void {
     }
 }
 
+/**
+ * The opacity updater, it manages the opacity on each particle
+ */
 export class OpacityUpdater implements IParticleUpdater {
+    /**
+     * Constructor of opacity updater
+     * @param container - The container to manage
+     */
     constructor(private readonly container: Container) {}
 
+    /**
+     * Init a single particle opacity
+     * @param particle -
+     */
     init(particle: Particle): void {
         /* opacity */
         const opacityOptions = particle.options.opacity;
@@ -158,6 +169,11 @@ export class OpacityUpdater implements IParticleUpdater {
         particle.opacity.initialValue = particle.opacity.value;
     }
 
+    /**
+     * Checks if opacity updater is enabled
+     * @param particle -
+     * @returns true if opacity updater is enabled, false otherwise
+     */
     isEnabled(particle: Particle): boolean {
         return (
             !particle.destroyed &&
@@ -170,12 +186,21 @@ export class OpacityUpdater implements IParticleUpdater {
         );
     }
 
+    /**
+     * Resets the opacity of a particle
+     * @param particle -
+     */
     reset(particle: Particle): void {
         if (particle.opacity) {
             particle.opacity.loops = 0;
         }
     }
 
+    /**
+     * Update function of the opacity updater
+     * @param particle -
+     * @param delta -
+     */
     update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
