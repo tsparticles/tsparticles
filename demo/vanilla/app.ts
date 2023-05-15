@@ -1,9 +1,9 @@
-const express = require("express");
-const helmet = require("helmet");
-const stylus = require("stylus");
-const livereload = require("livereload");
-const connectLiveReload = require("connect-livereload");
-//const rateLimit = require("express-rate-limit");
+import express from "express";
+//import helmet from "helmet";
+import stylus from "stylus";
+import livereload from "livereload";
+import connectLiveReload from "connect-livereload";
+//import rateLimit from "express-rate-limit";
 
 const app = express();
 
@@ -23,7 +23,7 @@ app.use(connectLiveReload());
 });
 
 app.use(limiter);*/
-// app.use(helmet()); // Safari requires https, probably a bug
+//app.use(helmet()); // Safari requires https, probably a bug
 
 const port = 3000;
 
@@ -119,47 +119,47 @@ app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-
 app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
-app.get("/", function (req, res) {
+app.get("/", function(req, res) {
     res.render("index");
 });
 
-app.get("/playground", function (req, res) {
+app.get("/playground", function(req, res) {
     res.render("playground");
 });
 
-app.get("/confetti", function (req, res) {
+app.get("/confetti", function(req, res) {
     res.render("confetti");
 });
 
-app.get("/fireworks", function (req, res) {
+app.get("/fireworks", function(req, res) {
     res.render("fireworks");
 });
 
-app.get("/domEmitters", function (req, res) {
+app.get("/domEmitters", function(req, res) {
     res.render("domEmitters");
 });
 
-app.get("/slim", function (req, res) {
+app.get("/slim", function(req, res) {
     res.render("slim");
 });
 
-app.get("/themes", function (req, res) {
+app.get("/themes", function(req, res) {
     res.render("themes");
 });
 
-app.get("/click", function (req, res) {
+app.get("/click", function(req, res) {
     res.render("click");
 });
 
-app.get("/noid", function (req, res) {
+app.get("/noid", function(req, res) {
     res.render("noid");
 });
 
-app.get("/pjs", function (req, res) {
+app.get("/pjs", function(req, res) {
     res.render("pjs");
 });
 
-app.get("/pjs2", function (req, res) {
+app.get("/pjs2", function(req, res) {
     res.render("pjs2");
 });
 
