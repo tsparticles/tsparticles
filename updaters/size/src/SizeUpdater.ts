@@ -9,10 +9,10 @@ import {
 } from "tsparticles-engine";
 
 /**
- * @param particle
- * @param value
- * @param minValue
- * @param maxValue
+ * @param particle -
+ * @param value -
+ * @param minValue -
+ * @param maxValue -
  */
 function checkDestroy(particle: Particle, value: number, minValue: number, maxValue: number): void {
     switch (particle.options.size.animation.destroy) {
@@ -30,60 +30,75 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
 }
 
 /**
- * @param particle
- * @param delta
+ * @param particle -
+ * @param delta -
  */
 function updateSize(particle: Particle, delta: IDelta): void {
-    const sizeVelocity = (particle.size.velocity ?? 0) * delta.factor,
-        minValue = particle.size.min,
-        maxValue = particle.size.max,
-        decay = particle.size.decay ?? 1;
+    const data = particle.size;
+
+    if (!data) {
+        return;
+    }
+
+    const sizeVelocity = (data.velocity ?? 0) * delta.factor,
+        minValue = data.min,
+        maxValue = data.max,
+        decay = data.decay ?? 1;
+
+    if (!data.time) {
+        data.time = 0;
+    }
+
+    if ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) {
+        data.time += delta.value;
+    }
 
     if (
         particle.destroyed ||
-        !particle.size.enable ||
-        ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) > (particle.size.maxLoops ?? 0))
+        !data.enable ||
+        ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) ||
+        ((data.maxLoops ?? 0) > 0 && (data.loops ?? 0) > (data.maxLoops ?? 0))
     ) {
         return;
     }
 
-    switch (particle.size.status) {
+    switch (data.status) {
         case AnimationStatus.increasing:
-            if (particle.size.value >= maxValue) {
-                particle.size.status = AnimationStatus.decreasing;
+            if (data.value >= maxValue) {
+                data.status = AnimationStatus.decreasing;
 
-                if (!particle.size.loops) {
-                    particle.size.loops = 0;
+                if (!data.loops) {
+                    data.loops = 0;
                 }
 
-                particle.size.loops++;
+                data.loops++;
             } else {
-                particle.size.value += sizeVelocity;
+                data.value += sizeVelocity;
             }
 
             break;
         case AnimationStatus.decreasing:
-            if (particle.size.value <= minValue) {
-                particle.size.status = AnimationStatus.increasing;
+            if (data.value <= minValue) {
+                data.status = AnimationStatus.increasing;
 
-                if (!particle.size.loops) {
-                    particle.size.loops = 0;
+                if (!data.loops) {
+                    data.loops = 0;
                 }
 
-                particle.size.loops++;
+                data.loops++;
             } else {
-                particle.size.value -= sizeVelocity;
+                data.value -= sizeVelocity;
             }
     }
 
-    if (particle.size.velocity && decay !== 1) {
-        particle.size.velocity *= decay;
+    if (data.velocity && decay !== 1) {
+        data.velocity *= decay;
     }
 
-    checkDestroy(particle, particle.size.value, minValue, maxValue);
+    checkDestroy(particle, data.value, minValue, maxValue);
 
     if (!particle.destroyed) {
-        particle.size.value = clamp(particle.size.value, minValue, maxValue);
+        data.value = clamp(data.value, minValue, maxValue);
     }
 }
 

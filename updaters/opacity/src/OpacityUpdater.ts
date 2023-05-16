@@ -40,61 +40,72 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
  * @param delta -
  */
 function updateOpacity(particle: Particle, delta: IDelta): void {
-    if (!particle.opacity) {
+    const data = particle.opacity;
+
+    if (!data) {
         return;
     }
 
-    const minValue = particle.opacity.min,
-        maxValue = particle.opacity.max,
-        decay = particle.opacity.decay ?? 1;
+    const minValue = data.min,
+        maxValue = data.max,
+        decay = data.decay ?? 1;
+
+    if (!data.time) {
+        data.time = 0;
+    }
+
+    if ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) {
+        data.time += delta.value;
+    }
 
     if (
         particle.destroyed ||
-        !particle.opacity.enable ||
-        ((particle.opacity.maxLoops ?? 0) > 0 && (particle.opacity.loops ?? 0) > (particle.opacity.maxLoops ?? 0))
+        !data.enable ||
+        ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) ||
+        ((data.maxLoops ?? 0) > 0 && (data.loops ?? 0) > (data.maxLoops ?? 0))
     ) {
         return;
     }
 
-    switch (particle.opacity.status) {
+    switch (data.status) {
         case AnimationStatus.increasing:
-            if (particle.opacity.value >= maxValue) {
-                particle.opacity.status = AnimationStatus.decreasing;
+            if (data.value >= maxValue) {
+                data.status = AnimationStatus.decreasing;
 
-                if (!particle.opacity.loops) {
-                    particle.opacity.loops = 0;
+                if (!data.loops) {
+                    data.loops = 0;
                 }
 
-                particle.opacity.loops++;
+                data.loops++;
             } else {
-                particle.opacity.value += (particle.opacity.velocity ?? 0) * delta.factor;
+                data.value += (data.velocity ?? 0) * delta.factor;
             }
 
             break;
         case AnimationStatus.decreasing:
-            if (particle.opacity.value <= minValue) {
-                particle.opacity.status = AnimationStatus.increasing;
+            if (data.value <= minValue) {
+                data.status = AnimationStatus.increasing;
 
-                if (!particle.opacity.loops) {
-                    particle.opacity.loops = 0;
+                if (!data.loops) {
+                    data.loops = 0;
                 }
 
-                particle.opacity.loops++;
+                data.loops++;
             } else {
-                particle.opacity.value -= (particle.opacity.velocity ?? 0) * delta.factor;
+                data.value -= (data.velocity ?? 0) * delta.factor;
             }
 
             break;
     }
 
-    if (particle.opacity.velocity && particle.opacity.decay !== 1) {
-        particle.opacity.velocity *= decay;
+    if (data.velocity && data.decay !== 1) {
+        data.velocity *= decay;
     }
 
-    checkDestroy(particle, particle.opacity.value, minValue, maxValue);
+    checkDestroy(particle, data.value, minValue, maxValue);
 
     if (!particle.destroyed) {
-        particle.opacity.value = clamp(particle.opacity.value, minValue, maxValue);
+        data.value = clamp(data.value, minValue, maxValue);
     }
 }
 
@@ -117,12 +128,14 @@ export class OpacityUpdater implements IParticleUpdater {
         const opacityOptions = particle.options.opacity;
 
         particle.opacity = {
+            delayTime: getRangeValue(opacityOptions.animation.delay),
             enable: opacityOptions.animation.enable,
             max: getRangeMax(opacityOptions.value),
             min: getRangeMin(opacityOptions.value),
             value: getRangeValue(opacityOptions.value),
             loops: 0,
             maxLoops: getRangeValue(opacityOptions.animation.count),
+            time: 0,
         };
 
         const opacityAnimation = opacityOptions.animation;
@@ -192,6 +205,7 @@ export class OpacityUpdater implements IParticleUpdater {
      */
     reset(particle: Particle): void {
         if (particle.opacity) {
+            particle.opacity.time = 0;
             particle.opacity.loops = 0;
         }
     }
