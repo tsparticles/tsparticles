@@ -9,6 +9,11 @@ export interface IAnimation {
     decay: RangeValue;
 
     /**
+     * Animation delay
+     */
+    delay: RangeValue;
+
+    /**
      * Enables/disables the animation
      */
     enable: boolean;

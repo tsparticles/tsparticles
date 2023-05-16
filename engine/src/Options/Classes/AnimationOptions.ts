@@ -7,6 +7,7 @@ import { setRangeValue } from "../../Utils/NumberUtils";
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;
     decay: RangeValue;
+    delay: RangeValue;
     enable: boolean;
     speed: RangeValue;
     sync: boolean;
@@ -16,6 +17,7 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
         this.enable = false;
         this.speed = 1;
         this.decay = 0;
+        this.delay = 0;
         this.sync = false;
     }
 
@@ -38,6 +40,10 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
 
         if (data.decay !== undefined) {
             this.decay = setRangeValue(data.decay);
+        }
+
+        if (data.delay !== undefined) {
+            this.delay = setRangeValue(data.delay);
         }
 
         if (data.sync !== undefined) {

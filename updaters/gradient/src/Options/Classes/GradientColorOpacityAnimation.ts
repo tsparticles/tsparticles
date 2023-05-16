@@ -12,6 +12,7 @@ export class GradientColorOpacityAnimation
 {
     count: RangeValue;
     decay: RangeValue;
+    delay: RangeValue;
     enable;
     speed: RangeValue;
     startValue: StartValueType | keyof typeof StartValueType;
@@ -22,6 +23,7 @@ export class GradientColorOpacityAnimation
         this.enable = false;
         this.speed = 0;
         this.decay = 0;
+        this.delay = 0;
         this.sync = false;
         this.startValue = StartValueType.random;
     }
@@ -49,6 +51,14 @@ export class GradientColorOpacityAnimation
 
         if (data.startValue !== undefined) {
             this.startValue = data.startValue;
+        }
+
+        if (data.decay !== undefined) {
+            this.decay = setRangeValue(data.decay);
+        }
+
+        if (data.delay !== undefined) {
+            this.delay = setRangeValue(data.delay);
         }
     }
 }

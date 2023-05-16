@@ -9,6 +9,7 @@ import {
 export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;
     decay: RangeValue;
+    delay: RangeValue;
     enable;
     speed: RangeValue;
     sync;
@@ -18,6 +19,7 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
         this.enable = false;
         this.speed = 0;
         this.decay = 0;
+        this.delay = 0;
         this.sync = false;
     }
 
@@ -40,6 +42,10 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
 
         if (data.decay !== undefined) {
             this.decay = setRangeValue(data.decay);
+        }
+
+        if (data.delay !== undefined) {
+            this.delay = setRangeValue(data.delay);
         }
 
         if (data.sync !== undefined) {

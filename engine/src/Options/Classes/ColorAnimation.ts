@@ -9,6 +9,7 @@ import { setRangeValue } from "../../Utils/NumberUtils";
 export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnimation> {
     count: RangeValue;
     decay: RangeValue;
+    delay: RangeValue;
     enable;
     offset: RangeValue;
     speed: RangeValue;
@@ -19,6 +20,7 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
         this.enable = false;
         this.offset = 0;
         this.speed = 1;
+        this.delay = 0;
         this.decay = 0;
         this.sync = true;
     }
@@ -46,6 +48,10 @@ export class ColorAnimation implements IColorAnimation, IOptionLoader<IColorAnim
 
         if (data.decay !== undefined) {
             this.decay = setRangeValue(data.decay);
+        }
+
+        if (data.delay !== undefined) {
+            this.delay = setRangeValue(data.delay);
         }
 
         if (data.sync !== undefined) {
