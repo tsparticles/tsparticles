@@ -14,12 +14,12 @@
 - [tsparticles-plugin-sounds](https://github.com/matteobruni/tsparticles/tree/main/plugins/sounds)
 - [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
 - [tsparticles-shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
-- [tsparticles-updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
 - [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
 - [tsparticles-updater-destroy](https://github.com/matteobruni/tsparticles/tree/main/updaters/destroy)
 - [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
 - [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
 - [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
+- [tsparticles-updater-rotate](https://github.com/matteobruni/tsparticles/tree/main/updaters/rotate)
 - [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
 - [tsparticles-updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
 

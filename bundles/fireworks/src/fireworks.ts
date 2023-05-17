@@ -16,7 +16,6 @@ import {
 } from "tsparticles-engine";
 import { FireworkOptions } from "./FireworkOptions";
 import type { IFireworkOptions } from "./IFireworkOptions";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
@@ -26,6 +25,7 @@ import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadLineShape } from "tsparticles-shape-line";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadRotateUpdater } from "tsparticles-updater-rotate";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSoundsPlugin } from "tsparticles-plugin-sounds";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
@@ -97,7 +97,7 @@ async function initPlugins(): Promise<void> {
     await loadSoundsPlugin(tsParticles);
     await loadCircleShape(tsParticles);
     await loadLineShape(tsParticles);
-    await loadAngleUpdater(tsParticles);
+    await loadRotateUpdater(tsParticles);
     await loadColorUpdater(tsParticles);
     await loadDestroyUpdater(tsParticles);
     await loadLifeUpdater(tsParticles);
@@ -113,6 +113,7 @@ async function initPlugins(): Promise<void> {
 /**
  * @param idOrOptions - the id used for displaying the animation, or the animation configuration if an id is not necessary
  * @param sourceOptions - the animation configuration if an id is provided
+ * @returns the loaded instance
  */
 export async function fireworks(
     idOrOptions: string | RecursivePartial<IFireworkOptions>,

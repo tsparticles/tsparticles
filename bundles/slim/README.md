@@ -34,11 +34,11 @@ a `tsparticles-engine` instance.
 - [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
 - [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
 - [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
-- [tsparticles-updater-angle](https://github.com/matteobruni/tsparticles/tree/main/updaters/angle)
 - [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
 - [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
 - [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
 - [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
+- [tsparticles-updater-rotate](https://github.com/matteobruni/tsparticles/tree/main/updaters/rotate)
 - [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
 - [tsparticles-updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
 

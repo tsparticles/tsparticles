@@ -1,7 +1,7 @@
 {
-    "name": "tsparticles-updater-angle",
+    "name": "tsparticles-updater-rotate",
     "version": "2.9.3",
-    "description": "tsParticles particles angle updater",
+    "description": "tsParticles particles rotate updater",
     "homepage": "https://particles.js.org",
     "scripts": {
         "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
     "repository": {
         "type": "git",
         "url": "git+https://github.com/matteobruni/tsparticles.git",
-        "directory": "updaters/angle"
+        "directory": "updaters/rotate"
     },
     "keywords": [
         "front-end",

@@ -28,23 +28,24 @@ type IRollParticlesOptions = IParticlesOptions & {
 };
 
 /**
- * @param particle
- * @param delta
+ * @param particle -
+ * @param delta -
  */
 function updateRoll(particle: RollParticle, delta: IDelta): void {
-    const roll = particle.options.roll;
+    const roll = particle.options.roll,
+        data = particle.roll;
 
-    if (!particle.roll || !roll?.enable) {
+    if (!data || !roll?.enable) {
         return;
     }
 
-    const speed = particle.roll.speed * delta.factor,
+    const speed = data.speed * delta.factor,
         max = 2 * Math.PI;
 
-    particle.roll.angle += speed;
+    data.angle += speed;
 
-    if (particle.roll.angle > max) {
-        particle.roll.angle -= max;
+    if (data.angle > max) {
+        data.angle -= max;
     }
 }
 

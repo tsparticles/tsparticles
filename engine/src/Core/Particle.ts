@@ -457,12 +457,14 @@ export class Particle implements IParticle {
             sizeAnimation = sizeOptions.animation;
 
         this.size = {
+            delayTime: getRangeValue(sizeAnimation.delay) * 1000,
             enable: sizeOptions.animation.enable,
             value: getRangeValue(sizeOptions.value) * container.retina.pixelRatio,
             max: getRangeMax(sizeRange) * pxRatio,
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
             maxLoops: getRangeValue(sizeOptions.animation.count),
+            time: 0,
         };
 
         if (sizeAnimation.enable) {

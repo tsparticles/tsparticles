@@ -1,6 +1,5 @@
 import type { Engine } from "tsparticles-engine";
 import { initPjs } from "tsparticles-particles.js";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
@@ -24,6 +23,7 @@ import { loadParticlesAttractInteraction } from "tsparticles-interaction-particl
 import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
 import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 import { loadPolygonShape } from "tsparticles-shape-polygon";
+import { loadRotateUpdater } from "tsparticles-updater-rotate";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
@@ -68,10 +68,10 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await loadLifeUpdater(engine);
     await loadOpacityUpdater(engine);
     await loadSizeUpdater(engine);
-    await loadAngleUpdater(engine);
     await loadColorUpdater(engine);
-    await loadStrokeColorUpdater(engine);
     await loadOutModesUpdater(engine);
+    await loadRotateUpdater(engine);
+    await loadStrokeColorUpdater(engine);
 
     await initPjs(engine);
 }

@@ -82,12 +82,12 @@
     "tsparticles-plugin-sounds": "^2.9.3",
     "tsparticles-shape-circle": "^2.9.3",
     "tsparticles-shape-line": "^2.9.3",
-    "tsparticles-updater-angle": "^2.9.3",
     "tsparticles-updater-color": "^2.9.3",
     "tsparticles-updater-destroy": "^2.9.3",
     "tsparticles-updater-life": "^2.9.3",
     "tsparticles-updater-opacity": "^2.9.3",
     "tsparticles-updater-out-modes": "^2.9.3",
+    "tsparticles-updater-rotate": "^2.9.3",
     "tsparticles-updater-size": "^2.9.3",
     "tsparticles-updater-stroke-color": "^2.9.3"
   }

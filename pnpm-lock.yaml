@@ -112,9 +112,6 @@ importers:
       tsparticles-shape-text:
         specifier: ^2.9.3
         version: link:../../shapes/text/dist
-      tsparticles-updater-angle:
-        specifier: ^2.9.3
-        version: link:../../updaters/angle/dist
       tsparticles-updater-color:
         specifier: ^2.9.3
         version: link:../../updaters/color/dist
@@ -130,6 +127,9 @@ importers:
       tsparticles-updater-roll:
         specifier: ^2.9.3
         version: link:../../updaters/roll/dist
+      tsparticles-updater-rotate:
+        specifier: ^2.9.3
+        version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
         specifier: ^2.9.3
         version: link:../../updaters/size/dist
@@ -225,9 +225,6 @@ importers:
       tsparticles-shape-line:
         specifier: ^2.9.3
         version: link:../../shapes/line/dist
-      tsparticles-updater-angle:
-        specifier: ^2.9.3
-        version: link:../../updaters/angle/dist
       tsparticles-updater-color:
         specifier: ^2.9.3
         version: link:../../updaters/color/dist
@@ -243,6 +240,9 @@ importers:
       tsparticles-updater-out-modes:
         specifier: ^2.9.3
         version: link:../../updaters/outModes/dist
+      tsparticles-updater-rotate:
+        specifier: ^2.9.3
+        version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
         specifier: ^2.9.3
         version: link:../../updaters/size/dist
@@ -561,9 +561,6 @@ importers:
       tsparticles-shape-text:
         specifier: ^2.9.3
         version: link:../../shapes/text/dist
-      tsparticles-updater-angle:
-        specifier: ^2.9.3
-        version: link:../../updaters/angle/dist
       tsparticles-updater-color:
         specifier: ^2.9.3
         version: link:../../updaters/color/dist
@@ -576,6 +573,9 @@ importers:
       tsparticles-updater-out-modes:
         specifier: ^2.9.3
         version: link:../../updaters/outModes/dist
+      tsparticles-updater-rotate:
+        specifier: ^2.9.3
+        version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
         specifier: ^2.9.3
         version: link:../../updaters/size/dist
@@ -936,9 +936,6 @@ importers:
       tsparticles-slim:
         specifier: ^2.9.3
         version: link:../../bundles/slim/dist
-      tsparticles-updater-angle:
-        specifier: ^2.9.3
-        version: link:../../updaters/angle/dist
       tsparticles-updater-color:
         specifier: ^2.9.3
         version: link:../../updaters/color/dist
@@ -963,6 +960,9 @@ importers:
       tsparticles-updater-roll:
         specifier: ^2.9.3
         version: link:../../updaters/roll/dist
+      tsparticles-updater-rotate:
+        specifier: ^2.9.3
+        version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
         specifier: ^2.9.3
         version: link:../../updaters/size/dist
@@ -5000,77 +5000,6 @@ importers:
         version: 5.0.2(webpack-bundle-analyzer@4.8.0)(webpack@5.82.0)
     publishDirectory: dist
 
-  updaters/angle:
-    dependencies:
-      tsparticles-engine:
-        specifier: ^2.9.3
-        version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.2.0
-        version: 1.2.0(webpack-cli@5.0.2)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.2
-        version: 5.59.2(@typescript-eslint/parser@5.59.2)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.2
-        version: 5.59.2(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.82.0)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.0
-        version: 5.0.0
-      terser-webpack-plugin:
-        specifier: ^5.3.7
-        version: 5.3.7(webpack@5.82.0)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.82.0
-        version: 5.82.0(webpack-cli@5.0.2)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.0.2
-        version: 5.0.2(webpack-bundle-analyzer@4.8.0)(webpack@5.82.0)
-    publishDirectory: dist
-
   updaters/color:
     dependencies:
       tsparticles-engine:
@@ -5569,6 +5498,77 @@ importers:
     publishDirectory: dist
 
   updaters/roll:
+    dependencies:
+      tsparticles-engine:
+        specifier: ^2.9.3
+        version: link:../../engine/dist
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.21.8
+        version: 7.21.8
+      '@tsparticles/cli':
+        specifier: ^1.2.0
+        version: 1.2.0(webpack-cli@5.0.2)
+      '@tsparticles/eslint-config':
+        specifier: ^1.11.0
+        version: 1.11.0
+      '@tsparticles/prettier-config':
+        specifier: ^1.9.0
+        version: 1.9.0
+      '@tsparticles/tsconfig':
+        specifier: ^1.12.0
+        version: 1.12.0
+      '@tsparticles/webpack-plugin':
+        specifier: ^1.13.0
+        version: 1.13.0
+      '@types/webpack-env':
+        specifier: ^1.18.0
+        version: 1.18.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^5.59.2
+        version: 5.59.2(@typescript-eslint/parser@5.59.2)(eslint@8.40.0)(typescript@5.0.4)
+      '@typescript-eslint/parser':
+        specifier: ^5.59.2
+        version: 5.59.2(eslint@8.40.0)(typescript@5.0.4)
+      babel-loader:
+        specifier: ^9.1.2
+        version: 9.1.2(@babel/core@7.21.8)(webpack@5.82.0)
+      browserslist:
+        specifier: ^4.21.5
+        version: 4.21.5
+      copyfiles:
+        specifier: ^2.4.1
+        version: 2.4.1
+      eslint:
+        specifier: ^8.40.0
+        version: 8.40.0
+      eslint-config-prettier:
+        specifier: ^8.8.0
+        version: 8.8.0(eslint@8.40.0)
+      prettier:
+        specifier: ^2.8.8
+        version: 2.8.8
+      rimraf:
+        specifier: 5.0.0
+        version: 5.0.0
+      terser-webpack-plugin:
+        specifier: ^5.3.7
+        version: 5.3.7(webpack@5.82.0)
+      typescript:
+        specifier: ^5.0.4
+        version: 5.0.4
+      webpack:
+        specifier: ^5.82.0
+        version: 5.82.0(webpack-cli@5.0.2)
+      webpack-bundle-analyzer:
+        specifier: ^4.8.0
+        version: 4.8.0
+      webpack-cli:
+        specifier: ^5.0.2
+        version: 5.0.2(webpack-bundle-analyzer@4.8.0)(webpack@5.82.0)
+    publishDirectory: dist
+
+  updaters/rotate:
     dependencies:
       tsparticles-engine:
         specifier: ^2.9.3
@@ -6265,9 +6265,6 @@ importers:
       tsparticles-slim:
         specifier: ^2.9.3
         version: link:../../bundles/slim/dist
-      tsparticles-updater-angle:
-        specifier: ^2.9.3
-        version: link:../../updaters/angle/dist
       tsparticles-updater-color:
         specifier: ^2.9.3
         version: link:../../updaters/color/dist
@@ -6292,6 +6289,9 @@ importers:
       tsparticles-updater-roll:
         specifier: ^2.9.3
         version: link:../../updaters/roll/dist
+      tsparticles-updater-rotate:
+        specifier: ^2.9.3
+        version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
         specifier: ^2.9.3
         version: link:../../updaters/size/dist

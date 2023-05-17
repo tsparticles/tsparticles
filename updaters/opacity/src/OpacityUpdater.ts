@@ -128,7 +128,7 @@ export class OpacityUpdater implements IParticleUpdater {
         const opacityOptions = particle.options.opacity;
 
         particle.opacity = {
-            delayTime: getRangeValue(opacityOptions.animation.delay),
+            delayTime: getRangeValue(opacityOptions.animation.delay) * 1000,
             enable: opacityOptions.animation.enable,
             max: getRangeMax(opacityOptions.value),
             min: getRangeMin(opacityOptions.value),

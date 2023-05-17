@@ -478,6 +478,8 @@ function setColorAnimation(
         colorValue.status = AnimationStatus.increasing;
         colorValue.loops = 0;
         colorValue.maxLoops = getRangeValue(colorAnimation.count);
+        colorValue.time = 0;
+        colorValue.delayTime = getRangeValue(colorAnimation.delay) * 1000;
 
         if (!colorAnimation.sync) {
             colorValue.velocity *= getRandom();

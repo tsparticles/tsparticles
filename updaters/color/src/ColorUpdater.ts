@@ -12,35 +12,42 @@ import {
 } from "tsparticles-engine";
 
 /**
- * @param delta
- * @param value
- * @param valueAnimation
- * @param max
- * @param decrease
+ * @param delta -
+ * @param colorValue -
+ * @param valueAnimation -
+ * @param max -
+ * @param decrease -
  */
 function updateColorValue(
     delta: IDelta,
-    value: IParticleValueAnimation<number>,
+    colorValue: IParticleValueAnimation<number>,
     valueAnimation: IColorAnimation,
     max: number,
     decrease: boolean
 ): void {
-    const colorValue = value;
+    if (!colorValue) {
+        return;
+    }
+
+    if (!colorValue.time) {
+        colorValue.time = 0;
+    }
+
+    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+        colorValue.time += delta.value;
+    }
 
     if (
-        !colorValue ||
         !valueAnimation.enable ||
-        (colorValue.loops !== undefined &&
-            colorValue.maxLoops !== undefined &&
-            colorValue.maxLoops > 0 &&
-            colorValue.loops >= colorValue.maxLoops)
+        ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) ||
+        ((colorValue.maxLoops ?? 0) > 0 && (colorValue.loops ?? 0) > (colorValue.maxLoops ?? 0))
     ) {
         return;
     }
 
     const offset = randomInRange(valueAnimation.offset),
-        velocity = (value.velocity ?? 0) * delta.factor + offset * 3.6,
-        decay = value.decay ?? 1;
+        velocity = (colorValue.velocity ?? 0) * delta.factor + offset * 3.6,
+        decay = colorValue.decay ?? 1;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
@@ -82,8 +89,8 @@ function updateColorValue(
 }
 
 /**
- * @param particle
- * @param delta
+ * @param particle -
+ * @param delta -
  */
 function updateColor(particle: Particle, delta: IDelta): void {
     const animationOptions = particle.options.color.animation;

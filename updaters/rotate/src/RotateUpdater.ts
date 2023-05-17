@@ -29,10 +29,10 @@ type RotateParticlesOptions = ParticlesOptions & {
 };
 
 /**
- * @param particle
- * @param delta
+ * @param particle -
+ * @param delta -
  */
-function updateAngle(particle: RotateParticle, delta: IDelta): void {
+function updateRotate(particle: RotateParticle, delta: IDelta): void {
     const rotate = particle.rotate,
         rotateOptions = particle.options.rotate;
 
@@ -152,7 +152,7 @@ export class RotateUpdater implements IParticleUpdater {
             return;
         }
 
-        updateAngle(particle, delta);
+        updateRotate(particle, delta);
 
         particle.rotation = particle.rotate?.value ?? 0;
     }

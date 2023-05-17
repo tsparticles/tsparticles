@@ -2,7 +2,6 @@ import { type Container, type ISourceOptions, type RecursivePartial, tsParticles
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCardsShape } from "tsparticles-shape-cards";
 import { loadCircleShape } from "tsparticles-shape-circle";
@@ -16,6 +15,7 @@ import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadRollUpdater } from "tsparticles-updater-roll";
+import { loadRotateUpdater } from "tsparticles-updater-rotate";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
@@ -112,7 +112,7 @@ async function initPlugins(): Promise<void> {
     await loadSquareShape(tsParticles);
     await loadStarShape(tsParticles);
     await loadTextShape(tsParticles);
-    await loadAngleUpdater(tsParticles);
+    await loadRotateUpdater(tsParticles);
     await loadColorUpdater(tsParticles);
     await loadLifeUpdater(tsParticles);
     await loadOpacityUpdater(tsParticles);
