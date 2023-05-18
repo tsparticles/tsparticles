@@ -93,20 +93,35 @@ function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation
 
 /**
  * @param delta -
- * @param value -
+ * @param colorValue -
  * @param max -
  * @param decrease -
  */
-function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>, max: number, decrease: boolean): void {
-    const colorValue = value;
-
+function updateColorValue(
+    delta: IDelta,
+    colorValue: IParticleValueAnimation<number>,
+    max: number,
+    decrease: boolean
+): void {
     if (!colorValue || !colorValue.enable) {
         return;
     }
 
+    if (!colorValue.time) {
+        colorValue.time = 0;
+    }
+
+    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+        colorValue.time += delta.value;
+    }
+
+    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+        return;
+    }
+
     //const offset = NumberUtils.randomInRange(valueAnimation.offset);
-    const velocity = (value.velocity ?? 0) * delta.factor,
-        decay = value.decay ?? 1; // + offset * 3.6;
+    const velocity = (colorValue.velocity ?? 0) * delta.factor,
+        decay = colorValue.decay ?? 1; // + offset * 3.6;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
@@ -128,8 +143,8 @@ function updateColorValue(delta: IDelta, value: IParticleValueAnimation<number>,
         colorValue.value %= max;
     }
 
-    if (value.velocity && decay !== 1) {
-        value.velocity *= decay;
+    if (colorValue.velocity && decay !== 1) {
+        colorValue.velocity *= decay;
     }
 }
 
@@ -176,7 +191,7 @@ function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): voi
  * @param delta -
  */
 function updateGradient(particle: GradientParticle, delta: IDelta): void {
-    const gradient = particle.gradient;
+    const { gradient } = particle;
 
     if (!gradient) {
         return;
@@ -253,11 +268,13 @@ export class GradientUpdater implements IParticleUpdater {
 
         particle.gradient = {
             angle: {
-                value: gradient.angle.value,
+                value: getRangeValue(gradient.angle.value),
                 enable: gradient.angle.animation.enable,
                 velocity:
                     (getRangeValue(gradient.angle.animation.speed) / 360) * particle.container.retina.reduceFactor,
                 decay: 1 - getRangeValue(gradient.angle.animation.decay),
+                delayTime: getRangeValue(gradient.angle.animation.delay) * 1000,
+                time: 0,
             },
             type: gradient.type,
             colors: [],
@@ -309,6 +326,8 @@ export class GradientUpdater implements IParticleUpdater {
                                   (getRangeValue(grColor.opacity.animation.speed) / 100) *
                                   particle.container.retina.reduceFactor,
                               decay: 1 - getRangeValue(grColor.opacity.animation.decay),
+                              delayTime: getRangeValue(grColor.opacity.animation.delay) * 1000,
+                              time: 0,
                           }
                         : undefined,
                 };

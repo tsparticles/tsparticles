@@ -2,9 +2,11 @@ import {
     type IAnimatable,
     type IAnimation,
     type IOptionLoader,
+    type RangeValue,
     type RecursivePartial,
     RotateDirection,
     type RotateDirectionAlt,
+    setRangeValue,
 } from "tsparticles-engine";
 import { GradientAngleAnimation } from "./GradientAngleAnimation";
 import type { IGradientAngle } from "../Interfaces/Gradients";
@@ -14,7 +16,7 @@ export class GradientAngle
 {
     animation;
     direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
-    value;
+    value: RangeValue;
 
     constructor() {
         this.value = 0;
@@ -30,7 +32,7 @@ export class GradientAngle
         this.animation.load(data.animation);
 
         if (data.value !== undefined) {
-            this.value = data.value;
+            this.value = setRangeValue(data.value);
         }
 
         if (data.direction !== undefined) {

@@ -28,7 +28,11 @@ function updateColorValue(
     max: number,
     decrease: boolean
 ): void {
-    if (!colorValue) {
+    if (
+        !colorValue ||
+        !valueAnimation.enable ||
+        ((colorValue.maxLoops ?? 0) > 0 && (colorValue.loops ?? 0) > (colorValue.maxLoops ?? 0))
+    ) {
         return;
     }
 
@@ -40,11 +44,7 @@ function updateColorValue(
         colorValue.time += delta.value;
     }
 
-    if (
-        !valueAnimation.enable ||
-        ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) ||
-        ((colorValue.maxLoops ?? 0) > 0 && (colorValue.loops ?? 0) > (colorValue.maxLoops ?? 0))
-    ) {
+    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
         return;
     }
 

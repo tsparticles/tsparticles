@@ -36,7 +36,12 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
 function updateSize(particle: Particle, delta: IDelta): void {
     const data = particle.size;
 
-    if (!data) {
+    if (
+        particle.destroyed ||
+        !data ||
+        !data.enable ||
+        ((data.maxLoops ?? 0) > 0 && (data.loops ?? 0) > (data.maxLoops ?? 0))
+    ) {
         return;
     }
 
@@ -53,12 +58,7 @@ function updateSize(particle: Particle, delta: IDelta): void {
         data.time += delta.value;
     }
 
-    if (
-        particle.destroyed ||
-        !data.enable ||
-        ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) ||
-        ((data.maxLoops ?? 0) > 0 && (data.loops ?? 0) > (data.maxLoops ?? 0))
-    ) {
+    if ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) {
         return;
     }
 
