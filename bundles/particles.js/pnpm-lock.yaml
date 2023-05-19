@@ -10,8 +10,8 @@ devDependencies:
     specifier: ^7.21.8
     version: 7.21.8
   '@tsparticles/cli':
-    specifier: ^1.3.2
-    version: 1.3.2(webpack-cli@5.1.1)
+    specifier: ^1.3.3
+    version: 1.3.3(webpack-cli@5.1.1)
   '@tsparticles/eslint-config':
     specifier: ^1.11.0
     version: 1.11.0
@@ -1411,8 +1411,8 @@ packages:
     resolution: {integrity: sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==}
     dev: true
 
-  /@tsparticles/cli@1.3.2(webpack-cli@5.1.1):
-    resolution: {integrity: sha512-bMw0r3xQtlDea82t1V8Z5f43kR5q3WdNd3/jnxmm5L7zxUbImVOLDSVfZxTfGxD4urzsDtifpLnwPO24469Fkg==}
+  /@tsparticles/cli@1.3.3(webpack-cli@5.1.1):
+    resolution: {integrity: sha512-QQTtEgwn6M811YNiWBDbBLGht2S23wHTi5XydEXjYJWw4NNQMoBGVoIOt+Saa4T5A87LjbXZdOCaIdjeTul9oQ==}
     hasBin: true
     dependencies:
       '@tsparticles/eslint-config': 1.11.0
