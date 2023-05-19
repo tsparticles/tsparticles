@@ -5,8 +5,7 @@
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "bundles/pjs"
+    "url": "git+https://github.com/tsparticles/particles.js.git"
   },
   "keywords": [
     "front-end",
@@ -64,12 +63,22 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
+    "url": "https://github.com/tsparticles/particles.js/issues"
   },
-  "funding": {
-    "type": "github",
-    "url": "https://github.com/sponsors/matteobruni"
-  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "dependencies": {
     "tsparticles-engine": "^2.9.3"
   },
