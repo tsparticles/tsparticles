@@ -1,29 +1,15 @@
 import {
     type IParticleColorStyle,
     type IParticleUpdater,
-    type IParticlesOptions,
     type Particle,
-    type ParticlesOptions,
     type RecursivePartial,
     getRandom,
     getRangeValue,
     getStyleFromHsl,
     rangeColorToHsl,
 } from "tsparticles-engine";
-import type { ITwinkle } from "./Options/Interfaces/ITwinkle";
+import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types";
 import { Twinkle } from "./Options/Classes/Twinkle";
-
-type TwinkeParticle = Particle & {
-    options: TwinkleParticlesOptions;
-};
-
-type ITwinkleParticlesOptions = IParticlesOptions & {
-    twinkle?: ITwinkle;
-};
-
-type TwinkleParticlesOptions = ParticlesOptions & {
-    twinkle?: Twinkle;
-};
 
 export class TwinkleUpdater implements IParticleUpdater {
     getColorStyles(
