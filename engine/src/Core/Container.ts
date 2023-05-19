@@ -58,7 +58,7 @@ const defaultPathGeneratorKey = "default",
         },
         reset: (): void => {
             // nothing required
-        }
+        },
     };
 
 /**
@@ -184,8 +184,8 @@ export class Container {
         this.interactivity = {
             mouse: {
                 clicking: false,
-                inside: false
-            }
+                inside: false,
+            },
         };
         this.plugins = new Map<string, IContainerPlugin>();
         this.drawers = new Map<string, IShapeDrawer>();
@@ -242,7 +242,7 @@ export class Container {
             const pxRatio = this.retina.pixelRatio,
                 posRetina = {
                     x: pos.x * pxRatio,
-                    y: pos.y * pxRatio
+                    y: pos.y * pxRatio,
                 },
                 particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
 
@@ -257,7 +257,7 @@ export class Container {
             const mouseEvent = e as MouseEvent,
                 pos = {
                     x: mouseEvent.offsetX || mouseEvent.clientX,
-                    y: mouseEvent.offsetY || mouseEvent.clientY
+                    y: mouseEvent.offsetY || mouseEvent.clientY,
                 };
 
             clickOrTouchHandler(e, pos, 1);
@@ -301,7 +301,7 @@ export class Container {
                     canvasRect = element ? element.getBoundingClientRect() : undefined,
                     pos = {
                         x: lastTouch.clientX - (canvasRect ? canvasRect.left : 0),
-                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : 0)
+                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : 0),
                     };
 
                 clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
