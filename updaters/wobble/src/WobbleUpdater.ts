@@ -2,75 +2,13 @@ import {
     type Container,
     type IDelta,
     type IParticleUpdater,
-    type IParticlesOptions,
-    type Particle,
-    type ParticlesOptions,
     type RecursivePartial,
     getRandom,
     getRangeValue,
 } from "tsparticles-engine";
-import type { IWobble } from "./Options/Interfaces/IWobble";
+import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } from "./Types";
 import { Wobble } from "./Options/Classes/Wobble";
-
-interface IParticleWobble {
-    angle: number;
-    angleSpeed: number;
-    moveSpeed: number;
-}
-
-/**
- * Wobble particle extension type
- */
-type WobbleParticle = Particle & {
-    options: WobbleParticlesOptions;
-
-    /**
-     * Particle retina cached options
-     */
-    retina: {
-        /**
-         * The particle maximum wobble distance
-         */
-        wobbleDistance?: number;
-    };
-
-    wobble?: IParticleWobble;
-};
-
-type IWobbleParticlesOptions = IParticlesOptions & {
-    wobble?: IWobble;
-};
-
-type WobbleParticlesOptions = ParticlesOptions & {
-    wobble?: Wobble;
-};
-
-/**
- * Updates particle wobbling values
- * @param particle - the particle to update
- * @param delta - this variable contains the delta between the current frame and the previous frame
- */
-function updateWobble(particle: WobbleParticle, delta: IDelta): void {
-    const wobble = particle.options.wobble;
-
-    if (!wobble?.enable || !particle.wobble) {
-        return;
-    }
-
-    const angleSpeed = particle.wobble.angleSpeed * delta.factor,
-        moveSpeed = particle.wobble.moveSpeed * delta.factor,
-        distance = (moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor)) / (1000 / 60),
-        max = 2 * Math.PI;
-
-    particle.wobble.angle += angleSpeed;
-
-    if (particle.wobble.angle > max) {
-        particle.wobble.angle -= max;
-    }
-
-    particle.position.x += distance * Math.cos(particle.wobble.angle);
-    particle.position.y += distance * Math.abs(Math.sin(particle.wobble.angle));
-}
+import { updateWobble } from "./Utils";
 
 /**
  * The Wobble updater plugin
@@ -108,7 +46,8 @@ export class WobbleUpdater implements IParticleUpdater {
 
     /**
      * Checks if the given particle needs the wobble animation
-     * @param particle
+     * @param particle -
+     * @returns true if the particle needs the wobble animation, false otherwise
      */
     isEnabled(particle: WobbleParticle): boolean {
         return !particle.destroyed && !particle.spawning && !!particle.options.wobble?.enable;

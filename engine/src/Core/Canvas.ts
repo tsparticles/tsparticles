@@ -69,7 +69,7 @@ export class Canvas {
     constructor(private readonly container: Container) {
         this.size = {
             height: 0,
-            width: 0,
+            width: 0
         };
 
         this._context = null;
@@ -81,12 +81,12 @@ export class Canvas {
         this._mutationObserver =
             !isSsr() && typeof MutationObserver !== "undefined"
                 ? new MutationObserver((records) => {
-                      for (const record of records) {
-                          if (record.type === "attributes" && record.attributeName === "style") {
-                              this._repairStyle();
-                          }
-                      }
-                  })
+                    for (const record of records) {
+                        if (record.type === "attributes" && record.attributeName === "style") {
+                            this._repairStyle();
+                        }
+                    }
+                })
                 : undefined;
     }
 
@@ -145,11 +145,13 @@ export class Canvas {
      * @returns the result of the callback
      */
     draw<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
-        if (!this._context) {
+        const ctx = this._context;
+
+        if (!ctx) {
             return;
         }
 
-        return cb(this._context);
+        return cb(ctx);
     }
 
     /**
@@ -196,7 +198,7 @@ export class Canvas {
                 zStrokeOpacity = strokeOpacity * zOpacityFactor,
                 transform: IParticleTransformValues = {},
                 colorStyles: IParticleColorStyle = {
-                    fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
+                    fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined
                 };
 
             colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
@@ -214,7 +216,7 @@ export class Canvas {
                 radius: radius * (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
                 opacity: zOpacity,
                 shadow: particle.options.shadow,
-                transform,
+                transform
             });
 
             this._applyPostDrawUpdaters(particle);
@@ -399,7 +401,7 @@ export class Canvas {
             size = container.canvas.size,
             newSize = {
                 width: this.element.offsetWidth * pxRatio,
-                height: this.element.offsetHeight * pxRatio,
+                height: this.element.offsetHeight * pxRatio
             };
 
         if (
@@ -419,7 +421,7 @@ export class Canvas {
         if (this.container.started) {
             this.resizeFactor = {
                 width: size.width / oldSize.width,
-                height: size.height / oldSize.height,
+                height: size.height / oldSize.height
             };
         }
 
@@ -525,7 +527,7 @@ export class Canvas {
         if (coverRgb) {
             const coverColor = {
                 ...coverRgb,
-                a: cover.opacity,
+                a: cover.opacity
             };
 
             this._coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
@@ -583,9 +585,9 @@ export class Canvas {
 
             this._trailFill = {
                 color: {
-                    ...fillColor,
+                    ...fillColor
                 },
-                opacity: 1 / trail.length,
+                opacity: 1 / trail.length
             };
         } else {
             await new Promise<void>((resolve, reject) => {
@@ -598,7 +600,7 @@ export class Canvas {
                 img.addEventListener("load", () => {
                     this._trailFill = {
                         image: img,
-                        opacity: 1 / trail.length,
+                        opacity: 1 / trail.length
                     };
 
                     resolve();

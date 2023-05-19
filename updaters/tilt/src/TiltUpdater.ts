@@ -4,79 +4,15 @@ import {
     type IDelta,
     type IParticleTransformValues,
     type IParticleUpdater,
-    type IParticleValueAnimation,
-    type IParticlesOptions,
     type Particle,
-    type ParticlesOptions,
     type RecursivePartial,
     getRandom,
     getRangeValue,
 } from "tsparticles-engine";
-import type { ITilt } from "./Options/Interfaces/ITilt";
+import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types";
 import { Tilt } from "./Options/Classes/Tilt";
 import { TiltDirection } from "./TiltDirection";
-
-export interface IParticleTiltValueAnimation extends IParticleValueAnimation<number> {
-    cosDirection: number;
-    sinDirection: number;
-}
-
-type TiltParticle = Particle & {
-    options: TiltParticlesOptions;
-    tilt?: IParticleTiltValueAnimation;
-};
-
-type ITiltParticlesOptions = IParticlesOptions & {
-    tilt?: ITilt;
-};
-
-type TiltParticlesOptions = ParticlesOptions & {
-    tilt?: Tilt;
-};
-
-/**
- * @param particle
- * @param delta
- */
-function updateTilt(particle: TiltParticle, delta: IDelta): void {
-    if (!particle.tilt || !particle.options.tilt) {
-        return;
-    }
-
-    const tilt = particle.options.tilt,
-        tiltAnimation = tilt.animation,
-        speed = (particle.tilt.velocity ?? 0) * delta.factor,
-        max = 2 * Math.PI,
-        decay = particle.tilt.decay ?? 1;
-
-    if (!tiltAnimation.enable) {
-        return;
-    }
-
-    switch (particle.tilt.status) {
-        case AnimationStatus.increasing:
-            particle.tilt.value += speed;
-
-            if (particle.tilt.value > max) {
-                particle.tilt.value -= max;
-            }
-
-            break;
-        case AnimationStatus.decreasing:
-        default:
-            particle.tilt.value -= speed;
-
-            if (particle.tilt.value < 0) {
-                particle.tilt.value += max;
-            }
-
-            break;
-    }
-
-    if (particle.tilt.velocity && decay !== 1) {
-        particle.tilt.velocity *= decay;
-    }
-}
+import { updateTilt } from "./Utils";
 
 export class TiltUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}
