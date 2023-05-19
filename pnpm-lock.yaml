@@ -413,6 +413,80 @@ importers:
         version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
+  bundles/pjs:
+    dependencies:
+      tsparticles-engine:
+        specifier: ^2.9.3
+        version: link:../../engine/dist
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.21.8
+        version: 7.21.8
+      '@tsparticles/cli':
+        specifier: ^1.3.3
+        version: 1.3.3(webpack-cli@5.1.1)
+      '@tsparticles/eslint-config':
+        specifier: ^1.11.0
+        version: 1.11.0
+      '@tsparticles/prettier-config':
+        specifier: ^1.9.0
+        version: 1.9.0
+      '@tsparticles/tsconfig':
+        specifier: ^1.12.0
+        version: 1.12.0
+      '@tsparticles/webpack-plugin':
+        specifier: ^1.13.0
+        version: 1.13.0
+      '@types/node':
+        specifier: ^20.2.1
+        version: 20.2.1
+      '@types/webpack-env':
+        specifier: ^1.18.0
+        version: 1.18.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^5.59.6
+        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
+      '@typescript-eslint/parser':
+        specifier: ^5.59.6
+        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
+      babel-loader:
+        specifier: ^9.1.2
+        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
+      browserslist:
+        specifier: ^4.21.5
+        version: 4.21.5
+      copyfiles:
+        specifier: ^2.4.1
+        version: 2.4.1
+      eslint:
+        specifier: ^8.40.0
+        version: 8.40.0
+      eslint-config-prettier:
+        specifier: ^8.8.0
+        version: 8.8.0(eslint@8.40.0)
+      prettier:
+        specifier: ^2.8.8
+        version: 2.8.8
+      rimraf:
+        specifier: 5.0.1
+        version: 5.0.1
+      terser-webpack-plugin:
+        specifier: ^5.3.9
+        version: 5.3.9(webpack@5.83.1)
+      typescript:
+        specifier: ^5.0.4
+        version: 5.0.4
+      webpack:
+        specifier: ^5.83.1
+        version: 5.83.1(webpack-cli@5.1.1)
+      webpack-bundle-analyzer:
+        specifier: ^4.8.0
+        version: 4.8.0
+      webpack-cli:
+        specifier: ^5.1.1
+        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
+    publishDirectory: dist
+
   bundles/slim:
     dependencies:
       tsparticles-engine:
@@ -465,7 +539,7 @@ importers:
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
         specifier: ^2.9.3
-        version: 2.9.3
+        version: link:../pjs/dist
       tsparticles-plugin-easing-quad:
         specifier: ^2.9.3
         version: link:../../plugins/easings/quad/dist
@@ -753,7 +827,7 @@ importers:
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
         specifier: ^2.9.3
-        version: 2.9.3
+        version: link:../../bundles/pjs/dist
       tsparticles-path-curves:
         specifier: ^2.9.3
         version: link:../../paths/curves/dist
@@ -6097,7 +6171,7 @@ importers:
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
         specifier: ^2.9.3
-        version: 2.9.3
+        version: link:../../bundles/pjs/dist
       tsparticles-path-curves:
         specifier: ^2.9.3
         version: link:../../paths/curves/dist
@@ -7412,10 +7486,10 @@ packages:
       '@commitlint/execute-rule': 17.4.0
       '@commitlint/resolve-extends': 17.4.4
       '@commitlint/types': 17.4.4
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
       chalk: 4.1.2
       cosmiconfig: 8.1.3
-      cosmiconfig-typescript-loader: 4.3.0(@types/node@20.2.0)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.0.4)
+      cosmiconfig-typescript-loader: 4.3.0(@types/node@20.2.1)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.0.4)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -7692,7 +7766,7 @@ packages:
     resolution: {integrity: sha512-QyKIWEnKQFnYu2ey+SAAm1A5xjzJLJJj3bhIZd3QKyXKKjaJ0hlxam/OsWSltxTNbcyH1jRJjC6Cxv31usv0Ag==}
     engines: {node: ^14.17.0 || >=16.0.0}
     dependencies:
-      chalk: 4.1.0
+      chalk: 4.1.2
       execa: 5.0.0
       strong-log-transformer: 2.1.0
     dev: true
@@ -8643,7 +8717,7 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/cacheable-request@6.0.3:
@@ -8651,7 +8725,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 18.16.12
+      '@types/node': 20.2.1
       '@types/responselike': 1.0.0
     dev: true
 
@@ -8668,7 +8742,7 @@ packages:
   /@types/connect@3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/eslint-scope@3.7.4:
@@ -8689,7 +8763,7 @@ packages:
   /@types/express-serve-static-core@4.17.35:
     resolution: {integrity: sha512-wALWQwrgiB2AWTT91CB62b6Yt0sNHpznUXeZEcnPU3DRdlDIz74x8Qg1UUYKSVFi+va5vKOLYRBI1bRKiLLKIg==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
       '@types/send': 0.17.1
@@ -8708,7 +8782,7 @@ packages:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/http-cache-semantics@4.0.1:
@@ -8718,7 +8792,7 @@ packages:
   /@types/jsdom@21.1.1:
     resolution: {integrity: sha512-cZFuoVLtzKP3gmq9eNosUL1R50U+USkbLtUQ1bYVgl/lKp0FZM7Cq4aIHAL8oIvQ17uSHi7jXPtfDOdjPwBE7A==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
       '@types/tough-cookie': 4.0.2
       parse5: 7.1.2
     dev: true
@@ -8729,19 +8803,19 @@ packages:
   /@types/jsonfile@6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 18.16.12
+      '@types/node': 20.2.1
     dev: true
 
   /@types/klaw@3.0.3:
     resolution: {integrity: sha512-mXlRDFbTLpVysvxahXUQav0hFctgu3Fqr2xmSrpf/ptO/FwOp7SFEGsJkEihwshMbof3/BIiVJ/o42cuOOuv6g==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/livereload@0.9.2:
@@ -8783,6 +8857,10 @@ packages:
 
   /@types/node@20.2.0:
     resolution: {integrity: sha512-3iD2jaCCziTx04uudpJKwe39QxXgSUnpxXSvRQjRvHPxFQfmfP4NXIm/NURVeNlTCc+ru4WqjYGTmpXrW9uMlw==}
+    dev: true
+
+  /@types/node@20.2.1:
+    resolution: {integrity: sha512-DqJociPbZP1lbZ5SQPk4oag6W7AyaGMO6gSfRwq3PWl4PXTwJpRQJhDq4W0kzrg3w6tJ1SwlvGZ5uKFHY13LIg==}
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -8807,7 +8885,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 18.16.12
+      '@types/node': 20.2.1
     dev: true
 
   /@types/semver@7.5.0:
@@ -8817,20 +8895,20 @@ packages:
     resolution: {integrity: sha512-Cwo8LE/0rnvX7kIIa3QHCkcuF21c05Ayb0ZfxPiv0W8VRiZiNW/WuRupHKpqqGVGf7SUA44QSOUKaEd9lIrd/Q==}
     dependencies:
       '@types/mime': 1.3.2
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/serve-static@1.15.1:
     resolution: {integrity: sha512-NUo5XNiAdULrJENtJXZZ3fHtfMolzZwczzBbnAeBbqBwG+LaG6YaJtuwzwGSQZ2wsCrxjEhNNjAkKigy3n8teQ==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/stylus@0.48.38:
     resolution: {integrity: sha512-B5otJekvD6XM8iTrnO6e2twoTY2tKL9VkL/57/2Lo4tv3EatbCaufdi68VVtn/h4yjO+HVvYEyrNQd0Lzj6riw==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/tough-cookie@4.0.2:
@@ -8840,7 +8918,7 @@ packages:
   /@types/webpack-bundle-analyzer@4.6.0(webpack-cli@5.1.1):
     resolution: {integrity: sha512-XeQmQCCXdZdap+A/60UKmxW5Mz31Vp9uieGlHB3T4z/o2OLVLtTI3bvTuS6A2OWd/rbAAQiGGWIEFQACu16szA==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
       tapable: 2.2.1
       webpack: 5.83.1(webpack-cli@5.1.1)
     transitivePeerDependencies:
@@ -8855,14 +8933,14 @@ packages:
   /@types/ws@8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
     dev: true
 
   /@types/yauzl@2.10.0:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 18.16.12
+      '@types/node': 20.2.1
     dev: true
     optional: true
 
@@ -10331,7 +10409,7 @@ packages:
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  /cosmiconfig-typescript-loader@4.3.0(@types/node@20.2.0)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.0.4):
+  /cosmiconfig-typescript-loader@4.3.0(@types/node@20.2.1)(cosmiconfig@8.1.3)(ts-node@10.9.1)(typescript@5.0.4):
     resolution: {integrity: sha512-NTxV1MFfZDLPiBMjxbHRwSh5LaLcPMwNdCutmnHJCKoVnlvldPWlllonKwrsRJ5pYZBIBGRWWU2tfvzxgeSW5Q==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -10340,7 +10418,7 @@ packages:
       ts-node: '>=10'
       typescript: '>=3'
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
       cosmiconfig: 8.1.3
       ts-node: 10.9.1(@types/node@20.2.0)(typescript@5.0.4)
       typescript: 5.0.4
@@ -11494,7 +11572,7 @@ packages:
       fs.realpath: 1.0.0
       inflight: 1.0.6
       inherits: 2.0.4
-      minimatch: 3.0.5
+      minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
     dev: true
@@ -12268,7 +12346,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.2.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -12928,7 +13006,7 @@ packages:
       redent: 3.0.0
       trim-newlines: 3.0.1
       type-fest: 0.18.1
-      yargs-parser: 20.2.4
+      yargs-parser: 20.2.9
     dev: true
 
   /merge-descriptors@1.0.1:
@@ -13235,7 +13313,7 @@ packages:
       array-differ: 3.0.0
       array-union: 2.1.0
       arrify: 2.0.1
-      minimatch: 3.0.5
+      minimatch: 3.1.2
     dev: true
 
   /mute-stream@0.0.8:
@@ -15814,15 +15892,6 @@ packages:
 
   /tslib@2.5.1:
     resolution: {integrity: sha512-KaI6gPil5m9vF7DKaoXxx1ia9fxS4qG5YveErRRVknPDXXriu5M8h48YRjB6h5ZUOKuAKlSJYb0GaDe8I39fRw==}
-
-  /tsparticles-engine@2.9.3:
-    resolution: {integrity: sha512-iAD8LyRH//kx10fDMm6AfQV6dRHs1ZacUUHqVwfutcqM4x1IV2ygpjk0X87LKCnBxYeIMG78+tlxXpnpwUccOg==}
-    requiresBuild: true
-
-  /tsparticles-particles.js@2.9.3:
-    resolution: {integrity: sha512-UyAEoz3ZkjBXIwC4NRJWnD4KdntuZyIKlPDZOKWz8ZL9I8jEvlle9XdonDj5IsLAwySqIq7vom5OUeIrqXdxjQ==}
-    dependencies:
-      tsparticles-engine: 2.9.3
 
   /tsutils@3.21.0(typescript@5.0.4):
     resolution: {integrity: sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==}
