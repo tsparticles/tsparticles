@@ -72,10 +72,20 @@
     "bugs": {
         "url": "https://github.com/matteobruni/tsparticles/issues"
     },
-    "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/matteobruni"
-    },
+    "funding": [
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/matteobruni"
+        },
+        {
+            "type": "github",
+            "url": "https://github.com/sponsors/tsparticles"
+        },
+        {
+            "type": "buymeacoffee",
+            "url": "https://www.buymeacoffee.com/matteobruni"
+        }
+    ],
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",

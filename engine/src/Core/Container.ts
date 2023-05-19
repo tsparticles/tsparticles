@@ -617,7 +617,7 @@ export class Container {
     }
 
     /**
-     * Restarts the container, just a {@link stop}/{@link start} alias
+     * Restarts the container, just a {@link Container.stop}/{@link Container.start} alias
      * @returns the Promise of the start method
      */
     async refresh(): Promise<void> {

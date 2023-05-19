@@ -12,7 +12,7 @@ import {
     getRangeValue,
     getValue,
     randomInRange,
-    setRangeValue
+    setRangeValue,
 } from "../Utils/NumberUtils";
 import { deepExtend, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
@@ -356,7 +356,7 @@ export class Particle implements IParticle {
         return {
             x: this.position.x + this.offset.x,
             y: this.position.y + this.offset.y,
-            z: this.position.z
+            z: this.position.z,
         };
     }
 
@@ -388,7 +388,7 @@ export class Particle implements IParticle {
         this.rotation = 0;
         this.misplaced = false;
         this.retina = {
-            maxDistance: {}
+            maxDistance: {},
         };
         this.outType = ParticleOutType.normal;
         this.ignoresResizeRatio = true;
@@ -464,7 +464,7 @@ export class Particle implements IParticle {
             min: getRangeMin(sizeRange) * pxRatio,
             loops: 0,
             maxLoops: getRangeValue(sizeOptions.animation.count),
-            time: 0
+            time: 0,
         };
 
         if (sizeAnimation.enable) {
@@ -497,11 +497,11 @@ export class Particle implements IParticle {
 
         /* position */
         this.bubble = {
-            inRange: false
+            inRange: false,
         };
         this.slow = {
             inRange: false,
-            factor: 1
+            factor: 1,
         };
 
         this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
@@ -515,7 +515,7 @@ export class Particle implements IParticle {
             x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
             y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
             radius: this.options.move.center.radius ?? 0,
-            mode: this.options.move.center.mode ?? SizeMode.percent
+            mode: this.options.move.center.mode ?? SizeMode.percent,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
 
@@ -629,7 +629,7 @@ export class Particle implements IParticle {
         const canvasSize = container.canvas.size,
             exactPosition = calcExactPositionOrRandomFromSize({
                 size: canvasSize,
-                position: position
+                position: position,
             }),
             pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex),
             radius = this.getRadius(),
@@ -642,7 +642,7 @@ export class Particle implements IParticle {
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
                     setCb: (value: number) => (pos.x += value),
-                    radius
+                    radius,
                 });
             },
             fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
@@ -652,7 +652,7 @@ export class Particle implements IParticle {
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
                     setCb: (value: number) => (pos.y += value),
-                    radius
+                    radius,
                 });
             };
 
@@ -681,7 +681,7 @@ export class Particle implements IParticle {
             radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset),
             range = {
                 left: radOffset - rad / 2,
-                right: radOffset + rad / 2
+                right: radOffset + rad / 2,
             };
 
         if (!moveOptions.straight) {
