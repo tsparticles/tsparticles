@@ -715,16 +715,9 @@ export class Particle implements IParticle {
             throw new Error(`${errorPrefix} particle is overlapping and can't be placed`);
         }
 
-        let overlaps = false;
-
-        for (const particle of this.container.particles.array) {
-            if (getDistance(pos, particle.position) < radius + particle.getRadius()) {
-                overlaps = true;
-                break;
-            }
-        }
-
-        return overlaps;
+        return !!this.container.particles.find(
+            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius()
+        );
     }
 
     private _getRollColor(color?: IHsl): IHsl | undefined {

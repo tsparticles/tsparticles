@@ -37,7 +37,7 @@ declare global {
 
 /**
  * Engine class for creating the singleton on window.
- * It's a singleton proxy to the Loader class for initializing {@link Container} instances,
+ * It's a singleton proxy to the {@link Loader} class for initializing {@link Container} instances,
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
