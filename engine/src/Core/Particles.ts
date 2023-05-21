@@ -16,6 +16,8 @@ import type { RecursivePartial } from "../Types/RecursivePartial";
 import { calcPositionFromSize } from "../Utils/NumberUtils";
 import { errorPrefix } from "./Utils/Constants";
 
+const qTreeCapacity = 4;
+
 /**
  * Particles manager object
  */
@@ -75,7 +77,7 @@ export class Particles {
                 (canvasSize.width * 3) / 2,
                 (canvasSize.height * 3) / 2
             ),
-            4
+            qTreeCapacity
         );
 
         this.movers = this._engine.plugins.getMovers(this._container, true);
@@ -148,7 +150,7 @@ export class Particles {
                 (canvasSize.width * 3) / 2,
                 (canvasSize.height * 3) / 2
             ),
-            4
+            qTreeCapacity
         );
 
         /* clear canvas */
@@ -298,10 +300,11 @@ export class Particles {
     }
 
     setDensity(): void {
-        const options = this._container.actualOptions;
+        const options = this._container.actualOptions,
+            groups = options.particles.groups;
 
-        for (const group in options.particles.groups) {
-            this._applyDensity(options.particles.groups[group], 0, group);
+        for (const group in groups) {
+            this._applyDensity(groups[group], 0, group);
         }
 
         this._applyDensity(options.particles, options.manualParticles.length);

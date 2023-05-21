@@ -233,20 +233,24 @@ export class Engine {
         const dom = this.dom(),
             item = dom[index];
 
-        if (item && !item.destroyed) {
-            return item;
+        if (!item || item.destroyed) {
+            dom.splice(index, 1);
+
+            return;
         }
 
-        dom.splice(index, 1);
+        return item;
     }
 
     /**
      * init method, used by imports
      */
     init(): void {
-        if (!this._initialized) {
-            this._initialized = true;
+        if (this._initialized) {
+            return;
         }
+
+        this._initialized = true;
     }
 
     /**
@@ -297,9 +301,7 @@ export class Engine {
      * Reloads all existing tsParticles loaded instances
      */
     async refresh(): Promise<void> {
-        for (const instance of this.dom()) {
-            await instance.refresh();
-        }
+        this.dom().forEach((t) => t.refresh());
     }
 
     /**
@@ -344,7 +346,7 @@ export class Engine {
     }
 
     /**
-     * Adds an additional click handler to all the loaded {@link Container} objects.
+     * Adds another click handler to all the loaded {@link Container} objects.
      * @param callback - The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {

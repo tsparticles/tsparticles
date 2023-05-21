@@ -37,7 +37,7 @@ class InfectionPlugin implements IPlugin {
 }
 
 /**
- * @param engine
+ * @param engine -
  */
 export async function loadInfectionPlugin(engine: Engine): Promise<void> {
     const plugin = new InfectionPlugin();
