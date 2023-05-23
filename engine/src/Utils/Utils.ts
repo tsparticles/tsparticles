@@ -13,25 +13,41 @@ import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { Vector } from "../Core/Utils/Vector";
 
+type RectSideBounceData = {
+    /**
+     * bounce factor
+     */
+    factor: number;
+    /**
+     * particle bounce other side
+     */
+    pOtherSide: IRangeValue;
+    /**
+     * particle bounce side
+     */
+    pSide: IRangeValue;
+    /**
+     * rectangle bounce other side
+     */
+    rectOtherSide: IRangeValue;
+    /**
+     * rectangle bounce side
+     */
+    rectSide: IRangeValue;
+    /**
+     * particle velocity
+     */
+    velocity: number;
+};
+
 /**
  * Calculates the bounce on a rectangle side
- * @param pSide - particle bounce side
- * @param pOtherSide - particle bounce other side
- * @param rectSide - rectangle bounce side
- * @param rectOtherSide - rectangle bounce other side
- * @param velocity - particle velocity
- * @param factor - bounce factor
+ * @param data - the rectangle side bounce values
  * @returns the rectangle side bounce values
  */
-function rectSideBounce(
-    pSide: IRangeValue,
-    pOtherSide: IRangeValue,
-    rectSide: IRangeValue,
-    rectOtherSide: IRangeValue,
-    velocity: number,
-    factor: number
-): IRectSideResult {
-    const res: IRectSideResult = { bounced: false };
+function rectSideBounce(data: RectSideBounceData): IRectSideResult {
+    const res: IRectSideResult = { bounced: false },
+        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
 
     if (
         pOtherSide.min < rectOtherSide.min ||
@@ -387,26 +403,26 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
         size = particle.getRadius(),
         bounds = calculateBounds(pPos, size),
-        resH = rectSideBounce(
-            {
+        resH = rectSideBounce({
+            pSide: {
                 min: bounds.left,
                 max: bounds.right,
             },
-            {
+            pOtherSide: {
                 min: bounds.top,
                 max: bounds.bottom,
             },
-            {
+            rectSide: {
                 min: divBounds.left,
                 max: divBounds.right,
             },
-            {
+            rectOtherSide: {
                 min: divBounds.top,
                 max: divBounds.bottom,
             },
-            particle.velocity.x,
-            getValue(particle.options.bounce.horizontal)
-        );
+            velocity: particle.velocity.x,
+            factor: getValue(particle.options.bounce.horizontal),
+        });
 
     if (resH.bounced) {
         if (resH.velocity !== undefined) {
@@ -418,26 +434,26 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
         }
     }
 
-    const resV = rectSideBounce(
-        {
+    const resV = rectSideBounce({
+        pSide: {
             min: bounds.top,
             max: bounds.bottom,
         },
-        {
+        pOtherSide: {
             min: bounds.left,
             max: bounds.right,
         },
-        {
+        rectSide: {
             min: divBounds.top,
             max: divBounds.bottom,
         },
-        {
+        rectOtherSide: {
             min: divBounds.left,
             max: divBounds.right,
         },
-        particle.velocity.y,
-        getValue(particle.options.bounce.vertical)
-    );
+        velocity: particle.velocity.y,
+        factor: getValue(particle.options.bounce.vertical),
+    });
 
     if (resV.bounced) {
         if (resV.velocity !== undefined) {

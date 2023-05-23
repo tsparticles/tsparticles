@@ -1,5 +1,5 @@
-(async function () {
-    let schema = {};
+(async function() {
+    //let schema = {};
     const stats = new Stats();
 
     stats.addPanel("count", "#ff8", 0, () => {
@@ -9,7 +9,7 @@
 
             return {
                 value: container.particles.count,
-                maxValue: maxParticles,
+                maxValue: maxParticles
             };
         }
     });
@@ -21,8 +21,8 @@
     stats.dom.style.top = "3px";
     stats.dom.id = "stats-graph";
 
-    let initStats = function () {
-        const update = function () {
+    let initStats = function() {
+        const update = function() {
             stats.begin();
             stats.end();
 
@@ -32,7 +32,7 @@
         requestAnimationFrame(update);
     };
 
-    let updateParticles = async function (editor) {
+    let updateParticles = async function(editor) {
         let presetId = localStorage.presetId || "basic";
 
         if (presetId === "divEvents") {
@@ -74,7 +74,7 @@
         };
 
         const transform = obj => {
-            return _.transform(omit(obj), function (result, value, key) {
+            return _.transform(omit(obj), function(result, value, key) {
                 result[key] = !_.isArray(value) && _.isObject(value) ? transform(omit(value)) : value;
             });
         };
@@ -91,14 +91,14 @@
             const { [parts[0]]: todo, ...rest } = obj;
             return {
                 ...omit(rest, keys),
-                [parts[0]]: omit(todo, [parts[1]]),
+                [parts[0]]: omit(todo, [parts[1]])
             };
         }
         const { [key]: omitted, ...rest } = obj;
         return omit(rest, keys);
     };
 
-    let initSidebar = function () {
+    let initSidebar = function() {
         const rightCaret = document.body.querySelector(".caret-right");
         const leftCaret = document.body.querySelector(".caret-left");
         const sidebar = document.getElementById("sidebar");
@@ -113,7 +113,7 @@
         }
     };
 
-    let toggleSidebar = function () {
+    let toggleSidebar = function() {
         const rightCaret = document.body.querySelector(".caret-right");
         const leftCaret = document.body.querySelector(".caret-left");
         const sidebar = document.getElementById("sidebar");
@@ -132,7 +132,7 @@
         tsParticles.domItem(0).refresh();
     };
 
-    window.addEventListener("load", async function () {
+    window.addEventListener("load", async function() {
         await loadHsvColorPlugin();
 
         await loadFull(tsParticles);
@@ -158,6 +158,7 @@
         await loadPolygonPath(tsParticles);
         await loadSVGPath(tsParticles);
         await loadSimplexNoisePath(tsParticles);
+        await loadArrowShape(tsParticles);
         await loadBubbleShape(tsParticles);
         await loadCardsShape(tsParticles);
         await loadCogShape(tsParticles);
@@ -181,17 +182,19 @@
         const options = {
             mode: "form",
             modes: ["code", "form", "view", "preview", "text"], // allowed modes
-            onError: function (err) {
+            onError: function(err) {
                 alert(err.toString());
             },
-            onModeChange: function (newMode, oldMode) {},
-            onChange: function () {},
+            onModeChange: function(newMode, oldMode) {
+            },
+            onChange: function() {
+            }
         };
         const editor = new JSONEditor(element, options);
 
         const cmbPresets = document.getElementById("presets");
 
-        cmbPresets.onchange = async function () {
+        cmbPresets.onchange = async function() {
             localStorage.presetId = this.value;
 
             await updateParticles(editor);
@@ -211,7 +214,7 @@
 
         const btnUpdate = document.getElementById("btnUpdate");
 
-        btnUpdate.onclick = function () {
+        btnUpdate.onclick = function() {
             const particles = tsParticles.domItem(0);
 
             particles.options.load(editor.get());
@@ -224,7 +227,7 @@
 
         const statsToggler = document.body.querySelector("#toggle-stats");
 
-        statsToggler.addEventListener("click", function () {
+        statsToggler.addEventListener("click", function() {
             const statsEl = document.body.querySelector("#stats");
             if (statsEl.hasAttribute("hidden")) {
                 statsEl.removeAttribute("hidden");
@@ -235,15 +238,15 @@
 
         const sidebarToggler = document.body.querySelector(".toggle-sidebar");
 
-        sidebarToggler.addEventListener("click", function () {
+        sidebarToggler.addEventListener("click", function() {
             toggleSidebar();
         });
 
-        document.getElementById("export-image").addEventListener("click", function () {
+        document.getElementById("export-image").addEventListener("click", function() {
             const container = tsParticles.domItem(0);
 
             if (container) {
-                container.exportImage(function (blob) {
+                container.exportImage(function(blob) {
                     const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
                     modalBody.innerHTML = "";
@@ -268,7 +271,7 @@
             }
         });
 
-        document.getElementById("export-config").addEventListener("click", function () {
+        document.getElementById("export-config").addEventListener("click", function() {
             const container = tsParticles.domItem(0);
 
             if (container) {
@@ -282,7 +285,7 @@
             }
         });
 
-        document.getElementById("codepen-export").addEventListener("click", function () {
+        document.getElementById("codepen-export").addEventListener("click", function() {
             const container = tsParticles.domItem(0);
 
             if (container) {
@@ -318,7 +321,7 @@ canvas {
                     title: "tsParticles example",
                     description: "This pen was created with tsParticles from https://particles.js.org",
                     tags: "tsparticles, javascript, typescript, design, animation",
-                    editors: "001",
+                    editors: "001"
                 };
 
                 inputData.value = JSON.stringify(data).replace(/"/g, "&quot;").replace(/'/g, "&apos;");

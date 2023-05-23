@@ -96,6 +96,7 @@ import responsive from "./responsive";
 import ring from "./ring";
 import seaAnemone from "./seaAnemone";
 import shadow from "./shadow";
+import shapeArrow from "./shapeArrow";
 import shapeBubble from "./shapeBubble";
 import shapeCog from "./shapeCog";
 import shapeHeart from "./shapeHeart";
@@ -228,6 +229,7 @@ const configs = {
     ring,
     seaAnemone,
     shadow,
+    shapeArrow,
     shapeBubble,
     shapeCog,
     shapeHeart,

@@ -79,10 +79,10 @@ export class CogDrawer implements IShapeDrawer {
     particleInit(container: Container, particle: CogParticle): void {
         const shapeData = particle.shapeData as ICogData;
 
-        particle.cogHoleRadius = getRangeValue(shapeData.holeRadius ?? 44);
-        particle.cogInnerRadius = getRangeValue(shapeData.innerRadius ?? 72);
-        particle.cogInnerTaper = getRangeValue(shapeData.innerTaper ?? 35);
-        particle.cogNotches = getRangeValue(shapeData.notches ?? 7);
-        particle.cogOuterTaper = getRangeValue(shapeData.outerTaper ?? 50);
+        particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? 44);
+        particle.cogInnerRadius = getRangeValue(shapeData?.innerRadius ?? 72);
+        particle.cogInnerTaper = getRangeValue(shapeData?.innerTaper ?? 35);
+        particle.cogNotches = getRangeValue(shapeData?.notches ?? 7);
+        particle.cogOuterTaper = getRangeValue(shapeData?.outerTaper ?? 50);
     }
 }

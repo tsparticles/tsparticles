@@ -4,7 +4,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles Rotate Updater",
+  "name": "tsParticles Arrow Shape",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

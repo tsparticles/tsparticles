@@ -17,9 +17,9 @@ describe("Particles", () => {
     const numParticlesOptions = {
         particles: {
             number: {
-                value: numParticles
-            }
-        }
+                value: numParticles,
+            },
+        },
     };
     // This is to keep the `removeQuantity` method from executing `container.play`
     // which is not playing well in Node.
@@ -27,18 +27,18 @@ describe("Particles", () => {
         particles: {
             number: numParticlesOptions.particles.number,
             move: {
-                enable: true
-            }
-        }
+                enable: true,
+            },
+        },
     };
 
     const enableParticleEmptyMoveOptions = {
         particles: {
             number: { value: 0 },
             move: {
-                enable: true
-            }
-        }
+                enable: true,
+            },
+        },
     };
 
     it("should create the number of particles configured in container", () => {
@@ -53,9 +53,9 @@ describe("Particles", () => {
         testContainer.reset({
             particles: {
                 number: {
-                    value: 0
-                }
-            }
+                    value: 0,
+                },
+            },
         });
         testParticles.reset(testContainer.container);
 
@@ -204,35 +204,35 @@ describe("Particles", () => {
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
 
         ts = getRandom() * 16.66667;
 
         testParticles.particles.update({
             value: ts,
-            factor: (60 * ts) / 1000
+            factor: (60 * ts) / 1000,
         });
     });
 });

@@ -97,6 +97,7 @@
     "tsparticles-plugin-motion": "^2.9.3",
     "tsparticles-plugin-polygon-mask": "^2.9.3",
     "tsparticles-plugin-sounds": "^2.9.3",
+    "tsparticles-shape-arrow": "^2.9.3",
     "tsparticles-shape-bubble": "^2.9.3",
     "tsparticles-shape-cards": "^2.9.3",
     "tsparticles-shape-circle": "^2.9.3",

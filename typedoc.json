@@ -35,6 +35,7 @@
     "plugins/emitters",
     "plugins/infection",
     "plugins/polygonMask",
+    "shapes/arrow",
     "shapes/bubble",
     "shapes/circle",
     "shapes/cog",
@@ -72,7 +73,6 @@
     "typedoc-plugin-clarity",
     "typedoc-plugin-coverage",
     "typedoc-plugin-keywords"
-    //"typedoc-plugin-missing-exports"
   ],
   "clarityId": "8q4bxin4tm",
   "carbonServe": "CEAI6KJL",

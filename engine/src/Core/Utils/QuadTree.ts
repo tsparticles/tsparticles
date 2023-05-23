@@ -68,16 +68,10 @@ export class QuadTree {
         }
 
         if (!this._divided) {
-            this.subdivide();
+            this._subdivide();
         }
 
-        for (const sub of this._subs) {
-            if (sub.insert(point)) {
-                return true;
-            }
-        }
-
-        return false;
+        return this._subs.some((sub) => sub.insert(point));
     }
 
     /**
@@ -88,7 +82,7 @@ export class QuadTree {
      * @returns the particles inside the given range
      */
     query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
-        const res = found ?? [];
+        const res = found || [];
 
         if (!range.intersects(this.rectangle)) {
             return [];
@@ -140,16 +134,22 @@ export class QuadTree {
     /**
      * Creates the subtrees, making the instance a branch
      */
-    private subdivide(): void {
-        const rect = this.rectangle,
-            size = rect.size,
-            { x, y } = rect.position,
-            { w, h } = { w: size.width / 2, h: size.height / 2 },
-            capacity = this.capacity;
+    private _subdivide(): void {
+        const { x, y } = this.rectangle.position,
+            { width, height } = this.rectangle.size,
+            { capacity } = this;
 
         for (let i = 0; i < 4; i++) {
             this._subs.push(
-                new QuadTree(new Rectangle(x + w * (i % 2), y + h * (Math.round(i / 2) - (i % 2)), w, h), capacity)
+                new QuadTree(
+                    new Rectangle(
+                        x + (width / 2) * (i % 2),
+                        y + (height / 2) * (Math.round(i / 2) - (i % 2)),
+                        width / 2,
+                        height / 2
+                    ),
+                    capacity
+                )
             );
         }
 
