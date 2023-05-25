@@ -25,7 +25,7 @@ function initImage(data: InitImageData): HTMLImageElement {
     setIconStyle(
         img,
         pos.top + margin,
-        pos.right - (margin * (rightOffsets.length + 1) + width * rightOffsets.reduce((a, b) => a + b, 0)),
+        pos.right - (margin * (rightOffsets.length + 1) + width + rightOffsets.reduce((a, b) => a + b, 0)),
         display,
         options.fullScreen.zIndex + 1,
         width,
@@ -173,7 +173,7 @@ export class SoundsInstance implements IContainerPlugin {
             display: ImageDisplay.Block,
             iconOptions: mute,
             margin,
-            rightOffsets: [volumeDown.width + volumeUp.width],
+            rightOffsets: [volumeDown.width, volumeUp.width],
             clickCb: toggleMute,
         });
         this._unmuteImg = initImage({
@@ -183,7 +183,7 @@ export class SoundsInstance implements IContainerPlugin {
             display: ImageDisplay.None,
             iconOptions: unmute,
             margin,
-            rightOffsets: [volumeDown.width + volumeUp.width],
+            rightOffsets: [volumeDown.width, volumeUp.width],
             clickCb: toggleMute,
         });
         this._volumeDownImg = initImage({

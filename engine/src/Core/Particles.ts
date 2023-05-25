@@ -312,7 +312,7 @@ export class Particles {
 
     async update(delta: IDelta): Promise<void> {
         const container = this._container,
-            particlesToDelete = [];
+            particlesToDelete = new Set<Particle>();
 
         for (const [, pathGenerator] of container.pathGenerators) {
             pathGenerator.update();
@@ -353,7 +353,7 @@ export class Particles {
             }
 
             if (particle.destroyed) {
-                particlesToDelete.push(particle);
+                particlesToDelete.add(particle);
 
                 continue;
             }
@@ -361,9 +361,7 @@ export class Particles {
             this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
-        for (const particle of particlesToDelete) {
-            this.remove(particle);
-        }
+        this._array = this._array.filter((t) => !particlesToDelete.has(t));
 
         await this._interactionManager.externalInteract(delta);
 

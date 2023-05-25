@@ -30,42 +30,18 @@ function getLinkDistance(
     canvasSize: IDimension,
     warp: boolean
 ): number {
-    let distance = getDistance(pos1, pos2);
+    const { width, height } = canvasSize;
+    const dx = Math.abs(pos1.x - pos2.x);
+    const dy = Math.abs(pos1.y - pos2.y);
 
-    if (!warp || distance <= optDistance) {
-        return distance;
+    if (!warp || (dx <= width / 2 && dy <= height / 2)) {
+        return getDistance(pos1, pos2);
     }
 
-    const pos2NE = {
-        x: pos2.x - canvasSize.width,
-        y: pos2.y,
-    };
+    const shiftedX = pos2.x - Math.round(dx / width) * width * Math.sign(pos2.x - pos1.x);
+    const shiftedY = pos2.y - Math.round(dy / height) * height * Math.sign(pos2.y - pos1.y);
 
-    distance = getDistance(pos1, pos2NE);
-
-    if (distance <= optDistance) {
-        return distance;
-    }
-
-    const pos2SE = {
-        x: pos2.x - canvasSize.width,
-        y: pos2.y - canvasSize.height,
-    };
-
-    distance = getDistance(pos1, pos2SE);
-
-    if (distance <= optDistance) {
-        return distance;
-    }
-
-    const pos2SW = {
-        x: pos2.x,
-        y: pos2.y - canvasSize.height,
-    };
-
-    distance = getDistance(pos1, pos2SW);
-
-    return distance;
+    return getDistance(pos1, { x: shiftedX, y: shiftedY });
 }
 
 export class Linker extends ParticlesInteractorBase {
@@ -120,8 +96,8 @@ export class Linker extends ParticlesInteractorBase {
                 p2.spawning ||
                 p2.destroyed ||
                 !p2.links ||
-                p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
-                p2.links.map((t) => t.destination).indexOf(p1) !== -1
+                p1.links.some((t) => t.destination === p2) ||
+                p2.links.some((t) => t.destination === p1)
             ) {
                 continue;
             }
@@ -135,7 +111,7 @@ export class Linker extends ParticlesInteractorBase {
             const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
 
             if (distance > optDistance) {
-                return;
+                continue;
             }
 
             /* draw a line between p1 and p2 */

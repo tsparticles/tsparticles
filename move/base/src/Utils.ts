@@ -17,8 +17,9 @@ export function applyDistance(particle: MoveParticle): void {
         { dx, dy } = getDistances(initialPosition, particle.position),
         dxFixed = Math.abs(dx),
         dyFixed = Math.abs(dy),
-        hDistance = particle.retina.maxDistance.horizontal,
-        vDistance = particle.retina.maxDistance.vertical;
+        { maxDistance } = particle.retina,
+        hDistance = maxDistance.horizontal,
+        vDistance = maxDistance.vertical;
 
     if (!hDistance && !vDistance) {
         return;

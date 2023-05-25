@@ -22,34 +22,15 @@ export class CircleWarp extends Circle {
      * @returns true or false, checking if the given point is inside the circle
      */
     contains(point: ICoordinates): boolean {
-        if (super.contains(point)) {
-            return true;
-        }
+        const { width, height } = this.canvasSize;
+        const { x, y } = point;
 
-        const posNE = {
-            x: point.x - this.canvasSize.width,
-            y: point.y,
-        };
-
-        if (super.contains(posNE)) {
-            return true;
-        }
-
-        const posSE = {
-            x: point.x - this.canvasSize.width,
-            y: point.y - this.canvasSize.height,
-        };
-
-        if (super.contains(posSE)) {
-            return true;
-        }
-
-        const posSW = {
-            x: point.x,
-            y: point.y - this.canvasSize.height,
-        };
-
-        return super.contains(posSW);
+        return (
+            super.contains(point) ||
+            super.contains({ x: x - width, y }) ||
+            super.contains({ x: x - width, y: y - height }) ||
+            super.contains({ x, y: y - height })
+        );
     }
 
     /**
