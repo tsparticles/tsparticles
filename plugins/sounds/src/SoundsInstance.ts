@@ -2,53 +2,34 @@ import {
     type CustomEventArgs,
     type Engine,
     type IContainerPlugin,
-    type Options,
     clamp,
     executeOnSingleOrMultiple,
     itemFromArray,
     itemFromSingleOrMultiple,
 } from "tsparticles-engine";
+import { ImageDisplay, SoundsEventType } from "./enums";
+import type { ImageMargins, InitImageData, SoundsContainer } from "./types";
 import type { SoundsAudio } from "./Options/Classes/SoundsAudio";
-import type { SoundsContainer } from "./types";
-import { SoundsEventType } from "./enums";
-import type { SoundsIcon } from "./Options/Classes/SoundsIcon";
 import type { SoundsNote } from "./Options/Classes/SoundsNote";
 import { getNoteFrequency } from "./utils";
 
 /**
- * @param container -
- * @param options -
- * @param containerTop -
- * @param containerRight -
- * @param display -
- * @param iconOptions -
- * @param marginTop -
- * @param marginRight -
- * @param clickCb -
+ * @param data -
  * @returns the image element
  */
-function initImage(
-    container: SoundsContainer,
-    options: Options,
-    containerTop: number,
-    containerRight: number,
-    display: "block" | "none",
-    iconOptions: SoundsIcon,
-    marginTop: number,
-    marginRight: number,
-    clickCb: () => void
-): HTMLImageElement {
+function initImage(data: InitImageData): HTMLImageElement {
     const img = document.createElement("img"),
+        { clickCb, container, display, iconOptions, margin, options, pos, rightOffsets } = data,
         { width, path, svg } = iconOptions;
 
     setIconStyle(
         img,
-        containerTop + marginTop,
-        containerRight - marginRight,
+        pos.top + margin,
+        pos.right - (margin * (rightOffsets.length + 1) + width * rightOffsets.reduce((a, b) => a + b, 0)),
         display,
         options.fullScreen.zIndex + 1,
         width,
-        marginTop
+        margin
     );
 
     img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
@@ -57,11 +38,21 @@ function initImage(
 
     parent.append(img);
 
-    img.addEventListener("click", () => {
-        clickCb();
-    });
+    img.addEventListener("click", clickCb);
 
     return img;
+}
+
+/**
+ *
+ * @param image -
+ */
+function removeImage(image?: HTMLImageElement): void {
+    if (!image) {
+        return;
+    }
+
+    image.remove();
 }
 
 /**
@@ -160,13 +151,12 @@ export class SoundsInstance implements IContainerPlugin {
 
         container.muted = true;
 
-        const containerTop = container.canvas.element.offsetTop,
-            containerRight = container.canvas.element.offsetLeft + container.canvas.element.offsetWidth,
-            iconsOptions = soundsOptions.icons,
-            muteOptions = iconsOptions.mute,
-            unmuteOptions = iconsOptions.unmute,
-            volumeDownOptions = iconsOptions.volumeDown,
-            volumeUpOptions = iconsOptions.volumeUp,
+        const canvas = container.canvas.element,
+            pos: ImageMargins = {
+                top: canvas.offsetTop,
+                right: canvas.offsetLeft + canvas.offsetWidth,
+            },
+            { mute, unmute, volumeDown, volumeUp } = soundsOptions.icons,
             margin = 10;
 
         const toggleMute = (): void => {
@@ -176,38 +166,35 @@ export class SoundsInstance implements IContainerPlugin {
             this._updateMuteStatus();
         };
 
-        this._muteImg = initImage(
+        this._muteImg = initImage({
             container,
             options,
-            containerTop,
-            containerRight,
-            "block",
-            soundsOptions.icons.mute,
+            pos,
+            display: ImageDisplay.Block,
+            iconOptions: mute,
             margin,
-            margin * 3 + muteOptions.width + volumeDownOptions.width + volumeUpOptions.width,
-            toggleMute
-        );
-        this._unmuteImg = initImage(
+            rightOffsets: [volumeDown.width + volumeUp.width],
+            clickCb: toggleMute,
+        });
+        this._unmuteImg = initImage({
             container,
             options,
-            containerTop,
-            containerRight,
-            "none",
-            soundsOptions.icons.unmute,
+            pos,
+            display: ImageDisplay.None,
+            iconOptions: unmute,
             margin,
-            margin * 3 + unmuteOptions.width + volumeDownOptions.width + volumeUpOptions.width,
-            toggleMute
-        );
-        this._volumeDownImg = initImage(
+            rightOffsets: [volumeDown.width + volumeUp.width],
+            clickCb: toggleMute,
+        });
+        this._volumeDownImg = initImage({
             container,
             options,
-            containerTop,
-            containerRight,
-            "block",
-            soundsOptions.icons.volumeDown,
+            pos,
+            display: ImageDisplay.Block,
+            iconOptions: volumeDown,
             margin,
-            margin * 2 + volumeDownOptions.width + volumeUpOptions.width,
-            () => {
+            rightOffsets: [volumeUp.width],
+            clickCb: () => {
                 if (container.muted) {
                     this._volume = 0;
                 }
@@ -215,18 +202,17 @@ export class SoundsInstance implements IContainerPlugin {
                 this._volume -= soundsOptions.volume.step;
 
                 this._updateVolume();
-            }
-        );
-        this._volumeUpImg = initImage(
+            },
+        });
+        this._volumeUpImg = initImage({
             container,
             options,
-            containerTop,
-            containerRight,
-            "block",
-            soundsOptions.icons.volumeUp,
+            pos,
+            display: ImageDisplay.Block,
+            iconOptions: volumeUp,
             margin,
-            margin + volumeUpOptions.width,
-            (): void => {
+            rightOffsets: [],
+            clickCb: (): void => {
                 if (container.muted) {
                     this._volume = 0;
                 }
@@ -234,8 +220,8 @@ export class SoundsInstance implements IContainerPlugin {
                 this._volume += soundsOptions.volume.step;
 
                 this._updateVolume();
-            }
-        );
+            },
+        });
     }
 
     stop(): void {
@@ -243,21 +229,10 @@ export class SoundsInstance implements IContainerPlugin {
 
         this._mute();
 
-        if (this._muteImg) {
-            this._muteImg.remove();
-        }
-
-        if (this._unmuteImg) {
-            this._unmuteImg.remove();
-        }
-
-        if (this._volumeDownImg) {
-            this._volumeDownImg.remove();
-        }
-
-        if (this._volumeUpImg) {
-            this._volumeUpImg.remove();
-        }
+        removeImage(this._muteImg);
+        removeImage(this._unmuteImg);
+        removeImage(this._volumeDownImg);
+        removeImage(this._volumeUpImg);
     }
 
     private _addBuffer(audioCtx: AudioContext): AudioBufferSourceNode {
@@ -491,13 +466,15 @@ export class SoundsInstance implements IContainerPlugin {
             container.audioContext = new AudioContext();
         }
 
+        const { audioContext } = container;
+
         if (!this._audioSources) {
             this._audioSources = [];
         }
 
-        const gain = container.audioContext.createGain();
+        const gain = audioContext.createGain();
 
-        gain.connect(container.audioContext.destination);
+        gain.connect(audioContext.destination);
 
         gain.gain.value = soundsOptions.volume.value / 100;
 
