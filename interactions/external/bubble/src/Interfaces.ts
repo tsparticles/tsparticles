@@ -1,8 +1,8 @@
-import type { ProcessBubbleType } from "./ProcessBubbleType";
+import type { ProcessBubbleType } from "./Enums";
 
 /**
  */
-export interface IBubblerProcessParam {
+export interface Interfaces {
     bubbleObj: IBubblerProcessParamObj;
     particlesObj: IBubblerProcessParamObj;
     type: ProcessBubbleType;

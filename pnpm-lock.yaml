@@ -144,8 +144,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -254,8 +254,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -352,8 +352,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -423,8 +423,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -590,8 +590,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1051,8 +1051,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1182,8 +1182,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1253,8 +1253,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1324,8 +1324,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1395,8 +1395,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1466,8 +1466,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1537,8 +1537,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1608,8 +1608,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1679,8 +1679,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1750,8 +1750,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1821,8 +1821,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1892,8 +1892,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -1963,8 +1963,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2034,8 +2034,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2105,8 +2105,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2176,8 +2176,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2247,8 +2247,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2318,8 +2318,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2389,8 +2389,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2460,8 +2460,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2531,8 +2531,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2602,8 +2602,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2673,8 +2673,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2744,8 +2744,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2815,8 +2815,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2886,8 +2886,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -2957,8 +2957,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3028,8 +3028,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3099,8 +3099,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3170,8 +3170,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3241,8 +3241,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3312,8 +3312,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3383,8 +3383,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3454,8 +3454,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3525,8 +3525,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3596,8 +3596,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3667,8 +3667,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3738,8 +3738,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3809,8 +3809,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3880,8 +3880,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -3951,8 +3951,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4022,8 +4022,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4093,8 +4093,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4164,8 +4164,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4235,8 +4235,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4306,8 +4306,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4377,8 +4377,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4448,8 +4448,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4519,8 +4519,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4590,8 +4590,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4661,8 +4661,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4732,8 +4732,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4803,8 +4803,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4874,8 +4874,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -4945,8 +4945,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5016,8 +5016,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5087,8 +5087,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5158,8 +5158,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5229,8 +5229,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5300,8 +5300,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5371,8 +5371,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5442,8 +5442,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5513,8 +5513,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5584,8 +5584,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5655,8 +5655,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5726,8 +5726,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5797,8 +5797,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5868,8 +5868,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -5939,8 +5939,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -6010,8 +6010,8 @@ importers:
         specifier: ^7.21.8
         version: 7.21.8
       '@tsparticles/cli':
-        specifier: ^1.4.0
-        version: 1.4.0(webpack-cli@5.1.1)
+        specifier: ^1.4.1
+        version: 1.4.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -8671,8 +8671,8 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
-  /@tsparticles/cli@1.4.0(webpack-cli@5.1.1):
-    resolution: {integrity: sha512-AHAIQfMLGbUGiZxbjkZ80deZ13Lnyffy3KV0LSM/SWPvA0RorXax5JWjhWia+vriXIy/m6nkufh29wdkW1/AcA==}
+  /@tsparticles/cli@1.4.1(webpack-cli@5.1.1):
+    resolution: {integrity: sha512-YLpjm9K6hcC/Pl303Z5PBbc+8BthFKXCiUNpt5Jd0cFRojyXOlv7nSNF7JeT6VlFytSgEE8kPUaCrPkW4F6NZA==}
     hasBin: true
     dependencies:
       '@tsparticles/eslint-config': 1.11.0
