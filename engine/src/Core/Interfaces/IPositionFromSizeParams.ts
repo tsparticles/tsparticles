@@ -1,4 +1,5 @@
 import type { ICoordinates, IRangedCoordinates } from "./ICoordinates";
+import { calcPositionFromSize, calcPositionOrRandomFromSize } from "../../Utils/NumberUtils";
 import type { IDimension } from "./IDimension";
 
 /**

@@ -1,3 +1,4 @@
+import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IOptionsColor } from "../IOptionsColor";
 
 /**

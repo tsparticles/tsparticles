@@ -8,12 +8,9 @@ import {
     getDistance,
     getLinkRandomColor,
 } from "tsparticles-engine";
+import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types";
 import { CircleWarp } from "./CircleWarp";
-import type { IParticlesLinkOptions } from "./Options/Interfaces/IParticlesLinkOptions";
-import type { LinkContainer } from "./LinkContainer";
-import type { LinkParticle } from "./LinkParticle";
 import { Links } from "./Options/Classes/Links";
-import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
 
 /**
  * @param pos1 -

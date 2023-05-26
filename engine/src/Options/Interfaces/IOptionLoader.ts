@@ -1,7 +1,7 @@
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 
 /**
- * This interface is used by the options classes to have a {@link load} method to set all needed properties from source
+ * This interface is used by the options classes to have a {@link IOptionLoader.load} method to set all needed properties from source
  */
 export interface IOptionLoader<T> {
     /**

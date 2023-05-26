@@ -95,7 +95,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     /**
-     * @deprecated use the new {@link path} property instead
+     * @deprecated use the new {@link Move.path} property instead
      * @returns the noise value
      */
     get noise(): MovePath {
@@ -103,7 +103,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     /**
-     * @deprecated use the new {@link path} property instead
+     * @deprecated use the new {@link Move.path} property instead
      */
     set noise(value: MovePath) {
         this.path = value;

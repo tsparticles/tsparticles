@@ -1,62 +1,15 @@
 import {
     type IContainerPlugin,
-    type IRangeColor,
     type IRgb,
-    type RangeValue,
     getDistance,
     getLinkColor,
     getRandom,
     getRangeValue,
     rangeColorToRgb,
 } from "tsparticles-engine";
-import { drawLinkLine, drawLinkTriangle } from "./Utils";
-import type { ILink } from "./ILink";
-import type { LinkContainer } from "./LinkContainer";
-import type { LinkParticle } from "./LinkParticle";
-import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
-
-interface ITwinkle {
-    lines: {
-        color: IRangeColor;
-        enable: boolean;
-        frequency: number;
-        opacity: RangeValue;
-    };
-}
-
-interface IParticlesFrequencies {
-    links: Map<string, number>;
-    triangles: Map<string, number>;
-}
-
-/**
- * @param ids -
- * @returns the key for the link
- */
-function getLinkKey(ids: number[]): string {
-    ids.sort((a, b) => a - b);
-
-    return ids.join("_");
-}
-
-/**
- * @param particles -
- * @param dictionary -
- * @returns the frequency of the link
- */
-function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
-    const key = getLinkKey(particles.map((t) => t.id));
-
-    let res = dictionary.get(key);
-
-    if (res === undefined) {
-        res = getRandom();
-
-        dictionary.set(key, res);
-    }
-
-    return res;
-}
+import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces";
+import type { LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types";
+import { drawLinkLine, drawLinkTriangle, setLinkFrequency } from "./Utils";
 
 export class LinkInstance implements IContainerPlugin {
     private readonly _freqs: IParticlesFrequencies;
@@ -69,21 +22,21 @@ export class LinkInstance implements IContainerPlugin {
     }
 
     drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
-        const pOptions = particle.options;
+        const { links, options } = particle;
 
-        if (!particle.links || particle.links.length <= 0) {
+        if (!links || links.length <= 0) {
             return;
         }
 
-        const p1Links = particle.links.filter(
-            (l) => pOptions.links && this.getLinkFrequency(particle, l.destination) <= pOptions.links.frequency
+        const p1Links = links.filter(
+            (l) => options.links && this._getLinkFrequency(particle, l.destination) <= options.links.frequency
         );
 
         for (const link of p1Links) {
-            this.drawTriangles(pOptions, particle, link, p1Links);
+            this._drawTriangles(options, particle, link, p1Links);
 
             if (link.opacity > 0 && (particle.retina.linksWidth ?? 0) > 0) {
-                this.drawLinkLine(particle, link);
+                this._drawLinkLine(particle, link);
             }
         }
     }
@@ -100,17 +53,19 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        const ratio = this.container.retina.pixelRatio;
+        const ratio = this.container.retina.pixelRatio,
+            { retina } = particle,
+            { distance, width } = particle.options.links;
 
-        particle.retina.linksDistance = particle.options.links.distance * ratio;
-        particle.retina.linksWidth = particle.options.links.width * ratio;
+        retina.linksDistance = distance * ratio;
+        retina.linksWidth = width * ratio;
     }
 
     particleDestroyed(particle: LinkParticle): void {
         particle.links = [];
     }
 
-    private drawLinkLine(p1: LinkParticle, link: ILink): void {
+    private _drawLinkLine(p1: LinkParticle, link: ILink): void {
         const container = this.container,
             options = container.actualOptions,
             p2 = link.destination,
@@ -147,12 +102,13 @@ export class LinkInstance implements IContainerPlugin {
                 }
             }
 
+            const p1LinksOptions = p1.options.links;
+
             if (!colorLine) {
-                const linksOptions = p1.options.links,
-                    linkColor =
-                        linksOptions?.id !== undefined
-                            ? container.particles.linksColors.get(linksOptions.id)
-                            : container.particles.linksColor;
+                const linkColor =
+                    p1LinksOptions?.id !== undefined
+                        ? container.particles.linksColors.get(p1LinksOptions.id)
+                        : container.particles.linksColor;
 
                 colorLine = getLinkColor(p1, p2, linkColor);
             }
@@ -162,7 +118,8 @@ export class LinkInstance implements IContainerPlugin {
             }
 
             const width = p1.retina.linksWidth ?? 0,
-                maxDistance = p1.retina.linksDistance ?? 0;
+                maxDistance = p1.retina.linksDistance ?? 0,
+                { backgroundMask } = options;
 
             drawLinkLine({
                 context: ctx,
@@ -171,17 +128,15 @@ export class LinkInstance implements IContainerPlugin {
                 end: pos2,
                 maxDistance,
                 canvasSize: container.canvas.size,
-                warp: p1.options.links.warp,
-                backgroundMask: options.backgroundMask.enable,
-                composite: options.backgroundMask.composite,
+                links: p1LinksOptions,
+                backgroundMask: backgroundMask,
                 colorLine,
                 opacity,
-                shadow: p1.options.links.shadow,
             });
         });
     }
 
-    private drawLinkTriangle(p1: LinkParticle, link1: ILink, link2: ILink): void {
+    private _drawLinkTriangle(p1: LinkParticle, link1: ILink, link2: ILink): void {
         if (!p1.options.links) {
             return;
         }
@@ -232,15 +187,14 @@ export class LinkInstance implements IContainerPlugin {
                 pos1,
                 pos2,
                 pos3,
-                backgroundMask: options.backgroundMask.enable,
-                composite: options.backgroundMask.composite,
+                backgroundMask: options.backgroundMask,
                 colorTriangle,
                 opacityTriangle,
             });
         });
     }
 
-    private drawTriangles(options: ParticlesLinkOptions, p1: LinkParticle, link: ILink, p1Links: ILink[]): void {
+    private _drawTriangles(options: ParticlesLinkOptions, p1: LinkParticle, link: ILink, p1Links: ILink[]): void {
         const p2 = link.destination;
 
         if (!(options.links?.triangles.enable && p2.options.links?.triangles.enable)) {
@@ -248,7 +202,7 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         const vertices = p2.links?.filter((t) => {
-            const linkFreq = this.getLinkFrequency(p2, t.destination);
+            const linkFreq = this._getLinkFrequency(p2, t.destination);
 
             return (
                 p2.options.links &&
@@ -263,21 +217,21 @@ export class LinkInstance implements IContainerPlugin {
 
         for (const vertex of vertices) {
             const p3 = vertex.destination,
-                triangleFreq = this.getTriangleFrequency(p1, p2, p3);
+                triangleFreq = this._getTriangleFrequency(p1, p2, p3);
 
             if (triangleFreq > options.links.triangles.frequency) {
                 continue;
             }
 
-            this.drawLinkTriangle(p1, link, vertex);
+            this._drawLinkTriangle(p1, link, vertex);
         }
     }
 
-    private getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
+    private _getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
         return setLinkFrequency([p1, p2], this._freqs.links);
     }
 
-    private getTriangleFrequency(p1: LinkParticle, p2: LinkParticle, p3: LinkParticle): number {
+    private _getTriangleFrequency(p1: LinkParticle, p2: LinkParticle, p3: LinkParticle): number {
         return setLinkFrequency([p1, p2, p3], this._freqs.triangles);
     }
 }
