@@ -1,7 +1,6 @@
-import type { Container } from "tsparticles-engine";
+import type { Container, Options } from "tsparticles-engine";
 import type { IPush } from "./Options/Interfaces/IPush";
 import type { Push } from "./Options/Classes/Push";
-import type { PushOptions } from "./Options/Classes/PushOptions";
 
 export type IPushMode = {
     push: IPush;
@@ -13,4 +12,10 @@ export type PushMode = {
 
 export type PushContainer = Container & {
     actualOptions: PushOptions;
+};
+
+export type PushOptions = Options & {
+    interactivity: {
+        modes: PushMode;
+    };
 };

@@ -68,20 +68,22 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
             options = container.actualOptions,
             mousePos = container.interactivity.mouse.position,
             radius = container.retina.slowModeRadius,
-            slow = options.interactivity.modes.slow;
+            slowOptions = options.interactivity.modes.slow;
 
-        if (!slow || !radius || radius < 0 || !mousePos) {
+        if (!slowOptions || !radius || radius < 0 || !mousePos) {
             return;
         }
 
         const particlePos = particle.getPosition(),
             dist = getDistance(mousePos, particlePos),
             proximityFactor = dist / radius,
-            slowFactor = slow.factor;
-
-        if (dist <= radius) {
-            particle.slow.inRange = true;
-            particle.slow.factor = proximityFactor / slowFactor;
+            slowFactor = slowOptions.factor,
+            { slow } = particle;
+        if (dist > radius) {
+            return;
         }
+
+        slow.inRange = true;
+        slow.factor = proximityFactor / slowFactor;
     }
 }

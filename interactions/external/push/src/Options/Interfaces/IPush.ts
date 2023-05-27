@@ -1,3 +1,5 @@
+import type { RangeValue } from "tsparticles-engine";
+
 /**
  */
 export interface IPush {
@@ -7,7 +9,7 @@ export interface IPush {
     /**
      * @deprecated use the new quantity instead
      */
-    particles_nb: number;
+    particles_nb: RangeValue;
 
-    quantity: number;
+    quantity: RangeValue;
 }
