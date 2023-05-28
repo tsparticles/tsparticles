@@ -17,6 +17,10 @@ export class Collider extends ParticlesInteractorBase {
     }
 
     async interact(p1: Particle, delta: IDelta): Promise<void> {
+        if (p1.destroyed || p1.spawning) {
+            return;
+        }
+
         const container = this.container,
             pos1 = p1.getPosition(),
             radius1 = p1.getRadius(),
