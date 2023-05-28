@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 importers:
 
@@ -1111,8 +1115,8 @@ importers:
         specifier: ^8.8.0
         version: 8.8.0(eslint@8.40.0)
       eslint-plugin-jsdoc:
-        specifier: ^44.2.4
-        version: 44.2.4(eslint@8.40.0)
+        specifier: ^45.0.0
+        version: 45.0.0(eslint@8.40.0)
       eslint-plugin-tsdoc:
         specifier: ^0.2.17
         version: 0.2.17
@@ -10955,6 +10959,25 @@ packages:
 
   /eslint-plugin-jsdoc@44.2.4(eslint@8.40.0):
     resolution: {integrity: sha512-/EMMxCyRh1SywhCb66gAqoGX4Yv6Xzc4bsSkF1AiY2o2+bQmGMQ05QZ5+JjHbdFTPDZY9pfn+DsSNP0a5yQpIg==}
+    engines: {node: '>=16'}
+    peerDependencies:
+      eslint: ^7.0.0 || ^8.0.0
+    dependencies:
+      '@es-joy/jsdoccomment': 0.39.4
+      are-docs-informative: 0.0.2
+      comment-parser: 1.3.1
+      debug: 4.3.4(supports-color@8.1.1)
+      escape-string-regexp: 4.0.0
+      eslint: 8.40.0
+      esquery: 1.5.0
+      semver: 7.5.1
+      spdx-expression-parse: 3.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /eslint-plugin-jsdoc@45.0.0(eslint@8.40.0):
+    resolution: {integrity: sha512-l2+Jcs/Ps7oFA+SWY+0sweU/e5LgricnEl6EsDlyRTF5y0+NWL1y9Qwz9PHwHAxtdJq6lxPjEQWmYLMkvhzD4g==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
