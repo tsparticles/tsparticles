@@ -83,8 +83,8 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
             };
 
         for (let i = 0; i < len; i++) {
-            const segment: SVGPathSeg | undefined = segments?.getItem(i);
-            const svgPathSeg = window.SVGPathSeg;
+            const segment: SVGPathSeg | undefined = segments?.getItem(i),
+                svgPathSeg = window.SVGPathSeg;
 
             switch (segment?.pathSegType) {
                 //

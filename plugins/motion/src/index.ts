@@ -27,7 +27,7 @@ class MotionPlugin implements IPlugin {
 
         let motionOptions = options.motion as Motion;
 
-        if (motionOptions?.load === undefined) {
+        if (!motionOptions?.load) {
             options.motion = motionOptions = new Motion();
         }
 
@@ -40,10 +40,8 @@ class MotionPlugin implements IPlugin {
 }
 
 /**
- * @param engine
+ * @param engine - The engine instance
  */
 export async function loadMotionPlugin(engine: Engine): Promise<void> {
-    const plugin = new MotionPlugin(engine);
-
-    await engine.addPlugin(plugin);
+    await engine.addPlugin(new MotionPlugin(engine));
 }

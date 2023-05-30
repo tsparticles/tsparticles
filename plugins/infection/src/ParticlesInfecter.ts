@@ -53,22 +53,21 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
                 infP2 === p1 ||
                 infP2.destroyed ||
                 infP2.spawning ||
-                !(infP2.infection?.stage === undefined || infP2.infection.stage !== p1.infection.stage)
+                !(infP2.infection?.stage === undefined || infP2.infection.stage !== p1.infection.stage) ||
+                getRandom() >= infections / neighbors
             ) {
                 continue;
             }
 
-            if (getRandom() < infections / neighbors) {
-                if (infP2.infection?.stage === undefined) {
-                    infecter.startInfection(infP2, infectedStage1);
-                } else if (infP2.infection.stage < p1.infection.stage) {
-                    infecter.updateInfectionStage(infP2, infectedStage1);
-                } else if (infP2.infection.stage > p1.infection.stage) {
-                    const infectionStage2 = infectionOptions.stages[infP2.infection.stage];
-                    const infectedStage2 = infectionStage2?.infectedStage ?? infP2.infection.stage;
+            if (infP2.infection?.stage === undefined) {
+                infecter.startInfection(infP2, infectedStage1);
+            } else if (infP2.infection.stage < p1.infection.stage) {
+                infecter.updateInfectionStage(infP2, infectedStage1);
+            } else if (infP2.infection.stage > p1.infection.stage) {
+                const infectionStage2 = infectionOptions.stages[infP2.infection.stage];
+                const infectedStage2 = infectionStage2?.infectedStage ?? infP2.infection.stage;
 
-                    infecter.updateInfectionStage(p1, infectedStage2);
-                }
+                infecter.updateInfectionStage(p1, infectedStage2);
             }
         }
     }

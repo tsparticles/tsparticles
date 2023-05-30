@@ -75,6 +75,9 @@ export class EmitterInstance {
         this.position = this._initialPosition ?? this.calcPosition();
         this.name = this.options.name;
         this._shape = this._engine.emitterShapeManager?.getShape(this.options.shape);
+
+        console.log(this.options.shape, this._shape);
+
         this.fill = this.options.fill;
         this._firstSpawn = !this.options.life.wait;
         this._startParticlesAdded = false;

@@ -10,33 +10,34 @@ export class Infecter {
     }
 
     startInfection(particle: InfectableParticle, stage: number): void {
-        const options = this._container.actualOptions;
+        const infectionOptions = this._container.actualOptions.infection,
+            { infection } = particle;
 
-        if (!options.infection || !particle.infection) {
+        if (!infectionOptions || !infection) {
             return;
         }
 
-        const stages = options.infection.stages,
+        const stages = infectionOptions.stages,
             stagesCount = stages.length;
 
         if (stage > stagesCount || stage < 0) {
             return;
         }
 
-        particle.infection.delay = 0;
-        particle.infection.delayStage = stage;
+        infection.delay = 0;
+        infection.delayStage = stage;
     }
 
     updateInfection(particle: InfectableParticle, delta: number): void {
-        const infectionOptions = this._container.actualOptions.infection;
+        const infectionOptions = this._container.actualOptions.infection,
+            { infection } = particle;
 
-        if (!infectionOptions || !particle.infection) {
+        if (!infectionOptions || !infection) {
             return;
         }
 
         const stages = infectionOptions.stages,
-            stagesCount = stages.length,
-            { infection } = particle;
+            stagesCount = stages.length;
 
         if (infection.delay !== undefined && infection.delayStage !== undefined) {
             const stage = infection.delayStage;
@@ -96,14 +97,14 @@ export class Infecter {
     }
 
     private nextInfectionStage(particle: InfectableParticle): void {
-        const options = this._container.actualOptions,
+        const infectionOptions = this._container.actualOptions.infection,
             { infection } = particle;
 
-        if (!options.infection || !infection) {
+        if (!infectionOptions || !infection) {
             return;
         }
 
-        const stagesCount = options.infection.stages.length;
+        const stagesCount = infectionOptions.stages.length;
 
         if (stagesCount <= 0 || infection.stage === undefined) {
             return;
@@ -112,7 +113,7 @@ export class Infecter {
         infection.time = 0;
 
         if (stagesCount <= ++infection.stage) {
-            if (options.infection.cure) {
+            if (infectionOptions.cure) {
                 delete infection.stage;
                 delete infection.time;
                 return;

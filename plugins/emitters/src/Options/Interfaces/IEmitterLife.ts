@@ -4,8 +4,8 @@
 export interface IEmitterLife {
     /**
      * The count of lives the particles emitter has.
-     * If <= 0 or not specified infinity will be the value.
-     * If the count is > 0 it will spawn only that number of times then it'll be destroyed and removed
+     * If \<= 0 or not specified infinity will be the value.
+     * If the count is \> 0 it will spawn only that number of times then it'll be destroyed and removed
      */
     count?: number;
 
@@ -16,7 +16,7 @@ export interface IEmitterLife {
 
     /**
      * The duration of any emitter life.
-     * If <= 0 or not specified infinity will be the value.
+     * If \<= 0 or not specified infinity will be the value.
      */
     duration?: number;
 

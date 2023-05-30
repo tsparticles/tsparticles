@@ -45,7 +45,7 @@ class PolygonMaskPlugin implements IPlugin {
 }
 
 /**
- * @param engine
+ * @param engine - The engine to add the plugin to
  */
 export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
     const plugin = new PolygonMaskPlugin(engine);

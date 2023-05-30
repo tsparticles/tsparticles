@@ -16,13 +16,14 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     }
 
     generate(p: PolygonPathParticle): Vector {
+        const { sides } = this.options;
+
         if (p.hexStep === undefined) {
             p.hexStep = 0;
         }
 
         if (p.hexDirection === undefined) {
-            p.hexDirection =
-                this.options.sides === 6 ? ((getRandom() * 3) | 0) * 2 : (getRandom() * this.options.sides) | 0;
+            p.hexDirection = sides === 6 ? ((getRandom() * 3) | 0) * 2 : (getRandom() * sides) | 0;
         }
 
         if (p.hexSpeed === undefined) {
@@ -30,10 +31,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         }
 
         if (p.hexStep % this.options.turnSteps === 0) {
-            p.hexDirection =
-                getRandom() > 0.5
-                    ? (p.hexDirection + 1) % this.options.sides
-                    : (p.hexDirection + this.options.sides - 1) % this.options.sides;
+            p.hexDirection = getRandom() > 0.5 ? (p.hexDirection + 1) % sides : (p.hexDirection + sides - 1) % sides;
         }
 
         p.velocity.x = 0;
@@ -41,10 +39,9 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         p.hexStep++;
 
-        return Vector.create(
-            this.dirsList[p.hexDirection].x * p.hexSpeed,
-            this.dirsList[p.hexDirection].y * p.hexSpeed
-        );
+        const direction = this.dirsList[p.hexDirection];
+
+        return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
     }
 
     init(container: Container): void {

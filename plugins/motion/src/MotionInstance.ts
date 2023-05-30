@@ -14,34 +14,38 @@ export class MotionInstance implements IContainerPlugin {
         const container = this._container,
             options = container.actualOptions.motion;
 
-        if (options && (options.disable || options.reduce.value)) {
-            const mediaQuery = safeMatchMedia("(prefers-reduced-motion: reduce)");
-
-            if (mediaQuery) {
-                // Check if the media query matches or is not available.
-                this._handleMotionChange(mediaQuery);
-
-                // Ads an event listener to check for changes in the media query's value.
-                const handleChange = async (): Promise<void> => {
-                    this._handleMotionChange(mediaQuery);
-
-                    try {
-                        await container.refresh();
-                    } catch {
-                        // ignore
-                    }
-                };
-
-                if (mediaQuery.addEventListener !== undefined) {
-                    mediaQuery.addEventListener("change", handleChange);
-                } else if (mediaQuery.addListener !== undefined) {
-                    mediaQuery.addListener(handleChange);
-                }
-            } else {
-                container.retina.reduceFactor = 1;
-            }
-        } else {
+        if (!(options && (options.disable || options.reduce.value))) {
             container.retina.reduceFactor = 1;
+
+            return;
+        }
+
+        const mediaQuery = safeMatchMedia("(prefers-reduced-motion: reduce)");
+
+        if (!mediaQuery) {
+            container.retina.reduceFactor = 1;
+
+            return;
+        }
+
+        // Check if the media query matches or is not available.
+        this._handleMotionChange(mediaQuery);
+
+        // Ads an event listener to check for changes in the media query's value.
+        const handleChange = async (): Promise<void> => {
+            this._handleMotionChange(mediaQuery);
+
+            try {
+                await container.refresh();
+            } catch {
+                // ignore
+            }
+        };
+
+        if (mediaQuery.addEventListener !== undefined) {
+            mediaQuery.addEventListener("change", handleChange);
+        } else if (mediaQuery.addListener !== undefined) {
+            mediaQuery.addListener(handleChange);
         }
     }
 
