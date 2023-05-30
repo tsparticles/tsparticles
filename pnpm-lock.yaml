@@ -668,8 +668,8 @@ importers:
         version: link:../../engine/dist
     devDependencies:
       electron:
-        specifier: ^24.3.1
-        version: 24.3.1
+        specifier: ^25.0.0
+        version: 25.0.0
       webpack:
         specifier: ^5.83.1
         version: 5.83.1(webpack-cli@5.1.1)
@@ -10836,8 +10836,8 @@ packages:
   /electron-to-chromium@1.4.399:
     resolution: {integrity: sha512-+V1aNvVgoWNWYIbMOiQ1n5fRIaY4SlQ/uRlrsCjLrUwr/3OvQgiX2f5vdav4oArVT9TnttJKcPCqjwPNyZqw/A==}
 
-  /electron@24.3.1:
-    resolution: {integrity: sha512-lKfC0umie1k5LW48troHzpPKJrqPEW+5j14/CPTC41K9+dJA98oUPt/05G7QAe8OGD4fHjQQuulfRdZ9MjjXeQ==}
+  /electron@25.0.0:
+    resolution: {integrity: sha512-8Bjlpw52XW447RKjYGaaizWI4x0dv4gATNn7ssuonySbDgeJNqUnIJQGBrpXyB3VUROVmhXnTWB9VWRzv6uVlA==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
@@ -11145,7 +11145,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       cross-spawn: 7.0.3
-      get-stream: 6.0.0
+      get-stream: 6.0.1
       human-signals: 2.1.0
       is-stream: 2.0.0
       merge-stream: 2.0.0
