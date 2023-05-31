@@ -5,7 +5,7 @@ import {
     type IRgb,
     ParticlesInteractorBase,
     type RecursivePartial,
-    getDistance,
+    getDistances,
     getLinkRandomColor,
 } from "tsparticles-engine";
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types";
@@ -27,18 +27,22 @@ function getLinkDistance(
     canvasSize: IDimension,
     warp: boolean
 ): number {
-    const { width, height } = canvasSize;
-    const dx = Math.abs(pos1.x - pos2.x);
-    const dy = Math.abs(pos1.y - pos2.y);
+    const { dx, dy, distance } = getDistances(pos1, pos2);
 
-    if (!warp || (dx <= width / 2 && dy <= height / 2)) {
-        return getDistance(pos1, pos2);
+    if (!warp || distance <= optDistance) {
+        return distance;
     }
 
-    const shiftedX = pos2.x - Math.round(dx / width) * width * Math.sign(pos2.x - pos1.x);
-    const shiftedY = pos2.y - Math.round(dy / height) * height * Math.sign(pos2.y - pos1.y);
+    const absDiffs = {
+            x: Math.abs(dx),
+            y: Math.abs(dy),
+        },
+        warpDistances = {
+            x: Math.min(absDiffs.x, canvasSize.width - absDiffs.x),
+            y: Math.min(absDiffs.y, canvasSize.height - absDiffs.y),
+        };
 
-    return getDistance(pos1, { x: shiftedX, y: shiftedY });
+    return Math.sqrt(warpDistances.x ** 2 + warpDistances.y ** 2);
 }
 
 export class Linker extends ParticlesInteractorBase {
