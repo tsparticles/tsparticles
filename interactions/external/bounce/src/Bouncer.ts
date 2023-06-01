@@ -55,9 +55,9 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
-            this.processMouseBounce();
+            this._processMouseBounce();
         } else {
-            divModeExecute(DivMode.bounce, divs, (selector, div): void => this.singleSelectorBounce(selector, div));
+            divModeExecute(DivMode.bounce, divs, (selector, div): void => this._singleSelectorBounce(selector, div));
         }
     }
 
@@ -91,7 +91,11 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
         // do nothing
     }
 
-    private processBounce(position: ICoordinates, radius: number, area: Range): void {
+    private readonly _processBounce: (position: ICoordinates, radius: number, area: Range) => void = (
+        position,
+        radius,
+        area
+    ) => {
         const query = this.container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
         for (const particle of query) {
@@ -107,9 +111,9 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
                 rectBounce(particle, calculateBounds(position, radius));
             }
         }
-    }
+    };
 
-    private processMouseBounce(): void {
+    private readonly _processMouseBounce: () => void = () => {
         const container = this.container,
             pxRatio = container.retina.pixelRatio,
             tolerance = 10 * pxRatio,
@@ -120,10 +124,10 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             return;
         }
 
-        this.processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
-    }
+        this._processBounce(mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance));
+    };
 
-    private singleSelectorBounce(selector: string, div: DivEvent): void {
+    private readonly _singleSelectorBounce: (selector: string, div: DivEvent) => void = (selector, div) => {
         const container = this.container,
             query = document.querySelectorAll(selector);
 
@@ -150,7 +154,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
                               elem.offsetHeight * pxRatio + tolerance * 2
                           );
 
-            this.processBounce(pos, radius, area);
+            this._processBounce(pos, radius, area);
         });
-    }
+    };
 }

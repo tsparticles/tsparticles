@@ -796,7 +796,7 @@ export class Container {
         return true;
     }
 
-    private _intersectionManager(entries: IntersectionObserverEntry[]): void {
+    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = (entries) => {
         if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
@@ -808,5 +808,5 @@ export class Container {
 
             (entry.isIntersecting ? this.play : this.pause)();
         }
-    }
+    };
 }

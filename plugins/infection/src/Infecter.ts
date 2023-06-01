@@ -65,7 +65,7 @@ export class Infecter {
 
             if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
                 if (infection.time > infectionStage.duration * 1000) {
-                    this.nextInfectionStage(particle);
+                    this._nextInfectionStage(particle);
                 } else {
                     infection.time += delta;
                 }
@@ -96,7 +96,7 @@ export class Infecter {
         infection.time = 0;
     }
 
-    private nextInfectionStage(particle: InfectableParticle): void {
+    private readonly _nextInfectionStage: (particle: InfectableParticle) => void = (particle) => {
         const infectionOptions = this._container.actualOptions.infection,
             { infection } = particle;
 
@@ -122,5 +122,5 @@ export class Infecter {
                 infection.time = 0;
             }
         }
-    }
+    };
 }

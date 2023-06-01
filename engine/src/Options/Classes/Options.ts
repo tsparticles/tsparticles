@@ -278,14 +278,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    private _findDefaultTheme(mode: ThemeMode): Theme | undefined {
+    private readonly _findDefaultTheme: (mode: ThemeMode) => Theme | undefined = (mode) => {
         return (
             this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
             this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
         );
-    }
+    };
 
-    private _importPreset(preset: string): void {
+    private readonly _importPreset: (preset: string) => void = (preset) => {
         this.load(this._engine.plugins.getPreset(preset));
-    }
+    };
 }

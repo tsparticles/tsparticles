@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import { type ISourceOptions, MoveDirection } from "tsparticles-engine";
 
 const options: ISourceOptions = {
     name: "Images with Custom Directions",
@@ -62,7 +62,7 @@ const options: ISourceOptions = {
                         height: 32,
                         particles: {
                             move: {
-                                direction: "top",
+                                direction: MoveDirection.top,
                             },
                         },
                     },
@@ -72,7 +72,7 @@ const options: ISourceOptions = {
                         height: 32,
                         particles: {
                             move: {
-                                direction: "bottom",
+                                direction: MoveDirection.bottom,
                             },
                         },
                     },

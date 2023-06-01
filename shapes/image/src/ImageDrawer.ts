@@ -11,7 +11,7 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Image drawer constructor, initializing the image set collection
-     * @param engine
+     * @param engine -
      */
     constructor(engine: ImageEngine) {
         this._engine = engine;
@@ -19,7 +19,6 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Adds an image to the given container
-     * @param container - the container where the image is going to be added
      * @param image - the image to add to the container collection
      */
     addImage(image: IImage): void {
@@ -61,6 +60,7 @@ export class ImageDrawer implements IShapeDrawer {
     /**
      * Returning the side count for the image, defaults to 12 for using the inner circle as rendering
      * When using non-transparent images this can be an issue with shadows
+     * @returns the number of sides of the image shape
      */
     getSidesCount(): number {
         return 12;
@@ -170,7 +170,7 @@ export class ImageDrawer implements IShapeDrawer {
      * @param imageShape - the image shape to load
      * @internal
      */
-    private async loadImageShape(imageShape: IImageShape): Promise<void> {
+    private readonly loadImageShape: (imageShape: IImageShape) => Promise<void> = async (imageShape) => {
         if (!this._engine.loadImage) {
             throw new Error(`${errorPrefix} image shape not initialized`);
         }
@@ -180,5 +180,5 @@ export class ImageDrawer implements IShapeDrawer {
             replaceColor: imageShape.replaceColor ?? imageShape.replace_color ?? false,
             src: imageShape.src,
         });
-    }
+    };
 }

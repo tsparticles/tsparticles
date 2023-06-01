@@ -118,7 +118,7 @@ export class Linker extends ParticlesInteractorBase {
             /* draw a line between p1 and p2 */
             const opacityLine = (1 - distance / optDistance) * optOpacity;
 
-            this.setColor(p1);
+            this._setColor(p1);
 
             p1.links.push({
                 destination: p2,
@@ -148,7 +148,7 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    private setColor(p1: LinkParticle): void {
+    private readonly _setColor: (p1: LinkParticle) => void = (p1) => {
         if (!p1.options.links) {
             return;
         }
@@ -174,5 +174,5 @@ export class Linker extends ParticlesInteractorBase {
         } else {
             container.particles.linksColors.set(linksOptions.id, linkColor);
         }
-    }
+    };
 }

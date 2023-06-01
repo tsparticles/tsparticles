@@ -134,7 +134,7 @@ export class QuadTree {
     /**
      * Creates the subtrees, making the instance a branch
      */
-    private _subdivide(): void {
+    private readonly _subdivide: () => void = () => {
         const { x, y } = this.rectangle.position,
             { width, height } = this.rectangle.size,
             { capacity } = this;
@@ -154,5 +154,5 @@ export class QuadTree {
         }
 
         this._divided = true;
-    }
+    };
 }

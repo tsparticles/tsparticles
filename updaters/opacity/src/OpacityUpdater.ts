@@ -1,15 +1,11 @@
 import {
-    AnimationStatus,
     type Container,
     type IDelta,
     type IParticleUpdater,
     type Particle,
-    StartValueType,
     getRandom,
-    getRangeMax,
-    getRangeMin,
     getRangeValue,
-    randomInRange,
+    initParticleNumericAnimationValue,
 } from "tsparticles-engine";
 import { updateOpacity } from "./Utils";
 
@@ -31,50 +27,11 @@ export class OpacityUpdater implements IParticleUpdater {
         /* opacity */
         const opacityOptions = particle.options.opacity;
 
-        particle.opacity = {
-            delayTime: getRangeValue(opacityOptions.animation.delay) * 1000,
-            enable: opacityOptions.animation.enable,
-            max: getRangeMax(opacityOptions.value),
-            min: getRangeMin(opacityOptions.value),
-            value: getRangeValue(opacityOptions.value),
-            loops: 0,
-            maxLoops: getRangeValue(opacityOptions.animation.count),
-            time: 0,
-        };
+        particle.opacity = initParticleNumericAnimationValue(opacityOptions, 1);
 
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
-            particle.opacity.decay = 1 - getRangeValue(opacityAnimation.decay);
-            particle.opacity.status = AnimationStatus.increasing;
-
-            const opacityRange = opacityOptions.value;
-
-            particle.opacity.min = getRangeMin(opacityRange);
-            particle.opacity.max = getRangeMax(opacityRange);
-
-            switch (opacityAnimation.startValue) {
-                case StartValueType.min:
-                    particle.opacity.value = particle.opacity.min;
-                    particle.opacity.status = AnimationStatus.increasing;
-
-                    break;
-
-                case StartValueType.random:
-                    particle.opacity.value = randomInRange(particle.opacity);
-                    particle.opacity.status =
-                        getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-                    break;
-
-                case StartValueType.max:
-                default:
-                    particle.opacity.value = particle.opacity.max;
-                    particle.opacity.status = AnimationStatus.decreasing;
-
-                    break;
-            }
-
             particle.opacity.velocity =
                 (getRangeValue(opacityAnimation.speed) / 100) * this.container.retina.reduceFactor;
 
@@ -82,8 +39,6 @@ export class OpacityUpdater implements IParticleUpdater {
                 particle.opacity.velocity *= getRandom();
             }
         }
-
-        particle.opacity.initialValue = particle.opacity.value;
     }
 
     /**

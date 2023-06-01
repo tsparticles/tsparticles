@@ -14,7 +14,7 @@ import {
     getRangeValue,
     getStyleFromRgb,
     isPointInside,
-    rangeColorToRgb,
+    rangeColorToRgb
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import type { Absorbers } from "./Absorbers";
@@ -129,16 +129,16 @@ export class AbsorberInstance {
 
         this.limit = {
             radius: limit.radius * container.retina.pixelRatio * container.retina.reduceFactor,
-            mass: limit.mass,
+            mass: limit.mass
         };
 
         this.color = rangeColorToRgb(this.options.color) ?? {
             b: 0,
             g: 0,
-            r: 0,
+            r: 0
         };
 
-        this.position = this.initialPosition?.copy() ?? this.calcPosition();
+        this.position = this.initialPosition?.copy() ?? this._calcPosition();
     }
 
     /**
@@ -186,14 +186,14 @@ export class AbsorberInstance {
                 } else {
                     particle.needsNewPosition = true;
 
-                    this.updateParticlePosition(particle, v);
+                    this._updateParticlePosition(particle, v);
                 }
             } else {
                 if (options.destroy) {
                     particle.size.value -= sizeFactor;
                 }
 
-                this.updateParticlePosition(particle, v);
+                this._updateParticlePosition(particle, v);
             }
 
             if (this.limit.radius <= 0 || this.size < this.limit.radius) {
@@ -204,7 +204,7 @@ export class AbsorberInstance {
                 this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
             }
         } else {
-            this.updateParticlePosition(particle, v);
+            this._updateParticlePosition(particle, v);
         }
     }
 
@@ -230,21 +230,22 @@ export class AbsorberInstance {
         this.position =
             initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
                 ? initialPosition
-                : this.calcPosition();
+                : this._calcPosition();
     }
 
     /**
      * This method calculate the absorber position, using the provided options and position
      * @internal
+     * @returns the calculated position for the absorber
      */
-    private calcPosition(): Vector {
+    private readonly _calcPosition: () => Vector = () => {
         const exactPosition = calcPositionOrRandomFromSizeRanged({
             size: this.container.canvas.size,
-            position: this.options.position,
+            position: this.options.position
         });
 
         return Vector.create(exactPosition.x, exactPosition.y);
-    }
+    };
 
     /**
      * Updates the particle position, if the particle needs a new position
@@ -252,7 +253,7 @@ export class AbsorberInstance {
      * @param v - the vector used for calculating the distance between the Absorber and the particle
      * @internal
      */
-    private updateParticlePosition(particle: OrbitingParticle, v: Vector): void {
+    private readonly _updateParticlePosition: (particle: OrbitingParticle, v: Vector) => void = (particle, v) => {
         if (particle.destroyed) {
             return;
         }
@@ -295,7 +296,7 @@ export class AbsorberInstance {
 
             const updateFunc = {
                 x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
-                y: orbitDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
+                y: orbitDirection === RotateDirection.clockwise ? Math.sin : Math.cos
             };
 
             particle.position.x = this.position.x + orbitRadius * updateFunc.x(orbitAngle);
@@ -313,5 +314,5 @@ export class AbsorberInstance {
 
             particle.velocity.addTo(addV);
         }
-    }
+    };
 }

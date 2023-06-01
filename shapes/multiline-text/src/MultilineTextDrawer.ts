@@ -93,14 +93,14 @@ export class MultilineTextDrawer implements IShapeDrawer {
         particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
     }
 
-    private _drawLine(
+    private readonly _drawLine: (
         context: CanvasRenderingContext2D,
         line: string,
         radius: number,
         opacity: number,
         index: number,
         fill: boolean
-    ): void {
+    ) => void = (context, line, radius, opacity, index, fill) => {
         const offsetX = (line.length * radius) / 2,
             pos = {
                 x: -offsetX,
@@ -112,5 +112,5 @@ export class MultilineTextDrawer implements IShapeDrawer {
         } else {
             context.strokeText(line, pos.x, pos.y + radius * 2 * index);
         }
-    }
+    };
 }

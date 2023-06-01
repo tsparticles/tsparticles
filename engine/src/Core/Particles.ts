@@ -14,6 +14,7 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
+import { SizeMode } from "../Enums/Modes/SizeMode";
 import { calcPositionFromSize } from "../Utils/NumberUtils";
 import { errorPrefix } from "./Utils/Constants";
 
@@ -96,10 +97,14 @@ export class Particles {
 
         for (const particle of options.manualParticles) {
             this.addParticle(
-                calcPositionFromSize({
-                    size: container.canvas.size,
-                    position: particle.position,
-                }),
+                particle.position
+                    ? particle.position.mode === SizeMode.precise
+                        ? particle.position
+                        : calcPositionFromSize({
+                              size: container.canvas.size,
+                              position: particle.position,
+                          })
+                    : undefined,
                 particle.options
             );
         }
@@ -373,7 +378,11 @@ export class Particles {
         delete container.canvas.resizeFactor;
     }
 
-    private _applyDensity(options: IParticlesOptions, manualCount: number, group?: string): void {
+    private readonly _applyDensity: (options: IParticlesOptions, manualCount: number, group?: string) => void = (
+        options,
+        manualCount,
+        group
+    ) => {
         if (!options.number.density?.enable) {
             return;
         }
@@ -392,9 +401,9 @@ export class Particles {
         } else if (particlesCount > particlesNumber) {
             this.removeQuantity(particlesCount - particlesNumber, group);
         }
-    }
+    };
 
-    private _initDensityFactor(densityOptions: IParticlesDensity): number {
+    private readonly _initDensityFactor: (densityOptions: IParticlesDensity) => number = (densityOptions) => {
         const container = this._container;
 
         if (!container.canvas.element || !densityOptions.enable) {
@@ -405,14 +414,14 @@ export class Particles {
             pxRatio = container.retina.pixelRatio;
 
         return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
-    }
+    };
 
-    private _pushParticle(
+    private readonly _pushParticle: (
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean
-    ): Particle | undefined {
+    ) => Particle | undefined = (position, overrideOptions, group, initializer) => {
         try {
             let particle = this.pool.pop();
 
@@ -450,5 +459,5 @@ export class Particles {
 
             return;
         }
-    }
+    };
 }

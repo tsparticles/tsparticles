@@ -65,7 +65,7 @@ export class LinkInstance implements IContainerPlugin {
         particle.links = [];
     }
 
-    private _drawLinkLine(p1: LinkParticle, link: ILink): void {
+    private readonly _drawLinkLine: (p1: LinkParticle, link: ILink) => void = (p1, link) => {
         const container = this.container,
             options = container.actualOptions,
             p2 = link.destination,
@@ -134,9 +134,9 @@ export class LinkInstance implements IContainerPlugin {
                 opacity,
             });
         });
-    }
+    };
 
-    private _drawLinkTriangle(p1: LinkParticle, link1: ILink, link2: ILink): void {
+    private readonly _drawLinkTriangle: (p1: LinkParticle, link1: ILink, link2: ILink) => void = (p1, link1, link2) => {
         if (!p1.options.links) {
             return;
         }
@@ -192,9 +192,14 @@ export class LinkInstance implements IContainerPlugin {
                 opacityTriangle,
             });
         });
-    }
+    };
 
-    private _drawTriangles(options: ParticlesLinkOptions, p1: LinkParticle, link: ILink, p1Links: ILink[]): void {
+    private readonly _drawTriangles: (
+        options: ParticlesLinkOptions,
+        p1: LinkParticle,
+        link: ILink,
+        p1Links: ILink[]
+    ) => void = (options, p1, link, p1Links) => {
         const p2 = link.destination;
 
         if (!(options.links?.triangles.enable && p2.options.links?.triangles.enable)) {
@@ -225,13 +230,17 @@ export class LinkInstance implements IContainerPlugin {
 
             this._drawLinkTriangle(p1, link, vertex);
         }
-    }
+    };
 
-    private _getLinkFrequency(p1: LinkParticle, p2: LinkParticle): number {
+    private readonly _getLinkFrequency: (p1: LinkParticle, p2: LinkParticle) => number = (p1, p2) => {
         return setLinkFrequency([p1, p2], this._freqs.links);
-    }
+    };
 
-    private _getTriangleFrequency(p1: LinkParticle, p2: LinkParticle, p3: LinkParticle): number {
+    private readonly _getTriangleFrequency: (p1: LinkParticle, p2: LinkParticle, p3: LinkParticle) => number = (
+        p1,
+        p2,
+        p3
+    ) => {
         return setLinkFrequency([p1, p2, p3], this._freqs.triangles);
-    }
+    };
 }

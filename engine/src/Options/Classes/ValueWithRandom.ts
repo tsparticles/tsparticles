@@ -1,5 +1,10 @@
+import { AnimationOptions, RangedAnimationOptions } from "./AnimationOptions";
+import type {
+    IAnimationValueWithRandom,
+    IRangedAnimationValueWithRandom,
+    IValueWithRandom,
+} from "../Interfaces/IValueWithRandom";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IValueWithRandom } from "../Interfaces/IValueWithRandom";
 import { Random } from "./Random";
 import type { RangeValue } from "../../Types/RangeValue";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
@@ -31,6 +36,73 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
 
         if (data.value !== undefined) {
             this.value = setRangeValue(data.value, this.random.enable ? this.random.minimumValue : undefined);
+        }
+    }
+}
+
+export class AnimationValueWithRandom extends ValueWithRandom implements IOptionLoader<IAnimationValueWithRandom> {
+    animation;
+
+    constructor() {
+        super();
+
+        this.animation = new AnimationOptions();
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new animation
+     * @returns animation options
+     */
+    get anim(): AnimationOptions {
+        return this.animation;
+    }
+
+    /**
+     * @deprecated this property is obsolete, please use the new animation
+     * @param value -
+     */
+    set anim(value: AnimationOptions) {
+        this.animation = value;
+    }
+
+    load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
+        super.load(data);
+
+        if (!data) {
+            return;
+        }
+
+        const animation = data.animation ?? data.anim;
+
+        if (animation !== undefined) {
+            this.animation.load(animation);
+        }
+    }
+}
+
+export class RangedAnimationValueWithRandom
+    extends AnimationValueWithRandom
+    implements IOptionLoader<IRangedAnimationValueWithRandom>
+{
+    animation: RangedAnimationOptions;
+
+    constructor() {
+        super();
+
+        this.animation = new RangedAnimationOptions();
+    }
+
+    load(data?: RecursivePartial<IRangedAnimationValueWithRandom>): void {
+        super.load(data);
+
+        if (!data) {
+            return;
+        }
+
+        const animation = data.animation ?? data.anim;
+
+        if (animation !== undefined) {
+            this.value = setRangeValue(this.value, this.animation.enable ? this.animation.minimumValue : undefined);
         }
     }
 }

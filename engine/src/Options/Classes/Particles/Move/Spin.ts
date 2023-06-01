@@ -29,6 +29,8 @@ export class Spin implements ISpin, IOptionLoader<ISpin> {
             this.enable = data.enable;
         }
 
-        this.position = data.position ? (deepExtend({}, data.position) as ICoordinatesWithMode | undefined) : undefined;
+        if (data.position) {
+            this.position = deepExtend({}, data.position) as ICoordinatesWithMode | undefined;
+        }
     }
 }

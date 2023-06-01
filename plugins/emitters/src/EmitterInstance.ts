@@ -72,7 +72,7 @@ export class EmitterInstance {
         }
 
         this._spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
-        this.position = this._initialPosition ?? this.calcPosition();
+        this.position = this._initialPosition ?? this._calcPosition();
         this.name = this.options.name;
         this._shape = this._engine.emitterShapeManager?.getShape(this.options.shape);
 
@@ -208,7 +208,7 @@ export class EmitterInstance {
         }
 
         if (this._lifeCount > 0 || this._immortal) {
-            this.prepareToDie();
+            this._prepareToDie();
         }
     }
 
@@ -218,7 +218,7 @@ export class EmitterInstance {
         this.position =
             initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
                 ? initialPosition
-                : this.calcPosition();
+                : this._calcPosition();
     }
 
     update(delta: IDelta): void {
@@ -236,7 +236,7 @@ export class EmitterInstance {
         if (!this._startParticlesAdded) {
             this._startParticlesAdded = true;
 
-            this.emitParticles(this.options.startCount);
+            this._emitParticles(this.options.startCount);
         }
 
         if (this._duration !== undefined) {
@@ -254,11 +254,11 @@ export class EmitterInstance {
                 }
 
                 if (this._lifeCount > 0 || this._immortal) {
-                    this.position = this.calcPosition();
+                    this.position = this._calcPosition();
 
                     this._spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
                 } else {
-                    this.destroy();
+                    this._destroy();
                 }
 
                 this._currentDuration -= this._duration;
@@ -287,20 +287,20 @@ export class EmitterInstance {
             this._currentEmitDelay += delta.value;
 
             if (this._currentEmitDelay >= this._emitDelay) {
-                this.emit();
+                this._emit();
                 this._currentEmitDelay -= this._emitDelay;
             }
         }
     }
 
-    private calcPosition(): ICoordinates {
+    private readonly _calcPosition: () => ICoordinates = () => {
         return calcPositionOrRandomFromSizeRanged({
             size: this.container.canvas.size,
             position: this.options.position,
         });
-    }
+    };
 
-    private destroy(): void {
+    private readonly _destroy: () => void = () => {
         this.emitters.removeEmitter(this);
 
         this._engine.dispatchEvent("emitterDestroyed", {
@@ -309,19 +309,19 @@ export class EmitterInstance {
                 emitter: this,
             },
         });
-    }
+    };
 
-    private emit(): void {
+    private readonly _emit: () => void = () => {
         if (this._paused) {
             return;
         }
 
         const quantity = getRangeValue(this.options.rate.quantity);
 
-        this.emitParticles(quantity);
-    }
+        this._emitParticles(quantity);
+    };
 
-    private emitParticles(quantity: number): void {
+    private readonly _emitParticles: (quantity: number) => void = (quantity) => {
         const position = this.getPosition(),
             size = this.getSize(),
             singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
@@ -333,9 +333,9 @@ export class EmitterInstance {
                 const hslAnimation = this.options.spawnColor?.animation;
 
                 if (hslAnimation) {
-                    this.spawnColor.h = this.setColorAnimation(hslAnimation.h, this.spawnColor.h, 360);
-                    this.spawnColor.s = this.setColorAnimation(hslAnimation.s, this.spawnColor.s, 100);
-                    this.spawnColor.l = this.setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
+                    this.spawnColor.h = this._setColorAnimation(hslAnimation.h, this.spawnColor.h, 360);
+                    this.spawnColor.s = this._setColorAnimation(hslAnimation.s, this.spawnColor.s, 100);
+                    this.spawnColor.l = this._setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
                 }
 
                 if (!particlesOptions.color) {
@@ -355,9 +355,9 @@ export class EmitterInstance {
 
             this.container.particles.addParticle(pPosition, particlesOptions);
         }
-    }
+    };
 
-    private prepareToDie(): void {
+    private readonly _prepareToDie: () => void = () => {
         if (this._paused) {
             return;
         }
@@ -372,9 +372,13 @@ export class EmitterInstance {
         ) {
             this._duration = duration * 1000;
         }
-    }
+    };
 
-    private setColorAnimation(animation: IColorAnimation, initValue: number, maxValue: number): number {
+    private readonly _setColorAnimation: (animation: IColorAnimation, initValue: number, maxValue: number) => number = (
+        animation,
+        initValue,
+        maxValue
+    ) => {
         const container = this.container;
 
         if (!animation.enable) {
@@ -387,5 +391,5 @@ export class EmitterInstance {
             colorSpeed = getRangeValue(animation.speed ?? 0);
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
-    }
+    };
 }

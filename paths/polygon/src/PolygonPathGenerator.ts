@@ -51,7 +51,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         this.options.angle = (options.angle as number) ?? 30;
         this.options.turnSteps = (options.turnSteps as number) >= 0 ? (options.turnSteps as number) : 20;
 
-        this.createDirs();
+        this._createDirs();
     }
 
     reset(particle: PolygonPathParticle): void {
@@ -64,7 +64,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         // do nothing
     }
 
-    private createDirs(): void {
+    private readonly _createDirs: () => void = () => {
         this.dirsList = [];
 
         for (let i = 0; i < 360; i += 360 / this.options.sides) {
@@ -72,5 +72,5 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
             this.dirsList.push(Vector.create(Math.cos((angle * Math.PI) / 180), Math.sin((angle * Math.PI) / 180)));
         }
-    }
+    };
 }

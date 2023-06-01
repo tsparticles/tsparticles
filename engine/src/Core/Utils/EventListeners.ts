@@ -120,7 +120,7 @@ export class EventListeners {
      * Mouse/Touch click/tap event implementation
      * @param e - the click event arguments
      */
-    private _doMouseTouchClick(e: Event): void {
+    private readonly _doMouseTouchClick: (e: Event) => void = (e) => {
         const container = this.container,
             options = container.actualOptions;
 
@@ -143,14 +143,14 @@ export class EventListeners {
         if (e.type === "touchend") {
             setTimeout(() => this._mouseTouchFinish(), 500);
         }
-    }
+    };
 
     /**
      * Handle browser theme change
      * @param e - the media query event
      * @internal
      */
-    private _handleThemeChange(e: Event): void {
+    private readonly _handleThemeChange: (e: Event) => void = (e) => {
         const mediaEvent = e as MediaQueryListEvent,
             container = this.container,
             options = container.options,
@@ -161,13 +161,13 @@ export class EventListeners {
         if (theme && theme.default.auto) {
             container.loadTheme(themeName);
         }
-    }
+    };
 
     /**
      * Handles blur event
      * @internal
      */
-    private _handleVisibilityChange(): void {
+    private readonly _handleVisibilityChange: () => void = () => {
         const container = this.container,
             options = container.actualOptions;
 
@@ -190,13 +190,13 @@ export class EventListeners {
                 container.draw(true);
             }
         }
-    }
+    };
 
     /**
      * Handles window resize event
      * @internal
      */
-    private async _handleWindowResize(): Promise<void> {
+    private readonly _handleWindowResize: () => Promise<void> = async () => {
         if (this._resizeTimeout) {
             clearTimeout(this._resizeTimeout);
 
@@ -208,9 +208,12 @@ export class EventListeners {
 
             canvas && (await canvas.windowResize());
         }, this.container.actualOptions.interactivity.events.resize.delay * 1000);
-    }
+    };
 
-    private _manageInteractivityListeners(mouseLeaveTmpEvent: string, add: boolean): void {
+    private readonly _manageInteractivityListeners: (mouseLeaveTmpEvent: string, add: boolean) => void = (
+        mouseLeaveTmpEvent,
+        add
+    ) => {
         const handlers = this._handlers,
             container = this.container,
             options = container.actualOptions;
@@ -248,13 +251,13 @@ export class EventListeners {
 
         manageListener(interactivityEl, mouseLeaveTmpEvent, handlers.mouseLeave, add);
         manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
-    }
+    };
 
     /**
      * Initializing event listeners
      * @param add -
      */
-    private _manageListeners(add: boolean): void {
+    private readonly _manageListeners: (add: boolean) => void = (add) => {
         const handlers = this._handlers,
             container = this.container,
             options = container.actualOptions,
@@ -280,9 +283,9 @@ export class EventListeners {
         if (document) {
             manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
         }
-    }
+    };
 
-    private _manageMediaMatch(add: boolean): void {
+    private readonly _manageMediaMatch: (add: boolean) => void = (add) => {
         const handlers = this._handlers,
             mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
 
@@ -305,9 +308,9 @@ export class EventListeners {
         } else {
             mediaMatch.removeListener(handlers.oldThemeChange);
         }
-    }
+    };
 
-    private _manageResize(add: boolean): void {
+    private readonly _manageResize: (add: boolean) => void = (add) => {
         const handlers = this._handlers,
             container = this.container,
             options = container.actualOptions;
@@ -345,13 +348,13 @@ export class EventListeners {
 
             this._resizeObserver.observe(canvasEl);
         }
-    }
+    };
 
     /**
      * Handle mouse down event
      * @internal
      */
-    private _mouseDown(): void {
+    private readonly _mouseDown: () => void = () => {
         const { interactivity } = this.container;
 
         if (!interactivity) {
@@ -362,13 +365,13 @@ export class EventListeners {
 
         mouse.clicking = true;
         mouse.downPosition = mouse.position;
-    }
+    };
 
     /**
      * Mouse/Touch click/tap event
      * @param e - the click event arguments
      */
-    private _mouseTouchClick(e: Event): void {
+    private readonly _mouseTouchClick: (e: Event) => void = (e) => {
         const container = this.container,
             options = container.actualOptions,
             { mouse } = container.interactivity;
@@ -400,12 +403,12 @@ export class EventListeners {
         }
 
         mouse.clicking = false;
-    }
+    };
 
     /**
      * Mouse/Touch event finish
      */
-    private _mouseTouchFinish(): void {
+    private readonly _mouseTouchFinish: () => void = () => {
         const interactivity = this.container.interactivity;
 
         if (!interactivity) {
@@ -421,13 +424,13 @@ export class EventListeners {
         interactivity.status = mouseLeaveEvent;
         mouse.inside = false;
         mouse.clicking = false;
-    }
+    };
 
     /**
      * Mouse/Touch move event
      * @param e - the event arguments
      */
-    private _mouseTouchMove(e: Event): void {
+    private readonly _mouseTouchMove: (e: Event) => void = (e) => {
         const container = this.container,
             options = container.actualOptions,
             interactivity = container.interactivity,
@@ -504,9 +507,9 @@ export class EventListeners {
 
         interactivity.mouse.position = pos;
         interactivity.status = mouseMoveEvent;
-    }
+    };
 
-    private _touchEnd(e: Event): void {
+    private readonly _touchEnd: (e: Event) => void = (e) => {
         const evt = e as TouchEvent,
             touches = Array.from(evt.changedTouches);
 
@@ -515,9 +518,9 @@ export class EventListeners {
         }
 
         this._mouseTouchFinish();
-    }
+    };
 
-    private _touchEndClick(e: Event): void {
+    private readonly _touchEndClick: (e: Event) => void = (e) => {
         const evt = e as TouchEvent,
             touches = Array.from(evt.changedTouches);
 
@@ -526,9 +529,9 @@ export class EventListeners {
         }
 
         this._mouseTouchClick(e);
-    }
+    };
 
-    private _touchStart(e: Event): void {
+    private readonly _touchStart: (e: Event) => void = (e) => {
         const evt = e as TouchEvent,
             touches = Array.from(evt.changedTouches);
 
@@ -537,5 +540,5 @@ export class EventListeners {
         }
 
         this._mouseTouchMove(e);
-    }
+    };
 }

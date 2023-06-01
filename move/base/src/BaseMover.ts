@@ -75,7 +75,7 @@ export class BaseMover implements IParticleMover {
     /**
      * @param particle -
      */
-    private _initSpin(particle: MoveParticle): void {
+    private readonly _initSpin: (particle: MoveParticle) => void = (particle) => {
         const container = particle.container,
             options = particle.options,
             spinOptions = options.move.spin;
@@ -102,5 +102,5 @@ export class BaseMover implements IParticleMover {
             radius: distance,
             acceleration: particle.retina.spinAcceleration,
         };
-    }
+    };
 }

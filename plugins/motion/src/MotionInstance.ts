@@ -49,7 +49,7 @@ export class MotionInstance implements IContainerPlugin {
         }
     }
 
-    private _handleMotionChange(mediaQuery: MediaQueryList): void {
+    private readonly _handleMotionChange: (mediaQuery: MediaQueryList) => void = (mediaQuery) => {
         const container = this._container,
             motion = container.actualOptions.motion;
 
@@ -64,5 +64,5 @@ export class MotionInstance implements IContainerPlugin {
                 ? 1 / motion.reduce.factor
                 : 1
             : 1;
-    }
+    };
 }

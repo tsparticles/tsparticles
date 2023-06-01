@@ -181,8 +181,9 @@ describe("Particles", () => {
 
         const arr = testParticles.particles.filter(() => true);
 
-        for (let i = 0; i < numParticles; i++) {
-            expect(arr[i].position).to.eql(position);
+        for (const particle of arr) {
+            expect(particle.position.x).to.be.equal(position.x);
+            expect(particle.position.y).to.be.equal(position.y);
         }
     });
 

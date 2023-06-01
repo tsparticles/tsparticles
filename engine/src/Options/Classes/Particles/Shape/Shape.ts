@@ -161,12 +161,12 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         }
     }
 
-    private loadShape<T extends IShapeValues>(
+    private readonly loadShape: <T extends IShapeValues>(
         item: RecursivePartial<SingleOrMultiple<T>> | undefined,
         mainKey: string,
         altKey: string,
         altOverride: boolean
-    ): void {
+    ) => void = (item, mainKey, altKey, altOverride) => {
         if (!item) {
             return;
         }
@@ -189,5 +189,5 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         if (!this.options[altKey] || altOverride) {
             this.options[altKey] = deepExtend(this.options[altKey] ?? emptyValue, item) as IShapeValues[];
         }
-    }
+    };
 }

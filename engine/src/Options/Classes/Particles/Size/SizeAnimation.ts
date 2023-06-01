@@ -1,35 +1,24 @@
-import { AnimationOptions } from "../../AnimationOptions";
 import { DestroyType } from "../../../../Enums/Types/DestroyType";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
+import { RangedAnimationOptions } from "../../AnimationOptions";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { StartValueType } from "../../../../Enums/Types/StartValueType";
 
 /**
  */
-export class SizeAnimation extends AnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
+export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
     destroy: DestroyType | keyof typeof DestroyType;
-
-    /**
-     * @deprecated this property is obsolete, please use the new min/max object in the size value
-     */
-    minimumValue?: number;
-
-    startValue: StartValueType | keyof typeof StartValueType;
 
     constructor() {
         super();
 
         this.destroy = DestroyType.none;
-        this.enable = false;
         this.speed = 5;
-        this.startValue = StartValueType.random;
-        this.sync = false;
     }
 
     /**
      * @deprecated this property is obsolete, please use the new minimumValue
-     * @returns the size minimum value
+     * @returns the minimum size value
      */
     get size_min(): number | undefined {
         return this.minimumValue;
@@ -44,6 +33,10 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
     }
 
     load(data?: RecursivePartial<ISizeAnimation>): void {
+        if (data?.size_min !== undefined && data.minimumValue === undefined) {
+            data.minimumValue = data.size_min;
+        }
+
         super.load(data);
 
         if (!data) {
@@ -52,24 +45,6 @@ export class SizeAnimation extends AnimationOptions implements ISizeAnimation, I
 
         if (data.destroy !== undefined) {
             this.destroy = data.destroy;
-        }
-
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
-
-        this.minimumValue = data.minimumValue ?? data.size_min;
-
-        if (data.speed !== undefined) {
-            this.speed = data.speed;
-        }
-
-        if (data.startValue !== undefined) {
-            this.startValue = data.startValue;
-        }
-
-        if (data.sync !== undefined) {
-            this.sync = data.sync;
         }
     }
 }

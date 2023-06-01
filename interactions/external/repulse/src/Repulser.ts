@@ -112,11 +112,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
-            this.hoverRepulse();
+            this._hoverRepulse();
         } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
-            this.clickRepulse();
+            this._clickRepulse();
         } else {
-            divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleSelectorRepulse(selector, div));
+            divModeExecute(DivMode.repulse, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
         }
     }
 
@@ -157,7 +157,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         // do nothing
     }
 
-    private clickRepulse(): void {
+    private readonly _clickRepulse: () => void = () => {
         const container = this.container,
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
@@ -219,9 +219,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
             repulse.particles = [];
         }
-    }
+    };
 
-    private hoverRepulse(): void {
+    private readonly _hoverRepulse: () => void = () => {
         const container = this.container,
             mousePos = container.interactivity.mouse.position,
             repulseRadius = container.retina.repulseModeDistance;
@@ -230,10 +230,15 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        this.processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
-    }
+        this._processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
+    };
 
-    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
+    private readonly _processRepulse: (
+        position: ICoordinates,
+        repulseRadius: number,
+        area: Range,
+        divRepulse?: RepulseDiv
+    ) => void = (position, repulseRadius, area, divRepulse) => {
         const container = this.container,
             query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
@@ -257,9 +262,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
             particle.position.addTo(normVec);
         }
-    }
+    };
 
-    private singleSelectorRepulse(selector: string, div: DivEvent): void {
+    private readonly _singleSelectorRepulse: (selector: string, div: DivEvent) => void = (selector, div) => {
         const container = this.container,
             repulse = container.actualOptions.interactivity.modes.repulse;
 
@@ -293,9 +298,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 divs = repulse.divs,
                 divRepulse = divMode(divs, elem);
 
-            this.processRepulse(pos, repulseRadius, area, divRepulse);
+            this._processRepulse(pos, repulseRadius, area, divRepulse);
         });
-    }
+    };
 }
 
 /*import {

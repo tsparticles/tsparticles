@@ -7,16 +7,13 @@ import {
     getParticleBaseVelocity,
     getParticleDirectionAngle,
     getRandom,
-    getRangeMax,
-    getRangeMin,
     getRangeValue,
     getValue,
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { deepExtend, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
+import { deepExtend, initParticleNumericAnimationValue, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
-import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
@@ -39,7 +36,6 @@ import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { SizeMode } from "../Enums/Modes/SizeMode";
-import { StartValueType } from "../Enums/Types/StartValueType";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
@@ -452,48 +448,7 @@ export class Particle implements IParticle {
         container.retina.initParticle(this);
 
         /* size */
-        const sizeOptions = this.options.size,
-            sizeRange = sizeOptions.value,
-            sizeAnimation = sizeOptions.animation;
-
-        this.size = {
-            delayTime: getRangeValue(sizeAnimation.delay) * 1000,
-            enable: sizeOptions.animation.enable,
-            value: getRangeValue(sizeOptions.value) * container.retina.pixelRatio,
-            max: getRangeMax(sizeRange) * pxRatio,
-            min: getRangeMin(sizeRange) * pxRatio,
-            loops: 0,
-            maxLoops: getRangeValue(sizeOptions.animation.count),
-            time: 0,
-        };
-
-        if (sizeAnimation.enable) {
-            this.size.status = AnimationStatus.increasing;
-            this.size.decay = 1 - getRangeValue(sizeAnimation.decay);
-
-            switch (sizeAnimation.startValue) {
-                case StartValueType.min:
-                    this.size.value = this.size.min;
-                    this.size.status = AnimationStatus.increasing;
-
-                    break;
-
-                case StartValueType.max:
-                    this.size.value = this.size.max;
-                    this.size.status = AnimationStatus.decreasing;
-
-                    break;
-
-                case StartValueType.random:
-                default:
-                    this.size.value = randomInRange(this.size);
-                    this.size.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-                    break;
-            }
-        }
-
-        this.size.initialValue = this.size.value;
+        this.size = initParticleNumericAnimationValue(this.options.size, pxRatio);
 
         /* position */
         this.bubble = {
@@ -611,12 +566,12 @@ export class Particle implements IParticle {
         }
     }
 
-    private _calcPosition(
+    private readonly _calcPosition: (
         container: Container,
         position: ICoordinates | undefined,
         zIndex: number,
-        tryCount = 0
-    ): Vector3d {
+        tryCount?: number
+    ) => Vector3d = (container, position, zIndex, tryCount = 0) => {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
@@ -666,9 +621,9 @@ export class Particle implements IParticle {
         }
 
         return pos;
-    }
+    };
 
-    private _calculateVelocity(): Vector {
+    private readonly _calculateVelocity: () => Vector = () => {
         const baseVelocity = getParticleBaseVelocity(this.direction),
             res = baseVelocity.copy(),
             moveOptions = this.options.move;
@@ -693,9 +648,9 @@ export class Particle implements IParticle {
         }
 
         return res;
-    }
+    };
 
-    private _checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
+    private readonly _checkOverlap: (pos: ICoordinates, tryCount?: number) => boolean = (pos, tryCount = 0) => {
         const collisionsOptions = this.options.collisions,
             radius = this.getRadius();
 
@@ -718,9 +673,9 @@ export class Particle implements IParticle {
         return !!this.container.particles.find(
             (particle) => getDistance(pos, particle.position) < radius + particle.getRadius()
         );
-    }
+    };
 
-    private _getRollColor(color?: IHsl): IHsl | undefined {
+    private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = (color) => {
         if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
             return color;
         }
@@ -742,13 +697,22 @@ export class Particle implements IParticle {
         }
 
         return color;
-    }
+    };
 
-    private _loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
+    private readonly _loadShapeData: (shapeOptions: IShape, reduceDuplicates: boolean) => IShapeValues | undefined = (
+        shapeOptions,
+        reduceDuplicates
+    ) => {
         const shapeData = shapeOptions.options[this.shape];
 
         if (shapeData) {
-            return deepExtend({}, itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)) as IShapeValues;
+            return deepExtend(
+                {
+                    close: shapeOptions.close,
+                    fill: shapeOptions.fill,
+                },
+                itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)
+            ) as IShapeValues;
         }
-    }
+    };
 }

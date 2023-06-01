@@ -235,23 +235,23 @@ export class SoundsInstance implements IContainerPlugin {
         removeImage(this._volumeUpImg);
     }
 
-    private _addBuffer(audioCtx: AudioContext): AudioBufferSourceNode {
+    private readonly _addBuffer: (audioCtx: AudioContext) => AudioBufferSourceNode = (audioCtx) => {
         const buffer = audioCtx.createBufferSource();
 
         this._audioSources.push(buffer);
 
         return buffer;
-    }
+    };
 
-    private _addOscillator(audioCtx: AudioContext): OscillatorNode {
+    private readonly _addOscillator: (audioCtx: AudioContext) => OscillatorNode = (audioCtx) => {
         const oscillator = audioCtx.createOscillator();
 
         this._audioSources.push(oscillator);
 
         return oscillator;
-    }
+    };
 
-    private _initEvents(): void {
+    private readonly _initEvents: () => void = () => {
         const container = this._container,
             soundsOptions = container.actualOptions.sounds;
 
@@ -298,9 +298,9 @@ export class SoundsInstance implements IContainerPlugin {
                 this._engine.addEventListener(item, cb);
             });
         }
-    }
+    };
 
-    private _mute(): void {
+    private readonly _mute: () => void = () => {
         const container = this._container;
 
         if (!container.audioContext) {
@@ -319,9 +319,9 @@ export class SoundsInstance implements IContainerPlugin {
         container.audioContext = undefined;
 
         this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
-    }
+    };
 
-    private _playBuffer(audio: SoundsAudio): void {
+    private readonly _playBuffer: (audio: SoundsAudio) => void = (audio) => {
         const audioBuffer = this._audioMap.get(audio.source);
 
         if (!audioBuffer) {
@@ -341,9 +341,12 @@ export class SoundsInstance implements IContainerPlugin {
 
         source.connect(this._gain ?? audioCtx.destination);
         source.start();
-    }
+    };
 
-    private async _playFrequency(frequency: number, duration: number): Promise<void> {
+    private readonly _playFrequency: (frequency: number, duration: number) => Promise<void> = async (
+        frequency,
+        duration
+    ) => {
         if (!this._container.audioContext || !this._gain) {
             return;
         }
@@ -364,9 +367,9 @@ export class SoundsInstance implements IContainerPlugin {
                 resolve();
             }, duration);
         });
-    }
+    };
 
-    private _playMuteSound(): void {
+    private readonly _playMuteSound: () => void = () => {
         const container = this._container;
 
         if (!container.audioContext) {
@@ -390,9 +393,13 @@ export class SoundsInstance implements IContainerPlugin {
             oscillator.disconnect();
             gain.disconnect();
         });
-    }
+    };
 
-    private async _playNote(notes: SoundsNote[], noteIdx: number, loop: boolean): Promise<void> {
+    private readonly _playNote: (notes: SoundsNote[], noteIdx: number, loop: boolean) => Promise<void> = async (
+        notes,
+        noteIdx,
+        loop
+    ) => {
         if (this._container.muted) {
             return;
         }
@@ -422,9 +429,13 @@ export class SoundsInstance implements IContainerPlugin {
         }
 
         await this._playNote(notes, nextNoteIdx, loop);
-    }
+    };
 
-    private async _playNoteValue(notes: SoundsNote[], noteIdx: number, valueIdx: number): Promise<void> {
+    private readonly _playNoteValue: (notes: SoundsNote[], noteIdx: number, valueIdx: number) => Promise<void> = async (
+        notes,
+        noteIdx,
+        valueIdx
+    ) => {
         const note = notes[noteIdx];
 
         if (!note) {
@@ -444,16 +455,16 @@ export class SoundsInstance implements IContainerPlugin {
         } catch (e) {
             console.error(e);
         }
-    }
+    };
 
-    private _removeAudioSource(source: AudioScheduledSourceNode): void {
+    private readonly _removeAudioSource: (source: AudioScheduledSourceNode) => void = (source) => {
         source.stop();
         source.disconnect();
 
         this._audioSources.splice(this._audioSources.indexOf(source), 1);
-    }
+    };
 
-    private _unmute(): void {
+    private readonly _unmute: () => void = () => {
         const container = this._container,
             options = container.actualOptions,
             soundsOptions = options.sounds;
@@ -483,9 +494,9 @@ export class SoundsInstance implements IContainerPlugin {
         this._initEvents();
 
         this._engine.dispatchEvent(SoundsEventType.unmute, { container: this._container });
-    }
+    };
 
-    private _updateMuteIcons(): void {
+    private readonly _updateMuteIcons: () => void = () => {
         const container = this._container,
             muteImg = this._muteImg,
             unmuteImg = this._unmuteImg;
@@ -497,9 +508,9 @@ export class SoundsInstance implements IContainerPlugin {
         if (unmuteImg) {
             unmuteImg.style.display = container.muted ? "none" : "block";
         }
-    }
+    };
 
-    private _updateMuteStatus(): void {
+    private readonly _updateMuteStatus: () => void = () => {
         const container = this._container;
 
         if (container.muted) {
@@ -509,9 +520,9 @@ export class SoundsInstance implements IContainerPlugin {
 
             this._playMuteSound();
         }
-    }
+    };
 
-    private _updateVolume(): void {
+    private readonly _updateVolume: () => void = () => {
         const container = this._container,
             soundsOptions = container.actualOptions.sounds;
 
@@ -541,5 +552,5 @@ export class SoundsInstance implements IContainerPlugin {
         if (this._gain?.gain) {
             this._gain.gain.value = this._volume / 100;
         }
-    }
+    };
 }

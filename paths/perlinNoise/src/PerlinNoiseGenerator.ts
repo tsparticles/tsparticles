@@ -39,7 +39,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
     init(container: Container): void {
         this.container = container;
 
-        this.setup(container);
+        this._setup(container);
     }
 
     reset(): void {
@@ -51,16 +51,16 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             return;
         }
 
-        this.calculateField();
+        this._calculateField();
 
         this.noiseZ += this.options.increment;
 
         if (this.options.draw) {
-            this.container.canvas.draw((ctx) => this.drawField(ctx));
+            this.container.canvas.draw((ctx) => this._drawField(ctx));
         }
     }
 
-    private calculateField(): void {
+    private readonly _calculateField: () => void = () => {
         const { field, noiseGen, options } = this;
 
         for (let x = 0; x < options.columns; x++) {
@@ -73,9 +73,9 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 cell.angle = noiseGen.noise(x / 50, y / 50, this.noiseZ) * Math.PI * 2;
             }
         }
-    }
+    };
 
-    private drawField(ctx: CanvasRenderingContext2D): void {
+    private readonly _drawField: (ctx: CanvasRenderingContext2D) => void = (ctx) => {
         const { field, options } = this;
 
         for (let x = 0; x < options.columns; x++) {
@@ -97,9 +97,9 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 //ctx.restore();
             }
         }
-    }
+    };
 
-    private initField(): void {
+    private readonly _initField: () => void = () => {
         const { columns, rows } = this.options;
         this.field = new Array(columns);
 
@@ -110,9 +110,9 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 this.field[x][y] = Vector.origin;
             }
         }
-    }
+    };
 
-    private resetField(container: Container): void {
+    private readonly _resetField: (container: Container) => void = (container) => {
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
@@ -127,14 +127,14 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         options.columns = Math.floor(this.options.width / this.options.size) + 1;
         options.rows = Math.floor(this.options.height / this.options.size) + 1;
 
-        this.initField();
-    }
+        this._initField();
+    };
 
-    private setup(container: Container): void {
+    private readonly _setup: (container: Container) => void = (container) => {
         this.noiseZ = 0;
 
-        this.resetField(container);
+        this._resetField(container);
 
-        window.addEventListener("resize", () => this.resetField(container));
-    }
+        window.addEventListener("resize", () => this._resetField(container));
+    };
 }

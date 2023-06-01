@@ -1,4 +1,15 @@
-import { collisionVelocity, getDistances, getRandom, getValue } from "./NumberUtils";
+import {
+    collisionVelocity,
+    getDistances,
+    getRandom,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    getValue,
+    randomInRange,
+} from "./NumberUtils";
+import { AnimationMode } from "../Enums/Modes/AnimationMode";
+import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
@@ -7,10 +18,13 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { StartValueType } from "../Enums/Types/StartValueType";
 import { Vector } from "../Core/Utils/Vector";
 
 type RectSideBounceData = {
@@ -498,4 +512,87 @@ export function findItemFromSingleOrMultiple<T>(
     callback: (obj: T, index: number) => boolean
 ): T | undefined {
     return obj instanceof Array ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
+}
+
+/**
+ * @param options -
+ * @param pxRatio -
+ * @returns the animation init object
+ */
+export function initParticleNumericAnimationValue(
+    options: RangedAnimationValueWithRandom,
+    pxRatio: number
+): IParticleNumericValueAnimation {
+    const valueRange = options.value,
+        animationOptions = options.animation,
+        res: IParticleNumericValueAnimation = {
+            delayTime: getRangeValue(animationOptions.delay) * 1000,
+            enable: animationOptions.enable,
+            value: getRangeValue(options.value) * pxRatio,
+            max: getRangeMax(valueRange) * pxRatio,
+            min: getRangeMin(valueRange) * pxRatio,
+            loops: 0,
+            maxLoops: getRangeValue(animationOptions.count),
+            time: 0,
+        };
+
+    if (animationOptions.enable) {
+        res.decay = 1 - getRangeValue(animationOptions.decay);
+
+        let autoStatus = false;
+
+        switch (animationOptions.mode) {
+            case AnimationMode.increase:
+                res.status = AnimationStatus.increasing;
+
+                break;
+            case AnimationMode.decrease:
+                res.status = AnimationStatus.decreasing;
+
+                break;
+
+            case AnimationMode.random:
+                res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+
+                break;
+
+            case AnimationMode.auto:
+                autoStatus = true;
+
+                break;
+        }
+
+        switch (animationOptions.startValue) {
+            case StartValueType.min:
+                res.value = res.min;
+
+                if (autoStatus) {
+                    res.status = AnimationStatus.increasing;
+                }
+
+                break;
+
+            case StartValueType.random:
+                res.value = randomInRange(res);
+
+                if (autoStatus) {
+                    res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                }
+
+                break;
+
+            case StartValueType.max:
+            default:
+                res.value = res.max;
+
+                if (autoStatus) {
+                    res.status = AnimationStatus.decreasing;
+                }
+
+                break;
+        }
+    }
+    res.initialValue = res.value;
+
+    return res;
 }

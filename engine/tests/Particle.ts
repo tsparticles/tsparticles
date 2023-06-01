@@ -126,7 +126,8 @@ describe("Particle", () => {
             const position: ICoordinates = testParticle.randomPositionInCanvas(testContainer.container);
             testParticle.reset(testContainer.container, position);
 
-            expect(testParticle.particle?.position).to.eql(position);
+            expect(testParticle.particle?.position.x).to.be.equal(position.x);
+            expect(testParticle.particle?.position.y).to.be.equal(position.y);
         });
 
         it("should always return a position that is on the canvas when no position specified", () => {
