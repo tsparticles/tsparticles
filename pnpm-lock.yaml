@@ -81,6 +81,9 @@ importers:
       '@babel/core':
         specifier: ^7.21.8
         version: 7.21.8
+      '@skypack/package-check':
+        specifier: ^0.2.2
+        version: 0.2.2
       '@tsparticles/cli':
         specifier: ^1.4.1
         version: 1.4.1(webpack-cli@5.1.1)
@@ -93,6 +96,15 @@ importers:
       '@tsparticles/webpack-plugin':
         specifier: ^1.13.0
         version: 1.13.0
+      '@types/chai':
+        specifier: ^4.3.5
+        version: 4.3.5
+      '@types/jsdom':
+        specifier: ^21.1.1
+        version: 21.1.1
+      '@types/mocha':
+        specifier: ^10.0.1
+        version: 10.0.1
       '@types/webpack-env':
         specifier: ^1.18.0
         version: 1.18.0
@@ -108,15 +120,63 @@ importers:
       browserslist:
         specifier: ^4.21.5
         version: 4.21.5
+      canvas:
+        specifier: ^2.11.2
+        version: 2.11.2
+      chai:
+        specifier: ^4.3.7
+        version: 4.3.7
+      compare-versions:
+        specifier: 6.0.0-rc.1
+        version: 6.0.0-rc.1
       eslint:
         specifier: ^8.40.0
         version: 8.40.0
       eslint-config-prettier:
         specifier: ^8.8.0
         version: 8.8.0(eslint@8.40.0)
+      eslint-plugin-jsdoc:
+        specifier: ^46.0.0
+        version: 46.0.0(eslint@8.40.0)
+      eslint-plugin-tsdoc:
+        specifier: ^0.2.17
+        version: 0.2.17
+      fs-extra:
+        specifier: ^11.1.1
+        version: 11.1.1
+      install:
+        specifier: ^0.13.0
+        version: 0.13.0
+      jsdom:
+        specifier: ^22.0.0
+        version: 22.0.0(canvas@2.11.2)
+      jsdom-global:
+        specifier: ^3.0.2
+        version: 3.0.2(jsdom@22.0.0)
+      mocha:
+        specifier: ^10.2.0
+        version: 10.2.0
+      nyc:
+        specifier: ^15.1.0
+        version: 15.1.0
+      reflect-metadata:
+        specifier: ^0.1.13
+        version: 0.1.13
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
       terser-webpack-plugin:
         specifier: ^5.3.9
         version: 5.3.9(webpack@5.83.1)
+      ts-json-schema-generator:
+        specifier: ^1.2.0
+        version: 1.2.0
+      ts-node:
+        specifier: ^10.9.1
+        version: 10.9.1(@types/node@20.2.5)(typescript@5.0.4)
+      typescript-json-schema:
+        specifier: ^0.56.0
+        version: 0.56.0
       webpack:
         specifier: ^5.83.1
         version: 5.83.1(webpack-cli@5.1.1)
@@ -272,70 +332,6 @@ importers:
       tsparticles-updater-wobble:
         specifier: ^2.9.3
         version: link:../../updaters/wobble/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   bundles/pjs:
@@ -343,73 +339,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/node':
-        specifier: ^20.2.1
-        version: 20.2.1
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   bundles/slim:
@@ -510,70 +439,6 @@ importers:
       tsparticles-updater-stroke-color:
         specifier: ^2.9.3
         version: link:../../updaters/strokeColor/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   demo/electron:
@@ -591,96 +456,9 @@ importers:
       electron:
         specifier: ^25.0.0
         version: 25.0.0
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
 
   demo/vanilla:
-    devDependencies:
-      '@fortawesome/fontawesome-free':
-        specifier: ^6.4.0
-        version: 6.4.0
-      '@types/connect-livereload':
-        specifier: ^0.6.0
-        version: 0.6.0
-      '@types/express':
-        specifier: ^4.17.17
-        version: 4.17.17
-      '@types/livereload':
-        specifier: ^0.9.2
-        version: 0.9.2
-      '@types/node':
-        specifier: ^20.2.0
-        version: 20.2.0
-      '@types/stylus':
-        specifier: ^0.48.38
-        version: 0.48.38
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      ace-builds:
-        specifier: ^1.21.1
-        version: 1.21.1
-      bootstrap:
-        specifier: ^5.2.3
-        version: 5.2.3(@popperjs/core@2.11.7)
-      concurrently:
-        specifier: ^8.0.1
-        version: 8.0.1
-      connect-livereload:
-        specifier: ^0.6.1
-        version: 0.6.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      express:
-        specifier: ^4.18.2
-        version: 4.18.2
-      express-rate-limit:
-        specifier: ^6.7.0
-        version: 6.7.0(express@4.18.2)
-      helmet:
-        specifier: ^7.0.0
-        version: 7.0.0
-      jquery:
-        specifier: ^3.7.0
-        version: 3.7.0
-      jsoneditor:
-        specifier: ^9.10.2
-        version: 9.10.2
-      livereload:
-        specifier: ^0.9.3
-        version: 0.9.3
-      lodash:
-        specifier: ^4.17.21
-        version: 4.17.21
-      nodemon:
-        specifier: ^2.0.22
-        version: 2.0.22
-      popper.js:
-        specifier: ^1.16.1
-        version: 1.16.1
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      pug:
-        specifier: ^3.0.2
-        version: 3.0.2
-      pug-cli:
-        specifier: 1.0.0-alpha6
-        version: 1.0.0-alpha6
-      stats.ts:
-        specifier: ^1.1.0
-        version: 1.1.0
-      stylus:
-        specifier: ^0.59.0
-        version: 0.59.0
+    dependencies:
       tsparticles:
         specifier: ^2.9.3
         version: link:../../bundles/full/dist
@@ -909,27 +687,76 @@ importers:
       tsparticles-updater-wobble:
         specifier: ^2.9.3
         version: link:../../updaters/wobble/dist
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
+    devDependencies:
+      '@fortawesome/fontawesome-free':
+        specifier: ^6.4.0
+        version: 6.4.0
+      '@types/connect-livereload':
+        specifier: ^0.6.0
+        version: 0.6.0
+      '@types/express':
+        specifier: ^4.17.17
+        version: 4.17.17
+      '@types/livereload':
+        specifier: ^0.9.2
+        version: 0.9.2
+      '@types/node':
+        specifier: ^20.2.0
+        version: 20.2.0
+      '@types/stylus':
+        specifier: ^0.48.38
+        version: 0.48.38
+      ace-builds:
+        specifier: ^1.21.1
+        version: 1.21.1
+      bootstrap:
+        specifier: ^5.2.3
+        version: 5.2.3(@popperjs/core@2.11.7)
+      concurrently:
+        specifier: ^8.0.1
+        version: 8.0.1
+      connect-livereload:
+        specifier: ^0.6.1
+        version: 0.6.1
+      express:
+        specifier: ^4.18.2
+        version: 4.18.2
+      express-rate-limit:
+        specifier: ^6.7.0
+        version: 6.7.0(express@4.18.2)
+      helmet:
+        specifier: ^7.0.0
+        version: 7.0.0
+      jquery:
+        specifier: ^3.7.0
+        version: 3.7.0
+      jsoneditor:
+        specifier: ^9.10.2
+        version: 9.10.2
+      livereload:
+        specifier: ^0.9.3
+        version: 0.9.3
+      lodash:
+        specifier: ^4.17.21
+        version: 4.17.21
+      nodemon:
+        specifier: ^2.0.22
+        version: 2.0.22
+      pug:
+        specifier: ^3.0.2
+        version: 3.0.2
+      pug-cli:
+        specifier: 1.0.0-alpha6
+        version: 1.0.0-alpha6
+      stats.ts:
+        specifier: ^1.1.0
+        version: 1.1.0
+      stylus:
+        specifier: ^0.59.0
+        version: 0.59.0
 
   demo/vanilla_new:
     dependencies:
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      fs-extra:
-        specifier: ^11.1.1
-        version: 11.1.1
-      minify:
-        specifier: ^10.0.0
-        version: 10.0.0
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      sass:
-        specifier: ^1.62.1
-        version: 1.62.1
       tsparticles:
         specifier: ^2.9.3
         version: link:../../bundles/full/dist
@@ -966,135 +793,18 @@ importers:
       tsparticles-updater-orbit:
         specifier: ^2.9.3
         version: link:../../updaters/orbit/dist
-
-  engine:
     devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@skypack/package-check':
-        specifier: ^0.2.2
-        version: 0.2.2
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/chai':
-        specifier: ^4.3.5
-        version: 4.3.5
-      '@types/jsdom':
-        specifier: ^21.1.1
-        version: 21.1.1
-      '@types/mocha':
-        specifier: ^10.0.1
-        version: 10.0.1
-      '@types/node':
-        specifier: ^20.2.0
-        version: 20.2.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      canvas:
-        specifier: ^2.11.2
-        version: 2.11.2
-      chai:
-        specifier: ^4.3.7
-        version: 4.3.7
-      compare-versions:
-        specifier: 6.0.0-rc.1
-        version: 6.0.0-rc.1
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      eslint-plugin-jsdoc:
-        specifier: ^46.0.0
-        version: 46.0.0(eslint@8.40.0)
-      eslint-plugin-tsdoc:
-        specifier: ^0.2.17
-        version: 0.2.17
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
-      install:
-        specifier: ^0.13.0
-        version: 0.13.0
-      jsdom:
-        specifier: ^22.0.0
-        version: 22.0.0(canvas@2.11.2)
-      jsdom-global:
-        specifier: ^3.0.2
-        version: 3.0.2(jsdom@22.0.0)
-      mocha:
-        specifier: ^10.2.0
-        version: 10.2.0
-      nyc:
-        specifier: ^15.1.0
-        version: 15.1.0
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      reflect-metadata:
-        specifier: ^0.1.13
-        version: 0.1.13
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      source-map-support:
-        specifier: ^0.5.21
-        version: 0.5.21
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      ts-json-schema-generator:
-        specifier: ^1.2.0
-        version: 1.2.0
-      ts-node:
-        specifier: ^10.9.1
-        version: 10.9.1(@types/node@20.2.0)(typescript@5.0.4)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      typescript-json-schema:
-        specifier: ^0.56.0
-        version: 0.56.0
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
+      minify:
+        specifier: ^10.0.0
+        version: 10.0.0
+      sass:
+        specifier: ^1.62.1
+        version: 1.62.1
+
+  engine:
     publishDirectory: dist
 
   interactions/external/attract:
@@ -1102,70 +812,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/bounce:
@@ -1173,70 +819,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/bubble:
@@ -1244,70 +826,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/connect:
@@ -1315,70 +833,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/grab:
@@ -1386,70 +840,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/pause:
@@ -1457,70 +847,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/push:
@@ -1528,70 +854,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/remove:
@@ -1599,70 +861,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/repulse:
@@ -1670,70 +868,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/slow:
@@ -1741,70 +875,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/external/trail:
@@ -1812,70 +882,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/light:
@@ -1883,70 +889,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/particles/attract:
@@ -1954,70 +896,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/particles/collisions:
@@ -2025,70 +903,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/particles/links:
@@ -2096,70 +910,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   interactions/particles/repulse:
@@ -2167,70 +917,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   move/base:
@@ -2238,70 +924,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   move/parallax:
@@ -2309,70 +931,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   paths/curves:
@@ -2380,70 +938,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   paths/perlinNoise:
@@ -2451,70 +945,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   paths/polygon:
@@ -2522,70 +952,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   paths/simplexNoise:
@@ -2593,70 +959,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   paths/svg:
@@ -2664,70 +966,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/absorbers:
@@ -2735,70 +973,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/canvasMask:
@@ -2806,70 +980,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/back:
@@ -2877,70 +987,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/circ:
@@ -2948,70 +994,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/cubic:
@@ -3019,70 +1001,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/expo:
@@ -3090,70 +1008,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/quad:
@@ -3161,70 +1015,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/quart:
@@ -3232,70 +1022,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/quint:
@@ -3303,70 +1029,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/easings/sine:
@@ -3374,70 +1036,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/emitters:
@@ -3445,70 +1043,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/hsvColor:
@@ -3516,70 +1050,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/infection:
@@ -3587,70 +1057,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/motion:
@@ -3658,70 +1064,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/polygonMask:
@@ -3729,70 +1071,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   plugins/sounds:
@@ -3800,70 +1078,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/arrow:
@@ -3871,70 +1085,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/bubble:
@@ -3942,70 +1092,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/cards:
@@ -4013,70 +1099,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/circle:
@@ -4084,70 +1106,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/cog:
@@ -4155,70 +1113,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/heart:
@@ -4226,70 +1120,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/image:
@@ -4297,70 +1127,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/line:
@@ -4368,70 +1134,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/multiline-text:
@@ -4439,70 +1141,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/path:
@@ -4510,70 +1148,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/polygon:
@@ -4581,70 +1155,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/rounded-rect:
@@ -4652,70 +1162,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/spiral:
@@ -4723,70 +1169,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/square:
@@ -4794,70 +1176,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/star:
@@ -4865,70 +1183,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   shapes/text:
@@ -4936,70 +1190,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/color:
@@ -5007,70 +1197,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/destroy:
@@ -5078,70 +1204,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/gradient:
@@ -5149,70 +1211,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/life:
@@ -5220,70 +1218,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/opacity:
@@ -5291,70 +1225,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/orbit:
@@ -5362,70 +1232,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/outModes:
@@ -5433,70 +1239,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/roll:
@@ -5504,70 +1246,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/rotate:
@@ -5575,70 +1253,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/size:
@@ -5646,70 +1260,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/strokeColor:
@@ -5717,70 +1267,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/tilt:
@@ -5788,70 +1274,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/twinkle:
@@ -5859,70 +1281,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   updaters/wobble:
@@ -5930,70 +1288,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/cli':
-        specifier: ^1.4.1
-        version: 1.4.1(webpack-cli@5.1.1)
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/tsconfig':
-        specifier: ^1.12.0
-        version: 1.12.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   utils/configs:
@@ -6001,67 +1295,6 @@ importers:
       tsparticles-engine:
         specifier: ^2.9.3
         version: link:../../engine/dist
-    devDependencies:
-      '@babel/core':
-        specifier: ^7.21.8
-        version: 7.21.8
-      '@tsparticles/eslint-config':
-        specifier: ^1.11.0
-        version: 1.11.0
-      '@tsparticles/options-updater':
-        specifier: ^2.9.3
-        version: link:../options-updater
-      '@tsparticles/prettier-config':
-        specifier: ^1.9.0
-        version: 1.9.0
-      '@tsparticles/webpack-plugin':
-        specifier: ^1.13.0
-        version: 1.13.0
-      '@types/webpack-env':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.59.6
-        version: 5.59.6(@typescript-eslint/parser@5.59.6)(eslint@8.40.0)(typescript@5.0.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.59.6
-        version: 5.59.6(eslint@8.40.0)(typescript@5.0.4)
-      babel-loader:
-        specifier: ^9.1.2
-        version: 9.1.2(@babel/core@7.21.8)(webpack@5.83.1)
-      browserslist:
-        specifier: ^4.21.5
-        version: 4.21.5
-      copyfiles:
-        specifier: ^2.4.1
-        version: 2.4.1
-      eslint:
-        specifier: ^8.40.0
-        version: 8.40.0
-      eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.40.0)
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
-      terser-webpack-plugin:
-        specifier: ^5.3.9
-        version: 5.3.9(webpack@5.83.1)
-      typescript:
-        specifier: ^5.0.4
-        version: 5.0.4
-      webpack:
-        specifier: ^5.83.1
-        version: 5.83.1(webpack-cli@5.1.1)
-      webpack-bundle-analyzer:
-        specifier: ^4.8.0
-        version: 4.8.0
-      webpack-cli:
-        specifier: ^5.1.1
-        version: 5.1.1(webpack-bundle-analyzer@4.8.0)(webpack@5.83.1)
     publishDirectory: dist
 
   utils/options-updater:
@@ -8538,7 +3771,7 @@ packages:
   /@putout/minify@1.16.5:
     resolution: {integrity: sha512-GLyGEpRQm42A5tQ8kUn4tHOoHjUOImP6E0vPSCHjZ1SSdUVL6mAsFXs+vVwkTLbKmmSwO2HUjeLR/Wfjy5Gb/A==}
     engines: {node: '>=16'}
-    dev: false
+    dev: true
 
   /@sigstore/protobuf-specs@0.1.0:
     resolution: {integrity: sha512-a31EnjuIDSX8IXBUib3cYLDRlPMU36AWX4xS8ysLaNu4ZzUesDiPt83pgrW2X1YLMe5L2HbDyaKK5BrL4cNKaQ==}
@@ -9866,7 +5099,7 @@ packages:
     dependencies:
       pascal-case: 3.1.2
       tslib: 2.5.1
-    dev: false
+    dev: true
 
   /camelcase-keys@6.2.2:
     resolution: {integrity: sha512-YrwaA0vEKazPBkn0ipTiMpSajYDSe+KjQfrjhcBMxJt/znbvlHd8Pw/Vamaz5EB4Wfhs3SUR3Z9mwRu/P3s3Yg==}
@@ -10022,7 +5255,7 @@ packages:
     engines: {node: '>= 10.0'}
     dependencies:
       source-map: 0.6.1
-    dev: false
+    dev: true
 
   /clean-stack@2.2.0:
     resolution: {integrity: sha512-4diC9HaTE+KRAMWhDhrGOECgWZxoevMc5TlkObMqNSsVU62PYzXZ/SMTjzyGAFF1YusgxGcSWTEXBhp0CPwQ1A==}
@@ -10462,7 +5695,7 @@ packages:
   /css-b64-images@0.2.5:
     resolution: {integrity: sha512-TgQBEdP07adhrDfXvI5o6bHGukKBNMzp2Ngckc/6d09zpjD2gc1Hl3Ca1CKgb8FXjHi88+Phv2Uegs2kTL4zjg==}
     hasBin: true
-    dev: false
+    dev: true
 
   /cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
@@ -10698,7 +5931,7 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.5.1
-    dev: false
+    dev: true
 
   /dot-prop@5.3.0:
     resolution: {integrity: sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==}
@@ -11267,7 +6500,7 @@ packages:
     dependencies:
       locate-path: 7.2.0
       path-exists: 5.0.0
-    dev: false
+    dev: true
 
   /flat-cache@3.0.4:
     resolution: {integrity: sha512-dm9s5Pw7Jc0GvMYbshN6zchCA9RgQlzzEZX3vylR9IqFfS8XciblUXOKfW6SiuJ0e13eDYZoZV5wdrev7P3Nwg==}
@@ -11840,7 +7073,7 @@ packages:
       param-case: 3.0.4
       relateurl: 0.2.7
       terser: 5.17.4
-    dev: false
+    dev: true
 
   /http-cache-semantics@4.1.1:
     resolution: {integrity: sha512-er295DKPVsV82j5kw1Gjt+ADA/XYHsajl82cGNQG2eyoPkvgUhX+nDIyelzhIWbbsXP39EHcI6l5tYs2FYqYXQ==}
@@ -11940,7 +7173,7 @@ packages:
 
   /immutable@4.3.0:
     resolution: {integrity: sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==}
-    dev: false
+    dev: true
 
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -12774,7 +8007,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       p-locate: 6.0.0
-    dev: false
+    dev: true
 
   /lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
@@ -12851,7 +8084,7 @@ packages:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
       tslib: 2.5.1
-    dev: false
+    dev: true
 
   /lowercase-keys@2.0.0:
     resolution: {integrity: sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==}
@@ -13080,7 +8313,7 @@ packages:
       try-to-catch: 3.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
+    dev: true
 
   /minimatch@3.0.5:
     resolution: {integrity: sha512-tUpxzX0VAzJHjLu0xUfFv1gwVp9ba3IOuRAVH2EGuRW8a5emA2FlACLqiT/lDVtS1W+TGNwqz3sWaNyLgDJWuw==}
@@ -13335,7 +8568,7 @@ packages:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.5.1
-    dev: false
+    dev: true
 
   /node-addon-api@3.2.1:
     resolution: {integrity: sha512-mmcei9JghVNDYydghQmeDX8KoAm0FAiYyIcUt/N4nhyAipB17pllZQDOJD2fotxABnt4Mdz+dKTO7eftLg4d0A==}
@@ -13978,7 +9211,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       yocto-queue: 1.0.0
-    dev: false
+    dev: true
 
   /p-locate@2.0.0:
     resolution: {integrity: sha512-nQja7m7gSKuewoVRen45CtVfODR3crN3goVQ0DDZ9N3yHxgpkuBhZqsaiotSQRrADUrne346peY7kT3TSACykg==}
@@ -14004,7 +9237,7 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       p-limit: 4.0.0
-    dev: false
+    dev: true
 
   /p-map-series@2.1.0:
     resolution: {integrity: sha512-RpYIIK1zXSNEOdwxcfe7FdvGcs7+y5n8rifMhMNWvaxRNMPINJHF5GDeuVxWqnfrcHPSCnp7Oo5yNXHId9Av2Q==}
@@ -14109,7 +9342,7 @@ packages:
     dependencies:
       dot-case: 3.0.4
       tslib: 2.5.1
-    dev: false
+    dev: true
 
   /parent-module@1.0.1:
     resolution: {integrity: sha512-GQ2EWRpQV8/o+Aw8YqtfZZPfNRWZYkbidE9k5rpl/hC3vtHHBfGm2Ifi6qWV+coDGkrUKZAxE3Lot5kcsRlh+g==}
@@ -14171,7 +9404,7 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.5.1
-    dev: false
+    dev: true
 
   /path-equal@1.2.5:
     resolution: {integrity: sha512-i73IctDr3F2W+bsOWDyyVm/lqsXO47aY9nsFZUjTT/aljSbkxHxxCoyZ9UUrM8jK0JVod+An+rl48RCsvWM+9g==}
@@ -14189,7 +9422,7 @@ packages:
   /path-exists@5.0.0:
     resolution: {integrity: sha512-RjhtfwJOxzcFmNOi6ltcbcu4Iu+FL3zEj83dk4kAS+fVpTxXLO1b38RvJgT/0QwvV/L3aY9TAnyv0EOqW4GoMQ==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
-    dev: false
+    dev: true
 
   /path-is-absolute@1.0.1:
     resolution: {integrity: sha512-AVbw3UJ2e9bq64vSaS9Am0fje1Pa8pbGqTTsmXfaIiMpnr5DlDhfJOuLj9Sf95ZPVDAUerDfEk88MPmPe7UCQg==}
@@ -14273,11 +9506,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       find-up: 4.1.0
-
-  /popper.js@1.16.1:
-    resolution: {integrity: sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==}
-    deprecated: You can find the new Popper v2 at @popperjs/core, this package is dedicated to the legacy v1
-    dev: true
 
   /postcss-selector-parser@6.0.13:
     resolution: {integrity: sha512-EaV1Gl4mUEV4ddhDnv/xtj7sxwrwxdetHdWUGnT4VJQf+4d05v6lHYZr8N573k5Z0BViss7BDhfWtKS3+sfAqQ==}
@@ -14806,7 +10034,7 @@ packages:
     dependencies:
       jju: 1.4.0
       try-catch: 3.0.1
-    dev: false
+    dev: true
 
   /rechoir@0.8.0:
     resolution: {integrity: sha512-/vxpCXddiX8NGfGO/mTafwjq4aFa/71pvamip0++IQk3zG8cbCj0fifNPrjjF1XMXUne91jL9OoxmdykoEtifQ==}
@@ -14867,7 +10095,7 @@ packages:
   /relateurl@0.2.7:
     resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
     engines: {node: '>= 0.10'}
-    dev: false
+    dev: true
 
   /release-zalgo@1.0.0:
     resolution: {integrity: sha512-gUAyHVHPPC5wdqX/LG4LWtRYtgjxyX78oanFNTMMyFEfOqdC54s3eE82imuWKbOeqYht2CrNf64Qb8vgmmtZGA==}
@@ -15039,7 +10267,7 @@ packages:
       chokidar: 3.5.3
       immutable: 4.3.0
       source-map-js: 1.0.2
-    dev: false
+    dev: true
 
   /sax@1.2.4:
     resolution: {integrity: sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==}
@@ -15267,7 +10495,7 @@ packages:
     dependencies:
       readjson: 2.2.2
       try-to-catch: 3.0.1
-    dev: false
+    dev: true
 
   /sirv@1.0.19:
     resolution: {integrity: sha512-JuLThK3TnZG1TAKDwNIqNq6QA2afLOCcm+iE8D1Kj3GA40pSPsxQjjJl0J8X3tsR7T+CP1GavpzLwYkgVLWrZQ==}
@@ -15319,7 +10547,7 @@ packages:
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
-    dev: false
+    dev: true
 
   /source-map-support@0.5.21:
     resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
@@ -15778,12 +11006,12 @@ packages:
   /try-catch@3.0.1:
     resolution: {integrity: sha512-91yfXw1rr/P6oLpHSyHDOHm0vloVvUoo9FVdw8YwY05QjJQG9OT0LUxe2VRAzmHG+0CUOmI3nhxDUMLxDN/NEQ==}
     engines: {node: '>=6'}
-    dev: false
+    dev: true
 
   /try-to-catch@3.0.1:
     resolution: {integrity: sha512-hOY83V84Hx/1sCzDSaJA+Xz2IIQOHRvjxzt+F0OjbQGPZ6yLPLArMA0gw/484MlfUkQbCpKYMLX3VDCAjWKfzQ==}
     engines: {node: '>=6'}
-    dev: false
+    dev: true
 
   /ts-json-schema-generator@1.2.0:
     resolution: {integrity: sha512-tUMeO3ZvA12d3HHh7T/AK8W5hmUhDRNtqWRHSMN3ZRbUFt+UmV0oX8k1RK4SA+a+BKNHpmW2v06MS49e8Fi3Yg==}
@@ -15830,37 +11058,6 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-node@10.9.1(@types/node@20.2.0)(typescript@5.0.4):
-    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
-    hasBin: true
-    peerDependencies:
-      '@swc/core': '>=1.2.50'
-      '@swc/wasm': '>=1.2.50'
-      '@types/node': '*'
-      typescript: '>=2.7'
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      '@swc/wasm':
-        optional: true
-    dependencies:
-      '@cspotcode/source-map-support': 0.8.1
-      '@tsconfig/node10': 1.0.9
-      '@tsconfig/node12': 1.0.11
-      '@tsconfig/node14': 1.0.3
-      '@tsconfig/node16': 1.0.4
-      '@types/node': 20.2.0
-      acorn: 8.8.2
-      acorn-walk: 8.2.0
-      arg: 4.1.3
-      create-require: 1.1.1
-      diff: 4.0.2
-      make-error: 1.3.6
-      typescript: 5.0.4
-      v8-compile-cache-lib: 3.0.1
-      yn: 3.1.1
-    dev: true
-
   /ts-node@10.9.1(@types/node@20.2.5)(typescript@5.0.4):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
@@ -15890,7 +11087,6 @@ packages:
       typescript: 5.0.4
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
-    dev: false
 
   /tsconfig-paths@4.2.0:
     resolution: {integrity: sha512-NoZ4roiN7LnbKn9QqE1amc9DJfzvZXxF4xDavcOWt1BPkdx+m+0gJuPM+S0vCe7zTJMYUP0R8pO2XMr+Y8oLIg==}
@@ -16757,7 +11953,7 @@ packages:
   /yocto-queue@1.0.0:
     resolution: {integrity: sha512-9bnSc/HEW2uRy67wc+T8UwauLuPJVn28jb+GtJY16iiKWyvmYJRXVT4UamsAEGQfPohgr2q4Tq0sQbQlxTfi1g==}
     engines: {node: '>=12.20'}
-    dev: false
+    dev: true
 
   /yorkie@2.0.0:
     resolution: {integrity: sha512-jcKpkthap6x63MB4TxwCyuIGkV0oYP/YRyuQU5UO0Yz/E/ZAu+653/uov+phdmO54n6BcvFRyyt0RRrWdN2mpw==}
