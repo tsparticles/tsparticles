@@ -4,6 +4,7 @@ import type { Engine } from "../engine";
 import { EventType } from "../Enums/Types/EventType";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IDimension } from "./Interfaces/IDimension";
 import type { IMouseData } from "./Interfaces/IMouseData";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
@@ -17,6 +18,15 @@ import { calcPositionFromSize } from "../Utils/NumberUtils";
 import { errorPrefix } from "./Utils/Constants";
 
 const qTreeCapacity = 4;
+
+const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
+    return new Rectangle(
+        -canvasSize.width / 4,
+        -canvasSize.height / 4,
+        (canvasSize.width * 3) / 2,
+        (canvasSize.height * 3) / 2
+    );
+};
 
 /**
  * Particles manager object
@@ -70,15 +80,7 @@ export class Particles {
 
         const canvasSize = this._container.canvas.size;
 
-        this.quadTree = new QuadTree(
-            new Rectangle(
-                -canvasSize.width / 4,
-                -canvasSize.height / 4,
-                (canvasSize.width * 3) / 2,
-                (canvasSize.height * 3) / 2
-            ),
-            qTreeCapacity
-        );
+        this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
         this.movers = this._engine.plugins.getMovers(this._container, true);
         this.updaters = this._engine.plugins.getUpdaters(this._container, true);
@@ -143,15 +145,7 @@ export class Particles {
         const container = this._container,
             canvasSize = this._container.canvas.size;
 
-        this.quadTree = new QuadTree(
-            new Rectangle(
-                -canvasSize.width / 4,
-                -canvasSize.height / 4,
-                (canvasSize.width * 3) / 2,
-                (canvasSize.height * 3) / 2
-            ),
-            qTreeCapacity
-        );
+        this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
         /* clear canvas */
         container.canvas.clear();
