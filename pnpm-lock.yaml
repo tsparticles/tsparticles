@@ -21,13 +21,13 @@ importers:
         specifier: ^15.9.3
         version: 15.9.3
       '@nrwl/devkit':
-        specifier: 16.3.1
+        specifier: ^16.3.1
         version: 16.3.1(nx@16.3.1)
       '@nrwl/nx-cloud':
-        specifier: 16.0.5
+        specifier: ^16.0.5
         version: 16.0.5
       '@nrwl/workspace':
-        specifier: 16.3.1
+        specifier: ^16.3.1
         version: 16.3.1
       '@skypack/package-check':
         specifier: ^0.2.2
@@ -123,7 +123,7 @@ importers:
         specifier: ^10.2.0
         version: 10.2.0
       nx:
-        specifier: 16.3.1
+        specifier: ^16.3.1
         version: 16.3.1
       nyc:
         specifier: ^15.1.0
