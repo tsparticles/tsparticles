@@ -17,15 +17,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^17.6.5
         version: 17.6.5
-      '@nrwl/cli':
-        specifier: ^15.9.3
-        version: 15.9.3
       '@nrwl/devkit':
         specifier: ^16.3.1
         version: 16.3.1(nx@16.3.1)
-      '@nrwl/nx-cloud':
-        specifier: ^16.0.5
-        version: 16.0.5
       '@nrwl/workspace':
         specifier: ^16.3.1
         version: 16.3.1
@@ -125,6 +119,9 @@ importers:
       nx:
         specifier: ^16.3.1
         version: 16.3.1
+      nx-cloud:
+        specifier: ^16.0.5
+        version: 16.0.5
       nyc:
         specifier: ^15.1.0
         version: 15.1.0
