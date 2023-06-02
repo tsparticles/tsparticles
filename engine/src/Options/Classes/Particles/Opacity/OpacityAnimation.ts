@@ -8,7 +8,8 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
  */
 export class OpacityAnimation
     extends RangedAnimationOptions
-    implements IOpacityAnimation, IOptionLoader<IOpacityAnimation> {
+    implements IOpacityAnimation, IOptionLoader<IOpacityAnimation>
+{
     destroy: DestroyType | keyof typeof DestroyType;
 
     constructor() {

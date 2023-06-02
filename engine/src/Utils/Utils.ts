@@ -539,8 +539,6 @@ export function initParticleNumericAnimationValue(
     if (animationOptions.enable) {
         res.decay = 1 - getRangeValue(animationOptions.decay);
 
-        let autoStatus = false;
-
         switch (animationOptions.mode) {
             case AnimationMode.increase:
                 res.status = AnimationStatus.increasing;
@@ -555,12 +553,9 @@ export function initParticleNumericAnimationValue(
                 res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                 break;
-
-            case AnimationMode.auto:
-                autoStatus = true;
-
-                break;
         }
+
+        const autoStatus = animationOptions.mode === AnimationMode.auto;
 
         switch (animationOptions.startValue) {
             case StartValueType.min:
@@ -572,17 +567,7 @@ export function initParticleNumericAnimationValue(
 
                 break;
 
-            case StartValueType.random:
-                res.value = randomInRange(res);
-
-                if (autoStatus) {
-                    res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-                }
-
-                break;
-
             case StartValueType.max:
-            default:
                 res.value = res.max;
 
                 if (autoStatus) {
@@ -590,8 +575,19 @@ export function initParticleNumericAnimationValue(
                 }
 
                 break;
+
+            case StartValueType.random:
+            default:
+                res.value = randomInRange(res);
+
+                if (autoStatus) {
+                    res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                }
+
+                break;
         }
     }
+
     res.initialValue = res.value;
 
     return res;
