@@ -14,7 +14,7 @@ import {
     getRangeValue,
     getStyleFromRgb,
     isPointInside,
-    rangeColorToRgb
+    rangeColorToRgb,
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
 import type { Absorbers } from "./Absorbers";
@@ -129,13 +129,13 @@ export class AbsorberInstance {
 
         this.limit = {
             radius: limit.radius * container.retina.pixelRatio * container.retina.reduceFactor,
-            mass: limit.mass
+            mass: limit.mass,
         };
 
         this.color = rangeColorToRgb(this.options.color) ?? {
             b: 0,
             g: 0,
-            r: 0
+            r: 0,
         };
 
         this.position = this.initialPosition?.copy() ?? this._calcPosition();
@@ -241,7 +241,7 @@ export class AbsorberInstance {
     private readonly _calcPosition: () => Vector = () => {
         const exactPosition = calcPositionOrRandomFromSizeRanged({
             size: this.container.canvas.size,
-            position: this.options.position
+            position: this.options.position,
         });
 
         return Vector.create(exactPosition.x, exactPosition.y);
@@ -296,7 +296,7 @@ export class AbsorberInstance {
 
             const updateFunc = {
                 x: orbitDirection === RotateDirection.clockwise ? Math.cos : Math.sin,
-                y: orbitDirection === RotateDirection.clockwise ? Math.sin : Math.cos
+                y: orbitDirection === RotateDirection.clockwise ? Math.sin : Math.cos,
             };
 
             particle.position.x = this.position.x + orbitRadius * updateFunc.x(orbitAngle);
