@@ -24,9 +24,9 @@
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@nrwl/cli": "^15.9.3",
-    "@nrwl/devkit": "^16.3.1",
-    "@nrwl/nx-cloud": "^16.0.5",
-    "@nrwl/workspace": "^16.3.1",
+    "@nrwl/devkit": "16.3.1",
+    "@nrwl/nx-cloud": "16.0.5",
+    "@nrwl/workspace": "16.3.1",
     "@skypack/package-check": "^0.2.2",
     "@tsparticles/cli": "^1.4.1",
     "@tsparticles/eslint-config": "^1.11.0",
@@ -38,8 +38,8 @@
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.2.5",
     "@types/webpack-env": "^1.18.1",
-    "@typescript-eslint/eslint-plugin": "^5.59.9-alpha.4",
-    "@typescript-eslint/parser": "^5.59.9-alpha.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
     "babel-loader": "^9.1.2",
     "browserslist": "^4.21.7",
     "canvas": "^2.11.2",
@@ -58,7 +58,7 @@
     "jsdom-global": "^3.0.2",
     "lerna": "^6.6.2",
     "mocha": "^10.2.0",
-    "nx": "^16.3.1",
+    "nx": "16.3.1",
     "nyc": "^15.1.0",
     "prettier": "^2.8.8",
     "reflect-metadata": "^0.1.13",
@@ -81,3 +81,4 @@
     "yorkie": "^2.0.0"
   }
 }
+
