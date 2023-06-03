@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
+
+### Bug Fixes
+
+-   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/matteobruni/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+
+### Features
+
+-   added arrow shape ([09d962b](https://github.com/matteobruni/tsparticles/commit/09d962be91b721d4b93811e75d8b44912b1a6c45))
+-   implemented delay options in opacity, size and colors updaters ([dfd4e9f](https://github.com/matteobruni/tsparticles/commit/dfd4e9f711a83ff5ef6e1bcf5f6fdf62d61dc157))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-angle@2.9.2...tsparticles-updater-angle@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package tsparticles-updater-angle

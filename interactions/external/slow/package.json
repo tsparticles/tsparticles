@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-interaction-external-slow",
-    "version": "2.9.3",
+    "version": "2.10.0",
     "description": "tsParticles slow external interaction",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -83,6 +83,6 @@
     "types": "dist/types/index.d.ts",
     "prettier": "@tsparticles/prettier-config",
     "dependencies": {
-        "tsparticles-engine": "^2.9.3"
+        "tsparticles-engine": "^2.10.0"
     }
 }

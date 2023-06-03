@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
+
+### Bug Fixes
+
+-   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+-   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+-   **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/matteobruni/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
+-   **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/matteobruni/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
+-   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/matteobruni/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+-   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+-   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+-   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+-   fixed issue with destroyed containers, fixes [#4385](https://github.com/matteobruni/tsparticles/issues/4385), fixes [#4413](https://github.com/matteobruni/tsparticles/issues/4413), fixes [#4534](https://github.com/matteobruni/tsparticles/issues/4534) ([4d22425](https://github.com/matteobruni/tsparticles/commit/4d22425210f64b937a5d1b7bf825624b3ed5f2b6)), closes [#4532](https://github.com/matteobruni/tsparticles/issues/4532)
+-   fixed issue with opacity and svg with color replaced, closes [#4532](https://github.com/matteobruni/tsparticles/issues/4532) ([9119b61](https://github.com/matteobruni/tsparticles/commit/9119b61cd6f5cc4a7bcc756f08dd700a77713666))
+-   fixes build scripts, closes [#3909](https://github.com/matteobruni/tsparticles/issues/3909), closes [#3911](https://github.com/matteobruni/tsparticles/issues/3911) ([d2c3fb3](https://github.com/matteobruni/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+
+### Features
+
+-   added error prefix to standardize error messages ([f735252](https://github.com/matteobruni/tsparticles/commit/f73525291139f45c1b5abda04b604813f9247d9f))
+-   added image preload ([b8072f6](https://github.com/matteobruni/tsparticles/commit/b8072f60863a5138d746621e69f4699c8b3b6366))
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+-   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/matteobruni/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+-   moved all shapes to external packages, breaking ([77e4113](https://github.com/matteobruni/tsparticles/commit/77e411338f65ab076fe85c0f143c13417147d4b5))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+-   reworked image shape, now supports multiple colors in svg replace color, random value too ([3173ebc](https://github.com/matteobruni/tsparticles/commit/3173ebc14716b241fbb84ae9f1a2cd3c5567f846))
+-   reworking image shape for supporting multiple colors in svg replace color ([c28bc85](https://github.com/matteobruni/tsparticles/commit/c28bc85fded04a54a3d4cb25dca1701f1f6b1f01))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-shape-image@2.9.2...tsparticles-shape-image@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package tsparticles-shape-image

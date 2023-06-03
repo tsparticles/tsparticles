@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
+
+### Features
+
+-   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/matteobruni/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/electron-particles-demo@2.9.2...electron-particles-demo@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package electron-particles-demo
