@@ -23,8 +23,8 @@
     "@babel/core": "^7.22.1",
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
-    "@nrwl/devkit": "16.3.2",
-    "@nrwl/workspace": "16.3.2",
+    "@nrwl/devkit": "^15.9.4",
+    "@nrwl/workspace": "^15.9.4",
     "@skypack/package-check": "^0.2.2",
     "@tsparticles/cli": "^1.4.1",
     "@tsparticles/eslint-config": "^1.11.0",
@@ -56,7 +56,8 @@
     "jsdom-global": "^3.0.2",
     "lerna": "^6.6.2",
     "mocha": "^10.2.0",
-    "nx": "16.3.2",
+    "nx": "^15.9.4",
+    "nx-cloud": "^15.3.5",
     "nyc": "^15.1.0",
     "prettier": "^2.8.8",
     "reflect-metadata": "^0.1.13",
@@ -76,8 +77,7 @@
     "webpack": "^5.85.0",
     "webpack-bundle-analyzer": "^4.9.0",
     "webpack-cli": "^5.1.1",
-    "yorkie": "^2.0.0",
-    "nx-cloud": "16.0.5"
+    "yorkie": "^2.0.0"
   }
 }
 
