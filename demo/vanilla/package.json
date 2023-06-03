@@ -49,7 +49,7 @@
     },
     "dependencies": {
         "tsparticles": "^2.10.0",
-        "tsparticles-confetti": "^2.10.0",
+        "tsparticles-confetti": "^2.9.3",
         "tsparticles-demo-configs": "^2.10.0",
         "tsparticles-engine": "^2.10.0",
         "tsparticles-fireworks": "^2.10.0",
