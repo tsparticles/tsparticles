@@ -145,6 +145,7 @@
         await loadEasingQuartPlugin(tsParticles);
         await loadEasingQuintPlugin(tsParticles);
         await loadEasingSinePlugin(tsParticles);
+        await loadHsvColorPlugin(tsParticles);
         await loadInfectionPlugin(tsParticles);
         await loadMotionPlugin(tsParticles);
         await loadPolygonMaskPlugin(tsParticles);
