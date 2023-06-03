@@ -24,6 +24,7 @@
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
     "@nrwl/devkit": "^15.9.4",
+    "@nrwl/nx-cloud": "^15.3.5",
     "@nrwl/workspace": "^15.9.4",
     "@skypack/package-check": "^0.2.2",
     "@tsparticles/cli": "^1.4.1",
