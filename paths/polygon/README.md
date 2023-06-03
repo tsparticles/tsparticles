@@ -25,11 +25,13 @@ loadPolygonPath
 Once the scripts are loaded you can set up `tsParticles` and the path plugin like this:
 
 ```javascript
-loadPolygonPath(tsParticles);
+(async () => {
+  await loadPolygonPath(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load("tsparticles", {
+    /* options */
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +54,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadPolygonPath } = require("tsparticles-path-polygon");
 
-loadPolygonPath(tsParticles);
+(async () => {
+  await loadPolygonPath(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +65,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadPolygonPath } from "tsparticles-path-polygon";
 
-loadPolygonPath(tsParticles);
+(async () => {
+  await loadPolygonPath(tsParticles);
+})();
 ```

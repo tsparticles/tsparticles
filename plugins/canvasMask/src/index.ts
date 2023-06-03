@@ -5,7 +5,6 @@ import type { CanvasMaskOptions } from "./types";
 import type { ICanvasMaskOptions } from "./types";
 
 /**
- * @category Canvas Mask Plugin
  */
 class CanvasMaskPlugin implements IPlugin {
     readonly id;
@@ -41,6 +40,9 @@ class CanvasMaskPlugin implements IPlugin {
     }
 }
 
+/**
+ * @param engine
+ */
 export async function loadCanvasMaskPlugin(engine: Engine): Promise<void> {
     const plugin = new CanvasMaskPlugin(engine);
 

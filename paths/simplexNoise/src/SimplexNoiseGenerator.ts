@@ -1,8 +1,6 @@
-import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
+import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "tsparticles-engine";
 import type { ISimplexOptions } from "./ISimplexOptions";
 import type { Noise4D } from "./simplex";
-import { Vector } from "tsparticles-engine";
-import { getRandom } from "tsparticles-engine";
 import { makeNoise4D } from "./simplex";
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
@@ -56,7 +54,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
     init(container: Container): void {
         this.container = container;
 
-        this.setup(this.container);
+        this._setup(this.container);
     }
 
     reset(): void {
@@ -68,26 +66,28 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
             return;
         }
 
-        this.calculateField();
+        this._calculateField();
 
         this.noiseW += this.options.increment;
     }
 
-    private calculateField(): void {
+    private readonly _calculateField: () => void = () => {
         for (let x = 0; x < this.options.columns; x++) {
             for (let y = 0; y < this.options.rows; y++) {
                 for (let z = 0; z < this.options.layers; z++) {
-                    const angle = this.noiseFunc(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2,
-                        length = this.noiseFunc(x / 100 + 40000, y / 100 + 40000, z / 100 + 40000, this.noiseW);
-
-                    this.field[x][y][z][0] = angle;
-                    this.field[x][y][z][1] = length;
+                    this.field[x][y][z][0] = this.noiseFunc(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
+                    this.field[x][y][z][1] = this.noiseFunc(
+                        x / 100 + 40000,
+                        y / 100 + 40000,
+                        z / 100 + 40000,
+                        this.noiseW
+                    );
                 }
             }
         }
-    }
+    };
 
-    private initField(): void {
+    private readonly _initField: () => void = () => {
         this.field = new Array(this.options.columns);
 
         for (let x = 0; x < this.options.columns; x++) {
@@ -101,9 +101,9 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
                 }
             }
         }
-    }
+    };
 
-    private resetField(container: Container): void {
+    private readonly _resetField: (container: Container) => void = (container) => {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
         this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
@@ -117,14 +117,14 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         this.options.rows = Math.floor(this.options.height / this.options.size) + 1;
         this.options.layers = Math.floor(container.zLayers / this.options.size) + 1;
 
-        this.initField();
-    }
+        this._initField();
+    };
 
-    private setup(container: Container): void {
+    private readonly _setup: (container: Container) => void = (container) => {
         this.noiseW = 0;
 
-        this.resetField(container);
+        this._resetField(container);
 
-        addEventListener("resize", () => this.resetField(container));
-    }
+        addEventListener("resize", () => this._resetField(container));
+    };
 }

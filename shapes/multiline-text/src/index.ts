@@ -1,6 +1,9 @@
 import type { Engine } from "tsparticles-engine";
 import { MultilineTextDrawer } from "./MultilineTextDrawer";
 
-export function loadMultilineTextShape(engine: Engine): void {
-    engine.addShape("multiline-text", new MultilineTextDrawer());
+/**
+ * @param engine -
+ */
+export async function loadMultilineTextShape(engine: Engine): Promise<void> {
+    await engine.addShape("multiline-text", new MultilineTextDrawer());
 }

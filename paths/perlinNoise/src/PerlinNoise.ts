@@ -32,10 +32,20 @@ const p = [
 const perm = new Array(512);
 const gradP = new Array(512);
 
+/**
+ * @param t -
+ * @returns the fade value
+ */
 function fade(t: number): number {
     return t * t * t * (t * (t * 6 - 15) + 10);
 }
 
+/**
+ * @param a -
+ * @param b -
+ * @param t -
+ * @returns the linear interpolation value
+ */
 function lerp(a: number, b: number, t: number): number {
     return (1 - t) * a + t * b;
 }
@@ -46,6 +56,7 @@ export class PerlinNoise {
         let X = Math.floor(x),
             Y = Math.floor(y),
             Z = Math.floor(z);
+
         // Get relative xyz coordinates of point within that cell
         x = x - X;
         y = y - Y;
@@ -56,19 +67,18 @@ export class PerlinNoise {
         Z = Z & 255;
 
         // Calculate noise contributions from each of the eight corners
-        const n000 = gradP[X + perm[Y + perm[Z]]].dot3(x, y, z);
-        const n001 = gradP[X + perm[Y + perm[Z + 1]]].dot3(x, y, z - 1);
-        const n010 = gradP[X + perm[Y + 1 + perm[Z]]].dot3(x, y - 1, z);
-        const n011 = gradP[X + perm[Y + 1 + perm[Z + 1]]].dot3(x, y - 1, z - 1);
-        const n100 = gradP[X + 1 + perm[Y + perm[Z]]].dot3(x - 1, y, z);
-        const n101 = gradP[X + 1 + perm[Y + perm[Z + 1]]].dot3(x - 1, y, z - 1);
-        const n110 = gradP[X + 1 + perm[Y + 1 + perm[Z]]].dot3(x - 1, y - 1, z);
-        const n111 = gradP[X + 1 + perm[Y + 1 + perm[Z + 1]]].dot3(x - 1, y - 1, z - 1);
-
-        // Compute the fade curve value for x, y, z
-        const u = fade(x);
-        const v = fade(y);
-        const w = fade(z);
+        const n000 = gradP[X + perm[Y + perm[Z]]].dot3(x, y, z),
+            n001 = gradP[X + perm[Y + perm[Z + 1]]].dot3(x, y, z - 1),
+            n010 = gradP[X + perm[Y + 1 + perm[Z]]].dot3(x, y - 1, z),
+            n011 = gradP[X + perm[Y + 1 + perm[Z + 1]]].dot3(x, y - 1, z - 1),
+            n100 = gradP[X + 1 + perm[Y + perm[Z]]].dot3(x - 1, y, z),
+            n101 = gradP[X + 1 + perm[Y + perm[Z + 1]]].dot3(x - 1, y, z - 1),
+            n110 = gradP[X + 1 + perm[Y + 1 + perm[Z]]].dot3(x - 1, y - 1, z),
+            n111 = gradP[X + 1 + perm[Y + 1 + perm[Z + 1]]].dot3(x - 1, y - 1, z - 1),
+            // Compute the fade curve value for x, y, z
+            u = fade(x),
+            v = fade(y),
+            w = fade(z);
 
         // Interpolate
         return lerp(
@@ -96,6 +106,7 @@ export class PerlinNoise {
             const v = i & 1 ? p[i] ^ (seed & 255) : p[i] ^ ((seed >> 8) & 255);
 
             perm[i] = perm[i + 256] = v;
+
             gradP[i] = gradP[i + 256] = grad3[v % 12];
         }
     }

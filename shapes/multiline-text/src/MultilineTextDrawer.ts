@@ -1,10 +1,17 @@
-import type { Container, IParticle, IShapeDrawer, SingleOrMultiple } from "tsparticles-engine";
-import { executeOnSingleOrMultiple, isInArray, itemFromSingleOrMultiple, loadFont } from "tsparticles-engine";
+import {
+    type Container,
+    type IShapeDrawer,
+    type SingleOrMultiple,
+    executeOnSingleOrMultiple,
+    isInArray,
+    itemFromSingleOrMultiple,
+    loadFont,
+} from "tsparticles-engine";
 import type { IMultilineTextShape } from "./IMultilineTextShape";
 import type { MultilineTextParticle } from "./MultilineTextParticle";
 
 export class MultilineTextDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number, opacity: number): void {
+    draw(context: CanvasRenderingContext2D, particle: MultilineTextParticle, radius: number, opacity: number): void {
         const character = particle.shapeData as IMultilineTextShape;
 
         if (character === undefined) {
@@ -17,13 +24,11 @@ export class MultilineTextDrawer implements IShapeDrawer {
             return;
         }
 
-        const textParticle = particle as MultilineTextParticle;
-
-        if (textParticle.text === undefined) {
-            textParticle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
+        if (particle.text === undefined) {
+            particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
         }
 
-        const text = textParticle.text,
+        const text = particle.text,
             style = character.style ?? "",
             weight = character.weight ?? "400",
             size = Math.round(radius) * 2,
@@ -63,14 +68,39 @@ export class MultilineTextDrawer implements IShapeDrawer {
         }
     }
 
-    private _drawLine(
+    /**
+     * Loads the text shape to the given particle
+     * @param container - the particles container
+     * @param particle - the particle loading the text shape
+     */
+    particleInit(container: Container, particle: MultilineTextParticle): void {
+        if (particle.shape !== "multiline-text") {
+            return;
+        }
+
+        const character = particle.shapeData as IMultilineTextShape;
+
+        if (character === undefined) {
+            return;
+        }
+
+        const textData = character.value;
+
+        if (textData === undefined) {
+            return;
+        }
+
+        particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
+    }
+
+    private readonly _drawLine: (
         context: CanvasRenderingContext2D,
         line: string,
         radius: number,
         opacity: number,
         index: number,
         fill: boolean
-    ): void {
+    ) => void = (context, line, radius, opacity, index, fill) => {
         const offsetX = (line.length * radius) / 2,
             pos = {
                 x: -offsetX,
@@ -82,5 +112,5 @@ export class MultilineTextDrawer implements IShapeDrawer {
         } else {
             context.strokeText(line, pos.x, pos.y + radius * 2 * index);
         }
-    }
+    };
 }

@@ -1,31 +1,96 @@
-import type {
-    ICoordinates,
-    IOptionLoader,
-    IShapeValues,
-    RecursivePartial,
-    ShapeData,
-    SingleOrMultiple,
+import {
+    type ICoordinates,
+    type IOptionLoader,
+    type IShapeValues,
+    type RecursivePartial,
+    type ShapeData,
+    type SingleOrMultiple,
+    deepExtend,
 } from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
-import { deepExtend } from "tsparticles-engine";
 
+/**
+ *
+ */
 export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfettiOptions> {
+    /**
+     *
+     */
     angle: number;
+
+    /**
+     *
+     */
     colors: SingleOrMultiple<string>;
+
+    /**
+     *
+     */
     count: number;
+
+    /**
+     *
+     */
     decay: number;
+
+    /**
+     *
+     */
     disableForReducedMotion: boolean;
+
+    /**
+     *
+     */
     drift: number;
+
+    /**
+     *
+     */
     gravity: number;
+
+    /**
+     *
+     */
     position: ICoordinates;
+
+    /**
+     *
+     */
     scalar: number;
+
+    /**
+     *
+     */
     shapeOptions: ShapeData;
+
+    /**
+     *
+     */
     shapes: SingleOrMultiple<string>;
+
+    /**
+     *
+     */
     spread: number;
+
+    /**
+     *
+     */
     startVelocity: number;
+
+    /**
+     *
+     */
     ticks: number;
+
+    /**
+     *
+     */
     zIndex: number;
 
+    /**
+     *
+     */
     constructor() {
         this.angle = 90;
         this.count = 50;
@@ -49,6 +114,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
     /**
      * @deprecated use position instead
+     * @returns the origin of the confetti
      */
     get origin(): ICoordinates {
         return {
@@ -67,6 +133,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
     /**
      * @deprecated use count instead
+     * @returns the number of particles
      */
     get particleCount(): number {
         return this.count;
@@ -79,6 +146,10 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
         this.count = value;
     }
 
+    /**
+     *
+     * @param data -
+     */
     load(data?: RecursivePartial<IConfettiOptions>): void {
         if (!data) {
             return;

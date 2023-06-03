@@ -1,8 +1,7 @@
-import type { Container, ISourceOptions, RecursivePartial } from "tsparticles-engine";
+import { type Container, type ISourceOptions, type RecursivePartial, tsParticles } from "tsparticles-engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCardsShape } from "tsparticles-shape-cards";
 import { loadCircleShape } from "tsparticles-shape-circle";
@@ -16,27 +15,72 @@ import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadRollUpdater } from "tsparticles-updater-roll";
+import { loadRotateUpdater } from "tsparticles-updater-rotate";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
 import { loadTextShape } from "tsparticles-shape-text";
 import { loadTiltUpdater } from "tsparticles-updater-tilt";
 import { loadWobbleUpdater } from "tsparticles-updater-wobble";
-import { tsParticles } from "tsparticles-engine";
 
+/**
+ *
+ */
 export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
+
+declare global {
+    /**
+     *
+     */
+    interface Window {
+        /**
+         *
+         */
+        confetti: ConfettiFunc & {
+            /**
+             *
+             * @param canvas -
+             * @param options -
+             * @returns the confetti function
+             */
+            create: (canvas: HTMLCanvasElement, options: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
+
+            /**
+             * the confetti version number
+             */
+            version: string;
+        };
+    }
+}
 
 let initialized = false;
 let initializing = false;
 
 const ids = new Map<string, Container | undefined>();
 
+/**
+ * The {@link confetti} parameter object definition
+ */
 type ConfettiParams = {
+    /**
+     *
+     */
     canvas?: HTMLCanvasElement;
+
+    /**
+     *
+     */
     id: string;
+
+    /**
+     *
+     */
     options: RecursivePartial<IConfettiOptions>;
 };
 
+/**
+ * This function prepares all the plugins needed by the confetti bundle
+ */
 async function initPlugins(): Promise<void> {
     if (initialized) {
         return;
@@ -45,10 +89,12 @@ async function initPlugins(): Promise<void> {
     if (initializing) {
         return new Promise<void>((resolve) => {
             const interval = setInterval(() => {
-                if (initialized) {
-                    clearInterval(interval);
-                    resolve();
+                if (!initialized) {
+                    return;
                 }
+
+                clearInterval(interval);
+                resolve();
             }, 100);
         });
     }
@@ -66,7 +112,7 @@ async function initPlugins(): Promise<void> {
     await loadSquareShape(tsParticles);
     await loadStarShape(tsParticles);
     await loadTextShape(tsParticles);
-    await loadAngleUpdater(tsParticles);
+    await loadRotateUpdater(tsParticles);
     await loadColorUpdater(tsParticles);
     await loadLifeUpdater(tsParticles);
     await loadOpacityUpdater(tsParticles);
@@ -80,12 +126,19 @@ async function initPlugins(): Promise<void> {
     initialized = true;
 }
 
+/**
+ * @param params - the parameters object used for the confetti animation
+ * @returns the tsParticles Container for more customizations
+ */
 async function setConfetti(params: ConfettiParams): Promise<Container | undefined> {
     const actualOptions = new ConfettiOptions();
 
     actualOptions.load(params.options);
 
     let container;
+
+    const fpsLimit = 120,
+        opacitySpeed = (actualOptions.ticks * 1000) / (3600 * fpsLimit);
 
     if (ids.has(params.id)) {
         container = ids.get(params.id);
@@ -117,13 +170,21 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             type: actualOptions.shapes,
                             options: actualOptions.shapeOptions,
                         },
+                        life: {
+                            count: 1,
+                        },
+                        opacity: {
+                            value: { min: 0, max: 1 },
+                            animation: {
+                                enable: true,
+                                sync: true,
+                                speed: opacitySpeed,
+                                startValue: "max",
+                                destroy: "min",
+                            },
+                        },
                         size: {
                             value: 5 * actualOptions.scalar,
-                        },
-                        life: {
-                            duration: {
-                                value: actualOptions.ticks / 60,
-                            },
                         },
                         move: {
                             angle: {
@@ -170,7 +231,8 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 value: { min: 0, max: 1 },
                 animation: {
                     enable: true,
-                    speed: 0.5,
+                    sync: true,
+                    speed: opacitySpeed,
                     startValue: "max",
                     destroy: "min",
                 },
@@ -182,10 +244,6 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 enable: false,
             },
             life: {
-                duration: {
-                    sync: true,
-                    value: actualOptions.ticks / 60,
-                },
                 count: 1,
             },
             move: {
@@ -289,11 +347,22 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
     return container;
 }
 
+/**
+ *
+ * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
+ * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
+ * @returns the container of the animation, or undefined if no canvas was found
+ */
 type ConfettiFunc = (
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>
 ) => Promise<Container | undefined>;
 
+/**
+ * @param idOrOptions - the id used for the canvas, or if not using two parameters, the animation configuration object
+ * @param confettiOptions - the animation configuration object, this parameter is mandatory only if providing an id
+ * @returns the container of the animation, or undefined if no canvas was found
+ */
 export async function confetti(
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>
@@ -317,6 +386,12 @@ export async function confetti(
     });
 }
 
+/**
+ *
+ * @param canvas -
+ * @param options -
+ * @returns the confetti function to use for the given canvas animations
+ */
 confetti.create = async (
     canvas: HTMLCanvasElement,
     options: RecursivePartial<IConfettiOptions>
@@ -353,3 +428,10 @@ confetti.create = async (
         });
     };
 };
+
+/**
+ *
+ */
+confetti.version = tsParticles.version;
+
+window.confetti = confetti;

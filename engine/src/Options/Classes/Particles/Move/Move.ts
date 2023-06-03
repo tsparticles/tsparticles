@@ -18,7 +18,6 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Move.md]]
- * @category Options
  */
 export class Move implements IMove, IOptionLoader<IMove> {
     angle;
@@ -65,6 +64,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @returns the collisions value
      */
     get bounce(): boolean {
         return this.collisions;
@@ -72,7 +72,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value
+     * @param value -
      */
     set bounce(value: boolean) {
         this.collisions = value;
@@ -80,6 +80,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options
+     * @returns the collisions value
      */
     get collisions(): boolean {
         return false;
@@ -87,55 +88,54 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
     /**
      * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param _
+     * @param _ -
      */
     set collisions(_: boolean) {
         // deprecated
     }
 
     /**
-     * @deprecated use the new [[path]] property instead
+     * @deprecated use the new {@link Move.path} property instead
+     * @returns the noise value
      */
     get noise(): MovePath {
         return this.path;
     }
 
     /**
-     * @deprecated use the new [[path]] property instead
+     * @deprecated use the new {@link Move.path} property instead
      */
     set noise(value: MovePath) {
         this.path = value;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
+     * @returns the outMode value
      */
     get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
         return this.outModes.default;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
-     * @param value
+     * @param value -
      */
     set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
         this.outModes.default = value;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
+     * @returns the outMode value
      */
     get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
         return this.outMode;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new outMode
-     * @param value
+     * @param value -
      */
     set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
         this.outMode = value;

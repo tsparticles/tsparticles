@@ -1,14 +1,25 @@
-import type { IDelta, Particle } from "tsparticles-engine";
-import { RotateDirection, clamp, getDistances, getRandom } from "tsparticles-engine";
+import {
+    type IDelta,
+    type Move,
+    type Particle,
+    RotateDirection,
+    clamp,
+    getDistances,
+    getRandom,
+} from "tsparticles-engine";
 import type { MoveParticle } from "./Types";
 
+/**
+ * @param particle -
+ */
 export function applyDistance(particle: MoveParticle): void {
     const initialPosition = particle.initialPosition,
         { dx, dy } = getDistances(initialPosition, particle.position),
         dxFixed = Math.abs(dx),
         dyFixed = Math.abs(dy),
-        hDistance = particle.retina.maxDistance.horizontal,
-        vDistance = particle.retina.maxDistance.vertical;
+        { maxDistance } = particle.retina,
+        hDistance = maxDistance.horizontal,
+        vDistance = maxDistance.vertical;
 
     if (!hDistance && !vDistance) {
         return;
@@ -40,6 +51,74 @@ export function applyDistance(particle: MoveParticle): void {
     }
 }
 
+/**
+ *
+ * @param particle -
+ * @param moveOptions -
+ * @param moveSpeed -
+ * @param maxSpeed -
+ * @param moveDrift -
+ * @param delta -
+ */
+export function move(
+    particle: MoveParticle,
+    moveOptions: Move,
+    moveSpeed: number,
+    maxSpeed: number,
+    moveDrift: number,
+    delta: IDelta
+): void {
+    applyPath(particle, delta);
+
+    const gravityOptions = particle.gravity,
+        gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -1 : 1;
+
+    if (moveDrift && moveSpeed) {
+        particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+    }
+
+    if (gravityOptions?.enable && moveSpeed) {
+        particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
+    }
+
+    const decay = particle.moveDecay;
+
+    particle.velocity.multTo(decay);
+
+    const velocity = particle.velocity.mult(moveSpeed);
+
+    if (
+        gravityOptions?.enable &&
+        maxSpeed > 0 &&
+        ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
+            (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
+    ) {
+        velocity.y = gravityFactor * maxSpeed;
+
+        if (moveSpeed) {
+            particle.velocity.y = velocity.y / moveSpeed;
+        }
+    }
+
+    const zIndexOptions = particle.options.zIndex,
+        zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
+
+    velocity.multTo(zVelocityFactor);
+
+    const { position } = particle;
+
+    position.addTo(velocity);
+
+    if (moveOptions.vibrate) {
+        position.x += Math.sin(position.x * Math.cos(position.y));
+        position.y += Math.cos(position.y * Math.sin(position.x));
+    }
+}
+
+/**
+ * @param particle -
+ * @param moveSpeed -
+ */
 export function spin(particle: MoveParticle, moveSpeed: number): void {
     const container = particle.container;
 
@@ -69,6 +148,10 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
     particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
 }
 
+/**
+ * @param particle -
+ * @param delta -
+ */
 export function applyPath(particle: Particle, delta: IDelta): void {
     const particlesOptions = particle.options,
         pathOptions = particlesOptions.move.path,
@@ -84,7 +167,7 @@ export function applyPath(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const path = particle.pathGenerator?.generate(particle);
+    const path = particle.pathGenerator?.generate(particle, delta);
 
     if (path) {
         particle.velocity.addTo(path);
@@ -98,6 +181,10 @@ export function applyPath(particle: Particle, delta: IDelta): void {
     particle.lastPathTime -= particle.pathDelay;
 }
 
+/**
+ * @param particle -
+ * @returns proximity speed factor
+ */
 export function getProximitySpeedFactor(particle: Particle): number {
     return particle.slow.inRange ? particle.slow.factor : 1;
 }

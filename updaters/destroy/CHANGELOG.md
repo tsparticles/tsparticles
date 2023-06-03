@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
+
+### Bug Fixes
+
+-   **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/matteobruni/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
+-   **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/matteobruni/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
+-   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/matteobruni/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+
+### Features
+
+-   added color and colorOffset options to split options ([74902b3](https://github.com/matteobruni/tsparticles/commit/74902b33cdd37839b48dbd694c2e070735f9956b))
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+-   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/matteobruni/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+-   created destroy updater, moved all particles destroy (split and similar) code from engine ([f8642fd](https://github.com/matteobruni/tsparticles/commit/f8642fda3f43688ae7a0df55f5b06bb2a45d9e80))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-destroy@2.9.2...tsparticles-updater-destroy@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package tsparticles-updater-destroy

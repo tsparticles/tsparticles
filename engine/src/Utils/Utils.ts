@@ -1,4 +1,15 @@
-import { collisionVelocity, getDistances, getRandom, getValue } from "./NumberUtils";
+import {
+    collisionVelocity,
+    getDistances,
+    getRandom,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    getValue,
+    randomInRange,
+} from "./NumberUtils";
+import { AnimationMode } from "../Enums/Modes/AnimationMode";
+import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
 import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
@@ -7,31 +18,50 @@ import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import type { IParticle } from "../Core/Interfaces/IParticle";
+import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { StartValueType } from "../Enums/Types/StartValueType";
 import { Vector } from "../Core/Utils/Vector";
+
+type RectSideBounceData = {
+    /**
+     * bounce factor
+     */
+    factor: number;
+    /**
+     * particle bounce other side
+     */
+    pOtherSide: IRangeValue;
+    /**
+     * particle bounce side
+     */
+    pSide: IRangeValue;
+    /**
+     * rectangle bounce other side
+     */
+    rectOtherSide: IRangeValue;
+    /**
+     * rectangle bounce side
+     */
+    rectSide: IRangeValue;
+    /**
+     * particle velocity
+     */
+    velocity: number;
+};
 
 /**
  * Calculates the bounce on a rectangle side
- * @hidden
- * @param pSide particle bounce side
- * @param pOtherSide particle bounce other side
- * @param rectSide rectangle bounce side
- * @param rectOtherSide rectangle bounce other side
- * @param velocity particle velocity
- * @param factor bounce factor
+ * @param data - the rectangle side bounce values
+ * @returns the rectangle side bounce values
  */
-function rectSideBounce(
-    pSide: IRangeValue,
-    pOtherSide: IRangeValue,
-    rectSide: IRangeValue,
-    rectOtherSide: IRangeValue,
-    velocity: number,
-    factor: number
-): IRectSideResult {
-    const res: IRectSideResult = { bounced: false };
+function rectSideBounce(data: RectSideBounceData): IRectSideResult {
+    const res: IRectSideResult = { bounced: false },
+        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
 
     if (
         pOtherSide.min < rectOtherSide.min ||
@@ -55,9 +85,9 @@ function rectSideBounce(
 
 /**
  * Checks if the given selectors matches the element
- * @hidden
- * @param element element to check
- * @param selectors selectors to check
+ * @param element - element to check
+ * @param selectors - selectors to check
+ * @returns true or false, if the selector has found something
  */
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
     const res = executeOnSingleOrMultiple(selectors, (selector) => {
@@ -69,15 +99,23 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
 
 /**
  * Checks if the script is executed server side
+ * @returns true if the environment is server side
  */
 export function isSsr(): boolean {
     return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
 }
 
+/**
+ * @returns true if the environment supports matchMedia feature
+ */
 export function hasMatchMedia(): boolean {
     return !isSsr() && typeof matchMedia !== "undefined";
 }
 
+/**
+ * @param query -
+ * @returns the media query list, if supported
+ */
 export function safeMatchMedia(query: string): MediaQueryList | undefined {
     if (!hasMatchMedia()) {
         return;
@@ -88,6 +126,7 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 
 /**
  * Calls the requestAnimationFrame function or a polyfill
+ * @returns the animation callback id, so it can be canceled
  */
 export function animate(): (callback: FrameRequestCallback) => number {
     return isSsr()
@@ -97,6 +136,7 @@ export function animate(): (callback: FrameRequestCallback) => number {
 
 /**
  * Cancels the requestAnimationFrame function or a polyfill
+ * @returns the animation cancelling function
  */
 export function cancelAnimation(): (handle: number) => void {
     return isSsr()
@@ -106,8 +146,8 @@ export function cancelAnimation(): (handle: number) => void {
 
 /**
  * Checks if a value is equal to the destination, if same type, or is in the provided array
- * @param value the value to check
- * @param array the data array or single value
+ * @param value - the value to check
+ * @param array - the data array or single value
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
@@ -116,8 +156,8 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 
 /**
  * Loads a font for the canvas
- * @param font font name
- * @param weight font weight
+ * @param font - font name
+ * @param weight - font weight
  */
 export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
@@ -129,7 +169,7 @@ export async function loadFont(font?: string, weight?: string): Promise<void> {
 
 /**
  * Returns a random array index
- * @param array the array to get the index from
+ * @param array - the array to get the index from
  * @returns a random array index
  */
 export function arrayRandomIndex<T>(array: T[]): number {
@@ -138,9 +178,10 @@ export function arrayRandomIndex<T>(array: T[]): number {
 
 /**
  * Returns a random object from the given array
- * @param array the array to get the object from
- * @param index the index to get the object from
- * @param useIndex if true, the index will be used instead of a random index
+ * @param array - the array to get the object from
+ * @param index - the index to get the object from
+ * @param useIndex - if true, the index will be used instead of a random index
+ * @returns the item found
  */
 export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
     return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
@@ -148,11 +189,11 @@ export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T
 
 /**
  * Checks if the given point is inside the given rectangle
- * @param point the point to check
- * @param size the rectangle size
- * @param offset position offset
- * @param radius the point radius
- * @param direction the point direction
+ * @param point - the point to check
+ * @param size - the rectangle size
+ * @param offset - position offset
+ * @param radius - the point radius
+ * @param direction - the point direction
  * @returns true if the point is inside the rectangle
  */
 export function isPointInside(
@@ -167,10 +208,11 @@ export function isPointInside(
 
 /**
  * Checks if the given shape bounds are inside the given rectangle
- * @param bounds the shape bounds to check
- * @param size the rectangle size
- * @param offset position offset
- * @param direction the shape direction
+ * @param bounds - the shape bounds to check
+ * @param size - the rectangle size
+ * @param offset - position offset
+ * @param direction - the shape direction
+ * @returns true if the given bounds are inside the given area, false if not
  */
 export function areBoundsInside(
     bounds: IBounds,
@@ -201,8 +243,8 @@ export function areBoundsInside(
 
 /**
  * Calculates the bounds of the given point
- * @param point the point to calculate the bounds from
- * @param radius the point radius
+ * @param point - the point to calculate the bounds from
+ * @param radius - the point radius
  * @returns the bounds of the given point
  */
 export function calculateBounds(point: ICoordinates, radius: number): IBounds {
@@ -216,8 +258,8 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
 
 /**
  * Merges the whole source objects into the destination object
- * @param destination the destination object
- * @param sources the source objects
+ * @param destination - the destination object
+ * @param sources - the source objects
  * @returns the merged destination object
  */
 export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
@@ -262,8 +304,8 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
 /**
  * Checks if the given div mode is enabled in the given div elements
- * @param mode the div mode to check
- * @param divs the div elements to check
+ * @param mode - the div mode to check
+ * @param divs - the div elements to check
  * @returns true if the div mode is enabled
  */
 export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
@@ -272,9 +314,9 @@ export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>
 
 /**
  * Execute the given callback if div mode in the given div elements is enabled
- * @param mode the div mode to check
- * @param divs the div elements to check
- * @param callback the callback to execute
+ * @param mode - the div mode to check
+ * @param divs - the div elements to check
+ * @param callback - the callback to execute
  */
 export function divModeExecute(
     mode: DivMode,
@@ -293,8 +335,8 @@ export function divModeExecute(
 
 /**
  * Execute the given callback for the given div event
- * @param div the div event to execute the callback for
- * @param callback the callback to execute
+ * @param div - the div event to execute the callback for
+ * @param callback - the callback to execute
  */
 export function singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
     const selectors = div.selectors;
@@ -306,8 +348,8 @@ export function singleDivModeExecute(div: DivEvent, callback: (selector: string,
 
 /**
  * Checks if the given element targets any of the div modes
- * @param divs the div elements to check
- * @param element the element to check
+ * @param divs - the div elements to check
+ * @param element - the element to check
  * @returns true if the element targets any of the div modes
  */
 export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
@@ -322,7 +364,7 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
 
 /**
  * Returns circle bounce data for the given particle
- * @param p the particle to get the circle bounds data for
+ * @param p - the particle to get the circle bounds data for
  * @returns the circle bounce data for the given particle
  */
 export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
@@ -337,8 +379,8 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
 
 /**
  * Executes the circle bounce between two particles
- * @param p1 the first particle
- * @param p2 the second particle
+ * @param p1 - the first particle
+ * @param p2 - the second particle
  */
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
     const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity),
@@ -368,33 +410,33 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 
 /**
  * Executes the bounce between a particle and div bounds
- * @param particle the particle to bounce
- * @param divBounds the div bounds to bounce
+ * @param particle - the particle to bounce
+ * @param divBounds - the div bounds to bounce
  */
 export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
         size = particle.getRadius(),
         bounds = calculateBounds(pPos, size),
-        resH = rectSideBounce(
-            {
+        resH = rectSideBounce({
+            pSide: {
                 min: bounds.left,
                 max: bounds.right,
             },
-            {
+            pOtherSide: {
                 min: bounds.top,
                 max: bounds.bottom,
             },
-            {
+            rectSide: {
                 min: divBounds.left,
                 max: divBounds.right,
             },
-            {
+            rectOtherSide: {
                 min: divBounds.top,
                 max: divBounds.bottom,
             },
-            particle.velocity.x,
-            getValue(particle.options.bounce.horizontal)
-        );
+            velocity: particle.velocity.x,
+            factor: getValue(particle.options.bounce.horizontal),
+        });
 
     if (resH.bounced) {
         if (resH.velocity !== undefined) {
@@ -406,26 +448,26 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
         }
     }
 
-    const resV = rectSideBounce(
-        {
+    const resV = rectSideBounce({
+        pSide: {
             min: bounds.top,
             max: bounds.bottom,
         },
-        {
+        pOtherSide: {
             min: bounds.left,
             max: bounds.right,
         },
-        {
+        rectSide: {
             min: divBounds.top,
             max: divBounds.bottom,
         },
-        {
+        rectOtherSide: {
             min: divBounds.left,
             max: divBounds.right,
         },
-        particle.velocity.y,
-        getValue(particle.options.bounce.vertical)
-    );
+        velocity: particle.velocity.y,
+        factor: getValue(particle.options.bounce.vertical),
+    });
 
     if (resV.bounced) {
         if (resV.velocity !== undefined) {
@@ -438,6 +480,11 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     }
 }
 
+/**
+ * @param obj -
+ * @param callback -
+ * @returns the transformed SingleOrMultiple data
+ */
 export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => U
@@ -445,13 +492,103 @@ export function executeOnSingleOrMultiple<T, U = void>(
     return obj instanceof Array ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
 }
 
+/**
+ * @param obj -
+ * @param index -
+ * @param useIndex -
+ * @returns the selected item
+ */
 export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
     return obj instanceof Array ? itemFromArray(obj, index, useIndex) : obj;
 }
 
+/**
+ * @param obj -
+ * @param callback -
+ * @returns the item found, if present
+ */
 export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => boolean
 ): T | undefined {
     return obj instanceof Array ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
+}
+
+/**
+ * @param options -
+ * @param pxRatio -
+ * @returns the animation init object
+ */
+export function initParticleNumericAnimationValue(
+    options: RangedAnimationValueWithRandom,
+    pxRatio: number
+): IParticleNumericValueAnimation {
+    const valueRange = options.value,
+        animationOptions = options.animation,
+        res: IParticleNumericValueAnimation = {
+            delayTime: getRangeValue(animationOptions.delay) * 1000,
+            enable: animationOptions.enable,
+            value: getRangeValue(options.value) * pxRatio,
+            max: getRangeMax(valueRange) * pxRatio,
+            min: getRangeMin(valueRange) * pxRatio,
+            loops: 0,
+            maxLoops: getRangeValue(animationOptions.count),
+            time: 0,
+        };
+
+    if (animationOptions.enable) {
+        res.decay = 1 - getRangeValue(animationOptions.decay);
+
+        switch (animationOptions.mode) {
+            case AnimationMode.increase:
+                res.status = AnimationStatus.increasing;
+
+                break;
+            case AnimationMode.decrease:
+                res.status = AnimationStatus.decreasing;
+
+                break;
+
+            case AnimationMode.random:
+                res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+
+                break;
+        }
+
+        const autoStatus = animationOptions.mode === AnimationMode.auto;
+
+        switch (animationOptions.startValue) {
+            case StartValueType.min:
+                res.value = res.min;
+
+                if (autoStatus) {
+                    res.status = AnimationStatus.increasing;
+                }
+
+                break;
+
+            case StartValueType.max:
+                res.value = res.max;
+
+                if (autoStatus) {
+                    res.status = AnimationStatus.decreasing;
+                }
+
+                break;
+
+            case StartValueType.random:
+            default:
+                res.value = randomInRange(res);
+
+                if (autoStatus) {
+                    res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                }
+
+                break;
+        }
+    }
+
+    res.initialValue = res.value;
+
+    return res;
 }

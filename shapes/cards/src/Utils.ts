@@ -1,5 +1,10 @@
 import type { ICardsPath, IPath } from "./ICardsPath";
 
+/**
+ * @param ctx
+ * @param radius
+ * @param path
+ */
 export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IPath): void {
     if (!path.segments.length || !path.segments[0].values.length) {
         return;

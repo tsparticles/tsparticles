@@ -1,4 +1,4 @@
-import { Options, RecursivePartial, tsParticles } from "../../src";
+import { Options, type RecursivePartial, tsParticles } from "../../src";
 import { Container } from "../../src/Core/Container";
 import type { IOptions } from "../../src";
 import { TestWindow } from "./Window";
@@ -10,14 +10,16 @@ declare global {
 }
 
 export class TestContainer {
+    container: Container;
+
     private readonly id: string;
     private options: RecursivePartial<IOptions> | undefined;
-    container: Container;
 
     constructor(options?: RecursivePartial<IOptions>) {
         globalThis.window = TestWindow;
 
-        window.SVGPathSeg = {} as any;
+        window.SVGPathSeg = {} as unknown;
+
         tsParticles.init();
 
         const defaultOptions: RecursivePartial<IOptions> = { particles: { size: { value: 0 } } };
@@ -30,8 +32,8 @@ export class TestContainer {
     }
 
     /**
-     * Reset the container. If [[options]] is provided, then the new spatial grid will be
-     * initialized with this [[options]]. Otherwise the last-used [[options]] will be used.
+     * Reset the container. If {@link options} is provided, then the new spatial grid will be
+     * initialized with this {@link options}. Otherwise the last-used {@link options} will be used.
      *
      * @param options
      */

@@ -7,7 +7,6 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Size.md]]
- * @category Options
  */
 export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
     animation;
@@ -20,17 +19,16 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new animation
+     * @returns the size animation object
      */
     get anim(): SizeAnimation {
         return this.animation;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new animation
-     * @param value
+     * @param value -
      */
     set anim(value: SizeAnimation) {
         this.animation = value;

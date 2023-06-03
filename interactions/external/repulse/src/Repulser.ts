@@ -1,11 +1,19 @@
 import {
     Circle,
     ClickMode,
+    type DivEvent,
     DivMode,
     DivType,
+    type Engine,
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IModes,
+    type Modes,
+    type Particle,
+    type Range,
     Rectangle,
+    type RecursivePartial,
     Vector,
     clamp,
     divMode,
@@ -16,23 +24,12 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type {
-    DivEvent,
-    Engine,
-    ICoordinates,
-    IModes,
-    Modes,
-    Particle,
-    Range,
-    RecursivePartial,
-} from "tsparticles-engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
 
 /**
  * Particle repulse manager
- * @category Interactions
  */
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     handleClickMode: (mode: string) => void;
@@ -50,9 +47,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
         this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions,
-                repulse = options.interactivity.modes.repulse;
+                repulseOpts = options.interactivity.modes.repulse;
 
-            if (!repulse || mode !== ClickMode.repulse) {
+            if (!repulseOpts || mode !== ClickMode.repulse) {
                 return;
             }
 
@@ -60,8 +57,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 container.repulse = { particles: [] };
             }
 
-            container.repulse.clicking = true;
-            container.repulse.count = 0;
+            const repulse = container.repulse;
+
+            repulse.clicking = true;
+            repulse.count = 0;
 
             for (const particle of container.repulse.particles) {
                 if (!this.isEnabled(particle)) {
@@ -71,18 +70,16 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 particle.velocity.setTo(particle.initialVelocity);
             }
 
-            container.repulse.particles = [];
-            container.repulse.finish = false;
+            repulse.particles = [];
+            repulse.finish = false;
 
             setTimeout(() => {
-                if (!container.destroyed) {
-                    if (!container.repulse) {
-                        container.repulse = { particles: [] };
-                    }
-
-                    container.repulse.clicking = false;
+                if (container.destroyed) {
+                    return;
                 }
-            }, repulse.duration * 1000);
+
+                repulse.clicking = false;
+            }, repulseOpts.duration * 1000);
         };
     }
 
@@ -106,18 +103,20 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             events = options.interactivity.events,
-            hoverEnabled = events.onHover.enable,
-            hoverMode = events.onHover.mode,
-            clickEnabled = events.onClick.enable,
-            clickMode = events.onClick.mode,
+            hover = events.onHover,
+            hoverEnabled = hover.enable,
+            hoverMode = hover.mode,
+            click = events.onClick,
+            clickEnabled = click.enable,
+            clickMode = click.mode,
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
-            this.hoverRepulse();
+            this._hoverRepulse();
         } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
-            this.clickRepulse();
+            this._clickRepulse();
         } else {
-            divModeExecute(DivMode.repulse, divs, (selector, div): void => this.singleSelectorRepulse(selector, div));
+            divModeExecute(DivMode.repulse, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
         }
     }
 
@@ -127,16 +126,16 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
+            hover = events.onHover,
+            click = events.onClick,
             divRepulse = isDivModeEnabled(DivMode.repulse, divs);
 
-        if (
-            !(divRepulse || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
-        ) {
+        if (!(divRepulse || (hover.enable && mouse.position) || (click.enable && mouse.clickPosition))) {
             return false;
         }
 
-        const hoverMode = events.onHover.mode,
-            clickMode = events.onClick.mode;
+        const hoverMode = hover.mode,
+            clickMode = click.mode;
 
         return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
     }
@@ -158,31 +157,29 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         // do nothing
     }
 
-    private clickRepulse(): void {
+    private readonly _clickRepulse: () => void = () => {
         const container = this.container,
-            repulse = container.actualOptions.interactivity.modes.repulse;
+            repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
-        if (!repulse) {
+        if (!repulseOptions) {
             return;
         }
 
-        if (!container.repulse) {
-            container.repulse = { particles: [] };
-        }
+        const repulse = container.repulse || { particles: [] };
 
-        if (!container.repulse.finish) {
-            if (!container.repulse.count) {
-                container.repulse.count = 0;
+        if (!repulse.finish) {
+            if (!repulse.count) {
+                repulse.count = 0;
             }
 
-            container.repulse.count++;
+            repulse.count++;
 
-            if (container.repulse.count === container.particles.count) {
-                container.repulse.finish = true;
+            if (repulse.count === container.particles.count) {
+                repulse.finish = true;
             }
         }
 
-        if (container.repulse.clicking) {
+        if (repulse.clicking) {
             const repulseDistance = container.retina.repulseModeDistance;
 
             if (!repulseDistance || repulseDistance < 0) {
@@ -202,11 +199,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
                     d = distance ** 2,
-                    velocity = repulse.speed,
+                    velocity = repulseOptions.speed,
                     force = (-repulseRadius * velocity) / d;
 
                 if (d <= repulseRadius) {
-                    container.repulse.particles.push(particle);
+                    repulse.particles.push(particle);
 
                     const vect = Vector.create(dx, dy);
 
@@ -215,15 +212,16 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                     particle.velocity.setTo(vect);
                 }
             }
-        } else if (container.repulse.clicking === false) {
-            for (const particle of container.repulse.particles) {
+        } else if (repulse.clicking === false) {
+            for (const particle of repulse.particles) {
                 particle.velocity.setTo(particle.initialVelocity);
             }
-            container.repulse.particles = [];
-        }
-    }
 
-    private hoverRepulse(): void {
+            repulse.particles = [];
+        }
+    };
+
+    private readonly _hoverRepulse: () => void = () => {
         const container = this.container,
             mousePos = container.interactivity.mouse.position,
             repulseRadius = container.retina.repulseModeDistance;
@@ -232,10 +230,15 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        this.processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
-    }
+        this._processRepulse(mousePos, repulseRadius, new Circle(mousePos.x, mousePos.y, repulseRadius));
+    };
 
-    private processRepulse(position: ICoordinates, repulseRadius: number, area: Range, divRepulse?: RepulseDiv): void {
+    private readonly _processRepulse: (
+        position: ICoordinates,
+        repulseRadius: number,
+        area: Range,
+        divRepulse?: RepulseDiv
+    ) => void = (position, repulseRadius, area, divRepulse) => {
         const container = this.container,
             query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
@@ -259,9 +262,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
             particle.position.addTo(normVec);
         }
-    }
+    };
 
-    private singleSelectorRepulse(selector: string, div: DivEvent): void {
+    private readonly _singleSelectorRepulse: (selector: string, div: DivEvent) => void = (selector, div) => {
         const container = this.container,
             repulse = container.actualOptions.interactivity.modes.repulse;
 
@@ -295,19 +298,27 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 divs = repulse.divs,
                 divRepulse = divMode(divs, elem);
 
-            this.processRepulse(pos, repulseRadius, area, divRepulse);
+            this._processRepulse(pos, repulseRadius, area, divRepulse);
         });
-    }
+    };
 }
 
 /*import {
     Circle,
     ClickMode,
+    type DivEvent,
     DivMode,
     DivType,
+    type Engine,
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IDelta,
+    type IModes,
+    type Modes,
+    type Range,
     Rectangle,
+    type RecursivePartial
     Vector,
     clamp,
     divMode,
@@ -318,14 +329,13 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { DivEvent, Engine, ICoordinates, IDelta, IModes, Modes, Range, RecursivePartial } from "tsparticles-engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
 
 /**
  * Particle repulse manager
- * @category Interactions
+ 
  *
 export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     handleClickMode: (mode: string) => void;

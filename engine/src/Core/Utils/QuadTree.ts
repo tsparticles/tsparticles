@@ -8,36 +8,11 @@ import { Rectangle } from "./Rectangle";
 import { getDistance } from "../../Utils/NumberUtils";
 
 /**
- * @category Utils
  */
 export class QuadTree {
     /**
-     * The North East subtree
-     * @private
-     */
-    private _NE?: QuadTree;
-
-    /**
-     * the North West subtree
-     * @private
-     */
-    private _NW?: QuadTree;
-
-    /**
-     * the South East subtree
-     * @private
-     */
-    private _SE?: QuadTree;
-
-    /**
-     * the South West subtree
-     * @private
-     */
-    private _SW?: QuadTree;
-
-    /**
      * Used to know if the current instance is divided or not (branch or leaf)
-     * @private
+     * @internal
      */
     private _divided;
 
@@ -46,19 +21,39 @@ export class QuadTree {
      */
     private readonly _points: Point[];
 
+    private readonly _subs: QuadTree[];
+
     /**
      * Initializes the instance with a rectangle and a capacity
-     * @param rectangle the instance rectangle area
-     * @param capacity the points capacity
+     * @param rectangle - the instance rectangle area
+     * @param capacity - the points capacity
      */
     constructor(readonly rectangle: Rectangle, readonly capacity: number) {
         this._points = [];
         this._divided = false;
+        this._subs = [];
     }
+
+    /*draw(context: CanvasRenderingContext2D): void {
+        context.strokeStyle = "#fff";
+        context.lineWidth = 1;
+        context.strokeRect(
+            this.rectangle.position.x,
+            this.rectangle.position.y,
+            this.rectangle.size.width,
+            this.rectangle.size.height
+        );
+
+        if (this._divided) {
+            for (const sub of this._subs) {
+                sub.draw(context);
+            }
+        }
+    }*/
 
     /**
      * Inserts the given point in the instance, or to its subtrees
-     * @param point the point to insert
+     * @param point - the point to insert
      * @returns true if the point is added to the instance or one of its subtrees, false if it's not
      */
     insert(point: Point): boolean {
@@ -73,27 +68,21 @@ export class QuadTree {
         }
 
         if (!this._divided) {
-            this.subdivide();
+            this._subdivide();
         }
 
-        return (
-            (this._NE?.insert(point) ||
-                this._NW?.insert(point) ||
-                this._SE?.insert(point) ||
-                this._SW?.insert(point)) ??
-            false
-        );
+        return this._subs.some((sub) => sub.insert(point));
     }
 
     /**
-     * Queries the instance using a [[Rectangle]] object, with the given position and the given size
-     * @param range the range to use for querying the tree
-     * @param check the function to check if the particle can be added to the result
-     * @param found found particles array, output parameter
+     * Queries the instance using a {@link Rectangle} object, with the given position and the given size
+     * @param range - the range to use for querying the tree
+     * @param check - the function to check if the particle can be added to the result
+     * @param found - found particles array, output parameter
      * @returns the particles inside the given range
      */
     query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
-        const res = found ?? [];
+        const res = found || [];
 
         if (!range.intersects(this.rectangle)) {
             return [];
@@ -112,20 +101,19 @@ export class QuadTree {
         }
 
         if (this._divided) {
-            this._NE?.query(range, check, res);
-            this._NW?.query(range, check, res);
-            this._SE?.query(range, check, res);
-            this._SW?.query(range, check, res);
+            for (const sub of this._subs) {
+                sub.query(range, check, res);
+            }
         }
 
         return res;
     }
 
     /**
-     * Queries the instance using a [[Circle]] object, with the given position and the given radius
-     * @param position the circle position
-     * @param radius the circle radius
-     * @param check the function to check if the particle can be added to the result
+     * Queries the instance using a {@link Circle} object, with the given position and the given radius
+     * @param position - the circle position
+     * @param radius - the circle radius
+     * @param check - the function to check if the particle can be added to the result
      * @returns the particles inside the given circle
      */
     queryCircle(position: ICoordinates, radius: number, check?: (particle: Particle) => boolean): Particle[] {
@@ -133,10 +121,10 @@ export class QuadTree {
     }
 
     /**
-     * Queries the instance using a [[Rectangle]] object, with the given position and the given size
-     * @param position the rectangle position
-     * @param size the rectangle size
-     * @param check the function to check if the particle can be added to the result
+     * Queries the instance using a {@link Rectangle} object, with the given position and the given size
+     * @param position - the rectangle position
+     * @param size - the rectangle size
+     * @param check - the function to check if the particle can be added to the result
      * @returns the particles inside the given rectangle
      */
     queryRectangle(position: ICoordinates, size: IDimension, check?: (particle: Particle) => boolean): Particle[] {
@@ -146,17 +134,25 @@ export class QuadTree {
     /**
      * Creates the subtrees, making the instance a branch
      */
-    private subdivide(): void {
-        const x = this.rectangle.position.x,
-            y = this.rectangle.position.y,
-            w = this.rectangle.size.width,
-            h = this.rectangle.size.height,
-            capacity = this.capacity;
+    private readonly _subdivide: () => void = () => {
+        const { x, y } = this.rectangle.position,
+            { width, height } = this.rectangle.size,
+            { capacity } = this;
 
-        this._NE = new QuadTree(new Rectangle(x, y, w / 2, h / 2), capacity);
-        this._NW = new QuadTree(new Rectangle(x + w / 2, y, w / 2, h / 2), capacity);
-        this._SE = new QuadTree(new Rectangle(x, y + h / 2, w / 2, h / 2), capacity);
-        this._SW = new QuadTree(new Rectangle(x + w / 2, y + h / 2, w / 2, h / 2), capacity);
+        for (let i = 0; i < 4; i++) {
+            this._subs.push(
+                new QuadTree(
+                    new Rectangle(
+                        x + (width / 2) * (i % 2),
+                        y + (height / 2) * (Math.round(i / 2) - (i % 2)),
+                        width / 2,
+                        height / 2
+                    ),
+                    capacity
+                )
+            );
+        }
+
         this._divided = true;
-    }
+    };
 }

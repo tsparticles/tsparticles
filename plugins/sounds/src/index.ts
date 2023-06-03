@@ -4,7 +4,6 @@ import { Sounds } from "./Options/Classes/Sounds";
 import { SoundsInstance } from "./SoundsInstance";
 
 /**
- * @category Sounds Plugin
  */
 class SoundsPlugin implements IPlugin {
     readonly id;
@@ -40,6 +39,9 @@ class SoundsPlugin implements IPlugin {
     }
 }
 
+/**
+ * @param engine -
+ */
 export async function loadSoundsPlugin(engine: Engine): Promise<void> {
     const plugin = new SoundsPlugin(engine);
 

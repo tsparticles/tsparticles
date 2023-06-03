@@ -1,7 +1,7 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
+import { errorPrefix } from "./Constants";
 
 /**
- * @category Utils
  */
 export class Vector3d implements ICoordinates3d {
     /**
@@ -21,10 +21,10 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Vector3d constructor, creating an instance with the given coordinates
-     * @param xOrCoords X coordinate or the whole [[ICoordinates]] object
-     * @param y Y coordinate
-     * @param z Z coordinate
-     * @protected
+     * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
+     * @param y - Y coordinate
+     * @param z - Z coordinate
+     * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates3d | ICoordinates, y?: number, z?: number) {
         if (typeof xOrCoords !== "number" && xOrCoords) {
@@ -39,12 +39,13 @@ export class Vector3d implements ICoordinates3d {
             this.y = y;
             this.z = z ?? 0;
         } else {
-            throw new Error("tsParticles - Vector3d not initialized correctly");
+            throw new Error(`${errorPrefix} Vector3d not initialized correctly`);
         }
     }
 
     /**
      * A new vector, with coordinates in the origin point
+     * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector3d {
         return Vector3d.create(0, 0, 0);
@@ -52,6 +53,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Returns the current vector angle, based on x,y values
+     * @returns the current vector angle, based on x,y values
      */
     get angle(): number {
         return Math.atan2(this.y, this.x);
@@ -59,14 +61,15 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Sets the x,y values using an angle, length must be greater than 0
-     * @param angle the angle to set
+     * @param angle - the angle to set
      */
     set angle(angle: number) {
-        this.updateFromAngle(angle, this.length);
+        this._updateFromAngle(angle, this.length);
     }
 
     /**
      * Returns the current vector length, based on x,y values
+     * @returns the current vector length, based on x,y values
      */
     get length(): number {
         return Math.sqrt(this.getLengthSq());
@@ -74,15 +77,15 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Sets the x,y values using the length
-     * @param length the length to set
+     * @param length - the length to set
      */
     set length(length: number) {
-        this.updateFromAngle(this.angle, length);
+        this._updateFromAngle(this.angle, length);
     }
 
     /**
      * Clones the given vector
-     * @param source the vector to clone
+     * @param source - the vector to clone
      * @returns a new vector instance, created from the given one
      */
     static clone(source: Vector3d): Vector3d {
@@ -91,9 +94,9 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Creates a new vector instance
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @param z Z coordinate
+     * @param x - X coordinate
+     * @param y - Y coordinate
+     * @param z - Z coordinate
      * @returns the new vector created
      */
     static create(x: number | ICoordinates3d, y?: number, z?: number): Vector3d {
@@ -102,7 +105,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Adds the current and the given vector together, without modifying them
-     * @param v the vector used for the sum operation
+     * @param v - the vector used for the sum operation
      * @returns the sum vector
      */
     add(v: Vector3d): Vector3d {
@@ -111,7 +114,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Adds the given vector to the current one, modifying it
-     * @param v the vector to add to the current one
+     * @param v - the vector to add to the current one
      */
     addTo(v: Vector3d): void {
         this.x += v.x;
@@ -129,7 +132,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Calculates the distance between the current vector and the given one
-     * @param v the vector used for calculating the distance from the current one
+     * @param v - the vector used for calculating the distance from the current one
      * @returns the distance between the vectors
      */
     distanceTo(v: Vector3d): number {
@@ -138,7 +141,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Get the distance squared between two vectors
-     * @param v the vector used for calculating the distance from the current one
+     * @param v - the vector used for calculating the distance from the current one
      * @returns the distance squared between the vectors
      */
     distanceToSq(v: Vector3d): number {
@@ -147,7 +150,8 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Divides the given scalar and the current vector together, without modifying it
-     * @param n the scalar value to divide from the current vector
+     * @param n - the scalar value to divide from the current vector
+     * @returns the divided vector
      */
     div(n: number): Vector3d {
         return Vector3d.create(this.x / n, this.y / n, this.z / n);
@@ -155,7 +159,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Divides the given scalar from the current vector, modifying it
-     * @param n the scalar value to divide from the current vector
+     * @param n - the scalar value to divide from the current vector
      */
     divTo(n: number): void {
         this.x /= n;
@@ -173,7 +177,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Multiplies the given scalar and the current vector together, without modifying it
-     * @param n the scalar value to multiply to the vector
+     * @param n - the scalar value to multiply to the vector
      * @returns the multiplied vector
      */
     mult(n: number): Vector3d {
@@ -182,7 +186,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Multiplies the given scalar to the current vector, modifying it
-     * @param n the scalar value to multiply to the vector
+     * @param n - the scalar value to multiply to the vector
      */
     multTo(n: number): void {
         this.x *= n;
@@ -192,7 +196,8 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Creates a new vector, rotating the current one, without modifying it
-     * @param angle the rotation angle
+     * @param angle - the rotation angle
+     * @returns the rotated vector
      */
     rotate(angle: number): Vector3d {
         return Vector3d.create(
@@ -204,7 +209,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Set the vector to the specified velocity
-     * @param c the coordinates used to set the current vector
+     * @param c - the coordinates used to set the current vector
      */
     setTo(c: ICoordinates): void {
         this.x = c.x;
@@ -217,7 +222,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Subtracts the current and the given vector together, without modifying them
-     * @param v the vector used for the subtract operation
+     * @param v - the vector used for the subtract operation
      * @returns the subtracted vector
      */
     sub(v: Vector3d): Vector3d {
@@ -226,7 +231,7 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Subtracts the given vector from the current one, modifying it
-     * @param v the vector to subtract from the current one
+     * @param v - the vector to subtract from the current one
      */
     subFrom(v: Vector3d): void {
         this.x -= v.x;
@@ -236,12 +241,12 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Updates the current vector, using angle and length values, instead of x and y
-     * @param angle the new angle
-     * @param length the new length
-     * @private
+     * @param angle - the new angle
+     * @param length - the new length
+     * @internal
      */
-    private updateFromAngle(angle: number, length: number): void {
+    private readonly _updateFromAngle: (angle: number, length: number) => void = (angle, length) => {
         this.x = Math.cos(angle) * length;
         this.y = Math.sin(angle) * length;
-    }
+    };
 }

@@ -1,3 +1,4 @@
+import type { Container } from "../../Core/Container";
 import type { IBackground } from "./Background/IBackground";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
 import type { IFullScreen } from "./FullScreen/IFullScreen";
@@ -13,7 +14,6 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
  * [[include:Options.md]]
- * @category Options
  */
 export interface IOptions {
     /**
@@ -83,6 +83,8 @@ export interface IOptions {
      */
     manualParticles: IManualParticle[];
 
+    name?: string;
+
     /**
      * The particles options
      */
@@ -117,10 +119,10 @@ export interface IOptions {
     /**
      * Enables a smooth effect, by default it's disabled
      * When enabled the animation will speed up or slow down depending on fps
-     * The [[fpsLimit]] field will be used as a reference for the animation speed
+     * The {@link IOptions.fpsLimit} field will be used as a reference for the animation speed
      * Some examples:
-     *      - with a [[fpsLimit]] of 60 the animation will be twice faster on 120 fps devices
-     *      - with a [[fpsLimit]] of 120 the animation will be twice slower on 60 fps devices
+     *      - with a {@link IOptions.fpsLimit} of 60 the animation will be twice faster on 120 fps devices
+     *      - with a {@link IOptions.fpsLimit} of 120 the animation will be twice slower on 60 fps devices
      * The animation will be always smooth, but the behavior could be affected by the user screen refresh rate
      * It's recommended to keep this disabled, be careful.
      */
@@ -129,7 +131,7 @@ export interface IOptions {
     style: RecursivePartial<CSSStyleDeclaration>;
 
     /**
-     * User-defined themes that can be retrieved by the particles [[Container]]
+     * User-defined themes that can be retrieved by the particles {@link Container}
      */
     themes: ITheme[];
 

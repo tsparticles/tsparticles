@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
+
+### Bug Fixes
+
+-   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+-   **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/matteobruni/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
+-   **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/matteobruni/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
+-   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/matteobruni/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+-   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+-   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+-   fixes build scripts, closes [#3909](https://github.com/matteobruni/tsparticles/issues/3909), closes [#3911](https://github.com/matteobruni/tsparticles/issues/3911) ([d2c3fb3](https://github.com/matteobruni/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+
+### Features
+
+-   added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+-   added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+-   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/matteobruni/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+-   moved more code out from engine to specific plugins ([14d4887](https://github.com/matteobruni/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+-   moved twinkle options to twinkle updater package ([d6389d4](https://github.com/matteobruni/tsparticles/commit/d6389d4750bdbd2945a1fe84a781671e618122d2))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-updater-twinkle@2.9.2...tsparticles-updater-twinkle@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package tsparticles-updater-twinkle

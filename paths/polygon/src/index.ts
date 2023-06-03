@@ -3,6 +3,9 @@ import { PolygonPathGenerator } from "./PolygonPathGenerator";
 
 export const polygonPathName = "polygonPathGenerator";
 
-export function loadPolygonPath(engine: Engine): void {
-    engine.addPathGenerator(polygonPathName, new PolygonPathGenerator());
+/**
+ * @param engine -
+ */
+export async function loadPolygonPath(engine: Engine): Promise<void> {
+    await engine.addPathGenerator(polygonPathName, new PolygonPathGenerator());
 }

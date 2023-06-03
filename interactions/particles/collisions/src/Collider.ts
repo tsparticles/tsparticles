@@ -1,9 +1,7 @@
-import type { Container, IDelta, Particle } from "tsparticles-engine";
-import { ParticlesInteractorBase, getDistance } from "tsparticles-engine";
+import { type Container, type IDelta, type Particle, ParticlesInteractorBase, getDistance } from "tsparticles-engine";
 import { resolveCollision } from "./ResolveCollision";
 
 /**
- * @category Interactions
  */
 export class Collider extends ParticlesInteractorBase {
     constructor(container: Container) {
@@ -19,6 +17,10 @@ export class Collider extends ParticlesInteractorBase {
     }
 
     async interact(p1: Particle, delta: IDelta): Promise<void> {
+        if (p1.destroyed || p1.spawning) {
+            return;
+        }
+
         const container = this.container,
             pos1 = p1.getPosition(),
             radius1 = p1.getRadius(),

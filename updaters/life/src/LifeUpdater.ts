@@ -1,36 +1,16 @@
-import type {
-    Container,
-    IDelta,
-    IParticleUpdater,
-    IParticlesOptions,
-    Particle,
-    ParticlesOptions,
-    RecursivePartial,
+import {
+    type Container,
+    type IDelta,
+    type IParticleUpdater,
+    type Particle,
+    type RecursivePartial,
+    getRandom,
+    getRangeValue,
+    randomInRange,
+    setRangeValue,
 } from "tsparticles-engine";
-import { getRandom, getRangeValue, randomInRange, setRangeValue } from "tsparticles-engine";
-import type { ILife } from "./Options/Interfaces/ILife";
+import type { ILifeParticlesOptions, LifeParticle, LifeParticlesOptions } from "./Types";
 import { Life } from "./Options/Classes/Life";
-
-interface IParticleLife {
-    count: number;
-    delay: number;
-    delayTime: number;
-    duration: number;
-    time: number;
-}
-
-type ILifeParticlesOptions = IParticlesOptions & {
-    life?: ILife;
-};
-
-type LifeParticlesOptions = ParticlesOptions & {
-    life?: Life;
-};
-
-type LifeParticle = Particle & {
-    life?: IParticleLife;
-    options: LifeParticlesOptions;
-};
 
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

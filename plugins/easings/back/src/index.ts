@@ -1,6 +1,8 @@
 import { EasingType, addEasing } from "tsparticles-engine";
 
-export function loadEasingBackPlugin(): void {
+/**
+ */
+export async function loadEasingBackPlugin(): Promise<void> {
     addEasing(EasingType.easeInBack, (value) => {
         const c1 = 1.70158,
             c3 = c1 + 1;

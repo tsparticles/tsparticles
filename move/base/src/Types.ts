@@ -8,9 +8,15 @@ export type MoveParticle = Particle & {
      */
     gravity?: IParticleGravity;
 
+    /**
+     */
     retina: {
+        /**
+         */
         spinAcceleration?: number;
     };
 
+    /**
+     */
     spin?: IParticleSpin;
 };

@@ -1,5 +1,4 @@
 /**
- * @category Enums
  */
 export const enum MoveDirection {
     bottom = "bottom",

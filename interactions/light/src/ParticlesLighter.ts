@@ -17,17 +17,22 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
 
     async interact(particle: LightParticle): Promise<void> {
         const container = this.container,
-            options = container.actualOptions;
+            options = container.actualOptions,
+            interactivity = container.interactivity;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
-            const mousePos = this.container.interactivity.mouse.position;
-
-            if (mousePos) {
-                container.canvas.draw((ctx) => {
-                    drawParticleShadow(container, ctx, particle, mousePos);
-                });
-            }
+        if (!options.interactivity.events.onHover.enable || interactivity.status !== "pointermove") {
+            return;
         }
+
+        const mousePos = interactivity.mouse.position;
+
+        if (!mousePos) {
+            return;
+        }
+
+        container.canvas.draw((ctx) => {
+            drawParticleShadow(container, ctx, particle, mousePos);
+        });
     }
 
     isEnabled(particle: LightParticle): boolean {

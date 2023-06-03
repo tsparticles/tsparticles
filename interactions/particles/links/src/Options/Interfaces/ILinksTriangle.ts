@@ -1,7 +1,6 @@
 import type { IOptionsColor } from "tsparticles-engine";
 
 /**
- * @category Options
  */
 export interface ILinksTriangle {
     color?: string | IOptionsColor;

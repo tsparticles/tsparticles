@@ -1,49 +1,40 @@
-import type { Container, IShapeDrawer } from "tsparticles-engine";
-import type { ContainerImage, IImage, IParticleImage, ImageParticle } from "./Utils";
-import { downloadSvgImage, loadImage, replaceImageColor } from "./Utils";
+import { type Container, type IShapeDrawer, errorPrefix } from "tsparticles-engine";
+import type { IImage, IParticleImage, ImageParticle } from "./Utils";
+import type { ImageContainer, ImageEngine } from "./types";
 import type { IImageShape } from "./IImageShape";
+import { replaceImageColor } from "./Utils";
 
 /**
- * @category Shape Drawers
  */
 export class ImageDrawer implements IShapeDrawer {
-    /**
-     * The image set collection
-     * @private
-     */
-    private _images: ContainerImage[];
+    private readonly _engine: ImageEngine;
 
     /**
      * Image drawer constructor, initializing the image set collection
+     * @param engine -
      */
-    constructor() {
-        this._images = [];
+    constructor(engine: ImageEngine) {
+        this._engine = engine;
     }
 
     /**
      * Adds an image to the given container
-     * @param container the container where the image is going to be added
-     * @param image the image to add to the container collection
+     * @param image - the image to add to the container collection
      */
-    addImage(container: Container, image: IImage): void {
-        const containerImages = this.getImages(container);
+    addImage(image: IImage): void {
+        if (!this._engine.images) {
+            this._engine.images = [];
+        }
 
-        containerImages?.images.push(image);
-    }
-
-    /**
-     * Resets the image general collection
-     */
-    destroy(): void {
-        this._images = [];
+        this._engine.images.push(image);
     }
 
     /**
      * The draw image method
-     * @param context the context used for drawing
-     * @param particle the particle to be drawn
-     * @param radius the particle radius
-     * @param opacity the particle opacity
+     * @param context - the context used for drawing
+     * @param particle - the particle to be drawn
+     * @param radius - the particle radius
+     * @param opacity - the particle opacity
      */
     draw(context: CanvasRenderingContext2D, particle: ImageParticle, radius: number, opacity: number): void {
         const image = particle.image,
@@ -67,31 +58,24 @@ export class ImageDrawer implements IShapeDrawer {
     }
 
     /**
-     * Gets the image collection of the given container
-     * @param container the container requesting the image collection
-     * @returns the container image collection
-     */
-    getImages(container: Container): ContainerImage {
-        const containerImages = this._images.find((t) => t.id === container.id);
-
-        if (!containerImages) {
-            this._images.push({
-                id: container.id,
-                images: [],
-            });
-
-            return this.getImages(container);
-        } else {
-            return containerImages;
-        }
-    }
-
-    /**
      * Returning the side count for the image, defaults to 12 for using the inner circle as rendering
      * When using non-transparent images this can be an issue with shadows
+     * @returns the number of sides of the image shape
      */
     getSidesCount(): number {
         return 12;
+    }
+
+    async init(container: ImageContainer): Promise<void> {
+        const options = container.actualOptions;
+
+        if (!options.preload || !this._engine.loadImage) {
+            return;
+        }
+
+        for (const imageData of options.preload) {
+            this._engine.loadImage(imageData);
+        }
     }
 
     loadShape(particle: ImageParticle): void {
@@ -99,13 +83,15 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const container = particle.container,
-            images = this.getImages(container).images,
-            imageData = particle.shapeData as IImageShape,
-            image = images.find((t) => t.source === imageData.src);
+        if (!this._engine.images) {
+            this._engine.images = [];
+        }
+
+        const imageData = particle.shapeData as IImageShape,
+            image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
-            this.loadImageShape(container, imageData).then(() => {
+            this.loadImageShape(imageData).then(() => {
                 this.loadShape(particle);
             });
         }
@@ -113,23 +99,28 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Loads the image shape to the given particle
-     * @param container the particles container
-     * @param particle the particle loading the image shape
+     * @param container - the particles container
+     * @param particle - the particle loading the image shape
      */
     particleInit(container: Container, particle: ImageParticle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
 
-        const images = this.getImages(container).images,
+        if (!this._engine.images) {
+            this._engine.images = [];
+        }
+
+        const images = this._engine.images,
             imageData = particle.shapeData as IImageShape,
             color = particle.getFillColor(),
-            replaceColor = imageData.replaceColor ?? imageData.replace_color,
-            image = images.find((t) => t.source === imageData.src);
+            image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
             return;
         }
+
+        const replaceColor = imageData.replaceColor ?? imageData.replace_color ?? image.replaceColor;
 
         if (image.loading) {
             setTimeout((): void => {
@@ -150,7 +141,7 @@ export class ImageDrawer implements IShapeDrawer {
                     data: image,
                     element: image.element,
                     loaded: true,
-                    ratio: imageData.width / imageData.height,
+                    ratio: imageData.width && imageData.height ? imageData.width / imageData.height : image.ratio ?? 1,
                     replaceColor: replaceColor,
                     source: imageData.src,
                 };
@@ -176,32 +167,18 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * Loads the image shape
-     * @param container the container used for searching images
-     * @param imageShape the image shape to load
-     * @private
+     * @param imageShape - the image shape to load
+     * @internal
      */
-    private async loadImageShape(container: Container, imageShape: IImageShape): Promise<void> {
-        const source = imageShape.src;
-
-        if (!source) {
-            throw new Error("Error tsParticles - No image.src");
+    private readonly loadImageShape: (imageShape: IImageShape) => Promise<void> = async (imageShape) => {
+        if (!this._engine.loadImage) {
+            throw new Error(`${errorPrefix} image shape not initialized`);
         }
 
-        try {
-            const image: IImage = {
-                source: source,
-                type: source.substring(source.length - 3),
-                error: false,
-                loading: true,
-            };
-
-            this.addImage(container, image);
-
-            const imageFunc = imageShape.replaceColor ?? imageShape.replace_color ? downloadSvgImage : loadImage;
-
-            await imageFunc(image);
-        } catch {
-            throw new Error(`tsParticles error - ${imageShape.src} not found`);
-        }
-    }
+        await this._engine.loadImage({
+            name: imageShape.name,
+            replaceColor: imageShape.replaceColor ?? imageShape.replace_color ?? false,
+            src: imageShape.src,
+        });
+    };
 }

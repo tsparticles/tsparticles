@@ -1,6 +1,18 @@
 blank_issues_enabled: false
 contact_links:
-  - name: tsParticles GitHub Organization
+  - name: 🟣 Official tsParticles Discord 🟣
+    url: https://discord.com/invite/hACwv45Hme
+    about: The official Discord offers more direct support.
+  - name: 🟡 Official tsParticles Slack 🟡
+    url: https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI
+    about: The official Slack offers more direct support.
+  - name: 🔵 Official tsParticles Telegram 🔵
+    url: https://t.me/tsparticles
+    about: The official Telegram offers more direct support.
+  - name: 🔴 Official tsParticles Reddit 🔴
+    url: https://reddit/r/tsParticles
+    about: The official Reddit to find other questions and answers.
+  - name: 🐙 tsParticles GitHub Organization 🐙
     url: https://github.com/tsparticles
     about: The official tsParticles GitHub Organization, here can be found many repositories and demos
   - name: Angular (ng-particles)
@@ -51,12 +63,6 @@ contact_links:
   - name: WordPress (wordpress-particles)
     url: https://github.com/tsparticles/wordpress
     about: The official tsParticles WordPress component repository
-  - name: GitHub Discussions
+  - name: 💬 GitHub Discussions 💬
     url: https://github.com/matteobruni/tsparticles/discussions
     about: The official tsParticles Q&A, idea discussions or sharing awesome configurations. If you have some general questions this is the right place to ask.
-  - name: Official tsParticles Slack
-    url: https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI
-    about: The official Slack offers more direct support.
-  - name: Official tsParticles Discord
-    url: https://discord.com/invite/hACwv45Hme
-    about: The official Discord offers more direct support.

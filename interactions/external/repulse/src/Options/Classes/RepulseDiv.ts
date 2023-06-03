@@ -1,10 +1,13 @@
-import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    executeOnSingleOrMultiple,
+} from "tsparticles-engine";
 import type { IRepulseDiv } from "../Interfaces/IRepulseDiv";
 import { RepulseBase } from "./RepulseBase";
-import { executeOnSingleOrMultiple } from "tsparticles-engine";
 
 /**
- * @category Options
  */
 export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoader<IRepulseDiv> {
     selectors: SingleOrMultiple<string>;
@@ -17,6 +20,7 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
 
     /**
      * @deprecated This property is deprecated, please use the new selectors property
+     * @returns the targeted ids
      */
     get ids(): SingleOrMultiple<string> {
         return executeOnSingleOrMultiple(this.selectors, (t) => t.replace("#", ""));

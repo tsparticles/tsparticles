@@ -1,10 +1,8 @@
-import type { Container, IShapeDrawer, Particle } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, type Particle, getRangeValue } from "tsparticles-engine";
 import type { IStarShape } from "./IStarShape";
 import type { StarParticle } from "./StarParticle";
-import { getRangeValue } from "tsparticles-engine";
 
 /**
- * @category Shape Drawers
  */
 export class StarDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: StarParticle, radius: number): void {

@@ -1,10 +1,8 @@
-import type { ICoordinates, IShapeDrawer, Particle } from "tsparticles-engine";
+import { type ICoordinates, type IShapeDrawer, type Particle, getRangeValue } from "tsparticles-engine";
 import type { IPolygonShape } from "./IPolygonShape";
 import type { ISide } from "./ISide";
-import { getRangeValue } from "tsparticles-engine";
 
 /**
- * @category Shape Drawers
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: Particle, radius: number): void {

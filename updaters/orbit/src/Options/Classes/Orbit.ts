@@ -1,11 +1,17 @@
-import { AnimationOptions, OptionsColor, setRangeValue } from "tsparticles-engine";
-import type { IAnimatable, IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
+import {
+    AnimationOptions,
+    type IAnimatable,
+    type IOptionLoader,
+    OptionsColor,
+    type RangeValue,
+    type RecursivePartial,
+    setRangeValue,
+} from "tsparticles-engine";
 import type { IOrbit } from "../Interfaces/IOrbit";
 import { OrbitRotation } from "./OrbitRotation";
 
 /**
  * [[include:Options/Particles/Orbit.md]]
- * @category Options
  */
 export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<AnimationOptions> {
     animation;

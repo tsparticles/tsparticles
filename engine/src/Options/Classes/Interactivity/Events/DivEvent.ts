@@ -8,7 +8,6 @@ import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Div.md]]
- * @category Options
  */
 export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
@@ -17,7 +16,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     enable;
 
     /**
-     * Div mode values described in [[DivMode]], an array of these values is also valid.
+     * Div mode values described in {@link DivMode}, an array of these values is also valid.
      */
     mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
 
@@ -35,6 +34,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new selectors
+     * @returns the element id
      */
     get el(): SingleOrMultiple<string> {
         return this.elementId;
@@ -43,7 +43,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new selectors
-     * @param value
+     * @param value -
      */
     set el(value: SingleOrMultiple<string>) {
         this.elementId = value;
@@ -52,6 +52,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new selectors
+     * @returns the element id
      */
     get elementId(): SingleOrMultiple<string> {
         return this.ids;
@@ -60,7 +61,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new selectors
-     * @param value
+     * @param value -
      */
     set elementId(value: SingleOrMultiple<string>) {
         this.ids = value;
@@ -69,6 +70,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new ids
+     * @returns the element id
      */
     get ids(): SingleOrMultiple<string> {
         return executeOnSingleOrMultiple(this.selectors, (t) => t.replace("#", ""));
@@ -80,7 +82,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     /**
      * The element id to detect the event
      * @deprecated this property is obsolete, please use the new ids
-     * @param value
+     * @param value -
      */
     set ids(value: SingleOrMultiple<string>) {
         this.selectors = executeOnSingleOrMultiple(value, (t) => `#${t}`);

@@ -1,6 +1,9 @@
 import type { Engine } from "tsparticles-engine";
 import { RoundedRectDrawer } from "./RoundedRectDrawer";
 
-export function loadRoundedRectShape(engine: Engine): void {
+/**
+ * @param engine -
+ */
+export async function loadRoundedRectShape(engine: Engine): Promise<void> {
     engine.addShape("rounded-rect", new RoundedRectDrawer());
 }

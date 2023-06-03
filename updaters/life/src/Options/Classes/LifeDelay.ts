@@ -1,6 +1,5 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "tsparticles-engine";
 import type { ILifeDelay } from "../Interfaces/ILifeDelay";
-import { ValueWithRandom } from "tsparticles-engine";
 
 export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoader<ILifeDelay> {
     sync;

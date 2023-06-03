@@ -9,7 +9,6 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Interactivity.md]]
- * @category Options
  */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
     [name: string]: unknown;
@@ -26,17 +25,16 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new detectsOn
+     * @returns the detectsOn value
      */
     get detect_on(): InteractivityDetect | keyof typeof InteractivityDetect {
         return this.detectsOn;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new detectsOn
-     * @param value
+     * @param value -
      */
     set detect_on(value: InteractivityDetect | keyof typeof InteractivityDetect) {
         this.detectsOn = value;

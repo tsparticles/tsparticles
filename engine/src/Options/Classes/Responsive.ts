@@ -7,7 +7,7 @@ import { deepExtend } from "../../Utils/Utils";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;
-    mode: ResponsiveMode;
+    mode: ResponsiveMode | keyof typeof ResponsiveMode;
     options: RecursivePartial<IOptions>;
 
     constructor() {

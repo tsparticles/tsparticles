@@ -1,13 +1,12 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "tsparticles-engine";
 import type { IPush } from "../Interfaces/IPush";
 
 /**
- * @category Options
  */
 export class Push implements IPush, IOptionLoader<IPush> {
     default;
     groups: string[];
-    quantity;
+    quantity: RangeValue;
 
     constructor() {
         this.default = true;
@@ -16,20 +15,19 @@ export class Push implements IPush, IOptionLoader<IPush> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
+     * @returns the particles quantity
      */
-    get particles_nb(): number {
+    get particles_nb(): RangeValue {
         return this.quantity;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
-     * @param value
+     * @param value -
      */
-    set particles_nb(value: number) {
-        this.quantity = value;
+    set particles_nb(value: RangeValue) {
+        this.quantity = setRangeValue(value);
     }
 
     load(data?: RecursivePartial<IPush>): void {
@@ -52,7 +50,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
         const quantity = data.quantity ?? data.particles_nb;
 
         if (quantity !== undefined) {
-            this.quantity = quantity;
+            this.quantity = setRangeValue(quantity);
         }
     }
 }

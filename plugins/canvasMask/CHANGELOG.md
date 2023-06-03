@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
+
+### Bug Fixes
+
+-   **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/matteobruni/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
+-   **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/matteobruni/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
+-   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/matteobruni/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+-   fixed canvas mask plugin size output with new multiline support ([9b00acc](https://github.com/matteobruni/tsparticles/commit/9b00acced4f670da880a045a6b963a19a38b4e3b))
+-   fixed some plugins, they weren't loading correctly the options ([00053b4](https://github.com/matteobruni/tsparticles/commit/00053b4ea90fcc4385637b6a1aad955643a712b1))
+-   used getRandom in canvas mask plugin for shuffling ([0161280](https://github.com/matteobruni/tsparticles/commit/0161280614b56461a87bfe06ed02c38982cda361))
+
+### Features
+
+-   added element options to canvas mask, for using an external created canvas ([0770c13](https://github.com/matteobruni/tsparticles/commit/0770c13fa7e22e6ffd286c97f0854415f9cc450d))
+-   added error prefix to standardize error messages ([f735252](https://github.com/matteobruni/tsparticles/commit/f73525291139f45c1b5abda04b604813f9247d9f))
+-   added font options to text mask ([ddcfa6d](https://github.com/matteobruni/tsparticles/commit/ddcfa6d68e3b8030bbbf8085a2177b845b0d86df))
+-   added position options to canvas mask ([8759b84](https://github.com/matteobruni/tsparticles/commit/8759b84f7abbbfe374c0ba570d2ca27b69316896))
+-   added support for multiline text in canvas mask text options ([eceacbe](https://github.com/matteobruni/tsparticles/commit/eceacbe1a66974518e6179bb9ea7199787bef220))
+-   added support to text and generic canvas input to canvas mask plugin ([c576656](https://github.com/matteobruni/tsparticles/commit/c57665631903623b18832387a3e73e77841c0b69))
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+-   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/matteobruni/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+-   created motion plugin for handling motion sickness ([c8b5b09](https://github.com/matteobruni/tsparticles/commit/c8b5b090f5059219c8ab1578e7a52ebc1fac6e14))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-canvas-mask@2.9.2...tsparticles-plugin-canvas-mask@2.9.3) (2023-02-12)
 
 ### Bug Fixes

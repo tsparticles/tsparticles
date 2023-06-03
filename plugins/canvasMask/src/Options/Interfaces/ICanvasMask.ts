@@ -5,7 +5,6 @@ import type { IImageMask } from "./IImageMask";
 import type { ITextMask } from "./ITextMask";
 
 /**
- * @category Canvas Mask Plugin
  */
 export interface ICanvasMask {
     element?: HTMLCanvasElement;

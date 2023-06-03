@@ -1,9 +1,7 @@
-import type { IHsl, Particle } from "tsparticles-engine";
+import { type IHsl, type Particle, errorPrefix, getStyleFromHsl } from "tsparticles-engine";
 import type { IImageShape } from "./IImageShape";
-import { getStyleFromHsl } from "tsparticles-engine";
 
 /**
- * @category Interfaces
  */
 
 /**
@@ -14,6 +12,9 @@ export interface IImage {
     element?: HTMLImageElement;
     error: boolean;
     loading: boolean;
+    name: string;
+    ratio?: number;
+    replaceColor?: boolean;
     source: string;
     svgData?: string;
     type: string;
@@ -32,21 +33,6 @@ export interface IParticleImage {
     source: string;
 }
 
-/*
- * The container image collection
- */
-export interface ContainerImage {
-    /**
-     * The container id, used key
-     */
-    id: string;
-
-    /**
-     * The image collection of the given container
-     */
-    images: IImage[];
-}
-
 /**
  * The Particle extension type
  */
@@ -62,9 +48,9 @@ const currentColorRegex =
 
 /**
  * Replaces the color in SVG files when replace color is set
- * @param imageShape the image used for replacing SVG data
- * @param color the replace color value
- * @param opacity the color opacity
+ * @param imageShape - the image used for replacing SVG data
+ * @param color - the replace color value
+ * @param opacity - the color opacity
  * @returns the new SVG data
  */
 function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
@@ -88,7 +74,7 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): stri
 
 /**
  * Loads the given image
- * @param image the image to load
+ * @param image - the image to load
  */
 export async function loadImage(image: IImage): Promise<void> {
     return new Promise<void>((resolve: () => void) => {
@@ -109,7 +95,7 @@ export async function loadImage(image: IImage): Promise<void> {
             image.error = true;
             image.loading = false;
 
-            console.error(`Error tsParticles - loading image: ${image.source}`);
+            console.error(`${errorPrefix} loading image: ${image.source}`);
 
             resolve();
         });
@@ -120,7 +106,7 @@ export async function loadImage(image: IImage): Promise<void> {
 
 /**
  * Downloads the SVG image data, using `fetch`
- * @param image the image to download
+ * @param image - the image to download
  */
 export async function downloadSvgImage(image: IImage): Promise<void> {
     if (image.type !== "svg") {
@@ -134,7 +120,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     const response = await fetch(image.source);
 
     if (!response.ok) {
-        console.error("Error tsParticles - Image not found");
+        console.error(`${errorPrefix} Image not found`);
 
         image.error = true;
     }
@@ -148,10 +134,10 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
 
 /**
  * Replaces the color in a SVG image
- * @param image the SVG image to replace
- * @param imageData the image shape data
- * @param color the replace color
- * @param particle the particle where the replaced data is going to be used
+ * @param image - the SVG image to replace
+ * @param imageData - the image shape data
+ * @param color - the replace color
+ * @param particle - the particle where the replaced data is going to be used
  */
 export function replaceImageColor(
     image: IImage,

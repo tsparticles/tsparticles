@@ -1,6 +1,13 @@
 import type { Container } from "../Container";
 import type { IDelta } from "../Interfaces/IDelta";
+import { errorPrefix } from "./Constants";
 
+/**
+ * @param value -
+ * @param fpsLimit -
+ * @param smooth -
+ * @returns the initialized delta value
+ */
 function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
     return {
         value,
@@ -9,7 +16,6 @@ function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
 }
 
 /**
- * @category Core
  */
 export class FrameManager {
     constructor(private readonly container: Container) {}
@@ -17,7 +23,7 @@ export class FrameManager {
     /**
      * Handles the rAF method preparing the next animation frame to be drawn
      * limiting it if it's needed by the current configuration
-     * @param timestamp the new frame timestamp
+     * @param timestamp - the new frame timestamp
      */
     async nextFrame(timestamp: DOMHighResTimeStamp): Promise<void> {
         try {
@@ -38,7 +44,7 @@ export class FrameManager {
 
             const delta = initDelta(timestamp - container.lastFrameTime, container.fpsLimit, container.smooth);
 
-            container.lifeTime += delta.value;
+            container.addLifeTime(delta.value);
             container.lastFrameTime = timestamp;
 
             if (delta.value > 1000) {
@@ -48,7 +54,7 @@ export class FrameManager {
 
             await container.particles.draw(delta);
 
-            if (container.duration > 0 && container.lifeTime > container.duration) {
+            if (!container.alive()) {
                 container.destroy();
                 return;
             }
@@ -57,7 +63,7 @@ export class FrameManager {
                 container.draw(false);
             }
         } catch (e) {
-            console.error("tsParticles error in animation loop", e);
+            console.error(`${errorPrefix} in animation loop`, e);
         }
     }
 }

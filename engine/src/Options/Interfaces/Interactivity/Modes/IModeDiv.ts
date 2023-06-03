@@ -1,7 +1,6 @@
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
- * @category Options
  */
 export interface IModeDiv {
     /**

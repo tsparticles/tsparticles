@@ -1,11 +1,13 @@
-import type {
-    IOptionLoader,
-    IParticlesOptions,
-    IRangeHsl,
-    RecursivePartial,
-    SingleOrMultiple,
+import {
+    type IOptionLoader,
+    type IParticlesOptions,
+    type IRangeHsl,
+    OptionsColor,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    deepExtend,
+    executeOnSingleOrMultiple,
 } from "tsparticles-engine";
-import { OptionsColor, deepExtend, executeOnSingleOrMultiple } from "tsparticles-engine";
 import type { ISplit } from "../Interfaces/ISplit";
 import { SplitFactor } from "./SplitFactor";
 import { SplitRate } from "./SplitRate";

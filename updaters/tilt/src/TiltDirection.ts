@@ -1,5 +1,4 @@
 /**
- * @category Enums
  */
 export const enum TiltDirection {
     clockwise = "clockwise",

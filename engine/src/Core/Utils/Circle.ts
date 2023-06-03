@@ -4,14 +4,13 @@ import type { Rectangle } from "./Rectangle";
 import { getDistance } from "../../Utils/NumberUtils";
 
 /**
- * @category Utils
  */
 export class Circle extends Range {
     /**
      * Circle constructor, initialized position and radius
-     * @param x X coordinate of the position
-     * @param y Y coordinate of the position
-     * @param radius Circle's radius
+     * @param x - X coordinate of the position
+     * @param y - Y coordinate of the position
+     * @param radius - Circle's radius
      */
     constructor(x: number, y: number, readonly radius: number) {
         super(x, y);
@@ -19,7 +18,7 @@ export class Circle extends Range {
 
     /**
      * Check if the given point is inside the circle
-     * @param point the point to check
+     * @param point - the point to check
      * @returns true or false, checking if the given point is inside the circle
      */
     contains(point: ICoordinates): boolean {
@@ -28,7 +27,7 @@ export class Circle extends Range {
 
     /**
      * Check if the given range intersects the circle
-     * @param range the range to check
+     * @param range - the range to check
      * @returns true or false, checking if the range is intersecting with the circle
      */
     intersects(range: Range): boolean {

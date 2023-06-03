@@ -5,7 +5,6 @@ import { InfectionInstance } from "./InfectionInstance";
 import { ParticlesInfecter } from "./ParticlesInfecter";
 
 /**
- * @category Infection Plugin
  */
 class InfectionPlugin implements IPlugin {
     readonly id;
@@ -37,6 +36,9 @@ class InfectionPlugin implements IPlugin {
     }
 }
 
+/**
+ * @param engine -
+ */
 export async function loadInfectionPlugin(engine: Engine): Promise<void> {
     const plugin = new InfectionPlugin();
 

@@ -1,6 +1,8 @@
 import { EasingType, addEasing } from "tsparticles-engine";
 
-export function loadEasingCircPlugin(): void {
+/**
+ */
+export async function loadEasingCircPlugin(): Promise<void> {
     addEasing(EasingType.easeInCirc, (value) => 1 - Math.sqrt(1 - value ** 2));
     addEasing(EasingType.easeOutCirc, (value) => Math.sqrt(1 - (value - 1) ** 2));
     addEasing(EasingType.easeInOutCirc, (value) =>

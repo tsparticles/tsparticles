@@ -5,7 +5,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
- * @category Options
  */
 export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
     offset: RangeValue;

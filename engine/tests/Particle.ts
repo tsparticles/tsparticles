@@ -1,5 +1,5 @@
 import { describe, it } from "mocha";
-import type { ICoordinates } from "../src";
+import { errorPrefix, ICoordinates } from "../src";
 import { TestCanvas } from "./Fixture/TestCanvas";
 import { TestContainer } from "./Fixture/TestContainer";
 import { TestParticle } from "./Fixture/TestParticle";
@@ -99,7 +99,7 @@ describe("Particle", () => {
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options["polygon"];
                         break;
                     default:
-                        throw new Error(`Unexpected shape type "${testParticle.particle?.shape}"`);
+                        throw new Error(`${errorPrefix} Unexpected shape type "${testParticle.particle?.shape}"`);
                 }
 
                 expect(testParticle.particle?.close).to.eql(expectedShapeData.close);
@@ -126,7 +126,8 @@ describe("Particle", () => {
             const position: ICoordinates = testParticle.randomPositionInCanvas(testContainer.container);
             testParticle.reset(testContainer.container, position);
 
-            expect(testParticle.particle?.position).to.eql(position);
+            expect(testParticle.particle?.position.x).to.be.equal(position.x);
+            expect(testParticle.particle?.position.y).to.be.equal(position.y);
         });
 
         it("should always return a position that is on the canvas when no position specified", () => {

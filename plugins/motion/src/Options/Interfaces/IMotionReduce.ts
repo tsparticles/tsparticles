@@ -1,5 +1,4 @@
 /**
- * @category Options
  */
 export interface IMotionReduce {
     /**

@@ -1,11 +1,16 @@
-import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
-import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
+import {
+    ClickMode,
+    ExternalInteractorBase,
+    type IModes,
+    type Modes,
+    type RecursivePartial,
+    getRangeValue,
+} from "tsparticles-engine";
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types";
 import { Remove } from "./Options/Classes/Remove";
 
 /**
  * Particle attract manager
- * @category Interactions
  */
 export class Remover extends ExternalInteractorBase<RemoveContainer> {
     handleClickMode: (mode: string) => void;
@@ -21,7 +26,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
                 return;
             }
 
-            const removeNb = options.interactivity.modes.remove.quantity;
+            const removeNb = getRangeValue(options.interactivity.modes.remove.quantity);
 
             container.particles.removeQuantity(removeNb);
         };

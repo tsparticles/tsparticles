@@ -1,6 +1,13 @@
-import { ExternalInteractorBase, HoverMode, isInArray, rangeColorToRgb } from "tsparticles-engine";
+import {
+    ExternalInteractorBase,
+    HoverMode,
+    type IModes,
+    type Modes,
+    type RecursivePartial,
+    isInArray,
+    rangeColorToRgb,
+} from "tsparticles-engine";
 import type { ILightMode, LightMode } from "./Types";
-import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
 import type { LightContainer, LightParticle } from "./Types";
 import { Light } from "./Options/Classes/Light";
 import { drawLight } from "./Utils";
@@ -20,19 +27,22 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
 
     async interact(): Promise<void> {
         const container = this.container,
-            options = container.actualOptions;
+            options = container.actualOptions,
+            interactivity = container.interactivity;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
-            const mousePos = container.interactivity.mouse.position;
-
-            if (!mousePos) {
-                return;
-            }
-
-            container.canvas.draw((ctx) => {
-                drawLight(container, ctx, mousePos);
-            });
+        if (!options.interactivity.events.onHover.enable || interactivity.status !== "pointermove") {
+            return;
         }
+
+        const mousePos = interactivity.mouse.position;
+
+        if (!mousePos) {
+            return;
+        }
+
+        container.canvas.draw((ctx) => {
+            drawLight(container, ctx, mousePos);
+        });
     }
 
     isEnabled(particle?: LightParticle): boolean {

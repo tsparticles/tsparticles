@@ -4,7 +4,6 @@ import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArran
 import type { PolygonMaskInlineArrangementAlt } from "../../Enums/PolygonMaskInlineArrangement";
 
 /**
- * @category Polygon Mask Plugin
  */
 export class PolygonMaskInline implements IPolygonMaskInline, IOptionLoader<IPolygonMaskInline> {
     arrangement:

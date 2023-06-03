@@ -4,7 +4,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { ValueWithRandom } from "../../ValueWithRandom";
 
 /**
- * @category Options
  */
 export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZIndex> {
     opacityRate;

@@ -3,7 +3,6 @@ import { GrabLinks } from "./GrabLinks";
 import type { IGrab } from "../Interfaces/IGrab";
 
 /**
- * @category Options
  */
 export class Grab implements IGrab, IOptionLoader<IGrab> {
     distance;
@@ -15,7 +14,6 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      */
     get lineLinked(): GrabLinks {
@@ -23,7 +21,6 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */
@@ -32,7 +29,6 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      */
     get line_linked(): GrabLinks {
@@ -40,7 +36,6 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new links
      * @param value
      */

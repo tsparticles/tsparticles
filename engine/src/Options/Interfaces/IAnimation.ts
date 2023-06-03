@@ -1,4 +1,6 @@
+import type { AnimationMode } from "../../Enums/Modes/AnimationMode";
 import type { RangeValue } from "../../Types/RangeValue";
+import type { StartValueType } from "../../Enums/Types/StartValueType";
 
 export interface IAnimation {
     count: RangeValue;
@@ -7,6 +9,11 @@ export interface IAnimation {
      * Speed animation decay
      */
     decay: RangeValue;
+
+    /**
+     * Animation delay
+     */
+    delay: RangeValue;
 
     /**
      * Enables/disables the animation
@@ -23,4 +30,15 @@ export interface IAnimation {
      * pushed or emitter particles will be out of sync
      */
     sync: boolean;
+}
+
+export interface IRangedAnimation extends IAnimation {
+    /**
+     * @deprecated use the new min/max object in the size value
+     */
+    minimumValue?: number;
+
+    mode: AnimationMode | keyof typeof AnimationMode;
+
+    startValue: StartValueType | keyof typeof StartValueType;
 }

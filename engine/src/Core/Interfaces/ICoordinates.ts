@@ -1,7 +1,3 @@
-/**
- * @category Interfaces
- * @module
- */
 import type { RangeValue } from "../../Types/RangeValue";
 import type { SizeMode } from "../../Enums/Modes/SizeMode";
 
@@ -23,7 +19,10 @@ export interface IRangedCoordinates3d extends IRangedCoordinates {
     z: RangeValue;
 }
 
-export interface ICenterCoordinates extends ICoordinates {
-    mode: SizeMode;
+export interface ICoordinatesWithMode extends ICoordinates {
+    mode: SizeMode | keyof typeof SizeMode;
+}
+
+export interface ICenterCoordinates extends ICoordinatesWithMode {
     radius: number;
 }

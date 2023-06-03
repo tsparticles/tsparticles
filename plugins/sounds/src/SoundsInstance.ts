@@ -1,12 +1,69 @@
-import type { CustomEventArgs, Engine, IContainerPlugin } from "tsparticles-engine";
-import { clamp, itemFromArray, itemFromSingleOrMultiple } from "tsparticles-engine";
+import {
+    type CustomEventArgs,
+    type Engine,
+    type IContainerPlugin,
+    clamp,
+    executeOnSingleOrMultiple,
+    itemFromArray,
+    itemFromSingleOrMultiple,
+} from "tsparticles-engine";
+import { ImageDisplay, SoundsEventType } from "./enums";
+import type { ImageMargins, InitImageData, SoundsContainer } from "./types";
 import type { SoundsAudio } from "./Options/Classes/SoundsAudio";
-import type { SoundsContainer } from "./types";
-import { SoundsEventType } from "./enums";
 import type { SoundsNote } from "./Options/Classes/SoundsNote";
-import { executeOnSingleOrMultiple } from "tsparticles-engine";
 import { getNoteFrequency } from "./utils";
 
+/**
+ * @param data -
+ * @returns the image element
+ */
+function initImage(data: InitImageData): HTMLImageElement {
+    const img = document.createElement("img"),
+        { clickCb, container, display, iconOptions, margin, options, pos, rightOffsets } = data,
+        { width, path, svg } = iconOptions;
+
+    setIconStyle(
+        img,
+        pos.top + margin,
+        pos.right - (margin * (rightOffsets.length + 1) + width + rightOffsets.reduce((a, b) => a + b, 0)),
+        display,
+        options.fullScreen.zIndex + 1,
+        width,
+        margin
+    );
+
+    img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
+
+    const parent = container.canvas.element?.parentNode || document.body;
+
+    parent.append(img);
+
+    img.addEventListener("click", clickCb);
+
+    return img;
+}
+
+/**
+ *
+ * @param image -
+ */
+function removeImage(image?: HTMLImageElement): void {
+    if (!image) {
+        return;
+    }
+
+    image.remove();
+}
+
+/**
+ * @param icon -
+ * @param top -
+ * @param left -
+ * @param display -
+ * @param zIndex -
+ * @param width -
+ * @param margin -
+ */
 function setIconStyle(
     icon: HTMLImageElement,
     top: number,
@@ -94,77 +151,13 @@ export class SoundsInstance implements IContainerPlugin {
 
         container.muted = true;
 
-        this._muteImg = document.createElement("img");
-        this._unmuteImg = document.createElement("img");
-        this._volumeDownImg = document.createElement("img");
-        this._volumeUpImg = document.createElement("img");
-
-        const muteImg = this._muteImg,
-            unmuteImg = this._unmuteImg,
-            volumeDownImg = this._volumeDownImg,
-            volumeUpImg = this._volumeUpImg,
-            containerTop = container.canvas.element.offsetTop,
-            containerRight = container.canvas.element.offsetLeft + container.canvas.element.offsetWidth,
-            iconsOptions = soundsOptions.icons,
-            muteOptions = iconsOptions.mute,
-            unmuteOptions = iconsOptions.unmute,
-            volumeDownOptions = iconsOptions.volumeDown,
-            volumeUpOptions = iconsOptions.volumeUp,
+        const canvas = container.canvas.element,
+            pos: ImageMargins = {
+                top: canvas.offsetTop,
+                right: canvas.offsetLeft + canvas.offsetWidth,
+            },
+            { mute, unmute, volumeDown, volumeUp } = soundsOptions.icons,
             margin = 10;
-
-        setIconStyle(
-            muteImg,
-            containerTop + margin,
-            containerRight - margin * 3 - muteOptions.width - volumeDownOptions.width - volumeUpOptions.width,
-            "block",
-            options.fullScreen.zIndex + 1,
-            muteOptions.width,
-            margin
-        );
-        setIconStyle(
-            unmuteImg,
-            containerTop + margin,
-            containerRight - margin * 3 - unmuteOptions.width - volumeDownOptions.width - volumeUpOptions.width,
-            "none",
-            options.fullScreen.zIndex + 1,
-            unmuteOptions.width,
-            margin
-        );
-        setIconStyle(
-            volumeDownImg,
-            containerTop + margin,
-            containerRight - margin * 2 - volumeDownOptions.width - volumeUpOptions.width,
-            "block",
-            options.fullScreen.zIndex + 1,
-            volumeDownOptions.width,
-            margin
-        );
-        setIconStyle(
-            volumeUpImg,
-            containerTop + margin,
-            containerRight - margin - volumeUpOptions.width,
-            "block",
-            options.fullScreen.zIndex + 1,
-            volumeUpOptions.width,
-            margin
-        );
-
-        muteImg.src = muteOptions.path ?? (muteOptions.svg ? `data:image/svg+xml;base64,${btoa(muteOptions.svg)}` : "");
-        unmuteImg.src =
-            unmuteOptions.path ?? (unmuteOptions.svg ? `data:image/svg+xml;base64,${btoa(unmuteOptions.svg)}` : "");
-        volumeDownImg.src =
-            volumeDownOptions.path ??
-            (volumeDownOptions.svg ? `data:image/svg+xml;base64,${btoa(volumeDownOptions.svg)}` : "");
-        volumeUpImg.src =
-            volumeUpOptions.path ??
-            (volumeUpOptions.svg ? `data:image/svg+xml;base64,${btoa(volumeUpOptions.svg)}` : "");
-
-        const parent = container.canvas.element.parentNode || document.body;
-
-        parent.append(muteImg);
-        parent.append(unmuteImg);
-        parent.append(volumeDownImg);
-        parent.append(volumeUpImg);
 
         const toggleMute = (): void => {
             container.muted = !container.muted;
@@ -173,30 +166,62 @@ export class SoundsInstance implements IContainerPlugin {
             this._updateMuteStatus();
         };
 
-        const volumeDown = (): void => {
-            if (container.muted) {
-                this._volume = 0;
-            }
+        this._muteImg = initImage({
+            container,
+            options,
+            pos,
+            display: ImageDisplay.Block,
+            iconOptions: mute,
+            margin,
+            rightOffsets: [volumeDown.width, volumeUp.width],
+            clickCb: toggleMute,
+        });
+        this._unmuteImg = initImage({
+            container,
+            options,
+            pos,
+            display: ImageDisplay.None,
+            iconOptions: unmute,
+            margin,
+            rightOffsets: [volumeDown.width, volumeUp.width],
+            clickCb: toggleMute,
+        });
+        this._volumeDownImg = initImage({
+            container,
+            options,
+            pos,
+            display: ImageDisplay.Block,
+            iconOptions: volumeDown,
+            margin,
+            rightOffsets: [volumeUp.width],
+            clickCb: () => {
+                if (container.muted) {
+                    this._volume = 0;
+                }
 
-            this._volume -= soundsOptions.volume.step;
+                this._volume -= soundsOptions.volume.step;
 
-            this._updateVolume();
-        };
+                this._updateVolume();
+            },
+        });
+        this._volumeUpImg = initImage({
+            container,
+            options,
+            pos,
+            display: ImageDisplay.Block,
+            iconOptions: volumeUp,
+            margin,
+            rightOffsets: [],
+            clickCb: (): void => {
+                if (container.muted) {
+                    this._volume = 0;
+                }
 
-        const volumeUp = (): void => {
-            if (container.muted) {
-                this._volume = 0;
-            }
+                this._volume += soundsOptions.volume.step;
 
-            this._volume += soundsOptions.volume.step;
-
-            this._updateVolume();
-        };
-
-        muteImg.addEventListener("click", toggleMute);
-        unmuteImg.addEventListener("click", toggleMute);
-        volumeDownImg.addEventListener("click", volumeDown);
-        volumeUpImg.addEventListener("click", volumeUp);
+                this._updateVolume();
+            },
+        });
     }
 
     stop(): void {
@@ -204,40 +229,29 @@ export class SoundsInstance implements IContainerPlugin {
 
         this._mute();
 
-        if (this._muteImg) {
-            this._muteImg.remove();
-        }
-
-        if (this._unmuteImg) {
-            this._unmuteImg.remove();
-        }
-
-        if (this._volumeDownImg) {
-            this._volumeDownImg.remove();
-        }
-
-        if (this._volumeUpImg) {
-            this._volumeUpImg.remove();
-        }
+        removeImage(this._muteImg);
+        removeImage(this._unmuteImg);
+        removeImage(this._volumeDownImg);
+        removeImage(this._volumeUpImg);
     }
 
-    private _addBuffer(audioCtx: AudioContext): AudioBufferSourceNode {
+    private readonly _addBuffer: (audioCtx: AudioContext) => AudioBufferSourceNode = (audioCtx) => {
         const buffer = audioCtx.createBufferSource();
 
         this._audioSources.push(buffer);
 
         return buffer;
-    }
+    };
 
-    private _addOscillator(audioCtx: AudioContext): OscillatorNode {
+    private readonly _addOscillator: (audioCtx: AudioContext) => OscillatorNode = (audioCtx) => {
         const oscillator = audioCtx.createOscillator();
 
         this._audioSources.push(oscillator);
 
         return oscillator;
-    }
+    };
 
-    private _initEvents(): void {
+    private readonly _initEvents: () => void = () => {
         const container = this._container,
             soundsOptions = container.actualOptions.sounds;
 
@@ -284,9 +298,9 @@ export class SoundsInstance implements IContainerPlugin {
                 this._engine.addEventListener(item, cb);
             });
         }
-    }
+    };
 
-    private _mute(): void {
+    private readonly _mute: () => void = () => {
         const container = this._container;
 
         if (!container.audioContext) {
@@ -305,9 +319,9 @@ export class SoundsInstance implements IContainerPlugin {
         container.audioContext = undefined;
 
         this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
-    }
+    };
 
-    private _playBuffer(audio: SoundsAudio): void {
+    private readonly _playBuffer: (audio: SoundsAudio) => void = (audio) => {
         const audioBuffer = this._audioMap.get(audio.source);
 
         if (!audioBuffer) {
@@ -327,9 +341,12 @@ export class SoundsInstance implements IContainerPlugin {
 
         source.connect(this._gain ?? audioCtx.destination);
         source.start();
-    }
+    };
 
-    private async _playFrequency(frequency: number, duration: number): Promise<void> {
+    private readonly _playFrequency: (frequency: number, duration: number) => Promise<void> = async (
+        frequency,
+        duration
+    ) => {
         if (!this._container.audioContext || !this._gain) {
             return;
         }
@@ -350,9 +367,9 @@ export class SoundsInstance implements IContainerPlugin {
                 resolve();
             }, duration);
         });
-    }
+    };
 
-    private _playMuteSound(): void {
+    private readonly _playMuteSound: () => void = () => {
         const container = this._container;
 
         if (!container.audioContext) {
@@ -376,9 +393,13 @@ export class SoundsInstance implements IContainerPlugin {
             oscillator.disconnect();
             gain.disconnect();
         });
-    }
+    };
 
-    private async _playNote(notes: SoundsNote[], noteIdx: number, loop: boolean): Promise<void> {
+    private readonly _playNote: (notes: SoundsNote[], noteIdx: number, loop: boolean) => Promise<void> = async (
+        notes,
+        noteIdx,
+        loop
+    ) => {
         if (this._container.muted) {
             return;
         }
@@ -408,9 +429,13 @@ export class SoundsInstance implements IContainerPlugin {
         }
 
         await this._playNote(notes, nextNoteIdx, loop);
-    }
+    };
 
-    private async _playNoteValue(notes: SoundsNote[], noteIdx: number, valueIdx: number): Promise<void> {
+    private readonly _playNoteValue: (notes: SoundsNote[], noteIdx: number, valueIdx: number) => Promise<void> = async (
+        notes,
+        noteIdx,
+        valueIdx
+    ) => {
         const note = notes[noteIdx];
 
         if (!note) {
@@ -430,16 +455,16 @@ export class SoundsInstance implements IContainerPlugin {
         } catch (e) {
             console.error(e);
         }
-    }
+    };
 
-    private _removeAudioSource(source: AudioScheduledSourceNode): void {
+    private readonly _removeAudioSource: (source: AudioScheduledSourceNode) => void = (source) => {
         source.stop();
         source.disconnect();
 
         this._audioSources.splice(this._audioSources.indexOf(source), 1);
-    }
+    };
 
-    private _unmute(): void {
+    private readonly _unmute: () => void = () => {
         const container = this._container,
             options = container.actualOptions,
             soundsOptions = options.sounds;
@@ -452,13 +477,15 @@ export class SoundsInstance implements IContainerPlugin {
             container.audioContext = new AudioContext();
         }
 
+        const { audioContext } = container;
+
         if (!this._audioSources) {
             this._audioSources = [];
         }
 
-        const gain = container.audioContext.createGain();
+        const gain = audioContext.createGain();
 
-        gain.connect(container.audioContext.destination);
+        gain.connect(audioContext.destination);
 
         gain.gain.value = soundsOptions.volume.value / 100;
 
@@ -467,9 +494,9 @@ export class SoundsInstance implements IContainerPlugin {
         this._initEvents();
 
         this._engine.dispatchEvent(SoundsEventType.unmute, { container: this._container });
-    }
+    };
 
-    private _updateMuteIcons(): void {
+    private readonly _updateMuteIcons: () => void = () => {
         const container = this._container,
             muteImg = this._muteImg,
             unmuteImg = this._unmuteImg;
@@ -481,9 +508,9 @@ export class SoundsInstance implements IContainerPlugin {
         if (unmuteImg) {
             unmuteImg.style.display = container.muted ? "none" : "block";
         }
-    }
+    };
 
-    private _updateMuteStatus(): void {
+    private readonly _updateMuteStatus: () => void = () => {
         const container = this._container;
 
         if (container.muted) {
@@ -493,9 +520,9 @@ export class SoundsInstance implements IContainerPlugin {
 
             this._playMuteSound();
         }
-    }
+    };
 
-    private _updateVolume(): void {
+    private readonly _updateVolume: () => void = () => {
         const container = this._container,
             soundsOptions = container.actualOptions.sounds;
 
@@ -525,5 +552,5 @@ export class SoundsInstance implements IContainerPlugin {
         if (this._gain?.gain) {
             this._gain.gain.value = this._volume / 100;
         }
-    }
+    };
 }

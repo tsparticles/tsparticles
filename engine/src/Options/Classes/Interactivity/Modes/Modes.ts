@@ -7,7 +7,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
- * @category Options
  */
 export class Modes implements IModes, IOptionLoader<IModes> {
     [name: string]: unknown;
@@ -25,16 +24,22 @@ export class Modes implements IModes, IOptionLoader<IModes> {
             return;
         }
 
-        if (this._container) {
-            const interactors = this._engine.plugins.interactors.get(this._container);
+        if (!this._container) {
+            return;
+        }
 
-            if (interactors) {
-                for (const interactor of interactors as IExternalInteractor[]) {
-                    if (interactor.loadModeOptions) {
-                        interactor.loadModeOptions(this, data);
-                    }
-                }
+        const interactors = this._engine.plugins.interactors.get(this._container);
+
+        if (!interactors) {
+            return;
+        }
+
+        for (const interactor of interactors as IExternalInteractor[]) {
+            if (!interactor.loadModeOptions) {
+                continue;
             }
+
+            interactor.loadModeOptions(this, data);
         }
     }
 }

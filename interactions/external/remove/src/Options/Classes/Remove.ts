@@ -1,31 +1,29 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "tsparticles-engine";
 import type { IRemove } from "../Interfaces/IRemove";
 
 /**
- * @category Options
  */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
-    quantity;
+    quantity: RangeValue;
 
     constructor() {
         this.quantity = 2;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
+     * @returns the particles quantity
      */
-    get particles_nb(): number {
+    get particles_nb(): RangeValue {
         return this.quantity;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new quantity
-     * @param value
+     * @param value -
      */
-    set particles_nb(value: number) {
-        this.quantity = value;
+    set particles_nb(value: RangeValue) {
+        this.quantity = setRangeValue(value);
     }
 
     load(data?: RecursivePartial<IRemove>): void {
@@ -36,7 +34,7 @@ export class Remove implements IRemove, IOptionLoader<IRemove> {
         const quantity = data.quantity ?? data.particles_nb;
 
         if (quantity !== undefined) {
-            this.quantity = quantity;
+            this.quantity = setRangeValue(quantity);
         }
     }
 }

@@ -1,7 +1,6 @@
 import type { IAnimatable, IAnimation, IOptionsColor, IValueWithRandom, RangeValue } from "tsparticles-engine";
 
 /**
- * @category Options
  * [[include:Options/Particles/Orbit.md]]
  */
 export interface IOrbit extends IAnimatable<IAnimation> {

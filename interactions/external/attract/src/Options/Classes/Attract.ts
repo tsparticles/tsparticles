@@ -1,9 +1,7 @@
-import type { EasingTypeAlt, IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import { EasingType } from "tsparticles-engine";
+import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial } from "tsparticles-engine";
 import type { IAttract } from "../Interfaces/IAttract";
 
 /**
- * @category Options
  */
 export class Attract implements IAttract, IOptionLoader<IAttract> {
     distance;

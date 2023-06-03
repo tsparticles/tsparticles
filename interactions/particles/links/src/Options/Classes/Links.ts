@@ -1,12 +1,10 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparticles-engine";
 import type { ILinks } from "../Interfaces/ILinks";
 import { LinksShadow } from "./LinksShadow";
 import { LinksTriangle } from "./LinksTriangle";
-import { OptionsColor } from "tsparticles-engine";
 
 /**
  * [[include:Options/Particles/Links.md]]
- * @category Options
  */
 export class Links implements ILinks, IOptionLoader<ILinks> {
     blink;

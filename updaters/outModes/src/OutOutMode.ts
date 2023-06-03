@@ -1,7 +1,10 @@
-import type { Container, IDelta, OutModeAlt, Particle } from "tsparticles-engine";
 import {
+    type Container,
+    type IDelta,
     OutMode,
+    type OutModeAlt,
     OutModeDirection,
+    type Particle,
     ParticleOutType,
     Vector,
     calculateBounds,

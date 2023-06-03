@@ -1,6 +1,5 @@
 import type { Engine } from "tsparticles-engine";
 import { initPjs } from "tsparticles-particles.js";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
@@ -24,12 +23,21 @@ import { loadParticlesAttractInteraction } from "tsparticles-interaction-particl
 import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
 import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 import { loadPolygonShape } from "tsparticles-shape-polygon";
+import { loadRotateUpdater } from "tsparticles-updater-rotate";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 import { loadTextShape } from "tsparticles-shape-text";
 
+/**
+ * Loads the slime bundle with all plugins needed for running the tsParticles Slim package.
+ * This function must be called to make tsParticles Slim work.
+ * This function is not mandatory, the plugins can be loaded manually, or using other plugin bundles.
+ * If this function is not called, the tsparticles-slim package/dependency can be safely removed.
+ * This function is called automatically using CDN bundle files.
+ * @param engine - the engine to use for loading all plugins
+ */
 export async function loadSlim(engine: Engine): Promise<void> {
     await loadBaseMover(engine);
     await loadParallaxMover(engine);
@@ -60,10 +68,10 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await loadLifeUpdater(engine);
     await loadOpacityUpdater(engine);
     await loadSizeUpdater(engine);
-    await loadAngleUpdater(engine);
     await loadColorUpdater(engine);
-    await loadStrokeColorUpdater(engine);
     await loadOutModesUpdater(engine);
+    await loadRotateUpdater(engine);
+    await loadStrokeColorUpdater(engine);
 
     await initPjs(engine);
 }

@@ -1,10 +1,6 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "target": "esnext",
-    "module": "esnext",
-    "outDir": "./dist/types",
-    "declaration": true,
-    "emitDeclarationOnly": true
-  }
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.types.json"],
+    "compilerOptions": {
+        "outDir": "./dist/types"
+    }
 }

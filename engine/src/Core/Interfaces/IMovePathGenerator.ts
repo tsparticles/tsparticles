@@ -1,12 +1,12 @@
 import type { Container } from "../Container";
+import type { IDelta } from "./IDelta";
 import type { Particle } from "../Particle";
 import type { Vector } from "../Utils/Vector";
 
 /**
- * @category Interfaces
  */
 export interface IMovePathGenerator {
-    generate: (particle: Particle) => Vector;
+    generate: (particle: Particle, delta: IDelta) => Vector;
 
     init: (container: Container) => void;
 

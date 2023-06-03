@@ -10,7 +10,6 @@ import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
- * @category Options
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
     onClick;
@@ -26,51 +25,48 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onClick
+     * @returns the onClick event
      */
     get onclick(): ClickEvent {
         return this.onClick;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onClick
-     * @param value
+     * @param value -
      */
     set onclick(value: ClickEvent) {
         this.onClick = value;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onDiv
+     * @returns the onDiv event
      */
     get ondiv(): SingleOrMultiple<DivEvent> {
         return this.onDiv;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onDiv
-     * @param value
+     * @param value -
      */
     set ondiv(value: SingleOrMultiple<DivEvent>) {
         this.onDiv = value;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onHover
+     * @returns the onHover event
      */
     get onhover(): HoverEvent {
         return this.onHover;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new onHover
-     * @param value
+     * @param value -
      */
     set onhover(value: HoverEvent) {
         this.onHover = value;

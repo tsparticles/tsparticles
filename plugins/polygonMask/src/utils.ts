@@ -1,3 +1,4 @@
+import { type ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "tsparticles-engine";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
@@ -6,11 +7,14 @@ import type {
     SVGPathSegLinetoVerticalRel,
 } from "./pathseg";
 import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
-import { Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "tsparticles-engine";
-import type { ICoordinates } from "tsparticles-engine";
 import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 
+/**
+ * @param context -
+ * @param rawData -
+ * @param stroke -
+ */
 export function drawPolygonMask(
     context: CanvasRenderingContext2D,
     rawData: ICoordinates[],
@@ -35,6 +39,12 @@ export function drawPolygonMask(
     context.stroke();
 }
 
+/**
+ * @param context -
+ * @param path -
+ * @param stroke -
+ * @param position -
+ */
 export function drawPolygonMaskPath(
     context: CanvasRenderingContext2D,
     path: Path2D,
@@ -55,6 +65,12 @@ export function drawPolygonMaskPath(
     context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
+/**
+ * @param paths -
+ * @param scale -
+ * @param offset -
+ * @returns the coordinates of the points
+ */
 export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
     const res: ICoordinates[] = [];
 
@@ -67,8 +83,8 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
             };
 
         for (let i = 0; i < len; i++) {
-            const segment: SVGPathSeg | undefined = segments?.getItem(i);
-            const svgPathSeg = window.SVGPathSeg;
+            const segment: SVGPathSeg | undefined = segments?.getItem(i),
+                svgPathSeg = window.SVGPathSeg;
 
             switch (segment?.pathSegType) {
                 //
@@ -134,6 +150,12 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
     return res;
 }
 
+/**
+ * @param s1 -
+ * @param s2 -
+ * @param pos -
+ * @returns the closest point on the segment
+ */
 export function calcClosestPtOnSegment(
     s1: ICoordinates,
     s2: ICoordinates,
@@ -165,6 +187,11 @@ export function calcClosestPtOnSegment(
     return res;
 }
 
+/**
+ * @param start -
+ * @param stop -
+ * @param velocity -
+ */
 export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
     const { dx, dy } = getDistances(start, stop),
         wallAngle = Math.atan2(dy, dx), // + Math.PI / 2;

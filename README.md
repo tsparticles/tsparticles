@@ -48,6 +48,8 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
         -   [**_Usage_**](#usage)
     -   [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
         -   [Angular](#angular)
+        -   [Astro](#astro)
+        -   [Ember.js](#emberjs)
         -   [Inferno](#inferno)
         -   [jQuery](#jquery)
         -   [Preact](#preact)
@@ -292,6 +294,22 @@ particles.pause();
 
 Instructions available [here](https://github.com/tsparticles/angular/#readme)
 
+### Astro
+
+`astro-particles`
+
+[![npm](https://img.shields.io/npm/v/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles) [![npm](https://img.shields.io/npm/dm/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles)
+
+Instructions available [here](https://github.com/tsparticles/astro/#readme)
+
+### Ember.js
+
+`ember-tsparticles`
+
+[![npm](https://img.shields.io/npm/v/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles) [![npm](https://img.shields.io/npm/dm/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles)
+
+Instructions available [here](https://github.com/tsparticles/ember/#readme)
+
 ### Inferno
 
 `inferno-particles`
@@ -410,7 +428,7 @@ This preset loads big colored circles moving upwards on a white background.
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/bigCircles/images/sample.png)](https://particles.js.org/samples/presets/bigCircles)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/bigCircles/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/bigCircles#readme)
 
 ### Bubbles
 
@@ -420,7 +438,7 @@ This preset loads colored bubbles coming from the bottom of the screen on a whit
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/bubbles/images/sample.png)](https://particles.js.org/samples/presets/bubbles)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/bubbles/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/bubbles#readme)
 
 ### Confetti
 
@@ -430,7 +448,7 @@ This preset loads white and red confetti launched from the screen center on a tr
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/confetti/images/sample.png)](https://particles.js.org/samples/presets/confetti)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confetti/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/confetti#readme)
 
 ### Fire
 
@@ -440,7 +458,7 @@ This preset loads a faded red to a black background with particles colored like 
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/fire/images/sample.png)](https://particles.js.org/samples/presets/fire)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fire/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fire#readme)
 
 ### Firefly
 
@@ -450,7 +468,7 @@ This preset loads a mouse trail made with small fading particles like little fir
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/firefly/images/sample.png)](https://particles.js.org/samples/presets/firefly)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/firefly/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/firefly#readme)
 
 ### Fireworks
 
@@ -460,7 +478,7 @@ This preset loads a beautiful fireworks effect.
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/fireworks/images/sample.png)](https://particles.js.org/samples/presets/fireworks)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fireworks/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fireworks#readme)
 
 ### Fountain
 
@@ -468,7 +486,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fountain/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/fountain#readme)
 
 ### Links
 
@@ -476,7 +494,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/links/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/links#readme)
 
 ### Sea Anemone
 
@@ -484,7 +502,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/seaAnemone/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/seaAnemone#readme)
 
 ### Snow
 
@@ -492,7 +510,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/snow/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/snow#readme)
 
 ### Stars
 
@@ -500,7 +518,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/stars/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/stars#readme)
 
 ### Triangles
 
@@ -508,7 +526,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
 
-You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/triangles/#readme)
+You can find the instructions [here](https://github.com/tsparticles/presets/tree/main/presets/triangles#readme)
 
 ---
 
@@ -581,7 +599,7 @@ _More videos are coming soon! Check every day if there are some new contents._
 
 **particles.json**
 
-You can find some config samples [here](https://github.com/matteobruni/tsparticles/tree/main/websites/particles.js.org/presets) 📖
+You can find some config samples [here](https://github.com/tsparticles/website/tree/main/presets) 📖
 
 ---
 
@@ -595,17 +613,17 @@ available [here](https://particles.js.org/docs/interfaces/tsParticles_Engine.Opt
 I've created a tsParticles collection on [CodePen](https://codepen.io/collection/DPOage) 😮 or you can check out
 my [profile](https://codepen.io/matteobruni)
 
-Otherwise, there's the demo page link below. Just click/tap the Coronavirus below, don't be scared. **It's safe** 😷.
+Otherwise, there's the demo page link below.
 
-[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/#virus)
+[![tsParticles demo](https://media.giphy.com/media/fsVN1ZHksgBIXNIbr1/giphy.gif)](https://particles.js.org/samples/)
 
 Want to see even more demos? Clone the repository on your computer and follow these instructions
 
 ```shell
 $ pnpm i
-$ npx lerna run build
+$ pnpm run build
 $ cd demo/vanilla
-$ pnpm run start
+$ pnpm start
 ```
 
 **Boom! 💥** <http://localhost:3000> and you can check out other demos.
@@ -643,27 +661,6 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 ---
 
 ## Dependency Graphs
-
-```mermaid
-flowchart TD
-
-subgraph c [Components]
-ca[Angular]
-ci[Inferno.js]
-cj[JQuery]
-cp[Preact]
-cre[React.js]
-cri[Riot.js]
-cso[Solid.js]
-csv[Svelte]
-cv2[Vue.js 2.x]
-cv3[Vue.js 3.x]
-cwc[Web Components]
-cwp[WordPress]
-end
-
-e[tsParticles Engine] --> c
-```
 
 ```mermaid
 flowchart LR
@@ -793,23 +790,6 @@ uw[Wobble]
 end
 
 e --> u
-
-subgraph pr [Presets]
-prbi[Big Circles]
-prbu[Bubbles]
-prc[Confetti]
-prf[Fire]
-prff[Firefly]
-prfw[Fireworks]
-prfo[Fountain]
-prl[Links]
-prsa[Sea Anemone]
-prsn[Snow]
-prst[Stars]
-prt[Triangles]
-end
-
-e --> pr
 ```
 
 ---

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { Options, tsParticles } from "tsparticles-engine";
+import { Options, errorPrefix, tsParticles } from "tsparticles-engine";
 import { JSDOM } from "jsdom";
 import _ from "lodash";
 import fs from "fs-extra";
@@ -39,6 +39,11 @@ type CustomRecord = {
 };
 
 const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecord => {
+    /**
+     * @param object -
+     * @param base -
+     * @returns Options changes
+     */
     function changes(object: CustomRecord, base: CustomRecord): CustomRecord {
         return _.transform(object, function (result: CustomRecord, value: CustomRecord, key: string) {
             if (key.startsWith("_")) {
@@ -86,7 +91,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
     const hasPath = !!process.argv.find((a, idx) => idx > 1 && !a.startsWith("-"));
 
     if (!hasPath) {
-        console.log("Error: No path specified");
+        console.log(`${errorPrefix} no path specified`);
 
         process.exitCode = 1;
 
@@ -98,7 +103,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
         srcPath = path.join(basePath, argPath);
 
     if (!(await fs.pathExists(srcPath))) {
-        console.error("Error: Provided path does not exist");
+        console.error(`${errorPrefix} Provided path does not exist`);
 
         process.exitCode = 1;
 

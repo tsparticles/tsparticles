@@ -1,7 +1,6 @@
 import type { IShapeValues } from "./IShapeValues";
 
 /**
- * @category Options
  */
 export interface IStarShape extends IShapeValues {
     inset: number;

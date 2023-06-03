@@ -1,9 +1,7 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparticles-engine";
 import type { IGrabLinks } from "../Interfaces/IGrabLinks";
-import { OptionsColor } from "tsparticles-engine";
 
 /**
- * @category Options
  */
 export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
     blink;

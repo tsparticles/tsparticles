@@ -15,7 +15,6 @@ import type { IEmitterSize } from "./IEmitterSize";
 /**
  * Particles emitter object options
  * [[include:Options/Plugins/Emitters.md]]
- * @category Emitters Plugin
  */
 export interface IEmitter {
     /**
@@ -24,7 +23,7 @@ export interface IEmitter {
     autoPlay: boolean;
 
     /**
-     * The direction of the emitted particles, [[MoveDirection]] is the enum used for values
+     * The direction of the emitted particles, {@link MoveDirection} is the enum used for values
      */
     direction?: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
 

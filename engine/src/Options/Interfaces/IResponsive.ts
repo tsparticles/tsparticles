@@ -4,6 +4,6 @@ import type { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
 
 export interface IResponsive {
     maxWidth: number;
-    mode: ResponsiveMode;
+    mode: ResponsiveMode | keyof typeof ResponsiveMode;
     options: RecursivePartial<IOptions>;
 }

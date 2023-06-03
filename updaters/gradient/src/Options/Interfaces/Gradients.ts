@@ -12,7 +12,7 @@ export interface IGradientColor {
 
 export interface IGradientAngle {
     direction: RotateDirection | keyof typeof RotateDirection | RotateDirectionAlt;
-    value: number;
+    value: RangeValue;
 }
 
 export interface IGradient {

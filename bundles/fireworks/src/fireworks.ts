@@ -1,9 +1,13 @@
-import type { Container, CustomEventArgs, ISourceOptions, Particle, RecursivePartial } from "tsparticles-engine";
 import {
+    type Container,
+    type CustomEventArgs,
     DestroyType,
     EventType,
+    type ISourceOptions,
     MoveDirection,
     OutMode,
+    type Particle,
+    type RecursivePartial,
     StartValueType,
     getRangeMax,
     getRangeMin,
@@ -12,7 +16,6 @@ import {
 } from "tsparticles-engine";
 import { FireworkOptions } from "./FireworkOptions";
 import type { IFireworkOptions } from "./IFireworkOptions";
-import { loadAngleUpdater } from "tsparticles-updater-angle";
 import { loadBaseMover } from "tsparticles-move-base";
 import { loadCircleShape } from "tsparticles-shape-circle";
 import { loadColorUpdater } from "tsparticles-updater-color";
@@ -22,12 +25,24 @@ import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadLineShape } from "tsparticles-shape-line";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
+import { loadRotateUpdater } from "tsparticles-updater-rotate";
 import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSoundsPlugin } from "tsparticles-plugin-sounds";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 
 let initialized = false;
 let initializing = false;
+
+declare global {
+    interface Window {
+        fireworks: ((
+            idOrOptions: string | RecursivePartial<IFireworkOptions>,
+            sourceOptions?: RecursivePartial<IFireworkOptions>
+        ) => Promise<FireworksInstance | undefined>) & {
+            version: string;
+        };
+    }
+}
 
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
     const data = args.data as { particle: Particle };
@@ -55,6 +70,8 @@ class FireworksInstance {
     }
 }
 
+/**
+ */
 async function initPlugins(): Promise<void> {
     if (initialized) {
         return;
@@ -63,10 +80,12 @@ async function initPlugins(): Promise<void> {
     if (initializing) {
         return new Promise<void>((resolve) => {
             const interval = setInterval(() => {
-                if (initialized) {
-                    clearInterval(interval);
-                    resolve();
+                if (!initialized) {
+                    return;
                 }
+
+                clearInterval(interval);
+                resolve();
             }, 100);
         });
     }
@@ -78,7 +97,7 @@ async function initPlugins(): Promise<void> {
     await loadSoundsPlugin(tsParticles);
     await loadCircleShape(tsParticles);
     await loadLineShape(tsParticles);
-    await loadAngleUpdater(tsParticles);
+    await loadRotateUpdater(tsParticles);
     await loadColorUpdater(tsParticles);
     await loadDestroyUpdater(tsParticles);
     await loadLifeUpdater(tsParticles);
@@ -91,6 +110,11 @@ async function initPlugins(): Promise<void> {
     initialized = true;
 }
 
+/**
+ * @param idOrOptions - the id used for displaying the animation, or the animation configuration if an id is not necessary
+ * @param sourceOptions - the animation configuration if an id is provided
+ * @returns the loaded instance
+ */
 export async function fireworks(
     idOrOptions: string | RecursivePartial<IFireworkOptions>,
     sourceOptions?: RecursivePartial<IFireworkOptions>
@@ -297,3 +321,7 @@ export async function fireworks(
 
     return new FireworksInstance(container);
 }
+
+fireworks.version = tsParticles.version;
+
+window.fireworks = fireworks;

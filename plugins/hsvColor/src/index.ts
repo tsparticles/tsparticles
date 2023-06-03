@@ -1,6 +1,8 @@
 import { HsvColorManager } from "./HsvColorManager";
 import { addColorManager } from "tsparticles-engine";
 
-export function loadHsvColorPlugin(): void {
+/**
+ */
+export async function loadHsvColorPlugin(): Promise<void> {
     addColorManager(new HsvColorManager());
 }

@@ -1,6 +1,13 @@
-import type { IDelta, Particle } from "tsparticles-engine";
-import { clamp } from "tsparticles-engine";
+import { type IDelta, type Particle, clamp } from "tsparticles-engine";
 
+/**
+ * @param p1 -
+ * @param r1 -
+ * @param p2 -
+ * @param r2 -
+ * @param delta -
+ * @param pixelRatio -
+ */
 function updateAbsorb(p1: Particle, r1: number, p2: Particle, r2: number, delta: IDelta, pixelRatio: number): void {
     const factor = clamp((p1.options.collisions.absorb.speed * delta.factor) / 10, 0, r2);
 
@@ -13,6 +20,12 @@ function updateAbsorb(p1: Particle, r1: number, p2: Particle, r2: number, delta:
     }
 }
 
+/**
+ * @param p1 -
+ * @param p2 -
+ * @param delta -
+ * @param pixelRatio -
+ */
 export function absorb(p1: Particle, p2: Particle, delta: IDelta, pixelRatio: number): void {
     const r1 = p1.getRadius(),
         r2 = p2.getRadius();

@@ -30,12 +30,15 @@
     "paths/perlinNoise",
     "paths/polygon",
     "paths/simplexNoise",
+    "paths/svg",
     "plugins/absorbers",
     "plugins/emitters",
     "plugins/infection",
     "plugins/polygonMask",
+    "shapes/arrow",
     "shapes/bubble",
     "shapes/circle",
+    "shapes/cog",
     "shapes/heart",
     "shapes/image",
     "shapes/line",
@@ -70,7 +73,6 @@
     "typedoc-plugin-clarity",
     "typedoc-plugin-coverage",
     "typedoc-plugin-keywords"
-    //"typedoc-plugin-missing-exports"
   ],
   "clarityId": "8q4bxin4tm",
   "carbonServe": "CEAI6KJL",

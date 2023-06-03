@@ -5,7 +5,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
  * [[include:Options/Particles/Number.md]]
- * @category Options
  */
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
     density;
@@ -20,6 +19,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
 
     /**
      * @deprecated the max property is deprecated, please use the new limit
+     * @returns the max particles number
      */
     get max(): number {
         return this.limit;
@@ -27,6 +27,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
 
     /**
      * @deprecated the max property is deprecated, please use the new limit
+     * @param value - the max particles number
      */
     set max(value: number) {
         this.limit = value;

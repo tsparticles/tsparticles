@@ -1,12 +1,17 @@
-import { ClickMode, ExternalInteractorBase } from "tsparticles-engine";
-import type { IModes, Modes, RecursivePartial } from "tsparticles-engine";
+import {
+    ClickMode,
+    ExternalInteractorBase,
+    type IModes,
+    type Modes,
+    type RecursivePartial,
+    getRangeValue,
+    itemFromArray,
+} from "tsparticles-engine";
 import type { IPushMode, PushContainer, PushMode } from "./Types";
 import { Push } from "./Options/Classes/Push";
-import { itemFromArray } from "tsparticles-engine";
 
 /**
  * Particle attract manager
- * @category Interactions
  */
 export class Pusher extends ExternalInteractorBase<PushContainer> {
     handleClickMode: (mode: string) => void;
@@ -27,16 +32,16 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
                 return;
             }
 
-            const pushNb = pushOptions.quantity;
+            const quantity = getRangeValue(pushOptions.quantity);
 
-            if (pushNb <= 0) {
+            if (quantity <= 0) {
                 return;
             }
 
             const group = itemFromArray([undefined, ...pushOptions.groups]),
                 groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
 
-            container.particles.push(pushNb, container.interactivity.mouse, groupOptions, group);
+            container.particles.push(quantity, container.interactivity.mouse, groupOptions, group);
         };
     }
 

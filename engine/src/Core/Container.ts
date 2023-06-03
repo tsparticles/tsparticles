@@ -1,7 +1,3 @@
-/**
- * [[include:Container.md]]
- * @packageDocumentation
- */
 import { animate, cancelAnimation } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
@@ -26,13 +22,19 @@ import { loadOptions } from "../Utils/OptionsUtils";
 
 /**
  * Checks if the container is still usable
- * @param container the container to check
+ * @param container - the container to check
  * @returns true if the container is still usable
  */
 function guardCheck(container: Container): boolean {
     return container && !container.destroyed;
 }
 
+/**
+ * @param engine -
+ * @param container -
+ * @param sourceOptionsArr -
+ * @returns the options loaded
+ */
 function loadContainerOptions(
     engine: Engine,
     container: Container,
@@ -47,13 +49,7 @@ function loadContainerOptions(
 
 const defaultPathGeneratorKey = "default",
     defaultPathGenerator: IMovePathGenerator = {
-        generate: (p: Particle): Vector => {
-            const v = p.velocity.copy();
-
-            v.angle += (v.length * Math.PI) / 180;
-
-            return v;
-        },
+        generate: (p: Particle): Vector => p.velocity,
         init: (): void => {
             // nothing required
         },
@@ -68,11 +64,10 @@ const defaultPathGeneratorKey = "default",
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
  * [[include:Container.md]]
- * @category Core
  */
 export class Container {
     /**
-     * The options loaded by the container, it's a full [[Options]] object
+     * The options loaded by the container, it's a full {@link Options} object
      */
     actualOptions;
 
@@ -92,11 +87,6 @@ export class Container {
     readonly drawers;
 
     /**
-     * The container duration
-     */
-    duration;
-
-    /**
      * The container fps limit, coming from options
      */
     fpsLimit;
@@ -112,11 +102,6 @@ export class Container {
      * Last frame time, used for delta values, for keeping animation correct in lower frame rates
      */
     lastFrameTime?: number;
-
-    /**
-     * The container lifetime
-     */
-    lifeTime;
 
     /**
      * The container check if it's hidden on the web page
@@ -152,29 +137,36 @@ export class Container {
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
     private _drawAnimationFrame?: number;
+    /**
+     * The container duration
+     */
+    private _duration;
     private readonly _engine;
     private readonly _eventListeners;
     private _firstStart;
-    private readonly _initialSourceOptions;
+    private _initialSourceOptions;
     private readonly _intersectionObserver;
+    /**
+     * The container lifetime
+     */
+    private _lifeTime;
     private _options;
     private _paused;
     private _sourceOptions;
 
     /**
      * This is the core class, create an instance to have a new working particles manager
-     * @constructor
-     * @param engine the engine used by container
-     * @param id the id to identify this instance
-     * @param sourceOptions the options to load
+     * @param engine - the engine used by container
+     * @param id - the id to identify this instance
+     * @param sourceOptions - the options to load
      */
     constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
         this._engine = engine;
         this.fpsLimit = 120;
         this.smooth = false;
         this._delay = 0;
-        this.duration = 0;
-        this.lifeTime = 0;
+        this._duration = 0;
+        this._lifeTime = 0;
         this._firstStart = true;
         this.started = false;
         this.destroyed = false;
@@ -212,7 +204,8 @@ export class Container {
     }
 
     /**
-     * The options used by the container, it's a full [[Options]] object
+     * The options used by the container, it's a full {@link Options} object
+     * @returns the options used by the container
      */
     get options(): Options {
         return this._options;
@@ -220,6 +213,7 @@ export class Container {
 
     /**
      * The options that were initially passed to the container
+     * @returns the source options passed to the container
      */
     get sourceOptions(): RecursivePartial<IOptions> | undefined {
         return this._sourceOptions;
@@ -227,7 +221,7 @@ export class Container {
 
     /**
      * Adds a click handler to the container
-     * @param callback the callback to be called when the click event occurs
+     * @param callback - the callback to be called when the click event occurs
      */
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
         if (!guardCheck(this)) {
@@ -336,11 +330,16 @@ export class Container {
         el.addEventListener("touchcancel", touchCancelHandler);
     }
 
+    addLifeTime(value: number): void {
+        this._lifeTime += value;
+    }
+
     /**
      * Add a new path generator to the container
-     * @param key the key to identify the path generator
-     * @param generator the path generator
-     * @param override if true, override the existing path generator
+     * @param key - the key to identify the path generator
+     * @param generator - the path generator
+     * @param override - if true, override the existing path generator
+     * @returns true if the path generator was added, false otherwise
      */
     addPath(key: string, generator?: IMovePathGenerator, override = false): boolean {
         if (!guardCheck(this) || (!override && this.pathGenerators.has(key))) {
@@ -350,6 +349,10 @@ export class Container {
         this.pathGenerators.set(key, generator ?? defaultPathGenerator);
 
         return true;
+    }
+
+    alive(): boolean {
+        return !this._duration || this._lifeTime <= this._duration;
     }
 
     /**
@@ -366,9 +369,7 @@ export class Container {
         this.canvas.destroy();
 
         for (const [, drawer] of this.drawers) {
-            if (drawer.destroy) {
-                drawer.destroy(this);
-            }
+            drawer.destroy && drawer.destroy(this);
         }
 
         for (const key of this.drawers.keys()) {
@@ -391,6 +392,7 @@ export class Container {
 
     /**
      * Draws a frame
+     * @param force -
      */
     draw(force: boolean): void {
         if (!guardCheck(this)) {
@@ -418,7 +420,7 @@ export class Container {
         return JSON.stringify(
             this.actualOptions,
             (key, value) => {
-                if (key === "_engine" || key === "_container") {
+                if (key.startsWith("_")) {
                     return;
                 }
 
@@ -430,9 +432,9 @@ export class Container {
 
     /**
      * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
-     * @param callback The callback to handle the image
-     * @param type The exported image type
-     * @param quality The exported image quality
+     * @param callback - The callback to handle the image
+     * @param type - The exported image type
+     * @param quality - The exported image quality
      */
     exportImage(callback: BlobCallback, type?: string, quality?: number): void {
         const element = this.canvas.element;
@@ -444,7 +446,7 @@ export class Container {
 
     /**
      * @deprecated this method is deprecated, please use the exportImage method
-     * @param callback The callback to handle the image
+     * @param callback - The callback to handle the image
      */
     exportImg(callback: BlobCallback): void {
         this.exportImage(callback);
@@ -460,7 +462,7 @@ export class Container {
 
     /**
      * Handles click event in the container
-     * @param mode click mode to handle
+     * @param mode - click mode to handle
      */
     handleClickMode(mode: ClickMode | string): void {
         if (!guardCheck(this)) {
@@ -470,9 +472,7 @@ export class Container {
         this.particles.handleClickMode(mode);
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.handleClickMode) {
-                plugin.handleClickMode(mode);
-            }
+            plugin.handleClickMode && plugin.handleClickMode(mode);
         }
     }
 
@@ -514,22 +514,18 @@ export class Container {
         this.canvas.resize();
 
         this.zLayers = this.actualOptions.zLayers;
-        this.duration = getRangeValue(this.actualOptions.duration) * 1000;
+        this._duration = getRangeValue(this.actualOptions.duration) * 1000;
         this._delay = getRangeValue(this.actualOptions.delay) * 1000;
-        this.lifeTime = 0;
+        this._lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
         this.smooth = this.actualOptions.smooth;
 
         for (const [, drawer] of this.drawers) {
-            if (drawer.init) {
-                await drawer.init(this);
-            }
+            drawer.init && (await drawer.init(this));
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.init) {
-                await plugin.init();
-            }
+            plugin.init && (await plugin.init());
         }
 
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
@@ -538,9 +534,7 @@ export class Container {
         this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.particlesSetup) {
-                plugin.particlesSetup();
-            }
+            plugin.particlesSetup && plugin.particlesSetup();
         }
 
         this._engine.dispatchEvent(EventType.particlesSetup, { container: this });
@@ -548,7 +542,7 @@ export class Container {
 
     /**
      * Loads the given theme, overriding the options
-     * @param name the theme name, if `undefined` resets the default options or the default theme
+     * @param name - the theme name, if `undefined` resets the default options or the default theme
      */
     async loadTheme(name?: string): Promise<void> {
         if (!guardCheck(this)) {
@@ -579,9 +573,7 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.pause) {
-                plugin.pause();
-            }
+            plugin.pause && plugin.pause();
         }
 
         if (!this.pageHidden) {
@@ -593,7 +585,7 @@ export class Container {
 
     /**
      * Starts animations and resume from pause
-     * @param force
+     * @param force -
      */
     play(force?: boolean): void {
         if (!guardCheck(this)) {
@@ -625,7 +617,8 @@ export class Container {
     }
 
     /**
-     * Restarts the container, just a [[stop]]/[[start]] alias
+     * Restarts the container, just a {@link Container.stop}/{@link Container.start} alias
+     * @returns the Promise of the start method
      */
     async refresh(): Promise<void> {
         if (!guardCheck(this)) {
@@ -643,7 +636,9 @@ export class Container {
             return;
         }
 
+        this._initialSourceOptions = undefined;
         this._options = loadContainerOptions(this._engine, this);
+        this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
         return this.refresh();
     }
@@ -651,9 +646,9 @@ export class Container {
     /**
      * Customise path generation
      * @deprecated Use the new setPath
-     * @param noiseOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
-     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
-     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
+     * @param noiseOrGenerator - the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
+     * @param init - the {@link IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update - the {@link IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setNoise(
         noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
@@ -670,9 +665,9 @@ export class Container {
     /**
      * Customise path generation
      * @deprecated Use the new addPath
-     * @param pathOrGenerator the [[IMovePathGenerator]] object or a function that generates a [[Vector]] object from [[Particle]]
-     * @param init the [[IMovePathGenerator]] init function, if the first parameter is a generator function
-     * @param update the [[IMovePathGenerator]] update function, if the first parameter is a generator function
+     * @param pathOrGenerator - the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
+     * @param init - the {@link IMovePathGenerator} init function, if the first parameter is a generator function
+     * @param update - the {@link IMovePathGenerator} update function, if the first parameter is a generator function
      */
     setPath(
         pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
@@ -727,9 +722,7 @@ export class Container {
                 }
 
                 for (const [, plugin] of this.plugins) {
-                    if (plugin.start) {
-                        await plugin.start();
-                    }
+                    plugin.start && (await plugin.start());
                 }
 
                 this._engine.dispatchEvent(EventType.containerStarted, { container: this });
@@ -767,9 +760,7 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            if (plugin.stop) {
-                plugin.stop();
-            }
+            plugin.stop && plugin.stop();
         }
 
         for (const key of this.plugins.keys()) {
@@ -783,6 +774,7 @@ export class Container {
 
     /**
      * Updates the container options
+     * @returns true if the options were updated, false otherwise
      */
     updateActualOptions(): boolean {
         this.actualOptions.responsive = [];
@@ -804,7 +796,7 @@ export class Container {
         return true;
     }
 
-    private _intersectionManager(entries: IntersectionObserverEntry[]): void {
+    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = (entries) => {
         if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
@@ -816,5 +808,5 @@ export class Container {
 
             (entry.isIntersecting ? this.play : this.pause)();
         }
-    }
+    };
 }

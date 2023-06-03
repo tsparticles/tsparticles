@@ -1,6 +1,8 @@
 import type { CustomEventArgs } from "../Types/CustomEventArgs";
 import type { CustomEventListener } from "../Types/CustomEventListener";
 
+/**
+ */
 export class EventDispatcher {
     private _listeners: Map<string, CustomEventListener[]>;
 
@@ -11,15 +13,21 @@ export class EventDispatcher {
     addEventListener(type: string, listener: CustomEventListener): void {
         this.removeEventListener(type, listener);
 
-        if (!this._listeners.get(type)) {
-            this._listeners.set(type, []);
+        let arr = this._listeners.get(type);
+
+        if (!arr) {
+            arr = [];
+
+            this._listeners.set(type, arr);
         }
 
-        this._listeners.get(type)?.push(listener);
+        arr.push(listener);
     }
 
     dispatchEvent(type: string, args: CustomEventArgs): void {
-        this._listeners.get(type)?.forEach((handler) => handler(args));
+        const listeners = this._listeners.get(type);
+
+        listeners && listeners.forEach((handler) => handler(args));
     }
 
     hasEventListener(type: string): boolean {

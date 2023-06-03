@@ -1,38 +1,31 @@
-import type { ICoordinates, IDimension, IRgb } from "tsparticles-engine";
 import {
+    type ICoordinates,
     drawLine,
     drawTriangle,
     getDistance,
     getDistances,
+    getRandom,
     getStyleFromRgb,
     rangeColorToRgb,
 } from "tsparticles-engine";
-import type { ILinksShadow } from "./Options/Interfaces/ILinksShadow";
+import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from "./Types";
 
-export function drawLinkLine(
-    context: CanvasRenderingContext2D,
-    width: number,
-    begin: ICoordinates,
-    end: ICoordinates,
-    maxDistance: number,
-    canvasSize: IDimension,
-    warp: boolean,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    colorLine: IRgb,
-    opacity: number,
-    shadow: ILinksShadow
-): void {
+/**
+ * @param params -
+ */
+export function drawLinkLine(params: LinkLineDrawParams): void {
     // this.ctx.lineCap = "round"; /* performance issue */
     /* path */
 
     let drawn = false;
 
+    const { begin, end, maxDistance, context, canvasSize, width, backgroundMask, colorLine, opacity, links } = params;
+
     if (getDistance(begin, end) <= maxDistance) {
         drawLine(context, begin, end);
 
         drawn = true;
-    } else if (warp) {
+    } else if (links.warp) {
         let pi1: ICoordinates | undefined;
         let pi2: ICoordinates | undefined;
 
@@ -94,11 +87,13 @@ export function drawLinkLine(
 
     context.lineWidth = width;
 
-    if (backgroundMask) {
-        context.globalCompositeOperation = composite;
+    if (backgroundMask.enable) {
+        context.globalCompositeOperation = backgroundMask.composite;
     }
 
     context.strokeStyle = getStyleFromRgb(colorLine, opacity);
+
+    const { shadow } = links;
 
     if (shadow.enable) {
         const shadowColor = rangeColorToRgb(shadow.color);
@@ -112,26 +107,51 @@ export function drawLinkLine(
     context.stroke();
 }
 
-export function drawLinkTriangle(
-    context: CanvasRenderingContext2D,
-    pos1: ICoordinates,
-    pos2: ICoordinates,
-    pos3: ICoordinates,
-    backgroundMask: boolean,
-    composite: GlobalCompositeOperation,
-    colorTriangle: IRgb,
-    opacityTriangle: number
-): void {
+/**
+ * @param params -
+ */
+export function drawLinkTriangle(params: LinkTriangleDrawParams): void {
+    const { context, pos1, pos2, pos3, backgroundMask, colorTriangle, opacityTriangle } = params;
+
     // this.ctx.lineCap = "round"; /* performance issue */
     /* path */
 
     drawTriangle(context, pos1, pos2, pos3);
 
-    if (backgroundMask) {
-        context.globalCompositeOperation = composite;
+    if (backgroundMask.enable) {
+        context.globalCompositeOperation = backgroundMask.composite;
     }
 
     context.fillStyle = getStyleFromRgb(colorTriangle, opacityTriangle);
 
     context.fill();
+}
+
+/**
+ * @param ids -
+ * @returns the key for the link
+ */
+export function getLinkKey(ids: number[]): string {
+    ids.sort((a, b) => a - b);
+
+    return ids.join("_");
+}
+
+/**
+ * @param particles -
+ * @param dictionary -
+ * @returns the frequency of the link
+ */
+export function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
+    const key = getLinkKey(particles.map((t) => t.id));
+
+    let res = dictionary.get(key);
+
+    if (res === undefined) {
+        res = getRandom();
+
+        dictionary.set(key, res);
+    }
+
+    return res;
 }

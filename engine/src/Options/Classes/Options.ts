@@ -25,7 +25,6 @@ interface DefaultThemes {
 
 /**
  * [[include:Options.md]]
- * @category Options
  */
 export class Options implements IOptions, IOptionLoader<IOptions> {
     [name: string]: unknown;
@@ -41,6 +40,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     fullScreen;
     interactivity;
     manualParticles: ManualParticle[];
+    name?: string;
     particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
@@ -80,6 +80,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     /**
      * @deprecated this property is obsolete, please use the new fullScreen
+     * @returns the full screen options object
      */
     get backgroundMode(): FullScreen {
         return this.fullScreen;
@@ -87,7 +88,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     /**
      * @deprecated this property is obsolete, please use the new fullScreen
-     * @param value
+     * @param value -
      */
     set backgroundMode(value: FullScreen) {
         this.fullScreen.load(value);
@@ -95,15 +96,15 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     /**
      * @deprecated this property is obsolete, please use the new fpsLimit
+     * @returns the fps limit
      */
     get fps_limit(): number {
         return this.fpsLimit;
     }
 
     /**
-     *
      * @deprecated this property is obsolete, please use the new fpsLimit
-     * @param value
+     * @param value -
      */
     set fps_limit(value: number) {
         this.fpsLimit = value;
@@ -111,6 +112,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     /**
      * @deprecated this property is obsolete, please use the new retinaDetect
+     * @returns if the retina display should be supported
      */
     get retina_detect(): boolean {
         return this.detectRetina;
@@ -118,15 +120,15 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     /**
      * @deprecated this property is obsolete, please use the new retinaDetect
-     * @param value
+     * @param value -
      */
     set retina_detect(value: boolean) {
         this.detectRetina = value;
     }
 
     /**
-     * This methods loads the source object in the current instance
-     * @param data the source data to load into the instance
+     * This method loads the source object in the current instance
+     * @param data - the source data to load into the instance
      */
     load(data?: RecursivePartial<IOptions>): void {
         if (!data) {
@@ -186,7 +188,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.backgroundMask.load(data.backgroundMask);
         this.interactivity.load(data.interactivity);
 
-        if (data.manualParticles !== undefined) {
+        if (data.manualParticles) {
             this.manualParticles = data.manualParticles.map((t) => {
                 const tmp = new ManualParticle();
 
@@ -276,14 +278,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    private _findDefaultTheme(mode: ThemeMode): Theme | undefined {
+    private readonly _findDefaultTheme: (mode: ThemeMode) => Theme | undefined = (mode) => {
         return (
             this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
             this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
         );
-    }
+    };
 
-    private _importPreset(preset: string): void {
+    private readonly _importPreset: (preset: string) => void = (preset) => {
         this.load(this._engine.plugins.getPreset(preset));
-    }
+    };
 }

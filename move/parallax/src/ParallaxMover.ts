@@ -1,11 +1,18 @@
-import type { IParticleMover, Particle } from "tsparticles-engine";
-import { isSsr } from "tsparticles-engine";
+import { type IParticleMover, type Particle, isSsr } from "tsparticles-engine";
 
+/**
+ */
 export class ParallaxMover implements IParticleMover {
+    /**
+     */
     init(): void {
         // nothing to init
     }
 
+    /**
+     * @param particle -
+     * @returns check if mover is enabled
+     */
     isEnabled(particle: Particle): boolean {
         return (
             !isSsr() &&
@@ -14,15 +21,19 @@ export class ParallaxMover implements IParticleMover {
         );
     }
 
+    /**
+     * @param particle -
+     */
     move(particle: Particle): void {
         const container = particle.container,
-            options = container.actualOptions;
+            options = container.actualOptions,
+            parallaxOptions = options.interactivity.events.onHover.parallax;
 
-        if (isSsr() || !options.interactivity.events.onHover.parallax.enable) {
+        if (isSsr() || !parallaxOptions.enable) {
             return;
         }
 
-        const parallaxForce = options.interactivity.events.onHover.parallax.force,
+        const parallaxForce = parallaxOptions.force,
             mousePos = container.interactivity.mouse.position;
 
         if (!mousePos) {
@@ -30,18 +41,20 @@ export class ParallaxMover implements IParticleMover {
         }
 
         /* smaller is the particle, longer is the offset distance */
-        const canvasCenter = {
-                x: container.canvas.size.width / 2,
-                y: container.canvas.size.height / 2,
+        const canvasSize = container.canvas.size,
+            canvasCenter = {
+                x: canvasSize.width / 2,
+                y: canvasSize.height / 2,
             },
-            parallaxSmooth = options.interactivity.events.onHover.parallax.smooth,
+            parallaxSmooth = parallaxOptions.smooth,
             factor = particle.getRadius() / parallaxForce,
             centerDistance = {
                 x: (mousePos.x - canvasCenter.x) * factor,
                 y: (mousePos.y - canvasCenter.y) * factor,
-            };
+            },
+            { offset } = particle;
 
-        particle.offset.x += (centerDistance.x - particle.offset.x) / parallaxSmooth; // Easing equation
-        particle.offset.y += (centerDistance.y - particle.offset.y) / parallaxSmooth; // Easing equation
+        offset.x += (centerDistance.x - offset.x) / parallaxSmooth; // Easing equation
+        offset.y += (centerDistance.y - offset.y) / parallaxSmooth; // Easing equation
     }
 }

@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
+
+### Bug Fixes
+
+-   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/matteobruni/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+-   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/matteobruni/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+-   **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/matteobruni/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
+-   **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/matteobruni/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
+-   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/matteobruni/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+-   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/matteobruni/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+-   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/matteobruni/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+-   fix options loading issue in absorbers and emitters ([6afaf3e](https://github.com/matteobruni/tsparticles/commit/6afaf3e4abd31fc63746358ccea1e21bfb754142))
+-   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/matteobruni/tsparticles/issues/4622) ([1019fa4](https://github.com/matteobruni/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+-   fixed infection plugin ([901b9ce](https://github.com/matteobruni/tsparticles/commit/901b9cef9f3f6df333200d52d712057b7c7fe59c))
+-   fixes build scripts, closes [#3909](https://github.com/matteobruni/tsparticles/issues/3909), closes [#3911](https://github.com/matteobruni/tsparticles/issues/3911) ([d2c3fb3](https://github.com/matteobruni/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+-   removed deprecated options ([fc1676d](https://github.com/matteobruni/tsparticles/commit/fc1676d94799326f2bd0285995f2b166647e6b6d))
+
+### Features
+
+-   added custom events ([13fe1fe](https://github.com/matteobruni/tsparticles/commit/13fe1fe9d1a81db22a55c9a11adc706643a60d50))
+-   added new move direction: inside and outside, out modes needs more fixes ([32a70a6](https://github.com/matteobruni/tsparticles/commit/32a70a68a155db1ed796519addd7298e33a39094))
+-   added new tspRandom function and setRandom for customizing all the random behaviors ([bd83a57](https://github.com/matteobruni/tsparticles/commit/bd83a57b2eb8b455450a5940ba4c4d5ff34834b2))
+-   added range colors to all color fields ([1b6f32a](https://github.com/matteobruni/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+-   added version to engine ([9406873](https://github.com/matteobruni/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+-   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/matteobruni/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+-   moved absorbers to an external plugin, breaking ([5e7223f](https://github.com/matteobruni/tsparticles/commit/5e7223fb6b505260eb72899ec1e9762d96a5c4d7))
+-   removed all canvas context save/restore calls ([208722f](https://github.com/matteobruni/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+
 ## [2.9.3](https://github.com/matteobruni/tsparticles/compare/tsparticles-plugin-absorbers@2.9.2...tsparticles-plugin-absorbers@2.9.3) (2023-02-12)
 
 **Note:** Version bump only for package tsparticles-plugin-absorbers

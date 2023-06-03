@@ -1,5 +1,5 @@
 import type { Engine, IPlugin } from "tsparticles-engine";
-import type { LinkContainer } from "./LinkContainer";
+import type { LinkContainer } from "./Types";
 import { LinkInstance } from "./LinkInstance";
 
 class LinksPlugin implements IPlugin {
@@ -22,6 +22,9 @@ class LinksPlugin implements IPlugin {
     }
 }
 
+/**
+ * @param engine -
+ */
 export async function loadPlugin(engine: Engine): Promise<void> {
     const plugin = new LinksPlugin();
 

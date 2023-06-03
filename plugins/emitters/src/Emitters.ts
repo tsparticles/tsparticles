@@ -1,5 +1,13 @@
-import type { IContainerPlugin, ICoordinates, IDelta, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
-import { arrayRandomIndex, executeOnSingleOrMultiple, itemFromArray } from "tsparticles-engine";
+import {
+    type IContainerPlugin,
+    type ICoordinates,
+    type IDelta,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    arrayRandomIndex,
+    executeOnSingleOrMultiple,
+    itemFromArray,
+} from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";
@@ -9,7 +17,6 @@ import type { EmittersEngine } from "./EmittersEngine";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 
 /**
- * @category Emitters Plugin
  */
 export class Emitters implements IContainerPlugin {
     array: EmitterInstance[];

@@ -1,8 +1,6 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
-    "outDir": "./dist/cjs"
-  }
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.json"],
+    "compilerOptions": {
+        "outDir": "./dist/cjs"
+    }
 }

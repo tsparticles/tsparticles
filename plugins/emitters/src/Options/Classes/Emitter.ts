@@ -1,12 +1,15 @@
-import { AnimatableColor, deepExtend, executeOnSingleOrMultiple, setRangeValue } from "tsparticles-engine";
-import type {
-    IOptionLoader,
-    IParticlesOptions,
-    IRangedCoordinates,
-    MoveDirection,
-    MoveDirectionAlt,
-    RecursivePartial,
-    SingleOrMultiple,
+import {
+    AnimatableColor,
+    type IOptionLoader,
+    type IParticlesOptions,
+    type IRangedCoordinates,
+    type MoveDirection,
+    type MoveDirectionAlt,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    deepExtend,
+    executeOnSingleOrMultiple,
+    setRangeValue,
 } from "tsparticles-engine";
 import { EmitterLife } from "./EmitterLife";
 import { EmitterRate } from "./EmitterRate";
@@ -16,7 +19,6 @@ import type { IEmitter } from "../Interfaces/IEmitter";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]
- * @category Emitters Plugin
  */
 export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     autoPlay;

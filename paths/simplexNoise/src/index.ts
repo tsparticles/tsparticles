@@ -3,6 +3,9 @@ import { SimplexNoiseGenerator } from "./SimplexNoiseGenerator";
 
 export const simplexNoisePathName = "simplexNoise";
 
-export function loadSimplexNoisePath(engine: Engine): void {
-    engine.addPathGenerator(simplexNoisePathName, new SimplexNoiseGenerator());
+/**
+ * @param engine -
+ */
+export async function loadSimplexNoisePath(engine: Engine): Promise<void> {
+    await engine.addPathGenerator(simplexNoisePathName, new SimplexNoiseGenerator());
 }

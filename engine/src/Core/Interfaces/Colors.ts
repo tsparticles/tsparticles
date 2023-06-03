@@ -4,7 +4,6 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 /**
  * Alpha Color
  * [[include:Color.md]]
- * @category Interfaces
  */
 export interface IAlphaColor {
     /**
@@ -16,11 +15,10 @@ export interface IAlphaColor {
 /**
  * Color
  * [[include:Color.md]]
- * @category Interfaces
  */
 export interface IColor {
     /**
-     * Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string
+     * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
      */
     value: SingleOrMultiple<IValueColor | IRgb | IHsl | IHsv | SingleOrMultiple<string>>;
 }
@@ -28,17 +26,15 @@ export interface IColor {
 /**
  * Color
  * [[include:Color.md]]
- * @category Interfaces
  */
 export interface IRangeColor {
     /**
-     * Color value, can be a single or an array of [[IValueColor]], [[IRgb]], [[IHsl]] or string
+     * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
      */
     value: SingleOrMultiple<IRangeValueColor | IRangeRgb | IRangeHsl | IRangeHsv | SingleOrMultiple<string>>;
 }
 
 /**
- * @category Interfaces
  */
 export interface IHsl {
     /**
@@ -58,7 +54,6 @@ export interface IHsl {
 }
 
 /**
- * @category Interfaces
  */
 export interface IRangeHsl {
     /**
@@ -78,12 +73,10 @@ export interface IRangeHsl {
 }
 
 /**
- * @category Interfaces
  */
 export interface IHsla extends IHsl, IAlphaColor {}
 
 /**
- * @category Interfaces
  */
 export interface IHsv {
     /**
@@ -103,7 +96,6 @@ export interface IHsv {
 }
 
 /**
- * @category Interfaces
  */
 export interface IRangeHsv {
     /**
@@ -125,7 +117,6 @@ export interface IRangeHsv {
 export interface IHsva extends IHsv, IAlphaColor {}
 
 /**
- * @category Interfaces
  */
 export interface IRgb {
     /**
@@ -145,7 +136,6 @@ export interface IRgb {
 }
 
 /**
- * @category Interfaces
  */
 export interface IRangeRgb {
     /**
@@ -165,12 +155,10 @@ export interface IRangeRgb {
 }
 
 /**
- * @category Interfaces
  */
 export interface IRgba extends IRgb, IAlphaColor {}
 
 /**
- * @category Interfaces
  */
 export interface IValueColor {
     /**
@@ -190,7 +178,6 @@ export interface IValueColor {
 }
 
 /**
- * @category Interfaces
  */
 export interface IRangeValueColor {
     /**

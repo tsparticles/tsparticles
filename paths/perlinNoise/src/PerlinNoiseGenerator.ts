@@ -1,11 +1,10 @@
-import type { Container, IMovePathGenerator, Particle } from "tsparticles-engine";
-import { Vector, getRandom } from "tsparticles-engine";
+import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "tsparticles-engine";
 import type { IPerlinOptions } from "./IPerlinOptions";
 import { PerlinNoise } from "./PerlinNoise";
 
 export class PerlinNoiseGenerator implements IMovePathGenerator {
     container?: Container;
-    field: number[][][];
+    field: Vector[][];
     readonly noiseGen: PerlinNoise;
     noiseZ: number;
     readonly options: IPerlinOptions;
@@ -27,26 +26,20 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
 
     generate(particle: Particle): Vector {
         const pos = particle.getPosition(),
+            { size } = this.options,
             point = {
-                x: Math.max(Math.floor(pos.x / this.options.size), 0),
-                y: Math.max(Math.floor(pos.y / this.options.size), 0),
+                x: Math.max(Math.floor(pos.x / size), 0),
+                y: Math.max(Math.floor(pos.y / size), 0),
             },
-            v = Vector.origin;
+            { field } = this;
 
-        if (!this.field || !this.field[point.x] || !this.field[point.x][point.y]) {
-            return v;
-        }
-
-        v.length = this.field[point.x][point.y][1];
-        v.angle = this.field[point.x][point.y][0];
-
-        return v;
+        return !field || !field[point.x] || !field[point.x][point.y] ? Vector.origin : field[point.x][point.y].copy();
     }
 
     init(container: Container): void {
         this.container = container;
 
-        this.setup(container);
+        this._setup(container);
     }
 
     reset(): void {
@@ -58,32 +51,39 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             return;
         }
 
-        this.calculateField();
+        this._calculateField();
 
         this.noiseZ += this.options.increment;
 
         if (this.options.draw) {
-            this.container.canvas.draw((ctx) => this.drawField(ctx));
+            this.container.canvas.draw((ctx) => this._drawField(ctx));
         }
     }
 
-    private calculateField(): void {
-        for (let x = 0; x < this.options.columns; x++) {
-            for (let y = 0; y < this.options.rows; y++) {
-                const angle = this.noiseGen.noise(x / 50, y / 50, this.noiseZ) * Math.PI * 2;
-                const length = this.noiseGen.noise(x / 100 + 40000, y / 100 + 40000, this.noiseZ);
+    private readonly _calculateField: () => void = () => {
+        const { field, noiseGen, options } = this;
 
-                this.field[x][y][0] = angle;
-                this.field[x][y][1] = length;
+        for (let x = 0; x < options.columns; x++) {
+            const column = field[x];
+
+            for (let y = 0; y < options.rows; y++) {
+                const cell = column[y];
+
+                cell.length = noiseGen.noise(x / 100 + 40000, y / 100 + 40000, this.noiseZ);
+                cell.angle = noiseGen.noise(x / 50, y / 50, this.noiseZ) * Math.PI * 2;
             }
         }
-    }
+    };
 
-    private drawField(ctx: CanvasRenderingContext2D): void {
-        for (let x = 0; x < this.options.columns; x++) {
-            for (let y = 0; y < this.options.rows; y++) {
-                const angle = this.field[x][y][0];
-                const length = this.field[x][y][1];
+    private readonly _drawField: (ctx: CanvasRenderingContext2D) => void = (ctx) => {
+        const { field, options } = this;
+
+        for (let x = 0; x < options.columns; x++) {
+            const column = field[x];
+
+            for (let y = 0; y < options.rows; y++) {
+                const cell = column[y],
+                    { angle, length } = cell;
 
                 //ctx.save();
                 ctx.setTransform(1, 0, 0, 1, x * this.options.size, y * this.options.size);
@@ -97,42 +97,44 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 //ctx.restore();
             }
         }
-    }
+    };
 
-    private initField(): void {
-        this.field = new Array(this.options.columns);
+    private readonly _initField: () => void = () => {
+        const { columns, rows } = this.options;
+        this.field = new Array(columns);
 
-        for (let x = 0; x < this.options.columns; x++) {
-            this.field[x] = new Array(this.options.rows);
+        for (let x = 0; x < columns; x++) {
+            this.field[x] = new Array(rows);
 
-            for (let y = 0; y < this.options.rows; y++) {
-                this.field[x][y] = [0, 0];
+            for (let y = 0; y < rows; y++) {
+                this.field[x][y] = Vector.origin;
             }
         }
-    }
+    };
 
-    private resetField(container: Container): void {
-        const sourceOptions = container.actualOptions.particles.move.path.options;
+    private readonly _resetField: (container: Container) => void = (container) => {
+        const sourceOptions = container.actualOptions.particles.move.path.options,
+            { options } = this;
 
-        this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
-        this.options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : 0.004;
-        this.options.draw = !!sourceOptions.draw;
-        this.options.width = container.canvas.size.width;
-        this.options.height = container.canvas.size.height;
+        options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
+        options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : 0.004;
+        options.draw = !!sourceOptions.draw;
+        options.width = container.canvas.size.width;
+        options.height = container.canvas.size.height;
 
         this.noiseGen.seed((sourceOptions.seed as number) ?? getRandom());
 
-        this.options.columns = Math.floor(this.options.width / this.options.size) + 1;
-        this.options.rows = Math.floor(this.options.height / this.options.size) + 1;
+        options.columns = Math.floor(this.options.width / this.options.size) + 1;
+        options.rows = Math.floor(this.options.height / this.options.size) + 1;
 
-        this.initField();
-    }
+        this._initField();
+    };
 
-    private setup(container: Container): void {
+    private readonly _setup: (container: Container) => void = (container) => {
         this.noiseZ = 0;
 
-        this.resetField(container);
+        this._resetField(container);
 
-        window.addEventListener("resize", () => this.resetField(container));
-    }
+        window.addEventListener("resize", () => this._resetField(container));
+    };
 }

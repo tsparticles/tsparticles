@@ -1,18 +1,16 @@
 # Theme Options
 
--   [default](#default)
--   [name](#name)
--   [options](#options)
+-   [Theme Options](#theme-options)
+    -   [Default](#default)
+        -   [Mode](#mode)
+        -   [Value](#value)
+    -   [Name](#name)
+    -   [Options](#options)
 
 ## Default
 
--   [auto](#auto)
 -   [mode](#mode)
 -   [value](#value)
-
-### Auto
-
-If set to true, this theme will be switched when the mode matches the user OS theme.
 
 ### Mode
 

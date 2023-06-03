@@ -2,8 +2,15 @@ import type { AttractContainer, AttractMode, IAttractMode } from "./Types";
 import {
     Circle,
     ClickMode,
+    type Engine,
     ExternalInteractorBase,
     HoverMode,
+    type ICoordinates,
+    type IModes,
+    type Modes,
+    type Particle,
+    type Range,
+    type RecursivePartial,
     Vector,
     clamp,
     getDistances,
@@ -11,12 +18,10 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "tsparticles-engine";
-import type { Engine, ICoordinates, IModes, Modes, Particle, Range, RecursivePartial } from "tsparticles-engine";
 import { Attract } from "./Options/Classes/Attract";
 
 /**
  * Particle external attract manager
- * @category Interactions
  */
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
     handleClickMode: (mode: string) => void;
@@ -59,13 +64,15 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             container.attract.finish = false;
 
             setTimeout(() => {
-                if (!container.destroyed) {
-                    if (!container.attract) {
-                        container.attract = { particles: [] };
-                    }
-
-                    container.attract.clicking = false;
+                if (container.destroyed) {
+                    return;
                 }
+
+                if (!container.attract) {
+                    container.attract = { particles: [] };
+                }
+
+                container.attract.clicking = false;
             }, attract.duration * 1000);
         };
     }
@@ -96,9 +103,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             clickMode = events.onClick.mode;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
-            this.hoverAttract();
+            this._hoverAttract();
         } else if (clickEnabled && isInArray(ClickMode.attract, clickMode)) {
-            this.clickAttract();
+            this._clickAttract();
         }
     }
 
@@ -135,26 +142,28 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         // do nothing
     }
 
-    private clickAttract(): void {
+    private readonly _clickAttract: () => void = () => {
         const container = this.container;
 
         if (!container.attract) {
             container.attract = { particles: [] };
         }
 
-        if (!container.attract.finish) {
-            if (!container.attract.count) {
-                container.attract.count = 0;
+        const { attract } = container;
+
+        if (!attract.finish) {
+            if (!attract.count) {
+                attract.count = 0;
             }
 
-            container.attract.count++;
+            attract.count++;
 
-            if (container.attract.count === container.particles.count) {
-                container.attract.finish = true;
+            if (attract.count === container.particles.count) {
+                attract.finish = true;
             }
         }
 
-        if (container.attract.clicking) {
+        if (attract.clicking) {
             const mousePos = container.interactivity.mouse.clickPosition,
                 attractRadius = container.retina.attractModeDistance;
 
@@ -162,15 +171,15 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
                 return;
             }
 
-            this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
-        } else if (container.attract.clicking === false) {
-            container.attract.particles = [];
+            this._processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
+        } else if (attract.clicking === false) {
+            attract.particles = [];
         }
 
         return;
-    }
+    };
 
-    private hoverAttract(): void {
+    private readonly _hoverAttract: () => void = () => {
         const container = this.container,
             mousePos = container.interactivity.mouse.position,
             attractRadius = container.retina.attractModeDistance;
@@ -179,10 +188,14 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             return;
         }
 
-        this.processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
-    }
+        this._processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
+    };
 
-    private processAttract(position: ICoordinates, attractRadius: number, area: Range): void {
+    private readonly _processAttract: (position: ICoordinates, attractRadius: number, area: Range) => void = (
+        position,
+        attractRadius,
+        area
+    ) => {
         const container = this.container,
             attractOptions = container.actualOptions.interactivity.modes.attract;
 
@@ -207,5 +220,5 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
             particle.position.subFrom(normVec);
         }
-    }
+    };
 }

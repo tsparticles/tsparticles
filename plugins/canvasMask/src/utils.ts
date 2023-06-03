@@ -1,14 +1,15 @@
-import type {
-    Container,
-    ICoordinates,
-    IDimension,
-    IParticlesOptions,
-    IRgba,
-    RecursivePartial,
+import {
+    type Container,
+    type ICoordinates,
+    type IDimension,
+    type IParticlesOptions,
+    type IRgba,
+    type RecursivePartial,
+    errorPrefix,
+    getRandom,
 } from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { TextMask } from "./Options/Classes/TextMask";
-import { getRandom } from "tsparticles-engine";
 
 export type CanvasPixelData = {
     height: number;
@@ -23,6 +24,9 @@ type TextLineData = {
     width: number;
 };
 
+/**
+ * @param array
+ */
 export function shuffle<T>(array: T[]): T[] {
     for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
         const randomIndex = Math.floor(getRandom() * currentIndex);
@@ -33,6 +37,14 @@ export function shuffle<T>(array: T[]): T[] {
     return array;
 }
 
+/**
+ * @param container
+ * @param data
+ * @param position
+ * @param scale
+ * @param override
+ * @param filter
+ */
 export function addParticlesFromCanvasPixels(
     container: Container,
     data: CanvasPixelData,
@@ -90,6 +102,12 @@ export function addParticlesFromCanvasPixels(
     }
 }
 
+/**
+ * @param ctx
+ * @param size
+ * @param offset
+ * @param clear
+ */
 export function getCanvasImageData(
     ctx: CanvasRenderingContext2D,
     size: IDimension,
@@ -130,6 +148,10 @@ export function getCanvasImageData(
     };
 }
 
+/**
+ * @param src
+ * @param offset
+ */
 export function getImageData(src: string, offset: number): Promise<CanvasPixelData> {
     const image = new Image();
 
@@ -146,7 +168,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                return reject(new Error("Could not get canvas context"));
+                return reject(new Error(`${errorPrefix} Could not get canvas context`));
             }
 
             context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
@@ -160,6 +182,10 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     return p;
 }
 
+/**
+ * @param textOptions
+ * @param offset
+ */
 export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
     const canvas = document.createElement("canvas"),
         context = canvas.getContext("2d"),

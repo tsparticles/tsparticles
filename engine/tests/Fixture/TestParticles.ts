@@ -1,9 +1,10 @@
-import { Container } from "../../src/Core/Container";
-import { Particles } from "../../src/Core/Particles";
+import type { Container } from "../../src/Core/Container";
+import type { Particles } from "../../src/Core/Particles";
 
 export class TestParticles {
-    private container: Container;
     particles: Particles;
+
+    private container: Container;
 
     constructor(container: Container) {
         this.container = container;
@@ -11,11 +12,11 @@ export class TestParticles {
     }
 
     /**
-     * If [[container]] is provided, then the new particle will be initialized with
-     * this [[container]]. Otherwise the last-used [[container]] will be used.
+     * If {@link container} is provided, then the new particle will be initialized with
+     * this {@link container}. Otherwise the last-used {@link container} will be used.
      *
-     * [[position]] will be used verbatim, even if it is not provided. The last-used
-     * [[position]] will not be used.
+     * {@link position} will be used verbatim, even if it is not provided. The last-used
+     * {@link position} will not be used.
      *
      * @param container
      */

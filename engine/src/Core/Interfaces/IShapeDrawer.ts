@@ -9,7 +9,6 @@ import type {
 } from "../../Types/ShapeDrawerFunctions";
 
 /**
- * @category Interfaces
  */
 export interface IShapeDrawer {
     /**

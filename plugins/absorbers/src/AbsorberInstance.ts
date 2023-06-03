@@ -1,5 +1,9 @@
-import type { Container, ICoordinates, IRgb, Particle, RecursivePartial } from "tsparticles-engine";
 import {
+    type Container,
+    type ICoordinates,
+    type IRgb,
+    type Particle,
+    type RecursivePartial,
     RotateDirection,
     Vector,
     calcPositionOrRandomFromSize,
@@ -38,7 +42,6 @@ type OrbitingParticle = Particle & {
 };
 
 /**
- * @category Absorbers Plugin
  */
 export class AbsorberInstance {
     /**
@@ -78,28 +81,28 @@ export class AbsorberInstance {
 
     /**
      * Sets if the absorber can be moved with mouse drag&drop
-     * @private
+     * @internal
      */
     private dragging;
 
     /**
      * Gets the absorber initial position
-     * @private
+     * @internal
      */
     private readonly initialPosition?: Vector;
 
     /**
      * Gets the absorber options
-     * @private
+     * @internal
      */
     private readonly options;
 
     /**
      * The absorber constructor, initializes the absorber based on the given options and position
-     * @param absorbers the Absorbers collection manager that will contain this absorber
-     * @param container the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
-     * @param options the Absorber source options
-     * @param position the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
+     * @param absorbers - the Absorbers collection manager that will contain this absorber
+     * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
+     * @param options - the Absorber source options
+     * @param position - the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
      */
     constructor(
         private readonly absorbers: Absorbers,
@@ -135,12 +138,12 @@ export class AbsorberInstance {
             r: 0,
         };
 
-        this.position = this.initialPosition?.copy() ?? this.calcPosition();
+        this.position = this.initialPosition?.copy() ?? this._calcPosition();
     }
 
     /**
      * Absorber attraction interaction, attract the particle to the absorber
-     * @param particle the particle to attract to the absorber
+     * @param particle - the particle to attract to the absorber
      */
     attract(particle: OrbitingParticle): void {
         const container = this.container,
@@ -183,14 +186,14 @@ export class AbsorberInstance {
                 } else {
                     particle.needsNewPosition = true;
 
-                    this.updateParticlePosition(particle, v);
+                    this._updateParticlePosition(particle, v);
                 }
             } else {
                 if (options.destroy) {
                     particle.size.value -= sizeFactor;
                 }
 
-                this.updateParticlePosition(particle, v);
+                this._updateParticlePosition(particle, v);
             }
 
             if (this.limit.radius <= 0 || this.size < this.limit.radius) {
@@ -201,13 +204,13 @@ export class AbsorberInstance {
                 this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
             }
         } else {
-            this.updateParticlePosition(particle, v);
+            this._updateParticlePosition(particle, v);
         }
     }
 
     /**
      * The draw method, for drawing the absorber in the canvas
-     * @param context the canvas 2d context used for drawing
+     * @param context - the canvas 2d context used for drawing
      */
     draw(context: CanvasRenderingContext2D): void {
         context.translate(this.position.x, this.position.y);
@@ -227,29 +230,30 @@ export class AbsorberInstance {
         this.position =
             initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
                 ? initialPosition
-                : this.calcPosition();
+                : this._calcPosition();
     }
 
     /**
      * This method calculate the absorber position, using the provided options and position
-     * @private
+     * @internal
+     * @returns the calculated position for the absorber
      */
-    private calcPosition(): Vector {
+    private readonly _calcPosition: () => Vector = () => {
         const exactPosition = calcPositionOrRandomFromSizeRanged({
             size: this.container.canvas.size,
             position: this.options.position,
         });
 
         return Vector.create(exactPosition.x, exactPosition.y);
-    }
+    };
 
     /**
      * Updates the particle position, if the particle needs a new position
-     * @param particle the particle to update
-     * @param v the vector used for calculating the distance between the Absorber and the particle
-     * @private
+     * @param particle - the particle to update
+     * @param v - the vector used for calculating the distance between the Absorber and the particle
+     * @internal
      */
-    private updateParticlePosition(particle: OrbitingParticle, v: Vector): void {
+    private readonly _updateParticlePosition: (particle: OrbitingParticle, v: Vector) => void = (particle, v) => {
         if (particle.destroyed) {
             return;
         }
@@ -310,5 +314,5 @@ export class AbsorberInstance {
 
             particle.velocity.addTo(addV);
         }
-    }
+    };
 }

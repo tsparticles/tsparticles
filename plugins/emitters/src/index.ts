@@ -1,6 +1,11 @@
 import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types";
-import type { IOptions, IPlugin, RecursivePartial } from "tsparticles-engine";
-import { executeOnSingleOrMultiple, isInArray } from "tsparticles-engine";
+import {
+    type IOptions,
+    type IPlugin,
+    type RecursivePartial,
+    executeOnSingleOrMultiple,
+    isInArray,
+} from "tsparticles-engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
@@ -14,7 +19,6 @@ import { ShapeManager } from "./ShapeManager";
 import { SquareShape } from "./Shapes/Square/SquareShape";
 
 /**
- * @category Emitters Plugin
  */
 class EmittersPlugin implements IPlugin {
     readonly id;
@@ -124,6 +128,9 @@ class EmittersPlugin implements IPlugin {
     }
 }
 
+/**
+ * @param engine - The [[EmittersEngine]] instance to load the plugin into
+ */
 export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
     if (!engine.emitterShapeManager) {
         engine.emitterShapeManager = new ShapeManager(engine);

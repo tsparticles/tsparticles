@@ -1,9 +1,13 @@
-import type { IOptionLoader, RangeValue, RecursivePartial } from "tsparticles-engine";
-import { ValueWithRandom, setRangeValue } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    type RangeValue,
+    type RecursivePartial,
+    ValueWithRandom,
+    setRangeValue,
+} from "tsparticles-engine";
 import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse";
 
 /**
- * @category Options
  */
 export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepulse, IOptionLoader<IParticlesRepulse> {
     distance: RangeValue;

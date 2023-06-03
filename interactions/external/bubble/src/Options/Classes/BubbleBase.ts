@@ -1,9 +1,13 @@
-import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
-import { OptionsColor, executeOnSingleOrMultiple } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    OptionsColor,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    executeOnSingleOrMultiple,
+} from "tsparticles-engine";
 import type { IBubbleBase } from "../Interfaces/IBubbleBase";
 
 /**
- * @category Options
  */
 export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBase> {
     color?: SingleOrMultiple<OptionsColor>;

@@ -12,18 +12,17 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants";
-import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
 import type { ICoordinates } from "../Interfaces/ICoordinates";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect";
 
 /**
  * Manage the given event listeners
- * @param element the event listener receiver
- * @param event the event to listen
- * @param handler the handler called once the event is triggered
- * @param add flag for adding or removing the event listener
- * @param options event listener options object
+ * @param element - the event listener receiver
+ * @param event - the event to listen
+ * @param handler - the handler called once the event is triggered
+ * @param add - flag for adding or removing the event listener
+ * @param options - event listener options object
  */
 function manageListener(
     element: HTMLElement | Node | Window | MediaQueryList,
@@ -67,36 +66,39 @@ type EventListenersHandlers = {
 
 /**
  * Particles container event listeners manager
- * @category Utils
  */
 export class EventListeners {
-    private canPush: boolean;
+    private _canPush: boolean;
 
-    private readonly handlers: EventListenersHandlers;
-    private resizeObserver?: ResizeObserver;
-    private resizeTimeout?: NodeJS.Timeout;
+    private readonly _handlers: EventListenersHandlers;
+    private _resizeObserver?: ResizeObserver;
+    private _resizeTimeout?: NodeJS.Timeout;
+    private readonly _touches: Map<number, number>;
 
     /**
      * Events listener constructor
-     * @param container the calling container
+     * @param container - the calling container
      */
     constructor(private readonly container: Container) {
-        this.canPush = true;
+        this._canPush = true;
 
-        this.handlers = {
-            mouseMove: (e): void => this.mouseTouchMove(e),
-            touchStart: (e): void => this.mouseTouchMove(e),
-            touchMove: (e): void => this.mouseTouchMove(e),
-            touchEnd: (): void => this.mouseTouchFinish(),
-            mouseLeave: (): void => this.mouseTouchFinish(),
-            touchCancel: (): void => this.mouseTouchFinish(),
-            touchEndClick: (e): void => this.mouseTouchClick(e),
-            mouseUp: (e): void => this.mouseTouchClick(e),
-            mouseDown: (): void => this.mouseDown(),
-            visibilityChange: (): void => this.handleVisibilityChange(),
-            themeChange: (e): void => this.handleThemeChange(e),
-            oldThemeChange: (e): void => this.handleThemeChange(e),
-            resize: (): void => this.handleWindowResize(),
+        this._touches = new Map<number, number>();
+        this._handlers = {
+            mouseDown: (): void => this._mouseDown(),
+            mouseLeave: (): void => this._mouseTouchFinish(),
+            mouseMove: (e): void => this._mouseTouchMove(e),
+            mouseUp: (e): void => this._mouseTouchClick(e),
+            touchStart: (e): void => this._touchStart(e),
+            touchMove: (e): void => this._mouseTouchMove(e),
+            touchEnd: (e): void => this._touchEnd(e),
+            touchCancel: (e: Event): void => this._touchEnd(e),
+            touchEndClick: (e): void => this._touchEndClick(e),
+            visibilityChange: (): void => this._handleVisibilityChange(),
+            themeChange: (e): void => this._handleThemeChange(e),
+            oldThemeChange: (e): void => this._handleThemeChange(e),
+            resize: (): void => {
+                this._handleWindowResize();
+            },
         };
     }
 
@@ -104,25 +106,25 @@ export class EventListeners {
      * Adding all listeners
      */
     addListeners(): void {
-        this.manageListeners(true);
+        this._manageListeners(true);
     }
 
     /**
      * Removing all listeners
      */
     removeListeners(): void {
-        this.manageListeners(false);
+        this._manageListeners(false);
     }
 
     /**
      * Mouse/Touch click/tap event implementation
-     * @param e the click event arguments
+     * @param e - the click event arguments
      */
-    private doMouseTouchClick(e: Event): void {
+    private readonly _doMouseTouchClick: (e: Event) => void = (e) => {
         const container = this.container,
             options = container.actualOptions;
 
-        if (this.canPush) {
+        if (this._canPush) {
             const mouseInteractivity = container.interactivity.mouse,
                 mousePos = mouseInteractivity.position;
 
@@ -135,29 +137,20 @@ export class EventListeners {
 
             const onClick = options.interactivity.events.onClick;
 
-            executeOnSingleOrMultiple(onClick.mode, (mode) => this.handleClickMode(mode));
+            executeOnSingleOrMultiple(onClick.mode, (mode) => this.container.handleClickMode(mode));
         }
 
         if (e.type === "touchend") {
-            setTimeout(() => this.mouseTouchFinish(), 500);
+            setTimeout(() => this._mouseTouchFinish(), 500);
         }
-    }
-
-    /**
-     * Handles click mode event
-     * @param mode Click mode type
-     * @private
-     */
-    private handleClickMode(mode: ClickMode | string): void {
-        this.container.handleClickMode(mode);
-    }
+    };
 
     /**
      * Handle browser theme change
-     * @param e the media query event
-     * @private
+     * @param e - the media query event
+     * @internal
      */
-    private handleThemeChange(e: Event): void {
+    private readonly _handleThemeChange: (e: Event) => void = (e) => {
         const mediaEvent = e as MediaQueryListEvent,
             container = this.container,
             options = container.options,
@@ -168,23 +161,23 @@ export class EventListeners {
         if (theme && theme.default.auto) {
             container.loadTheme(themeName);
         }
-    }
+    };
 
     /**
      * Handles blur event
-     * @private
+     * @internal
      */
-    private handleVisibilityChange(): void {
+    private readonly _handleVisibilityChange: () => void = () => {
         const container = this.container,
             options = container.actualOptions;
 
-        this.mouseTouchFinish();
+        this._mouseTouchFinish();
 
         if (!options.pauseOnBlur) {
             return;
         }
 
-        if (document?.hidden) {
+        if (document && document.hidden) {
             container.pageHidden = true;
 
             container.pause();
@@ -197,61 +190,33 @@ export class EventListeners {
                 container.draw(true);
             }
         }
-    }
+    };
 
     /**
      * Handles window resize event
-     * @private
+     * @internal
      */
-    private handleWindowResize(): void {
-        if (this.resizeTimeout) {
-            clearTimeout(this.resizeTimeout);
+    private readonly _handleWindowResize: () => Promise<void> = async () => {
+        if (this._resizeTimeout) {
+            clearTimeout(this._resizeTimeout);
 
-            delete this.resizeTimeout;
+            delete this._resizeTimeout;
         }
 
-        this.resizeTimeout = setTimeout(
-            async () => this.container.canvas?.windowResize(),
-            this.container.actualOptions.interactivity.events.resize.delay * 1000
-        );
-    }
+        this._resizeTimeout = setTimeout(async () => {
+            const canvas = this.container.canvas;
 
-    /**
-     * Initializing event listeners
-     */
-    private manageListeners(add: boolean): void {
-        const handlers = this.handlers,
+            canvas && (await canvas.windowResize());
+        }, this.container.actualOptions.interactivity.events.resize.delay * 1000);
+    };
+
+    private readonly _manageInteractivityListeners: (mouseLeaveTmpEvent: string, add: boolean) => void = (
+        mouseLeaveTmpEvent,
+        add
+    ) => {
+        const handlers = this._handlers,
             container = this.container,
-            options = container.actualOptions,
-            detectType = options.interactivity.detectsOn;
-        let mouseLeaveTmpEvent = mouseLeaveEvent;
-
-        /* events target element */
-        if (detectType === InteractivityDetect.window) {
-            container.interactivity.element = window;
-
-            mouseLeaveTmpEvent = mouseOutEvent;
-        } else if (detectType === InteractivityDetect.parent && container.canvas.element) {
-            const canvasEl = container.canvas.element;
-
-            container.interactivity.element = canvasEl.parentElement ?? canvasEl.parentNode;
-        } else {
-            container.interactivity.element = container.canvas.element;
-        }
-
-        const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
-
-        if (mediaMatch) {
-            if (mediaMatch.addEventListener !== undefined) {
-                manageListener(mediaMatch, "change", handlers.themeChange, add);
-            } else if (mediaMatch.addListener !== undefined) {
-                if (add) {
-                    mediaMatch.addListener(handlers.oldThemeChange);
-                } else {
-                    mediaMatch.removeListener(handlers.oldThemeChange);
-                }
-            }
-        }
+            options = container.actualOptions;
 
         const interactivityEl = container.interactivity.element;
 
@@ -260,94 +225,156 @@ export class EventListeners {
             return;
         }
 
-        const html = interactivityEl as HTMLElement;
+        const html = interactivityEl as HTMLElement,
+            canvasEl = container.canvas.element;
 
-        if (options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable) {
-            /* el on mousemove */
-            manageListener(interactivityEl, mouseMoveEvent, handlers.mouseMove, add);
-
-            /* el on touchstart */
-            manageListener(interactivityEl, touchStartEvent, handlers.touchStart, add);
-
-            /* el on touchmove */
-            manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
-
-            if (!options.interactivity.events.onClick.enable) {
-                /* el on touchend */
-                manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
-            } else {
-                manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
-                manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
-                manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
-            }
-
-            /* el on onmouseleave */
-            manageListener(interactivityEl, mouseLeaveTmpEvent, handlers.mouseLeave, add);
-
-            /* el on touchcancel */
-            manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
+        if (canvasEl) {
+            canvasEl.style.pointerEvents = html === canvasEl ? "initial" : "none";
         }
 
-        if (container.canvas.element) {
-            container.canvas.element.style.pointerEvents = html === container.canvas.element ? "initial" : "none";
+        if (!(options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)) {
+            return;
         }
 
-        if (options.interactivity.events.resize) {
-            if (typeof ResizeObserver !== "undefined") {
-                if (this.resizeObserver && !add) {
-                    if (container.canvas.element) {
-                        this.resizeObserver.unobserve(container.canvas.element);
-                    }
+        manageListener(interactivityEl, mouseMoveEvent, handlers.mouseMove, add);
+        manageListener(interactivityEl, touchStartEvent, handlers.touchStart, add);
+        manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
 
-                    this.resizeObserver.disconnect();
-
-                    delete this.resizeObserver;
-                } else if (!this.resizeObserver && add && container.canvas.element) {
-                    this.resizeObserver = new ResizeObserver((entries) => {
-                        const entry = entries.find((e) => e.target === container.canvas.element);
-
-                        if (!entry) {
-                            return;
-                        }
-
-                        this.handleWindowResize();
-                    });
-
-                    this.resizeObserver.observe(container.canvas.element);
-                }
-            } else {
-                manageListener(window, resizeEvent, handlers.resize, add);
-            }
+        if (!options.interactivity.events.onClick.enable) {
+            /* el on touchend */
+            manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
+        } else {
+            manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
+            manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
+            manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
         }
+
+        manageListener(interactivityEl, mouseLeaveTmpEvent, handlers.mouseLeave, add);
+        manageListener(interactivityEl, touchCancelEvent, handlers.touchCancel, add);
+    };
+
+    /**
+     * Initializing event listeners
+     * @param add -
+     */
+    private readonly _manageListeners: (add: boolean) => void = (add) => {
+        const handlers = this._handlers,
+            container = this.container,
+            options = container.actualOptions,
+            detectType = options.interactivity.detectsOn,
+            canvasEl = container.canvas.element;
+        let mouseLeaveTmpEvent = mouseLeaveEvent;
+
+        /* events target element */
+        if (detectType === InteractivityDetect.window) {
+            container.interactivity.element = window;
+
+            mouseLeaveTmpEvent = mouseOutEvent;
+        } else if (detectType === InteractivityDetect.parent && canvasEl) {
+            container.interactivity.element = canvasEl.parentElement ?? canvasEl.parentNode;
+        } else {
+            container.interactivity.element = canvasEl;
+        }
+
+        this._manageMediaMatch(add);
+        this._manageResize(add);
+        this._manageInteractivityListeners(mouseLeaveTmpEvent, add);
 
         if (document) {
             manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
         }
-    }
+    };
+
+    private readonly _manageMediaMatch: (add: boolean) => void = (add) => {
+        const handlers = this._handlers,
+            mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
+
+        if (!mediaMatch) {
+            return;
+        }
+
+        if (mediaMatch.addEventListener !== undefined) {
+            manageListener(mediaMatch, "change", handlers.themeChange, add);
+
+            return;
+        }
+
+        if (mediaMatch.addListener === undefined) {
+            return;
+        }
+
+        if (add) {
+            mediaMatch.addListener(handlers.oldThemeChange);
+        } else {
+            mediaMatch.removeListener(handlers.oldThemeChange);
+        }
+    };
+
+    private readonly _manageResize: (add: boolean) => void = (add) => {
+        const handlers = this._handlers,
+            container = this.container,
+            options = container.actualOptions;
+
+        if (!options.interactivity.events.resize) {
+            return;
+        }
+
+        if (typeof ResizeObserver === "undefined") {
+            manageListener(window, resizeEvent, handlers.resize, add);
+
+            return;
+        }
+
+        const canvasEl = container.canvas.element;
+
+        if (this._resizeObserver && !add) {
+            if (canvasEl) {
+                this._resizeObserver.unobserve(canvasEl);
+            }
+
+            this._resizeObserver.disconnect();
+
+            delete this._resizeObserver;
+        } else if (!this._resizeObserver && add && canvasEl) {
+            this._resizeObserver = new ResizeObserver(async (entries) => {
+                const entry = entries.find((e) => e.target === canvasEl);
+
+                if (!entry) {
+                    return;
+                }
+
+                await this._handleWindowResize();
+            });
+
+            this._resizeObserver.observe(canvasEl);
+        }
+    };
 
     /**
      * Handle mouse down event
-     * @private
+     * @internal
      */
-    private mouseDown(): void {
-        const interactivity = this.container.interactivity;
+    private readonly _mouseDown: () => void = () => {
+        const { interactivity } = this.container;
 
-        if (interactivity) {
-            const mouse = interactivity.mouse;
-
-            mouse.clicking = true;
-            mouse.downPosition = mouse.position;
+        if (!interactivity) {
+            return;
         }
-    }
+
+        const { mouse } = interactivity;
+
+        mouse.clicking = true;
+        mouse.downPosition = mouse.position;
+    };
 
     /**
      * Mouse/Touch click/tap event
-     * @param e the click event arguments
+     * @param e - the click event arguments
      */
-    private mouseTouchClick(e: Event): void {
+    private readonly _mouseTouchClick: (e: Event) => void = (e) => {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse;
+            { mouse } = container.interactivity;
 
         mouse.inside = true;
 
@@ -372,16 +399,16 @@ export class EventListeners {
         }
 
         if (!handled) {
-            this.doMouseTouchClick(e);
+            this._doMouseTouchClick(e);
         }
 
         mouse.clicking = false;
-    }
+    };
 
     /**
      * Mouse/Touch event finish
      */
-    private mouseTouchFinish(): void {
+    private readonly _mouseTouchFinish: () => void = () => {
         const interactivity = this.container.interactivity;
 
         if (!interactivity) {
@@ -397,34 +424,34 @@ export class EventListeners {
         interactivity.status = mouseLeaveEvent;
         mouse.inside = false;
         mouse.clicking = false;
-    }
+    };
 
     /**
      * Mouse/Touch move event
-     * @param e the event arguments
+     * @param e - the event arguments
      */
-    private mouseTouchMove(e: Event): void {
+    private readonly _mouseTouchMove: (e: Event) => void = (e) => {
         const container = this.container,
-            options = container.actualOptions;
+            options = container.actualOptions,
+            interactivity = container.interactivity,
+            canvasEl = container.canvas.element;
 
-        if (!container.interactivity?.element) {
+        if (!interactivity || !interactivity.element) {
             return;
         }
 
-        container.interactivity.mouse.inside = true;
+        interactivity.mouse.inside = true;
 
         let pos: ICoordinates | undefined;
 
-        const canvas = container.canvas.element;
-
         if (e.type.startsWith("pointer")) {
-            this.canPush = true;
+            this._canPush = true;
 
             const mouseEvent = e as MouseEvent;
 
-            if (container.interactivity.element === window) {
-                if (canvas) {
-                    const clientRect = canvas.getBoundingClientRect();
+            if (interactivity.element === window) {
+                if (canvasEl) {
+                    const clientRect = canvasEl.getBoundingClientRect();
 
                     pos = {
                         x: mouseEvent.clientX - clientRect.left,
@@ -433,8 +460,7 @@ export class EventListeners {
                 }
             } else if (options.interactivity.detectsOn === InteractivityDetect.parent) {
                 const source = mouseEvent.target as HTMLElement,
-                    target = mouseEvent.currentTarget as HTMLElement,
-                    canvasEl = container.canvas.element;
+                    target = mouseEvent.currentTarget as HTMLElement;
 
                 if (source && target && canvasEl) {
                     const sourceRect = source.getBoundingClientRect(),
@@ -451,23 +477,25 @@ export class EventListeners {
                         y: mouseEvent.offsetY ?? mouseEvent.clientY,
                     };
                 }
-            } else if (mouseEvent.target === container.canvas.element) {
+            } else if (mouseEvent.target === canvasEl) {
                 pos = {
                     x: mouseEvent.offsetX ?? mouseEvent.clientX,
                     y: mouseEvent.offsetY ?? mouseEvent.clientY,
                 };
             }
         } else {
-            this.canPush = e.type !== "touchmove";
+            this._canPush = e.type !== "touchmove";
 
-            const touchEvent = e as TouchEvent,
-                lastTouch = touchEvent.touches[touchEvent.touches.length - 1],
-                canvasRect = canvas?.getBoundingClientRect();
+            if (canvasEl) {
+                const touchEvent = e as TouchEvent,
+                    lastTouch = touchEvent.touches[touchEvent.touches.length - 1],
+                    canvasRect = canvasEl.getBoundingClientRect();
 
-            pos = {
-                x: lastTouch.clientX - (canvasRect?.left ?? 0),
-                y: lastTouch.clientY - (canvasRect?.top ?? 0),
-            };
+                pos = {
+                    x: lastTouch.clientX - (canvasRect.left ?? 0),
+                    y: lastTouch.clientY - (canvasRect.top ?? 0),
+                };
+            }
         }
 
         const pxRatio = container.retina.pixelRatio;
@@ -477,7 +505,40 @@ export class EventListeners {
             pos.y *= pxRatio;
         }
 
-        container.interactivity.mouse.position = pos;
-        container.interactivity.status = mouseMoveEvent;
-    }
+        interactivity.mouse.position = pos;
+        interactivity.status = mouseMoveEvent;
+    };
+
+    private readonly _touchEnd: (e: Event) => void = (e) => {
+        const evt = e as TouchEvent,
+            touches = Array.from(evt.changedTouches);
+
+        for (const touch of touches) {
+            this._touches.delete(touch.identifier);
+        }
+
+        this._mouseTouchFinish();
+    };
+
+    private readonly _touchEndClick: (e: Event) => void = (e) => {
+        const evt = e as TouchEvent,
+            touches = Array.from(evt.changedTouches);
+
+        for (const touch of touches) {
+            this._touches.delete(touch.identifier);
+        }
+
+        this._mouseTouchClick(e);
+    };
+
+    private readonly _touchStart: (e: Event) => void = (e) => {
+        const evt = e as TouchEvent,
+            touches = Array.from(evt.changedTouches);
+
+        for (const touch of touches) {
+            this._touches.set(touch.identifier, performance.now());
+        }
+
+        this._mouseTouchMove(e);
+    };
 }

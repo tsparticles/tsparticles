@@ -1,5 +1,4 @@
 /**
- * @category Options
  */
 export interface IParallax {
     enable: boolean;

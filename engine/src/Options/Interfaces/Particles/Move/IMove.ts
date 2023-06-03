@@ -13,7 +13,6 @@ import type { RangeValue } from "../../../../Types/RangeValue";
 
 /**
  * [[include:Options/Particles/Move.md]]
- * @category Options
  */
 export interface IMove {
     angle: number | IMoveAngle;
@@ -39,7 +38,7 @@ export interface IMove {
     gravity: IMoveGravity;
 
     /**
-     * @deprecated use the new [[path]] property instead
+     * @deprecated use the new {@link IMove.path} property instead
      */
     noise: IMovePath;
 

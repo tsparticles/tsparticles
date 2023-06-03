@@ -1,16 +1,14 @@
-import { Circle, Rectangle } from "tsparticles-engine";
-import type { ICoordinates, IDimension, Range } from "tsparticles-engine";
+import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } from "tsparticles-engine";
 
 /**
- * @category Utils
  */
 export class CircleWarp extends Circle {
     /**
      * Circle constructor, initialized position and radius
-     * @param x X coordinate of the position
-     * @param y Y coordinate of the position
-     * @param radius Circle's radius
-     * @param canvasSize the canvas size, used for warp formulas
+     * @param x - X coordinate of the position
+     * @param y - Y coordinate of the position
+     * @param radius - Circle's radius
+     * @param canvasSize - the canvas size, used for warp formulas
      */
     constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
         super(x, y, radius);
@@ -20,43 +18,24 @@ export class CircleWarp extends Circle {
 
     /**
      * Check if the given point is inside the circle
-     * @param point the point to check
+     * @param point - the point to check
      * @returns true or false, checking if the given point is inside the circle
      */
     contains(point: ICoordinates): boolean {
-        if (super.contains(point)) {
-            return true;
-        }
+        const { width, height } = this.canvasSize;
+        const { x, y } = point;
 
-        const posNE = {
-            x: point.x - this.canvasSize.width,
-            y: point.y,
-        };
-
-        if (super.contains(posNE)) {
-            return true;
-        }
-
-        const posSE = {
-            x: point.x - this.canvasSize.width,
-            y: point.y - this.canvasSize.height,
-        };
-
-        if (super.contains(posSE)) {
-            return true;
-        }
-
-        const posSW = {
-            x: point.x,
-            y: point.y - this.canvasSize.height,
-        };
-
-        return super.contains(posSW);
+        return (
+            super.contains(point) ||
+            super.contains({ x: x - width, y }) ||
+            super.contains({ x: x - width, y: y - height }) ||
+            super.contains({ x, y: y - height })
+        );
     }
 
     /**
      * Check if the given range intersects the circle
-     * @param range the range to check
+     * @param range - the range to check
      * @returns true or false, checking if the range is intersecting with the circle
      */
     intersects(range: Range): boolean {

@@ -7,7 +7,6 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 
 /**
  * [[include:Options/Particles/Shape.md]]
- * @category Options
  */
 export interface IShape {
     /**
@@ -16,9 +15,19 @@ export interface IShape {
     character: SingleOrMultiple<ICharacterShape>;
 
     /**
+     * Set this property to false for creating an open shape
+     */
+    close: boolean;
+
+    /**
      * @deprecated this property has been renamed to options
      */
     custom: ShapeData;
+
+    /**
+     * Set this property to false for creating an empty shape
+     */
+    fill: boolean;
 
     /**
      * @deprecated this property was integrated in custom shape management

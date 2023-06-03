@@ -1,12 +1,25 @@
-import { Circle, ParticlesInteractorBase, getDistance, getLinkRandomColor } from "tsparticles-engine";
-import type { ICoordinates, IDimension, IRgb, RecursivePartial } from "tsparticles-engine";
+import {
+    Circle,
+    type ICoordinates,
+    type IDimension,
+    type IRgb,
+    ParticlesInteractorBase,
+    type RecursivePartial,
+    getDistances,
+    getLinkRandomColor,
+} from "tsparticles-engine";
+import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types";
 import { CircleWarp } from "./CircleWarp";
-import type { IParticlesLinkOptions } from "./Options/Interfaces/IParticlesLinkOptions";
-import type { LinkContainer } from "./LinkContainer";
-import type { LinkParticle } from "./LinkParticle";
 import { Links } from "./Options/Classes/Links";
-import type { ParticlesLinkOptions } from "./Options/Classes/ParticlesLinkOptions";
 
+/**
+ * @param pos1 -
+ * @param pos2 -
+ * @param optDistance -
+ * @param canvasSize -
+ * @param warp -
+ * @returns the distance between two points
+ */
 function getLinkDistance(
     pos1: ICoordinates,
     pos2: ICoordinates,
@@ -14,42 +27,22 @@ function getLinkDistance(
     canvasSize: IDimension,
     warp: boolean
 ): number {
-    let distance = getDistance(pos1, pos2);
+    const { dx, dy, distance } = getDistances(pos1, pos2);
 
     if (!warp || distance <= optDistance) {
         return distance;
     }
 
-    const pos2NE = {
-        x: pos2.x - canvasSize.width,
-        y: pos2.y,
-    };
+    const absDiffs = {
+            x: Math.abs(dx),
+            y: Math.abs(dy),
+        },
+        warpDistances = {
+            x: Math.min(absDiffs.x, canvasSize.width - absDiffs.x),
+            y: Math.min(absDiffs.y, canvasSize.height - absDiffs.y),
+        };
 
-    distance = getDistance(pos1, pos2NE);
-
-    if (distance <= optDistance) {
-        return distance;
-    }
-
-    const pos2SE = {
-        x: pos2.x - canvasSize.width,
-        y: pos2.y - canvasSize.height,
-    };
-
-    distance = getDistance(pos1, pos2SE);
-
-    if (distance <= optDistance) {
-        return distance;
-    }
-
-    const pos2SW = {
-        x: pos2.x,
-        y: pos2.y - canvasSize.height,
-    };
-
-    distance = getDistance(pos1, pos2SW);
-
-    return distance;
+    return Math.sqrt(warpDistances.x ** 2 + warpDistances.y ** 2);
 }
 
 export class Linker extends ParticlesInteractorBase {
@@ -104,8 +97,8 @@ export class Linker extends ParticlesInteractorBase {
                 p2.spawning ||
                 p2.destroyed ||
                 !p2.links ||
-                p1.links.map((t) => t.destination).indexOf(p2) !== -1 ||
-                p2.links.map((t) => t.destination).indexOf(p1) !== -1
+                p1.links.some((t) => t.destination === p2) ||
+                p2.links.some((t) => t.destination === p1)
             ) {
                 continue;
             }
@@ -119,13 +112,13 @@ export class Linker extends ParticlesInteractorBase {
             const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
 
             if (distance > optDistance) {
-                return;
+                continue;
             }
 
             /* draw a line between p1 and p2 */
             const opacityLine = (1 - distance / optDistance) * optOpacity;
 
-            this.setColor(p1);
+            this._setColor(p1);
 
             p1.links.push({
                 destination: p2,
@@ -155,7 +148,7 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    private setColor(p1: LinkParticle): void {
+    private readonly _setColor: (p1: LinkParticle) => void = (p1) => {
         if (!p1.options.links) {
             return;
         }
@@ -181,5 +174,5 @@ export class Linker extends ParticlesInteractorBase {
         } else {
             container.particles.linksColors.set(linksOptions.id, linkColor);
         }
-    }
+    };
 }

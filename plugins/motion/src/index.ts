@@ -4,7 +4,6 @@ import { Motion } from "./Options/Classes/Motion";
 import { MotionInstance } from "./MotionInstance";
 
 /**
- * @category Motion Plugin
  */
 class MotionPlugin implements IPlugin {
     readonly id;
@@ -28,7 +27,7 @@ class MotionPlugin implements IPlugin {
 
         let motionOptions = options.motion as Motion;
 
-        if (motionOptions?.load === undefined) {
+        if (!motionOptions?.load) {
             options.motion = motionOptions = new Motion();
         }
 
@@ -40,8 +39,9 @@ class MotionPlugin implements IPlugin {
     }
 }
 
+/**
+ * @param engine - The engine instance
+ */
 export async function loadMotionPlugin(engine: Engine): Promise<void> {
-    const plugin = new MotionPlugin(engine);
-
-    await engine.addPlugin(plugin);
+    await engine.addPlugin(new MotionPlugin(engine));
 }

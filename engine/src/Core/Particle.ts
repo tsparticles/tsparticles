@@ -7,16 +7,13 @@ import {
     getParticleBaseVelocity,
     getParticleDirectionAngle,
     getRandom,
-    getRangeMax,
-    getRangeMin,
     getRangeValue,
     getValue,
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { deepExtend, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
+import { deepExtend, initParticleNumericAnimationValue, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
-import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
@@ -39,38 +36,58 @@ import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { SizeMode } from "../Enums/Modes/SizeMode";
-import { StartValueType } from "../Enums/Types/StartValueType";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
+import { errorPrefix } from "./Utils/Constants";
 import { loadParticlesOptions } from "../Utils/OptionsUtils";
 
 /**
- * fixes out mode, calling the given callback if needed
- * @param data
+ * @internal
  */
-const fixOutMode = (data: {
+type FixOutModeParams = {
+    /**
+     */
     checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
+    /**
+     */
     coord: number;
+    /**
+     */
     maxCoord: number;
+    /**
+     */
     outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    /**
+     */
     radius: number;
+    /**
+     * @param value -
+     */
     setCb: (value: number) => void;
-}): void => {
+};
+
+/**
+ * fixes out mode, calling the given callback if needed
+ * @internal
+ * @param data -
+ */
+const fixOutMode = (data: FixOutModeParams): void => {
     if (!isInArray(data.outMode, data.checkModes)) {
         return;
     }
 
-    if (data.coord > data.maxCoord - data.radius * 2) {
+    const diameter = data.radius * 2;
+
+    if (data.coord > data.maxCoord - diameter) {
         data.setCb(-data.radius);
-    } else if (data.coord < data.radius * 2) {
+    } else if (data.coord < diameter) {
         data.setCb(data.radius);
     }
 };
 
 /**
  * The single particle object
- * @category Core
  */
 export class Particle implements IParticle {
     /**
@@ -267,7 +284,7 @@ export class Particle implements IParticle {
 
     /**
      * Gets the particle containing engine instance
-     * @private
+     * @internal
      */
     private readonly _engine;
 
@@ -293,19 +310,24 @@ export class Particle implements IParticle {
         this.bubble.inRange = false;
         this.slow.inRange = false;
 
-        for (const [, plugin] of this.container.plugins) {
+        const container = this.container,
+            pathGenerator = this.pathGenerator;
+
+        for (const [, plugin] of container.plugins) {
             if (plugin.particleDestroyed) {
                 plugin.particleDestroyed(this, override);
             }
         }
 
-        for (const updater of this.container.particles.updaters) {
+        for (const updater of container.particles.updaters) {
             if (updater.particleDestroyed) {
                 updater.particleDestroyed(this, override);
             }
         }
 
-        this.pathGenerator?.reset(this);
+        if (pathGenerator) {
+            pathGenerator.reset(this);
+        }
     }
 
     draw(delta: IDelta): void {
@@ -391,15 +413,22 @@ export class Particle implements IParticle {
         this.shapeData = this._loadShapeData(shapeOptions, reduceDuplicates);
 
         particlesOptions.load(overrideOptions);
-        particlesOptions.load(this.shapeData?.particles);
 
-        this.interactivity = new Interactivity(engine, container);
+        const shapeData = this.shapeData;
 
-        this.interactivity.load(container.actualOptions.interactivity);
-        this.interactivity.load(particlesOptions.interactivity);
+        if (shapeData) {
+            particlesOptions.load(shapeData.particles);
+        }
 
-        this.fill = this.shapeData?.fill ?? this.fill;
-        this.close = this.shapeData?.close ?? this.close;
+        const interactivity = new Interactivity(engine, container);
+
+        interactivity.load(container.actualOptions.interactivity);
+        interactivity.load(particlesOptions.interactivity);
+
+        this.interactivity = interactivity;
+
+        this.fill = shapeData?.fill ?? particlesOptions.shape.fill;
+        this.close = shapeData?.close ?? particlesOptions.shape.close;
         this.options = particlesOptions;
 
         const pathOptions = this.options.move.path;
@@ -419,46 +448,7 @@ export class Particle implements IParticle {
         container.retina.initParticle(this);
 
         /* size */
-        const sizeOptions = this.options.size,
-            sizeRange = sizeOptions.value,
-            sizeAnimation = sizeOptions.animation;
-
-        this.size = {
-            enable: sizeOptions.animation.enable,
-            value: getRangeValue(sizeOptions.value) * container.retina.pixelRatio,
-            max: getRangeMax(sizeRange) * pxRatio,
-            min: getRangeMin(sizeRange) * pxRatio,
-            loops: 0,
-            maxLoops: getRangeValue(sizeOptions.animation.count),
-        };
-
-        if (sizeAnimation.enable) {
-            this.size.status = AnimationStatus.increasing;
-            this.size.decay = 1 - getRangeValue(sizeAnimation.decay);
-
-            switch (sizeAnimation.startValue) {
-                case StartValueType.min:
-                    this.size.value = this.size.min;
-                    this.size.status = AnimationStatus.increasing;
-
-                    break;
-
-                case StartValueType.random:
-                    this.size.value = randomInRange(this.size);
-                    this.size.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
-
-                    break;
-
-                case StartValueType.max:
-                default:
-                    this.size.value = this.size.max;
-                    this.size.status = AnimationStatus.decreasing;
-
-                    break;
-            }
-        }
-
-        this.size.initialValue = this.size.value;
+        this.size = initParticleNumericAnimationValue(this.options.size, pxRatio);
 
         /* position */
         this.bubble = {
@@ -520,8 +510,8 @@ export class Particle implements IParticle {
             }
         }
 
-        if (drawer?.loadShape) {
-            drawer?.loadShape(this);
+        if (drawer && drawer.loadShape) {
+            drawer.loadShape(this);
         }
 
         const sideCountFunc = drawer?.getSidesCount;
@@ -538,27 +528,28 @@ export class Particle implements IParticle {
         }
 
         for (const mover of container.particles.movers) {
-            mover.init?.(this);
+            mover.init && mover.init(this);
         }
 
-        if (drawer?.particleInit) {
+        if (drawer && drawer.particleInit) {
             drawer.particleInit(container, this);
         }
 
         for (const [, plugin] of container.plugins) {
-            plugin.particleCreated?.(this);
+            plugin.particleCreated && plugin.particleCreated(this);
         }
     }
 
     isInsideCanvas(): boolean {
         const radius = this.getRadius(),
-            canvasSize = this.container.canvas.size;
+            canvasSize = this.container.canvas.size,
+            position = this.position;
 
         return (
-            this.position.x >= -radius &&
-            this.position.y >= -radius &&
-            this.position.y <= canvasSize.height + radius &&
-            this.position.x <= canvasSize.width + radius
+            position.x >= -radius &&
+            position.y >= -radius &&
+            position.y <= canvasSize.height + radius &&
+            position.x <= canvasSize.width + radius
         );
     }
 
@@ -571,21 +562,21 @@ export class Particle implements IParticle {
      */
     reset(): void {
         for (const updater of this.container.particles.updaters) {
-            updater.reset?.(this);
+            updater.reset && updater.reset(this);
         }
     }
 
-    private _calcPosition(
+    private readonly _calcPosition: (
         container: Container,
         position: ICoordinates | undefined,
         zIndex: number,
-        tryCount = 0
-    ): Vector3d {
+        tryCount?: number
+    ) => Vector3d = (container, position, zIndex, tryCount = 0) => {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 
-            if (pluginPos !== undefined) {
+            if (pluginPos) {
                 return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
             }
         }
@@ -630,9 +621,9 @@ export class Particle implements IParticle {
         }
 
         return pos;
-    }
+    };
 
-    private _calculateVelocity(): Vector {
+    private readonly _calculateVelocity: () => Vector = () => {
         const baseVelocity = getParticleBaseVelocity(this.direction),
             res = baseVelocity.copy(),
             moveOptions = this.options.move;
@@ -657,9 +648,9 @@ export class Particle implements IParticle {
         }
 
         return res;
-    }
+    };
 
-    private _checkOverlap(pos: ICoordinates, tryCount = 0): boolean {
+    private readonly _checkOverlap: (pos: ICoordinates, tryCount?: number) => boolean = (pos, tryCount = 0) => {
         const collisionsOptions = this.options.collisions,
             radius = this.getRadius();
 
@@ -676,22 +667,15 @@ export class Particle implements IParticle {
         const retries = overlapOptions.retries;
 
         if (retries >= 0 && tryCount > retries) {
-            throw new Error("Particle is overlapping and can't be placed");
+            throw new Error(`${errorPrefix} particle is overlapping and can't be placed`);
         }
 
-        let overlaps = false;
+        return !!this.container.particles.find(
+            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius()
+        );
+    };
 
-        for (const particle of this.container.particles.array) {
-            if (getDistance(pos, particle.position) < radius + particle.getRadius()) {
-                overlaps = true;
-                break;
-            }
-        }
-
-        return overlaps;
-    }
-
-    private _getRollColor(color?: IHsl): IHsl | undefined {
+    private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = (color) => {
         if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
             return color;
         }
@@ -713,13 +697,22 @@ export class Particle implements IParticle {
         }
 
         return color;
-    }
+    };
 
-    private _loadShapeData(shapeOptions: IShape, reduceDuplicates: boolean): IShapeValues | undefined {
+    private readonly _loadShapeData: (shapeOptions: IShape, reduceDuplicates: boolean) => IShapeValues | undefined = (
+        shapeOptions,
+        reduceDuplicates
+    ) => {
         const shapeData = shapeOptions.options[this.shape];
 
         if (shapeData) {
-            return deepExtend({}, itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)) as IShapeValues;
+            return deepExtend(
+                {
+                    close: shapeOptions.close,
+                    fill: shapeOptions.fill,
+                },
+                itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)
+            ) as IShapeValues;
         }
-    }
+    };
 }

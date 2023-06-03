@@ -19,19 +19,23 @@ const charKey = "character",
 
 /**
  * [[include:Options/Particles/Shape.md]]
- * @category Options
  */
 export class Shape implements IShape, IOptionLoader<IShape> {
+    close;
+    fill;
     options: ShapeData;
     type: SingleOrMultiple<string>;
 
     constructor() {
+        this.close = true;
+        this.fill = true;
         this.options = {};
         this.type = "circle";
     }
 
     /**
      * @deprecated this property was integrated in custom shape management
+     * @returns the character options
      */
     get character(): SingleOrMultiple<ICharacterShape> {
         return (this.options[charKey] ?? this.options[charAltKey]) as SingleOrMultiple<ICharacterShape>;
@@ -46,6 +50,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated This options has been renamed options
+     * @returns the custom options
      */
     get custom(): ShapeData {
         return this.options;
@@ -53,7 +58,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated This options has been renamed options
-     * @param value
+     * @param value -
      */
     set custom(value: ShapeData) {
         this.options = value;
@@ -61,6 +66,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated this property was integrated in custom shape management
+     * @returns the image options
      */
     get image(): SingleOrMultiple<IImageShape> {
         return (this.options[imageKey] ?? this.options[imageAltKey]) as SingleOrMultiple<IImageShape>;
@@ -68,7 +74,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated this property was integrated in custom shape management
-     * @param value
+     * @param value -
      */
     set image(value: SingleOrMultiple<IImageShape>) {
         this.options[imageAltKey] = this.options[imageKey] = value;
@@ -76,6 +82,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     * @returns the image options
      */
     get images(): SingleOrMultiple<IImageShape> {
         return this.image;
@@ -83,6 +90,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated the property images is deprecated, please use the image property, it works with one and many
+     * @param value -
      */
     set images(value: SingleOrMultiple<IImageShape>) {
         this.image = value;
@@ -90,6 +98,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated this property was integrated in custom shape management
+     * @returns the polygon options
      */
     get polygon(): SingleOrMultiple<IPolygonShape> {
         return (this.options[polygonKey] ?? this.options[polygonAltKey]) as SingleOrMultiple<IPolygonShape>;
@@ -97,6 +106,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated this property was integrated in custom shape management
+     * @param value -
      */
     set polygon(value: SingleOrMultiple<IPolygonShape>) {
         this.options[polygonAltKey] = this.options[polygonKey] = value;
@@ -104,6 +114,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     /**
      * @deprecated this property was moved to particles section
+     * @returns the stroke options
      */
     get stroke(): SingleOrMultiple<Stroke> {
         return [];
@@ -137,23 +148,31 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         this.loadShape(data.polygon, polygonKey, polygonAltKey, false);
         this.loadShape(data.image ?? data.images, imageKey, imageAltKey, true);
 
+        if (data.close !== undefined) {
+            this.close = data.close;
+        }
+
+        if (data.fill !== undefined) {
+            this.fill = data.fill;
+        }
+
         if (data.type !== undefined) {
             this.type = data.type;
         }
     }
 
-    private loadShape<T extends IShapeValues>(
+    private readonly loadShape: <T extends IShapeValues>(
         item: RecursivePartial<SingleOrMultiple<T>> | undefined,
         mainKey: string,
         altKey: string,
         altOverride: boolean
-    ): void {
+    ) => void = (item, mainKey, altKey, altOverride) => {
         if (!item) {
             return;
         }
 
-        const isArray = item instanceof Array;
-        const emptyValue = isArray ? [] : {},
+        const isArray = item instanceof Array,
+            emptyValue = isArray ? [] : {},
             mainDifferentValues = isArray !== this.options[mainKey] instanceof Array,
             altDifferentValues = isArray !== this.options[altKey] instanceof Array;
 
@@ -170,5 +189,5 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         if (!this.options[altKey] || altOverride) {
             this.options[altKey] = deepExtend(this.options[altKey] ?? emptyValue, item) as IShapeValues[];
         }
-    }
+    };
 }

@@ -1,5 +1,4 @@
 {
-  "gaID": "UA-161253125-1",
   "includes": "./markdown",
   "entryPoints": [
     "./src/"
@@ -9,9 +8,6 @@
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",
-  "clarityId": "8q4bxin4tm",
-  "carbonServe": "CEAI6KJL",
-  "carbonPlacement": "particlesjsorg",
   "keywords": [
     "html",
     "css",

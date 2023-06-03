@@ -15,15 +15,15 @@ export abstract class ExternalInteractorBase<TContainer extends Container = Cont
 
     /**
      * Constructor of external interactivity manager
-     * @param container the parent container
-     * @protected
+     * @param container - the parent container
+     * @internal
      */
     protected constructor(protected readonly container: TContainer) {}
 
     /**
      * Before interaction clear
-     * @param particle the particle to clear
-     * @param delta this variable contains the delta between the current frame and the previous frame
+     * @param particle - the particle to clear
+     * @param delta - this variable contains the delta between the current frame and the previous frame
      */
     abstract clear(particle: Particle, delta: IDelta): void;
 
@@ -34,20 +34,20 @@ export abstract class ExternalInteractorBase<TContainer extends Container = Cont
 
     /**
      * Interaction handler
-     * @param delta this variable contains the delta between the current frame and the previous frame
+     * @param delta - this variable contains the delta between the current frame and the previous frame
      */
     abstract interact(delta: IDelta): Promise<void>;
 
     /**
      * Interaction enabled check
-     * @param particle the particle to check, if null, checks the container
+     * @param particle - the particle to check, if null, checks the container
      * @returns true or false, checking if the options enable this interaction manager
      */
     abstract isEnabled(particle?: Particle): boolean;
 
     /**
      * Before interaction reset
-     * @param particle the particle to reset
+     * @param particle - the particle to reset
      */
     abstract reset(particle: Particle): void;
 }

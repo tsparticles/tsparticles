@@ -1,10 +1,19 @@
-import { ClickMode, ExternalInteractorBase, HoverMode, isInArray } from "tsparticles-engine";
-import type { ICoordinates, IDelta, IModes, Modes, Particle, RecursivePartial } from "tsparticles-engine";
+import {
+    ClickMode,
+    ExternalInteractorBase,
+    HoverMode,
+    type ICoordinates,
+    type IDelta,
+    type IModes,
+    type Modes,
+    type Particle,
+    type RecursivePartial,
+    isInArray,
+} from "tsparticles-engine";
 import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
 import { Trail } from "./Options/Classes/Trail";
 
 /**
- * @category Interactions
  */
 export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     private _delay: number;
@@ -25,12 +34,14 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     }
 
     async interact(delta: IDelta): Promise<void> {
-        if (!this.container.retina.reduceFactor) {
+        const container = this.container,
+            { interactivity } = container;
+
+        if (!container.retina.reduceFactor) {
             return;
         }
 
-        const container = this.container,
-            options = container.actualOptions,
+        const options = container.actualOptions,
             trailOptions = options.interactivity.modes.trail;
 
         if (!trailOptions) {
@@ -47,23 +58,17 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             return;
         }
 
-        let canEmit = true;
+        const canEmit = !(
+            trailOptions.pauseOnStop &&
+            (interactivity.mouse.position === this._lastPosition ||
+                (interactivity.mouse.position?.x === this._lastPosition?.x &&
+                    interactivity.mouse.position?.y === this._lastPosition?.y))
+        );
 
-        if (trailOptions.pauseOnStop) {
-            if (
-                container.interactivity.mouse.position === this._lastPosition ||
-                (container.interactivity.mouse.position?.x === this._lastPosition?.x &&
-                    container.interactivity.mouse.position?.y === this._lastPosition?.y)
-            ) {
-                canEmit = false;
-            }
-        }
+        const mousePos = container.interactivity.mouse.position;
 
-        if (container.interactivity.mouse.position) {
-            this._lastPosition = {
-                x: container.interactivity.mouse.position.x,
-                y: container.interactivity.mouse.position.y,
-            };
+        if (mousePos) {
+            this._lastPosition = { ...mousePos };
         } else {
             delete this._lastPosition;
         }
