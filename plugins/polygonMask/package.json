@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-plugin-polygon-mask",
-    "version": "2.10.0",
+    "version": "2.10.1",
     "description": "tsParticles polygon mask plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -82,6 +82,6 @@
     "types": "dist/types/index.d.ts",
     "prettier": "@tsparticles/prettier-config",
     "dependencies": {
-        "tsparticles-engine": "^2.10.0"
+        "tsparticles-engine": "^2.10.1"
     }
 }
