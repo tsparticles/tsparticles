@@ -1,4 +1,4 @@
-import { type Container, type ISourceOptions, type RecursivePartial, tsParticles } from "tsparticles-engine";
+import { type Container, type ISourceOptions, type RecursivePartial, isSsr, tsParticles } from "tsparticles-engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
@@ -434,4 +434,6 @@ confetti.create = async (
  */
 confetti.version = tsParticles.version;
 
-window.confetti = confetti;
+if (!isSsr()) {
+    window.confetti = confetti;
+}

@@ -11,6 +11,7 @@ import {
     StartValueType,
     getRangeMax,
     getRangeMin,
+    isSsr,
     setRangeValue,
     tsParticles,
 } from "tsparticles-engine";
@@ -324,4 +325,6 @@ export async function fireworks(
 
 fireworks.version = tsParticles.version;
 
-window.fireworks = fireworks;
+if (!isSsr()) {
+    window.fireworks = fireworks;
+}

@@ -2,6 +2,7 @@ import { Engine } from "./engine";
 import { HslColorManager } from "./Utils/HslColorManager";
 import { RgbColorManager } from "./Utils/RgbColorManager";
 import { addColorManager } from "./Utils/ColorUtils";
+import { isSsr } from "./Utils/Utils";
 
 const rgbColorManager = new RgbColorManager(),
     hslColorManager = new HslColorManager();
@@ -16,7 +17,9 @@ const tsParticles = new Engine();
 
 tsParticles.init();
 
-window.tsParticles = tsParticles;
+if (!isSsr()) {
+    window.tsParticles = tsParticles;
+}
 
 export * from "./exports";
 export * from "./export-types";
