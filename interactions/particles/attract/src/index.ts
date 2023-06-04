@@ -2,7 +2,7 @@ import { Attractor } from "./Attractor";
 import type { Engine } from "tsparticles-engine";
 
 /**
- * @param engine
+ * @param engine -
  */
 export async function loadParticlesAttractInteraction(engine: Engine): Promise<void> {
     await engine.addInteractor("particlesAttract", (container) => new Attractor(container));

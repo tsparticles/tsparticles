@@ -41,10 +41,8 @@ class CanvasMaskPlugin implements IPlugin {
 }
 
 /**
- * @param engine
+ * @param engine -
  */
 export async function loadCanvasMaskPlugin(engine: Engine): Promise<void> {
-    const plugin = new CanvasMaskPlugin(engine);
-
-    await engine.addPlugin(plugin);
+    await engine.addPlugin(new CanvasMaskPlugin(engine));
 }
