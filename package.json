@@ -27,7 +27,7 @@
     "@nrwl/nx-cloud": "^15.3.5",
     "@nrwl/workspace": "^15.9.4",
     "@skypack/package-check": "^0.2.2",
-    "@tsparticles/cli": "^1.5.0",
+    "@tsparticles/cli": "^1.4.1",
     "@tsparticles/eslint-config": "^1.12.0",
     "@tsparticles/prettier-config": "^1.10.0",
     "@tsparticles/tsconfig": "^1.13.0",
