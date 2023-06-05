@@ -1,3 +1,5 @@
+import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates";
+import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension";
 import {
     collisionVelocity,
     getDistances,
@@ -6,7 +8,7 @@ import {
     getRangeMin,
     getRangeValue,
     getValue,
-    randomInRange,
+    randomInRange
 } from "./NumberUtils";
 import { AnimationMode } from "../Enums/Modes/AnimationMode";
 import { AnimationStatus } from "../Enums/AnimationStatus";
@@ -14,14 +16,13 @@ import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent"
 import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import { PixelMode } from "../Enums/Modes/PixelMode";
 import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { StartValueType } from "../Enums/Types/StartValueType";
@@ -252,7 +253,7 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
         bottom: point.y + radius,
         left: point.x - radius,
         right: point.x + radius,
-        top: point.y - radius,
+        top: point.y - radius
     };
 }
 
@@ -373,7 +374,7 @@ export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical))
     };
 }
 
@@ -420,22 +421,22 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
         resH = rectSideBounce({
             pSide: {
                 min: bounds.left,
-                max: bounds.right,
+                max: bounds.right
             },
             pOtherSide: {
                 min: bounds.top,
-                max: bounds.bottom,
+                max: bounds.bottom
             },
             rectSide: {
                 min: divBounds.left,
-                max: divBounds.right,
+                max: divBounds.right
             },
             rectOtherSide: {
                 min: divBounds.top,
-                max: divBounds.bottom,
+                max: divBounds.bottom
             },
             velocity: particle.velocity.x,
-            factor: getValue(particle.options.bounce.horizontal),
+            factor: getValue(particle.options.bounce.horizontal)
         });
 
     if (resH.bounced) {
@@ -451,22 +452,22 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
     const resV = rectSideBounce({
         pSide: {
             min: bounds.top,
-            max: bounds.bottom,
+            max: bounds.bottom
         },
         pOtherSide: {
             min: bounds.left,
-            max: bounds.right,
+            max: bounds.right
         },
         rectSide: {
             min: divBounds.top,
-            max: divBounds.bottom,
+            max: divBounds.bottom
         },
         rectOtherSide: {
             min: divBounds.left,
-            max: divBounds.right,
+            max: divBounds.right
         },
         velocity: particle.velocity.y,
-        factor: getValue(particle.options.bounce.vertical),
+        factor: getValue(particle.options.bounce.vertical)
     });
 
     if (resV.bounced) {
@@ -533,7 +534,7 @@ export function initParticleNumericAnimationValue(
             min: getRangeMin(valueRange) * pxRatio,
             loops: 0,
             maxLoops: getRangeValue(animationOptions.count),
-            time: 0,
+            time: 0
         };
 
     if (animationOptions.enable) {
@@ -591,4 +592,47 @@ export function initParticleNumericAnimationValue(
     res.initialValue = res.value;
 
     return res;
+}
+
+/**
+ * @param positionOrSize -
+ * @param canvasSize -
+ * @returns the calculated position or size
+ */
+function getPositionOrSize(
+    positionOrSize: ICoordinatesWithMode | IDimensionWithMode,
+    canvasSize: IDimension
+): ICoordinates | IDimension {
+    const isPercent = positionOrSize.mode === PixelMode.percent;
+
+    if (isPercent) {
+        const { mode: _, ...rest } = positionOrSize;
+
+        return rest;
+    }
+
+    const isPosition = "x" in positionOrSize;
+
+    return {
+        x: isPosition ? positionOrSize.x : (positionOrSize.width / 100) * canvasSize.width,
+        y: isPosition ? positionOrSize.y : (positionOrSize.height / 100) * canvasSize.height
+    };
+}
+
+/**
+ * @param position -
+ * @param canvasSize -
+ * @returns the calculated position
+ */
+export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimension): ICoordinates {
+    return getPositionOrSize(position, canvasSize) as ICoordinates;
+}
+
+/**
+ * @param size -
+ * @param canvasSize -
+ * @returns the calculated size
+ */
+export function getSize(size: IDimensionWithMode, canvasSize: IDimension): IDimension {
+    return getPositionOrSize(size, canvasSize) as IDimension;
 }

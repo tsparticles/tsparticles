@@ -1,6 +1,6 @@
 /**
  */
-export const enum SizeMode {
+export const enum PixelMode {
     precise = "precise",
     percent = "percent",
 }

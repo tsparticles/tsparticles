@@ -14,9 +14,8 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { SizeMode } from "../Enums/Modes/SizeMode";
-import { calcPositionFromSize } from "../Utils/NumberUtils";
 import { errorPrefix } from "./Utils/Constants";
+import { getPosition } from "../Utils/Utils";
 
 const qTreeCapacity = 4;
 
@@ -97,14 +96,7 @@ export class Particles {
 
         for (const particle of options.manualParticles) {
             this.addParticle(
-                particle.position
-                    ? particle.position.mode === SizeMode.precise
-                        ? particle.position
-                        : calcPositionFromSize({
-                              size: container.canvas.size,
-                              position: particle.position,
-                          })
-                    : undefined,
+                particle.position ? getPosition(particle.position, container.canvas.size) : undefined,
                 particle.options
             );
         }

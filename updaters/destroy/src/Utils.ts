@@ -3,8 +3,8 @@ import {
     type Engine,
     type IParticlesOptions,
     type Particle,
+    PixelMode,
     type RecursivePartial,
-    SizeMode,
     getRangeValue,
     getValue,
     itemFromSingleOrMultiple,
@@ -63,7 +63,7 @@ function addSplitParticle(
         center: {
             x: parent.position.x,
             y: parent.position.y,
-            mode: SizeMode.precise,
+            mode: PixelMode.precise,
             //radius: parent.size.value,
         },
     });

@@ -1,7 +1,7 @@
-import type { IDimension, SizeMode } from "tsparticles-engine";
+import type { IDimension, PixelMode } from "tsparticles-engine";
 
 /**
  */
 export interface IEmitterSize extends IDimension {
-    mode: SizeMode | keyof typeof SizeMode;
+    mode: PixelMode | keyof typeof PixelMode;
 }

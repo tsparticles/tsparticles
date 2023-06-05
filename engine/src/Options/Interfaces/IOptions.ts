@@ -1,3 +1,4 @@
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Container } from "../../Core/Container";
 import type { IBackground } from "./Background/IBackground";
 import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";

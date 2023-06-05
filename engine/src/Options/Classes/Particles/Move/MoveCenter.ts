@@ -1,10 +1,10 @@
 import type { IMoveCenter } from "../../../Interfaces/Particles/Move/IMoveCenter";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
+import { PixelMode } from "../../../../Enums/Modes/PixelMode";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { SizeMode } from "../../../../Enums/Modes/SizeMode";
 
 export class MoveCenter implements IMoveCenter, IOptionLoader<IMoveCenter> {
-    mode: SizeMode | keyof typeof SizeMode;
+    mode: PixelMode | keyof typeof PixelMode;
     radius;
     x;
     y;
@@ -12,7 +12,7 @@ export class MoveCenter implements IMoveCenter, IOptionLoader<IMoveCenter> {
     constructor() {
         this.x = 50;
         this.y = 50;
-        this.mode = SizeMode.percent;
+        this.mode = PixelMode.percent;
         this.radius = 0;
     }
 

@@ -6,12 +6,13 @@ import {
     type IDimension,
     type IHsl,
     type IParticlesOptions,
+    PixelMode,
     type RecursivePartial,
-    SizeMode,
     Vector,
     calcPositionOrRandomFromSizeRanged,
     deepExtend,
     getRangeValue,
+    getSize,
     isPointInside,
     itemFromSingleOrMultiple,
     randomInRange,
@@ -99,7 +100,7 @@ export class EmitterInstance {
 
                 size.load({
                     height: 0,
-                    mode: SizeMode.percent,
+                    mode: PixelMode.percent,
                     width: 0,
                 });
 
@@ -164,16 +165,7 @@ export class EmitterInstance {
             }
         }
 
-        return {
-            width:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.width * this.size.width) / 100
-                    : this.size.width,
-            height:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.height * this.size.height) / 100
-                    : this.size.height,
-        };
+        return getSize(this.size, container.canvas.size);
     }
 
     pause(): void {

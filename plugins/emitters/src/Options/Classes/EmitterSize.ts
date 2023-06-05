@@ -1,15 +1,15 @@
-import { type IOptionLoader, type RecursivePartial, SizeMode } from "tsparticles-engine";
+import { type IOptionLoader, PixelMode, type RecursivePartial } from "tsparticles-engine";
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
 
 /**
  */
 export class EmitterSize implements IEmitterSize, IOptionLoader<IEmitterSize> {
     height;
-    mode: SizeMode | keyof typeof SizeMode;
+    mode: PixelMode | keyof typeof PixelMode;
     width;
 
     constructor() {
-        this.mode = SizeMode.percent;
+        this.mode = PixelMode.percent;
         this.height = 0;
         this.width = 0;
     }

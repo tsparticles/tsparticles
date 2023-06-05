@@ -6,8 +6,9 @@ import {
     type IDimension,
     type IMovePathGenerator,
     type Particle,
-    SizeMode,
+    PixelMode,
     Vector,
+    getPosition,
     getRandom,
     randomInRange,
 } from "tsparticles-engine";
@@ -62,7 +63,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         this._reverse = false;
         this._size = { width: 0, height: 0 };
         this._scale = 1;
-        this._offset = { x: 0, y: 0, mode: SizeMode.percent };
+        this._offset = { x: 0, y: 0, mode: PixelMode.percent };
         this._width = 0;
     }
 
@@ -149,20 +150,19 @@ export class SVGPathGenerator implements IMovePathGenerator {
         if (path) {
             const pathElement = path.element,
                 pos = pathElement.getPointAtLength(particle.svgStep),
-                offset = this._offset,
                 canvasSize = particle.container.canvas.size,
-                isPercent = offset.mode === SizeMode.percent,
+                offset = getPosition(this._offset, canvasSize),
                 scale = this._scale * pxRatio;
 
             particle.position.x =
                 (pos.x - this._size.width / 2) * scale +
                 particle.svgInitialPosition.x +
-                (isPercent ? (canvasSize.width * offset.x) / 100 : offset.x) +
+                offset.x +
                 particle.svgOffset.width;
             particle.position.y =
                 (pos.y - this._size.height / 2) * scale +
                 particle.svgInitialPosition.y +
-                (isPercent ? (canvasSize.height * offset.y) / 100 : offset.y) +
+                offset.y +
                 particle.svgOffset.height;
         }
 

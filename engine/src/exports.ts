@@ -18,7 +18,7 @@ export * from "./Enums/Modes/DivMode";
 export * from "./Enums/Modes/HoverMode";
 export * from "./Enums/Modes/CollisionMode";
 export * from "./Enums/Modes/OutMode";
-export * from "./Enums/Modes/SizeMode";
+export * from "./Enums/Modes/PixelMode";
 export * from "./Enums/Modes/ThemeMode";
 export * from "./Enums/Modes/ResponsiveMode";
 

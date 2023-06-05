@@ -12,7 +12,13 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { deepExtend, initParticleNumericAnimationValue, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
+import {
+    deepExtend,
+    getPosition,
+    initParticleNumericAnimationValue,
+    isInArray,
+    itemFromSingleOrMultiple,
+} from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
@@ -34,8 +40,8 @@ import { OutMode } from "../Enums/Modes/OutMode";
 import type { OutModeAlt } from "../Enums/Modes/OutMode";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import { PixelMode } from "../Enums/Modes/PixelMode";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { SizeMode } from "../Enums/Modes/SizeMode";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
@@ -462,15 +468,12 @@ export class Particle implements IParticle {
         this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
         this.initialPosition = this.position.copy();
 
-        const canvasSize = container.canvas.size,
-            moveCenter = { ...this.options.move.center },
-            isCenterPercent = moveCenter.mode === SizeMode.percent;
+        const canvasSize = container.canvas.size;
 
         this.moveCenter = {
-            x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
-            y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
+            ...getPosition(this.options.move.center, canvasSize),
             radius: this.options.move.center.radius ?? 0,
-            mode: this.options.move.center.mode ?? SizeMode.percent,
+            mode: this.options.move.center.mode ?? PixelMode.percent,
         };
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
 

@@ -30,11 +30,11 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2
       '@tsparticles/cli':
-        specifier: ^1.5.0
-        version: 1.5.0(webpack-cli@5.1.1)
+        specifier: ^1.5.1
+        version: 1.5.1(webpack-cli@5.1.1)
       '@tsparticles/eslint-config':
-        specifier: ^1.12.0
-        version: 1.12.0
+        specifier: ^1.12.1
+        version: 1.12.1
       '@tsparticles/prettier-config':
         specifier: ^1.10.0
         version: 1.10.0
@@ -42,8 +42,8 @@ importers:
         specifier: ^1.13.0
         version: 1.13.0
       '@tsparticles/webpack-plugin':
-        specifier: ^1.14.0
-        version: 1.14.0
+        specifier: ^1.14.1
+        version: 1.14.1
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -2647,7 +2647,7 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.22.1
-      '@babel/helper-create-regexp-features-plugin': 7.21.8(@babel/core@7.22.1)
+      '@babel/helper-create-regexp-features-plugin': 7.22.1(@babel/core@7.22.1)
       '@babel/helper-plugin-utils': 7.21.5
     dev: true
 
@@ -2809,12 +2809,12 @@ packages:
     dependencies:
       '@babel/core': 7.22.1
       '@babel/helper-annotate-as-pure': 7.18.6
-      '@babel/helper-compilation-targets': 7.21.5(@babel/core@7.22.1)
-      '@babel/helper-environment-visitor': 7.21.5
+      '@babel/helper-compilation-targets': 7.22.1(@babel/core@7.22.1)
+      '@babel/helper-environment-visitor': 7.22.1
       '@babel/helper-function-name': 7.21.0
       '@babel/helper-optimise-call-expression': 7.18.6
       '@babel/helper-plugin-utils': 7.21.5
-      '@babel/helper-replace-supers': 7.21.5
+      '@babel/helper-replace-supers': 7.22.1
       '@babel/helper-split-export-declaration': 7.18.6
       globals: 11.12.0
     transitivePeerDependencies:
@@ -2881,7 +2881,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.22.1
-      '@babel/helper-create-regexp-features-plugin': 7.21.8(@babel/core@7.22.1)
+      '@babel/helper-create-regexp-features-plugin': 7.22.1(@babel/core@7.22.1)
       '@babel/helper-plugin-utils': 7.21.5
     dev: true
 
@@ -3264,7 +3264,7 @@ packages:
     dependencies:
       '@babel/core': 7.22.1
       '@babel/helper-plugin-utils': 7.21.5
-      '@babel/helper-replace-supers': 7.21.5
+      '@babel/helper-replace-supers': 7.22.1
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -3553,7 +3553,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.22.1
-      '@babel/helper-create-regexp-features-plugin': 7.21.8(@babel/core@7.22.1)
+      '@babel/helper-create-regexp-features-plugin': 7.22.1(@babel/core@7.22.1)
       '@babel/helper-plugin-utils': 7.21.5
     dev: true
 
@@ -4972,14 +4972,14 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
-  /@tsparticles/cli@1.5.0(webpack-cli@5.1.1):
-    resolution: {integrity: sha512-5663/6rpuagOgEHEHy5B1kBNLOg9BxKk349uXhosKG2cwNtQlhb3aGPovvQJjJwwJy1lMGFBApXoBy9Ex3VeJA==}
+  /@tsparticles/cli@1.5.1(webpack-cli@5.1.1):
+    resolution: {integrity: sha512-S7NycznAmHFN41yQkWP3dJV4kufS9KN/FF0L+3+l0MJYqwY6pj90JJ5In/+WZaK1hMHeMC/Ki17jcSPn1XaHCA==}
     hasBin: true
     dependencies:
-      '@tsparticles/eslint-config': 1.12.0
+      '@tsparticles/eslint-config': 1.12.1
       '@tsparticles/prettier-config': 1.10.0
       '@tsparticles/tsconfig': 1.13.0
-      '@tsparticles/webpack-plugin': 1.14.0
+      '@tsparticles/webpack-plugin': 1.14.1
       '@typescript-eslint/eslint-plugin': 5.59.8(@typescript-eslint/parser@5.59.8)(eslint@8.42.0)(typescript@5.1.3)
       '@typescript-eslint/parser': 5.59.8(eslint@8.42.0)(typescript@5.1.3)
       commander: 10.0.1
@@ -5023,8 +5023,8 @@ packages:
       - supports-color
     dev: false
 
-  /@tsparticles/eslint-config@1.12.0:
-    resolution: {integrity: sha512-HCsWZkUQF41qHcnFOIYFXwWMlpq/zjK2kolPKBAfPyM8PDmHpJJWjtQSx9qAtB12lOeRP7Xt6pdOOmqDp7zESA==}
+  /@tsparticles/eslint-config@1.12.1:
+    resolution: {integrity: sha512-QzzmBY3eJW7BPb80rp42zsLUmrb1cvJinkIxQi9QLz6fc2xwMU0bzPkmLYWFnDh8gJHNTzp8lv43zsGHYdcRBQ==}
     dependencies:
       '@tsparticles/prettier-config': 1.10.0
       '@typescript-eslint/eslint-plugin': 5.59.8(@typescript-eslint/parser@5.59.8)(eslint@8.42.0)(typescript@5.1.3)
@@ -5098,12 +5098,12 @@ packages:
       - webpack-dev-server
     dev: false
 
-  /@tsparticles/webpack-plugin@1.14.0:
-    resolution: {integrity: sha512-cJmnt+PHQSec+sjm4N2P8zjvfaoulwY+28SCEVHi2ttignzdAwiAPwOKrVUwo97UMJBxSZwsU1tKd+PMXhvW7w==}
+  /@tsparticles/webpack-plugin@1.14.1:
+    resolution: {integrity: sha512-wdDGodkQ6b4EIhpGdPCYiEff1mgqaY230o6jEoAJwsa668xEGFRUAMIM3T9GHef1wzTe1KninrmhwkwnnaMUqQ==}
     dependencies:
       '@babel/core': 7.22.1
       '@babel/preset-env': 7.22.4(@babel/core@7.22.1)
-      '@tsparticles/eslint-config': 1.12.0
+      '@tsparticles/eslint-config': 1.12.1
       '@tsparticles/prettier-config': 1.10.0
       '@types/node': 20.2.5
       '@types/webpack-bundle-analyzer': 4.6.0(webpack-cli@5.1.2)
