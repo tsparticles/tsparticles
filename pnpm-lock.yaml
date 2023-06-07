@@ -150,23 +150,23 @@ importers:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@20.2.5)(typescript@5.1.3)
       typedoc:
-        specifier: ^0.24.7
-        version: 0.24.7(typescript@5.1.3)
+        specifier: ^0.24.8
+        version: 0.24.8(typescript@5.1.3)
       typedoc-plugin-carbon-ads:
         specifier: ^1.4.0
-        version: 1.4.0(typedoc@0.24.7)
+        version: 1.4.0(typedoc@0.24.8)
       typedoc-plugin-clarity:
         specifier: ^1.4.0
-        version: 1.4.0(typedoc@0.24.7)
+        version: 1.4.0(typedoc@0.24.8)
       typedoc-plugin-coverage:
         specifier: ^2.1.0
-        version: 2.1.0(typedoc@0.24.7)
+        version: 2.1.0(typedoc@0.24.8)
       typedoc-plugin-keywords:
         specifier: ^1.4.1
-        version: 1.4.1(typedoc@0.24.7)
+        version: 1.4.1(typedoc@0.24.8)
       typedoc-plugin-missing-exports:
         specifier: ^2.0.0
-        version: 2.0.0(typedoc@0.24.7)
+        version: 2.0.0(typedoc@0.24.8)
       typescript:
         specifier: ^5.1.3
         version: 5.1.3
@@ -12990,56 +12990,56 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-carbon-ads@1.4.0(typedoc@0.24.7):
+  /typedoc-plugin-carbon-ads@1.4.0(typedoc@0.24.8):
     resolution: {integrity: sha512-1bbzLvc9wl6kmQuq8jOLOj5dBQN7tnDVB4Are1e6gQIPnAtGGOS/ZBXpAxmY9sxs1ffXgGvMWZrrht06gXQh/g==}
     peerDependencies:
       typedoc: ^0.24.4
     dependencies:
-      typedoc: 0.24.7(typescript@5.1.3)
+      typedoc: 0.24.8(typescript@5.1.3)
       typescript: 5.1.3
     dev: true
 
-  /typedoc-plugin-clarity@1.4.0(typedoc@0.24.7):
+  /typedoc-plugin-clarity@1.4.0(typedoc@0.24.8):
     resolution: {integrity: sha512-ttAymfk/PgJ94VjtMVs238XuDU4sS3T4twpXQM6IVdU6pkad+DJQSrm8/sScYezpw2QKv5hFIgsvh3DTnrNebA==}
     peerDependencies:
       typedoc: ^0.24.4
     dependencies:
-      typedoc: 0.24.7(typescript@5.1.3)
+      typedoc: 0.24.8(typescript@5.1.3)
       typescript: 5.1.3
     dev: true
 
-  /typedoc-plugin-coverage@2.1.0(typedoc@0.24.7):
+  /typedoc-plugin-coverage@2.1.0(typedoc@0.24.8):
     resolution: {integrity: sha512-d0Lc/aOPRAMnfABCW2cQqCQdzLUzadeq62r4DBrSchcfzx1X8nOvhXK/n4mVAO4wQQUchTm2ZGAzTtiAc2nl0A==}
     engines: {node: '>= 14'}
     peerDependencies:
       typedoc: ^0.22.12 || 0.23.x || 0.24.x
     dependencies:
-      typedoc: 0.24.7(typescript@5.1.3)
+      typedoc: 0.24.8(typescript@5.1.3)
     dev: true
 
-  /typedoc-plugin-keywords@1.4.1(typedoc@0.24.7):
+  /typedoc-plugin-keywords@1.4.1(typedoc@0.24.8):
     resolution: {integrity: sha512-7vN8VkJRlYFpIrcGNaF3anah7viW8iSecZWP1bJfiX6uKQXEUxaj8UJ1JpqNz1oDjIJrNjka+TkOUgH6hf+HBQ==}
     peerDependencies:
       typedoc: ^0.24.4
     dependencies:
-      typedoc: 0.24.7(typescript@5.1.3)
+      typedoc: 0.24.8(typescript@5.1.3)
       typescript: 5.1.3
     dev: true
 
-  /typedoc-plugin-missing-exports@2.0.0(typedoc@0.24.7):
+  /typedoc-plugin-missing-exports@2.0.0(typedoc@0.24.8):
     resolution: {integrity: sha512-t0QlKCm27/8DaheJkLo/gInSNjzBXgSciGhoLpL6sLyXZibm7SuwJtHvg4qXI2IjJfFBgW9mJvvszpoxMyB0TA==}
     peerDependencies:
       typedoc: 0.24.x
     dependencies:
-      typedoc: 0.24.7(typescript@5.1.3)
+      typedoc: 0.24.8(typescript@5.1.3)
     dev: true
 
-  /typedoc@0.24.7(typescript@5.1.3):
-    resolution: {integrity: sha512-zzfKDFIZADA+XRIp2rMzLe9xZ6pt12yQOhCr7cD7/PBTjhPmMyMvGrkZ2lPNJitg3Hj1SeiYFNzCsSDrlpxpKw==}
+  /typedoc@0.24.8(typescript@5.1.3):
+    resolution: {integrity: sha512-ahJ6Cpcvxwaxfu4KtjA8qZNqS43wYt6JL27wYiIgl1vd38WW/KWX11YuAeZhuz9v+ttrutSsgK+XO1CjL1kA3w==}
     engines: {node: '>= 14.14'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x
     dependencies:
       lunr: 2.3.9
       marked: 4.3.0
