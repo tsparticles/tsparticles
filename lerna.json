@@ -17,7 +17,6 @@
     ],
     "version": "2.10.1",
     "npmClient": "pnpm",
-    "useWorkspaces": true,
     "conventionalCommits": true,
     "command": {
         "version": {
