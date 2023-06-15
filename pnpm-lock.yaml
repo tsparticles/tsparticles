@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -111,8 +111,8 @@ importers:
         specifier: ^3.0.2
         version: 3.0.2(jsdom@22.1.0)
       lerna:
-        specifier: ^7.0.1
-        version: 7.0.1
+        specifier: ^7.0.2
+        version: 7.0.2
       mocha:
         specifier: ^10.2.0
         version: 10.2.0
@@ -4246,8 +4246,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
 
-  /@lerna/child-process@7.0.1:
-    resolution: {integrity: sha512-lov3hXcX+g76fjQ5kg6+QdffL6kFw/aH3sG7NGk61mZfsWCDum9kcp9biqIRAmD6xJbrQsr1i0i9YeCMnHJ6pA==}
+  /@lerna/child-process@7.0.2:
+    resolution: {integrity: sha512-15lMrNBL/pvREMJPSfIPieaBtyyapDco/TNjALLEL53JGzO9g8rj5PipfE9h5ILx8aq/GaP17XCh209aVCun/w==}
     engines: {node: ^14.17.0 || >=16.0.0}
     dependencies:
       chalk: 4.1.2
@@ -4255,11 +4255,11 @@ packages:
       strong-log-transformer: 2.1.0
     dev: true
 
-  /@lerna/create@7.0.1:
-    resolution: {integrity: sha512-vv9gtbrn/gBwQLdDlUeatO3uY58nxMktv9h9/5GEFcBesV9MAeQ0zRz8zkr2C0DX/m25lE+J5KTzJqZtMb03kw==}
+  /@lerna/create@7.0.2:
+    resolution: {integrity: sha512-1arGpEpWbWmci1MyaGKvP2SqCAPFWpLqZp0swckianX1kx1mso9B16BWFvcHhU57zCD0Co/z+jX+02UEzZGP7Q==}
     engines: {node: ^14.17.0 || >=16.0.0}
     dependencies:
-      '@lerna/child-process': 7.0.1
+      '@lerna/child-process': 7.0.2
       dedent: 0.7.0
       fs-extra: 11.1.1
       init-package-json: 5.0.0
@@ -9253,13 +9253,13 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /lerna@7.0.1:
-    resolution: {integrity: sha512-kX279o8N/L2URwoR3Pf4TdIl5P8G443qAFy095ZD+Vu1tOMo8U6xOc221EgHoMuYhdqlT3f0vgn5bMMr/xNYhQ==}
+  /lerna@7.0.2:
+    resolution: {integrity: sha512-omFpf1pTiaObC2YOC7K+euaDwhQA9CyKN1kXxmlSwaSkh8b8QTs4SC8jp3oNeXfcHpVS1ttuuz98AvQvJD46wA==}
     engines: {node: ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@lerna/child-process': 7.0.1
-      '@lerna/create': 7.0.1
+      '@lerna/child-process': 7.0.2
+      '@lerna/create': 7.0.2
       '@npmcli/run-script': 6.0.2
       '@nx/devkit': 16.3.2(nx@16.3.2)
       '@octokit/plugin-enterprise-rest': 6.0.1
