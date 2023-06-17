@@ -4,6 +4,7 @@ import {
     type IContainerPlugin,
     clamp,
     executeOnSingleOrMultiple,
+    isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
 } from "tsparticles-engine";
@@ -447,7 +448,7 @@ export class SoundsInstance implements IContainerPlugin {
         try {
             const freq = getNoteFrequency(value);
 
-            if (typeof freq !== "number") {
+            if (!isNumber(freq)) {
                 return;
             }
 

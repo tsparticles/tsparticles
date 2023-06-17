@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, stringToAlpha } from "tsparticles-engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isString, stringToAlpha } from "tsparticles-engine";
 import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke";
 
 /**
@@ -21,7 +21,7 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoa
 
         this.color = OptionsColor.create(this.color, data.color);
 
-        if (typeof this.color.value === "string") {
+        if (isString(this.color.value)) {
             this.opacity = stringToAlpha(this.color.value) ?? this.opacity;
         }
 

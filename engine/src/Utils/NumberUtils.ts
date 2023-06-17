@@ -3,6 +3,7 @@ import type {
     IPositionFromSizeParams,
     IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams";
+import { isBoolean, isNumber } from "./Utils";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
 import { MoveDirection } from "../Enums/Directions/MoveDirection";
@@ -94,7 +95,7 @@ export function randomInRange(r: RangeValue): number {
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
 export function getRangeValue(value: RangeValue): number {
-    return typeof value === "number" ? value : randomInRange(value);
+    return isNumber(value) ? value : randomInRange(value);
 }
 
 /**
@@ -102,7 +103,7 @@ export function getRangeValue(value: RangeValue): number {
  * @returns the minimum value of the range
  */
 export function getRangeMin(value: RangeValue): number {
-    return typeof value === "number" ? value : value.min;
+    return isNumber(value) ? value : value.min;
 }
 
 /**
@@ -110,7 +111,7 @@ export function getRangeMin(value: RangeValue): number {
  * @returns the maximum value of the range
  */
 export function getRangeMax(value: RangeValue): number {
-    return typeof value === "number" ? value : value.max;
+    return isNumber(value) ? value : value.max;
 }
 
 /**
@@ -119,7 +120,7 @@ export function getRangeMax(value: RangeValue): number {
  * @returns the range value with the new value
  */
 export function setRangeValue(source: RangeValue, value?: number): RangeValue {
-    if (source === value || (value === undefined && typeof source === "number")) {
+    if (source === value || (value === undefined && isNumber(source))) {
         return source;
     }
 
@@ -140,13 +141,12 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
  */
 export function getValue(options: IValueWithRandom): number {
     const random = options.random,
-        { enable, minimumValue } =
-            typeof random === "boolean"
-                ? {
-                      enable: random,
-                      minimumValue: 0,
-                  }
-                : random;
+        { enable, minimumValue } = isBoolean(random)
+            ? {
+                  enable: random,
+                  minimumValue: 0,
+              }
+            : random;
 
     return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
 }
@@ -185,33 +185,33 @@ export function getParticleDirectionAngle(
     position: ICoordinates,
     center: ICoordinates
 ): number {
-    if (typeof direction === "number") {
+    if (isNumber(direction)) {
         return (direction * Math.PI) / 180;
-    } else {
-        switch (direction) {
-            case MoveDirection.top:
-                return -Math.PI / 2;
-            case MoveDirection.topRight:
-                return -Math.PI / 4;
-            case MoveDirection.right:
-                return 0;
-            case MoveDirection.bottomRight:
-                return Math.PI / 4;
-            case MoveDirection.bottom:
-                return Math.PI / 2;
-            case MoveDirection.bottomLeft:
-                return (3 * Math.PI) / 4;
-            case MoveDirection.left:
-                return Math.PI;
-            case MoveDirection.topLeft:
-                return (-3 * Math.PI) / 4;
-            case MoveDirection.inside:
-                return Math.atan2(center.y - position.y, center.x - position.x);
-            case MoveDirection.outside:
-                return Math.atan2(position.y - center.y, position.x - center.x);
-            default:
-                return getRandom() * Math.PI * 2;
-        }
+    }
+
+    switch (direction) {
+        case MoveDirection.top:
+            return -Math.PI / 2;
+        case MoveDirection.topRight:
+            return -Math.PI / 4;
+        case MoveDirection.right:
+            return 0;
+        case MoveDirection.bottomRight:
+            return Math.PI / 4;
+        case MoveDirection.bottom:
+            return Math.PI / 2;
+        case MoveDirection.bottomLeft:
+            return (3 * Math.PI) / 4;
+        case MoveDirection.left:
+            return Math.PI;
+        case MoveDirection.topLeft:
+            return (-3 * Math.PI) / 4;
+        case MoveDirection.inside:
+            return Math.atan2(center.y - position.y, center.x - position.x);
+        case MoveDirection.outside:
+            return Math.atan2(position.y - center.y, position.x - center.x);
+        default:
+            return getRandom() * Math.PI * 2;
     }
 }
 

@@ -7,6 +7,7 @@ import {
     type RecursivePartial,
     errorPrefix,
     getRandom,
+    isNumber,
 } from "tsparticles-engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { TextMask } from "./Options/Classes/TextMask";
@@ -25,7 +26,8 @@ type TextLineData = {
 };
 
 /**
- * @param array
+ * @param array -
+ * @returns the shuffled array
  */
 export function shuffle<T>(array: T[]): T[] {
     for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
@@ -38,12 +40,12 @@ export function shuffle<T>(array: T[]): T[] {
 }
 
 /**
- * @param container
- * @param data
- * @param position
- * @param scale
- * @param override
- * @param filter
+ * @param container -
+ * @param data -
+ * @param position -
+ * @param scale -
+ * @param override -
+ * @param filter -
  */
 export function addParticlesFromCanvasPixels(
     container: Container,
@@ -103,10 +105,11 @@ export function addParticlesFromCanvasPixels(
 }
 
 /**
- * @param ctx
- * @param size
- * @param offset
- * @param clear
+ * @param ctx -
+ * @param size -
+ * @param offset -
+ * @param clear -
+ * @returns the canvas pixel data
  */
 export function getCanvasImageData(
     ctx: CanvasRenderingContext2D,
@@ -149,8 +152,9 @@ export function getCanvasImageData(
 }
 
 /**
- * @param src
- * @param offset
+ * @param src -
+ * @param offset -
+ * @returns the canvas pixel data
  */
 export function getImageData(src: string, offset: number): Promise<CanvasPixelData> {
     const image = new Image();
@@ -183,8 +187,9 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
 }
 
 /**
- * @param textOptions
- * @param offset
+ * @param textOptions -
+ * @param offset -
+ * @returns the canvas pixel data
  */
 export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
     const canvas = document.createElement("canvas"),
@@ -196,7 +201,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     }
 
     const lines = text.split(linesOptions.separator),
-        fontSize = typeof font.size === "number" ? `${font.size}px` : font.size,
+        fontSize = isNumber(font.size) ? `${font.size}px` : font.size,
         linesData: TextLineData[] = [];
 
     let maxWidth = 0,

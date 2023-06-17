@@ -3,7 +3,8 @@ import { OpacityUpdater } from "./OpacityUpdater";
 
 /**
  * @param engine - The engine instance to load the updater for
+ * @param refresh -
  */
-export async function loadOpacityUpdater(engine: Engine): Promise<void> {
-    await engine.addParticleUpdater("opacity", (container) => new OpacityUpdater(container));
+export async function loadOpacityUpdater(engine: Engine, refresh = false): Promise<void> {
+    await engine.addParticleUpdater("opacity", (container) => new OpacityUpdater(container), refresh);
 }

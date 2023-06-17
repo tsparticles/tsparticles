@@ -6,6 +6,7 @@ import {
     type SingleOrMultiple,
     arrayRandomIndex,
     executeOnSingleOrMultiple,
+    isNumber,
     itemFromArray,
 } from "tsparticles-engine";
 import { Emitter } from "./Options/Classes/Emitter";
@@ -38,7 +39,7 @@ export class Emitters implements IContainerPlugin {
         };
 
         container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
-            idxOrName === undefined || typeof idxOrName === "number"
+            idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 

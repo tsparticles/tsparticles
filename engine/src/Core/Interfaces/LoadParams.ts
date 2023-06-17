@@ -5,7 +5,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
 /**
  * Loader params for options local object
  */
-export interface LoaderParams {
+export interface LoadParams {
     /**
      * The container HTML element, could be a canvas or any other element that will contain the canvas
      */
@@ -20,11 +20,6 @@ export interface LoaderParams {
      * The options object or the options array to laod
      */
     options?: SingleOrMultiple<RecursivePartial<IOptions>>;
-
-    /**
-     * Used for loading options locally or remotely
-     */
-    remote: boolean;
 
     /**
      * The id assigned to the container

@@ -7,6 +7,7 @@ import {
     type RecursivePartial,
     getRangeValue,
     getValue,
+    isNumber,
     itemFromSingleOrMultiple,
     loadParticlesOptions,
     randomInRange,
@@ -68,7 +69,7 @@ function addSplitParticle(
         },
     });
 
-    if (typeof options.size.value === "number") {
+    if (isNumber(options.size.value)) {
         options.size.value /= factor;
     } else {
         options.size.value.min /= factor;

@@ -1,5 +1,6 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors";
 import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
+import { isString, itemFromArray } from "./Utils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
@@ -8,7 +9,6 @@ import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
-import { itemFromArray } from "./Utils";
 
 const randomColorValue = "random",
     midColorValue = "mid",
@@ -93,9 +93,9 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
         return;
     }
 
-    const color = typeof input === "string" ? { value: input } : input;
+    const color = isString(input) ? { value: input } : input;
 
-    if (typeof color.value === "string") {
+    if (isString(color.value)) {
         return colorToRgb(color.value, index, useIndex);
     }
 
@@ -126,9 +126,9 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
         return;
     }
 
-    const color = typeof input === "string" ? { value: input } : input;
+    const color = isString(input) ? { value: input } : input;
 
-    if (typeof color.value === "string") {
+    if (isString(color.value)) {
         return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
     }
 
@@ -387,7 +387,7 @@ export function getLinkRandomColor(
     blink: boolean,
     consent: boolean
 ): IRgb | string | undefined {
-    const color = typeof optColor === "string" ? optColor : optColor.value;
+    const color = isString(optColor) ? optColor : optColor.value;
 
     if (color === randomColorValue) {
         if (consent) {

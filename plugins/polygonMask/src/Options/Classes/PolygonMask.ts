@@ -1,4 +1,4 @@
-import { type ICoordinates, type IOptionLoader, type RecursivePartial, deepExtend } from "tsparticles-engine";
+import { type ICoordinates, type IOptionLoader, type RecursivePartial, deepExtend, isString } from "tsparticles-engine";
 import type {
     PolygonMaskInlineArrangement,
     PolygonMaskInlineArrangementAlt,
@@ -83,7 +83,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         }
 
         if (data.data !== undefined) {
-            if (typeof data.data === "string") {
+            if (isString(data.data)) {
                 this.data = data.data;
             } else {
                 this.data = new PolygonMaskLocalSvg();

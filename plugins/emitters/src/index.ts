@@ -130,8 +130,9 @@ class EmittersPlugin implements IPlugin {
 
 /**
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
+ * @param refresh -
  */
-export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
+export async function loadEmittersPlugin(engine: EmittersEngine, refresh = false): Promise<void> {
     if (!engine.emitterShapeManager) {
         engine.emitterShapeManager = new ShapeManager(engine);
     }
@@ -144,7 +145,7 @@ export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> 
 
     const plugin = new EmittersPlugin(engine);
 
-    await engine.addPlugin(plugin);
+    await engine.addPlugin(plugin, refresh);
 
     engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
     engine.addEmitterShape(EmitterShapeType.square, new SquareShape());

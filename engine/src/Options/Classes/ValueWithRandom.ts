@@ -8,6 +8,7 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { Random } from "./Random";
 import type { RangeValue } from "../../Types/RangeValue";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
+import { isBoolean } from "../../Utils/Utils";
 import { setRangeValue } from "../../Utils/NumberUtils";
 
 export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
@@ -28,7 +29,7 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
             return;
         }
 
-        if (typeof data.random === "boolean") {
+        if (isBoolean(data.random)) {
             this.random.enable = data.random;
         } else {
             this.random.load(data.random);

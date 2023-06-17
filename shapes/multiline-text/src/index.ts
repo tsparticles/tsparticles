@@ -3,7 +3,8 @@ import { MultilineTextDrawer } from "./MultilineTextDrawer";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadMultilineTextShape(engine: Engine): Promise<void> {
-    await engine.addShape("multiline-text", new MultilineTextDrawer());
+export async function loadMultilineTextShape(engine: Engine, refresh = false): Promise<void> {
+    await engine.addShape("multiline-text", new MultilineTextDrawer(), refresh);
 }

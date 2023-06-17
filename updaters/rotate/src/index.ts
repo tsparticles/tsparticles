@@ -3,7 +3,8 @@ import { RotateUpdater } from "./RotateUpdater";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadRotateUpdater(engine: Engine): Promise<void> {
-    await engine.addParticleUpdater("rotate", (container) => new RotateUpdater(container));
+export async function loadRotateUpdater(engine: Engine, refresh = false): Promise<void> {
+    await engine.addParticleUpdater("rotate", (container) => new RotateUpdater(container), refresh);
 }

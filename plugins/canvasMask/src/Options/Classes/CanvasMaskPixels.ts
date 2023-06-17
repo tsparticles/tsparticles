@@ -1,4 +1,5 @@
 import type { IOptionLoader, IRgba, RecursivePartial } from "tsparticles-engine";
+import { isFunction, isString } from "tsparticles-engine";
 import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels";
 
 export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanvasMaskPixels> {
@@ -16,11 +17,11 @@ export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanva
         }
 
         if (data.filter !== undefined) {
-            if (typeof data.filter === "string") {
+            if (isString(data.filter)) {
                 if (Object.hasOwn(window, data.filter)) {
                     const filter = (window as unknown as { [key: string]: (pixel: IRgba) => boolean })[data.filter];
 
-                    if (typeof filter === "function") {
+                    if (isFunction(filter)) {
                         this.filter = filter;
                     }
                 }

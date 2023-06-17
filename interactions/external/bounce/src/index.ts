@@ -3,9 +3,10 @@ import type { Engine } from "tsparticles-engine";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadExternalBounceInteraction(engine: Engine): Promise<void> {
-    await engine.addInteractor("externalBounce", (container) => new Bouncer(container));
+export async function loadExternalBounceInteraction(engine: Engine, refresh = false): Promise<void> {
+    await engine.addInteractor("externalBounce", (container) => new Bouncer(container), refresh);
 }
 
 export * from "./Options/Classes/Bounce";

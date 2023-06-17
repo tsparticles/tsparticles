@@ -1,4 +1,4 @@
-import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils";
+import { deepExtend, executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Container } from "../../Core/Container";
@@ -179,7 +179,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         const fullScreen = data.fullScreen ?? data.backgroundMode;
 
-        if (typeof fullScreen === "boolean") {
+        if (isBoolean(fullScreen)) {
             this.fullScreen.enable = fullScreen;
         } else {
             this.fullScreen.load(fullScreen);

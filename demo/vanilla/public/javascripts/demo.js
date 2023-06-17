@@ -63,7 +63,7 @@
             });
         }
 
-        const particles = await tsParticles.load("tsparticles", tsParticles.configs[presetId]);
+        const particles = await tsParticles.load({ tagId: "tsparticles", options: tsParticles.configs[presetId] });
 
         localStorage.presetId = presetId;
 

@@ -1,4 +1,4 @@
-import { type Container, type IMovePathGenerator, Vector, getRandom } from "tsparticles-engine";
+import { type Container, type IMovePathGenerator, Vector, getRandom, isFunction, isString } from "tsparticles-engine";
 import { CurvesPathGen } from "./Curves";
 import type { CurvesPathParticle } from "./CurvesPathParticle";
 import type { ICurvesOptions } from "./ICurvesOptions";
@@ -57,9 +57,9 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
-        if (typeof sourceOptions.rndFunc === "function") {
+        if (isFunction(sourceOptions.rndFunc)) {
             options.rndFunc = sourceOptions.rndFunc as () => number;
-        } else if (typeof sourceOptions.rndFunc === "string") {
+        } else if (isString(sourceOptions.rndFunc)) {
             options.rndFunc =
                 (window[sourceOptions.rndFunc] as (() => number) | null | undefined) || this.options.rndFunc;
         }

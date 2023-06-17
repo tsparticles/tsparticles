@@ -1,13 +1,14 @@
 import type { Engine } from "tsparticles-engine";
-import { loadInteraction } from "./interaction";
-import { loadPlugin } from "./plugin";
+import { loadLinksInteraction } from "./interaction";
+import { loadLinksPlugin } from "./plugin";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadParticlesLinksInteraction(engine: Engine): Promise<void> {
-    await loadInteraction(engine);
-    await loadPlugin(engine);
+export async function loadParticlesLinksInteraction(engine: Engine, refresh = false): Promise<void> {
+    await loadLinksInteraction(engine, refresh);
+    await loadLinksPlugin(engine, refresh);
 }
 
 export * from "./Options/Classes/Links";

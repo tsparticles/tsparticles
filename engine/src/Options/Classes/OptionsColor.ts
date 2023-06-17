@@ -3,6 +3,7 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptionsColor } from "../Interfaces/IOptionsColor";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import { isString } from "../../Utils/Utils";
 
 /**
  * [[include:Color.md]]
@@ -23,7 +24,7 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
         color.load(source);
 
         if (data !== undefined) {
-            if (typeof data === "string" || data instanceof Array) {
+            if (isString(data) || data instanceof Array) {
                 color.load({ value: data });
             } else {
                 color.load(data);

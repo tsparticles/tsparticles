@@ -1,5 +1,6 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
 import { errorPrefix } from "./Constants";
+import { isNumber } from "../../Utils/Utils";
 
 /**
  */
@@ -27,7 +28,7 @@ export class Vector3d implements ICoordinates3d {
      * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates3d | ICoordinates, y?: number, z?: number) {
-        if (typeof xOrCoords !== "number" && xOrCoords) {
+        if (!isNumber(xOrCoords) && xOrCoords) {
             this.x = xOrCoords.x;
             this.y = xOrCoords.y;
 

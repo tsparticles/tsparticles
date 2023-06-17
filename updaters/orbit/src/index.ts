@@ -3,7 +3,8 @@ import { OrbitUpdater } from "./OrbitUpdater";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadOrbitUpdater(engine: Engine): Promise<void> {
-    engine.addParticleUpdater("orbit", (container) => new OrbitUpdater(container));
+export async function loadOrbitUpdater(engine: Engine, refresh = false): Promise<void> {
+    await engine.addParticleUpdater("orbit", (container) => new OrbitUpdater(container), refresh);
 }

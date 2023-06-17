@@ -1,4 +1,11 @@
-import { type Container, type ISourceOptions, type RecursivePartial, isSsr, tsParticles } from "tsparticles-engine";
+import {
+    type Container,
+    type ISourceOptions,
+    type RecursivePartial,
+    isSsr,
+    isString,
+    tsParticles,
+} from "tsparticles-engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
@@ -372,7 +379,7 @@ export async function confetti(
     let options: RecursivePartial<IConfettiOptions>;
     let id: string;
 
-    if (typeof idOrOptions === "string") {
+    if (isString(idOrOptions)) {
         id = idOrOptions;
         options = confettiOptions ?? {};
     } else {
@@ -413,7 +420,7 @@ confetti.create = async (
         let subOptions: RecursivePartial<IConfettiOptions>;
         let subId: string;
 
-        if (typeof idOrOptions === "string") {
+        if (isString(idOrOptions)) {
             subId = idOrOptions;
             subOptions = confettiOptions ?? options;
         } else {

@@ -1,3 +1,4 @@
+import { executeOnSingleOrMultiple, isBoolean } from "../../../../Utils/Utils";
 import { ClickEvent } from "./ClickEvent";
 import { DivEvent } from "./DivEvent";
 import { HoverEvent } from "./HoverEvent";
@@ -6,7 +7,6 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { ResizeEvent } from "./ResizeEvent";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
@@ -93,7 +93,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
 
         this.onHover.load(data.onHover ?? data.onhover);
 
-        if (typeof data.resize === "boolean") {
+        if (isBoolean(data.resize)) {
             this.resize.enable = data.resize;
         } else {
             this.resize.load(data.resize);

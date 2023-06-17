@@ -3,7 +3,8 @@ import { TwinkleUpdater } from "./TwinkleUpdater";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadTwinkleUpdater(engine: Engine): Promise<void> {
-    await engine.addParticleUpdater("twinkle", () => new TwinkleUpdater());
+export async function loadTwinkleUpdater(engine: Engine, refresh = false): Promise<void> {
+    await engine.addParticleUpdater("twinkle", () => new TwinkleUpdater(), refresh);
 }

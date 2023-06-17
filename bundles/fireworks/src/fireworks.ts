@@ -11,7 +11,9 @@ import {
     StartValueType,
     getRangeMax,
     getRangeMin,
+    isNumber,
     isSsr,
+    isString,
     setRangeValue,
     tsParticles,
 } from "tsparticles-engine";
@@ -126,7 +128,7 @@ export async function fireworks(
 
     const options = new FireworkOptions();
 
-    if (typeof idOrOptions === "string") {
+    if (isString(idOrOptions)) {
         id = idOrOptions;
         options.load(sourceOptions);
     } else {
@@ -148,10 +150,9 @@ export async function fireworks(
                 delay: 0.1,
             },
             rate: {
-                delay:
-                    typeof options.rate === "number"
-                        ? 1 / options.rate
-                        : { min: 1 / getRangeMin(options.rate), max: 1 / getRangeMax(options.rate) },
+                delay: isNumber(options.rate)
+                    ? 1 / options.rate
+                    : { min: 1 / getRangeMin(options.rate), max: 1 / getRangeMax(options.rate) },
                 quantity: 1,
             },
             size: {
@@ -251,6 +252,11 @@ export async function fireworks(
             },
             shape: {
                 type: "line",
+                options: {
+                    line: {
+                        cap: "round",
+                    },
+                },
             },
             size: {
                 value: {

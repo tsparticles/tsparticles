@@ -16,18 +16,19 @@ import { loadWobbleUpdater } from "tsparticles-updater-wobble";
  * If this function is not called, the tsparticles package/dependency can be safely removed.
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
+ * @param refresh -
  */
-export async function loadFull(engine: Engine): Promise<void> {
-    await loadSlim(engine);
+export async function loadFull(engine: Engine, refresh = false): Promise<void> {
+    await loadSlim(engine, refresh);
 
-    await loadDestroyUpdater(engine);
-    await loadRollUpdater(engine);
-    await loadTiltUpdater(engine);
-    await loadTwinkleUpdater(engine);
-    await loadWobbleUpdater(engine);
+    await loadDestroyUpdater(engine, refresh);
+    await loadRollUpdater(engine, refresh);
+    await loadTiltUpdater(engine, refresh);
+    await loadTwinkleUpdater(engine, refresh);
+    await loadWobbleUpdater(engine, refresh);
 
-    await loadExternalTrailInteraction(engine);
+    await loadExternalTrailInteraction(engine, refresh);
 
-    await loadAbsorbersPlugin(engine);
-    await loadEmittersPlugin(engine);
+    await loadAbsorbersPlugin(engine, refresh);
+    await loadEmittersPlugin(engine, refresh);
 }

@@ -1,4 +1,5 @@
 import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
+import { isNumber, isObject } from "../../../../Utils/Utils";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
@@ -146,7 +147,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
             return;
         }
 
-        this.angle.load(typeof data.angle === "number" ? { value: data.angle } : data.angle);
+        this.angle.load(isNumber(data.angle) ? { value: data.angle } : data.angle);
         this.attract.load(data.attract);
 
         this.center.load(data.center);
@@ -160,13 +161,12 @@ export class Move implements IMove, IOptionLoader<IMove> {
         }
 
         if (data.distance !== undefined) {
-            this.distance =
-                typeof data.distance === "number"
-                    ? {
-                          horizontal: data.distance,
-                          vertical: data.distance,
-                      }
-                    : { ...data.distance };
+            this.distance = isNumber(data.distance)
+                ? {
+                      horizontal: data.distance,
+                      vertical: data.distance,
+                  }
+                : { ...data.distance };
         }
 
         if (data.drift !== undefined) {
@@ -182,7 +182,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
         const outModes = data.outModes ?? data.outMode ?? data.out_mode;
 
         if (outModes !== undefined) {
-            if (typeof outModes === "object") {
+            if (isObject(outModes)) {
                 this.outModes.load(outModes);
             } else {
                 this.outModes.load({

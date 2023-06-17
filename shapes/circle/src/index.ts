@@ -3,7 +3,8 @@ import type { Engine } from "tsparticles-engine";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadCircleShape(engine: Engine): Promise<void> {
-    await engine.addShape("circle", new CircleDrawer());
+export async function loadCircleShape(engine: Engine, refresh = false): Promise<void> {
+    await engine.addShape("circle", new CircleDrawer(), refresh);
 }

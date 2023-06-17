@@ -3,10 +3,11 @@ import type { Engine } from "tsparticles-engine";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadCardsShape(engine: Engine): Promise<void> {
-    await engine.addShape(["spade", "spades"], new SpadeDrawer());
-    await engine.addShape(["heart", "hearts"], new HeartDrawer());
-    await engine.addShape(["diamond", "diamonds"], new DiamondDrawer());
-    await engine.addShape(["club", "clubs"], new ClubDrawer());
+export async function loadCardsShape(engine: Engine, refresh = false): Promise<void> {
+    await engine.addShape(["spade", "spades"], new SpadeDrawer(), refresh);
+    await engine.addShape(["heart", "hearts"], new HeartDrawer(), refresh);
+    await engine.addShape(["diamond", "diamonds"], new DiamondDrawer(), refresh);
+    await engine.addShape(["club", "clubs"], new ClubDrawer(), refresh);
 }

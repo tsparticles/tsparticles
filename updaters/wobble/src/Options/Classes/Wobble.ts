@@ -3,6 +3,7 @@ import {
     type IRangeValue,
     type RangeValue,
     type RecursivePartial,
+    isNumber,
     setRangeValue,
 } from "tsparticles-engine";
 import type { IWobble } from "../Interfaces/IWobble";
@@ -34,7 +35,7 @@ export class Wobble implements IWobble, IOptionLoader<IWobble> {
         }
 
         if (data.speed !== undefined) {
-            if (typeof data.speed === "number") {
+            if (isNumber(data.speed)) {
                 this.speed.load({ angle: data.speed });
             } else {
                 const rangeSpeed = data.speed as IRangeValue;

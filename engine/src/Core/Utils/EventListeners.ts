@@ -1,4 +1,4 @@
-import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils";
+import { executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -34,7 +34,7 @@ function manageListener(
     if (add) {
         let addOptions: AddEventListenerOptions = { passive: true };
 
-        if (typeof options === "boolean") {
+        if (isBoolean(options)) {
             addOptions.capture = options;
         } else if (options !== undefined) {
             addOptions = options as AddEventListenerOptions;

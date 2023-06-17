@@ -1,4 +1,4 @@
-import { animate, cancelAnimation } from "../Utils/Utils";
+import { animate, cancelAnimation, isFunction } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Engine } from "../engine";
@@ -680,7 +680,7 @@ export class Container {
 
         const pathGenerator = { ...defaultPathGenerator };
 
-        if (typeof pathOrGenerator === "function") {
+        if (isFunction(pathOrGenerator)) {
             pathGenerator.generate = pathOrGenerator;
 
             if (init) {

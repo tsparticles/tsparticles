@@ -269,7 +269,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
             continue;
         }
 
-        if (typeof source !== "object") {
+        if (!isObject(source)) {
             destination = source;
 
             continue;
@@ -277,9 +277,9 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
         const sourceIsArray = Array.isArray(source);
 
-        if (sourceIsArray && (typeof destination !== "object" || !destination || !Array.isArray(destination))) {
+        if (sourceIsArray && (isObject(destination) || !destination || !Array.isArray(destination))) {
             destination = [];
-        } else if (!sourceIsArray && (typeof destination !== "object" || !destination || Array.isArray(destination))) {
+        } else if (!sourceIsArray && (isObject(destination) || !destination || Array.isArray(destination))) {
             destination = {};
         }
 
@@ -290,11 +290,10 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
             const sourceDict = source as Record<string, unknown>,
                 value = sourceDict[key],
-                isObject = typeof value === "object",
                 destDict = destination as Record<string, unknown>;
 
             destDict[key] =
-                isObject && Array.isArray(value)
+                isObject(value) && Array.isArray(value)
                     ? value.map((v) => deepExtend(destDict[key], v))
                     : deepExtend(destDict[key], value);
         }
@@ -635,4 +634,50 @@ export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimensi
  */
 export function getSize(size: IDimensionWithMode, canvasSize: IDimension): IDimension {
     return getPositionOrSize(size, canvasSize) as IDimension;
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a boolean
+ */
+export function isBoolean(arg: unknown): arg is boolean {
+    return typeof arg === "boolean";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a string
+ */
+export function isString(arg: unknown): arg is string {
+    return typeof arg === "string";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a number
+ */
+export function isNumber(arg: unknown): arg is number {
+    return typeof arg === "number";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a function
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function isFunction(arg: unknown): arg is Function {
+    return typeof arg === "function";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is an object
+ */
+export function isObject<T extends object>(arg: unknown): arg is T {
+    return typeof arg === "object" && arg !== null;
 }

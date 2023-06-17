@@ -4,7 +4,8 @@ import { Linker } from "./Linker";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadInteraction(engine: Engine): Promise<void> {
-    await engine.addInteractor("particlesLinks", (container) => new Linker(container as LinkContainer));
+export async function loadLinksInteraction(engine: Engine, refresh = false): Promise<void> {
+    await engine.addInteractor("particlesLinks", (container) => new Linker(container as LinkContainer), refresh);
 }

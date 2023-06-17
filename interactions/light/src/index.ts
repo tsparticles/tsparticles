@@ -4,10 +4,11 @@ import { ParticlesLighter } from "./ParticlesLighter";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadLightInteraction(engine: Engine): Promise<void> {
-    await engine.addInteractor("externalLight", (container) => new ExternalLighter(container));
-    await engine.addInteractor("particlesLight", (container) => new ParticlesLighter(container));
+export async function loadLightInteraction(engine: Engine, refresh = false): Promise<void> {
+    await engine.addInteractor("externalLight", (container) => new ExternalLighter(container), refresh);
+    await engine.addInteractor("particlesLight", (container) => new ParticlesLighter(container), refresh);
 }
 
 export * from "./Options/Classes/Light";

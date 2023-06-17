@@ -11,6 +11,7 @@ import {
     getDistance,
     getDistances,
     getRandom,
+    isString,
     itemFromArray,
 } from "tsparticles-engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
@@ -404,15 +405,15 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
             let svg: string;
 
-            if (typeof data !== "string") {
+            if (isString(data)) {
+                svg = data;
+            } else {
                 const getPath = (p: string): string => `<path d="${p}" />`,
                     path = data.path instanceof Array ? data.path.map(getPath).join("") : getPath(data.path);
 
                 const namespaces = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
 
                 svg = `<svg ${namespaces} width="${data.size.width}" height="${data.size.height}">${path}</svg>`;
-            } else {
-                svg = data;
             }
 
             this.raw = this._parseSvgPath(svg, force);
