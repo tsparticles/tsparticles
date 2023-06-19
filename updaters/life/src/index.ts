@@ -5,6 +5,6 @@ import { LifeUpdater } from "./LifeUpdater";
  * @param engine -
  * @param refresh -
  */
-export async function loadLifeUpdater(engine: Engine, refresh = false): Promise<void> {
+export async function loadLifeUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater("life", (container) => new LifeUpdater(container), refresh);
 }

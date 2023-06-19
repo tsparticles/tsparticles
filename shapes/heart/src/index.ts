@@ -5,6 +5,6 @@ import { HeartDrawer } from "./HeartDrawer";
  * @param engine -
  * @param refresh -
  */
-export async function loadHeartShape(engine: Engine, refresh = false): Promise<void> {
+export async function loadHeartShape(engine: Engine, refresh = true): Promise<void> {
     await engine.addShape("heart", new HeartDrawer(), refresh);
 }

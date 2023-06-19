@@ -7,6 +7,6 @@ export const svgPathName = "svgPathGenerator";
  * @param engine -
  * @param refresh -
  */
-export async function loadSVGPath(engine: Engine, refresh = false): Promise<void> {
+export async function loadSVGPath(engine: Engine, refresh = true): Promise<void> {
     await engine.addPathGenerator(svgPathName, new SVGPathGenerator(), refresh);
 }

@@ -8,7 +8,7 @@ import { errorPrefix } from "tsparticles-engine";
 
 /**
  *
- * @param engine
+ * @param engine -
  */
 function addLoadImageToEngine(engine: ImageEngine): void {
     if (engine.loadImage) {
@@ -55,7 +55,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
  * @param engine - the engine where the image shape is going to be added
  * @param refresh -
  */
-export async function loadImageShape(engine: ImageEngine, refresh = false): Promise<void> {
+export async function loadImageShape(engine: ImageEngine, refresh = true): Promise<void> {
     addLoadImageToEngine(engine);
 
     const preloader = new ImagePreloaderPlugin(engine);

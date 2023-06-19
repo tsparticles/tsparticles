@@ -132,7 +132,7 @@ class EmittersPlugin implements IPlugin {
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
  * @param refresh -
  */
-export async function loadEmittersPlugin(engine: EmittersEngine, refresh = false): Promise<void> {
+export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true): Promise<void> {
     if (!engine.emitterShapeManager) {
         engine.emitterShapeManager = new ShapeManager(engine);
     }

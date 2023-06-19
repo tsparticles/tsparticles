@@ -103,6 +103,7 @@ import shapeHeart from "./shapeHeart";
 import shapeMultilineText from "./shapeMultilineText";
 import shapeOptions from "./shapeOptions";
 import shapePath from "./shapePath";
+import shapeRibbon from "./shapeRibbon";
 import shapeRoundedRect from "./shapeRoundedRect";
 import shapeSpiral from "./shapeSpiral";
 import slow from "./slow";
@@ -236,6 +237,7 @@ const configs = {
     shapeMultilineText,
     shapeOptions,
     shapePath,
+    shapeRibbon,
     shapeRoundedRect,
     shapeSpiral,
     slow,

@@ -5,7 +5,7 @@ import { Pusher } from "./Pusher";
  * @param engine - The engine to use for the interaction
  * @param refresh -
  */
-export async function loadExternalPushInteraction(engine: Engine, refresh = false): Promise<void> {
+export async function loadExternalPushInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor("externalPush", (container) => new Pusher(container), refresh);
 }
 

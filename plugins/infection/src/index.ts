@@ -40,7 +40,7 @@ class InfectionPlugin implements IPlugin {
  * @param engine -
  * @param refresh -
  */
-export async function loadInfectionPlugin(engine: Engine, refresh = false): Promise<void> {
+export async function loadInfectionPlugin(engine: Engine, refresh = true): Promise<void> {
     const plugin = new InfectionPlugin();
 
     await engine.addPlugin(plugin, refresh);

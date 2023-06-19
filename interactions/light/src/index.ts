@@ -6,7 +6,7 @@ import { ParticlesLighter } from "./ParticlesLighter";
  * @param engine -
  * @param refresh -
  */
-export async function loadLightInteraction(engine: Engine, refresh = false): Promise<void> {
+export async function loadLightInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor("externalLight", (container) => new ExternalLighter(container), refresh);
     await engine.addInteractor("particlesLight", (container) => new ParticlesLighter(container), refresh);
 }

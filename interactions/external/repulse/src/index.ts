@@ -5,7 +5,7 @@ import { Repulser } from "./Repulser";
  * @param engine -
  * @param refresh -
  */
-export async function loadExternalRepulseInteraction(engine: Engine, refresh = false): Promise<void> {
+export async function loadExternalRepulseInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor("externalRepulse", (container) => new Repulser(engine, container), refresh);
 }
 

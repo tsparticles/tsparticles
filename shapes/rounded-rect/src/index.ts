@@ -5,6 +5,6 @@ import { RoundedRectDrawer } from "./RoundedRectDrawer";
  * @param engine -
  * @param refresh -
  */
-export async function loadRoundedRectShape(engine: Engine, refresh = false): Promise<void> {
+export async function loadRoundedRectShape(engine: Engine, refresh = true): Promise<void> {
     await engine.addShape("rounded-rect", new RoundedRectDrawer(), refresh);
 }

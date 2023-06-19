@@ -6,7 +6,7 @@ import { loadLinksPlugin } from "./plugin";
  * @param engine -
  * @param refresh -
  */
-export async function loadParticlesLinksInteraction(engine: Engine, refresh = false): Promise<void> {
+export async function loadParticlesLinksInteraction(engine: Engine, refresh = true): Promise<void> {
     await loadLinksInteraction(engine, refresh);
     await loadLinksPlugin(engine, refresh);
 }

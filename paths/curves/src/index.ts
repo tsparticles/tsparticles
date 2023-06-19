@@ -7,6 +7,6 @@ export const curvesPathName = "curvesPathGenerator";
  * @param engine -
  * @param refresh -
  */
-export async function loadCurvesPath(engine: Engine, refresh = false): Promise<void> {
+export async function loadCurvesPath(engine: Engine, refresh = true): Promise<void> {
     await engine.addPathGenerator(curvesPathName, new CurvesPathGenerator(), refresh);
 }

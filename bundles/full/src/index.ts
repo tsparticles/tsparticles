@@ -18,17 +18,17 @@ import { loadWobbleUpdater } from "tsparticles-updater-wobble";
  * @param engine - the engine to use for loading all plugins
  * @param refresh -
  */
-export async function loadFull(engine: Engine, refresh = false): Promise<void> {
+export async function loadFull(engine: Engine, refresh = true): Promise<void> {
+    await loadDestroyUpdater(engine, false);
+    await loadRollUpdater(engine, false);
+    await loadTiltUpdater(engine, false);
+    await loadTwinkleUpdater(engine, false);
+    await loadWobbleUpdater(engine, false);
+
+    await loadExternalTrailInteraction(engine, false);
+
+    await loadAbsorbersPlugin(engine, false);
+    await loadEmittersPlugin(engine, false);
+
     await loadSlim(engine, refresh);
-
-    await loadDestroyUpdater(engine, refresh);
-    await loadRollUpdater(engine, refresh);
-    await loadTiltUpdater(engine, refresh);
-    await loadTwinkleUpdater(engine, refresh);
-    await loadWobbleUpdater(engine, refresh);
-
-    await loadExternalTrailInteraction(engine, refresh);
-
-    await loadAbsorbersPlugin(engine, refresh);
-    await loadEmittersPlugin(engine, refresh);
 }

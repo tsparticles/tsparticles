@@ -421,7 +421,7 @@ export class Engine {
      * Reloads all existing tsParticles loaded instances
      * @param refresh - should refresh the dom after reloading
      */
-    async refresh(refresh = false): Promise<void> {
+    async refresh(refresh = true): Promise<void> {
         if (!refresh) {
             return;
         }

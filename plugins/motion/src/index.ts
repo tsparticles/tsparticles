@@ -43,6 +43,6 @@ class MotionPlugin implements IPlugin {
  * @param engine - The engine instance
  * @param refresh -
  */
-export async function loadMotionPlugin(engine: Engine, refresh = false): Promise<void> {
+export async function loadMotionPlugin(engine: Engine, refresh = true): Promise<void> {
     await engine.addPlugin(new MotionPlugin(engine), refresh);
 }

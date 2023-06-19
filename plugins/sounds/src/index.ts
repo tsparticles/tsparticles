@@ -43,6 +43,6 @@ class SoundsPlugin implements IPlugin {
  * @param engine -
  * @param refresh -
  */
-export async function loadSoundsPlugin(engine: Engine, refresh = false): Promise<void> {
+export async function loadSoundsPlugin(engine: Engine, refresh = true): Promise<void> {
     await engine.addPlugin(new SoundsPlugin(engine), refresh);
 }

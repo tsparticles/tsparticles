@@ -48,7 +48,7 @@ class PolygonMaskPlugin implements IPlugin {
  * @param engine - The engine to add the plugin to
  * @param refresh -
  */
-export async function loadPolygonMaskPlugin(engine: Engine, refresh = false): Promise<void> {
+export async function loadPolygonMaskPlugin(engine: Engine, refresh = true): Promise<void> {
     await engine.addPlugin(new PolygonMaskPlugin(engine), refresh);
 }
 

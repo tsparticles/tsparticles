@@ -5,7 +5,7 @@ import type { Engine } from "tsparticles-engine";
  * @param engine -
  * @param refresh -
  */
-export async function loadExternalConnectInteraction(engine: Engine, refresh = false): Promise<void> {
+export async function loadExternalConnectInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor("externalConnect", (container) => new Connector(container), refresh);
 }
 

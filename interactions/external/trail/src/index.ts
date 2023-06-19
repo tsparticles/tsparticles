@@ -5,7 +5,7 @@ import { TrailMaker } from "./TrailMaker";
  * @param engine -
  * @param refresh -
  */
-export async function loadExternalTrailInteraction(engine: Engine, refresh = false): Promise<void> {
+export async function loadExternalTrailInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor("externalTrail", (container) => new TrailMaker(container), refresh);
 }
 

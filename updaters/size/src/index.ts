@@ -5,6 +5,6 @@ import { SizeUpdater } from "./SizeUpdater";
  * @param engine -
  * @param refresh -
  */
-export async function loadSizeUpdater(engine: Engine, refresh = false): Promise<void> {
+export async function loadSizeUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater("size", () => new SizeUpdater(), refresh);
 }

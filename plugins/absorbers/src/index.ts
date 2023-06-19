@@ -78,7 +78,7 @@ class AbsorbersPlugin implements IPlugin {
  * @param engine -
  * @param refresh -
  */
-export async function loadAbsorbersPlugin(engine: Engine, refresh = false): Promise<void> {
+export async function loadAbsorbersPlugin(engine: Engine, refresh = true): Promise<void> {
     await engine.addPlugin(new AbsorbersPlugin(), refresh);
 }
 
