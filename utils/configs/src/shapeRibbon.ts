@@ -4,10 +4,7 @@ const options: ISourceOptions = {
     name: "Shape Ribbon",
     particles: {
         number: {
-            value: 80,
-            density: {
-                enable: true,
-            },
+            value: 1,
         },
         color: {
             value: "#ff0000",

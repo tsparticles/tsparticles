@@ -27,8 +27,6 @@ export class RibbonDrawer implements IShapeDrawer {
         this._update(particle, delta);
 
         if (!particle.ribbonLength || !particle.ribbonSteps || !particle.ribbonOffset) {
-            console.log("missing data");
-
             return;
         }
 
@@ -157,21 +155,30 @@ export class RibbonDrawer implements IShapeDrawer {
         particle.ribbonDrag = 0.05;
         particle.ribbonSteps = [];
 
+        const stepDistance = particle.ribbonStepDistance ?? 0;
+
         for (let i = 0; i < particle.ribbonLength; i++) {
             particle.ribbonSteps[i] = new EulerMass(
                 0,
-                0 - i * (particle.ribbonStepDistance ?? 0),
+                0 - i * stepDistance,
                 particle.size.value,
                 particle.ribbonDrag ?? 0
             );
         }
+
+        particle.prevPosition = particle.position.copy();
+        particle.velocityInherit = getRandom() * 2 + 4;
+        particle.time = getRandom() * 100;
+        particle.oscillationSpeed = getRandom() * 2.0 + 1.5;
+        particle.oscillationDistance = getRandom() * 40 + 40;
+        particle.ySpeed = getRandom() * 40 + 80;
     }
 
     private readonly _reset: (particle: RibbonParticle) => void = (particle) => {
         particle.position.y = -getRandom() * particle.container.canvas.size.height;
         particle.position.x = getRandom() * particle.container.canvas.size.width;
 
-        particle.prevPosition = Vector.create(particle.position.x, particle.position.y);
+        particle.prevPosition = particle.position.copy();
 
         particle.velocityInherit = getRandom() * 2 + 4;
         particle.time = getRandom() * 100;
