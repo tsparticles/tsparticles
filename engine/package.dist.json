@@ -90,10 +90,10 @@
   "types": "types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./types/index.d.ts",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
       "default": "./cjs/index.js",
-      "types": "./types/index.d.ts",
       "umd": "./umd/index.js"
     },
     "./package.json": "./package.json"
