@@ -93,8 +93,8 @@
       "types": "./types/index.d.ts",
       "import": "./esm/index.js",
       "require": "./cjs/index.js",
-      "default": "./cjs/index.js",
-      "umd": "./umd/index.js"
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
     },
     "./package.json": "./package.json"
   }
