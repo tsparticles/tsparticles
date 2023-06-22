@@ -287,8 +287,8 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
  */
 export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
     return {
-        x: data.position?.x ?? getRandom() * data.size.width,
-        y: data.position?.y ?? getRandom() * data.size.height,
+        x: ((data.position?.x ?? getRandom() * 100) / 100) * data.size.width,
+        y: ((data.position?.y ?? getRandom() * 100) / 100) * data.size.height,
     };
 }
 

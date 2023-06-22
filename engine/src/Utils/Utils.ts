@@ -604,7 +604,7 @@ function getPositionOrSize(
 ): ICoordinates | IDimension {
     const isPercent = positionOrSize.mode === PixelMode.percent;
 
-    if (isPercent) {
+    if (!isPercent) {
         const { mode: _, ...rest } = positionOrSize;
 
         return rest;
@@ -613,8 +613,8 @@ function getPositionOrSize(
     const isPosition = "x" in positionOrSize;
 
     return {
-        x: isPosition ? positionOrSize.x : (positionOrSize.width / 100) * canvasSize.width,
-        y: isPosition ? positionOrSize.y : (positionOrSize.height / 100) * canvasSize.height,
+        x: ((isPosition ? positionOrSize.x : positionOrSize.width) / 100) * canvasSize.width,
+        y: ((isPosition ? positionOrSize.y : positionOrSize.height) / 100) * canvasSize.height,
     };
 }
 
