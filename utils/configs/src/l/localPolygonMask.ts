@@ -72,7 +72,7 @@ const options: ISourceOptions = {
         },
         scale: 3,
         type: "inside",
-        data: '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="200" width="150"><path d="M 75,0 0,200 h 150 z" /></svg>',
+        data: '<svg xmlns="http://www.w3.org/2000/svg" height="200" width="150"><path d="M 75,0 0,200 h 150 z" /></svg>',
     },
     background: {
         color: "#000000",
