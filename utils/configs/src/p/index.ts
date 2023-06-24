@@ -13,5 +13,5 @@ export default {
     planes,
     plasma,
     polygonMask,
-    polygons
+    polygons,
 };

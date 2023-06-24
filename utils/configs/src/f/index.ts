@@ -5,5 +5,5 @@ import forward from "./forward";
 export default {
     fireworks,
     fontawesome,
-    forward
+    forward,
 };

@@ -23,7 +23,6 @@ pnpm add --save-dev tsparticles-demo-configs
 ## CDN
 
 ```html
-
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine/tsparticles.engine.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/tsparticles-demo-configs/tsparticles.configs.min.js"></script>
 ```

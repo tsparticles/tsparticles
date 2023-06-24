@@ -7,5 +7,5 @@ export default {
     life,
     lightHover,
     linkTriangles,
-    localPolygonMask
+    localPolygonMask,
 };

@@ -11,5 +11,5 @@ export default {
     emitterAngled,
     emitterImages,
     emitterPaths,
-    emitterShapes
+    emitterShapes,
 };

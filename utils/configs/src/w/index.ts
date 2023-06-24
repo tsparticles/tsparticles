@@ -3,5 +3,5 @@ import wobble from "./wobble";
 
 export default {
     warp,
-    wobble
+    wobble,
 };

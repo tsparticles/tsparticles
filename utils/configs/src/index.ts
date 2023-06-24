@@ -52,7 +52,7 @@ const configs = {
     ...w,
     ...x,
     ...y,
-    ...z
+    ...z,
 };
 
 for (const key of Object.keys(configs)) {

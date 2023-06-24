@@ -9,5 +9,5 @@ export default {
     basic,
     big,
     blackHole,
-    bubble
+    bubble,
 };

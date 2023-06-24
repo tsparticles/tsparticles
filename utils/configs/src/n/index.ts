@@ -9,5 +9,5 @@ export default {
     noconfig,
     noisePlanes,
     nyancat,
-    nyancat2
+    nyancat2,
 };

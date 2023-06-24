@@ -37,5 +37,5 @@ export default {
     repulseQuint,
     repulseSine,
     responsive,
-    ring
+    ring,
 };

@@ -49,5 +49,5 @@ export default {
     star,
     strokeAnimation,
     style,
-    svgReplace
+    svgReplace,
 };

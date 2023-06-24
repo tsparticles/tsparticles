@@ -13,5 +13,5 @@ export default {
     themes,
     trail,
     trailImage,
-    twinkle
+    twinkle,
 };

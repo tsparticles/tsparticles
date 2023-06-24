@@ -17,5 +17,5 @@ export default {
     delayStrokeColor,
     destroy,
     disappearing,
-    divEvents
+    divEvents,
 };

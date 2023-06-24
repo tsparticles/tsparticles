@@ -7,5 +7,5 @@ export default {
     imageMask,
     images,
     imagesDirections,
-    infection
+    infection,
 };

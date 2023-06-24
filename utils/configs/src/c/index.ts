@@ -19,5 +19,5 @@ export default {
     colorAnimation,
     connect,
     customPreset,
-    customShape
+    customShape,
 };

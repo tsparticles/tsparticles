@@ -3,5 +3,5 @@ import virus from "./virus";
 
 export default {
     vibrate,
-    virus
+    virus,
 };

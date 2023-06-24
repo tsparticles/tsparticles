@@ -7,5 +7,5 @@ export default {
     grabRandomColor,
     gradients,
     gravity,
-    growing
+    growing,
 };

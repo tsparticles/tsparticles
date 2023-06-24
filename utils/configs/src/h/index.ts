@@ -5,5 +5,5 @@ import hyperspace from "./hyperspace";
 export default {
     hexagonPath,
     hollowknight,
-    hyperspace
+    hyperspace,
 };

@@ -25,5 +25,5 @@ export default {
     moveInside,
     moveOutside,
     multipleClickEmitters,
-    multiplePolygonMasks
+    multiplePolygonMasks,
 };

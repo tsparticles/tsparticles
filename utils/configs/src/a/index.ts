@@ -3,5 +3,5 @@ import amongUs from "./amongUs.js";
 
 export default {
     absorbers,
-    amongUs
+    amongUs,
 };
