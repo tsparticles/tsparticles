@@ -1,8 +1,6 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "module": "UMD",
-    "outDir": "./dist/umd",
-    "resolveJsonModule": false
-  }
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.umd.json"],
+    "compilerOptions": {
+        "outDir": "./dist/umd"
+    }
 }

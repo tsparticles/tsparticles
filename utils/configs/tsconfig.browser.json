@@ -1,7 +1,6 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "module": "ESNext",
-    "outDir": "./dist/browser"
-  }
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.browser.json"],
+    "compilerOptions": {
+        "outDir": "./dist/browser"
+    }
 }
