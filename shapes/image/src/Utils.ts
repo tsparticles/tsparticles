@@ -130,7 +130,7 @@ export async function loadGifImage(image: IImage): Promise<void> {
     image.loading = true;
 
     const cb: GIFProgressCallbackFunction = (/*percentageRead, frameCount, lastFrame, framePos, gifSize*/) => {
-        //console.log(percentageRead, frameCount, lastFrame, framePos, gifSize);
+        //do nothing
     };
 
     try {
