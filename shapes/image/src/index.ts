@@ -1,4 +1,4 @@
-import { downloadSvgImage, loadImage } from "./Utils";
+import { downloadSvgImage, loadGifImage, loadImage } from "./Utils";
 import type { IImage } from "./Utils";
 import type { IPreload } from "./Options/Interfaces/IPreload";
 import { ImageDrawer } from "./ImageDrawer";
@@ -30,6 +30,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
         try {
             const image: IImage = {
+                gif: data.gif ?? false,
                 name: data.name ?? data.src,
                 source: data.src,
                 type: data.src.substring(data.src.length - 3),
@@ -41,7 +42,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
             engine.images.push(image);
 
-            const imageFunc = data.replaceColor ? downloadSvgImage : loadImage;
+            const imageFunc = data.gif ? loadGifImage : data.replaceColor ? downloadSvgImage : loadImage;
 
             await imageFunc(image);
         } catch {

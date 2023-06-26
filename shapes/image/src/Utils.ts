@@ -1,4 +1,7 @@
 import { type IHsl, type Particle, errorPrefix, getStyleFromHsl } from "tsparticles-engine";
+import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils";
+import type { GIF } from "./GifUtils/GIF";
+import type { GIFProgressCallbackFunction } from "./GifUtils/GIFProgressCallbackFunction";
 import type { IImageShape } from "./IImageShape";
 
 /**
@@ -11,6 +14,9 @@ export interface IImage {
     color?: IHsl;
     element?: HTMLImageElement;
     error: boolean;
+    gif: boolean;
+    gifData?: GIF;
+    gifLoopCount?: number;
     loading: boolean;
     name: string;
     ratio?: number;
@@ -27,6 +33,9 @@ export interface IParticleImage {
     color?: IHsl;
     data: IImage;
     element?: HTMLImageElement;
+    gif: boolean;
+    gifData?: GIF;
+    gifLoopCount?: number;
     loaded?: boolean;
     ratio: number;
     replaceColor: boolean;
@@ -37,6 +46,9 @@ export interface IParticleImage {
  * The Particle extension type
  */
 export type ImageParticle = Particle & {
+    gifFrame?: number;
+    gifLoopCount?: number;
+    gifTime?: number;
     image?: IParticleImage;
 };
 
@@ -105,6 +117,38 @@ export async function loadImage(image: IImage): Promise<void> {
 }
 
 /**
+ * Loads the GIF image
+ * @param image - the image to load
+ */
+export async function loadGifImage(image: IImage): Promise<void> {
+    if (image.type !== "gif") {
+        await loadImage(image);
+
+        return;
+    }
+
+    image.loading = true;
+
+    const cb: GIFProgressCallbackFunction = (/*percentageRead, frameCount, lastFrame, framePos, gifSize*/) => {
+        //console.log(percentageRead, frameCount, lastFrame, framePos, gifSize);
+    };
+
+    try {
+        image.gifData = await decodeGIF(image.source, cb);
+
+        image.gifLoopCount = getGIFLoopAmount(image.gifData) ?? 0;
+
+        if (image.gifLoopCount === 0) {
+            image.gifLoopCount = Infinity;
+        }
+    } catch {
+        image.error = true;
+    }
+
+    image.loading = false;
+}
+
+/**
  * Downloads the SVG image data, using `fetch`
  * @param image - the image to download
  */
@@ -123,9 +167,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
         console.error(`${errorPrefix} Image not found`);
 
         image.error = true;
-    }
-
-    if (!image.error) {
+    } else {
         image.svgData = await response.text();
     }
 
@@ -136,8 +178,9 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
  * Replaces the color in a SVG image
  * @param image - the SVG image to replace
  * @param imageData - the image shape data
- * @param color - the replace color
+ * @param color - the replacement color
  * @param particle - the particle where the replaced data is going to be used
+ * @returns the image with the color replaced
  */
 export function replaceImageColor(
     image: IImage,
@@ -148,6 +191,7 @@ export function replaceImageColor(
     const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1),
         imageRes: IParticleImage = {
             color,
+            gif: imageData.gif,
             data: {
                 ...image,
                 svgData: svgColoredData,

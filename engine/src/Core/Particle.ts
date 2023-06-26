@@ -476,8 +476,6 @@ export class Particle implements IParticle {
             mode: this.options.move.center.mode ?? PixelMode.percent,
         };
 
-        console.log(this.moveCenter);
-
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
 
         switch (this.options.move.direction) {

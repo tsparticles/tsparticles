@@ -1,4 +1,5 @@
 export interface IPreload {
+    gif: boolean;
     height?: number;
     name?: string;
     replaceColor?: boolean;

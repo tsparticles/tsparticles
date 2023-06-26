@@ -1,10 +1,12 @@
-import { type Container, type IShapeDrawer, errorPrefix } from "tsparticles-engine";
+import { type Container, type IDelta, type IShapeDrawer, errorPrefix } from "tsparticles-engine";
 import type { IImage, IParticleImage, ImageParticle } from "./Utils";
 import type { ImageContainer, ImageEngine } from "./types";
+import { DisposalMethod } from "./GifUtils/DisposalMethod";
 import type { IImageShape } from "./IImageShape";
 import { replaceImageColor } from "./Utils";
 
 /**
+ * Particles Image Drawer
  */
 export class ImageDrawer implements IShapeDrawer {
     private readonly _engine: ImageEngine;
@@ -35,24 +37,141 @@ export class ImageDrawer implements IShapeDrawer {
      * @param particle - the particle to be drawn
      * @param radius - the particle radius
      * @param opacity - the particle opacity
+     * @param delta - delta time since last draw
      */
-    draw(context: CanvasRenderingContext2D, particle: ImageParticle, radius: number, opacity: number): void {
+    draw(
+        context: CanvasRenderingContext2D,
+        particle: ImageParticle,
+        radius: number,
+        opacity: number,
+        delta: IDelta
+    ): void {
         const image = particle.image,
             element = image?.element;
 
-        if (!element) {
+        if (!image) {
             return;
         }
 
-        const ratio = image?.ratio ?? 1,
-            pos = {
-                x: -radius,
-                y: -radius,
-            };
-
         context.globalAlpha = opacity;
 
-        context.drawImage(element, pos.x, pos.y, radius * 2, (radius * 2) / ratio);
+        if (image.gif && image.gifData) {
+            const offscreenCanvas = new OffscreenCanvas(image.gifData.width, image.gifData.height),
+                offscreenContext = offscreenCanvas.getContext("2d");
+
+            if (!offscreenContext) {
+                throw new Error("could not create offscreen canvas context");
+            }
+
+            offscreenContext.imageSmoothingQuality = "low";
+            offscreenContext.imageSmoothingEnabled = false;
+
+            offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+
+            if (particle.gifLoopCount === undefined) {
+                particle.gifLoopCount = image.gifLoopCount ?? 0;
+            }
+
+            let frameIndex = particle.gifFrame ?? 0;
+
+            const pos = { x: -image.gifData.width * 0.5, y: -image.gifData.height * 0.5 },
+                frame = image.gifData.frames[frameIndex];
+
+            if (particle.gifTime === undefined) {
+                particle.gifTime = 0;
+            }
+
+            if (!frame.bitmap) {
+                return;
+            }
+
+            context.scale(radius / image.gifData.width, radius / image.gifData.height);
+
+            switch (frame.disposalMethod) {
+                case DisposalMethod.UndefinedA: //! fall through
+                case DisposalMethod.UndefinedB: //! fall through
+                case DisposalMethod.UndefinedC: //! fall through
+                case DisposalMethod.UndefinedD: //! fall through
+                case DisposalMethod.Replace:
+                    offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
+
+                    context.drawImage(offscreenCanvas, pos.x, pos.y);
+
+                    offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+
+                    break;
+                case DisposalMethod.Combine:
+                    offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
+
+                    context.drawImage(offscreenCanvas, pos.x, pos.y);
+
+                    break;
+                case DisposalMethod.RestoreBackground:
+                    offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
+
+                    context.drawImage(offscreenCanvas, pos.x, pos.y);
+
+                    offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+
+                    if (image.gifData.globalColorTable.length === 0) {
+                        offscreenContext.putImageData(
+                            image.gifData.frames[0].image,
+                            pos.x + frame.left,
+                            pos.y + frame.top
+                        );
+                    } else {
+                        offscreenContext.putImageData(image.gifData.backgroundImage, pos.x, pos.y);
+                    }
+
+                    break;
+                case DisposalMethod.RestorePrevious:
+                    {
+                        const previousImageData = offscreenContext.getImageData(
+                            0,
+                            0,
+                            offscreenCanvas.width,
+                            offscreenCanvas.height
+                        );
+
+                        offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
+
+                        context.drawImage(offscreenCanvas, pos.x, pos.y);
+
+                        offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+                        offscreenContext.putImageData(previousImageData, 0, 0);
+                    }
+                    break;
+            }
+
+            particle.gifTime += delta.value;
+
+            if (particle.gifTime > frame.delayTime) {
+                particle.gifTime -= frame.delayTime;
+
+                if (++frameIndex >= image.gifData.frames.length) {
+                    if (--particle.gifLoopCount <= 0) {
+                        return;
+                    }
+
+                    frameIndex = 0;
+
+                    //? so apparently some GIFs seam to set the disposal method of the last frame wrong?...so this is a "fix" for that (clear after the last frame)
+                    offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+                }
+
+                particle.gifFrame = frameIndex;
+            }
+
+            context.scale(image.gifData.width / radius, image.gifData.height / radius);
+        } else if (element) {
+            const ratio = image.ratio,
+                pos = {
+                    x: -radius,
+                    y: -radius,
+                };
+
+            context.drawImage(element, pos.x, pos.y, radius * 2, (radius * 2) / ratio);
+        }
 
         context.globalAlpha = 1;
     }
@@ -74,7 +193,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
 
         for (const imageData of options.preload) {
-            this._engine.loadImage(imageData);
+            await this._engine.loadImage(imageData);
         }
     }
 
@@ -140,6 +259,9 @@ export class ImageDrawer implements IShapeDrawer {
                     color,
                     data: image,
                     element: image.element,
+                    gif: image.gif,
+                    gifData: image.gifData,
+                    gifLoopCount: image.gifLoopCount,
                     loaded: true,
                     ratio: imageData.width && imageData.height ? imageData.width / imageData.height : image.ratio ?? 1,
                     replaceColor: replaceColor,
@@ -176,6 +298,7 @@ export class ImageDrawer implements IShapeDrawer {
         }
 
         await this._engine.loadImage({
+            gif: imageShape.gif,
             name: imageShape.name,
             replaceColor: imageShape.replaceColor ?? imageShape.replace_color ?? false,
             src: imageShape.src,
