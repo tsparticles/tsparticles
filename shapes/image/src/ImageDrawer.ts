@@ -1,7 +1,7 @@
 import { type Container, type IDelta, type IShapeDrawer, errorPrefix } from "tsparticles-engine";
 import type { IImage, IParticleImage, ImageParticle } from "./Utils";
 import type { ImageContainer, ImageEngine } from "./types";
-import { DisposalMethod } from "./GifUtils/DisposalMethod";
+import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod";
 import type { IImageShape } from "./IImageShape";
 import { replaceImageColor } from "./Utils";
 

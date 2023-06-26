@@ -1,4 +1,5 @@
-import type { DisposalMethod } from "./DisposalMethod";
+import type { DisposalMethod } from "../Enums/DisposalMethod";
+import type { IRgb } from "tsparticles-engine";
 import type { PlainTextData } from "./PlainTextData";
 
 export interface Frame {
@@ -40,7 +41,7 @@ export interface Frame {
     /**
      * the local color table for this frame
      */
-    localColorTable: [number, number, number][];
+    localColorTable: IRgb[];
 
     /**
      * the text that will be displayed on screen with this frame (if not null)

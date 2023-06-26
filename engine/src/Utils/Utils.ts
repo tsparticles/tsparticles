@@ -55,6 +55,50 @@ type RectSideBounceData = {
     velocity: number;
 };
 
+interface ILogger {
+    debug(message?: unknown, ...optionalParams: unknown[]): void;
+
+    error(message?: unknown, ...optionalParams: unknown[]): void;
+
+    info(message?: unknown, ...optionalParams: unknown[]): void;
+
+    log(message?: unknown, ...optionalParams: unknown[]): void;
+
+    verbose(message?: unknown, ...optionalParams: unknown[]): void;
+
+    warning(message?: unknown, ...optionalParams: unknown[]): void;
+}
+
+const _logger: ILogger = {
+    debug: console.debug,
+    error: console.error,
+    info: console.info,
+    log: console.log,
+    verbose: console.log,
+    warning: console.warn,
+};
+
+/**
+ * Replaces the library log functions with a custom one.
+ * @param logger - A logger object responsible for logging messages.
+ */
+export function setLogger(logger: ILogger): void {
+    _logger.debug = logger.debug || _logger.debug;
+    _logger.error = logger.error || _logger.error;
+    _logger.info = logger.info || _logger.info;
+    _logger.log = logger.log || _logger.log;
+    _logger.verbose = logger.verbose || _logger.verbose;
+    _logger.warning = logger.warning || _logger.warning;
+}
+
+/**
+ * Returns the logger object.
+ * @returns the logger
+ */
+export function getLogger(): ILogger {
+    return _logger;
+}
+
 /**
  * Calculates the bounce on a rectangle side
  * @param data - the rectangle side bounce values

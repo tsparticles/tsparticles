@@ -1,7 +1,6 @@
-import { type IHsl, type Particle, errorPrefix, getStyleFromHsl } from "tsparticles-engine";
+import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "tsparticles-engine";
 import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils";
-import type { GIF } from "./GifUtils/GIF";
-import type { GIFProgressCallbackFunction } from "./GifUtils/GIFProgressCallbackFunction";
+import type { GIF } from "./GifUtils/Types/GIF";
 import type { IImageShape } from "./IImageShape";
 
 /**
@@ -107,7 +106,7 @@ export async function loadImage(image: IImage): Promise<void> {
             image.error = true;
             image.loading = false;
 
-            console.error(`${errorPrefix} loading image: ${image.source}`);
+            getLogger().error(`${errorPrefix} loading image: ${image.source}`);
 
             resolve();
         });
@@ -129,12 +128,8 @@ export async function loadGifImage(image: IImage): Promise<void> {
 
     image.loading = true;
 
-    const cb: GIFProgressCallbackFunction = (/*percentageRead, frameCount, lastFrame, framePos, gifSize*/) => {
-        //do nothing
-    };
-
     try {
-        image.gifData = await decodeGIF(image.source, cb);
+        image.gifData = await decodeGIF(image.source);
 
         image.gifLoopCount = getGIFLoopAmount(image.gifData) ?? 0;
 
@@ -164,7 +159,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     const response = await fetch(image.source);
 
     if (!response.ok) {
-        console.error(`${errorPrefix} Image not found`);
+        getLogger().error(`${errorPrefix} Image not found`);
 
         image.error = true;
     } else {

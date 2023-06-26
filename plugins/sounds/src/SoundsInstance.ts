@@ -4,6 +4,7 @@ import {
     type IContainerPlugin,
     clamp,
     executeOnSingleOrMultiple,
+    getLogger,
     isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
@@ -454,7 +455,7 @@ export class SoundsInstance implements IContainerPlugin {
 
             await this._playFrequency(freq, note.duration);
         } catch (e) {
-            console.error(e);
+            getLogger().error(e);
         }
     };
 

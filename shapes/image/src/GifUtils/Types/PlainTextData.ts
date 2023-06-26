@@ -1,3 +1,5 @@
+import type { IDimension } from "tsparticles-engine";
+
 export interface PlainTextData {
     /**
      * the index into the global color table for the background color of the text
@@ -5,14 +7,9 @@ export interface PlainTextData {
     backgroundColor: number;
 
     /**
-     * the height (in pixels) of each cell (character) in text grid
+     * the size (in pixels) of each cell (character) in text grid
      */
-    charHeight: number;
-
-    /**
-     * the width (in pixels) of each cell (character) in text grid
-     */
-    charWidth: number;
+    charSize: IDimension;
 
     /**
      * the index into the global color table for the foreground color of the text

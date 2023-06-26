@@ -1,10 +1,11 @@
+import type { IRgb, IRgba } from "tsparticles-engine";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants";
-import type { ApplicationExtension } from "./ApplicationExtension";
+import type { ApplicationExtension } from "./Types/ApplicationExtension";
 import { ByteStream } from "./ByteStream";
-import { DisposalMethod } from "./DisposalMethod.js";
-import type { GIF } from "./GIF";
-import { GIFDataHeaders } from "./GIFDataHeaders";
-import type { GIFProgressCallbackFunction } from "./GIFProgressCallbackFunction";
+import { DisposalMethod } from "./Enums/DisposalMethod.js";
+import type { GIF } from "./Types/GIF";
+import { GIFDataHeaders } from "./Types/GIFDataHeaders";
+import type { GIFProgressCallbackFunction } from "./Types/GIFProgressCallbackFunction";
 
 /**
  * __get a color table of length `count`__
@@ -12,15 +13,16 @@ import type { GIFProgressCallbackFunction } from "./GIFProgressCallbackFunction"
  * @param count - number of colours to read from `byteStream`
  * @returns an array of RGB color values
  */
-function parseColorTable(byteStream: ByteStream, count: number): [number, number, number][] {
-    const colors: [number, number, number][] = [];
+function parseColorTable(byteStream: ByteStream, count: number): IRgb[] {
+    const colors: IRgb[] = [];
 
     for (let i = 0; i < count; i++) {
-        colors.push([
-            byteStream.data[byteStream.pos],
-            byteStream.data[byteStream.pos + 1],
-            byteStream.data[byteStream.pos + 2],
-        ]);
+        colors.push({
+            r: byteStream.data[byteStream.pos],
+            g: byteStream.data[byteStream.pos + 1],
+            b: byteStream.data[byteStream.pos + 2],
+        });
+
         byteStream.pos += 3;
     }
 
@@ -62,7 +64,7 @@ async function parseExtensionBlock(
             //~ > user input flag (1b) - if 1 then continues (rendering) after user input (or delay-time, if given)
             frame.userInputDelayFlag = (packedByte & 2) === 2;
 
-            //~ > transparent color flag (1b) - idicates that, if set, the following transparency index should be used to ignore each color with this index in the following frame
+            //~ > transparent color flag (1b) - indicates that, if set, the following transparency index should be used to ignore each color with this index in the following frame
             const transparencyFlag = (packedByte & 1) === 1;
 
             //~ delay time (2B) - if non-zero specifies the number of 1/100 seconds (here converted to milliseconds) to delay (rendering of) the following frame
@@ -122,10 +124,12 @@ async function parseExtensionBlock(
                 width: byteStream.nextTwoBytes(),
                 //~ text grid height (2B) - height of the text grid (in pixels)
                 height: byteStream.nextTwoBytes(),
-                //~ text character cell width (2B) - width (in pixels) of each cell (character) in text grid
-                charWidth: byteStream.nextTwoBytes(),
-                //~ text character cell height (2B) - height (in pixels) of each cell (character) in text grid
-                charHeight: byteStream.nextTwoBytes(),
+                charSize: {
+                    //~ text character cell width (2B) - width (in pixels) of each cell (character) in text grid
+                    width: byteStream.nextTwoBytes(),
+                    //~ text character cell height (2B) - height (in pixels) of each cell (character) in text grid
+                    height: byteStream.nextTwoBytes(),
+                },
                 //~ text foreground color index (1B) - index into the global color table for the foreground color of the text
                 foregroundColor: byteStream.nextByte(),
                 //~ text background color index (1B) - index into the global color table for the background color of the text
@@ -161,7 +165,7 @@ async function parseImageBlock(
     avgAlpha: boolean,
     getFrameIndex: (increment: boolean) => number,
     getTransparencyIndex: (newValue?: number | null) => number,
-    progressCallback: GIFProgressCallbackFunction
+    progressCallback?: GIFProgressCallbackFunction
 ): Promise<void> {
     //~ parse frame image - image descriptor
     const frame = gif.frames[getFrameIndex(true)];
@@ -201,9 +205,10 @@ async function parseImageBlock(
      * @param index - index into global/local color table
      * @returns RGBA color value
      */
-    const getColor = (index: number): [number, number, number, number] => {
-        const [R, G, B] = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index];
-        return [R, G, B, index === getTransparencyIndex(null) ? (avgAlpha ? ~~((R + G + B) / 3) : 0) : 255];
+    const getColor = (index: number): IRgba => {
+        const { r, g, b } = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index];
+
+        return { r, g, b, a: index === getTransparencyIndex(null) ? (avgAlpha ? ~~((r + g + b) / 3) : 0) : 255 };
     };
 
     const image = ((): ImageData | null => {
@@ -265,8 +270,10 @@ async function parseImageBlock(
                         }
 
                         for (let i = 0; i < dic[code].length; i++) {
+                            const { r, g, b, a } = getColor(dic[code][i]);
+
                             image.data.set(
-                                getColor(dic[code][i]),
+                                [r, g, b, a],
                                 InterlaceOffsets[pass] * frame.width +
                                     InterlaceSteps[pass] * lineIndex +
                                     (pixelPos % (frame.width * 4))
@@ -290,7 +297,7 @@ async function parseImageBlock(
                 }
             }
 
-            progressCallback(
+            progressCallback?.(
                 byteStream.pos / (byteStream.data.length - 1),
                 getFrameIndex(false) + 1,
                 image,
@@ -328,7 +335,9 @@ async function parseImageBlock(
                 }
 
                 for (let i = 0; i < dic[code].length; i++) {
-                    image.data.set(getColor(dic[code][i]), (pixelPos += 4));
+                    const { r, g, b, a } = getColor(dic[code][i]);
+
+                    image.data.set([r, g, b, a], (pixelPos += 4));
                 }
 
                 if (dic.length >= 1 << size && size < 0xc) {
@@ -340,7 +349,7 @@ async function parseImageBlock(
         frame.image = image;
         frame.bitmap = await createImageBitmap(image);
 
-        progressCallback(
+        progressCallback?.(
             (byteStream.pos + 1) / byteStream.data.length,
             getFrameIndex(false) + 1,
             frame.image,
@@ -367,7 +376,7 @@ async function parseBlock(
     avgAlpha: boolean,
     getFrameIndex: (increment: boolean) => number,
     getTransparencyIndex: (newValue?: number | null) => number,
-    progressCallback: GIFProgressCallbackFunction
+    progressCallback?: GIFProgressCallbackFunction
 ): Promise<boolean> {
     switch (byteStream.nextByte()) {
         case GIFDataHeaders.EndOfFile:
@@ -406,13 +415,13 @@ export function getGIFLoopAmount(gif: GIF): number {
 /**
  * __decodes a GIF into its components for rendering on a canvas__
  * @param gifURL - the URL of a GIF file
- * @param progressCallback - callback for showing progress of decoding process (when GIF is interlaced calls after each pass (4x on the same frame))
+ * @param progressCallback - [optional] callback for showing progress of decoding process (when GIF is interlaced calls after each pass (4x on the same frame))
  * @param avgAlpha - [optional] if this is true then, when encountering a transparent pixel, it uses the average value of the pixels RGB channels to calculate the alpha channels value, otherwise alpha channel is either 0 or 1 - _default false_
  * @returns the GIF with each frame decoded separately
  */
 export async function decodeGIF(
     gifURL: string,
-    progressCallback: GIFProgressCallbackFunction,
+    progressCallback?: GIFProgressCallbackFunction,
     avgAlpha?: boolean
 ): Promise<GIF> {
     if (!avgAlpha) avgAlpha = false;
@@ -498,9 +507,9 @@ export async function decodeGIF(
         throw new Error("GIF frame size is to large");
     }
 
-    backgroundImage.data.set(
-        globalColorTableFlag ? [...gif.globalColorTable[backgroundColorIndex], 255] : [0, 0, 0, 0]
-    );
+    const { r, g, b } = gif.globalColorTable[backgroundColorIndex];
+
+    backgroundImage.data.set(globalColorTableFlag ? [r, g, b, 255] : [0, 0, 0, 0]);
 
     for (let i = 4; i < backgroundImage.data.length; i *= 2) {
         backgroundImage.data.copyWithin(i, 0, i);

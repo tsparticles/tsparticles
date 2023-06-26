@@ -1,5 +1,6 @@
 import type { ApplicationExtension } from "./ApplicationExtension";
 import type { Frame } from "./Frame";
+import type { IRgb } from "tsparticles-engine";
 
 export interface GIF {
     /**
@@ -30,7 +31,7 @@ export interface GIF {
     /**
      * the global color table for the GIF
      */
-    globalColorTable: [number, number, number][];
+    globalColorTable: IRgb[];
 
     /**
      * the height of the image in pixels (locical screen size)

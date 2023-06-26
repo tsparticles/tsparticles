@@ -9,7 +9,7 @@ import type {
     ShapeDrawerInitFunction,
 } from "./Types/ShapeDrawerFunctions";
 import { errorPrefix, generatedAttribute } from "./Core/Utils/Constants";
-import { isBoolean, isFunction, isNumber, isString, itemFromSingleOrMultiple } from "./Utils/Utils";
+import { getLogger, isBoolean, isFunction, isNumber, isString, itemFromSingleOrMultiple } from "./Utils/Utils";
 import { Container } from "./Core/Container";
 import type { CustomEventArgs } from "./Types/CustomEventArgs";
 import type { CustomEventListener } from "./Types/CustomEventListener";
@@ -58,7 +58,7 @@ async function getDataFromUrl(
         return response.json();
     }
 
-    console.error(`${errorPrefix} ${response.status} while retrieving config file`);
+    getLogger().error(`${errorPrefix} ${response.status} while retrieving config file`);
 }
 
 /**

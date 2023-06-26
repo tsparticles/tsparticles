@@ -1,3 +1,4 @@
+import { getLogger, getPosition } from "../Utils/Utils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
 import type { Engine } from "../engine";
@@ -15,7 +16,6 @@ import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import { errorPrefix } from "./Utils/Constants";
-import { getPosition } from "../Utils/Utils";
 
 const qTreeCapacity = 4;
 
@@ -447,7 +447,7 @@ export class Particles {
 
             return particle;
         } catch (e) {
-            console.warn(`${errorPrefix} adding particle: ${e}`);
+            getLogger().warning(`${errorPrefix} adding particle: ${e}`);
 
             return;
         }

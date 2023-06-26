@@ -20,13 +20,11 @@ export class ByteStream {
      * @returns the string
      */
     getString(count: number): string {
-        let s = "";
+        const slice = this.data.slice(this.pos, this.pos + count);
 
-        for (; --count >= 0; s += String.fromCharCode(this.data[this.pos++])) {
-            // do nothing
-        }
+        this.pos += slice.length;
 
-        return s;
+        return slice.reduce((acc, curr) => acc + String.fromCharCode(curr), "");
     }
 
     /**

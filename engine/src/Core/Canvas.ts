@@ -1,5 +1,5 @@
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils";
-import { deepExtend, isSsr } from "../Utils/Utils";
+import { deepExtend, getLogger, isSsr } from "../Utils/Utils";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
@@ -253,7 +253,7 @@ export class Canvas {
         try {
             await this._initTrail();
         } catch (e) {
-            console.error(e);
+            getLogger().error(e);
         }
 
         this.initBackground();

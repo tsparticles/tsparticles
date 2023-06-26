@@ -1,6 +1,7 @@
 import type { Container } from "../Container";
 import type { IDelta } from "../Interfaces/IDelta";
 import { errorPrefix } from "./Constants";
+import { getLogger } from "../../Utils/Utils";
 
 /**
  * @param value -
@@ -63,7 +64,7 @@ export class FrameManager {
                 container.draw(false);
             }
         } catch (e) {
-            console.error(`${errorPrefix} in animation loop`, e);
+            getLogger().error(`${errorPrefix} in animation loop`, e);
         }
     }
 }
