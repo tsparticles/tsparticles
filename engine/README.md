@@ -225,49 +225,51 @@ Load tsParticles and configure the particles:
 /* tsParticles.load(@params); */
 
 tsParticles
-    .load({
-        id: "tsparticles",
-        url: "presets/default.json"
-    })
-    .then(container => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch(error => {
-        console.error(error);
-    });
+        .load({
+          id: "tsparticles",
+          url: "presets/default.json"
+        })
+        .then(container => {
+          console.log("callback - tsparticles config loaded");
+        })
+        .catch(error => {
+          console.error(error);
+        });
 
 //or
 
 tsParticles.load({
-    id: "tsparticles",
-    options: {
-        /* options here */
-    }
+  id: "tsparticles",
+  options: {
+    /* options here */
+  }
 });
 
 //or
 
-tsParticles.loadFromArray({id:"tsparticles", options:[
+tsParticles.load({
+  id:"tsparticles",
+  options:[
     {
-        /* options here */
+      /* options here */
     },
     {
-        /* other options here */
+      /* other options here */
     }
-]});
+  ]});
 //random object
 
 tsParticles.load({
-    id: "tsparticles",
-    options: [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        }
-    ],
-    index: 1
+  id: "tsparticles",
+  options: [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    }
+  ],
+  index: 1
 }); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -278,7 +280,7 @@ tsParticles.load({
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* custom on click handler */
+  /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations

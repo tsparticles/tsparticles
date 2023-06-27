@@ -247,7 +247,9 @@ tsParticles.load({
 
 //or
 
-tsParticles.loadFromArray({id:"tsparticles", options:[
+tsParticles.load({
+    id:"tsparticles",
+    options:[
         {
             /* options here */
         },
