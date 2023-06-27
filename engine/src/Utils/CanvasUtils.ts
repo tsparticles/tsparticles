@@ -4,10 +4,8 @@ import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
 import type { IDelta } from "../Core/Interfaces/IDelta";
 import type { IDimension } from "../Core/Interfaces/IDimension";
+import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams";
 import type { IHsl } from "../Core/Interfaces/Colors";
-import type { IParticleColorStyle } from "../Core/Interfaces/IParticleColorStyle";
-import type { IParticleTransformValues } from "../Core/Interfaces/IParticleTransformValues";
-import type { IShadow } from "../Options/Interfaces/Particles/IShadow";
 import type { Particle } from "../Core/Particle";
 import { getStyleFromRgb } from "./ColorUtils";
 
@@ -86,58 +84,11 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
     context.clearRect(0, 0, dimension.width, dimension.height);
 }
 
-interface DrawParticleParams {
-    /**
-     * If enabled, the composite value will be used for blending the particle in the canvas
-     */
-    backgroundMask: boolean;
-    /**
-     * The color styles value
-     */
-    colorStyles: IParticleColorStyle;
-    /**
-     * The composite value to use for blending the particle in the canvas
-     */
-    composite: GlobalCompositeOperation;
-    /**
-     * The container of the particle
-     */
-    container: Container;
-    /**
-     * The canvas context to draw on
-     */
-    context: CanvasRenderingContext2D;
-    /**
-     * This variable contains the delta between the current frame and the previous frame
-     */
-    delta: IDelta;
-    /**
-     * The opacity of the particle
-     */
-    opacity: number;
-    /**
-     * The particle to draw
-     */
-    particle: Particle;
-    /**
-     * The radius of the particle
-     */
-    radius: number;
-    /**
-     * The shadow of the particle
-     */
-    shadow: IShadow;
-    /**
-     * The particle transform values
-     */
-    transform: IParticleTransformValues;
-}
-
 /**
  * Draws the particle using canvas API in the given context.
  * @param data - The function parameters.
  */
-export function drawParticle(data: DrawParticleParams): void {
+export function drawParticle(data: IDrawParticleParams): void {
     const {
         container,
         context,

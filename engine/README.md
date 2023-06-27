@@ -225,16 +225,16 @@ Load tsParticles and configure the particles:
 /* tsParticles.load(@params); */
 
 tsParticles
-        .load({
-          id: "tsparticles",
-          url: "presets/default.json"
-        })
-        .then(container => {
-          console.log("callback - tsparticles config loaded");
-        })
-        .catch(error => {
-          console.error(error);
-        });
+  .load({
+    id: "tsparticles",
+    url: "presets/default.json",
+  })
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //or
 
@@ -242,21 +242,22 @@ tsParticles.load({
   id: "tsparticles",
   options: {
     /* options here */
-  }
+  },
 });
 
 //or
 
 tsParticles.load({
-  id:"tsparticles",
-  options:[
+  id: "tsparticles",
+  options: [
     {
       /* options here */
     },
     {
       /* other options here */
-    }
-  ]});
+    },
+  ],
+});
 //random object
 
 tsParticles.load({
@@ -267,9 +268,9 @@ tsParticles.load({
     },
     {
       /* other options here */
-    }
+    },
   ],
-  index: 1
+  index: 1,
 }); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 

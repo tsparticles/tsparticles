@@ -15,14 +15,14 @@ import type { CustomEventArgs } from "./Types/CustomEventArgs";
 import type { CustomEventListener } from "./Types/CustomEventListener";
 import { EventDispatcher } from "./Utils/EventDispatcher";
 import type { IInteractor } from "./Core/Interfaces/IInteractor";
+import type { ILoadParams } from "./Core/Interfaces/ILoadParams";
 import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
 import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { IParticleMover } from "./Core/Interfaces/IParticlesMover";
+import type { IParticleMover } from "./Core/Interfaces/IParticleMover";
 import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
 import type { IPlugin } from "./Core/Interfaces/IPlugin";
 import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
 import type { ISourceOptions } from "./Types/ISourceOptions";
-import type { LoadParams } from "./Core/Interfaces/LoadParams";
 import type { Particle } from "./Core/Particle";
 import { Plugins } from "./Core/Utils/Plugins";
 import type { RecursivePartial } from "./Types/RecursivePartial";
@@ -37,19 +37,21 @@ declare global {
     }
 }
 
+interface DataFromUrlParams {
+    fallback?: SingleOrMultiple<ISourceOptions>;
+    index?: number;
+    url: SingleOrMultiple<string>;
+}
+
 /**
- * @param jsonUrl -
- * @param index -
+ * @param data -
  * @returns the options object from the jsonUrl
  */
-async function getDataFromUrl(
-    jsonUrl?: SingleOrMultiple<string>,
-    index?: number
-): Promise<SingleOrMultiple<RecursivePartial<IOptions>> | undefined> {
-    const url = itemFromSingleOrMultiple(jsonUrl, index);
+async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple<ISourceOptions> | undefined> {
+    const url = itemFromSingleOrMultiple(data.url, data.index);
 
     if (!url) {
-        return;
+        return data.fallback;
     }
 
     const response = await fetch(url);
@@ -59,6 +61,8 @@ async function getDataFromUrl(
     }
 
     getLogger().error(`${errorPrefix} ${response.status} while retrieving config file`);
+
+    return data.fallback;
 }
 
 /**
@@ -66,8 +70,8 @@ async function getDataFromUrl(
  * @param params -
  * @returns true if the params are empty, false otherwise
  */
-function isParamsEmpty(params: LoadParams): boolean {
-    return !params.tagId && !params.element && !params.url && !params.options;
+function isParamsEmpty(params: ILoadParams): boolean {
+    return !params.id && !params.element && !params.url && !params.options;
 }
 
 /**
@@ -75,8 +79,8 @@ function isParamsEmpty(params: LoadParams): boolean {
  * @param obj -
  * @returns true if the params are valid, false otherwise
  */
-function isParams(obj: unknown): obj is LoadParams {
-    return !isParamsEmpty(obj as LoadParams);
+function isParams(obj: unknown): obj is ILoadParams {
+    return !isParamsEmpty(obj as ILoadParams);
 }
 
 /**
@@ -91,6 +95,7 @@ export class Engine {
     readonly plugins: Plugins;
 
     private readonly _configs: Map<string, ISourceOptions>;
+
     /**
      * Contains all the {@link Container} instances of the current engine instance
      */
@@ -344,12 +349,12 @@ export class Engine {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     * @param tagIdOrOptionsOrParams - The particles container element id, or options, or {@link LoadParams} object
+     * @param tagIdOrOptionsOrParams - The particles container element id, or options, or {@link ILoadParams} object
      * @param options - The options object to initialize the {@link Container}
      * @returns A Promise with the {@link Container} object created
      */
     async load(
-        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | LoadParams,
+        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
         options?: SingleOrMultiple<RecursivePartial<IOptions>>
     ): Promise<Container | undefined> {
         return this.loadFromArray(tagIdOrOptionsOrParams, options);
@@ -363,17 +368,17 @@ export class Engine {
      * @returns A Promise with the {@link Container} object created
      */
     async loadFromArray(
-        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | LoadParams,
+        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
         optionsOrIndex?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
         index?: number
     ): Promise<Container | undefined> {
-        let params: LoadParams;
+        let params: ILoadParams;
 
         if (!isParams(tagIdOrOptionsOrParams)) {
             params = {};
 
             if (isString(tagIdOrOptionsOrParams)) {
-                params.tagId = tagIdOrOptionsOrParams;
+                params.id = tagIdOrOptionsOrParams;
             } else {
                 params.options = tagIdOrOptionsOrParams;
             }
@@ -414,7 +419,7 @@ export class Engine {
             url = pathConfigJson;
         }
 
-        return this._loadParams({ tagId: id, url, index });
+        return this._loadParams({ id: id, url, index });
     }
 
     /**
@@ -452,10 +457,10 @@ export class Engine {
         options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const params: LoadParams = { index };
+        const params: ILoadParams = { index };
 
         if (isString(id)) {
-            params.tagId = id;
+            params.id = id;
         } else {
             params.element = id;
         }
@@ -489,14 +494,14 @@ export class Engine {
         pathConfigJson?: SingleOrMultiple<string> | number,
         index?: number
     ): Promise<Container | undefined> {
-        const params: LoadParams = {};
+        const params: ILoadParams = {};
 
         if (id instanceof HTMLElement) {
             params.element = id;
             params.url = element as SingleOrMultiple<string>;
             params.index = pathConfigJson as number;
         } else {
-            params.tagId = id;
+            params.id = id;
             params.element = element as HTMLElement;
             params.url = pathConfigJson as SingleOrMultiple<string>;
             params.index = index;
@@ -528,25 +533,25 @@ export class Engine {
      * @param params - all the parameters required for loading options in the current animation
      * @returns A Promise with the {@link Container} object created
      */
-    private async _loadParams(params: LoadParams): Promise<Container | undefined> {
-        const tagId = params.tagId ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
-            { index, url: jsonUrl } = params,
-            options = jsonUrl ? await getDataFromUrl(jsonUrl, index) : params.options;
+    private async _loadParams(params: ILoadParams): Promise<Container | undefined> {
+        const id = params.id ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
+            { index, url } = params,
+            options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
         /* elements */
-        let domContainer = params.element ?? document.getElementById(tagId);
+        let domContainer = params.element ?? document.getElementById(id);
 
         if (!domContainer) {
             domContainer = document.createElement("div");
 
-            domContainer.id = tagId;
+            domContainer.id = id;
 
             document.body.append(domContainer);
         }
 
         const currentOptions = itemFromSingleOrMultiple(options, index),
             dom = this.dom(),
-            oldIndex = dom.findIndex((v) => v.id === tagId);
+            oldIndex = dom.findIndex((v) => v.id === id);
 
         if (oldIndex >= 0) {
             const old = this.domItem(oldIndex);
@@ -592,7 +597,7 @@ export class Engine {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(this, tagId, currentOptions);
+        const newItem = new Container(this, id, currentOptions);
 
         if (oldIndex >= 0) {
             dom.splice(oldIndex, 0, newItem);
