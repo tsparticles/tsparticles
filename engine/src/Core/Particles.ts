@@ -262,27 +262,9 @@ export class Particles {
         let deleted = 0;
 
         for (let i = index; deleted < quantity && i < this.count; i++) {
-            const particle = this._array[i];
-
-            if (!particle || particle.group !== group) {
-                continue;
+            if (this._removeParticle(i--, group, override)) {
+                deleted++;
             }
-
-            particle.destroy(override);
-
-            this._array.splice(i--, 1);
-            const zIdx = this._zArray.indexOf(particle);
-            this._zArray.splice(zIdx, 1);
-            this.pool.push(particle);
-
-            deleted++;
-
-            this._engine.dispatchEvent(EventType.particleRemoved, {
-                container: this._container,
-                data: {
-                    particle,
-                },
-            });
         }
     }
 
@@ -451,5 +433,34 @@ export class Particles {
 
             return;
         }
+    };
+
+    private readonly _removeParticle: (index: number, group?: string, override?: boolean) => boolean = (
+        index,
+        group,
+        override
+    ) => {
+        const particle = this._array[index];
+
+        if (!particle || particle.group !== group) {
+            return false;
+        }
+
+        particle.destroy(override);
+
+        const zIdx = this._zArray.indexOf(particle);
+
+        this._array.splice(index, 1);
+        this._zArray.splice(zIdx, 1);
+        this.pool.push(particle);
+
+        this._engine.dispatchEvent(EventType.particleRemoved, {
+            container: this._container,
+            data: {
+                particle,
+            },
+        });
+
+        return true;
     };
 }
