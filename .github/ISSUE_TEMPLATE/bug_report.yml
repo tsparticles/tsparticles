@@ -1,5 +1,5 @@
 name: Bug Report
-description: File a bug report
+description: File a bug report about tsParticles library, if you need help for 3rd party components like Angular, React, Vue, or others, please check the links in the new issue page.
 title: "[Bug]: "
 labels: [bug, triage]
 assignees:
