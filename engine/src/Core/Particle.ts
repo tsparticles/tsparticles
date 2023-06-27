@@ -449,8 +449,6 @@ export class Particle implements IParticle {
             }
         }
 
-        const zIndexValue = getRangeValue(this.options.zIndex.value);
-
         container.retina.initParticle(this);
 
         /* size */
@@ -465,35 +463,12 @@ export class Particle implements IParticle {
             factor: 1,
         };
 
-        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
-        this.initialPosition = this.position.copy();
-
-        const canvasSize = container.canvas.size;
-
-        this.moveCenter = {
-            ...getPosition(this.options.move.center, canvasSize),
-            radius: this.options.move.center.radius ?? 0,
-            mode: this.options.move.center.mode ?? PixelMode.percent,
-        };
-
-        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
-
-        switch (this.options.move.direction) {
-            case MoveDirection.inside:
-                this.outType = ParticleOutType.inside;
-                break;
-            case MoveDirection.outside:
-                this.outType = ParticleOutType.outside;
-                break;
-        }
+        this._initPosition(position);
 
         /* animation - velocity for speed */
         this.initialVelocity = this._calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
-
-        /* parallax */
-        this.offset = Vector.origin;
 
         const particles = container.particles;
 
@@ -701,6 +676,36 @@ export class Particle implements IParticle {
         }
 
         return color;
+    };
+
+    private readonly _initPosition: (position?: ICoordinates) => void = (position) => {
+        const container = this.container,
+            zIndexValue = getRangeValue(this.options.zIndex.value);
+
+        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.initialPosition = this.position.copy();
+
+        const canvasSize = container.canvas.size;
+
+        this.moveCenter = {
+            ...getPosition(this.options.move.center, canvasSize),
+            radius: this.options.move.center.radius ?? 0,
+            mode: this.options.move.center.mode ?? PixelMode.percent,
+        };
+
+        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
+
+        switch (this.options.move.direction) {
+            case MoveDirection.inside:
+                this.outType = ParticleOutType.inside;
+                break;
+            case MoveDirection.outside:
+                this.outType = ParticleOutType.outside;
+                break;
+        }
+
+        /* parallax */
+        this.offset = Vector.origin;
     };
 
     private readonly _loadShapeData: (shapeOptions: IShape, reduceDuplicates: boolean) => IShapeValues | undefined = (
