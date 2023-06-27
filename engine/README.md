@@ -226,7 +226,7 @@ Load tsParticles and configure the particles:
 
 tsParticles
     .load({
-        id: "tsparticles"
+        id: "tsparticles",
         url: "presets/default.json"
     })
     .then(container => {
