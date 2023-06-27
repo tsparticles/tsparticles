@@ -33,7 +33,6 @@ function parseColorTable(byteStream: ByteStream, count: number): IRgb[] {
  * __parsing one image block in GIF data stream__
  * @param byteStream - GIF data stream
  * @param gif - GIF object to write to
- * @param avgAlpha - whether to average alpha channel
  * @param getFrameIndex - function to get current frame index in `GIF.frames` (optionally increment before next call)
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
  * @returns true if EOF was reached
@@ -42,7 +41,6 @@ function parseColorTable(byteStream: ByteStream, count: number): IRgb[] {
 async function parseExtensionBlock(
     byteStream: ByteStream,
     gif: GIF,
-    avgAlpha: boolean,
     getFrameIndex: (increment: boolean) => number,
     getTransparencyIndex: (newValue?: number | null) => number
 ): Promise<void> {
@@ -386,7 +384,7 @@ async function parseBlock(
 
             break;
         case GIFDataHeaders.Extension:
-            await parseExtensionBlock(byteStream, gif, avgAlpha, getFrameIndex, getTransparencyIndex);
+            await parseExtensionBlock(byteStream, gif, getFrameIndex, getTransparencyIndex);
 
             break;
         default:
