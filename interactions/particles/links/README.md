@@ -26,11 +26,16 @@ loadParticlesLinksInteraction;
 Once the scripts are loaded you can set up `tsParticles` and the interaction plugin like this:
 
 ```javascript
-loadParticlesLinksInteraction(tsParticles);
+(async () => {
+  await loadParticlesLinksInteraction(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadParticlesLinksInteraction } = require("tsparticles-interaction-particles-links");
 
-loadParticlesLinksInteraction(tsParticles);
+(async () => {
+  await loadParticlesLinksInteraction(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 
-loadParticlesLinksInteraction(tsParticles);
+(async () => {
+  await loadParticlesLinksInteraction(tsParticles);
+})();
 ```

@@ -25,11 +25,16 @@ loadEasingQuartPlugin
 Once the scripts are loaded you can set up `tsParticles` and the plugin like this:
 
 ```javascript
-loadEasingQuartPlugin();
+(async () => {
+  await loadEasingQuartPlugin();
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadEasingQuartPlugin } = require("tsparticles-plugin-easing-quart");
 
-loadEasingQuartPlugin();
+(async () => {
+  await loadEasingQuartPlugin();
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadEasingQuartPlugin } from "tsparticles-plugin-easing-quart";
 
-loadEasingQuartPlugin();
+(async () => {
+  await loadEasingQuartPlugin();
+})();
 ```

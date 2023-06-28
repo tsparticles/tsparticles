@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { Options, errorPrefix, tsParticles } from "tsparticles-engine";
+import { errorPrefix, tsParticles } from "tsparticles-engine";
 import { JSDOM } from "jsdom";
 import _ from "lodash";
 import fs from "fs-extra";
@@ -45,7 +45,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
      * @returns Options changes
      */
     function changes(object: CustomRecord, base: CustomRecord): CustomRecord {
-        return _.transform(object, function (result: CustomRecord, value: CustomRecord, key: string) {
+        return _.transform(object, function(result: CustomRecord, value: CustomRecord, key: string) {
             if (key.startsWith("_")) {
                 return;
             }
@@ -59,7 +59,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
     return changes(object, base);
 };
 
-(async function (): Promise<void> {
+(async function(): Promise<void> {
     console.log(`tsParticles Options Updater v${pkgInfo.version}\n`);
 
     if (process.argv[2] === "--version" || process.argv[2] === "-v") {
@@ -156,12 +156,12 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
         if (fileStat.isFile()) {
             const fileContent = await fs.readFile(srcPath, "utf8"),
                 fileData = JSON.parse(fileContent),
-                fileContainer = await tsParticles.load("file-tmp", fileData);
+                fileContainer = await tsParticles.load({ id: "file-tmp", options: fileData });
 
             if (fileContainer) {
                 const fileOptions = fileContainer.actualOptions;
 
-                fileContainer.reset();
+                await fileContainer.reset();
 
                 const newOptions = objectDifference(
                     fileOptions as unknown as CustomRecord,
@@ -184,7 +184,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
 
                 const fileContent = await fs.readFile(filePath, "utf8"),
                     fileData = JSON.parse(fileContent),
-                    fileContainer = await tsParticles.load(`file-${file}`, fileData);
+                    fileContainer = await tsParticles.load({ id: `file-${file}`, options: fileData });
 
                 if (fileContainer) {
                     const fileOptions = fileContainer.options;

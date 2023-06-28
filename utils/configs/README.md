@@ -35,7 +35,9 @@ pnpm add --save-dev tsparticles-demo-configs
 import { tsParticles } from "tsparticles-engine"; // not needed with CDN
 import * as configs from "tsparticles-demo-configs"; // not needed with CDN
 
-tsParticles.load("tsparticles", configs.basic);
+(async () => {
+  await tsParticles.load({ id: "tsparticles", options: configs.basic });
+})();
 ```
 
 ### TypeScript
@@ -44,7 +46,9 @@ tsParticles.load("tsparticles", configs.basic);
 import { tsParticles } from "tsparticles-engine";
 import * as configs from "tsparticles-demo-configs";
 
-tsParticles.load("tsparticles", configs.basic);
+(async () => {
+  await tsParticles.load({ id: "tsparticles", options: configs.basic });
+})();
 ```
 
 ## Plugins

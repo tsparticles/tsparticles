@@ -25,12 +25,17 @@ loadBubbleShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadBubbleShape(tsParticles);
+(async () => {
+  await loadBubbleShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "bubble" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "bubble" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadBubbleShape } = require("tsparticles-shape-bubble");
 
-loadBubbleShape(tsParticles);
+(async () => {
+  await loadBubbleShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadBubbleShape } from "tsparticles-shape-bubble";
 
-loadBubbleShape(tsParticles);
+(async () => {
+  await loadBubbleShape(tsParticles);
+})();
 ```

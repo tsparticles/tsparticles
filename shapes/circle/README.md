@@ -25,12 +25,17 @@ loadCircleShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadCircleShape(tsParticles);
+(async () => {
+  await loadCircleShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "circle" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "circle" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadCircleShape } = require("tsparticles-shape-circle");
 
-loadCircleShape(tsParticles);
+(async () => {
+  await loadCircleShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadCircleShape } from "tsparticles-shape-circle";
 
-loadCircleShape(tsParticles);
+(async () => {
+  await loadCircleShape(tsParticles);
+})();
 ```

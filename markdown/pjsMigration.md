@@ -84,8 +84,11 @@ tsParticles.loadJSON("particles-js", "assets/particles.json").then(function (p) 
     console.log("callback - particles.js config loaded");
 });
 
-tsParticles.load("particles-js", {
-    /* your options here */
+tsParticles.load({
+    id: "tsparticles",
+    options: {
+        /* options */
+    },
 });
 ```
 

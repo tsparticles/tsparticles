@@ -25,12 +25,17 @@ loadHeartShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadHeartShape(tsParticles);
+(async () => {
+  await loadHeartShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "heart" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "heart" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadHeartShape } = require("tsparticles-shape-heart");
 
-loadHeartShape(tsParticles);
+(async () => {
+  await loadHeartShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadHeartShape } from "tsparticles-shape-heart";
 
-loadHeartShape(tsParticles);
+(async () => {
+  await loadHeartShape(tsParticles);
+})();
 ```

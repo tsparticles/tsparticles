@@ -28,8 +28,11 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 (async () => {
   await loadParallaxMover(tsParticles);
 
-  await tsParticles.load("tsparticles", {
-    /* options */
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
   });
 })();
 ```
@@ -54,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadParallaxMover } = require("tsparticles-move-parallax");
 
-loadParallaxMover(tsParticles); // awaitable
+(async () => {
+  await loadParallaxMover(tsParticles);
+})();
 ```
 
 or
@@ -63,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadParallaxMover } from "tsparticles-move-parallax";
 
-loadParallaxMover(tsParticles); // awaitable
+(async () => {
+  await loadParallaxMover(tsParticles);
+})();
 ```

@@ -25,12 +25,17 @@ loadLineShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadLineShape(tsParticles);
+(async () => {
+  await loadLineShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "line" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "line" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadLineShape } = require("tsparticles-shape-line");
 
-loadLineShape(tsParticles);
+(async () => {
+  await loadLineShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadLineShape } from "tsparticles-shape-line";
 
-loadLineShape(tsParticles);
+(async () => {
+  await loadLineShape(tsParticles);
+})();
 ```

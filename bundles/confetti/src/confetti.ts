@@ -343,11 +343,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
         },
     };
 
-    if (params.id) {
-        container = await tsParticles.load(params.id, particlesOptions);
-    } else if (params.canvas) {
-        container = await tsParticles.set(params.id, params.canvas, particlesOptions);
-    }
+    container = await tsParticles.load({ id: params.id, element: params.canvas, options: particlesOptions });
 
     ids.set(params.id, container);
 

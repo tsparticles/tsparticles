@@ -5,5 +5,5 @@ import { basic } from "tsparticles-demo-configs";
 document.addEventListener("DOMContentLoaded", async () => {
     await loadFull(tsParticles);
 
-    await tsParticles.load(basic);
+    await tsParticles.load({ options: basic });
 });

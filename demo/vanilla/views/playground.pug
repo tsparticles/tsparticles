@@ -53,16 +53,19 @@ html(lang="en")
                         .col.h-100
                             pre#editor.h-100.
                                 (async () => {
-                                    await tsParticles.load("tsparticles", {
-                                        background: {
-                                            color: "#000",
-                                        },
-                                        particles: {
-                                            move: {
-                                                enable: true,
+                                    await tsParticles.load({
+                                        id: "tsparticles",
+                                        options: {
+                                            background: {
+                                                color: "#000",
                                             },
-                                            number: {
-                                                value: 100,
+                                            particles: {
+                                                move: {
+                                                    enable: true,
+                                                },
+                                                number: {
+                                                    value: 100,
+                                                },
                                             },
                                         },
                                     });

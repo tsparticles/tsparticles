@@ -25,11 +25,16 @@ loadColorUpdater;
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadColorUpdater(tsParticles);
+(async () => {
+  await loadColorUpdater(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadColorUpdater } = require("tsparticles-updater-color");
 
-loadColorUpdater(tsParticles);
+(async () => {
+  await loadColorUpdater(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadColorUpdater } from "tsparticles-updater-color";
 
-loadColorUpdater(tsParticles);
+(async () => {
+  await loadColorUpdater(tsParticles);
+})();
 ```

@@ -318,7 +318,7 @@ canvas {
     background-size: ${particlesContainer.style.backgroundSize};
     background-position: ${particlesContainer.style.backgroundPosition};
 }`,
-                    js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
+                    js: `tsParticles.load({ id: "tsparticles", options: ${JSON.stringify(container.options)} });`,
                     js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
                     title: "tsParticles example",
                     description: "This pen was created with tsParticles from https://particles.js.org",

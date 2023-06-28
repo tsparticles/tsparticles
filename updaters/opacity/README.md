@@ -25,11 +25,16 @@ loadOpacityUpdater;
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadOpacityUpdater(tsParticles);
+(async () => {
+  await loadOpacityUpdater(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadOpacityUpdater } = require("tsparticles-updater-opacity");
 
-loadOpacityUpdater(tsParticles);
+(async () => {
+  await loadOpacityUpdater(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadOpacityUpdater } from "tsparticles-updater-opacity";
 
-loadOpacityUpdater(tsParticles);
+(async () => {
+  await loadOpacityUpdater(tsParticles);
+})();
 ```

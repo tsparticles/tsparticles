@@ -25,11 +25,16 @@ loadEasingBackPlugin
 Once the scripts are loaded you can set up `tsParticles` and the plugin like this:
 
 ```javascript
-loadEasingBackPlugin();
+(async () => {
+  await loadEasingBackPlugin();
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadEasingBackPlugin } = require("tsparticles-plugin-easing-back");
 
-loadEasingBackPlugin();
+(async () => {
+  await loadEasingBackPlugin();
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadEasingBackPlugin } from "tsparticles-plugin-easing-back";
 
-loadEasingBackPlugin();
+(async () => {
+  await loadEasingBackPlugin();
+})();
 ```

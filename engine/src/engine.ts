@@ -518,9 +518,7 @@ export class Engine {
         const dom = this.dom();
 
         if (!dom.length) {
-            throw new Error(
-                `${errorPrefix} can only set click handlers after calling tsParticles.load() or tsParticles.loadJSON()`
-            );
+            throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
         }
 
         for (const domItem of dom) {

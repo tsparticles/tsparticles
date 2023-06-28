@@ -320,7 +320,7 @@ export async function fireworks(
         },
     };
 
-    const container = await tsParticles.load(id, particlesOptions);
+    const container = await tsParticles.load({ id, options: particlesOptions });
 
     if (!container) {
         return;
