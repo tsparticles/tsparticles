@@ -45,7 +45,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
      * @returns Options changes
      */
     function changes(object: CustomRecord, base: CustomRecord): CustomRecord {
-        return _.transform(object, function(result: CustomRecord, value: CustomRecord, key: string) {
+        return _.transform(object, function (result: CustomRecord, value: CustomRecord, key: string) {
             if (key.startsWith("_")) {
                 return;
             }
@@ -59,7 +59,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
     return changes(object, base);
 };
 
-(async function(): Promise<void> {
+(async function (): Promise<void> {
     console.log(`tsParticles Options Updater v${pkgInfo.version}\n`);
 
     if (process.argv[2] === "--version" || process.argv[2] === "-v") {
