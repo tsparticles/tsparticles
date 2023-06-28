@@ -119,7 +119,7 @@
         "browserslist": "^4.21.5",
         "canvas": "^2.11.2",
         "chai": "^4.3.7",
-        "compare-versions": "6.0.0-rc.1",
+        "compare-versions": "6.0.0-rc.2",
         "copyfiles": "^2.4.1",
         "eslint": "^8.40.0",
         "eslint-config-prettier": "^8.8.0",
