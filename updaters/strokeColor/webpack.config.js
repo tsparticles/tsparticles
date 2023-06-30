@@ -3,7 +3,7 @@ const version = require("./package.json").version;
 
 module.exports = loadParticlesUpdater({
     moduleName: "stroke-color",
-    pluginName: "Stroke Color",
+    updaterName: "Stroke Color",
     version,
     dir: __dirname
 });

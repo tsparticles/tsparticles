@@ -3,7 +3,7 @@ const version = require("./package.json").version;
 
 module.exports = loadParticlesShape({
     moduleName: "multiline-text",
-    pluginName: "Multiline Text",
+    shapeName: "Multiline Text",
     version,
     dir: __dirname
 });
