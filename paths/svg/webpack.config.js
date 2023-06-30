@@ -1,4 +1,4 @@
-const {loadParticlesPath} = require("@tsparticles/webpack-plugin");
+const { loadParticlesPath } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesPath("svg", "SVG", version, __dirname);
+module.exports = loadParticlesPath({ moduleName: "svg", pluginName: "SVG", version, dir: __dirname });

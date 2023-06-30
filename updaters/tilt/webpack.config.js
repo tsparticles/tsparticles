@@ -1,4 +1,4 @@
 const { loadParticlesUpdater } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesUpdater("tilt", "Tilt", version, __dirname);
+module.exports = loadParticlesUpdater({ moduleName: "tilt", pluginName: "Tilt", version, dir: __dirname });

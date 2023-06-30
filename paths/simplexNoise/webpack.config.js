@@ -1,4 +1,9 @@
-const {loadParticlesPath} = require("@tsparticles/webpack-plugin");
+const { loadParticlesPath } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesPath("simplex.noise", "Simplex Noise", version, __dirname);
+module.exports = loadParticlesPath({
+    moduleName: "simplex.noise",
+    pluginName: "Simplex Noise",
+    version,
+    dir: __dirname
+});

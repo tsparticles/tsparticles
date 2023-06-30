@@ -1,4 +1,9 @@
 const { loadParticlesShape } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesShape("rounded-rect", "Rounded Rect", version, __dirname);
+module.exports = loadParticlesShape({
+    moduleName: "rounded-rect",
+    pluginName: "Rounded Rect",
+    version,
+    dir: __dirname
+});

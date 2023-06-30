@@ -1,4 +1,9 @@
-const {loadParticlesInteractionExternal} = require("@tsparticles/webpack-plugin");
+const { loadParticlesInteractionExternal } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesInteractionExternal("bounce", "Bounce", version, __dirname);
+module.exports = loadParticlesInteractionExternal({
+    moduleName: "bounce",
+    pluginName: "Bounce",
+    version,
+    dir: __dirname
+});
