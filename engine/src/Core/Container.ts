@@ -1,4 +1,3 @@
-import { animate, cancelAnimation, isFunction } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Engine } from "../engine";
@@ -17,6 +16,7 @@ import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { Vector } from "./Utils/Vector";
 import { getRangeValue } from "../Utils/NumberUtils";
+import { isFunction } from "../Utils/Utils";
 import { loadOptions } from "../Utils/OptionsUtils";
 
 /**
@@ -400,7 +400,7 @@ export class Container {
 
         let refreshTime = force;
 
-        this._drawAnimationFrame = animate()(async (timestamp) => {
+        this._drawAnimationFrame = requestAnimationFrame(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
@@ -562,7 +562,7 @@ export class Container {
         }
 
         if (this._drawAnimationFrame !== undefined) {
-            cancelAnimation()(this._drawAnimationFrame);
+            cancelAnimationFrame(this._drawAnimationFrame);
 
             delete this._drawAnimationFrame;
         }

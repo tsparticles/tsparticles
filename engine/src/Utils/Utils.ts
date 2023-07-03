@@ -170,26 +170,6 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 }
 
 /**
- * Calls the requestAnimationFrame function or a polyfill
- * @returns the animation callback id, so it can be canceled
- */
-export function animate(): (callback: FrameRequestCallback) => number {
-    return isSsr()
-        ? (callback: FrameRequestCallback): number => setTimeout(callback)
-        : (callback: FrameRequestCallback): number => (requestAnimationFrame || setTimeout)(callback);
-}
-
-/**
- * Cancels the requestAnimationFrame function or a polyfill
- * @returns the animation cancelling function
- */
-export function cancelAnimation(): (handle: number) => void {
-    return isSsr()
-        ? (handle: number): void => clearTimeout(handle)
-        : (handle: number): void => (cancelAnimationFrame || clearTimeout)(handle);
-}
-
-/**
  * Checks if a value is equal to the destination, if same type, or is in the provided array
  * @param value - the value to check
  * @param array - the data array or single value
