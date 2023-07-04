@@ -9646,7 +9646,7 @@ packages:
     dependencies:
       '@tsparticles/eslint-config': 1.11.0
       '@tsparticles/prettier-config': 1.9.0
-      '@tsparticles/tsconfig': 1.12.0
+      '@tsparticles/tsconfig': 1.14.0
       '@typescript-eslint/eslint-plugin': 5.60.1(@typescript-eslint/parser@5.59.2)(eslint@8.40.0)(typescript@5.1.6)
       '@typescript-eslint/parser': 5.59.2(eslint@8.40.0)(typescript@5.1.6)
       eslint: 8.40.0
@@ -9696,6 +9696,12 @@ packages:
     resolution: {integrity: sha512-ft1ba6UH07VvOb0sbCRG4jll1xaCq39XjAK7scA/PH4VBJ/UeXzpb7nBvYbHranAcbVljKsIBi7tKBJxZDiYYg==}
     dependencies:
       typescript: 5.1.6
+
+  /@tsparticles/tsconfig@1.14.0:
+    resolution: {integrity: sha512-/4Lyy0v55QtWmgzt/oi/wRFXyJGdCY1DLGmqbUNpdWm+URFnADENd1y4kEvuyPEvUKgoU6BxztdYmHZ05EOYjg==}
+    dependencies:
+      typescript: 5.1.6
+    dev: true
 
   /@tufjs/canonical-json@1.0.0:
     resolution: {integrity: sha512-QTnf++uxunWvG2z3UFNzAoQPHxnSXOwtaI3iJ+AohhV+5vONuArPjJE7aPXPVXfXJsqrVbZBu9b81AJoSd09IQ==}
