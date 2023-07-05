@@ -8,11 +8,14 @@ import { isSsr } from "../Utils/Utils";
 export class Retina {
     attractDistance!: number;
     maxSpeed!: number;
-    pixelRatio!: number;
-    reduceFactor!: number;
+    pixelRatio: number;
+    reduceFactor: number;
     sizeAnimationSpeed!: number;
 
-    constructor(private readonly container: Container) {}
+    constructor(private readonly container: Container) {
+        this.pixelRatio = 1;
+        this.reduceFactor = 1;
+    }
 
     /**
      * Initializes all the values needing a pixel ratio factor (sizes, widths, distances)
@@ -33,22 +36,24 @@ export class Retina {
             container.canvas.size.height = element.offsetHeight * ratio;
         }
 
-        const particles = options.particles;
+        const particles = options.particles,
+            moveOptions = particles.move;
 
-        this.attractDistance = getRangeValue(particles.move.attract.distance) * ratio;
+        this.attractDistance = getRangeValue(moveOptions.attract.distance) * ratio;
+        this.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
         this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
-        this.maxSpeed = getRangeValue(particles.move.gravity.maxSpeed) * ratio;
     }
 
     initParticle(particle: Particle): void {
         const options = particle.options,
             ratio = this.pixelRatio,
-            moveDistance = options.move.distance,
+            moveOptions = options.move,
+            moveDistance = moveOptions.distance,
             props = particle.retina;
 
-        props.attractDistance = getRangeValue(options.move.attract.distance) * ratio;
-        props.moveDrift = getRangeValue(options.move.drift) * ratio;
-        props.moveSpeed = getRangeValue(options.move.speed) * ratio;
+        props.attractDistance = getRangeValue(moveOptions.attract.distance) * ratio;
+        props.moveDrift = getRangeValue(moveOptions.drift) * ratio;
+        props.moveSpeed = getRangeValue(moveOptions.speed) * ratio;
         props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;
 
         const maxDistance = props.maxDistance;
@@ -56,6 +61,6 @@ export class Retina {
         maxDistance.horizontal = moveDistance.horizontal !== undefined ? moveDistance.horizontal * ratio : undefined;
         maxDistance.vertical = moveDistance.vertical !== undefined ? moveDistance.vertical * ratio : undefined;
 
-        props.maxSpeed = getRangeValue(options.move.gravity.maxSpeed) * ratio;
+        props.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
     }
 }

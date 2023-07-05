@@ -151,9 +151,7 @@ export class Plugins {
      * @param pathGenerator - the path generator to add
      */
     addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
-        if (!this.getPathGenerator(type)) {
-            this.pathGenerators.set(type, pathGenerator);
-        }
+        !this.getPathGenerator(type) && this.pathGenerators.set(type, pathGenerator);
     }
 
     /**
@@ -161,9 +159,7 @@ export class Plugins {
      * @param plugin - the plugin to add
      */
     addPlugin(plugin: IPlugin): void {
-        if (!this.getPlugin(plugin.id)) {
-            this.plugins.push(plugin);
-        }
+        !this.getPlugin(plugin.id) && this.plugins.push(plugin);
     }
 
     /**
@@ -173,9 +169,7 @@ export class Plugins {
      * @param override - if true, overwrites the existing preset
      */
     addPreset(presetKey: string, options: ISourceOptions, override = false): void {
-        if (override || !this.getPreset(presetKey)) {
-            this.presets.set(presetKey, options);
-        }
+        (override || !this.getPreset(presetKey)) && this.presets.set(presetKey, options);
     }
 
     /**
@@ -185,9 +179,7 @@ export class Plugins {
      */
     addShapeDrawer(types: SingleOrMultiple<string>, drawer: IShapeDrawer): void {
         executeOnSingleOrMultiple(types, (type) => {
-            if (!this.getShapeDrawer(type)) {
-                this.drawers.set(type, drawer);
-            }
+            !this.getShapeDrawer(type) && this.drawers.set(type, drawer);
         });
     }
 
@@ -206,11 +198,7 @@ export class Plugins {
         const res = new Map<string, IContainerPlugin>();
 
         for (const plugin of this.plugins) {
-            if (!plugin.needsPlugin(container.actualOptions)) {
-                continue;
-            }
-
-            res.set(plugin.id, plugin.getPlugin(container));
+            plugin.needsPlugin(container.actualOptions) && res.set(plugin.id, plugin.getPlugin(container));
         }
 
         return res;
@@ -313,9 +301,7 @@ export class Plugins {
         }
 
         for (const updater of updaters) {
-            if (updater.loadOptions) {
-                updater.loadOptions(options, ...sourceOptions);
-            }
+            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
         }
     }
 }

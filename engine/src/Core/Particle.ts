@@ -714,14 +714,16 @@ export class Particle implements IParticle {
     ) => {
         const shapeData = shapeOptions.options[this.shape];
 
-        if (shapeData) {
-            return deepExtend(
-                {
-                    close: shapeOptions.close,
-                    fill: shapeOptions.fill,
-                },
-                itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)
-            ) as IShapeValues;
+        if (!shapeData) {
+            return;
         }
+
+        return deepExtend(
+            {
+                close: shapeOptions.close,
+                fill: shapeOptions.fill,
+            },
+            itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)
+        ) as IShapeValues;
     };
 }

@@ -1,5 +1,5 @@
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils";
-import { deepExtend, getLogger, isSsr } from "../Utils/Utils";
+import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
@@ -78,16 +78,13 @@ export class Canvas {
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
         this._colorPlugins = [];
-        this._mutationObserver =
-            !isSsr() && typeof MutationObserver !== "undefined"
-                ? new MutationObserver((records) => {
-                      for (const record of records) {
-                          if (record.type === "attributes" && record.attributeName === "style") {
-                              this._repairStyle();
-                          }
-                      }
-                  })
-                : undefined;
+        this._mutationObserver = safeMutationObserver((records) => {
+            for (const record of records) {
+                if (record.type === "attributes" && record.attributeName === "style") {
+                    this._repairStyle();
+                }
+            }
+        });
     }
 
     private get _fullScreen(): boolean {

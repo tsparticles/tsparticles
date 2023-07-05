@@ -422,6 +422,7 @@ export class EventListeners {
         delete mouse.downPosition;
 
         interactivity.status = mouseLeaveEvent;
+
         mouse.inside = false;
         mouse.clicking = false;
     };

@@ -170,6 +170,18 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 }
 
 /**
+ * @param callback -
+ * @returns the mutation observer, if supported
+ */
+export function safeMutationObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {
+    if (isSsr() || typeof MutationObserver === "undefined") {
+        return;
+    }
+
+    return new MutationObserver(callback);
+}
+
+/**
  * Checks if a value is equal to the destination, if same type, or is in the provided array
  * @param value - the value to check
  * @param array - the data array or single value

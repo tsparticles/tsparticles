@@ -119,7 +119,6 @@ export * from "./Types/ShapeDrawerFunctions";
 export * from "./Types/SingleOrMultiple";
 
 export type { EventListeners } from "./Core/Utils/EventListeners";
-export type { FrameManager } from "./Core/Utils/FrameManager";
 export type { InteractionManager } from "./Core/Utils/InteractionManager";
 export type { Plugins } from "./Core/Utils/Plugins";
 export type { QuadTree } from "./Core/Utils/QuadTree";

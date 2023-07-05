@@ -1,12 +1,13 @@
+import { getLogger, isFunction } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Engine } from "../engine";
 import { EventListeners } from "./Utils/EventListeners";
 import { EventType } from "../Enums/Types/EventType";
-import { FrameManager } from "./Utils/FrameManager";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IDelta } from "./Interfaces/IDelta";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import type { ISourceOptions } from "../Types/ISourceOptions";
@@ -15,8 +16,8 @@ import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
 import type { Vector } from "./Utils/Vector";
+import { errorPrefix } from "./Utils/Constants";
 import { getRangeValue } from "../Utils/NumberUtils";
-import { isFunction } from "../Utils/Utils";
 import { loadOptions } from "../Utils/OptionsUtils";
 
 /**
@@ -26,6 +27,19 @@ import { loadOptions } from "../Utils/OptionsUtils";
  */
 function guardCheck(container: Container): boolean {
     return container && !container.destroyed;
+}
+
+/**
+ * @param value -
+ * @param fpsLimit -
+ * @param smooth -
+ * @returns the initialized delta value
+ */
+function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
+    return {
+        value,
+        factor: smooth ? 60 / fpsLimit : (60 * value) / 1000,
+    };
 }
 
 /**
@@ -89,11 +103,6 @@ export class Container {
      * The container fps limit, coming from options
      */
     fpsLimit;
-
-    /**
-     * The container frame manager
-     */
-    readonly frameManager;
 
     interactivity: IContainerInteractivity;
 
@@ -178,7 +187,6 @@ export class Container {
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this._engine, this);
-        this.frameManager = new FrameManager(this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {
             mouse: {
@@ -407,7 +415,7 @@ export class Container {
                 refreshTime = false;
             }
 
-            await this.frameManager.nextFrame(timestamp);
+            await this._nextFrame(timestamp);
         });
     }
 
@@ -806,6 +814,47 @@ export class Container {
             }
 
             (entry.isIntersecting ? this.play : this.pause)();
+        }
+    };
+
+    private readonly _nextFrame: (timestamp: DOMHighResTimeStamp) => Promise<void> = async (timestamp) => {
+        try {
+            // FPS limit logic - if we are too fast, just draw without updating
+            if (
+                !this.smooth &&
+                this.lastFrameTime !== undefined &&
+                timestamp < this.lastFrameTime + 1000 / this.fpsLimit
+            ) {
+                this.draw(false);
+
+                return;
+            }
+
+            this.lastFrameTime ??= timestamp;
+
+            const delta = initDelta(timestamp - this.lastFrameTime, this.fpsLimit, this.smooth);
+
+            this.addLifeTime(delta.value);
+            this.lastFrameTime = timestamp;
+
+            if (delta.value > 1000) {
+                this.draw(false);
+
+                return;
+            }
+
+            await this.particles.draw(delta);
+
+            if (!this.alive()) {
+                this.destroy();
+                return;
+            }
+
+            if (this.getAnimationStatus()) {
+                this.draw(false);
+            }
+        } catch (e) {
+            getLogger().error(`${errorPrefix} in animation loop`, e);
         }
     };
 }
