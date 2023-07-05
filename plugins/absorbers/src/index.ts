@@ -5,6 +5,7 @@ import {
     type IPlugin,
     type RecursivePartial,
     executeOnSingleOrMultiple,
+    isArray,
     isInArray,
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
@@ -59,7 +60,7 @@ class AbsorbersPlugin implements IPlugin {
 
         const absorbers = options.absorbers;
 
-        if (absorbers instanceof Array) {
+        if (isArray(absorbers)) {
             return !!absorbers.length;
         } else if (absorbers) {
             return true;

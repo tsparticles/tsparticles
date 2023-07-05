@@ -2,6 +2,7 @@ import {
     type IOptionLoader,
     type RecursivePartial,
     type SingleOrMultiple,
+    isArray,
     isFunction,
     isString,
 } from "tsparticles-engine";
@@ -43,7 +44,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
         }
 
         if (data.audio !== undefined) {
-            if (data.audio instanceof Array) {
+            if (isArray(data.audio)) {
                 this.audio = data.audio.map((s) => {
                     const tmp = new SoundsAudio();
 

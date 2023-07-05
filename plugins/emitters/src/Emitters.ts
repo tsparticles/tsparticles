@@ -6,6 +6,7 @@ import {
     type SingleOrMultiple,
     arrayRandomIndex,
     executeOnSingleOrMultiple,
+    isArray,
     isNumber,
     itemFromArray,
 } from "tsparticles-engine";
@@ -93,7 +94,7 @@ export class Emitters implements IContainerPlugin {
 
         let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
 
-        if (modeEmitters && modeEmitters.value instanceof Array) {
+        if (modeEmitters && isArray(modeEmitters.value)) {
             if (modeEmitters.value.length > 0 && modeEmitters.random.enable) {
                 emittersModeOptions = [];
                 const usedIndexes: number[] = [];
@@ -132,7 +133,7 @@ export class Emitters implements IContainerPlugin {
             return;
         }
 
-        if (this.emitters instanceof Array) {
+        if (isArray(this.emitters)) {
             for (const emitterOptions of this.emitters) {
                 this.addEmitter(emitterOptions);
             }

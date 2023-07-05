@@ -139,7 +139,7 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
         return element.matches(selector);
     });
 
-    return res instanceof Array ? res.some((t) => t) : res;
+    return isArray(res) ? res.some((t) => t) : res;
 }
 
 /**
@@ -188,7 +188,7 @@ export function safeMutationObserver(callback: (records: MutationRecord[]) => vo
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    return value === array || (array instanceof Array && array.indexOf(value) > -1);
+    return value === array || (isArray(array) && array.indexOf(value) > -1);
 }
 
 /**
@@ -525,7 +525,7 @@ export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => U
 ): SingleOrMultiple<U> {
-    return obj instanceof Array ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
+    return isArray(obj) ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
 }
 
 /**
@@ -535,7 +535,7 @@ export function executeOnSingleOrMultiple<T, U = void>(
  * @returns the selected item
  */
 export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
-    return obj instanceof Array ? itemFromArray(obj, index, useIndex) : obj;
+    return isArray(obj) ? itemFromArray(obj, index, useIndex) : obj;
 }
 
 /**
@@ -547,7 +547,7 @@ export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => boolean
 ): T | undefined {
-    return obj instanceof Array ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
+    return isArray(obj) ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
 }
 
 /**
@@ -716,4 +716,13 @@ export function isFunction(arg: unknown): arg is Function {
  */
 export function isObject<T extends object>(arg: unknown): arg is T {
     return typeof arg === "object" && arg !== null;
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is an array
+ */
+export function isArray<T>(arg: unknown): arg is T[] {
+    return Array.isArray(arg);
 }

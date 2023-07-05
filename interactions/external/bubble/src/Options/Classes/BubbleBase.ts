@@ -4,6 +4,7 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
+    isArray,
 } from "tsparticles-engine";
 import type { IBubbleBase } from "../Interfaces/IBubbleBase";
 
@@ -45,7 +46,7 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
         }
 
         if (data.color !== undefined) {
-            const sourceColor = this.color instanceof Array ? undefined : this.color;
+            const sourceColor = isArray(this.color) ? undefined : this.color;
 
             this.color = executeOnSingleOrMultiple(data.color, (color) => {
                 return OptionsColor.create(sourceColor, color);

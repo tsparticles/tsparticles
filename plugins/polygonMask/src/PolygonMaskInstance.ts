@@ -11,6 +11,7 @@ import {
     getDistance,
     getDistances,
     getRandom,
+    isArray,
     isString,
     itemFromArray,
 } from "tsparticles-engine";
@@ -409,7 +410,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 svg = data;
             } else {
                 const getPath = (p: string): string => `<path d="${p}" />`,
-                    path = data.path instanceof Array ? data.path.map(getPath).join("") : getPath(data.path);
+                    path = isArray(data.path) ? data.path.map(getPath).join("") : getPath(data.path);
 
                 const namespaces = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
 

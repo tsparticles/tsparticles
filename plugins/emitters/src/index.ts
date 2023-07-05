@@ -4,6 +4,7 @@ import {
     type IPlugin,
     type RecursivePartial,
     executeOnSingleOrMultiple,
+    isArray,
     isInArray,
 } from "tsparticles-engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
@@ -52,7 +53,7 @@ class EmittersPlugin implements IPlugin {
         const interactivityEmitters = source?.interactivity?.modes?.emitters;
 
         if (interactivityEmitters) {
-            if (interactivityEmitters instanceof Array) {
+            if (isArray(interactivityEmitters)) {
                 options.interactivity.modes.emitters = {
                     random: {
                         count: 1,
@@ -70,7 +71,7 @@ class EmittersPlugin implements IPlugin {
                 const emitterMode = interactivityEmitters as IEmitterModeOptions;
 
                 if (emitterMode.value !== undefined) {
-                    if (emitterMode.value instanceof Array) {
+                    if (isArray(emitterMode.value)) {
                         options.interactivity.modes.emitters = {
                             random: {
                                 count: emitterMode.random.count ?? 1,
@@ -120,7 +121,7 @@ class EmittersPlugin implements IPlugin {
         const emitters = options.emitters;
 
         return (
-            (emitters instanceof Array && !!emitters.length) ||
+            (isArray(emitters) && !!emitters.length) ||
             emitters !== undefined ||
             (!!options.interactivity?.events?.onClick?.mode &&
                 isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode))

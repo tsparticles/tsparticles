@@ -1,6 +1,6 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors";
 import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
-import { isString, itemFromArray } from "./Utils";
+import { isArray, isString, itemFromArray } from "./Utils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
@@ -99,7 +99,7 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
         return colorToRgb(color.value, index, useIndex);
     }
 
-    if (color.value instanceof Array) {
+    if (isArray(color.value)) {
         return rangeColorToRgb({
             value: itemFromArray(color.value, index, useIndex),
         });
@@ -132,7 +132,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
         return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
     }
 
-    if (color.value instanceof Array) {
+    if (isArray(color.value)) {
         return colorToRgb({
             value: itemFromArray(color.value, index, useIndex),
         });

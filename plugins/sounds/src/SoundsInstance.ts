@@ -5,6 +5,7 @@ import {
     clamp,
     executeOnSingleOrMultiple,
     getLogger,
+    isArray,
     isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
@@ -418,7 +419,7 @@ export class SoundsInstance implements IContainerPlugin {
             return this._playNoteValue(notes, noteIdx, idx);
         });
 
-        await (promises instanceof Array ? Promise.allSettled(promises) : promises);
+        await (isArray(promises) ? Promise.allSettled(promises) : promises);
 
         let nextNoteIdx = noteIdx + 1;
 

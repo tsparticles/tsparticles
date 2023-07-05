@@ -1,3 +1,4 @@
+import { isArray, isString } from "../../Utils/Utils";
 import { HslAnimation } from "./HslAnimation";
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor";
 import type { IColorAnimation } from "../Interfaces/IColorAnimation";
@@ -6,7 +7,6 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import { OptionsColor } from "./OptionsColor";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { isString } from "../../Utils/Utils";
 
 /**
  * [[include:Options/Particles/Color.md]]
@@ -29,7 +29,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
         color.load(source);
 
         if (data !== undefined) {
-            if (isString(data) || data instanceof Array) {
+            if (isString(data) || isArray(data)) {
                 color.load({ value: data });
             } else {
                 color.load(data);
