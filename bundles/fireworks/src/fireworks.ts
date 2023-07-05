@@ -40,7 +40,7 @@ declare global {
     interface Window {
         fireworks: ((
             idOrOptions: string | RecursivePartial<IFireworkOptions>,
-            sourceOptions?: RecursivePartial<IFireworkOptions>
+            sourceOptions?: RecursivePartial<IFireworkOptions>,
         ) => Promise<FireworksInstance | undefined>) & {
             version: string;
         };
@@ -120,7 +120,7 @@ async function initPlugins(): Promise<void> {
  */
 export async function fireworks(
     idOrOptions: string | RecursivePartial<IFireworkOptions>,
-    sourceOptions?: RecursivePartial<IFireworkOptions>
+    sourceOptions?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> {
     await initPlugins();
 

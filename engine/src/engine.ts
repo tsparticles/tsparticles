@@ -162,7 +162,7 @@ export class Engine {
     async addInteractor(
         name: string,
         interactorInitializer: (container: Container) => IInteractor,
-        refresh = true
+        refresh = true,
     ): Promise<void> {
         this.plugins.addInteractor(name, interactorInitializer);
 
@@ -177,7 +177,7 @@ export class Engine {
     async addMover(
         name: string,
         moverInitializer: (container: Container) => IParticleMover,
-        refresh = true
+        refresh = true,
     ): Promise<void> {
         this.plugins.addParticleMover(name, moverInitializer);
 
@@ -192,7 +192,7 @@ export class Engine {
     async addParticleUpdater(
         name: string,
         updaterInitializer: (container: Container) => IParticleUpdater,
-        refresh = true
+        refresh = true,
     ): Promise<void> {
         this.plugins.addParticleUpdater(name, updaterInitializer);
 
@@ -233,7 +233,7 @@ export class Engine {
         preset: string,
         options: RecursivePartial<IOptions>,
         override = false,
-        refresh = true
+        refresh = true,
     ): Promise<void> {
         this.plugins.addPreset(preset, options, override);
 
@@ -255,7 +255,7 @@ export class Engine {
         initOrRefresh?: ShapeDrawerInitFunction | boolean,
         afterEffectOrRefresh?: ShapeDrawerAfterEffectFunction | boolean,
         destroyOrRefresh?: ShapeDrawerDestroyFunction | boolean,
-        refresh = true
+        refresh = true,
     ): Promise<void> {
         let customDrawer: IShapeDrawer;
 
@@ -355,7 +355,7 @@ export class Engine {
      */
     async load(
         tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>
+        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
     ): Promise<Container | undefined> {
         return this.loadFromArray(tagIdOrOptionsOrParams, options);
     }
@@ -370,7 +370,7 @@ export class Engine {
     async loadFromArray(
         tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
         optionsOrIndex?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
-        index?: number
+        index?: number,
     ): Promise<Container | undefined> {
         let params: ILoadParams;
 
@@ -408,7 +408,7 @@ export class Engine {
     async loadJSON(
         tagId: string | SingleOrMultiple<string>,
         pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number
+        index?: number,
     ): Promise<Container | undefined> {
         let url: SingleOrMultiple<string>, id: string | undefined;
 
@@ -455,7 +455,7 @@ export class Engine {
         id: string | HTMLElement,
         element: HTMLElement | RecursivePartial<IOptions>,
         options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
-        index?: number
+        index?: number,
     ): Promise<Container | undefined> {
         const params: ILoadParams = { index };
 
@@ -492,7 +492,7 @@ export class Engine {
         id: string | HTMLElement,
         element: HTMLElement | SingleOrMultiple<string>,
         pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number
+        index?: number,
     ): Promise<Container | undefined> {
         const params: ILoadParams = {};
 

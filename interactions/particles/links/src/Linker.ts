@@ -25,7 +25,7 @@ function getLinkDistance(
     pos2: ICoordinates,
     optDistance: number,
     canvasSize: IDimension,
-    warp: boolean
+    warp: boolean,
 ): number {
     const { dx, dy, distance } = getDistances(pos1, pos2);
 

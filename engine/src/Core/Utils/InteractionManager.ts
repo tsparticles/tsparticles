@@ -39,7 +39,10 @@ export class InteractionManager {
      * @param engine - the parent engine
      * @param container - the parent container
      */
-    constructor(engine: Engine, private readonly container: Container) {
+    constructor(
+        engine: Engine,
+        private readonly container: Container,
+    ) {
         this._engine = engine;
         this._interactors = engine.plugins.getInteractors(this.container, true);
         this._externalInteractors = [];

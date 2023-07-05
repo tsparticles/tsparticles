@@ -23,7 +23,7 @@ export class DestroyOutMode implements IOutModeManager {
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode
+        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
     ): void {
         if (!this.modes.includes(outMode)) {
             return;
@@ -40,7 +40,7 @@ export class DestroyOutMode implements IOutModeManager {
                         container.canvas.size,
                         Vector.origin,
                         particle.getRadius(),
-                        direction
+                        direction,
                     )
                 ) {
                     return;

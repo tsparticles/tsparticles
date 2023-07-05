@@ -20,7 +20,7 @@ export function gradient(
     context: CanvasRenderingContext2D,
     p1: Particle,
     p2: Particle,
-    opacity: number
+    opacity: number,
 ): CanvasGradient | undefined {
     const gradStop = Math.floor(p2.getRadius() / p1.getRadius()),
         color1 = p1.getFillColor(),
@@ -54,7 +54,7 @@ export function drawConnectLine(
     width: number,
     lineStyle: CanvasGradient,
     begin: ICoordinates,
-    end: ICoordinates
+    end: ICoordinates,
 ): void {
     drawLine(context, begin, end);
 
@@ -74,7 +74,7 @@ export function lineStyle(
     container: ConnectContainer,
     ctx: CanvasRenderingContext2D,
     p1: Particle,
-    p2: Particle
+    p2: Particle,
 ): CanvasGradient | undefined {
     const options = container.actualOptions,
         connectOptions = options.interactivity.modes.connect;

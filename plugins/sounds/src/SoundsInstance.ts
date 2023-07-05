@@ -32,7 +32,7 @@ function initImage(data: InitImageData): HTMLImageElement {
         display,
         options.fullScreen.zIndex + 1,
         width,
-        margin
+        margin,
     );
 
     img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
@@ -74,7 +74,7 @@ function setIconStyle(
     display: "block" | "none",
     zIndex: number,
     width: number,
-    margin: number
+    margin: number,
 ): void {
     icon.style.userSelect = "none";
     icon.style.webkitUserSelect = "none";
@@ -348,7 +348,7 @@ export class SoundsInstance implements IContainerPlugin {
 
     private readonly _playFrequency: (frequency: number, duration: number) => Promise<void> = async (
         frequency,
-        duration
+        duration,
     ) => {
         if (!this._container.audioContext || !this._gain) {
             return;
@@ -401,7 +401,7 @@ export class SoundsInstance implements IContainerPlugin {
     private readonly _playNote: (notes: SoundsNote[], noteIdx: number, loop: boolean) => Promise<void> = async (
         notes,
         noteIdx,
-        loop
+        loop,
     ) => {
         if (this._container.muted) {
             return;
@@ -437,7 +437,7 @@ export class SoundsInstance implements IContainerPlugin {
     private readonly _playNoteValue: (notes: SoundsNote[], noteIdx: number, valueIdx: number) => Promise<void> = async (
         notes,
         noteIdx,
-        valueIdx
+        valueIdx,
     ) => {
         const note = notes[noteIdx];
 

@@ -29,7 +29,7 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         const p1Links = links.filter(
-            (l) => options.links && this._getLinkFrequency(particle, l.destination) <= options.links.frequency
+            (l) => options.links && this._getLinkFrequency(particle, l.destination) <= options.links.frequency,
         );
 
         for (const link of p1Links) {
@@ -198,7 +198,7 @@ export class LinkInstance implements IContainerPlugin {
         options: ParticlesLinkOptions,
         p1: LinkParticle,
         link: ILink,
-        p1Links: ILink[]
+        p1Links: ILink[],
     ) => void = (options, p1, link, p1Links) => {
         const p2 = link.destination;
 
@@ -239,7 +239,7 @@ export class LinkInstance implements IContainerPlugin {
     private readonly _getTriangleFrequency: (p1: LinkParticle, p2: LinkParticle, p3: LinkParticle) => number = (
         p1,
         p2,
-        p3
+        p3,
     ) => {
         return setLinkFrequency([p1, p2, p3], this._freqs.triangles);
     };

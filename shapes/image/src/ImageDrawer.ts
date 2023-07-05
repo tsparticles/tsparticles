@@ -44,7 +44,7 @@ export class ImageDrawer implements IShapeDrawer {
         particle: ImageParticle,
         radius: number,
         opacity: number,
-        delta: IDelta
+        delta: IDelta,
     ): void {
         const image = particle.image,
             element = image?.element;
@@ -117,7 +117,7 @@ export class ImageDrawer implements IShapeDrawer {
                         offscreenContext.putImageData(
                             image.gifData.frames[0].image,
                             pos.x + frame.left,
-                            pos.y + frame.top
+                            pos.y + frame.top,
                         );
                     } else {
                         offscreenContext.putImageData(image.gifData.backgroundImage, pos.x, pos.y);
@@ -130,7 +130,7 @@ export class ImageDrawer implements IShapeDrawer {
                             0,
                             0,
                             offscreenCanvas.width,
-                            offscreenCanvas.height
+                            offscreenCanvas.height,
                         );
 
                         offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);

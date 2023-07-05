@@ -46,7 +46,7 @@ function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<
     container: Container,
     map: Map<Container, TItem[]>,
     initializers: Map<string, TInitializer>,
-    force = false
+    force = false,
 ): TItem[] {
     let res = map.get(container);
 

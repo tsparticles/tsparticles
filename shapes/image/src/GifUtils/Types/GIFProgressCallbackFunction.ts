@@ -5,5 +5,5 @@ export type GIFProgressCallbackFunction = (
     frameCount: number,
     lastFrame: ImageData,
     framePos: ICoordinates,
-    gifSize: IDimension
+    gifSize: IDimension,
 ) => void;

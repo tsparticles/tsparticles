@@ -15,7 +15,7 @@ export function CurvesPathGen(
     nbHarmonics: number,
     attenHarmonics: number,
     lowValue = 0,
-    highValue = 1
+    highValue = 1,
 ): () => number {
     const arP0: number[] = [], // 'preceding value' for each harmonic
         arP1: number[] = [], // 'succeeding value'

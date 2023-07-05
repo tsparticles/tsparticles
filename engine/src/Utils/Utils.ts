@@ -238,7 +238,7 @@ export function isPointInside(
     size: IDimension,
     offset: ICoordinates,
     radius?: number,
-    direction?: OutModeDirection
+    direction?: OutModeDirection,
 ): boolean {
     return areBoundsInside(calculateBounds(point, radius ?? 0), size, offset, direction);
 }
@@ -255,7 +255,7 @@ export function areBoundsInside(
     bounds: IBounds,
     size: IDimension,
     offset: ICoordinates,
-    direction?: OutModeDirection
+    direction?: OutModeDirection,
 ): boolean {
     let inside = true;
 
@@ -357,7 +357,7 @@ export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>
 export function divModeExecute(
     mode: DivMode,
     divs: SingleOrMultiple<DivEvent>,
-    callback: (id: string, div: DivEvent) => void
+    callback: (id: string, div: DivEvent) => void,
 ): void {
     executeOnSingleOrMultiple(divs, (div) => {
         const divMode = div.mode,
@@ -523,7 +523,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
  */
 export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
-    callback: (obj: T, index: number) => U
+    callback: (obj: T, index: number) => U,
 ): SingleOrMultiple<U> {
     return isArray(obj) ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
 }
@@ -545,7 +545,7 @@ export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: nu
  */
 export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,
-    callback: (obj: T, index: number) => boolean
+    callback: (obj: T, index: number) => boolean,
 ): T | undefined {
     return isArray(obj) ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
 }
@@ -557,7 +557,7 @@ export function findItemFromSingleOrMultiple<T>(
  */
 export function initParticleNumericAnimationValue(
     options: RangedAnimationValueWithRandom,
-    pxRatio: number
+    pxRatio: number,
 ): IParticleNumericValueAnimation {
     const valueRange = options.value,
         animationOptions = options.animation,
@@ -636,7 +636,7 @@ export function initParticleNumericAnimationValue(
  */
 function getPositionOrSize(
     positionOrSize: ICoordinatesWithMode | IDimensionWithMode,
-    canvasSize: IDimension
+    canvasSize: IDimension,
 ): ICoordinates | IDimension {
     const isPercent = positionOrSize.mode === PixelMode.percent;
 

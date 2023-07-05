@@ -26,7 +26,7 @@ export class OutOutMode implements IOutModeManager {
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode
+        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
     ): void {
         if (!this.modes.includes(outMode)) {
             return;
@@ -55,13 +55,13 @@ export class OutOutMode implements IOutModeManager {
                     randomInRange({
                         min: 0,
                         max: container.canvas.size.width,
-                    })
+                    }),
                 );
                 particle.position.y = Math.floor(
                     randomInRange({
                         min: 0,
                         max: container.canvas.size.height,
-                    })
+                    }),
                 );
 
                 const { dx: newDx, dy: newDy } = getDistances(particle.position, particle.moveCenter);
@@ -78,7 +78,7 @@ export class OutOutMode implements IOutModeManager {
                         container.canvas.size,
                         Vector.origin,
                         particle.getRadius(),
-                        direction
+                        direction,
                     )
                 ) {
                     return;
@@ -91,14 +91,14 @@ export class OutOutMode implements IOutModeManager {
                                 randomInRange({
                                     min: -particle.moveCenter.radius,
                                     max: particle.moveCenter.radius,
-                                })
+                                }),
                             ) + particle.moveCenter.x;
                         particle.position.y =
                             Math.floor(
                                 randomInRange({
                                     min: -particle.moveCenter.radius,
                                     max: particle.moveCenter.radius,
-                                })
+                                }),
                             ) + particle.moveCenter.y;
 
                         const { dx, dy } = getDistances(particle.position, particle.moveCenter);

@@ -53,7 +53,7 @@ export function addParticlesFromCanvasPixels(
     position: ICoordinates,
     scale: number,
     override: ICanvasMaskOverride,
-    filter: (pixel: IRgba) => boolean
+    filter: (pixel: IRgba) => boolean,
 ): void {
     const { height, width } = data,
         numPixels = height * width,
@@ -115,7 +115,7 @@ export function getCanvasImageData(
     ctx: CanvasRenderingContext2D,
     size: IDimension,
     offset: number,
-    clear = true
+    clear = true,
 ): CanvasPixelData {
     const imageData = ctx.getImageData(0, 0, size.width, size.height).data;
 

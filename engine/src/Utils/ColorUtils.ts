@@ -170,7 +170,7 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
 export function rangeColorToHsl(
     color: string | IRangeColor | undefined,
     index?: number,
-    useIndex = true
+    useIndex = true,
 ): IHsl | undefined {
     const rgb = rangeColorToRgb(color, index, useIndex);
 
@@ -385,7 +385,7 @@ export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string |
 export function getLinkRandomColor(
     optColor: string | IOptionsColor,
     blink: boolean,
-    consent: boolean
+    consent: boolean,
 ): IRgb | string | undefined {
     const color = isString(optColor) ? optColor : optColor.value;
 
@@ -433,7 +433,7 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
 export function getHslAnimationFromHsl(
     hsl: IHsl,
     animationOptions: HslAnimation | undefined,
-    reduceFactor: number
+    reduceFactor: number,
 ): IParticleHslAnimation {
     /* color */
     const resColor: IParticleHslAnimation = {
@@ -468,7 +468,7 @@ export function getHslAnimationFromHsl(
 function setColorAnimation(
     colorValue: IParticleValueAnimation<number>,
     colorAnimation: IColorAnimation,
-    reduceFactor: number
+    reduceFactor: number,
 ): void {
     colorValue.enable = colorAnimation.enable;
 

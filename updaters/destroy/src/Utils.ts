@@ -27,7 +27,7 @@ function addSplitParticle(
     engine: Engine,
     container: Container,
     parent: DestroyParticle,
-    splitParticlesOptions?: RecursivePartial<IParticlesOptions>
+    splitParticlesOptions?: RecursivePartial<IParticlesOptions>,
 ): Particle | undefined {
     const destroyOptions = parent.options.destroy;
 

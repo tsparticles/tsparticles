@@ -22,7 +22,7 @@ export class RibbonDrawer implements IShapeDrawer {
         radius: number,
         opacity: number,
         delta: IDelta,
-        ratio: number
+        ratio: number,
     ): void {
         this._update(particle, delta);
 
@@ -35,11 +35,11 @@ export class RibbonDrawer implements IShapeDrawer {
                 step1 = particle.ribbonSteps[i + 1],
                 p0 = Vector.create(
                     step0.position.x + particle.ribbonOffset.x,
-                    step0.position.y + particle.ribbonOffset.y
+                    step0.position.y + particle.ribbonOffset.y,
                 ),
                 p1 = Vector.create(
                     step1.position.x + particle.ribbonOffset.x,
-                    step1.position.y + particle.ribbonOffset.y
+                    step1.position.y + particle.ribbonOffset.y,
                 );
 
             if (this._side(step0.position.x, step0.position.y, step1.position.x, step1.position.y, p1.x, p1.y) < 0) {
@@ -162,7 +162,7 @@ export class RibbonDrawer implements IShapeDrawer {
                 0,
                 0 - i * stepDistance,
                 particle.size.value,
-                particle.ribbonDrag ?? 0
+                particle.ribbonDrag ?? 0,
             );
         }
 
@@ -197,7 +197,7 @@ export class RibbonDrawer implements IShapeDrawer {
                 0,
                 0 - i * (particle.ribbonStepDistance ?? 0),
                 particle.size.value,
-                particle.ribbonDrag ?? 0
+                particle.ribbonDrag ?? 0,
             );
         }
     };
@@ -208,7 +208,7 @@ export class RibbonDrawer implements IShapeDrawer {
         x2,
         y2,
         x3,
-        y3
+        y3,
     ) => {
         return (x1 - x2) * (y3 - y2) - (y1 - y2) * (x3 - x2);
     };

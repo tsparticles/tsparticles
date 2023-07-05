@@ -168,7 +168,11 @@ export class Container {
      * @param id - the id to identify this instance
      * @param sourceOptions - the options to load
      */
-    constructor(engine: Engine, readonly id: string, sourceOptions?: ISourceOptions) {
+    constructor(
+        engine: Engine,
+        readonly id: string,
+        sourceOptions?: ISourceOptions,
+    ) {
         this._engine = engine;
         this.fpsLimit = 120;
         this.smooth = false;
@@ -433,7 +437,7 @@ export class Container {
 
                 return value;
             },
-            2
+            2,
         );
     }
 
@@ -660,7 +664,7 @@ export class Container {
     setNoise(
         noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
         init?: () => void,
-        update?: () => void
+        update?: () => void,
     ): void {
         if (!guardCheck(this)) {
             return;
@@ -679,7 +683,7 @@ export class Container {
     setPath(
         pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
         init?: () => void,
-        update?: () => void
+        update?: () => void,
     ): void {
         if (!pathOrGenerator || !guardCheck(this)) {
             return;
@@ -789,7 +793,7 @@ export class Container {
         const newMaxWidth = this.actualOptions.setResponsive(
             this.canvas.size.width,
             this.retina.pixelRatio,
-            this._options
+            this._options,
         );
 
         this.actualOptions.setTheme(this._currentTheme);

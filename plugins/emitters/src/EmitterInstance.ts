@@ -57,7 +57,7 @@ export class EmitterInstance {
         private readonly emitters: Emitters,
         private readonly container: Container,
         options: RecursivePartial<IEmitter>,
-        position?: ICoordinates
+        position?: ICoordinates,
     ) {
         this._engine = engine;
         this._currentDuration = 0;
@@ -367,7 +367,7 @@ export class EmitterInstance {
     private readonly _setColorAnimation: (animation: IColorAnimation, initValue: number, maxValue: number) => number = (
         animation,
         initValue,
-        maxValue
+        maxValue,
     ) => {
         const container = this.container;
 

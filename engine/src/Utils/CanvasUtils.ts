@@ -33,7 +33,7 @@ export function drawTriangle(
     context: CanvasRenderingContext2D,
     p1: ICoordinates,
     p2: ICoordinates,
-    p3: ICoordinates
+    p3: ICoordinates,
 ): void {
     context.beginPath();
     context.moveTo(p1.x, p1.y);
@@ -64,7 +64,7 @@ export function paintImage(
     context: CanvasRenderingContext2D,
     dimension: IDimension,
     image: HTMLImageElement | undefined,
-    opacity: number
+    opacity: number,
 ): void {
     if (!image) {
         return;
@@ -180,7 +180,7 @@ export function drawShape(
     particle: Particle,
     radius: number,
     opacity: number,
-    delta: IDelta
+    delta: IDelta,
 ): void {
     if (!particle.shape) {
         return;
@@ -210,7 +210,7 @@ export function drawShapeAfterEffect(
     particle: Particle,
     radius: number,
     opacity: number,
-    delta: IDelta
+    delta: IDelta,
 ): void {
     if (!particle.shape) {
         return;
@@ -250,7 +250,7 @@ export function drawParticlePlugin(
     context: CanvasRenderingContext2D,
     plugin: IContainerPlugin,
     particle: Particle,
-    delta: IDelta
+    delta: IDelta,
 ): void {
     if (!plugin.drawParticle) {
         return;

@@ -10,7 +10,12 @@ export class CircleWarp extends Circle {
      * @param radius - Circle's radius
      * @param canvasSize - the canvas size, used for warp formulas
      */
-    constructor(x: number, y: number, radius: number, private readonly canvasSize: IDimension) {
+    constructor(
+        x: number,
+        y: number,
+        radius: number,
+        private readonly canvasSize: IDimension,
+    ) {
         super(x, y, radius);
 
         this.canvasSize = { ...canvasSize };

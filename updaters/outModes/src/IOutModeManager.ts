@@ -7,6 +7,6 @@ export interface IOutModeManager {
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode
+        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
     ): void;
 }

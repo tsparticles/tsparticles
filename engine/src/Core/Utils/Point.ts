@@ -9,5 +9,8 @@ export class Point {
      * @param position - the point position
      * @param particle - the particle assigned to this point
      */
-    constructor(readonly position: ICoordinates, readonly particle: Particle) {}
+    constructor(
+        readonly position: ICoordinates,
+        readonly particle: Particle,
+    ) {}
 }

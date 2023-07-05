@@ -215,7 +215,7 @@ export class Vector3d implements ICoordinates3d {
         return Vector3d.create(
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle),
-            0
+            0,
         );
     }
 

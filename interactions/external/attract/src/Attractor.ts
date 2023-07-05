@@ -194,7 +194,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     private readonly _processAttract: (position: ICoordinates, attractRadius: number, area: Range) => void = (
         position,
         attractRadius,
-        area
+        area,
     ) => {
         const container = this.container,
             attractOptions = container.actualOptions.interactivity.modes.attract;
@@ -211,11 +211,11 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             const attractFactor = clamp(
                 getEasing(attractOptions.easing)(1 - distance / attractRadius) * velocity,
                 0,
-                attractOptions.maxSpeed
+                attractOptions.maxSpeed,
             );
             const normVec = Vector.create(
                 distance === 0 ? velocity : (dx / distance) * attractFactor,
-                distance === 0 ? velocity : (dy / distance) * attractFactor
+                distance === 0 ? velocity : (dy / distance) * attractFactor,
             );
 
             particle.position.subFrom(normVec);

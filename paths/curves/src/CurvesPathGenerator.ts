@@ -33,7 +33,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
                 options.nbHarmonics,
                 options.attenHarmonics,
                 options.lowValue,
-                options.highValue
+                options.highValue,
             );
         }
 

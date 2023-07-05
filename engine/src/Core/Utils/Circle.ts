@@ -12,7 +12,11 @@ export class Circle extends Range {
      * @param y - Y coordinate of the position
      * @param radius - Circle's radius
      */
-    constructor(x: number, y: number, readonly radius: number) {
+    constructor(
+        x: number,
+        y: number,
+        readonly radius: number,
+    ) {
         super(x, y);
     }
 

@@ -24,7 +24,7 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
         -canvasSize.width / 4,
         -canvasSize.height / 4,
         (canvasSize.width * 3) / 2,
-        (canvasSize.height * 3) / 2
+        (canvasSize.height * 3) / 2,
     );
 };
 
@@ -97,7 +97,7 @@ export class Particles {
         for (const particle of options.manualParticles) {
             this.addParticle(
                 particle.position ? getPosition(particle.position, container.canvas.size) : undefined,
-                particle.options
+                particle.options,
             );
         }
     }
@@ -106,7 +106,7 @@ export class Particles {
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
-        initializer?: (particle: Particle) => boolean
+        initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
         const container = this._container,
             options = container.actualOptions,
@@ -353,7 +353,7 @@ export class Particles {
     private readonly _applyDensity: (options: IParticlesOptions, manualCount: number, group?: string) => void = (
         options,
         manualCount,
-        group
+        group,
     ) => {
         if (!options.number.density?.enable) {
             return;
@@ -392,7 +392,7 @@ export class Particles {
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
-        initializer?: (particle: Particle) => boolean
+        initializer?: (particle: Particle) => boolean,
     ) => Particle | undefined = (position, overrideOptions, group, initializer) => {
         try {
             let particle = this.pool.pop();
@@ -436,7 +436,7 @@ export class Particles {
     private readonly _removeParticle: (index: number, group?: string, override?: boolean) => boolean = (
         index,
         group,
-        override
+        override,
     ) => {
         const particle = this._array[index];
 

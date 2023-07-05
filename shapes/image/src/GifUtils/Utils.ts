@@ -42,7 +42,7 @@ async function parseExtensionBlock(
     byteStream: ByteStream,
     gif: GIF,
     getFrameIndex: (increment: boolean) => number,
-    getTransparencyIndex: (newValue?: number | null) => number
+    getTransparencyIndex: (newValue?: number | null) => number,
 ): Promise<void> {
     switch (byteStream.nextByte()) {
         case GIFDataHeaders.GraphicsControlExtension: {
@@ -163,7 +163,7 @@ async function parseImageBlock(
     avgAlpha: boolean,
     getFrameIndex: (increment: boolean) => number,
     getTransparencyIndex: (newValue?: number | null) => number,
-    progressCallback?: GIFProgressCallbackFunction
+    progressCallback?: GIFProgressCallbackFunction,
 ): Promise<void> {
     //~ parse frame image - image descriptor
     const frame = gif.frames[getFrameIndex(true)];
@@ -274,7 +274,7 @@ async function parseImageBlock(
                                 [r, g, b, a],
                                 InterlaceOffsets[pass] * frame.width +
                                     InterlaceSteps[pass] * lineIndex +
-                                    (pixelPos % (frame.width * 4))
+                                    (pixelPos % (frame.width * 4)),
                             );
 
                             pixelPos += 4;
@@ -300,7 +300,7 @@ async function parseImageBlock(
                 getFrameIndex(false) + 1,
                 image,
                 { x: frame.left, y: frame.top },
-                { width: gif.width, height: gif.height }
+                { width: gif.width, height: gif.height },
             );
         }
 
@@ -352,7 +352,7 @@ async function parseImageBlock(
             getFrameIndex(false) + 1,
             frame.image,
             { x: frame.left, y: frame.top },
-            { width: gif.width, height: gif.height }
+            { width: gif.width, height: gif.height },
         );
     }
 }
@@ -374,7 +374,7 @@ async function parseBlock(
     avgAlpha: boolean,
     getFrameIndex: (increment: boolean) => number,
     getTransparencyIndex: (newValue?: number | null) => number,
-    progressCallback?: GIFProgressCallbackFunction
+    progressCallback?: GIFProgressCallbackFunction,
 ): Promise<boolean> {
     switch (byteStream.nextByte()) {
         case GIFDataHeaders.EndOfFile:
@@ -420,7 +420,7 @@ export function getGIFLoopAmount(gif: GIF): number {
 export async function decodeGIF(
     gifURL: string,
     progressCallback?: GIFProgressCallbackFunction,
-    avgAlpha?: boolean
+    avgAlpha?: boolean,
 ): Promise<GIF> {
     if (!avgAlpha) avgAlpha = false;
 

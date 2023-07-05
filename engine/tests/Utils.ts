@@ -127,7 +127,7 @@ describe("Utils", () => {
             const weight2 = 0;
 
             expect(NumberUtils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
-                Math.floor(comp1)
+                Math.floor(comp1),
             );
         });
 
@@ -178,7 +178,7 @@ describe("Utils", () => {
             const randomItem = Utils.itemFromArray(numericArray);
 
             expect(numericArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
-                randomItem
+                randomItem,
             );
         });
 
@@ -191,7 +191,7 @@ describe("Utils", () => {
             const randomItem = Utils.itemFromArray(stringArray);
 
             expect(stringArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
-                randomItem
+                randomItem,
             );
         });
 
@@ -204,7 +204,7 @@ describe("Utils", () => {
             const randomObject = Utils.itemFromArray(objectArray);
 
             expect(objectArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
-                randomObject
+                randomObject,
             );
         });
 

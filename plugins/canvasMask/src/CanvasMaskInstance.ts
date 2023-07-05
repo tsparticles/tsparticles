@@ -69,7 +69,7 @@ export class CanvasMaskInstance implements IContainerPlugin {
             options.position,
             options.scale,
             options.override,
-            options.pixels.filter
+            options.pixels.filter,
         );
     }
 }

@@ -237,7 +237,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         position: ICoordinates,
         repulseRadius: number,
         area: Range,
-        divRepulse?: RepulseDiv
+        divRepulse?: RepulseDiv,
     ) => void = (position, repulseRadius, area, divRepulse) => {
         const container = this.container,
             query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)),
@@ -253,11 +253,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 repulseFactor = clamp(
                     getEasing(repulseOptions.easing)(1 - distance / repulseRadius) * velocity,
                     0,
-                    repulseOptions.maxSpeed
+                    repulseOptions.maxSpeed,
                 ),
                 normVec = Vector.create(
                     distance === 0 ? velocity : (dx / distance) * repulseFactor,
-                    distance === 0 ? velocity : (dy / distance) * repulseFactor
+                    distance === 0 ? velocity : (dy / distance) * repulseFactor,
                 );
 
             particle.position.addTo(normVec);
@@ -293,7 +293,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                               elem.offsetLeft * pxRatio,
                               elem.offsetTop * pxRatio,
                               elem.offsetWidth * pxRatio,
-                              elem.offsetHeight * pxRatio
+                              elem.offsetHeight * pxRatio,
                           ),
                 divs = repulse.divs,
                 divRepulse = divMode(divs, elem);

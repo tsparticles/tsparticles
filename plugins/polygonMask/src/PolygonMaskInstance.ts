@@ -487,7 +487,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     private readonly _polygonBounce: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean = (
         particle,
         _delta,
-        direction
+        direction,
     ) => {
         const options = this._container.actualOptions.polygon;
 

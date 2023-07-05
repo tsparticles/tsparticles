@@ -12,7 +12,10 @@ import { DestroyMode } from "./Enums/DestroyMode";
 import { split } from "./Utils";
 
 export class DestroyUpdater implements IParticleUpdater {
-    constructor(private readonly engine: Engine, private readonly container: Container) {}
+    constructor(
+        private readonly engine: Engine,
+        private readonly container: Container,
+    ) {}
 
     init(particle: DestroyParticle): void {
         const container = this.container,

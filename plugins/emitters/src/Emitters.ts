@@ -27,7 +27,10 @@ export class Emitters implements IContainerPlugin {
 
     private readonly _engine;
 
-    constructor(engine: EmittersEngine, private readonly container: EmitterContainer) {
+    constructor(
+        engine: EmittersEngine,
+        private readonly container: EmitterContainer,
+    ) {
         this._engine = engine;
         this.array = [];
         this.emitters = [];

@@ -17,7 +17,7 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
 
     static create(
         source?: OptionsColor,
-        data?: SingleOrMultiple<string> | RecursivePartial<IOptionsColor>
+        data?: SingleOrMultiple<string> | RecursivePartial<IOptionsColor>,
     ): OptionsColor {
         const color = new OptionsColor();
 

@@ -300,7 +300,7 @@ export class Particle implements IParticle {
         readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
+        group?: string,
     ) {
         this._engine = engine;
 
@@ -374,7 +374,7 @@ export class Particle implements IParticle {
         id: number,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
+        group?: string,
     ): void {
         const container = this.container,
             engine = this._engine;
@@ -549,7 +549,7 @@ export class Particle implements IParticle {
         container: Container,
         position: ICoordinates | undefined,
         zIndex: number,
-        tryCount?: number
+        tryCount?: number,
     ) => Vector3d = (container, position, zIndex, tryCount = 0) => {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
@@ -650,7 +650,7 @@ export class Particle implements IParticle {
         }
 
         return !!this.container.particles.find(
-            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius()
+            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius(),
         );
     };
 
@@ -710,7 +710,7 @@ export class Particle implements IParticle {
 
     private readonly _loadShapeData: (shapeOptions: IShape, reduceDuplicates: boolean) => IShapeValues | undefined = (
         shapeOptions,
-        reduceDuplicates
+        reduceDuplicates,
     ) => {
         const shapeData = shapeOptions.options[this.shape];
 
@@ -723,7 +723,7 @@ export class Particle implements IParticle {
                 close: shapeOptions.close,
                 fill: shapeOptions.fill,
             },
-            itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)
+            itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates),
         ) as IShapeValues;
     };
 }

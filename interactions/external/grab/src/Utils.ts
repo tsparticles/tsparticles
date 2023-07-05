@@ -16,7 +16,7 @@ export function drawGrabLine(
     begin: ICoordinates,
     end: ICoordinates,
     colorLine: IRgb,
-    opacity: number
+    opacity: number,
 ): void {
     drawLine(context, begin, end);
 
@@ -37,7 +37,7 @@ export function drawGrab(
     particle: LinkParticle,
     lineColor: IRgb,
     opacity: number,
-    mousePos: ICoordinates
+    mousePos: ICoordinates,
 ): void {
     container.canvas.draw((ctx) => {
         const beginPos = particle.getPosition();

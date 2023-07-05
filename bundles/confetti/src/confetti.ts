@@ -358,7 +358,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
  */
 type ConfettiFunc = (
     idOrOptions: ConfettiFirstParam,
-    confettiOptions?: RecursivePartial<IConfettiOptions>
+    confettiOptions?: RecursivePartial<IConfettiOptions>,
 ) => Promise<Container | undefined>;
 
 /**
@@ -368,7 +368,7 @@ type ConfettiFunc = (
  */
 export async function confetti(
     idOrOptions: ConfettiFirstParam,
-    confettiOptions?: RecursivePartial<IConfettiOptions>
+    confettiOptions?: RecursivePartial<IConfettiOptions>,
 ): Promise<Container | undefined> {
     await initPlugins();
 
@@ -397,7 +397,7 @@ export async function confetti(
  */
 confetti.create = async (
     canvas: HTMLCanvasElement,
-    options: RecursivePartial<IConfettiOptions>
+    options: RecursivePartial<IConfettiOptions>,
 ): Promise<ConfettiFunc> => {
     if (!canvas) {
         return confetti;
@@ -411,7 +411,7 @@ confetti.create = async (
 
     return async (
         idOrOptions: ConfettiFirstParam,
-        confettiOptions?: RecursivePartial<IConfettiOptions>
+        confettiOptions?: RecursivePartial<IConfettiOptions>,
     ): Promise<Container | undefined> => {
         let subOptions: RecursivePartial<IConfettiOptions>;
         let subId: string;

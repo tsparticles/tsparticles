@@ -18,7 +18,7 @@ import type { ISvgPath } from "./Interfaces/ISvgPath";
 export function drawPolygonMask(
     context: CanvasRenderingContext2D,
     rawData: ICoordinates[],
-    stroke: IPolygonMaskDrawStroke
+    stroke: IPolygonMaskDrawStroke,
 ): void {
     const color = rangeColorToRgb(stroke.color);
 
@@ -49,7 +49,7 @@ export function drawPolygonMaskPath(
     context: CanvasRenderingContext2D,
     path: Path2D,
     stroke: IPolygonMaskDrawStroke,
-    position: ICoordinates
+    position: ICoordinates,
 ): void {
     context.setTransform(1, 0, 0, 1, position.x, position.y);
 
@@ -159,7 +159,7 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
 export function calcClosestPtOnSegment(
     s1: ICoordinates,
     s2: ICoordinates,
-    pos: ICoordinates
+    pos: ICoordinates,
 ): ICoordinates & { isOnSegment: boolean } {
     // calc delta distance: source point to line start, line start to end
     const { dx: dx1, dy: dy1 } = getDistances(pos, s1),

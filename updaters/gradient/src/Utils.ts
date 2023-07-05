@@ -51,7 +51,7 @@ function updateColorValue(
     delta: IDelta,
     colorValue: IParticleValueAnimation<number>,
     max: number,
-    decrease: boolean
+    decrease: boolean,
 ): void {
     if (!colorValue || !colorValue.enable) {
         return;

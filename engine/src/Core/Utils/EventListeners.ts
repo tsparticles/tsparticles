@@ -29,7 +29,7 @@ function manageListener(
     event: string,
     handler: EventListenerOrEventListenerObject,
     add: boolean,
-    options?: boolean | AddEventListenerOptions | EventListenerObject
+    options?: boolean | AddEventListenerOptions | EventListenerObject,
 ): void {
     if (add) {
         let addOptions: AddEventListenerOptions = { passive: true };
@@ -212,7 +212,7 @@ export class EventListeners {
 
     private readonly _manageInteractivityListeners: (mouseLeaveTmpEvent: string, add: boolean) => void = (
         mouseLeaveTmpEvent,
-        add
+        add,
     ) => {
         const handlers = this._handlers,
             container = this.container,

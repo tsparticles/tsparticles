@@ -165,7 +165,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         item: RecursivePartial<SingleOrMultiple<T>> | undefined,
         mainKey: string,
         altKey: string,
-        altOverride: boolean
+        altOverride: boolean,
     ) => void = (item, mainKey, altKey, altOverride) => {
         if (!item) {
             return;

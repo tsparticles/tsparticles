@@ -99,7 +99,7 @@ export class MultilineTextDrawer implements IShapeDrawer {
         radius: number,
         opacity: number,
         index: number,
-        fill: boolean
+        fill: boolean,
     ) => void = (context, line, radius, opacity, index, fill) => {
         const offsetX = (line.length * radius) / 2,
             pos = {

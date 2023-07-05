@@ -183,7 +183,7 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
 export function getParticleDirectionAngle(
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
     position: ICoordinates,
-    center: ICoordinates
+    center: ICoordinates,
 ): number {
     if (isNumber(direction)) {
         return (direction * Math.PI) / 180;

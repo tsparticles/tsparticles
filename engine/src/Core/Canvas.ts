@@ -21,7 +21,7 @@ import { generatedAttribute } from "./Utils/Constants";
 function setTransformValue(
     factor: IParticleTransformValues,
     newFactor: IParticleTransformValues,
-    key: keyof IParticleTransformValues
+    key: keyof IParticleTransformValues,
 ): void {
     const newValue = newFactor[key];
 
@@ -462,7 +462,7 @@ export class Canvas {
         radius: number,
         zOpacity: number,
         colorStyles: IParticleColorStyle,
-        transform: IParticleTransformValues
+        transform: IParticleTransformValues,
     ) => void = (ctx, particle, radius, zOpacity, colorStyles, transform) => {
         for (const updater of this._preDrawUpdaters) {
             if (updater.getColorStyles) {

@@ -49,7 +49,7 @@ class AbsorbersPlugin implements IPlugin {
                 tmp.load(absorber);
 
                 return tmp;
-            }
+            },
         );
     }
 

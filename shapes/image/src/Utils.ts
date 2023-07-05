@@ -181,7 +181,7 @@ export function replaceImageColor(
     image: IImage,
     imageData: IImageShape,
     color: IHsl,
-    particle: Particle
+    particle: Particle,
 ): Promise<IParticleImage> {
     const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1),
         imageRes: IParticleImage = {

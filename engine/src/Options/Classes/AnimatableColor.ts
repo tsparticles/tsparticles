@@ -22,7 +22,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
 
     static create(
         source?: AnimatableColor,
-        data?: SingleOrMultiple<string> | RecursivePartial<IAnimatableColor>
+        data?: SingleOrMultiple<string> | RecursivePartial<IAnimatableColor>,
     ): AnimatableColor {
         const color = new AnimatableColor();
 

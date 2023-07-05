@@ -12,7 +12,7 @@ const drawRoundedRect = (
         bottomRight: 4,
         bottomLeft: 4,
         topLeft: 4,
-    }
+    },
 ): void => {
     const { x, y, width, height } = info,
         r = x + width,
@@ -46,7 +46,7 @@ export class RoundedRectDrawer implements IShapeDrawer {
                 topRight: roundedRect.borderRadius,
                 bottomLeft: roundedRect.borderRadius,
                 bottomRight: roundedRect.borderRadius,
-            }
+            },
         );
     }
 

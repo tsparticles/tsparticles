@@ -58,7 +58,7 @@ export class OrbitUpdater implements IParticleUpdater {
                 particle.orbitWidth ?? 1,
                 (particle.orbitRotation ?? 0) * container.retina.pixelRatio,
                 start,
-                end
+                end,
             );
         });
     }

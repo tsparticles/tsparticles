@@ -50,7 +50,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         value:
             | PolygonMaskInlineArrangement
             | keyof typeof PolygonMaskInlineArrangement
-            | PolygonMaskInlineArrangementAlt
+            | PolygonMaskInlineArrangementAlt,
     ) {
         this.inline.arrangement = value;
     }
