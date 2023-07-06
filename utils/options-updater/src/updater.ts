@@ -165,7 +165,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
 
                 const newOptions = objectDifference(
                     fileOptions as unknown as CustomRecord,
-                    fileContainer.options as unknown as CustomRecord
+                    fileContainer.options as unknown as CustomRecord,
                 );
 
                 await fs.writeFile(srcPath, JSON.stringify(newOptions, undefined, 4));
@@ -193,7 +193,7 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
 
                     const newOptions = objectDifference(
                         fileOptions as unknown as CustomRecord,
-                        fileContainer.options as unknown as CustomRecord
+                        fileContainer.options as unknown as CustomRecord,
                     );
 
                     await fs.writeFile(filePath, JSON.stringify(newOptions, undefined, 4));
