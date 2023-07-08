@@ -11,6 +11,7 @@ export interface IContainerPlugin {
     clickPositionValid?: (position: ICoordinates) => boolean;
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+    export?: (type: string, callback: Function) => Promise<boolean>;
     handleClickMode?: (mode: ClickMode | string) => void;
     init?: () => Promise<void>;
     particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;

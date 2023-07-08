@@ -423,6 +423,12 @@ export class Container {
         });
     }
 
+    async export(type: string, callback: Function): Promise<void> {
+        for (const [, plugin] of this.plugins) {
+            plugin.export && (await plugin.export(type, callback));
+        }
+    }
+
     /**
      * Exports the current configuration using `options` property
      * @returns a JSON string created from `options` property

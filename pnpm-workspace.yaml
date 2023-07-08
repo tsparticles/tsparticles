@@ -9,6 +9,7 @@ packages:
   - 'paths/*'
   - 'plugins/*'
   - 'plugins/easings/*'
+  - 'plugins/exports/*'
   - 'shapes/*'
   - 'updaters/*'
   - 'utils/*'
