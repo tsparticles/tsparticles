@@ -29,14 +29,20 @@ export class ExportVideoInstance implements IContainerPlugin {
         }
 
         const stream = element.captureStream(data.fps ?? this._container.actualOptions.fpsLimit),
+            mimeType = data.mimeType ?? "video/webm; codecs=vp9",
             recorder = new MediaRecorder(stream, {
-                mimeType: data.mimeType ?? "video/webm; codecs=vp9",
-            });
+                mimeType,
+            }),
+            chunks: Blob[] = [];
 
-        recorder.ondataavailable = (event): void => {
-            data.callback(event.data);
+        recorder.addEventListener("dataavailable", (event): void => {
+            chunks.push(event.data);
+        });
 
+        setTimeout(() => {
             recorder.stop();
-        };
+
+            data.callback(new Blob(chunks, { type: mimeType }));
+        }, data.duration ?? 1000);
     }
 }

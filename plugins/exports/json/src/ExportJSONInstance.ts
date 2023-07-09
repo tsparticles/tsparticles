@@ -12,23 +12,29 @@ export class ExportJSONInstance implements IContainerPlugin {
     async export(type: string, data: IExportPluginData): Promise<boolean> {
         switch (type) {
             case "json":
-                data.callback(
-                    JSON.stringify(
-                        this._container.actualOptions,
-                        (key, value) => {
-                            if (key.startsWith("_")) {
-                                return;
-                            }
-
-                            return value;
-                        },
-                        2,
-                    ),
-                );
+                this._exportJSON(data);
 
                 return true;
         }
 
         return false;
     }
+
+    private readonly _exportJSON = (data: IExportPluginData): void => {
+        const json = JSON.stringify(
+                this._container.actualOptions,
+                (key, value) => {
+                    if (key.startsWith("_")) {
+                        return;
+                    }
+
+                    return value;
+                },
+                2,
+            ),
+            contentType = "application/json",
+            blob = new Blob([json], { type: contentType });
+
+        data.callback(blob);
+    };
 }

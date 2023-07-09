@@ -1,4 +1,4 @@
 export interface IExportPluginData {
-    callback: Function;
+    callback: BlobCallback;
     options: Record<string, unknown>;
 }

@@ -425,8 +425,14 @@ export class Container {
     }
 
     async export(type: string, data: IExportPluginData): Promise<void> {
+        let supported = false;
+
         for (const [, plugin] of this.plugins) {
-            plugin.export && (await plugin.export(type, data));
+            supported = !!plugin.export && (await plugin.export(type, data));
+        }
+
+        if (!supported) {
+            getLogger().error(`${errorPrefix} - Unable to export with type ${type}`);
         }
     }
 
