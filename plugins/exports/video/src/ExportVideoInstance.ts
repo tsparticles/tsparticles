@@ -33,7 +33,7 @@ export class ExportVideoInstance implements IContainerPlugin {
             return;
         }
 
-        return await new Promise<Blob | undefined>((resolve) => {
+        return new Promise<Blob | undefined>((resolve) => {
             const stream = element.captureStream(data.fps ?? this._container.actualOptions.fpsLimit),
                 mimeType = data.mimeType ?? "video/webm; codecs=vp9",
                 recorder = new MediaRecorder(stream, {

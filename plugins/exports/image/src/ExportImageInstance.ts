@@ -33,7 +33,7 @@ export class ExportImageInstance implements IContainerPlugin {
             return;
         }
 
-        return await new Promise<Blob | undefined>((resolve) => {
+        return new Promise<Blob | undefined>((resolve) => {
             element.toBlob(
                 (blob) => {
                     if (!blob) {
