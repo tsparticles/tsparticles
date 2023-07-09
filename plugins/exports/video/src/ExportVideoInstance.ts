@@ -1,4 +1,4 @@
-import type { Container, Engine, IContainerPlugin, IExportPluginData } from "tsparticles-engine";
+import type { Container, Engine, ExportResult, IContainerPlugin } from "tsparticles-engine";
 import type { IExportVideoData } from "./IExportVideoData";
 
 export class ExportVideoInstance implements IContainerPlugin {
@@ -10,39 +10,52 @@ export class ExportVideoInstance implements IContainerPlugin {
         this._engine = engine;
     }
 
-    async export(type: string, data: IExportPluginData): Promise<boolean> {
+    async export(type: string, data: Record<string, unknown>): Promise<ExportResult> {
+        const res: ExportResult = {
+            supported: false,
+        };
+
         switch (type) {
             case "video":
-                this._exportVideo(data);
+                res.supported = true;
+                res.blob = await this._exportVideo(data as IExportVideoData);
 
-                return true;
+                break;
         }
 
-        return false;
+        return res;
     }
 
-    private _exportVideo(data: IExportVideoData): void {
+    private readonly _exportVideo: (data: IExportVideoData) => Promise<Blob | undefined> = async (data) => {
         const element = this._container.canvas.element;
 
         if (!element) {
             return;
         }
 
-        const stream = element.captureStream(data.fps ?? this._container.actualOptions.fpsLimit),
-            mimeType = data.mimeType ?? "video/webm; codecs=vp9",
-            recorder = new MediaRecorder(stream, {
-                mimeType,
-            }),
-            chunks: Blob[] = [];
+        return await new Promise<Blob | undefined>((resolve) => {
+            const stream = element.captureStream(data.fps ?? this._container.actualOptions.fpsLimit),
+                mimeType = data.mimeType ?? "video/webm; codecs=vp9",
+                recorder = new MediaRecorder(stream, {
+                    mimeType,
+                }),
+                chunks: Blob[] = [];
 
-        recorder.addEventListener("dataavailable", (event): void => {
-            chunks.push(event.data);
+            let record = true;
+
+            recorder.addEventListener("dataavailable", (event): void => {
+                chunks.push(event.data);
+
+                if (!record) {
+                    recorder.stop();
+
+                    resolve(new Blob(chunks, { type: mimeType }));
+                }
+            });
+
+            setTimeout(() => {
+                record = false;
+            }, data.duration ?? 1000);
         });
-
-        setTimeout(() => {
-            recorder.stop();
-
-            data.callback(new Blob(chunks, { type: mimeType }));
-        }, data.duration ?? 1000);
-    }
+    };
 }

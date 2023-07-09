@@ -12,7 +12,6 @@ export * from "./Core/Interfaces/IDelta";
 export * from "./Core/Interfaces/IDimension";
 export * from "./Core/Interfaces/IDistance";
 export * from "./Core/Interfaces/IDrawParticleParams";
-export * from "./Core/Interfaces/IExportPluginData";
 export * from "./Core/Interfaces/IExternalInteractor";
 export * from "./Core/Interfaces/IInteractor";
 export * from "./Core/Interfaces/ILoadParams";
@@ -110,6 +109,7 @@ export * from "./Options/Interfaces/Theme/IThemeDefault";
 
 export * from "./Types/CustomEventArgs";
 export * from "./Types/CustomEventListener";
+export * from "./Types/ExportResult";
 export * from "./Types/ISourceOptions";
 export * from "./Types/ParticlesGroups";
 export * from "./Types/PathOptions";

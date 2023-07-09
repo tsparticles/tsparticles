@@ -8,7 +8,6 @@ import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivi
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
-import type { IExportPluginData } from "./Interfaces/IExportPluginData";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import type { ISourceOptions } from "../Types/ISourceOptions";
@@ -424,16 +423,22 @@ export class Container {
         });
     }
 
-    async export(type: string, data: IExportPluginData): Promise<void> {
-        let supported = false;
-
+    async export(type: string, options: Record<string, unknown>): Promise<Blob | undefined> {
         for (const [, plugin] of this.plugins) {
-            supported = !!plugin.export && (await plugin.export(type, data));
+            if (!plugin.export) {
+                continue;
+            }
+
+            const res = await plugin.export(type, options);
+
+            if (!res.supported) {
+                continue;
+            }
+
+            return res.blob;
         }
 
-        if (!supported) {
-            getLogger().error(`${errorPrefix} - Unable to export with type ${type}`);
-        }
+        getLogger().error(`${errorPrefix} - Export plugin with type ${type} not found`);
     }
 
     /**

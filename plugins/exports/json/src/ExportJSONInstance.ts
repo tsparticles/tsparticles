@@ -1,4 +1,4 @@
-import type { Container, Engine, IContainerPlugin, IExportPluginData } from "tsparticles-engine";
+import type { Container, Engine, ExportResult, IContainerPlugin } from "tsparticles-engine";
 
 export class ExportJSONInstance implements IContainerPlugin {
     private readonly _container: Container;
@@ -9,32 +9,35 @@ export class ExportJSONInstance implements IContainerPlugin {
         this._engine = engine;
     }
 
-    async export(type: string, data: IExportPluginData): Promise<boolean> {
+    async export(type: string): Promise<ExportResult> {
+        const res: ExportResult = {
+            supported: false,
+        };
+
         switch (type) {
             case "json":
-                this._exportJSON(data);
+                res.supported = true;
+                res.blob = await this._exportJSON();
 
-                return true;
+                break;
         }
 
-        return false;
+        return res;
     }
 
-    private readonly _exportJSON = (data: IExportPluginData): void => {
+    private readonly _exportJSON = async (): Promise<Blob | undefined> => {
         const json = JSON.stringify(
-                this._container.actualOptions,
-                (key, value) => {
-                    if (key.startsWith("_")) {
-                        return;
-                    }
+            this._container.actualOptions,
+            (key, value) => {
+                if (key.startsWith("_")) {
+                    return;
+                }
 
-                    return value;
-                },
-                2,
-            ),
-            contentType = "application/json",
-            blob = new Blob([json], { type: contentType });
+                return value;
+            },
+            2,
+        );
 
-        data.callback(blob);
+        return new Blob([json], { type: "application/json" });
     };
 }

@@ -1,6 +1,4 @@
-import type { IExportPluginData } from "tsparticles-engine";
-
-export interface IExportImageData extends IExportPluginData {
+export interface IExportImageData {
     quality?: number;
     type?: string;
 }

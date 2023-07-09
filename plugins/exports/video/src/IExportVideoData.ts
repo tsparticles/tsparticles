@@ -1,6 +1,4 @@
-import type { IExportPluginData } from "tsparticles-engine";
-
-export interface IExportVideoData extends IExportPluginData {
+export interface IExportVideoData {
     duration?: number;
     fps?: number;
     mimeType?: string;
