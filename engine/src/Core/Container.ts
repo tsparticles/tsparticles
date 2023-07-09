@@ -8,6 +8,7 @@ import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivi
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
+import type { IExportPluginData } from "./Interfaces/IExportPluginData";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import type { ISourceOptions } from "../Types/ISourceOptions";
@@ -423,50 +424,10 @@ export class Container {
         });
     }
 
-    async export(type: string, callback: Function): Promise<void> {
+    async export(type: string, data: IExportPluginData): Promise<void> {
         for (const [, plugin] of this.plugins) {
-            plugin.export && (await plugin.export(type, callback));
+            plugin.export && (await plugin.export(type, data));
         }
-    }
-
-    /**
-     * Exports the current configuration using `options` property
-     * @returns a JSON string created from `options` property
-     */
-    exportConfiguration(): string {
-        return JSON.stringify(
-            this.actualOptions,
-            (key, value) => {
-                if (key.startsWith("_")) {
-                    return;
-                }
-
-                return value;
-            },
-            2,
-        );
-    }
-
-    /**
-     * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
-     * @param callback - The callback to handle the image
-     * @param type - The exported image type
-     * @param quality - The exported image quality
-     */
-    exportImage(callback: BlobCallback, type?: string, quality?: number): void {
-        const element = this.canvas.element;
-
-        if (element) {
-            element.toBlob(callback, type ?? "image/png", quality);
-        }
-    }
-
-    /**
-     * @deprecated this method is deprecated, please use the exportImage method
-     * @param callback - The callback to handle the image
-     */
-    exportImg(callback: BlobCallback): void {
-        this.exportImage(callback);
     }
 
     /**
