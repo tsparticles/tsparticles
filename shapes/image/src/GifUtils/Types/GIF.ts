@@ -34,7 +34,7 @@ export interface GIF {
     globalColorTable: IRgb[];
 
     /**
-     * the height of the image in pixels (locical screen size)
+     * the height of the image in pixels (logical screen size)
      */
     height: number;
 
@@ -49,12 +49,12 @@ export interface GIF {
     sortFlag: boolean;
 
     /**
-     * the total duration of the gif in milliseconds (all delays added together) - will be infinite if there is a frame with 0 delay
+     * the total duration of the gif in milliseconds (all delays added together) - will be `Infinity` if there is a frame with 0 delay
      */
     totalTime: number;
 
     /**
-     * the width of the image in pixels (locical screen size)
+     * the width of the image in pixels (logical screen size)
      */
     width: number;
 }

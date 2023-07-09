@@ -90,7 +90,7 @@ async function parseExtensionBlock(
                 identifier: byteStream.getString(8),
                 //~ application authentication code (3B) - 3 bytes to authenticate the application identifier
                 authenticationCode: byteStream.getString(3),
-                //~ application data blocks - the data of this application extension
+                //~ application data blocks - the (raw) data of this application extension
                 data: byteStream.readSubBlocksBin(),
             };
 
@@ -565,12 +565,19 @@ export async function decodeGIF(
                 transparencyIndex = -1;
                 incrementFrameIndex = false;
             }
-
-            //~ artificial delay so other processes get some processing time
-            await new Promise((end) => setTimeout(end, 0));
         } while (!(await parseBlock(byteStream, gif, avgAlpha, getframeIndex, getTransparencyIndex, progressCallback)));
 
         gif.frames.length--;
+
+        for (const frame of gif.frames) {
+            //~ set total time to infinity if the user input delay flag is set and there is no timeout
+            if (frame.userInputDelayFlag && frame.delayTime === 0) {
+                gif.totalTime = Infinity;
+                break;
+            }
+
+            gif.totalTime += frame.delayTime;
+        }
 
         return gif;
     } catch (error) {

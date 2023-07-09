@@ -1034,6 +1034,13 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
+  plugins/exports/video:
+    dependencies:
+      tsparticles-engine:
+        specifier: ^2.10.1
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   plugins/hsvColor:
     dependencies:
       tsparticles-engine:

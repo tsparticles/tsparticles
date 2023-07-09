@@ -5,7 +5,7 @@ export interface ApplicationExtension {
     authenticationCode: string;
 
     /**
-     * the data of this application extension
+     * the (raw) data of this application extension
      */
     data: Uint8Array;
 
