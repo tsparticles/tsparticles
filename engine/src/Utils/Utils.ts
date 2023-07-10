@@ -70,11 +70,17 @@ interface ILogger {
 }
 
 const _logger: ILogger = {
+    // eslint-disable-next-line no-console
     debug: console.debug,
+    // eslint-disable-next-line no-console
     error: console.error,
+    // eslint-disable-next-line no-console
     info: console.info,
+    // eslint-disable-next-line no-console
     log: console.log,
+    // eslint-disable-next-line no-console
     verbose: console.log,
+    // eslint-disable-next-line no-console
     warning: console.warn,
 };
 
@@ -648,10 +654,17 @@ function getPositionOrSize(
 
     const isPosition = "x" in positionOrSize;
 
-    return {
-        x: ((isPosition ? positionOrSize.x : positionOrSize.width) / 100) * canvasSize.width,
-        y: ((isPosition ? positionOrSize.y : positionOrSize.height) / 100) * canvasSize.height,
-    };
+    if (isPosition) {
+        return {
+            x: (positionOrSize.x / 100) * canvasSize.width,
+            y: (positionOrSize.y / 100) * canvasSize.height,
+        };
+    } else {
+        return {
+            width: (positionOrSize.width / 100) * canvasSize.width,
+            height: (positionOrSize.height / 100) * canvasSize.height,
+        };
+    }
 }
 
 /**

@@ -13,7 +13,7 @@ export class LineDrawer implements IShapeDrawer {
         context.moveTo(-radius / 2, 0);
         context.lineTo(radius / 2, 0);
 
-        context.lineCap = shapeData.cap ?? "butt";
+        context.lineCap = shapeData?.cap ?? "butt";
     }
 
     getSidesCount(): number {

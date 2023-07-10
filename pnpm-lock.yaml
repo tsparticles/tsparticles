@@ -24,8 +24,8 @@ importers:
         specifier: ^1.8.0
         version: 1.8.0(webpack-cli@5.1.4)
       '@tsparticles/eslint-config':
-        specifier: ^1.15.0
-        version: 1.15.0
+        specifier: ^1.16.0
+        version: 1.16.0
       '@tsparticles/prettier-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -33,8 +33,8 @@ importers:
         specifier: ^1.14.0
         version: 1.14.0
       '@tsparticles/webpack-plugin':
-        specifier: ^1.18.0
-        version: 1.18.0
+        specifier: ^1.19.0
+        version: 1.19.0
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -3624,10 +3624,10 @@ packages:
     resolution: {integrity: sha512-O6fn5YPxlZeBUGcsahZvK8wRMeCjGdsBHNz9mc7/TXfgUC5sZKOo6Ij2AQ2ddE0t1XCtnK8FECEub6aQ42JKXQ==}
     hasBin: true
     dependencies:
-      '@tsparticles/eslint-config': 1.15.0
+      '@tsparticles/eslint-config': 1.16.0
       '@tsparticles/prettier-config': 1.11.0
       '@tsparticles/tsconfig': 1.14.0
-      '@tsparticles/webpack-plugin': 1.18.0
+      '@tsparticles/webpack-plugin': 1.19.0
       '@typescript-eslint/eslint-plugin': 5.61.0(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)(typescript@5.1.6)
       '@typescript-eslint/parser': 5.61.0(eslint@8.44.0)(typescript@5.1.6)
       commander: 11.0.0
@@ -3674,6 +3674,26 @@ packages:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
+    dev: false
+
+  /@tsparticles/eslint-config@1.16.0:
+    resolution: {integrity: sha512-1VWEFfMOM0s/X6RoE+pIe23T17hpt5NT+XQq+QnpvCdvil82JHpYU8vyrcpJapzg7PUbUSJf/d/soSef1jEGrQ==}
+    dependencies:
+      '@tsparticles/prettier-config': 1.11.0
+      '@typescript-eslint/eslint-plugin': 5.61.0(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)(typescript@5.1.6)
+      '@typescript-eslint/parser': 5.61.0(eslint@8.44.0)(typescript@5.1.6)
+      eslint: 8.44.0
+      eslint-config-prettier: 8.8.0(eslint@8.44.0)
+      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)
+      eslint-plugin-jsdoc: 46.4.3(eslint@8.44.0)
+      eslint-plugin-tsdoc: 0.2.17
+      prettier: 3.0.0
+      typescript: 5.1.6
+    transitivePeerDependencies:
+      - eslint-import-resolver-typescript
+      - eslint-import-resolver-webpack
+      - supports-color
+    dev: true
 
   /@tsparticles/prettier-config@1.11.0:
     resolution: {integrity: sha512-DTUBCPNhY7t5XMVAPOSxfeYCJIKqEUrZF0DC13zUBnhEf6QjYA5f67XRx7+LdSAORog35Qa/2QSYScajKMs/sw==}
@@ -3725,12 +3745,12 @@ packages:
       - webpack-dev-server
     dev: false
 
-  /@tsparticles/webpack-plugin@1.18.0:
-    resolution: {integrity: sha512-nyBhhTqX6LQNI+ZPUSAoGvCZZiU5WHRW0k4Z80hsDA9RjFdILmqGAUub5XluoWYZ//Ny0eFLqfJODwmaiJTNKw==}
+  /@tsparticles/webpack-plugin@1.19.0:
+    resolution: {integrity: sha512-VHkjq52OZapOPyeq7HgCQ3UdEghgjp2trHHRmKG903r3bvbBwrrBVx+SvZneCVWLlaRjF861laAd32IhoTqvKA==}
     dependencies:
       '@babel/core': 7.22.7
       '@babel/preset-env': 7.22.7(@babel/core@7.22.7)
-      '@tsparticles/eslint-config': 1.15.0
+      '@tsparticles/eslint-config': 1.16.0
       '@tsparticles/prettier-config': 1.11.0
       '@types/node': 20.4.0
       '@types/webpack-bundle-analyzer': 4.6.0(webpack-cli@5.1.4)
