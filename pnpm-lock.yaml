@@ -1070,8 +1070,8 @@ importers:
         specifier: ^4.3.7
         version: 4.3.7
       compare-versions:
-        specifier: 6.0.0-rc.3
-        version: 6.0.0-rc.3
+        specifier: 6.0.0
+        version: 6.0.0
       copyfiles:
         specifier: ^2.4.1
         version: 2.4.1
@@ -11729,8 +11729,8 @@ packages:
       dot-prop: 5.3.0
     dev: true
 
-  /compare-versions@6.0.0-rc.3:
-    resolution: {integrity: sha512-ILowKwhKR/soRLN0ETauW4Ky+fZA2FtYNkgblDgaqnJm7GHIIEiJXy1J+OVqTZTAHORmDu/TaUB2Lhq/RIeo7w==}
+  /compare-versions@6.0.0:
+    resolution: {integrity: sha512-s2MzYxfRsE9f/ow8hjn7ysa7pod1xhHdQMsgiJtKx6XSNf4x2N1KG4fjrkUmXcP/e9Y2ZX4zB6sHIso0Lm6evQ==}
     dev: true
 
   /concat-map@0.0.1:
