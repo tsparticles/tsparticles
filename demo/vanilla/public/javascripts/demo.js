@@ -261,13 +261,54 @@
                     modalBody.style.backgroundRepeat = container.canvas.element.style.backgroundRepeat;
                     modalBody.style.backgroundSize = container.canvas.element.style.backgroundSize;
 
-                    const image = new Image();
+                    const image = document.createElement("img");
 
                     image.className = "img-fluid";
                     image.onload = () => URL.revokeObjectURL(image.src);
                     image.src = URL.createObjectURL(blob);
 
                     modalBody.appendChild(image);
+
+                    const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
+
+                    exportModal.show();
+                });
+            }
+        });
+
+        document.getElementById("export-video").addEventListener("click", function() {
+            const container = tsParticles.domItem(0);
+
+            if (container) {
+                container.export("video").then(function(blob) {
+                    const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
+
+                    modalBody.innerHTML = "";
+                    modalBody.style.backgroundColor = container.canvas.element.style.backgroundColor;
+                    modalBody.style.backgroundImage = container.canvas.element.style.backgroundImage;
+                    modalBody.style.backgroundPosition = container.canvas.element.style.backgroundPosition;
+                    modalBody.style.backgroundRepeat = container.canvas.element.style.backgroundRepeat;
+                    modalBody.style.backgroundSize = container.canvas.element.style.backgroundSize;
+
+                    const downloadLink = document.createElement("a");
+
+                    downloadLink.className = "btn btn-primary";
+                    downloadLink.download = "particles.mp4";
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.innerText = "Download";
+
+                    const video = document.createElement("video");
+
+                    video.className = "img-fluid";
+                    video.onload = () => URL.revokeObjectURL(image.src);
+                    video.autoplay = true;
+                    video.controls = true;
+                    video.loop = true;
+                    video.src = URL.createObjectURL(blob);
+                    video.load();
+
+                    modalBody.appendChild(video);
+                    modalBody.appendChild(downloadLink);
 
                     const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
