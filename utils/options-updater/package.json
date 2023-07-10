@@ -26,12 +26,12 @@
     "prepack": "pnpm run build"
   },
   "dependencies": {
-    "@tsparticles/eslint-config": "^1.15.0",
+    "@tsparticles/eslint-config": "^1.17.0",
     "@tsparticles/prettier-config": "^1.11.0",
     "@tsparticles/tsconfig": "^1.14.0",
-    "@tsparticles/webpack-plugin": "^1.17.1",
-    "@typescript-eslint/eslint-plugin": "^5.61.0",
-    "@typescript-eslint/parser": "^5.61.0",
+    "@tsparticles/webpack-plugin": "^1.20.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.44.0",
     "eslint-config-prettier": "^8.8.0",
     "fs-extra": "^11.1.1",
@@ -111,11 +111,11 @@
     "webpack": "^5.88.1"
   },
   "devDependencies": {
-    "@types/eslint": "^8.40.2",
+    "@types/eslint": "^8.44.0",
     "@types/fs-extra": "^11.0.1",
     "@types/jsdom": "^21.1.1",
     "@types/klaw": "^3.0.3",
     "@types/lodash": "^4.14.195",
-    "@types/node": "^20.4.0"
+    "@types/node": "^20.4.1"
   }
 }
