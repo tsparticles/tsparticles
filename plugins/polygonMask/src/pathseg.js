@@ -1200,7 +1200,7 @@
             };
 
             // When a path segment changes the list needs to be synchronized back to the path element.
-            window.SVGPathSegList.prototype.segmentChanged = function (pathSeg) {
+            window.SVGPathSegList.prototype.segmentChanged = function (/*pathSeg*/) {
                 this._writeListToPath();
             };
 

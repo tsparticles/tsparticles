@@ -1,5 +1,5 @@
 import type { Container } from "../Core/Container";
-import type { Engine } from "../engine";
+import type { Engine } from "../Core/Engine";
 import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";

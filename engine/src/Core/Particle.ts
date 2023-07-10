@@ -21,7 +21,7 @@ import {
 } from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
-import type { Engine } from "../engine";
+import type { Engine } from "./Engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";

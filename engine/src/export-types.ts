@@ -1,4 +1,4 @@
-import type { Engine } from "./engine";
+import type { Engine } from "./Core/Engine";
 
 export * from "./Core/Interfaces/Colors";
 export * from "./Core/Interfaces/IBounds";

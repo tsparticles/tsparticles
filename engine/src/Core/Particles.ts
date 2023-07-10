@@ -1,7 +1,7 @@
 import { getLogger, getPosition } from "../Utils/Utils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
-import type { Engine } from "../engine";
+import type { Engine } from "./Engine";
 import { EventType } from "../Enums/Types/EventType";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";

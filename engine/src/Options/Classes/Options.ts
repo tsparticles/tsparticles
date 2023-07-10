@@ -2,7 +2,7 @@ import { deepExtend, executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Container } from "../../Core/Container";
-import type { Engine } from "../../engine";
+import type { Engine } from "../../Core/Engine";
 import { FullScreen } from "./FullScreen/FullScreen";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptions } from "../Interfaces/IOptions";

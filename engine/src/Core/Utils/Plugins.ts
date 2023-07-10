@@ -1,5 +1,5 @@
 import type { Container } from "../Container";
-import type { Engine } from "../../engine";
+import type { Engine } from "../Engine";
 import type { IContainerPlugin } from "../Interfaces/IContainerPlugin";
 import type { IInteractor } from "../Interfaces/IInteractor";
 import type { IMovePathGenerator } from "../Interfaces/IMovePathGenerator";

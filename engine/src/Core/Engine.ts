@@ -7,27 +7,27 @@ import type {
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-} from "./Types/ShapeDrawerFunctions";
-import { errorPrefix, generatedAttribute } from "./Core/Utils/Constants";
-import { getLogger, isBoolean, isFunction, isNumber, isString, itemFromSingleOrMultiple } from "./Utils/Utils";
-import { Container } from "./Core/Container";
-import type { CustomEventArgs } from "./Types/CustomEventArgs";
-import type { CustomEventListener } from "./Types/CustomEventListener";
-import { EventDispatcher } from "./Utils/EventDispatcher";
-import type { IInteractor } from "./Core/Interfaces/IInteractor";
-import type { ILoadParams } from "./Core/Interfaces/ILoadParams";
-import type { IMovePathGenerator } from "./Core/Interfaces/IMovePathGenerator";
-import type { IOptions } from "./Options/Interfaces/IOptions";
-import type { IParticleMover } from "./Core/Interfaces/IParticleMover";
-import type { IParticleUpdater } from "./Core/Interfaces/IParticleUpdater";
-import type { IPlugin } from "./Core/Interfaces/IPlugin";
-import type { IShapeDrawer } from "./Core/Interfaces/IShapeDrawer";
-import type { ISourceOptions } from "./Types/ISourceOptions";
-import type { Particle } from "./Core/Particle";
-import { Plugins } from "./Core/Utils/Plugins";
-import type { RecursivePartial } from "./Types/RecursivePartial";
-import type { SingleOrMultiple } from "./Types/SingleOrMultiple";
-import { getRandom } from "./Utils/NumberUtils";
+} from "../Types/ShapeDrawerFunctions";
+import { errorPrefix, generatedAttribute } from "./Utils/Constants";
+import { getLogger, isBoolean, isFunction, isNumber, isString, itemFromSingleOrMultiple } from "../Utils/Utils";
+import { Container } from "./Container";
+import type { CustomEventArgs } from "../Types/CustomEventArgs";
+import type { CustomEventListener } from "../Types/CustomEventListener";
+import { EventDispatcher } from "../Utils/EventDispatcher";
+import type { IInteractor } from "./Interfaces/IInteractor";
+import type { ILoadParams } from "./Interfaces/ILoadParams";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
+import type { IOptions } from "../Options/Interfaces/IOptions";
+import type { IParticleMover } from "./Interfaces/IParticleMover";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
+import type { IPlugin } from "./Interfaces/IPlugin";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import type { ISourceOptions } from "../Types/ISourceOptions";
+import type { Particle } from "./Particle";
+import { Plugins } from "./Utils/Plugins";
+import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
+import { getRandom } from "../Utils/NumberUtils";
 
 declare const __VERSION__: string;
 

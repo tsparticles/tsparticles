@@ -2,7 +2,7 @@ import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils";
 import { AnimatableColor } from "../AnimatableColor";
 import { Collisions } from "./Collisions/Collisions";
 import type { Container } from "../../../Core/Container";
-import type { Engine } from "../../../engine";
+import type { Engine } from "../../../Core/Engine";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";

@@ -1,5 +1,5 @@
 import type { Container } from "../../../Core/Container";
-import type { Engine } from "../../../engine";
+import type { Engine } from "../../../Core/Engine";
 import { Events } from "./Events/Events";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader";

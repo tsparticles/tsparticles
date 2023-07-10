@@ -2,7 +2,7 @@
  */
 import type { ClickMode } from "../../Enums/Modes/ClickMode";
 import type { Container } from "../Container";
-import type { Engine } from "../../engine";
+import type { Engine } from "../Engine";
 import type { IDelta } from "../Interfaces/IDelta";
 import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
 import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";

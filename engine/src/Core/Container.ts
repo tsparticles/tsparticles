@@ -1,7 +1,7 @@
 import { getLogger, isFunction } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
-import type { Engine } from "../engine";
+import type { Engine } from "./Engine";
 import { EventListeners } from "./Utils/EventListeners";
 import { EventType } from "../Enums/Types/EventType";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
