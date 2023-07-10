@@ -104,6 +104,9 @@ app.use("/plugin-easing-quad", express.static("./node_modules/tsparticles-plugin
 app.use("/plugin-easing-quart", express.static("./node_modules/tsparticles-plugin-easing-quart"));
 app.use("/plugin-easing-quint", express.static("./node_modules/tsparticles-plugin-easing-quint"));
 app.use("/plugin-easing-sine", express.static("./node_modules/tsparticles-plugin-easing-sine"));
+app.use("/plugin-export-image", express.static("./node_modules/tsparticles-plugin-export-image"));
+app.use("/plugin-export-json", express.static("./node_modules/tsparticles-plugin-export-json"));
+app.use("/plugin-export-video", express.static("./node_modules/tsparticles-plugin-export-video"));
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/tsparticles-plugin-motion"));

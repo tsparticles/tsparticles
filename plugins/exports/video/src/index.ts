@@ -9,7 +9,7 @@ class ExportVideoPlugin implements IPlugin {
     private readonly _engine;
 
     constructor(engine: Engine) {
-        this.id = "sounds";
+        this.id = "export-video";
 
         this._engine = engine;
     }

@@ -551,6 +551,15 @@ importers:
       tsparticles-plugin-emitters:
         specifier: ^2.10.1
         version: link:../../plugins/emitters/dist
+      tsparticles-plugin-export-image:
+        specifier: ^2.10.1
+        version: link:../../plugins/exports/image/dist
+      tsparticles-plugin-export-json:
+        specifier: ^2.10.1
+        version: link:../../plugins/exports/json/dist
+      tsparticles-plugin-export-video:
+        specifier: ^2.10.1
+        version: link:../../plugins/exports/video/dist
       tsparticles-plugin-hsv-color:
         specifier: ^2.10.1
         version: link:../../plugins/hsvColor/dist

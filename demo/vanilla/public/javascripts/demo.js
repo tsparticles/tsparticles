@@ -150,6 +150,9 @@
         await loadMotionPlugin(tsParticles);
         await loadPolygonMaskPlugin(tsParticles);
         await loadSoundsPlugin(tsParticles);
+        await loadExportImagePlugin(tsParticles);
+        await loadExportJSONPlugin(tsParticles);
+        await loadExportVideoPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
         await loadParticlesRepulseInteraction(tsParticles);
         await loadGradientUpdater(tsParticles);
@@ -248,7 +251,7 @@
             const container = tsParticles.domItem(0);
 
             if (container) {
-                container.exportImage(function(blob) {
+                container.export("image").then(function(blob) {
                     const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
                     modalBody.innerHTML = "";
@@ -262,7 +265,7 @@
 
                     image.className = "img-fluid";
                     image.onload = () => URL.revokeObjectURL(image.src);
-                    image.source = URL.createObjectURL(blob);
+                    image.src = URL.createObjectURL(blob);
 
                     modalBody.appendChild(image);
 
@@ -277,13 +280,17 @@
             const container = tsParticles.domItem(0);
 
             if (container) {
-                const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
+                container.export("json").then(function(blob) {
+                    blob.text().then(function(json) {
+                        const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
-                modalBody.innerHTML = `<pre>${container.exportConfiguration()}</pre>`;
+                        modalBody.innerHTML = `<pre>${json}</pre>`;
 
-                const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
+                        const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
-                exportModal.show();
+                        exportModal.show();
+                    });
+                });
             }
         });
 

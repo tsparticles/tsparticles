@@ -423,7 +423,7 @@ export class Container {
         });
     }
 
-    async export(type: string, options: Record<string, unknown>): Promise<Blob | undefined> {
+    async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
         for (const [, plugin] of this.plugins) {
             if (!plugin.export) {
                 continue;

@@ -9,7 +9,7 @@ class ExportJSONPlugin implements IPlugin {
     private readonly _engine;
 
     constructor(engine: Engine) {
-        this.id = "sounds";
+        this.id = "export-json";
 
         this._engine = engine;
     }

@@ -9,7 +9,7 @@ class ExportImagePlugin implements IPlugin {
     private readonly _engine;
 
     constructor(engine: Engine) {
-        this.id = "sounds";
+        this.id = "export-image";
 
         this._engine = engine;
     }
