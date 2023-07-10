@@ -24,6 +24,7 @@
     "watch": "concurrently \"npx tsc --watch\" \"nodemon dist/app.js\""
   },
   "devDependencies": {
+    "@datalust/winston-seq": "^2.0.0",
     "@fortawesome/fontawesome-free": "^6.4.0",
     "@types/connect-livereload": "^0.6.0",
     "@types/express": "^4.17.17",
@@ -34,6 +35,7 @@
     "bootstrap": "^5.2.3",
     "concurrently": "^8.0.1",
     "connect-livereload": "^0.6.1",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-rate-limit": "^6.7.0",
     "helmet": "^7.0.0",
@@ -45,7 +47,8 @@
     "pug": "^3.0.2",
     "pug-cli": "1.0.0-alpha6",
     "stats.ts": "^1.1.0",
-    "stylus": "^0.59.0"
+    "stylus": "^0.59.0",
+    "winston": "^3.9.0"
   },
   "dependencies": {
     "tsparticles": "^2.10.1",
