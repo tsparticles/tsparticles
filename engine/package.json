@@ -15,7 +15,7 @@
     "build": "pnpm run slimbuild && pnpm run build:schema && pnpm run lint:tests && pnpm run prettify:tests && pnpm run test",
     "build:ci": "pnpm run slimbuild:ci && pnpm run build:schema && pnpm run lint:ci:tests && pnpm run prettify:ci:tests && pnpm run test",
     "build:schema": "echo ts-json-schema-generator --path 'src/**/*.ts' --type 'IOptions' -f tsconfig.schema.json --additional-properties true --out ./schema/options.schema.json",
-    "test": "TS_NODE_PROJECT='./tsconfig.test.json' nyc mocha",
+    "test": "cross-env TS_NODE_PROJECT='./tsconfig.test.json' nyc mocha",
     "preversion": "pnpm run test",
     "version": "tsparticles-cli build -d && git add package.dist.json",
     "postversion": "git push && git push --tags",
