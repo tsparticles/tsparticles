@@ -90,6 +90,7 @@
   "unpkg": "tsparticles.plugin.easing.back.min.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "sideEffects": false,
   "dependencies": {
     "tsparticles-engine": "^2.10.1"
   }

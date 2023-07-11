@@ -1,59 +1,66 @@
-import type { Container, IParticle, IShapeDrawer } from "tsparticles-engine";
-import type { IRoundedParticle } from "./IRoundedParticle";
+import type { Container, IShapeDrawer } from "tsparticles-engine";
 import type { IRoundedRectData } from "./IRoundedRectData";
 import type { RadiusInfo } from "./RadiusInfo";
 import type { RectInfo } from "./RectInfo";
+import type { RoundedParticle } from "./RoundedParticle";
+import { getRangeValue } from "tsparticles-engine";
 
-const drawRoundedRect = (
-    ctx: CanvasRenderingContext2D,
-    info: RectInfo,
-    radius: RadiusInfo = {
-        topRight: 4,
-        bottomRight: 4,
-        bottomLeft: 4,
-        topLeft: 4,
-    },
-): void => {
-    const { x, y, width, height } = info,
-        r = x + width,
-        b = y + height;
+const fixFactor = Math.sqrt(2),
+    drawRoundedRect = (
+        ctx: CanvasRenderingContext2D,
+        info: RectInfo,
+        radius: RadiusInfo = {
+            topRight: 4,
+            bottomRight: 4,
+            bottomLeft: 4,
+            topLeft: 4,
+        },
+    ): void => {
+        const { x, y, width, height } = info,
+            r = x + width,
+            b = y + height;
 
-    ctx.moveTo(x + radius.topLeft, y);
-    ctx.lineTo(r - radius.topRight, y);
-    ctx.quadraticCurveTo(r, y, r, y + radius.topRight);
-    ctx.lineTo(r, y + height - radius.bottomRight);
-    ctx.quadraticCurveTo(r, b, r - radius.bottomRight, b);
-    ctx.lineTo(x + radius.bottomLeft, b);
-    ctx.quadraticCurveTo(x, b, x, b - radius.bottomLeft);
-    ctx.lineTo(x, y + radius.topLeft);
-    ctx.quadraticCurveTo(x, y, x + radius.topLeft, y);
-};
+        ctx.moveTo(x + radius.topLeft, y);
+        ctx.lineTo(r - radius.topRight, y);
+        ctx.quadraticCurveTo(r, y, r, y + radius.topRight);
+        ctx.lineTo(r, y + height - radius.bottomRight);
+        ctx.quadraticCurveTo(r, b, r - radius.bottomRight, b);
+        ctx.lineTo(x + radius.bottomLeft, b);
+        ctx.quadraticCurveTo(x, b, x, b - radius.bottomLeft);
+        ctx.lineTo(x, y + radius.topLeft);
+        ctx.quadraticCurveTo(x, y, x + radius.topLeft, y);
+    };
 
 export class RoundedRectDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
-        const roundedRect = particle as IRoundedParticle;
+    draw(context: CanvasRenderingContext2D, particle: RoundedParticle, radius: number): void {
+        const fixedRadius = radius / fixFactor,
+            fixedDiameter = fixedRadius * 2,
+            borderRadius = particle.borderRadius ?? 5;
 
-        drawRoundedRect(
-            context,
-            {
-                x: 0,
-                y: 0,
-                height: radius,
-                width: radius,
-            },
-            {
-                topLeft: roundedRect.borderRadius,
-                topRight: roundedRect.borderRadius,
-                bottomLeft: roundedRect.borderRadius,
-                bottomRight: roundedRect.borderRadius,
-            },
-        );
+        if ("roundRect" in context) {
+            context.roundRect(-fixedRadius, -fixedRadius, fixedDiameter, fixedDiameter, borderRadius);
+        } else {
+            drawRoundedRect(
+                context,
+                {
+                    x: -fixedRadius,
+                    y: -fixedRadius,
+                    height: fixedDiameter,
+                    width: fixedDiameter,
+                },
+                {
+                    topLeft: borderRadius,
+                    topRight: borderRadius,
+                    bottomLeft: borderRadius,
+                    bottomRight: borderRadius,
+                },
+            );
+        }
     }
 
-    particleInit(container: Container, particle: IParticle): void {
-        const shapeData = particle.shapeData as IRoundedRectData,
-            roundedRect = particle as IRoundedParticle;
+    particleInit(container: Container, particle: RoundedParticle): void {
+        const shapeData = particle.shapeData as IRoundedRectData;
 
-        roundedRect.borderRadius = (shapeData?.radius ?? 4) * container.retina.pixelRatio;
+        particle.borderRadius = getRangeValue(shapeData?.radius ?? 5) * container.retina.pixelRatio;
     }
 }

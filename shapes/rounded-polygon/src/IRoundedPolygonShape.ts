@@ -1,6 +1,6 @@
 import type { IShapeValues, RangeValue } from "tsparticles-engine";
 
 export interface IRoundedPolygonShape extends IShapeValues {
-    borderRadius: number;
+    radius: number;
     sides: RangeValue;
 }

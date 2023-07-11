@@ -1,7 +1,7 @@
 import type { ISourceOptions } from "tsparticles-engine";
 
 const options: ISourceOptions = {
-    name: "Shape Rounded Rect",
+    name: "Shape Rounded Polygon",
     particles: {
         number: {
             value: 80,
@@ -17,6 +17,9 @@ const options: ISourceOptions = {
                 sync: true,
             },
         },
+        links: {
+            enable: true,
+        },
         rotate: {
             value: {
                 min: 0,
@@ -29,15 +32,15 @@ const options: ISourceOptions = {
                 sync: false,
             },
         },
-        links: {
-            enable: true,
-        },
         shape: {
-            type: "rounded-rect",
+            type: "rounded-polygon",
             options: {
-                "rounded-rect": {
-                    radius: { min: 5, max: 15 },
-                },
+                "rounded-polygon": [
+                    {
+                        radius: { min: 0, max: 10 },
+                        sides: { min: 3, max: 8 },
+                    },
+                ],
             },
         },
         opacity: {

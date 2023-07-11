@@ -82,6 +82,7 @@
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",
     "prettier": "@tsparticles/prettier-config",
+    "sideEffects": false,
     "dependencies": {
         "tsparticles-engine": "^2.10.1"
     }

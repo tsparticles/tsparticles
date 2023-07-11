@@ -80,6 +80,12 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "jsdelivr": "tsparticles.slim.bundle.min.js",
+  "unpkg": "tsparticles.slim.bundle.min.js",
+  "types": "types/index.d.ts",
+  "sideEffects": false,
   "dependencies": {
     "tsparticles-engine": "^2.10.1",
     "tsparticles-interaction-external-attract": "^2.10.1",
@@ -113,10 +119,5 @@
     "tsparticles-updater-rotate": "^2.10.1",
     "tsparticles-updater-size": "^2.10.1",
     "tsparticles-updater-stroke-color": "^2.10.1"
-  },
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "jsdelivr": "tsparticles.slim.bundle.min.js",
-  "unpkg": "tsparticles.slim.bundle.min.js",
-  "types": "types/index.d.ts"
+  }
 }

@@ -45,6 +45,7 @@
   "unpkg": "tsparticles.shape.ribbon.min.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "sideEffects": false,
   "publishConfig": {
     "access": "public"
   },

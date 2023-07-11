@@ -85,6 +85,7 @@
   "jsdelivr": "tsparticles.fireworks.bundle.min.js",
   "unpkg": "tsparticles.fireworks.bundle.min.js",
   "types": "types/index.d.ts",
+  "sideEffects": false,
   "dependencies": {
     "tsparticles-engine": "^2.10.1",
     "tsparticles-move-base": "^2.10.1",

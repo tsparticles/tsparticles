@@ -80,12 +80,13 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "dependencies": {
-    "tsparticles-engine": "^2.10.1"
-  },
   "main": "cjs/index.js",
   "module": "esm/index.js",
   "jsdelivr": "tsparticles.pjs.min.js",
   "unpkg": "tsparticles.pjs.min.js",
-  "types": "types/index.d.ts"
+  "types": "types/index.d.ts",
+  "sideEffects": false,
+  "dependencies": {
+    "tsparticles-engine": "^2.10.1"
+  }
 }

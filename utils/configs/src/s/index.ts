@@ -8,6 +8,7 @@ import shapeMultilineText from "./shapeMultilineText";
 import shapeOptions from "./shapeOptions";
 import shapePath from "./shapePath";
 import shapeRibbon from "./shapeRibbon";
+import shapeRoundedPolygon from "./shapeRoundedPolygon";
 import shapeRoundedRect from "./shapeRoundedRect";
 import shapeSpiral from "./shapeSpiral";
 import slow from "./slow";
@@ -35,6 +36,7 @@ export default {
     shapeOptions,
     shapePath,
     shapeRibbon,
+    shapeRoundedPolygon,
     shapeRoundedRect,
     shapeSpiral,
     slow,

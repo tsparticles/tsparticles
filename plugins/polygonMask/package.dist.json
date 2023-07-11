@@ -76,6 +76,9 @@
   "unpkg": "tsparticles.plugin.polygon-mask.min.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "sideEffects": [
+    "./**/pathseg.js"
+  ],
   "dependencies": {
     "tsparticles-engine": "^2.10.1"
   }
