@@ -1,5 +1,8 @@
 module.exports = {
     extends: [
-        "@tsparticles/eslint-config",
-    ]
+        "@tsparticles/eslint-config"
+    ],
+    rules: {
+        "no-console": "off"
+    }
 };
