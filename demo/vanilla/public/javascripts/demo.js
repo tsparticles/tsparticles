@@ -170,6 +170,7 @@
         await loadMultilineTextShape(tsParticles);
         await loadPathShape(tsParticles);
         await loadRibbonShape(tsParticles);
+        await loadRoundedPolygonShape(tsParticles);
         await loadRoundedRectShape(tsParticles);
         await loadSpiralShape(tsParticles);
 

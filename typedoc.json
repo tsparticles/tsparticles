@@ -61,6 +61,7 @@
     "shapes/multiline-text",
     "shapes/path",
     "shapes/polygon",
+    "shapes/rounded-polygon",
     "shapes/rounded-rect",
     "shapes/spiral",
     "shapes/square",

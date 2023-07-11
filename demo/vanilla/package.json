@@ -111,6 +111,7 @@
     "tsparticles-shape-path": "^2.10.1",
     "tsparticles-shape-polygon": "^2.10.1",
     "tsparticles-shape-ribbon": "^2.10.1",
+    "tsparticles-shape-rounded-polygon": "^2.10.1",
     "tsparticles-shape-rounded-rect": "^2.10.1",
     "tsparticles-shape-spiral": "^2.10.1",
     "tsparticles-shape-square": "^2.10.1",

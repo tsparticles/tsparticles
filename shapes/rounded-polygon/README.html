@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>tsParticles Rounded Polygon Shape</title>
+        <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+        
+    </head>
+    <body class="vscode-body vscode-dark">
+        <p><a href="https://particles.js.org"><img src="https://particles.js.org/images/banner2.png" alt="banner"></a></p>
+<h1 id="tsparticles-rounded-polygon-shape">tsParticles Rounded Polygon Shape</h1>
+<p><a href="https://www.jsdelivr.com/package/npm/tsparticles-shape-rounded-polygon"><img src="https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-rounded-polygon/badge" alt="jsDelivr"></a>
+<a href="https://www.npmjs.com/package/tsparticles-shape-rounded-polygon"><img src="https://badge.fury.io/js/tsparticles-shape-rounded-polygon.svg" alt="npmjs"></a>
+<a href="https://www.npmjs.com/package/tsparticles-shape-rounded-polygon"><img src="https://img.shields.io/npm/dt/tsparticles-shape-rounded-polygon" alt="npmjs"></a> <a href="https://github.com/sponsors/matteobruni"><img src="https://img.shields.io/github/sponsors/matteobruni" alt="GitHub Sponsors"></a></p>
+<p><a href="https://github.com/matteobruni/tsparticles">tsParticles</a> additional rounded polygon shape.</p>
+<h2 id="how-to-use-it">How to use it</h2>
+<h3 id="cdn--vanilla-js--jquery">CDN / Vanilla JS / jQuery</h3>
+<p>The CDN/Vanilla version JS has one required file in vanilla configuration:</p>
+<p>Including the <code>tsparticles.shape.rounded-polygon.min.js</code> file will export the function to load the shape:</p>
+<pre><code class="language-javascript">loadRoundedPolygonShape;
+</code></pre>
+<h3 id="usage">Usage</h3>
+<p>Once the scripts are loaded you can set up <code>tsParticles</code> and the shape like this:</p>
+<pre><code class="language-javascript">(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">loadRoundedPolygonShape</span>(tsParticles);
+
+  <span class="hljs-keyword">await</span> tsParticles.<span class="hljs-title function_">load</span>({
+    <span class="hljs-attr">id</span>: <span class="hljs-string">&quot;tsparticles&quot;</span>,
+    <span class="hljs-attr">options</span>: {
+      <span class="hljs-comment">/* options */</span>
+      <span class="hljs-comment">/* here you can use particles.shape.type: &quot;rounded-polygon&quot; */</span>
+      <span class="hljs-comment">/*   or you can use particles.shape.type: &quot;triangle&quot; */</span>
+    },
+  });
+})();
+</code></pre>
+<h3 id="esm--commonjs">ESM / CommonJS</h3>
+<p>This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:</p>
+<pre><code class="language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">npm install tsparticles-shape-rounded-polygon</span>
+</code></pre>
+<p>or</p>
+<pre><code class="language-shell"><span class="hljs-meta prompt_">$ </span><span class="language-bash">yarn add tsparticles-shape-rounded-polygon</span>
+</code></pre>
+<p>Then you need to import it in the app, like this:</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">const</span> { tsParticles } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;tsparticles-engine&quot;</span>);
+<span class="hljs-keyword">const</span> { loadRoundedPolygonShape } = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;tsparticles-shape-rounded-polygon&quot;</span>);
+
+(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">loadRoundedPolygonShape</span>(tsParticles);
+})();
+</code></pre>
+<p>or</p>
+<pre><code class="language-javascript"><span class="hljs-keyword">import</span> { tsParticles } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;tsparticles-engine&quot;</span>;
+<span class="hljs-keyword">import</span> { loadRoundedPolygonShape } <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;tsparticles-shape-rounded-polygon&quot;</span>;
+
+(<span class="hljs-keyword">async</span> () =&gt; {
+  <span class="hljs-keyword">await</span> <span class="hljs-title function_">loadRoundedPolygonShape</span>(tsParticles);
+})();
+</code></pre>
+
+        <script async src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </body>
+    </html>

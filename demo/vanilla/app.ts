@@ -135,6 +135,7 @@ app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart")
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
 app.use("/shape-path", express.static("./node_modules/tsparticles-shape-path"));
 app.use("/shape-ribbon", express.static("./node_modules/tsparticles-shape-ribbon"));
+app.use("/shape-rounded-polygon", express.static("./node_modules/tsparticles-shape-rounded-polygon"));
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect"));
 app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
