@@ -25,11 +25,16 @@ loadOrbitUpdater
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadOrbitUpdater(tsParticles);
+(async () => {
+  await loadOrbitUpdater(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadOrbitUpdater } = require("tsparticles-updater-orbit");
 
-loadOrbitUpdater(tsParticles);
+(async () => {
+  await loadOrbitUpdater(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadOrbitUpdater } from "tsparticles-updater-orbit";
 
-loadOrbitUpdater(tsParticles);
+(async () => {
+  await loadOrbitUpdater(tsParticles);
+})();
 ```

@@ -1,31 +1,47 @@
+import cluster from "node:cluster";
 import express from "express";
-//import helmet from "helmet";
+import helmet from "helmet";
 import stylus from "stylus";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
+import path from "path";
+import os from "os";
+import winston from "winston";
+import { SeqTransport } from "@datalust/winston-seq";
+import dotenv from "dotenv";
 //import rateLimit from "express-rate-limit";
 
-const app = express();
+const app = express(), numCpus = os.cpus().length;
 
-const liveReloadServer = livereload.createServer();
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
 
-liveReloadServer.server.once("connection", () => {
-    setTimeout(() => {
-        liveReloadServer.refresh("/");
-    }, 100);
+let seqTransport = undefined;
+
+if (process.env.USE_SEQ === "1") {
+    seqTransport = new SeqTransport({
+        serverUrl: `http${process.env.SEQ_SSL === "1" ? "s" : ""}://${process.env.SEQ_HOST}:${process.env.SEQ_PORT}`,
+        apiKey: process.env.SEQ_KEY,
+        onError: (e => {
+            console.error(e);
+        }),
+        handleExceptions: true,
+        handleRejections: true
+    });
+}
+
+const logger = winston.createLogger({
+    level: "info",
+    format: winston.format.combine(  /* This is required to get errors to log with stack traces. See https://github.com/winstonjs/winston/issues/1498 */
+        winston.format.errors({ stack: true }),
+        winston.format.json()
+    ),
+    defaultMeta: { application: "tsParticles Demo" },
+    transports: [
+        seqTransport || new winston.transports.Console({
+            format: winston.format.simple()
+        })
+    ]
 });
-
-app.use(connectLiveReload());
-
-/*const limiter = rateLimit({
-    windowMs: 1000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
-});
-
-app.use(limiter);*/
-//app.use(helmet()); // Safari requires https, probably a bug
-
-const port = 3000;
 
 app.set("views", "./views");
 app.set("view engine", "pug");
@@ -104,6 +120,9 @@ app.use("/plugin-easing-quad", express.static("./node_modules/tsparticles-plugin
 app.use("/plugin-easing-quart", express.static("./node_modules/tsparticles-plugin-easing-quart"));
 app.use("/plugin-easing-quint", express.static("./node_modules/tsparticles-plugin-easing-quint"));
 app.use("/plugin-easing-sine", express.static("./node_modules/tsparticles-plugin-easing-sine"));
+app.use("/plugin-export-image", express.static("./node_modules/tsparticles-plugin-export-image"));
+app.use("/plugin-export-json", express.static("./node_modules/tsparticles-plugin-export-json"));
+app.use("/plugin-export-video", express.static("./node_modules/tsparticles-plugin-export-video"));
 app.use("/plugin-hsv-color", express.static("./node_modules/tsparticles-plugin-hsv-color"));
 app.use("/plugin-infection", express.static("./node_modules/tsparticles-plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/tsparticles-plugin-motion"));
@@ -115,52 +134,124 @@ app.use("/shape-cog", express.static("./node_modules/tsparticles-shape-cog"));
 app.use("/shape-heart", express.static("./node_modules/tsparticles-shape-heart"));
 app.use("/shape-multiline-text", express.static("./node_modules/tsparticles-shape-multiline-text"));
 app.use("/shape-path", express.static("./node_modules/tsparticles-shape-path"));
+app.use("/shape-ribbon", express.static("./node_modules/tsparticles-shape-ribbon"));
+app.use("/shape-rounded-polygon", express.static("./node_modules/tsparticles-shape-rounded-polygon"));
 app.use("/shape-rounded-rect", express.static("./node_modules/tsparticles-shape-rounded-rect"));
 app.use("/shape-spiral", express.static("./node_modules/tsparticles-shape-spiral"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
 app.get("/", function(req, res) {
+    logger.info("index requested");
+
     res.render("index");
 });
 
 app.get("/playground", function(req, res) {
+    logger.info("playground requested");
+
     res.render("playground");
 });
 
 app.get("/confetti", function(req, res) {
+    logger.info("confetti requested");
+
     res.render("confetti");
 });
 
 app.get("/fireworks", function(req, res) {
+    logger.info("firefox requested");
+
     res.render("fireworks");
 });
 
 app.get("/domEmitters", function(req, res) {
+    logger.info("dom emitters requested");
+
     res.render("domEmitters");
 });
 
 app.get("/slim", function(req, res) {
+    logger.info("slim requested");
+
     res.render("slim");
 });
 
 app.get("/themes", function(req, res) {
+    logger.info("themes requested");
+
     res.render("themes");
 });
 
 app.get("/click", function(req, res) {
+    logger.info("click requested");
+
     res.render("click");
 });
 
 app.get("/noid", function(req, res) {
+    logger.info("noid requested");
+
     res.render("noid");
 });
 
 app.get("/pjs", function(req, res) {
+    logger.info("pjs requested");
+
     res.render("pjs");
 });
 
 app.get("/pjs2", function(req, res) {
+    logger.info("pjs2 requested");
+
     res.render("pjs2");
 });
 
-app.listen(port, () => console.log(`Demo app listening on port ${port}!`));
+const port = 3000;
+
+if (cluster.isMaster) {
+    for (let i = 0; i < numCpus; i++) {
+        cluster.fork();
+    }
+
+    cluster.on("exit", (worker, code, signal) => {
+        logger.info(`worker ${worker.process.pid} died`);
+
+        cluster.fork();
+    });
+
+    process.on("SIGHUP", function() {
+        if (!cluster.workers) {
+            return;
+        }
+
+        for (const worker of Object.values(cluster.workers)) {
+            worker?.process.kill("SIGTERM");
+        }
+    });
+
+    const liveReloadServer = livereload.createServer();
+
+    liveReloadServer.server.once("connection", () => {
+        setTimeout(() => {
+            liveReloadServer.refresh("/");
+        }, 100);
+    });
+
+    app.use(connectLiveReload());
+
+    /*const limiter = rateLimit({
+        windowMs: 1000, // 15 minutes
+        max: 100 // limit each IP to 100 requests per windowMs
+    });
+
+    app.use(limiter);*/
+    //app.use(helmet()); // Safari requires https, probably a bug
+} else {
+    process.on("SIGHUP", function() {
+        //no-op
+    });
+
+    app.use(connectLiveReload());
+
+    app.listen(port, () => logger.info(`Server working with pid ${process.pid} at localhost with port ${port}`));
+}

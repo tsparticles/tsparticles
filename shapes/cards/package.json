@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-shape-cards",
-    "version": "2.10.0",
+    "version": "2.11.0",
     "description": "tsParticles cards shape",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -94,8 +94,9 @@
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",
+    "sideEffects": false,
     "prettier": "@tsparticles/prettier-config",
     "dependencies": {
-        "tsparticles-engine": "^2.10.0"
+        "tsparticles-engine": "^2.11.0"
     }
 }

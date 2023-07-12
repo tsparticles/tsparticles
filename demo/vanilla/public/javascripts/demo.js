@@ -63,7 +63,7 @@
             });
         }
 
-        const particles = await tsParticles.load("tsparticles", tsParticles.configs[presetId]);
+        const particles = await tsParticles.load({ id: "tsparticles", options: tsParticles.configs[presetId] });
 
         localStorage.presetId = presetId;
 
@@ -150,6 +150,9 @@
         await loadMotionPlugin(tsParticles);
         await loadPolygonMaskPlugin(tsParticles);
         await loadSoundsPlugin(tsParticles);
+        await loadExportImagePlugin(tsParticles);
+        await loadExportJSONPlugin(tsParticles);
+        await loadExportVideoPlugin(tsParticles);
         await loadLightInteraction(tsParticles);
         await loadParticlesRepulseInteraction(tsParticles);
         await loadGradientUpdater(tsParticles);
@@ -166,6 +169,8 @@
         await loadHeartShape(tsParticles);
         await loadMultilineTextShape(tsParticles);
         await loadPathShape(tsParticles);
+        await loadRibbonShape(tsParticles);
+        await loadRoundedPolygonShape(tsParticles);
         await loadRoundedRectShape(tsParticles);
         await loadSpiralShape(tsParticles);
 
@@ -247,7 +252,7 @@
             const container = tsParticles.domItem(0);
 
             if (container) {
-                container.exportImage(function(blob) {
+                container.export("image").then(function(blob) {
                     const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
                     modalBody.innerHTML = "";
@@ -257,13 +262,54 @@
                     modalBody.style.backgroundRepeat = container.canvas.element.style.backgroundRepeat;
                     modalBody.style.backgroundSize = container.canvas.element.style.backgroundSize;
 
-                    const image = new Image();
+                    const image = document.createElement("img");
 
                     image.className = "img-fluid";
                     image.onload = () => URL.revokeObjectURL(image.src);
-                    image.source = URL.createObjectURL(blob);
+                    image.src = URL.createObjectURL(blob);
 
                     modalBody.appendChild(image);
+
+                    const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
+
+                    exportModal.show();
+                });
+            }
+        });
+
+        document.getElementById("export-video").addEventListener("click", function() {
+            const container = tsParticles.domItem(0);
+
+            if (container) {
+                container.export("video").then(function(blob) {
+                    const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
+
+                    modalBody.innerHTML = "";
+                    modalBody.style.backgroundColor = container.canvas.element.style.backgroundColor;
+                    modalBody.style.backgroundImage = container.canvas.element.style.backgroundImage;
+                    modalBody.style.backgroundPosition = container.canvas.element.style.backgroundPosition;
+                    modalBody.style.backgroundRepeat = container.canvas.element.style.backgroundRepeat;
+                    modalBody.style.backgroundSize = container.canvas.element.style.backgroundSize;
+
+                    const downloadLink = document.createElement("a");
+
+                    downloadLink.className = "btn btn-primary";
+                    downloadLink.download = "particles.mp4";
+                    downloadLink.href = URL.createObjectURL(blob);
+                    downloadLink.innerText = "Download";
+
+                    const video = document.createElement("video");
+
+                    video.className = "img-fluid";
+                    video.onload = () => URL.revokeObjectURL(image.src);
+                    video.autoplay = true;
+                    video.controls = true;
+                    video.loop = true;
+                    video.src = URL.createObjectURL(blob);
+                    video.load();
+
+                    modalBody.appendChild(video);
+                    modalBody.appendChild(downloadLink);
 
                     const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
@@ -276,13 +322,17 @@
             const container = tsParticles.domItem(0);
 
             if (container) {
-                const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
+                container.export("json").then(function(blob) {
+                    blob.text().then(function(json) {
+                        const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
-                modalBody.innerHTML = `<pre>${container.exportConfiguration()}</pre>`;
+                        modalBody.innerHTML = `<pre>${json}</pre>`;
 
-                const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
+                        const exportModal = new bootstrap.Modal(document.getElementById("exportModal"));
 
-                exportModal.show();
+                        exportModal.show();
+                    });
+                });
             }
         });
 
@@ -317,7 +367,7 @@ canvas {
     background-size: ${particlesContainer.style.backgroundSize};
     background-position: ${particlesContainer.style.backgroundPosition};
 }`,
-                    js: `tsParticles.load("tsparticles", ${JSON.stringify(container.options)});`,
+                    js: `tsParticles.load({ id: "tsparticles", options: ${JSON.stringify(container.options)} });`,
                     js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
                     title: "tsParticles example",
                     description: "This pen was created with tsParticles from https://particles.js.org",

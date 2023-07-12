@@ -27,11 +27,16 @@ loadExternalTrailInteraction;
 Once the scripts are loaded you can set up `tsParticles` and the interaction plugin like this:
 
 ```javascript
-loadExternalTrailInteraction(tsParticles);
+(async () => {
+  await loadExternalTrailInteraction(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -54,7 +59,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadExternalTrailInteraction } = require("tsparticles-interaction-external-trail");
 
-loadExternalTrailInteraction(tsParticles);
+(async () => {
+  await loadExternalTrailInteraction(tsParticles);
+})();
 ```
 
 or
@@ -63,5 +70,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadExternalTrailInteraction } from "tsparticles-interaction-external-trail";
 
-loadExternalTrailInteraction(tsParticles);
+(async () => {
+  await loadExternalTrailInteraction(tsParticles);
+})();
 ```

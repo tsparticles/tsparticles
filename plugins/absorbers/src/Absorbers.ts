@@ -5,6 +5,7 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
+    isNumber,
     itemFromSingleOrMultiple,
 } from "tsparticles-engine";
 import type { Absorber } from "./Options/Classes/Absorber";
@@ -26,7 +27,7 @@ export class Absorbers implements IContainerPlugin {
         this.interactivityAbsorbers = [];
 
         container.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
-            idxOrName === undefined || typeof idxOrName === "number"
+            idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 

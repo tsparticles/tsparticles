@@ -1,4 +1,5 @@
 import type { ClickMode } from "../../Enums/Modes/ClickMode";
+import type { ExportResult } from "../../Types/ExportResult";
 import type { ICoordinates } from "./ICoordinates";
 import type { IDelta } from "./IDelta";
 import type { IOptionsColor } from "../../Options/Interfaces/IOptionsColor";
@@ -11,6 +12,7 @@ export interface IContainerPlugin {
     clickPositionValid?: (position: ICoordinates) => boolean;
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+    export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;
     handleClickMode?: (mode: ClickMode | string) => void;
     init?: () => Promise<void>;
     particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;

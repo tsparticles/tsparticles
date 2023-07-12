@@ -1,5 +1,5 @@
+import type { PixelMode } from "../../Enums/Modes/PixelMode";
 import type { RangeValue } from "../../Types/RangeValue";
-import type { SizeMode } from "../../Enums/Modes/SizeMode";
 
 export interface ICoordinates {
     x: number;
@@ -20,7 +20,7 @@ export interface IRangedCoordinates3d extends IRangedCoordinates {
 }
 
 export interface ICoordinatesWithMode extends ICoordinates {
-    mode: SizeMode | keyof typeof SizeMode;
+    mode: PixelMode | keyof typeof PixelMode;
 }
 
 export interface ICenterCoordinates extends ICoordinatesWithMode {

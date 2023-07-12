@@ -27,7 +27,7 @@ export class GradientUpdater implements IParticleUpdater {
         particle: GradientParticle,
         context: CanvasRenderingContext2D,
         radius: number,
-        opacity: number
+        opacity: number,
     ): IParticleColorStyle {
         const gradient = particle.gradient;
 
@@ -43,7 +43,7 @@ export class GradientUpdater implements IParticleUpdater {
                           Math.cos(gradientAngle) * -radius,
                           Math.sin(gradientAngle) * -radius,
                           Math.cos(gradientAngle) * radius,
-                          Math.sin(gradientAngle) * radius
+                          Math.sin(gradientAngle) * radius,
                       );
 
         for (const { stop, value, opacity: cOpacity } of gradient.colors) {
@@ -55,8 +55,8 @@ export class GradientUpdater implements IParticleUpdater {
                         s: value.s.value,
                         l: value.l.value,
                     },
-                    cOpacity?.value ?? opacity
-                )
+                    cOpacity?.value ?? opacity,
+                ),
             );
         }
 
@@ -113,7 +113,7 @@ export class GradientUpdater implements IParticleUpdater {
             const grHslAnimation = getHslAnimationFromHsl(
                     grHslColor,
                     grColor.value.animation,
-                    particle.container.retina.reduceFactor
+                    particle.container.retina.reduceFactor,
                 ),
                 addColor = {
                     stop: grColor.stop,

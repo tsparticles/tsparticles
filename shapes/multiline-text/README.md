@@ -25,12 +25,17 @@ loadMultilineTextShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadMultilineTextShape(tsParticles);
+(async () => {
+  await loadMultilineTextShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "multiline-text" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "multiline-text" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadMultilineTextShape } = require("tsparticles-shape-multiline-text");
 
-loadMultilineTextShape(tsParticles);
+(async () => {
+  await loadMultilineTextShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadMultilineTextShape } from "tsparticles-shape-multiline-text";
 
-loadMultilineTextShape(tsParticles);
+(async () => {
+  await loadMultilineTextShape(tsParticles);
+})();
 ```

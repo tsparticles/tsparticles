@@ -11,6 +11,9 @@ import {
     StartValueType,
     getRangeMax,
     getRangeMin,
+    isNumber,
+    isSsr,
+    isString,
     setRangeValue,
     tsParticles,
 } from "tsparticles-engine";
@@ -37,7 +40,7 @@ declare global {
     interface Window {
         fireworks: ((
             idOrOptions: string | RecursivePartial<IFireworkOptions>,
-            sourceOptions?: RecursivePartial<IFireworkOptions>
+            sourceOptions?: RecursivePartial<IFireworkOptions>,
         ) => Promise<FireworksInstance | undefined>) & {
             version: string;
         };
@@ -117,7 +120,7 @@ async function initPlugins(): Promise<void> {
  */
 export async function fireworks(
     idOrOptions: string | RecursivePartial<IFireworkOptions>,
-    sourceOptions?: RecursivePartial<IFireworkOptions>
+    sourceOptions?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> {
     await initPlugins();
 
@@ -125,7 +128,7 @@ export async function fireworks(
 
     const options = new FireworkOptions();
 
-    if (typeof idOrOptions === "string") {
+    if (isString(idOrOptions)) {
         id = idOrOptions;
         options.load(sourceOptions);
     } else {
@@ -147,10 +150,9 @@ export async function fireworks(
                 delay: 0.1,
             },
             rate: {
-                delay:
-                    typeof options.rate === "number"
-                        ? 1 / options.rate
-                        : { min: 1 / getRangeMin(options.rate), max: 1 / getRangeMax(options.rate) },
+                delay: isNumber(options.rate)
+                    ? 1 / options.rate
+                    : { min: 1 / getRangeMin(options.rate), max: 1 / getRangeMax(options.rate) },
                 quantity: 1,
             },
             size: {
@@ -250,6 +252,11 @@ export async function fireworks(
             },
             shape: {
                 type: "line",
+                options: {
+                    line: {
+                        cap: "round",
+                    },
+                },
             },
             size: {
                 value: {
@@ -313,7 +320,7 @@ export async function fireworks(
         },
     };
 
-    const container = await tsParticles.load(id, particlesOptions);
+    const container = await tsParticles.load({ id, options: particlesOptions });
 
     if (!container) {
         return;
@@ -324,4 +331,6 @@ export async function fireworks(
 
 fireworks.version = tsParticles.version;
 
-window.fireworks = fireworks;
+if (!isSsr()) {
+    window.fireworks = fireworks;
+}

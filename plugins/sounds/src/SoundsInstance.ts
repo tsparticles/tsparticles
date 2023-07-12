@@ -4,6 +4,9 @@ import {
     type IContainerPlugin,
     clamp,
     executeOnSingleOrMultiple,
+    getLogger,
+    isArray,
+    isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
 } from "tsparticles-engine";
@@ -29,7 +32,7 @@ function initImage(data: InitImageData): HTMLImageElement {
         display,
         options.fullScreen.zIndex + 1,
         width,
-        margin
+        margin,
     );
 
     img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
@@ -71,7 +74,7 @@ function setIconStyle(
     display: "block" | "none",
     zIndex: number,
     width: number,
-    margin: number
+    margin: number,
 ): void {
     icon.style.userSelect = "none";
     icon.style.webkitUserSelect = "none";
@@ -345,7 +348,7 @@ export class SoundsInstance implements IContainerPlugin {
 
     private readonly _playFrequency: (frequency: number, duration: number) => Promise<void> = async (
         frequency,
-        duration
+        duration,
     ) => {
         if (!this._container.audioContext || !this._gain) {
             return;
@@ -398,7 +401,7 @@ export class SoundsInstance implements IContainerPlugin {
     private readonly _playNote: (notes: SoundsNote[], noteIdx: number, loop: boolean) => Promise<void> = async (
         notes,
         noteIdx,
-        loop
+        loop,
     ) => {
         if (this._container.muted) {
             return;
@@ -416,7 +419,7 @@ export class SoundsInstance implements IContainerPlugin {
             return this._playNoteValue(notes, noteIdx, idx);
         });
 
-        await (promises instanceof Array ? Promise.allSettled(promises) : promises);
+        await (isArray(promises) ? Promise.allSettled(promises) : promises);
 
         let nextNoteIdx = noteIdx + 1;
 
@@ -434,7 +437,7 @@ export class SoundsInstance implements IContainerPlugin {
     private readonly _playNoteValue: (notes: SoundsNote[], noteIdx: number, valueIdx: number) => Promise<void> = async (
         notes,
         noteIdx,
-        valueIdx
+        valueIdx,
     ) => {
         const note = notes[noteIdx];
 
@@ -447,13 +450,13 @@ export class SoundsInstance implements IContainerPlugin {
         try {
             const freq = getNoteFrequency(value);
 
-            if (typeof freq !== "number") {
+            if (!isNumber(freq)) {
                 return;
             }
 
             await this._playFrequency(freq, note.duration);
         } catch (e) {
-            console.error(e);
+            getLogger().error(e);
         }
     };
 

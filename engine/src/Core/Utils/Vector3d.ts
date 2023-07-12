@@ -1,5 +1,6 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
 import { errorPrefix } from "./Constants";
+import { isNumber } from "../../Utils/Utils";
 
 /**
  */
@@ -27,7 +28,7 @@ export class Vector3d implements ICoordinates3d {
      * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates3d | ICoordinates, y?: number, z?: number) {
-        if (typeof xOrCoords !== "number" && xOrCoords) {
+        if (!isNumber(xOrCoords) && xOrCoords) {
             this.x = xOrCoords.x;
             this.y = xOrCoords.y;
 
@@ -195,6 +196,17 @@ export class Vector3d implements ICoordinates3d {
     }
 
     /**
+     * Normalizes the current vector, modifying it
+     */
+    normalize(): void {
+        const length = this.length;
+
+        if (length != 0) {
+            this.multTo(1.0 / length);
+        }
+    }
+
+    /**
      * Creates a new vector, rotating the current one, without modifying it
      * @param angle - the rotation angle
      * @returns the rotated vector
@@ -203,7 +215,7 @@ export class Vector3d implements ICoordinates3d {
         return Vector3d.create(
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle),
-            0
+            0,
         );
     }
 

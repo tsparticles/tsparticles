@@ -25,11 +25,16 @@ loadSimplexNoisePath
 Once the scripts are loaded you can set up `tsParticles` and the path plugin like this:
 
 ```javascript
-loadSimplexNoisePath(tsParticles);
+(async () => {
+  await loadSimplexNoisePath(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadSimplexNoisePath } = require("tsparticles-path-simplex-noise");
 
-loadSimplexNoisePath(tsParticles);
+(async () => {
+  await loadSimplexNoisePath(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadSimplexNoisePath } from "tsparticles-path-simplex-noise";
 
-loadSimplexNoisePath(tsParticles);
+(async () => {
+  await loadSimplexNoisePath(tsParticles);
+})();
 ```

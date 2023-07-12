@@ -17,7 +17,7 @@ export type ShapeDrawerDrawFunction = (
     radius: number,
     opacity: number,
     delta: IDelta,
-    pixelRatio: number
+    pixelRatio: number,
 ) => void;
 
 /**
@@ -48,7 +48,7 @@ export type ShapeDrawerAfterEffectFunction = (
     radius: number,
     opacity: number,
     delta: IDelta,
-    pixelRatio: number
+    pixelRatio: number,
 ) => void;
 
 /**

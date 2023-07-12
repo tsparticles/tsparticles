@@ -80,7 +80,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
                         x / 100 + 40000,
                         y / 100 + 40000,
                         z / 100 + 40000,
-                        this.noiseW
+                        this.noiseW,
                     );
                 }
             }

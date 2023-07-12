@@ -1,4 +1,4 @@
-import type { Engine } from "./engine";
+import type { Engine } from "./Core/Engine";
 
 export * from "./Core/Interfaces/Colors";
 export * from "./Core/Interfaces/IBounds";
@@ -11,27 +11,31 @@ export * from "./Core/Interfaces/ICoordinates";
 export * from "./Core/Interfaces/IDelta";
 export * from "./Core/Interfaces/IDimension";
 export * from "./Core/Interfaces/IDistance";
+export * from "./Core/Interfaces/IDrawParticleParams";
 export * from "./Core/Interfaces/IExternalInteractor";
 export * from "./Core/Interfaces/IInteractor";
+export * from "./Core/Interfaces/ILoadParams";
 export * from "./Core/Interfaces/IMouseData";
 export * from "./Core/Interfaces/IMovePathGenerator";
 export * from "./Core/Interfaces/IParticle";
 export * from "./Core/Interfaces/IParticleColorStyle";
 export * from "./Core/Interfaces/IParticleHslAnimation";
-export * from "./Core/Interfaces/IParticlesInteractor";
 export * from "./Core/Interfaces/IParticleLife";
+export * from "./Core/Interfaces/IParticleMover";
 export * from "./Core/Interfaces/IParticleRetinaProps";
 export * from "./Core/Interfaces/IParticleRoll";
 export * from "./Core/Interfaces/IParticleTransformValues";
 export * from "./Core/Interfaces/IParticleUpdater";
 export * from "./Core/Interfaces/IParticleValueAnimation";
-export * from "./Core/Interfaces/IParticlesMover";
+export * from "./Core/Interfaces/IParticlesInteractor";
 export * from "./Core/Interfaces/IPlugin";
+export * from "./Core/Interfaces/IPositionFromSizeParams";
 export * from "./Core/Interfaces/IRangeValue";
 export * from "./Core/Interfaces/IRectSideResult";
 export * from "./Core/Interfaces/IShapeDrawer";
 export * from "./Core/Interfaces/IShapeValues";
 export * from "./Core/Interfaces/ISlowParticleData";
+export * from "./Core/Interfaces/ITrailFillData";
 
 export * from "./Options/Interfaces/Background/IBackground";
 
@@ -105,6 +109,7 @@ export * from "./Options/Interfaces/Theme/IThemeDefault";
 
 export * from "./Types/CustomEventArgs";
 export * from "./Types/CustomEventListener";
+export * from "./Types/ExportResult";
 export * from "./Types/ISourceOptions";
 export * from "./Types/ParticlesGroups";
 export * from "./Types/PathOptions";
@@ -115,7 +120,6 @@ export * from "./Types/ShapeDrawerFunctions";
 export * from "./Types/SingleOrMultiple";
 
 export type { EventListeners } from "./Core/Utils/EventListeners";
-export type { FrameManager } from "./Core/Utils/FrameManager";
 export type { InteractionManager } from "./Core/Utils/InteractionManager";
 export type { Plugins } from "./Core/Utils/Plugins";
 export type { QuadTree } from "./Core/Utils/QuadTree";

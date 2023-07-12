@@ -24,7 +24,7 @@ export interface IColor {
 }
 
 /**
- * Color
+ * Range Color
  * [[include:Color.md]]
  */
 export interface IRangeColor {
@@ -35,6 +35,8 @@ export interface IRangeColor {
 }
 
 /**
+ * HSL Color
+ * [[include:Color.md]]
  */
 export interface IHsl {
     /**
@@ -54,6 +56,8 @@ export interface IHsl {
 }
 
 /**
+ * Range HSL Color
+ * [[include:Color.md]]
  */
 export interface IRangeHsl {
     /**
@@ -73,10 +77,14 @@ export interface IRangeHsl {
 }
 
 /**
+ * HSLA Color
+ * [[include:Color.md]]
  */
 export interface IHsla extends IHsl, IAlphaColor {}
 
 /**
+ * HSV Color
+ * [[include:Color.md]]
  */
 export interface IHsv {
     /**
@@ -96,6 +104,8 @@ export interface IHsv {
 }
 
 /**
+ * Range HSV Color
+ * [[include:Color.md]]
  */
 export interface IRangeHsv {
     /**
@@ -114,9 +124,15 @@ export interface IRangeHsv {
     v: RangeValue;
 }
 
+/**
+ * HSVA Color
+ * [[include:Color.md]]
+ */
 export interface IHsva extends IHsv, IAlphaColor {}
 
 /**
+ * RGB Color
+ * [[include:Color.md]]
  */
 export interface IRgb {
     /**
@@ -136,6 +152,8 @@ export interface IRgb {
 }
 
 /**
+ * Range RGB Color
+ * [[include:Color.md]]
  */
 export interface IRangeRgb {
     /**
@@ -155,10 +173,14 @@ export interface IRangeRgb {
 }
 
 /**
+ * RGBA Color
+ * [[include:Color.md]]
  */
 export interface IRgba extends IRgb, IAlphaColor {}
 
 /**
+ * Mixed Value Color
+ * [[include:Color.md]]
  */
 export interface IValueColor {
     /**
@@ -178,6 +200,8 @@ export interface IValueColor {
 }
 
 /**
+ * Range Mixed Value Color
+ * [[include:Color.md]]
  */
 export interface IRangeValueColor {
     /**

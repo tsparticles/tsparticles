@@ -1,4 +1,4 @@
 const { loadParticlesUpdater } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesUpdater("gradient", "Gradient", version, __dirname);
+module.exports = loadParticlesUpdater({ moduleName: "gradient", updaterName: "Gradient", version, dir: __dirname });

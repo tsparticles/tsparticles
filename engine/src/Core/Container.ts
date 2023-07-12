@@ -1,22 +1,22 @@
-import { animate, cancelAnimation } from "../Utils/Utils";
+import { getLogger, isFunction } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
-import type { Engine } from "../engine";
+import type { Engine } from "./Engine";
 import { EventListeners } from "./Utils/EventListeners";
 import { EventType } from "../Enums/Types/EventType";
-import { FrameManager } from "./Utils/FrameManager";
 import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
+import type { IDelta } from "./Interfaces/IDelta";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
-import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
+import type { ISourceOptions } from "../Types/ISourceOptions";
 import { Options } from "../Options/Classes/Options";
 import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
-import type { RecursivePartial } from "../Types/RecursivePartial";
 import { Retina } from "./Retina";
 import type { Vector } from "./Utils/Vector";
+import { errorPrefix } from "./Utils/Constants";
 import { getRangeValue } from "../Utils/NumberUtils";
 import { loadOptions } from "../Utils/OptionsUtils";
 
@@ -30,6 +30,19 @@ function guardCheck(container: Container): boolean {
 }
 
 /**
+ * @param value -
+ * @param fpsLimit -
+ * @param smooth -
+ * @returns the initialized delta value
+ */
+function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
+    return {
+        value,
+        factor: smooth ? 60 / fpsLimit : (60 * value) / 1000,
+    };
+}
+
+/**
  * @param engine -
  * @param container -
  * @param sourceOptionsArr -
@@ -38,7 +51,7 @@ function guardCheck(container: Container): boolean {
 function loadContainerOptions(
     engine: Engine,
     container: Container,
-    ...sourceOptionsArr: RecursivePartial<IOptions | undefined>[]
+    ...sourceOptionsArr: (ISourceOptions | undefined)[]
 ): Options {
     const options = new Options(engine, container);
 
@@ -90,11 +103,6 @@ export class Container {
      * The container fps limit, coming from options
      */
     fpsLimit;
-
-    /**
-     * The container frame manager
-     */
-    readonly frameManager;
 
     interactivity: IContainerInteractivity;
 
@@ -160,7 +168,11 @@ export class Container {
      * @param id - the id to identify this instance
      * @param sourceOptions - the options to load
      */
-    constructor(engine: Engine, readonly id: string, sourceOptions?: RecursivePartial<IOptions>) {
+    constructor(
+        engine: Engine,
+        readonly id: string,
+        sourceOptions?: ISourceOptions,
+    ) {
         this._engine = engine;
         this.fpsLimit = 120;
         this.smooth = false;
@@ -179,7 +191,6 @@ export class Container {
         this.retina = new Retina(this);
         this.canvas = new Canvas(this);
         this.particles = new Particles(this._engine, this);
-        this.frameManager = new FrameManager(this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {
             mouse: {
@@ -215,7 +226,7 @@ export class Container {
      * The options that were initially passed to the container
      * @returns the source options passed to the container
      */
-    get sourceOptions(): RecursivePartial<IOptions> | undefined {
+    get sourceOptions(): ISourceOptions | undefined {
         return this._sourceOptions;
     }
 
@@ -401,55 +412,33 @@ export class Container {
 
         let refreshTime = force;
 
-        this._drawAnimationFrame = animate()(async (timestamp) => {
+        this._drawAnimationFrame = requestAnimationFrame(async (timestamp) => {
             if (refreshTime) {
                 this.lastFrameTime = undefined;
 
                 refreshTime = false;
             }
 
-            await this.frameManager.nextFrame(timestamp);
+            await this._nextFrame(timestamp);
         });
     }
 
-    /**
-     * Exports the current configuration using `options` property
-     * @returns a JSON string created from `options` property
-     */
-    exportConfiguration(): string {
-        return JSON.stringify(
-            this.actualOptions,
-            (key, value) => {
-                if (key.startsWith("_")) {
-                    return;
-                }
+    async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
+        for (const [, plugin] of this.plugins) {
+            if (!plugin.export) {
+                continue;
+            }
 
-                return value;
-            },
-            2
-        );
-    }
+            const res = await plugin.export(type, options);
 
-    /**
-     * Exports the current canvas image, `background` property of `options` won't be rendered because it's css related
-     * @param callback - The callback to handle the image
-     * @param type - The exported image type
-     * @param quality - The exported image quality
-     */
-    exportImage(callback: BlobCallback, type?: string, quality?: number): void {
-        const element = this.canvas.element;
+            if (!res.supported) {
+                continue;
+            }
 
-        if (element) {
-            element.toBlob(callback, type ?? "image/png", quality);
+            return res.blob;
         }
-    }
 
-    /**
-     * @deprecated this method is deprecated, please use the exportImage method
-     * @param callback - The callback to handle the image
-     */
-    exportImg(callback: BlobCallback): void {
-        this.exportImage(callback);
+        getLogger().error(`${errorPrefix} - Export plugin with type ${type} not found`);
     }
 
     /**
@@ -563,7 +552,7 @@ export class Container {
         }
 
         if (this._drawAnimationFrame !== undefined) {
-            cancelAnimation()(this._drawAnimationFrame);
+            cancelAnimationFrame(this._drawAnimationFrame);
 
             delete this._drawAnimationFrame;
         }
@@ -653,7 +642,7 @@ export class Container {
     setNoise(
         noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
         init?: () => void,
-        update?: () => void
+        update?: () => void,
     ): void {
         if (!guardCheck(this)) {
             return;
@@ -672,7 +661,7 @@ export class Container {
     setPath(
         pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
         init?: () => void,
-        update?: () => void
+        update?: () => void,
     ): void {
         if (!pathOrGenerator || !guardCheck(this)) {
             return;
@@ -680,7 +669,7 @@ export class Container {
 
         const pathGenerator = { ...defaultPathGenerator };
 
-        if (typeof pathOrGenerator === "function") {
+        if (isFunction(pathOrGenerator)) {
             pathGenerator.generate = pathOrGenerator;
 
             if (init) {
@@ -782,7 +771,7 @@ export class Container {
         const newMaxWidth = this.actualOptions.setResponsive(
             this.canvas.size.width,
             this.retina.pixelRatio,
-            this._options
+            this._options,
         );
 
         this.actualOptions.setTheme(this._currentTheme);
@@ -807,6 +796,47 @@ export class Container {
             }
 
             (entry.isIntersecting ? this.play : this.pause)();
+        }
+    };
+
+    private readonly _nextFrame: (timestamp: DOMHighResTimeStamp) => Promise<void> = async (timestamp) => {
+        try {
+            // FPS limit logic - if we are too fast, just draw without updating
+            if (
+                !this.smooth &&
+                this.lastFrameTime !== undefined &&
+                timestamp < this.lastFrameTime + 1000 / this.fpsLimit
+            ) {
+                this.draw(false);
+
+                return;
+            }
+
+            this.lastFrameTime ??= timestamp;
+
+            const delta = initDelta(timestamp - this.lastFrameTime, this.fpsLimit, this.smooth);
+
+            this.addLifeTime(delta.value);
+            this.lastFrameTime = timestamp;
+
+            if (delta.value > 1000) {
+                this.draw(false);
+
+                return;
+            }
+
+            await this.particles.draw(delta);
+
+            if (!this.alive()) {
+                this.destroy();
+                return;
+            }
+
+            if (this.getAnimationStatus()) {
+                this.draw(false);
+            }
+        } catch (e) {
+            getLogger().error(`${errorPrefix} in animation loop`, e);
         }
     };
 }

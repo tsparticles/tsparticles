@@ -3,9 +3,10 @@ import { Remover } from "./Remover";
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadExternalRemoveInteraction(engine: Engine): Promise<void> {
-    await engine.addInteractor("externalRemove", (container) => new Remover(container));
+export async function loadExternalRemoveInteraction(engine: Engine, refresh = true): Promise<void> {
+    await engine.addInteractor("externalRemove", (container) => new Remover(container), refresh);
 }
 
 export * from "./Options/Classes/Remove";

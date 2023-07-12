@@ -25,11 +25,16 @@ loadCurvesPath
 Once the scripts are loaded you can set up `tsParticles` and the path plugin like this:
 
 ```javascript
-loadCurvesPath(tsParticles);
+(async () => {
+  await loadCurvesPath(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadCurvesPath } = require("tsparticles-path-curves");
 
-loadCurvesPath(tsParticles);
+(async () => {
+  await loadCurvesPath(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadCurvesPath } from "tsparticles-path-curves";
 
-loadCurvesPath(tsParticles);
+(async () => {
+  await loadCurvesPath(tsParticles);
+})();
 ```

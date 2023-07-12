@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, type RecursivePartial, isObject } from "tsparticles-engine";
 import type { ISoundsVolume } from "../Interfaces/ISoundsVolume";
 
 export class SoundsVolume implements ISoundsVolume, IOptionLoader<ISoundsVolume> {
@@ -19,7 +19,7 @@ export class SoundsVolume implements ISoundsVolume, IOptionLoader<ISoundsVolume>
             return;
         }
 
-        if (typeof data === "object") {
+        if (isObject(data)) {
             if (data.max !== undefined) {
                 this.max = data.max;
             }

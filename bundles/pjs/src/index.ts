@@ -34,7 +34,7 @@ declare global {
  * @returns the particles.js compatibility object
  */
 const initPjs = (
-    engine: Engine
+    engine: Engine,
 ): {
     /**
      * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}

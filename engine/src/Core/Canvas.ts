@@ -1,5 +1,5 @@
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils";
-import { deepExtend, isSsr } from "../Utils/Utils";
+import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
@@ -21,7 +21,7 @@ import { generatedAttribute } from "./Utils/Constants";
 function setTransformValue(
     factor: IParticleTransformValues,
     newFactor: IParticleTransformValues,
-    key: keyof IParticleTransformValues
+    key: keyof IParticleTransformValues,
 ): void {
     const newValue = newFactor[key];
 
@@ -78,16 +78,13 @@ export class Canvas {
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
         this._colorPlugins = [];
-        this._mutationObserver =
-            !isSsr() && typeof MutationObserver !== "undefined"
-                ? new MutationObserver((records) => {
-                      for (const record of records) {
-                          if (record.type === "attributes" && record.attributeName === "style") {
-                              this._repairStyle();
-                          }
-                      }
-                  })
-                : undefined;
+        this._mutationObserver = safeMutationObserver((records) => {
+            for (const record of records) {
+                if (record.type === "attributes" && record.attributeName === "style") {
+                    this._repairStyle();
+                }
+            }
+        });
     }
 
     private get _fullScreen(): boolean {
@@ -253,7 +250,7 @@ export class Canvas {
         try {
             await this._initTrail();
         } catch (e) {
-            console.error(e);
+            getLogger().error(e);
         }
 
         this.initBackground();
@@ -465,7 +462,7 @@ export class Canvas {
         radius: number,
         zOpacity: number,
         colorStyles: IParticleColorStyle,
-        transform: IParticleTransformValues
+        transform: IParticleTransformValues,
     ) => void = (ctx, particle, radius, zOpacity, colorStyles, transform) => {
         for (const updater of this._preDrawUpdaters) {
             if (updater.getColorStyles) {

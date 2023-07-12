@@ -37,41 +37,44 @@ import { loadTextShape } from "tsparticles-shape-text";
  * If this function is not called, the tsparticles-slim package/dependency can be safely removed.
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
+ * @param refresh -
  */
-export async function loadSlim(engine: Engine): Promise<void> {
-    await loadBaseMover(engine);
-    await loadParallaxMover(engine);
+export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
+    initPjs(engine);
 
-    await loadExternalAttractInteraction(engine);
-    await loadExternalBounceInteraction(engine);
-    await loadExternalBubbleInteraction(engine);
-    await loadExternalConnectInteraction(engine);
-    await loadExternalGrabInteraction(engine);
-    await loadExternalPauseInteraction(engine);
-    await loadExternalPushInteraction(engine);
-    await loadExternalRemoveInteraction(engine);
-    await loadExternalRepulseInteraction(engine);
-    await loadExternalSlowInteraction(engine);
+    await loadBaseMover(engine, false);
+    await loadParallaxMover(engine, false);
 
-    await loadParticlesAttractInteraction(engine);
-    await loadParticlesCollisionsInteraction(engine);
-    await loadParticlesLinksInteraction(engine);
+    await loadExternalAttractInteraction(engine, false);
+    await loadExternalBounceInteraction(engine, false);
+    await loadExternalBubbleInteraction(engine, false);
+    await loadExternalConnectInteraction(engine, false);
+    await loadExternalGrabInteraction(engine, false);
+    await loadExternalPauseInteraction(engine, false);
+    await loadExternalPushInteraction(engine, false);
+    await loadExternalRemoveInteraction(engine, false);
+    await loadExternalRepulseInteraction(engine, false);
+    await loadExternalSlowInteraction(engine, false);
 
-    await loadCircleShape(engine);
-    await loadImageShape(engine);
-    await loadLineShape(engine);
-    await loadPolygonShape(engine);
-    await loadSquareShape(engine);
-    await loadStarShape(engine);
-    await loadTextShape(engine);
+    await loadParticlesAttractInteraction(engine, false);
+    await loadParticlesCollisionsInteraction(engine, false);
+    await loadParticlesLinksInteraction(engine, false);
 
-    await loadLifeUpdater(engine);
-    await loadOpacityUpdater(engine);
-    await loadSizeUpdater(engine);
-    await loadColorUpdater(engine);
-    await loadOutModesUpdater(engine);
-    await loadRotateUpdater(engine);
-    await loadStrokeColorUpdater(engine);
+    await loadCircleShape(engine, false);
+    await loadImageShape(engine, false);
+    await loadLineShape(engine, false);
+    await loadPolygonShape(engine, false);
+    await loadSquareShape(engine, false);
+    await loadStarShape(engine, false);
+    await loadTextShape(engine, false);
 
-    await initPjs(engine);
+    await loadLifeUpdater(engine, false);
+    await loadOpacityUpdater(engine, false);
+    await loadSizeUpdater(engine, false);
+    await loadColorUpdater(engine, false);
+    await loadOutModesUpdater(engine, false);
+    await loadRotateUpdater(engine, false);
+    await loadStrokeColorUpdater(engine, false);
+
+    await engine.refresh(refresh);
 }

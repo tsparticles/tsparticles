@@ -1,4 +1,5 @@
 import type { IRangeHsl, IRangeHsv, IRangeRgb, IRangeValueColor } from "../../Core/Interfaces/Colors";
+import { isArray, isString } from "../../Utils/Utils";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptionsColor } from "../Interfaces/IOptionsColor";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
@@ -16,14 +17,14 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
 
     static create(
         source?: OptionsColor,
-        data?: SingleOrMultiple<string> | RecursivePartial<IOptionsColor>
+        data?: SingleOrMultiple<string> | RecursivePartial<IOptionsColor>,
     ): OptionsColor {
         const color = new OptionsColor();
 
         color.load(source);
 
         if (data !== undefined) {
-            if (typeof data === "string" || data instanceof Array) {
+            if (isString(data) || isArray(data)) {
                 color.load({ value: data });
             } else {
                 color.load(data);

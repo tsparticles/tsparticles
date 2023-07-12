@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/matteobruni/tsparticles/compare/v2.10.1...v2.11.0) (2023-07-12)
+
+
+### Bug Fixes
+
+* fixed calc position function ([adb0444](https://github.com/matteobruni/tsparticles/commit/adb044454ce9aacd84ed077ab2bd41541995c0b1))
+* fixed getPositionOrSize function ([3e07525](https://github.com/matteobruni/tsparticles/commit/3e07525becdfe08d10c3ffc8dc00bbe0e6acf53f))
+* fixed issue with emitters ([39c7d75](https://github.com/matteobruni/tsparticles/commit/39c7d758410b1f13567e4ea97bc334ba864d62c4))
+* fixed video export plugin ([a3b371c](https://github.com/matteobruni/tsparticles/commit/a3b371cfad36a5d45015f5182f23aaa1ba2147d8))
+* removed console log, closes [#5003](https://github.com/matteobruni/tsparticles/issues/5003) ([f5f2706](https://github.com/matteobruni/tsparticles/commit/f5f2706c027a6fa66fdcb8a243aecbffdf94f70a))
+
+
+### Features
+
+* added animated gif support to image drawer ([c65f451](https://github.com/matteobruni/tsparticles/commit/c65f451cc4edf3a5e01e436d9a14922388c01a38))
+* added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
+* added setLogger and getLogger functions, this will prevent console.log mistakenly left ([38de76c](https://github.com/matteobruni/tsparticles/commit/38de76ceecc1305f416e23fdc9da223adbb8a6c1))
+* added tree shaking ([86806a6](https://github.com/matteobruni/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
+* added video export plugin ([527eb6f](https://github.com/matteobruni/tsparticles/commit/527eb6f3db294f673b635e37a97be160fc420fed))
+* adding export plugins ([4c1b5a6](https://github.com/matteobruni/tsparticles/commit/4c1b5a649eba2cb7d8382c2177b90515864a7402))
+* created rounded polygon shape ([abee4dc](https://github.com/matteobruni/tsparticles/commit/abee4dc3258e1dcc7ab097a66313e89dde19a0b4))
+* export plugins completed, image and json ([149b77d](https://github.com/matteobruni/tsparticles/commit/149b77d2995f213f6bf5fcca55c083b267eb4206))
+* fixed export plugins ([775e7bd](https://github.com/matteobruni/tsparticles/commit/775e7bd53b9615fe471660d106c5747bf0cfda3b))
+* improved new export function, using blob as output for all functions ([df1c862](https://github.com/matteobruni/tsparticles/commit/df1c8620e4cbeb3267423cb1aee4edc8e29253d8))
+* improved new export function, using blob as output for all functions ([3521561](https://github.com/matteobruni/tsparticles/commit/3521561264540c1e3e92ec6b07d4a7e8b0b2ad79))
+
+
+
+
+
+## [2.10.1](https://github.com/matteobruni/tsparticles/compare/v2.10.0...v2.10.1) (2023-06-04)
+
+**Note:** Version bump only for package tsparticles-workspace
+
 # [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
 
 ### Bug Fixes

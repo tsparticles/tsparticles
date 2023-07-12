@@ -22,7 +22,7 @@ export function drawLight(container: LightContainer, context: CanvasRenderingCon
         0,
         mousePos.x,
         mousePos.y,
-        lightOptions.radius
+        lightOptions.radius,
     );
 
     const gradientRgb = container.canvas.mouseLight;
@@ -48,7 +48,7 @@ export function drawParticleShadow(
     container: LightContainer,
     context: CanvasRenderingContext2D,
     particle: LightParticle,
-    mousePos: ICoordinates
+    mousePos: ICoordinates,
 ): void {
     const pos = particle.getPosition(),
         shadowOptions = container.actualOptions.interactivity.modes.light?.shadow;

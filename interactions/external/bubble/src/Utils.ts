@@ -11,7 +11,7 @@ export function calculateBubbleValue(
     particleValue: number,
     modeValue: number,
     optionsValue: number,
-    ratio: number
+    ratio: number,
 ): number | undefined {
     if (modeValue >= optionsValue) {
         const value = particleValue + (modeValue - optionsValue) * ratio;

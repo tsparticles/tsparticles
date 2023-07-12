@@ -28,7 +28,10 @@ export class QuadTree {
      * @param rectangle - the instance rectangle area
      * @param capacity - the points capacity
      */
-    constructor(readonly rectangle: Rectangle, readonly capacity: number) {
+    constructor(
+        readonly rectangle: Rectangle,
+        readonly capacity: number,
+    ) {
         this._points = [];
         this._divided = false;
         this._subs = [];
@@ -146,10 +149,10 @@ export class QuadTree {
                         x + (width / 2) * (i % 2),
                         y + (height / 2) * (Math.round(i / 2) - (i % 2)),
                         width / 2,
-                        height / 2
+                        height / 2,
                     ),
-                    capacity
-                )
+                    capacity,
+                ),
             );
         }
 

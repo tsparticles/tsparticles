@@ -1,6 +1,6 @@
-import type { IColor, IOptionsColor } from "tsparticles-engine";
 import type { ILinksShadow } from "./ILinksShadow";
 import type { ILinksTriangle } from "./ILinksTriangle";
+import type { IOptionsColor } from "tsparticles-engine";
 
 /**
  * Particles Links options, this configures how the particles link together
@@ -14,7 +14,7 @@ export interface ILinks {
     blink: boolean;
 
     /**
-     * Link line color, can be a string or an {@link IColor} object.
+     * Link line color, can be a string or an {@link IOptionsColor} object.
      * If the value is "random", if {@link ILinks.blink} is `true` sets a random color each frame,
      * if {@link ILinks.consent} is `true` a random color is used for all links,
      * if {@link ILinks.blink} and {@link ILinks.consent} are false the color will be a gradient with the two linked particles color

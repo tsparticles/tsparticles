@@ -1,4 +1,4 @@
 const { loadParticlesShape } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesShape("star", "Star", version, __dirname);
+module.exports = loadParticlesShape({ moduleName: "star", shapeName: "Star", version, dir: __dirname });

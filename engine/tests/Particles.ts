@@ -72,7 +72,7 @@ describe("Particles", () => {
         const particle3 = testParticles.particles.addParticle({ x: 3, y: 3 });
         expect(testParticles.particles.count).to.equal(3);
         expect(
-            testParticles.particles.filter(t => t === particle1 || t === particle2 || t === particle3).length
+            testParticles.particles.filter(t => t === particle1 || t === particle2 || t === particle3).length,
         ).to.equal(3);
     });
 

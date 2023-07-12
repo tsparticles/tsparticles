@@ -28,7 +28,7 @@ export class BounceOutMode implements IOutModeManager {
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode
+        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
     ): void {
         if (!this.modes.includes(outMode)) {
             return;

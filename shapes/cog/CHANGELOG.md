@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.11.0](https://github.com/matteobruni/tsparticles/compare/v2.10.1...v2.11.0) (2023-07-12)
+
+
+### Features
+
+* added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
+* added tree shaking ([86806a6](https://github.com/matteobruni/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
+
+
+
+
+
+## [2.10.1](https://github.com/matteobruni/tsparticles/compare/v2.10.0...v2.10.1) (2023-06-04)
+
+**Note:** Version bump only for package tsparticles-shape-cog
+
 # [2.10.0](https://github.com/matteobruni/tsparticles/compare/v2.0.0-alpha.0...v2.10.0) (2023-06-03)
 
 ### Bug Fixes

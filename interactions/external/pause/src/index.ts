@@ -2,8 +2,9 @@ import type { Engine } from "tsparticles-engine";
 import { Pauser } from "./Pauser";
 
 /**
- * @param engine
+ * @param engine -
+ * @param refresh -
  */
-export async function loadExternalPauseInteraction(engine: Engine): Promise<void> {
-    await engine.addInteractor("externalPause", (container) => new Pauser(container));
+export async function loadExternalPauseInteraction(engine: Engine, refresh = true): Promise<void> {
+    await engine.addInteractor("externalPause", (container) => new Pauser(container), refresh);
 }

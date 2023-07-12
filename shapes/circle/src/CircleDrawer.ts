@@ -1,4 +1,4 @@
-import type { Container, IShapeDrawer } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, isObject } from "tsparticles-engine";
 import type { CircleParticle } from "./CircleParticle";
 import type { ICircleShapeData } from "./ICircleShapeData";
 
@@ -26,12 +26,11 @@ export class CircleDrawer implements IShapeDrawer {
                 min: 0,
             };
 
-        particle.circleRange =
-            typeof angle !== "object"
-                ? {
-                      min: 0,
-                      max: (angle * Math.PI) / 180,
-                  }
-                : { min: (angle.min * Math.PI) / 180, max: (angle.max * Math.PI) / 180 };
+        particle.circleRange = !isObject(angle)
+            ? {
+                  min: 0,
+                  max: (angle * Math.PI) / 180,
+              }
+            : { min: (angle.min * Math.PI) / 180, max: (angle.max * Math.PI) / 180 };
     }
 }

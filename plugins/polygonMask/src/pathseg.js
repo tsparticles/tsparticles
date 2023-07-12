@@ -231,7 +231,7 @@
                     this._x1,
                     this._y1,
                     this._x2,
-                    this._y2
+                    this._y2,
                 );
             };
             Object.defineProperty(window.SVGPathSegCurvetoCubicAbs.prototype, "x", {
@@ -319,7 +319,7 @@
                     this._x1,
                     this._y1,
                     this._x2,
-                    this._y2
+                    this._y2,
                 );
             };
             Object.defineProperty(window.SVGPathSegCurvetoCubicRel.prototype, "x", {
@@ -527,7 +527,7 @@
                     this._r2,
                     this._angle,
                     this._largeArcFlag,
-                    this._sweepFlag
+                    this._sweepFlag,
                 );
             };
             Object.defineProperty(window.SVGPathSegArcAbs.prototype, "x", {
@@ -629,7 +629,7 @@
                     this._r2,
                     this._angle,
                     this._largeArcFlag,
-                    this._sweepFlag
+                    this._sweepFlag,
                 );
             };
             Object.defineProperty(window.SVGPathSegArcRel.prototype, "x", {
@@ -808,7 +808,7 @@
                     this,
                     window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS,
                     "S",
-                    owningPathSegList
+                    owningPathSegList,
                 );
                 this._x = x;
                 this._y = y;
@@ -871,7 +871,7 @@
                     this,
                     window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL,
                     "s",
-                    owningPathSegList
+                    owningPathSegList,
                 );
                 this._x = x;
                 this._y = y;
@@ -934,7 +934,7 @@
                     this,
                     window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS,
                     "T",
-                    owningPathSegList
+                    owningPathSegList,
                 );
                 this._x = x;
                 this._y = y;
@@ -975,7 +975,7 @@
                     this,
                     window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL,
                     "t",
-                    owningPathSegList
+                    owningPathSegList,
                 );
                 this._x = x;
                 this._y = y;
@@ -1047,7 +1047,7 @@
                 r2,
                 angle,
                 largeArcFlag,
-                sweepFlag
+                sweepFlag,
             ) {
                 return new window.SVGPathSegArcAbs(undefined, x, y, r1, r2, angle, largeArcFlag, sweepFlag);
             };
@@ -1058,7 +1058,7 @@
                 r2,
                 angle,
                 largeArcFlag,
-                sweepFlag
+                sweepFlag,
             ) {
                 return new window.SVGPathSegArcRel(undefined, x, y, r1, r2, angle, largeArcFlag, sweepFlag);
             };
@@ -1200,7 +1200,7 @@
             };
 
             // When a path segment changes the list needs to be synchronized back to the path element.
-            window.SVGPathSegList.prototype.segmentChanged = function (pathSeg) {
+            window.SVGPathSegList.prototype.segmentChanged = function (/*pathSeg*/) {
                 this._writeListToPath();
             };
 
@@ -1595,25 +1595,25 @@
                             return new window.SVGPathSegMovetoRel(
                                 owningPathSegList,
                                 this._parseNumber(),
-                                this._parseNumber()
+                                this._parseNumber(),
                             );
                         case window.SVGPathSeg.PATHSEG_MOVETO_ABS:
                             return new window.SVGPathSegMovetoAbs(
                                 owningPathSegList,
                                 this._parseNumber(),
-                                this._parseNumber()
+                                this._parseNumber(),
                             );
                         case window.SVGPathSeg.PATHSEG_LINETO_REL:
                             return new window.SVGPathSegLinetoRel(
                                 owningPathSegList,
                                 this._parseNumber(),
-                                this._parseNumber()
+                                this._parseNumber(),
                             );
                         case window.SVGPathSeg.PATHSEG_LINETO_ABS:
                             return new window.SVGPathSegLinetoAbs(
                                 owningPathSegList,
                                 this._parseNumber(),
-                                this._parseNumber()
+                                this._parseNumber(),
                             );
                         case window.SVGPathSeg.PATHSEG_LINETO_HORIZONTAL_REL:
                             return new window.SVGPathSegLinetoHorizontalRel(owningPathSegList, this._parseNumber());
@@ -1642,7 +1642,7 @@
                                 points.x1,
                                 points.y1,
                                 points.x2,
-                                points.y2
+                                points.y2,
                             );
                         case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_ABS:
                             points = {
@@ -1660,7 +1660,7 @@
                                 points.x1,
                                 points.y1,
                                 points.x2,
-                                points.y2
+                                points.y2,
                             );
                         case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_REL:
                             points = {
@@ -1674,7 +1674,7 @@
                                 points.x,
                                 points.y,
                                 points.x2,
-                                points.y2
+                                points.y2,
                             );
                         case window.SVGPathSeg.PATHSEG_CURVETO_CUBIC_SMOOTH_ABS:
                             points = {
@@ -1688,7 +1688,7 @@
                                 points.x,
                                 points.y,
                                 points.x2,
-                                points.y2
+                                points.y2,
                             );
                         case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_REL:
                             points = {
@@ -1702,7 +1702,7 @@
                                 points.x,
                                 points.y,
                                 points.x1,
-                                points.y1
+                                points.y1,
                             );
                         case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_ABS:
                             points = {
@@ -1716,19 +1716,19 @@
                                 points.x,
                                 points.y,
                                 points.x1,
-                                points.y1
+                                points.y1,
                             );
                         case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_REL:
                             return new window.SVGPathSegCurvetoQuadraticSmoothRel(
                                 owningPathSegList,
                                 this._parseNumber(),
-                                this._parseNumber()
+                                this._parseNumber(),
                             );
                         case window.SVGPathSeg.PATHSEG_CURVETO_QUADRATIC_SMOOTH_ABS:
                             return new window.SVGPathSegCurvetoQuadraticSmoothAbs(
                                 owningPathSegList,
                                 this._parseNumber(),
-                                this._parseNumber()
+                                this._parseNumber(),
                             );
                         case window.SVGPathSeg.PATHSEG_ARC_REL:
                             points = {
@@ -1748,7 +1748,7 @@
                                 points.y1,
                                 points.arcAngle,
                                 points.arcLarge,
-                                points.arcSweep
+                                points.arcSweep,
                             );
                         case window.SVGPathSeg.PATHSEG_ARC_ABS:
                             points = {
@@ -1768,7 +1768,7 @@
                                 points.y1,
                                 points.arcAngle,
                                 points.arcLarge,
-                                points.arcSweep
+                                points.arcSweep,
                             );
                         default:
                             throw "Unknown path seg type.";
@@ -1795,7 +1795,7 @@
         // ignore, if it's not working we can ignore errors
         console.warn(
             "An error occurred in tsParticles pathseg polyfill. If the Polygon Mask is not working, please open an issue here: https://github.com/matteobruni/tsparticles",
-            e
+            e,
         );
     }
 })();

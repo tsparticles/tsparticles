@@ -16,7 +16,7 @@ export class TwinkleUpdater implements IParticleUpdater {
         particle: Particle,
         context: CanvasRenderingContext2D,
         radius: number,
-        opacity: number
+        opacity: number,
     ): IParticleColorStyle {
         const pOptions = particle.options,
             twinkleOptions = pOptions.twinkle as Twinkle;

@@ -5,6 +5,7 @@ import {
     type IPlugin,
     type RecursivePartial,
     executeOnSingleOrMultiple,
+    isArray,
     isInArray,
 } from "tsparticles-engine";
 import { Absorber } from "./Options/Classes/Absorber";
@@ -48,7 +49,7 @@ class AbsorbersPlugin implements IPlugin {
                 tmp.load(absorber);
 
                 return tmp;
-            }
+            },
         );
     }
 
@@ -59,7 +60,7 @@ class AbsorbersPlugin implements IPlugin {
 
         const absorbers = options.absorbers;
 
-        if (absorbers instanceof Array) {
+        if (isArray(absorbers)) {
             return !!absorbers.length;
         } else if (absorbers) {
             return true;
@@ -75,12 +76,11 @@ class AbsorbersPlugin implements IPlugin {
 }
 
 /**
- * @param engine
+ * @param engine -
+ * @param refresh -
  */
-export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
-    const plugin = new AbsorbersPlugin();
-
-    await engine.addPlugin(plugin);
+export async function loadAbsorbersPlugin(engine: Engine, refresh = true): Promise<void> {
+    await engine.addPlugin(new AbsorbersPlugin(), refresh);
 }
 
 export * from "./AbsorberContainer";

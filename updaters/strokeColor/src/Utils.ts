@@ -19,7 +19,7 @@ function updateColorValue(
     colorValue: IParticleValueAnimation<number>,
     valueAnimation: IColorAnimation,
     max: number,
-    decrease: boolean
+    decrease: boolean,
 ): void {
     if (
         !colorValue ||

@@ -19,7 +19,7 @@ export class ColorUpdater implements IParticleUpdater {
             particle.color = getHslAnimationFromHsl(
                 hslColor,
                 particle.options.color.animation,
-                this.container.retina.reduceFactor
+                this.container.retina.reduceFactor,
             );
         }
     }

@@ -66,7 +66,7 @@ export function move(
     moveSpeed: number,
     maxSpeed: number,
     moveDrift: number,
-    delta: IDelta
+    delta: IDelta,
 ): void {
     applyPath(particle, delta);
 

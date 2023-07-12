@@ -25,12 +25,17 @@ loadStarShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadStarShape(tsParticles);
+(async () => {
+  await loadStarShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "star" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "star" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadStarShape } = require("tsparticles-shape-star");
 
-loadStarShape(tsParticles);
+(async () => {
+  await loadStarShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadStarShape } from "tsparticles-shape-star";
 
-loadStarShape(tsParticles);
+(async () => {
+  await loadStarShape(tsParticles);
+})();
 ```

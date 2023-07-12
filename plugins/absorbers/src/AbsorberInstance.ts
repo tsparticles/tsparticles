@@ -108,7 +108,7 @@ export class AbsorberInstance {
         private readonly absorbers: Absorbers,
         private readonly container: Container,
         options: RecursivePartial<IAbsorber>,
-        position?: ICoordinates
+        position?: ICoordinates,
     ) {
         this.initialPosition = position ? Vector.create(position.x, position.y) : undefined;
 

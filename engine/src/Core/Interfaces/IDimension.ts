@@ -1,4 +1,4 @@
-import type { SizeMode } from "../../Enums/Modes/SizeMode";
+import type { PixelMode } from "../../Enums/Modes/PixelMode";
 
 /**
  */
@@ -8,5 +8,5 @@ export interface IDimension {
 }
 
 export interface IDimensionWithMode extends IDimension {
-    mode: SizeMode;
+    mode: PixelMode | keyof typeof PixelMode;
 }

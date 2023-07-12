@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "tsparticles-engine";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNumber } from "tsparticles-engine";
 import { AbsorberSizeLimit } from "./AbsorberSizeLimit";
 import type { IAbsorberSize } from "../Interfaces/IAbsorberSize";
 
@@ -24,7 +24,7 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
             this.density = data.density;
         }
 
-        if (typeof data.limit === "number") {
+        if (isNumber(data.limit)) {
             this.limit.radius = data.limit;
         } else {
             this.limit.load(data.limit);

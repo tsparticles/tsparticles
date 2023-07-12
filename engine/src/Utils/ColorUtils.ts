@@ -1,5 +1,6 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors";
 import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
+import { isArray, isString, itemFromArray } from "./Utils";
 import { AnimationStatus } from "../Enums/AnimationStatus";
 import type { HslAnimation } from "../Options/Classes/HslAnimation";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
@@ -8,7 +9,6 @@ import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
 import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
-import { itemFromArray } from "./Utils";
 
 const randomColorValue = "random",
     midColorValue = "mid",
@@ -93,13 +93,13 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
         return;
     }
 
-    const color = typeof input === "string" ? { value: input } : input;
+    const color = isString(input) ? { value: input } : input;
 
-    if (typeof color.value === "string") {
+    if (isString(color.value)) {
         return colorToRgb(color.value, index, useIndex);
     }
 
-    if (color.value instanceof Array) {
+    if (isArray(color.value)) {
         return rangeColorToRgb({
             value: itemFromArray(color.value, index, useIndex),
         });
@@ -126,13 +126,13 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
         return;
     }
 
-    const color = typeof input === "string" ? { value: input } : input;
+    const color = isString(input) ? { value: input } : input;
 
-    if (typeof color.value === "string") {
+    if (isString(color.value)) {
         return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
     }
 
-    if (color.value instanceof Array) {
+    if (isArray(color.value)) {
         return colorToRgb({
             value: itemFromArray(color.value, index, useIndex),
         });
@@ -170,7 +170,7 @@ export function colorToHsl(color: string | IColor | undefined, index?: number, u
 export function rangeColorToHsl(
     color: string | IRangeColor | undefined,
     index?: number,
-    useIndex = true
+    useIndex = true,
 ): IHsl | undefined {
     const rgb = rangeColorToRgb(color, index, useIndex);
 
@@ -385,9 +385,9 @@ export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string |
 export function getLinkRandomColor(
     optColor: string | IOptionsColor,
     blink: boolean,
-    consent: boolean
+    consent: boolean,
 ): IRgb | string | undefined {
-    const color = typeof optColor === "string" ? optColor : optColor.value;
+    const color = isString(optColor) ? optColor : optColor.value;
 
     if (color === randomColorValue) {
         if (consent) {
@@ -433,7 +433,7 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
 export function getHslAnimationFromHsl(
     hsl: IHsl,
     animationOptions: HslAnimation | undefined,
-    reduceFactor: number
+    reduceFactor: number,
 ): IParticleHslAnimation {
     /* color */
     const resColor: IParticleHslAnimation = {
@@ -468,7 +468,7 @@ export function getHslAnimationFromHsl(
 function setColorAnimation(
     colorValue: IParticleValueAnimation<number>,
     colorAnimation: IColorAnimation,
-    reduceFactor: number
+    reduceFactor: number,
 ): void {
     colorValue.enable = colorAnimation.enable;
 

@@ -31,7 +31,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
             particle.strokeColor = getHslAnimationFromHsl(
                 strokeHslColor,
                 particle.strokeAnimation,
-                container.retina.reduceFactor
+                container.retina.reduceFactor,
             );
         }
     }

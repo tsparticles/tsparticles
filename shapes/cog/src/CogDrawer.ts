@@ -63,11 +63,11 @@ export class CogDrawer implements IShapeDrawer {
             else {
                 ctx.lineTo(
                     radius * Math.cos(a - taperAO), // outer line
-                    radius * Math.sin(a - taperAO)
+                    radius * Math.sin(a - taperAO),
                 );
                 ctx.lineTo(
                     innerRadius * Math.cos(a + taperAI), // inner line
-                    innerRadius * Math.sin(a + taperAI)
+                    innerRadius * Math.sin(a + taperAI),
                 );
             }
 

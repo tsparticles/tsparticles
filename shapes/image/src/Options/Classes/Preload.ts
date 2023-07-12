@@ -2,6 +2,7 @@ import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
 import type { IPreload } from "../Interfaces/IPreload";
 
 export class Preload implements IPreload, IOptionLoader<IPreload> {
+    gif: boolean;
     height?: number;
     name?: string | undefined;
     replaceColor?: boolean | undefined;
@@ -10,11 +11,16 @@ export class Preload implements IPreload, IOptionLoader<IPreload> {
 
     constructor() {
         this.src = "";
+        this.gif = false;
     }
 
     load(data?: RecursivePartial<IPreload>): void {
         if (!data) {
             return;
+        }
+
+        if (data.gif !== undefined) {
+            this.gif = data.gif;
         }
 
         if (data.height !== undefined) {

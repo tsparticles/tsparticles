@@ -2,10 +2,11 @@ import { Bubbler } from "./Bubbler";
 import type { Engine } from "tsparticles-engine";
 
 /**
- * @param engine
+ * @param engine -
+ * @param refresh -
  */
-export async function loadExternalBubbleInteraction(engine: Engine): Promise<void> {
-    await engine.addInteractor("externalBubble", (container) => new Bubbler(container));
+export async function loadExternalBubbleInteraction(engine: Engine, refresh = true): Promise<void> {
+    await engine.addInteractor("externalBubble", (container) => new Bubbler(container), refresh);
 }
 
 export * from "./Options/Classes/BubbleBase";

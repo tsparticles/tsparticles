@@ -102,7 +102,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             this._clickBubble();
         } else {
             divModeExecute(DivMode.bubble, divs, (selector, div): void =>
-                this._singleSelectorHover(delta, selector, div)
+                this._singleSelectorHover(delta, selector, div),
             );
         }
     }
@@ -263,7 +263,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     private readonly _hoverBubbleColor: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
         particle,
         ratio,
-        divBubble
+        divBubble,
     ) => {
         const options = this.container.actualOptions,
             bubbleOptions = divBubble ?? options.interactivity.modes.bubble;
@@ -304,7 +304,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     private readonly _hoverBubbleOpacity: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
         particle,
         ratio,
-        divBubble
+        divBubble,
     ) => {
         const container = this.container,
             options = container.actualOptions,
@@ -326,7 +326,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     private readonly _hoverBubbleSize: (particle: Particle, ratio: number, divBubble?: BubbleDiv) => void = (
         particle,
         ratio,
-        divBubble
+        divBubble,
     ) => {
         const container = this.container,
             modeSize = divBubble?.size ? divBubble.size * container.retina.pixelRatio : container.retina.bubbleModeSize;
@@ -348,7 +348,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         particle,
         distMouse,
         timeSpent,
-        data
+        data,
     ) => {
         const container = this.container,
             bubbleParam = data.bubbleObj.optValue,
@@ -414,7 +414,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     private readonly _singleSelectorHover: (delta: IDelta, selector: string, div: DivEvent) => void = (
         delta,
         selector,
-        div
+        div,
     ) => {
         const container = this.container,
             selectors = document.querySelectorAll(selector),
@@ -439,7 +439,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                               elem.offsetLeft * pxRatio,
                               elem.offsetTop * pxRatio,
                               elem.offsetWidth * pxRatio,
-                              elem.offsetHeight * pxRatio
+                              elem.offsetHeight * pxRatio,
                           ),
                 query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 

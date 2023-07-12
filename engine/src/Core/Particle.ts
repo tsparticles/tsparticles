@@ -12,10 +12,16 @@ import {
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils";
-import { deepExtend, initParticleNumericAnimationValue, isInArray, itemFromSingleOrMultiple } from "../Utils/Utils";
+import {
+    deepExtend,
+    getPosition,
+    initParticleNumericAnimationValue,
+    isInArray,
+    itemFromSingleOrMultiple,
+} from "../Utils/Utils";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
 import type { Container } from "./Container";
-import type { Engine } from "../engine";
+import type { Engine } from "./Engine";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
 import type { IDelta } from "./Interfaces/IDelta";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
@@ -34,8 +40,8 @@ import { OutMode } from "../Enums/Modes/OutMode";
 import type { OutModeAlt } from "../Enums/Modes/OutMode";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
+import { PixelMode } from "../Enums/Modes/PixelMode";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { SizeMode } from "../Enums/Modes/SizeMode";
 import { Vector } from "./Utils/Vector";
 import { Vector3d } from "./Utils/Vector3d";
 import { alterHsl } from "../Utils/CanvasUtils";
@@ -294,7 +300,7 @@ export class Particle implements IParticle {
         readonly container: Container,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
+        group?: string,
     ) {
         this._engine = engine;
 
@@ -368,7 +374,7 @@ export class Particle implements IParticle {
         id: number,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string
+        group?: string,
     ): void {
         const container = this.container,
             engine = this._engine;
@@ -443,8 +449,6 @@ export class Particle implements IParticle {
             }
         }
 
-        const zIndexValue = getRangeValue(this.options.zIndex.value);
-
         container.retina.initParticle(this);
 
         /* size */
@@ -459,37 +463,12 @@ export class Particle implements IParticle {
             factor: 1,
         };
 
-        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
-        this.initialPosition = this.position.copy();
-
-        const canvasSize = container.canvas.size,
-            moveCenter = { ...this.options.move.center },
-            isCenterPercent = moveCenter.mode === SizeMode.percent;
-
-        this.moveCenter = {
-            x: moveCenter.x * (isCenterPercent ? canvasSize.width / 100 : 1),
-            y: moveCenter.y * (isCenterPercent ? canvasSize.height / 100 : 1),
-            radius: this.options.move.center.radius ?? 0,
-            mode: this.options.move.center.mode ?? SizeMode.percent,
-        };
-        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
-
-        switch (this.options.move.direction) {
-            case MoveDirection.inside:
-                this.outType = ParticleOutType.inside;
-                break;
-            case MoveDirection.outside:
-                this.outType = ParticleOutType.outside;
-                break;
-        }
+        this._initPosition(position);
 
         /* animation - velocity for speed */
         this.initialVelocity = this._calculateVelocity();
         this.velocity = this.initialVelocity.copy();
         this.moveDecay = 1 - getRangeValue(this.options.move.decay);
-
-        /* parallax */
-        this.offset = Vector.origin;
 
         const particles = container.particles;
 
@@ -570,7 +549,7 @@ export class Particle implements IParticle {
         container: Container,
         position: ICoordinates | undefined,
         zIndex: number,
-        tryCount?: number
+        tryCount?: number,
     ) => Vector3d = (container, position, zIndex, tryCount = 0) => {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
@@ -671,7 +650,7 @@ export class Particle implements IParticle {
         }
 
         return !!this.container.particles.find(
-            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius()
+            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius(),
         );
     };
 
@@ -699,20 +678,52 @@ export class Particle implements IParticle {
         return color;
     };
 
+    private readonly _initPosition: (position?: ICoordinates) => void = (position) => {
+        const container = this.container,
+            zIndexValue = getRangeValue(this.options.zIndex.value);
+
+        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.initialPosition = this.position.copy();
+
+        const canvasSize = container.canvas.size;
+
+        this.moveCenter = {
+            ...getPosition(this.options.move.center, canvasSize),
+            radius: this.options.move.center.radius ?? 0,
+            mode: this.options.move.center.mode ?? PixelMode.percent,
+        };
+
+        this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);
+
+        switch (this.options.move.direction) {
+            case MoveDirection.inside:
+                this.outType = ParticleOutType.inside;
+                break;
+            case MoveDirection.outside:
+                this.outType = ParticleOutType.outside;
+                break;
+        }
+
+        /* parallax */
+        this.offset = Vector.origin;
+    };
+
     private readonly _loadShapeData: (shapeOptions: IShape, reduceDuplicates: boolean) => IShapeValues | undefined = (
         shapeOptions,
-        reduceDuplicates
+        reduceDuplicates,
     ) => {
         const shapeData = shapeOptions.options[this.shape];
 
-        if (shapeData) {
-            return deepExtend(
-                {
-                    close: shapeOptions.close,
-                    fill: shapeOptions.fill,
-                },
-                itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates)
-            ) as IShapeValues;
+        if (!shapeData) {
+            return;
         }
+
+        return deepExtend(
+            {
+                close: shapeOptions.close,
+                fill: shapeOptions.fill,
+            },
+            itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates),
+        ) as IShapeValues;
     };
 }

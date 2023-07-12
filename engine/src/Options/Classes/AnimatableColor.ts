@@ -1,3 +1,4 @@
+import { isArray, isString } from "../../Utils/Utils";
 import { HslAnimation } from "./HslAnimation";
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor";
 import type { IColorAnimation } from "../Interfaces/IColorAnimation";
@@ -21,14 +22,14 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
 
     static create(
         source?: AnimatableColor,
-        data?: SingleOrMultiple<string> | RecursivePartial<IAnimatableColor>
+        data?: SingleOrMultiple<string> | RecursivePartial<IAnimatableColor>,
     ): AnimatableColor {
         const color = new AnimatableColor();
 
         color.load(source);
 
         if (data !== undefined) {
-            if (typeof data === "string" || data instanceof Array) {
+            if (isString(data) || isArray(data)) {
                 color.load({ value: data });
             } else {
                 color.load(data);

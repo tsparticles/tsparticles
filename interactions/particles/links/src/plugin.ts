@@ -24,9 +24,10 @@ class LinksPlugin implements IPlugin {
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadPlugin(engine: Engine): Promise<void> {
+export async function loadLinksPlugin(engine: Engine, refresh = true): Promise<void> {
     const plugin = new LinksPlugin();
 
-    await engine.addPlugin(plugin);
+    await engine.addPlugin(plugin, refresh);
 }

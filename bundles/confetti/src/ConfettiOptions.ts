@@ -6,6 +6,7 @@ import {
     type ShapeData,
     type SingleOrMultiple,
     deepExtend,
+    isArray,
 } from "tsparticles-engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
 
@@ -211,7 +212,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
         }
 
         if (data.colors !== undefined) {
-            if (data.colors instanceof Array) {
+            if (isArray(data.colors)) {
                 this.colors = [...data.colors];
             } else {
                 this.colors = data.colors;
@@ -231,7 +232,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
         }
 
         if (data.shapes !== undefined) {
-            if (data.shapes instanceof Array) {
+            if (isArray(data.shapes)) {
                 this.shapes = [...data.shapes];
             } else {
                 this.shapes = data.shapes;

@@ -21,7 +21,7 @@ export function drawEllipse(
     width: number,
     rotation: number,
     start: number,
-    end: number
+    end: number,
 ): void {
     if (width <= 0) {
         return;

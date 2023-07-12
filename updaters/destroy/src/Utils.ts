@@ -3,10 +3,11 @@ import {
     type Engine,
     type IParticlesOptions,
     type Particle,
+    PixelMode,
     type RecursivePartial,
-    SizeMode,
     getRangeValue,
     getValue,
+    isNumber,
     itemFromSingleOrMultiple,
     loadParticlesOptions,
     randomInRange,
@@ -26,7 +27,7 @@ function addSplitParticle(
     engine: Engine,
     container: Container,
     parent: DestroyParticle,
-    splitParticlesOptions?: RecursivePartial<IParticlesOptions>
+    splitParticlesOptions?: RecursivePartial<IParticlesOptions>,
 ): Particle | undefined {
     const destroyOptions = parent.options.destroy;
 
@@ -63,12 +64,12 @@ function addSplitParticle(
         center: {
             x: parent.position.x,
             y: parent.position.y,
-            mode: SizeMode.precise,
+            mode: PixelMode.precise,
             //radius: parent.size.value,
         },
     });
 
-    if (typeof options.size.value === "number") {
+    if (isNumber(options.size.value)) {
         options.size.value /= factor;
     } else {
         options.size.value.min /= factor;

@@ -25,12 +25,17 @@ loadRoundedRectShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadRoundedRectShape(tsParticles);
+(async () => {
+  await loadRoundedRectShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "rounded-rect" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "rounded-rect" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadRoundedRectShape } = require("tsparticles-shape-rounded-rect");
 
-loadRoundedRectShape(tsParticles);
+(async () => {
+  await loadRoundedRectShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadRoundedRectShape } from "tsparticles-shape-rounded-rect";
 
-loadRoundedRectShape(tsParticles);
+(async () => {
+  await loadRoundedRectShape(tsParticles);
+})();
 ```

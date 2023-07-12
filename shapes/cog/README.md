@@ -25,12 +25,17 @@ loadCogShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadCogShape(tsParticles);
+(async () => {
+  await loadCogShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "cog" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "cog" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadCogShape } = require("tsparticles-shape-cog");
 
-loadCogShape(tsParticles);
+(async () => {
+  await loadCogShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadCogShape } from "tsparticles-shape-cog";
 
-loadCogShape(tsParticles);
+(async () => {
+  await loadCogShape(tsParticles);
+})();
 ```

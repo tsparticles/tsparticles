@@ -1,4 +1,11 @@
-import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import {
+    type IOptionLoader,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    isArray,
+    isFunction,
+    isString,
+} from "tsparticles-engine";
 import type { FilterFunction } from "../../types";
 import type { ISoundsEvent } from "../Interfaces/ISoundsEvent";
 import { SoundsAudio } from "./SoundsAudio";
@@ -37,7 +44,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
         }
 
         if (data.audio !== undefined) {
-            if (data.audio instanceof Array) {
+            if (isArray(data.audio)) {
                 this.audio = data.audio.map((s) => {
                     const tmp = new SoundsAudio();
 
@@ -73,8 +80,8 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
         }
 
         if (data.filter !== undefined) {
-            if (typeof data.filter === "string") {
-                if (typeof window[data.filter] === "function") {
+            if (isString(data.filter)) {
+                if (isFunction(window[data.filter])) {
                     this.filter = window[data.filter] as FilterFunction;
                 }
             } else {

@@ -30,9 +30,6 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-⚠️⚠️ \_This readme refers to **v2**
-version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) for **v1** documentation\* ⚠️⚠️
-
 - [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
   - [Table of Contents](#table-of-contents)
   - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
@@ -48,19 +45,29 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
     - [**_Usage_**](#usage)
   - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
     - [Angular](#angular)
+      - [`ng-particles`](#ng-particles)
     - [Astro](#astro)
+      - [`astro-particles`](#astro-particles)
     - [Ember.js](#emberjs)
+      - [`ember-tsparticles`](#ember-tsparticles)
     - [Inferno](#inferno)
+      - [`inferno-particles`](#inferno-particles)
     - [jQuery](#jquery)
+      - [`jquery-particles`](#jquery-particles)
     - [Preact](#preact)
+      - [`preact-particles`](#preact-particles)
     - [ReactJS](#reactjs)
+      - [`react-particles`](#react-particles)
     - [RiotJS](#riotjs)
       - [`riot-particles`](#riot-particles)
     - [SolidJS](#solidjs)
       - [`solid-particles`](#solid-particles)
     - [Svelte](#svelte)
+      - [`svelte-particles`](#svelte-particles)
     - [VueJS 2.x](#vuejs-2x)
+      - [`vue2-particles`](#vue2-particles)
     - [VueJS 3.x](#vuejs-3x)
+      - [`vue3-particles`](#vue3-particles)
     - [Web Components](#web-components)
       - [`web-particles`](#web-particles)
     - [WordPress](#wordpress)
@@ -92,7 +99,8 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
   - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
   - [Migrating from Particles.js](#migrating-from-particlesjs)
   - [Plugins/Customizations](#pluginscustomizations)
-  - [Dependency Graphs](#dependency-graphs)
+  - [Dependency Graph](#dependency-graph)
+  - [Sponsors](#sponsors)
     - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
@@ -101,7 +109,8 @@ version, [read here](https://github.com/matteobruni/tsparticles/tree/v1#readme) 
 
 _Documentation and Development references [here](https://particles.js.org/docs/) 📖_
 
-**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using particles.js
+**This library is available on two of the most popular CDNs and it's easy and ready to use, if you were using
+particles.js
 it's even easier**.
 
 You'll find the
@@ -213,10 +222,13 @@ Load tsParticles and configure the particles:
 
 ```javascript
 // @path-json can be an object or an array, the first will be loaded directly, and the object from the array will be randomly selected
-/* tsParticles.loadJSON(@dom-id, @path-json, @callback (optional)); */
+/* tsParticles.load(@params); */
 
 tsParticles
-  .loadJSON("tsparticles", "presets/default.json")
+  .load({
+    id: "tsparticles",
+    url: "presets/default.json",
+  })
   .then((container) => {
     console.log("callback - tsparticles config loaded");
   })
@@ -226,29 +238,18 @@ tsParticles
 
 //or
 
-/* tsParticles.load(@dom-id, @options); */
-
-tsParticles.load("tsparticles", {
-  /* options here */
+tsParticles.load({
+  id: "tsparticles",
+  options: {
+    /* options here */
+  },
 });
 
 //or
 
-/* tsParticles.loadFromArray(@dom-id, @options, @index (optional)); */
-
-tsParticles.loadFromArray("tsparticles", [
-  {
-    /* options here */
-  },
-  {
-    /* other options here */
-  },
-]);
-//random object
-
-tsParticles.loadFromArray(
-  "tsparticles",
-  [
+tsParticles.load({
+  id: "tsparticles",
+  options: [
     {
       /* options here */
     },
@@ -256,8 +257,21 @@ tsParticles.loadFromArray(
       /* other options here */
     },
   ],
-  1
-); //the second one
+});
+//random object
+
+tsParticles.load({
+  id: "tsparticles",
+  options: [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  index: 1,
+}); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
 // after initialization this can be used.
@@ -288,7 +302,7 @@ particles.pause();
 
 ### Angular
 
-`ng-particles`
+#### `ng-particles`
 
 [![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles)
 
@@ -296,7 +310,7 @@ Instructions available [here](https://github.com/tsparticles/angular/#readme)
 
 ### Astro
 
-`astro-particles`
+#### `astro-particles`
 
 [![npm](https://img.shields.io/npm/v/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles) [![npm](https://img.shields.io/npm/dm/astro-particles?style=for-the-badge)](https://www.npmjs.com/package/astro-particles)
 
@@ -304,7 +318,7 @@ Instructions available [here](https://github.com/tsparticles/astro/#readme)
 
 ### Ember.js
 
-`ember-tsparticles`
+#### `ember-tsparticles`
 
 [![npm](https://img.shields.io/npm/v/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles) [![npm](https://img.shields.io/npm/dm/ember-tsparticles?style=for-the-badge)](https://www.npmjs.com/package/ember-tsparticles)
 
@@ -312,7 +326,7 @@ Instructions available [here](https://github.com/tsparticles/ember/#readme)
 
 ### Inferno
 
-`inferno-particles`
+#### `inferno-particles`
 
 [![npm](https://img.shields.io/npm/v/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles) [![npm](https://img.shields.io/npm/dm/inferno-particles?style=for-the-badge)](https://www.npmjs.com/package/inferno-particles)
 
@@ -320,7 +334,7 @@ Instructions available [here](https://github.com/tsparticles/inferno/#readme)
 
 ### jQuery
 
-`jquery-particles`
+#### `jquery-particles`
 
 [![npm](https://img.shields.io/npm/v/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles) [![npm](https://img.shields.io/npm/dm/jquery-particles?style=for-the-badge)](https://www.npmjs.com/package/jquery-particles)
 
@@ -328,7 +342,7 @@ Instructions available [here](https://github.com/tsparticles/jquery/#readme)
 
 ### Preact
 
-`preact-particles`
+#### `preact-particles`
 
 [![npm](https://img.shields.io/npm/v/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles) [![npm](https://img.shields.io/npm/dm/preact-particles?style=for-the-badge)](https://www.npmjs.com/package/preact-particles)
 
@@ -336,7 +350,7 @@ Instructions available [here](https://github.com/tsparticles/preact/#readme)
 
 ### ReactJS
 
-`react-particles`
+#### `react-particles`
 
 [![npm](https://img.shields.io/npm/v/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles)
 
@@ -360,7 +374,7 @@ You can find the instructions [here](https://github.com/tsparticles/solid/#readm
 
 ### Svelte
 
-`svelte-particles`
+#### `svelte-particles`
 
 [![npm](https://img.shields.io/npm/v/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles)
 
@@ -368,7 +382,7 @@ Instructions available [here](https://github.com/tsparticles/svelte/#readme)
 
 ### VueJS 2.x
 
-`vue2-particles`
+#### `vue2-particles`
 
 [![npm](https://img.shields.io/npm/v/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles)
 
@@ -376,7 +390,7 @@ Instructions available [here](https://github.com/tsparticles/vue2/#readme)
 
 ### VueJS 3.x
 
-`vue3-particles`
+#### `vue3-particles`
 
 [![npm](https://img.shields.io/npm/v/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles)
 
@@ -417,7 +431,7 @@ the `Premium Addons for Elementor` plugin collection.
 
 ## Presets
 
-There are some presets ready to be used in this repository, and they also have a bundle file that contains everything
+There are some presets ready to be used in [this repository](https://github.com/tsparticles/presets), and they also have a bundle file that contains everything
 needed to run.
 
 ### Big Circles
@@ -606,7 +620,8 @@ You can find some config samples [here](https://github.com/tsparticles/website/t
 ## **_Options_**
 
 You can find all options
-available [here](https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html) 📖
+available [here](https://particles.js.org/docs/interfaces/tsParticles_Engine.Options_Interfaces_IOptions.IOptions.html)
+📖
 
 ## Want to see it in action and try it?
 
@@ -660,7 +675,7 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 
 ---
 
-## Dependency Graphs
+## Dependency Graph
 
 ```mermaid
 flowchart LR
@@ -803,6 +818,14 @@ e --> u
     </a>  
 </p>
 
-### Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2022 Open Source Licenses!
+## Sponsors
+
+### ScribbleMaps
+
+Huge thanks to [ScribbleMaps](https://www.scribblemaps.com/) for their support on this project.
+
+### JetBrains
+
+Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2022 Open Source Licenses!
 
 [JetBrains WebStorm](https://www.jetbrains.com/webstorm/?from=tsParticles) is used to maintain this project.

@@ -25,12 +25,18 @@ loadPolygonShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadPolygonShape(tsParticles);
+(async () => {
+  await loadPolygonShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "polygon" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "polygon" */
+      /*   or you can use particles.shape.type: "triangle" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +59,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadPolygonShape } = require("tsparticles-shape-polygon");
 
-loadPolygonShape(tsParticles);
+(async () => {
+  await loadPolygonShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +70,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadPolygonShape } from "tsparticles-shape-polygon";
 
-loadPolygonShape(tsParticles);
+(async () => {
+  await loadPolygonShape(tsParticles);
+})();
 ```

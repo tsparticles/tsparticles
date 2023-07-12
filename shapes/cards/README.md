@@ -25,13 +25,18 @@ loadCardsShape
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadCardsShape(tsParticles);
+(async () => {
+  await loadCardsShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: ["heart", "diamond", "spade", "club"] *
-  /*   or you can use particles.shape.type: ["hearts", "diamonds", "spades", "clubs"] */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: ["heart", "diamond", "spade", "club"] */
+      /*   or you can use particles.shape.type: ["hearts", "diamonds", "spades", "clubs"] */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -54,7 +59,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadCardsShape } = require("tsparticles-shape-cards");
 
-loadCardsShape(tsParticles);
+(async () => {
+  await loadCardsShape(tsParticles);
+})();
 ```
 
 or
@@ -63,5 +70,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadCardsShape } from "tsparticles-shape-cards";
 
-loadCardsShape(tsParticles);
+(async () => {
+  await loadCardsShape(tsParticles);
+})();
 ```

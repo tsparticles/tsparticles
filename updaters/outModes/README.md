@@ -25,11 +25,16 @@ loadOutModesUpdater;
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadOutModesUpdater(tsParticles);
+(async () => {
+  await loadOutModesUpdater(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadOutModesUpdater } = require("tsparticles-updater-out-modes");
 
-loadOutModesUpdater(tsParticles);
+(async () => {
+  await loadOutModesUpdater(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 
-loadOutModesUpdater(tsParticles);
+(async () => {
+  await loadOutModesUpdater(tsParticles);
+})();
 ```

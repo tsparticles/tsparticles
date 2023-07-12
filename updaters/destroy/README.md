@@ -25,11 +25,16 @@ loadDestroyUpdater;
 Once the scripts are loaded you can set up `tsParticles` and the updater plugin like this:
 
 ```javascript
-loadDestroyUpdater(tsParticles);
+(async () => {
+  await loadDestroyUpdater(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadDestroyUpdater } = require("tsparticles-updater-destroy");
 
-loadDestroyUpdater(tsParticles);
+(async () => {
+  await loadDestroyUpdater(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadDestroyUpdater } from "tsparticles-updater-destroy";
 
-loadDestroyUpdater(tsParticles);
+(async () => {
+  await loadDestroyUpdater(tsParticles);
+})();
 ```

@@ -6,12 +6,13 @@ import {
     type IDimension,
     type IHsl,
     type IParticlesOptions,
+    PixelMode,
     type RecursivePartial,
-    SizeMode,
     Vector,
     calcPositionOrRandomFromSizeRanged,
     deepExtend,
     getRangeValue,
+    getSize,
     isPointInside,
     itemFromSingleOrMultiple,
     randomInRange,
@@ -56,7 +57,7 @@ export class EmitterInstance {
         private readonly emitters: Emitters,
         private readonly container: Container,
         options: RecursivePartial<IEmitter>,
-        position?: ICoordinates
+        position?: ICoordinates,
     ) {
         this._engine = engine;
         this._currentDuration = 0;
@@ -75,8 +76,6 @@ export class EmitterInstance {
         this.position = this._initialPosition ?? this._calcPosition();
         this.name = this.options.name;
         this._shape = this._engine.emitterShapeManager?.getShape(this.options.shape);
-
-        console.log(this.options.shape, this._shape);
 
         this.fill = this.options.fill;
         this._firstSpawn = !this.options.life.wait;
@@ -101,7 +100,7 @@ export class EmitterInstance {
 
                 size.load({
                     height: 0,
-                    mode: SizeMode.percent,
+                    mode: PixelMode.percent,
                     width: 0,
                 });
 
@@ -166,16 +165,7 @@ export class EmitterInstance {
             }
         }
 
-        return {
-            width:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.width * this.size.width) / 100
-                    : this.size.width,
-            height:
-                this.size.mode === SizeMode.percent
-                    ? (container.canvas.size.height * this.size.height) / 100
-                    : this.size.height,
-        };
+        return getSize(this.size, container.canvas.size);
     }
 
     pause(): void {
@@ -377,7 +367,7 @@ export class EmitterInstance {
     private readonly _setColorAnimation: (animation: IColorAnimation, initValue: number, maxValue: number) => number = (
         animation,
         initValue,
-        maxValue
+        maxValue,
     ) => {
         const container = this.container;
 

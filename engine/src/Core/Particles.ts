@@ -1,6 +1,7 @@
+import { getLogger, getPosition } from "../Utils/Utils";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Container } from "./Container";
-import type { Engine } from "../engine";
+import type { Engine } from "./Engine";
 import { EventType } from "../Enums/Types/EventType";
 import type { ICoordinates } from "./Interfaces/ICoordinates";
 import type { IDelta } from "./Interfaces/IDelta";
@@ -14,8 +15,6 @@ import { Point } from "./Utils/Point";
 import { QuadTree } from "./Utils/QuadTree";
 import { Rectangle } from "./Utils/Rectangle";
 import type { RecursivePartial } from "../Types/RecursivePartial";
-import { SizeMode } from "../Enums/Modes/SizeMode";
-import { calcPositionFromSize } from "../Utils/NumberUtils";
 import { errorPrefix } from "./Utils/Constants";
 
 const qTreeCapacity = 4;
@@ -25,7 +24,7 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
         -canvasSize.width / 4,
         -canvasSize.height / 4,
         (canvasSize.width * 3) / 2,
-        (canvasSize.height * 3) / 2
+        (canvasSize.height * 3) / 2,
     );
 };
 
@@ -97,15 +96,8 @@ export class Particles {
 
         for (const particle of options.manualParticles) {
             this.addParticle(
-                particle.position
-                    ? particle.position.mode === SizeMode.precise
-                        ? particle.position
-                        : calcPositionFromSize({
-                              size: container.canvas.size,
-                              position: particle.position,
-                          })
-                    : undefined,
-                particle.options
+                particle.position ? getPosition(particle.position, container.canvas.size) : undefined,
+                particle.options,
             );
         }
     }
@@ -114,7 +106,7 @@ export class Particles {
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
-        initializer?: (particle: Particle) => boolean
+        initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
         const container = this._container,
             options = container.actualOptions,
@@ -147,22 +139,13 @@ export class Particles {
     }
 
     async draw(delta: IDelta): Promise<void> {
-        const container = this._container,
-            canvasSize = this._container.canvas.size;
+        const container = this._container;
 
-        this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
+        /* update each particle before drawing */
+        await this.update(delta);
 
         /* clear canvas */
         container.canvas.clear();
-
-        /* update each particles param */
-        await this.update(delta);
-
-        if (this.needsSort) {
-            this._zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
-            this.lastZIndex = this._zArray[this._zArray.length - 1].position.z;
-            this.needsSort = false;
-        }
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
@@ -270,27 +253,7 @@ export class Particles {
         let deleted = 0;
 
         for (let i = index; deleted < quantity && i < this.count; i++) {
-            const particle = this._array[i];
-
-            if (!particle || particle.group !== group) {
-                continue;
-            }
-
-            particle.destroy(override);
-
-            this._array.splice(i--, 1);
-            const zIdx = this._zArray.indexOf(particle);
-            this._zArray.splice(zIdx, 1);
-            this.pool.push(particle);
-
-            deleted++;
-
-            this._engine.dispatchEvent(EventType.particleRemoved, {
-                container: this._container,
-                data: {
-                    particle,
-                },
-            });
+            this._removeParticle(i--, group, override) && deleted++;
         }
     }
 
@@ -312,6 +275,8 @@ export class Particles {
     async update(delta: IDelta): Promise<void> {
         const container = this._container,
             particlesToDelete = new Set<Particle>();
+
+        this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
 
         for (const [, pathGenerator] of container.pathGenerators) {
             pathGenerator.update();
@@ -346,9 +311,7 @@ export class Particles {
             }
 
             for (const mover of this.movers) {
-                if (mover.isEnabled(particle)) {
-                    mover.move(particle, delta);
-                }
+                mover.isEnabled(particle) && mover.move(particle, delta);
             }
 
             if (particle.destroyed) {
@@ -360,7 +323,7 @@ export class Particles {
             this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
-        this._array = this._array.filter((t) => !particlesToDelete.has(t));
+        this._array = this.filter((t) => !particlesToDelete.has(t));
 
         await this._interactionManager.externalInteract(delta);
 
@@ -376,12 +339,21 @@ export class Particles {
         }
 
         delete container.canvas.resizeFactor;
+
+        if (this.needsSort) {
+            const zArray = this._zArray;
+
+            zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
+
+            this.lastZIndex = zArray[zArray.length - 1].position.z;
+            this.needsSort = false;
+        }
     }
 
     private readonly _applyDensity: (options: IParticlesOptions, manualCount: number, group?: string) => void = (
         options,
         manualCount,
-        group
+        group,
     ) => {
         if (!options.number.density?.enable) {
             return;
@@ -392,7 +364,7 @@ export class Particles {
             optParticlesNumber = numberOptions.value,
             optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
-            particlesCount = Math.min(this.count, this._array.filter((t) => t.group === group).length);
+            particlesCount = Math.min(this.count, this.filter((t) => t.group === group).length);
 
         this.limit = numberOptions.limit * densityFactor;
 
@@ -420,7 +392,7 @@ export class Particles {
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
-        initializer?: (particle: Particle) => boolean
+        initializer?: (particle: Particle) => boolean,
     ) => Particle | undefined = (position, overrideOptions, group, initializer) => {
         try {
             let particle = this.pool.pop();
@@ -455,9 +427,39 @@ export class Particles {
 
             return particle;
         } catch (e) {
-            console.warn(`${errorPrefix} adding particle: ${e}`);
+            getLogger().warning(`${errorPrefix} adding particle: ${e}`);
 
             return;
         }
+    };
+
+    private readonly _removeParticle: (index: number, group?: string, override?: boolean) => boolean = (
+        index,
+        group,
+        override,
+    ) => {
+        const particle = this._array[index];
+
+        if (!particle || particle.group !== group) {
+            return false;
+        }
+
+        particle.destroy(override);
+
+        const zIdx = this._zArray.indexOf(particle);
+
+        this._array.splice(index, 1);
+        this._zArray.splice(zIdx, 1);
+
+        this.pool.push(particle);
+
+        this._engine.dispatchEvent(EventType.particleRemoved, {
+            container: this._container,
+            data: {
+                particle,
+            },
+        });
+
+        return true;
     };
 }

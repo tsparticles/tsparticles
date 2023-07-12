@@ -1,8 +1,8 @@
-import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils";
+import { deepExtend, executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils";
 import { Background } from "./Background/Background";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
 import type { Container } from "../../Core/Container";
-import type { Engine } from "../../engine";
+import type { Engine } from "../../Core/Engine";
 import { FullScreen } from "./FullScreen/FullScreen";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader";
 import type { IOptions } from "../Interfaces/IOptions";
@@ -179,7 +179,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         const fullScreen = data.fullScreen ?? data.backgroundMode;
 
-        if (typeof fullScreen === "boolean") {
+        if (isBoolean(fullScreen)) {
             this.fullScreen.enable = fullScreen;
         } else {
             this.fullScreen.load(fullScreen);
@@ -252,7 +252,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.load(defaultOptions);
 
         const responsiveOptions = this.responsive.find((t) =>
-            t.mode === ResponsiveMode.screen && screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width
+            t.mode === ResponsiveMode.screen && screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width,
         );
 
         this.load(responsiveOptions?.options);

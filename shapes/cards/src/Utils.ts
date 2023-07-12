@@ -21,7 +21,7 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
             segment.values[2].x * radius,
             segment.values[2].y * radius,
             segment.values[3].x * radius,
-            segment.values[3].y * radius
+            segment.values[3].y * radius,
         );
     }
 
@@ -34,7 +34,7 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
             -segment.values[1].x * radius,
             segment.values[1].y * radius,
             -segment.values[0].x * radius,
-            segment.values[0].y * radius
+            segment.values[0].y * radius,
         );
     }
 }

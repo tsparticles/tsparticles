@@ -94,7 +94,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     private readonly _processBounce: (position: ICoordinates, radius: number, area: Range) => void = (
         position,
         radius,
-        area
+        area,
     ) => {
         const query = this.container.particles.quadTree.query(area, (p) => this.isEnabled(p));
 
@@ -151,7 +151,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
                               elem.offsetLeft * pxRatio - tolerance,
                               elem.offsetTop * pxRatio - tolerance,
                               elem.offsetWidth * pxRatio + tolerance * 2,
-                              elem.offsetHeight * pxRatio + tolerance * 2
+                              elem.offsetHeight * pxRatio + tolerance * 2,
                           );
 
             this._processBounce(pos, radius, area);

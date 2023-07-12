@@ -1,0 +1,69 @@
+{
+  "name": "tsparticles-shape-ribbon",
+  "version": "2.11.0",
+  "private": true,
+  "description": "tsParticles ribbon shape",
+  "homepage": "https://particles.js.org",
+  "scripts": {
+    "build": "tsparticles-cli build",
+    "build:ci": "tsparticles-cli build --ci",
+    "build:docs": "rimraf docs && npx typedoc",
+    "version": "tsparticles-cli build -d && git add package.dist.json",
+    "prepack": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "shapes/ribbon"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles.js",
+    "particles-ts",
+    "particles.ts",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "@tsparticles/shape"
+  ],
+  "publishConfig": {
+    "directory": "dist",
+    "linkDirectory": true,
+    "access": "public"
+  },
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "sideEffects": false,
+  "typedoc": {
+    "entryPoint": "./src/index.ts",
+    "displayName": "tsParticles ribbon shape",
+    "readmeFile": "./README.md"
+  },
+  "prettier": "@tsparticles/prettier-config",
+  "dependencies": {
+    "tsparticles-engine": "^2.11.0"
+  }
+}

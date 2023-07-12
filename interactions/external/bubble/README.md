@@ -27,11 +27,16 @@ loadExternalBubbleInteraction;
 Once the scripts are loaded you can set up `tsParticles` and the interaction plugin like this:
 
 ```javascript
-loadExternalBubbleInteraction(tsParticles);
+(async () => {
+  await loadExternalBubbleInteraction(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -54,7 +59,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadExternalBubbleInteraction } = require("tsparticles-interaction-external-bubble");
 
-loadExternalBubbleInteraction(tsParticles);
+(async () => {
+  await loadExternalBubbleInteraction(tsParticles);
+})();
 ```
 
 or
@@ -63,5 +70,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
 
-loadExternalBubbleInteraction(tsParticles);
+(async () => {
+  await loadExternalBubbleInteraction(tsParticles);
+})();
 ```

@@ -2,7 +2,7 @@ import { type Container, type Engine, type ISourceOptions, type Particle } from 
 import type { IParticlesJS } from "./IParticlesJS";
 
 const initParticlesJS = (
-    engine: Engine
+    engine: Engine,
 ): {
     /**
      * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}

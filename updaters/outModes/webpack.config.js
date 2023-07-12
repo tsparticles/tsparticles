@@ -1,4 +1,4 @@
 const { loadParticlesUpdater } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesUpdater("out-modes", "Out Modes", version, __dirname);
+module.exports = loadParticlesUpdater({ moduleName: "out-modes", updaterName: "Out Modes", version, dir: __dirname });

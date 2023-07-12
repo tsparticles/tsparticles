@@ -60,16 +60,16 @@ export class TestParticle {
      * @param queryResults
      */
     static sortedPositionsWithDistances(
-        queryResults: { distance: number; particle: Particle }[]
+        queryResults: { distance: number; particle: Particle }[],
     ): { distance: number; position: ICoordinates }[] {
         return queryResults
             .sort(
                 (
                     result1: { distance: number; particle: Particle },
-                    result2: { distance: number; particle: Particle }
+                    result2: { distance: number; particle: Particle },
                 ): number => {
                     return TestParticle.sort(result1.particle, result2.particle);
-                }
+                },
             )
             .map(sortedResult => {
                 return {

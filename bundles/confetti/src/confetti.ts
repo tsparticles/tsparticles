@@ -1,4 +1,11 @@
-import { type Container, type ISourceOptions, type RecursivePartial, tsParticles } from "tsparticles-engine";
+import {
+    type Container,
+    type ISourceOptions,
+    type RecursivePartial,
+    isSsr,
+    isString,
+    tsParticles,
+} from "tsparticles-engine";
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
@@ -336,11 +343,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
         },
     };
 
-    if (params.id) {
-        container = await tsParticles.load(params.id, particlesOptions);
-    } else if (params.canvas) {
-        container = await tsParticles.set(params.id, params.canvas, particlesOptions);
-    }
+    container = await tsParticles.load({ id: params.id, element: params.canvas, options: particlesOptions });
 
     ids.set(params.id, container);
 
@@ -355,7 +358,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
  */
 type ConfettiFunc = (
     idOrOptions: ConfettiFirstParam,
-    confettiOptions?: RecursivePartial<IConfettiOptions>
+    confettiOptions?: RecursivePartial<IConfettiOptions>,
 ) => Promise<Container | undefined>;
 
 /**
@@ -365,14 +368,14 @@ type ConfettiFunc = (
  */
 export async function confetti(
     idOrOptions: ConfettiFirstParam,
-    confettiOptions?: RecursivePartial<IConfettiOptions>
+    confettiOptions?: RecursivePartial<IConfettiOptions>,
 ): Promise<Container | undefined> {
     await initPlugins();
 
     let options: RecursivePartial<IConfettiOptions>;
     let id: string;
 
-    if (typeof idOrOptions === "string") {
+    if (isString(idOrOptions)) {
         id = idOrOptions;
         options = confettiOptions ?? {};
     } else {
@@ -394,7 +397,7 @@ export async function confetti(
  */
 confetti.create = async (
     canvas: HTMLCanvasElement,
-    options: RecursivePartial<IConfettiOptions>
+    options: RecursivePartial<IConfettiOptions>,
 ): Promise<ConfettiFunc> => {
     if (!canvas) {
         return confetti;
@@ -408,12 +411,12 @@ confetti.create = async (
 
     return async (
         idOrOptions: ConfettiFirstParam,
-        confettiOptions?: RecursivePartial<IConfettiOptions>
+        confettiOptions?: RecursivePartial<IConfettiOptions>,
     ): Promise<Container | undefined> => {
         let subOptions: RecursivePartial<IConfettiOptions>;
         let subId: string;
 
-        if (typeof idOrOptions === "string") {
+        if (isString(idOrOptions)) {
             subId = idOrOptions;
             subOptions = confettiOptions ?? options;
         } else {
@@ -434,4 +437,6 @@ confetti.create = async (
  */
 confetti.version = tsParticles.version;
 
-window.confetti = confetti;
+if (!isSsr()) {
+    window.confetti = confetti;
+}

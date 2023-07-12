@@ -25,11 +25,16 @@ loadEmittersPlugin;
 Once the scripts are loaded you can set up `tsParticles` and the plugin like this:
 
 ```javascript
-loadEmittersPlugin(tsParticles);
+(async () => {
+  await loadEmittersPlugin(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -52,7 +57,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadEmittersPlugin } = require("tsparticles-plugin-emitters");
 
-loadEmittersPlugin(tsParticles);
+(async () => {
+  await loadEmittersPlugin(tsParticles);
+})();
 ```
 
 or
@@ -61,5 +68,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 
-loadEmittersPlugin(tsParticles);
+(async () => {
+  await loadEmittersPlugin(tsParticles);
+})();
 ```

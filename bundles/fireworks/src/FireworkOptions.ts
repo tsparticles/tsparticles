@@ -3,6 +3,7 @@ import {
     type RangeValue,
     type RecursivePartial,
     type SingleOrMultiple,
+    isArray,
     setRangeValue,
 } from "tsparticles-engine";
 import type { IFireworkOptions } from "./IFireworkOptions";
@@ -48,7 +49,7 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
         }
 
         if (data.colors !== undefined) {
-            if (data.colors instanceof Array) {
+            if (isArray(data.colors)) {
                 this.colors = [...data.colors];
             } else {
                 this.colors = data.colors;

@@ -1,4 +1,3 @@
-import type { IColor } from "../../../Core/Interfaces/Colors";
 import type { IOptionsColor } from "../IOptionsColor";
 
 /**
@@ -7,7 +6,7 @@ import type { IOptionsColor } from "../IOptionsColor";
  */
 export interface IBackground {
     /**
-     * The `color` property can be set to a HEX string or to a {@link IColor | color object}, that is the same as the one used in `particles.color` options.
+     * The `color` property can be set to a HEX string or to a {@link IOptionsColor | color object}, that is the same as the one used in `particles.color` options.
      *
      * This color is set to canvas style `background-color` property, if this property is not set the background will be transparent.
      */

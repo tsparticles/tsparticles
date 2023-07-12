@@ -46,11 +46,10 @@ class PolygonMaskPlugin implements IPlugin {
 
 /**
  * @param engine - The engine to add the plugin to
+ * @param refresh -
  */
-export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
-    const plugin = new PolygonMaskPlugin(engine);
-
-    await engine.addPlugin(plugin);
+export async function loadPolygonMaskPlugin(engine: Engine, refresh = true): Promise<void> {
+    await engine.addPlugin(new PolygonMaskPlugin(engine), refresh);
 }
 
 export * from "./Enums/PolygonMaskInlineArrangement";

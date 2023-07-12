@@ -1,3 +1,5 @@
+import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates";
+import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension";
 import {
     collisionVelocity,
     getDistances,
@@ -14,14 +16,13 @@ import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent"
 import type { DivMode } from "../Enums/Modes/DivMode";
 import type { IBounds } from "../Core/Interfaces/IBounds";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IDimension } from "../Core/Interfaces/IDimension";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
 import type { IParticle } from "../Core/Interfaces/IParticle";
 import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
+import { PixelMode } from "../Enums/Modes/PixelMode";
 import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { StartValueType } from "../Enums/Types/StartValueType";
@@ -53,6 +54,56 @@ type RectSideBounceData = {
      */
     velocity: number;
 };
+
+interface ILogger {
+    debug(message?: unknown, ...optionalParams: unknown[]): void;
+
+    error(message?: unknown, ...optionalParams: unknown[]): void;
+
+    info(message?: unknown, ...optionalParams: unknown[]): void;
+
+    log(message?: unknown, ...optionalParams: unknown[]): void;
+
+    verbose(message?: unknown, ...optionalParams: unknown[]): void;
+
+    warning(message?: unknown, ...optionalParams: unknown[]): void;
+}
+
+const _logger: ILogger = {
+    // eslint-disable-next-line no-console
+    debug: console.debug,
+    // eslint-disable-next-line no-console
+    error: console.error,
+    // eslint-disable-next-line no-console
+    info: console.info,
+    // eslint-disable-next-line no-console
+    log: console.log,
+    // eslint-disable-next-line no-console
+    verbose: console.log,
+    // eslint-disable-next-line no-console
+    warning: console.warn,
+};
+
+/**
+ * Replaces the library log functions with a custom one.
+ * @param logger - A logger object responsible for logging messages.
+ */
+export function setLogger(logger: ILogger): void {
+    _logger.debug = logger.debug || _logger.debug;
+    _logger.error = logger.error || _logger.error;
+    _logger.info = logger.info || _logger.info;
+    _logger.log = logger.log || _logger.log;
+    _logger.verbose = logger.verbose || _logger.verbose;
+    _logger.warning = logger.warning || _logger.warning;
+}
+
+/**
+ * Returns the logger object.
+ * @returns the logger
+ */
+export function getLogger(): ILogger {
+    return _logger;
+}
 
 /**
  * Calculates the bounce on a rectangle side
@@ -94,7 +145,7 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
         return element.matches(selector);
     });
 
-    return res instanceof Array ? res.some((t) => t) : res;
+    return isArray(res) ? res.some((t) => t) : res;
 }
 
 /**
@@ -125,23 +176,15 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 }
 
 /**
- * Calls the requestAnimationFrame function or a polyfill
- * @returns the animation callback id, so it can be canceled
+ * @param callback -
+ * @returns the mutation observer, if supported
  */
-export function animate(): (callback: FrameRequestCallback) => number {
-    return isSsr()
-        ? (callback: FrameRequestCallback): number => setTimeout(callback)
-        : (callback: FrameRequestCallback): number => (requestAnimationFrame || setTimeout)(callback);
-}
+export function safeMutationObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {
+    if (isSsr() || typeof MutationObserver === "undefined") {
+        return;
+    }
 
-/**
- * Cancels the requestAnimationFrame function or a polyfill
- * @returns the animation cancelling function
- */
-export function cancelAnimation(): (handle: number) => void {
-    return isSsr()
-        ? (handle: number): void => clearTimeout(handle)
-        : (handle: number): void => (cancelAnimationFrame || clearTimeout)(handle);
+    return new MutationObserver(callback);
 }
 
 /**
@@ -151,7 +194,7 @@ export function cancelAnimation(): (handle: number) => void {
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    return value === array || (array instanceof Array && array.indexOf(value) > -1);
+    return value === array || (isArray(array) && array.indexOf(value) > -1);
 }
 
 /**
@@ -201,7 +244,7 @@ export function isPointInside(
     size: IDimension,
     offset: ICoordinates,
     radius?: number,
-    direction?: OutModeDirection
+    direction?: OutModeDirection,
 ): boolean {
     return areBoundsInside(calculateBounds(point, radius ?? 0), size, offset, direction);
 }
@@ -218,7 +261,7 @@ export function areBoundsInside(
     bounds: IBounds,
     size: IDimension,
     offset: ICoordinates,
-    direction?: OutModeDirection
+    direction?: OutModeDirection,
 ): boolean {
     let inside = true;
 
@@ -268,7 +311,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
             continue;
         }
 
-        if (typeof source !== "object") {
+        if (!isObject(source)) {
             destination = source;
 
             continue;
@@ -276,9 +319,9 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
         const sourceIsArray = Array.isArray(source);
 
-        if (sourceIsArray && (typeof destination !== "object" || !destination || !Array.isArray(destination))) {
+        if (sourceIsArray && (isObject(destination) || !destination || !Array.isArray(destination))) {
             destination = [];
-        } else if (!sourceIsArray && (typeof destination !== "object" || !destination || Array.isArray(destination))) {
+        } else if (!sourceIsArray && (isObject(destination) || !destination || Array.isArray(destination))) {
             destination = {};
         }
 
@@ -289,11 +332,10 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
             const sourceDict = source as Record<string, unknown>,
                 value = sourceDict[key],
-                isObject = typeof value === "object",
                 destDict = destination as Record<string, unknown>;
 
             destDict[key] =
-                isObject && Array.isArray(value)
+                isObject(value) && Array.isArray(value)
                     ? value.map((v) => deepExtend(destDict[key], v))
                     : deepExtend(destDict[key], value);
         }
@@ -321,7 +363,7 @@ export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>
 export function divModeExecute(
     mode: DivMode,
     divs: SingleOrMultiple<DivEvent>,
-    callback: (id: string, div: DivEvent) => void
+    callback: (id: string, div: DivEvent) => void,
 ): void {
     executeOnSingleOrMultiple(divs, (div) => {
         const divMode = div.mode,
@@ -487,9 +529,9 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
  */
 export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
-    callback: (obj: T, index: number) => U
+    callback: (obj: T, index: number) => U,
 ): SingleOrMultiple<U> {
-    return obj instanceof Array ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
+    return isArray(obj) ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
 }
 
 /**
@@ -499,7 +541,7 @@ export function executeOnSingleOrMultiple<T, U = void>(
  * @returns the selected item
  */
 export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
-    return obj instanceof Array ? itemFromArray(obj, index, useIndex) : obj;
+    return isArray(obj) ? itemFromArray(obj, index, useIndex) : obj;
 }
 
 /**
@@ -509,9 +551,9 @@ export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: nu
  */
 export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,
-    callback: (obj: T, index: number) => boolean
+    callback: (obj: T, index: number) => boolean,
 ): T | undefined {
-    return obj instanceof Array ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
+    return isArray(obj) ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
 }
 
 /**
@@ -521,7 +563,7 @@ export function findItemFromSingleOrMultiple<T>(
  */
 export function initParticleNumericAnimationValue(
     options: RangedAnimationValueWithRandom,
-    pxRatio: number
+    pxRatio: number,
 ): IParticleNumericValueAnimation {
     const valueRange = options.value,
         animationOptions = options.animation,
@@ -591,4 +633,109 @@ export function initParticleNumericAnimationValue(
     res.initialValue = res.value;
 
     return res;
+}
+
+/**
+ * @param positionOrSize -
+ * @param canvasSize -
+ * @returns the calculated position or size
+ */
+function getPositionOrSize(
+    positionOrSize: ICoordinatesWithMode | IDimensionWithMode,
+    canvasSize: IDimension,
+): ICoordinates | IDimension {
+    const isPercent = positionOrSize.mode === PixelMode.percent;
+
+    if (!isPercent) {
+        const { mode: _, ...rest } = positionOrSize;
+
+        return rest;
+    }
+
+    const isPosition = "x" in positionOrSize;
+
+    if (isPosition) {
+        return {
+            x: (positionOrSize.x / 100) * canvasSize.width,
+            y: (positionOrSize.y / 100) * canvasSize.height,
+        };
+    } else {
+        return {
+            width: (positionOrSize.width / 100) * canvasSize.width,
+            height: (positionOrSize.height / 100) * canvasSize.height,
+        };
+    }
+}
+
+/**
+ * @param position -
+ * @param canvasSize -
+ * @returns the calculated position
+ */
+export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimension): ICoordinates {
+    return getPositionOrSize(position, canvasSize) as ICoordinates;
+}
+
+/**
+ * @param size -
+ * @param canvasSize -
+ * @returns the calculated size
+ */
+export function getSize(size: IDimensionWithMode, canvasSize: IDimension): IDimension {
+    return getPositionOrSize(size, canvasSize) as IDimension;
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a boolean
+ */
+export function isBoolean(arg: unknown): arg is boolean {
+    return typeof arg === "boolean";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a string
+ */
+export function isString(arg: unknown): arg is string {
+    return typeof arg === "string";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a number
+ */
+export function isNumber(arg: unknown): arg is number {
+    return typeof arg === "number";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is a function
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+export function isFunction(arg: unknown): arg is Function {
+    return typeof arg === "function";
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is an object
+ */
+export function isObject<T extends object>(arg: unknown): arg is T {
+    return typeof arg === "object" && arg !== null;
+}
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is an array
+ */
+export function isArray<T>(arg: unknown): arg is T[] {
+    return Array.isArray(arg);
 }

@@ -25,12 +25,17 @@ loadTextShape;
 Once the scripts are loaded you can set up `tsParticles` and the shape like this:
 
 ```javascript
-loadTextShape(tsParticles);
+(async () => {
+  await loadTextShape(tsParticles);
 
-tsParticles.load("tsparticles", {
-  /* options */
-  /* here you can use particles.shape.type: "text" */
-});
+  await tsParticles.load({
+    id: "tsparticles",
+    options: {
+      /* options */
+      /* here you can use particles.shape.type: "text" */
+    },
+  });
+})();
 ```
 
 ### ESM / CommonJS
@@ -53,7 +58,9 @@ Then you need to import it in the app, like this:
 const { tsParticles } = require("tsparticles-engine");
 const { loadTextShape } = require("tsparticles-shape-text");
 
-loadTextShape(tsParticles);
+(async () => {
+  await loadTextShape(tsParticles);
+})();
 ```
 
 or
@@ -62,5 +69,7 @@ or
 import { tsParticles } from "tsparticles-engine";
 import { loadTextShape } from "tsparticles-shape-text";
 
-loadTextShape(tsParticles);
+(async () => {
+  await loadTextShape(tsParticles);
+})();
 ```

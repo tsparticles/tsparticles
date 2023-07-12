@@ -1,116 +1,100 @@
 {
-    "name": "tsparticles-demo-configs",
-    "version": "2.10.0",
-    "description": "tsParticles demo configurations",
-    "homepage": "https://particles.js.org",
-    "scripts": {
-        "prettify:ci:src": "prettier --check ./src/*",
-        "prettify:ci:readme": "prettier --check ./README.md",
-        "prettify:src": "prettier --write ./src/*",
-        "prettify:readme": "prettier --write ./README.md",
-        "lint": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
-        "lint:ci": "eslint src --ext .js,.jsx,.ts,.tsx",
-        "compile": "pnpm run build:ts",
-        "build:ts": "pnpm run build:ts:browser && pnpm run build:ts:cjs && pnpm run build:ts:esm && pnpm run build:ts:types",
-        "build:ts:browser": "tsc -b tsconfig.browser.json",
-        "build:ts:cjs": "tsc",
-        "build:ts:esm": "tsc -b tsconfig.module.json",
-        "build:ts:types": "tsc -b tsconfig.types.json",
-        "build:ts:umd": "tsc -b tsconfig.umd.json",
-        "bundle": "webpack --mode production",
-        "distfiles": "node ./scripts/distfiles.js",
-        "build": "pnpm run clear:dist && pnpm run prettify:src && pnpm run lint && pnpm run compile && pnpm run bundle && pnpm run prettify:readme && pnpm run distfiles",
-        "build:ci": "pnpm run clear:dist && pnpm run prettify:ci:src && pnpm run lint:ci && pnpm run compile && pnpm run bundle && pnpm run prettify:ci:readme && pnpm run distfiles",
-        "clear:dist": "rimraf ./dist",
-        "version": "pnpm run distfiles && git add package.dist.json",
-        "prepack": "pnpm run build"
+  "name": "tsparticles-demo-configs",
+  "version": "2.11.0",
+  "homepage": "https://particles.js.org",
+  "scripts": {
+    "build": "tsparticles-cli build",
+    "build:ci": "tsparticles-cli build --ci",
+    "version": "tsparticles-cli build -d && git add package.dist.json",
+    "prepack": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "directory": "utils/configs"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matteobruni/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/matteobruni/tsparticles.git",
-        "directory": "utils/configs"
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
     },
-    "keywords": [
-        "front-end",
-        "frontend",
-        "tsparticles",
-        "particles.js",
-        "particlesjs",
-        "particles",
-        "particle",
-        "canvas",
-        "jsparticles",
-        "xparticles",
-        "particles-js",
-        "particles-bg",
-        "particles-bg-vue",
-        "particles-ts",
-        "particles.ts",
-        "react-particles-js",
-        "react-particles.js",
-        "react-particles",
-        "react",
-        "reactjs",
-        "vue-particles",
-        "ngx-particles",
-        "angular-particles",
-        "particleground",
-        "vue",
-        "vuejs",
-        "preact",
-        "preactjs",
-        "jquery",
-        "angularjs",
-        "angular",
-        "typescript",
-        "javascript",
-        "animation",
-        "web",
-        "html5",
-        "web-design",
-        "webdesign",
-        "css",
-        "html",
-        "css3",
-        "animated",
-        "background",
-        "confetti",
-        "canvas",
-        "fireworks",
-        "fireworks-js",
-        "confetti-js",
-        "confettijs",
-        "fireworksjs",
-        "canvas-confetti"
-    ],
-    "publishConfig": {
-        "directory": "dist",
-        "linkDirectory": true
-    },
-    "author": "Matteo Bruni <matteo.bruni@me.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/matteobruni/tsparticles/issues"
-    },
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/matteobruni"
-        },
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/tsparticles"
-        },
-        {
-            "type": "buymeacoffee",
-            "url": "https://www.buymeacoffee.com/matteobruni"
-        }
-    ],
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "types": "dist/index.d.ts",
-    "prettier": "@tsparticles/prettier-config",
-    "dependencies": {
-        "tsparticles-engine": "^2.10.0"
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
     }
+  ],
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "sideEffects": false,
+  "prettier": "@tsparticles/prettier-config",
+  "dependencies": {
+    "tsparticles-engine": "^2.11.0"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "linkDirectory": true
+  }
 }

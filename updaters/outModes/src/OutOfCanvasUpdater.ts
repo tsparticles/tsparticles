@@ -46,7 +46,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         particle: Particle,
         delta: IDelta,
         outMode: OutMode | keyof typeof OutMode | OutModeAlt,
-        direction: OutModeDirection
+        direction: OutModeDirection,
     ) => void = (particle, delta, outMode, direction) => {
         for (const updater of this.updaters) {
             updater.update(particle, direction, delta, outMode);

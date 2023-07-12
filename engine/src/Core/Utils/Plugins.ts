@@ -1,14 +1,14 @@
 import type { Container } from "../Container";
-import type { Engine } from "../../engine";
+import type { Engine } from "../Engine";
 import type { IContainerPlugin } from "../Interfaces/IContainerPlugin";
 import type { IInteractor } from "../Interfaces/IInteractor";
 import type { IMovePathGenerator } from "../Interfaces/IMovePathGenerator";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
 import type { IParticleMover } from "../Interfaces/IParticleMover";
 import type { IParticleUpdater } from "../Interfaces/IParticleUpdater";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
 import type { IPlugin } from "../Interfaces/IPlugin";
 import type { IShapeDrawer } from "../Interfaces/IShapeDrawer";
+import type { ISourceOptions } from "../../Types/ISourceOptions";
 import type { Options } from "../../Options/Classes/Options";
 import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../../Types/RecursivePartial";
@@ -46,7 +46,7 @@ function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<
     container: Container,
     map: Map<Container, TItem[]>,
     initializers: Map<string, TInitializer>,
-    force = false
+    force = false,
 ): TItem[] {
     let res = map.get(container);
 
@@ -118,7 +118,7 @@ export class Plugins {
         this.interactors = new Map<Container, IInteractor[]>();
         this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
-        this.presets = new Map<string, RecursivePartial<IOptions>>();
+        this.presets = new Map<string, ISourceOptions>();
         this.drawers = new Map<string, IShapeDrawer>();
         this.pathGenerators = new Map<string, IMovePathGenerator>();
     }
@@ -151,9 +151,7 @@ export class Plugins {
      * @param pathGenerator - the path generator to add
      */
     addPathGenerator(type: string, pathGenerator: IMovePathGenerator): void {
-        if (!this.getPathGenerator(type)) {
-            this.pathGenerators.set(type, pathGenerator);
-        }
+        !this.getPathGenerator(type) && this.pathGenerators.set(type, pathGenerator);
     }
 
     /**
@@ -161,9 +159,7 @@ export class Plugins {
      * @param plugin - the plugin to add
      */
     addPlugin(plugin: IPlugin): void {
-        if (!this.getPlugin(plugin.id)) {
-            this.plugins.push(plugin);
-        }
+        !this.getPlugin(plugin.id) && this.plugins.push(plugin);
     }
 
     /**
@@ -172,10 +168,8 @@ export class Plugins {
      * @param options - the options to load with the preset name
      * @param override - if true, overwrites the existing preset
      */
-    addPreset(presetKey: string, options: RecursivePartial<IOptions>, override = false): void {
-        if (override || !this.getPreset(presetKey)) {
-            this.presets.set(presetKey, options);
-        }
+    addPreset(presetKey: string, options: ISourceOptions, override = false): void {
+        (override || !this.getPreset(presetKey)) && this.presets.set(presetKey, options);
     }
 
     /**
@@ -185,9 +179,7 @@ export class Plugins {
      */
     addShapeDrawer(types: SingleOrMultiple<string>, drawer: IShapeDrawer): void {
         executeOnSingleOrMultiple(types, (type) => {
-            if (!this.getShapeDrawer(type)) {
-                this.drawers.set(type, drawer);
-            }
+            !this.getShapeDrawer(type) && this.drawers.set(type, drawer);
         });
     }
 
@@ -206,11 +198,7 @@ export class Plugins {
         const res = new Map<string, IContainerPlugin>();
 
         for (const plugin of this.plugins) {
-            if (!plugin.needsPlugin(container.actualOptions)) {
-                continue;
-            }
-
-            res.set(plugin.id, plugin.getPlugin(container));
+            plugin.needsPlugin(container.actualOptions) && res.set(plugin.id, plugin.getPlugin(container));
         }
 
         return res;
@@ -253,7 +241,7 @@ export class Plugins {
      * @param preset - the preset name to search
      * @returns the preset if found, or undefined
      */
-    getPreset(preset: string): RecursivePartial<IOptions> | undefined {
+    getPreset(preset: string): ISourceOptions | undefined {
         return this.presets.get(preset);
     }
 
@@ -289,7 +277,7 @@ export class Plugins {
      * @param options - the actual options to set
      * @param sourceOptions - the source options to read
      */
-    loadOptions(options: Options, sourceOptions: RecursivePartial<IOptions>): void {
+    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
         for (const plugin of this.plugins) {
             plugin.loadOptions(options, sourceOptions);
         }
@@ -313,9 +301,7 @@ export class Plugins {
         }
 
         for (const updater of updaters) {
-            if (updater.loadOptions) {
-                updater.loadOptions(options, ...sourceOptions);
-            }
+            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
         }
     }
 }

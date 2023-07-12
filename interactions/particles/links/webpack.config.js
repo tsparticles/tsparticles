@@ -1,4 +1,9 @@
-const {loadParticlesInteractionParticles} = require("@tsparticles/webpack-plugin");
+const { loadParticlesInteractionParticles } = require("@tsparticles/webpack-plugin");
 const version = require("./package.json").version;
 
-module.exports = loadParticlesInteractionParticles("links", "Links", version, __dirname);
+module.exports = loadParticlesInteractionParticles({
+    moduleName: "links",
+    pluginName: "Links",
+    version,
+    dir: __dirname
+});

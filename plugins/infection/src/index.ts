@@ -38,12 +38,13 @@ class InfectionPlugin implements IPlugin {
 
 /**
  * @param engine -
+ * @param refresh -
  */
-export async function loadInfectionPlugin(engine: Engine): Promise<void> {
+export async function loadInfectionPlugin(engine: Engine, refresh = true): Promise<void> {
     const plugin = new InfectionPlugin();
 
-    await engine.addPlugin(plugin);
-    await engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container));
+    await engine.addPlugin(plugin, refresh);
+    await engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container), refresh);
 }
 
 export * from "./Options/Interfaces/IInfection";

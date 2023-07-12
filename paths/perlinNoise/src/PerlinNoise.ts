@@ -84,7 +84,7 @@ export class PerlinNoise {
         return lerp(
             lerp(lerp(n000, n100, u), lerp(n001, n101, u), w),
             lerp(lerp(n010, n110, u), lerp(n011, n111, u), w),
-            v
+            v,
         );
     }
 

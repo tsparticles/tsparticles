@@ -83,7 +83,7 @@ tsParticles.addShape(
         context.fillStyle = "#fff9";
         context.fill();
         context.restore();
-    }
+    },
 );
 ```
 

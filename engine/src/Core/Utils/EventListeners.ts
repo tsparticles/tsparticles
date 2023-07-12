@@ -1,4 +1,4 @@
-import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils";
+import { executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -29,12 +29,12 @@ function manageListener(
     event: string,
     handler: EventListenerOrEventListenerObject,
     add: boolean,
-    options?: boolean | AddEventListenerOptions | EventListenerObject
+    options?: boolean | AddEventListenerOptions | EventListenerObject,
 ): void {
     if (add) {
         let addOptions: AddEventListenerOptions = { passive: true };
 
-        if (typeof options === "boolean") {
+        if (isBoolean(options)) {
             addOptions.capture = options;
         } else if (options !== undefined) {
             addOptions = options as AddEventListenerOptions;
@@ -212,7 +212,7 @@ export class EventListeners {
 
     private readonly _manageInteractivityListeners: (mouseLeaveTmpEvent: string, add: boolean) => void = (
         mouseLeaveTmpEvent,
-        add
+        add,
     ) => {
         const handlers = this._handlers,
             container = this.container,
@@ -422,6 +422,7 @@ export class EventListeners {
         delete mouse.downPosition;
 
         interactivity.status = mouseLeaveEvent;
+
         mouse.inside = false;
         mouse.clicking = false;
     };

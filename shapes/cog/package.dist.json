@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-cog",
-  "version": "2.10.0",
+  "version": "2.11.0",
   "description": "tsParticles cog shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -86,7 +86,8 @@
   "unpkg": "tsparticles.shape.cog.min.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
+  "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.10.0"
+    "tsparticles-engine": "^2.11.0"
   }
 }

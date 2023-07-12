@@ -1,20 +1,6 @@
-import { Engine } from "./engine";
-import { HslColorManager } from "./Utils/HslColorManager";
-import { RgbColorManager } from "./Utils/RgbColorManager";
-import { addColorManager } from "./Utils/ColorUtils";
+import { init } from "./init";
 
-const rgbColorManager = new RgbColorManager(),
-    hslColorManager = new HslColorManager();
-
-addColorManager(rgbColorManager);
-addColorManager(hslColorManager);
-
-/**
- * The exposed tsParticles instance
- */
-const tsParticles = new Engine();
-
-tsParticles.init();
+const tsParticles = init();
 
 window.tsParticles = tsParticles;
 

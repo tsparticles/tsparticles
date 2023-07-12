@@ -15,7 +15,7 @@ export interface IParticleUpdater {
         particle: Particle,
         context: CanvasRenderingContext2D,
         radius: number,
-        opacity: number
+        opacity: number,
     ) => IParticleColorStyle;
 
     getTransformValues?: (particle: Particle) => IParticleTransformValues;

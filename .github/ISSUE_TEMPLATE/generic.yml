@@ -1,7 +1,7 @@
 name: Generic Issue
-description: Open generic issue
+description: Open generic issue about tsParticles library, if you need help for 3rd party components like Angular, React, Vue, or others, please check the links in the new issue page.
 title: "Generic Issue"
-labels: [triage]
+labels: [ triage ]
 assignees:
   - matteobruni
 body:

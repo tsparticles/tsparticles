@@ -1,6 +1,6 @@
 {
     "name": "tsparticles-interaction-external-attract",
-    "version": "2.10.0",
+    "version": "2.11.0",
     "description": "tsParticles attract external interaction",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -81,8 +81,9 @@
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",
+    "sideEffects": false,
     "prettier": "@tsparticles/prettier-config",
     "dependencies": {
-        "tsparticles-engine": "^2.10.0"
+        "tsparticles-engine": "^2.11.0"
     }
 }

@@ -1,3 +1,4 @@
+import { deepExtend, isArray } from "../../../../Utils/Utils";
 import type { ICharacterShape } from "../../../Interfaces/Particles/Shape/ICharacterShape";
 import type { IImageShape } from "../../../Interfaces/Particles/Shape/IImageShape";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
@@ -8,7 +9,6 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import type { ShapeData } from "../../../../Types/ShapeData";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
 import type { Stroke } from "../Stroke";
-import { deepExtend } from "../../../../Utils/Utils";
 
 const charKey = "character",
     charAltKey = "char",
@@ -165,16 +165,16 @@ export class Shape implements IShape, IOptionLoader<IShape> {
         item: RecursivePartial<SingleOrMultiple<T>> | undefined,
         mainKey: string,
         altKey: string,
-        altOverride: boolean
+        altOverride: boolean,
     ) => void = (item, mainKey, altKey, altOverride) => {
         if (!item) {
             return;
         }
 
-        const isArray = item instanceof Array,
-            emptyValue = isArray ? [] : {},
-            mainDifferentValues = isArray !== this.options[mainKey] instanceof Array,
-            altDifferentValues = isArray !== this.options[altKey] instanceof Array;
+        const itemIsArray = isArray(item),
+            emptyValue = itemIsArray ? [] : {},
+            mainDifferentValues = itemIsArray !== isArray(this.options[mainKey]),
+            altDifferentValues = itemIsArray !== isArray(this.options[altKey]);
 
         if (mainDifferentValues) {
             this.options[mainKey] = emptyValue;
