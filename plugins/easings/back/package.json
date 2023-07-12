@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-easing-back",
-  "version": "2.10.1",
+  "version": "2.11.0",
   "description": "tsParticles easing back plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -97,6 +97,6 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "^2.10.1"
+    "tsparticles-engine": "^2.11.0"
   }
 }
