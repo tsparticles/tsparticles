@@ -5,6 +5,7 @@ import themes from "./themes";
 import tilt from "./tilt";
 import trail from "./trail";
 import trailImage from "./trailImage";
+import triangles from "./triangles";
 import twinkle from "./twinkle";
 
 export default {
@@ -15,5 +16,6 @@ export default {
     tilt,
     trail,
     trailImage,
+    triangles,
     twinkle,
 };
