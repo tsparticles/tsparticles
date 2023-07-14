@@ -150,8 +150,8 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
       typescript-json-schema:
-        specifier: ^0.58.1
-        version: 0.58.1
+        specifier: ^0.59.0
+        version: 0.59.0
       webpack:
         specifier: ^5.88.1
         version: 5.88.1(webpack-cli@5.1.4)
@@ -10999,8 +10999,8 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /typescript-json-schema@0.58.1:
-    resolution: {integrity: sha512-EcmquhfGEmEJOAezLZC6CzY0rPNzfXuky+Z3zoXULEEncW8e13aAjmC2r8ppT1bvvDekJj1TJ4xVhOdkjYtkUA==}
+  /typescript-json-schema@0.59.0:
+    resolution: {integrity: sha512-eYB9RO8p4PntznWUukdDQHckNfxzjEFCJUgsWeCE43mcFioE0wXGTSECGk1uhty9XQMxkpuI4pKAqqnb62ln3Q==}
     hasBin: true
     dependencies:
       '@types/json-schema': 7.0.12
