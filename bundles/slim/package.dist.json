@@ -87,6 +87,7 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
+    "tsparticles-basic": "^2.11.0",
     "tsparticles-engine": "^2.11.0",
     "tsparticles-interaction-external-attract": "^2.11.0",
     "tsparticles-interaction-external-bounce": "^2.11.0",
@@ -101,23 +102,17 @@
     "tsparticles-interaction-particles-attract": "^2.11.0",
     "tsparticles-interaction-particles-collisions": "^2.11.0",
     "tsparticles-interaction-particles-links": "^2.11.0",
-    "tsparticles-move-base": "^2.11.0",
     "tsparticles-move-parallax": "^2.11.0",
     "tsparticles-particles.js": "^2.11.0",
     "tsparticles-plugin-easing-quad": "^2.11.0",
-    "tsparticles-shape-circle": "^2.11.0",
     "tsparticles-shape-image": "^2.11.0",
     "tsparticles-shape-line": "^2.11.0",
     "tsparticles-shape-polygon": "^2.11.0",
     "tsparticles-shape-square": "^2.11.0",
     "tsparticles-shape-star": "^2.11.0",
     "tsparticles-shape-text": "^2.11.0",
-    "tsparticles-updater-color": "^2.11.0",
     "tsparticles-updater-life": "^2.11.0",
-    "tsparticles-updater-opacity": "^2.11.0",
-    "tsparticles-updater-out-modes": "^2.11.0",
     "tsparticles-updater-rotate": "^2.11.0",
-    "tsparticles-updater-size": "^2.11.0",
     "tsparticles-updater-stroke-color": "^2.11.0"
   }
 }

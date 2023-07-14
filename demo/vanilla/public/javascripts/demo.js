@@ -1,4 +1,8 @@
 (async function() {
+    const initParticles = async (engine) => {
+        await loadAll(engine);
+    };
+
     //let schema = {};
     const stats = new Stats();
 
@@ -133,46 +137,7 @@
     };
 
     window.addEventListener("load", async function() {
-        await loadHsvColorPlugin();
-
-        await loadFull(tsParticles);
-
-        await loadCanvasMaskPlugin(tsParticles);
-        await loadEasingBackPlugin(tsParticles);
-        await loadEasingCircPlugin(tsParticles);
-        await loadEasingCubicPlugin(tsParticles);
-        await loadEasingExpoPlugin(tsParticles);
-        await loadEasingQuartPlugin(tsParticles);
-        await loadEasingQuintPlugin(tsParticles);
-        await loadEasingSinePlugin(tsParticles);
-        await loadHsvColorPlugin(tsParticles);
-        await loadInfectionPlugin(tsParticles);
-        await loadMotionPlugin(tsParticles);
-        await loadPolygonMaskPlugin(tsParticles);
-        await loadSoundsPlugin(tsParticles);
-        await loadExportImagePlugin(tsParticles);
-        await loadExportJSONPlugin(tsParticles);
-        await loadExportVideoPlugin(tsParticles);
-        await loadLightInteraction(tsParticles);
-        await loadParticlesRepulseInteraction(tsParticles);
-        await loadGradientUpdater(tsParticles);
-        await loadOrbitUpdater(tsParticles);
-        await loadCurvesPath(tsParticles);
-        await loadPerlinNoisePath(tsParticles);
-        await loadPolygonPath(tsParticles);
-        await loadSVGPath(tsParticles);
-        await loadSimplexNoisePath(tsParticles);
-        await loadArrowShape(tsParticles);
-        await loadBubbleShape(tsParticles);
-        await loadCardsShape(tsParticles);
-        await loadCogShape(tsParticles);
-        await loadHeartShape(tsParticles);
-        await loadMultilineTextShape(tsParticles);
-        await loadPathShape(tsParticles);
-        await loadRibbonShape(tsParticles);
-        await loadRoundedPolygonShape(tsParticles);
-        await loadRoundedRectShape(tsParticles);
-        await loadSpiralShape(tsParticles);
+        await initParticles(tsParticles);
 
         for (const presetId in tsParticles.configs) {
             const preset = tsParticles.configs[presetId];
@@ -184,8 +149,7 @@
             document.getElementById("presets").appendChild(option);
         }
 
-        const element = document.getElementById("editor");
-        const options = {
+        const element = document.getElementById("editor"), options = {
             mode: "form",
             modes: ["code", "form", "view", "preview", "text"], // allowed modes
             onError: function(err) {

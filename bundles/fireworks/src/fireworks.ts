@@ -19,17 +19,12 @@ import {
 } from "tsparticles-engine";
 import { FireworkOptions } from "./FireworkOptions";
 import type { IFireworkOptions } from "./IFireworkOptions";
-import { loadBaseMover } from "tsparticles-move-base";
-import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadBasic } from "tsparticles-basic";
 import { loadDestroyUpdater } from "tsparticles-updater-destroy";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadLineShape } from "tsparticles-shape-line";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadRotateUpdater } from "tsparticles-updater-rotate";
-import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSoundsPlugin } from "tsparticles-plugin-sounds";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
 
@@ -95,18 +90,13 @@ async function initPlugins(): Promise<void> {
 
     initializing = true;
 
-    await loadBaseMover(tsParticles);
+    await loadBasic(tsParticles);
     await loadEmittersPlugin(tsParticles);
     await loadSoundsPlugin(tsParticles);
-    await loadCircleShape(tsParticles);
     await loadLineShape(tsParticles);
     await loadRotateUpdater(tsParticles);
-    await loadColorUpdater(tsParticles);
     await loadDestroyUpdater(tsParticles);
     await loadLifeUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
     await loadStrokeColorUpdater(tsParticles);
 
     initializing = false;

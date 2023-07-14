@@ -1,5 +1,6 @@
 import {
     type Container,
+    type Engine,
     type ISourceOptions,
     type RecursivePartial,
     isSsr,
@@ -9,21 +10,16 @@ import {
 import { ConfettiOptions } from "./ConfettiOptions";
 import type { EmitterContainer } from "tsparticles-plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
-import { loadBaseMover } from "tsparticles-move-base";
+import { loadBasic } from "tsparticles-basic";
 import { loadCardsShape } from "tsparticles-shape-cards";
-import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadColorUpdater } from "tsparticles-updater-color";
 import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
 import { loadHeartShape } from "tsparticles-shape-heart";
 import { loadImageShape } from "tsparticles-shape-image";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadMotionPlugin } from "tsparticles-plugin-motion";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadRollUpdater } from "tsparticles-updater-roll";
 import { loadRotateUpdater } from "tsparticles-updater-rotate";
-import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
 import { loadTextShape } from "tsparticles-shape-text";
@@ -87,8 +83,9 @@ type ConfettiParams = {
 
 /**
  * This function prepares all the plugins needed by the confetti bundle
+ * @param engine -
  */
-async function initPlugins(): Promise<void> {
+async function initPlugins(engine: Engine): Promise<void> {
     if (initialized) {
         return;
     }
@@ -108,26 +105,21 @@ async function initPlugins(): Promise<void> {
 
     initializing = true;
 
-    await loadBaseMover(tsParticles);
-    await loadEmittersPlugin(tsParticles);
-    await loadMotionPlugin(tsParticles);
-    await loadCardsShape(tsParticles);
-    await loadCircleShape(tsParticles);
-    await loadHeartShape(tsParticles);
-    await loadImageShape(tsParticles);
-    await loadPolygonShape(tsParticles);
-    await loadSquareShape(tsParticles);
-    await loadStarShape(tsParticles);
-    await loadTextShape(tsParticles);
-    await loadRotateUpdater(tsParticles);
-    await loadColorUpdater(tsParticles);
-    await loadLifeUpdater(tsParticles);
-    await loadOpacityUpdater(tsParticles);
-    await loadOutModesUpdater(tsParticles);
-    await loadRollUpdater(tsParticles);
-    await loadSizeUpdater(tsParticles);
-    await loadTiltUpdater(tsParticles);
-    await loadWobbleUpdater(tsParticles);
+    await loadBasic(engine);
+    await loadEmittersPlugin(engine);
+    await loadMotionPlugin(engine);
+    await loadCardsShape(engine);
+    await loadHeartShape(engine);
+    await loadImageShape(engine);
+    await loadPolygonShape(engine);
+    await loadSquareShape(engine);
+    await loadStarShape(engine);
+    await loadTextShape(engine);
+    await loadRotateUpdater(engine);
+    await loadLifeUpdater(engine);
+    await loadRollUpdater(engine);
+    await loadTiltUpdater(engine);
+    await loadWobbleUpdater(engine);
 
     initializing = false;
     initialized = true;
@@ -370,7 +362,7 @@ export async function confetti(
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>,
 ): Promise<Container | undefined> {
-    await initPlugins();
+    await initPlugins(tsParticles);
 
     let options: RecursivePartial<IConfettiOptions>;
     let id: string;
@@ -403,7 +395,7 @@ confetti.create = async (
         return confetti;
     }
 
-    await initPlugins();
+    await initPlugins(tsParticles);
 
     const id = canvas.getAttribute("id") || "confetti";
 

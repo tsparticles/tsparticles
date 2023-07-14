@@ -1,18 +1,12 @@
 {
-  "name": "tsparticles-confetti",
+  "name": "tsparticles-all",
   "version": "2.11.0",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
-  "scripts": {
-    "build": "tsparticles-cli build",
-    "build:ci": "tsparticles-cli build --ci",
-    "version": "tsparticles-cli build -d && git add package.dist.json",
-    "prepack": "pnpm run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "bundles/confetti"
+    "directory": "bundles/all"
   },
   "keywords": [
     "front-end",
@@ -86,31 +80,49 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "jsdelivr": "tsparticles.all.bundle.min.js",
+  "unpkg": "tsparticles.all.bundle.min.js",
+  "types": "types/index.d.ts",
   "sideEffects": false,
-  "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-basic": "^2.11.0",
     "tsparticles-engine": "^2.11.0",
-    "tsparticles-plugin-emitters": "^2.11.0",
-    "tsparticles-plugin-motion": "^2.11.0",
-    "tsparticles-shape-cards": "^2.11.0",
-    "tsparticles-shape-heart": "^2.11.0",
-    "tsparticles-shape-image": "^2.11.0",
-    "tsparticles-shape-polygon": "^2.11.0",
-    "tsparticles-shape-square": "^2.11.0",
-    "tsparticles-shape-star": "^2.11.0",
-    "tsparticles-shape-text": "^2.11.0",
-    "tsparticles-updater-life": "^2.11.0",
-    "tsparticles-updater-roll": "^2.11.0",
-    "tsparticles-updater-rotate": "^2.11.0",
-    "tsparticles-updater-tilt": "^2.11.0",
-    "tsparticles-updater-wobble": "^2.11.0"
-  },
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
+    "tsparticles-path-curves": "2.11.0",
+    "tsparticles-path-svg": "2.11.0",
+    "tsparticles-shape-arrow": "2.11.0",
+    "tsparticles-shape-bubble": "2.11.0",
+    "tsparticles-plugin-canvas-mask": "2.11.0",
+    "tsparticles-shape-cards": "2.11.0",
+    "tsparticles-shape-cog": "2.11.0",
+    "tsparticles-plugin-easing-back": "2.11.0",
+    "tsparticles-plugin-easing-circ": "2.11.0",
+    "tsparticles-plugin-easing-cubic": "2.11.0",
+    "tsparticles-plugin-easing-expo": "2.11.0",
+    "tsparticles-plugin-easing-quart": "2.11.0",
+    "tsparticles-plugin-easing-quint": "2.11.0",
+    "tsparticles-plugin-easing-sine": "2.11.0",
+    "tsparticles-plugin-export-image": "2.11.0",
+    "tsparticles-plugin-export-json": "2.11.0",
+    "tsparticles-plugin-export-video": "2.11.0",
+    "tsparticles": "2.11.0",
+    "tsparticles-updater-gradient": "2.11.0",
+    "tsparticles-shape-heart": "2.11.0",
+    "tsparticles-plugin-hsv-color": "2.11.0",
+    "tsparticles-plugin-infection": "2.11.0",
+    "tsparticles-interaction-light": "2.11.0",
+    "tsparticles-plugin-motion": "2.11.0",
+    "tsparticles-shape-multiline-text": "2.11.0",
+    "tsparticles-updater-orbit": "2.11.0",
+    "tsparticles-interaction-particles-repulse": "2.11.0",
+    "tsparticles-shape-path": "2.11.0",
+    "tsparticles-path-perlin-noise": "2.11.0",
+    "tsparticles-plugin-polygon-mask": "2.11.0",
+    "tsparticles-path-polygon": "2.11.0",
+    "tsparticles-shape-rounded-polygon": "2.11.0",
+    "tsparticles-shape-rounded-rect": "2.11.0",
+    "tsparticles-path-simplex-noise": "2.11.0",
+    "tsparticles-plugin-sounds": "2.11.0",
+    "tsparticles-shape-spiral": "2.11.0"
   }
 }

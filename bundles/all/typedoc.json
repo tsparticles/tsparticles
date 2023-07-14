@@ -1,0 +1,13 @@
+{
+    "includes": "./markdown",
+    "entryPoints": ["./src/"],
+    "entryPointStrategy": "expand",
+    "name": "tsParticles All Bundle",
+    "includeVersion": true,
+    "hideGenerator": true,
+    "out": "./docs",
+    "validation": {
+        "invalidLink": true,
+        "notDocumented": true
+    }
+}
