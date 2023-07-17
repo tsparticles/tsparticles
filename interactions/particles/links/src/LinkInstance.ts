@@ -66,6 +66,12 @@ export class LinkInstance implements IContainerPlugin {
     }
 
     private readonly _drawLinkLine: (p1: LinkParticle, link: ILink) => void = (p1, link) => {
+        const p1LinksOptions = p1.options.links;
+
+        if (!p1LinksOptions?.enable) {
+            return;
+        }
+
         const container = this.container,
             options = container.actualOptions,
             p2 = link.destination,
@@ -75,10 +81,6 @@ export class LinkInstance implements IContainerPlugin {
         let opacity = link.opacity;
 
         container.canvas.draw((ctx) => {
-            if (!p1.options.links) {
-                return;
-            }
-
             let colorLine: IRgb | undefined;
 
             /*
@@ -102,11 +104,9 @@ export class LinkInstance implements IContainerPlugin {
                 }
             }
 
-            const p1LinksOptions = p1.options.links;
-
             if (!colorLine) {
                 const linkColor =
-                    p1LinksOptions?.id !== undefined
+                    p1LinksOptions.id !== undefined
                         ? container.particles.linksColors.get(p1LinksOptions.id)
                         : container.particles.linksColor;
 
@@ -137,7 +137,15 @@ export class LinkInstance implements IContainerPlugin {
     };
 
     private readonly _drawLinkTriangle: (p1: LinkParticle, link1: ILink, link2: ILink) => void = (p1, link1, link2) => {
-        if (!p1.options.links) {
+        const linksOptions = p1.options.links;
+
+        if (!linksOptions?.enable) {
+            return;
+        }
+
+        const triangleOptions = linksOptions.triangles;
+
+        if (!triangleOptions.enable) {
             return;
         }
 
@@ -145,7 +153,6 @@ export class LinkInstance implements IContainerPlugin {
             options = container.actualOptions,
             p2 = link1.destination,
             p3 = link2.destination,
-            triangleOptions = p1.options.links.triangles,
             opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
 
         if (opacityTriangle <= 0) {
@@ -169,11 +176,10 @@ export class LinkInstance implements IContainerPlugin {
             let colorTriangle = rangeColorToRgb(triangleOptions.color);
 
             if (!colorTriangle) {
-                const linksOptions = p1.options.links,
-                    linkColor =
-                        linksOptions?.id !== undefined
-                            ? container.particles.linksColors.get(linksOptions.id)
-                            : container.particles.linksColor;
+                const linkColor =
+                    linksOptions.id !== undefined
+                        ? container.particles.linksColors.get(linksOptions.id)
+                        : container.particles.linksColor;
 
                 colorTriangle = getLinkColor(p1, p2, linkColor);
             }
