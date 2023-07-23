@@ -15,6 +15,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
 
     /**
      * @deprecated this property is obsolete, please use the new links
+     * @returns the links object
      */
     get lineLinked(): GrabLinks {
         return this.links;
@@ -22,7 +23,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
 
     /**
      * @deprecated this property is obsolete, please use the new links
-     * @param value
+     * @param value -
      */
     set lineLinked(value: GrabLinks) {
         this.links = value;
@@ -30,6 +31,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
 
     /**
      * @deprecated this property is obsolete, please use the new links
+     * @returns the links property
      */
     get line_linked(): GrabLinks {
         return this.links;
@@ -37,7 +39,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
 
     /**
      * @deprecated this property is obsolete, please use the new links
-     * @param value
+     * @param value -
      */
     set line_linked(value: GrabLinks) {
         this.links = value;

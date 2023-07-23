@@ -35,21 +35,21 @@
     "homepage": "https://particles.js.org",
     "devDependencies": {
         "fs-extra": "^11.1.1",
-        "minify": "^10.0.0",
-        "sass": "^1.62.1"
+        "minify": "^10.3.0",
+        "sass": "^1.64.1"
     },
     "dependencies": {
-        "tsparticles": "^2.11.0",
-        "tsparticles-demo-configs": "^2.11.0",
-        "tsparticles-engine": "^2.11.0",
-        "tsparticles-interaction-light": "^2.11.0",
-        "tsparticles-interaction-particles-repulse": "^2.11.0",
-        "tsparticles-path-curves": "^2.11.0",
-        "tsparticles-path-perlin-noise": "^2.11.0",
-        "tsparticles-path-polygon": "^2.11.0",
-        "tsparticles-path-simplex-noise": "^2.11.0",
-        "tsparticles-plugin-infection": "^2.11.0",
-        "tsparticles-updater-gradient": "^2.11.0",
-        "tsparticles-updater-orbit": "^2.11.0"
+        "tsparticles": "workspace:^",
+        "tsparticles-demo-configs": "workspace:^",
+        "tsparticles-engine": "workspace:^",
+        "tsparticles-interaction-light": "workspace:^",
+        "tsparticles-interaction-particles-repulse": "workspace:^",
+        "tsparticles-path-curves": "workspace:^",
+        "tsparticles-path-perlin-noise": "workspace:^",
+        "tsparticles-path-polygon": "workspace:^",
+        "tsparticles-path-simplex-noise": "workspace:^",
+        "tsparticles-plugin-infection": "workspace:^",
+        "tsparticles-updater-gradient": "workspace:^",
+        "tsparticles-updater-orbit": "workspace:^"
     }
 }

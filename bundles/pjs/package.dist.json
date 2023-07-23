@@ -87,6 +87,6 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.11.0"
+    "tsparticles-engine": "^"
   }
 }

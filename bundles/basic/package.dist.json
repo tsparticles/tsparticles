@@ -87,12 +87,12 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.11.0",
-    "tsparticles-move-base": "^2.11.0",
-    "tsparticles-shape-circle": "^2.11.0",
-    "tsparticles-updater-color": "^2.11.0",
-    "tsparticles-updater-opacity": "^2.11.0",
-    "tsparticles-updater-out-modes": "^2.11.0",
-    "tsparticles-updater-size": "^2.11.0"
+    "tsparticles-engine": "^",
+    "tsparticles-move-base": "^",
+    "tsparticles-shape-circle": "^",
+    "tsparticles-updater-color": "^",
+    "tsparticles-updater-opacity": "^",
+    "tsparticles-updater-out-modes": "^",
+    "tsparticles-updater-size": "^"
   }
 }

@@ -92,15 +92,15 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-basic": "^2.11.0",
-    "tsparticles-engine": "^2.11.0",
-    "tsparticles-plugin-emitters": "^2.11.0",
-    "tsparticles-plugin-sounds": "^2.11.0",
-    "tsparticles-shape-line": "^2.11.0",
-    "tsparticles-updater-destroy": "^2.11.0",
-    "tsparticles-updater-life": "^2.11.0",
-    "tsparticles-updater-rotate": "^2.11.0",
-    "tsparticles-updater-stroke-color": "^2.11.0"
+    "tsparticles-basic": "workspace:^",
+    "tsparticles-engine": "workspace:^",
+    "tsparticles-plugin-emitters": "workspace:^",
+    "tsparticles-plugin-sounds": "workspace:^",
+    "tsparticles-shape-line": "workspace:^",
+    "tsparticles-updater-destroy": "workspace:^",
+    "tsparticles-updater-life": "workspace:^",
+    "tsparticles-updater-rotate": "workspace:^",
+    "tsparticles-updater-stroke-color": "workspace:^"
   },
   "publishConfig": {
     "directory": "dist",

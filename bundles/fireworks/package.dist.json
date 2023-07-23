@@ -87,14 +87,14 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-basic": "^2.11.0",
-    "tsparticles-engine": "^2.11.0",
-    "tsparticles-plugin-emitters": "^2.11.0",
-    "tsparticles-plugin-sounds": "^2.11.0",
-    "tsparticles-shape-line": "^2.11.0",
-    "tsparticles-updater-destroy": "^2.11.0",
-    "tsparticles-updater-life": "^2.11.0",
-    "tsparticles-updater-rotate": "^2.11.0",
-    "tsparticles-updater-stroke-color": "^2.11.0"
+    "tsparticles-basic": "^",
+    "tsparticles-engine": "^",
+    "tsparticles-plugin-emitters": "^",
+    "tsparticles-plugin-sounds": "^",
+    "tsparticles-shape-line": "^",
+    "tsparticles-updater-destroy": "^",
+    "tsparticles-updater-life": "^",
+    "tsparticles-updater-rotate": "^",
+    "tsparticles-updater-stroke-color": "^"
   }
 }

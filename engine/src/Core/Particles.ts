@@ -141,11 +141,11 @@ export class Particles {
     async draw(delta: IDelta): Promise<void> {
         const container = this._container;
 
-        /* update each particle before drawing */
-        await this.update(delta);
-
         /* clear canvas */
         container.canvas.clear();
+
+        /* update each particle before drawing */
+        await this.update(delta);
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {

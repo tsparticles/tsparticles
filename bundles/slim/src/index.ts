@@ -36,8 +36,6 @@ import { loadTextShape } from "tsparticles-shape-text";
  * @param refresh -
  */
 export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
-    await loadBasic(engine, false);
-
     initPjs(engine);
 
     await loadParallaxMover(engine, false);
@@ -70,5 +68,5 @@ export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
     await loadRotateUpdater(engine, false);
     await loadStrokeColorUpdater(engine, false);
 
-    await engine.refresh(refresh);
+    await loadBasic(engine, refresh);
 }

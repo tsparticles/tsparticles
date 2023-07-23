@@ -91,16 +91,16 @@
     "types": "dist/types/index.d.ts",
     "prettier": "@tsparticles/prettier-config",
     "dependencies": {
-        "tsparticles-engine": "^2.11.0",
-        "tsparticles-interaction-external-trail": "^2.11.0",
-        "tsparticles-plugin-absorbers": "^2.11.0",
-        "tsparticles-plugin-emitters": "^2.11.0",
-        "tsparticles-slim": "^2.11.0",
-        "tsparticles-updater-destroy": "^2.11.0",
-        "tsparticles-updater-roll": "^2.11.0",
-        "tsparticles-updater-tilt": "^2.11.0",
-        "tsparticles-updater-twinkle": "^2.11.0",
-        "tsparticles-updater-wobble": "^2.11.0"
+        "tsparticles-engine": "workspace:^",
+        "tsparticles-interaction-external-trail": "workspace:^",
+        "tsparticles-plugin-absorbers": "workspace:^",
+        "tsparticles-plugin-emitters": "workspace:^",
+        "tsparticles-slim": "workspace:^",
+        "tsparticles-updater-destroy": "workspace:^",
+        "tsparticles-updater-roll": "workspace:^",
+        "tsparticles-updater-tilt": "workspace:^",
+        "tsparticles-updater-twinkle": "workspace:^",
+        "tsparticles-updater-wobble": "workspace:^"
     },
     "publishConfig": {
         "directory": "dist",

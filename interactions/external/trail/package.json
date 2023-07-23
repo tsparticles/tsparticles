@@ -56,6 +56,6 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "^2.11.0"
+    "tsparticles-engine": "workspace:^"
   }
 }
