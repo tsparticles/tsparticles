@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-ribbon",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "description": "tsParticles ribbon shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -50,6 +50,6 @@
     "access": "public"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.11.0"
+    "tsparticles-engine": "^2.11.1"
   }
 }
