@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-ribbon",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "private": true,
   "description": "tsParticles ribbon shape",
   "homepage": "https://particles.js.org",
@@ -64,6 +64,6 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "^2.11.0"
+    "tsparticles-engine": "^2.11.1"
   }
 }
