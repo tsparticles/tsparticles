@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-easing-cubic",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "description": "tsParticles easing cubic plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -97,6 +97,6 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "workspace:^"
+    "tsparticles-engine": "^2.11.1"
   }
 }

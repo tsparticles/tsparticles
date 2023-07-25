@@ -51,6 +51,6 @@
     "access": "public"
   },
   "dependencies": {
-    "tsparticles-engine": "^"
+    "tsparticles-engine": "^2.11.1"
   }
 }

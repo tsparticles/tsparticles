@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
+
+
+### Bug Fixes
+
+* fixed various plugins issues for a misplaced canvas clear ([dd98147](https://github.com/matteobruni/tsparticles/commit/dd981478fb010206f47612f009215591f35c63e1))
+
+
+
+
+
 # [2.11.0](https://github.com/matteobruni/tsparticles/compare/v2.10.1...v2.11.0) (2023-07-12)
 
 

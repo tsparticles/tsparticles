@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-canvas-mask",
-  "version": "2.11.0",
+  "version": "2.11.1",
   "description": "tsParticles canvas mask plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -83,6 +83,6 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "workspace:^"
+    "tsparticles-engine": "^2.11.1"
   }
 }
