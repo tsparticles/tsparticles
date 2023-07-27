@@ -92,6 +92,7 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
+    "tsparticles-basic": "^2.11.1",
     "tsparticles-engine": "^2.11.1",
     "tsparticles-interaction-external-attract": "^2.11.1",
     "tsparticles-interaction-external-bounce": "^2.11.1",
