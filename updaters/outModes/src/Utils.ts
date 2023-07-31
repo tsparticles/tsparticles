@@ -15,9 +15,9 @@ export function bounceHorizontal(data: IBounceData): void {
         return;
     }
 
-    if (data.bounds.right < 0) {
+    if (data.bounds.right < 0 && data.direction === OutModeDirection.left) {
         data.particle.position.x = data.size + data.offset.x;
-    } else if (data.bounds.left > data.canvasSize.width) {
+    } else if (data.bounds.left > data.canvasSize.width && data.direction === OutModeDirection.right) {
         data.particle.position.x = data.canvasSize.width - data.size - data.offset.x;
     }
 
@@ -41,9 +41,9 @@ export function bounceHorizontal(data: IBounceData): void {
 
     const minPos = data.offset.x + data.size;
 
-    if (data.bounds.right >= data.canvasSize.width) {
+    if (data.bounds.right >= data.canvasSize.width && data.direction === OutModeDirection.right) {
         data.particle.position.x = data.canvasSize.width - minPos;
-    } else if (data.bounds.left <= 0) {
+    } else if (data.bounds.left <= 0 && data.direction === OutModeDirection.left) {
         data.particle.position.x = minPos;
     }
 
@@ -66,9 +66,9 @@ export function bounceVertical(data: IBounceData): void {
         return;
     }
 
-    if (data.bounds.bottom < 0) {
+    if (data.bounds.bottom < 0 && data.direction === OutModeDirection.top) {
         data.particle.position.y = data.size + data.offset.y;
-    } else if (data.bounds.top > data.canvasSize.height) {
+    } else if (data.bounds.top > data.canvasSize.height && data.direction === OutModeDirection.bottom) {
         data.particle.position.y = data.canvasSize.height - data.size - data.offset.y;
     }
 
@@ -92,9 +92,9 @@ export function bounceVertical(data: IBounceData): void {
 
     const minPos = data.offset.y + data.size;
 
-    if (data.bounds.bottom >= data.canvasSize.height) {
+    if (data.bounds.bottom >= data.canvasSize.height && data.direction === OutModeDirection.bottom) {
         data.particle.position.y = data.canvasSize.height - minPos;
-    } else if (data.bounds.top <= 0) {
+    } else if (data.bounds.top <= 0 && data.direction === OutModeDirection.top) {
         data.particle.position.y = minPos;
     }
 
