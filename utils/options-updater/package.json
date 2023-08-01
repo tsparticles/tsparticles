@@ -103,7 +103,7 @@
         "jsdom": "^22.0.0",
         "klaw": "^4.1.0",
         "lodash": "^4.17.21",
-        "prettier": "^2.8.8",
+        "prettier": "^3.0.0",
         "rimraf": "^5.0.0",
         "tsparticles": "^3.0.0-alpha.1",
         "typescript": "^5.0.4",
@@ -117,6 +117,6 @@
         "@types/klaw": "^3.0.3",
         "@types/lodash": "^4.14.194",
         "@types/node": "^20.1.0",
-        "@types/prettier": "^2.7.2"
+        "@types/prettier": "^3.0.0"
     }
 }
