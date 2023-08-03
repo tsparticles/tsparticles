@@ -323,9 +323,13 @@ export class Particles {
             this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
-        this._array = this.filter((t) => !particlesToDelete.has(t));
-        this._zArray = this._zArray.filter((t) => !particlesToDelete.has(t));
-        this.pool.push(...particlesToDelete);
+        if (particlesToDelete.size) {
+            const checkDelete = (p: Particle): boolean => !particlesToDelete.has(p);
+
+            this._array = this.filter(checkDelete);
+            this._zArray = this._zArray.filter(checkDelete);
+            this.pool.push(...particlesToDelete);
+        }
 
         await this._interactionManager.externalInteract(delta);
 
