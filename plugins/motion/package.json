@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-motion",
-  "version": "2.11.1",
+  "version": "2.12.0",
   "description": "tsParticles motion sickness plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -83,6 +83,6 @@
   "prettier": "@tsparticles/prettier-config",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.11.1"
+    "tsparticles-engine": "^2.12.0"
   }
 }

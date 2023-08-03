@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-plugin-export-video",
-  "version": "2.11.1",
+  "version": "2.12.0",
   "description": "tsParticles export video plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -92,6 +92,6 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.11.1"
+    "tsparticles-engine": "^2.12.0"
   }
 }

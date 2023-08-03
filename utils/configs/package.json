@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-demo-configs",
-  "version": "2.11.1",
+  "version": "2.12.0",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -91,7 +91,7 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "^2.11.1"
+    "tsparticles-engine": "^2.12.0"
   },
   "publishConfig": {
     "directory": "dist",

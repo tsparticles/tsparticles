@@ -165,380 +165,380 @@ importers:
   bundles/all:
     dependencies:
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../full/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-light:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/light/dist
       tsparticles-interaction-particles-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/repulse/dist
       tsparticles-path-curves:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/curves/dist
       tsparticles-path-perlin-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/perlinNoise/dist
       tsparticles-path-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/polygon/dist
       tsparticles-path-simplex-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/simplexNoise/dist
       tsparticles-path-svg:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/svg/dist
       tsparticles-plugin-canvas-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/canvasMask/dist
       tsparticles-plugin-easing-back:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/back/dist
       tsparticles-plugin-easing-circ:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/circ/dist
       tsparticles-plugin-easing-cubic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/cubic/dist
       tsparticles-plugin-easing-expo:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/expo/dist
       tsparticles-plugin-easing-quart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quart/dist
       tsparticles-plugin-easing-quint:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quint/dist
       tsparticles-plugin-easing-sine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/sine/dist
       tsparticles-plugin-export-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/image/dist
       tsparticles-plugin-export-json:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/json/dist
       tsparticles-plugin-export-video:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/video/dist
       tsparticles-plugin-hsv-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/hsvColor/dist
       tsparticles-plugin-infection:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/infection/dist
       tsparticles-plugin-motion:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/polygonMask/dist
       tsparticles-plugin-sounds:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/sounds/dist
       tsparticles-shape-arrow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/arrow/dist
       tsparticles-shape-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/bubble/dist
       tsparticles-shape-cards:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/cards/dist
       tsparticles-shape-cog:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/cog/dist
       tsparticles-shape-heart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/heart/dist
       tsparticles-shape-multiline-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/multiline-text/dist
       tsparticles-shape-path:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/path/dist
       tsparticles-shape-rounded-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-polygon/dist
       tsparticles-shape-rounded-rect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-rect/dist
       tsparticles-shape-spiral:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/spiral/dist
       tsparticles-updater-gradient:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/gradient/dist
       tsparticles-updater-orbit:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/orbit/dist
     publishDirectory: dist
 
   bundles/basic:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
       tsparticles-updater-size:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/size/dist
     publishDirectory: dist
 
   bundles/confetti:
     dependencies:
       tsparticles-basic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../basic/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-plugin-motion:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/motion/dist
       tsparticles-shape-cards:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/cards/dist
       tsparticles-shape-heart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/heart/dist
       tsparticles-shape-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/image/dist
       tsparticles-shape-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
       tsparticles-shape-square:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/square/dist
       tsparticles-shape-star:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/star/dist
       tsparticles-shape-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/text/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
     publishDirectory: dist
 
   bundles/fireworks:
     dependencies:
       tsparticles-basic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../basic/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-plugin-sounds:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/sounds/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   bundles/full:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-external-trail:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/trail/dist
       tsparticles-plugin-absorbers:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/absorbers/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-slim:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../slim/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-twinkle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/twinkle/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
     publishDirectory: dist
 
   bundles/pjs:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   bundles/slim:
     dependencies:
       tsparticles-basic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../basic/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-external-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bounce/dist
       tsparticles-interaction-external-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bubble/dist
       tsparticles-interaction-external-connect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/connect/dist
       tsparticles-interaction-external-grab:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/grab/dist
       tsparticles-interaction-external-pause:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/pause/dist
       tsparticles-interaction-external-push:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/push/dist
       tsparticles-interaction-external-remove:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/remove/dist
       tsparticles-interaction-external-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/repulse/dist
       tsparticles-interaction-external-slow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/slow/dist
       tsparticles-interaction-particles-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/attract/dist
       tsparticles-interaction-particles-collisions:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/collisions/dist
       tsparticles-interaction-particles-links:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/links/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
       tsparticles-move-parallax:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../pjs/dist
       tsparticles-plugin-easing-quad:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quad/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
       tsparticles-shape-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/image/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
       tsparticles-shape-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
       tsparticles-shape-square:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/square/dist
       tsparticles-shape-star:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/star/dist
       tsparticles-shape-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/text/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/size/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   demo/electron:
     dependencies:
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
       tsparticles-demo-configs:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../utils/configs/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     devDependencies:
       electron:
@@ -548,253 +548,253 @@ importers:
   demo/vanilla:
     dependencies:
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
       tsparticles-all:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/all/dist
       tsparticles-basic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/basic/dist
       tsparticles-confetti:
         specifier: ^2.11.1
-        version: 2.11.1
+        version: link:../../bundles/confetti/dist
       tsparticles-demo-configs:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../utils/configs/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-fireworks:
         specifier: ^2.11.1
-        version: 2.11.1
+        version: link:../../bundles/fireworks/dist
       tsparticles-interaction-external-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bounce/dist
       tsparticles-interaction-external-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bubble/dist
       tsparticles-interaction-external-connect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/connect/dist
       tsparticles-interaction-external-grab:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/grab/dist
       tsparticles-interaction-external-pause:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/pause/dist
       tsparticles-interaction-external-push:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/push/dist
       tsparticles-interaction-external-remove:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/remove/dist
       tsparticles-interaction-external-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/repulse/dist
       tsparticles-interaction-external-slow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/slow/dist
       tsparticles-interaction-external-trail:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/trail/dist
       tsparticles-interaction-light:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/light/dist
       tsparticles-interaction-particles-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/attract/dist
       tsparticles-interaction-particles-collisions:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/collisions/dist
       tsparticles-interaction-particles-links:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/links/dist
       tsparticles-interaction-particles-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/repulse/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
       tsparticles-move-parallax:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/pjs/dist
       tsparticles-path-curves:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/curves/dist
       tsparticles-path-perlin-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/perlinNoise/dist
       tsparticles-path-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/polygon/dist
       tsparticles-path-simplex-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/simplexNoise/dist
       tsparticles-path-svg:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/svg/dist
       tsparticles-plugin-absorbers:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/absorbers/dist
       tsparticles-plugin-canvas-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/canvasMask/dist
       tsparticles-plugin-easing-back:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/back/dist
       tsparticles-plugin-easing-circ:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/circ/dist
       tsparticles-plugin-easing-cubic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/cubic/dist
       tsparticles-plugin-easing-expo:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/expo/dist
       tsparticles-plugin-easing-quad:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quad/dist
       tsparticles-plugin-easing-quart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quart/dist
       tsparticles-plugin-easing-quint:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quint/dist
       tsparticles-plugin-easing-sine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/sine/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-plugin-export-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/image/dist
       tsparticles-plugin-export-json:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/json/dist
       tsparticles-plugin-export-video:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/video/dist
       tsparticles-plugin-hsv-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/hsvColor/dist
       tsparticles-plugin-infection:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/infection/dist
       tsparticles-plugin-motion:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/polygonMask/dist
       tsparticles-plugin-sounds:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/sounds/dist
       tsparticles-shape-arrow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/arrow/dist
       tsparticles-shape-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/bubble/dist
       tsparticles-shape-cards:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/cards/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
       tsparticles-shape-cog:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/cog/dist
       tsparticles-shape-heart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/heart/dist
       tsparticles-shape-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/image/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
       tsparticles-shape-multiline-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/multiline-text/dist
       tsparticles-shape-path:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/path/dist
       tsparticles-shape-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
       tsparticles-shape-ribbon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/ribbon/dist
       tsparticles-shape-rounded-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-polygon/dist
       tsparticles-shape-rounded-rect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-rect/dist
       tsparticles-shape-spiral:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/spiral/dist
       tsparticles-shape-square:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/square/dist
       tsparticles-shape-star:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/star/dist
       tsparticles-shape-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/text/dist
       tsparticles-slim:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/slim/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-gradient:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/gradient/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-orbit:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/orbit/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/size/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-twinkle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/twinkle/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
     devDependencies:
       '@datalust/winston-seq':
@@ -876,40 +876,40 @@ importers:
   demo/vanilla_new:
     dependencies:
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
       tsparticles-demo-configs:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../utils/configs/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-light:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/light/dist
       tsparticles-interaction-particles-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/repulse/dist
       tsparticles-path-curves:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/curves/dist
       tsparticles-path-perlin-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/perlinNoise/dist
       tsparticles-path-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/polygon/dist
       tsparticles-path-simplex-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/simplexNoise/dist
       tsparticles-plugin-infection:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/infection/dist
       tsparticles-updater-gradient:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/gradient/dist
       tsparticles-updater-orbit:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/orbit/dist
     devDependencies:
       fs-extra:
@@ -928,525 +928,525 @@ importers:
   interactions/external/attract:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/bounce:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/bubble:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/connect:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/grab:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/pause:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/push:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/remove:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/repulse:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/slow:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/trail:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/light:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   interactions/particles/attract:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/collisions:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/links:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/repulse:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   move/base:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   move/parallax:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/curves:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/perlinNoise:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/polygon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/simplexNoise:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/svg:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/absorbers:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/canvasMask:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/easings/back:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/circ:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/cubic:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/expo:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quad:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quart:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quint:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/sine:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/emitters:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/exports/image:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/json:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/video:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/hsvColor:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/infection:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/motion:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/polygonMask:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/sounds:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/arrow:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/bubble:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cards:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/circle:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cog:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/heart:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/image:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/line:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/multiline-text:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/path:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/polygon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/ribbon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-polygon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-rect:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/spiral:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/square:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/star:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/text:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/color:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/destroy:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/gradient:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/life:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/opacity:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/orbit:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/outModes:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/roll:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/rotate:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/size:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/strokeColor:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/tilt:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/twinkle:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/wobble:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/configs:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
@@ -1495,205 +1495,205 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-external-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bounce/dist
       tsparticles-interaction-external-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bubble/dist
       tsparticles-interaction-external-connect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/connect/dist
       tsparticles-interaction-external-grab:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/grab/dist
       tsparticles-interaction-external-pause:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/pause/dist
       tsparticles-interaction-external-push:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/push/dist
       tsparticles-interaction-external-remove:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/remove/dist
       tsparticles-interaction-external-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/repulse/dist
       tsparticles-interaction-external-slow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/slow/dist
       tsparticles-interaction-external-trail:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/trail/dist
       tsparticles-interaction-light:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/light/dist
       tsparticles-interaction-particles-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/attract/dist
       tsparticles-interaction-particles-collisions:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/collisions/dist
       tsparticles-interaction-particles-links:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/links/dist
       tsparticles-interaction-particles-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/repulse/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
       tsparticles-move-parallax:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/pjs/dist
       tsparticles-path-curves:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/curves/dist
       tsparticles-path-perlin-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/perlinNoise/dist
       tsparticles-path-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/polygon/dist
       tsparticles-path-simplex-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/simplexNoise/dist
       tsparticles-plugin-absorbers:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/absorbers/dist
       tsparticles-plugin-canvas-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/canvasMask/dist
       tsparticles-plugin-easing-back:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/back/dist
       tsparticles-plugin-easing-circ:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/circ/dist
       tsparticles-plugin-easing-cubic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/cubic/dist
       tsparticles-plugin-easing-expo:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/expo/dist
       tsparticles-plugin-easing-quad:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quad/dist
       tsparticles-plugin-easing-quart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quart/dist
       tsparticles-plugin-easing-quint:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quint/dist
       tsparticles-plugin-easing-sine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/sine/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-plugin-hsv-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/hsvColor/dist
       tsparticles-plugin-infection:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/infection/dist
       tsparticles-plugin-motion:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/polygonMask/dist
       tsparticles-shape-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/bubble/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
       tsparticles-shape-heart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/heart/dist
       tsparticles-shape-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/image/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
       tsparticles-shape-multiline-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/multiline-text/dist
       tsparticles-shape-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
       tsparticles-shape-rounded-rect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-rect/dist
       tsparticles-shape-spiral:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/spiral/dist
       tsparticles-shape-square:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/square/dist
       tsparticles-shape-star:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/star/dist
       tsparticles-shape-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/text/dist
       tsparticles-slim:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/slim/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-gradient:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/gradient/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-orbit:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/orbit/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/size/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-twinkle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/twinkle/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
       typescript:
         specifier: ^5.1.6
@@ -10974,200 +10974,6 @@ packages:
   /tslib@2.6.0:
     resolution: {integrity: sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==}
     dev: true
-
-  /tsparticles-confetti@2.11.1:
-    resolution: {integrity: sha512-nAefuR5yNsCTcma3Z0Nku6lAo3EVhmhUCvBpHruFsp6pb7pdDn1onSNnET5SZHU8TezasBZJhBb2vahcXYgNGw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-      tsparticles-move-base: 2.11.1
-      tsparticles-plugin-emitters: 2.11.1
-      tsparticles-plugin-motion: 2.11.1
-      tsparticles-shape-cards: 2.11.1
-      tsparticles-shape-circle: 2.11.1
-      tsparticles-shape-heart: 2.11.1
-      tsparticles-shape-image: 2.11.1
-      tsparticles-shape-polygon: 2.11.1
-      tsparticles-shape-square: 2.11.1
-      tsparticles-shape-star: 2.11.1
-      tsparticles-shape-text: 2.11.1
-      tsparticles-updater-color: 2.11.1
-      tsparticles-updater-life: 2.11.1
-      tsparticles-updater-opacity: 2.11.1
-      tsparticles-updater-out-modes: 2.11.1
-      tsparticles-updater-roll: 2.11.1
-      tsparticles-updater-rotate: 2.11.1
-      tsparticles-updater-size: 2.11.1
-      tsparticles-updater-tilt: 2.11.1
-      tsparticles-updater-wobble: 2.11.1
-    dev: false
-
-  /tsparticles-engine@2.11.1:
-    resolution: {integrity: sha512-tkoCi2SWIVcOkxni6I+ECRz3xfSX2dP/Wn+Kt8Qga/BGWlSrdvLVUn3DbXNJq6h/6efs6n4Db6uFtkceSyRWGg==}
-    requiresBuild: true
-    dev: false
-
-  /tsparticles-fireworks@2.11.1:
-    resolution: {integrity: sha512-rL2lTKH+PGKNIuE0f6I7JYueWKGcdvNEPVgU9NjXP7yfXK0VhVZEFtUtwbGNu+E6NbFYZMLjVyWCLPEWVPJLNA==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-      tsparticles-move-base: 2.11.1
-      tsparticles-plugin-emitters: 2.11.1
-      tsparticles-plugin-sounds: 2.11.1
-      tsparticles-shape-circle: 2.11.1
-      tsparticles-shape-line: 2.11.1
-      tsparticles-updater-color: 2.11.1
-      tsparticles-updater-destroy: 2.11.1
-      tsparticles-updater-life: 2.11.1
-      tsparticles-updater-opacity: 2.11.1
-      tsparticles-updater-out-modes: 2.11.1
-      tsparticles-updater-rotate: 2.11.1
-      tsparticles-updater-size: 2.11.1
-      tsparticles-updater-stroke-color: 2.11.1
-    dev: false
-
-  /tsparticles-move-base@2.11.1:
-    resolution: {integrity: sha512-u55RlRaSzoJNiVF9cG6SZmR/J2jb/sCGsOb4kLZhH0tvQBUcJOtv1yeHzpRTugliJVAvJ1zfAjv1pVNmI00KcQ==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-plugin-emitters@2.11.1:
-    resolution: {integrity: sha512-X0lAZrLE3Eca0vmOUGZpPO2N/kfEaxpm6fvEvc2lLCfhv2z3h/5JPLKXlxfOQvUvFSxzrYcjQYuwQ6Pq6KtG6A==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-plugin-motion@2.11.1:
-    resolution: {integrity: sha512-JTsQbZqaGcSjYrNx0U8hoGtUFDWUkhq6Q9wxWADLjUFsGWrOEIn0AvpuWBkbvM/l1nFecJwwTRcSYFgXMJVeUA==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-plugin-sounds@2.11.1:
-    resolution: {integrity: sha512-dypSQv/V0EKXPTqwzCezmvZfGhCxPrmsV/taO0Ka+sPAnBQ0TJyQ1huOk5rnjahEWwlW1OgJk68xhIsWFxfHpg==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-cards@2.11.1:
-    resolution: {integrity: sha512-cyIVrxSawxu+D/N2qkmjqGyuTNrz1DbOMiNJNf14DyF+qwePARFfOOZ4ZjO/kerZohKVWT1OoPC/awHSrelJsw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-circle@2.11.1:
-    resolution: {integrity: sha512-SgQWTKlPtwuSpRaY6nr+KVF1JMHIQy/6ujAgDhfSenmFggDj+Y6j49fqNtBkpbQRvA3hMuDWXjPPIClmZxw27Q==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-heart@2.11.1:
-    resolution: {integrity: sha512-G2HGZ5ja6/L8T7BlbFCIO5gRyaMU8L4NoIHYeRj/Yoy4KV8w9H/m9E4lfie1LyjdDP+ATPnOr+7gMCSyxSU1OQ==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-image@2.11.1:
-    resolution: {integrity: sha512-kruWOUcJNrzyGeAIKx7z44s1l06rhR3GCm0yXrpwy+/OsVqOVZmXW1dPhoqExPQVUToeWtwUasYNn5x0voV2kw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-line@2.11.1:
-    resolution: {integrity: sha512-CN+KFQ4WtB1l1BZTZN6Qb8bzKFp5rqIc5dqI2mxfD87TvIRl3hhCBCM/Ku0xANoCpWPAQJWQH9cxARHOV9RqxA==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-polygon@2.11.1:
-    resolution: {integrity: sha512-brWdwUpyIWiJUasVkigyCtlPr2XduFMggGVxuuuL3PBdIKr31Xeyt/6+dYj8VX1elQRrSebaf+Hru3dQOloRxg==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-square@2.11.1:
-    resolution: {integrity: sha512-DyLPcPzn3Ks2L7wB4RGLZYSZ2Hc14dWmNAjsHnTGU7eo4Ne7ZCrycEV4PQS6iMeyYkvwSCSJ/ZHPS2BMvhuhMw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-star@2.11.1:
-    resolution: {integrity: sha512-80qB758vgeWfcXh7tLbzWP+HrDUnwx0KXUrX/LVC3ovT9qSNE9b87tMXsc2JFeUNHP+Bn9RQCYIYPtgp+EezCw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-shape-text@2.11.1:
-    resolution: {integrity: sha512-PFq6KowuBFgmX93tmuxAD7z4Ua9E9rEzxELvIdqEgi7LXDSjNKBdXkFi16FcNwI9vWH5Uh1maZCYOwS35NjbFQ==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-color@2.11.1:
-    resolution: {integrity: sha512-lMU5WxZ3HqG+qhqhecc91IWEIH5K8A4hPdO7tsAyjneAihw81v596HpKjIGcbzJc/XqNNdh4sNxJ0vBS5vYmjA==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-destroy@2.11.1:
-    resolution: {integrity: sha512-xxtTl84Lg4wKJ24WZ65lpqUS78ZPM10RPtVKg4bcbWOULYA5GV8dkUyY81wvooS2zeib01VS6y/D6AzuPHCtiw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-life@2.11.1:
-    resolution: {integrity: sha512-PDTrTaWZAggfdqsAI5cQi8qtfCknCu8EqYTvn4j7Ukq7fr1rj/y7z9BLQI4PCdci6wBiuo2uEv+GURcpp6KbcQ==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-opacity@2.11.1:
-    resolution: {integrity: sha512-SK9pEczu6j6ORlhkEJ8RLQoC2pFwDTTF8HoBYXTJEacoOjXaIuawkTwJbS/n5oLPmi4T4+t9Uq+a0qxTiN7pOw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-out-modes@2.11.1:
-    resolution: {integrity: sha512-/vjWuTN4M9U1BkENNm4YnsKzdYcv5drxfwo+QcMUtrkhZS6VEVHVD5Zbatl5u4w7gz7eVz2j2Lp0L6Eo1ngZ7Q==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-roll@2.11.1:
-    resolution: {integrity: sha512-HxKYhdh+9oduVZ18CamZPiiCQHiOQZs6eYUFKrmxwm/nk1Uxwt33UtCWVNwbGs1ND7deKZaaliobhFTXTo5tcg==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-rotate@2.11.1:
-    resolution: {integrity: sha512-AmDr9rGyul90XeC0NjywbpX7h+L0QR66gttOmgxyeIOGf9uL9zsxobm817mZb5Zi6k/7bypmTKiyVCEVi7hIIw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-size@2.11.1:
-    resolution: {integrity: sha512-4uBL5J3K1S/v+lHzEFVVvYTnGM369R27Mww5FL1cpeeW0UyPRL27i/tcjo/uKLFD6ZBObVCME2Y1suCWsBWgcA==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-stroke-color@2.11.1:
-    resolution: {integrity: sha512-kQT187IStNX6k4/SHpbDtoQf5hwPz2SymscOaRbBaGDaudCf1DnnD/r+xLEac5bcdqc66N89pFNF4lORhfGQDA==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-tilt@2.11.1:
-    resolution: {integrity: sha512-qFZVyH3+MrGO2TNR2zg5IkvrVnSf92O/G2fAs7xvxyX5WZpmnKGuqhqOngBGFSirB8E3scz4v2MA0NnCirjr2A==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
-
-  /tsparticles-updater-wobble@2.11.1:
-    resolution: {integrity: sha512-NXqJu6eHIOgLeEBAEveeSnOlRKyTQFgA0Ol1pcHOd17zW9QPD7MffKx41v3GKRUUc7ycaAETIvl91dfIIc+sdw==}
-    dependencies:
-      tsparticles-engine: 2.11.1
-    dev: false
 
   /tuf-js@1.1.7:
     resolution: {integrity: sha512-i3P9Kgw3ytjELUfpuKVDNBJvk4u5bXL6gskv572mcevPbSKCV3zt3djhmlEQ65yERjIbOSncy7U4cQJaB1CBCg==}

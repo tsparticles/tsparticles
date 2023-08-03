@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-shape-heart",
-  "version": "2.11.1",
+  "version": "2.12.0",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -88,6 +88,6 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.11.1"
+    "tsparticles-engine": "^2.12.0"
   }
 }

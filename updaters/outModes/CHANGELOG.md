@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* fixed out mode bounce ([aafaa08](https://github.com/matteobruni/tsparticles/commit/aafaa083090d7941d159273cce513427572b866a))
+* fixed out modes, bounce was not checking the direction of the update request ([e2b2c94](https://github.com/matteobruni/tsparticles/commit/e2b2c94da9ba4ffd264442ab6bfed4923fac7d25))
+
+
+
+
+
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
 **Note:** Version bump only for package tsparticles-updater-out-modes

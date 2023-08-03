@@ -1,6 +1,6 @@
 {
   "name": "tsparticles-basic",
-  "version": "2.11.1",
+  "version": "2.12.0",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,12 +87,12 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.11.1",
-    "tsparticles-move-base": "^2.11.1",
-    "tsparticles-shape-circle": "^2.11.1",
-    "tsparticles-updater-color": "^2.11.1",
-    "tsparticles-updater-opacity": "^2.11.1",
-    "tsparticles-updater-out-modes": "^2.11.1",
-    "tsparticles-updater-size": "^2.11.1"
+    "tsparticles-engine": "^2.12.0",
+    "tsparticles-move-base": "^2.12.0",
+    "tsparticles-shape-circle": "^2.12.0",
+    "tsparticles-updater-color": "^2.12.0",
+    "tsparticles-updater-opacity": "^2.12.0",
+    "tsparticles-updater-out-modes": "^2.12.0",
+    "tsparticles-updater-size": "^2.12.0"
   }
 }
