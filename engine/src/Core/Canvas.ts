@@ -55,7 +55,7 @@ export class Canvas {
 
     private _coverColorStyle?: string;
     private _generated;
-    private readonly _mutationObserver?: MutationObserver;
+    private _mutationObserver?: MutationObserver;
     private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
@@ -118,7 +118,7 @@ export class Canvas {
      * Destroying object actions
      */
     destroy(): void {
-        this._safeMutationObserver((obs) => obs.disconnect());
+        this.stop();
 
         if (this._generated) {
             const element = this.element;
@@ -127,8 +127,6 @@ export class Canvas {
         } else {
             this._resetOriginalStyle();
         }
-
-        this.stop();
 
         this._preDrawUpdaters = [];
         this._postDrawUpdaters = [];
@@ -426,6 +424,9 @@ export class Canvas {
     }
 
     stop(): void {
+        this._safeMutationObserver((obs) => obs.disconnect());
+        this._mutationObserver = undefined;
+
         this.draw((ctx) => clear(ctx, this.size));
     }
 
