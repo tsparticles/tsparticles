@@ -324,6 +324,7 @@ export class Particles {
         }
 
         this._array = this.filter((t) => !particlesToDelete.has(t));
+        this._zArray = this._zArray.filter((t) => !particlesToDelete.has(t));
         this.pool.push(...particlesToDelete);
 
         await this._interactionManager.externalInteract(delta);
