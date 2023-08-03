@@ -78,13 +78,6 @@ export class Canvas {
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
         this._colorPlugins = [];
-        this._mutationObserver = safeMutationObserver((records) => {
-            for (const record of records) {
-                if (record.type === "attributes" && record.attributeName === "style") {
-                    this._repairStyle();
-                }
-            }
-        });
     }
 
     private get _fullScreen(): boolean {
@@ -241,6 +234,14 @@ export class Canvas {
      * Initializes the canvas element
      */
     async init(): Promise<void> {
+        this._safeMutationObserver((obs) => obs.disconnect());
+        this._mutationObserver = safeMutationObserver((records) => {
+            for (const record of records) {
+                if (record.type === "attributes" && record.attributeName === "style") {
+                    this._repairStyle();
+                }
+            }
+        });
         this.resize();
         this._initStyle();
         this._initCover();
