@@ -73,6 +73,13 @@ html(lang="en")
                         span.caret-left
                             i.fas.fa-caret-left
                     #stats(hidden)
+                    #count
+                        div
+                            | Particles:&nbsp;
+                            span#particles-count
+                        div
+                            | Pool:&nbsp;
+                            span#pool-count
 
         #exportModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true")
             .modal-dialog.modal-lg(role="document")

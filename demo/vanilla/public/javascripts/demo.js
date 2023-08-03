@@ -36,6 +36,17 @@
         requestAnimationFrame(update);
     };
 
+    const particlesCount = document.getElementById("particles-count"), poolCount = document.getElementById("pool-count");
+
+    setInterval(() => {
+        const container = tsParticles.domItem(0);
+
+        if (container) {
+            particlesCount.innerText = `${container.particles.count}`;
+            poolCount.innerText = `${container.particles.pool.length}`;
+        }
+    }, 100);
+
     let updateParticles = async function(editor) {
         let presetId = localStorage.presetId || "basic";
 
