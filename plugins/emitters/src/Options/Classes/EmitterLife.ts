@@ -1,12 +1,12 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "tsparticles-engine";
 import type { IEmitterLife } from "../Interfaces/IEmitterLife";
 
 /**
  */
 export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
     count?: number;
-    delay?: number;
-    duration?: number;
+    delay?: RangeValue;
+    duration?: RangeValue;
     wait;
 
     constructor() {
@@ -23,11 +23,11 @@ export class EmitterLife implements IEmitterLife, IOptionLoader<IEmitterLife> {
         }
 
         if (data.delay !== undefined) {
-            this.delay = data.delay;
+            this.delay = setRangeValue(data.delay);
         }
 
         if (data.duration !== undefined) {
-            this.duration = data.duration;
+            this.duration = setRangeValue(data.duration);
         }
 
         if (data.wait !== undefined) {

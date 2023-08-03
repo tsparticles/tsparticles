@@ -1,3 +1,5 @@
+import type { RangeValue } from "tsparticles-engine";
+
 /**
  * The particles emitter life options
  */
@@ -12,13 +14,13 @@ export interface IEmitterLife {
     /**
      * The delay between any spawn, except first.
      */
-    delay?: number;
+    delay?: RangeValue;
 
     /**
      * The duration of any emitter life.
      * If \<= 0 or not specified infinity will be the value.
      */
-    duration?: number;
+    duration?: RangeValue;
 
     /**
      * If enabled the first delay will be applied
