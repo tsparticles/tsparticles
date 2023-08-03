@@ -681,7 +681,8 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 flowchart LR
 
 subgraph b [Bundles]
-bp[Particles.js compatibility bundle] --> bs[tsParticles Slim]
+bb[tsParticles Basic] --> bs[tsParticles Slim]
+bp[Particles.js compatibility bundle] --> bs
 bs --> bf[tsParticles]
 end
 
@@ -689,14 +690,17 @@ e[tsParticles Engine] --> b
 
 iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
 ipa & ipc & ipl --> bs
-mb & mp --> bs
+mb --> bb
+mp --> bs
 ple4 --> bs
-sc & si & sl & sp & ssq & sst & st --> bs
-ua & uc & ul & uop & uou & usi & ust --> bs
+sc --> bb
+si & sl & sp & ssq & sst & st --> bs
+uc & uop & uou & usi --> bb
+ul & urot & ust --> bs
 
 iet --> bf
 pla & plem --> bf
-ur & uti & utw & uw --> bf
+urol & uti & utw & uw --> bf
 
 subgraph i [Interactions]
 
@@ -788,15 +792,15 @@ end
 e --> s
 
 subgraph u [Updaters]
-ua[Angle]
 uc[Color]
 ud[Destroy]
 ug[Gradient]
 ul[Life]
 uop[Opacity]
 uor[Orbit]
+urot[Rotate]
+urol[Roll]
 uou[Out Modes]
-ur[Roll]
 usi[Size]
 ust[Stroke Color]
 uti[Tilt]

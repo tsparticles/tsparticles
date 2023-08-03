@@ -31,77 +31,77 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 ## Table of Contents
 
 - [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
-  - [Table of Contents](#table-of-contents)
-  - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
-  - [**_Library installation_**](#library-installation)
-    - [**_Hosting / CDN_**](#hosting--cdn)
-      - [jsDelivr](#jsdelivr)
-      - [cdnjs](#cdnjs)
-      - [unpkg](#unpkg)
-    - [**_npm_**](#npm)
-    - [**_yarn_**](#yarn)
-    - [**_pnpm_**](#pnpm)
-      - [Import and require](#import-and-require)
-    - [**_Usage_**](#usage)
-  - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
-    - [Angular](#angular)
-      - [`ng-particles`](#ng-particles)
-    - [Astro](#astro)
-      - [`astro-particles`](#astro-particles)
-    - [Ember.js](#emberjs)
-      - [`ember-tsparticles`](#ember-tsparticles)
-    - [Inferno](#inferno)
-      - [`inferno-particles`](#inferno-particles)
-    - [jQuery](#jquery)
-      - [`jquery-particles`](#jquery-particles)
-    - [Preact](#preact)
-      - [`preact-particles`](#preact-particles)
-    - [ReactJS](#reactjs)
-      - [`react-particles`](#react-particles)
-    - [RiotJS](#riotjs)
-      - [`riot-particles`](#riot-particles)
-    - [SolidJS](#solidjs)
-      - [`solid-particles`](#solid-particles)
-    - [Svelte](#svelte)
-      - [`svelte-particles`](#svelte-particles)
-    - [VueJS 2.x](#vuejs-2x)
-      - [`vue2-particles`](#vue2-particles)
-    - [VueJS 3.x](#vuejs-3x)
-      - [`vue3-particles`](#vue3-particles)
-    - [Web Components](#web-components)
-      - [`web-particles`](#web-particles)
-    - [WordPress](#wordpress)
-      - [`wordpress-particles`](#wordpress-particles)
-    - [Elementor](#elementor)
-  - [Presets](#presets)
-    - [Big Circles](#big-circles)
-    - [Bubbles](#bubbles)
-    - [Confetti](#confetti)
-    - [Fire](#fire)
-    - [Firefly](#firefly)
-    - [Fireworks](#fireworks)
-    - [Fountain](#fountain)
-    - [Links](#links)
-    - [Sea Anemone](#sea-anemone)
-    - [Snow](#snow)
-    - [Stars](#stars)
-    - [Triangles](#triangles)
-  - [Templates and Resources](#templates-and-resources)
-  - [**_Demo / Generator_**](#demo--generator)
-  - [**_Video Tutorials_**](#video-tutorials)
-    - [Characters as particles](#characters-as-particles)
-    - [Polygon mask](#polygon-mask)
-    - [Animated stars](#animated-stars)
-    - [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
-    - [Snow particles](#snow-particles)
-    - [Background Mask particles](#background-mask-particles)
-  - [**_Options_**](#options)
-  - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
-  - [Migrating from Particles.js](#migrating-from-particlesjs)
-  - [Plugins/Customizations](#pluginscustomizations)
-  - [Dependency Graph](#dependency-graph)
-  - [Sponsors](#sponsors)
-    - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
+- [Table of Contents](#table-of-contents)
+- [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+- [**_Library installation_**](#library-installation)
+- [**_Hosting / CDN_**](#hosting--cdn)
+- [jsDelivr](#jsdelivr)
+- [cdnjs](#cdnjs)
+- [unpkg](#unpkg)
+- [**_npm_**](#npm)
+- [**_yarn_**](#yarn)
+- [**_pnpm_**](#pnpm)
+- [Import and require](#import-and-require)
+- [**_Usage_**](#usage)
+- [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+- [Angular](#angular)
+- [`ng-particles`](#ng-particles)
+- [Astro](#astro)
+- [`astro-particles`](#astro-particles)
+- [Ember.js](#emberjs)
+- [`ember-tsparticles`](#ember-tsparticles)
+- [Inferno](#inferno)
+- [`inferno-particles`](#inferno-particles)
+- [jQuery](#jquery)
+- [`jquery-particles`](#jquery-particles)
+- [Preact](#preact)
+- [`preact-particles`](#preact-particles)
+- [ReactJS](#reactjs)
+- [`react-particles`](#react-particles)
+- [RiotJS](#riotjs)
+- [`riot-particles`](#riot-particles)
+- [SolidJS](#solidjs)
+- [`solid-particles`](#solid-particles)
+- [Svelte](#svelte)
+- [`svelte-particles`](#svelte-particles)
+- [VueJS 2.x](#vuejs-2x)
+- [`vue2-particles`](#vue2-particles)
+- [VueJS 3.x](#vuejs-3x)
+- [`vue3-particles`](#vue3-particles)
+- [Web Components](#web-components)
+- [`web-particles`](#web-particles)
+- [WordPress](#wordpress)
+- [`wordpress-particles`](#wordpress-particles)
+- [Elementor](#elementor)
+- [Presets](#presets)
+- [Big Circles](#big-circles)
+- [Bubbles](#bubbles)
+- [Confetti](#confetti)
+- [Fire](#fire)
+- [Firefly](#firefly)
+- [Fireworks](#fireworks)
+- [Fountain](#fountain)
+- [Links](#links)
+- [Sea Anemone](#sea-anemone)
+- [Snow](#snow)
+- [Stars](#stars)
+- [Triangles](#triangles)
+- [Templates and Resources](#templates-and-resources)
+- [**_Demo / Generator_**](#demo--generator)
+- [**_Video Tutorials_**](#video-tutorials)
+- [Characters as particles](#characters-as-particles)
+- [Polygon mask](#polygon-mask)
+- [Animated stars](#animated-stars)
+- [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+- [Snow particles](#snow-particles)
+- [Background Mask particles](#background-mask-particles)
+- [**_Options_**](#options)
+- [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+- [Migrating from Particles.js](#migrating-from-particlesjs)
+- [Plugins/Customizations](#pluginscustomizations)
+- [Dependency Graph](#dependency-graph)
+- [Sponsors](#sponsors)
+- [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -681,7 +681,8 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 flowchart LR
 
 subgraph b [Bundles]
-bp[Particles.js compatibility bundle] --> bs[tsParticles Slim]
+bb[tsParticles Basic] --> bs[tsParticles Slim]
+bp[Particles.js compatibility bundle] --> bs
 bs --> bf[tsParticles]
 end
 
@@ -689,14 +690,17 @@ e[tsParticles Engine] --> b
 
 iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
 ipa & ipc & ipl --> bs
-mb & mp --> bs
+mb --> bb
+mp --> bs
 ple4 --> bs
-sc & si & sl & sp & ssq & sst & st --> bs
-ua & uc & ul & uop & uou & usi & ust --> bs
+sc --> bb
+si & sl & sp & ssq & sst & st --> bs
+uc & uop & uou & usi --> bb
+ul & urot & ust --> bs
 
 iet --> bf
 pla & plem --> bf
-ur & uti & utw & uw --> bf
+urol & uti & utw & uw --> bf
 
 subgraph i [Interactions]
 
@@ -788,15 +792,15 @@ end
 e --> s
 
 subgraph u [Updaters]
-ua[Angle]
 uc[Color]
 ud[Destroy]
 ug[Gradient]
 ul[Life]
 uop[Opacity]
 uor[Orbit]
+urot[Rotate]
+urol[Roll]
 uou[Out Modes]
-ur[Roll]
 usi[Size]
 ust[Stroke Color]
 uti[Tilt]

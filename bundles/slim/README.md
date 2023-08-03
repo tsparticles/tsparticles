@@ -9,7 +9,7 @@ a `tsparticles-engine` instance.
 
 **Included Packages**
 
-- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
+- [tsparticles-basic (and all its dependencies)](https://github.com/matteobruni/tsparticles/tree/main/bundles/basic)
 - [tsparticles-interaction-external-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/attract)
 - [tsparticles-interaction-external-bounce](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bounce)
 - [tsparticles-interaction-external-bubble](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/bubble)
@@ -23,23 +23,17 @@ a `tsparticles-engine` instance.
 - [tsparticles-interaction-particles-attract](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/attract)
 - [tsparticles-interaction-particles-collisions](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/collisions)
 - [tsparticles-interaction-particles-links](https://github.com/matteobruni/tsparticles/tree/main/interactions/particles/links)
-- [tsparticles-move-base](https://github.com/matteobruni/tsparticles/tree/main/move/base)
 - [tsparticles-move-parallax](https://github.com/matteobruni/tsparticles/tree/main/move/parallax)
 - [tsparticles-particles.js](https://github.com/matteobruni/tsparticles/tree/main/bundles/pjs)
 - [tsparticles-plugin-easing-quad](https://github.com/matteobruni/tsparticles/tree/main/plugins/easings/quad)
-- [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
 - [tsparticles-shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
 - [tsparticles-shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
 - [tsparticles-shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
 - [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
 - [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
 - [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
-- [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
 - [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
-- [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
-- [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
 - [tsparticles-updater-rotate](https://github.com/matteobruni/tsparticles/tree/main/updaters/rotate)
-- [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
 - [tsparticles-updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
 
 ## How to use it
