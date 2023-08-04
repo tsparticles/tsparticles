@@ -25,7 +25,7 @@
     "@commitlint/cli": "^17.6.7",
     "@commitlint/config-conventional": "^17.6.7",
     "@nrwl/workspace": "^16.6.0",
-    "@tsparticles/cli": "^1.11.0",
+    "@tsparticles/cli": "^1.12.0",
     "@tsparticles/eslint-config": "^1.19.0",
     "@tsparticles/prettier-config": "^1.12.0",
     "@tsparticles/tsconfig": "^1.14.0",
