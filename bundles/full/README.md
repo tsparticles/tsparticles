@@ -9,7 +9,6 @@ a `tsparticles-engine` instance.
 
 **Included Packages**
 
-- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
 - [tsparticles-slim (and all its dependencies)](https://github.com/matteobruni/tsparticles/tree/main/bundles/slim)
 - [tsparticles-interaction-external-trail](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/trail)
 - [tsparticles-plugin-absorbers](https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers)

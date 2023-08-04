@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* fix issue with change theme when an existing canvas is used ([2c4c7cd](https://github.com/matteobruni/tsparticles/commit/2c4c7cd713bd2728b4821563e9d919fd33c23bf5))
+* fix issue with change theme when an existing canvas is used ([a349b97](https://github.com/matteobruni/tsparticles/commit/a349b973b63c849ec552eca72bcce391223c3d61))
+* fixed memory leak in destroyed particles by updaters, the z array wasn't filtered ([272bb47](https://github.com/matteobruni/tsparticles/commit/272bb4720961bab2db8b5ee5d3dc7e6f5b1bbf38)), closes [#5101](https://github.com/matteobruni/tsparticles/issues/5101)
+* fixed out modes, bounce was not checking the direction of the update request ([e2b2c94](https://github.com/matteobruni/tsparticles/commit/e2b2c94da9ba4ffd264442ab6bfed4923fac7d25))
+* fixed pool on particles destroyed by updaters ([1f62e29](https://github.com/matteobruni/tsparticles/commit/1f62e299de7893145c64d006fcc2f6fb8c8540cf))
+
+
+
+
+
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
 

@@ -138,8 +138,10 @@ migrate from the old particles.js library.
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-confetti)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-engine/badge)](https://www.jsdelivr.com/package/npm/tsparticles-engine)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-fireworks)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-basic/badge)](https://www.jsdelivr.com/package/npm/tsparticles-basic)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-all/badge)](https://www.jsdelivr.com/package/npm/tsparticles-all)
 
 #### cdnjs
 
@@ -147,7 +149,7 @@ migrate from the old particles.js library.
 
 #### unpkg
 
-<https://unpkg.com/tsparticles-confetti/> <https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-fireworks/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/>
+<https://unpkg.com/tsparticles-confetti/> <https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-fireworks/> <https://unpkg.com/tsparticles-basic/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/> <https://unpkg.com/tsparticles-all/>
 
 ---
 
@@ -165,6 +167,10 @@ _tsParticles Fireworks_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks)
 
+_tsParticles Basic_
+
+[![npm](https://img.shields.io/npm/v/tsparticles-basic?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-basic) [![npmjs](https://img.shields.io/npm/dt/tsparticles-basic?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-basic)
+
 _tsParticles Slim_
 
 [![npm](https://img.shields.io/npm/v/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim)
@@ -172,6 +178,10 @@ _tsParticles Slim_
 _tsParticles_
 
 [![npm](https://img.shields.io/npm/v/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
+
+_tsParticles All_
+
+[![npm](https://img.shields.io/npm/v/tsparticles-all?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-all) [![npmjs](https://img.shields.io/npm/dt/tsparticles-all?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-all)
 
 ```shell
 npm install tsparticles-engine
@@ -681,7 +691,8 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 flowchart LR
 
 subgraph b [Bundles]
-bp[Particles.js compatibility bundle] --> bs[tsParticles Slim]
+bb[tsParticles Basic] --> bs[tsParticles Slim]
+bp[Particles.js compatibility bundle] --> bs
 bs --> bf[tsParticles]
 end
 
@@ -689,14 +700,17 @@ e[tsParticles Engine] --> b
 
 iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
 ipa & ipc & ipl --> bs
-mb & mp --> bs
-ple4 --> bs
-sc & si & sl & sp & ssq & sst & st --> bs
-ua & uc & ul & uop & uou & usi & ust --> bs
+mb --> bb
+mp --> bs
+pleq --> bs
+sci --> bb
+si & sl & spo & ssq & sst & st --> bs
+uc & uop & uou & usi --> bb
+ul & urot & ust --> bs
 
 iet --> bf
 pla & plem --> bf
-ur & uti & utw & uw --> bf
+urol & uti & utw & uw --> bf
 
 subgraph i [Interactions]
 
@@ -739,29 +753,39 @@ e --> m
 
 subgraph pa [Paths]
 pac[Curves]
-pape[Perlin Noise]
-papo[Polygon]
-pas[Simplex Noise]
+papn[Perlin Noise]
+pap[Polygon]
+pasn[Simplex Noise]
+pasvg[SVG]
 end
 
 e --> pa
 
 subgraph pl [Plugins]
 pla[Absorbers]
+plcm[Canvas Mask]
 plem[Emitters]
 plh[HSV Color]
 pli[Infection]
 plm[Motion]
 plp[Polygon Mask]
+pls[Sounds]
 
 subgraph plea [Easings]
 pleb[Back]
 pleci[Circ]
 plecu[Cubic]
 plee[Expo]
-ple4[Quad]
+pleq[Quad]
+ple4[Quart]
 ple5[Quint]
 ples[Sine]
+end
+
+subgraph plex [Exports]
+plexi[Image]
+plexj[JSON]
+plexv[Video]
 end
 
 end
@@ -771,14 +795,18 @@ pl --> plea
 e --> pl
 
 subgraph s [Shapes]
+sa[Arrow]
 sb[Bubble]
-sc[Circle]
+sci[Circle]
+scog[Cog]
 sh[Heart]
 si[Image]
 sl[Line]
-sm[Multiline Text]
-sp[Polygon]
-sr[Rounded Rectangle]
+smt[Multiline Text]
+spa[Path]
+spo[Polygon]
+srp[Rounded Polygon]
+srr[Rounded Rectangle]
 ssp[Spiral]
 ssq[Square]
 sst[Star]
@@ -788,7 +816,6 @@ end
 e --> s
 
 subgraph u [Updaters]
-ua[Angle]
 uc[Color]
 ud[Destroy]
 ug[Gradient]
@@ -796,7 +823,8 @@ ul[Life]
 uop[Opacity]
 uor[Orbit]
 uou[Out Modes]
-ur[Roll]
+urol[Roll]
+urot[Rotate]
 usi[Size]
 ust[Stroke Color]
 uti[Tilt]

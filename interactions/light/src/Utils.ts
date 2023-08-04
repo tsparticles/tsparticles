@@ -96,7 +96,7 @@ export function drawParticleShadow(
     const shadowColor = getStyleFromRgb(shadowRgb),
         last = points.length - 1;
 
-    for (let i = last, n = 0; i >= 0; n = --i) {
+    for (let i = last, n = 0; i >= 0; n = i--) {
         context.beginPath();
 
         context.moveTo(points[i].start.x, points[i].start.y);

@@ -1,6 +1,6 @@
 import cluster from "node:cluster";
 import express from "express";
-import helmet from "helmet";
+//import helmet from "helmet";
 import stylus from "stylus";
 import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
@@ -54,6 +54,8 @@ app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/lodash", express.static("./node_modules/lodash"));
 app.use("/ace", express.static("./node_modules/ace-builds"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
+app.use("/tsparticles-all", express.static("./node_modules/tsparticles-all"));
+app.use("/tsparticles-basic", express.static("./node_modules/tsparticles-basic"));
 app.use("/tsparticles-engine", express.static("./node_modules/tsparticles-engine"));
 app.use("/tsparticles-particles.js", express.static("./node_modules/tsparticles-particles.js"));
 app.use("/tsparticles-slim", express.static("./node_modules/tsparticles-slim"));
@@ -213,7 +215,7 @@ if (cluster.isMaster) {
         cluster.fork();
     }
 
-    cluster.on("exit", (worker, code, signal) => {
+    cluster.on("exit", (worker) => {
         logger.info(`worker ${worker.process.pid} died`);
 
         cluster.fork();

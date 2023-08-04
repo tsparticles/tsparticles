@@ -18,23 +18,23 @@ importers:
         specifier: ^17.6.7
         version: 17.6.7
       '@nrwl/workspace':
-        specifier: ^16.5.5
-        version: 16.5.5
+        specifier: ^16.6.0
+        version: 16.6.0
       '@tsparticles/cli':
-        specifier: ^1.10.0
-        version: 1.10.0(webpack-cli@5.1.4)
-      '@tsparticles/eslint-config':
-        specifier: ^1.18.0
-        version: 1.18.0
-      '@tsparticles/prettier-config':
         specifier: ^1.11.0
-        version: 1.11.0
+        version: 1.11.0(webpack-cli@5.1.4)
+      '@tsparticles/eslint-config':
+        specifier: ^1.19.0
+        version: 1.19.0
+      '@tsparticles/prettier-config':
+        specifier: ^1.12.0
+        version: 1.12.0
       '@tsparticles/tsconfig':
         specifier: ^1.14.0
         version: 1.14.0
       '@tsparticles/webpack-plugin':
-        specifier: ^1.22.0
-        version: 1.22.0
+        specifier: ^1.23.0
+        version: 1.23.0
       '@types/chai':
         specifier: ^4.3.5
         version: 4.3.5
@@ -45,23 +45,23 @@ importers:
         specifier: ^10.0.1
         version: 10.0.1
       '@types/node':
-        specifier: ^20.4.4
-        version: 20.4.4
+        specifier: ^20.4.6
+        version: 20.4.6
       '@types/webpack-env':
         specifier: ^1.18.1
         version: 1.18.1
       '@typescript-eslint/eslint-plugin':
-        specifier: ^6.2.0
-        version: 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)(typescript@5.1.6)
+        specifier: ^6.2.1
+        version: 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
       '@typescript-eslint/parser':
-        specifier: ^6.2.0
-        version: 6.2.0(eslint@8.45.0)(typescript@5.1.6)
+        specifier: ^6.2.1
+        version: 6.2.1(eslint@8.46.0)(typescript@5.1.6)
       babel-loader:
         specifier: ^9.1.3
         version: 9.1.3(@babel/core@7.22.9)(webpack@5.88.2)
       browserslist:
-        specifier: ^4.21.9
-        version: 4.21.9
+        specifier: ^4.21.10
+        version: 4.21.10
       canvas:
         specifier: ^2.11.2
         version: 2.11.2
@@ -75,14 +75,14 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
       eslint:
-        specifier: ^8.45.0
-        version: 8.45.0
+        specifier: ^8.46.0
+        version: 8.46.0
       eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.45.0)
+        specifier: ^8.10.0
+        version: 8.10.0(eslint@8.46.0)
       eslint-plugin-jsdoc:
-        specifier: ^46.4.4
-        version: 46.4.4(eslint@8.45.0)
+        specifier: ^46.4.5
+        version: 46.4.5(eslint@8.46.0)
       eslint-plugin-tsdoc:
         specifier: ^0.2.17
         version: 0.2.17
@@ -102,17 +102,17 @@ importers:
         specifier: ^10.2.0
         version: 10.2.0
       nx:
-        specifier: ^16.5.5
-        version: 16.5.5
+        specifier: ^16.6.0
+        version: 16.6.0
       nx-cloud:
-        specifier: ^16.1.1
-        version: 16.1.1
+        specifier: ^16.2.0
+        version: 16.2.0
       nyc:
         specifier: ^15.1.0
         version: 15.1.0
       prettier:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.1
+        version: 3.0.1
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
@@ -127,7 +127,7 @@ importers:
         version: 1.2.0
       ts-node:
         specifier: ^10.9.1
-        version: 10.9.1(@types/node@20.4.4)(typescript@5.1.6)
+        version: 10.9.1(@types/node@20.4.6)(typescript@5.1.6)
       typedoc:
         specifier: ^0.24.8
         version: 0.24.8(typescript@5.1.6)
@@ -144,8 +144,8 @@ importers:
         specifier: ^1.4.1
         version: 1.4.1(typedoc@0.24.8)
       typedoc-plugin-missing-exports:
-        specifier: ^2.0.0
-        version: 2.0.0(typedoc@0.24.8)
+        specifier: ^2.0.1
+        version: 2.0.1(typedoc@0.24.8)
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
@@ -162,525 +162,644 @@ importers:
         specifier: ^5.1.4
         version: 5.1.4(webpack-bundle-analyzer@4.9.0)(webpack@5.88.2)
 
-  bundles/confetti:
+  bundles/all:
+    dependencies:
+      tsparticles:
+        specifier: ^2.12.0
+        version: link:../full/dist
+      tsparticles-engine:
+        specifier: ^2.12.0
+        version: link:../../engine/dist
+      tsparticles-interaction-light:
+        specifier: ^2.12.0
+        version: link:../../interactions/light/dist
+      tsparticles-interaction-particles-repulse:
+        specifier: ^2.12.0
+        version: link:../../interactions/particles/repulse/dist
+      tsparticles-path-curves:
+        specifier: ^2.12.0
+        version: link:../../paths/curves/dist
+      tsparticles-path-perlin-noise:
+        specifier: ^2.12.0
+        version: link:../../paths/perlinNoise/dist
+      tsparticles-path-polygon:
+        specifier: ^2.12.0
+        version: link:../../paths/polygon/dist
+      tsparticles-path-simplex-noise:
+        specifier: ^2.12.0
+        version: link:../../paths/simplexNoise/dist
+      tsparticles-path-svg:
+        specifier: ^2.12.0
+        version: link:../../paths/svg/dist
+      tsparticles-plugin-canvas-mask:
+        specifier: ^2.12.0
+        version: link:../../plugins/canvasMask/dist
+      tsparticles-plugin-easing-back:
+        specifier: ^2.12.0
+        version: link:../../plugins/easings/back/dist
+      tsparticles-plugin-easing-circ:
+        specifier: ^2.12.0
+        version: link:../../plugins/easings/circ/dist
+      tsparticles-plugin-easing-cubic:
+        specifier: ^2.12.0
+        version: link:../../plugins/easings/cubic/dist
+      tsparticles-plugin-easing-expo:
+        specifier: ^2.12.0
+        version: link:../../plugins/easings/expo/dist
+      tsparticles-plugin-easing-quart:
+        specifier: ^2.12.0
+        version: link:../../plugins/easings/quart/dist
+      tsparticles-plugin-easing-quint:
+        specifier: ^2.12.0
+        version: link:../../plugins/easings/quint/dist
+      tsparticles-plugin-easing-sine:
+        specifier: ^2.12.0
+        version: link:../../plugins/easings/sine/dist
+      tsparticles-plugin-export-image:
+        specifier: ^2.12.0
+        version: link:../../plugins/exports/image/dist
+      tsparticles-plugin-export-json:
+        specifier: ^2.12.0
+        version: link:../../plugins/exports/json/dist
+      tsparticles-plugin-export-video:
+        specifier: ^2.12.0
+        version: link:../../plugins/exports/video/dist
+      tsparticles-plugin-hsv-color:
+        specifier: ^2.12.0
+        version: link:../../plugins/hsvColor/dist
+      tsparticles-plugin-infection:
+        specifier: ^2.12.0
+        version: link:../../plugins/infection/dist
+      tsparticles-plugin-motion:
+        specifier: ^2.12.0
+        version: link:../../plugins/motion/dist
+      tsparticles-plugin-polygon-mask:
+        specifier: ^2.12.0
+        version: link:../../plugins/polygonMask/dist
+      tsparticles-plugin-sounds:
+        specifier: ^2.12.0
+        version: link:../../plugins/sounds/dist
+      tsparticles-shape-arrow:
+        specifier: ^2.12.0
+        version: link:../../shapes/arrow/dist
+      tsparticles-shape-bubble:
+        specifier: ^2.12.0
+        version: link:../../shapes/bubble/dist
+      tsparticles-shape-cards:
+        specifier: ^2.12.0
+        version: link:../../shapes/cards/dist
+      tsparticles-shape-cog:
+        specifier: ^2.12.0
+        version: link:../../shapes/cog/dist
+      tsparticles-shape-heart:
+        specifier: ^2.12.0
+        version: link:../../shapes/heart/dist
+      tsparticles-shape-multiline-text:
+        specifier: ^2.12.0
+        version: link:../../shapes/multiline-text/dist
+      tsparticles-shape-path:
+        specifier: ^2.12.0
+        version: link:../../shapes/path/dist
+      tsparticles-shape-rounded-polygon:
+        specifier: ^2.12.0
+        version: link:../../shapes/rounded-polygon/dist
+      tsparticles-shape-rounded-rect:
+        specifier: ^2.12.0
+        version: link:../../shapes/rounded-rect/dist
+      tsparticles-shape-spiral:
+        specifier: ^2.12.0
+        version: link:../../shapes/spiral/dist
+      tsparticles-updater-gradient:
+        specifier: ^2.12.0
+        version: link:../../updaters/gradient/dist
+      tsparticles-updater-orbit:
+        specifier: ^2.12.0
+        version: link:../../updaters/orbit/dist
+    publishDirectory: dist
+
+  bundles/basic:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
-      tsparticles-plugin-emitters:
-        specifier: ^2.11.1
-        version: link:../../plugins/emitters/dist
-      tsparticles-plugin-motion:
-        specifier: ^2.11.1
-        version: link:../../plugins/motion/dist
-      tsparticles-shape-cards:
-        specifier: ^2.11.1
-        version: link:../../shapes/cards/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
-      tsparticles-shape-heart:
-        specifier: ^2.11.1
-        version: link:../../shapes/heart/dist
-      tsparticles-shape-image:
-        specifier: ^2.11.1
-        version: link:../../shapes/image/dist
-      tsparticles-shape-polygon:
-        specifier: ^2.11.1
-        version: link:../../shapes/polygon/dist
-      tsparticles-shape-square:
-        specifier: ^2.11.1
-        version: link:../../shapes/square/dist
-      tsparticles-shape-star:
-        specifier: ^2.11.1
-        version: link:../../shapes/star/dist
-      tsparticles-shape-text:
-        specifier: ^2.11.1
-        version: link:../../shapes/text/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
-      tsparticles-updater-life:
-        specifier: ^2.11.1
-        version: link:../../updaters/life/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
+      tsparticles-updater-size:
+        specifier: ^2.12.0
+        version: link:../../updaters/size/dist
+    publishDirectory: dist
+
+  bundles/confetti:
+    dependencies:
+      tsparticles-basic:
+        specifier: ^2.12.0
+        version: link:../basic/dist
+      tsparticles-engine:
+        specifier: ^2.12.0
+        version: link:../../engine/dist
+      tsparticles-plugin-emitters:
+        specifier: ^2.12.0
+        version: link:../../plugins/emitters/dist
+      tsparticles-plugin-motion:
+        specifier: ^2.12.0
+        version: link:../../plugins/motion/dist
+      tsparticles-shape-cards:
+        specifier: ^2.12.0
+        version: link:../../shapes/cards/dist
+      tsparticles-shape-heart:
+        specifier: ^2.12.0
+        version: link:../../shapes/heart/dist
+      tsparticles-shape-image:
+        specifier: ^2.12.0
+        version: link:../../shapes/image/dist
+      tsparticles-shape-polygon:
+        specifier: ^2.12.0
+        version: link:../../shapes/polygon/dist
+      tsparticles-shape-square:
+        specifier: ^2.12.0
+        version: link:../../shapes/square/dist
+      tsparticles-shape-star:
+        specifier: ^2.12.0
+        version: link:../../shapes/star/dist
+      tsparticles-shape-text:
+        specifier: ^2.12.0
+        version: link:../../shapes/text/dist
+      tsparticles-updater-life:
+        specifier: ^2.12.0
+        version: link:../../updaters/life/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
-      tsparticles-updater-size:
-        specifier: ^2.11.1
-        version: link:../../updaters/size/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
     publishDirectory: dist
 
   bundles/fireworks:
     dependencies:
+      tsparticles-basic:
+        specifier: ^2.12.0
+        version: link:../basic/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
-      tsparticles-move-base:
-        specifier: ^2.11.1
-        version: link:../../move/base/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-plugin-sounds:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/sounds/dist
-      tsparticles-shape-circle:
-        specifier: ^2.11.1
-        version: link:../../shapes/circle/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
-      tsparticles-updater-color:
-        specifier: ^2.11.1
-        version: link:../../updaters/color/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
-      tsparticles-updater-opacity:
-        specifier: ^2.11.1
-        version: link:../../updaters/opacity/dist
-      tsparticles-updater-out-modes:
-        specifier: ^2.11.1
-        version: link:../../updaters/outModes/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
-      tsparticles-updater-size:
-        specifier: ^2.11.1
-        version: link:../../updaters/size/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   bundles/full:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-external-trail:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/trail/dist
       tsparticles-plugin-absorbers:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/absorbers/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-slim:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../slim/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-twinkle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/twinkle/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
     publishDirectory: dist
 
   bundles/pjs:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   bundles/slim:
     dependencies:
+      tsparticles-basic:
+        specifier: ^2.12.0
+        version: link:../basic/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-external-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bounce/dist
       tsparticles-interaction-external-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bubble/dist
       tsparticles-interaction-external-connect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/connect/dist
       tsparticles-interaction-external-grab:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/grab/dist
       tsparticles-interaction-external-pause:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/pause/dist
       tsparticles-interaction-external-push:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/push/dist
       tsparticles-interaction-external-remove:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/remove/dist
       tsparticles-interaction-external-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/repulse/dist
       tsparticles-interaction-external-slow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/slow/dist
       tsparticles-interaction-particles-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/attract/dist
       tsparticles-interaction-particles-collisions:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/collisions/dist
       tsparticles-interaction-particles-links:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/links/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
       tsparticles-move-parallax:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../pjs/dist
       tsparticles-plugin-easing-quad:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quad/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
       tsparticles-shape-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/image/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
       tsparticles-shape-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
       tsparticles-shape-square:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/square/dist
       tsparticles-shape-star:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/star/dist
       tsparticles-shape-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/text/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/size/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   demo/electron:
     dependencies:
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
       tsparticles-demo-configs:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../utils/configs/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     devDependencies:
       electron:
-        specifier: ^25.0.0
-        version: 25.0.0
+        specifier: ^25.3.1
+        version: 25.3.1
 
   demo/vanilla:
     dependencies:
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
+      tsparticles-all:
+        specifier: ^2.12.0
+        version: link:../../bundles/all/dist
+      tsparticles-basic:
+        specifier: ^2.12.0
+        version: link:../../bundles/basic/dist
       tsparticles-confetti:
         specifier: ^2.11.1
         version: link:../../bundles/confetti/dist
       tsparticles-demo-configs:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../utils/configs/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-fireworks:
         specifier: ^2.11.1
         version: link:../../bundles/fireworks/dist
       tsparticles-interaction-external-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bounce/dist
       tsparticles-interaction-external-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bubble/dist
       tsparticles-interaction-external-connect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/connect/dist
       tsparticles-interaction-external-grab:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/grab/dist
       tsparticles-interaction-external-pause:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/pause/dist
       tsparticles-interaction-external-push:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/push/dist
       tsparticles-interaction-external-remove:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/remove/dist
       tsparticles-interaction-external-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/repulse/dist
       tsparticles-interaction-external-slow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/slow/dist
       tsparticles-interaction-external-trail:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/trail/dist
       tsparticles-interaction-light:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/light/dist
       tsparticles-interaction-particles-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/attract/dist
       tsparticles-interaction-particles-collisions:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/collisions/dist
       tsparticles-interaction-particles-links:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/links/dist
       tsparticles-interaction-particles-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/repulse/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
       tsparticles-move-parallax:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/pjs/dist
       tsparticles-path-curves:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/curves/dist
       tsparticles-path-perlin-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/perlinNoise/dist
       tsparticles-path-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/polygon/dist
       tsparticles-path-simplex-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/simplexNoise/dist
       tsparticles-path-svg:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/svg/dist
       tsparticles-plugin-absorbers:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/absorbers/dist
       tsparticles-plugin-canvas-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/canvasMask/dist
       tsparticles-plugin-easing-back:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/back/dist
       tsparticles-plugin-easing-circ:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/circ/dist
       tsparticles-plugin-easing-cubic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/cubic/dist
       tsparticles-plugin-easing-expo:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/expo/dist
       tsparticles-plugin-easing-quad:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quad/dist
       tsparticles-plugin-easing-quart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quart/dist
       tsparticles-plugin-easing-quint:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quint/dist
       tsparticles-plugin-easing-sine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/sine/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-plugin-export-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/image/dist
       tsparticles-plugin-export-json:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/json/dist
       tsparticles-plugin-export-video:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/exports/video/dist
       tsparticles-plugin-hsv-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/hsvColor/dist
       tsparticles-plugin-infection:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/infection/dist
       tsparticles-plugin-motion:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/polygonMask/dist
       tsparticles-plugin-sounds:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/sounds/dist
       tsparticles-shape-arrow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/arrow/dist
       tsparticles-shape-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/bubble/dist
       tsparticles-shape-cards:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/cards/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
       tsparticles-shape-cog:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/cog/dist
       tsparticles-shape-heart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/heart/dist
       tsparticles-shape-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/image/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
       tsparticles-shape-multiline-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/multiline-text/dist
       tsparticles-shape-path:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/path/dist
       tsparticles-shape-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
       tsparticles-shape-ribbon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/ribbon/dist
       tsparticles-shape-rounded-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-polygon/dist
       tsparticles-shape-rounded-rect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-rect/dist
       tsparticles-shape-spiral:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/spiral/dist
       tsparticles-shape-square:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/square/dist
       tsparticles-shape-star:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/star/dist
       tsparticles-shape-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/text/dist
       tsparticles-slim:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/slim/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-gradient:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/gradient/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-orbit:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/orbit/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/size/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-twinkle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/twinkle/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
     devDependencies:
       '@datalust/winston-seq':
         specifier: ^2.0.0
-        version: 2.0.0(winston@3.9.0)
+        version: 2.0.0(winston@3.10.0)
       '@fortawesome/fontawesome-free':
         specifier: ^6.4.0
         version: 6.4.0
@@ -694,20 +813,20 @@ importers:
         specifier: ^0.9.2
         version: 0.9.2
       '@types/node':
-        specifier: ^20.2.0
-        version: 20.2.0
+        specifier: ^20.4.4
+        version: 20.4.4
       '@types/stylus':
         specifier: ^0.48.38
         version: 0.48.38
       ace-builds:
-        specifier: ^1.21.1
-        version: 1.21.1
+        specifier: ^1.23.4
+        version: 1.23.4
       bootstrap:
-        specifier: ^5.2.3
-        version: 5.2.3(@popperjs/core@2.11.8)
+        specifier: ^5.3.0
+        version: 5.3.0(@popperjs/core@2.11.8)
       concurrently:
-        specifier: ^8.0.1
-        version: 8.0.1
+        specifier: ^8.2.0
+        version: 8.2.0
       connect-livereload:
         specifier: ^0.6.1
         version: 0.6.1
@@ -718,8 +837,8 @@ importers:
         specifier: ^4.18.2
         version: 4.18.2
       express-rate-limit:
-        specifier: ^6.7.0
-        version: 6.7.0(express@4.18.2)
+        specifier: ^6.8.0
+        version: 6.8.0(express@4.18.2)
       helmet:
         specifier: ^7.0.0
         version: 7.0.0
@@ -736,8 +855,8 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       nodemon:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.1
+        version: 3.0.1
       pug:
         specifier: ^3.0.2
         version: 3.0.2
@@ -751,57 +870,57 @@ importers:
         specifier: ^0.59.0
         version: 0.59.0
       winston:
-        specifier: ^3.9.0
-        version: 3.9.0
+        specifier: ^3.10.0
+        version: 3.10.0
 
   demo/vanilla_new:
     dependencies:
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
       tsparticles-demo-configs:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../utils/configs/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-light:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/light/dist
       tsparticles-interaction-particles-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/repulse/dist
       tsparticles-path-curves:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/curves/dist
       tsparticles-path-perlin-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/perlinNoise/dist
       tsparticles-path-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/polygon/dist
       tsparticles-path-simplex-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/simplexNoise/dist
       tsparticles-plugin-infection:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/infection/dist
       tsparticles-updater-gradient:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/gradient/dist
       tsparticles-updater-orbit:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/orbit/dist
     devDependencies:
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
       minify:
-        specifier: ^10.0.0
-        version: 10.0.0
+        specifier: ^10.3.0
+        version: 10.3.0
       sass:
-        specifier: ^1.62.1
-        version: 1.62.1
+        specifier: ^1.64.1
+        version: 1.64.1
 
   engine:
     publishDirectory: dist
@@ -809,554 +928,554 @@ importers:
   interactions/external/attract:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/bounce:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/bubble:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/connect:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/grab:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/pause:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/push:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/remove:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/repulse:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/slow:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/trail:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/light:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   interactions/particles/attract:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/collisions:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/links:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/repulse:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   move/base:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   move/parallax:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/curves:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/perlinNoise:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/polygon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/simplexNoise:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/svg:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/absorbers:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/canvasMask:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/easings/back:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/circ:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/cubic:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/expo:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quad:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quart:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quint:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/sine:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/emitters:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/exports/image:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/json:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/video:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/hsvColor:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/infection:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/motion:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/polygonMask:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/sounds:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/arrow:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/bubble:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cards:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/circle:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cog:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/heart:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/image:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/line:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/multiline-text:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/path:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/polygon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/ribbon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-polygon:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-rect:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/spiral:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/square:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/star:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/text:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/color:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/destroy:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/gradient:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/life:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/opacity:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/orbit:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/outModes:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/roll:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/rotate:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/size:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/strokeColor:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/tilt:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/twinkle:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/wobble:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/configs:
     dependencies:
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/options-updater:
     dependencies:
       '@tsparticles/eslint-config':
-        specifier: ^1.18.0
-        version: 1.18.0
+        specifier: ^1.19.0
+        version: 1.19.0
       '@tsparticles/prettier-config':
-        specifier: ^1.11.0
-        version: 1.11.0
+        specifier: ^1.12.0
+        version: 1.12.0
       '@tsparticles/tsconfig':
         specifier: ^1.14.0
         version: 1.14.0
       '@tsparticles/webpack-plugin':
-        specifier: ^1.22.0
-        version: 1.22.0
+        specifier: ^1.23.0
+        version: 1.23.0
       '@typescript-eslint/eslint-plugin':
-        specifier: ^6.2.0
-        version: 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)(typescript@5.1.6)
+        specifier: ^6.2.1
+        version: 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
       '@typescript-eslint/parser':
-        specifier: ^6.2.0
-        version: 6.2.0(eslint@8.45.0)(typescript@5.1.6)
+        specifier: ^6.2.1
+        version: 6.2.1(eslint@8.46.0)(typescript@5.1.6)
       eslint:
-        specifier: ^8.45.0
-        version: 8.45.0
+        specifier: ^8.46.0
+        version: 8.46.0
       eslint-config-prettier:
-        specifier: ^8.8.0
-        version: 8.8.0(eslint@8.45.0)
+        specifier: ^8.10.0
+        version: 8.10.0(eslint@8.46.0)
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
@@ -1370,211 +1489,211 @@ importers:
         specifier: ^4.17.21
         version: 4.17.21
       prettier:
-        specifier: ^3.0.0
-        version: 3.0.0
+        specifier: ^3.0.1
+        version: 3.0.1
       rimraf:
         specifier: ^5.0.1
         version: 5.0.1
       tsparticles:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/full/dist
       tsparticles-engine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../engine/dist
       tsparticles-interaction-external-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/attract/dist
       tsparticles-interaction-external-bounce:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bounce/dist
       tsparticles-interaction-external-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/bubble/dist
       tsparticles-interaction-external-connect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/connect/dist
       tsparticles-interaction-external-grab:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/grab/dist
       tsparticles-interaction-external-pause:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/pause/dist
       tsparticles-interaction-external-push:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/push/dist
       tsparticles-interaction-external-remove:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/remove/dist
       tsparticles-interaction-external-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/repulse/dist
       tsparticles-interaction-external-slow:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/slow/dist
       tsparticles-interaction-external-trail:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/external/trail/dist
       tsparticles-interaction-light:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/light/dist
       tsparticles-interaction-particles-attract:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/attract/dist
       tsparticles-interaction-particles-collisions:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/collisions/dist
       tsparticles-interaction-particles-links:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/links/dist
       tsparticles-interaction-particles-repulse:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../interactions/particles/repulse/dist
       tsparticles-move-base:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/base/dist
       tsparticles-move-parallax:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../move/parallax/dist
       tsparticles-particles.js:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/pjs/dist
       tsparticles-path-curves:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/curves/dist
       tsparticles-path-perlin-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/perlinNoise/dist
       tsparticles-path-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/polygon/dist
       tsparticles-path-simplex-noise:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../paths/simplexNoise/dist
       tsparticles-plugin-absorbers:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/absorbers/dist
       tsparticles-plugin-canvas-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/canvasMask/dist
       tsparticles-plugin-easing-back:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/back/dist
       tsparticles-plugin-easing-circ:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/circ/dist
       tsparticles-plugin-easing-cubic:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/cubic/dist
       tsparticles-plugin-easing-expo:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/expo/dist
       tsparticles-plugin-easing-quad:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quad/dist
       tsparticles-plugin-easing-quart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quart/dist
       tsparticles-plugin-easing-quint:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/quint/dist
       tsparticles-plugin-easing-sine:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/easings/sine/dist
       tsparticles-plugin-emitters:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/emitters/dist
       tsparticles-plugin-hsv-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/hsvColor/dist
       tsparticles-plugin-infection:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/infection/dist
       tsparticles-plugin-motion:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/motion/dist
       tsparticles-plugin-polygon-mask:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../plugins/polygonMask/dist
       tsparticles-shape-bubble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/bubble/dist
       tsparticles-shape-circle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/circle/dist
       tsparticles-shape-heart:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/heart/dist
       tsparticles-shape-image:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/image/dist
       tsparticles-shape-line:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/line/dist
       tsparticles-shape-multiline-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/multiline-text/dist
       tsparticles-shape-polygon:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
       tsparticles-shape-rounded-rect:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/rounded-rect/dist
       tsparticles-shape-spiral:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/spiral/dist
       tsparticles-shape-square:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/square/dist
       tsparticles-shape-star:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/star/dist
       tsparticles-shape-text:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../shapes/text/dist
       tsparticles-slim:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../bundles/slim/dist
       tsparticles-updater-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/color/dist
       tsparticles-updater-destroy:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/destroy/dist
       tsparticles-updater-gradient:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/gradient/dist
       tsparticles-updater-life:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/life/dist
       tsparticles-updater-opacity:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/opacity/dist
       tsparticles-updater-orbit:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/orbit/dist
       tsparticles-updater-out-modes:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/outModes/dist
       tsparticles-updater-roll:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/roll/dist
       tsparticles-updater-rotate:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/rotate/dist
       tsparticles-updater-size:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/size/dist
       tsparticles-updater-stroke-color:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/strokeColor/dist
       tsparticles-updater-tilt:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/tilt/dist
       tsparticles-updater-twinkle:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/twinkle/dist
       tsparticles-updater-wobble:
-        specifier: ^2.11.1
+        specifier: ^2.12.0
         version: link:../../updaters/wobble/dist
       typescript:
         specifier: ^5.1.6
@@ -1586,18 +1705,15 @@ importers:
       '@types/fs-extra':
         specifier: ^11.0.1
         version: 11.0.1
-      '@types/jsdom':
-        specifier: ^21.1.1
-        version: 21.1.1
       '@types/klaw':
         specifier: ^3.0.3
         version: 3.0.3
       '@types/lodash':
-        specifier: ^4.14.195
-        version: 4.14.195
+        specifier: ^4.14.196
+        version: 4.14.196
       '@types/node':
-        specifier: ^20.4.4
-        version: 20.4.4
+        specifier: ^20.4.6
+        version: 20.4.6
 
 packages:
 
@@ -1657,12 +1773,6 @@ packages:
       '@jridgewell/trace-mapping': 0.3.18
       jsesc: 2.5.2
 
-  /@babel/helper-annotate-as-pure@7.18.6:
-    resolution: {integrity: sha512-duORpUiYrEpzKIop6iNbjnwKLAKnJ47csTyRACyEmWj0QdUrm5aqNJGHSSEQSUAvNW0ojX0dOmK9dZduvkfeXA==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/types': 7.22.5
-
   /@babel/helper-annotate-as-pure@7.22.5:
     resolution: {integrity: sha512-LvBTxu8bQSQkcyKOU+a1btnNFQ1dMAd0R6PyW3arXes06F6QLWLIrd681bxRPIXlrMGR3XYnW9JyML7dP3qgxg==}
     engines: {node: '>=6.9.0'}
@@ -1684,7 +1794,7 @@ packages:
       '@babel/compat-data': 7.22.9
       '@babel/core': 7.22.9
       '@babel/helper-validator-option': 7.22.5
-      browserslist: 4.21.9
+      browserslist: 4.21.10
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -1714,7 +1824,7 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.22.9
-      '@babel/helper-annotate-as-pure': 7.18.6
+      '@babel/helper-annotate-as-pure': 7.22.5
       regexpu-core: 5.3.2
       semver: 6.3.1
 
@@ -1771,21 +1881,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@babel/types': 7.22.5
-
-  /@babel/helper-module-transforms@7.22.5:
-    resolution: {integrity: sha512-+hGKDt/Ze8GFExiVHno/2dvG5IdstpzCq0y4Qc9OJ25D4q3pKfiIP/4Vp3/JvhDkLKsDK2api3q3fpIgiIF5bw==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/helper-environment-visitor': 7.22.5
-      '@babel/helper-module-imports': 7.22.5
-      '@babel/helper-simple-access': 7.22.5
-      '@babel/helper-split-export-declaration': 7.22.6
-      '@babel/helper-validator-identifier': 7.22.5
-      '@babel/template': 7.22.5
-      '@babel/traverse': 7.22.8
-      '@babel/types': 7.22.5
-    transitivePeerDependencies:
-      - supports-color
 
   /@babel/helper-module-transforms@7.22.9(@babel/core@7.22.9):
     resolution: {integrity: sha512-t+WA2Xn5K+rTeGtC8jCsdAH52bjggG5TKRuRrAGNM/mjIbO4GxvlLMFOEz9wXY5I2XQ60PMFsAG2WIcG82dQMQ==}
@@ -2323,10 +2418,8 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.22.9
-      '@babel/helper-module-transforms': 7.22.5
+      '@babel/helper-module-transforms': 7.22.9(@babel/core@7.22.9)
       '@babel/helper-plugin-utils': 7.22.5
-    transitivePeerDependencies:
-      - supports-color
 
   /@babel/plugin-transform-modules-commonjs@7.22.5(@babel/core@7.22.9):
     resolution: {integrity: sha512-B4pzOXj+ONRmuaQTg05b3y/4DuFz3WcCNAXPLb2Q0GT0TrGKGxNKV4jwsXts+StaM0LQczZbOpj8o1DLPDJIiA==}
@@ -2829,15 +2922,15 @@ packages:
       '@commitlint/execute-rule': 17.4.0
       '@commitlint/resolve-extends': 17.6.7
       '@commitlint/types': 17.4.4
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       chalk: 4.1.2
       cosmiconfig: 8.2.0
-      cosmiconfig-typescript-loader: 4.3.0(@types/node@20.4.4)(cosmiconfig@8.2.0)(ts-node@10.9.1)(typescript@5.1.6)
+      cosmiconfig-typescript-loader: 4.3.0(@types/node@20.4.6)(cosmiconfig@8.2.0)(ts-node@10.9.1)(typescript@5.1.6)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1(@types/node@20.4.4)(typescript@5.1.6)
+      ts-node: 10.9.1(@types/node@20.4.6)(typescript@5.1.6)
       typescript: 5.1.6
     transitivePeerDependencies:
       - '@swc/core'
@@ -2926,13 +3019,13 @@ packages:
       kuler: 2.0.0
     dev: true
 
-  /@datalust/winston-seq@2.0.0(winston@3.9.0):
+  /@datalust/winston-seq@2.0.0(winston@3.10.0):
     resolution: {integrity: sha512-+2jseaj02d0uKWEfrYDVoAqJ89u33jd/KYItE/kbAsH21HlULm9ZN//S0C7+MUKsGStM0JnclByvvdyk5YmxjA==}
     peerDependencies:
       winston: ^3.0.0
     dependencies:
       seq-logging: 2.1.1
-      winston: 3.9.0
+      winston: 3.10.0
       winston-transport: 4.5.0
     transitivePeerDependencies:
       - encoding
@@ -2967,26 +3060,26 @@ packages:
       esquery: 1.5.0
       jsdoc-type-pratt-parser: 4.0.0
 
-  /@eslint-community/eslint-utils@4.4.0(eslint@8.45.0):
+  /@eslint-community/eslint-utils@4.4.0(eslint@8.46.0):
     resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
     dependencies:
-      eslint: 8.45.0
-      eslint-visitor-keys: 3.4.1
+      eslint: 8.46.0
+      eslint-visitor-keys: 3.4.2
 
-  /@eslint-community/regexpp@4.5.1:
-    resolution: {integrity: sha512-Z5ba73P98O1KUYCCJTUeVpja9RcGoMdncZ6T49FCUl2lN38JtCJ+3WgIDBv0AuY4WChU5PmtJmOCTlN6FZTFKQ==}
+  /@eslint-community/regexpp@4.6.2:
+    resolution: {integrity: sha512-pPTNuaAG3QMH+buKyBIGJs3g/S5y0caxw0ygM3YyE6yJFySwiGGSzA+mM3KJ8QQvzeLh3blwgSonkFjgQdxzMw==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
-  /@eslint/eslintrc@2.1.0:
-    resolution: {integrity: sha512-Lj7DECXqIVCqnqjjHMPna4vn6GJcMgul/wuS0je9OZ9gsL0zzDpKPVtcG1HaDVc+9y+qgXneTeUMbCqXJNpH1A==}
+  /@eslint/eslintrc@2.1.1:
+    resolution: {integrity: sha512-9t7ZA7NGGK8ckelF0PQCfcxIUzs1Md5rrO6U/c+FIQNanea5UZC0wqKXH4vHBccmu4ZJgZ2idtPeW7+Q2npOEA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       ajv: 6.12.6
       debug: 4.3.4(supports-color@8.1.1)
-      espree: 9.6.0
+      espree: 9.6.1
       globals: 13.20.0
       ignore: 5.2.4
       import-fresh: 3.3.0
@@ -2996,8 +3089,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@eslint/js@8.44.0:
-    resolution: {integrity: sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==}
+  /@eslint/js@8.46.0:
+    resolution: {integrity: sha512-a8TLtmPi8xzPkCbp/OGFUo5yhRkHM2Ko9kOWP4znJr0WAhWyThaw3PnwX4vOTWOAMsV2uRt32PPDcEz63esSaA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
   /@fortawesome/fontawesome-free@6.4.0:
@@ -3082,13 +3175,6 @@ packages:
   /@jridgewell/set-array@1.1.2:
     resolution: {integrity: sha512-xnkseuNADM0gt2bs+BvhO0p78Mk762YnZdsuzFV018NoG1Sj1SCQvpSqa7XUaTam5vAGasABV9qXASMKnFMwMw==}
     engines: {node: '>=6.0.0'}
-
-  /@jridgewell/source-map@0.3.3:
-    resolution: {integrity: sha512-b+fsZXeLYi9fEULmfBrhxn4IrPlINf8fiNarzTof004v3lFdntdwa9PF7vFJqm3mg7s+ScJMxXaE3Acp1irZcg==}
-    dependencies:
-      '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.18
-    dev: true
 
   /@jridgewell/source-map@0.3.5:
     resolution: {integrity: sha512-UTYAUj/wviwdsMfzoSJspJxbkH5o1snzwX0//0ENX1u/55kkZZkcTZP6u9bwKGkv+dkk9at4m1Cpt0uY80kcpQ==}
@@ -3253,81 +3339,82 @@ packages:
       - supports-color
     dev: true
 
-  /@nrwl/devkit@16.5.1(nx@16.5.5):
+  /@nrwl/devkit@16.5.1(nx@16.6.0):
     resolution: {integrity: sha512-NB+DE/+AFJ7lKH/WBFyatJEhcZGj25F24ncDkwjZ6MzEiSOGOJS0LaV/R+VUsmS5EHTPXYOpn3zHWWAcJhyOmA==}
     dependencies:
-      '@nx/devkit': 16.5.1(nx@16.5.5)
+      '@nx/devkit': 16.5.1(nx@16.6.0)
     transitivePeerDependencies:
       - nx
     dev: true
 
-  /@nrwl/devkit@16.5.5(nx@16.5.5):
-    resolution: {integrity: sha512-4ho9Vfg1YzRYZ4SMygYI9Yz1avpujd81gy/Um2Z0q8Q7Twp6Q/uG1KY9Hb7EzVXgrRcgGWdIPXuw41DpmnfWug==}
+  /@nrwl/devkit@16.6.0(nx@16.6.0):
+    resolution: {integrity: sha512-xZEN6wfA1uJwv+FVRQFOHsCcpvGvIYGx2zutbzungDodWkfzlJ3tzIGqYjIpPCBVT83erM6Gscnka2W46AuKfA==}
     dependencies:
-      '@nx/devkit': 16.5.5(nx@16.5.5)
+      '@nx/devkit': 16.6.0(nx@16.6.0)
     transitivePeerDependencies:
       - nx
     dev: true
 
-  /@nrwl/nx-cloud@16.1.1:
-    resolution: {integrity: sha512-iJIPP46+saFZK748FKU4u4YZH+Sv3ZvZPbMwGVMhwqhOYcrlO5aSa0lpilyoN8WuhooKNqcCfiqshx6V577fTg==}
+  /@nrwl/nx-cloud@16.2.0:
+    resolution: {integrity: sha512-NNSXBxI6DRndO5SRtvqi9qtTdknbqUNHIJO511S61YmdeQM18OflUB7ejyRQvQVhkB+XpGutSIp/BJPLocJf+w==}
     dependencies:
-      nx-cloud: 16.1.1
+      nx-cloud: 16.2.0
     transitivePeerDependencies:
       - debug
     dev: true
 
-  /@nrwl/tao@16.5.5:
-    resolution: {integrity: sha512-6SYG3rlKkYvy/wauPwoUXQuN0PTJi95hCEC7lGfCEGye2Y/61UwJQf2xixMxafUM2X84WdEStEz3Jty85gVqkQ==}
+  /@nrwl/tao@16.6.0:
+    resolution: {integrity: sha512-NQkDhmzlR1wMuYzzpl4XrKTYgyIzELdJ+dVrNKf4+p4z5WwKGucgRBj60xMQ3kdV25IX95/fmMDB8qVp/pNQ0Q==}
     hasBin: true
     dependencies:
-      nx: 16.5.5
+      nx: 16.6.0
+      tslib: 2.6.0
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
     dev: true
 
-  /@nrwl/workspace@16.5.5:
-    resolution: {integrity: sha512-BEoqLqll82US8ACcSPGhOWaCVYNt77dSH4J4iounvC9ADO2CdbZT06MtC+ivMxJ1DpZZywXWOwhmEWqXIeU5ig==}
+  /@nrwl/workspace@16.6.0:
+    resolution: {integrity: sha512-Bt2o1tU1ZYQKNtnBbyg62T1ELEdlNwxb5C6MPENnlDB/kkmiLXvPFTzMV2lgDZvMLP6eLazq98P2TQ8jCbY4lA==}
     dependencies:
-      '@nx/workspace': 16.5.5
+      '@nx/workspace': 16.6.0
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
     dev: true
 
-  /@nx/devkit@16.5.1(nx@16.5.5):
+  /@nx/devkit@16.5.1(nx@16.6.0):
     resolution: {integrity: sha512-T1acZrVVmJw/sJ4PIGidCBYBiBqlg/jT9e8nIGXLSDS20xcLvfo4zBQf8UZLrmHglnwwpDpOWuVJCp2rYA5aDg==}
     peerDependencies:
       nx: '>= 15 <= 17'
     dependencies:
-      '@nrwl/devkit': 16.5.1(nx@16.5.5)
+      '@nrwl/devkit': 16.5.1(nx@16.6.0)
       ejs: 3.1.9
       ignore: 5.2.4
-      nx: 16.5.5
+      nx: 16.6.0
       semver: 7.5.3
       tmp: 0.2.1
       tslib: 2.6.0
     dev: true
 
-  /@nx/devkit@16.5.5(nx@16.5.5):
-    resolution: {integrity: sha512-9YaQ3s5VMgTXo5cEuaVc2b6btZU2REmHsgn/V4Gi3nSmwBHvIn86gtlh4BoBFinHpqge1chG/dC+B7yoXioQmQ==}
+  /@nx/devkit@16.6.0(nx@16.6.0):
+    resolution: {integrity: sha512-rhJ0y+MSPHDuoZPxsOYdj/n5ks+gK74TIMgTb8eZgPT/uR86a4oxf62wUQXgECedR5HzLE2HunbnoLhhJXmpJw==}
     peerDependencies:
       nx: '>= 15 <= 17'
     dependencies:
-      '@nrwl/devkit': 16.5.5(nx@16.5.5)
+      '@nrwl/devkit': 16.6.0(nx@16.6.0)
       ejs: 3.1.9
       ignore: 5.2.4
-      nx: 16.5.5
+      nx: 16.6.0
       semver: 7.5.3
       tmp: 0.2.1
       tslib: 2.6.0
     dev: true
 
-  /@nx/nx-darwin-arm64@16.5.5:
-    resolution: {integrity: sha512-Zzwy7pkSDFTiWcBk78qDe4VzygO9kemtz/kbbLvpisZkUlZX9nIQnLHT80Ms++iqA0enIQAwdTcJiaIHLVd5JQ==}
+  /@nx/nx-darwin-arm64@16.6.0:
+    resolution: {integrity: sha512-8nJuqcWG/Ob39rebgPLpv2h/V46b9Rqqm/AGH+bYV9fNJpxgMXclyincbMIWvfYN2tW+Vb9DusiTxV6RPrLapA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -3335,8 +3422,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-darwin-x64@16.5.5:
-    resolution: {integrity: sha512-d5O8BD5HFI2hJnMgVVV1pl2A+hlUmn4GxCZTmx2Tr329TYGdpvyXm8NnDFEAigZ77QVMHwFN6vqS07HARu+uVA==}
+  /@nx/nx-darwin-x64@16.6.0:
+    resolution: {integrity: sha512-T4DV0/2PkPZjzjmsmQEyjPDNBEKc4Rhf7mbIZlsHXj27BPoeNjEcbjtXKuOZHZDIpGFYECGT/sAF6C2NVYgmxw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -3344,8 +3431,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-freebsd-x64@16.5.5:
-    resolution: {integrity: sha512-SqTvbz21iUc8DHKgisX9pPuXc7/DngbiZxInlEHPXi8zUtyUOqZI3yQk4NVj3dqLBMLwEOZDgvXs0XxzB5nn+g==}
+  /@nx/nx-freebsd-x64@16.6.0:
+    resolution: {integrity: sha512-Ck/yejYgp65dH9pbExKN/X0m22+xS3rWF1DBr2LkP6j1zJaweRc3dT83BWgt5mCjmcmZVk3J8N01AxULAzUAqA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [freebsd]
@@ -3353,8 +3440,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-linux-arm-gnueabihf@16.5.5:
-    resolution: {integrity: sha512-8C2KVFHqcyGViEgUicYo1frEgQARbD+CicIos6A5WRYLaxS+upb9FDblKU0eGYIwDp8oCagVjUjNX8d1WHLX7w==}
+  /@nx/nx-linux-arm-gnueabihf@16.6.0:
+    resolution: {integrity: sha512-eyk/R1mBQ3X0PCSS+Cck3onvr3wmZVmM/+x0x9Ai02Vm6q9Eq6oZ1YtZGQsklNIyw1vk2WV9rJCStfu9mLecEw==}
     engines: {node: '>= 10'}
     cpu: [arm]
     os: [linux]
@@ -3362,8 +3449,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-linux-arm64-gnu@16.5.5:
-    resolution: {integrity: sha512-AGq4wp3Wn8bE0h2c7/bHj2wQWfp08DYJemwTNLkwLcoJWkUidLOBQePRvLxqPeo42Zmt3GYMi+fi5XtKCmvcjg==}
+  /@nx/nx-linux-arm64-gnu@16.6.0:
+    resolution: {integrity: sha512-S0qFFdQFDmBIEZqBAJl4K47V3YuMvDvthbYE0enXrXApWgDApmhtxINXSOjSus7DNq9kMrgtSDGkBmoBot61iw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -3371,8 +3458,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-linux-arm64-musl@16.5.5:
-    resolution: {integrity: sha512-xPTYjDCPnXLPXZThAzugiithZaIHk42rTxussMZA00Cx0iEkh5zohqtC0vGBnaAPNcMv0uyCiWABhL4RRUVp2w==}
+  /@nx/nx-linux-arm64-musl@16.6.0:
+    resolution: {integrity: sha512-TXWY5VYtg2wX/LWxyrUkDVpqCyJHF7fWoVMUSlFe+XQnk9wp/yIbq2s0k3h8I4biYb6AgtcVqbR4ID86lSNuMA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -3380,8 +3467,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-linux-x64-gnu@16.5.5:
-    resolution: {integrity: sha512-Rq55OWD4SObfo4sWpjvaijWg33dm+cOf8e2cO06t2EmLMdOyyVnpNdtpjXh6A9tSi3EU5xPfYiy3I9O6gWOnuw==}
+  /@nx/nx-linux-x64-gnu@16.6.0:
+    resolution: {integrity: sha512-qQIpSVN8Ij4oOJ5v+U+YztWJ3YQkeCIevr4RdCE9rDilfq9RmBD94L4VDm7NRzYBuQL8uQxqWzGqb7ZW4mfHpw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -3389,8 +3476,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-linux-x64-musl@16.5.5:
-    resolution: {integrity: sha512-fnkSPv+VIKmQQOEQxFrGx5DlkHGxeH9Fzme6jwuDwmsvs+8Vv/uUnfcxkDZfJxKK+p27w37q3PQCfZGrFXE1cw==}
+  /@nx/nx-linux-x64-musl@16.6.0:
+    resolution: {integrity: sha512-EYOHe11lfVfEfZqSAIa1c39mx2Obr4mqd36dBZx+0UKhjrcmWiOdsIVYMQSb3n0TqB33BprjI4p9ZcFSDuoNbA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -3398,8 +3485,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-win32-arm64-msvc@16.5.5:
-    resolution: {integrity: sha512-9nWm+d+tlbxFMLvTLJqIfpTLDuSVDXfSBCSBampyeoI1mUALvq/6CVvWVBDlNqjmrZsYm0sudNqI4Ss7w3BUCQ==}
+  /@nx/nx-win32-arm64-msvc@16.6.0:
+    resolution: {integrity: sha512-f1BmuirOrsAGh5+h/utkAWNuqgohvBoekQgMxYcyJxSkFN+pxNG1U68P59Cidn0h9mkyonxGVCBvWwJa3svVFA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -3407,8 +3494,8 @@ packages:
     dev: true
     optional: true
 
-  /@nx/nx-win32-x64-msvc@16.5.5:
-    resolution: {integrity: sha512-fB8miPr887GIGBDhyT6VX7MWX5aC40izEi+4GGSk38oh5dOUK9TLwjAEW/3vBE01fj5Hjcy0CPN7RA45fh/WUw==}
+  /@nx/nx-win32-x64-msvc@16.6.0:
+    resolution: {integrity: sha512-UmTTjFLpv4poVZE3RdUHianU8/O9zZYBiAnTRq5spwSDwxJHnLTZBUxFFf3ztCxeHOUIfSyW9utpGfCMCptzvQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -3416,28 +3503,16 @@ packages:
     dev: true
     optional: true
 
-  /@nx/workspace@16.5.5:
-    resolution: {integrity: sha512-fg+mvdIW4X+5fUMn/X3HEU7r6T2o7/iMQFkcbY+NUGpgL+/bPMvN5mrh5ptwBZwVRgjKwOj3U+CwhKHUQLB80w==}
+  /@nx/workspace@16.6.0:
+    resolution: {integrity: sha512-rh+qTQ/Ahszezx+aLjZfpej314w2mrwz2eJAn6LQmlsSnOLHsVIoVRDAGyqT2OF+29K2r5BQ0jRiB3zyYrb5MQ==}
     dependencies:
-      '@nrwl/workspace': 16.5.5
-      '@nx/devkit': 16.5.5(nx@16.5.5)
-      '@parcel/watcher': 2.0.4
+      '@nrwl/workspace': 16.6.0
+      '@nx/devkit': 16.6.0(nx@16.6.0)
       chalk: 4.1.2
-      chokidar: 3.5.3
-      cli-cursor: 3.1.0
-      cli-spinners: 2.6.1
-      dotenv: 10.0.0
-      figures: 3.2.0
-      flat: 5.0.2
       ignore: 5.2.4
-      minimatch: 3.0.5
-      npm-run-path: 4.0.1
-      nx: 16.5.5
-      open: 8.4.2
+      nx: 16.6.0
       rxjs: 7.8.1
-      tmp: 0.2.1
       tslib: 2.6.0
-      yargs: 17.7.2
       yargs-parser: 21.1.1
     transitivePeerDependencies:
       - '@swc-node/register'
@@ -3655,25 +3730,25 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
-  /@tsparticles/cli@1.10.0(webpack-cli@5.1.4):
-    resolution: {integrity: sha512-n3oFR6q0rQYZ5xbg/NbVE3R9pXXGTFuMee7Ri36vj4v+QaHchx+RVn+A+XXVMw9D69vDXIBrfefp/dmWlcFiJg==}
+  /@tsparticles/cli@1.11.0(webpack-cli@5.1.4):
+    resolution: {integrity: sha512-1TxVpkcJvGYgCA93hK7UlpQz7SsqLPM2KgOBxNB5koD1HG8+pldvPKD5uHoA0sJZmMcRDMZeNUUInAyRe7wQHQ==}
     hasBin: true
     dependencies:
-      '@tsparticles/eslint-config': 1.18.0
-      '@tsparticles/prettier-config': 1.11.0
+      '@tsparticles/eslint-config': 1.19.0
+      '@tsparticles/prettier-config': 1.12.0
       '@tsparticles/tsconfig': 1.14.0
-      '@tsparticles/webpack-plugin': 1.22.0
-      '@typescript-eslint/eslint-plugin': 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)(typescript@5.1.6)
-      '@typescript-eslint/parser': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
+      '@tsparticles/webpack-plugin': 1.23.0
+      '@typescript-eslint/eslint-plugin': 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/parser': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
       commander: 11.0.0
-      eslint: 8.45.0
-      eslint-config-prettier: 8.8.0(eslint@8.45.0)
-      eslint-plugin-jsdoc: 46.4.4(eslint@8.45.0)
+      eslint: 8.46.0
+      eslint-config-prettier: 8.10.0(eslint@8.46.0)
+      eslint-plugin-jsdoc: 46.4.5(eslint@8.46.0)
       eslint-plugin-tsdoc: 0.2.17
       fs-extra: 11.1.1
       klaw: 4.1.0
       path-scurry: 1.10.1
-      prettier: 3.0.0
+      prettier: 3.0.1
       prompts: 2.4.2
       rimraf: 5.0.1
       typescript: 5.1.6
@@ -3692,55 +3767,55 @@ packages:
       - webpack-dev-server
     dev: true
 
-  /@tsparticles/eslint-config@1.18.0:
-    resolution: {integrity: sha512-RsqErZMLy1i7tfZUgUqGMQ0Il+Lftz+LIm9PqDZAyk4OAP+1HM8A83IDBl/7bLaVRm53UNEClWuk6uuvvKHhRw==}
+  /@tsparticles/eslint-config@1.19.0:
+    resolution: {integrity: sha512-mJ48EtJBnvZejQsSkutKQCD3lBmntnaa+WCZDmBXJ1V+vYi5MSTVeToTxkvB77sq7cNP/l2572EmI/HMfHCpMg==}
     dependencies:
-      '@tsparticles/prettier-config': 1.11.0
-      '@typescript-eslint/eslint-plugin': 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)(typescript@5.1.6)
-      '@typescript-eslint/parser': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
-      eslint: 8.45.0
-      eslint-config-prettier: 8.8.0(eslint@8.45.0)
-      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)
-      eslint-plugin-jsdoc: 46.4.4(eslint@8.45.0)
+      '@tsparticles/prettier-config': 1.12.0
+      '@typescript-eslint/eslint-plugin': 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/parser': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
+      eslint: 8.46.0
+      eslint-config-prettier: 8.10.0(eslint@8.46.0)
+      eslint-plugin-import: 2.28.0(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)
+      eslint-plugin-jsdoc: 46.4.5(eslint@8.46.0)
       eslint-plugin-tsdoc: 0.2.17
-      prettier: 3.0.0
+      prettier: 3.0.1
       typescript: 5.1.6
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
 
-  /@tsparticles/prettier-config@1.11.0:
-    resolution: {integrity: sha512-DTUBCPNhY7t5XMVAPOSxfeYCJIKqEUrZF0DC13zUBnhEf6QjYA5f67XRx7+LdSAORog35Qa/2QSYScajKMs/sw==}
+  /@tsparticles/prettier-config@1.12.0:
+    resolution: {integrity: sha512-IMpJEy85zeB2OTZZEXDtdxHrt03N11mjyu5TFY5BlnJrWIJC+dbIginuCmJyoCy0NUa0UW05p130zR9IXylfmQ==}
     dependencies:
-      prettier: 3.0.0
+      prettier: 3.0.1
 
   /@tsparticles/tsconfig@1.14.0:
     resolution: {integrity: sha512-/4Lyy0v55QtWmgzt/oi/wRFXyJGdCY1DLGmqbUNpdWm+URFnADENd1y4kEvuyPEvUKgoU6BxztdYmHZ05EOYjg==}
     dependencies:
       typescript: 5.1.6
 
-  /@tsparticles/webpack-plugin@1.22.0:
-    resolution: {integrity: sha512-BFyzmsG1M9+zXsQeZ8zOUHxjIAIW66MNObNzXJjBF089unRPjIi3SnepktGkrNuP9gxd36HTQI4aj/XHHQfx8Q==}
+  /@tsparticles/webpack-plugin@1.23.0:
+    resolution: {integrity: sha512-uSqCa5Advs29l4koLRucCUqqMu1l0BFW/0682y+gJwrIE40yHJGgWOqbNriofcIWHvJxrrvq4iyJABqI9L3QYg==}
     dependencies:
       '@babel/core': 7.22.9
       '@babel/preset-env': 7.22.9(@babel/core@7.22.9)
-      '@tsparticles/eslint-config': 1.18.0
-      '@tsparticles/prettier-config': 1.11.0
-      '@types/node': 20.4.4
+      '@tsparticles/eslint-config': 1.19.0
+      '@tsparticles/prettier-config': 1.12.0
+      '@types/node': 20.4.6
       '@types/webpack-bundle-analyzer': 4.6.0(webpack-cli@5.1.4)
       '@types/webpack-env': 1.18.1
-      '@typescript-eslint/eslint-plugin': 6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)(typescript@5.1.6)
-      '@typescript-eslint/parser': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
+      '@typescript-eslint/eslint-plugin': 6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/parser': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
       babel-loader: 9.1.3(@babel/core@7.22.9)(webpack@5.88.2)
-      browserslist: 4.21.9
+      browserslist: 4.21.10
       copyfiles: 2.4.1
-      eslint: 8.45.0
-      eslint-config-prettier: 8.8.0(eslint@8.45.0)
-      eslint-plugin-import: 2.27.5(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)
-      eslint-plugin-jsdoc: 46.4.4(eslint@8.45.0)
+      eslint: 8.46.0
+      eslint-config-prettier: 8.10.0(eslint@8.46.0)
+      eslint-plugin-import: 2.28.0(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)
+      eslint-plugin-jsdoc: 46.4.5(eslint@8.46.0)
       eslint-plugin-tsdoc: 0.2.17
-      prettier: 3.0.0
+      prettier: 3.0.1
       rimraf: 5.0.1
       terser-webpack-plugin: 5.3.9(webpack@5.88.2)
       typescript: 5.1.6
@@ -3786,7 +3861,7 @@ packages:
     resolution: {integrity: sha512-ALYone6pm6QmwZoAgeyNksccT9Q4AWZQ6PvfwR37GT6r6FWUPguq6sUmNGSMV2Wr761oQoBxwGGa6DR5o1DC9g==}
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/cacheable-request@6.0.3:
@@ -3794,7 +3869,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       '@types/responselike': 1.0.0
     dev: true
 
@@ -3811,7 +3886,7 @@ packages:
   /@types/connect@3.4.35:
     resolution: {integrity: sha512-cdeYyv4KWoEgpBISTxWvqYsVy444DOqehiF3fM3ne10AmJ62RSyNkUnxMJXHQWRQQX2eR94m5y1IZyDwBjV9FQ==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/eslint-scope@3.7.4:
@@ -3832,7 +3907,7 @@ packages:
   /@types/express-serve-static-core@4.17.35:
     resolution: {integrity: sha512-wALWQwrgiB2AWTT91CB62b6Yt0sNHpznUXeZEcnPU3DRdlDIz74x8Qg1UUYKSVFi+va5vKOLYRBI1bRKiLLKIg==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
       '@types/send': 0.17.1
@@ -3851,7 +3926,7 @@ packages:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/http-cache-semantics@4.0.1:
@@ -3861,7 +3936,7 @@ packages:
   /@types/jsdom@21.1.1:
     resolution: {integrity: sha512-cZFuoVLtzKP3gmq9eNosUL1R50U+USkbLtUQ1bYVgl/lKp0FZM7Cq4aIHAL8oIvQ17uSHi7jXPtfDOdjPwBE7A==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       '@types/tough-cookie': 4.0.2
       parse5: 7.1.2
     dev: true
@@ -3875,19 +3950,19 @@ packages:
   /@types/jsonfile@6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/klaw@3.0.3:
     resolution: {integrity: sha512-mXlRDFbTLpVysvxahXUQav0hFctgu3Fqr2xmSrpf/ptO/FwOp7SFEGsJkEihwshMbof3/BIiVJ/o42cuOOuv6g==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/livereload@0.9.2:
@@ -3896,8 +3971,8 @@ packages:
       '@types/ws': 8.5.4
     dev: true
 
-  /@types/lodash@4.14.195:
-    resolution: {integrity: sha512-Hwx9EUgdwf2GLarOjQp5ZH8ZmblzcbTBC2wtQWNKARBSxM9ezRIAUpeDTgoQRAFB0+8CNWXVA9+MaSOzOF3nPg==}
+  /@types/lodash@4.14.196:
+    resolution: {integrity: sha512-22y3o88f4a94mKljsZcanlNWPzO0uBsBdzLAngf2tp533LzZcQzb6+eZPJ+vCTt+bqF2XnvT9gejTLsAcJAJyQ==}
     dev: true
 
   /@types/mime@1.3.2:
@@ -3924,16 +3999,16 @@ packages:
     resolution: {integrity: sha512-6sfo1qTulpVbkxECP+AVrHV9OoJqhzCsfTNp5NIG+enM4HyM3HvZCO798WShIXBN0+QtDIcutJCjsVYnQP5rIQ==}
     dev: true
 
-  /@types/node@18.16.19:
-    resolution: {integrity: sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==}
-    dev: true
-
-  /@types/node@20.2.0:
-    resolution: {integrity: sha512-3iD2jaCCziTx04uudpJKwe39QxXgSUnpxXSvRQjRvHPxFQfmfP4NXIm/NURVeNlTCc+ru4WqjYGTmpXrW9uMlw==}
+  /@types/node@18.17.0:
+    resolution: {integrity: sha512-GXZxEtOxYGFchyUzxvKI14iff9KZ2DI+A6a37o6EQevtg6uO9t+aUZKcaC1Te5Ng1OnLM7K9NVVj+FbecD9cJg==}
     dev: true
 
   /@types/node@20.4.4:
     resolution: {integrity: sha512-CukZhumInROvLq3+b5gLev+vgpsIqC2D0deQr/yS1WnxvmYLlJXZpaQrQiseMY+6xusl79E04UjWoqyr+t1/Ew==}
+    dev: true
+
+  /@types/node@20.4.6:
+    resolution: {integrity: sha512-q0RkvNgMweWWIvSMDiXhflGUKMdIxBo2M2tYM/0kEGDueQByFzK4KZAgu5YHGFNxziTlppNpTIBcqHQAxlfHdA==}
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -3950,7 +4025,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/semver@7.5.0:
@@ -3960,20 +4035,20 @@ packages:
     resolution: {integrity: sha512-Cwo8LE/0rnvX7kIIa3QHCkcuF21c05Ayb0ZfxPiv0W8VRiZiNW/WuRupHKpqqGVGf7SUA44QSOUKaEd9lIrd/Q==}
     dependencies:
       '@types/mime': 1.3.2
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/serve-static@1.15.1:
     resolution: {integrity: sha512-NUo5XNiAdULrJENtJXZZ3fHtfMolzZwczzBbnAeBbqBwG+LaG6YaJtuwzwGSQZ2wsCrxjEhNNjAkKigy3n8teQ==}
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/stylus@0.48.38:
     resolution: {integrity: sha512-B5otJekvD6XM8iTrnO6e2twoTY2tKL9VkL/57/2Lo4tv3EatbCaufdi68VVtn/h4yjO+HVvYEyrNQd0Lzj6riw==}
     dependencies:
-      '@types/node': 20.2.0
+      '@types/node': 20.4.4
     dev: true
 
   /@types/tough-cookie@4.0.2:
@@ -3987,7 +4062,7 @@ packages:
   /@types/webpack-bundle-analyzer@4.6.0(webpack-cli@5.1.4):
     resolution: {integrity: sha512-XeQmQCCXdZdap+A/60UKmxW5Mz31Vp9uieGlHB3T4z/o2OLVLtTI3bvTuS6A2OWd/rbAAQiGGWIEFQACu16szA==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       tapable: 2.2.1
       webpack: 5.88.2(webpack-cli@5.1.4)
     transitivePeerDependencies:
@@ -4002,19 +4077,19 @@ packages:
   /@types/ws@8.5.4:
     resolution: {integrity: sha512-zdQDHKUgcX/zBc4GrwsE/7dVdAD8JR4EuiAXiiUhhfyIJXXb2+PrGshFyeXWQPMmmZ2XxgaqclgpIC7eTXc1mg==}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
 
   /@types/yauzl@2.10.0:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
     dev: true
     optional: true
 
-  /@typescript-eslint/eslint-plugin@6.2.0(@typescript-eslint/parser@6.2.0)(eslint@8.45.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-rClGrMuyS/3j0ETa1Ui7s6GkLhfZGKZL3ZrChLeAiACBE/tRc1wq8SNZESUuluxhLj9FkUefRs2l6bCIArWBiQ==}
+  /@typescript-eslint/eslint-plugin@6.2.1(@typescript-eslint/parser@6.2.1)(eslint@8.46.0)(typescript@5.1.6):
+    resolution: {integrity: sha512-iZVM/ALid9kO0+I81pnp1xmYiFyqibAHzrqX4q5YvvVEyJqY+e6rfTXSCsc2jUxGNqJqTfFSSij/NFkZBiBzLw==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       '@typescript-eslint/parser': ^6.0.0 || ^6.0.0-alpha
@@ -4024,14 +4099,14 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@eslint-community/regexpp': 4.5.1
-      '@typescript-eslint/parser': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
-      '@typescript-eslint/scope-manager': 6.2.0
-      '@typescript-eslint/type-utils': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
-      '@typescript-eslint/utils': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
-      '@typescript-eslint/visitor-keys': 6.2.0
+      '@eslint-community/regexpp': 4.6.2
+      '@typescript-eslint/parser': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/scope-manager': 6.2.1
+      '@typescript-eslint/type-utils': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/utils': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
+      '@typescript-eslint/visitor-keys': 6.2.1
       debug: 4.3.4(supports-color@8.1.1)
-      eslint: 8.45.0
+      eslint: 8.46.0
       graphemer: 1.4.0
       ignore: 5.2.4
       natural-compare: 1.4.0
@@ -4042,8 +4117,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@typescript-eslint/parser@6.2.0(eslint@8.45.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-igVYOqtiK/UsvKAmmloQAruAdUHihsOCvplJpplPZ+3h4aDkC/UKZZNKgB6h93ayuYLuEymU3h8nF1xMRbh37g==}
+  /@typescript-eslint/parser@6.2.1(eslint@8.46.0)(typescript@5.1.6):
+    resolution: {integrity: sha512-Ld+uL1kYFU8e6btqBFpsHkwQ35rw30IWpdQxgOqOh4NfxSDH6uCkah1ks8R/RgQqI5hHPXMaLy9fbFseIe+dIg==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
@@ -4052,25 +4127,25 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/scope-manager': 6.2.0
-      '@typescript-eslint/types': 6.2.0
-      '@typescript-eslint/typescript-estree': 6.2.0(typescript@5.1.6)
-      '@typescript-eslint/visitor-keys': 6.2.0
+      '@typescript-eslint/scope-manager': 6.2.1
+      '@typescript-eslint/types': 6.2.1
+      '@typescript-eslint/typescript-estree': 6.2.1(typescript@5.1.6)
+      '@typescript-eslint/visitor-keys': 6.2.1
       debug: 4.3.4(supports-color@8.1.1)
-      eslint: 8.45.0
+      eslint: 8.46.0
       typescript: 5.1.6
     transitivePeerDependencies:
       - supports-color
 
-  /@typescript-eslint/scope-manager@6.2.0:
-    resolution: {integrity: sha512-1ZMNVgm5nnHURU8ZSJ3snsHzpFeNK84rdZjluEVBGNu7jDymfqceB3kdIZ6A4xCfEFFhRIB6rF8q/JIqJd2R0Q==}
+  /@typescript-eslint/scope-manager@6.2.1:
+    resolution: {integrity: sha512-UCqBF9WFqv64xNsIEPfBtenbfodPXsJ3nPAr55mGPkQIkiQvgoWNo+astj9ZUfJfVKiYgAZDMnM6dIpsxUMp3Q==}
     engines: {node: ^16.0.0 || >=18.0.0}
     dependencies:
-      '@typescript-eslint/types': 6.2.0
-      '@typescript-eslint/visitor-keys': 6.2.0
+      '@typescript-eslint/types': 6.2.1
+      '@typescript-eslint/visitor-keys': 6.2.1
 
-  /@typescript-eslint/type-utils@6.2.0(eslint@8.45.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-DnGZuNU2JN3AYwddYIqrVkYW0uUQdv0AY+kz2M25euVNlujcN2u+rJgfJsBFlUEzBB6OQkUqSZPyuTLf2bP5mw==}
+  /@typescript-eslint/type-utils@6.2.1(eslint@8.46.0)(typescript@5.1.6):
+    resolution: {integrity: sha512-fTfCgomBMIgu2Dh2Or3gMYgoNAnQm3RLtRp+jP7A8fY+LJ2+9PNpi5p6QB5C4RSP+U3cjI0vDlI3mspAkpPVbQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
@@ -4079,21 +4154,21 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/typescript-estree': 6.2.0(typescript@5.1.6)
-      '@typescript-eslint/utils': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
+      '@typescript-eslint/typescript-estree': 6.2.1(typescript@5.1.6)
+      '@typescript-eslint/utils': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
       debug: 4.3.4(supports-color@8.1.1)
-      eslint: 8.45.0
+      eslint: 8.46.0
       ts-api-utils: 1.0.1(typescript@5.1.6)
       typescript: 5.1.6
     transitivePeerDependencies:
       - supports-color
 
-  /@typescript-eslint/types@6.2.0:
-    resolution: {integrity: sha512-1nRRaDlp/XYJQLvkQJG5F3uBTno5SHPT7XVcJ5n1/k2WfNI28nJsvLakxwZRNY5spuatEKO7d5nZWsQpkqXwBA==}
+  /@typescript-eslint/types@6.2.1:
+    resolution: {integrity: sha512-528bGcoelrpw+sETlyM91k51Arl2ajbNT9L4JwoXE2dvRe1yd8Q64E4OL7vHYw31mlnVsf+BeeLyAZUEQtqahQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
 
-  /@typescript-eslint/typescript-estree@6.2.0(typescript@5.1.6):
-    resolution: {integrity: sha512-Mts6+3HQMSM+LZCglsc2yMIny37IhUgp1Qe8yJUYVyO6rHP7/vN0vajKu3JvHCBIy8TSiKddJ/Zwu80jhnGj1w==}
+  /@typescript-eslint/typescript-estree@6.2.1(typescript@5.1.6):
+    resolution: {integrity: sha512-G+UJeQx9AKBHRQBpmvr8T/3K5bJa485eu+4tQBxFq0KoT22+jJyzo1B50JDT9QdC1DEmWQfdKsa8ybiNWYsi0Q==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       typescript: '*'
@@ -4101,8 +4176,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/types': 6.2.0
-      '@typescript-eslint/visitor-keys': 6.2.0
+      '@typescript-eslint/types': 6.2.1
+      '@typescript-eslint/visitor-keys': 6.2.1
       debug: 4.3.4(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
@@ -4112,29 +4187,29 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@typescript-eslint/utils@6.2.0(eslint@8.45.0)(typescript@5.1.6):
-    resolution: {integrity: sha512-RCFrC1lXiX1qEZN8LmLrxYRhOkElEsPKTVSNout8DMzf8PeWoQG7Rxz2SadpJa3VSh5oYKGwt7j7X/VRg+Y3OQ==}
+  /@typescript-eslint/utils@6.2.1(eslint@8.46.0)(typescript@5.1.6):
+    resolution: {integrity: sha512-eBIXQeupYmxVB6S7x+B9SdBeB6qIdXKjgQBge2J+Ouv8h9Cxm5dHf/gfAZA6dkMaag+03HdbVInuXMmqFB/lKQ==}
     engines: {node: ^16.0.0 || >=18.0.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.45.0)
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.46.0)
       '@types/json-schema': 7.0.12
       '@types/semver': 7.5.0
-      '@typescript-eslint/scope-manager': 6.2.0
-      '@typescript-eslint/types': 6.2.0
-      '@typescript-eslint/typescript-estree': 6.2.0(typescript@5.1.6)
-      eslint: 8.45.0
+      '@typescript-eslint/scope-manager': 6.2.1
+      '@typescript-eslint/types': 6.2.1
+      '@typescript-eslint/typescript-estree': 6.2.1(typescript@5.1.6)
+      eslint: 8.46.0
       semver: 7.5.4
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  /@typescript-eslint/visitor-keys@6.2.0:
-    resolution: {integrity: sha512-QbaYUQVKKo9bgCzpjz45llCfwakyoxHetIy8CAvYCtd16Zu1KrpzNHofwF8kGkpPOxZB2o6kz+0nqH8ZkIzuoQ==}
+  /@typescript-eslint/visitor-keys@6.2.1:
+    resolution: {integrity: sha512-iTN6w3k2JEZ7cyVdZJTVJx2Lv7t6zFA8DCrJEHD2mwfc16AEvvBWVhbFh34XyG2NORCd0viIgQY1+u7kPI0WpA==}
     engines: {node: ^16.0.0 || >=18.0.0}
     dependencies:
-      '@typescript-eslint/types': 6.2.0
+      '@typescript-eslint/types': 6.2.1
       eslint-visitor-keys: 3.4.1
 
   /@webassemblyjs/ast@1.11.6:
@@ -4316,8 +4391,8 @@ packages:
       negotiator: 0.6.3
     dev: true
 
-  /ace-builds@1.21.1:
-    resolution: {integrity: sha512-GHHtz76BnQc5PcAAjJK6tPbuktSKQ+Vu5MDlu2+hDS4NtiofrttGBJHaxcD4741WZwsAO7Dk1I8w2a4n204T+Q==}
+  /ace-builds@1.23.4:
+    resolution: {integrity: sha512-a4hKAT2T7KNUQC4LQPW2peuoEsZmLYTn4Dwjkh26A3Z+fQ8/fA2JZNs3V6CqvivhbyMQXQJD1u/0qTCoSS6deA==}
     dev: true
 
   /acorn-globals@3.1.0:
@@ -4595,6 +4670,16 @@ packages:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==}
     engines: {node: '>=8'}
 
+  /array.prototype.findlastindex@1.2.2:
+    resolution: {integrity: sha512-tb5thFFlUcp7NdNF6/MpDk/1r/4awWG1FIz3YqDf+/zJSTezBb+/5WViH41obXULHVpDzoiCLpJ/ZO9YbJMsdw==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.2.0
+      es-abstract: 1.21.2
+      es-shim-unscopables: 1.0.0
+      get-intrinsic: 1.2.1
+
   /array.prototype.flat@1.3.1:
     resolution: {integrity: sha512-roTU0KWIOmJ4DRLmwKd19Otg0/mT3qPNt0Qb3GWW8iObuZXxrjB/pzn0R3hqpRSWg4HCwqx+0vwOnWnvlOyeIA==}
     engines: {node: '>= 0.4'}
@@ -4789,10 +4874,10 @@ packages:
     dev: true
     optional: true
 
-  /bootstrap@5.2.3(@popperjs/core@2.11.8):
-    resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
+  /bootstrap@5.3.0(@popperjs/core@2.11.8):
+    resolution: {integrity: sha512-UnBV3E3v4STVNQdms6jSGO2CvOkjUMdDAVR2V5N4uCMdaIkaQjbcEAMqRimDHIs4uqBYzDAKCQwCB+97tJgHQw==}
     peerDependencies:
-      '@popperjs/core': ^2.11.6
+      '@popperjs/core': ^2.11.7
     dependencies:
       '@popperjs/core': 2.11.8
     dev: true
@@ -4818,15 +4903,15 @@ packages:
     resolution: {integrity: sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw==}
     dev: true
 
-  /browserslist@4.21.9:
-    resolution: {integrity: sha512-M0MFoZzbUrRU4KNfCrDLnvyE7gub+peetoTid3TBIqtunaDJyXlwhakT+/VkvSXcfIzFfK/nkCs4nmyTmxdNSg==}
+  /browserslist@4.21.10:
+    resolution: {integrity: sha512-bipEBdZfVH5/pwrvqc+Ub0kUPVfGUhlKxbvfD+z1BDnPEO/X98ruXGA1WP5ASpAFKan7Qr6j736IacbZQuAlKQ==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001512
-      electron-to-chromium: 1.4.451
-      node-releases: 2.0.12
-      update-browserslist-db: 1.0.11(browserslist@4.21.9)
+      caniuse-lite: 1.0.30001519
+      electron-to-chromium: 1.4.482
+      node-releases: 2.0.13
+      update-browserslist-db: 1.0.11(browserslist@4.21.10)
 
   /buffer-crc32@0.2.13:
     resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
@@ -4926,7 +5011,7 @@ packages:
     resolution: {integrity: sha512-gxGWBrTT1JuMx6R+o5PTXMmUnhnVzLQ9SNutD4YqKtI6ap897t3tKECYla6gCWEkplXnlNybEkZg9GEGxKFCgw==}
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.5.1
+      tslib: 2.6.0
     dev: true
 
   /camelcase-keys@6.2.2:
@@ -4953,8 +5038,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /caniuse-lite@1.0.30001512:
-    resolution: {integrity: sha512-2S9nK0G/mE+jasCUsMPlARhRCts1ebcp2Ji8Y8PWi4NDE1iRdLCnEPHkEfeBrGC45L4isBx5ur3IQ6yTE2mRZw==}
+  /caniuse-lite@1.0.30001519:
+    resolution: {integrity: sha512-0QHgqR+Jv4bxHMp8kZ1Kn8CH55OikjKJ6JmKkZYP1F3D7w+lnFXF70nG5eNfsZS89jadi5Ywy5UCSKLAglIRkg==}
 
   /canvas@2.11.2:
     resolution: {integrity: sha512-ItanGBMrmRV7Py2Z+Xhs7cT+FNt5K0vPL4p9EZ/UX/Mu7hFbkxSjKF2KVtPwX7UYWp7dRKnrTvReflgrItJbdw==}
@@ -5273,8 +5358,8 @@ packages:
       typedarray: 0.0.6
     dev: true
 
-  /concurrently@8.0.1:
-    resolution: {integrity: sha512-Sh8bGQMEL0TAmAm2meAXMjcASHZa7V0xXQVDBLknCPa9TPtkY9yYs+0cnGGgfdkW0SV1Mlg+hVGfXcoI8d3MJA==}
+  /concurrently@8.2.0:
+    resolution: {integrity: sha512-nnLMxO2LU492mTUj9qX/az/lESonSZu81UznYDoXtz1IQf996ixVqPAgHXwvHiHCAef/7S8HIK+fTFK7Ifk8YA==}
     engines: {node: ^14.13.0 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -5283,7 +5368,7 @@ packages:
       lodash: 4.17.21
       rxjs: 7.8.1
       shell-quote: 1.8.1
-      spawn-command: 0.0.2-1
+      spawn-command: 0.0.2
       supports-color: 8.1.1
       tree-kill: 1.2.2
       yargs: 17.7.2
@@ -5457,7 +5542,7 @@ packages:
   /core-js-compat@3.31.1:
     resolution: {integrity: sha512-wIDWd2s5/5aJSdpOJHfSibxNODxoGoWOBHt8JSPB41NOE94M7kuTPZCYLOlTtuoXTsBPKobpJ6T+y0SSy5L9SA==}
     dependencies:
-      browserslist: 4.21.9
+      browserslist: 4.21.10
 
   /core-js@2.6.12:
     resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
@@ -5468,7 +5553,7 @@ packages:
   /core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
 
-  /cosmiconfig-typescript-loader@4.3.0(@types/node@20.4.4)(cosmiconfig@8.2.0)(ts-node@10.9.1)(typescript@5.1.6):
+  /cosmiconfig-typescript-loader@4.3.0(@types/node@20.4.6)(cosmiconfig@8.2.0)(ts-node@10.9.1)(typescript@5.1.6):
     resolution: {integrity: sha512-NTxV1MFfZDLPiBMjxbHRwSh5LaLcPMwNdCutmnHJCKoVnlvldPWlllonKwrsRJ5pYZBIBGRWWU2tfvzxgeSW5Q==}
     engines: {node: '>=12', npm: '>=6'}
     peerDependencies:
@@ -5477,9 +5562,9 @@ packages:
       ts-node: '>=10'
       typescript: '>=3'
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       cosmiconfig: 8.2.0
-      ts-node: 10.9.1(@types/node@20.4.4)(typescript@5.1.6)
+      ts-node: 10.9.1(@types/node@20.4.6)(typescript@5.1.6)
       typescript: 5.1.6
     dev: true
 
@@ -5743,7 +5828,7 @@ packages:
     resolution: {integrity: sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.1
+      tslib: 2.6.0
     dev: true
 
   /dot-prop@5.3.0:
@@ -5781,17 +5866,17 @@ packages:
       jake: 10.8.7
     dev: true
 
-  /electron-to-chromium@1.4.451:
-    resolution: {integrity: sha512-YYbXHIBxAHe3KWvGOJOuWa6f3tgow44rBW+QAuwVp2DvGqNZeE//K2MowNdWS7XE8li5cgQDrX1LdBr41LufkA==}
+  /electron-to-chromium@1.4.482:
+    resolution: {integrity: sha512-h+UqpfmEr1Qkk0zp7ej/jid7CXoq4m4QzW6wNTb0ELJ/BZCpA4wgUylBIMGCe621tnr4l5VmoHjdoSx2lbnNJA==}
 
-  /electron@25.0.0:
-    resolution: {integrity: sha512-8Bjlpw52XW447RKjYGaaizWI4x0dv4gATNn7ssuonySbDgeJNqUnIJQGBrpXyB3VUROVmhXnTWB9VWRzv6uVlA==}
+  /electron@25.3.1:
+    resolution: {integrity: sha512-t0QXXqgf0/P0OJ9LU3qpcBMK+wL0FRwTQfooBaaG08v5hywPzc1yplfb3l4tS1xC0Ttw8IBaKLBeEoRgxBRHjg==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@electron/get': 2.0.2
-      '@types/node': 18.16.19
+      '@types/node': 18.17.0
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -5953,13 +6038,13 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  /eslint-config-prettier@8.8.0(eslint@8.45.0):
-    resolution: {integrity: sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==}
+  /eslint-config-prettier@8.10.0(eslint@8.46.0):
+    resolution: {integrity: sha512-SM8AMJdeQqRYT9O9zguiruQZaN7+z+E4eAP9oiLNGKMtomwaB1E9dcgUD6ZAn/eQAb52USbvezbiljfZUhbJcg==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
     dependencies:
-      eslint: 8.45.0
+      eslint: 8.46.0
 
   /eslint-import-resolver-node@0.3.7:
     resolution: {integrity: sha512-gozW2blMLJCeFpBwugLTGyvVjNoeo1knonXAcatC6bjPBZitotxdWf7Gimr25N4c0AAOo4eOUfaG82IJPDpqCA==}
@@ -5970,7 +6055,7 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /eslint-module-utils@2.8.0(@typescript-eslint/parser@6.2.0)(eslint-import-resolver-node@0.3.7)(eslint@8.45.0):
+  /eslint-module-utils@2.8.0(@typescript-eslint/parser@6.2.1)(eslint-import-resolver-node@0.3.7)(eslint@8.46.0):
     resolution: {integrity: sha512-aWajIYfsqCKRDgUfjEXNN/JlrzauMuSEy5sbd7WXbtW3EH6A6MpwEh42c7qD+MqQo9QMJ6fWLAeIJynx0g6OAw==}
     engines: {node: '>=4'}
     peerDependencies:
@@ -5991,15 +6076,15 @@ packages:
       eslint-import-resolver-webpack:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
+      '@typescript-eslint/parser': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
       debug: 3.2.7(supports-color@5.5.0)
-      eslint: 8.45.0
+      eslint: 8.46.0
       eslint-import-resolver-node: 0.3.7
     transitivePeerDependencies:
       - supports-color
 
-  /eslint-plugin-import@2.27.5(@typescript-eslint/parser@6.2.0)(eslint@8.45.0):
-    resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
+  /eslint-plugin-import@2.28.0(@typescript-eslint/parser@6.2.1)(eslint@8.46.0):
+    resolution: {integrity: sha512-B8s/n+ZluN7sxj9eUf7/pRFERX0r5bnFA2dCaLHy2ZeaQEAz0k+ZZkFWRFHJAqxfxQDx6KLv9LeIki7cFdwW+Q==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
@@ -6008,21 +6093,24 @@ packages:
       '@typescript-eslint/parser':
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 6.2.0(eslint@8.45.0)(typescript@5.1.6)
+      '@typescript-eslint/parser': 6.2.1(eslint@8.46.0)(typescript@5.1.6)
       array-includes: 3.1.6
+      array.prototype.findlastindex: 1.2.2
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
       debug: 3.2.7(supports-color@5.5.0)
       doctrine: 2.1.0
-      eslint: 8.45.0
+      eslint: 8.46.0
       eslint-import-resolver-node: 0.3.7
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.2.0)(eslint-import-resolver-node@0.3.7)(eslint@8.45.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@6.2.1)(eslint-import-resolver-node@0.3.7)(eslint@8.46.0)
       has: 1.0.3
       is-core-module: 2.12.1
       is-glob: 4.0.3
       minimatch: 3.1.2
+      object.fromentries: 2.0.6
+      object.groupby: 1.0.0
       object.values: 1.1.6
-      resolve: 1.22.2
+      resolve: 1.22.3
       semver: 6.3.1
       tsconfig-paths: 3.14.2
     transitivePeerDependencies:
@@ -6030,8 +6118,8 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
 
-  /eslint-plugin-jsdoc@46.4.4(eslint@8.45.0):
-    resolution: {integrity: sha512-D8TGPOkq3bnzmYmA7Q6jdsW+Slx7CunhJk1tlouVq6wJjlP1p6eigZPvxFn7aufud/D66xBsNVMhkDQEuqumMg==}
+  /eslint-plugin-jsdoc@46.4.5(eslint@8.46.0):
+    resolution: {integrity: sha512-HjTuxqDYplAQFu29F3MHFCDDBgeqOxPXI6TyBhL0u2rr4XntJ0z3C9PmJvpjFscKdHwkZDN/0l1QCG0QwyRi4g==}
     engines: {node: '>=16'}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0
@@ -6041,7 +6129,7 @@ packages:
       comment-parser: 1.3.1
       debug: 4.3.4(supports-color@8.1.1)
       escape-string-regexp: 4.0.0
-      eslint: 8.45.0
+      eslint: 8.46.0
       esquery: 1.5.0
       is-builtin-module: 3.2.1
       semver: 7.5.4
@@ -6062,8 +6150,8 @@ packages:
       esrecurse: 4.3.0
       estraverse: 4.3.0
 
-  /eslint-scope@7.2.0:
-    resolution: {integrity: sha512-DYj5deGlHBfMt15J7rdtyKNq/Nqlv5KfU4iodrQ019XESsRnwXH9KAE0y3cwtUHDo2ob7CypAnCqefh6vioWRw==}
+  /eslint-scope@7.2.2:
+    resolution: {integrity: sha512-dOt21O7lTMhDM+X9mB4GX+DZrZtCUJPL/wlcTqxyrx5IvO0IYtILdtrQGQp+8n5S0gwSVmOf9NQrjMOgfQZlIg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       esrecurse: 4.3.0
@@ -6073,15 +6161,19 @@ packages:
     resolution: {integrity: sha512-pZnmmLwYzf+kWaM/Qgrvpen51upAktaaiI01nsJD/Yr3lMOdNtq0cxkrrg16w64VtisN6okbs7Q8AfGqj4c9fA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
 
-  /eslint@8.45.0:
-    resolution: {integrity: sha512-pd8KSxiQpdYRfYa9Wufvdoct3ZPQQuVuU5O6scNgMuOMYuxvH0IGaYK0wUFjo4UYYQQCUndlXiMbnxopwvvTiw==}
+  /eslint-visitor-keys@3.4.2:
+    resolution: {integrity: sha512-8drBzUEyZ2llkpCA67iYrgEssKDUu68V8ChqqOfFupIaG/LCVPUT+CoGJpT77zJprs4T/W7p07LP7zAIMuweVw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+
+  /eslint@8.46.0:
+    resolution: {integrity: sha512-cIO74PvbW0qU8e0mIvk5IV3ToWdCq5FYG6gWPHHkx6gNdjlbAYvtfHmlCMXxjcoVaIdwy/IAt3+mDkZkfvb2Dg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     hasBin: true
     dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.45.0)
-      '@eslint-community/regexpp': 4.5.1
-      '@eslint/eslintrc': 2.1.0
-      '@eslint/js': 8.44.0
+      '@eslint-community/eslint-utils': 4.4.0(eslint@8.46.0)
+      '@eslint-community/regexpp': 4.6.2
+      '@eslint/eslintrc': 2.1.1
+      '@eslint/js': 8.46.0
       '@humanwhocodes/config-array': 0.11.10
       '@humanwhocodes/module-importer': 1.0.1
       '@nodelib/fs.walk': 1.2.8
@@ -6091,9 +6183,9 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       doctrine: 3.0.0
       escape-string-regexp: 4.0.0
-      eslint-scope: 7.2.0
-      eslint-visitor-keys: 3.4.1
-      espree: 9.6.0
+      eslint-scope: 7.2.2
+      eslint-visitor-keys: 3.4.2
+      espree: 9.6.1
       esquery: 1.5.0
       esutils: 2.0.3
       fast-deep-equal: 3.1.3
@@ -6118,13 +6210,13 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /espree@9.6.0:
-    resolution: {integrity: sha512-1FH/IiruXZ84tpUlm0aCUEwMl2Ho5ilqVh0VvQXw+byAz/4SAciyHLlfmL5WYqsvD38oymdUwBss0LtK8m4s/A==}
+  /espree@9.6.1:
+    resolution: {integrity: sha512-oruZaFkjorTpF32kDSI5/75ViwGeZginGGy2NoOSg3Q9bnwlnmDm4HLnkl0RE3n+njDXR037aY1+x58Z/zFdwQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       acorn: 8.10.0
       acorn-jsx: 5.3.2(acorn@8.10.0)
-      eslint-visitor-keys: 3.4.1
+      eslint-visitor-keys: 3.4.2
 
   /esprima@4.0.1:
     resolution: {integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==}
@@ -6208,9 +6300,9 @@ packages:
     resolution: {integrity: sha512-dX7e/LHVJ6W3DE1MHWi9S1EYzDESENfLrYohG2G++ovZrYOkm4Knwa0mc1cn84xJOR4KEU0WSchhLbd0UklbHw==}
     dev: true
 
-  /express-rate-limit@6.7.0(express@4.18.2):
-    resolution: {integrity: sha512-vhwIdRoqcYB/72TK3tRZI+0ttS8Ytrk24GfmsxDXK9o9IhHNO5bXRiXQSExPQ4GbaE5tvIS7j1SGrxsuWs+sGA==}
-    engines: {node: '>= 12.9.0'}
+  /express-rate-limit@6.8.0(express@4.18.2):
+    resolution: {integrity: sha512-yVeDWczkh8qgo9INJB1tT4j7LFu+n6ei/oqSMsqpsUIGYjTM+gk+Q3wv19TMUdo8chvus8XohAuOhG7RYRM9ZQ==}
+    engines: {node: '>= 14.0.0'}
     peerDependencies:
       express: ^4 || ^5
     dependencies:
@@ -6983,7 +7075,7 @@ packages:
       entities: 4.5.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.17.4
+      terser: 5.18.2
     dev: true
 
   /http-cache-semantics@4.1.1:
@@ -7542,7 +7634,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -7689,7 +7781,7 @@ packages:
   /jsoneditor@9.10.2:
     resolution: {integrity: sha512-sT9U8T9MB7We5uyCnofugqYPJtQ5rPJngFlvpdtyFTFKFjOMnlWE1jVhFwjTXwGBoFeiLS+S6rVuhIhJ35Jutw==}
     dependencies:
-      ace-builds: 1.21.1
+      ace-builds: 1.23.4
       ajv: 6.12.6
       javascript-natural-sort: 0.7.1
       jmespath: 0.16.0
@@ -7773,7 +7865,7 @@ packages:
       '@lerna/child-process': 7.1.4
       '@lerna/create': 7.1.4
       '@npmcli/run-script': 6.0.2
-      '@nx/devkit': 16.5.1(nx@16.5.5)
+      '@nx/devkit': 16.5.1(nx@16.6.0)
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 19.0.11
       byte-size: 8.1.1
@@ -7816,7 +7908,7 @@ packages:
       npm-packlist: 5.1.1
       npm-registry-fetch: 14.0.5
       npmlog: 6.0.2
-      nx: 16.5.5
+      nx: 16.6.0
       p-map: 4.0.0
       p-map-series: 2.1.0
       p-pipe: 3.1.0
@@ -8050,7 +8142,7 @@ packages:
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
     dependencies:
-      tslib: 2.5.1
+      tslib: 2.6.0
     dev: true
 
   /lowercase-keys@2.0.0:
@@ -8233,8 +8325,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /minify@10.0.0:
-    resolution: {integrity: sha512-B+VvOqJdSfoZKLSZJk9sxGmmwqEW0tabz2NBeRyq+qjrY+/yT/iHW05LsgDFgIvPHtPPRnVH/WtuP2M9e1pEdg==}
+  /minify@10.3.0:
+    resolution: {integrity: sha512-eRkx2J1ykkGBVi1gI2sksmovWFzts+GYi2u3Jd/S5eNIkzj0pidciICsWRWdTKTLZVFUP7b6IvoAzasvQkMicg==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
@@ -8484,7 +8576,7 @@ packages:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
     dependencies:
       lower-case: 2.0.2
-      tslib: 2.5.1
+      tslib: 2.6.0
     dev: true
 
   /node-addon-api@3.2.1:
@@ -8550,11 +8642,11 @@ packages:
       process-on-spawn: 1.0.0
     dev: true
 
-  /node-releases@2.0.12:
-    resolution: {integrity: sha512-QzsYKWhXTWx8h1kIvqfnC++o0pEmpRQA/aenALsL2F4pqNVr7YzcdMlDij5WBnwftRbJCNJL/O7zdKaxKPHqgQ==}
+  /node-releases@2.0.13:
+    resolution: {integrity: sha512-uYr7J37ae/ORWdZeQ1xxMJe3NtdmqMC/JZK+geofDrkLUApKRHPd18/TxtBOJ4A0/+uUIliorNrfYV6s1b02eQ==}
 
-  /nodemon@3.0.0:
-    resolution: {integrity: sha512-yU9NSp3n+DUSt3S2LmtXss+4kOsmC8ZLpXeGe5mKuLdqkoSRwmaplk2lo5cmve7TPw5MgMcd2cazL0KpUscoSQ==}
+  /nodemon@3.0.1:
+    resolution: {integrity: sha512-g9AZ7HmkhQkqXkRc20w+ZfQ73cHLbE8hnPbtaFbFtCumZsjyMhKk9LajQ07U5Ux28lvFjZ5X7HvWR1xzU8jHVw==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -8756,11 +8848,11 @@ packages:
   /nwsapi@2.2.7:
     resolution: {integrity: sha512-ub5E4+FBPKwAZx0UwIQOjYWGHTEq5sPqHQNRN8Z9e4A7u3Tj1weLJsL59yH9vmvqEtBHaOmT6cYQKIZOxp35FQ==}
 
-  /nx-cloud@16.1.1:
-    resolution: {integrity: sha512-Rq7ynvkYzAJ67N3pDqU6cMqwvWP7WXJGP4EFjLxgUrRHNCccqDPggeAqePodfk3nZEUrZB8F5QBKZuuw1DR3oA==}
+  /nx-cloud@16.2.0:
+    resolution: {integrity: sha512-LESjpYO6Ksg4AjbXnzH9qZqyQzTauwFFUITeyz5NAVEFKaBTEICyupSk+3Xq3v4QQurFJOE3rShhYuSQP5moeQ==}
     hasBin: true
     dependencies:
-      '@nrwl/nx-cloud': 16.1.1
+      '@nrwl/nx-cloud': 16.2.0
       axios: 1.1.3
       chalk: 4.1.2
       dotenv: 10.0.0
@@ -8774,8 +8866,8 @@ packages:
       - debug
     dev: true
 
-  /nx@16.5.5:
-    resolution: {integrity: sha512-DHwoUtkirI52JIlCtRK78UI/Ik/VgCtM6FlkfPnFsy8PVyTYMQ40KoG6aZLHjqj5qxoGG2CUjcsbFjGXYrjDbw==}
+  /nx@16.6.0:
+    resolution: {integrity: sha512-4UaS9nRakpZs45VOossA7hzSQY2dsr035EoPRGOc81yoMFW6Sqn1Rgq4hiLbHZOY8MnWNsLMkgolNMz1jC8YUQ==}
     hasBin: true
     requiresBuild: true
     peerDependencies:
@@ -8787,7 +8879,7 @@ packages:
       '@swc/core':
         optional: true
     dependencies:
-      '@nrwl/tao': 16.5.5
+      '@nrwl/tao': 16.6.0
       '@parcel/watcher': 2.0.4
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
@@ -8809,6 +8901,7 @@ packages:
       jsonc-parser: 3.2.0
       lines-and-columns: 2.0.3
       minimatch: 3.0.5
+      node-machine-id: 1.1.12
       npm-run-path: 4.0.1
       open: 8.4.2
       semver: 7.5.3
@@ -8822,16 +8915,16 @@ packages:
       yargs: 17.7.2
       yargs-parser: 21.1.1
     optionalDependencies:
-      '@nx/nx-darwin-arm64': 16.5.5
-      '@nx/nx-darwin-x64': 16.5.5
-      '@nx/nx-freebsd-x64': 16.5.5
-      '@nx/nx-linux-arm-gnueabihf': 16.5.5
-      '@nx/nx-linux-arm64-gnu': 16.5.5
-      '@nx/nx-linux-arm64-musl': 16.5.5
-      '@nx/nx-linux-x64-gnu': 16.5.5
-      '@nx/nx-linux-x64-musl': 16.5.5
-      '@nx/nx-win32-arm64-msvc': 16.5.5
-      '@nx/nx-win32-x64-msvc': 16.5.5
+      '@nx/nx-darwin-arm64': 16.6.0
+      '@nx/nx-darwin-x64': 16.6.0
+      '@nx/nx-freebsd-x64': 16.6.0
+      '@nx/nx-linux-arm-gnueabihf': 16.6.0
+      '@nx/nx-linux-arm64-gnu': 16.6.0
+      '@nx/nx-linux-arm64-musl': 16.6.0
+      '@nx/nx-linux-x64-gnu': 16.6.0
+      '@nx/nx-linux-x64-musl': 16.6.0
+      '@nx/nx-win32-arm64-msvc': 16.6.0
+      '@nx/nx-win32-x64-msvc': 16.6.0
     transitivePeerDependencies:
       - debug
     dev: true
@@ -8891,6 +8984,22 @@ packages:
       define-properties: 1.2.0
       has-symbols: 1.0.3
       object-keys: 1.1.1
+
+  /object.fromentries@2.0.6:
+    resolution: {integrity: sha512-VciD13dswC4j1Xt5394WR4MzmAQmlgN72phd/riNp9vtD7tp4QQWJ0R4wvclXcafgcYK8veHRed2W6XeGBvcfg==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.2.0
+      es-abstract: 1.21.2
+
+  /object.groupby@1.0.0:
+    resolution: {integrity: sha512-70MWG6NfRH9GnbZOikuhPPYzpUpof9iW2J9E4dW7FXTqPNb6rllE6u39SKwwiNh8lCwX3DDb5OgcKGiEBrTTyw==}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.2.0
+      es-abstract: 1.21.2
+      get-intrinsic: 1.2.1
 
   /object.values@1.1.6:
     resolution: {integrity: sha512-FVVTkD1vENCsAcwNs9k6jea2uHC/X0+JcjG8YA60FN5CMaJmG95wT9jek/xX9nornqGRrBkKtzuAu2wuHpKqvw==}
@@ -9135,7 +9244,7 @@ packages:
     resolution: {integrity: sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==}
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.5.1
+      tslib: 2.6.0
     dev: true
 
   /parent-module@1.0.1:
@@ -9188,7 +9297,7 @@ packages:
     resolution: {integrity: sha512-uWlGT3YSnK9x3BQJaOdcZwrnV6hPpd8jFH1/ucpiLRPh/2zCVJKS19E4GvYHvaCcACn3foXZ0cLB9Wrx1KGe5g==}
     dependencies:
       no-case: 3.0.4
-      tslib: 2.5.1
+      tslib: 2.6.0
     dev: true
 
   /path-equal@1.2.5:
@@ -9304,8 +9413,8 @@ packages:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
 
-  /prettier@3.0.0:
-    resolution: {integrity: sha512-zBf5eHpwHOGPC47h0zrPyNn+eAEIdEzfywMoYn2XPi0P44Zp0tSq64rq0xAREh4auw2cJZHo9QUob+NqCQky4g==}
+  /prettier@3.0.1:
+    resolution: {integrity: sha512-fcOWSnnpCrovBsmFZIGIy9UqK2FaI7Hqax+DIO0A9UxeVoY4iweyaFjS5TavZN97Hfehph0nhsZnjlVKzEQSrQ==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -9895,6 +10004,14 @@ packages:
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
 
+  /resolve@1.22.3:
+    resolution: {integrity: sha512-P8ur/gp/AmbEzjr729bZnLjXK5Z+4P0zhIJgBgzqRih7hL7BOukHGtSTA3ACMY467GRFz3duQsi0bDZdR7DKdw==}
+    hasBin: true
+    dependencies:
+      is-core-module: 2.12.1
+      path-parse: 1.0.7
+      supports-preserve-symlinks-flag: 1.0.0
+
   /responselike@2.0.1:
     resolution: {integrity: sha512-4gl03wn3hj1HP3yzgdI7d3lCkF95F21Pz4BPGvKHinyQzALR5CapwC8yIi0Rh58DEMQ/SguC03wFj2k0M/mHhw==}
     dependencies:
@@ -9976,7 +10093,7 @@ packages:
   /rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
     dependencies:
-      tslib: 2.5.1
+      tslib: 2.6.0
     dev: true
 
   /safe-buffer@5.1.2:
@@ -10000,8 +10117,8 @@ packages:
   /safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  /sass@1.62.1:
-    resolution: {integrity: sha512-NHpxIzN29MXvWiuswfc1W3I0N8SXBd8UR26WntmDlRYf0bSADnwnOjsyMZ3lMezSlArD33Vs3YFhp7dWvL770A==}
+  /sass@1.64.1:
+    resolution: {integrity: sha512-16rRACSOFEE8VN7SCgBu1MpYCyN7urj9At898tyzdXFhC+a+yOX5dXwAR7L8/IdPJ1NB8OYoXmD55DM30B2kEQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
@@ -10303,8 +10420,8 @@ packages:
     engines: {node: '>= 8'}
     dev: true
 
-  /spawn-command@0.0.2-1:
-    resolution: {integrity: sha512-n98l9E2RMSJ9ON1AKisHzz7V42VDiBQGY6PB1BwRglz99wpVsSuGzQ+jOi6lFXBGVTCrRpltvjm+/XA+tpeJrg==}
+  /spawn-command@0.0.2:
+    resolution: {integrity: sha512-zC8zGoGkmc8J9ndvml8Xksr1Amk9qBujgbF0JAIWO7kXr43w0h/0GJNM/Vustixu+YE8N/MTrQ7N31FvHUACxQ==}
     dev: true
 
   /spawn-wrap@2.0.0:
@@ -10610,17 +10727,6 @@ packages:
       terser: 5.18.2
       webpack: 5.88.2(webpack-cli@5.1.4)
 
-  /terser@5.17.4:
-    resolution: {integrity: sha512-jcEKZw6UPrgugz/0Tuk/PVyLAPfMBJf5clnGueo45wTweoV8yh7Q7PEkhkJ5uuUbC7zAxEcG3tqNr1bstkQ8nw==}
-    engines: {node: '>=10'}
-    hasBin: true
-    dependencies:
-      '@jridgewell/source-map': 0.3.3
-      acorn: 8.10.0
-      commander: 2.20.3
-      source-map-support: 0.5.21
-    dev: true
-
   /terser@5.18.2:
     resolution: {integrity: sha512-Ah19JS86ypbJzTzvUCX7KOsEIhDaRONungA4aYBjEP3JZRf4ocuDzTg4QWZnPn9DEMiMYGJPiSOy7aykoCc70w==}
     engines: {node: '>=10'}
@@ -10817,7 +10923,7 @@ packages:
       yn: 3.1.1
     dev: true
 
-  /ts-node@10.9.1(@types/node@20.4.4)(typescript@5.1.6):
+  /ts-node@10.9.1(@types/node@20.4.6)(typescript@5.1.6):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -10836,7 +10942,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.4.4
+      '@types/node': 20.4.6
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
@@ -10863,10 +10969,6 @@ packages:
       json5: 2.2.3
       minimist: 1.2.8
       strip-bom: 3.0.0
-    dev: true
-
-  /tslib@2.5.1:
-    resolution: {integrity: sha512-KaI6gPil5m9vF7DKaoXxx1ia9fxS4qG5YveErRRVknPDXXriu5M8h48YRjB6h5ZUOKuAKlSJYb0GaDe8I39fRw==}
     dev: true
 
   /tslib@2.6.0:
@@ -10992,8 +11094,8 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /typedoc-plugin-missing-exports@2.0.0(typedoc@0.24.8):
-    resolution: {integrity: sha512-t0QlKCm27/8DaheJkLo/gInSNjzBXgSciGhoLpL6sLyXZibm7SuwJtHvg4qXI2IjJfFBgW9mJvvszpoxMyB0TA==}
+  /typedoc-plugin-missing-exports@2.0.1(typedoc@0.24.8):
+    resolution: {integrity: sha512-+A78kT78uC0Dbv2EFB9RXHO3iywJ5x89jd4z0bLL7Z8DlOSQjJxhRHf8otXsHZbgRUWAuYqYMA9LzxfuSOc87A==}
     peerDependencies:
       typedoc: 0.24.x
     dependencies:
@@ -11143,13 +11245,13 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /update-browserslist-db@1.0.11(browserslist@4.21.9):
+  /update-browserslist-db@1.0.11(browserslist@4.21.10):
     resolution: {integrity: sha512-dCwEFf0/oT85M1fHBg4F0jtLwJrutGoHSQXCh7u4o2t1drG+c0a9Flnqww6XUKSfQMPpJBRjU8d4RXB09qtvaA==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
     dependencies:
-      browserslist: 4.21.9
+      browserslist: 4.21.10
       escalade: 3.1.1
       picocolors: 1.0.0
 
@@ -11345,7 +11447,7 @@ packages:
       '@webassemblyjs/wasm-parser': 1.11.6
       acorn: 8.10.0
       acorn-import-assertions: 1.9.0(acorn@8.10.0)
-      browserslist: 4.21.9
+      browserslist: 4.21.10
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.15.0
       es-module-lexer: 1.3.0
@@ -11452,8 +11554,8 @@ packages:
       triple-beam: 1.4.0
     dev: true
 
-  /winston@3.9.0:
-    resolution: {integrity: sha512-jW51iW/X95BCW6MMtZWr2jKQBP4hV5bIDq9QrIjfDk6Q9QuxvTKEAlpUNAzP+HYHFFCeENhph16s0zEunu4uuQ==}
+  /winston@3.10.0:
+    resolution: {integrity: sha512-nT6SIDaE9B7ZRO0u3UvdrimG0HkB7dSTAgInQnNR2SOPJ4bvq5q79+pXLftKmP52lJGW15+H5MCK0nM9D3KB/g==}
     engines: {node: '>= 12.0.0'}
     dependencies:
       '@colors/colors': 1.5.0

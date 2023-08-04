@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* fixed light interaction, particle shadow wasn't calculated correctly ([da86a37](https://github.com/matteobruni/tsparticles/commit/da86a379faea661db8d161b28c30b36e5bd3580b))
+
+
+
+
+
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
 **Note:** Version bump only for package tsparticles-interaction-light

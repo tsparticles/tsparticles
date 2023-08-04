@@ -72,7 +72,7 @@ export class EmitterInstance {
             this.options.load(options);
         }
 
-        this._spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+        this._spawnDelay = (getRangeValue(this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this._initialPosition ?? this._calcPosition();
         this.name = this.options.name;
         this._shape = this._engine.emitterShapeManager?.getShape(this.options.shape);
@@ -246,7 +246,8 @@ export class EmitterInstance {
                 if (this._lifeCount > 0 || this._immortal) {
                     this.position = this._calcPosition();
 
-                    this._spawnDelay = ((this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+                    this._spawnDelay =
+                        (getRangeValue(this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
                 } else {
                     this._destroy();
                 }
@@ -352,7 +353,8 @@ export class EmitterInstance {
             return;
         }
 
-        const duration = this.options.life?.duration;
+        const duration =
+            this.options.life?.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined;
 
         if (
             this.container.retina.reduceFactor &&

@@ -9,25 +9,11 @@ const options: ISourceOptions = {
                 count: 1,
                 factor: {
                     value: {
-                        min: 4,
-                        max: 9,
-                    },
-                },
-                particles: {
-                    collisions: {
-                        enable: false,
-                    },
-                    destroy: {
-                        mode: "none",
-                    },
-                    life: {
-                        count: 1,
+                        min: 2,
+                        max: 4,
                     },
                 },
             },
-        },
-        number: {
-            value: 0,
         },
         color: {
             value: "#ffffff",
@@ -40,7 +26,7 @@ const options: ISourceOptions = {
         },
         size: {
             value: {
-                min: 10,
+                min: 5,
                 max: 15,
             },
         },
@@ -56,56 +42,16 @@ const options: ISourceOptions = {
             gravity: {
                 enable: true,
             },
-            speed: 10,
+            speed: { min: 5, max: 15 },
             outModes: {
                 bottom: "split",
-                default: "destroy",
+                default: "bounce",
                 top: "none",
             },
             trail: {
                 enable: true,
                 fill: { color: "#000000" },
                 length: 10,
-            },
-        },
-    },
-    interactivity: {
-        events: {
-            onHover: {
-                enable: false,
-                mode: "repulse",
-                parallax: {
-                    enable: false,
-                    force: 60,
-                    smooth: 10,
-                },
-            },
-            onClick: {
-                enable: true,
-                mode: "push",
-            },
-        },
-        modes: {
-            grab: {
-                distance: 400,
-                links: {
-                    opacity: 1,
-                },
-            },
-            bubble: {
-                distance: 400,
-                size: 40,
-                duration: 2,
-                opacity: 0.8,
-            },
-            repulse: {
-                distance: 200,
-            },
-            push: {
-                quantity: 4,
-            },
-            remove: {
-                quantity: 2,
             },
         },
     },
@@ -116,12 +62,16 @@ const options: ISourceOptions = {
         direction: "top",
         life: {
             count: 0,
-            duration: 5,
+            duration: 3,
             delay: 2,
+        },
+        position: {
+            y: { min: 30, max: 70 },
+            x: { min: 30, max: 70 },
         },
         rate: {
             delay: 0.1,
-            quantity: 1,
+            quantity: 2,
         },
         size: {
             width: 0,
@@ -132,12 +82,22 @@ const options: ISourceOptions = {
                 vertical: {
                     value: {
                         min: 0.4,
-                        max: 0.8,
+                        max: 0.6,
                     },
                 },
             },
             color: {
-                value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+                value: [
+                    "#5bc0eb",
+                    "#fde74c",
+                    "#9bc53d",
+                    "#e55934",
+                    "#fa7921",
+                    "#2FF3E0",
+                    "#F8D210",
+                    "#FA26A0",
+                    "#F51720",
+                ],
             },
             size: {
                 value: {
@@ -149,7 +109,7 @@ const options: ISourceOptions = {
                 value: 0.5,
             },
             move: {
-                speed: 10,
+                speed: { min: 5, max: 15 },
             },
         },
     },

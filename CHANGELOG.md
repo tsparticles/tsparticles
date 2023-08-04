@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
+
+
+### Bug Fixes
+
+* fix issue with change theme when an existing canvas is used ([2c4c7cd](https://github.com/matteobruni/tsparticles/commit/2c4c7cd713bd2728b4821563e9d919fd33c23bf5))
+* fix issue with change theme when an existing canvas is used ([a349b97](https://github.com/matteobruni/tsparticles/commit/a349b973b63c849ec552eca72bcce391223c3d61))
+* fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/matteobruni/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
+* fixed light interaction, particle shadow wasn't calculated correctly ([da86a37](https://github.com/matteobruni/tsparticles/commit/da86a379faea661db8d161b28c30b36e5bd3580b))
+* fixed memory leak in destroyed particles by updaters, the z array wasn't filtered ([272bb47](https://github.com/matteobruni/tsparticles/commit/272bb4720961bab2db8b5ee5d3dc7e6f5b1bbf38)), closes [#5101](https://github.com/matteobruni/tsparticles/issues/5101)
+* fixed out mode bounce ([aafaa08](https://github.com/matteobruni/tsparticles/commit/aafaa083090d7941d159273cce513427572b866a))
+* fixed out modes, bounce was not checking the direction of the update request ([e2b2c94](https://github.com/matteobruni/tsparticles/commit/e2b2c94da9ba4ffd264442ab6bfed4923fac7d25))
+* fixed pool on particles destroyed by updaters ([1f62e29](https://github.com/matteobruni/tsparticles/commit/1f62e299de7893145c64d006fcc2f6fb8c8540cf))
+
+
+### Features
+
+* added range values to life duration and delay of emitters ([18bc70d](https://github.com/matteobruni/tsparticles/commit/18bc70dec174387f1b49f7c49fdc587c6554a38f))
+* added two new bundles: basic and all ([489f591](https://github.com/matteobruni/tsparticles/commit/489f5916a1b8b8b6c710ac16fbc691a0e591ab19))
+
+
+
+
+
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
 

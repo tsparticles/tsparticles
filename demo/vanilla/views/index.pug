@@ -73,6 +73,16 @@ html(lang="en")
                         span.caret-left
                             i.fas.fa-caret-left
                     #stats(hidden)
+                    #count
+                        div
+                            | Particles:&nbsp;
+                            span#particles-count
+                        div
+                            | Z Particles:&nbsp;
+                            span#z-particles-count
+                        div
+                            | Pool:&nbsp;
+                            span#pool-count
 
         #exportModal.modal.fade(tabindex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true")
             .modal-dialog.modal-lg(role="document")
@@ -98,9 +108,11 @@ html(lang="en")
         script(src="/stats.ts/dist/stats.min.js")
         script(src="/tsparticles-engine/tsparticles.engine.js")
         script(src="/demo-configs/tsparticles.configs.min.js")
+        script(src="/tsparticles-basic/tsparticles.basic.js")
         script(src="/tsparticles-particles.js/tsparticles.pjs.js")
         script(src="/tsparticles-slim/tsparticles.slim.js")
         script(src="/tsparticles/tsparticles.js")
+        script(src="/tsparticles-all/tsparticles.all.js")
         script(src="/interaction-external-attract/tsparticles.interaction.external.attract.js")
         script(src="/interaction-external-bounce/tsparticles.interaction.external.bounce.js")
         script(src="/interaction-external-bubble/tsparticles.interaction.external.bubble.js")

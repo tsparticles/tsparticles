@@ -1,8 +1,7 @@
 import type { Engine } from "tsparticles-engine";
 import { initPjs } from "tsparticles-particles.js";
-import { loadBaseMover } from "tsparticles-move-base";
-import { loadCircleShape } from "tsparticles-shape-circle";
-import { loadColorUpdater } from "tsparticles-updater-color";
+import { loadBasic } from "tsparticles-basic";
+import { loadEasingQuadPlugin } from "tsparticles-plugin-easing-quad";
 import { loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
 import { loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
 import { loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
@@ -16,15 +15,12 @@ import { loadExternalSlowInteraction } from "tsparticles-interaction-external-sl
 import { loadImageShape } from "tsparticles-shape-image";
 import { loadLifeUpdater } from "tsparticles-updater-life";
 import { loadLineShape } from "tsparticles-shape-line";
-import { loadOpacityUpdater } from "tsparticles-updater-opacity";
-import { loadOutModesUpdater } from "tsparticles-updater-out-modes";
 import { loadParallaxMover } from "tsparticles-move-parallax";
 import { loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
 import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
 import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
 import { loadPolygonShape } from "tsparticles-shape-polygon";
 import { loadRotateUpdater } from "tsparticles-updater-rotate";
-import { loadSizeUpdater } from "tsparticles-updater-size";
 import { loadSquareShape } from "tsparticles-shape-square";
 import { loadStarShape } from "tsparticles-shape-star";
 import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
@@ -42,7 +38,6 @@ import { loadTextShape } from "tsparticles-shape-text";
 export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
     initPjs(engine);
 
-    await loadBaseMover(engine, false);
     await loadParallaxMover(engine, false);
 
     await loadExternalAttractInteraction(engine, false);
@@ -60,7 +55,8 @@ export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
     await loadParticlesCollisionsInteraction(engine, false);
     await loadParticlesLinksInteraction(engine, false);
 
-    await loadCircleShape(engine, false);
+    await loadEasingQuadPlugin();
+
     await loadImageShape(engine, false);
     await loadLineShape(engine, false);
     await loadPolygonShape(engine, false);
@@ -69,12 +65,8 @@ export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
     await loadTextShape(engine, false);
 
     await loadLifeUpdater(engine, false);
-    await loadOpacityUpdater(engine, false);
-    await loadSizeUpdater(engine, false);
-    await loadColorUpdater(engine, false);
-    await loadOutModesUpdater(engine, false);
     await loadRotateUpdater(engine, false);
     await loadStrokeColorUpdater(engine, false);
 
-    await engine.refresh(refresh);
+    await loadBasic(engine, refresh);
 }

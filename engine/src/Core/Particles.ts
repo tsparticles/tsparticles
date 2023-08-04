@@ -76,14 +76,14 @@ export class Particles {
         this.limit = 0;
         this.needsSort = false;
         this.lastZIndex = 0;
-        this._interactionManager = new InteractionManager(this._engine, this._container);
+        this._interactionManager = new InteractionManager(engine, container);
 
-        const canvasSize = this._container.canvas.size;
+        const canvasSize = container.canvas.size;
 
         this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
-        this.movers = this._engine.plugins.getMovers(this._container, true);
-        this.updaters = this._engine.plugins.getUpdaters(this._container, true);
+        this.movers = this._engine.plugins.getMovers(container, true);
+        this.updaters = this._engine.plugins.getUpdaters(container, true);
     }
 
     get count(): number {
@@ -323,7 +323,13 @@ export class Particles {
             this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
 
-        this._array = this.filter((t) => !particlesToDelete.has(t));
+        if (particlesToDelete.size) {
+            const checkDelete = (p: Particle): boolean => !particlesToDelete.has(p);
+
+            this._array = this.filter(checkDelete);
+            this._zArray = this._zArray.filter(checkDelete);
+            this.pool.push(...particlesToDelete);
+        }
 
         await this._interactionManager.externalInteract(delta);
 
