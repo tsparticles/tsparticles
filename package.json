@@ -44,7 +44,7 @@
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.46.0",
-    "eslint-config-prettier": "^8.10.0",
+    "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-jsdoc": "^46.4.5",
     "eslint-plugin-tsdoc": "^0.2.17",
     "husky": "^8.0.3",
