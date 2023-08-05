@@ -82,9 +82,10 @@ export function addParticlesFromCanvasPixels(
         }
 
         const pos = {
-            x: pixelPos.x * scale + positionOffset.x,
-            y: pixelPos.y * scale + positionOffset.y,
-        }, pOptions: RecursivePartial<IParticlesOptions> = {};
+                x: pixelPos.x * scale + positionOffset.x,
+                y: pixelPos.y * scale + positionOffset.y,
+            },
+            pOptions: RecursivePartial<IParticlesOptions> = {};
 
         if (override.color) {
             pOptions.color = {
