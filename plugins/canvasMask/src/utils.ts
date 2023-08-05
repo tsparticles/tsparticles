@@ -77,30 +77,31 @@ export function addParticlesFromCanvasPixels(
             pixel = data.pixels[pixelPos.y][pixelPos.x],
             shouldCreateParticle = filter(pixel);
 
-        if (shouldCreateParticle) {
-            const pos = {
+        if (!shouldCreateParticle) {
+            continue;
+        }
+
+        const pos = {
                 x: pixelPos.x * scale + positionOffset.x,
                 y: pixelPos.y * scale + positionOffset.y,
+            },
+            pOptions: RecursivePartial<IParticlesOptions> = {};
+
+        if (override.color) {
+            pOptions.color = {
+                value: pixel,
             };
-
-            const pOptions: RecursivePartial<IParticlesOptions> = {};
-
-            if (override.color) {
-                pOptions.color = {
-                    value: pixel,
-                };
-            }
-
-            if (override.opacity) {
-                pOptions.opacity = {
-                    value: pixel.a,
-                };
-            }
-
-            container.particles.addParticle(pos, pOptions);
-
-            selectedPixels++;
         }
+
+        if (override.opacity) {
+            pOptions.opacity = {
+                value: pixel.a,
+            };
+        }
+
+        container.particles.addParticle(pos, pOptions);
+
+        selectedPixels++;
     }
 }
 
