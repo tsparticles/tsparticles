@@ -45,7 +45,6 @@
     "lodash": "^4.17.21",
     "nodemon": "^3.0.1",
     "pug": "^3.0.2",
-    "pug-cli": "1.0.0-alpha6",
     "stats.ts": "^1.1.0",
     "stylus": "^0.59.0",
     "winston": "^3.10.0"
@@ -112,7 +111,6 @@
     "tsparticles-shape-multiline-text": "^2.12.0",
     "tsparticles-shape-path": "^2.12.0",
     "tsparticles-shape-polygon": "^2.12.0",
-    "tsparticles-shape-ribbon": "^2.12.0",
     "tsparticles-shape-rounded-polygon": "^2.12.0",
     "tsparticles-shape-rounded-rect": "^2.12.0",
     "tsparticles-shape-spiral": "^2.12.0",
