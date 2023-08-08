@@ -730,9 +730,6 @@ importers:
       tsparticles-shape-polygon:
         specifier: ^2.12.0
         version: link:../../shapes/polygon/dist
-      tsparticles-shape-ribbon:
-        specifier: ^2.12.0
-        version: link:../../shapes/ribbon/dist
       tsparticles-shape-rounded-polygon:
         specifier: ^2.12.0
         version: link:../../shapes/rounded-polygon/dist
@@ -1287,13 +1284,6 @@ importers:
     publishDirectory: dist
 
   shapes/polygon:
-    dependencies:
-      tsparticles-engine:
-        specifier: ^2.12.0
-        version: link:../../engine/dist
-    publishDirectory: dist
-
-  shapes/ribbon:
     dependencies:
       tsparticles-engine:
         specifier: ^2.12.0
