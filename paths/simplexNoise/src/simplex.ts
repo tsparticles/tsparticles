@@ -12,9 +12,9 @@ export default function shuffleSeed(seed: Uint32Array): Uint32Array {
     return newSeed;
 }
 
-const NORM_4D = 1.0 / 30.0;
-const SQUISH_4D = (Math.sqrt(4 + 1) - 1) / 4;
-const STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) / 4;
+const NORM_4D = 1.0 / 30.0,
+    SQUISH_4D = (Math.sqrt(4 + 1) - 1) / 4,
+    STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) / 4;
 
 export type Noise4D = (x: number, y: number, z: number, w: number) => number;
 
@@ -69,6 +69,7 @@ export function makeNoise4D(clientSeed: number): Noise4D {
             current.next.next.next = contribution4D(p4D[i + 11], p4D[i + 12], p4D[i + 13], p4D[i + 14], p4D[i + 15]);
         }
     }
+
     const lookup: Contribution4D[] = [];
 
     for (let i = 0; i < lookupPairs4D.length; i += 2) {
