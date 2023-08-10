@@ -380,3 +380,4 @@ options.schema.json
 .parcel-cache
 demo/vanilla/views/index.html
 demo/vanilla/public/stylesheets/*.css
+docs.json
