@@ -87,8 +87,8 @@ importers:
         specifier: ^0.2.17
         version: 0.2.17
       gh-pages:
-        specifier: ^5.0.0
-        version: 5.0.0
+        specifier: ^6.0.0
+        version: 6.0.0
       husky:
         specifier: ^8.0.3
         version: 8.0.3
@@ -8132,17 +8132,17 @@ packages:
       call-bind: 1.0.2
       get-intrinsic: 1.2.1
 
-  /gh-pages@5.0.0:
-    resolution: {integrity: sha512-Nqp1SjkPIB94Xw/3yYNTUL+G2dxlhjvv1zeN/4kMC1jfViTEqhtVz/Ba1zSXHuvXCN9ADNS1dN4r5/J/nZWEQQ==}
+  /gh-pages@6.0.0:
+    resolution: {integrity: sha512-FXZWJRsvP/fK2HJGY+Di6FRNHvqFF6gOIELaopDjXXgjeOYSNURcuYwEO/6bwuq6koP5Lnkvnr5GViXzuOB89g==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
       async: 3.2.4
-      commander: 2.20.3
+      commander: 11.0.0
       email-addresses: 5.0.0
       filenamify: 4.3.0
       find-cache-dir: 3.3.2
-      fs-extra: 8.1.0
+      fs-extra: 11.1.1
       globby: 6.1.0
     dev: true
 
