@@ -44,7 +44,7 @@ export class InteractionManager {
         private readonly container: Container,
     ) {
         this._engine = engine;
-        this._interactors = engine.plugins.getInteractors(this.container, true);
+        this._interactors = engine.getInteractors(this.container, true);
         this._externalInteractors = [];
         this._particleInteractors = [];
     }

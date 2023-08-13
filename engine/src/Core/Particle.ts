@@ -442,7 +442,7 @@ export class Particle implements IParticle {
         this.pathDelay = getValue(pathOptions.delay) * 1000;
 
         if (pathOptions.generator) {
-            this.pathGenerator = this._engine.plugins.getPathGenerator(pathOptions.generator);
+            this.pathGenerator = this._engine.getPathGenerator(pathOptions.generator);
 
             if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
                 this.pathGenerator.init(container);
@@ -482,7 +482,7 @@ export class Particle implements IParticle {
         let drawer = container.drawers.get(this.shape);
 
         if (!drawer) {
-            drawer = this._engine.plugins.getShapeDrawer(this.shape);
+            drawer = this._engine.getShapeDrawer(this.shape);
 
             if (drawer) {
                 container.drawers.set(this.shape, drawer);

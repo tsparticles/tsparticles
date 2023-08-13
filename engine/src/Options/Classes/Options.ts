@@ -200,13 +200,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.particles.load(data.particles);
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
-        this._engine.plugins.loadOptions(this, data);
+        this._engine.loadOptions(this, data);
 
         if (data.smooth !== undefined) {
             this.smooth = data.smooth;
         }
 
-        const interactors = this._engine.plugins.interactors.get(this._container);
+        const interactors = this._engine.interactors.get(this._container);
 
         if (interactors) {
             for (const interactor of interactors) {
@@ -286,6 +286,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     };
 
     private readonly _importPreset: (preset: string) => void = (preset) => {
-        this.load(this._engine.plugins.getPreset(preset));
+        this.load(this._engine.getPreset(preset));
     };
 }

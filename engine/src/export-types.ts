@@ -121,7 +121,6 @@ export * from "./Types/SingleOrMultiple";
 
 export type { EventListeners } from "./Core/Utils/EventListeners";
 export type { InteractionManager } from "./Core/Utils/InteractionManager";
-export type { Plugins } from "./Core/Utils/Plugins";
 export type { QuadTree } from "./Core/Utils/QuadTree";
 export type { Canvas } from "./Core/Canvas";
 export type { Container } from "./Core/Container";

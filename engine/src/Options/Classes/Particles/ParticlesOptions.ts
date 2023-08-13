@@ -119,7 +119,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         }
 
         if (this._container) {
-            const updaters = this._engine.plugins.updaters.get(this._container);
+            const updaters = this._engine.updaters.get(this._container);
 
             if (updaters) {
                 for (const updater of updaters) {
@@ -129,7 +129,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 }
             }
 
-            const interactors = this._engine.plugins.interactors.get(this._container);
+            const interactors = this._engine.interactors.get(this._container);
 
             if (interactors) {
                 for (const interactor of interactors) {

@@ -387,7 +387,7 @@ export class Container {
             this.drawers.delete(key);
         }
 
-        this._engine.plugins.destroy(this);
+        this._engine.clearPlugins(this);
 
         this.destroyed = true;
 
@@ -473,10 +473,10 @@ export class Container {
             return;
         }
 
-        const shapes = this._engine.plugins.getSupportedShapes();
+        const shapes = this._engine.getSupportedShapes();
 
         for (const type of shapes) {
-            const drawer = this._engine.plugins.getShapeDrawer(type);
+            const drawer = this._engine.getShapeDrawer(type);
 
             if (drawer) {
                 this.drawers.set(type, drawer);
@@ -487,7 +487,7 @@ export class Container {
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
-        const availablePlugins = this._engine.plugins.getAvailablePlugins(this);
+        const availablePlugins = this._engine.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);

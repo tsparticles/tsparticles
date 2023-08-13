@@ -9,22 +9,33 @@ import type {
     ShapeDrawerInitFunction,
 } from "../Types/ShapeDrawerFunctions";
 import { errorPrefix, generatedAttribute } from "./Utils/Constants";
-import { getLogger, isBoolean, isFunction, isNumber, isString, itemFromSingleOrMultiple } from "../Utils/Utils";
+import {
+    executeOnSingleOrMultiple,
+    getLogger,
+    isBoolean,
+    isFunction,
+    isNumber,
+    isString,
+    itemFromSingleOrMultiple,
+} from "../Utils/Utils";
 import { Container } from "./Container";
 import type { CustomEventArgs } from "../Types/CustomEventArgs";
 import type { CustomEventListener } from "../Types/CustomEventListener";
 import { EventDispatcher } from "../Utils/EventDispatcher";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
 import type { IInteractor } from "./Interfaces/IInteractor";
 import type { ILoadParams } from "./Interfaces/ILoadParams";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
 import type { IOptions } from "../Options/Interfaces/IOptions";
 import type { IParticleMover } from "./Interfaces/IParticleMover";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
 import type { IPlugin } from "./Interfaces/IPlugin";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
 import type { ISourceOptions } from "../Types/ISourceOptions";
+import type { Options } from "../Options/Classes/Options";
 import type { Particle } from "./Particle";
-import { Plugins } from "./Utils/Plugins";
+import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
 import type { RecursivePartial } from "../Types/RecursivePartial";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
 import { getRandom } from "../Utils/NumberUtils";
@@ -41,6 +52,50 @@ interface DataFromUrlParams {
     fallback?: SingleOrMultiple<ISourceOptions>;
     index?: number;
     url: SingleOrMultiple<string>;
+}
+
+type GenericInitializer<T> = (container: Container) => T;
+
+/**
+ * Alias for interactivity manager initializer function
+ */
+type InteractorInitializer = GenericInitializer<IInteractor>;
+
+type MoverInitializer = GenericInitializer<IParticleMover>;
+
+/**
+ * Alias for updater initializer function
+ */
+type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
+
+type Initializers = {
+    interactors: Map<string, InteractorInitializer>;
+    movers: Map<string, MoverInitializer>;
+    updaters: Map<string, UpdaterInitializer>;
+};
+
+/**
+ * @param container -
+ * @param map -
+ * @param initializers -
+ * @param force -
+ * @returns the items from the given initializer
+ */
+function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+    container: Container,
+    map: Map<Container, TItem[]>,
+    initializers: Map<string, TInitializer>,
+    force = false,
+): TItem[] {
+    let res = map.get(container);
+
+    if (!res || force) {
+        res = [...initializers.values()].map((t) => t(container));
+
+        map.set(container, res);
+    }
+
+    return res;
 }
 
 /**
@@ -90,9 +145,36 @@ function isParams(obj: unknown): obj is ILoadParams {
  */
 export class Engine {
     /**
-     * Contains the {@link Plugins} engine instance
+     * The drawers (additional shapes) array
      */
-    readonly plugins: Plugins;
+    readonly drawers;
+
+    /**
+     * The interaction managers array
+     */
+    readonly interactors;
+
+    readonly movers;
+
+    /**
+     * The path generators array
+     */
+    readonly pathGenerators;
+
+    /**
+     * The plugins array
+     */
+    readonly plugins: IPlugin[];
+
+    /**
+     * The presets array
+     */
+    readonly presets;
+
+    /**
+     * The updaters array
+     */
+    readonly updaters;
 
     private readonly _configs: Map<string, ISourceOptions>;
 
@@ -108,6 +190,8 @@ export class Engine {
      */
     private _initialized: boolean;
 
+    private readonly _initializers: Initializers;
+
     /**
      * Engine constructor, initializes plugins, loader and the containers array
      */
@@ -116,7 +200,19 @@ export class Engine {
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
         this._initialized = false;
-        this.plugins = new Plugins(this);
+
+        this.plugins = [];
+        this._initializers = {
+            interactors: new Map<string, InteractorInitializer>(),
+            movers: new Map<string, MoverInitializer>(),
+            updaters: new Map<string, UpdaterInitializer>(),
+        };
+        this.interactors = new Map<Container, IInteractor[]>();
+        this.movers = new Map<Container, IParticleMover[]>();
+        this.updaters = new Map<Container, IParticleUpdater[]>();
+        this.presets = new Map<string, ISourceOptions>();
+        this.drawers = new Map<string, IShapeDrawer>();
+        this.pathGenerators = new Map<string, IMovePathGenerator>();
     }
 
     get configs(): Record<string, ISourceOptions> {
@@ -155,46 +251,48 @@ export class Engine {
     }
 
     /**
-     * @param name -
-     * @param interactorInitializer -
-     * @param refresh -
+     * Adds an interaction manager to the current collection
+     * @param name - the interaction manager name
+     * @param interactorInitializer - the interaction manager initializer
+     * @param refresh - if true the engine will refresh all the containers
      */
     async addInteractor(
         name: string,
         interactorInitializer: (container: Container) => IInteractor,
         refresh = true,
     ): Promise<void> {
-        this.plugins.addInteractor(name, interactorInitializer);
+        this._initializers.interactors.set(name, interactorInitializer);
 
         await this.refresh(refresh);
     }
 
     /**
-     * @param name -
-     * @param moverInitializer -
-     * @param refresh -
+     * @param name - the mover name
+     * @param moverInitializer - the mover initializer
+     * @param refresh - if true the engine will refresh all the containers
      */
     async addMover(
         name: string,
         moverInitializer: (container: Container) => IParticleMover,
         refresh = true,
     ): Promise<void> {
-        this.plugins.addParticleMover(name, moverInitializer);
+        this._initializers.movers.set(name, moverInitializer);
 
         await this.refresh(refresh);
     }
 
     /**
-     * @param name -
-     * @param updaterInitializer -
-     * @param refresh -
+     * Adds a particle updater to the collection
+     * @param name - the particle updater name used as a key
+     * @param updaterInitializer - the particle updater initializer
+     * @param refresh - if true the engine will refresh all the containers
      */
     async addParticleUpdater(
         name: string,
         updaterInitializer: (container: Container) => IParticleUpdater,
         refresh = true,
     ): Promise<void> {
-        this.plugins.addParticleUpdater(name, updaterInitializer);
+        this._initializers.updaters.set(name, updaterInitializer);
 
         await this.refresh(refresh);
     }
@@ -206,7 +304,7 @@ export class Engine {
      * @param refresh - should refresh the dom after adding the path generator
      */
     async addPathGenerator(name: string, generator: IMovePathGenerator, refresh = true): Promise<void> {
-        this.plugins.addPathGenerator(name, generator);
+        !this.getPathGenerator(name) && this.pathGenerators.set(name, generator);
 
         await this.refresh(refresh);
     }
@@ -217,7 +315,7 @@ export class Engine {
      * @param refresh - should refresh the dom after adding the plugin
      */
     async addPlugin(plugin: IPlugin, refresh = true): Promise<void> {
-        this.plugins.addPlugin(plugin);
+        !this.getPlugin(plugin.id) && this.plugins.push(plugin);
 
         await this.refresh(refresh);
     }
@@ -235,7 +333,7 @@ export class Engine {
         override = false,
         refresh = true,
     ): Promise<void> {
-        this.plugins.addPreset(preset, options, override);
+        (override || !this.getPreset(preset)) && this.presets.set(preset, options);
 
         await this.refresh(refresh);
     }
@@ -296,9 +394,17 @@ export class Engine {
             customDrawer = drawer;
         }
 
-        this.plugins.addShapeDrawer(shape, customDrawer);
+        executeOnSingleOrMultiple(shape, (type) => {
+            !this.getShapeDrawer(type) && this.drawers.set(type, customDrawer);
+        });
 
         await this.refresh(realRefresh);
+    }
+
+    clearPlugins(container: Container): void {
+        this.updaters.delete(container);
+        this.movers.delete(container);
+        this.interactors.delete(container);
     }
 
     /**
@@ -334,6 +440,89 @@ export class Engine {
         }
 
         return item;
+    }
+
+    /**
+     * Gets all the available plugins, for the specified container
+     * @param container - the container used to check which are the valid plugins
+     * @returns a map containing all enabled plugins, with the id as a key
+     */
+    getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
+        const res = new Map<string, IContainerPlugin>();
+
+        for (const plugin of this.plugins) {
+            plugin.needsPlugin(container.actualOptions) && res.set(plugin.id, plugin.getPlugin(container));
+        }
+
+        return res;
+    }
+
+    /**
+     * Returns all the container interaction managers
+     * @param container - the container used to check which interaction managers are compatible
+     * @param force - if true reloads the interaction managers collection for the given container
+     * @returns the array of interaction managers for the given container
+     */
+    getInteractors(container: Container, force = false): IInteractor[] {
+        return getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
+    }
+
+    getMovers(container: Container, force = false): IParticleMover[] {
+        return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
+    }
+
+    /**
+     * Searches the path generator with the given type name
+     * @param type - the path generator type to search
+     * @returns the path generator if found, or undefined
+     */
+    getPathGenerator(type: string): IMovePathGenerator | undefined {
+        return this.pathGenerators.get(type);
+    }
+
+    /**
+     * Searches if the specified plugin exists and returns it
+     * @param plugin - the plugin name
+     * @returns the plugin if found, or undefined
+     */
+    getPlugin(plugin: string): IPlugin | undefined {
+        return this.plugins.find((t) => t.id === plugin);
+    }
+
+    /**
+     * Searches the preset with the given name
+     * @param preset - the preset name to search
+     * @returns the preset if found, or undefined
+     */
+    getPreset(preset: string): ISourceOptions | undefined {
+        return this.presets.get(preset);
+    }
+
+    /**
+     * Searches the given shape drawer type with the given type name
+     * @param type - the shape drawer type name
+     * @returns the shape drawer if found, or undefined
+     */
+    getShapeDrawer(type: string): IShapeDrawer | undefined {
+        return this.drawers.get(type);
+    }
+
+    /**
+     * This method returns all the supported shapes with this Plugins instance
+     * @returns all the supported shapes type name
+     */
+    getSupportedShapes(): IterableIterator<string> {
+        return this.drawers.keys();
+    }
+
+    /**
+     * Returns all the container particle updaters
+     * @param container - the container used to check which particle updaters are enabled
+     * @param force - if true reloads the updater collection for the given container
+     * @returns the array of updaters for the given container
+     */
+    getUpdaters(container: Container, force = false): IParticleUpdater[] {
+        return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
     }
 
     /**
@@ -420,6 +609,39 @@ export class Engine {
         }
 
         return this._loadParams({ id: id, url, index });
+    }
+
+    /**
+     * Load the given options for all the plugins
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
+     */
+    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
+        for (const plugin of this.plugins) {
+            plugin.loadOptions(options, sourceOptions);
+        }
+    }
+
+    /**
+     * Load the given particles options for all the updaters
+     * @param container - the container of the updaters
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
+     */
+    loadParticlesOptions(
+        container: Container,
+        options: ParticlesOptions,
+        ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
+    ): void {
+        const updaters = this.updaters.get(container);
+
+        if (!updaters) {
+            return;
+        }
+
+        for (const updater of updaters) {
+            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
+        }
     }
 
     /**
