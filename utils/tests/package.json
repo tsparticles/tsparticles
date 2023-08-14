@@ -9,9 +9,10 @@
     "lint": "echo eslint --no-eslintrc --config .eslintrc.js --ext .js,.jsx,.ts,.tsx --fix src",
     "build": "pnpm run lint && pnpm run prettify && pnpm test",
     "build:ci": "pnpm run lint:ci && pnpm run prettify:ci && pnpm test",
-    "test": "nyc mocha --timeout 30000"
+    "test": "nyc mocha"
   },
   "dependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@types/chai": "^4.3.5",
     "@types/mocha": "^10.0.1",
     "canvas": "^2.11.2",
