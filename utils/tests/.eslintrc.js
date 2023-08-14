@@ -3,6 +3,6 @@ module.exports = {
         "@tsparticles/eslint-config",
     ],
     parserOptions: {
-        project: "./tsconfig.test.json"
+        project: "./tsconfig.json"
     }
 };

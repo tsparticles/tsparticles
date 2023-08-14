@@ -1,17 +1,20 @@
-import { Circle, Point, Rectangle } from "../src";
+import { Circle, Point, Rectangle, tsParticles } from "tsparticles-engine";
 import { describe, it } from "mocha";
-import { QuadTree } from "../src/Core/Utils/QuadTree";
-import { TestContainer } from "./Fixture/TestContainer";
-import { TestParticle } from "./Fixture/TestParticle";
 import { expect } from "chai";
+import { createCanvas } from "canvas";
 
-describe("QuadTree tests", () => {
-    const testContainer = new TestContainer({});
+describe("QuadTree tests", async () => {
+    const container = await tsParticles.load({
+        id: "test",
+        options: {
+            autoPlay: false,
+        },
+        element: createCanvas(200, 200),
+    });
 
-    const canvasSize = {
-        width: 200,
-        height: 200,
-    };
+    if (!container) {
+        throw new Error("container not loaded");
+    }
 
     describe("Rectangle (0, 0, 50, 50) tests", () => {
         const rect1 = new Rectangle(0, 0, 50, 50);
@@ -50,20 +53,18 @@ describe("QuadTree tests", () => {
     });*/
 
     describe("Quad Tree (200x200) tests", () => {
-        const quadTree = new QuadTree(new Rectangle(0, 0, 200, 200), 4);
+        const quadTree = container.particles.quadTree;
 
         describe("Particle (5, 5) tests", () => {
-            const p1 = new TestParticle(testContainer.container, { x: 5, y: 5 });
+            const p1 = container.particles.addParticle({ x: 5, y: 5 });
 
-            expect(p1.particle).to.not.be.undefined;
+            expect(p1).to.not.be.undefined;
 
-            if (!p1.particle) {
+            if (!p1) {
                 return;
             }
 
-            const pos1 = p1.particle.getPosition();
-
-            quadTree.insert(new Point(pos1, p1.particle));
+            //const pos1 = p1.getPosition();
 
             /*it("query (radius 10) with p1 (5, 5) center should have at least p2 (10, 10)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 10, y: 10 });
@@ -150,17 +151,17 @@ describe("QuadTree tests", () => {
         });
 
         describe("Particle (100, 5) tests", () => {
-            const p1 = new TestParticle(testContainer.container, { x: 100, y: 5 });
+            const p1 = container.particles.addParticle({ x: 100, y: 5 });
 
-            expect(p1.particle).to.not.be.undefined;
+            expect(p1).to.not.be.undefined;
 
-            if (!p1.particle) {
+            if (!p1) {
                 return;
             }
 
-            const pos1 = p1.particle.getPosition();
+            const pos1 = p1.getPosition();
 
-            quadTree.insert(new Point(pos1, p1.particle));
+            quadTree.insert(new Point(pos1, p1));
 
             /*it("query (radius 10) with p1 (100, 5) center should have at least p2 (100, 199)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 100, y: 199 });
@@ -180,19 +181,19 @@ describe("QuadTree tests", () => {
         });
 
         describe("Particle (5, 100) tests", () => {
-            const p1 = new TestParticle(testContainer.container, { x: 5, y: 100 });
+            const p1 = container.particles.addParticle({ x: 5, y: 100 });
 
-            expect(p1.particle).to.not.be.undefined;
+            expect(p1).to.not.be.undefined;
 
-            if (!p1.particle) {
+            if (!p1) {
                 return;
             }
 
-            const pos1 = p1.particle.getPosition();
+            const pos1 = p1.getPosition();
 
-            expect(p1.particle).to.not.be.undefined;
+            expect(p1).to.not.be.undefined;
 
-            quadTree.insert(new Point(pos1, p1.particle));
+            quadTree.insert(new Point(pos1, p1));
 
             /*it("query (radius 10) with p1 (5, 100) center should have at least p2 (199, 100)", () => {
                 const p2 = new TestParticle(testContainer.container, { x: 199, y: 100 });

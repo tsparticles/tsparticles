@@ -1,20 +1,40 @@
-import * as NumberUtils from "../src/Utils/NumberUtils";
-import * as Utils from "../src/Utils/Utils";
-import { MoveDirection, OutModeDirection, Vector, tsParticles, getRandom } from "../src";
-import type { ICoordinates, IParticle } from "../src";
+import {
+    type ICoordinates,
+    type Particle,
+    MoveDirection,
+    OutModeDirection,
+    Vector,
+    tsParticles,
+    getRandom,
+    Container,
+    getDistances,
+    clamp,
+    isInArray,
+    mix,
+    arrayRandomIndex,
+    itemFromArray,
+    randomInRange,
+    setRangeValue,
+    getDistance,
+    calculateBounds,
+    areBoundsInside,
+    isPointInside,
+    getParticleBaseVelocity,
+} from "tsparticles-engine";
 import { describe, it } from "mocha";
-import { Container } from "../src/Core/Container";
-import { Particle } from "../src/Core/Particle";
 import { expect } from "chai";
 
-function buildParticleWithDirection(direction: MoveDirection): IParticle {
-    const container = new Container(tsParticles, "someid");
+async function buildParticleWithDirection(
+    container: Container,
+    direction: MoveDirection,
+): Promise<Particle | undefined> {
     const options = { move: { direction } };
-    return new Particle(tsParticles, 1, container, undefined, options);
+
+    return container.particles.addParticle(undefined, options);
 }
 
 function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
-    const { dx, dy } = NumberUtils.getDistances(start, stop);
+    const { dx, dy } = getDistances(start, stop);
     const wallAngle = Math.atan2(dy, dx) + Math.PI / 2;
     const wallNormalX = Math.sin(wallAngle);
     const wallNormalY = -Math.cos(wallAngle);
@@ -32,33 +52,33 @@ describe("Utils", () => {
 
         it("should return minimum when number is less than minimum", () => {
             const num = -5;
-            const clampedNumber = NumberUtils.clamp(num, min, max);
+            const clampedNumber = clamp(num, min, max);
 
             expect(clampedNumber).to.equal(min);
         });
 
         it("should return minimum when number equals minimum", () => {
-            const clampedNumber = NumberUtils.clamp(min, min, max);
+            const clampedNumber = clamp(min, min, max);
 
             expect(clampedNumber).to.equal(min);
         });
 
         it("should return number when number is between minimum and maximum", () => {
             const num = 5;
-            const clampedNumber = NumberUtils.clamp(num, min, max);
+            const clampedNumber = clamp(num, min, max);
 
             expect(clampedNumber).to.equal(num);
         });
 
         it("should return maximum when number equals maximum", () => {
-            const clampedNumber = NumberUtils.clamp(max, min, max);
+            const clampedNumber = clamp(max, min, max);
 
             expect(clampedNumber).to.equal(max);
         });
 
         it("should return maximum when number is greater than maximum", () => {
             const num = 15;
-            const clampedNumber = NumberUtils.clamp(num, min, max);
+            const clampedNumber = clamp(num, min, max);
 
             expect(clampedNumber).to.equal(max);
         });
@@ -72,40 +92,40 @@ describe("Utils", () => {
 
         it("should return true when value is number contained in numeric array", () => {
             const value = numericArray[4];
-            expect(Utils.isInArray(value, numericArray)).to.be.true;
+            expect(isInArray(value, numericArray)).to.be.true;
         });
 
         it("should return false when value is number not contained in numeric array", () => {
             const value = Math.SQRT2;
-            expect(Utils.isInArray(value, numericArray)).to.be.false;
+            expect(isInArray(value, numericArray)).to.be.false;
         });
 
         it("should return true when array is non-array number matching value", () => {
-            expect(Utils.isInArray(Math.LN2, Math.LN2)).to.be.true;
+            expect(isInArray(Math.LN2, Math.LN2)).to.be.true;
         });
 
         it("should return false when array is non-array number not matching value", () => {
-            expect(Utils.isInArray(Math.LN2, Math.LN10)).to.be.false;
+            expect(isInArray(Math.LN2, Math.LN10)).to.be.false;
         });
 
         // String
 
         it("should return true when value is string contained in numeric array", () => {
             const value = stringArray[0];
-            expect(Utils.isInArray(value, stringArray)).to.be.true;
+            expect(isInArray(value, stringArray)).to.be.true;
         });
 
         it("should return false when value is string not contained in numeric array", () => {
             const value = "sit";
-            expect(Utils.isInArray(value, stringArray)).to.be.false;
+            expect(isInArray(value, stringArray)).to.be.false;
         });
 
         it("should return true when array is non-array string matching value", () => {
-            expect(Utils.isInArray(stringArray[0], stringArray[0])).to.be.true;
+            expect(isInArray(stringArray[0], stringArray[0])).to.be.true;
         });
 
         it("should return false when array is non-array string not matching value", () => {
-            expect(Utils.isInArray(stringArray[0], stringArray[1])).to.be.false;
+            expect(isInArray(stringArray[0], stringArray[1])).to.be.false;
         });
     });
 
@@ -119,23 +139,21 @@ describe("Utils", () => {
             const weight2 = weight1;
             const mean = Math.floor((comp1 + comp2) / 2);
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
         });
 
         it("should return comp1 when weight2 is 0 (and weight1 > 0)", () => {
             const weight1 = Math.floor(getRandom() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(
-                Math.floor(comp1),
-            );
+            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(Math.floor(comp1));
         });
 
         it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
             const weight1 = 0;
             const weight2 = Math.floor(getRandom() * (size - 1) + 1);
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
         });
 
         it("should return the expected weighted-average when weights differ", () => {
@@ -144,7 +162,7 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
         });
 
         it("should handle negative components", () => {
@@ -153,14 +171,14 @@ describe("Utils", () => {
             const weight1 = 2;
             const weight2 = 1;
 
-            expect(NumberUtils.mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
+            expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
         });
     });
 
     describe("arrayRandomIndex", () => {
         it("should always return an index that is not out of the bounds of the array", () => {
             const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-            const randomIndex = Utils.arrayRandomIndex(array);
+            const randomIndex = arrayRandomIndex(array);
 
             expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
             expect(randomIndex).to.be.at.least(0);
@@ -175,42 +193,36 @@ describe("Utils", () => {
         const objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
 
         it("should always return a random item from a numeric array", () => {
-            const randomItem = Utils.itemFromArray(numericArray);
+            const randomItem = itemFromArray(numericArray);
 
-            expect(numericArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
-                randomItem,
-            );
+            expect(numericArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
         });
 
         it("should return the requested numeric item when specifying index", () => {
             const index = 3;
-            expect(Utils.itemFromArray(numericArray, index)).to.equal(numericArray[index]);
+            expect(itemFromArray(numericArray, index)).to.equal(numericArray[index]);
         });
 
         it("should always return a random item from a string array", () => {
-            const randomItem = Utils.itemFromArray(stringArray);
+            const randomItem = itemFromArray(stringArray);
 
-            expect(stringArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
-                randomItem,
-            );
+            expect(stringArray, "itemFromArray returned us an item not in the original array").to.include(randomItem);
         });
 
         it("should return the requested string item when specifying index", () => {
             const index = 1;
-            expect(Utils.itemFromArray(stringArray, index)).to.equal(stringArray[index]);
+            expect(itemFromArray(stringArray, index)).to.equal(stringArray[index]);
         });
 
         it("should always return a random object from an array of objects", () => {
-            const randomObject = Utils.itemFromArray(objectArray);
+            const randomObject = itemFromArray(objectArray);
 
-            expect(objectArray, "Utils.itemFromArray returned us an item not in the original array").to.include(
-                randomObject,
-            );
+            expect(objectArray, "itemFromArray returned us an item not in the original array").to.include(randomObject);
         });
 
         it("should return the requested object when specifying index", () => {
             const index = 1;
-            expect(Utils.itemFromArray(objectArray, index)).to.eql(objectArray[index]);
+            expect(itemFromArray(objectArray, index)).to.eql(objectArray[index]);
         });
     });
 
@@ -218,7 +230,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in positive reals", () => {
             const min = 1;
             const max = 10;
-            const randomNumber = NumberUtils.randomInRange(NumberUtils.setRangeValue(min, max));
+            const randomNumber = randomInRange(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -226,7 +238,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in negative reals", () => {
             const min = -10;
             const max = -1;
-            const randomNumber = NumberUtils.randomInRange(NumberUtils.setRangeValue(min, max));
+            const randomNumber = randomInRange(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -234,7 +246,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
             const min = -10;
             const max = 10;
-            const randomNumber = NumberUtils.randomInRange(NumberUtils.setRangeValue(min, max));
+            const randomNumber = randomInRange(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -242,7 +254,7 @@ describe("Utils", () => {
         it("should set min as 0 when max equals to min", () => {
             const min = 10;
             const max = 10;
-            const randomNumber = NumberUtils.randomInRange(NumberUtils.setRangeValue(min, max));
+            const randomNumber = randomInRange(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(0, max);
         });
@@ -253,35 +265,35 @@ describe("Utils", () => {
         const precision = 1e-10;
 
         it("should return 0 whenever points are identical", () => {
-            expect(NumberUtils.getDistance(point, point)).to.be.closeTo(0, precision);
+            expect(getDistance(point, point)).to.be.closeTo(0, precision);
         });
 
         it("should calculate correct distance when both points are in first quadrant", () => {
             const pointA = point;
             const pointB = { x: 2, y: 2 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
+            expect(getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
         });
 
         it("should calculate correct distance when one point is in first quadrant and one is in second quadrant", () => {
             const pointA = point;
             const pointB = { x: -1, y: 1 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(2, precision);
+            expect(getDistance(pointA, pointB)).to.be.closeTo(2, precision);
         });
 
         it("should calculate correct distance when one point is in first quadrant and one is in third quadrant", () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
+            expect(getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
         });
 
         it("should return the same distance regardless of the order of the points", () => {
             const pointA = point;
             const pointB = { x: -1, y: -1 };
 
-            expect(NumberUtils.getDistance(pointA, pointB)).to.equal(NumberUtils.getDistance(pointB, pointA));
+            expect(getDistance(pointA, pointB)).to.equal(getDistance(pointB, pointA));
         });
     });
 
@@ -289,7 +301,7 @@ describe("Utils", () => {
         it("should return the correct bounds", () => {
             const point = { x: 0, y: 0 };
             const radius = 1;
-            const calculatedBounds = Utils.calculateBounds(point, radius);
+            const calculatedBounds = calculateBounds(point, radius);
             const expectedBounds = {
                 bottom: radius, // On a display, going down the screen is actually increasing in y
                 left: -radius,
@@ -312,7 +324,7 @@ describe("Utils", () => {
                 right: dimension.width,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds are completely inside the screen", () => {
@@ -323,7 +335,7 @@ describe("Utils", () => {
                 right: 200,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap top of the screen", () => {
@@ -334,7 +346,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap bottom of the screen", () => {
@@ -345,7 +357,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap the left of the screen", () => {
@@ -356,7 +368,7 @@ describe("Utils", () => {
                 right: 1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the bounds overlap the right of the screen", () => {
@@ -367,7 +379,7 @@ describe("Utils", () => {
                 right: dimension.width + 1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return false when the bounds do not intersect the screen and are above", () => {
@@ -378,7 +390,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are below", () => {
@@ -389,7 +401,7 @@ describe("Utils", () => {
                 right: 101,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are to the left", () => {
@@ -400,7 +412,7 @@ describe("Utils", () => {
                 right: -1,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return false when the bounds do not intersect the screen and are to the right", () => {
@@ -411,7 +423,7 @@ describe("Utils", () => {
                 right: dimension.width + 2,
             };
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when direction is top and the bounds do not intersect the screen and are below", () => {
@@ -423,7 +435,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.top;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
         });
 
         it("should return false when direction is top and the bounds do not intersect the screen and are above", () => {
@@ -435,7 +447,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.top;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
         });
 
         it("should return true when direction is bottom and the bounds do not intersect the screen and are above", () => {
@@ -447,7 +459,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.bottom;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
         });
 
         it("should return false when direction is bottom and the bounds do not intersect the screen and are below", () => {
@@ -459,7 +471,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.bottom;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
         });
 
         it("should return true when direction is left and the bounds do not intersect the screen and are to the right", () => {
@@ -471,7 +483,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.left;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
         });
 
         it("should return false when direction is left and the bounds do not intersect the screen and are to the left", () => {
@@ -483,7 +495,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.left;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
         });
 
         it("should return true when direction is right and the bounds do not intersect the screen and are to the left", () => {
@@ -495,7 +507,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.right;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
         });
 
         it("should return false when direction is right and the bounds do not intersect the screen and are to the right", () => {
@@ -507,7 +519,7 @@ describe("Utils", () => {
             };
             const direction = OutModeDirection.right;
 
-            expect(Utils.areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
+            expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
         });
     });
 
@@ -520,93 +532,141 @@ describe("Utils", () => {
         const rightPoint = { x: dimension.width, y: dimension.height / 2 };
 
         it("should return true when the point lies inside the screen, no radius", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin)).to.be.true;
+            expect(isPointInside(centerPoint, dimension, Vector.origin)).to.be.true;
         });
 
         it("should return true when the point lies inside the screen, radius inside dimensions", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin, 100)).to.be.true;
+            expect(isPointInside(centerPoint, dimension, Vector.origin, 100)).to.be.true;
         });
 
         it("should return true when the point overlaps top and bottom but not left and right", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin, 1000)).to.be.true;
+            expect(isPointInside(centerPoint, dimension, Vector.origin, 1000)).to.be.true;
         });
 
         it("should return true when the point overlaps all sides of the screen", () => {
-            expect(Utils.isPointInside(centerPoint, dimension, Vector.origin, 10000)).to.be.true;
+            expect(isPointInside(centerPoint, dimension, Vector.origin, 10000)).to.be.true;
         });
 
         it("should return false when point lies on top boundary of screen with no radius", () => {
-            expect(Utils.isPointInside(topPoint, dimension, Vector.origin)).to.be.false;
+            expect(isPointInside(topPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on top boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(topPoint, dimension, Vector.origin, getRandom())).to.be.true;
+            expect(isPointInside(topPoint, dimension, Vector.origin, getRandom())).to.be.true;
         });
 
         it("should return false when point lies on bottom boundary of screen with no radius", () => {
-            expect(Utils.isPointInside(bottomPoint, dimension, Vector.origin)).to.be.false;
+            expect(isPointInside(bottomPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on bottom boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(bottomPoint, dimension, Vector.origin, getRandom())).to.be.true;
+            expect(isPointInside(bottomPoint, dimension, Vector.origin, getRandom())).to.be.true;
         });
 
         it("should return false when point lies on left boundary of screen with no radius", () => {
-            expect(Utils.isPointInside(leftPoint, dimension, Vector.origin)).to.be.false;
+            expect(isPointInside(leftPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on left boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(leftPoint, dimension, Vector.origin, getRandom())).to.be.true;
+            expect(isPointInside(leftPoint, dimension, Vector.origin, getRandom())).to.be.true;
         });
 
         it("should return false when point lies on right boundary of screen with no radius", () => {
-            expect(Utils.isPointInside(rightPoint, dimension, Vector.origin)).to.be.false;
+            expect(isPointInside(rightPoint, dimension, Vector.origin)).to.be.false;
         });
 
         it("should return true when point lies on right boundary of screen with non-zero radius", () => {
-            expect(Utils.isPointInside(rightPoint, dimension, Vector.origin, getRandom())).to.be.true;
+            expect(isPointInside(rightPoint, dimension, Vector.origin, getRandom())).to.be.true;
         });
     });
 
-    describe("getParticleBaseVelocity", () => {
-        it("should return the proper base velocity, when it's moving top", () => {
-            const particle = buildParticleWithDirection(MoveDirection.top);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 2);
+    describe("getParticleBaseVelocity", async () => {
+        const container = await tsParticles.load({
+            id: "test",
         });
 
-        it("should return the proper base velocity, when it's moving top-right", () => {
-            const particle = buildParticleWithDirection(MoveDirection.topRight);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 4);
+        if (!container) {
+            throw new Error("Container not found");
+        }
+
+        it("should return the proper base velocity, when it's moving top", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.top);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 2);
         });
 
-        it("should return the proper base velocity, when it's moving right", () => {
-            const particle = buildParticleWithDirection(MoveDirection.right);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql(0);
+        it("should return the proper base velocity, when it's moving top-right", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.topRight);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 4);
         });
 
-        it("should return the proper base velocity, when it's moving bottom-right", () => {
-            const particle = buildParticleWithDirection(MoveDirection.bottomRight);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 4);
+        it("should return the proper base velocity, when it's moving right", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.right);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql(0);
         });
 
-        it("should return the proper base velocity, when it's moving bottom", () => {
-            const particle = buildParticleWithDirection(MoveDirection.bottom);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 2);
+        it("should return the proper base velocity, when it's moving bottom-right", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.bottomRight);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 4);
         });
 
-        it("should return the proper base velocity, when it's moving bottom-left", () => {
-            const particle = buildParticleWithDirection(MoveDirection.bottomLeft);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql((3 * Math.PI) / 4);
+        it("should return the proper base velocity, when it's moving bottom", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.bottom);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 2);
         });
 
-        it("should return the proper base velocity, when it's moving left", () => {
-            const particle = buildParticleWithDirection(MoveDirection.left);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI);
+        it("should return the proper base velocity, when it's moving bottom-left", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.bottomLeft);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql((3 * Math.PI) / 4);
         });
 
-        it("should return the proper base velocity, when it's moving top-left", () => {
-            const particle = buildParticleWithDirection(MoveDirection.topLeft);
-            expect(NumberUtils.getParticleBaseVelocity(particle.direction).angle).to.eql((-3 * Math.PI) / 4);
+        it("should return the proper base velocity, when it's moving left", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.left);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI);
+        });
+
+        it("should return the proper base velocity, when it's moving top-left", async () => {
+            const particle = await buildParticleWithDirection(container, MoveDirection.topLeft);
+
+            if (!particle) {
+                throw new Error("Particle not found");
+            }
+
+            expect(getParticleBaseVelocity(particle.direction).angle).to.eql((-3 * Math.PI) / 4);
         });
     });
 
