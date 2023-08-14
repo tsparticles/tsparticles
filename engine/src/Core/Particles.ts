@@ -82,8 +82,8 @@ export class Particles {
 
         this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
-        this.movers = this._engine.plugins.getMovers(container, true);
-        this.updaters = this._engine.plugins.getUpdaters(container, true);
+        this.movers = this._engine.getMovers(container, true);
+        this.updaters = this._engine.getUpdaters(container, true);
     }
 
     get count(): number {
@@ -184,7 +184,7 @@ export class Particles {
 
         let handled = false;
 
-        this.updaters = this._engine.plugins.getUpdaters(container, true);
+        this.updaters = this._engine.getUpdaters(container, true);
         this._interactionManager.init();
 
         for (const [, plugin] of container.plugins) {

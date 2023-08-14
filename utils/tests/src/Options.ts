@@ -4,22 +4,35 @@ import {
     HoverMode,
     InteractivityDetect,
     MoveDirection,
-    Options,
     OptionsColor,
     OutMode,
-    ParticlesOptions,
+    type IParticlesOptions,
+    type RecursivePartial,
     tsParticles,
-} from "../src";
-import type { IParticlesOptions, RecursivePartial } from "../src";
+    type ISourceOptions,
+} from "tsparticles-engine";
 import { describe, it } from "mocha";
-import { TestContainer } from "./Fixture/TestContainer";
 import { expect } from "chai";
-
-const testContainer = new TestContainer({});
+import { TestWindow } from "./Fixture/Window";
 
 describe("Options tests", () => {
-    it("checking default options", () => {
-        const options = new Options(tsParticles, testContainer.container);
+    globalThis.window = TestWindow;
+
+    it("checking default options", async () => {
+        const container = await tsParticles.load({
+            id: "test",
+            options: {
+                autoPlay: false,
+            },
+        });
+
+        expect(container).to.be.not.undefined;
+
+        if (!container) {
+            return;
+        }
+
+        const options = container.options;
 
         /* background */
         expect(options.background.color).to.include({ value: "" });
@@ -156,106 +169,116 @@ describe("Options tests", () => {
         expect(options.pauseOnOutsideViewport).to.be.true;
     });
 
-    it("check default preset options", () => {
-        const options = new Options(tsParticles, testContainer.container);
-        const preset = {
-            background: {
-                color: "#0d47a1",
-            },
-            interactivity: {
-                detectsOn: InteractivityDetect.canvas,
-                events: {
-                    onClick: {
-                        enable: true,
-                        mode: ClickMode.push,
-                    },
-                    onHover: {
-                        enable: true,
-                        mode: HoverMode.repulse,
-                    },
-                    resize: true,
+    it("check default preset options", async () => {
+        const preset: ISourceOptions = {
+                autoPlay: false,
+                background: {
+                    color: "#0d47a1",
                 },
-                modes: {
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 0.8,
-                    },
-                    grab: {
-                        distance: 400,
-                        links: {
-                            opacity: 1,
+                interactivity: {
+                    detectsOn: InteractivityDetect.canvas,
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: ClickMode.push,
                         },
+                        onHover: {
+                            enable: true,
+                            mode: HoverMode.repulse,
+                        },
+                        resize: true,
                     },
-                    push: {
-                        quantity: 4,
-                    },
-                    remove: {
-                        quantity: 2,
-                    },
-                    repulse: {
-                        distance: 200,
-                    },
-                },
-            },
-            particles: {
-                color: {
-                    value: "#ffffff",
-                },
-                links: {
-                    enable: true,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1,
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: MoveDirection.none,
-                    random: false,
-                    straight: false,
-                    outModes: OutMode.out,
-                    attract: {
-                        enable: false,
-                        rotate: {
-                            x: 600,
-                            y: 1200,
+                    modes: {
+                        bubble: {
+                            distance: 400,
+                            size: 40,
+                            duration: 2,
+                            opacity: 0.8,
+                        },
+                        grab: {
+                            distance: 400,
+                            links: {
+                                opacity: 1,
+                            },
+                        },
+                        push: {
+                            quantity: 4,
+                        },
+                        remove: {
+                            quantity: 2,
+                        },
+                        repulse: {
+                            distance: 200,
                         },
                     },
                 },
-                number: {
-                    value: 80,
-                    density: {
+                particles: {
+                    color: {
+                        value: "#ffffff",
+                    },
+                    links: {
                         enable: true,
+                        distance: 150,
+                        color: "#ffffff",
+                        opacity: 0.4,
+                        width: 1,
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: MoveDirection.none,
+                        random: false,
+                        straight: false,
+                        outModes: OutMode.out,
+                        attract: {
+                            enable: false,
+                            rotate: {
+                                x: 600,
+                                y: 1200,
+                            },
+                        },
+                    },
+                    number: {
+                        value: 80,
+                        density: {
+                            enable: true,
+                        },
+                    },
+                    shape: {
+                        type: "circle",
+                    },
+                    opacity: {
+                        value: { min: 0.1, max: 0.5 },
+                        animation: {
+                            enable: true,
+                            speed: 3,
+                            sync: false,
+                        },
+                    },
+                    size: {
+                        value: { min: 0.1, max: 5 },
+                        random: true,
+                        animation: {
+                            enable: true,
+                            speed: 20,
+                            sync: false,
+                        },
                     },
                 },
-                shape: {
-                    type: "circle",
-                },
-                opacity: {
-                    value: { min: 0.1, max: 0.5 },
-                    animation: {
-                        enable: true,
-                        speed: 3,
-                        sync: false,
-                    },
-                },
-                size: {
-                    value: { min: 0.1, max: 5 },
-                    random: true,
-                    animation: {
-                        enable: true,
-                        speed: 20,
-                        sync: false,
-                    },
-                },
+                detectRetina: true,
             },
-            detectRetina: true,
-        };
+            container = await tsParticles.load({
+                id: "test",
+                options: preset,
+            });
 
-        options.load(preset);
+        expect(container).to.be.not.undefined;
+
+        if (!container) {
+            return;
+        }
+
+        const options = container.options;
 
         /* background */
         expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
@@ -330,108 +353,115 @@ describe("Options tests", () => {
         expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
     });
 
-    it("check test preset options", () => {
-        const options = new Options(tsParticles, testContainer.container);
-        const preset = {
-            background: {
-                color: "#0d47a1",
-            },
-            interactivity: {
-                detectsOn: InteractivityDetect.canvas,
-                events: {
-                    onClick: {
+    it("check test preset options", async () => {
+        const preset: ISourceOptions = {
+                autoPlay: false,
+                background: {
+                    color: "#0d47a1",
+                },
+                interactivity: {
+                    detectsOn: InteractivityDetect.canvas,
+                    events: {
+                        onClick: {
+                            enable: true,
+                            mode: ClickMode.repulse,
+                        },
+                        onHover: {
+                            enable: false,
+                            mode: HoverMode.grab,
+                        },
+                        resize: true,
+                    },
+                    modes: {
+                        bubble: {
+                            distance: 400,
+                            size: 40,
+                            duration: 2,
+                            opacity: 8,
+                        },
+                        grab: {
+                            distance: 200,
+                            links: {
+                                opacity: 1,
+                            },
+                        },
+                        repulse: {
+                            distance: 200,
+                        },
+                        push: {
+                            quantity: 4,
+                        },
+                        remove: {
+                            quantity: 2,
+                        },
+                    },
+                },
+                particles: {
+                    color: {
+                        value: "#ffffff",
+                    },
+                    links: {
+                        enable: false,
+                        distance: 150,
+                        color: "#ffffff",
+                        opacity: 0.4,
+                        width: 1,
+                    },
+                    move: {
                         enable: true,
-                        mode: ClickMode.repulse,
-                    },
-                    onHover: {
-                        enable: false,
-                        mode: HoverMode.grab,
-                    },
-                    resize: true,
-                },
-                modes: {
-                    bubble: {
-                        distance: 400,
-                        size: 40,
-                        duration: 2,
-                        opacity: 8,
-                    },
-                    grab: {
-                        distance: 200,
-                        links: {
-                            opacity: 1,
+                        speed: 2,
+                        direction: MoveDirection.none,
+                        random: false,
+                        straight: false,
+                        outModes: OutMode.bounce,
+                        bounce: false,
+                        attract: {
+                            enable: false,
+                            rotate: {
+                                x: 600,
+                                y: 1200,
+                            },
                         },
                     },
-                    repulse: {
-                        distance: 200,
+                    number: {
+                        value: 100,
+                        density: {
+                            enable: false,
+                        },
                     },
-                    push: {
-                        quantity: 4,
+                    shape: {
+                        type: "circle",
                     },
-                    remove: {
-                        quantity: 2,
+                    opacity: {
+                        value: 0.5,
+                        random: false,
+                        animation: {
+                            enable: false,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false,
+                        },
                     },
-                },
-            },
-            particles: {
-                color: {
-                    value: "#ffffff",
-                },
-                links: {
-                    enable: false,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1,
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: MoveDirection.none,
-                    random: false,
-                    straight: false,
-                    outModes: OutMode.bounce,
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotate: {
-                            x: 600,
-                            y: 1200,
+                    size: {
+                        value: { min: 1, max: 4 },
+                        animation: {
+                            enable: false,
+                            speed: 40,
+                            sync: false,
                         },
                     },
                 },
-                number: {
-                    value: 100,
-                    density: {
-                        enable: false,
-                    },
-                },
-                shape: {
-                    type: "circle",
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                    animation: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false,
-                    },
-                },
-                size: {
-                    value: { min: 1, max: 4 },
-                    animation: {
-                        enable: false,
-                        speed: 40,
-                        sync: false,
-                    },
-                },
+                detectRetina: true,
             },
-            detectRetina: true,
-        };
+            container = await tsParticles.load({ id: "test", options: preset });
 
-        options.load(preset);
+        expect(container).to.be.not.undefined;
+
+        if (!container) {
+            return;
+        }
+
+        const options = container.options;
 
         /* background */
         expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
@@ -521,63 +551,72 @@ describe("Options tests", () => {
         expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
     });
 
-    it("check particlesOptions override", () => {
-        const particlesOptions = new ParticlesOptions(tsParticles, testContainer.container);
-
-        const generalOptions: RecursivePartial<IParticlesOptions> = {
-            number: {
-                value: 100,
-                density: {
-                    enable: false,
+    it("check particlesOptions override", async () => {
+        const generalOptions: ISourceOptions = {
+                number: {
+                    value: 100,
+                    density: {
+                        enable: false,
+                    },
                 },
-            },
-            color: {
-                value: "#000",
-            },
-            shape: {
-                type: "circle",
-            },
-            opacity: {
-                value: 0.5,
-                animation: {
-                    enable: false,
-                    speed: 1,
-                    sync: false,
+                color: {
+                    value: "#000",
                 },
-            },
-            size: {
-                value: { min: 0.1, max: 5 },
-                animation: {
-                    enable: false,
-                    speed: 40,
-                    sync: false,
+                shape: {
+                    type: "circle",
                 },
-            },
-            links: {
-                enable: true,
-                distance: 150,
-                color: "#000",
-                opacity: 0.4,
-                width: 1,
-            },
-            move: {
-                enable: true,
-                speed: 2,
-                direction: MoveDirection.none,
-                random: false,
-                straight: false,
-                outModes: OutMode.out,
-                attract: {
-                    enable: false,
-                    rotate: {
-                        x: 600,
-                        y: 1200,
+                opacity: {
+                    value: 0.5,
+                    animation: {
+                        enable: false,
+                        speed: 1,
+                        sync: false,
+                    },
+                },
+                size: {
+                    value: { min: 0.1, max: 5 },
+                    animation: {
+                        enable: false,
+                        speed: 40,
+                        sync: false,
+                    },
+                },
+                links: {
+                    enable: true,
+                    distance: 150,
+                    color: "#000",
+                    opacity: 0.4,
+                    width: 1,
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: MoveDirection.none,
+                    random: false,
+                    straight: false,
+                    outModes: OutMode.out,
+                    attract: {
+                        enable: false,
+                        rotate: {
+                            x: 600,
+                            y: 1200,
+                        },
                     },
                 },
             },
-        };
+            container = await tsParticles.load({
+                id: "test",
+                options: {
+                    autoPlay: false,
+                    particles: generalOptions,
+                },
+            });
 
-        particlesOptions.load(generalOptions);
+        expect(container).to.be.not.undefined;
+
+        if (!container) {
+            return;
+        }
 
         const emitterOptions: RecursivePartial<IParticlesOptions> = {
             color: { value: "#f0f" },
@@ -593,9 +632,9 @@ describe("Options tests", () => {
             size: { value: 15 },
         };
 
-        particlesOptions.load(emitterOptions);
+        container.options.particles.load(emitterOptions);
 
-        expect(particlesOptions).to.not.include(generalOptions).and.include(emitterOptions);
+        expect(container.options.particles).to.not.include(generalOptions).and.include(emitterOptions);
     });
 
     it("check color options override", () => {

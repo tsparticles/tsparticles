@@ -1,0 +1,26 @@
+{
+  "name": "tsparticles-tests",
+  "private": true,
+  "version": "2.12.0",
+  "scripts": {
+    "prettify:ci": "prettier --check ./src",
+    "prettify": "prettier --write ./src",
+    "lint:ci": "echo eslint --no-eslintrc --config .eslintrc.js --ext .js,.jsx,.ts,.tsx src",
+    "lint": "echo eslint --no-eslintrc --config .eslintrc.js --ext .js,.jsx,.ts,.tsx --fix src",
+    "build": "pnpm run lint && pnpm run prettify && pnpm test",
+    "build:ci": "pnpm run lint:ci && pnpm run prettify:ci && pnpm test",
+    "test": "nyc mocha"
+  },
+  "dependencies": {
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
+    "@types/chai": "^4.3.5",
+    "@types/mocha": "^10.0.1",
+    "canvas": "^2.11.2",
+    "chai": "^4.3.7",
+    "cross-env": "^7.0.3",
+    "jsdom": "^22.1.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "tsparticles-engine": "^2.12.0"
+  }
+}
