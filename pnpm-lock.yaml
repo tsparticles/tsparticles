@@ -659,8 +659,8 @@ importers:
         version: link:../../bundles/full/dist
     devDependencies:
       electron:
-        specifier: ^25.0.0
-        version: 25.0.0
+        specifier: ^26.0.0
+        version: 26.0.0
       webpack:
         specifier: ^5.82.0
         version: 5.82.0(webpack-cli@5.1.4)
@@ -12157,8 +12157,8 @@ packages:
   /electron-to-chromium@1.4.447:
     resolution: {integrity: sha512-sxX0LXh+uL41hSJsujAN86PjhrV/6c79XmpY0TvjZStV6VxIgarf8SRkUoUTuYmFcZQTemsoqo8qXOGw5npWfw==}
 
-  /electron@25.0.0:
-    resolution: {integrity: sha512-8Bjlpw52XW447RKjYGaaizWI4x0dv4gATNn7ssuonySbDgeJNqUnIJQGBrpXyB3VUROVmhXnTWB9VWRzv6uVlA==}
+  /electron@26.0.0:
+    resolution: {integrity: sha512-x57bdCaDvgnlc41VOm/UWihJCCiI3OxJKiBgB/e5F7Zd6avo+61mO6IzQS7Bu/k/a1KPjou25EUORR6UPKznBQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
