@@ -545,8 +545,8 @@ importers:
         version: link:../../engine/dist
     devDependencies:
       electron:
-        specifier: ^25.3.1
-        version: 25.3.1
+        specifier: ^26.0.0
+        version: 26.0.0
 
   demo/vanilla:
     dependencies:
@@ -7172,8 +7172,8 @@ packages:
   /electron-to-chromium@1.4.482:
     resolution: {integrity: sha512-h+UqpfmEr1Qkk0zp7ej/jid7CXoq4m4QzW6wNTb0ELJ/BZCpA4wgUylBIMGCe621tnr4l5VmoHjdoSx2lbnNJA==}
 
-  /electron@25.3.1:
-    resolution: {integrity: sha512-t0QXXqgf0/P0OJ9LU3qpcBMK+wL0FRwTQfooBaaG08v5hywPzc1yplfb3l4tS1xC0Ttw8IBaKLBeEoRgxBRHjg==}
+  /electron@26.0.0:
+    resolution: {integrity: sha512-x57bdCaDvgnlc41VOm/UWihJCCiI3OxJKiBgB/e5F7Zd6avo+61mO6IzQS7Bu/k/a1KPjou25EUORR6UPKznBQ==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
     requiresBuild: true
