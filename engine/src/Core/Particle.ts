@@ -337,13 +337,14 @@ export class Particle implements IParticle {
     }
 
     draw(delta: IDelta): void {
-        const container = this.container;
+        const container = this.container,
+            canvas = container.canvas;
 
         for (const [, plugin] of container.plugins) {
-            container.canvas.drawParticlePlugin(plugin, this, delta);
+            canvas.drawParticlePlugin(plugin, this, delta);
         }
 
-        container.canvas.drawParticle(this, delta);
+        canvas.drawParticle(this, delta);
     }
 
     getFillColor(): IHsl | undefined {
