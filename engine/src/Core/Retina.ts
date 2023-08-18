@@ -27,7 +27,8 @@ export class Retina {
         this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
         this.reduceFactor = 1;
 
-        const ratio = this.pixelRatio, canvas = container.canvas;
+        const ratio = this.pixelRatio,
+            canvas = container.canvas;
 
         if (canvas.element) {
             const element = canvas.element;
