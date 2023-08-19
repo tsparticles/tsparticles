@@ -27,13 +27,14 @@ export class Retina {
         this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
         this.reduceFactor = 1;
 
-        const ratio = this.pixelRatio;
+        const ratio = this.pixelRatio,
+            canvas = container.canvas;
 
-        if (container.canvas.element) {
-            const element = container.canvas.element;
+        if (canvas.element) {
+            const element = canvas.element;
 
-            container.canvas.size.width = element.offsetWidth * ratio;
-            container.canvas.size.height = element.offsetHeight * ratio;
+            canvas.size.width = element.offsetWidth * ratio;
+            canvas.size.height = element.offsetHeight * ratio;
         }
 
         const particles = options.particles,

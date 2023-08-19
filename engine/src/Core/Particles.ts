@@ -108,6 +108,8 @@ export class Particles {
         group?: string,
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
+        this.pushing = true;
+
         const container = this._container,
             options = container.actualOptions,
             limit = options.particles.number.limit;
@@ -120,7 +122,11 @@ export class Particles {
             }
         }
 
-        return this._pushParticle(position, overrideOptions, group, initializer);
+        const res = this._pushParticle(position, overrideOptions, group, initializer);
+
+        this.pushing = false;
+
+        return res;
     }
 
     /**
@@ -139,17 +145,18 @@ export class Particles {
     }
 
     async draw(delta: IDelta): Promise<void> {
-        const container = this._container;
+        const container = this._container,
+            canvas = container.canvas;
 
         /* clear canvas */
-        container.canvas.clear();
+        canvas.clear();
 
         /* update each particle before drawing */
         await this.update(delta);
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
-            container.canvas.drawPlugin(plugin, delta);
+            canvas.drawPlugin(plugin, delta);
         }
 
         /*container.canvas.draw((ctx) => {
@@ -168,6 +175,10 @@ export class Particles {
 
     find(condition: (particle: Particle) => boolean): Particle | undefined {
         return this._array.find(condition);
+    }
+
+    get(index: number): Particle | undefined {
+        return this._array[index];
     }
 
     handleClickMode(mode: ClickMode | string): void {
@@ -206,32 +217,31 @@ export class Particles {
         this.addManualParticles();
 
         if (!handled) {
-            for (const group in options.particles.groups) {
-                const groupOptions = options.particles.groups[group];
+            const particlesOptions = options.particles,
+                groups = options.particles.groups;
+
+            for (const group in groups) {
+                const groupOptions = groups[group];
 
                 for (
                     let i = this.count, j = 0;
-                    j < groupOptions.number?.value && i < options.particles.number.value;
+                    j < groupOptions.number?.value && i < particlesOptions.number.value;
                     i++, j++
                 ) {
                     this.addParticle(undefined, groupOptions, group);
                 }
             }
 
-            for (let i = this.count; i < options.particles.number.value; i++) {
+            for (let i = this.count; i < particlesOptions.number.value; i++) {
                 this.addParticle();
             }
         }
     }
 
     push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
-        this.pushing = true;
-
         for (let i = 0; i < nb; i++) {
             this.addParticle(mouse?.position, overrideOptions, group);
         }
-
-        this.pushing = false;
     }
 
     async redraw(): Promise<void> {
@@ -305,9 +315,7 @@ export class Particles {
                     break;
                 }
 
-                if (plugin.particleUpdate) {
-                    plugin.particleUpdate(particle, delta);
-                }
+                plugin.particleUpdate && plugin.particleUpdate(particle, delta);
             }
 
             for (const mover of this.movers) {
@@ -391,7 +399,7 @@ export class Particles {
         const canvas = container.canvas.element,
             pxRatio = container.retina.pixelRatio;
 
-        return (canvas.width * canvas.height) / (densityOptions.factor * pxRatio ** 2 * densityOptions.area);
+        return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** 2);
     };
 
     private readonly _pushParticle: (
@@ -452,10 +460,8 @@ export class Particles {
 
         particle.destroy(override);
 
-        const zIdx = this._zArray.indexOf(particle);
-
         this._array.splice(index, 1);
-        this._zArray.splice(zIdx, 1);
+        this._zArray = this._zArray.splice(this._zArray.indexOf(particle), 1);
 
         this.pool.push(particle);
 

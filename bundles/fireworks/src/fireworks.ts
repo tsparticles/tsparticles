@@ -90,14 +90,14 @@ async function initPlugins(): Promise<void> {
 
     initializing = true;
 
-    await loadBasic(tsParticles);
-    await loadEmittersPlugin(tsParticles);
-    await loadSoundsPlugin(tsParticles);
-    await loadLineShape(tsParticles);
-    await loadRotateUpdater(tsParticles);
-    await loadDestroyUpdater(tsParticles);
-    await loadLifeUpdater(tsParticles);
-    await loadStrokeColorUpdater(tsParticles);
+    await loadEmittersPlugin(tsParticles, false);
+    await loadSoundsPlugin(tsParticles, false);
+    await loadLineShape(tsParticles, false);
+    await loadRotateUpdater(tsParticles, false);
+    await loadDestroyUpdater(tsParticles, false);
+    await loadLifeUpdater(tsParticles, false);
+    await loadStrokeColorUpdater(tsParticles, false);
+    await loadBasic(tsParticles, false);
 
     initializing = false;
     initialized = true;

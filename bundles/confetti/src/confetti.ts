@@ -105,21 +105,21 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     initializing = true;
 
+    await loadEmittersPlugin(engine, false);
+    await loadMotionPlugin(engine, false);
+    await loadCardsShape(engine, false);
+    await loadHeartShape(engine, false);
+    await loadImageShape(engine, false);
+    await loadPolygonShape(engine, false);
+    await loadSquareShape(engine, false);
+    await loadStarShape(engine, false);
+    await loadTextShape(engine, false);
+    await loadRotateUpdater(engine, false);
+    await loadLifeUpdater(engine, false);
+    await loadRollUpdater(engine, false);
+    await loadTiltUpdater(engine, false);
+    await loadWobbleUpdater(engine, false);
     await loadBasic(engine);
-    await loadEmittersPlugin(engine);
-    await loadMotionPlugin(engine);
-    await loadCardsShape(engine);
-    await loadHeartShape(engine);
-    await loadImageShape(engine);
-    await loadPolygonShape(engine);
-    await loadSquareShape(engine);
-    await loadStarShape(engine);
-    await loadTextShape(engine);
-    await loadRotateUpdater(engine);
-    await loadLifeUpdater(engine);
-    await loadRollUpdater(engine);
-    await loadTiltUpdater(engine);
-    await loadWobbleUpdater(engine);
 
     initializing = false;
     initialized = true;

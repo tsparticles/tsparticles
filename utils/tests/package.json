@@ -12,15 +12,6 @@
     "test": "nyc mocha"
   },
   "dependencies": {
-    "@istanbuljs/nyc-config-typescript": "^1.0.2",
-    "@types/chai": "^4.3.5",
-    "@types/mocha": "^10.0.1",
-    "canvas": "^2.11.2",
-    "chai": "^4.3.7",
-    "cross-env": "^7.0.3",
-    "jsdom": "^22.1.0",
-    "mocha": "^10.2.0",
-    "nyc": "^15.1.0",
     "tsparticles-engine": "^2.12.0"
   }
 }
