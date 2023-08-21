@@ -9835,7 +9835,7 @@ packages:
     hasBin: true
     dependencies:
       '@tsparticles/eslint-config': 1.15.0
-      '@tsparticles/prettier-config': 1.11.0
+      '@tsparticles/prettier-config': 1.12.0
       '@tsparticles/tsconfig': 1.14.0
       '@typescript-eslint/eslint-plugin': 5.60.1(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)(typescript@5.1.6)
       '@typescript-eslint/parser': 5.61.0(eslint@8.44.0)(typescript@5.1.6)
@@ -9867,7 +9867,7 @@ packages:
   /@tsparticles/eslint-config@1.11.0:
     resolution: {integrity: sha512-u5kVl2i1vxAS2tOpR0idZq3qkC6lr/Gj6KASpH24BPedwiiCfWzUgOQbIdnpZVYdaVAhgMX+0YEqO9qE8S46/g==}
     dependencies:
-      '@tsparticles/prettier-config': 1.11.0
+      '@tsparticles/prettier-config': 1.12.0
       '@typescript-eslint/eslint-plugin': 5.60.1(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)(typescript@5.1.6)
       '@typescript-eslint/parser': 5.61.0(eslint@8.44.0)(typescript@5.1.6)
       eslint: 8.44.0
@@ -9896,11 +9896,6 @@ packages:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
       - supports-color
-
-  /@tsparticles/prettier-config@1.11.0:
-    resolution: {integrity: sha512-DTUBCPNhY7t5XMVAPOSxfeYCJIKqEUrZF0DC13zUBnhEf6QjYA5f67XRx7+LdSAORog35Qa/2QSYScajKMs/sw==}
-    dependencies:
-      prettier: 3.0.1
 
   /@tsparticles/prettier-config@1.12.0:
     resolution: {integrity: sha512-IMpJEy85zeB2OTZZEXDtdxHrt03N11mjyu5TFY5BlnJrWIJC+dbIginuCmJyoCy0NUa0UW05p130zR9IXylfmQ==}
@@ -19756,7 +19751,7 @@ packages:
       '@babel/core': 7.21.8
       '@babel/preset-env': 7.21.5(@babel/core@7.21.8)
       '@tsparticles/eslint-config': 1.15.0
-      '@tsparticles/prettier-config': 1.11.0
+      '@tsparticles/prettier-config': 1.12.0
       '@types/node': 18.16.5
       '@types/webpack-bundle-analyzer': 4.6.0(webpack-cli@5.1.4)
       '@types/webpack-env': 1.18.1
