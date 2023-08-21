@@ -9951,7 +9951,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 20.5.0
+      '@types/node': 20.5.1
       '@types/responselike': 1.0.0
     dev: true
 
@@ -10020,13 +10020,13 @@ packages:
   /@types/jsonfile@6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 20.5.0
+      '@types/node': 20.5.1
     dev: true
 
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 20.5.0
+      '@types/node': 20.5.1
     dev: true
 
   /@types/klaw@3.0.3:
@@ -10077,6 +10077,10 @@ packages:
 
   /@types/node@20.5.0:
     resolution: {integrity: sha512-Mgq7eCtoTjT89FqNoTzzXg2XvCi5VMhRV6+I2aYanc6kQCBImeNaAYRs/DyoVqk1YEUJK5gN9VO7HRIdz4Wo3Q==}
+    dev: true
+
+  /@types/node@20.5.1:
+    resolution: {integrity: sha512-4tT2UrL5LBqDwoed9wZ6N3umC4Yhz3W3FloMmiiG4JwmUJWpie0c7lcnUNd4gtMKuDEO4wRVS8B6Xa0uMRsMKg==}
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -10092,7 +10096,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 20.5.0
+      '@types/node': 20.5.1
     dev: true
 
   /@types/semver@7.3.13:
@@ -10113,7 +10117,7 @@ packages:
   /@types/webpack-bundle-analyzer@4.6.0(webpack-cli@5.1.4):
     resolution: {integrity: sha512-XeQmQCCXdZdap+A/60UKmxW5Mz31Vp9uieGlHB3T4z/o2OLVLtTI3bvTuS6A2OWd/rbAAQiGGWIEFQACu16szA==}
     dependencies:
-      '@types/node': 20.5.0
+      '@types/node': 20.5.1
       tapable: 2.2.1
       webpack: 5.88.2(webpack-cli@5.1.4)
     transitivePeerDependencies:
@@ -10133,7 +10137,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.5.0
+      '@types/node': 20.5.1
     dev: true
     optional: true
 
@@ -14462,7 +14466,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.5.0
+      '@types/node': 20.5.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
