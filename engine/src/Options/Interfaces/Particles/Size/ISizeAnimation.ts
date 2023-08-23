@@ -5,9 +5,4 @@ import type { IRangedAnimation } from "../../IAnimation";
  */
 export interface ISizeAnimation extends IRangedAnimation {
     destroy: DestroyType | keyof typeof DestroyType;
-
-    /**
-     * @deprecated use the new minimumValue instead
-     */
-    size_min?: number;
 }

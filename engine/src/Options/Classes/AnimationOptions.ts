@@ -55,11 +55,6 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
 }
 
 export class RangedAnimationOptions extends AnimationOptions implements IOptionLoader<IRangedAnimation> {
-    /**
-     * @deprecated this property is obsolete, please use the new min/max object in the size value
-     */
-    minimumValue?: number;
-
     mode: AnimationMode | keyof typeof AnimationMode;
 
     startValue: StartValueType | keyof typeof StartValueType;
@@ -75,9 +70,6 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
         super.load(data);
         if (!data) {
             return;
-        }
-        if (data.minimumValue !== undefined) {
-            this.minimumValue = data.minimumValue;
         }
 
         if (data.mode !== undefined) {

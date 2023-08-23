@@ -33,11 +33,6 @@ export interface IAnimation {
 }
 
 export interface IRangedAnimation extends IAnimation {
-    /**
-     * @deprecated use the new min/max object in the size value
-     */
-    minimumValue?: number;
-
     mode: AnimationMode | keyof typeof AnimationMode;
 
     startValue: StartValueType | keyof typeof StartValueType;

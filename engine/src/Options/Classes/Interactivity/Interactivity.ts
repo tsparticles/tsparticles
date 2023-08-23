@@ -24,28 +24,12 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
         this.modes = new Modes(engine, container);
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new detectsOn
-     * @returns the detectsOn value
-     */
-    get detect_on(): InteractivityDetect | keyof typeof InteractivityDetect {
-        return this.detectsOn;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new detectsOn
-     * @param value -
-     */
-    set detect_on(value: InteractivityDetect | keyof typeof InteractivityDetect) {
-        this.detectsOn = value;
-    }
-
     load(data?: RecursivePartial<IInteractivity>): void {
         if (!data) {
             return;
         }
 
-        const detectsOn = data.detectsOn ?? data.detect_on;
+        const detectsOn = data.detectsOn;
 
         if (detectsOn !== undefined) {
             this.detectsOn = detectsOn;

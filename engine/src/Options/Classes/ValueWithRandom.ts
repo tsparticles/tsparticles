@@ -50,22 +50,6 @@ export class AnimationValueWithRandom extends ValueWithRandom implements IOption
         this.animation = new AnimationOptions();
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new animation
-     * @returns animation options
-     */
-    get anim(): AnimationOptions {
-        return this.animation;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new animation
-     * @param value -
-     */
-    set anim(value: AnimationOptions) {
-        this.animation = value;
-    }
-
     load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
         super.load(data);
 
@@ -73,7 +57,7 @@ export class AnimationValueWithRandom extends ValueWithRandom implements IOption
             return;
         }
 
-        const animation = data.animation ?? data.anim;
+        const animation = data.animation;
 
         if (animation !== undefined) {
             this.animation.load(animation);
@@ -95,15 +79,5 @@ export class RangedAnimationValueWithRandom
 
     load(data?: RecursivePartial<IRangedAnimationValueWithRandom>): void {
         super.load(data);
-
-        if (!data) {
-            return;
-        }
-
-        const animation = data.animation ?? data.anim;
-
-        if (animation !== undefined) {
-            this.value = setRangeValue(this.value, this.animation.enable ? this.animation.minimumValue : undefined);
-        }
     }
 }

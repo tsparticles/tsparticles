@@ -5,7 +5,6 @@ const options: ISourceOptions = {
     particles: {
         number: {
             value: 40,
-            max: -1,
         },
         color: {
             value: "#FFF",

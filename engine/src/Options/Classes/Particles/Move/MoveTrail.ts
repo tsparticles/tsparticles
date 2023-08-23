@@ -1,7 +1,6 @@
 import type { IMoveTrail } from "../../../Interfaces/Particles/Move/IMoveTrail";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import { MoveTrailFill } from "./MoveTrailFill";
-import type { OptionsColor } from "../../OptionsColor";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 
 /**
@@ -17,21 +16,6 @@ export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
         this.fill = new MoveTrailFill();
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new fill property
-     * @returns the fill color
-     */
-    get fillColor(): string | OptionsColor | undefined {
-        return this.fill.color;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fill property
-     */
-    set fillColor(value: string | OptionsColor | undefined) {
-        this.fill.load({ color: value });
-    }
-
     load(data?: RecursivePartial<IMoveTrail>): void {
         if (!data) {
             return;
@@ -41,8 +25,8 @@ export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
             this.enable = data.enable;
         }
 
-        if (data.fill !== undefined || data.fillColor !== undefined) {
-            this.fill.load(data.fill || { color: data.fillColor });
+        if (data.fill !== undefined) {
+            this.fill.load(data.fill);
         }
 
         if (data.length !== undefined) {

@@ -55,7 +55,6 @@ describe("Themes", async () => {
                     value: 30,
                     density: {
                         enable: true,
-                        value_area: 800,
                     },
                 },
                 shape: {
@@ -83,7 +82,7 @@ describe("Themes", async () => {
                     enable: true,
                     speed: 6,
                     direction: MoveDirection.none,
-                    outMode: OutMode.out,
+                    outModes: OutMode.out,
                 },
             },
             interactivity: {

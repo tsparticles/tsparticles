@@ -8,11 +8,6 @@ const options: ISourceOptions = {
                 enable: true,
                 mode: "repulse",
             },
-            onDiv: {
-                elementId: "repulse-div",
-                enable: false,
-                mode: "repulse",
-            },
             onHover: {
                 enable: true,
                 mode: "bubble",
@@ -58,6 +53,9 @@ const options: ISourceOptions = {
         color: {
             value: "#FFF",
         },
+        collisions: {
+            enable: true,
+        },
         move: {
             attract: {
                 enable: false,
@@ -66,7 +64,6 @@ const options: ISourceOptions = {
                     y: 3000,
                 },
             },
-            collisions: true,
             direction: "top",
             enable: true,
             speed: {

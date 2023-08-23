@@ -24,7 +24,7 @@ const initParticlesJS = (
      * @returns the loaded container
      */
     const particlesJS = (tagId: string, options: ISourceOptions): Promise<Container | undefined> => {
-        return engine.load(tagId, options);
+        return engine.load({ id: tagId, options });
     };
 
     /**
@@ -37,7 +37,7 @@ const initParticlesJS = (
      */
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         engine
-            .loadJSON(tagId, pathConfigJson)
+            .load({ id: tagId, url: pathConfigJson })
             .then((container) => {
                 if (container) {
                     callback(container);

@@ -12,7 +12,7 @@ describe("Particle", async () => {
         options: {
             autoPlay: false,
         },
-        element: createCanvas(1920, 1080),
+        element: createCanvas(1920, 1080) as any,
     });
 
     if (!container) {

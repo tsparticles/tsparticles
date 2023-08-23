@@ -8,19 +8,9 @@ const options: ISourceOptions = {
                 enable: true,
                 mode: "push",
             },
-            onDiv: {
-                elementId: "repulse-div",
-                enable: false,
-                mode: "repulse",
-            },
             onHover: {
                 enable: true,
                 mode: "connect",
-                parallax: {
-                    enable: false,
-                    force: 60,
-                    smooth: 10,
-                },
             },
         },
         modes: {

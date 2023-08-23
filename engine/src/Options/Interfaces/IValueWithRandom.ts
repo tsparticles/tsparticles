@@ -12,19 +12,9 @@ export interface IValueWithRandom {
 }
 
 export interface IAnimationValueWithRandom extends IValueWithRandom {
-    /**
-     * @deprecated Use the new {@link animation} type instead of anim
-     */
-    anim: IAnimation;
-
     animation: IAnimation;
 }
 
 export interface IRangedAnimationValueWithRandom extends IAnimationValueWithRandom {
-    /**
-     * @deprecated Use the new {@link animation} type instead of anim
-     */
-    anim: IRangedAnimation;
-
     animation: IRangedAnimation;
 }

@@ -287,7 +287,9 @@ export async function fireworks(
                     top: OutMode.none,
                 },
                 trail: {
-                    fillColor: "#000",
+                    fill: {
+                        color: "#000",
+                    },
                     enable: true,
                     length: 10,
                 },

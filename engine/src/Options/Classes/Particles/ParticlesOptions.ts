@@ -94,19 +94,13 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.shadow.load(data.shadow);
         this.zIndex.load(data.zIndex);
 
-        const collisions = data.move?.collisions ?? data.move?.bounce;
-
-        if (collisions !== undefined) {
-            this.collisions.enable = collisions;
-        }
-
         this.collisions.load(data.collisions);
 
         if (data.interactivity !== undefined) {
             this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;
         }
 
-        const strokeToLoad = data.stroke ?? data.shape?.stroke;
+        const strokeToLoad = data.stroke;
 
         if (strokeToLoad) {
             this.stroke = executeOnSingleOrMultiple(strokeToLoad, (t) => {

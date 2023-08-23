@@ -3,7 +3,6 @@ import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
 import { SizeAnimation } from "./SizeAnimation";
 import { ValueWithRandom } from "../../ValueWithRandom";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
 
 /**
  * [[include:Options/Particles/Size.md]]
@@ -18,22 +17,6 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
         this.value = 3;
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new animation
-     * @returns the size animation object
-     */
-    get anim(): SizeAnimation {
-        return this.animation;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new animation
-     * @param value -
-     */
-    set anim(value: SizeAnimation) {
-        this.animation = value;
-    }
-
     load(data?: RecursivePartial<ISize>): void {
         super.load(data);
 
@@ -41,12 +24,10 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
             return;
         }
 
-        const animation = data.animation ?? data.anim;
+        const animation = data.animation;
 
         if (animation !== undefined) {
             this.animation.load(animation);
-
-            this.value = setRangeValue(this.value, this.animation.enable ? this.animation.minimumValue : undefined);
         }
     }
 }

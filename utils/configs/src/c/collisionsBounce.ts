@@ -9,6 +9,9 @@ const options: ISourceOptions = {
                 enable: true,
             },
         },
+        collisions: {
+            enable: true,
+        },
         color: {
             value: "#ffffff",
         },
@@ -32,7 +35,6 @@ const options: ISourceOptions = {
             width: 1,
         },
         move: {
-            bounce: true,
             enable: true,
             speed: 10,
         },

@@ -24,62 +24,14 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         this.resize = new ResizeEvent();
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new onClick
-     * @returns the onClick event
-     */
-    get onclick(): ClickEvent {
-        return this.onClick;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new onClick
-     * @param value -
-     */
-    set onclick(value: ClickEvent) {
-        this.onClick = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new onDiv
-     * @returns the onDiv event
-     */
-    get ondiv(): SingleOrMultiple<DivEvent> {
-        return this.onDiv;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new onDiv
-     * @param value -
-     */
-    set ondiv(value: SingleOrMultiple<DivEvent>) {
-        this.onDiv = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new onHover
-     * @returns the onHover event
-     */
-    get onhover(): HoverEvent {
-        return this.onHover;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new onHover
-     * @param value -
-     */
-    set onhover(value: HoverEvent) {
-        this.onHover = value;
-    }
-
     load(data?: RecursivePartial<IEvents>): void {
         if (!data) {
             return;
         }
 
-        this.onClick.load(data.onClick ?? data.onclick);
+        this.onClick.load(data.onClick);
 
-        const onDiv = data.onDiv ?? data.ondiv;
+        const onDiv = data.onDiv;
 
         if (onDiv !== undefined) {
             this.onDiv = executeOnSingleOrMultiple(onDiv, (t) => {
@@ -91,7 +43,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
             });
         }
 
-        this.onHover.load(data.onHover ?? data.onhover);
+        this.onHover.load(data.onHover);
 
         if (isBoolean(data.resize)) {
             this.resize.enable = data.resize;

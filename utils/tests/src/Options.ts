@@ -119,7 +119,7 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fillColor).to.be.undefined;
+        expect(options.particles.move.trail.fill.color).to.be.undefined;
         expect(options.particles.move.trail.enable).to.be.false;
         expect(options.particles.move.trail.length).to.equal(10);
 
@@ -414,7 +414,6 @@ describe("Options tests", () => {
                         random: false,
                         straight: false,
                         outModes: OutMode.bounce,
-                        bounce: false,
                         attract: {
                             enable: false,
                             rotate: {
@@ -438,7 +437,6 @@ describe("Options tests", () => {
                         animation: {
                             enable: false,
                             speed: 1,
-                            opacity_min: 0.1,
                             sync: false,
                         },
                     },
@@ -515,7 +513,7 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fillColor).to.be.undefined;
+        expect(options.particles.move.trail.fill.color).to.be.undefined;
         expect(options.particles.move.trail.enable).to.be.false;
         expect(options.particles.move.trail.length).to.equal(10);
 

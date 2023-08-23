@@ -14,7 +14,6 @@ import {
     getLogger,
     isBoolean,
     isFunction,
-    isNumber,
     isString,
     itemFromSingleOrMultiple,
 } from "../Utils/Utils";
@@ -118,24 +117,6 @@ async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple
     getLogger().error(`${errorPrefix} ${response.status} while retrieving config file`);
 
     return data.fallback;
-}
-
-/**
- *
- * @param params -
- * @returns true if the params are empty, false otherwise
- */
-function isParamsEmpty(params: ILoadParams): boolean {
-    return !params.id && !params.element && !params.url && !params.options;
-}
-
-/**
- *
- * @param obj -
- * @returns true if the params are valid, false otherwise
- */
-function isParams(obj: unknown): obj is ILoadParams {
-    return !isParamsEmpty(obj as ILoadParams);
 }
 
 /**
@@ -538,222 +519,10 @@ export class Engine {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     * @param tagIdOrOptionsOrParams - The particles container element id, or options, or {@link ILoadParams} object
-     * @param options - The options object to initialize the {@link Container}
+     * @param params - The particles container params {@link ILoadParams} object
      * @returns A Promise with the {@link Container} object created
      */
-    async load(
-        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
-    ): Promise<Container | undefined> {
-        return this.loadFromArray(tagIdOrOptionsOrParams, options);
-    }
-
-    /**
-     * Loads an options object from the provided array to create a {@link Container} object.
-     * @param tagIdOrOptionsOrParams - The particles container element id
-     * @param optionsOrIndex - The options array to get the item from
-     * @param index - If provided gets the corresponding item from the array
-     * @returns A Promise with the {@link Container} object created
-     */
-    async loadFromArray(
-        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
-        optionsOrIndex?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        let params: ILoadParams;
-
-        if (!isParams(tagIdOrOptionsOrParams)) {
-            params = {};
-
-            if (isString(tagIdOrOptionsOrParams)) {
-                params.id = tagIdOrOptionsOrParams;
-            } else {
-                params.options = tagIdOrOptionsOrParams;
-            }
-
-            if (isNumber(optionsOrIndex)) {
-                params.index = optionsOrIndex;
-            } else {
-                params.options = optionsOrIndex ?? params.options;
-            }
-
-            params.index = index ?? params.index;
-        } else {
-            params = tagIdOrOptionsOrParams;
-        }
-
-        return this._loadParams(params);
-    }
-
-    /**
-     * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
-     * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     * @param tagId - the particles container element id
-     * @param pathConfigJson - the json path (or paths array) to use in the GET request
-     * @param index - the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the {@link Container} object created
-     */
-    async loadJSON(
-        tagId: string | SingleOrMultiple<string>,
-        pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        let url: SingleOrMultiple<string>, id: string | undefined;
-
-        if (isNumber(pathConfigJson) || pathConfigJson === undefined) {
-            url = tagId;
-        } else {
-            id = tagId as string;
-            url = pathConfigJson;
-        }
-
-        return this._loadParams({ id: id, url, index });
-    }
-
-    /**
-     * Load the given options for all the plugins
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        for (const plugin of this.plugins) {
-            plugin.loadOptions(options, sourceOptions);
-        }
-    }
-
-    /**
-     * Load the given particles options for all the updaters
-     * @param container - the container of the updaters
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadParticlesOptions(
-        container: Container,
-        options: ParticlesOptions,
-        ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
-    ): void {
-        const updaters = this.updaters.get(container);
-
-        if (!updaters) {
-            return;
-        }
-
-        for (const updater of updaters) {
-            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
-        }
-    }
-
-    /**
-     * Reloads all existing tsParticles loaded instances
-     * @param refresh - should refresh the dom after reloading
-     */
-    async refresh(refresh = true): Promise<void> {
-        if (!refresh) {
-            return;
-        }
-
-        this.dom().forEach((t) => t.refresh());
-    }
-
-    /**
-     * Removes a listener from the specified event
-     * @param type - The event to stop listening to
-     * @param listener - The listener of the specified event
-     */
-    removeEventListener(type: string, listener: CustomEventListener): void {
-        this._eventDispatcher.removeEventListener(type, listener);
-    }
-
-    /**
-     * Loads the provided option to create a {@link Container} object using the element parameter as a container
-     * @param id - The particles container id
-     * @param element - The dom element used to contain the particles
-     * @param options - The options object to initialize the {@link Container}
-     * @param index - The index of the options to use, if options is an array
-     * @returns A Promise with the {@link Container} object created
-     */
-    async set(
-        id: string | HTMLElement,
-        element: HTMLElement | RecursivePartial<IOptions>,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        const params: ILoadParams = { index };
-
-        if (isString(id)) {
-            params.id = id;
-        } else {
-            params.element = id;
-        }
-
-        if (element instanceof HTMLElement) {
-            params.element = element;
-        } else {
-            params.options = element;
-        }
-
-        if (isNumber(options)) {
-            params.index = options;
-        } else {
-            params.options = options ?? params.options;
-        }
-
-        return this._loadParams(params);
-    }
-
-    /**
-     * Loads the provided option to create a {@link Container} object using the element parameter as a container
-     * @param id - The particles container id
-     * @param element - The dom element used to contain the particles
-     * @param pathConfigJson - the json path (or paths array) to use in the GET request
-     * @param index - the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the {@link Container} object created
-     */
-    async setJSON(
-        id: string | HTMLElement,
-        element: HTMLElement | SingleOrMultiple<string>,
-        pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        const params: ILoadParams = {};
-
-        if (id instanceof HTMLElement) {
-            params.element = id;
-            params.url = element as SingleOrMultiple<string>;
-            params.index = pathConfigJson as number;
-        } else {
-            params.id = id;
-            params.element = element as HTMLElement;
-            params.url = pathConfigJson as SingleOrMultiple<string>;
-            params.index = index;
-        }
-
-        return this._loadParams(params);
-    }
-
-    /**
-     * Adds another click handler to all the loaded {@link Container} objects.
-     * @param callback - The function called after the click event is fired
-     */
-    setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const dom = this.dom();
-
-        if (!dom.length) {
-            throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
-        }
-
-        for (const domItem of dom) {
-            domItem.addClickHandler(callback);
-        }
-    }
-
-    /**
-     * Starts an animation in a container, starting from the given options
-     * @param params - all the parameters required for loading options in the current animation
-     * @returns A Promise with the {@link Container} object created
-     */
-    private async _loadParams(params: ILoadParams): Promise<Container | undefined> {
+    async load(params: ILoadParams): Promise<Container | undefined> {
         const id = params.id ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
             { index, url } = params,
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
@@ -830,5 +599,75 @@ export class Engine {
         await newItem.start();
 
         return newItem;
+    }
+
+    /**
+     * Load the given options for all the plugins
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
+     */
+    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
+        for (const plugin of this.plugins) {
+            plugin.loadOptions(options, sourceOptions);
+        }
+    }
+
+    /**
+     * Load the given particles options for all the updaters
+     * @param container - the container of the updaters
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
+     */
+    loadParticlesOptions(
+        container: Container,
+        options: ParticlesOptions,
+        ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
+    ): void {
+        const updaters = this.updaters.get(container);
+
+        if (!updaters) {
+            return;
+        }
+
+        for (const updater of updaters) {
+            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
+        }
+    }
+
+    /**
+     * Reloads all existing tsParticles loaded instances
+     * @param refresh - should refresh the dom after reloading
+     */
+    async refresh(refresh = true): Promise<void> {
+        if (!refresh) {
+            return;
+        }
+
+        this.dom().forEach((t) => t.refresh());
+    }
+
+    /**
+     * Removes a listener from the specified event
+     * @param type - The event to stop listening to
+     * @param listener - The listener of the specified event
+     */
+    removeEventListener(type: string, listener: CustomEventListener): void {
+        this._eventDispatcher.removeEventListener(type, listener);
+    }
+
+    /**
+     * Adds another click handler to all the loaded {@link Container} objects.
+     * @param callback - The function called after the click event is fired
+     */
+    setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
+        const dom = this.dom();
+
+        if (!dom.length) {
+            throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
+        }
+
+        for (const domItem of dom) {
+            domItem.addClickHandler(callback);
+        }
     }
 }

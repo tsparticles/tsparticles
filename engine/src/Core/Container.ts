@@ -1,4 +1,3 @@
-import { getLogger, isFunction } from "../Utils/Utils";
 import { Canvas } from "./Canvas";
 import type { ClickMode } from "../Enums/Modes/ClickMode";
 import type { Engine } from "./Engine";
@@ -15,8 +14,8 @@ import { Options } from "../Options/Classes/Options";
 import type { Particle } from "./Particle";
 import { Particles } from "./Particles";
 import { Retina } from "./Retina";
-import type { Vector } from "./Utils/Vector";
 import { errorPrefix } from "./Utils/Constants";
+import { getLogger } from "../Utils/Utils";
 import { getRangeValue } from "../Utils/NumberUtils";
 import { loadOptions } from "../Utils/OptionsUtils";
 
@@ -59,20 +58,6 @@ function loadContainerOptions(
 
     return options;
 }
-
-const defaultPathGeneratorKey = "default",
-    defaultPathGenerator: IMovePathGenerator = {
-        generate: (p: Particle): Vector => p.velocity,
-        init: (): void => {
-            // nothing required
-        },
-        update: (): void => {
-            // nothing required
-        },
-        reset: (): void => {
-            // nothing required
-        },
-    };
 
 /**
  * The object loaded into an HTML element, it'll contain options loaded and all data to let everything working
@@ -352,12 +337,12 @@ export class Container {
      * @param override - if true, override the existing path generator
      * @returns true if the path generator was added, false otherwise
      */
-    addPath(key: string, generator?: IMovePathGenerator, override = false): boolean {
+    addPath(key: string, generator: IMovePathGenerator, override = false): boolean {
         if (!guardCheck(this) || (!override && this.pathGenerators.has(key))) {
             return false;
         }
 
-        this.pathGenerators.set(key, generator ?? defaultPathGenerator);
+        this.pathGenerators.set(key, generator);
 
         return true;
     }
@@ -630,64 +615,6 @@ export class Container {
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
         return this.refresh();
-    }
-
-    /**
-     * Customise path generation
-     * @deprecated Use the new setPath
-     * @param noiseOrGenerator - the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
-     * @param init - the {@link IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update - the {@link IMovePathGenerator} update function, if the first parameter is a generator function
-     */
-    setNoise(
-        noiseOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
-        init?: () => void,
-        update?: () => void,
-    ): void {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        this.setPath(noiseOrGenerator, init, update);
-    }
-
-    /**
-     * Customise path generation
-     * @deprecated Use the new addPath
-     * @param pathOrGenerator - the {@link IMovePathGenerator} object or a function that generates a {@link Vector} object from {@link Particle}
-     * @param init - the {@link IMovePathGenerator} init function, if the first parameter is a generator function
-     * @param update - the {@link IMovePathGenerator} update function, if the first parameter is a generator function
-     */
-    setPath(
-        pathOrGenerator?: IMovePathGenerator | ((particle: Particle) => Vector),
-        init?: () => void,
-        update?: () => void,
-    ): void {
-        if (!pathOrGenerator || !guardCheck(this)) {
-            return;
-        }
-
-        const pathGenerator = { ...defaultPathGenerator };
-
-        if (isFunction(pathOrGenerator)) {
-            pathGenerator.generate = pathOrGenerator;
-
-            if (init) {
-                pathGenerator.init = init;
-            }
-
-            if (update) {
-                pathGenerator.update = update;
-            }
-        } else {
-            const oldGenerator = pathGenerator;
-
-            pathGenerator.generate = pathOrGenerator.generate || oldGenerator.generate;
-            pathGenerator.init = pathOrGenerator.init || oldGenerator.init;
-            pathGenerator.update = pathOrGenerator.update || oldGenerator.update;
-        }
-
-        this.addPath(defaultPathGeneratorKey, pathGenerator, true);
     }
 
     /**

@@ -10,11 +10,6 @@ export interface IInteractivity {
     [name: string]: unknown;
 
     /**
-     * @deprecated use the new detectsOn instead
-     */
-    detect_on: InteractivityDetect | keyof typeof InteractivityDetect;
-
-    /**
      * Where the mouse events will be detected
      * If set to `canvas` only the particles canvas will be targeted
      * If set to `parent` only the particles canvas parent will be targeted

@@ -17,22 +17,6 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
         this.value = 0;
     }
 
-    /**
-     * @deprecated the max property is deprecated, please use the new limit
-     * @returns the max particles number
-     */
-    get max(): number {
-        return this.limit;
-    }
-
-    /**
-     * @deprecated the max property is deprecated, please use the new limit
-     * @param value - the max particles number
-     */
-    set max(value: number) {
-        this.limit = value;
-    }
-
     load(data?: RecursivePartial<IParticlesNumber>): void {
         if (!data) {
             return;
@@ -40,7 +24,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
 
         this.density.load(data.density);
 
-        const limit = data.limit ?? data.max;
+        const limit = data.limit;
 
         if (limit !== undefined) {
             this.limit = limit;

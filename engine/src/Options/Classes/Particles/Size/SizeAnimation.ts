@@ -16,27 +16,7 @@ export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimat
         this.speed = 5;
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new minimumValue
-     * @returns the minimum size value
-     */
-    get size_min(): number | undefined {
-        return this.minimumValue;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new minimumValue
-     * @param value -
-     */
-    set size_min(value: number | undefined) {
-        this.minimumValue = value;
-    }
-
     load(data?: RecursivePartial<ISizeAnimation>): void {
-        if (data?.size_min !== undefined && data.minimumValue === undefined) {
-            data.minimumValue = data.size_min;
-        }
-
         super.load(data);
 
         if (!data) {

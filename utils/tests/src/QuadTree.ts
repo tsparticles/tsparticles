@@ -9,7 +9,7 @@ describe("QuadTree tests", async () => {
         options: {
             autoPlay: false,
         },
-        element: createCanvas(200, 200),
+        element: createCanvas(200, 200) as any,
     });
 
     if (!container) {

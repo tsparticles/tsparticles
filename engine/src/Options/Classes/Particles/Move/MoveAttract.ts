@@ -21,38 +21,6 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
         };
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new rotate.x
-     * @returns the rotate x value
-     */
-    get rotateX(): number {
-        return this.rotate.x;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new rotate.x
-     * @param value -
-     */
-    set rotateX(value: number) {
-        this.rotate.x = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new rotate.y
-     * @returns the rotate y value
-     */
-    get rotateY(): number {
-        return this.rotate.y;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new rotate.y
-     * @param value -
-     */
-    set rotateY(value: number) {
-        this.rotate.y = value;
-    }
-
     load(data?: RecursivePartial<IMoveAttract>): void {
         if (!data) {
             return;
@@ -66,16 +34,18 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
             this.enable = data.enable;
         }
 
-        const rotateX = data.rotate?.x ?? data.rotateX;
+        if (data.rotate) {
+            const rotateX = data.rotate.x;
 
-        if (rotateX !== undefined) {
-            this.rotate.x = rotateX;
-        }
+            if (rotateX !== undefined) {
+                this.rotate.x = rotateX;
+            }
 
-        const rotateY = data.rotate?.y ?? data.rotateY;
+            const rotateY = data.rotate.y;
 
-        if (rotateY !== undefined) {
-            this.rotate.y = rotateY;
+            if (rotateY !== undefined) {
+                this.rotate.y = rotateY;
+            }
         }
     }
 }

@@ -8,11 +8,6 @@ const options: ISourceOptions = {
                 enable: false,
                 mode: "push",
             },
-            onDiv: {
-                elementId: "repulse-div",
-                enable: false,
-                mode: "repulse",
-            },
             onHover: {
                 enable: true,
                 mode: "bubble",

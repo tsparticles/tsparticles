@@ -57,7 +57,6 @@ const options: ISourceOptions = {
             outModes: {
                 default: "destroy",
             },
-            bounce: false,
             path: {
                 enable: true,
                 delay: {
@@ -74,11 +73,6 @@ const options: ISourceOptions = {
                 enable: true,
                 fill: { image: "https://particles.js.org/images/background3.jpg" },
                 length: 20,
-            },
-            attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200,
             },
         },
     },

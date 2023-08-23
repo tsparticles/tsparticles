@@ -17,43 +17,14 @@ import type { RangeValue } from "../../../../Types/RangeValue";
 export interface IMove {
     angle: number | IMoveAngle;
     attract: IMoveAttract;
-
-    /**
-     * @deprecated use the new collisions property on particles instead
-     */
-    bounce: boolean;
-
     center: IMoveCenter;
-
-    /**
-     * @deprecated use the new collisions property on particles instead
-     */
-    collisions: boolean;
-
     decay: RangeValue;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: number | Partial<IDistance>;
     drift: RangeValue;
     enable: boolean;
     gravity: IMoveGravity;
-
-    /**
-     * @deprecated use the new {@link IMove.path} property instead
-     */
-    noise: IMovePath;
-
-    /**
-     * @deprecated use the new outModes instead
-     */
-    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
-
     outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;
-
-    /**
-     * @deprecated use the new outModes instead
-     */
-    out_mode: OutMode | keyof typeof OutMode | OutModeAlt;
-
     path: IMovePath;
     random: boolean;
     size: boolean;
