@@ -92,12 +92,7 @@ export * from "./Options/Interfaces/Particles/Number/IParticlesNumber";
 export * from "./Options/Interfaces/Particles/Opacity/IOpacity";
 export * from "./Options/Interfaces/Particles/Opacity/IOpacityAnimation";
 
-export * from "./Options/Interfaces/Particles/Shape/ICharacterShape";
-export * from "./Options/Interfaces/Particles/Shape/IImageShape";
-export * from "./Options/Interfaces/Particles/Shape/IPolygonShape";
 export * from "./Options/Interfaces/Particles/Shape/IShape";
-export * from "./Options/Interfaces/Particles/Shape/IShapeValues";
-export * from "./Options/Interfaces/Particles/Shape/IStarShape";
 
 export * from "./Options/Interfaces/Particles/Size/ISize";
 export * from "./Options/Interfaces/Particles/Size/ISizeAnimation";

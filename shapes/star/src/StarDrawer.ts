@@ -22,13 +22,12 @@ export class StarDrawer implements IShapeDrawer {
     getSidesCount(particle: Particle): number {
         const star = particle.shapeData as IStarShape;
 
-        return Math.round(getRangeValue(star?.sides ?? star?.nb_sides ?? 5));
+        return Math.round(getRangeValue(star?.sides ?? 5));
     }
 
     particleInit(container: Container, particle: StarParticle): void {
-        const star = particle.shapeData as IStarShape,
-            inset = getRangeValue(star?.inset ?? 2);
+        const star = particle.shapeData as IStarShape;
 
-        particle.starInset = inset;
+        particle.starInset = getRangeValue(star?.inset ?? 2);
     }
 }

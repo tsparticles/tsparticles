@@ -51,7 +51,7 @@ const options: ISourceOptions = {
                         },
                     },
                     {
-                        nb_sides: 8,
+                        sides: 8,
                         particles: {
                             opacity: {
                                 value: 1,

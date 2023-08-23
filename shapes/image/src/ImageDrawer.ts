@@ -239,7 +239,7 @@ export class ImageDrawer implements IShapeDrawer {
             return;
         }
 
-        const replaceColor = imageData.replaceColor ?? imageData.replace_color ?? image.replaceColor;
+        const replaceColor = imageData.replaceColor ?? image.replaceColor;
 
         if (image.loading) {
             setTimeout((): void => {
@@ -300,7 +300,7 @@ export class ImageDrawer implements IShapeDrawer {
         await this._engine.loadImage({
             gif: imageShape.gif,
             name: imageShape.name,
-            replaceColor: imageShape.replaceColor ?? imageShape.replace_color ?? false,
+            replaceColor: imageShape.replaceColor ?? false,
             src: imageShape.src,
         });
     };

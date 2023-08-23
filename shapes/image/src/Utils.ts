@@ -193,7 +193,7 @@ export function replaceImageColor(
             },
             loaded: false,
             ratio: imageData.width / imageData.height,
-            replaceColor: imageData.replaceColor ?? imageData.replace_color,
+            replaceColor: imageData.replaceColor,
             source: imageData.src,
         };
 
