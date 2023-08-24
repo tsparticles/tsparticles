@@ -55,14 +55,14 @@ Once the scripts are loaded you can set up `tsParticles` like the following exam
 ** Easiest Way **
 
 ```javascript
-fireworks()
-````
+fireworks();
+```
 
 ** Async Way, best practice **
 
 ```javascript
 (async () => {
-    await fireworks();
+  await fireworks();
 })();
 ```
 
@@ -70,7 +70,7 @@ fireworks()
 
 ```javascript
 fireworks({
-    colors: ["#ffffff", "#ff0000"],
+  colors: ["#ffffff", "#ff0000"],
 });
 ```
 
