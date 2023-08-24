@@ -7,7 +7,7 @@ import {
     getRangeValue,
     itemFromSingleOrMultiple,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { StrokeParticle } from "./Types";
 import { updateStrokeColor } from "./Utils";
 

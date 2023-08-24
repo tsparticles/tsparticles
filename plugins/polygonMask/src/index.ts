@@ -1,5 +1,5 @@
 import "./pathseg";
-import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IPolygonMaskOptions, PolygonMaskOptions } from "./types";
 import { PolygonMask } from "./Options/Classes/PolygonMask";
 import { PolygonMaskInstance } from "./PolygonMaskInstance";

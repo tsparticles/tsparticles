@@ -4,7 +4,7 @@ import {
     type RecursivePartial,
     getRangeValue,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IOrbitParticlesOptions, OrbitContainer, OrbitParticle, OrbitParticlesOptions } from "./Types";
 import { Orbit } from "./Options/Classes/Orbit";
 import { OrbitType } from "./Enums";

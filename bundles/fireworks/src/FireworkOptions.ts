@@ -5,7 +5,7 @@ import {
     type SingleOrMultiple,
     isArray,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IFireworkOptions } from "./IFireworkOptions";
 
 export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFireworkOptions> {

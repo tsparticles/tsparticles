@@ -1,4 +1,4 @@
-import { type Container, type RecursivePartial, type SingleOrMultiple, tsParticles } from "tsparticles-engine";
+import { type Container, type RecursivePartial, type SingleOrMultiple, tsParticles } from "@tsparticles/engine";
 
 interface ResponsiveOptions {
     breakpoint: number;

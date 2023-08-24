@@ -1,5 +1,5 @@
 import { ColorUpdater } from "./ColorUpdater";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

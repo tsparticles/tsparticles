@@ -7,7 +7,7 @@ import {
     executeOnSingleOrMultiple,
     isNumber,
     itemFromSingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { Absorber } from "./Options/Classes/Absorber";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
 import type { AbsorberContainer } from "./AbsorberContainer";

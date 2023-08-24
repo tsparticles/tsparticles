@@ -6,7 +6,7 @@ import {
     type RecursivePartial,
     getRangeValue,
     itemFromArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IPushMode, PushContainer, PushMode } from "./Types";
 import { Push } from "./Options/Classes/Push";
 

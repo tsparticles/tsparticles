@@ -7,8 +7,8 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni?style=for-the-badge)](https://github.com/sponsors/matteobruni)
 [![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/tsparticles?style=for-the-badge)](https://www.jsdelivr.com/package/npm/tsparticles)
-[![Cdnjs](https://img.shields.io/cdnjs/v/tsparticles-engine?style=for-the-badge)](https://cdnjs.com/libraries/tsparticles)
-[![npm](https://img.shields.io/npm/v/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
+[![Cdnjs](https://img.shields.io/cdnjs/v/@tsparticles/engine?style=for-the-badge)](https://cdnjs.com/libraries/tsparticles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 [![npm](https://img.shields.io/npm/dm/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff?style=for-the-badge)](https://lerna.js.org/)
 [![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
@@ -135,13 +135,13 @@ migrate from the old particles.js library.
 
 #### jsDelivr
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-confetti)
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-engine/badge)](https://www.jsdelivr.com/package/npm/tsparticles-engine)
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-fireworks)
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-basic/badge)](https://www.jsdelivr.com/package/npm/tsparticles-basic)
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-slim/badge)](https://www.jsdelivr.com/package/npm/tsparticles-slim)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/confetti/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/confetti)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/engine/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/engine)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/fireworks/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/fireworks)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/basic/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/basic)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/slim/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/slim)
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles)
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-all/badge)](https://www.jsdelivr.com/package/npm/tsparticles-all)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/all/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/all)
 
 #### cdnjs
 
@@ -149,7 +149,7 @@ migrate from the old particles.js library.
 
 #### unpkg
 
-<https://unpkg.com/tsparticles-confetti/> <https://unpkg.com/tsparticles-engine/> <https://unpkg.com/tsparticles-fireworks/> <https://unpkg.com/tsparticles-basic/> <https://unpkg.com/tsparticles-slim/> <https://unpkg.com/tsparticles/> <https://unpkg.com/tsparticles-all/>
+<https://unpkg.com/@tsparticles/confetti/> <https://unpkg.com/@tsparticles/engine/> <https://unpkg.com/@tsparticles/fireworks/> <https://unpkg.com/@tsparticles/basic/> <https://unpkg.com/@tsparticles/slim/> <https://unpkg.com/tsparticles/> <https://unpkg.com/@tsparticles/all/>
 
 ---
 
@@ -157,23 +157,23 @@ migrate from the old particles.js library.
 
 _tsParticles Confetti_
 
-[![npm](https://img.shields.io/npm/v/tsparticles-confetti?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-confetti?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-confetti)
+[![npm](https://img.shields.io/npm/v/@tsparticles/confetti?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/confetti) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/confetti?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/confetti)
 
 _tsParticles Engine_
 
-[![npm](https://img.shields.io/npm/v/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine) [![npmjs](https://img.shields.io/npm/dt/tsparticles-engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-engine)
+[![npm](https://img.shields.io/npm/v/@tsparticles/engine?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/engine) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/engine?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/engine)
 
 _tsParticles Fireworks_
 
-[![npm](https://img.shields.io/npm/v/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-fireworks?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-fireworks)
+[![npm](https://img.shields.io/npm/v/@tsparticles/fireworks?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/fireworks) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/fireworks?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/fireworks)
 
 _tsParticles Basic_
 
-[![npm](https://img.shields.io/npm/v/tsparticles-basic?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-basic) [![npmjs](https://img.shields.io/npm/dt/tsparticles-basic?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-basic)
+[![npm](https://img.shields.io/npm/v/@tsparticles/basic?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/basic) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/basic?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/basic)
 
 _tsParticles Slim_
 
-[![npm](https://img.shields.io/npm/v/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim) [![npmjs](https://img.shields.io/npm/dt/tsparticles-slim?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-slim)
+[![npm](https://img.shields.io/npm/v/@tsparticles/slim?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/slim) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/slim?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/slim)
 
 _tsParticles_
 
@@ -181,32 +181,32 @@ _tsParticles_
 
 _tsParticles All_
 
-[![npm](https://img.shields.io/npm/v/tsparticles-all?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-all) [![npmjs](https://img.shields.io/npm/dt/tsparticles-all?style=for-the-badge)](https://www.npmjs.com/package/tsparticles-all)
+[![npm](https://img.shields.io/npm/v/@tsparticles/all?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/all) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/all?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/all)
 
 ```shell
-npm install tsparticles-engine
+npm install @tsparticles/engine
 ```
 
 ### **_yarn_**
 
 ```shell
-yarn add tsparticles-engine
+yarn add @tsparticles/engine
 ```
 
 ### **_pnpm_**
 
 ```shell
-pnpm install tsparticles-engine
+pnpm install @tsparticles/engine
 ```
 
 #### Import and require
 
 ```javascript
-const tsParticles = require("tsparticles-engine");
+const tsParticles = require("@tsparticles/engine");
 
 // or
 
-import { tsParticles } from "tsparticles-engine";
+import { tsParticles } from "@tsparticles/engine";
 ```
 
 The imported `tsParticles` is the same instance you have when including the script in the page using the `<script>` tag.
@@ -418,7 +418,7 @@ You can find the instructions [here](https://github.com/tsparticles/webcomponent
 
 #### `wordpress-particles`
 
-[![npm](https://img.shields.io/npm/v/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![npm](https://img.shields.io/npm/dm/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
+[![npm](https://img.shields.io/npm/v/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![npm](https://img.shields.io/npm/dm/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/@tsparticles/block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
 
 The plugin page hosted on WordPress.org can be
 found [here](https://wordpress.org/plugins/tsparticles-block/#description)
@@ -446,7 +446,7 @@ needed to run.
 
 ### Big Circles
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-big-circles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-big-circles.svg)](https://www.npmjs.com/package/tsparticles-preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-big-circles)](https://www.npmjs.com/package/tsparticles-preset-big-circles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-big-circles/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-big-circles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-big-circles.svg)](https://www.npmjs.com/package/@tsparticles/preset-big-circles) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-big-circles)](https://www.npmjs.com/package/@tsparticles/preset-big-circles)
 
 This preset loads big colored circles moving upwards on a white background.
 
@@ -456,7 +456,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Bubbles
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-bubbles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-bubbles.svg)](https://www.npmjs.com/package/tsparticles-preset-bubbles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-bubbles)](https://www.npmjs.com/package/tsparticles-preset-bubbles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-bubbles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-bubbles.svg)](https://www.npmjs.com/package/@tsparticles/preset-bubbles) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-bubbles)](https://www.npmjs.com/package/@tsparticles/preset-bubbles)
 
 This preset loads colored bubbles coming from the bottom of the screen on a white background.
 
@@ -466,7 +466,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Confetti
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-confetti) [![npmjs](https://badge.fury.io/js/tsparticles-preset-confetti.svg)](https://www.npmjs.com/package/tsparticles-preset-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-confetti)](https://www.npmjs.com/package/tsparticles-preset-confetti)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-confetti/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-confetti) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-confetti.svg)](https://www.npmjs.com/package/@tsparticles/preset-confetti) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-confetti)](https://www.npmjs.com/package/@tsparticles/preset-confetti)
 
 This preset loads white and red confetti launched from the screen center on a transparent background.
 
@@ -476,7 +476,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Fire
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fire/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fire) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fire.svg)](https://www.npmjs.com/package/tsparticles-preset-fire) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fire)](https://www.npmjs.com/package/tsparticles-preset-fire)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-fire/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-fire) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-fire.svg)](https://www.npmjs.com/package/@tsparticles/preset-fire) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-fire)](https://www.npmjs.com/package/@tsparticles/preset-fire)
 
 This preset loads a faded red to a black background with particles colored like fire and ash sparks.
 
@@ -486,7 +486,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Firefly
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-firefly/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-firefly) [![npmjs](https://badge.fury.io/js/tsparticles-preset-firefly.svg)](https://www.npmjs.com/package/tsparticles-preset-firefly) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-firefly)](https://www.npmjs.com/package/tsparticles-preset-firefly)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-firefly/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-firefly) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-firefly.svg)](https://www.npmjs.com/package/@tsparticles/preset-firefly) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-firefly)](https://www.npmjs.com/package/@tsparticles/preset-firefly)
 
 This preset loads a mouse trail made with small fading particles like little fireflies.
 
@@ -496,7 +496,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Fireworks
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fireworks/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fireworks) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fireworks.svg)](https://www.npmjs.com/package/tsparticles-preset-fireworks) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fireworks)](https://www.npmjs.com/package/tsparticles-preset-fireworks)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-fireworks/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-fireworks) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-fireworks.svg)](https://www.npmjs.com/package/@tsparticles/preset-fireworks) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-fireworks)](https://www.npmjs.com/package/@tsparticles/preset-fireworks)
 
 This preset loads a beautiful fireworks effect.
 
@@ -506,7 +506,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Fountain
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-fountain/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-fountain) [![npmjs](https://badge.fury.io/js/tsparticles-preset-fountain.svg)](https://www.npmjs.com/package/tsparticles-preset-fountain) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-fountain)](https://www.npmjs.com/package/tsparticles-preset-fountain)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-fountain/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-fountain) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-fountain.svg)](https://www.npmjs.com/package/@tsparticles/preset-fountain) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-fountain)](https://www.npmjs.com/package/@tsparticles/preset-fountain)
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/fountain/images/sample.png)](https://particles.js.org/samples/presets/fountain)
 
@@ -514,7 +514,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Links
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-links/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-links) [![npmjs](https://badge.fury.io/js/tsparticles-preset-links.svg)](https://www.npmjs.com/package/tsparticles-preset-links) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-links)](https://www.npmjs.com/package/tsparticles-preset-links)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-links/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-links) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-links.svg)](https://www.npmjs.com/package/@tsparticles/preset-links) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-links)](https://www.npmjs.com/package/@tsparticles/preset-links)
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/links/images/sample.png)](https://particles.js.org/samples/presets/links)
 
@@ -522,7 +522,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Sea Anemone
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-sea-anemone) [![npmjs](https://badge.fury.io/js/tsparticles-preset-sea-anemone.svg)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-sea-anemone)](https://www.npmjs.com/package/tsparticles-preset-sea-anemone)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-sea-anemone/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-sea-anemone) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-sea-anemone.svg)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-sea-anemone)](https://www.npmjs.com/package/@tsparticles/preset-sea-anemone)
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/seaAnemone/images/sample.png)](https://particles.js.org/samples/presets/seaAnemone)
 
@@ -530,7 +530,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Snow
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-snow/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-snow) [![npmjs](https://badge.fury.io/js/tsparticles-preset-snow.svg)](https://www.npmjs.com/package/tsparticles-preset-snow) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-snow)](https://www.npmjs.com/package/tsparticles-preset-snow)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-snow/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-snow) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-snow.svg)](https://www.npmjs.com/package/@tsparticles/preset-snow) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-snow)](https://www.npmjs.com/package/@tsparticles/preset-snow)
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/snow/images/sample.png)](https://particles.js.org/samples/presets/snow)
 
@@ -538,7 +538,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Stars
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-stars/badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-stars) [![npmjs](https://badge.fury.io/js/tsparticles-preset-stars.svg)](https://www.npmjs.com/package/tsparticles-preset-stars) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-stars)](https://www.npmjs.com/package/tsparticles-preset-stars)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-stars/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-stars) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-stars.svg)](https://www.npmjs.com/package/@tsparticles/preset-stars) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-stars)](https://www.npmjs.com/package/@tsparticles/preset-stars)
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/stars/images/sample.png)](https://particles.js.org/samples/presets/stars)
 
@@ -546,7 +546,7 @@ You can find the instructions [here](https://github.com/tsparticles/presets/tree
 
 ### Triangles
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-preset-triangles/badge?style=for-the-badge)](https://www.jsdelivr.com/package/npm/tsparticles-preset-triangles) [![npmjs](https://badge.fury.io/js/tsparticles-preset-triangles.svg)](https://www.npmjs.com/package/tsparticles-preset-triangles) [![npmjs](https://img.shields.io/npm/dt/tsparticles-preset-triangles)](https://www.npmjs.com/package/tsparticles-preset-triangles)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-triangles/badge?style=for-the-badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-triangles) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-triangles.svg)](https://www.npmjs.com/package/@tsparticles/preset-triangles) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-triangles)](https://www.npmjs.com/package/@tsparticles/preset-triangles)
 
 [![demo](https://github.com/tsparticles/presets/raw/main/presets/triangles/images/sample.png)](https://particles.js.org/samples/presets/triangles)
 
@@ -661,7 +661,7 @@ _If you are brave enough_ you can switch to the `dev` branch for trying the feat
 
 **tsParticles** has a package that makes this library 100% compatible with the _particles.js_ configuration.
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-particles.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/tsparticles-particles.js) [![npmjs](https://badge.fury.io/js/tsparticles-particles.js.svg)](https://www.npmjs.com/package/tsparticles-particles.js) [![npm](https://img.shields.io/npm/dm/tsparticles-particles.js)](https://www.npmjs.com/package/tsparticles-particles.js)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/particles.js/badge?style=rounded)](https://www.jsdelivr.com/package/npm/@tsparticles/particles.js) [![npmjs](https://badge.fury.io/js/@tsparticles/particles.js.svg)](https://www.npmjs.com/package/@tsparticles/particles.js) [![npm](https://img.shields.io/npm/dm/@tsparticles/particles.js)](https://www.npmjs.com/package/@tsparticles/particles.js)
 
 Seriously, you just need to change the script from particles.js to the bundled compatibility package, et-voilà, **you're
 ready** 🧙!

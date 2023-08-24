@@ -6,7 +6,7 @@ import {
     isInArray,
     itemFromSingleOrMultiple,
     loadFont,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ICharacterShape } from "./ICharacterShape";
 import type { TextParticle } from "./TextParticle";
 

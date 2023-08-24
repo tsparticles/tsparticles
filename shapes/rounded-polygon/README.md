@@ -2,9 +2,9 @@
 
 # tsParticles Rounded Polygon Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-rounded-polygon/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-rounded-polygon)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-rounded-polygon.svg)](https://www.npmjs.com/package/tsparticles-shape-rounded-polygon)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-rounded-polygon)](https://www.npmjs.com/package/tsparticles-shape-rounded-polygon) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-rounded-polygon/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-rounded-polygon)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-rounded-polygon.svg)](https://www.npmjs.com/package/@tsparticles/shape-rounded-polygon)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-rounded-polygon)](https://www.npmjs.com/package/@tsparticles/shape-rounded-polygon) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional rounded polygon shape.
 
@@ -44,20 +44,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-rounded-polygon
+$ npm install @tsparticles/shape-rounded-polygon
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-rounded-polygon
+$ yarn add @tsparticles/shape-rounded-polygon
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadRoundedPolygonShape } = require("tsparticles-shape-rounded-polygon");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadRoundedPolygonShape } = require("@tsparticles/shape-rounded-polygon");
 
 (async () => {
   await loadRoundedPolygonShape(tsParticles);
@@ -67,8 +67,8 @@ const { loadRoundedPolygonShape } = require("tsparticles-shape-rounded-polygon")
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadRoundedPolygonShape } from "tsparticles-shape-rounded-polygon";
+import { tsParticles } from "@tsparticles/engine";
+import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
 
 (async () => {
   await loadRoundedPolygonShape(tsParticles);

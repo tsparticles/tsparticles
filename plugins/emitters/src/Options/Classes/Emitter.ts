@@ -10,7 +10,7 @@ import {
     deepExtend,
     executeOnSingleOrMultiple,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { EmitterLife } from "./EmitterLife";
 import { EmitterRate } from "./EmitterRate";
 import { EmitterShapeType } from "../../Enums/EmitterShapeType";

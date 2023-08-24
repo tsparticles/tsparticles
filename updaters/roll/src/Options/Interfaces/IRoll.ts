@@ -1,4 +1,4 @@
-import type { IOptionsColor, RangeValue, SingleOrMultiple } from "tsparticles-engine";
+import type { IOptionsColor, RangeValue, SingleOrMultiple } from "@tsparticles/engine";
 import type { IRollLight } from "./IRollLight";
 import type { RollMode } from "../../RollMode";
 

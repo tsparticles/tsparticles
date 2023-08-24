@@ -1,5 +1,5 @@
 import { describe, it } from "mocha";
-import { calcExactPositionOrRandomFromSize, errorPrefix, ICoordinates, tsParticles } from "tsparticles-engine";
+import { calcExactPositionOrRandomFromSize, errorPrefix, ICoordinates, tsParticles } from "@tsparticles/engine";
 import { TestWindow } from "./Fixture/Window";
 import { expect } from "chai";
 import { createCanvas } from "canvas";

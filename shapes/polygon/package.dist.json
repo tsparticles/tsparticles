@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-shape-polygon",
+  "name": "@tsparticles/shape-polygon",
   "version": "2.12.0",
   "description": "tsParticles polygon shape",
   "homepage": "https://particles.js.org",
@@ -33,7 +33,7 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-shape"
+    "@tsparticles/shape"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -47,6 +47,9 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,4 +1,4 @@
-import type { IParticlesOptions, Particle, ParticlesOptions } from "tsparticles-engine";
+import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
 import type { ILife } from "./Options/Interfaces/ILife";
 import type { Life } from "./Options/Classes/Life";
 

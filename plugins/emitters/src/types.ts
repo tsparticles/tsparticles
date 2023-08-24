@@ -1,4 +1,4 @@
-import type { IOptions, Options, SingleOrMultiple } from "tsparticles-engine";
+import type { IOptions, Options, SingleOrMultiple } from "@tsparticles/engine";
 import type { Emitter } from "./Options/Classes/Emitter";
 import type { IEmitter } from "./Options/Interfaces/IEmitter";
 

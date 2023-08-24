@@ -7,7 +7,7 @@ import type {
     Particle,
     ParticlesOptions,
     SingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { AnimatableGradient } from "./Options/Classes/AnimatableGradient";
 import type { IAnimatableGradient } from "./Options/Interfaces/IAnimatableGradient";
 

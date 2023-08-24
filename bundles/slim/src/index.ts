@@ -1,36 +1,36 @@
-import type { Engine } from "tsparticles-engine";
-import { initPjs } from "tsparticles-particles.js";
-import { loadBasic } from "tsparticles-basic";
-import { loadEasingQuadPlugin } from "tsparticles-plugin-easing-quad";
-import { loadExternalAttractInteraction } from "tsparticles-interaction-external-attract";
-import { loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
-import { loadExternalBubbleInteraction } from "tsparticles-interaction-external-bubble";
-import { loadExternalConnectInteraction } from "tsparticles-interaction-external-connect";
-import { loadExternalGrabInteraction } from "tsparticles-interaction-external-grab";
-import { loadExternalPauseInteraction } from "tsparticles-interaction-external-pause";
-import { loadExternalPushInteraction } from "tsparticles-interaction-external-push";
-import { loadExternalRemoveInteraction } from "tsparticles-interaction-external-remove";
-import { loadExternalRepulseInteraction } from "tsparticles-interaction-external-repulse";
-import { loadExternalSlowInteraction } from "tsparticles-interaction-external-slow";
-import { loadImageShape } from "tsparticles-shape-image";
-import { loadLifeUpdater } from "tsparticles-updater-life";
-import { loadLineShape } from "tsparticles-shape-line";
-import { loadParallaxMover } from "tsparticles-move-parallax";
-import { loadParticlesAttractInteraction } from "tsparticles-interaction-particles-attract";
-import { loadParticlesCollisionsInteraction } from "tsparticles-interaction-particles-collisions";
-import { loadParticlesLinksInteraction } from "tsparticles-interaction-particles-links";
-import { loadPolygonShape } from "tsparticles-shape-polygon";
-import { loadRotateUpdater } from "tsparticles-updater-rotate";
-import { loadSquareShape } from "tsparticles-shape-square";
-import { loadStarShape } from "tsparticles-shape-star";
-import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
-import { loadTextShape } from "tsparticles-shape-text";
+import type { Engine } from "@tsparticles/engine";
+import { initPjs } from "@tsparticles/particles.js";
+import { loadBasic } from "@tsparticles/basic";
+import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
+import { loadExternalAttractInteraction } from "@tsparticles/interaction-external-attract";
+import { loadExternalBounceInteraction } from "@tsparticles/interaction-external-bounce";
+import { loadExternalBubbleInteraction } from "@tsparticles/interaction-external-bubble";
+import { loadExternalConnectInteraction } from "@tsparticles/interaction-external-connect";
+import { loadExternalGrabInteraction } from "@tsparticles/interaction-external-grab";
+import { loadExternalPauseInteraction } from "@tsparticles/interaction-external-pause";
+import { loadExternalPushInteraction } from "@tsparticles/interaction-external-push";
+import { loadExternalRemoveInteraction } from "@tsparticles/interaction-external-remove";
+import { loadExternalRepulseInteraction } from "@tsparticles/interaction-external-repulse";
+import { loadExternalSlowInteraction } from "@tsparticles/interaction-external-slow";
+import { loadImageShape } from "@tsparticles/shape-image";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadLineShape } from "@tsparticles/shape-line";
+import { loadParallaxMover } from "@tsparticles/move-parallax";
+import { loadParticlesAttractInteraction } from "@tsparticles/interaction-particles-attract";
+import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
+import { loadParticlesLinksInteraction } from "@tsparticles/interaction-particles-links";
+import { loadPolygonShape } from "@tsparticles/shape-polygon";
+import { loadRotateUpdater } from "@tsparticles/updater-rotate";
+import { loadSquareShape } from "@tsparticles/shape-square";
+import { loadStarShape } from "@tsparticles/shape-star";
+import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
+import { loadTextShape } from "@tsparticles/shape-text";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles Slim package.
  * This function must be called to make tsParticles Slim work.
  * This function is not mandatory, the plugins can be loaded manually, or using other plugin bundles.
- * If this function is not called, the tsparticles-slim package/dependency can be safely removed.
+ * If this function is not called, the \@tsparticles/slim package/dependency can be safely removed.
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
  * @param refresh -

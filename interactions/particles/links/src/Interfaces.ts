@@ -1,4 +1,4 @@
-import type { IRangeColor, RangeValue } from "tsparticles-engine";
+import type { IRangeColor, RangeValue } from "@tsparticles/engine";
 import type { LinkParticle } from "./Types";
 
 /**

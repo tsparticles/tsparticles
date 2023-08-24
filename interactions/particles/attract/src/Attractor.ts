@@ -4,7 +4,7 @@ import {
     type Particle,
     ParticlesInteractorBase,
     getDistances,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 /**
  */

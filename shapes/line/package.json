@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-shape-line",
+  "name": "@tsparticles/shape-line",
   "version": "2.12.0",
   "description": "tsParticles line shape",
   "homepage": "https://particles.js.org",
@@ -39,9 +39,10 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-shape"
+    "@tsparticles/shape"
   ],
   "publishConfig": {
+    "access": "public",
     "directory": "dist",
     "linkDirectory": true
   },
@@ -56,6 +57,6 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
   }
 }

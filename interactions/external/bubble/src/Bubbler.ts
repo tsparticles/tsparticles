@@ -25,7 +25,7 @@ import {
     mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Bubble } from "./Options/Classes/Bubble";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
 import type { Interfaces } from "./Interfaces";

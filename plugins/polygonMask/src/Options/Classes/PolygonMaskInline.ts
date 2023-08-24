@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import type { IPolygonMaskInline } from "../Interfaces/IPolygonMaskInline";
 import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
 import type { PolygonMaskInlineArrangementAlt } from "../../Enums/PolygonMaskInlineArrangement";

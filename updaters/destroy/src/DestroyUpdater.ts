@@ -5,7 +5,7 @@ import {
     type Particle,
     type RecursivePartial,
     getRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types";
 import { Destroy } from "./Options/Classes/Destroy";
 import { DestroyMode } from "./Enums/DestroyMode";

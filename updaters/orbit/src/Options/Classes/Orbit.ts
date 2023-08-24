@@ -6,7 +6,7 @@ import {
     type RangeValue,
     type RecursivePartial,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IOrbit } from "../Interfaces/IOrbit";
 import { OrbitRotation } from "./OrbitRotation";
 

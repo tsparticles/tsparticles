@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawer, getRangeValue } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { ArrowParticle } from "./ArrowParticle";
 import type { IArrowData } from "./IArrowData";
 

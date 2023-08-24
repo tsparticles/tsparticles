@@ -6,7 +6,7 @@ import {
     clamp,
     getDistances,
     getRandom,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { MoveParticle } from "./Types";
 
 /**

@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-plugin-canvas-mask",
+  "name": "@tsparticles/plugin-canvas-mask",
   "version": "2.12.0",
   "description": "tsParticles canvas mask plugin",
   "homepage": "https://particles.js.org",
@@ -60,12 +60,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin"
+    "@tsparticles/plugin"
   ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -78,6 +74,9 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -12,7 +12,7 @@ import {
     loadParticlesOptions,
     randomInRange,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { DestroyParticle } from "./Types";
 
 /**

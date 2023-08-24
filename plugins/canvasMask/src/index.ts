@@ -1,4 +1,4 @@
-import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
+import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import { CanvasMask } from "./Options/Classes/CanvasMask";
 import { CanvasMaskInstance } from "./CanvasMaskInstance";
 import type { CanvasMaskOptions } from "./types";

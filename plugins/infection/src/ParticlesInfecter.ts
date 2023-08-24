@@ -1,4 +1,4 @@
-import { type IDelta, ParticlesInteractorBase, getRandom } from "tsparticles-engine";
+import { type IDelta, ParticlesInteractorBase, getRandom } from "@tsparticles/engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 
 /**

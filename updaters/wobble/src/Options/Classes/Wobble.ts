@@ -5,7 +5,7 @@ import {
     type RecursivePartial,
     isNumber,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IWobble } from "../Interfaces/IWobble";
 import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed";
 import { WobbleSpeed } from "./WobbleSpeed";

@@ -1,4 +1,4 @@
-import type { IDimension, PixelMode } from "tsparticles-engine";
+import type { IDimension, PixelMode } from "@tsparticles/engine";
 
 /**
  */

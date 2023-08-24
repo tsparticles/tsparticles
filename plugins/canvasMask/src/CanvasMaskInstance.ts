@@ -1,4 +1,4 @@
-import type { Engine, IContainerPlugin } from "tsparticles-engine";
+import type { Engine, IContainerPlugin } from "@tsparticles/engine";
 import { addParticlesFromCanvasPixels, getCanvasImageData, getImageData, getTextData } from "./utils";
 import type { CanvasMaskContainer } from "./types";
 import type { CanvasPixelData } from "./utils";

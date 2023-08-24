@@ -10,6 +10,15 @@ js/tsparticles.plugin.infection.min.js
 js/tsparticles.updater.gradient.min.js
 js/tsparticles.updater.orbit.min.js
 js/tsparticles.bundle.min.js
+js/interaction-light
+js/interaction-particles-repulse
+js/path-curves
+js/path-perlin-noise
+js/path-polygon
+js/path-simplex-noise
+js/plugin-infection
+js/updater-gradient
+js/updater-orbit
 css/main.min.css
 css/404.min.css
 js/404.min.js

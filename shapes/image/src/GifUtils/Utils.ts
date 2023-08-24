@@ -1,4 +1,4 @@
-import type { IRgb, IRgba } from "tsparticles-engine";
+import type { IRgb, IRgba } from "@tsparticles/engine";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants";
 import type { ApplicationExtension } from "./Types/ApplicationExtension";
 import { ByteStream } from "./ByteStream";

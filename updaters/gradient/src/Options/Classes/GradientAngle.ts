@@ -7,7 +7,7 @@ import {
     RotateDirection,
     type RotateDirectionAlt,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { GradientAngleAnimation } from "./GradientAngleAnimation";
 import type { IGradientAngle } from "../Interfaces/Gradients";
 

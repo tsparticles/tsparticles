@@ -8,7 +8,7 @@ import {
     type RecursivePartial,
     getRandom,
     getRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types";
 import { Tilt } from "./Options/Classes/Tilt";
 import { TiltDirection } from "./TiltDirection";

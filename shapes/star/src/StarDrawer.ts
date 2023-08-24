@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawer, type Particle, getRangeValue } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, type Particle, getRangeValue } from "@tsparticles/engine";
 import type { IStarShape } from "./IStarShape";
 import type { StarParticle } from "./StarParticle";
 

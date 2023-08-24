@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadLinksInteraction } from "./interaction";
 import { loadLinksPlugin } from "./plugin";
 

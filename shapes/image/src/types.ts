@@ -1,4 +1,4 @@
-import type { Container, Engine, IOptions, Options } from "tsparticles-engine";
+import type { Container, Engine, IOptions, Options } from "@tsparticles/engine";
 import type { IImage } from "./Utils";
 import type { IPreload } from "./Options/Interfaces/IPreload";
 import type { Preload } from "./Options/Classes/Preload";

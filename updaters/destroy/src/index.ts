@@ -1,5 +1,5 @@
 import { DestroyUpdater } from "./DestroyUpdater";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

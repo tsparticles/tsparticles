@@ -1,5 +1,5 @@
 import { Connector } from "./Connector";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

@@ -1,4 +1,4 @@
-import { CollisionMode, type IDelta, type Particle } from "tsparticles-engine";
+import { CollisionMode, type IDelta, type Particle } from "@tsparticles/engine";
 import { absorb } from "./Absorb";
 import { bounce } from "./Bounce";
 import { destroy } from "./Destroy";

@@ -10,7 +10,7 @@ import {
     type RecursivePartial,
     tsParticles,
     type ISourceOptions,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 import { TestWindow } from "./Fixture/Window";

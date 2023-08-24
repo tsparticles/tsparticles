@@ -3,7 +3,7 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { BubbleBase } from "./BubbleBase";
 import { BubbleDiv } from "./BubbleDiv";
 import type { IBubble } from "../Interfaces/IBubble";

@@ -17,7 +17,7 @@ import {
     itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOptions } from "./Types";
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient";
 import { updateGradient } from "./Utils";

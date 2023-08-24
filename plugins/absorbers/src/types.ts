@@ -1,4 +1,4 @@
-import type { IOptions, Options, SingleOrMultiple } from "tsparticles-engine";
+import type { IOptions, Options, SingleOrMultiple } from "@tsparticles/engine";
 import type { Absorber } from "./Options/Classes/Absorber";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
 

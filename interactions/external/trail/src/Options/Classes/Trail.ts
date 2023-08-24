@@ -1,4 +1,4 @@
-import { type IOptionLoader, type IParticlesOptions, type RecursivePartial, deepExtend } from "tsparticles-engine";
+import { type IOptionLoader, type IParticlesOptions, type RecursivePartial, deepExtend } from "@tsparticles/engine";
 import type { ITrail } from "../Interfaces/ITrail";
 
 /**

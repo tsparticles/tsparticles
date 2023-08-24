@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import type { IImageMask } from "../Interfaces/IImageMask";
 
 export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {

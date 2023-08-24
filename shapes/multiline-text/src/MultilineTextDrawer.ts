@@ -6,7 +6,7 @@ import {
     isInArray,
     itemFromSingleOrMultiple,
     loadFont,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IMultilineTextShape } from "./IMultilineTextShape";
 import type { MultilineTextParticle } from "./MultilineTextParticle";
 

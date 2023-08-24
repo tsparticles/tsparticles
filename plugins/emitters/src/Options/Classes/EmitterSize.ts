@@ -1,4 +1,4 @@
-import { type IOptionLoader, PixelMode, type RecursivePartial } from "tsparticles-engine";
+import { type IOptionLoader, PixelMode, type RecursivePartial } from "@tsparticles/engine";
 import type { IEmitterSize } from "../Interfaces/IEmitterSize";
 
 /**

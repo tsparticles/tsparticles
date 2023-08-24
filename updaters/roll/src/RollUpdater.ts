@@ -4,7 +4,7 @@ import {
     type IParticleUpdater,
     type Particle,
     type RecursivePartial,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRollParticlesOptions, RollParticle, RollParticlesOptions } from "./Types";
 import { initParticle, updateRoll } from "./Utils";
 import { Roll } from "./Options/Classes/Roll";

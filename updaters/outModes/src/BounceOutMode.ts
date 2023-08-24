@@ -6,7 +6,7 @@ import {
     type OutModeDirection,
     type Particle,
     calculateBounds,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { bounceHorizontal, bounceVertical } from "./Utils";
 import type { IOutModeManager } from "./IOutModeManager";
 

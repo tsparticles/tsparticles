@@ -2,9 +2,9 @@
 
 # tsParticles Text Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-text/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-text)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-text.svg)](https://www.npmjs.com/package/tsparticles-shape-text)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-text)](https://www.npmjs.com/package/tsparticles-shape-text) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-text/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-text)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-text.svg)](https://www.npmjs.com/package/@tsparticles/shape-text)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-text)](https://www.npmjs.com/package/@tsparticles/shape-text) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional text shape.
 
@@ -43,20 +43,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-text
+$ npm install @tsparticles/shape-text
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-text
+$ yarn add @tsparticles/shape-text
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadTextShape } = require("tsparticles-shape-text");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadTextShape } = require("@tsparticles/shape-text");
 
 (async () => {
   await loadTextShape(tsParticles);
@@ -66,8 +66,8 @@ const { loadTextShape } = require("tsparticles-shape-text");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadTextShape } from "tsparticles-shape-text";
+import { tsParticles } from "@tsparticles/engine";
+import { loadTextShape } from "@tsparticles/shape-text";
 
 (async () => {
   await loadTextShape(tsParticles);

@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import type { ISoundsIcon } from "../Interfaces/ISoundsIcon";
 
 export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {

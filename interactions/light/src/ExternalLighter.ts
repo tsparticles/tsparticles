@@ -6,7 +6,7 @@ import {
     type RecursivePartial,
     isInArray,
     rangeColorToRgb,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ILightMode, LightMode } from "./Types";
 import type { LightContainer, LightParticle } from "./Types";
 import { Light } from "./Options/Classes/Light";

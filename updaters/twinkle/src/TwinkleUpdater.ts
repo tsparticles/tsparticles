@@ -7,7 +7,7 @@ import {
     getRangeValue,
     getStyleFromHsl,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types";
 import { Twinkle } from "./Options/Classes/Twinkle";
 

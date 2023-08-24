@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import type { IEmitterShape } from "./IEmitterShape";
 import type { ShapeManager } from "./ShapeManager";
 

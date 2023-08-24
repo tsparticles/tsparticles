@@ -1,4 +1,4 @@
-import { type IDelta, type Particle, clamp } from "tsparticles-engine";
+import { type IDelta, type Particle, clamp } from "@tsparticles/engine";
 
 /**
  * @param p1 -

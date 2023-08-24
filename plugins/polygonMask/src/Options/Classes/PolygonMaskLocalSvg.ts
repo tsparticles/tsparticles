@@ -1,4 +1,4 @@
-import type { IDimension, IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
+import type { IDimension, IOptionLoader, RecursivePartial, SingleOrMultiple } from "@tsparticles/engine";
 import type { IPolygonMaskLocalSvg } from "../Interfaces/IPolygonMaskLocalSvg";
 
 /**

@@ -1,4 +1,4 @@
-import type { ICoordinates } from "tsparticles-engine";
+import type { ICoordinates } from "@tsparticles/engine";
 import type { IPolygonMaskDraw } from "./IPolygonMaskDraw";
 import type { IPolygonMaskInline } from "./IPolygonMaskInline";
 import type { IPolygonMaskLocalSvg } from "./IPolygonMaskLocalSvg";

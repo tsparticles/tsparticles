@@ -4,7 +4,7 @@ import {
     type RecursivePartial,
     ValueWithRandom,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse";
 
 /**

@@ -2,33 +2,33 @@
 
 # tsParticles Confetti Bundle
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-confetti/badge)](https://www.jsdelivr.com/package/npm/tsparticles-confetti) [![npmjs](https://badge.fury.io/js/tsparticles-confetti.svg)](https://www.npmjs.com/package/tsparticles-confetti) [![npmjs](https://img.shields.io/npm/dt/tsparticles-confetti)](https://www.npmjs.com/package/tsparticles-confetti) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/confetti/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/confetti) [![npmjs](https://badge.fury.io/js/@tsparticles/confetti.svg)](https://www.npmjs.com/package/@tsparticles/confetti) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/confetti)](https://www.npmjs.com/package/@tsparticles/confetti) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) confetti bundle loads all the features necessary to create beautiful confetti effects with ease.
 
 **Included Packages**
 
-- [tsparticles-engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
-- [tsparticles-move-base](https://github.com/matteobruni/tsparticles/tree/main/move/base)
-- [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
-- [tsparticles-plugin-motion](https://github.com/matteobruni/tsparticles/tree/main/plugins/motion)
-- [tsparticles-shape-cards](https://github.com/matteobruni/tsparticles/tree/main/shapes/cards)
-- [tsparticles-shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
-- [tsparticles-shape-heart](https://github.com/matteobruni/tsparticles/tree/main/shapes/heart)
-- [tsparticles-shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
-- [tsparticles-shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
-- [tsparticles-shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
-- [tsparticles-shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
-- [tsparticles-shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
-- [tsparticles-updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
-- [tsparticles-updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
-- [tsparticles-updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
-- [tsparticles-updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
-- [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
-- [tsparticles-updater-rotate](https://github.com/matteobruni/tsparticles/tree/main/updaters/rotate)
-- [tsparticles-updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
-- [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
-- [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
+- [@tsparticles/engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
+- [@tsparticles/move-base](https://github.com/matteobruni/tsparticles/tree/main/move/base)
+- [@tsparticles/plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
+- [@tsparticles/plugin-motion](https://github.com/matteobruni/tsparticles/tree/main/plugins/motion)
+- [@tsparticles/shape-cards](https://github.com/matteobruni/tsparticles/tree/main/shapes/cards)
+- [@tsparticles/shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
+- [@tsparticles/shape-heart](https://github.com/matteobruni/tsparticles/tree/main/shapes/heart)
+- [@tsparticles/shape-image](https://github.com/matteobruni/tsparticles/tree/main/shapes/image)
+- [@tsparticles/shape-polygon](https://github.com/matteobruni/tsparticles/tree/main/shapes/polygon)
+- [@tsparticles/shape-square](https://github.com/matteobruni/tsparticles/tree/main/shapes/square)
+- [@tsparticles/shape-star](https://github.com/matteobruni/tsparticles/tree/main/shapes/star)
+- [@tsparticles/shape-text](https://github.com/matteobruni/tsparticles/tree/main/shapes/text)
+- [@tsparticles/updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
+- [@tsparticles/updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
+- [@tsparticles/updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
+- [@tsparticles/updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
+- [@tsparticles/updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
+- [@tsparticles/updater-rotate](https://github.com/matteobruni/tsparticles/tree/main/updaters/rotate)
+- [@tsparticles/updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
+- [@tsparticles/updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
+- [@tsparticles/updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
 
 ## How to use it
 

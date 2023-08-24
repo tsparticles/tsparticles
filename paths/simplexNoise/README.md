@@ -2,9 +2,9 @@
 
 # tsParticles Simplex Noise Path
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-path-simplex-noise/badge)](https://www.jsdelivr.com/package/npm/tsparticles-path-simplex-noise)
-[![npmjs](https://badge.fury.io/js/tsparticles-path-simplex-noise.svg)](https://www.npmjs.com/package/tsparticles-path-simplex-noise)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-simplex-noise)](https://www.npmjs.com/package/tsparticles-path-simplex-noise) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/path-simplex-noise/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/path-simplex-noise)
+[![npmjs](https://badge.fury.io/js/@tsparticles/path-simplex-noise.svg)](https://www.npmjs.com/package/@tsparticles/path-simplex-noise)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/path-simplex-noise)](https://www.npmjs.com/package/@tsparticles/path-simplex-noise) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) path plugin for simplex noise movement.
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the path plugin lik
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-path-simplex-noise
+$ npm install @tsparticles/path-simplex-noise
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-path-simplex-noise
+$ yarn add @tsparticles/path-simplex-noise
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadSimplexNoisePath } = require("tsparticles-path-simplex-noise");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadSimplexNoisePath } = require("@tsparticles/path-simplex-noise");
 
 (async () => {
   await loadSimplexNoisePath(tsParticles);
@@ -65,8 +65,8 @@ const { loadSimplexNoisePath } = require("tsparticles-path-simplex-noise");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadSimplexNoisePath } from "tsparticles-path-simplex-noise";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 
 (async () => {
   await loadSimplexNoisePath(tsParticles);

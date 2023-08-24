@@ -1,4 +1,4 @@
-import { type ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "tsparticles-engine";
+import { type ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "@tsparticles/engine";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,

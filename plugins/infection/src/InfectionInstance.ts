@@ -1,4 +1,4 @@
-import { type IContainerPlugin, type IOptionsColor, type Particle, itemFromArray } from "tsparticles-engine";
+import { type IContainerPlugin, type IOptionsColor, type Particle, itemFromArray } from "@tsparticles/engine";
 import type { InfectableContainer, InfectableParticle } from "./Types";
 import { Infecter } from "./Infecter";
 

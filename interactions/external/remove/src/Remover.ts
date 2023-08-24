@@ -5,7 +5,7 @@ import {
     type Modes,
     type RecursivePartial,
     getRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types";
 import { Remove } from "./Options/Classes/Remove";
 

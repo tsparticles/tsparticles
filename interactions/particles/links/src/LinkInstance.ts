@@ -6,7 +6,7 @@ import {
     getRandom,
     getRangeValue,
     rangeColorToRgb,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces";
 import type { LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types";
 import { drawLinkLine, drawLinkTriangle, setLinkFrequency } from "./Utils";

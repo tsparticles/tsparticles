@@ -1,4 +1,4 @@
-import type { Container, Options } from "tsparticles-engine";
+import type { Container, Options } from "@tsparticles/engine";
 import type { IPush } from "./Options/Interfaces/IPush";
 import type { Push } from "./Options/Classes/Push";
 

@@ -1,4 +1,4 @@
-import type { Container, CustomEventArgs, IOptions, Options } from "tsparticles-engine";
+import type { Container, CustomEventArgs, IOptions, Options } from "@tsparticles/engine";
 import type { ISounds } from "./Options/Interfaces/ISounds";
 import type { ImageDisplay } from "./enums";
 import type { Sounds } from "./Options/Classes/Sounds";

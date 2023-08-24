@@ -1,4 +1,4 @@
-import type { IAnimatable, IAnimatableColor, IAnimation, StartValueType } from "tsparticles-engine";
+import type { IAnimatable, IAnimatableColor, IAnimation, StartValueType } from "@tsparticles/engine";
 import type { IGradient, IGradientColor, IGradientColorOpacity } from "./Gradients";
 
 export interface IGradientColorOpacityAnimation extends IAnimation {

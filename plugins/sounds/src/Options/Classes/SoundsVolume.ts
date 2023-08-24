@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isObject } from "tsparticles-engine";
+import { type IOptionLoader, type RecursivePartial, isObject } from "@tsparticles/engine";
 import type { ISoundsVolume } from "../Interfaces/ISoundsVolume";
 
 export class SoundsVolume implements ISoundsVolume, IOptionLoader<ISoundsVolume> {

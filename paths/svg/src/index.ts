@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { SVGPathGenerator } from "./SVGPathGenerator";
 
 export const svgPathName = "svgPathGenerator";

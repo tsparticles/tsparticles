@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import type { IPreload } from "../Interfaces/IPreload";
 
 export class Preload implements IPreload, IOptionLoader<IPreload> {

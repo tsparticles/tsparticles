@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-shape-spiral",
+  "name": "@tsparticles/shape-spiral",
   "version": "2.12.0",
   "description": "tsParticles spiral shape",
   "homepage": "https://particles.js.org",
@@ -66,12 +66,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-shape"
+    "@tsparticles/shape"
   ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -97,6 +93,11 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   }
 }

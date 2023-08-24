@@ -6,25 +6,25 @@ import {
     isSsr,
     isString,
     tsParticles,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { ConfettiOptions } from "./ConfettiOptions";
-import type { EmitterContainer } from "tsparticles-plugin-emitters";
+import type { EmitterContainer } from "@tsparticles/plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions";
-import { loadBasic } from "tsparticles-basic";
-import { loadCardsShape } from "tsparticles-shape-cards";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadHeartShape } from "tsparticles-shape-heart";
-import { loadImageShape } from "tsparticles-shape-image";
-import { loadLifeUpdater } from "tsparticles-updater-life";
-import { loadMotionPlugin } from "tsparticles-plugin-motion";
-import { loadPolygonShape } from "tsparticles-shape-polygon";
-import { loadRollUpdater } from "tsparticles-updater-roll";
-import { loadRotateUpdater } from "tsparticles-updater-rotate";
-import { loadSquareShape } from "tsparticles-shape-square";
-import { loadStarShape } from "tsparticles-shape-star";
-import { loadTextShape } from "tsparticles-shape-text";
-import { loadTiltUpdater } from "tsparticles-updater-tilt";
-import { loadWobbleUpdater } from "tsparticles-updater-wobble";
+import { loadBasic } from "@tsparticles/basic";
+import { loadCardsShape } from "@tsparticles/shape-cards";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadHeartShape } from "@tsparticles/shape-heart";
+import { loadImageShape } from "@tsparticles/shape-image";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+import { loadPolygonShape } from "@tsparticles/shape-polygon";
+import { loadRollUpdater } from "@tsparticles/updater-roll";
+import { loadRotateUpdater } from "@tsparticles/updater-rotate";
+import { loadSquareShape } from "@tsparticles/shape-square";
+import { loadStarShape } from "@tsparticles/shape-star";
+import { loadTextShape } from "@tsparticles/shape-text";
+import { loadTiltUpdater } from "@tsparticles/updater-tilt";
+import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
 /**
  *

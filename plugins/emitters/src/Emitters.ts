@@ -9,7 +9,7 @@ import {
     isArray,
     isNumber,
     itemFromArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";
 import type { EmitterContainer } from "./EmitterContainer";

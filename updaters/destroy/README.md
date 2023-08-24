@@ -2,9 +2,9 @@
 
 # tsParticles Destroy Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-destroy/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-destroy)
-[![npmjs](https://badge.fury.io/js/tsparticles-updater-destroy.svg)](https://www.npmjs.com/package/tsparticles-updater-destroy)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-destroy)](https://www.npmjs.com/package/tsparticles-updater-destroy) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-destroy/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-destroy)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-destroy.svg)](https://www.npmjs.com/package/@tsparticles/updater-destroy)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-destroy)](https://www.npmjs.com/package/@tsparticles/updater-destroy) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for destroy animations.
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-updater-destroy
+$ npm install @tsparticles/updater-destroy
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-updater-destroy
+$ yarn add @tsparticles/updater-destroy
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadDestroyUpdater } = require("tsparticles-updater-destroy");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadDestroyUpdater } = require("@tsparticles/updater-destroy");
 
 (async () => {
   await loadDestroyUpdater(tsParticles);
@@ -65,8 +65,8 @@ const { loadDestroyUpdater } = require("tsparticles-updater-destroy");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadDestroyUpdater } from "tsparticles-updater-destroy";
+import { tsParticles } from "@tsparticles/engine";
+import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 
 (async () => {
   await loadDestroyUpdater(tsParticles);

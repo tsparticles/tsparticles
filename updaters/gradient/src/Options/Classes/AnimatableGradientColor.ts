@@ -1,4 +1,4 @@
-import { AnimatableColor, type IOptionLoader, type RecursivePartial, isNumber } from "tsparticles-engine";
+import { AnimatableColor, type IOptionLoader, type RecursivePartial, isNumber } from "@tsparticles/engine";
 import { GradientColorOpacity } from "./GradientColorOpacity";
 import type { IAnimatableGradientColor } from "../Interfaces/IOptionsGradient";
 

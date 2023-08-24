@@ -9,7 +9,7 @@ import {
     isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { ImageDisplay, SoundsEventType } from "./enums";
 import type { ImageMargins, InitImageData, SoundsContainer } from "./types";
 import type { SoundsAudio } from "./Options/Classes/SoundsAudio";

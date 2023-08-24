@@ -1,4 +1,4 @@
-import { type Container, type Engine, type ISourceOptions, type Particle } from "tsparticles-engine";
+import { type Container, type Engine, type ISourceOptions, type Particle } from "@tsparticles/engine";
 import type { IParticlesJS } from "./IParticlesJS";
 
 const initParticlesJS = (

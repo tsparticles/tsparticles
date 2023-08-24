@@ -16,17 +16,17 @@ import {
     isString,
     setRangeValue,
     tsParticles,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { FireworkOptions } from "./FireworkOptions";
 import type { IFireworkOptions } from "./IFireworkOptions";
-import { loadBasic } from "tsparticles-basic";
-import { loadDestroyUpdater } from "tsparticles-updater-destroy";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadLifeUpdater } from "tsparticles-updater-life";
-import { loadLineShape } from "tsparticles-shape-line";
-import { loadRotateUpdater } from "tsparticles-updater-rotate";
-import { loadSoundsPlugin } from "tsparticles-plugin-sounds";
-import { loadStrokeColorUpdater } from "tsparticles-updater-stroke-color";
+import { loadBasic } from "@tsparticles/basic";
+import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadLineShape } from "@tsparticles/shape-line";
+import { loadRotateUpdater } from "@tsparticles/updater-rotate";
+import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
+import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
 
 let initialized = false;
 let initializing = false;

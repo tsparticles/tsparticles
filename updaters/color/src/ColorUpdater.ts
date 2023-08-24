@@ -5,7 +5,7 @@ import {
     type Particle,
     getHslAnimationFromHsl,
     rangeColorToHsl,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { updateColor } from "./Utils";
 
 export class ColorUpdater implements IParticleUpdater {

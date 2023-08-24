@@ -1,4 +1,4 @@
-import { type IParticleMover, type Particle, isSsr } from "tsparticles-engine";
+import { type IParticleMover, type Particle, isSsr } from "@tsparticles/engine";
 
 /**
  */

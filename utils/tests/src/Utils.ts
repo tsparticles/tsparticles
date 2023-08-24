@@ -20,7 +20,7 @@ import {
     areBoundsInside,
     isPointInside,
     getParticleBaseVelocity,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 

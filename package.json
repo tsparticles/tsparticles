@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "tsparticles-workspace",
+  "name": "@tsparticles/workspace",
   "description": "tsParticles monorepository",
   "version": "0.0.0",
   "scripts": {

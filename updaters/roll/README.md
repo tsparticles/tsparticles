@@ -2,9 +2,9 @@
 
 # tsParticles Roll Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-roll/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-roll)
-[![npmjs](https://badge.fury.io/js/tsparticles-updater-roll.svg)](https://www.npmjs.com/package/tsparticles-updater-roll)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-roll)](https://www.npmjs.com/package/tsparticles-updater-roll) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-roll/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-roll)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-roll.svg)](https://www.npmjs.com/package/@tsparticles/updater-roll)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-roll)](https://www.npmjs.com/package/@tsparticles/updater-roll) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for roll animations.
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-updater-roll
+$ npm install @tsparticles/updater-roll
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-updater-roll
+$ yarn add @tsparticles/updater-roll
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadRollUpdater } = require("tsparticles-updater-roll");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadRollUpdater } = require("@tsparticles/updater-roll");
 
 (async () => {
   await loadRollUpdater(tsParticles);
@@ -65,8 +65,8 @@ const { loadRollUpdater } = require("tsparticles-updater-roll");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadRollUpdater } from "tsparticles-updater-roll";
+import { tsParticles } from "@tsparticles/engine";
+import { loadRollUpdater } from "@tsparticles/updater-roll";
 
 (async () => {
   await loadRollUpdater(tsParticles);

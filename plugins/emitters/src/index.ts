@@ -6,7 +6,7 @@ import {
     executeOnSingleOrMultiple,
     isArray,
     isInArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { CircleShape } from "./Shapes/Circle/CircleShape";
 import { Emitter } from "./Options/Classes/Emitter";
 import { EmitterClickMode } from "./Enums/EmitterClickMode";

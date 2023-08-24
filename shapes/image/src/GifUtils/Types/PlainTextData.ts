@@ -1,4 +1,4 @@
-import type { IDimension } from "tsparticles-engine";
+import type { IDimension } from "@tsparticles/engine";
 
 export interface PlainTextData {
     /**

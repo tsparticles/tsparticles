@@ -1,7 +1,7 @@
 /**
  * The particles emitter rate options
  */
-import type { RangeValue } from "tsparticles-engine";
+import type { RangeValue } from "@tsparticles/engine";
 
 export interface IEmitterRate {
     /**

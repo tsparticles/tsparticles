@@ -1,4 +1,4 @@
-import { type ICoordinates, getStyleFromRgb } from "tsparticles-engine";
+import { type ICoordinates, getStyleFromRgb } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types";
 
 /**

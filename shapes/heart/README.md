@@ -2,9 +2,9 @@
 
 # tsParticles Heart Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-heart/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-heart)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-heart.svg)](https://www.npmjs.com/package/tsparticles-shape-heart)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-heart)](https://www.npmjs.com/package/tsparticles-shape-heart) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-heart/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-heart)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-heart.svg)](https://www.npmjs.com/package/@tsparticles/shape-heart)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-heart)](https://www.npmjs.com/package/@tsparticles/shape-heart) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional heart shape.
 
@@ -43,20 +43,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-heart
+$ npm install @tsparticles/shape-heart
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-heart
+$ yarn add @tsparticles/shape-heart
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadHeartShape } = require("tsparticles-shape-heart");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadHeartShape } = require("@tsparticles/shape-heart");
 
 (async () => {
   await loadHeartShape(tsParticles);
@@ -66,8 +66,8 @@ const { loadHeartShape } = require("tsparticles-shape-heart");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadHeartShape } from "tsparticles-shape-heart";
+import { tsParticles } from "@tsparticles/engine";
+import { loadHeartShape } from "@tsparticles/shape-heart";
 
 (async () => {
   await loadHeartShape(tsParticles);

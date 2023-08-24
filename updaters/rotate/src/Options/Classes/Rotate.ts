@@ -4,7 +4,7 @@ import {
     RotateDirection,
     type RotateDirectionAlt,
     ValueWithRandom,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRotate } from "../Interfaces/IRotate";
 import { RotateAnimation } from "./RotateAnimation";
 

@@ -14,7 +14,7 @@ import {
     isArray,
     isString,
     itemFromArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
 import type { ISvgPath } from "./Interfaces/ISvgPath";
 import type { PolygonMaskContainer } from "./types";

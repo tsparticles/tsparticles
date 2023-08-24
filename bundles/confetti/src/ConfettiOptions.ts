@@ -7,7 +7,7 @@ import {
     type SingleOrMultiple,
     deepExtend,
     isArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions";
 
 /**

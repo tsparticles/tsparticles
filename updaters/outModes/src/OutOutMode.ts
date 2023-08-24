@@ -12,7 +12,7 @@ import {
     getRandom,
     isPointInside,
     randomInRange,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager";
 
 export class OutOutMode implements IOutModeManager {

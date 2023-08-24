@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-path-perlin-noise",
+  "name": "@tsparticles/path-perlin-noise",
   "version": "2.12.0",
   "description": "tsParticles perlin noise path",
   "homepage": "https://particles.js.org",
@@ -66,13 +66,9 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin",
-    "tsparticles-path"
+    "@tsparticles/plugin",
+    "@tsparticles/path"
   ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -98,6 +94,11 @@
   "prettier": "@tsparticles/prettier-config",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   }
 }

@@ -1,4 +1,4 @@
-import { type IDelta, type IParticleUpdater, type Particle, getRandom } from "tsparticles-engine";
+import { type IDelta, type IParticleUpdater, type Particle, getRandom } from "@tsparticles/engine";
 import { updateSize } from "./Utils";
 
 export class SizeUpdater implements IParticleUpdater {

@@ -1,5 +1,5 @@
 import { Bouncer } from "./Bouncer";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

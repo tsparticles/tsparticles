@@ -23,7 +23,7 @@ import {
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
@@ -328,7 +328,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types";
 import { Repulse } from "./Options/Classes/Repulse";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv";

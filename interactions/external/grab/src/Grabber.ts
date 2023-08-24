@@ -10,7 +10,7 @@ import {
     getLinkRandomColor,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types";
 import { Grab } from "./Options/Classes/Grab";
 import { drawGrab } from "./Utils";

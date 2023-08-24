@@ -1,4 +1,4 @@
-import type { Engine, IContainerPlugin, IPlugin, RecursivePartial } from "tsparticles-engine";
+import type { Engine, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IPreloadOptions, PreloadOptions } from "./types";
 import { Preload } from "./Options/Classes/Preload";
 

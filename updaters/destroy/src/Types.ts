@@ -1,4 +1,4 @@
-import type { IBounds, IParticlesOptions, Particle, ParticlesOptions } from "tsparticles-engine";
+import type { IBounds, IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
 import type { Destroy } from "./Options/Classes/Destroy";
 import type { IDestroy } from "./Options/Interfaces/IDestroy";
 

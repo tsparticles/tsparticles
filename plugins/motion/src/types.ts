@@ -1,4 +1,4 @@
-import type { Container, IOptions, Options } from "tsparticles-engine";
+import type { Container, IOptions, Options } from "@tsparticles/engine";
 import type { IMotion } from "./Options/Interfaces/IMotion";
 import type { Motion } from "./Options/Classes/Motion";
 

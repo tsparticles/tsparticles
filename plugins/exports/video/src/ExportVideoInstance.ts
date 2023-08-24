@@ -1,4 +1,4 @@
-import type { Container, Engine, ExportResult, IContainerPlugin } from "tsparticles-engine";
+import type { Container, Engine, ExportResult, IContainerPlugin } from "@tsparticles/engine";
 import type { IExportVideoData } from "./IExportVideoData";
 
 const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],

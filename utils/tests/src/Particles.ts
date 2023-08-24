@@ -1,5 +1,5 @@
 import { describe, it } from "mocha";
-import { ICoordinates3d, errorPrefix, getRandom, tsParticles } from "tsparticles-engine";
+import { ICoordinates3d, errorPrefix, getRandom, tsParticles } from "@tsparticles/engine";
 import { TestWindow } from "./Fixture/Window";
 import { expect } from "chai";
 import { createCanvas } from "canvas";

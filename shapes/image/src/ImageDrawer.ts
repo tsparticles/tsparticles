@@ -1,4 +1,4 @@
-import { type Container, type IDelta, type IShapeDrawer, errorPrefix } from "tsparticles-engine";
+import { type Container, type IDelta, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
 import type { IImage, IParticleImage, ImageParticle } from "./Utils";
 import type { ImageContainer, ImageEngine } from "./types";
 import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod";

@@ -2,9 +2,9 @@
 
 # tsParticles Circle Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-circle/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-circle)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-circle.svg)](https://www.npmjs.com/package/tsparticles-shape-circle)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-circle)](https://www.npmjs.com/package/tsparticles-shape-circle) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-circle/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-circle)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-circle.svg)](https://www.npmjs.com/package/@tsparticles/shape-circle)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-circle)](https://www.npmjs.com/package/@tsparticles/shape-circle) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional circle shape.
 
@@ -43,20 +43,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-circle
+$ npm install @tsparticles/shape-circle
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-circle
+$ yarn add @tsparticles/shape-circle
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadCircleShape } = require("tsparticles-shape-circle");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadCircleShape } = require("@tsparticles/shape-circle");
 
 (async () => {
   await loadCircleShape(tsParticles);
@@ -66,8 +66,8 @@ const { loadCircleShape } = require("tsparticles-shape-circle");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadCircleShape } from "tsparticles-shape-circle";
+import { tsParticles } from "@tsparticles/engine";
+import { loadCircleShape } from "@tsparticles/shape-circle";
 
 (async () => {
   await loadCircleShape(tsParticles);

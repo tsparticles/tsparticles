@@ -1,4 +1,4 @@
-import { HoverMode, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "tsparticles-engine";
+import { HoverMode, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types";
 import { drawParticleShadow } from "./Utils";
 

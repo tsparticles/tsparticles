@@ -4,7 +4,7 @@ import type { IPreload } from "./Options/Interfaces/IPreload";
 import { ImageDrawer } from "./ImageDrawer";
 import type { ImageEngine } from "./types";
 import { ImagePreloaderPlugin } from "./ImagePreloader";
-import { errorPrefix } from "tsparticles-engine";
+import { errorPrefix } from "@tsparticles/engine";
 
 /**
  *

@@ -8,7 +8,7 @@ import {
     getRangeValue,
     randomInRange,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ILifeParticlesOptions, LifeParticle, LifeParticlesOptions } from "./Types";
 import { Life } from "./Options/Classes/Life";
 

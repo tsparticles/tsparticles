@@ -1,2 +1,2 @@
 export * from ".";
-export * from "tsparticles-engine";
+export * from "@tsparticles/engine";

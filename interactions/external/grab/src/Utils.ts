@@ -1,5 +1,5 @@
 import type { GrabContainer, LinkParticle } from "./Types";
-import { type ICoordinates, type IRgb, drawLine, getStyleFromRgb } from "tsparticles-engine";
+import { type ICoordinates, type IRgb, drawLine, getStyleFromRgb } from "@tsparticles/engine";
 
 /**
  * Draws a grab line between two points using canvas API in the given context.

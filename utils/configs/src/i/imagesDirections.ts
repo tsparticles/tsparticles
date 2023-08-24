@@ -1,4 +1,4 @@
-import { type ISourceOptions, MoveDirection } from "tsparticles-engine";
+import { type ISourceOptions, MoveDirection } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Images with Custom Directions",

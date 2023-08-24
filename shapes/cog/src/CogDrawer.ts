@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawer, getRangeValue } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { CogParticle } from "./CogParticle";
 import type { ICogData } from "./ICogData";
 

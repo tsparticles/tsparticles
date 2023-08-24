@@ -4,7 +4,7 @@ import {
     type IDelta,
     type IParticleValueAnimation,
     randomInRange,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { StrokeParticle } from "./Types";
 
 /**

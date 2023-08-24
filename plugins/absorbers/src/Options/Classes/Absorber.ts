@@ -4,7 +4,7 @@ import {
     OptionsColor,
     type RecursivePartial,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { AbsorberSize } from "./AbsorberSize";
 import type { IAbsorber } from "../Interfaces/IAbsorber";
 

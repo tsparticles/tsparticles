@@ -25,7 +25,7 @@
     }
   },
   "extends": "@nrwl/workspace/presets/npm.json",
-  "npmScope": "tsparticles-workspace",
+  "npmScope": "@tsparticles/workspace",
   "tasksRunnerOptions": {
     "default": {
       "runner": "nx-cloud",

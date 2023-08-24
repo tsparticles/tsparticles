@@ -1,4 +1,4 @@
-import type { RangeValue, SingleOrMultiple } from "tsparticles-engine";
+import type { RangeValue, SingleOrMultiple } from "@tsparticles/engine";
 
 export interface IFireworkOptions {
     brightness: RangeValue;

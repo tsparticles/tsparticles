@@ -1,4 +1,4 @@
-import type { IDelta } from "tsparticles-engine";
+import type { IDelta } from "@tsparticles/engine";
 import type { WobbleParticle } from "./Types";
 
 /**

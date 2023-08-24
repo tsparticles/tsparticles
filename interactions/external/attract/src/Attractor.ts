@@ -17,7 +17,7 @@ import {
     getEasing,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract";
 
 /**

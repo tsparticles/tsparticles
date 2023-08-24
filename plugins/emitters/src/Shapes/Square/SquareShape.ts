@@ -1,4 +1,4 @@
-import { type ICoordinates, type IDimension, getRandom } from "tsparticles-engine";
+import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
 import type { IEmitterShape } from "../../IEmitterShape";
 
 /**

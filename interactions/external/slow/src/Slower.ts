@@ -8,7 +8,7 @@ import {
     type RecursivePartial,
     getDistance,
     isInArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types";
 import { Slow } from "./Options/Classes/Slow";
 

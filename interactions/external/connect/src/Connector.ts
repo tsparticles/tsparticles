@@ -7,7 +7,7 @@ import {
     type Particle,
     type RecursivePartial,
     isInArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { Connect } from "./Options/Classes/Connect";
 import { drawConnection } from "./Utils";
 

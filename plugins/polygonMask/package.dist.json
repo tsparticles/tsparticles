@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-plugin-polygon-mask",
+  "name": "@tsparticles/plugin-polygon-mask",
   "version": "2.12.0",
   "description": "tsParticles polygon mask plugin",
   "homepage": "https://particles.js.org",
@@ -60,12 +60,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin"
+    "@tsparticles/plugin"
   ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -80,6 +76,9 @@
     "./**/pathseg.js"
   ],
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

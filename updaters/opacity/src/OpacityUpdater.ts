@@ -6,7 +6,7 @@ import {
     getRandom,
     getRangeValue,
     initParticleNumericAnimationValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { updateOpacity } from "./Utils";
 
 /**

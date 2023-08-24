@@ -7,7 +7,7 @@ import type {
     IRgb,
     Particle,
     ParticlesOptions,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ILink } from "./Interfaces";
 import type { ILinks } from "./Options/Interfaces/ILinks";
 import type { Links } from "./Options/Classes/Links";

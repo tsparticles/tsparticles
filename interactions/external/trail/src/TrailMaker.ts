@@ -9,7 +9,7 @@ import {
     type Particle,
     type RecursivePartial,
     isInArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
 import { Trail } from "./Options/Classes/Trail";
 

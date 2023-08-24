@@ -11,7 +11,7 @@ import {
     RotateDirection,
     getRandom,
     getRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRotate } from "./Options/Interfaces/IRotate";
 import { Rotate } from "./Options/Classes/Rotate";
 

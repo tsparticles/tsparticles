@@ -1,5 +1,5 @@
 import { Collider } from "./Collider";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine - The engine to use for the interaction

@@ -1,4 +1,4 @@
-import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
+import type { ICoordinates, IOptionLoader, RecursivePartial } from "@tsparticles/engine";
 import { CanvasMaskOverride } from "./CanvasMaskOverride";
 import { CanvasMaskPixels } from "./CanvasMaskPixels";
 import type { ICanvasMask } from "../Interfaces/ICanvasMask";

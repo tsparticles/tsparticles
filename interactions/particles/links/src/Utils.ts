@@ -7,7 +7,7 @@ import {
     getRandom,
     getStyleFromRgb,
     rangeColorToRgb,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from "./Types";
 
 /**

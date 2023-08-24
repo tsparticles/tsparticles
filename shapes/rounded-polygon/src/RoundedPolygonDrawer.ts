@@ -1,4 +1,10 @@
-import { type Container, type ICoordinates, type IShapeDrawer, type Particle, getRangeValue } from "tsparticles-engine";
+import {
+    type Container,
+    type ICoordinates,
+    type IShapeDrawer,
+    type Particle,
+    getRangeValue,
+} from "@tsparticles/engine";
 import type { IRoundedPolygonShape } from "./IRoundedPolygonShape";
 import type { RoundedParticle } from "./RoundedParticle";
 

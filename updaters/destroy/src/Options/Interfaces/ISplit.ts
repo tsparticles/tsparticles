@@ -5,7 +5,7 @@ import type {
     IValueWithRandom,
     RecursivePartial,
     SingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 export interface ISplit {
     color?: string | IOptionsColor;

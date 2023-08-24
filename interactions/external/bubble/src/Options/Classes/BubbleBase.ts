@@ -5,7 +5,7 @@ import {
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
     isArray,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IBubbleBase } from "../Interfaces/IBubbleBase";
 
 /**

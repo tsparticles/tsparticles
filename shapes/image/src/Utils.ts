@@ -1,4 +1,4 @@
-import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "tsparticles-engine";
+import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
 import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils";
 import type { GIF } from "./GifUtils/Types/GIF";
 import type { IImageShape } from "./IImageShape";

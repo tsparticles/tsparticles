@@ -1,5 +1,5 @@
 import { BubbleDrawer } from "./BubbleDrawer";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

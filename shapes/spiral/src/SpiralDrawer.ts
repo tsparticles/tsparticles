@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawer, getRangeValue } from "tsparticles-engine";
+import { type Container, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { ISpiralData } from "./ISpiralData";
 import type { SpiralParticle } from "./SpiralParticle";
 

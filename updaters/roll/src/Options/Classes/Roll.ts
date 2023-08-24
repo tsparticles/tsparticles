@@ -4,7 +4,7 @@ import {
     type RangeValue,
     type RecursivePartial,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IRoll } from "../Interfaces/IRoll";
 import { RollLight } from "./RollLight";
 import { RollMode } from "../../RollMode";

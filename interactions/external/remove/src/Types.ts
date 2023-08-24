@@ -1,4 +1,4 @@
-import type { Container, Options } from "tsparticles-engine";
+import type { Container, Options } from "@tsparticles/engine";
 import type { IRemove } from "./Options/Interfaces/IRemove";
 import type { Remove } from "./Options/Classes/Remove";
 

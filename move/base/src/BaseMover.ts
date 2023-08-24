@@ -6,7 +6,7 @@ import {
     getDistance,
     getRangeMax,
     getRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { applyDistance, getProximitySpeedFactor, move, spin } from "./Utils";
 import type { MoveParticle } from "./Types";
 

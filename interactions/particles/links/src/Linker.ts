@@ -7,7 +7,7 @@ import {
     type RecursivePartial,
     getDistances,
     getLinkRandomColor,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types";
 import { CircleWarp } from "./CircleWarp";
 import { Links } from "./Options/Classes/Links";

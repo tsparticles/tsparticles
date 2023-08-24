@@ -5,7 +5,7 @@ import {
     isArray,
     isFunction,
     isString,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { FilterFunction } from "../../types";
 import type { ISoundsEvent } from "../Interfaces/ISoundsEvent";
 import { SoundsAudio } from "./SoundsAudio";

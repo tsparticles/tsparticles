@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-interaction-external-repulse",
+  "name": "@tsparticles/interaction-external-repulse",
   "version": "2.12.0",
   "description": "tsParticles repulse external interaction",
   "homepage": "https://particles.js.org",
@@ -60,8 +60,8 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin",
-    "tsparticles-interaction"
+    "@tsparticles/plugin",
+    "@tsparticles/interaction"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -75,6 +75,9 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -6,7 +6,7 @@ import {
     drawLine,
     getStyleFromHsl,
     getStyleFromRgb,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 /**
  * Creates a gradient using two particles colors and opacity.

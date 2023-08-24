@@ -7,7 +7,7 @@ import {
     type SingleOrMultiple,
     deepExtend,
     executeOnSingleOrMultiple,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ISplit } from "../Interfaces/ISplit";
 import { SplitFactor } from "./SplitFactor";
 import { SplitRate } from "./SplitRate";

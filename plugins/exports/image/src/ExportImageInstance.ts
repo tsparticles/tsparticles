@@ -1,4 +1,4 @@
-import type { Container, Engine, ExportResult, IContainerPlugin } from "tsparticles-engine";
+import type { Container, Engine, ExportResult, IContainerPlugin } from "@tsparticles/engine";
 import type { IExportImageData } from "./IExportImageData";
 
 export class ExportImageInstance implements IContainerPlugin {

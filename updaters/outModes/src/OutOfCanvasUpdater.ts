@@ -6,7 +6,7 @@ import {
     type OutModeAlt,
     OutModeDirection,
     type Particle,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { BounceOutMode } from "./BounceOutMode";
 import { DestroyOutMode } from "./DestroyOutMode";
 import type { IOutModeManager } from "./IOutModeManager";

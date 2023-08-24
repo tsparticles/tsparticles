@@ -6,7 +6,7 @@ import type {
     OutModeAlt,
     OutModeDirection,
     Particle,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 export interface IBounceData {
     bounds: IBounds;

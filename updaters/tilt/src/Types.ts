@@ -1,4 +1,4 @@
-import type { IParticleValueAnimation, IParticlesOptions, Particle, ParticlesOptions } from "tsparticles-engine";
+import type { IParticleValueAnimation, IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
 import type { ITilt } from "./Options/Interfaces/ITilt";
 import type { Tilt } from "./Options/Classes/Tilt";
 

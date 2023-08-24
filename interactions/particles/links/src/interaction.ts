@@ -1,4 +1,4 @@
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import type { LinkContainer } from "./Types";
 import { Linker } from "./Linker";
 

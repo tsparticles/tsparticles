@@ -8,7 +8,7 @@ import {
     errorPrefix,
     getRandom,
     isNumber,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
 import type { TextMask } from "./Options/Classes/TextMask";
 

@@ -9,7 +9,7 @@ import {
     Vector,
     getDistances,
     isPointInside,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager";
 
 export class DestroyOutMode implements IOutModeManager {

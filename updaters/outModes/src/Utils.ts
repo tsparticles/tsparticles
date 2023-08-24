@@ -1,4 +1,4 @@
-import { OutMode, OutModeDirection, getValue } from "tsparticles-engine";
+import { OutMode, OutModeDirection, getValue } from "@tsparticles/engine";
 import type { IBounceData } from "./IBounceData";
 
 /**

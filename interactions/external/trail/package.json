@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-interaction-external-trail",
+  "name": "@tsparticles/interaction-external-trail",
   "version": "2.12.0",
   "description": "tsParticles trail external interaction",
   "homepage": "https://particles.js.org",
@@ -39,12 +39,8 @@
     "css3",
     "animated",
     "background",
-    "tsparticles-interaction"
+    "@tsparticles/interaction"
   ],
-  "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -56,6 +52,11 @@
   "sideEffects": false,
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   }
 }

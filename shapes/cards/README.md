@@ -2,9 +2,9 @@
 
 # tsParticles Cards Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-cards/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-cards)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-cards.svg)](https://www.npmjs.com/package/tsparticles-shape-cards)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-cards)](https://www.npmjs.com/package/tsparticles-shape-cards) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-cards/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-cards)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-cards.svg)](https://www.npmjs.com/package/@tsparticles/shape-cards)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-cards)](https://www.npmjs.com/package/@tsparticles/shape-cards) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) additional cards shape.
 
@@ -44,20 +44,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-cards
+$ npm install @tsparticles/shape-cards
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-cards
+$ yarn add @tsparticles/shape-cards
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadCardsShape } = require("tsparticles-shape-cards");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadCardsShape } = require("@tsparticles/shape-cards");
 
 (async () => {
   await loadCardsShape(tsParticles);
@@ -67,8 +67,8 @@ const { loadCardsShape } = require("tsparticles-shape-cards");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadCardsShape } from "tsparticles-shape-cards";
+import { tsParticles } from "@tsparticles/engine";
+import { loadCardsShape } from "@tsparticles/shape-cards";
 
 (async () => {
   await loadCardsShape(tsParticles);

@@ -2,9 +2,9 @@
 
 # tsParticles External Connect Interaction
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-external-connect/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-external-connect)
-[![npmjs](https://badge.fury.io/js/tsparticles-interaction-external-connect.svg)](https://www.npmjs.com/package/tsparticles-interaction-external-connect)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-connect)](https://www.npmjs.com/package/tsparticles-interaction-external-connect) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/interaction-external-connect/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/interaction-external-connect)
+[![npmjs](https://badge.fury.io/js/@tsparticles/interaction-external-connect.svg)](https://www.npmjs.com/package/@tsparticles/interaction-external-connect)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-external-connect)](https://www.npmjs.com/package/@tsparticles/interaction-external-connect) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for connect effect around mouse or HTML
 elements.
@@ -44,20 +44,20 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-interaction-external-connect
+$ npm install @tsparticles/interaction-external-connect
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-interaction-external-connect
+$ yarn add @tsparticles/interaction-external-connect
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadExternalConnectInteraction } = require("tsparticles-interaction-external-connect");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadExternalConnectInteraction } = require("@tsparticles/interaction-external-connect");
 
 (async () => {
   await loadExternalConnectInteraction(tsParticles);
@@ -67,8 +67,8 @@ const { loadExternalConnectInteraction } = require("tsparticles-interaction-exte
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadExternalConnectInteraction } from "tsparticles-interaction-external-connect";
+import { tsParticles } from "@tsparticles/engine";
+import { loadExternalConnectInteraction } from "@tsparticles/interaction-external-connect";
 
 (async () => {
   await loadExternalConnectInteraction(tsParticles);

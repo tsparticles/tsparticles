@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "tsparticles-engine";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
 import type { ITilt } from "../Interfaces/ITilt";
 import { TiltAnimation } from "./TiltAnimation";
 import { TiltDirection } from "../../TiltDirection";

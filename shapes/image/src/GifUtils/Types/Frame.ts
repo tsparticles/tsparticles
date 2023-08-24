@@ -1,5 +1,5 @@
 import type { DisposalMethod } from "../Enums/DisposalMethod";
-import type { IRgb } from "tsparticles-engine";
+import type { IRgb } from "@tsparticles/engine";
 import type { PlainTextData } from "./PlainTextData";
 
 export interface Frame {

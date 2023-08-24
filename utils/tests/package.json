@@ -1,5 +1,5 @@
 {
-  "name": "tsparticles-tests",
+  "name": "@tsparticles/tests",
   "private": true,
   "version": "2.12.0",
   "scripts": {
@@ -12,6 +12,6 @@
     "test": "nyc mocha"
   },
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^2.12.0"
   }
 }

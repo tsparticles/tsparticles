@@ -1,4 +1,4 @@
-import { type IValueWithRandom, type RecursivePartial, ValueWithRandom } from "tsparticles-engine";
+import { type IValueWithRandom, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
 
 /**
  */

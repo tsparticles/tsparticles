@@ -1,4 +1,4 @@
-import { Circle, Point, Rectangle, tsParticles } from "tsparticles-engine";
+import { Circle, Point, Rectangle, tsParticles } from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 import { createCanvas } from "canvas";

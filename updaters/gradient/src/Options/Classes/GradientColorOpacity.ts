@@ -5,7 +5,7 @@ import {
     type RangeValue,
     type RecursivePartial,
     setRangeValue,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { GradientColorOpacityAnimation } from "./GradientColorOpacityAnimation";
 import type { IGradientColorOpacity } from "../Interfaces/Gradients";
 import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient";

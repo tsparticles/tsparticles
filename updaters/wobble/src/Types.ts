@@ -1,4 +1,4 @@
-import type { IParticlesOptions, Particle, ParticlesOptions } from "tsparticles-engine";
+import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
 import type { IWobble } from "./Options/Interfaces/IWobble";
 import type { Wobble } from "./Options/Classes/Wobble";
 
