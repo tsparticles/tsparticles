@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-back",
-  "version": "2.12.0",
+  "version": "3.0.0-beta.0",
   "description": "tsParticles easing back plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -88,7 +88,7 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "@tsparticles/engine": "^2.12.0"
+    "@tsparticles/engine": "^3.0.0-beta.0"
   },
   "publishConfig": {
     "access": "public"

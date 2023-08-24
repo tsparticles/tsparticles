@@ -3,47 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
+# [3.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/v2.12.0...v3.0.0-beta.0) (2023-08-24)
 
+**Note:** Version bump only for package @tsparticles/demo
+
+# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
 
 ### Bug Fixes
 
-* fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/matteobruni/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
-
+-   fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/matteobruni/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
 
 ### Features
 
-* added two new bundles: basic and all ([489f591](https://github.com/matteobruni/tsparticles/commit/489f5916a1b8b8b6c710ac16fbc691a0e591ab19))
-
-
-
-
+-   added two new bundles: basic and all ([489f591](https://github.com/matteobruni/tsparticles/commit/489f5916a1b8b8b6c710ac16fbc691a0e591ab19))
 
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
 **Note:** Version bump only for package tsparticles-demo
 
-
-
-
-
 # [2.11.0](https://github.com/matteobruni/tsparticles/compare/v2.10.1...v2.11.0) (2023-07-12)
-
 
 ### Bug Fixes
 
-* fixed video export plugin ([a3b371c](https://github.com/matteobruni/tsparticles/commit/a3b371cfad36a5d45015f5182f23aaa1ba2147d8))
-
+-   fixed video export plugin ([a3b371c](https://github.com/matteobruni/tsparticles/commit/a3b371cfad36a5d45015f5182f23aaa1ba2147d8))
 
 ### Features
 
-* added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
-* created rounded polygon shape ([abee4dc](https://github.com/matteobruni/tsparticles/commit/abee4dc3258e1dcc7ab097a66313e89dde19a0b4))
-* fixed export plugins ([775e7bd](https://github.com/matteobruni/tsparticles/commit/775e7bd53b9615fe471660d106c5747bf0cfda3b))
-
-
-
-
+-   added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
+-   created rounded polygon shape ([abee4dc](https://github.com/matteobruni/tsparticles/commit/abee4dc3258e1dcc7ab097a66313e89dde19a0b4))
+-   fixed export plugins ([775e7bd](https://github.com/matteobruni/tsparticles/commit/775e7bd53b9615fe471660d106c5747bf0cfda3b))
 
 ## [2.10.1](https://github.com/matteobruni/tsparticles/compare/v2.10.0...v2.10.1) (2023-06-04)
 

@@ -1,62 +1,62 @@
 {
-  "name": "@tsparticles/shape-image",
-  "version": "2.12.0",
-  "description": "tsParticles image shape",
-  "homepage": "https://particles.js.org",
-  "scripts": {
-    "build": "tsparticles-cli build",
-    "build:ci": "tsparticles-cli build --ci",
-    "version": "tsparticles-cli build -d && git add package.dist.json",
-    "prepack": "pnpm run build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git",
-    "directory": "shapes/image"
-  },
-  "keywords": [
-    "front-end",
-    "frontend",
-    "tsparticles",
-    "particles",
-    "particle",
-    "canvas",
-    "jsparticles",
-    "xparticles",
-    "particles-js",
-    "particles.js",
-    "particles-ts",
-    "particles.ts",
-    "typescript",
-    "javascript",
-    "animation",
-    "web",
-    "html5",
-    "web-design",
-    "webdesign",
-    "css",
-    "html",
-    "css3",
-    "animated",
-    "background",
-    "@tsparticles/shape"
-  ],
-  "author": "Matteo Bruni <matteo.bruni@me.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
-  },
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "sideEffects": false,
-  "prettier": "@tsparticles/prettier-config",
-  "dependencies": {
-    "@tsparticles/engine": "^2.12.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist",
-    "linkDirectory": true
-  }
+    "name": "@tsparticles/shape-image",
+    "version": "3.0.0-beta.0",
+    "description": "tsParticles image shape",
+    "homepage": "https://particles.js.org",
+    "scripts": {
+        "build": "tsparticles-cli build",
+        "build:ci": "tsparticles-cli build --ci",
+        "version": "tsparticles-cli build -d && git add package.dist.json",
+        "prepack": "pnpm run build"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/matteobruni/tsparticles.git",
+        "directory": "shapes/image"
+    },
+    "keywords": [
+        "front-end",
+        "frontend",
+        "tsparticles",
+        "particles",
+        "particle",
+        "canvas",
+        "jsparticles",
+        "xparticles",
+        "particles-js",
+        "particles.js",
+        "particles-ts",
+        "particles.ts",
+        "typescript",
+        "javascript",
+        "animation",
+        "web",
+        "html5",
+        "web-design",
+        "webdesign",
+        "css",
+        "html",
+        "css3",
+        "animated",
+        "background",
+        "@tsparticles/shape"
+    ],
+    "author": "Matteo Bruni <matteo.bruni@me.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/matteobruni/tsparticles/issues"
+    },
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/types/index.d.ts",
+    "sideEffects": false,
+    "prettier": "@tsparticles/prettier-config",
+    "dependencies": {
+        "@tsparticles/engine": "^3.0.0-beta.0"
+    },
+    "publishConfig": {
+        "access": "public",
+        "directory": "dist",
+        "linkDirectory": true
+    }
 }

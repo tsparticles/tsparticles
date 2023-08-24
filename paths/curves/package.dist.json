@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-curves",
-  "version": "2.12.0",
+  "version": "3.0.0-beta.0",
   "description": "tsParticles curves path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -92,6 +92,6 @@
   "types": "types/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "@tsparticles/engine": "^2.12.0"
+    "@tsparticles/engine": "^3.0.0-beta.0"
   }
 }

@@ -1,28 +1,28 @@
 {
-  "packages": [
-    "bundles/*",
-    "demo/*",
-    "engine",
-    "interactions/*",
-    "interactions/external/*",
-    "interactions/particles/*",
-    "move/*",
-    "paths/*",
-    "plugins/*",
-    "plugins/easings/*",
-    "plugins/exports/*",
-    "shapes/*",
-    "updaters/*",
-    "utils/*",
-    "websites/*"
-  ],
-  "version": "2.12.0",
-  "npmClient": "pnpm",
-  "conventionalCommits": true,
-  "command": {
-    "version": {
-      "message": "chore(release): published new version"
-    }
-  },
-  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+    "packages": [
+        "bundles/*",
+        "demo/*",
+        "engine",
+        "interactions/*",
+        "interactions/external/*",
+        "interactions/particles/*",
+        "move/*",
+        "paths/*",
+        "plugins/*",
+        "plugins/easings/*",
+        "plugins/exports/*",
+        "shapes/*",
+        "updaters/*",
+        "utils/*",
+        "websites/*"
+    ],
+    "version": "3.0.0-beta.0",
+    "npmClient": "pnpm",
+    "conventionalCommits": true,
+    "command": {
+        "version": {
+            "message": "chore(release): published new version"
+        }
+    },
+    "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }

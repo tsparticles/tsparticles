@@ -3,70 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
-
+# [3.0.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v2.12.0...v3.0.0-beta.0) (2023-08-24)
 
 ### Bug Fixes
 
-* fix issue with change theme when an existing canvas is used ([2c4c7cd](https://github.com/matteobruni/tsparticles/commit/2c4c7cd713bd2728b4821563e9d919fd33c23bf5))
-* fix issue with change theme when an existing canvas is used ([a349b97](https://github.com/matteobruni/tsparticles/commit/a349b973b63c849ec552eca72bcce391223c3d61))
-* fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/matteobruni/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
-* fixed light interaction, particle shadow wasn't calculated correctly ([da86a37](https://github.com/matteobruni/tsparticles/commit/da86a379faea661db8d161b28c30b36e5bd3580b))
-* fixed memory leak in destroyed particles by updaters, the z array wasn't filtered ([272bb47](https://github.com/matteobruni/tsparticles/commit/272bb4720961bab2db8b5ee5d3dc7e6f5b1bbf38)), closes [#5101](https://github.com/matteobruni/tsparticles/issues/5101)
-* fixed out mode bounce ([aafaa08](https://github.com/matteobruni/tsparticles/commit/aafaa083090d7941d159273cce513427572b866a))
-* fixed out modes, bounce was not checking the direction of the update request ([e2b2c94](https://github.com/matteobruni/tsparticles/commit/e2b2c94da9ba4ffd264442ab6bfed4923fac7d25))
-* fixed pool on particles destroyed by updaters ([1f62e29](https://github.com/matteobruni/tsparticles/commit/1f62e299de7893145c64d006fcc2f6fb8c8540cf))
+-   **deps:** update dependency eslint-config-prettier to v9 ([e6e2ba7](https://github.com/tsparticles/tsparticles/commit/e6e2ba7309db151c6d0fc6c01a4f01116ecf24b8))
 
+# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
+
+### Bug Fixes
+
+-   fix issue with change theme when an existing canvas is used ([2c4c7cd](https://github.com/matteobruni/tsparticles/commit/2c4c7cd713bd2728b4821563e9d919fd33c23bf5))
+-   fix issue with change theme when an existing canvas is used ([a349b97](https://github.com/matteobruni/tsparticles/commit/a349b973b63c849ec552eca72bcce391223c3d61))
+-   fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/matteobruni/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
+-   fixed light interaction, particle shadow wasn't calculated correctly ([da86a37](https://github.com/matteobruni/tsparticles/commit/da86a379faea661db8d161b28c30b36e5bd3580b))
+-   fixed memory leak in destroyed particles by updaters, the z array wasn't filtered ([272bb47](https://github.com/matteobruni/tsparticles/commit/272bb4720961bab2db8b5ee5d3dc7e6f5b1bbf38)), closes [#5101](https://github.com/matteobruni/tsparticles/issues/5101)
+-   fixed out mode bounce ([aafaa08](https://github.com/matteobruni/tsparticles/commit/aafaa083090d7941d159273cce513427572b866a))
+-   fixed out modes, bounce was not checking the direction of the update request ([e2b2c94](https://github.com/matteobruni/tsparticles/commit/e2b2c94da9ba4ffd264442ab6bfed4923fac7d25))
+-   fixed pool on particles destroyed by updaters ([1f62e29](https://github.com/matteobruni/tsparticles/commit/1f62e299de7893145c64d006fcc2f6fb8c8540cf))
 
 ### Features
 
-* added range values to life duration and delay of emitters ([18bc70d](https://github.com/matteobruni/tsparticles/commit/18bc70dec174387f1b49f7c49fdc587c6554a38f))
-* added two new bundles: basic and all ([489f591](https://github.com/matteobruni/tsparticles/commit/489f5916a1b8b8b6c710ac16fbc691a0e591ab19))
-
-
-
-
+-   added range values to life duration and delay of emitters ([18bc70d](https://github.com/matteobruni/tsparticles/commit/18bc70dec174387f1b49f7c49fdc587c6554a38f))
+-   added two new bundles: basic and all ([489f591](https://github.com/matteobruni/tsparticles/commit/489f5916a1b8b8b6c710ac16fbc691a0e591ab19))
 
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
-
 ### Bug Fixes
 
-* fixed various plugins issues for a misplaced canvas clear ([dd98147](https://github.com/matteobruni/tsparticles/commit/dd981478fb010206f47612f009215591f35c63e1))
-
-
-
-
+-   fixed various plugins issues for a misplaced canvas clear ([dd98147](https://github.com/matteobruni/tsparticles/commit/dd981478fb010206f47612f009215591f35c63e1))
 
 # [2.11.0](https://github.com/matteobruni/tsparticles/compare/v2.10.1...v2.11.0) (2023-07-12)
 
-
 ### Bug Fixes
 
-* fixed calc position function ([adb0444](https://github.com/matteobruni/tsparticles/commit/adb044454ce9aacd84ed077ab2bd41541995c0b1))
-* fixed getPositionOrSize function ([3e07525](https://github.com/matteobruni/tsparticles/commit/3e07525becdfe08d10c3ffc8dc00bbe0e6acf53f))
-* fixed issue with emitters ([39c7d75](https://github.com/matteobruni/tsparticles/commit/39c7d758410b1f13567e4ea97bc334ba864d62c4))
-* fixed video export plugin ([a3b371c](https://github.com/matteobruni/tsparticles/commit/a3b371cfad36a5d45015f5182f23aaa1ba2147d8))
-* removed console log, closes [#5003](https://github.com/matteobruni/tsparticles/issues/5003) ([f5f2706](https://github.com/matteobruni/tsparticles/commit/f5f2706c027a6fa66fdcb8a243aecbffdf94f70a))
-
+-   fixed calc position function ([adb0444](https://github.com/matteobruni/tsparticles/commit/adb044454ce9aacd84ed077ab2bd41541995c0b1))
+-   fixed getPositionOrSize function ([3e07525](https://github.com/matteobruni/tsparticles/commit/3e07525becdfe08d10c3ffc8dc00bbe0e6acf53f))
+-   fixed issue with emitters ([39c7d75](https://github.com/matteobruni/tsparticles/commit/39c7d758410b1f13567e4ea97bc334ba864d62c4))
+-   fixed video export plugin ([a3b371c](https://github.com/matteobruni/tsparticles/commit/a3b371cfad36a5d45015f5182f23aaa1ba2147d8))
+-   removed console log, closes [#5003](https://github.com/matteobruni/tsparticles/issues/5003) ([f5f2706](https://github.com/matteobruni/tsparticles/commit/f5f2706c027a6fa66fdcb8a243aecbffdf94f70a))
 
 ### Features
 
-* added animated gif support to image drawer ([c65f451](https://github.com/matteobruni/tsparticles/commit/c65f451cc4edf3a5e01e436d9a14922388c01a38))
-* added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
-* added setLogger and getLogger functions, this will prevent console.log mistakenly left ([38de76c](https://github.com/matteobruni/tsparticles/commit/38de76ceecc1305f416e23fdc9da223adbb8a6c1))
-* added tree shaking ([86806a6](https://github.com/matteobruni/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
-* added video export plugin ([527eb6f](https://github.com/matteobruni/tsparticles/commit/527eb6f3db294f673b635e37a97be160fc420fed))
-* adding export plugins ([4c1b5a6](https://github.com/matteobruni/tsparticles/commit/4c1b5a649eba2cb7d8382c2177b90515864a7402))
-* created rounded polygon shape ([abee4dc](https://github.com/matteobruni/tsparticles/commit/abee4dc3258e1dcc7ab097a66313e89dde19a0b4))
-* export plugins completed, image and json ([149b77d](https://github.com/matteobruni/tsparticles/commit/149b77d2995f213f6bf5fcca55c083b267eb4206))
-* fixed export plugins ([775e7bd](https://github.com/matteobruni/tsparticles/commit/775e7bd53b9615fe471660d106c5747bf0cfda3b))
-* improved new export function, using blob as output for all functions ([df1c862](https://github.com/matteobruni/tsparticles/commit/df1c8620e4cbeb3267423cb1aee4edc8e29253d8))
-* improved new export function, using blob as output for all functions ([3521561](https://github.com/matteobruni/tsparticles/commit/3521561264540c1e3e92ec6b07d4a7e8b0b2ad79))
-
-
-
-
+-   added animated gif support to image drawer ([c65f451](https://github.com/matteobruni/tsparticles/commit/c65f451cc4edf3a5e01e436d9a14922388c01a38))
+-   added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
+-   added setLogger and getLogger functions, this will prevent console.log mistakenly left ([38de76c](https://github.com/matteobruni/tsparticles/commit/38de76ceecc1305f416e23fdc9da223adbb8a6c1))
+-   added tree shaking ([86806a6](https://github.com/matteobruni/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
+-   added video export plugin ([527eb6f](https://github.com/matteobruni/tsparticles/commit/527eb6f3db294f673b635e37a97be160fc420fed))
+-   adding export plugins ([4c1b5a6](https://github.com/matteobruni/tsparticles/commit/4c1b5a649eba2cb7d8382c2177b90515864a7402))
+-   created rounded polygon shape ([abee4dc](https://github.com/matteobruni/tsparticles/commit/abee4dc3258e1dcc7ab097a66313e89dde19a0b4))
+-   export plugins completed, image and json ([149b77d](https://github.com/matteobruni/tsparticles/commit/149b77d2995f213f6bf5fcca55c083b267eb4206))
+-   fixed export plugins ([775e7bd](https://github.com/matteobruni/tsparticles/commit/775e7bd53b9615fe471660d106c5747bf0cfda3b))
+-   improved new export function, using blob as output for all functions ([df1c862](https://github.com/matteobruni/tsparticles/commit/df1c8620e4cbeb3267423cb1aee4edc8e29253d8))
+-   improved new export function, using blob as output for all functions ([3521561](https://github.com/matteobruni/tsparticles/commit/3521561264540c1e3e92ec6b07d4a7e8b0b2ad79))
 
 ## [2.10.1](https://github.com/matteobruni/tsparticles/compare/v2.10.0...v2.10.1) (2023-06-04)
 

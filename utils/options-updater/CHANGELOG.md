@@ -3,29 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v2.12.0...v3.0.0-beta.0) (2023-08-24)
+
+### Bug Fixes
+
+-   **deps:** update dependency eslint-config-prettier to v9 ([e6e2ba7](https://github.com/tsparticles/tsparticles/commit/e6e2ba7309db151c6d0fc6c01a4f01116ecf24b8))
+
 # [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
 
 **Note:** Version bump only for package @tsparticles/options-updater
-
-
-
-
 
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
 **Note:** Version bump only for package @tsparticles/options-updater
 
-
-
-
-
 # [2.11.0](https://github.com/matteobruni/tsparticles/compare/v2.10.1...v2.11.0) (2023-07-12)
 
 **Note:** Version bump only for package @tsparticles/options-updater
-
-
-
-
 
 ## [2.10.1](https://github.com/matteobruni/tsparticles/compare/v2.10.0...v2.10.1) (2023-06-04)
 

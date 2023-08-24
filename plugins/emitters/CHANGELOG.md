@@ -3,41 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
+# [3.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/v2.12.0...v3.0.0-beta.0) (2023-08-24)
 
+**Note:** Version bump only for package @tsparticles/plugin-emitters
+
+# [2.12.0](https://github.com/matteobruni/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
 
 ### Features
 
-* added range values to life duration and delay of emitters ([18bc70d](https://github.com/matteobruni/tsparticles/commit/18bc70dec174387f1b49f7c49fdc587c6554a38f))
-
-
-
-
+-   added range values to life duration and delay of emitters ([18bc70d](https://github.com/matteobruni/tsparticles/commit/18bc70dec174387f1b49f7c49fdc587c6554a38f))
 
 ## [2.11.1](https://github.com/matteobruni/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
 **Note:** Version bump only for package tsparticles-plugin-emitters
 
-
-
-
-
 # [2.11.0](https://github.com/matteobruni/tsparticles/compare/v2.10.1...v2.11.0) (2023-07-12)
-
 
 ### Bug Fixes
 
-* removed console log, closes [#5003](https://github.com/matteobruni/tsparticles/issues/5003) ([f5f2706](https://github.com/matteobruni/tsparticles/commit/f5f2706c027a6fa66fdcb8a243aecbffdf94f70a))
-
+-   removed console log, closes [#5003](https://github.com/matteobruni/tsparticles/issues/5003) ([f5f2706](https://github.com/matteobruni/tsparticles/commit/f5f2706c027a6fa66fdcb8a243aecbffdf94f70a))
 
 ### Features
 
-* added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
-* added tree shaking ([86806a6](https://github.com/matteobruni/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
-
-
-
-
+-   added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/matteobruni/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
+-   added tree shaking ([86806a6](https://github.com/matteobruni/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
 
 ## [2.10.1](https://github.com/matteobruni/tsparticles/compare/v2.10.0...v2.10.1) (2023-06-04)
 
