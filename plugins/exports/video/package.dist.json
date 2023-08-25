@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-export-video",
-  "version": "3.0.0-beta.0",
+  "version": "3.0.0-beta.1",
   "description": "tsParticles export video plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.0.0-beta.0"
+    "@tsparticles/engine": "^3.0.0-beta.1"
   },
   "publishConfig": {
     "access": "public"

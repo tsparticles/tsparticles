@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.1](https://github.com/matteobruni/tsparticles/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2023-08-25)
+
+### Features
+
+-   supporting the npm exports option correctly ([bdfaca8](https://github.com/matteobruni/tsparticles/commit/bdfaca8077b8a3a4b1f482cc2ae5766914dcfaf7))
+
 # [3.0.0-beta.0](https://github.com/matteobruni/tsparticles/compare/v2.12.0...v3.0.0-beta.0) (2023-08-24)
 
 **Note:** Version bump only for package @tsparticles/updater-life
