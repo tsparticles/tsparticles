@@ -29,7 +29,7 @@
     "@commitlint/config-conventional": "^17.7.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@nrwl/workspace": "^16.7.2",
-    "@tsparticles/cli": "^2.0.0-beta.4",
+    "@tsparticles/cli": "^2.0.0-beta.5",
     "@tsparticles/eslint-config": "^2.0.0-beta.0",
     "@tsparticles/prettier-config": "^2.0.0-beta.0",
     "@tsparticles/tsconfig": "^2.0.0-beta.0",

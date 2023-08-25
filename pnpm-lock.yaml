@@ -24,8 +24,8 @@ importers:
         specifier: ^16.7.2
         version: 16.7.2
       '@tsparticles/cli':
-        specifier: ^2.0.0-beta.4
-        version: 2.0.0-beta.4(webpack-cli@5.1.4)
+        specifier: ^2.0.0-beta.5
+        version: 2.0.0-beta.5(webpack-cli@5.1.4)
       '@tsparticles/eslint-config':
         specifier: ^2.0.0-beta.0
         version: 2.0.0-beta.0
@@ -4964,8 +4964,8 @@ packages:
     resolution: {integrity: sha512-vxhUy4J8lyeyinH7Azl1pdd43GJhZH/tP2weN8TntQblOY+A0XbT8DJk1/oCPuOOyg/Ja757rG0CgHcWC8OfMA==}
     dev: true
 
-  /@tsparticles/cli@2.0.0-beta.4(webpack-cli@5.1.4):
-    resolution: {integrity: sha512-8TzTXrSiB4bmdt5FVkXqCyosq8NrsW93TJHG+wNudRiYniivIPKL/LriYf3b3NQ1TK46xlHwjAQPR+jYuEBOLA==}
+  /@tsparticles/cli@2.0.0-beta.5(webpack-cli@5.1.4):
+    resolution: {integrity: sha512-pc9EsVCSHebtmOYTWFqIJ/gvOVyz4/M005l9DI+3P1VP5LlDedpTw9yPO7mUhGgHydKdFIgfPkdW5Cbng1hZOg==}
     hasBin: true
     dependencies:
       '@tsparticles/eslint-config': 2.0.0-beta.0
