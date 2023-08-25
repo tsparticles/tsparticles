@@ -1,4 +1,4 @@
-import { Collider } from "./Collider";
+import { Collider } from "./Collider.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

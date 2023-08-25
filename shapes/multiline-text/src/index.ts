@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { MultilineTextDrawer } from "./MultilineTextDrawer";
+import { MultilineTextDrawer } from "./MultilineTextDrawer.js";
 
 /**
  * @param engine -

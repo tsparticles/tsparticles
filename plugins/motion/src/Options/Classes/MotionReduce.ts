@@ -1,5 +1,5 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { IMotionReduce } from "../Interfaces/IMotionReduce";
+import type { IMotionReduce } from "../Interfaces/IMotionReduce.js";
 
 /**
  */

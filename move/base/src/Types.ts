@@ -1,5 +1,5 @@
-import type { IParticleGravity } from "./IParticleGravity";
-import type { IParticleSpin } from "./IParticleSpin";
+import type { IParticleGravity } from "./IParticleGravity.js";
+import type { IParticleSpin } from "./IParticleSpin.js";
 import type { Particle } from "@tsparticles/engine";
 
 export type MoveParticle = Particle & {

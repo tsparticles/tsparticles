@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { SquareDrawer } from "./SquareDrawer";
+import { SquareDrawer } from "./SquareDrawer.js";
 
 /**
  * @param engine -

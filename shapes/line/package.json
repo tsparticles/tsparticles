@@ -51,11 +51,26 @@
     "bugs": {
         "url": "https://github.com/matteobruni/tsparticles/issues"
     },
+    "prettier": "@tsparticles/prettier-config",
+    "files": [
+        "dist"
+    ],
+    "sideEffects": false,
+    "browser": "dist/browser/index.js",
     "main": "dist/cjs/index.js",
     "module": "dist/esm/index.js",
     "types": "dist/types/index.d.ts",
-    "sideEffects": false,
-    "prettier": "@tsparticles/prettier-config",
+    "exports": {
+        ".": {
+            "types": "./dist/types/index.d.ts",
+            "browser": "./dist/browser/index.js",
+            "import": "./dist/esm/index.js",
+            "require": "./dist/cjs/index.js",
+            "umd": "./dist/umd/index.js",
+            "default": "./dist/cjs/index.js"
+        },
+        "./package.json": "./dist/package.json"
+    },
     "dependencies": {
         "@tsparticles/engine": "^3.0.0-beta.0"
     }

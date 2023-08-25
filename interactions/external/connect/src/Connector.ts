@@ -1,4 +1,4 @@
-import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types";
+import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types.js";
 import {
     ExternalInteractorBase,
     HoverMode,
@@ -8,8 +8,8 @@ import {
     type RecursivePartial,
     isInArray,
 } from "@tsparticles/engine";
-import { Connect } from "./Options/Classes/Connect";
-import { drawConnection } from "./Utils";
+import { Connect } from "./Options/Classes/Connect.js";
+import { drawConnection } from "./Utils.js";
 
 /**
  * Particle connection manager

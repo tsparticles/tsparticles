@@ -1,11 +1,11 @@
-import type { IColor, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors";
-import { getRangeValue, parseAlpha } from "./NumberUtils";
-import { hslToRgb, hslaToRgba } from "./ColorUtils";
-import type { IColorManager } from "../Core/Interfaces/IColorManager";
-import type { IHsl } from "../Core/Interfaces/Colors";
-import type { IRangeHsl } from "../Core/Interfaces/Colors";
-import type { IRangeValueColor } from "../Core/Interfaces/Colors";
-import type { IValueColor } from "../Core/Interfaces/Colors";
+import type { IColor, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
+import { getRangeValue, parseAlpha } from "./NumberUtils.js";
+import { hslToRgb, hslaToRgba } from "./ColorUtils.js";
+import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import type { IHsl } from "../Core/Interfaces/Colors.js";
+import type { IRangeHsl } from "../Core/Interfaces/Colors.js";
+import type { IRangeValueColor } from "../Core/Interfaces/Colors.js";
+import type { IValueColor } from "../Core/Interfaces/Colors.js";
 
 /**
  */

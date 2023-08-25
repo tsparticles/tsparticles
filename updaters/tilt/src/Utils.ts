@@ -1,5 +1,5 @@
 import { AnimationStatus, type IDelta } from "@tsparticles/engine";
-import type { TiltParticle } from "./Types";
+import type { TiltParticle } from "./Types.js";
 
 /**
  * @param particle -

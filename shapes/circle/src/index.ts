@@ -1,4 +1,4 @@
-import { CircleDrawer } from "./CircleDrawer";
+import { CircleDrawer } from "./CircleDrawer.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

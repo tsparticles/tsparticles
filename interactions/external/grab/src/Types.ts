@@ -1,7 +1,7 @@
 import type { Container, IRgb, OptionsColor, Particle } from "@tsparticles/engine";
-import type { Grab } from "./Options/Classes/Grab";
-import type { GrabOptions } from "./Options/Classes/GrabOptions";
-import type { IGrab } from "./Options/Interfaces/IGrab";
+import type { Grab } from "./Options/Classes/Grab.js";
+import type { GrabOptions } from "./Options/Classes/GrabOptions.js";
+import type { IGrab } from "./Options/Interfaces/IGrab.js";
 
 export type IGrabMode = {
     grab: IGrab;

@@ -1,9 +1,9 @@
-import emitter from "./emitter";
-import emitterAbsorber from "./emitterAbsorber";
-import emitterAngled from "./emitterAngled";
-import emitterImages from "./emitterImages";
-import emitterPaths from "./emitterPaths";
-import emitterShapes from "./emitterShapes";
+import emitter from "./emitter.js";
+import emitterAbsorber from "./emitterAbsorber.js";
+import emitterAngled from "./emitterAngled.js";
+import emitterImages from "./emitterImages.js";
+import emitterPaths from "./emitterPaths.js";
+import emitterShapes from "./emitterShapes.js";
 
 export default {
     emitter,

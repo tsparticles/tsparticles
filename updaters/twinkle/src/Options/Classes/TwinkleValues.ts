@@ -5,7 +5,7 @@ import {
     type RecursivePartial,
     setRangeValue,
 } from "@tsparticles/engine";
-import type { ITwinkleValues } from "../Interfaces/ITwinkleValues";
+import type { ITwinkleValues } from "../Interfaces/ITwinkleValues.js";
 
 /**
  */

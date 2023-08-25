@@ -1,15 +1,15 @@
-import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
-import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
-import type { IDistance } from "../../../../Core/Interfaces/IDistance";
-import type { IMoveAngle } from "./IMoveAngle";
-import type { IMoveAttract } from "./IMoveAttract";
-import type { IMoveCenter } from "./IMoveCenter";
-import type { IMoveGravity } from "./IMoveGravity";
-import type { IMovePath } from "./Path/IMovePath";
-import type { IMoveTrail } from "./IMoveTrail";
-import type { IOutModes } from "./IOutModes";
-import type { ISpin } from "./ISpin";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
+import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode.js";
+import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
+import type { IMoveAngle } from "./IMoveAngle.js";
+import type { IMoveAttract } from "./IMoveAttract.js";
+import type { IMoveCenter } from "./IMoveCenter.js";
+import type { IMoveGravity } from "./IMoveGravity.js";
+import type { IMovePath } from "./Path/IMovePath.js";
+import type { IMoveTrail } from "./IMoveTrail.js";
+import type { IOutModes } from "./IOutModes.js";
+import type { ISpin } from "./ISpin.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
 
 /**
  * [[include:Options/Particles/Move.md]]

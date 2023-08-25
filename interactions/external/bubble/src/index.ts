@@ -1,4 +1,4 @@
-import { Bubbler } from "./Bubbler";
+import { Bubbler } from "./Bubbler.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -9,9 +9,9 @@ export async function loadExternalBubbleInteraction(engine: Engine, refresh = tr
     await engine.addInteractor("externalBubble", (container) => new Bubbler(container), refresh);
 }
 
-export * from "./Options/Classes/BubbleBase";
-export * from "./Options/Classes/BubbleDiv";
-export * from "./Options/Classes/Bubble";
-export * from "./Options/Interfaces/IBubbleBase";
-export * from "./Options/Interfaces/IBubbleDiv";
-export * from "./Options/Interfaces/IBubble";
+export * from "./Options/Classes/BubbleBase.js";
+export * from "./Options/Classes/BubbleDiv.js";
+export * from "./Options/Classes/Bubble.js";
+export * from "./Options/Interfaces/IBubbleBase.js";
+export * from "./Options/Interfaces/IBubbleDiv.js";
+export * from "./Options/Interfaces/IBubble.js";

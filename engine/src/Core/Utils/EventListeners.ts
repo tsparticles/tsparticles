@@ -1,4 +1,4 @@
-import { executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils";
+import { executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils.js";
 import {
     mouseDownEvent,
     mouseLeaveEvent,
@@ -11,10 +11,10 @@ import {
     touchMoveEvent,
     touchStartEvent,
     visibilityChangeEvent,
-} from "./Constants";
-import type { Container } from "../Container";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import { InteractivityDetect } from "../../Enums/InteractivityDetect";
+} from "./Constants.js";
+import type { Container } from "../Container.js";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
 
 /**
  * Manage the given event listeners

@@ -1,6 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
-import { ExternalLighter } from "./ExternalLighter";
-import { ParticlesLighter } from "./ParticlesLighter";
+import { ExternalLighter } from "./ExternalLighter.js";
+import { ParticlesLighter } from "./ParticlesLighter.js";
 
 /**
  * @param engine -
@@ -11,11 +11,11 @@ export async function loadLightInteraction(engine: Engine, refresh = true): Prom
     await engine.addInteractor("particlesLight", (container) => new ParticlesLighter(container), refresh);
 }
 
-export * from "./Options/Classes/Light";
-export * from "./Options/Classes/LightArea";
-export * from "./Options/Classes/LightGradient";
-export * from "./Options/Classes/LightShadow";
-export * from "./Options/Interfaces/ILight";
-export * from "./Options/Interfaces/ILightArea";
-export * from "./Options/Interfaces/ILightGradient";
-export * from "./Options/Interfaces/ILightShadow";
+export * from "./Options/Classes/Light.js";
+export * from "./Options/Classes/LightArea.js";
+export * from "./Options/Classes/LightGradient.js";
+export * from "./Options/Classes/LightShadow.js";
+export * from "./Options/Interfaces/ILight.js";
+export * from "./Options/Interfaces/ILightArea.js";
+export * from "./Options/Interfaces/ILightGradient.js";
+export * from "./Options/Interfaces/ILightShadow.js";

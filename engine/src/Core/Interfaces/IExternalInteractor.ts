@@ -1,10 +1,10 @@
-import type { ClickMode } from "../../Enums/Modes/ClickMode";
-import type { IDelta } from "./IDelta";
-import type { IInteractor } from "./IInteractor";
-import type { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes";
-import type { Modes } from "../../Options/Classes/Interactivity/Modes/Modes";
-import type { Particle } from "../Particle";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { ClickMode } from "../../Enums/Modes/ClickMode.js";
+import type { IDelta } from "./IDelta.js";
+import type { IInteractor } from "./IInteractor.js";
+import type { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes.js";
+import type { Modes } from "../../Options/Classes/Interactivity/Modes/Modes.js";
+import type { Particle } from "../Particle.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  */

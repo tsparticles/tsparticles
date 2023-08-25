@@ -1,10 +1,10 @@
-import type { IDelta } from "./IDelta";
-import type { IParticleColorStyle } from "./IParticleColorStyle";
-import type { IParticleTransformValues } from "./IParticleTransformValues";
-import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
-import type { Particle } from "../Particle";
-import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IDelta } from "./IDelta.js";
+import type { IParticleColorStyle } from "./IParticleColorStyle.js";
+import type { IParticleTransformValues } from "./IParticleTransformValues.js";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { Particle } from "../Particle.js";
+import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 export interface IParticleUpdater {
     afterDraw?: (particle: Particle) => void;

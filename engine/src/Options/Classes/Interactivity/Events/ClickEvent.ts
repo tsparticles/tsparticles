@@ -1,8 +1,8 @@
-import type { ClickMode } from "../../../../Enums/Modes/ClickMode";
-import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClickEvent";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { ClickMode } from "../../../../Enums/Modes/ClickMode.js";
+import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClickEvent.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Interactivity/Click.md]]

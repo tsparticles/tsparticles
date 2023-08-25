@@ -1,6 +1,6 @@
 import { type ICoordinates, type IShapeDrawer, type Particle, getRangeValue } from "@tsparticles/engine";
-import type { IPolygonShape } from "./IPolygonShape";
-import type { ISide } from "./ISide";
+import type { IPolygonShape } from "./IPolygonShape.js";
+import type { ISide } from "./ISide.js";
 
 /**
  */

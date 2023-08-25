@@ -9,10 +9,10 @@ import {
     getRandom,
     getRangeValue,
 } from "@tsparticles/engine";
-import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types";
-import { Tilt } from "./Options/Classes/Tilt";
-import { TiltDirection } from "./TiltDirection";
-import { updateTilt } from "./Utils";
+import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
+import { Tilt } from "./Options/Classes/Tilt.js";
+import { TiltDirection } from "./TiltDirection.js";
+import { updateTilt } from "./Utils.js";
 
 export class TiltUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

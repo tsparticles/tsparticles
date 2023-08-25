@@ -5,7 +5,7 @@ import {
     type IParticleValueAnimation,
     randomInRange,
 } from "@tsparticles/engine";
-import type { StrokeParticle } from "./Types";
+import type { StrokeParticle } from "./Types.js";
 
 /**
  * @param delta -

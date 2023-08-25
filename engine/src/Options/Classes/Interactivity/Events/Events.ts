@@ -1,12 +1,12 @@
-import { executeOnSingleOrMultiple, isBoolean } from "../../../../Utils/Utils";
-import { ClickEvent } from "./ClickEvent";
-import { DivEvent } from "./DivEvent";
-import { HoverEvent } from "./HoverEvent";
-import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ResizeEvent } from "./ResizeEvent";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import { executeOnSingleOrMultiple, isBoolean } from "../../../../Utils/Utils.js";
+import { ClickEvent } from "./ClickEvent.js";
+import { DivEvent } from "./DivEvent.js";
+import { HoverEvent } from "./HoverEvent.js";
+import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { ResizeEvent } from "./ResizeEvent.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Interactivity/Events.md]]

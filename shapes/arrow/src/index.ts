@@ -1,4 +1,4 @@
-import { ArrowDrawer } from "./ArrowDrawer";
+import { ArrowDrawer } from "./ArrowDrawer.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

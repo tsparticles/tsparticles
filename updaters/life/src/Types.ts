@@ -1,6 +1,6 @@
 import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
-import type { ILife } from "./Options/Interfaces/ILife";
-import type { Life } from "./Options/Classes/Life";
+import type { ILife } from "./Options/Interfaces/ILife.js";
+import type { Life } from "./Options/Classes/Life.js";
 
 export interface IParticleLife {
     count: number;

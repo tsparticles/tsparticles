@@ -1,5 +1,5 @@
-import type { ICoordinatesWithMode } from "../../../../Core/Interfaces/ICoordinates";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { ICoordinatesWithMode } from "../../../../Core/Interfaces/ICoordinates.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
 
 export interface ISpin {
     acceleration: RangeValue;

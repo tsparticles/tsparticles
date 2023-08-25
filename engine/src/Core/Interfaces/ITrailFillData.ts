@@ -1,4 +1,4 @@
-import type { IRgb } from "./Colors";
+import type { IRgb } from "./Colors.js";
 
 export interface ITrailFillData {
     color?: IRgb;

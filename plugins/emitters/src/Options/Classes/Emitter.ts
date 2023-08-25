@@ -11,11 +11,11 @@ import {
     executeOnSingleOrMultiple,
     setRangeValue,
 } from "@tsparticles/engine";
-import { EmitterLife } from "./EmitterLife";
-import { EmitterRate } from "./EmitterRate";
-import { EmitterShapeType } from "../../Enums/EmitterShapeType";
-import { EmitterSize } from "./EmitterSize";
-import type { IEmitter } from "../Interfaces/IEmitter";
+import { EmitterLife } from "./EmitterLife.js";
+import { EmitterRate } from "./EmitterRate.js";
+import { EmitterShapeType } from "../../Enums/EmitterShapeType.js";
+import { EmitterSize } from "./EmitterSize.js";
+import type { IEmitter } from "../Interfaces/IEmitter.js";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]

@@ -5,10 +5,10 @@ import {
     getRangeValue,
     rangeColorToHsl,
 } from "@tsparticles/engine";
-import type { IOrbitParticlesOptions, OrbitContainer, OrbitParticle, OrbitParticlesOptions } from "./Types";
-import { Orbit } from "./Options/Classes/Orbit";
-import { OrbitType } from "./Enums";
-import { drawEllipse } from "./Utils";
+import type { IOrbitParticlesOptions, OrbitContainer, OrbitParticle, OrbitParticlesOptions } from "./Types.js";
+import { Orbit } from "./Options/Classes/Orbit.js";
+import { OrbitType } from "./Enums.js";
+import { drawEllipse } from "./Utils.js";
 
 export class OrbitUpdater implements IParticleUpdater {
     constructor(private readonly container: OrbitContainer) {}

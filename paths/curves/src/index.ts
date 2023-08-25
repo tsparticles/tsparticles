@@ -1,4 +1,4 @@
-import { CurvesPathGenerator } from "./CurvesPathGenerator";
+import { CurvesPathGenerator } from "./CurvesPathGenerator.js";
 import type { Engine } from "@tsparticles/engine";
 
 export const curvesPathName = "curvesPathGenerator";

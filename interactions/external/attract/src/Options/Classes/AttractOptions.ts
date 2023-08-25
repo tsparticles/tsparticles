@@ -1,4 +1,4 @@
-import type { AttractMode } from "../../Types";
+import type { AttractMode } from "../../Types.js";
 import type { Options } from "@tsparticles/engine";
 
 export type AttractOptions = Options & {

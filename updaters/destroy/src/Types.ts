@@ -1,6 +1,6 @@
 import type { IBounds, IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
-import type { Destroy } from "./Options/Classes/Destroy";
-import type { IDestroy } from "./Options/Interfaces/IDestroy";
+import type { Destroy } from "./Options/Classes/Destroy.js";
+import type { IDestroy } from "./Options/Interfaces/IDestroy.js";
 
 export type IDestroyParticlesOptions = IParticlesOptions & {
     destroy?: IDestroy;

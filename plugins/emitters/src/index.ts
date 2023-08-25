@@ -1,4 +1,4 @@
-import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types";
+import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types.js";
 import {
     type IOptions,
     type IPlugin,
@@ -7,17 +7,17 @@ import {
     isArray,
     isInArray,
 } from "@tsparticles/engine";
-import { CircleShape } from "./Shapes/Circle/CircleShape";
-import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterClickMode } from "./Enums/EmitterClickMode";
-import type { EmitterContainer } from "./EmitterContainer";
-import { EmitterShapeType } from "./Enums/EmitterShapeType";
-import { Emitters } from "./Emitters";
-import type { EmittersEngine } from "./EmittersEngine";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { IEmitterShape } from "./IEmitterShape";
-import { ShapeManager } from "./ShapeManager";
-import { SquareShape } from "./Shapes/Square/SquareShape";
+import { CircleShape } from "./Shapes/Circle/CircleShape.js";
+import { Emitter } from "./Options/Classes/Emitter.js";
+import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
+import type { EmitterContainer } from "./EmitterContainer.js";
+import { EmitterShapeType } from "./Enums/EmitterShapeType.js";
+import { Emitters } from "./Emitters.js";
+import type { EmittersEngine } from "./EmittersEngine.js";
+import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
+import type { IEmitterShape } from "./IEmitterShape.js";
+import { ShapeManager } from "./ShapeManager.js";
+import { SquareShape } from "./Shapes/Square/SquareShape.js";
 
 /**
  */
@@ -152,7 +152,7 @@ export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true)
     engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
 
-export * from "./EmitterContainer";
-export * from "./EmittersEngine";
-export * from "./Enums/EmitterClickMode";
-export * from "./Enums/EmitterShapeType";
+export * from "./EmitterContainer.js";
+export * from "./EmittersEngine.js";
+export * from "./Enums/EmitterClickMode.js";
+export * from "./Enums/EmitterShapeType.js";

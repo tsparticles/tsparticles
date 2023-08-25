@@ -1,4 +1,4 @@
-import type { IHsl } from "./Colors";
+import type { IHsl } from "./Colors.js";
 
 /**
  */

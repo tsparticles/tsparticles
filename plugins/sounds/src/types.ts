@@ -1,8 +1,8 @@
 import type { Container, CustomEventArgs, IOptions, Options } from "@tsparticles/engine";
-import type { ISounds } from "./Options/Interfaces/ISounds";
-import type { ImageDisplay } from "./enums";
-import type { Sounds } from "./Options/Classes/Sounds";
-import type { SoundsIcon } from "./Options/Classes/SoundsIcon";
+import type { ISounds } from "./Options/Interfaces/ISounds.js";
+import type { ImageDisplay } from "./enums.js";
+import type { Sounds } from "./Options/Classes/Sounds.js";
+import type { SoundsIcon } from "./Options/Classes/SoundsIcon.js";
 
 export type FilterFunction = (args: CustomEventArgs) => boolean;
 

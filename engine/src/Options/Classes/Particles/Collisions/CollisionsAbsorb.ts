@@ -1,6 +1,6 @@
-import type { ICollisionsAbsorb } from "../../../Interfaces/Particles/Collisions/ICollisionsAbsorb";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { ICollisionsAbsorb } from "../../../Interfaces/Particles/Collisions/ICollisionsAbsorb.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<ICollisionsAbsorb> {
     speed;

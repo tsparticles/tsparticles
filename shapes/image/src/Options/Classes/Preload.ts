@@ -1,5 +1,5 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { IPreload } from "../Interfaces/IPreload";
+import type { IPreload } from "../Interfaces/IPreload.js";
 
 export class Preload implements IPreload, IOptionLoader<IPreload> {
     gif: boolean;

@@ -1,7 +1,7 @@
 import { type Container, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
-import type { IPathData } from "./IPathData";
-import type { PathParticle } from "./PathParticle";
-import { drawPath } from "./Utils";
+import type { IPathData } from "./IPathData.js";
+import type { PathParticle } from "./PathParticle.js";
+import { drawPath } from "./Utils.js";
 
 export class PathDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: PathParticle, radius: number): void {

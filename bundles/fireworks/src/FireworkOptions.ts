@@ -6,7 +6,7 @@ import {
     isArray,
     setRangeValue,
 } from "@tsparticles/engine";
-import type { IFireworkOptions } from "./IFireworkOptions";
+import type { IFireworkOptions } from "./IFireworkOptions.js";
 
 export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFireworkOptions> {
     brightness: RangeValue;

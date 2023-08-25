@@ -1,6 +1,6 @@
 import { AlterType, type IDelta, getRandom, getRangeValue, rangeColorToHsl } from "@tsparticles/engine";
-import { RollMode } from "./RollMode";
-import type { RollParticle } from "./Types";
+import { RollMode } from "./RollMode.js";
+import type { RollParticle } from "./Types.js";
 
 /**
  *

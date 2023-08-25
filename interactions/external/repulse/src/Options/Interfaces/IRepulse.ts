@@ -1,5 +1,5 @@
-import type { IRepulseBase } from "./IRepulseBase";
-import type { IRepulseDiv } from "./IRepulseDiv";
+import type { IRepulseBase } from "./IRepulseBase.js";
+import type { IRepulseDiv } from "./IRepulseDiv.js";
 import type { SingleOrMultiple } from "@tsparticles/engine";
 
 /**

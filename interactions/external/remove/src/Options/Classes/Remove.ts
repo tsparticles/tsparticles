@@ -1,5 +1,5 @@
 import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
-import type { IRemove } from "../Interfaces/IRemove";
+import type { IRemove } from "../Interfaces/IRemove.js";
 
 /**
  */

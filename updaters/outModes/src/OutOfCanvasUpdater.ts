@@ -7,11 +7,11 @@ import {
     OutModeDirection,
     type Particle,
 } from "@tsparticles/engine";
-import { BounceOutMode } from "./BounceOutMode";
-import { DestroyOutMode } from "./DestroyOutMode";
-import type { IOutModeManager } from "./IOutModeManager";
-import { NoneOutMode } from "./NoneOutMode";
-import { OutOutMode } from "./OutOutMode";
+import { BounceOutMode } from "./BounceOutMode.js";
+import { DestroyOutMode } from "./DestroyOutMode.js";
+import type { IOutModeManager } from "./IOutModeManager.js";
+import { NoneOutMode } from "./NoneOutMode.js";
+import { OutOutMode } from "./OutOutMode.js";
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
     updaters: IOutModeManager[];

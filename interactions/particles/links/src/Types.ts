@@ -8,9 +8,9 @@ import type {
     Particle,
     ParticlesOptions,
 } from "@tsparticles/engine";
-import type { ILink } from "./Interfaces";
-import type { ILinks } from "./Options/Interfaces/ILinks";
-import type { Links } from "./Options/Classes/Links";
+import type { ILink } from "./Interfaces.js";
+import type { ILinks } from "./Options/Interfaces/ILinks.js";
+import type { Links } from "./Options/Classes/Links.js";
 
 export type LinkContainer = Container & {
     particles: {

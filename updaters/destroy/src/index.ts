@@ -1,4 +1,4 @@
-import { DestroyUpdater } from "./DestroyUpdater";
+import { DestroyUpdater } from "./DestroyUpdater.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

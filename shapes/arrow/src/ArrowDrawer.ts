@@ -1,6 +1,6 @@
 import { type Container, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
-import type { ArrowParticle } from "./ArrowParticle";
-import type { IArrowData } from "./IArrowData";
+import type { ArrowParticle } from "./ArrowParticle.js";
+import type { IArrowData } from "./IArrowData.js";
 
 export class ArrowDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: ArrowParticle, radius: number): void {

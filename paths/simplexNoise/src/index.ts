@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { SimplexNoiseGenerator } from "./SimplexNoiseGenerator";
+import { SimplexNoiseGenerator } from "./SimplexNoiseGenerator.js";
 
 export const simplexNoisePathName = "simplexNoise";
 

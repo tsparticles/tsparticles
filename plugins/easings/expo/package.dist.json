@@ -81,12 +81,24 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "cjs/index.js",
+  "sideEffects": false,
   "jsdelivr": "tsparticles.plugin.easing.expo.min.js",
   "unpkg": "tsparticles.plugin.easing.expo.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
-  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "dependencies": {
     "@tsparticles/engine": "^3.0.0-beta.0"
   },

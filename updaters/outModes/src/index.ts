@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { OutOfCanvasUpdater } from "./OutOfCanvasUpdater";
+import { OutOfCanvasUpdater } from "./OutOfCanvasUpdater.js";
 
 /**
  * @param engine - The engine instance loading this plugin

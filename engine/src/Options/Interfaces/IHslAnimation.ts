@@ -1,4 +1,4 @@
-import type { IColorAnimation } from "./IColorAnimation";
+import type { IColorAnimation } from "./IColorAnimation.js";
 
 export interface IHslAnimation {
     h: IColorAnimation;

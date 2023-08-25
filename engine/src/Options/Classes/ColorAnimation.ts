@@ -1,8 +1,8 @@
-import type { IColorAnimation } from "../Interfaces/IColorAnimation";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { RangeValue } from "../../Types/RangeValue";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { setRangeValue } from "../../Utils/NumberUtils";
+import type { IColorAnimation } from "../Interfaces/IColorAnimation.js";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 /**
  */

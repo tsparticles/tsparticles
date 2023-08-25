@@ -1,7 +1,7 @@
-import type { Bubble } from "./Options/Classes/Bubble";
-import type { BubbleOptions } from "./Options/Classes/BubbleOptions";
+import type { Bubble } from "./Options/Classes/Bubble.js";
+import type { BubbleOptions } from "./Options/Classes/BubbleOptions.js";
 import type { Container } from "@tsparticles/engine";
-import type { IBubble } from "./Options/Interfaces/IBubble";
+import type { IBubble } from "./Options/Interfaces/IBubble.js";
 
 export type IBubbleMode = {
     bubble: IBubble;

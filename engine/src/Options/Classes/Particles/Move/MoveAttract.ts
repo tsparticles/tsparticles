@@ -1,9 +1,9 @@
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { IMoveAttract } from "../../../Interfaces/Particles/Move/IMoveAttract";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates.js";
+import type { IMoveAttract } from "../../../Interfaces/Particles/Move/IMoveAttract.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 /**
  */

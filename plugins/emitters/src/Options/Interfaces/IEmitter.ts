@@ -7,10 +7,10 @@ import type {
     RecursivePartial,
     SingleOrMultiple,
 } from "@tsparticles/engine";
-import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
-import type { IEmitterLife } from "./IEmitterLife";
-import type { IEmitterRate } from "./IEmitterRate";
-import type { IEmitterSize } from "./IEmitterSize";
+import type { EmitterShapeType } from "../../Enums/EmitterShapeType.js";
+import type { IEmitterLife } from "./IEmitterLife.js";
+import type { IEmitterRate } from "./IEmitterRate.js";
+import type { IEmitterSize } from "./IEmitterSize.js";
 
 /**
  * Particles emitter object options

@@ -1,7 +1,7 @@
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import { Range } from "./Range";
-import { Rectangle } from "./Rectangle";
-import { getDistance } from "../../Utils/NumberUtils";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import { Range } from "./Range.js";
+import { Rectangle } from "./Rectangle.js";
+import { getDistance } from "../../Utils/NumberUtils.js";
 
 /**
  */

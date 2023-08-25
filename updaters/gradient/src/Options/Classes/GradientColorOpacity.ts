@@ -6,9 +6,9 @@ import {
     type RecursivePartial,
     setRangeValue,
 } from "@tsparticles/engine";
-import { GradientColorOpacityAnimation } from "./GradientColorOpacityAnimation";
-import type { IGradientColorOpacity } from "../Interfaces/Gradients";
-import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient";
+import { GradientColorOpacityAnimation } from "./GradientColorOpacityAnimation.js";
+import type { IGradientColorOpacity } from "../Interfaces/Gradients.js";
+import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient.js";
 
 export class GradientColorOpacity
     implements

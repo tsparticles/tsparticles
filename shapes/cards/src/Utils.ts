@@ -1,9 +1,9 @@
-import type { ICardsPath, IPath } from "./ICardsPath";
+import type { ICardsPath, IPath } from "./ICardsPath.js";
 
 /**
- * @param ctx
- * @param radius
- * @param path
+ * @param ctx -
+ * @param radius -
+ * @param path -
  */
 export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IPath): void {
     if (!path.segments.length || !path.segments[0].values.length) {

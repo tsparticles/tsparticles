@@ -1,10 +1,10 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IShape } from "../../../Interfaces/Particles/Shape/IShape";
-import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { ShapeData } from "../../../../Types/ShapeData";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { deepExtend } from "../../../../Utils/Utils";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { IShape } from "../../../Interfaces/Particles/Shape/IShape.js";
+import type { IShapeValues } from "../../../../Core/Interfaces/IShapeValues.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import type { ShapeData } from "../../../../Types/ShapeData.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
+import { deepExtend } from "../../../../Utils/Utils.js";
 
 /**
  * [[include:Options/Particles/Shape.md]]

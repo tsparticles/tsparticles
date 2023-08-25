@@ -7,8 +7,8 @@ import type {
     ShapeDrawerDestroyFunction,
     ShapeDrawerDrawFunction,
     ShapeDrawerInitFunction,
-} from "../Types/ShapeDrawerFunctions";
-import { errorPrefix, generatedAttribute } from "./Utils/Constants";
+} from "../Types/ShapeDrawerFunctions.js";
+import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
 import {
     executeOnSingleOrMultiple,
     getLogger,
@@ -16,28 +16,28 @@ import {
     isFunction,
     isString,
     itemFromSingleOrMultiple,
-} from "../Utils/Utils";
-import { Container } from "./Container";
-import type { CustomEventArgs } from "../Types/CustomEventArgs";
-import type { CustomEventListener } from "../Types/CustomEventListener";
-import { EventDispatcher } from "../Utils/EventDispatcher";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { IInteractor } from "./Interfaces/IInteractor";
-import type { ILoadParams } from "./Interfaces/ILoadParams";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
-import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { IParticleMover } from "./Interfaces/IParticleMover";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import type { IPlugin } from "./Interfaces/IPlugin";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import type { ISourceOptions } from "../Types/ISourceOptions";
-import type { Options } from "../Options/Classes/Options";
-import type { Particle } from "./Particle";
-import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
-import { getRandom } from "../Utils/NumberUtils";
+} from "../Utils/Utils.js";
+import { Container } from "./Container.js";
+import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
+import type { CustomEventListener } from "../Types/CustomEventListener.js";
+import { EventDispatcher } from "../Utils/EventDispatcher.js";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import type { IInteractor } from "./Interfaces/IInteractor.js";
+import type { ILoadParams } from "./Interfaces/ILoadParams.js";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
+import type { IOptions } from "../Options/Interfaces/IOptions.js";
+import type { IParticleMover } from "./Interfaces/IParticleMover.js";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { IPlugin } from "./Interfaces/IPlugin.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
+import type { ISourceOptions } from "../Types/ISourceOptions.js";
+import type { Options } from "../Options/Classes/Options.js";
+import type { Particle } from "./Particle.js";
+import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
+import { getRandom } from "../Utils/NumberUtils.js";
 
 declare const __VERSION__: string;
 

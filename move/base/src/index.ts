@@ -1,4 +1,4 @@
-import { BaseMover } from "./BaseMover";
+import { BaseMover } from "./BaseMover.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

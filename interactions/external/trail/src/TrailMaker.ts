@@ -10,8 +10,8 @@ import {
     type RecursivePartial,
     isInArray,
 } from "@tsparticles/engine";
-import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
-import { Trail } from "./Options/Classes/Trail";
+import type { ITrailMode, TrailContainer, TrailMode } from "./Types.js";
+import { Trail } from "./Options/Classes/Trail.js";
 
 /**
  */

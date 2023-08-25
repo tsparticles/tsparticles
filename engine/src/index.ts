@@ -1,5 +1,5 @@
-import { init } from "./init";
-import { isSsr } from "./Utils/Utils";
+import { init } from "./init.js";
+import { isSsr } from "./Utils/Utils.js";
 
 const tsParticles = init();
 
@@ -7,7 +7,7 @@ if (!isSsr()) {
     window.tsParticles = tsParticles;
 }
 
-export * from "./exports";
-export * from "./export-types";
+export * from "./exports.js";
+export * from "./export-types.js";
 
 export { tsParticles };

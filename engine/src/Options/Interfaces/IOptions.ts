@@ -1,16 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Container } from "../../Core/Container";
-import type { IBackground } from "./Background/IBackground";
-import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
-import type { IFullScreen } from "./FullScreen/IFullScreen";
-import type { IInteractivity } from "./Interactivity/IInteractivity";
-import type { IManualParticle } from "./IManualParticle";
-import type { IParticlesOptions } from "./Particles/IParticlesOptions";
-import type { IResponsive } from "./IResponsive";
-import type { ITheme } from "./Theme/ITheme";
-import type { RangeValue } from "../../Types/RangeValue";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { Container } from "../../Core/Container.js";
+import type { IBackground } from "./Background/IBackground.js";
+import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask.js";
+import type { IFullScreen } from "./FullScreen/IFullScreen.js";
+import type { IInteractivity } from "./Interactivity/IInteractivity.js";
+import type { IManualParticle } from "./IManualParticle.js";
+import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
+import type { IResponsive } from "./IResponsive.js";
+import type { ITheme } from "./Theme/ITheme.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`

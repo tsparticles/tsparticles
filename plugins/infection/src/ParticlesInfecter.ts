@@ -1,5 +1,5 @@
 import { type IDelta, ParticlesInteractorBase, getRandom } from "@tsparticles/engine";
-import type { InfectableContainer, InfectableParticle } from "./Types";
+import type { InfectableContainer, InfectableParticle } from "./Types.js";
 
 /**
  */

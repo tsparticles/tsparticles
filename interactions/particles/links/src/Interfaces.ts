@@ -1,5 +1,5 @@
 import type { IRangeColor, RangeValue } from "@tsparticles/engine";
-import type { LinkParticle } from "./Types";
+import type { LinkParticle } from "./Types.js";
 
 /**
  */

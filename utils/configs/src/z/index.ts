@@ -1,4 +1,4 @@
-import zIndex from "./zIndex";
+import zIndex from "./zIndex.js";
 
 export default {
     zIndex,

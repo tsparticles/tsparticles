@@ -1,4 +1,4 @@
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  * This interface is used by the options classes to have a {@link IOptionLoader.load} method to set all needed properties from source

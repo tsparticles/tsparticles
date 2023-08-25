@@ -1,9 +1,9 @@
-import type { Container } from "../../../../Core/Container";
-import type { Engine } from "../../../../Core/Engine";
-import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalInteractor";
-import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { Container } from "../../../../Core/Container.js";
+import type { Engine } from "../../../../Core/Engine.js";
+import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalInteractor.js";
+import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]

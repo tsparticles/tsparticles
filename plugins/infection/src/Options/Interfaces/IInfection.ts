@@ -1,4 +1,4 @@
-import type { IInfectionStage } from "./IInfectionStage";
+import type { IInfectionStage } from "./IInfectionStage.js";
 
 /**
  * The particles infection animations options

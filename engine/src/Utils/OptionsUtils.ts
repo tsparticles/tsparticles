@@ -1,9 +1,9 @@
-import type { Container } from "../Core/Container";
-import type { Engine } from "../Core/Engine";
-import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types/RecursivePartial";
+import type { Container } from "../Core/Container.js";
+import type { Engine } from "../Core/Engine.js";
+import type { IOptionLoader } from "../Options/Interfaces/IOptionLoader.js";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { RecursivePartial } from "../Types/RecursivePartial.js";
 
 /**
  * @param options -

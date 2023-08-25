@@ -1,9 +1,9 @@
-import type { DivMode } from "../../../../Enums/Modes/DivMode";
-import { DivType } from "../../../../Enums/Types/DivType";
-import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { DivMode } from "../../../../Enums/Modes/DivMode.js";
+import { DivType } from "../../../../Enums/Types/DivType.js";
+import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Interactivity/Div.md]]

@@ -18,13 +18,13 @@ import {
     randomInRange,
     rangeColorToHsl,
 } from "@tsparticles/engine";
-import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterSize } from "./Options/Classes/EmitterSize";
-import type { Emitters } from "./Emitters";
-import type { EmittersEngine } from "./EmittersEngine";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { IEmitterShape } from "./IEmitterShape";
-import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+import { Emitter } from "./Options/Classes/Emitter.js";
+import { EmitterSize } from "./Options/Classes/EmitterSize.js";
+import type { Emitters } from "./Emitters.js";
+import type { EmittersEngine } from "./EmittersEngine.js";
+import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
+import type { IEmitterShape } from "./IEmitterShape.js";
+import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
 
 /**
  */

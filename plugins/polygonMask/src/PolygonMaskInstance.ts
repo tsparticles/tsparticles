@@ -15,11 +15,11 @@ import {
     isString,
     itemFromArray,
 } from "@tsparticles/engine";
-import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils";
-import type { ISvgPath } from "./Interfaces/ISvgPath";
-import type { PolygonMaskContainer } from "./types";
-import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement";
-import { PolygonMaskType } from "./Enums/PolygonMaskType";
+import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils.js";
+import type { ISvgPath } from "./Interfaces/ISvgPath.js";
+import type { PolygonMaskContainer } from "./types.js";
+import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement.js";
+import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 
 const noPolygonDataLoaded = `${errorPrefix} No polygon data loaded.`,
     noPolygonFound = `${errorPrefix} No polygon found, you need to specify SVG url in config.`;

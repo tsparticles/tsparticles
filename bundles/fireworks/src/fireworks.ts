@@ -17,8 +17,8 @@ import {
     setRangeValue,
     tsParticles,
 } from "@tsparticles/engine";
-import { FireworkOptions } from "./FireworkOptions";
-import type { IFireworkOptions } from "./IFireworkOptions";
+import { FireworkOptions } from "./FireworkOptions.js";
+import type { IFireworkOptions } from "./IFireworkOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";

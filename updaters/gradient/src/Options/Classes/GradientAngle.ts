@@ -8,8 +8,8 @@ import {
     type RotateDirectionAlt,
     setRangeValue,
 } from "@tsparticles/engine";
-import { GradientAngleAnimation } from "./GradientAngleAnimation";
-import type { IGradientAngle } from "../Interfaces/Gradients";
+import { GradientAngleAnimation } from "./GradientAngleAnimation.js";
+import type { IGradientAngle } from "../Interfaces/Gradients.js";
 
 export class GradientAngle
     implements IGradientAngle, IAnimatable<IAnimation>, IOptionLoader<IGradientAngle & IAnimatable<IAnimation>>

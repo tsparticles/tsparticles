@@ -1,8 +1,8 @@
-import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { IShadow } from "../../Interfaces/Particles/IShadow";
-import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import type { IShadow } from "../../Interfaces/Particles/IShadow.js";
+import { OptionsColor } from "../OptionsColor.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  

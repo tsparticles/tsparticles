@@ -1,8 +1,8 @@
-import nasa from "./nasa";
-import noconfig from "./noconfig";
-import noisePlanes from "./noisePlanes";
-import nyancat from "./nyancat";
-import nyancat2 from "./nyancat2";
+import nasa from "./nasa.js";
+import noconfig from "./noconfig.js";
+import noisePlanes from "./noisePlanes.js";
+import nyancat from "./nyancat.js";
+import nyancat2 from "./nyancat2.js";
 
 export default {
     nasa,

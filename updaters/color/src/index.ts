@@ -1,4 +1,4 @@
-import { ColorUpdater } from "./ColorUpdater";
+import { ColorUpdater } from "./ColorUpdater.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

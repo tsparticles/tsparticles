@@ -7,8 +7,8 @@ import {
     itemFromSingleOrMultiple,
     loadFont,
 } from "@tsparticles/engine";
-import type { ICharacterShape } from "./ICharacterShape";
-import type { TextParticle } from "./TextParticle";
+import type { ICharacterShape } from "./ICharacterShape.js";
+import type { TextParticle } from "./TextParticle.js";
 
 export const validTypes = ["text", "character", "char"];
 

@@ -1,6 +1,6 @@
 import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "@tsparticles/engine";
-import type { IPerlinOptions } from "./IPerlinOptions";
-import { PerlinNoise } from "./PerlinNoise";
+import type { IPerlinOptions } from "./IPerlinOptions.js";
+import { PerlinNoise } from "./PerlinNoise.js";
 
 export class PerlinNoiseGenerator implements IMovePathGenerator {
     container?: Container;

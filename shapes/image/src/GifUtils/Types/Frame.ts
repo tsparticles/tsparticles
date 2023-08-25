@@ -1,6 +1,6 @@
-import type { DisposalMethod } from "../Enums/DisposalMethod";
+import type { DisposalMethod } from "../Enums/DisposalMethod.js";
 import type { IRgb } from "@tsparticles/engine";
-import type { PlainTextData } from "./PlainTextData";
+import type { PlainTextData } from "./PlainTextData.js";
 
 export interface Frame {
     /**

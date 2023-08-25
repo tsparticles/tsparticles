@@ -1,5 +1,5 @@
 import type { Options } from "@tsparticles/engine";
-import type { TrailMode } from "../../Types";
+import type { TrailMode } from "../../Types.js";
 
 export type TrailOptions = Options & {
     interactivity: {

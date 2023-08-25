@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import type { IEmitterShape } from "./IEmitterShape";
+import type { IEmitterShape } from "./IEmitterShape.js";
 
 const shapes: Map<string, IEmitterShape> = new Map<string, IEmitterShape>();
 

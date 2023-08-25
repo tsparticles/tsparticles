@@ -7,8 +7,8 @@ import {
     itemFromSingleOrMultiple,
     loadFont,
 } from "@tsparticles/engine";
-import type { IMultilineTextShape } from "./IMultilineTextShape";
-import type { MultilineTextParticle } from "./MultilineTextParticle";
+import type { IMultilineTextShape } from "./IMultilineTextShape.js";
+import type { MultilineTextParticle } from "./MultilineTextParticle.js";
 
 export class MultilineTextDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, particle: MultilineTextParticle, radius: number, opacity: number): void {

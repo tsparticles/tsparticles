@@ -8,8 +8,8 @@ import type {
     ParticlesOptions,
     SingleOrMultiple,
 } from "@tsparticles/engine";
-import type { AnimatableGradient } from "./Options/Classes/AnimatableGradient";
-import type { IAnimatableGradient } from "./Options/Interfaces/IAnimatableGradient";
+import type { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
+import type { IAnimatableGradient } from "./Options/Interfaces/IAnimatableGradient.js";
 
 export interface IParticleGradientColorAnimation {
     opacity?: IParticleNumericValueAnimation;

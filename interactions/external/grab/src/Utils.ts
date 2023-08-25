@@ -1,4 +1,4 @@
-import type { GrabContainer, LinkParticle } from "./Types";
+import type { GrabContainer, LinkParticle } from "./Types.js";
 import { type ICoordinates, type IRgb, drawLine, getStyleFromRgb } from "@tsparticles/engine";
 
 /**

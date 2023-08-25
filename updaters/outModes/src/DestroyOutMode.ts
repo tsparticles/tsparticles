@@ -10,7 +10,7 @@ import {
     getDistances,
     isPointInside,
 } from "@tsparticles/engine";
-import type { IOutModeManager } from "./IOutModeManager";
+import type { IOutModeManager } from "./IOutModeManager.js";
 
 export class DestroyOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];

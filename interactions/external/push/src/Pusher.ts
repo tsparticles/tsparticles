@@ -7,8 +7,8 @@ import {
     getRangeValue,
     itemFromArray,
 } from "@tsparticles/engine";
-import type { IPushMode, PushContainer, PushMode } from "./Types";
-import { Push } from "./Options/Classes/Push";
+import type { IPushMode, PushContainer, PushMode } from "./Types.js";
+import { Push } from "./Options/Classes/Push.js";
 
 /**
  * Particle attract manager

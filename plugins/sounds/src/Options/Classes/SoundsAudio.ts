@@ -1,5 +1,5 @@
 import { type IOptionLoader, type RecursivePartial, isObject } from "@tsparticles/engine";
-import type { ISoundsAudio } from "../Interfaces/ISoundsAudio";
+import type { ISoundsAudio } from "../Interfaces/ISoundsAudio.js";
 
 export class SoundsAudio implements ISoundsAudio, IOptionLoader<ISoundsAudio> {
     loop: boolean;

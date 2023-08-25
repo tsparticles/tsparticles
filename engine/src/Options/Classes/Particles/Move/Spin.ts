@@ -1,10 +1,10 @@
-import type { ICoordinatesWithMode } from "../../../../Core/Interfaces/ICoordinates";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ISpin } from "../../../Interfaces/Particles/Move/ISpin";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { deepExtend } from "../../../../Utils/Utils";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import type { ICoordinatesWithMode } from "../../../../Core/Interfaces/ICoordinates.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { ISpin } from "../../../Interfaces/Particles/Move/ISpin.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { deepExtend } from "../../../../Utils/Utils.js";
+import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 export class Spin implements ISpin, IOptionLoader<ISpin> {
     acceleration: RangeValue;

@@ -1,7 +1,7 @@
-import type { Container } from "./Container";
-import type { Particle } from "./Particle";
-import { getRangeValue } from "../Utils/NumberUtils";
-import { isSsr } from "../Utils/Utils";
+import type { Container } from "./Container.js";
+import type { Particle } from "./Particle.js";
+import { getRangeValue } from "../Utils/NumberUtils.js";
+import { isSsr } from "../Utils/Utils.js";
 
 /**
  */

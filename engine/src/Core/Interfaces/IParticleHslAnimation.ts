@@ -1,4 +1,4 @@
-import type { IParticleValueAnimation } from "./IParticleValueAnimation";
+import type { IParticleValueAnimation } from "./IParticleValueAnimation.js";
 
 export interface IParticleHslAnimation {
     h: IParticleValueAnimation<number>;

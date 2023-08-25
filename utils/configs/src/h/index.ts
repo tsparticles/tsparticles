@@ -1,6 +1,6 @@
-import hexagonPath from "./hexagonPath";
-import hollowknight from "./hollowknight";
-import hyperspace from "./hyperspace";
+import hexagonPath from "./hexagonPath.js";
+import hollowknight from "./hollowknight.js";
+import hyperspace from "./hyperspace.js";
 
 export default {
     hexagonPath,

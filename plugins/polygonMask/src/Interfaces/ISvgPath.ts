@@ -1,4 +1,4 @@
-import type { SVGPathElement } from "../pathseg";
+import type { SVGPathElement } from "../pathseg.js";
 
 export interface ISvgPath {
     element: SVGPathElement;

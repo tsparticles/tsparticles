@@ -1,5 +1,5 @@
 import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
-import type { IEmitterRate } from "../Interfaces/IEmitterRate";
+import type { IEmitterRate } from "../Interfaces/IEmitterRate.js";
 
 /**
  */

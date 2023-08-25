@@ -1,4 +1,4 @@
-import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types";
+import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types.js";
 import {
     Circle,
     ClickMode,
@@ -26,11 +26,11 @@ import {
     rangeColorToHsl,
     rgbToHsl,
 } from "@tsparticles/engine";
-import { Bubble } from "./Options/Classes/Bubble";
-import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
-import type { Interfaces } from "./Interfaces";
-import { ProcessBubbleType } from "./Enums";
-import { calculateBubbleValue } from "./Utils";
+import { Bubble } from "./Options/Classes/Bubble.js";
+import type { BubbleDiv } from "./Options/Classes/BubbleDiv.js";
+import type { Interfaces } from "./Interfaces.js";
+import { ProcessBubbleType } from "./Enums.js";
+import { calculateBubbleValue } from "./Utils.js";
 
 /**
  * Particle bubble manager

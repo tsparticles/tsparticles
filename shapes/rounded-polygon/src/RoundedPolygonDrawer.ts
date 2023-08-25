@@ -5,8 +5,8 @@ import {
     type Particle,
     getRangeValue,
 } from "@tsparticles/engine";
-import type { IRoundedPolygonShape } from "./IRoundedPolygonShape";
-import type { RoundedParticle } from "./RoundedParticle";
+import type { IRoundedPolygonShape } from "./IRoundedPolygonShape.js";
+import type { RoundedParticle } from "./RoundedParticle.js";
 
 /**
  * @param sides -

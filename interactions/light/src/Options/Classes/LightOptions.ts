@@ -1,5 +1,5 @@
 import type { Options, ParticlesOptions } from "@tsparticles/engine";
-import type { LightMode } from "../../Types";
+import type { LightMode } from "../../Types.js";
 
 export type LightOptions = Options & {
     interactivity: {

@@ -1,9 +1,9 @@
-import { AnimatableColor } from "../AnimatableColor";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { IStroke } from "../../Interfaces/Particles/IStroke";
-import type { RangeValue } from "../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { setRangeValue } from "../../../Utils/NumberUtils";
+import { AnimatableColor } from "../AnimatableColor.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import type { IStroke } from "../../Interfaces/Particles/IStroke.js";
+import type { RangeValue } from "../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { setRangeValue } from "../../../Utils/NumberUtils.js";
 
 /**
  * [[include:Options/Particles/Stroke.md]]

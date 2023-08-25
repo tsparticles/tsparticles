@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { GradientUpdater } from "./GradientUpdater";
+import { GradientUpdater } from "./GradientUpdater.js";
 
 /**
  * @param engine -

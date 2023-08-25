@@ -1,23 +1,23 @@
-import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils";
-import { AnimatableColor } from "../AnimatableColor";
-import { Collisions } from "./Collisions/Collisions";
-import type { Container } from "../../../Core/Container";
-import type { Engine } from "../../../Core/Engine";
-import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
-import { Move } from "./Move/Move";
-import { Opacity } from "./Opacity/Opacity";
-import { ParticlesBounce } from "./Bounce/ParticlesBounce";
-import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
-import { ParticlesNumber } from "./Number/ParticlesNumber";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Shadow } from "./Shadow";
-import { Shape } from "./Shape/Shape";
-import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
-import { Size } from "./Size/Size";
-import { Stroke } from "./Stroke";
-import { ZIndex } from "./ZIndex/ZIndex";
+import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
+import { AnimatableColor } from "../AnimatableColor.js";
+import { Collisions } from "./Collisions/Collisions.js";
+import type { Container } from "../../../Core/Container.js";
+import type { Engine } from "../../../Core/Engine.js";
+import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
+import { Move } from "./Move/Move.js";
+import { Opacity } from "./Opacity/Opacity.js";
+import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
+import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
+import { ParticlesNumber } from "./Number/ParticlesNumber.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { Shadow } from "./Shadow.js";
+import { Shape } from "./Shape/Shape.js";
+import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
+import { Size } from "./Size/Size.js";
+import { Stroke } from "./Stroke.js";
+import { ZIndex } from "./ZIndex/ZIndex.js";
 
 /**
  * [[include:Options/Particles.md]]

@@ -1,5 +1,5 @@
-import type { TiltDirection, TiltDirectionAlt } from "../../TiltDirection";
-import type { ITiltAnimation } from "./ITiltAnimation";
+import type { TiltDirection, TiltDirectionAlt } from "../../TiltDirection.js";
+import type { ITiltAnimation } from "./ITiltAnimation.js";
 import type { IValueWithRandom } from "@tsparticles/engine";
 
 /**

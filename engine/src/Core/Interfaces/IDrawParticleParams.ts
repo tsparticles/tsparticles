@@ -1,9 +1,9 @@
-import type { Container } from "../Container";
-import type { IDelta } from "./IDelta";
-import type { IParticleColorStyle } from "./IParticleColorStyle";
-import type { IParticleTransformValues } from "./IParticleTransformValues";
-import type { IShadow } from "../../Options/Interfaces/Particles/IShadow";
-import type { Particle } from "../Particle";
+import type { Container } from "../Container.js";
+import type { IDelta } from "./IDelta.js";
+import type { IParticleColorStyle } from "./IParticleColorStyle.js";
+import type { IParticleTransformValues } from "./IParticleTransformValues.js";
+import type { IShadow } from "../../Options/Interfaces/Particles/IShadow.js";
+import type { Particle } from "../Particle.js";
 
 export interface IDrawParticleParams {
     /**

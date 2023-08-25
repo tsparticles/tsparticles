@@ -1,4 +1,4 @@
-import type { IGrabLinks } from "./IGrabLinks";
+import type { IGrabLinks } from "./IGrabLinks.js";
 
 /**
  */

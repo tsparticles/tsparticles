@@ -1,4 +1,4 @@
-import { ClubDrawer, DiamondDrawer, HeartDrawer, SpadeDrawer } from "./CardsSuitsDrawers";
+import { ClubDrawer, DiamondDrawer, HeartDrawer, SpadeDrawer } from "./CardsSuitsDrawers.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

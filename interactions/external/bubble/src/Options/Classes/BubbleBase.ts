@@ -6,7 +6,7 @@ import {
     executeOnSingleOrMultiple,
     isArray,
 } from "@tsparticles/engine";
-import type { IBubbleBase } from "../Interfaces/IBubbleBase";
+import type { IBubbleBase } from "../Interfaces/IBubbleBase.js";
 
 /**
  */

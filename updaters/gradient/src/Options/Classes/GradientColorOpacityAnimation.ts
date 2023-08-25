@@ -5,7 +5,7 @@ import {
     StartValueType,
     setRangeValue,
 } from "@tsparticles/engine";
-import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient";
+import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient.js";
 
 export class GradientColorOpacityAnimation
     implements IGradientColorOpacityAnimation, IOptionLoader<IGradientColorOpacityAnimation>

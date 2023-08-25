@@ -18,9 +18,9 @@ import {
     randomInRange,
     rangeColorToHsl,
 } from "@tsparticles/engine";
-import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOptions } from "./Types";
-import { AnimatableGradient } from "./Options/Classes/AnimatableGradient";
-import { updateGradient } from "./Utils";
+import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOptions } from "./Types.js";
+import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
+import { updateGradient } from "./Utils.js";
 
 export class GradientUpdater implements IParticleUpdater {
     getColorStyles(

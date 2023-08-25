@@ -1,6 +1,6 @@
 import { type Container, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
-import type { CogParticle } from "./CogParticle";
-import type { ICogData } from "./ICogData";
+import type { CogParticle } from "./CogParticle.js";
+import type { ICogData } from "./ICogData.js";
 
 export class CogDrawer implements IShapeDrawer {
     afterEffect(ctx: CanvasRenderingContext2D, particle: CogParticle, radius: number): void {

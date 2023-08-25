@@ -1,6 +1,6 @@
-import type { Container } from "../Core/Container";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import type { Particle } from "../Core/Particle";
+import type { Container } from "../Core/Container.js";
+import type { IDelta } from "../Core/Interfaces/IDelta.js";
+import type { Particle } from "../Core/Particle.js";
 
 /**
  * Shape draw function

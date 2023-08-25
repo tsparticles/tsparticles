@@ -4,7 +4,7 @@ import {
     type IParticleNumericValueAnimation,
     type IParticleValueAnimation,
 } from "@tsparticles/engine";
-import type { GradientParticle } from "./Types";
+import type { GradientParticle } from "./Types.js";
 
 /**
  * @param delta -

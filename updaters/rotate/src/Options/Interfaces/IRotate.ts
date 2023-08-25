@@ -1,5 +1,5 @@
 import type { IValueWithRandom, RotateDirection, RotateDirectionAlt } from "@tsparticles/engine";
-import type { IRotateAnimation } from "./IRotateAnimation";
+import type { IRotateAnimation } from "./IRotateAnimation.js";
 
 /**
  * [[include:Options/Particles/Rotate.md]]

@@ -1,5 +1,5 @@
-import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates";
-import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension";
+import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates.js";
+import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension.js";
 import {
     collisionVelocity,
     getDistances,
@@ -9,24 +9,24 @@ import {
     getRangeValue,
     getValue,
     randomInRange,
-} from "./NumberUtils";
-import { AnimationMode } from "../Enums/Modes/AnimationMode";
-import { AnimationStatus } from "../Enums/AnimationStatus";
-import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import type { DivMode } from "../Enums/Modes/DivMode";
-import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
-import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
-import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
-import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
-import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { PixelMode } from "../Enums/Modes/PixelMode";
-import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
-import { StartValueType } from "../Enums/Types/StartValueType";
-import { Vector } from "../Core/Utils/Vector";
+} from "./NumberUtils.js";
+import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
+import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
+import type { DivMode } from "../Enums/Modes/DivMode.js";
+import type { IBounds } from "../Core/Interfaces/IBounds.js";
+import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
+import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
+import type { IParticle } from "../Core/Interfaces/IParticle.js";
+import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
+import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
+import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult.js";
+import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
+import { PixelMode } from "../Enums/Modes/PixelMode.js";
+import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom.js";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
+import { StartValueType } from "../Enums/Types/StartValueType.js";
+import { Vector } from "../Core/Utils/Vector.js";
 
 type RectSideBounceData = {
     /**

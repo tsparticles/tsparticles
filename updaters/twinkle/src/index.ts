@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { TwinkleUpdater } from "./TwinkleUpdater";
+import { TwinkleUpdater } from "./TwinkleUpdater.js";
 
 /**
  * @param engine -

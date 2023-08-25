@@ -1,9 +1,9 @@
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IOptions } from "../Interfaces/IOptions";
-import type { IResponsive } from "../Interfaces/IResponsive";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
-import { deepExtend } from "../../Utils/Utils";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { IOptions } from "../Interfaces/IOptions.js";
+import type { IResponsive } from "../Interfaces/IResponsive.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
+import { deepExtend } from "../../Utils/Utils.js";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;

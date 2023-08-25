@@ -1,6 +1,6 @@
-import type { ICoordinatesWithMode } from "../../Core/Interfaces/ICoordinates";
-import type { IParticlesOptions } from "./Particles/IParticlesOptions";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { ICoordinatesWithMode } from "../../Core/Interfaces/ICoordinates.js";
+import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  * Manual particles options

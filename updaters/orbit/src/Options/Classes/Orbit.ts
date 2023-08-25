@@ -7,8 +7,8 @@ import {
     type RecursivePartial,
     setRangeValue,
 } from "@tsparticles/engine";
-import type { IOrbit } from "../Interfaces/IOrbit";
-import { OrbitRotation } from "./OrbitRotation";
+import type { IOrbit } from "../Interfaces/IOrbit.js";
+import { OrbitRotation } from "./OrbitRotation.js";
 
 /**
  * [[include:Options/Particles/Orbit.md]]

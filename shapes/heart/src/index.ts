@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { HeartDrawer } from "./HeartDrawer";
+import { HeartDrawer } from "./HeartDrawer.js";
 
 /**
  * @param engine -

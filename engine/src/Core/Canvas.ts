@@ -1,17 +1,17 @@
-import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils";
-import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils";
-import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils";
-import type { Container } from "./Container";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { IDelta } from "./Interfaces/IDelta";
-import type { IDimension } from "./Interfaces/IDimension";
-import type { IHsl } from "./Interfaces/Colors";
-import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle";
-import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
-import type { ITrailFillData } from "./Interfaces/ITrailFillData";
-import type { Particle } from "./Particle";
-import { generatedAttribute } from "./Utils/Constants";
+import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
+import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils.js";
+import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
+import type { Container } from "./Container.js";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import type { IDelta } from "./Interfaces/IDelta.js";
+import type { IDimension } from "./Interfaces/IDimension.js";
+import type { IHsl } from "./Interfaces/Colors.js";
+import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle.js";
+import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues.js";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
+import type { ITrailFillData } from "./Interfaces/ITrailFillData.js";
+import type { Particle } from "./Particle.js";
+import { generatedAttribute } from "./Utils/Constants.js";
 
 /**
  * @param factor -

@@ -1,5 +1,5 @@
 import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
-import type { ILifeDuration } from "../Interfaces/ILifeDuration";
+import type { ILifeDuration } from "../Interfaces/ILifeDuration.js";
 
 export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOptionLoader<ILifeDuration> {
     sync;

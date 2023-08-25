@@ -1,9 +1,9 @@
-import { init } from "./init";
+import { init } from "./init.js";
 
 const tsParticles = init();
 
 window.tsParticles = tsParticles;
 
-export * from "./exports";
+export * from "./exports.js";
 
 export { tsParticles };

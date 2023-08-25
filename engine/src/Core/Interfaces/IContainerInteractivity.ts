@@ -1,4 +1,4 @@
-import type { IMouseData } from "./IMouseData";
+import type { IMouseData } from "./IMouseData.js";
 
 /**
  */

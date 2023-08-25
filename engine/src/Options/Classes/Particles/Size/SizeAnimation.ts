@@ -1,8 +1,8 @@
-import { DestroyType } from "../../../../Enums/Types/DestroyType";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
-import { RangedAnimationOptions } from "../../AnimationOptions";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { DestroyType } from "../../../../Enums/Types/DestroyType.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation.js";
+import { RangedAnimationOptions } from "../../AnimationOptions.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
  */

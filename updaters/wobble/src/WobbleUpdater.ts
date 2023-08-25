@@ -6,9 +6,9 @@ import {
     getRandom,
     getRangeValue,
 } from "@tsparticles/engine";
-import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } from "./Types";
-import { Wobble } from "./Options/Classes/Wobble";
-import { updateWobble } from "./Utils";
+import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } from "./Types.js";
+import { Wobble } from "./Options/Classes/Wobble.js";
+import { updateWobble } from "./Utils.js";
 
 /**
  * The Wobble updater plugin

@@ -1,7 +1,7 @@
-import imageMask from "./imageMask";
-import images from "./images";
-import imagesDirections from "./imagesDirections";
-import infection from "./infection";
+import imageMask from "./imageMask.js";
+import images from "./images.js";
+import imagesDirections from "./imagesDirections.js";
+import infection from "./infection.js";
 
 export default {
     imageMask,

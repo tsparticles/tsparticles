@@ -1,11 +1,11 @@
-import type { IDelta } from "./IDelta";
-import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
-import type { ISourceOptions } from "../../Types/ISourceOptions";
-import type { InteractorType } from "../../Enums/Types/InteractorType";
-import type { Options } from "../../Options/Classes/Options";
-import type { Particle } from "../Particle";
-import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IDelta } from "./IDelta.js";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+import type { InteractorType } from "../../Enums/Types/InteractorType.js";
+import type { Options } from "../../Options/Classes/Options.js";
+import type { Particle } from "../Particle.js";
+import type { ParticlesOptions } from "../../Options/Classes/Particles/ParticlesOptions.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  */

@@ -1,15 +1,15 @@
-import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType";
+import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import type {
     IPositionFromSizeParams,
     IRangedPositionFromSizeParams,
-} from "../Core/Interfaces/IPositionFromSizeParams";
-import { isBoolean, isNumber } from "./Utils";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import { MoveDirection } from "../Enums/Directions/MoveDirection";
-import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
-import type { RangeValue } from "../Types/RangeValue";
-import { Vector } from "../Core/Utils/Vector";
+} from "../Core/Interfaces/IPositionFromSizeParams.js";
+import { isBoolean, isNumber } from "./Utils.js";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
+import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom.js";
+import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
+import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
+import type { RangeValue } from "../Types/RangeValue.js";
+import { Vector } from "../Core/Utils/Vector.js";
 
 type EasingFunction = (value: number) => number;
 

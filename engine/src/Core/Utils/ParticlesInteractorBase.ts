@@ -1,8 +1,8 @@
-import type { Container } from "../Container";
-import type { IDelta } from "../Interfaces/IDelta";
-import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
-import { InteractorType } from "../../Enums/Types/InteractorType";
-import type { Particle } from "../Particle";
+import type { Container } from "../Container.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor.js";
+import { InteractorType } from "../../Enums/Types/InteractorType.js";
+import type { Particle } from "../Particle.js";
 
 /**
  * Particles interactions manager, base abstract class

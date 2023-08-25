@@ -1,13 +1,13 @@
 /**
  */
-import type { ClickMode } from "../../Enums/Modes/ClickMode";
-import type { Container } from "../Container";
-import type { Engine } from "../Engine";
-import type { IDelta } from "../Interfaces/IDelta";
-import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
-import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor";
-import { InteractorType } from "../../Enums/Types/InteractorType";
-import type { Particle } from "../Particle";
+import type { ClickMode } from "../../Enums/Modes/ClickMode.js";
+import type { Container } from "../Container.js";
+import type { Engine } from "../Engine.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IExternalInteractor } from "../Interfaces/IExternalInteractor.js";
+import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor.js";
+import { InteractorType } from "../../Enums/Types/InteractorType.js";
+import type { Particle } from "../Particle.js";
 
 export class InteractionManager {
     /**

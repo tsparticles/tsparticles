@@ -1,4 +1,4 @@
-import { Grad } from "./Grad";
+import { Grad } from "./Grad.js";
 
 const grad3 = [
         new Grad(1, 1, 0),

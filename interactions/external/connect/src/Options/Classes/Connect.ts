@@ -1,6 +1,6 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import { ConnectLinks } from "./ConnectLinks";
-import type { IConnect } from "../Interfaces/IConnect";
+import { ConnectLinks } from "./ConnectLinks.js";
+import type { IConnect } from "../Interfaces/IConnect.js";
 
 /**
  */

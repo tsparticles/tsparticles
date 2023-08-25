@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
 
 /**
  */

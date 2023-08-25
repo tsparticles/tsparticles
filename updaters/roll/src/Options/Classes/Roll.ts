@@ -5,9 +5,9 @@ import {
     type RecursivePartial,
     setRangeValue,
 } from "@tsparticles/engine";
-import type { IRoll } from "../Interfaces/IRoll";
-import { RollLight } from "./RollLight";
-import { RollMode } from "../../RollMode";
+import type { IRoll } from "../Interfaces/IRoll.js";
+import { RollLight } from "./RollLight.js";
+import { RollMode } from "../../RollMode.js";
 
 export class Roll implements IRoll, IOptionLoader<IRoll> {
     backColor?: OptionsColor;

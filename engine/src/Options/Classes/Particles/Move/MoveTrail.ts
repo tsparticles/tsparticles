@@ -1,7 +1,7 @@
-import type { IMoveTrail } from "../../../Interfaces/Particles/Move/IMoveTrail";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { MoveTrailFill } from "./MoveTrailFill";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IMoveTrail } from "../../../Interfaces/Particles/Move/IMoveTrail.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { MoveTrailFill } from "./MoveTrailFill.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
  */

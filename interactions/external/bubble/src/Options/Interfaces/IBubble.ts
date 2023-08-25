@@ -1,5 +1,5 @@
-import type { IBubbleBase } from "./IBubbleBase";
-import type { IBubbleDiv } from "./IBubbleDiv";
+import type { IBubbleBase } from "./IBubbleBase.js";
+import type { IBubbleDiv } from "./IBubbleDiv.js";
 import type { SingleOrMultiple } from "@tsparticles/engine";
 
 /**

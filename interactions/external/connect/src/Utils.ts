@@ -1,4 +1,4 @@
-import type { ConnectContainer, LinkParticle } from "./Types";
+import type { ConnectContainer, LinkParticle } from "./Types.js";
 import {
     type ICoordinates,
     type Particle,

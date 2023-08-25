@@ -1,4 +1,4 @@
-import orbit from "./orbit";
+import orbit from "./orbit.js";
 
 export default {
     orbit,

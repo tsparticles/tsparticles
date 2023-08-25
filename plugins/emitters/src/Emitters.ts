@@ -10,13 +10,13 @@ import {
     isNumber,
     itemFromArray,
 } from "@tsparticles/engine";
-import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterClickMode } from "./Enums/EmitterClickMode";
-import type { EmitterContainer } from "./EmitterContainer";
-import { EmitterInstance } from "./EmitterInstance";
-import type { EmitterModeOptions } from "./types";
-import type { EmittersEngine } from "./EmittersEngine";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
+import { Emitter } from "./Options/Classes/Emitter.js";
+import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
+import type { EmitterContainer } from "./EmitterContainer.js";
+import { EmitterInstance } from "./EmitterInstance.js";
+import type { EmitterModeOptions } from "./types.js";
+import type { EmittersEngine } from "./EmittersEngine.js";
+import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 /**
  */

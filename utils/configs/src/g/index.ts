@@ -1,8 +1,8 @@
-import gifs from "./gifs";
-import grabRandomColor from "./grabRandomColor";
-import gradients from "./gradients";
-import gravity from "./gravity";
-import growing from "./growing";
+import gifs from "./gifs.js";
+import grabRandomColor from "./grabRandomColor.js";
+import gradients from "./gradients.js";
+import gravity from "./gravity.js";
+import growing from "./growing.js";
 
 export default {
     gifs,

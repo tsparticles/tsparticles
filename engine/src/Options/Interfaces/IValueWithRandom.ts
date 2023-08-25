@@ -1,6 +1,6 @@
-import type { IAnimation, IRangedAnimation } from "./IAnimation";
-import type { IRandom } from "./IRandom";
-import type { RangeValue } from "../../Types/RangeValue";
+import type { IAnimation, IRangedAnimation } from "./IAnimation.js";
+import type { IRandom } from "./IRandom.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
 
 export interface IValueWithRandom {
     /**

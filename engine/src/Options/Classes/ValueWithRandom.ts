@@ -1,15 +1,15 @@
-import { AnimationOptions, RangedAnimationOptions } from "./AnimationOptions";
+import { AnimationOptions, RangedAnimationOptions } from "./AnimationOptions.js";
 import type {
     IAnimationValueWithRandom,
     IRangedAnimationValueWithRandom,
     IValueWithRandom,
-} from "../Interfaces/IValueWithRandom";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import { Random } from "./Random";
-import type { RangeValue } from "../../Types/RangeValue";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { isBoolean } from "../../Utils/Utils";
-import { setRangeValue } from "../../Utils/NumberUtils";
+} from "../Interfaces/IValueWithRandom.js";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import { Random } from "./Random.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { isBoolean } from "../../Utils/Utils.js";
+import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
     /**

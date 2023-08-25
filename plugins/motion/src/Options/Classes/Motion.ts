@@ -1,6 +1,6 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { IMotion } from "../Interfaces/IMotion";
-import { MotionReduce } from "./MotionReduce";
+import type { IMotion } from "../Interfaces/IMotion.js";
+import { MotionReduce } from "./MotionReduce.js";
 
 /**
  * [[include:Options/Motion.md]]

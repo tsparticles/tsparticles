@@ -1,6 +1,6 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { ITwinkle } from "../Interfaces/ITwinkle";
-import { TwinkleValues } from "./TwinkleValues";
+import type { ITwinkle } from "../Interfaces/ITwinkle.js";
+import { TwinkleValues } from "./TwinkleValues.js";
 
 /**
  * [[include:Options/Particles/Twinkle.md]]

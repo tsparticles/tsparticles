@@ -5,8 +5,8 @@ import {
     type RecursivePartial,
     setRangeValue,
 } from "@tsparticles/engine";
-import { AbsorberSize } from "./AbsorberSize";
-import type { IAbsorber } from "../Interfaces/IAbsorber";
+import { AbsorberSize } from "./AbsorberSize.js";
+import type { IAbsorber } from "../Interfaces/IAbsorber.js";
 
 /**
  * [[include:Options/Plugins/Absorbers.md]]

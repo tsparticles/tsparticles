@@ -1,4 +1,4 @@
-import type { IDistance } from "./IDistance";
+import type { IDistance } from "./IDistance.js";
 
 export interface IParticleRetinaProps {
     attractDistance?: number;

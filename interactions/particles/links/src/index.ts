@@ -1,6 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
-import { loadLinksInteraction } from "./interaction";
-import { loadLinksPlugin } from "./plugin";
+import { loadLinksInteraction } from "./interaction.js";
+import { loadLinksPlugin } from "./plugin.js";
 
 /**
  * @param engine -
@@ -11,9 +11,9 @@ export async function loadParticlesLinksInteraction(engine: Engine, refresh = tr
     await loadLinksPlugin(engine, refresh);
 }
 
-export * from "./Options/Classes/Links";
-export * from "./Options/Classes/LinksShadow";
-export * from "./Options/Classes/LinksTriangle";
-export * from "./Options/Interfaces/ILinks";
-export * from "./Options/Interfaces/ILinksShadow";
-export * from "./Options/Interfaces/ILinksTriangle";
+export * from "./Options/Classes/Links.js";
+export * from "./Options/Classes/LinksShadow.js";
+export * from "./Options/Classes/LinksTriangle.js";
+export * from "./Options/Interfaces/ILinks.js";
+export * from "./Options/Interfaces/ILinksShadow.js";
+export * from "./Options/Interfaces/ILinksTriangle.js";

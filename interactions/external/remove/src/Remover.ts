@@ -6,8 +6,8 @@ import {
     type RecursivePartial,
     getRangeValue,
 } from "@tsparticles/engine";
-import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types";
-import { Remove } from "./Options/Classes/Remove";
+import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types.js";
+import { Remove } from "./Options/Classes/Remove.js";
 
 /**
  * Particle attract manager

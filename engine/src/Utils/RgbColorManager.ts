@@ -1,6 +1,6 @@
-import type { IColor, IRangeColor, IRangeRgb, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors";
-import { getRangeValue, parseAlpha } from "./NumberUtils";
-import type { IColorManager } from "../Core/Interfaces/IColorManager";
+import type { IColor, IRangeColor, IRangeRgb, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors.js";
+import { getRangeValue, parseAlpha } from "./NumberUtils.js";
+import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
 
 /**
  */

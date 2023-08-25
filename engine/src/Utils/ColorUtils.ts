@@ -1,14 +1,14 @@
-import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors";
-import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
-import { isArray, isString, itemFromArray } from "./Utils";
-import { AnimationStatus } from "../Enums/AnimationStatus";
-import type { HslAnimation } from "../Options/Classes/HslAnimation";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
-import type { IColorManager } from "../Core/Interfaces/IColorManager";
-import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
-import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
+import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
+import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils.js";
+import { isArray, isString, itemFromArray } from "./Utils.js";
+import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
+import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
+import type { IParticle } from "../Core/Interfaces/IParticle.js";
+import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
+import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 
 const randomColorValue = "random",
     midColorValue = "mid",

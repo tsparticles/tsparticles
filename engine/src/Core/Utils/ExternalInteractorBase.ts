@@ -1,8 +1,8 @@
-import type { Container } from "../Container";
-import type { IDelta } from "../Interfaces/IDelta";
-import type { IExternalInteractor } from "../Interfaces/IExternalInteractor";
-import { InteractorType } from "../../Enums/Types/InteractorType";
-import type { Particle } from "../Particle";
+import type { Container } from "../Container.js";
+import type { IDelta } from "../Interfaces/IDelta.js";
+import type { IExternalInteractor } from "../Interfaces/IExternalInteractor.js";
+import { InteractorType } from "../../Enums/Types/InteractorType.js";
+import type { Particle } from "../Particle.js";
 
 /**
  * External Interactivity manager, base abstract class

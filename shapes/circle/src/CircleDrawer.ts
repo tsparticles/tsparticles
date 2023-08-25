@@ -1,6 +1,6 @@
 import { type Container, type IShapeDrawer, isObject } from "@tsparticles/engine";
-import type { CircleParticle } from "./CircleParticle";
-import type { ICircleShapeData } from "./ICircleShapeData";
+import type { CircleParticle } from "./CircleParticle.js";
+import type { ICircleShapeData } from "./ICircleShapeData.js";
 
 /**
  */

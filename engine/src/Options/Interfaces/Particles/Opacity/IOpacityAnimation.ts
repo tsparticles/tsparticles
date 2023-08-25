@@ -1,5 +1,5 @@
-import type { DestroyType } from "../../../../Enums/Types/DestroyType";
-import type { IRangedAnimation } from "../../IAnimation";
+import type { DestroyType } from "../../../../Enums/Types/DestroyType.js";
+import type { IRangedAnimation } from "../../IAnimation.js";
 
 /**
  */

@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates";
-import type { IOptionsColor } from "../IOptionsColor";
+import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates.js";
+import type { IOptionsColor } from "../IOptionsColor.js";
 
 /**
  

@@ -7,8 +7,8 @@ import {
     getRangeMax,
     getRangeValue,
 } from "@tsparticles/engine";
-import { applyDistance, getProximitySpeedFactor, move, spin } from "./Utils";
-import type { MoveParticle } from "./Types";
+import { applyDistance, getProximitySpeedFactor, move, spin } from "./Utils.js";
+import type { MoveParticle } from "./Types.js";
 
 const diffFactor = 2;
 

@@ -1,5 +1,5 @@
 import { type ICoordinates, getStyleFromRgb } from "@tsparticles/engine";
-import type { LightContainer, LightParticle } from "./Types";
+import type { LightContainer, LightParticle } from "./Types.js";
 
 /**
  * @param container -

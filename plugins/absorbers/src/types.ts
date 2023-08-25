@@ -1,6 +1,6 @@
 import type { IOptions, Options, SingleOrMultiple } from "@tsparticles/engine";
-import type { Absorber } from "./Options/Classes/Absorber";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
+import type { Absorber } from "./Options/Classes/Absorber.js";
+import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 export type AbsorberOptions = Options & {
     absorbers: SingleOrMultiple<Absorber>;

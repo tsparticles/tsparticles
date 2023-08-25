@@ -1,8 +1,8 @@
-import type { Container } from "../Container";
-import type { IContainerPlugin } from "./IContainerPlugin";
-import type { IOptions } from "../../Options/Interfaces/IOptions";
-import type { Options } from "../../Options/Classes/Options";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { Container } from "../Container.js";
+import type { IContainerPlugin } from "./IContainerPlugin.js";
+import type { IOptions } from "../../Options/Interfaces/IOptions.js";
+import type { Options } from "../../Options/Classes/Options.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  * [[include:Plugins.md]]

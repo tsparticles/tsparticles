@@ -7,7 +7,7 @@ import {
     getDistances,
     getRandom,
 } from "@tsparticles/engine";
-import type { MoveParticle } from "./Types";
+import type { MoveParticle } from "./Types.js";
 
 /**
  * @param particle -

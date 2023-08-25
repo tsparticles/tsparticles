@@ -1,5 +1,5 @@
-import type { PixelMode } from "../../Enums/Modes/PixelMode";
-import type { RangeValue } from "../../Types/RangeValue";
+import type { PixelMode } from "../../Enums/Modes/PixelMode.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
 
 export interface ICoordinates {
     x: number;

@@ -1,4 +1,4 @@
-import { CogDrawer } from "./CogDrawer";
+import { CogDrawer } from "./CogDrawer.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

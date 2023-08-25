@@ -1,16 +1,16 @@
-import manual from "./manual";
-import motionDisable from "./motionDisable";
-import motionReduce from "./motionReduce";
-import mouseAttract from "./mouseAttract";
-import mouseBounce from "./mouseBounce";
-import mouseFollow from "./mouseFollow";
-import mouseTrail from "./mouseTrail";
-import moveAngle from "./moveAngle";
-import moveDistance from "./moveDistance";
-import moveInside from "./moveInside";
-import moveOutside from "./moveOutside";
-import multipleClickEmitters from "./multipleClickEmitters";
-import multiplePolygonMasks from "./multiplePolygonMasks";
+import manual from "./manual.js";
+import motionDisable from "./motionDisable.js";
+import motionReduce from "./motionReduce.js";
+import mouseAttract from "./mouseAttract.js";
+import mouseBounce from "./mouseBounce.js";
+import mouseFollow from "./mouseFollow.js";
+import mouseTrail from "./mouseTrail.js";
+import moveAngle from "./moveAngle.js";
+import moveDistance from "./moveDistance.js";
+import moveInside from "./moveInside.js";
+import moveOutside from "./moveOutside.js";
+import multipleClickEmitters from "./multipleClickEmitters.js";
+import multiplePolygonMasks from "./multiplePolygonMasks.js";
 
 export default {
     manual,

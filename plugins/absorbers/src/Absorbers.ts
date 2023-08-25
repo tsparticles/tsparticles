@@ -8,11 +8,11 @@ import {
     isNumber,
     itemFromSingleOrMultiple,
 } from "@tsparticles/engine";
-import type { Absorber } from "./Options/Classes/Absorber";
-import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
-import type { AbsorberContainer } from "./AbsorberContainer";
-import { AbsorberInstance } from "./AbsorberInstance";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
+import type { Absorber } from "./Options/Classes/Absorber.js";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
+import type { AbsorberContainer } from "./AbsorberContainer.js";
+import { AbsorberInstance } from "./AbsorberInstance.js";
+import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 /**
  */

@@ -1,7 +1,7 @@
-import type { IBackground } from "../../Interfaces/Background/IBackground";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IBackground } from "../../Interfaces/Background/IBackground.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import { OptionsColor } from "../OptionsColor.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * [[include:Options/Background.md]]

@@ -8,9 +8,9 @@ import {
     deepExtend,
     executeOnSingleOrMultiple,
 } from "@tsparticles/engine";
-import type { ISplit } from "../Interfaces/ISplit";
-import { SplitFactor } from "./SplitFactor";
-import { SplitRate } from "./SplitRate";
+import type { ISplit } from "../Interfaces/ISplit.js";
+import { SplitFactor } from "./SplitFactor.js";
+import { SplitRate } from "./SplitRate.js";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
     color?: OptionsColor;

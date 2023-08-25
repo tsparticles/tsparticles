@@ -1,8 +1,8 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { SizeAnimation } from "./SizeAnimation";
-import { ValueWithRandom } from "../../ValueWithRandom";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { ISize } from "../../../Interfaces/Particles/Size/ISize.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { SizeAnimation } from "./SizeAnimation.js";
+import { ValueWithRandom } from "../../ValueWithRandom.js";
 
 /**
  * [[include:Options/Particles/Size.md]]

@@ -1,4 +1,4 @@
-import type { AlterType } from "../../Enums/Types/AlterType";
+import type { AlterType } from "../../Enums/Types/AlterType.js";
 
 export interface IParticleRoll {
     alter?: {

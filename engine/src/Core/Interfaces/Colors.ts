@@ -1,5 +1,5 @@
-import type { RangeValue } from "../../Types/RangeValue";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 /**
  * Alpha Color

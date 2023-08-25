@@ -1,4 +1,4 @@
-import type { IBubbleBase } from "./IBubbleBase";
+import type { IBubbleBase } from "./IBubbleBase.js";
 import type { IModeDiv } from "@tsparticles/engine";
 
 /**

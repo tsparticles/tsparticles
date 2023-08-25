@@ -1,12 +1,12 @@
-import test from "./test";
-import textMask from "./textMask";
-import textMaskMultiline from "./textMaskMultiline";
-import themes from "./themes";
-import tilt from "./tilt";
-import trail from "./trail";
-import trailImage from "./trailImage";
-import triangles from "./triangles";
-import twinkle from "./twinkle";
+import test from "./test.js";
+import textMask from "./textMask.js";
+import textMaskMultiline from "./textMaskMultiline.js";
+import themes from "./themes.js";
+import tilt from "./tilt.js";
+import trail from "./trail.js";
+import trailImage from "./trailImage.js";
+import triangles from "./triangles.js";
+import twinkle from "./twinkle.js";
 
 export default {
     test,

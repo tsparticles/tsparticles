@@ -1,20 +1,20 @@
-import { isNumber, isObject } from "../../../../Utils/Utils";
-import type { IDistance } from "../../../../Core/Interfaces/IDistance";
-import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { MoveAngle } from "./MoveAngle";
-import { MoveAttract } from "./MoveAttract";
-import { MoveCenter } from "./MoveCenter";
-import { MoveDirection } from "../../../../Enums/Directions/MoveDirection";
-import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
-import { MoveGravity } from "./MoveGravity";
-import { MovePath } from "./Path/MovePath";
-import { MoveTrail } from "./MoveTrail";
-import { OutModes } from "./OutModes";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { Spin } from "./Spin";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import { isNumber, isObject } from "../../../../Utils/Utils.js";
+import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
+import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { MoveAngle } from "./MoveAngle.js";
+import { MoveAttract } from "./MoveAttract.js";
+import { MoveCenter } from "./MoveCenter.js";
+import { MoveDirection } from "../../../../Enums/Directions/MoveDirection.js";
+import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
+import { MoveGravity } from "./MoveGravity.js";
+import { MovePath } from "./Path/MovePath.js";
+import { MoveTrail } from "./MoveTrail.js";
+import { OutModes } from "./OutModes.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { Spin } from "./Spin.js";
+import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 /**
  * [[include:Options/Particles/Move.md]]

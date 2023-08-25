@@ -1,4 +1,4 @@
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 
 /**
  

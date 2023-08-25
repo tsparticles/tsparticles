@@ -1,13 +1,13 @@
-import { AlterType } from "../Enums/Types/AlterType";
-import type { Container } from "../Core/Container";
-import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams";
-import type { IHsl } from "../Core/Interfaces/Colors";
-import type { Particle } from "../Core/Particle";
-import { getStyleFromRgb } from "./ColorUtils";
+import { AlterType } from "../Enums/Types/AlterType.js";
+import type { Container } from "../Core/Container.js";
+import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
+import type { IDelta } from "../Core/Interfaces/IDelta.js";
+import type { IDimension } from "../Core/Interfaces/IDimension.js";
+import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams.js";
+import type { IHsl } from "../Core/Interfaces/Colors.js";
+import type { Particle } from "../Core/Particle.js";
+import { getStyleFromRgb } from "./ColorUtils.js";
 
 /**
  * Draws a line between two points using canvas API in the given context.

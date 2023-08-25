@@ -7,8 +7,8 @@ import {
     type Particle,
     calculateBounds,
 } from "@tsparticles/engine";
-import { bounceHorizontal, bounceVertical } from "./Utils";
-import type { IOutModeManager } from "./IOutModeManager";
+import { bounceHorizontal, bounceVertical } from "./Utils.js";
+import type { IOutModeManager } from "./IOutModeManager.js";
 
 export class BounceOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];

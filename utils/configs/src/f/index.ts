@@ -1,6 +1,6 @@
-import fireworks from "./fireworks";
-import fontawesome from "./fontawesome";
-import forward from "./forward";
+import fireworks from "./fireworks.js";
+import fontawesome from "./fontawesome.js";
+import forward from "./forward.js";
 
 export default {
     fireworks,

@@ -1,5 +1,5 @@
-import type { ShapeData } from "../../../../Types/ShapeData";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { ShapeData } from "../../../../Types/ShapeData.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Particles/Shape.md]]

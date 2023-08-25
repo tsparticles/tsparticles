@@ -1,4 +1,4 @@
-import { Bouncer } from "./Bouncer";
+import { Bouncer } from "./Bouncer.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -9,5 +9,5 @@ export async function loadExternalBounceInteraction(engine: Engine, refresh = tr
     await engine.addInteractor("externalBounce", (container) => new Bouncer(container), refresh);
 }
 
-export * from "./Options/Classes/Bounce";
-export * from "./Options/Interfaces/IBounce";
+export * from "./Options/Classes/Bounce.js";
+export * from "./Options/Interfaces/IBounce.js";

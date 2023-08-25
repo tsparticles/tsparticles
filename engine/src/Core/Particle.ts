@@ -1,5 +1,5 @@
-import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates";
-import type { IHsl, IRgb } from "./Interfaces/Colors";
+import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
+import type { IHsl, IRgb } from "./Interfaces/Colors.js";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
@@ -11,42 +11,42 @@ import {
     getValue,
     randomInRange,
     setRangeValue,
-} from "../Utils/NumberUtils";
+} from "../Utils/NumberUtils.js";
 import {
     deepExtend,
     getPosition,
     initParticleNumericAnimationValue,
     isInArray,
     itemFromSingleOrMultiple,
-} from "../Utils/Utils";
-import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils";
-import type { Container } from "./Container";
-import type { Engine } from "./Engine";
-import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData";
-import type { IDelta } from "./Interfaces/IDelta";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
-import type { IParticle } from "./Interfaces/IParticle";
-import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation";
-import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation";
-import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps";
-import type { IParticleRoll } from "./Interfaces/IParticleRoll";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape";
-import type { IShapeValues } from "./Interfaces/IShapeValues";
-import type { ISlowParticleData } from "./Interfaces/ISlowParticleData";
-import { Interactivity } from "../Options/Classes/Interactivity/Interactivity";
-import { MoveDirection } from "../Enums/Directions/MoveDirection";
-import { OutMode } from "../Enums/Modes/OutMode";
-import type { OutModeAlt } from "../Enums/Modes/OutMode";
-import { ParticleOutType } from "../Enums/Types/ParticleOutType";
-import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import { PixelMode } from "../Enums/Modes/PixelMode";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import { Vector } from "./Utils/Vector";
-import { Vector3d } from "./Utils/Vector3d";
-import { alterHsl } from "../Utils/CanvasUtils";
-import { errorPrefix } from "./Utils/Constants";
-import { loadParticlesOptions } from "../Utils/OptionsUtils";
+} from "../Utils/Utils.js";
+import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils.js";
+import type { Container } from "./Container.js";
+import type { Engine } from "./Engine.js";
+import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
+import type { IDelta } from "./Interfaces/IDelta.js";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
+import type { IParticle } from "./Interfaces/IParticle.js";
+import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
+import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
+import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
+import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
+import type { IShapeValues } from "./Interfaces/IShapeValues.js";
+import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
+import { Interactivity } from "../Options/Classes/Interactivity/Interactivity.js";
+import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
+import { OutMode } from "../Enums/Modes/OutMode.js";
+import type { OutModeAlt } from "../Enums/Modes/OutMode.js";
+import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
+import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import { PixelMode } from "../Enums/Modes/PixelMode.js";
+import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import { Vector } from "./Utils/Vector.js";
+import { Vector3d } from "./Utils/Vector3d.js";
+import { alterHsl } from "../Utils/CanvasUtils.js";
+import { errorPrefix } from "./Utils/Constants.js";
+import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 /**
  * @internal

@@ -5,12 +5,12 @@ import {
     deepExtend,
     isString,
 } from "@tsparticles/engine";
-import type { IPolygonMask } from "../Interfaces/IPolygonMask";
-import { PolygonMaskDraw } from "./PolygonMaskDraw";
-import { PolygonMaskInline } from "./PolygonMaskInline";
-import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg";
-import { PolygonMaskMove } from "./PolygonMaskMove";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
+import type { IPolygonMask } from "../Interfaces/IPolygonMask.js";
+import { PolygonMaskDraw } from "./PolygonMaskDraw.js";
+import { PolygonMaskInline } from "./PolygonMaskInline.js";
+import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg.js";
+import { PolygonMaskMove } from "./PolygonMaskMove.js";
+import { PolygonMaskType } from "../../Enums/PolygonMaskType.js";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]

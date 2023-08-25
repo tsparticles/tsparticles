@@ -1,10 +1,10 @@
-import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation";
-import { AnimationMode } from "../../Enums/Modes/AnimationMode";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { RangeValue } from "../../Types/RangeValue";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { StartValueType } from "../../Enums/Types/StartValueType";
-import { setRangeValue } from "../../Utils/NumberUtils";
+import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation.js";
+import { AnimationMode } from "../../Enums/Modes/AnimationMode.js";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { StartValueType } from "../../Enums/Types/StartValueType.js";
+import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;

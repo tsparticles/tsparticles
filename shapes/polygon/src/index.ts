@@ -1,6 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
-import { PolygonDrawer } from "./PolygonDrawer";
-import { TriangleDrawer } from "./TriangleDrawer";
+import { PolygonDrawer } from "./PolygonDrawer.js";
+import { TriangleDrawer } from "./TriangleDrawer.js";
 
 /**
  * @param engine -

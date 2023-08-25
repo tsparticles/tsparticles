@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { RotateUpdater } from "./RotateUpdater";
+import { RotateUpdater } from "./RotateUpdater.js";
 
 /**
  * @param engine -

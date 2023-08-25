@@ -1,4 +1,4 @@
-import type { ISideCount } from "./ISideCount";
+import type { ISideCount } from "./ISideCount.js";
 
 export interface ISide {
     count: ISideCount;

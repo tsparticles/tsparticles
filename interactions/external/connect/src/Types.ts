@@ -1,7 +1,7 @@
 import type { Container, Particle } from "@tsparticles/engine";
-import type { Connect } from "./Options/Classes/Connect";
-import type { ConnectOptions } from "./Options/Classes/ConnectOptions";
-import type { IConnect } from "./Options/Interfaces/IConnect";
+import type { Connect } from "./Options/Classes/Connect.js";
+import type { ConnectOptions } from "./Options/Classes/ConnectOptions.js";
+import type { IConnect } from "./Options/Interfaces/IConnect.js";
 
 export type IConnectMode = {
     connect: IConnect;

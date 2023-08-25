@@ -1,5 +1,5 @@
 import { OutMode, OutModeDirection, getValue } from "@tsparticles/engine";
-import type { IBounceData } from "./IBounceData";
+import type { IBounceData } from "./IBounceData.js";
 
 /**
  * @param data -

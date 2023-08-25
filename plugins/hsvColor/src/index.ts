@@ -1,4 +1,4 @@
-import { HsvColorManager } from "./HsvColorManager";
+import { HsvColorManager } from "./HsvColorManager.js";
 import { addColorManager } from "@tsparticles/engine";
 
 /**

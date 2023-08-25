@@ -1,5 +1,5 @@
 import { type Container, type IDelta, type Particle, ParticlesInteractorBase, getDistance } from "@tsparticles/engine";
-import { resolveCollision } from "./ResolveCollision";
+import { resolveCollision } from "./ResolveCollision.js";
 
 /**
  */

@@ -7,9 +7,9 @@ import {
     isString,
     tsParticles,
 } from "@tsparticles/engine";
-import { ConfettiOptions } from "./ConfettiOptions";
+import { ConfettiOptions } from "./ConfettiOptions.js";
 import type { EmitterContainer } from "@tsparticles/plugin-emitters";
-import type { IConfettiOptions } from "./IConfettiOptions";
+import type { IConfettiOptions } from "./IConfettiOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadCardsShape } from "@tsparticles/shape-cards";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";

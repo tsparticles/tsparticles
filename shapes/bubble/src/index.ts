@@ -1,4 +1,4 @@
-import { BubbleDrawer } from "./BubbleDrawer";
+import { BubbleDrawer } from "./BubbleDrawer.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**

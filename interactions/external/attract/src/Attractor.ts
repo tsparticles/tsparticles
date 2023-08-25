@@ -1,4 +1,4 @@
-import type { AttractContainer, AttractMode, IAttractMode } from "./Types";
+import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
 import {
     Circle,
     ClickMode,
@@ -18,7 +18,7 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "@tsparticles/engine";
-import { Attract } from "./Options/Classes/Attract";
+import { Attract } from "./Options/Classes/Attract.js";
 
 /**
  * Particle external attract manager

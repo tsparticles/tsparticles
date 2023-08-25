@@ -1,4 +1,4 @@
-import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke";
+import type { IPolygonMaskDrawStroke } from "./IPolygonMaskDrawStroke.js";
 
 /**
  */

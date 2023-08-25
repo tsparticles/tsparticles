@@ -1,5 +1,5 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { ITextMaskLine } from "../Interfaces/ITextMaskLine";
+import type { ITextMaskLine } from "../Interfaces/ITextMaskLine.js";
 
 export class TextMaskLine implements ITextMaskLine, IOptionLoader<ITextMaskLine> {
     separator: string;

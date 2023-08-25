@@ -1,8 +1,8 @@
 import type { Container, IShapeDrawer } from "@tsparticles/engine";
-import type { IRoundedRectData } from "./IRoundedRectData";
-import type { RadiusInfo } from "./RadiusInfo";
-import type { RectInfo } from "./RectInfo";
-import type { RoundedParticle } from "./RoundedParticle";
+import type { IRoundedRectData } from "./IRoundedRectData.js";
+import type { RadiusInfo } from "./RadiusInfo.js";
+import type { RectInfo } from "./RectInfo.js";
+import type { RoundedParticle } from "./RoundedParticle.js";
 import { getRangeValue } from "@tsparticles/engine";
 
 const fixFactor = Math.sqrt(2),

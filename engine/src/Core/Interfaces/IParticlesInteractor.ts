@@ -1,6 +1,6 @@
-import type { IDelta } from "./IDelta";
-import type { IInteractor } from "./IInteractor";
-import type { Particle } from "../Particle";
+import type { IDelta } from "./IDelta.js";
+import type { IInteractor } from "./IInteractor.js";
+import type { Particle } from "../Particle.js";
 
 /**
  */

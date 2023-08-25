@@ -1,23 +1,23 @@
-import { Canvas } from "./Canvas";
-import type { ClickMode } from "../Enums/Modes/ClickMode";
-import type { Engine } from "./Engine";
-import { EventListeners } from "./Utils/EventListeners";
-import { EventType } from "../Enums/Types/EventType";
-import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
-import type { IDelta } from "./Interfaces/IDelta";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import type { ISourceOptions } from "../Types/ISourceOptions";
-import { Options } from "../Options/Classes/Options";
-import type { Particle } from "./Particle";
-import { Particles } from "./Particles";
-import { Retina } from "./Retina";
-import { errorPrefix } from "./Utils/Constants";
-import { getLogger } from "../Utils/Utils";
-import { getRangeValue } from "../Utils/NumberUtils";
-import { loadOptions } from "../Utils/OptionsUtils";
+import { Canvas } from "./Canvas.js";
+import type { ClickMode } from "../Enums/Modes/ClickMode.js";
+import type { Engine } from "./Engine.js";
+import { EventListeners } from "./Utils/EventListeners.js";
+import { EventType } from "../Enums/Types/EventType.js";
+import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity.js";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import type { ICoordinates } from "./Interfaces/ICoordinates.js";
+import type { IDelta } from "./Interfaces/IDelta.js";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
+import type { ISourceOptions } from "../Types/ISourceOptions.js";
+import { Options } from "../Options/Classes/Options.js";
+import type { Particle } from "./Particle.js";
+import { Particles } from "./Particles.js";
+import { Retina } from "./Retina.js";
+import { errorPrefix } from "./Utils/Constants.js";
+import { getLogger } from "../Utils/Utils.js";
+import { getRangeValue } from "../Utils/NumberUtils.js";
+import { loadOptions } from "../Utils/OptionsUtils.js";
 
 /**
  * Checks if the container is still usable

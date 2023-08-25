@@ -1,4 +1,4 @@
-import type { InfectableContainer, InfectableParticle } from "./Types";
+import type { InfectableContainer, InfectableParticle } from "./Types.js";
 
 /**
  */

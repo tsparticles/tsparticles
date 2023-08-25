@@ -1,5 +1,5 @@
 import type { Particle } from "@tsparticles/engine";
-import { bounce } from "./Bounce";
+import { bounce } from "./Bounce.js";
 
 /**
  * @param p1 -

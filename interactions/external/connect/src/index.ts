@@ -1,4 +1,4 @@
-import { Connector } from "./Connector";
+import { Connector } from "./Connector.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -9,7 +9,7 @@ export async function loadExternalConnectInteraction(engine: Engine, refresh = t
     await engine.addInteractor("externalConnect", (container) => new Connector(container), refresh);
 }
 
-export * from "./Options/Classes/Connect";
-export * from "./Options/Classes/ConnectLinks";
-export * from "./Options/Interfaces/IConnect";
-export * from "./Options/Interfaces/IConnectLinks";
+export * from "./Options/Classes/Connect.js";
+export * from "./Options/Classes/ConnectLinks.js";
+export * from "./Options/Interfaces/IConnect.js";
+export * from "./Options/Interfaces/IConnectLinks.js";

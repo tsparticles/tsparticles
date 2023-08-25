@@ -13,7 +13,7 @@ import {
     randomInRange,
     setRangeValue,
 } from "@tsparticles/engine";
-import type { DestroyParticle } from "./Types";
+import type { DestroyParticle } from "./Types.js";
 
 /**
  *

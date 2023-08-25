@@ -1,7 +1,7 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { IPolygonMaskInline } from "../Interfaces/IPolygonMaskInline";
-import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement";
-import type { PolygonMaskInlineArrangementAlt } from "../../Enums/PolygonMaskInlineArrangement";
+import type { IPolygonMaskInline } from "../Interfaces/IPolygonMaskInline.js";
+import { PolygonMaskInlineArrangement } from "../../Enums/PolygonMaskInlineArrangement.js";
+import type { PolygonMaskInlineArrangementAlt } from "../../Enums/PolygonMaskInlineArrangement.js";
 
 /**
  */

@@ -1,6 +1,6 @@
-import type { DestroyMode } from "../../Enums/DestroyMode";
-import type { IDestroyBounds } from "./IDestroyBounds";
-import type { ISplit } from "./ISplit";
+import type { DestroyMode } from "../../Enums/DestroyMode.js";
+import type { IDestroyBounds } from "./IDestroyBounds.js";
+import type { ISplit } from "./ISplit.js";
 
 /**
  

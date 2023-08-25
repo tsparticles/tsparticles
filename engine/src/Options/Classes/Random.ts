@@ -1,6 +1,6 @@
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IRandom } from "../Interfaces/IRandom";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { IRandom } from "../Interfaces/IRandom.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 export class Random implements IRandom, IOptionLoader<IRandom> {
     enable;

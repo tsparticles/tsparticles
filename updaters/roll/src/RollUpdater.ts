@@ -5,9 +5,9 @@ import {
     type Particle,
     type RecursivePartial,
 } from "@tsparticles/engine";
-import type { IRollParticlesOptions, RollParticle, RollParticlesOptions } from "./Types";
-import { initParticle, updateRoll } from "./Utils";
-import { Roll } from "./Options/Classes/Roll";
+import type { IRollParticlesOptions, RollParticle, RollParticlesOptions } from "./Types.js";
+import { initParticle, updateRoll } from "./Utils.js";
+import { Roll } from "./Options/Classes/Roll.js";
 
 export class RollUpdater implements IParticleUpdater {
     getTransformValues(particle: Particle): IParticleTransformValues {

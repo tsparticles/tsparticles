@@ -1,7 +1,7 @@
 import type { Container, IOptions, IParticle, Options, Particle } from "@tsparticles/engine";
-import type { IInfection } from "./Options/Interfaces/IInfection";
-import type { Infecter } from "./Infecter";
-import type { Infection } from "./Options/Classes/Infection";
+import type { IInfection } from "./Options/Interfaces/IInfection.js";
+import type { Infecter } from "./Infecter.js";
+import type { Infection } from "./Options/Classes/Infection.js";
 
 export interface IParticleInfection {
     delay?: number;

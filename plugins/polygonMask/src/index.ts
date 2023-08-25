@@ -1,9 +1,9 @@
-import "./pathseg";
+import "./pathseg.js";
 import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
-import type { IPolygonMaskOptions, PolygonMaskOptions } from "./types";
-import { PolygonMask } from "./Options/Classes/PolygonMask";
-import { PolygonMaskInstance } from "./PolygonMaskInstance";
-import { PolygonMaskType } from "./Enums/PolygonMaskType";
+import type { IPolygonMaskOptions, PolygonMaskOptions } from "./types.js";
+import { PolygonMask } from "./Options/Classes/PolygonMask.js";
+import { PolygonMaskInstance } from "./PolygonMaskInstance.js";
+import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 
 /**
  */
@@ -52,6 +52,6 @@ export async function loadPolygonMaskPlugin(engine: Engine, refresh = true): Pro
     await engine.addPlugin(new PolygonMaskPlugin(engine), refresh);
 }
 
-export * from "./Enums/PolygonMaskInlineArrangement";
-export * from "./Enums/PolygonMaskMoveType";
-export * from "./Enums/PolygonMaskType";
+export * from "./Enums/PolygonMaskInlineArrangement.js";
+export * from "./Enums/PolygonMaskMoveType.js";
+export * from "./Enums/PolygonMaskType.js";

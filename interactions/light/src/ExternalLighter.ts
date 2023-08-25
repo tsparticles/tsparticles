@@ -7,10 +7,10 @@ import {
     isInArray,
     rangeColorToRgb,
 } from "@tsparticles/engine";
-import type { ILightMode, LightMode } from "./Types";
-import type { LightContainer, LightParticle } from "./Types";
-import { Light } from "./Options/Classes/Light";
-import { drawLight } from "./Utils";
+import type { ILightMode, LightMode } from "./Types.js";
+import type { LightContainer, LightParticle } from "./Types.js";
+import { Light } from "./Options/Classes/Light.js";
+import { drawLight } from "./Utils.js";
 
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     constructor(container: LightContainer) {

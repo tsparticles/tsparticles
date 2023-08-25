@@ -1,5 +1,5 @@
-import type { ISourceOptions } from "../../Types/ISourceOptions";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 /**
  * Loader params for options local object

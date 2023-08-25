@@ -6,7 +6,7 @@ import type {
     ShapeDrawerLoadFunction,
     ShapeDrawerParticleInitFunction,
     ShapeDrawerSidesCountFunction,
-} from "../../Types/ShapeDrawerFunctions";
+} from "../../Types/ShapeDrawerFunctions.js";
 
 /**
  */

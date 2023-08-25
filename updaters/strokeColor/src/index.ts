@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { StrokeColorUpdater } from "./StrokeColorUpdater";
+import { StrokeColorUpdater } from "./StrokeColorUpdater.js";
 
 /**
  * @param engine -

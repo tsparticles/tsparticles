@@ -1,8 +1,8 @@
-import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { OpacityAnimation } from "./OpacityAnimation";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ValueWithRandom } from "../../ValueWithRandom";
+import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { OpacityAnimation } from "./OpacityAnimation.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { ValueWithRandom } from "../../ValueWithRandom.js";
 
 /**
  * [[include:Options/Particles/Opacity.md]]

@@ -11,9 +11,9 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "@tsparticles/engine";
-import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types";
-import { Grab } from "./Options/Classes/Grab";
-import { drawGrab } from "./Utils";
+import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.js";
+import { Grab } from "./Options/Classes/Grab.js";
+import { drawGrab } from "./Utils.js";
 
 /**
  * Particle grab manager

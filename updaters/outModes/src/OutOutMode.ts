@@ -13,7 +13,7 @@ import {
     isPointInside,
     randomInRange,
 } from "@tsparticles/engine";
-import type { IOutModeManager } from "./IOutModeManager";
+import type { IOutModeManager } from "./IOutModeManager.js";
 
 export class OutOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];

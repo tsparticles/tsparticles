@@ -1,6 +1,6 @@
-import type { DivMode } from "../../../../Enums/Modes/DivMode";
-import type { DivType } from "../../../../Enums/Types/DivType";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { DivMode } from "../../../../Enums/Modes/DivMode.js";
+import type { DivType } from "../../../../Enums/Types/DivType.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Interactivity/Div.md]]

@@ -1,4 +1,4 @@
-import type { BounceContainer, BounceMode, IBounceMode } from "./Types";
+import type { BounceContainer, BounceMode, IBounceMode } from "./Types.js";
 import {
     Circle,
     type DivEvent,
@@ -23,7 +23,7 @@ import {
     mouseMoveEvent,
     rectBounce,
 } from "@tsparticles/engine";
-import { Bounce } from "./Options/Classes/Bounce";
+import { Bounce } from "./Options/Classes/Bounce.js";
 
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     constructor(container: BounceContainer) {

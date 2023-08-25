@@ -1,6 +1,6 @@
 import { type IOptionLoader, type RecursivePartial } from "@tsparticles/engine";
-import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw";
-import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke";
+import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw.js";
+import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke.js";
 
 /**
  */

@@ -1,5 +1,5 @@
-import type { IValueWithRandom } from "../../../IValueWithRandom";
-import type { PathOptions } from "../../../../../Types/PathOptions";
+import type { IValueWithRandom } from "../../../IValueWithRandom.js";
+import type { PathOptions } from "../../../../../Types/PathOptions.js";
 
 /**
  */

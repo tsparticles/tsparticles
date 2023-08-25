@@ -1,6 +1,6 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { ISoundsIcons } from "../Interfaces/ISoundsIcons";
-import { SoundsIcon } from "./SoundsIcon";
+import type { ISoundsIcons } from "../Interfaces/ISoundsIcons.js";
+import { SoundsIcon } from "./SoundsIcon.js";
 
 export class SoundsIcons implements ISoundsIcons, IOptionLoader<ISoundsIcons> {
     mute;

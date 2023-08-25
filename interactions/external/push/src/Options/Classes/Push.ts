@@ -1,5 +1,5 @@
 import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
-import type { IPush } from "../Interfaces/IPush";
+import type { IPush } from "../Interfaces/IPush.js";
 
 /**
  */

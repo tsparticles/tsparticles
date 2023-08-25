@@ -1,4 +1,4 @@
-import type { GrabMode } from "../../Types";
+import type { GrabMode } from "../../Types.js";
 import type { Options } from "@tsparticles/engine";
 
 export type GrabOptions = Options & {

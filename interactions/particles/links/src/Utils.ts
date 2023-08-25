@@ -8,7 +8,7 @@ import {
     getStyleFromRgb,
     rangeColorToRgb,
 } from "@tsparticles/engine";
-import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from "./Types";
+import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from "./Types.js";
 
 /**
  * @param params -

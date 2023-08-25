@@ -9,8 +9,8 @@ import {
     getDistance,
     isInArray,
 } from "@tsparticles/engine";
-import type { ISlowMode, SlowContainer, SlowMode } from "./Types";
-import { Slow } from "./Options/Classes/Slow";
+import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
+import { Slow } from "./Options/Classes/Slow.js";
 
 /**
  * Particle slow manager

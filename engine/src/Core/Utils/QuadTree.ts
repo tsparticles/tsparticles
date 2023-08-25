@@ -1,11 +1,11 @@
-import { Circle } from "./Circle";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import type { IDimension } from "../Interfaces/IDimension";
-import type { Particle } from "../Particle";
-import type { Point } from "./Point";
-import type { Range } from "./Range";
-import { Rectangle } from "./Rectangle";
-import { getDistance } from "../../Utils/NumberUtils";
+import { Circle } from "./Circle.js";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { IDimension } from "../Interfaces/IDimension.js";
+import type { Particle } from "../Particle.js";
+import type { Point } from "./Point.js";
+import type { Range } from "./Range.js";
+import { Rectangle } from "./Rectangle.js";
+import { getDistance } from "../../Utils/NumberUtils.js";
 
 /**
  */

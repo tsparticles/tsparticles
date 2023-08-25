@@ -9,8 +9,8 @@ import {
     getRandom,
     isNumber,
 } from "@tsparticles/engine";
-import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
-import type { TextMask } from "./Options/Classes/TextMask";
+import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
+import type { TextMask } from "./Options/Classes/TextMask.js";
 
 export type CanvasPixelData = {
     height: number;

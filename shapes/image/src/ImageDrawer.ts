@@ -1,9 +1,9 @@
 import { type Container, type IDelta, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
-import type { IImage, IParticleImage, ImageParticle } from "./Utils";
-import type { ImageContainer, ImageEngine } from "./types";
-import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod";
-import type { IImageShape } from "./IImageShape";
-import { replaceImageColor } from "./Utils";
+import type { IImage, IParticleImage, ImageParticle } from "./Utils.js";
+import type { ImageContainer, ImageEngine } from "./types.js";
+import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod.js";
+import type { IImageShape } from "./IImageShape.js";
+import { replaceImageColor } from "./Utils.js";
 
 /**
  * Particles Image Drawer

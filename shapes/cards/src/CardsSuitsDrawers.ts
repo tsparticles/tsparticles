@@ -1,5 +1,5 @@
 import type { IParticle, IShapeDrawer } from "@tsparticles/engine";
-import { drawPath, paths } from "./Utils";
+import { drawPath, paths } from "./Utils.js";
 
 export class SpadeDrawer implements IShapeDrawer {
     draw(context: CanvasRenderingContext2D, _particle: IParticle, radius: number): void {

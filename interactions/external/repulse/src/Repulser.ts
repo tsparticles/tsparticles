@@ -24,9 +24,9 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "@tsparticles/engine";
-import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types";
-import { Repulse } from "./Options/Classes/Repulse";
-import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
+import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types.js";
+import { Repulse } from "./Options/Classes/Repulse.js";
+import type { RepulseDiv } from "./Options/Classes/RepulseDiv.js";
 
 /**
  * Particle repulse manager
@@ -329,9 +329,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     isInArray,
     mouseMoveEvent,
 } from "@tsparticles/engine";
-import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types";
-import { Repulse } from "./Options/Classes/Repulse";
-import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
+import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types.js";
+import { Repulse } from "./Options/Classes/Repulse.js";
+import type { RepulseDiv } from "./Options/Classes/RepulseDiv.js";
 
 /**
  * Particle repulse manager

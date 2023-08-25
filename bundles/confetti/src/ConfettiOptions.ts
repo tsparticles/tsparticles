@@ -8,7 +8,7 @@ import {
     deepExtend,
     isArray,
 } from "@tsparticles/engine";
-import type { IConfettiOptions } from "./IConfettiOptions";
+import type { IConfettiOptions } from "./IConfettiOptions.js";
 
 /**
  *

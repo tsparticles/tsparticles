@@ -1,4 +1,4 @@
-import type { IParticlesDensity } from "./IParticlesDensity";
+import type { IParticlesDensity } from "./IParticlesDensity.js";
 
 /**
  * [[include:Options/Particles/Number.md]]

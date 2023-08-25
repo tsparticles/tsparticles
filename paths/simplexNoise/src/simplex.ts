@@ -1,4 +1,4 @@
-import type { Contribution4D } from "./Contribution4D";
+import type { Contribution4D } from "./Contribution4D.js";
 
 /**
  * @param seed -

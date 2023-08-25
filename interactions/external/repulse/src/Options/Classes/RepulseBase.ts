@@ -1,5 +1,5 @@
 import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial } from "@tsparticles/engine";
-import type { IRepulseBase } from "../Interfaces/IRepulseBase";
+import type { IRepulseBase } from "../Interfaces/IRepulseBase.js";
 
 /**
  */

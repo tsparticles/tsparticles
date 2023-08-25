@@ -5,7 +5,7 @@ import {
     ValueWithRandom,
     setRangeValue,
 } from "@tsparticles/engine";
-import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse";
+import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse.js";
 
 /**
  */

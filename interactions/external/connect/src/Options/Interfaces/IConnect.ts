@@ -1,4 +1,4 @@
-import type { IConnectLinks } from "./IConnectLinks";
+import type { IConnectLinks } from "./IConnectLinks.js";
 
 /**
  */

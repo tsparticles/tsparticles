@@ -1,12 +1,12 @@
-import { CollisionMode } from "../../../../Enums/Modes/CollisionMode";
-import { CollisionsAbsorb } from "./CollisionsAbsorb";
-import { CollisionsOverlap } from "./CollisionsOverlap";
-import type { ICollisions } from "../../../Interfaces/Particles/Collisions/ICollisions";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { ParticlesBounce } from "../Bounce/ParticlesBounce";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import { CollisionMode } from "../../../../Enums/Modes/CollisionMode.js";
+import { CollisionsAbsorb } from "./CollisionsAbsorb.js";
+import { CollisionsOverlap } from "./CollisionsOverlap.js";
+import type { ICollisions } from "../../../Interfaces/Particles/Collisions/ICollisions.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { ParticlesBounce } from "../Bounce/ParticlesBounce.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 /**
  

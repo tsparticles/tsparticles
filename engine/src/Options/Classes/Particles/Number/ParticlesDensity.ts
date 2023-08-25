@@ -1,6 +1,6 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IParticlesDensity";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { IParticlesDensity } from "../../../Interfaces/Particles/Number/IParticlesDensity.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
  */

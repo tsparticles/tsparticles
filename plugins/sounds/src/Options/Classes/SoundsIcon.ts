@@ -1,5 +1,5 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import type { ISoundsIcon } from "../Interfaces/ISoundsIcon";
+import type { ISoundsIcon } from "../Interfaces/ISoundsIcon.js";
 
 export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {
     height;

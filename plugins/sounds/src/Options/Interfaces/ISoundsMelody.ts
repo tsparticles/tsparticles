@@ -1,4 +1,4 @@
-import type { ISoundsNote } from "./ISoundsNote";
+import type { ISoundsNote } from "./ISoundsNote.js";
 
 export interface ISoundsMelody {
     loop: boolean;

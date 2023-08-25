@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { SizeUpdater } from "./SizeUpdater";
+import { SizeUpdater } from "./SizeUpdater.js";
 
 /**
  * @param engine -

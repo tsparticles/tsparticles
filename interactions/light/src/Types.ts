@@ -1,7 +1,7 @@
 import type { Container, IRgb, Particle } from "@tsparticles/engine";
-import type { LightOptions, LightParticlesOptions } from "./Options/Classes/LightOptions";
-import type { ILight } from "./Options/Interfaces/ILight";
-import type { Light } from "./Options/Classes/Light";
+import type { LightOptions, LightParticlesOptions } from "./Options/Classes/LightOptions.js";
+import type { ILight } from "./Options/Interfaces/ILight.js";
+import type { Light } from "./Options/Classes/Light.js";
 
 export type ILightMode = {
     light?: ILight;

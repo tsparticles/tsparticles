@@ -1,5 +1,5 @@
-import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
+import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  */

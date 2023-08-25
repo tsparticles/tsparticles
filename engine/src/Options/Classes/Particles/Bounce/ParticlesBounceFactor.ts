@@ -1,4 +1,4 @@
-import { ValueWithRandom } from "../../ValueWithRandom";
+import { ValueWithRandom } from "../../ValueWithRandom.js";
 
 export class ParticlesBounceFactor extends ValueWithRandom {
     constructor() {
