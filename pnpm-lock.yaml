@@ -156,8 +156,8 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
       typescript-json-schema:
-        specifier: ^0.59.0
-        version: 0.59.0
+        specifier: ^0.60.0
+        version: 0.60.0
       webpack:
         specifier: ^5.88.2
         version: 5.88.2(webpack-cli@5.1.4)
@@ -2049,6 +2049,18 @@ packages:
       '@babel/helper-wrap-function': 7.22.10
     dev: true
 
+  /@babel/helper-remap-async-to-generator@7.22.9(@babel/core@7.22.9):
+    resolution: {integrity: sha512-8WWC4oR4Px+tr+Fp0X3RHDVfINGpF3ad1HIbrc8A77epiR6eMMc6jsgozkzT2uDiOOdoS9cLIQ+XD2XvI2WSmQ==}
+    engines: {node: '>=6.9.0'}
+    peerDependencies:
+      '@babel/core': ^7.0.0
+    dependencies:
+      '@babel/core': 7.22.9
+      '@babel/helper-annotate-as-pure': 7.22.5
+      '@babel/helper-environment-visitor': 7.22.5
+      '@babel/helper-wrap-function': 7.22.10
+    dev: false
+
   /@babel/helper-replace-supers@7.22.5:
     resolution: {integrity: sha512-aLdNM5I3kdI/V9xGNyKSF3X/gTyMUBohTZ+/3QdQKAA9vxIiy12E+8E2HoOP1/DjeqU+g6as35QHJNMDDYpuCg==}
     engines: {node: '>=6.9.0'}
@@ -2099,7 +2111,6 @@ packages:
       '@babel/helper-function-name': 7.22.5
       '@babel/template': 7.22.5
       '@babel/types': 7.22.10
-    dev: true
 
   /@babel/helper-wrap-function@7.22.5:
     resolution: {integrity: sha512-bYqLIBSEshYcYQyfks8ewYA8S30yaGSeRslcvKMvoUk6HHPySbxHq9YRi6ghhzEU+yhQv9bP/jXnygkStOcqZw==}
@@ -2645,9 +2656,7 @@ packages:
       '@babel/core': 7.22.9
       '@babel/helper-module-imports': 7.22.5
       '@babel/helper-plugin-utils': 7.22.5
-      '@babel/helper-remap-async-to-generator': 7.22.5(@babel/core@7.22.9)
-    transitivePeerDependencies:
-      - supports-color
+      '@babel/helper-remap-async-to-generator': 7.22.9(@babel/core@7.22.9)
     dev: false
 
   /@babel/plugin-transform-block-scoped-functions@7.22.5(@babel/core@7.22.10):
@@ -12458,7 +12467,7 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /ts-node@10.9.1(@types/node@16.18.38)(typescript@4.9.5):
+  /ts-node@10.9.1(@types/node@16.18.38)(typescript@5.1.6):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -12484,7 +12493,7 @@ packages:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 4.9.5
+      typescript: 5.1.6
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     dev: true
@@ -12713,8 +12722,8 @@ packages:
       typescript: 5.1.6
     dev: true
 
-  /typescript-json-schema@0.59.0:
-    resolution: {integrity: sha512-eYB9RO8p4PntznWUukdDQHckNfxzjEFCJUgsWeCE43mcFioE0wXGTSECGk1uhty9XQMxkpuI4pKAqqnb62ln3Q==}
+  /typescript-json-schema@0.60.0:
+    resolution: {integrity: sha512-pgSsm0K4jN2BMVPRVe8aCsct0hGAdmFIU3P8LtuUuwqzZnJh9oEabz82RuVhIWcKAA/yVyHYBKXWkkDid8/R9Q==}
     hasBin: true
     dependencies:
       '@types/json-schema': 7.0.12
@@ -12722,18 +12731,12 @@ packages:
       glob: 7.2.3
       path-equal: 1.2.5
       safe-stable-stringify: 2.4.3
-      ts-node: 10.9.1(@types/node@16.18.38)(typescript@4.9.5)
-      typescript: 4.9.5
+      ts-node: 10.9.1(@types/node@16.18.38)(typescript@5.1.6)
+      typescript: 5.1.6
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@swc/core'
       - '@swc/wasm'
-    dev: true
-
-  /typescript@4.9.5:
-    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
-    engines: {node: '>=4.2.0'}
-    hasBin: true
     dev: true
 
   /typescript@5.1.6:
