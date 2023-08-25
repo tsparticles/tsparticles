@@ -317,7 +317,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
       '@tsparticles/interaction-external-trail':
         specifier: ^3.0.0-alpha.1
         version: link:../../interactions/external/trail/dist
@@ -326,25 +326,25 @@ importers:
         version: link:../../plugins/absorbers/dist
       '@tsparticles/plugin-emitters':
         specifier: ^3.0.0-alpha.1
-        version: link:../../plugins/emitters/dist
+        version: 3.0.0-beta.0
       '@tsparticles/slim':
         specifier: ^3.0.0-alpha.1
         version: link:../slim/dist
       '@tsparticles/updater-destroy':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/destroy/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-roll':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/roll/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-tilt':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/tilt/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-twinkle':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/twinkle/dist
       '@tsparticles/updater-wobble':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/wobble/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -415,7 +415,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -486,7 +486,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
       '@tsparticles/interaction-external-attract':
         specifier: ^3.0.0-alpha.1
         version: link:../../interactions/external/attract/dist
@@ -528,7 +528,7 @@ importers:
         version: link:../../interactions/particles/links/dist
       '@tsparticles/move-base':
         specifier: ^3.0.0-alpha.1
-        version: link:../../move/base/dist
+        version: 3.0.0-beta.0
       '@tsparticles/move-parallax':
         specifier: ^3.0.0-alpha.1
         version: link:../../move/parallax/dist
@@ -540,46 +540,46 @@ importers:
         version: link:../../plugins/easings/quad/dist
       '@tsparticles/shape-circle':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/circle/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-image':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/image/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-line':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/line/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-polygon':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/polygon/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-square':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/square/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-star':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/star/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-text':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/text/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-angle':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/angle/dist
       '@tsparticles/updater-color':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/color/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-life':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/life/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-opacity':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/opacity/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-out-modes':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/outModes/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-size':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/size/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-stroke-color':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/strokeColor/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -653,7 +653,7 @@ importers:
         version: link:../../utils/configs/dist
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
       tsparticles:
         specifier: ^3.0.0-alpha.1
         version: link:../../bundles/full/dist
@@ -675,16 +675,16 @@ importers:
         version: 6.4.0
       '@tsparticles/confetti':
         specifier: ^3.0.0-alpha.1
-        version: link:../../bundles/confetti/dist
+        version: 3.0.0-beta.0
       '@tsparticles/demo-configs':
         specifier: ^3.0.0-alpha.1
         version: link:../../utils/configs/dist
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
       '@tsparticles/fireworks':
         specifier: ^3.0.0-alpha.1
-        version: link:../../bundles/fireworks/dist
+        version: 3.0.0-beta.0
       '@tsparticles/interaction-external-attract':
         specifier: ^3.0.0-alpha.1
         version: link:../../interactions/external/attract/dist
@@ -735,7 +735,7 @@ importers:
         version: link:../../interactions/particles/repulse/dist
       '@tsparticles/move-base':
         specifier: ^3.0.0-alpha.1
-        version: link:../../move/base/dist
+        version: 3.0.0-beta.0
       '@tsparticles/move-parallax':
         specifier: ^3.0.0-alpha.1
         version: link:../../move/parallax/dist
@@ -786,7 +786,7 @@ importers:
         version: link:../../plugins/easings/sine/dist
       '@tsparticles/plugin-emitters':
         specifier: ^3.0.0-alpha.1
-        version: link:../../plugins/emitters/dist
+        version: 3.0.0-beta.0
       '@tsparticles/plugin-hsv-color':
         specifier: ^3.0.0-alpha.1
         version: link:../../plugins/hsvColor/dist
@@ -795,31 +795,31 @@ importers:
         version: link:../../plugins/infection/dist
       '@tsparticles/plugin-motion':
         specifier: ^3.0.0-alpha.1
-        version: link:../../plugins/motion/dist
+        version: 3.0.0-beta.0
       '@tsparticles/plugin-polygon-mask':
         specifier: ^3.0.0-alpha.1
         version: link:../../plugins/polygonMask/dist
       '@tsparticles/plugin-sounds':
         specifier: ^3.0.0-alpha.1
-        version: link:../../plugins/sounds/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-bubble':
         specifier: ^3.0.0-alpha.1
         version: link:../../shapes/bubble/dist
       '@tsparticles/shape-cards':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/cards/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-circle':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/circle/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-heart':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/heart/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-image':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/image/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-line':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/line/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-multiline-text':
         specifier: ^3.0.0-alpha.1
         version: link:../../shapes/multiline-text/dist
@@ -828,7 +828,7 @@ importers:
         version: link:../../shapes/path/dist
       '@tsparticles/shape-polygon':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/polygon/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-ribbon':
         specifier: ^3.0.0-alpha.1
         version: link:../../shapes/ribbon/dist
@@ -840,13 +840,13 @@ importers:
         version: link:../../shapes/spiral/dist
       '@tsparticles/shape-square':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/square/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-star':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/star/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-text':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/text/dist
+        version: 3.0.0-beta.0
       '@tsparticles/slim':
         specifier: ^3.0.0-alpha.1
         version: link:../../bundles/slim/dist
@@ -855,43 +855,43 @@ importers:
         version: link:../../updaters/angle/dist
       '@tsparticles/updater-color':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/color/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-destroy':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/destroy/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-gradient':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/gradient/dist
       '@tsparticles/updater-life':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/life/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-opacity':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/opacity/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-orbit':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/orbit/dist
       '@tsparticles/updater-out-modes':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/outModes/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-roll':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/roll/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-size':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/size/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-stroke-color':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/strokeColor/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-tilt':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/tilt/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-twinkle':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/twinkle/dist
       '@tsparticles/updater-wobble':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/wobble/dist
+        version: 3.0.0-beta.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.2
         version: 5.59.2(@typescript-eslint/parser@6.1.0)(eslint@8.40.0)(typescript@5.0.4)
@@ -972,7 +972,7 @@ importers:
         version: link:../../utils/configs/dist
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
       '@tsparticles/interaction-light':
         specifier: ^3.0.0-alpha.1
         version: link:../../interactions/light/dist
@@ -1144,7 +1144,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1215,7 +1215,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1286,7 +1286,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1357,7 +1357,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1428,7 +1428,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1499,7 +1499,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1570,7 +1570,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1641,7 +1641,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1712,7 +1712,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1783,7 +1783,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1854,7 +1854,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1925,7 +1925,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -1996,7 +1996,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2067,7 +2067,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2138,7 +2138,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2209,7 +2209,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2280,7 +2280,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2351,7 +2351,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2422,7 +2422,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2493,7 +2493,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2564,7 +2564,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2635,7 +2635,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2706,7 +2706,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2777,7 +2777,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2848,7 +2848,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2919,7 +2919,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -2990,7 +2990,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3061,7 +3061,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3132,7 +3132,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3203,7 +3203,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3274,7 +3274,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3345,7 +3345,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3416,7 +3416,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3487,7 +3487,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3558,7 +3558,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3629,7 +3629,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3700,7 +3700,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3771,7 +3771,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3842,7 +3842,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3913,7 +3913,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -3984,7 +3984,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4055,7 +4055,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4126,7 +4126,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4197,7 +4197,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4268,7 +4268,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4339,7 +4339,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4410,7 +4410,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4481,7 +4481,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4552,7 +4552,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4623,7 +4623,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4694,7 +4694,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4765,7 +4765,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4836,7 +4836,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4907,7 +4907,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -4978,7 +4978,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5049,7 +5049,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5120,7 +5120,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5191,7 +5191,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5262,7 +5262,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5333,7 +5333,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5404,7 +5404,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5475,7 +5475,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5546,7 +5546,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5617,7 +5617,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5688,7 +5688,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5759,7 +5759,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5830,7 +5830,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5901,7 +5901,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
     devDependencies:
       '@babel/core':
         specifier: ^7.21.8
@@ -5969,7 +5969,7 @@ importers:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-alpha.1
-        version: link:../../engine/dist
+        version: 3.0.0-beta.0
       '@tsparticles/eslint-config':
         specifier: ^1.11.0
         version: 1.11.0
@@ -6023,7 +6023,7 @@ importers:
         version: link:../../interactions/particles/repulse/dist
       '@tsparticles/move-base':
         specifier: ^3.0.0-alpha.1
-        version: link:../../move/base/dist
+        version: 3.0.0-beta.0
       '@tsparticles/move-parallax':
         specifier: ^3.0.0-alpha.1
         version: link:../../move/parallax/dist
@@ -6074,7 +6074,7 @@ importers:
         version: link:../../plugins/easings/sine/dist
       '@tsparticles/plugin-emitters':
         specifier: ^3.0.0-alpha.1
-        version: link:../../plugins/emitters/dist
+        version: 3.0.0-beta.0
       '@tsparticles/plugin-hsv-color':
         specifier: ^3.0.0-alpha.1
         version: link:../../plugins/hsvColor/dist
@@ -6083,7 +6083,7 @@ importers:
         version: link:../../plugins/infection/dist
       '@tsparticles/plugin-motion':
         specifier: ^3.0.0-alpha.1
-        version: link:../../plugins/motion/dist
+        version: 3.0.0-beta.0
       '@tsparticles/plugin-polygon-mask':
         specifier: ^3.0.0-alpha.1
         version: link:../../plugins/polygonMask/dist
@@ -6095,22 +6095,22 @@ importers:
         version: link:../../shapes/bubble/dist
       '@tsparticles/shape-circle':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/circle/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-heart':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/heart/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-image':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/image/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-line':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/line/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-multiline-text':
         specifier: ^3.0.0-alpha.1
         version: link:../../shapes/multiline-text/dist
       '@tsparticles/shape-polygon':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/polygon/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-rounded-rect':
         specifier: ^3.0.0-alpha.1
         version: link:../../shapes/rounded-rect/dist
@@ -6119,13 +6119,13 @@ importers:
         version: link:../../shapes/spiral/dist
       '@tsparticles/shape-square':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/square/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-star':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/star/dist
+        version: 3.0.0-beta.0
       '@tsparticles/shape-text':
         specifier: ^3.0.0-alpha.1
-        version: link:../../shapes/text/dist
+        version: 3.0.0-beta.0
       '@tsparticles/slim':
         specifier: ^3.0.0-alpha.1
         version: link:../../bundles/slim/dist
@@ -6137,43 +6137,43 @@ importers:
         version: link:../../updaters/angle/dist
       '@tsparticles/updater-color':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/color/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-destroy':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/destroy/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-gradient':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/gradient/dist
       '@tsparticles/updater-life':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/life/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-opacity':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/opacity/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-orbit':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/orbit/dist
       '@tsparticles/updater-out-modes':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/outModes/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-roll':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/roll/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-size':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/size/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-stroke-color':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/strokeColor/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-tilt':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/tilt/dist
+        version: 3.0.0-beta.0
       '@tsparticles/updater-twinkle':
         specifier: ^3.0.0-alpha.1
         version: link:../../updaters/twinkle/dist
       '@tsparticles/updater-wobble':
         specifier: ^3.0.0-alpha.1
-        version: link:../../updaters/wobble/dist
+        version: 3.0.0-beta.0
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.2
         version: 5.59.2(@typescript-eslint/parser@6.1.0)(eslint@8.40.0)(typescript@5.0.4)
@@ -9727,6 +9727,18 @@ packages:
     resolution: {integrity: sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==}
     dev: true
 
+  /@tsparticles/basic@3.0.0-beta.0:
+    resolution: {integrity: sha512-U0Kbo62qVYeqbmYQZgk9q7D65GjlSVZBLBsjyVIyjJcyzSFaFBpg+ljqFyGOzp/DENd7U0YqePERF/5jXgn4gw==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+      '@tsparticles/move-base': 3.0.0-beta.0
+      '@tsparticles/shape-circle': 3.0.0-beta.0
+      '@tsparticles/updater-color': 3.0.0-beta.0
+      '@tsparticles/updater-opacity': 3.0.0-beta.0
+      '@tsparticles/updater-out-modes': 3.0.0-beta.0
+      '@tsparticles/updater-size': 3.0.0-beta.0
+    dev: true
+
   /@tsparticles/build@1.12.0(webpack-cli@5.0.2):
     resolution: {integrity: sha512-+bTrbsN8Yq5S0KTstzIYZbEk4RcGxXV78wOMap2B0en2teUt3h9IwbKE5HSY49Oria0kHdCFUyCeldjtaFNaAA==}
     deprecated: replaced by the new cli
@@ -9762,6 +9774,31 @@ packages:
       - webpack-dev-server
     dev: true
 
+  /@tsparticles/confetti@3.0.0-beta.0:
+    resolution: {integrity: sha512-6jwuQdhwA8YlzkE0borJNe9jHh2JjP5wgM3+rTto+fOjZaDt9ASLUpDa6SyJTPvMQwiHCTvN3NS1BgJothPUvw==}
+    dependencies:
+      '@tsparticles/basic': 3.0.0-beta.0
+      '@tsparticles/engine': 3.0.0-beta.0
+      '@tsparticles/plugin-emitters': 3.0.0-beta.0
+      '@tsparticles/plugin-motion': 3.0.0-beta.0
+      '@tsparticles/shape-cards': 3.0.0-beta.0
+      '@tsparticles/shape-heart': 3.0.0-beta.0
+      '@tsparticles/shape-image': 3.0.0-beta.0
+      '@tsparticles/shape-polygon': 3.0.0-beta.0
+      '@tsparticles/shape-square': 3.0.0-beta.0
+      '@tsparticles/shape-star': 3.0.0-beta.0
+      '@tsparticles/shape-text': 3.0.0-beta.0
+      '@tsparticles/updater-life': 3.0.0-beta.0
+      '@tsparticles/updater-roll': 3.0.0-beta.0
+      '@tsparticles/updater-rotate': 3.0.0-beta.0
+      '@tsparticles/updater-tilt': 3.0.0-beta.0
+      '@tsparticles/updater-wobble': 3.0.0-beta.0
+    dev: true
+
+  /@tsparticles/engine@3.0.0-beta.0:
+    resolution: {integrity: sha512-iFrlOkXA3ydP1V8wkKLQr2538TUpyRBrrnU6hu0YlGO4td7J9jIyYtuWxSzdhiLtZXkuV7V9a2pfDf4zVJwx7Q==}
+    requiresBuild: true
+
   /@tsparticles/eslint-config@1.11.0:
     resolution: {integrity: sha512-u5kVl2i1vxAS2tOpR0idZq3qkC6lr/Gj6KASpH24BPedwiiCfWzUgOQbIdnpZVYdaVAhgMX+0YEqO9qE8S46/g==}
     dependencies:
@@ -9795,6 +9832,41 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
 
+  /@tsparticles/fireworks@3.0.0-beta.0:
+    resolution: {integrity: sha512-kUzsMFtKHiH0N5esZxjW7VflhN/jrULKMmXtkl1IKxjSri5hFuA+iDfEqiI61BaCgtg5+aNSotDPAdvqHHOGcw==}
+    dependencies:
+      '@tsparticles/basic': 3.0.0-beta.0
+      '@tsparticles/engine': 3.0.0-beta.0
+      '@tsparticles/plugin-emitters': 3.0.0-beta.0
+      '@tsparticles/plugin-sounds': 3.0.0-beta.0
+      '@tsparticles/shape-line': 3.0.0-beta.0
+      '@tsparticles/updater-destroy': 3.0.0-beta.0
+      '@tsparticles/updater-life': 3.0.0-beta.0
+      '@tsparticles/updater-rotate': 3.0.0-beta.0
+      '@tsparticles/updater-stroke-color': 3.0.0-beta.0
+    dev: true
+
+  /@tsparticles/move-base@3.0.0-beta.0:
+    resolution: {integrity: sha512-tys5fwjmyHAFzjb1/C3A0GFSuVI3S15U2Z3Ee17ie0FbV+f+x/L+3Ps+hX46Qp5DG6VDiJeXa0ixTYKwlnCQZA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/plugin-emitters@3.0.0-beta.0:
+    resolution: {integrity: sha512-ZtPX/XAbN+QM5Ab4mHqlEDKK66cZNCvPRBfGYkHffcWLjnRKHyHOqpka42gBveEmnS2HyRSAFeh+HuN7/Rqzrw==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/plugin-motion@3.0.0-beta.0:
+    resolution: {integrity: sha512-D/rzRdPOK8MYfLBzcRx7GD0K4eNqVGF3Wsvf74DC4aG8qbM8C9J1nvvduAuz0n9mFsXn+sHw/72+Eskni1/hpQ==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/plugin-sounds@3.0.0-beta.0:
+    resolution: {integrity: sha512-GEWPc6FYK5ANfCWIR0632LOwlsW44YHVRsN3CzdkO+xYFJ8PnBr+ysAv29cY5vRnKE0s5QkyX/dE/7ocqEFMgg==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+    dev: true
+
   /@tsparticles/prettier-config@1.12.0:
     resolution: {integrity: sha512-IMpJEy85zeB2OTZZEXDtdxHrt03N11mjyu5TFY5BlnJrWIJC+dbIginuCmJyoCy0NUa0UW05p130zR9IXylfmQ==}
     dependencies:
@@ -9804,6 +9876,52 @@ packages:
     resolution: {integrity: sha512-9ZrqOlerrQGLP4qzi8LpX3/alzG66P8pPu6ZwhDCHNFBU+dMmiKV21YMzJiEiGMZ2mnKg0Ahc4k6HdkGmYzyzA==}
     dependencies:
       prettier: 2.8.8
+
+  /@tsparticles/shape-cards@3.0.0-beta.0:
+    resolution: {integrity: sha512-o1B4LjZ6vRDmba1eJf3phZUKkharQjOAdAm4T18nuPoJ3sKJ/yava30dmwT6vwmRkuLiPU+QIHkbJA9zyEElIg==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+    dev: true
+
+  /@tsparticles/shape-circle@3.0.0-beta.0:
+    resolution: {integrity: sha512-drf/Hnk6liWzy8w2bQMXx64Qk1944vsLOwUlVrUOPOfQguSfxfAMcy925AQuUGxr7/j46Zaq3w00KcADeWmGEA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/shape-heart@3.0.0-beta.0:
+    resolution: {integrity: sha512-Uc7FJKAsjhn2WSFjbbzfj/dv7J/mRo0sV9VwofFzwLKBqK5J7tBLPScvkObru4euewiN+vgNms3pZOzB+LwLmA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/shape-image@3.0.0-beta.0:
+    resolution: {integrity: sha512-mMqr/pjIbqy8wDx2dEFejF5F8/cVfpnOuk4VQOtutIP2kuB+p1W7xiiqNHM1l9Rxus/VbIk/PtyS9IZDEHWNeA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/shape-line@3.0.0-beta.0:
+    resolution: {integrity: sha512-5+kS9dX41GKdcvMMf3y5rDjHTjxIfmtu98SdU5h4+YmLfRDl8QcZEMESMSGmQFhUJJ7GkIPGLJz8P+MH/owJgA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/shape-polygon@3.0.0-beta.0:
+    resolution: {integrity: sha512-fT1zY8ht/zbAcd4hiZ1mJtTfRmTL4YgUkOOO4YknciQxikW7eUdZLRdEuWIXHWcyw5PD8QuENnbJDQwetKYz8Q==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/shape-square@3.0.0-beta.0:
+    resolution: {integrity: sha512-7qR1sXt4TDrjtVcVWhLj5gGoyJw1Fayw+Py7DP4x0bEyCwQGH3wiHoY+7Ix0wDUW9U7HEBOil+9YcsYVixVbzA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/shape-star@3.0.0-beta.0:
+    resolution: {integrity: sha512-BoJgqV8rnvgAfpB3/X4vtutlmHkdWavu3xiBTA5+K24aJJW7dhLrCV3Wj40nCxM4fY6fGj2aSfIhEV8tSlPtvA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/shape-text@3.0.0-beta.0:
+    resolution: {integrity: sha512-P+9+7uc42qqXd3UxnD9lbukqMhkk/z2YJksM1nZzeAbNjbIj5aTi30GdnEsguiuuAIeZAOUTXfQzX3iBqTutCg==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
 
   /@tsparticles/tsconfig@1.12.0:
     resolution: {integrity: sha512-ft1ba6UH07VvOb0sbCRG4jll1xaCq39XjAK7scA/PH4VBJ/UeXzpb7nBvYbHranAcbVljKsIBi7tKBJxZDiYYg==}
@@ -9815,6 +9933,62 @@ packages:
     dependencies:
       typescript: 5.1.6
     dev: true
+
+  /@tsparticles/updater-color@3.0.0-beta.0:
+    resolution: {integrity: sha512-G7Mat4LYBhZcl4wpdqsqeCbkvdtcCm2sDGtJ8kpS1hs1BgBV089m6DKlTh0B96oy/OyUrplFqu2yCvmcAoc+Ig==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-destroy@3.0.0-beta.0:
+    resolution: {integrity: sha512-cDdZWqEPiarensYyug+rRWGXRE9ubH71VgroDGnnJH6DSHseHdwuSkTo0xi1zBLRxFe8umpT2n/d9Hj5TmQbAQ==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-life@3.0.0-beta.0:
+    resolution: {integrity: sha512-HWT+cTbXsSOenhLPxCtaCXj+uF6PngFAIOkn2UWWa8mtsuL3MBFcSmvabSMbtvQFagDfLfmu/BBrhvuEP16bjg==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-opacity@3.0.0-beta.0:
+    resolution: {integrity: sha512-ueSuOcjXwnEB8x+if6psWLTfof1pF3IU4bzXLuwcexKAUKdSfeEnMvPzUW3LGbOzFQXyPj55TUqrvIOLj5JS5A==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-out-modes@3.0.0-beta.0:
+    resolution: {integrity: sha512-qj8CCElS4niIzb4wRDVJca5HNFyIuVEG6hzlJBq8FwJWO8OI1uSj/Tv9bRJewQFQSOyoXwJhGipc0sH5wvNIaw==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-roll@3.0.0-beta.0:
+    resolution: {integrity: sha512-kRXfJVbxf7tGUPs/+n9qwDdMBeEBULs83K3jeqO4coUXPKffS4pFLIacvEosLZpztfGA8g2hsVMuoxfnO7aJHQ==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-rotate@3.0.0-beta.0:
+    resolution: {integrity: sha512-ByuLNJjoMsBNIXsoG/LK0hlN2DFE7PRqLX44TfTyxQYVa1nvvdthpAMQzpuv4BWCKuqylX/6tGHJ1MjZfzvcvA==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+    dev: true
+
+  /@tsparticles/updater-size@3.0.0-beta.0:
+    resolution: {integrity: sha512-PHvND9HmfHAHxc0HUYm5a2AQHs2ymq7jL52caXNIjVhr40K4NnU3g4GmvEV1I7eaxkPsIJ+WkzzAO4nyPfVg2g==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-stroke-color@3.0.0-beta.0:
+    resolution: {integrity: sha512-RFnlQAV72YJe597QH4DF/TxqLffsBLQLbzPI1GXLLvcQ0ZLunyCqZRU1SnK7RuJy7zxJmQK/nR6DfhWUvo9+GQ==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-tilt@3.0.0-beta.0:
+    resolution: {integrity: sha512-0CtIzW7LAogtmmSXpmpsX08yRhz9iRPkqVGRM+OR0te1YukdnMfrNHsfBEQu+EPY1GBdBYvRRWBhIDvdNQSuQw==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
+
+  /@tsparticles/updater-wobble@3.0.0-beta.0:
+    resolution: {integrity: sha512-qS+yaCRLMNCJNsBo8Um4ddLXY3IJsPd4pvANTAY9edjDn1kJ6cUiQN/bgsfOSbpeRZQbMjrPbUaPwECxE9SVaw==}
+    dependencies:
+      '@tsparticles/engine': 3.0.0-beta.0
 
   /@tufjs/canonical-json@1.0.0:
     resolution: {integrity: sha512-QTnf++uxunWvG2z3UFNzAoQPHxnSXOwtaI3iJ+AohhV+5vONuArPjJE7aPXPVXfXJsqrVbZBu9b81AJoSd09IQ==}
