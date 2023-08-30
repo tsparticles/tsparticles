@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-cards.svg)](https://www.npmjs.com/package/@tsparticles/shape-cards)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-cards)](https://www.npmjs.com/package/@tsparticles/shape-cards) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional cards shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional cards shape.
 
 ## How to use it
 

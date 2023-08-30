@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-arrow.svg)](https://www.npmjs.com/package/@tsparticles/shape-arrow)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-arrow)](https://www.npmjs.com/package/@tsparticles/shape-arrow) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional arrow shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional arrow shape.
 
 ## How to use it
 

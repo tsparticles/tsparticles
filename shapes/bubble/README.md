@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-bubble.svg)](https://www.npmjs.com/package/@tsparticles/shape-bubble)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-bubble)](https://www.npmjs.com/package/@tsparticles/shape-bubble) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional bubble shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional bubble shape.
 
 ## How to use it
 

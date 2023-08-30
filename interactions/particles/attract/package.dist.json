@@ -5,7 +5,7 @@
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "interactions/particles/attract"
   },
   "keywords": [
@@ -66,7 +66,7 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "sideEffects": false,
   "jsdelivr": "tsparticles.interaction.particles.attract.min.js",

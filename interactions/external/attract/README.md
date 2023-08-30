@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/interaction-external-attract.svg)](https://www.npmjs.com/package/@tsparticles/interaction-external-attract)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-external-attract)](https://www.npmjs.com/package/@tsparticles/interaction-external-attract) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for attract effect around mouse or HTML
+[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for attract effect around mouse or HTML
 elements.
 
 ## How to use it

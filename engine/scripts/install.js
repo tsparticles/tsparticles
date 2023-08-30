@@ -8,7 +8,7 @@ try {
     console.log("You can find more samples on CodePen too: https://codepen.io/collection/DPOage");
     console.log("If you need documentation you can find it here: https://particles.js.org/docs");
     console.log(
-        "Don't forget to star the tsParticles repository, if you like the project and want to support it: https://github.com/matteobruni/tsparticles"
+        "Don't forget to star the tsParticles repository, if you like the project and want to support it: https://github.com/tsparticles/tsparticles"
     );
 
     const pkgSettings = require(path.join(process.env.INIT_CWD, "package.json"));
@@ -62,7 +62,7 @@ try {
                 "Found React installed. Please download react-particles to use tsParticles with a component ready to use and easier to configure."
             );
             console.log(
-                "You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/react/README.md"
+                "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/react/README.md"
             );
         }
     }
@@ -90,7 +90,7 @@ try {
                     "Found Vue 3.x installed. Please Download vue3-particles to use tsParticles with a component ready to use and easier to configure."
                 );
                 console.log(
-                    "You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/vue3/README.md"
+                    "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/vue3/README.md"
                 );
             }
         } else {
@@ -100,7 +100,7 @@ try {
                     "Found Vue 2.x installed. Please Download vue2-particles to use tsParticles with a component ready to use and easier to configure."
                 );
                 console.log(
-                    "You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/vue/README.md"
+                    "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/vue/README.md"
                 );
             }
         }
@@ -113,7 +113,7 @@ try {
                 "Found Svelte installed. Please Download svelte-particles to use tsParticles with a component ready to use and easier to configure."
             );
             console.log(
-                "You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/svelte/README.md"
+                "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/svelte/README.md"
             );
         }
     }
@@ -125,7 +125,7 @@ try {
                 "Found Inferno installed. Please Download inferno-particles to use tsParticles with a component ready to use and easier to configure."
             );
             console.log(
-                "You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/inferno/README.md"
+                "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/inferno/README.md"
             );
         }
     }
@@ -137,7 +137,7 @@ try {
                 "Found Preact installed. Please Download preact-particles to use tsParticles with a component ready to use and easier to configure."
             );
             console.log(
-                "You can read more about the component here: https://github.com/matteobruni/tsparticles/blob/main/components/preact/README.md"
+                "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/preact/README.md"
             );
         }
     }
@@ -149,7 +149,7 @@ try {
                 "Found jQuery installed. Please Download jquery-particles to use tsParticles with a plugin ready to use and easier to configure."
             );
             console.log(
-                "You can read more about the plugin here: https://github.com/matteobruni/tsparticles/blob/main/components/jquery/README.md"
+                "You can read more about the plugin here: https://github.com/tsparticles/tsparticles/blob/main/components/jquery/README.md"
             );
         }
     }

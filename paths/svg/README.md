@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/path-svg.svg)](https://www.npmjs.com/package/@tsparticles/path-svg)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/path-svg)](https://www.npmjs.com/package/@tsparticles/path-svg) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) path plugin for on svg path movement.
+[tsParticles](https://github.com/tsparticles/tsparticles) path plugin for on svg path movement.
 
 ## How to use it
 

@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/updater-rotate.svg)](https://www.npmjs.com/package/@tsparticles/updater-rotate)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-rotate)](https://www.npmjs.com/package/@tsparticles/updater-rotate) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for rotate animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for rotate animations.
 
 ## How to use it
 

@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-square.svg)](https://www.npmjs.com/package/@tsparticles/shape-square)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-square)](https://www.npmjs.com/package/@tsparticles/shape-square) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional square shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional square shape.
 
 ## How to use it
 

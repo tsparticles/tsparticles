@@ -208,7 +208,7 @@
                 const form = document.getElementById("code-pen-form"),
                     inputData = document.getElementById("code-pen-data"),
                     data = {
-                        html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
+                        html: `<!-- tsParticles - https://particles.js.org - https://github.com/tsparticles/tsparticles -->
 <div id="tsparticles"></div>`,
                         css: "",
                         js: editor.getValue(),

@@ -1794,7 +1794,7 @@
     } catch (e) {
         // ignore, if it's not working we can ignore errors
         console.warn(
-            "An error occurred in tsParticles pathseg polyfill. If the Polygon Mask is not working, please open an issue here: https://github.com/matteobruni/tsparticles",
+            "An error occurred in tsParticles pathseg polyfill. If the Polygon Mask is not working, please open an issue here: https://github.com/tsparticles/tsparticles",
             e,
         );
     }

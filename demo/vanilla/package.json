@@ -12,10 +12,10 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/matteobruni/tsparticles.git"
+        "url": "git+https://github.com/tsparticles/tsparticles.git"
     },
     "bugs": {
-        "url": "https://github.com/matteobruni/tsparticles/issues"
+        "url": "https://github.com/tsparticles/tsparticles/issues"
     },
     "scripts": {
         "build": "tsc",

@@ -320,7 +320,7 @@
                 const inputData = document.getElementById("code-pen-data");
                 const particlesContainer = document.getElementById("tsparticles");
                 const data = {
-                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
+                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/tsparticles/tsparticles -->
 <div id="tsparticles"></div>`,
                     css: `/* ---- reset ---- */
 body {

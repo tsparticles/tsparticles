@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/interaction-particles-attract.svg)](https://www.npmjs.com/package/@tsparticles/interaction-particles-attract)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-particles-attract)](https://www.npmjs.com/package/@tsparticles/interaction-particles-attract) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for attract effect between particles.
+[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for attract effect between particles.
 
 ## How to use it
 

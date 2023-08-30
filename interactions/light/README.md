@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/interaction-light.svg)](https://www.npmjs.com/package/@tsparticles/interaction-light)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-light)](https://www.npmjs.com/package/@tsparticles/interaction-light) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for light effect.
+[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for light effect.
 
 ## How to use it
 

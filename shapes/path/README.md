@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-path.svg)](https://www.npmjs.com/package/@tsparticles/shape-path)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-path)](https://www.npmjs.com/package/@tsparticles/shape-path) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional path shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional path shape.
 
 ## How to use it
 

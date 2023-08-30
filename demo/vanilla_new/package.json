@@ -25,12 +25,12 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/matteobruni/tsparticles.git"
+        "url": "git+https://github.com/tsparticles/tsparticles.git"
     },
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/matteobruni/tsparticles/issues"
+        "url": "https://github.com/tsparticles/tsparticles/issues"
     },
     "homepage": "https://particles.js.org",
     "devDependencies": {

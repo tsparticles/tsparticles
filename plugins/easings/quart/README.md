@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-easing-quart.svg)](https://www.npmjs.com/package/@tsparticles/plugin-easing-quart)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-easing-quart)](https://www.npmjs.com/package/@tsparticles/plugin-easing-quart) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for adding the easing quart support.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for adding the easing quart support.
 
 ## How to use it
 

@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-easing-back.svg)](https://www.npmjs.com/package/@tsparticles/plugin-easing-back)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-easing-back)](https://www.npmjs.com/package/@tsparticles/plugin-easing-back) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for adding the easing back support.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for adding the easing back support.
 
 ## How to use it
 

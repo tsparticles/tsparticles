@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-heart.svg)](https://www.npmjs.com/package/@tsparticles/shape-heart)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-heart)](https://www.npmjs.com/package/@tsparticles/shape-heart) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional heart shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional heart shape.
 
 ## How to use it
 

@@ -4,17 +4,17 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/basic/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/basic) [![npmjs](https://badge.fury.io/js/@tsparticles/basic.svg)](https://www.npmjs.com/package/@tsparticles/basic) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/basic)](https://www.npmjs.com/package/@tsparticles/basic) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) basic bundle loads the minimum features to a `@tsparticles/engine` instance for having dots moving in the canvas.
+[tsParticles](https://github.com/tsparticles/tsparticles) basic bundle loads the minimum features to a `@tsparticles/engine` instance for having dots moving in the canvas.
 
 **Included Packages**
 
-- [@tsparticles/engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
-- [@tsparticles/move-base](https://github.com/matteobruni/tsparticles/tree/main/move/base)
-- [@tsparticles/shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
-- [@tsparticles/updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
-- [@tsparticles/updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
-- [@tsparticles/updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
-- [@tsparticles/updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
+- [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
+- [@tsparticles/move-base](https://github.com/tsparticles/tsparticles/tree/main/move/base)
+- [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
+- [@tsparticles/updater-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
+- [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
+- [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)
+- [@tsparticles/updater-size](https://github.com/tsparticles/tsparticles/tree/main/updaters/size)
 
 ## How to use it
 

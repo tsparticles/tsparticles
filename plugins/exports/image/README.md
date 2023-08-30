@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-export-image.svg)](https://www.npmjs.com/package/@tsparticles/plugin-export-image)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-export-image)](https://www.npmjs.com/package/@tsparticles/plugin-export-image) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for adding the export image support.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for adding the export image support.
 
 ## How to use it
 

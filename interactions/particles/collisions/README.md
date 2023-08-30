@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/interaction-particles-collisions.svg)](https://www.npmjs.com/package/@tsparticles/interaction-particles-collisions)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-particles-collisions)](https://www.npmjs.com/package/@tsparticles/interaction-particles-collisions) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for collisions effect between particles.
+[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for collisions effect between particles.
 
 ## How to use it
 

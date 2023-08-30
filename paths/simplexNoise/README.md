@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/path-simplex-noise.svg)](https://www.npmjs.com/package/@tsparticles/path-simplex-noise)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/path-simplex-noise)](https://www.npmjs.com/package/@tsparticles/path-simplex-noise) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) path plugin for simplex noise movement.
+[tsParticles](https://github.com/tsparticles/tsparticles) path plugin for simplex noise movement.
 
 ## How to use it
 

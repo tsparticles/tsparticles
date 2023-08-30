@@ -4,25 +4,25 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/fireworks/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/fireworks) [![npmjs](https://badge.fury.io/js/@tsparticles/fireworks.svg)](https://www.npmjs.com/package/@tsparticles/fireworks) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/fireworks)](https://www.npmjs.com/package/@tsparticles/fireworks) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) fireworks bundle loads all the features necessary to create
+[tsParticles](https://github.com/tsparticles/tsparticles) fireworks bundle loads all the features necessary to create
 beautiful fireworks effects with ease.
 
 **Included Packages**
 
-- [@tsparticles/engine](https://github.com/matteobruni/tsparticles/tree/main/engine)
-- [@tsparticles/move-base](https://github.com/matteobruni/tsparticles/tree/main/move/base)
-- [@tsparticles/plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
-- [@tsparticles/plugin-sounds](https://github.com/matteobruni/tsparticles/tree/main/plugins/sounds)
-- [@tsparticles/shape-circle](https://github.com/matteobruni/tsparticles/tree/main/shapes/circle)
-- [@tsparticles/shape-line](https://github.com/matteobruni/tsparticles/tree/main/shapes/line)
-- [@tsparticles/updater-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/color)
-- [@tsparticles/updater-destroy](https://github.com/matteobruni/tsparticles/tree/main/updaters/destroy)
-- [@tsparticles/updater-life](https://github.com/matteobruni/tsparticles/tree/main/updaters/life)
-- [@tsparticles/updater-opacity](https://github.com/matteobruni/tsparticles/tree/main/updaters/opacity)
-- [@tsparticles/updater-out-modes](https://github.com/matteobruni/tsparticles/tree/main/updaters/outModes)
-- [@tsparticles/updater-rotate](https://github.com/matteobruni/tsparticles/tree/main/updaters/rotate)
-- [@tsparticles/updater-size](https://github.com/matteobruni/tsparticles/tree/main/updaters/size)
-- [@tsparticles/updater-stroke-color](https://github.com/matteobruni/tsparticles/tree/main/updaters/strokeColor)
+- [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
+- [@tsparticles/move-base](https://github.com/tsparticles/tsparticles/tree/main/move/base)
+- [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
+- [@tsparticles/plugin-sounds](https://github.com/tsparticles/tsparticles/tree/main/plugins/sounds)
+- [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
+- [@tsparticles/shape-line](https://github.com/tsparticles/tsparticles/tree/main/shapes/line)
+- [@tsparticles/updater-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
+- [@tsparticles/updater-destroy](https://github.com/tsparticles/tsparticles/tree/main/updaters/destroy)
+- [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
+- [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
+- [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)
+- [@tsparticles/updater-rotate](https://github.com/tsparticles/tsparticles/tree/main/updaters/rotate)
+- [@tsparticles/updater-size](https://github.com/tsparticles/tsparticles/tree/main/updaters/size)
+- [@tsparticles/updater-stroke-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/strokeColor)
 
 ## How to use it
 

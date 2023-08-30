@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/updater-out-modes.svg)](https://www.npmjs.com/package/@tsparticles/updater-out-modes)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-out-modes)](https://www.npmjs.com/package/@tsparticles/updater-out-modes) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for out modes animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for out modes animations.
 
 ## How to use it
 

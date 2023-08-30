@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-rounded-rect.svg)](https://www.npmjs.com/package/@tsparticles/shape-rounded-rect)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-rounded-rect)](https://www.npmjs.com/package/@tsparticles/shape-rounded-rect) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional rounded rectangle shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional rounded rectangle shape.
 
 ## How to use it
 

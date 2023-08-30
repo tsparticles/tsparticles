@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-export-json.svg)](https://www.npmjs.com/package/@tsparticles/plugin-export-json)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-export-json)](https://www.npmjs.com/package/@tsparticles/plugin-export-json) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for adding the export json support.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for adding the export json support.
 
 ## How to use it
 

@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-cog.svg)](https://www.npmjs.com/package/@tsparticles/shape-cog)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-cog)](https://www.npmjs.com/package/@tsparticles/shape-cog) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional cog shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional cog shape.
 
 ## How to use it
 

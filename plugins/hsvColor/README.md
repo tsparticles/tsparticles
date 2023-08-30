@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-hsv-color.svg)](https://www.npmjs.com/package/@tsparticles/plugin-hsv-color)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-hsv-color)](https://www.npmjs.com/package/@tsparticles/plugin-hsv-color) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for adding the HSV color support.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for adding the HSV color support.
 
 ## How to use it
 

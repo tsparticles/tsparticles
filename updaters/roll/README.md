@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/updater-roll.svg)](https://www.npmjs.com/package/@tsparticles/updater-roll)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-roll)](https://www.npmjs.com/package/@tsparticles/updater-roll) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for roll animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for roll animations.
 
 ## How to use it
 

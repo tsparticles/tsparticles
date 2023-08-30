@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/updater-tilt.svg)](https://www.npmjs.com/package/@tsparticles/updater-tilt)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-tilt)](https://www.npmjs.com/package/@tsparticles/updater-tilt) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for tilt animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for tilt animations.
 
 ## How to use it
 

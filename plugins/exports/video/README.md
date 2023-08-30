@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-export-video.svg)](https://www.npmjs.com/package/@tsparticles/plugin-export-video)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-export-video)](https://www.npmjs.com/package/@tsparticles/plugin-export-video) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for adding the export video support.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for adding the export video support.
 
 ## How to use it
 

@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/updater-twinkle.svg)](https://www.npmjs.com/package/@tsparticles/updater-twinkle)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-twinkle)](https://www.npmjs.com/package/@tsparticles/updater-twinkle) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for twinkle animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for twinkle animations.
 
 ## How to use it
 

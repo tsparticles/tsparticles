@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/shape-spiral.svg)](https://www.npmjs.com/package/@tsparticles/shape-spiral)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-spiral)](https://www.npmjs.com/package/@tsparticles/shape-spiral) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional spiral shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional spiral shape.
 
 ## How to use it
 

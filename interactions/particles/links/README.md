@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/interaction-particles-links.svg)](https://www.npmjs.com/package/@tsparticles/interaction-particles-links)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-particles-links)](https://www.npmjs.com/package/@tsparticles/interaction-particles-links) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for links effect between particles.
+[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for links effect between particles.
 
 ## How to use it
 

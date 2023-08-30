@@ -9,7 +9,7 @@ const ghToken = process.env.GITHUB_TOKEN, gitUser = ghToken ? {
 
 ghpages.publish(path.resolve("."), {
     src: "docs.json",
-    repo: ghToken ? `https://git:${ghToken}@github.com/matteobruni/tsparticles.git` : `https://github.com/matteobruni/tsparticles.git`,
+    repo: ghToken ? `https://git:${ghToken}@github.com/tsparticles/tsparticles.git` : `https://github.com/tsparticles/tsparticles.git`,
     branch: "docs-gen",
     dotfiles: true,
     history: false,

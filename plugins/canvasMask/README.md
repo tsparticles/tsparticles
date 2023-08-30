@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-canvas-mask.svg)](https://www.npmjs.com/package/@tsparticles/plugin-canvas-mask)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-canvas-mask)](https://www.npmjs.com/package/@tsparticles/plugin-canvas-mask) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for particles canvas mask effect.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for particles canvas mask effect.
 
 ## How to use it
 

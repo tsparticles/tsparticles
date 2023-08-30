@@ -6,7 +6,7 @@
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-motion.svg)](https://www.npmjs.com/package/@tsparticles/plugin-motion)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-motion)](https://www.npmjs.com/package/@tsparticles/plugin-motion) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for handling motion sickness CSS value.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for handling motion sickness CSS value.
 
 ## How to use it
 

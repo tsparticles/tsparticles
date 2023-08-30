@@ -11,11 +11,11 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 [![npm](https://img.shields.io/npm/v/@tsparticles/engine?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 [![npm](https://img.shields.io/npm/dm/tsparticles?style=for-the-badge)](https://www.npmjs.com/package/tsparticles)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff?style=for-the-badge)](https://lerna.js.org/)
-[![CodeFactor](https://www.codefactor.io/repository/github/matteobruni/tsparticles/badge)](https://www.codefactor.io/repository/github/matteobruni/tsparticles)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=matteobruni/tsparticles&utm_campaign=Badge_Grade)
+[![CodeFactor](https://www.codefactor.io/repository/github/tsparticles/tsparticles/badge)](https://www.codefactor.io/repository/github/tsparticles/tsparticles)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b983aaf3461a4c48b1e2eecce1ff1d74)](https://www.codacy.com/manual/ar3s/tsparticles?utm_source=github.com&utm_medium=referral&utm_content=tsparticles/tsparticles&utm_campaign=Badge_Grade)
 [![Rate this package](https://badges.openbase.com/js/rating/tsparticles.svg?style=openbase&token=A9jHQ1nkb6fnCndKM7O2w4hx3OD8PVCuqHtSpw8mMOg=)](https://openbase.com/js/tsparticles?utm_source=embedded&utm_medium=badge&utm_campaign=rating-badge&utm_term=js/tsparticles)
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/matteobruni/tsparticles)
-[![Run on Repl.it](https://repl.it/badge/github/matteobruni/tsparticles)](https://repl.it/github/matteobruni/tsparticles)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/tsparticles/tsparticles)
+[![Run on Repl.it](https://repl.it/badge/github/tsparticles/tsparticles)](https://repl.it/github/tsparticles/tsparticles)
 
 [![Discord](https://img.shields.io/discord/872061157379301416?label=discord&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/hACwv45Hme)
 [![Slack](https://particles.js.org/images/slack.png)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
@@ -114,7 +114,7 @@ particles.js
 it's even easier**.
 
 You'll find the
-instructions [below](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation), with all the
+instructions [below](https://github.com/tsparticles/tsparticles/blob/main/README.md#library-installation), with all the
 links you need, and _don't be scared by **TypeScript**, it's just the source language_.
 
 **The output files are just JavaScript**. 🤩
@@ -124,7 +124,7 @@ all
 files splitted for `import` syntax.
 
 **If you are interested** there are some _simple instructions_
-just [below](https://github.com/matteobruni/tsparticles/blob/main/README.md#library-installation) to guide you to
+just [below](https://github.com/tsparticles/tsparticles/blob/main/README.md#library-installation) to guide you to
 migrate from the old particles.js library.
 
 ## **_Library installation_**
@@ -839,10 +839,10 @@ e --> u
 
 <p>  
     <a href="https://www.jetbrains.com/?from=tsParticles">  
-        <img src="https://raw.githubusercontent.com/matteobruni/tsparticles/gh-pages/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
+        <img src="https://raw.githubusercontent.com/tsparticles/tsparticles/gh-pages/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
     </a>  
     <a href="https://www.jetbrains.com/webstorm/?from=tsParticles">  
-        <img src="https://raw.githubusercontent.com/matteobruni/tsparticles/gh-pages/images/jetbrains-logos/logo.png" height="150" alt="JetBrains" />  
+        <img src="https://raw.githubusercontent.com/tsparticles/tsparticles/gh-pages/images/jetbrains-logos/logo.png" height="150" alt="JetBrains" />  
     </a>  
 </p>
 
