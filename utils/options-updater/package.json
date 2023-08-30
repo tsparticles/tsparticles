@@ -95,7 +95,7 @@
         "@tsparticles/updater-tilt": "^3.0.0-alpha.1",
         "@tsparticles/updater-twinkle": "^3.0.0-alpha.1",
         "@tsparticles/updater-wobble": "^3.0.0-alpha.1",
-        "@typescript-eslint/eslint-plugin": "^5.59.2",
+        "@typescript-eslint/eslint-plugin": "^6.0.0",
         "@typescript-eslint/parser": "^6.1.0",
         "eslint": "^8.40.0",
         "eslint-config-prettier": "^9.0.0",
