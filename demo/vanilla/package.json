@@ -113,7 +113,7 @@
         "lodash": "^4.17.21",
         "nodemon": "^3.0.0",
         "popper.js": "^1.16.1",
-        "prettier": "^2.8.8",
+        "prettier": "^3.0.0",
         "pug": "^3.0.2",
         "pug-cli": "1.0.0-alpha6",
         "stats.ts": "^1.1.0",

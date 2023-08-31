@@ -97,7 +97,7 @@
         "copyfiles": "^2.4.1",
         "eslint": "^8.40.0",
         "eslint-config-prettier": "^9.0.0",
-        "prettier": "^2.8.8",
+        "prettier": "^3.0.0",
         "rimraf": "^5.0.0",
         "terser-webpack-plugin": "^5.3.7",
         "typescript": "^5.0.4",
