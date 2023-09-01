@@ -16,7 +16,7 @@ importers:
         version: 17.7.0
       '@nrwl/workspace':
         specifier: ^16.4.0
-        version: 16.7.3
+        version: 16.7.4
       '@tsparticles/prettier-config':
         specifier: ^1.9.0
         version: 1.9.0
@@ -8722,7 +8722,7 @@ packages:
     dependencies:
       '@lerna/child-process': 7.2.0
       '@npmcli/run-script': 6.0.2
-      '@nx/devkit': 16.7.3(nx@16.7.4)
+      '@nx/devkit': 16.7.4(nx@16.7.4)
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 19.0.11
       byte-size: 8.1.1
@@ -8915,18 +8915,18 @@ packages:
       - supports-color
     dev: true
 
-  /@nrwl/devkit@16.7.3(nx@16.7.3):
-    resolution: {integrity: sha512-3pHEOm6ASTTwH0nZF1hyHIDlXJBYbp+Xj4P1ymmG8v/e9t7aF5z8yOLOPiVvWSq3+KW86Ntt/CyjP9Yz1OF4/w==}
-    dependencies:
-      '@nx/devkit': 16.7.3(nx@16.7.3)
-    transitivePeerDependencies:
-      - nx
-    dev: true
-
   /@nrwl/devkit@16.7.3(nx@16.7.4):
     resolution: {integrity: sha512-3pHEOm6ASTTwH0nZF1hyHIDlXJBYbp+Xj4P1ymmG8v/e9t7aF5z8yOLOPiVvWSq3+KW86Ntt/CyjP9Yz1OF4/w==}
     dependencies:
       '@nx/devkit': 16.7.3(nx@16.7.4)
+    transitivePeerDependencies:
+      - nx
+    dev: true
+
+  /@nrwl/devkit@16.7.4(nx@16.7.4):
+    resolution: {integrity: sha512-Gt2q3cqDWzGP1woavGIo4bl8g9YaXic/Xfsl7qPq0LHJedLj49p1vXetB0wawkavSE2MTyo7yDh6YDK/38XoLw==}
+    dependencies:
+      '@nx/devkit': 16.7.4(nx@16.7.4)
     transitivePeerDependencies:
       - nx
     dev: true
@@ -8963,29 +8963,14 @@ packages:
       - debug
     dev: true
 
-  /@nrwl/workspace@16.7.3:
-    resolution: {integrity: sha512-D9olStAiLrREVD7tQcazUGHzUU7VAN50h57YCPI8nasH29X//sYc0NfXwkp4rvWhYmbH0MhdEbKQuPqED/vWgg==}
+  /@nrwl/workspace@16.7.4:
+    resolution: {integrity: sha512-i2mMSzF/qfsFbTD0DBMSRTNKSahJZoJCnDrTSgwZeTVfLoKYOO5QaiAqB0zKh/5qTsBCt/rKtAlfTd5uGpBzPQ==}
     dependencies:
-      '@nx/workspace': 16.7.3
+      '@nx/workspace': 16.7.4
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
       - debug
-    dev: true
-
-  /@nx/devkit@16.7.3(nx@16.7.3):
-    resolution: {integrity: sha512-5jb8m9jZBatBDNZMkc/jbfiETIP7fC5rH3dqtYFFZ35pAVWVMj6WhQdZDJldlo+iC+iIAmJ0kkiZQ82999g9Lw==}
-    peerDependencies:
-      nx: '>= 15 <= 17'
-    dependencies:
-      '@nrwl/devkit': 16.7.3(nx@16.7.3)
-      ejs: 3.1.9
-      enquirer: 2.3.6
-      ignore: 5.2.4
-      nx: 16.7.3
-      semver: 7.5.3
-      tmp: 0.2.1
-      tslib: 2.5.0
     dev: true
 
   /@nx/devkit@16.7.3(nx@16.7.4):
@@ -8994,6 +8979,21 @@ packages:
       nx: '>= 15 <= 17'
     dependencies:
       '@nrwl/devkit': 16.7.3(nx@16.7.4)
+      ejs: 3.1.9
+      enquirer: 2.3.6
+      ignore: 5.2.4
+      nx: 16.7.4
+      semver: 7.5.3
+      tmp: 0.2.1
+      tslib: 2.5.0
+    dev: true
+
+  /@nx/devkit@16.7.4(nx@16.7.4):
+    resolution: {integrity: sha512-SLito+/TAeDYR+d7IIpp/sBJm41WM+nIevILv0TSQW4Pq0ylUy1nUvV8Pe7l1ohZccDrQuebMUWPwGO0hv8SeQ==}
+    peerDependencies:
+      nx: '>= 15 <= 17'
+    dependencies:
+      '@nrwl/devkit': 16.7.4(nx@16.7.4)
       ejs: 3.1.9
       enquirer: 2.3.6
       ignore: 5.2.4
@@ -9183,14 +9183,14 @@ packages:
     dev: true
     optional: true
 
-  /@nx/workspace@16.7.3:
-    resolution: {integrity: sha512-Cauyq5CgF8TgcRQS0CbKuj3yydhpF1CKFCQItljgeP7MqoNvG5yG71ELulD7S3fZiqE+89FVJT/byJpT7P2npw==}
+  /@nx/workspace@16.7.4:
+    resolution: {integrity: sha512-mbefKyHg3avgK1jN6GChCDz2wc1qvi22BOUd/4WO+o88sShAA2h0gg8SMvkzLTNvGcNUWok66dInBfAJHvUOnw==}
     dependencies:
-      '@nrwl/workspace': 16.7.3
-      '@nx/devkit': 16.7.3(nx@16.7.3)
+      '@nrwl/workspace': 16.7.4
+      '@nx/devkit': 16.7.4(nx@16.7.4)
       chalk: 4.1.2
       ignore: 5.2.4
-      nx: 16.7.3
+      nx: 16.7.4
       rxjs: 7.8.1
       tslib: 2.5.0
       yargs-parser: 21.1.1
