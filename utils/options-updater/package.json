@@ -27,7 +27,7 @@
     },
     "dependencies": {
         "@tsparticles/engine": "^3.0.0-beta.1",
-        "@tsparticles/eslint-config": "^1.19.0",
+        "@tsparticles/eslint-config": "^1.20.0",
         "@tsparticles/interaction-external-attract": "^3.0.0-beta.1",
         "@tsparticles/interaction-external-bounce": "^3.0.0-beta.1",
         "@tsparticles/interaction-external-bubble": "^3.0.0-beta.1",
@@ -95,25 +95,25 @@
         "@tsparticles/updater-tilt": "^3.0.0-beta.1",
         "@tsparticles/updater-twinkle": "^3.0.0-beta.1",
         "@tsparticles/updater-wobble": "^3.0.0-beta.1",
-        "@tsparticles/webpack-plugin": "^1.23.0",
-        "@typescript-eslint/eslint-plugin": "^6.2.1",
-        "@typescript-eslint/parser": "^6.2.1",
-        "eslint": "^8.46.0",
+        "@tsparticles/webpack-plugin": "^1.24.0",
+        "@typescript-eslint/eslint-plugin": "^6.6.0",
+        "@typescript-eslint/parser": "^6.6.0",
+        "eslint": "^8.48.0",
         "eslint-config-prettier": "^9.0.0",
         "fs-extra": "^11.1.1",
         "jsdom": "^22.1.0",
         "klaw": "^4.1.0",
         "lodash": "^4.17.21",
-        "prettier": "^3.0.1",
+        "prettier": "^3.0.3",
         "rimraf": "^5.0.1",
         "tsparticles": "^3.0.0-beta.1",
-        "typescript": "^5.1.6",
+        "typescript": "^5.2.2",
         "webpack": "^5.88.2"
     },
     "devDependencies": {
         "@types/fs-extra": "^11.0.1",
         "@types/klaw": "^3.0.3",
-        "@types/lodash": "^4.14.196",
-        "@types/node": "^20.4.6"
+        "@types/lodash": "^4.14.197",
+        "@types/node": "^20.5.9"
     }
 }
