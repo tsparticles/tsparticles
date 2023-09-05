@@ -12630,18 +12630,6 @@ packages:
       webpack: 5.82.0(webpack-cli@5.0.2)
     dev: true
 
-  /babel-loader@9.1.2(@babel/core@7.22.11)(webpack@5.88.2):
-    resolution: {integrity: sha512-mN14niXW43tddohGl8HPu5yfQq70iUThvFL/4QzESA7GcZoC0eVOhvWdQ8+3UlSjaDE9MVtsW9mxDY07W7VpVA==}
-    engines: {node: '>= 14.15.0'}
-    peerDependencies:
-      '@babel/core': ^7.12.0
-      webpack: '>=5'
-    dependencies:
-      '@babel/core': 7.22.11
-      find-cache-dir: 3.3.2
-      schema-utils: 4.0.1
-      webpack: 5.88.2(webpack-cli@5.1.4)
-
   /babel-loader@9.1.3(@babel/core@7.22.11)(webpack@5.88.2):
     resolution: {integrity: sha512-xG3ST4DglodGf8qSwv0MdeWLhrDsw/32QMdTO5T1ZIp9gQur0HkCyFs7Awskr10JKXFXwpAhiCuYX5oGXnRGbw==}
     engines: {node: '>= 14.15.0'}
@@ -12653,7 +12641,6 @@ packages:
       find-cache-dir: 4.0.0
       schema-utils: 4.0.1
       webpack: 5.88.2(webpack-cli@5.1.4)
-    dev: true
 
   /babel-plugin-minify-dead-code-elimination@0.5.2:
     resolution: {integrity: sha512-krq9Lwi0QIzyAlcNBXTL4usqUvevB4BzktdEsb8srcXC1AaYqRJiAQw6vdKdJSaXbz6snBvziGr6ch/aoRCfpA==}
@@ -13375,7 +13362,6 @@ packages:
 
   /common-path-prefix@3.0.0:
     resolution: {integrity: sha512-QE33hToZseCH3jS0qN96O/bSh3kaw/h+Tq7ngyY9eWDUnTlTNUyqfqvCXioLe5Na5jFsL78ra/wuBU4iuEgd4w==}
-    dev: true
 
   /commondir@1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==}
@@ -14698,7 +14684,6 @@ packages:
     dependencies:
       common-path-prefix: 3.0.0
       pkg-dir: 7.0.0
-    dev: true
 
   /find-up@2.1.0:
     resolution: {integrity: sha512-NWzkk0jSJtTt08+FBFMvXoeZnOJD+jTtsRmBYbAIzJdX6l7dLgR7CTubCM5/eDdPUBvLCeVasP1brfVR/9/EZQ==}
@@ -18293,7 +18278,6 @@ packages:
     engines: {node: '>=14.16'}
     dependencies:
       find-up: 6.3.0
-    dev: true
 
   /pluralize@8.0.0:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
@@ -21390,7 +21374,7 @@ packages:
       '@types/webpack-env': 1.18.1
       '@typescript-eslint/eslint-plugin': 5.61.0(@typescript-eslint/parser@5.61.0)(eslint@8.48.0)(typescript@5.1.6)
       '@typescript-eslint/parser': 5.61.0(eslint@8.48.0)(typescript@5.1.6)
-      babel-loader: 9.1.2(@babel/core@7.22.11)(webpack@5.88.2)
+      babel-loader: 9.1.3(@babel/core@7.22.11)(webpack@5.88.2)
       browserslist: 4.21.9
       copyfiles: 2.4.1
       eslint: 8.48.0
