@@ -11342,7 +11342,7 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
       '@tufjs/canonical-json': 1.0.0
-      minimatch: 9.0.2
+      minimatch: 9.0.3
     dev: true
 
   /@types/babel-types@7.0.11:
@@ -15048,7 +15048,7 @@ packages:
     dependencies:
       foreground-child: 3.1.1
       jackspeak: 2.2.0
-      minimatch: 9.0.2
+      minimatch: 9.0.3
       minipass: 5.0.0
       path-scurry: 1.10.0
 
@@ -15059,7 +15059,7 @@ packages:
     dependencies:
       foreground-child: 3.1.1
       jackspeak: 2.2.0
-      minimatch: 9.0.2
+      minimatch: 9.0.3
       minipass: 5.0.0
       path-scurry: 1.10.0
 
@@ -15445,7 +15445,7 @@ packages:
     resolution: {integrity: sha512-C7FfFoTA+bI10qfeydT8aZbvr91vAEU+2W5BZUlzPec47oNb07SsOfwYrtxuvOYdUApPP/Qlh4DtAO51Ekk2QA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      minimatch: 9.0.2
+      minimatch: 9.0.3
     dev: true
 
   /ignore@5.2.4:
@@ -17124,18 +17124,11 @@ packages:
       brace-expansion: 2.0.1
     dev: true
 
-  /minimatch@9.0.2:
-    resolution: {integrity: sha512-PZOT9g5v2ojiTL7r1xF6plNHLtOeTpSlDI007As2NlA2aYBMfVom17yqa6QzhmDP8QOhn7LjHTg7DFCVSSa6yg==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    dependencies:
-      brace-expansion: 2.0.1
-
   /minimatch@9.0.3:
     resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       brace-expansion: 2.0.1
-    dev: true
 
   /minimist-options@4.1.0:
     resolution: {integrity: sha512-Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==}
