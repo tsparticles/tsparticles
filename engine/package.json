@@ -137,7 +137,7 @@
         "ts-json-schema-generator": "^1.2.0",
         "ts-node": "^10.9.1",
         "typescript": "^5.0.4",
-        "typescript-json-schema": "^0.60.0",
+        "typescript-json-schema": "^0.61.0",
         "webpack": "^5.82.0",
         "webpack-bundle-analyzer": "^4.8.0",
         "webpack-cli": "^5.0.2",
