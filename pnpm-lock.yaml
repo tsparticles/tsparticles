@@ -52,7 +52,7 @@ importers:
         version: 0.25.1(typescript@5.0.4)
       typedoc-plugin-carbon-ads:
         specifier: ^1.4.0
-        version: 1.4.0(typedoc@0.25.1)
+        version: 1.5.0(typedoc@0.25.1)
       typedoc-plugin-clarity:
         specifier: ^1.4.0
         version: 1.4.0(typedoc@0.25.1)
@@ -20875,10 +20875,10 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-carbon-ads@1.4.0(typedoc@0.25.1):
-    resolution: {integrity: sha512-1bbzLvc9wl6kmQuq8jOLOj5dBQN7tnDVB4Are1e6gQIPnAtGGOS/ZBXpAxmY9sxs1ffXgGvMWZrrht06gXQh/g==}
+  /typedoc-plugin-carbon-ads@1.5.0(typedoc@0.25.1):
+    resolution: {integrity: sha512-teIF+jz7ivQwXrwSsH+JR7O90BfWbEfcnNy45utTDIDLH/jiqdL/68z69NyAyUglcFHBkY4uFu9i7UkmP06Lpw==}
     peerDependencies:
-      typedoc: ^0.24.4
+      typedoc: ^0.25.0
     dependencies:
       typedoc: 0.25.1(typescript@5.0.4)
       typescript: 5.2.2
