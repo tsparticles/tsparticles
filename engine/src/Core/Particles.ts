@@ -218,7 +218,7 @@ export class Particles {
 
         if (!handled) {
             const particlesOptions = options.particles,
-                groups = options.particles.groups;
+                groups = particlesOptions.groups;
 
             for (const group in groups) {
                 const groupOptions = groups[group];
@@ -460,8 +460,10 @@ export class Particles {
 
         particle.destroy(override);
 
+        const zIdx = this._zArray.indexOf(particle);
+
         this._array.splice(index, 1);
-        this._zArray = this._zArray.splice(this._zArray.indexOf(particle), 1);
+        this._zArray.splice(zIdx, 1);
 
         this.pool.push(particle);
 
