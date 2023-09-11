@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.2](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2023-09-11)
+
+### Bug Fixes
+
+-   fixed issue with particle destroy ([86d2f8f](https://github.com/tsparticles/tsparticles/commit/86d2f8f14c7b05b04018cb68b5e40c0547deccf4))
+
 # [3.0.0-beta.1](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2023-08-25)
 
 ### Features
