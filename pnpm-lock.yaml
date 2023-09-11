@@ -61,7 +61,7 @@ importers:
         version: 2.2.0(typedoc@0.25.1)
       typedoc-plugin-keywords:
         specifier: ^1.4.1
-        version: 1.4.1(typedoc@0.25.1)
+        version: 1.5.0(typedoc@0.25.1)
       typedoc-plugin-missing-exports:
         specifier: ^2.0.0
         version: 2.0.1(typedoc@0.25.1)
@@ -20783,10 +20783,10 @@ packages:
       typedoc: 0.25.1(typescript@5.0.4)
     dev: true
 
-  /typedoc-plugin-keywords@1.4.1(typedoc@0.25.1):
-    resolution: {integrity: sha512-7vN8VkJRlYFpIrcGNaF3anah7viW8iSecZWP1bJfiX6uKQXEUxaj8UJ1JpqNz1oDjIJrNjka+TkOUgH6hf+HBQ==}
+  /typedoc-plugin-keywords@1.5.0(typedoc@0.25.1):
+    resolution: {integrity: sha512-8dkuTwwiuXzyM6T1/5M85JGyqArGnEYkANqItLXLAxmfx9SNkEDSwqfDiMGBVrcJmLMc/0nuCf/H4ixyA/8/tA==}
     peerDependencies:
-      typedoc: ^0.24.4
+      typedoc: ^0.25.0
     dependencies:
       typedoc: 0.25.1(typescript@5.0.4)
       typescript: 5.2.2
