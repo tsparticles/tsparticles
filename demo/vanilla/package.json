@@ -105,7 +105,7 @@
         "eslint": "^8.40.0",
         "eslint-config-prettier": "^9.0.0",
         "express": "^4.18.2",
-        "express-rate-limit": "^6.7.0",
+        "express-rate-limit": "^7.0.0",
         "helmet": "^7.0.0",
         "jquery": "^3.6.4",
         "jsoneditor": "^9.10.0",
