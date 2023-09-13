@@ -55,7 +55,7 @@ importers:
         version: 1.5.0(typedoc@0.25.1)
       typedoc-plugin-clarity:
         specifier: ^1.4.0
-        version: 1.4.0(typedoc@0.25.1)
+        version: 1.5.0(typedoc@0.25.1)
       typedoc-plugin-coverage:
         specifier: ^2.1.0
         version: 2.2.0(typedoc@0.25.1)
@@ -20782,10 +20782,10 @@ packages:
       typescript: 5.2.2
     dev: true
 
-  /typedoc-plugin-clarity@1.4.0(typedoc@0.25.1):
-    resolution: {integrity: sha512-ttAymfk/PgJ94VjtMVs238XuDU4sS3T4twpXQM6IVdU6pkad+DJQSrm8/sScYezpw2QKv5hFIgsvh3DTnrNebA==}
+  /typedoc-plugin-clarity@1.5.0(typedoc@0.25.1):
+    resolution: {integrity: sha512-S16lBJ+RySSJPis53TTITDpASJGNnkoujRulubaVCYKEusKKHaFldinaZXQyOUj+xvj5prG70Y1DmdxDXK6XnQ==}
     peerDependencies:
-      typedoc: ^0.24.4
+      typedoc: ^0.25.0
     dependencies:
       typedoc: 0.25.1(typescript@5.0.4)
       typescript: 5.2.2
