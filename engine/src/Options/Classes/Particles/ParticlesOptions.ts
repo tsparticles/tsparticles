@@ -17,7 +17,7 @@ import { Shape } from "./Shape/Shape";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
 import { Size } from "./Size/Size";
 import { Stroke } from "./Stroke";
-import { ZIndex } from "./ZIndex/ZIndex";
+import { Width } from "./Width/Width";
 
 /**
  * [[include:Options/Particles.md]]
@@ -36,7 +36,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     reduceDuplicates;
     shadow;
     shape;
-    size;
+    width;
     stroke: SingleOrMultiple<Stroke>;
     zIndex;
 
@@ -58,7 +58,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.reduceDuplicates = false;
         this.shadow = new Shadow();
         this.shape = new Shape();
-        this.size = new Size();
+        this.width = new Width();
         this.stroke = new Stroke();
         this.zIndex = new ZIndex();
     }
@@ -90,7 +90,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         }
 
         this.shape.load(data.shape);
-        this.size.load(data.size);
+        this.width.load(data.width);
         this.shadow.load(data.shadow);
         this.zIndex.load(data.zIndex);
 
