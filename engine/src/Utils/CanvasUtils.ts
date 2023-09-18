@@ -186,13 +186,25 @@ export function drawShape(
         return;
     }
 
-    const drawer = container.drawers.get(particle.shape);
+    if (particle.shape === "combined") {
+        for (const shape of particle.shapes) {
+            const drawer = container.drawers.get(shape);
 
-    if (!drawer) {
-        return;
+            if (!drawer) {
+                continue;
+            }
+
+            drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+        }
+    } else {
+        const drawer = container.drawers.get(particle.shape);
+
+        if (!drawer) {
+            return;
+        }
+
+        drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
     }
-
-    drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
 }
 
 /**
@@ -216,13 +228,25 @@ export function drawShapeAfterEffect(
         return;
     }
 
-    const drawer = container.drawers.get(particle.shape);
+    if (particle.shape === "combined") {
+        for (const shape of particle.shapes) {
+            const drawer = container.drawers.get(shape);
 
-    if (!drawer || !drawer.afterEffect) {
-        return;
+            if (!drawer || !drawer.afterEffect) {
+                continue;
+            }
+
+            drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+        }
+    } else {
+        const drawer = container.drawers.get(particle.shape);
+
+        if (!drawer || !drawer.afterEffect) {
+            return;
+        }
+
+        drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
     }
-
-    drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
 }
 
 /**
