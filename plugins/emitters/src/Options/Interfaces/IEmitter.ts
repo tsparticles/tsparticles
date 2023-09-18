@@ -73,15 +73,8 @@ export interface IEmitter {
     /**
      * The size of the particles emitter area
      */
-    size?: IEmitterSize;
-
-    /**
-     * The particle spawn color
-     */
-    spawnColor?: IAnimatableColor;
-
-    /**
-     * The number of starting particles of the emitter
-     */
-    startCount: number;
-}
+    export interface IEmitterRate {
+        delay: number;
+        quantity: number;
+        easing?: string;
+    }
