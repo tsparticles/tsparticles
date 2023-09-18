@@ -88,18 +88,23 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,
-            onClick = events.onClick,
+            onMouseDown = events.onMouseDown,
+            onMouseUp = events.onMouseUp,
             hoverEnabled = onHover.enable,
             hoverMode = onHover.mode,
-            clickEnabled = onClick.enable,
-            clickMode = onClick.mode,
+            mousedownEnabled = onMouseDown.enable,
+            mousedownMode = onMouseDown.mode,
+            mouseupEnabled = onMouseUp.enable,
+            mouseupMode = onMouseUp.mode,
             divs = events.onDiv;
-
+    
         /* on hover event */
         if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
             this._hoverBubble();
-        } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
-            this._clickBubble();
+        } else if (mousedownEnabled && isInArray(ClickMode.bubble, mousedownMode)) {
+            this._mousedownBubble();
+        } else if (mouseupEnabled && isInArray(ClickMode.bubble, mouseupMode)) {
+            this._mouseupBubble();
         } else {
             divModeExecute(DivMode.bubble, divs, (selector, div): void =>
                 this._singleSelectorHover(delta, selector, div),
