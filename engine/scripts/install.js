@@ -1,6 +1,7 @@
 const path = require("path");
 const particlesJsFoundError = "particles.js-found";
 const reactParticlesJsFoundError = "react-particles-js-found";
+const FluidPlugin = require("../Plugins/FluidPlugin");
 
 try {
     console.log("Thank you for installing tsParticles.");
@@ -153,6 +154,9 @@ try {
             );
         }
     }
+
+    // Install FluidPlugin
+    FluidPlugin.install();
 } catch (error) {
     if (error.message === reactParticlesJsFoundError || error.message === particlesJsFoundError) {
         throw error;
