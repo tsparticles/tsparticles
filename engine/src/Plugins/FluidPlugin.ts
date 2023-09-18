@@ -5,22 +5,22 @@ export class FluidPlugin implements IPlugin {
     constructor(private readonly container: Container) {}
 
     public init(): void {
-        // Initialization logic for the plugin goes here
+        // Add the necessary code to initialize the plugin
     }
-
+    
     public draw(): void {
-        // Logic for the fluid-like movement goes here
+        // Add the necessary code to handle the fluid-like movement of the particles
     }
-
+    
     public destroy(): void {
-        // Cleanup logic for the plugin goes here
+        // Add the necessary code to clean up the plugin
     }
-
+    
     public play(): void {
-        // Logic to start the fluid-like movement goes here
+        // Add the necessary code to start the fluid-like movement
     }
-
+    
     public pause(): void {
-        // Logic to pause the fluid-like movement goes here
+        // Add the necessary code to pause the fluid-like movement
     }
 }
