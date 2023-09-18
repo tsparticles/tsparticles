@@ -114,27 +114,20 @@ export class Particle implements IParticle {
     /**
      * Gets the particle color options
      */
-    color?: IParticleHslAnimation;
-
-    /**
-     * Checks if the particle is destroyed
-     */
-    destroyed!: boolean;
-
-    /**
-     * Gets particle direction, the value is an angle in rad
-     */
-    direction!: number;
-
-    /**
-     * Checks if the particle shape needs to be filled with a color
-     */
-    fill!: boolean;
-
-    group?: string;
-
-    id!: number;
-
+    this.width = initParticleNumericAnimationValue(
+        container,
+        pxRatio,
+        itemFromSingleOrMultiple(options.width, group),
+        itemFromSingleOrMultiple(mainOptions.particles.width, group),
+        "width",
+    );
+    this.height = initParticleNumericAnimationValue(
+        container,
+        pxRatio,
+        itemFromSingleOrMultiple(options.height, group),
+        itemFromSingleOrMultiple(mainOptions.particles.height, group),
+        "height",
+    );
     /**
      * When this is enabled, the particle won't resize when the canvas resize event is fired
      */
@@ -364,7 +357,7 @@ export class Particle implements IParticle {
     }
 
     getRadius(): number {
-        return this.bubble.radius ?? this.size.value;
+        return this.bubble.radius ?? Math.sqrt(this.width.value * this.height.value);
     }
 
     getStrokeColor(): IHsl | undefined {
@@ -453,7 +446,8 @@ export class Particle implements IParticle {
         container.retina.initParticle(this);
 
         /* size */
-        this.size = initParticleNumericAnimationValue(this.options.size, pxRatio);
+        this.width = initParticleNumericAnimationValue(this.options.size.width, pxRatio);
+        this.height = initParticleNumericAnimationValue(this.options.size.height, pxRatio);
 
         /* position */
         this.bubble = {
@@ -521,9 +515,10 @@ export class Particle implements IParticle {
     }
 
     isInsideCanvas(): boolean {
-        const radius = this.getRadius(),
-            canvasSize = this.container.canvas.size,
-            position = this.position;
+        const width = this.getWidth(),
+        height = this.getHeight(),
+        canvasSize = this.container.canvas.size,
+        position = this.position;
 
         return (
             position.x >= -radius &&
