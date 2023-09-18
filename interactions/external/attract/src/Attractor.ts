@@ -99,13 +99,17 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             events = options.interactivity.events,
             hoverEnabled = events.onHover.enable,
             hoverMode = events.onHover.mode,
-            clickEnabled = events.onClick.enable,
-            clickMode = events.onClick.mode;
-
+            mousedownEnabled = events.onMouseDown.enable,
+            mousedownMode = events.onMouseDown.mode,
+            mouseupEnabled = events.onMouseUp.enable,
+            mouseupMode = events.onMouseUp.mode;
+    
         if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
             this._hoverAttract();
-        } else if (clickEnabled && isInArray(ClickMode.attract, clickMode)) {
-            this._clickAttract();
+        } else if (mousedownEnabled && isInArray(ClickMode.attract, mousedownMode)) {
+            this._mousedownAttract();
+        } else if (mouseupEnabled && isInArray(ClickMode.attract, mouseupMode)) {
+            this._mouseupAttract();
         }
     }
 
