@@ -77,25 +77,21 @@ export interface IOptions {
     /**
      * The particles interaction options
      */
-    interactivity: IInteractivity;
-
-    /**
-     * Particles inserted at load time with a specific position
-     */
-    manualParticles: IManualParticle[];
-
-    name?: string;
-
+    export interface IOpacityAnimation {
+        enable: boolean;
+        speed: number;
+        sync: boolean;
+        easing?: string;
+    }
     /**
      * The particles options
      */
-    particles: IParticlesOptions;
-
-    /**
-     * Enables or disabled the animation on window blur
-     */
-    pauseOnBlur: boolean;
-
+    export interface ISizeAnimation {
+        enable: boolean;
+        speed: number;
+        sync: boolean;
+        easing?: string;
+    }
     /**
      * Enable or disabled the animation if the element is outside the viewport
      */
