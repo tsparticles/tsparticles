@@ -140,4 +140,9 @@ export interface IOptions {
      * The maximum layers used in the z-axis
      */
     zLayers: number;
+
+    /**
+     * The fluid options
+     */
+    fluid?: FluidOptions;
 }
