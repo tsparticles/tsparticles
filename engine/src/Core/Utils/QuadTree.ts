@@ -60,7 +60,7 @@ export class QuadTree {
      * @returns true if the point is added to the instance or one of its subtrees, false if it's not
      */
     insert(point: Point): boolean {
-        if (!this.rectangle.contains(point.position)) {
+        if (!this.rectangle.contains({ x: point.position.x, y: point.position.y, width: point.particle.width, height: point.particle.height })) {
             return false;
         }
 
@@ -93,8 +93,8 @@ export class QuadTree {
 
         for (const p of this._points) {
             if (
-                !range.contains(p.position) &&
-                getDistance(range.position, p.position) > p.particle.getRadius() &&
+                !range.contains({ x: p.position.x, y: p.position.y, width: p.particle.width, height: p.particle.height }) &&
+                getDistance(range.position, p.position) > Math.max(p.particle.width, p.particle.height) &&
                 (!check || check(p.particle))
             ) {
                 continue;
@@ -148,8 +148,8 @@ export class QuadTree {
                     new Rectangle(
                         x + (width / 2) * (i % 2),
                         y + (height / 2) * (Math.round(i / 2) - (i % 2)),
-                        width / 2,
-                        height / 2,
+                        this._points[i].particle.width / 2,
+                        this._points[i].particle.height / 2,
                     ),
                     capacity,
                 ),
