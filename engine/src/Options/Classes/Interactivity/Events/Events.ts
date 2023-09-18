@@ -1,5 +1,6 @@
 import { executeOnSingleOrMultiple, isBoolean } from "../../../../Utils/Utils";
-import { ClickEvent } from "./ClickEvent";
+import { MouseDownEvent } from "./MouseDownEvent";
+import { MouseUpEvent } from "./MouseUpEvent";
 import { DivEvent } from "./DivEvent";
 import { HoverEvent } from "./HoverEvent";
 import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents";
@@ -12,13 +13,15 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
  * [[include:Options/Interactivity/Events.md]]
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
-    onClick;
+    onMouseDown;
+    onMouseUp;
     onDiv: SingleOrMultiple<DivEvent>;
     onHover;
     resize;
 
     constructor() {
-        this.onClick = new ClickEvent();
+        this.onMouseDown = new MouseDownEvent();
+        this.onMouseUp = new MouseUpEvent();
         this.onDiv = new DivEvent();
         this.onHover = new HoverEvent();
         this.resize = new ResizeEvent();
@@ -76,23 +79,24 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         if (!data) {
             return;
         }
-
-        this.onClick.load(data.onClick ?? data.onclick);
-
+    
+        this.onMouseDown.load(data.onMouseDown ?? data.onmousedown);
+        this.onMouseUp.load(data.onMouseUp ?? data.onmouseup);
+    
         const onDiv = data.onDiv ?? data.ondiv;
-
+    
         if (onDiv !== undefined) {
             this.onDiv = executeOnSingleOrMultiple(onDiv, (t) => {
                 const tmp = new DivEvent();
-
+    
                 tmp.load(t);
-
+    
                 return tmp;
             });
         }
-
+    
         this.onHover.load(data.onHover ?? data.onhover);
-
+    
         if (isBoolean(data.resize)) {
             this.resize.enable = data.resize;
         } else {
