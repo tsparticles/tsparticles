@@ -201,7 +201,7 @@ export class Canvas {
                 colorStyles,
                 backgroundMask: options.backgroundMask.enable,
                 composite: options.backgroundMask.composite,
-                radius: radius * (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
+                width: particle.width * (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
                 opacity: zOpacity,
                 shadow: particle.options.shadow,
                 transform,
@@ -218,7 +218,7 @@ export class Canvas {
      * @param delta - the frame delta time values
      */
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        this.draw((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
+        this.draw((ctx) => drawParticlePlugin(ctx, plugin, { ...particle, width: particle.width, height: particle.height }, delta));
     }
 
     /**
