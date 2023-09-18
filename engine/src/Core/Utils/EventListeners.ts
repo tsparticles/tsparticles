@@ -123,23 +123,28 @@ export class EventListeners {
     private readonly _doMouseTouchClick: (e: Event) => void = (e) => {
         const container = this.container,
             options = container.actualOptions;
-
+    
         if (this._canPush) {
             const mouseInteractivity = container.interactivity.mouse,
                 mousePos = mouseInteractivity.position;
-
+    
             if (!mousePos) {
                 return;
             }
-
-            mouseInteractivity.clickPosition = { ...mousePos };
-            mouseInteractivity.clickTime = new Date().getTime();
-
+    
+            if (e.type === "mousedown") {
+                mouseInteractivity.downPosition = { ...mousePos };
+                mouseInteractivity.downTime = new Date().getTime();
+            } else if (e.type === "mouseup") {
+                mouseInteractivity.upPosition = { ...mousePos };
+                mouseInteractivity.upTime = new Date().getTime();
+            }
+    
             const onClick = options.interactivity.events.onClick;
-
+    
             executeOnSingleOrMultiple(onClick.mode, (mode) => this.container.handleClickMode(mode));
         }
-
+    
         if (e.type === "touchend") {
             setTimeout(() => this._mouseTouchFinish(), 500);
         }
@@ -245,6 +250,8 @@ export class EventListeners {
             manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
         } else {
             manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
+            manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
+            manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
             manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
             manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
         }
@@ -399,61 +406,71 @@ export class EventListeners {
         }
 
         if (!handled) {
-            this._doMouseTouchClick(e);
-        }
-
-        mouse.clicking = false;
-    };
-
-    /**
-     * Mouse/Touch event finish
-     */
-    private readonly _mouseTouchFinish: () => void = () => {
-        const interactivity = this.container.interactivity;
-
-        if (!interactivity) {
-            return;
-        }
-
-        const mouse = interactivity.mouse;
-
-        delete mouse.position;
-        delete mouse.clickPosition;
-        delete mouse.downPosition;
-
-        interactivity.status = mouseLeaveEvent;
-
-        mouse.inside = false;
-        mouse.clicking = false;
-    };
-
-    /**
-     * Mouse/Touch move event
-     * @param e - the event arguments
-     */
-    private readonly _mouseTouchMove: (e: Event) => void = (e) => {
-        const container = this.container,
-            options = container.actualOptions,
-            interactivity = container.interactivity,
-            canvasEl = container.canvas.element;
-
-        if (!interactivity || !interactivity.element) {
-            return;
-        }
-
-        interactivity.mouse.inside = true;
-
-        let pos: ICoordinates | undefined;
-
-        if (e.type.startsWith("pointer")) {
-            this._canPush = true;
-
-            const mouseEvent = e as MouseEvent;
-
-            if (interactivity.element === window) {
-                if (canvasEl) {
-                    const clientRect = canvasEl.getBoundingClientRect();
-
+            private readonly _doMouseTouchClick = (e: Event): void => {
+                const container = this.container,
+                    options = container.actualOptions,
+                    mouse = container.interactivity.mouse,
+                    events = options.interactivity.events,
+                    pushNb = events.onMouseDown.mode === ClickMode.push ? events.onMouseDown.quantity : 0,
+                    pos = mouse.position;
+            
+                if (!pos) {
+                    return;
+                }
+            
+                const radius = (events.onMouseDown.mode === ClickMode.bubble || events.onMouseDown.mode === ClickMode.repulse)
+                    ? events.modes.bubble.distance
+                    : (events.onMouseDown.mode === ClickMode.attract ? events.modes.attract.distance : pushNb);
+            
+                if (radius === undefined) {
+                    return;
+                }
+            
+                const area = container.retina.bubbleModeDistance;
+            
+                /* mouse click event */
+                const query = container.particles.quadTree.queryCircle(pos, area);
+            
+                for (const particle of query) {
+                    if (events.onMouseDown.mode === ClickMode.push) {
+                        container.particles.addParticle(pos, undefined, pushNb);
+                    } else if (events.onMouseDown.mode === ClickMode.remove) {
+                        container.particles.removeParticle(particle);
+                    } else if (events.onMouseDown.mode === ClickMode.bubble) {
+                        container.bubble.clicking = true;
+                    } else if (events.onMouseDown.mode === ClickMode.repulse) {
+                        container.repulse.clicking = true;
+                        container.repulse.count = 0;
+                        container.repulse.finish = false;
+                        setTimeout(() => {
+                            if (!container.destroyed) {
+                                container.repulse.clicking = false;
+                            }
+                        }, events.modes.repulse.duration * 1000);
+                    } else if (events.onMouseDown.mode === ClickMode.attract) {
+                        container.attract.clicking = true;
+                        container.attract.count = 0;
+                        container.attract.finish = false;
+                        setTimeout(() => {
+                            if (!container.destroyed) {
+                                container.attract.clicking = false;
+                            }
+                        }, events.modes.attract.duration * 1000);
+                    }
+                }
+            
+                if (events.onMouseUp.mode === ClickMode.push) {
+                    container.particles.addParticle(pos, undefined, pushNb);
+                } else if (events.onMouseUp.mode === ClickMode.remove) {
+                    container.particles.removeParticle(particle);
+                } else if (events.onMouseUp.mode === ClickMode.bubble) {
+                    container.bubble.clicking = false;
+                } else if (events.onMouseUp.mode === ClickMode.repulse) {
+                    container.repulse.clicking = false;
+                } else if (events.onMouseUp.mode === ClickMode.attract) {
+                    container.attract.clicking = false;
+                }
+            };
                     pos = {
                         x: mouseEvent.clientX - clientRect.left,
                         y: mouseEvent.clientY - clientRect.top,
@@ -507,39 +524,20 @@ export class EventListeners {
         }
 
         interactivity.mouse.position = pos;
-        interactivity.status = mouseMoveEvent;
-    };
-
-    private readonly _touchEnd: (e: Event) => void = (e) => {
-        const evt = e as TouchEvent,
-            touches = Array.from(evt.changedTouches);
-
-        for (const touch of touches) {
-            this._touches.delete(touch.identifier);
-        }
-
-        this._mouseTouchFinish();
-    };
-
-    private readonly _touchEndClick: (e: Event) => void = (e) => {
-        const evt = e as TouchEvent,
-            touches = Array.from(evt.changedTouches);
-
-        for (const touch of touches) {
-            this._touches.delete(touch.identifier);
-        }
-
-        this._mouseTouchClick(e);
-    };
-
-    private readonly _touchStart: (e: Event) => void = (e) => {
-        const evt = e as TouchEvent,
-            touches = Array.from(evt.changedTouches);
-
-        for (const touch of touches) {
-            this._touches.set(touch.identifier, performance.now());
-        }
-
-        this._mouseTouchMove(e);
-    };
-}
+        private readonly _manageInteractivityListeners = (): void => {
+            const container = this.container,
+                options = container.actualOptions,
+                detectType = options.interactivity.detectsOn,
+                mouseLeaveEvent = Constants.mouseLeaveEvent,
+                mouseDownEvent = Constants.mouseDownEvent,
+                mouseUpEvent = Constants.mouseUpEvent,
+                resizeEvent = Constants.resizeEvent,
+                visibilityChangeEvent = Constants.visibilityChangeEvent,
+                touchStartEvent = Constants.touchStartEvent,
+                touchMoveEvent = Constants.touchMoveEvent,
+                touchEndEvent = Constants.touchEndEvent,
+                touchCancelEvent = Constants.touchCancelEvent,
+                touchEndClickEvent = Constants.touchEndClickEvent,
+                mouseMoveEvent = Constants.mouseMoveEvent,
+                mouseDownEvent = Constants.mouseDownEvent,
+                mouseUpEvent = Constants.mouseUpEvent;
