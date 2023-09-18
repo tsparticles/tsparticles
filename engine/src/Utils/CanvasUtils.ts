@@ -8,6 +8,7 @@ import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams
 import type { IHsl } from "../Core/Interfaces/Colors";
 import type { Particle } from "../Core/Particle";
 import { getStyleFromRgb } from "./ColorUtils";
+import { EasingFunctions } from "./EasingFunctions";
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -192,7 +193,15 @@ export function drawShape(
         return;
     }
 
-    drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+    const sizeEasing = EasingFunctions[particle.options.size.animation.easing];
+    const sizeProgress = particle.size.time / particle.size.duration;
+    const easedSize = radius * sizeEasing(sizeProgress);
+
+    const opacityEasing = EasingFunctions[particle.options.opacity.animation.easing];
+    const opacityProgress = particle.opacity.time / particle.opacity.duration;
+    const easedOpacity = opacity * opacityEasing(opacityProgress);
+
+    drawer.draw(context, particle, easedSize, easedOpacity, delta, container.retina.pixelRatio);
 }
 
 /**
@@ -222,7 +231,15 @@ export function drawShapeAfterEffect(
         return;
     }
 
-    drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+    const sizeEasing = EasingFunctions[particle.options.size.animation.easing];
+    const sizeProgress = particle.size.time / particle.size.duration;
+    const easedSize = radius * sizeEasing(sizeProgress);
+
+    const opacityEasing = EasingFunctions[particle.options.opacity.animation.easing];
+    const opacityProgress = particle.opacity.time / particle.opacity.duration;
+    const easedOpacity = opacity * opacityEasing(opacityProgress);
+
+    drawer.afterEffect(context, particle, easedSize, easedOpacity, delta, container.retina.pixelRatio);
 }
 
 /**
