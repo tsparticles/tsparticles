@@ -8,6 +8,7 @@ import {
     initParticleNumericAnimationValue,
 } from "tsparticles-engine";
 import { updateOpacity } from "./Utils";
+import { EasingFunctions } from "tsparticles-engine/Utils/EasingFunctions";
 
 /**
  * The opacity updater, it manages the opacity on each particle
@@ -78,7 +79,12 @@ export class OpacityUpdater implements IParticleUpdater {
         if (!this.isEnabled(particle)) {
             return;
         }
-
-        updateOpacity(particle, delta);
+    
+        const easing = EasingFunctions[particle.options.opacity.animation.easing];
+        const progress = particle.opacity.time / particle.opacity.duration;
+        const easedProgress = easing(progress);
+        const easedVelocity = particle.opacity.velocity * easedProgress;
+    
+        updateOpacity(particle, delta, easedVelocity);
     }
 }
