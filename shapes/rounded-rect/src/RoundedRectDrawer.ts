@@ -1,4 +1,4 @@
-import type { Container, IShapeDrawer } from "@tsparticles/engine";
+import type { Container, IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 import type { IRoundedRectData } from "./IRoundedRectData.js";
 import type { RadiusInfo } from "./RadiusInfo.js";
 import type { RectInfo } from "./RectInfo.js";
@@ -31,9 +31,10 @@ const fixFactor = Math.sqrt(2),
         ctx.quadraticCurveTo(x, y, x + radius.topLeft, y);
     };
 
-export class RoundedRectDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: RoundedParticle, radius: number): void {
-        const fixedRadius = radius / fixFactor,
+export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
+    draw(data: IShapeDrawData<RoundedParticle>): void {
+        const { context, particle, radius } = data,
+            fixedRadius = radius / fixFactor,
             fixedDiameter = fixedRadius * 2,
             borderRadius = particle.borderRadius ?? 5;
 

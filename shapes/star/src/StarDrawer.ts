@@ -1,12 +1,19 @@
-import { type Container, type IShapeDrawer, type Particle, getRangeValue } from "@tsparticles/engine";
+import {
+    type Container,
+    type IShapeDrawData,
+    type IShapeDrawer,
+    type Particle,
+    getRangeValue,
+} from "@tsparticles/engine";
 import type { IStarShape } from "./IStarShape.js";
 import type { StarParticle } from "./StarParticle.js";
 
 /**
  */
-export class StarDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: StarParticle, radius: number): void {
-        const sides = particle.sides,
+export class StarDrawer implements IShapeDrawer<StarParticle> {
+    draw(data: IShapeDrawData<StarParticle>): void {
+        const { context, particle, radius } = data,
+            sides = particle.sides,
             inset = particle.starInset ?? 2;
 
         context.moveTo(0, 0 - radius);

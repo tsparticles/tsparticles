@@ -1,4 +1,4 @@
-import type { IParticle, IShapeDrawer } from "@tsparticles/engine";
+import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 
 interface ILineData {
     cap?: CanvasLineCap;
@@ -7,8 +7,9 @@ interface ILineData {
 /**
  */
 export class LineDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: IParticle, radius: number): void {
-        const shapeData = particle.shapeData as ILineData;
+    draw(data: IShapeDrawData): void {
+        const { context, particle, radius } = data,
+            shapeData = particle.shapeData as ILineData;
 
         context.moveTo(-radius / 2, 0);
         context.lineTo(radius / 2, 0);

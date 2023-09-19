@@ -6,9 +6,9 @@ import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
-import type { IParticle } from "../Core/Interfaces/IParticle.js";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
 import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
+import type { Particle } from "../Core/Particle.js";
 
 const randomColorValue = "random",
     midColorValue = "mid",
@@ -355,7 +355,7 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
  * @param linkColor -
  * @returns the link color calculated using the two linked particles
  */
-export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
+export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb): IRgb | undefined {
     if (linkColor === randomColorValue) {
         return getRandomRgbColor();
     } else if (linkColor === midColorValue) {

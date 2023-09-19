@@ -1,6 +1,6 @@
-import type { IParticle } from "@tsparticles/engine";
+import type { Particle } from "@tsparticles/engine";
 
-export type PolygonPathParticle = IParticle & {
+export type PolygonPathParticle = Particle & {
     hexDirection?: number;
     hexSpeed?: number;
     hexStep?: number;

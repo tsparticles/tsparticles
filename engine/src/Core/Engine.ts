@@ -2,21 +2,8 @@
  * Engine class for creating the singleton on window.
  * It's a singleton class for initializing {@link Container} instances
  */
-import type {
-    ShapeDrawerAfterEffectFunction,
-    ShapeDrawerDestroyFunction,
-    ShapeDrawerDrawFunction,
-    ShapeDrawerInitFunction,
-} from "../Types/ShapeDrawerFunctions.js";
 import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
-import {
-    executeOnSingleOrMultiple,
-    getLogger,
-    isBoolean,
-    isFunction,
-    isString,
-    itemFromSingleOrMultiple,
-} from "../Utils/Utils.js";
+import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -210,16 +197,8 @@ export class Engine {
         return __VERSION__;
     }
 
-    addConfig(nameOrConfig: string | ISourceOptions, config?: ISourceOptions): void {
-        if (isString(nameOrConfig)) {
-            if (config) {
-                config.name = nameOrConfig;
-
-                this._configs.set(nameOrConfig, config);
-            }
-        } else {
-            this._configs.set(nameOrConfig.name ?? "default", nameOrConfig);
-        }
+    addConfig(config: ISourceOptions): void {
+        this._configs.set(config.name ?? "default", config);
     }
 
     /**
@@ -323,63 +302,14 @@ export class Engine {
      * addShape adds shape to tsParticles, it will be available to all future instances created
      * @param shape - the shape name
      * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
-     * @param initOrRefresh - Optional: the shape drawer init function, used only if the drawer parameter is a function
-     * @param afterEffectOrRefresh - Optional: the shape drawer after effect function, used only if the drawer parameter is a function
-     * @param destroyOrRefresh - Optional: the shape drawer destroy function, used only if the drawer parameter is a function
      * @param refresh - should refresh the dom after adding the shape
      */
-    async addShape(
-        shape: SingleOrMultiple<string>,
-        drawer: IShapeDrawer | ShapeDrawerDrawFunction,
-        initOrRefresh?: ShapeDrawerInitFunction | boolean,
-        afterEffectOrRefresh?: ShapeDrawerAfterEffectFunction | boolean,
-        destroyOrRefresh?: ShapeDrawerDestroyFunction | boolean,
-        refresh = true,
-    ): Promise<void> {
-        let customDrawer: IShapeDrawer;
-
-        let realRefresh = refresh,
-            realInit: ShapeDrawerInitFunction | undefined,
-            realAfterEffect: ShapeDrawerAfterEffectFunction | undefined,
-            realDestroy: ShapeDrawerDestroyFunction | undefined;
-
-        if (isBoolean(initOrRefresh)) {
-            realRefresh = initOrRefresh;
-            realInit = undefined;
-        } else {
-            realInit = initOrRefresh;
-        }
-
-        if (isBoolean(afterEffectOrRefresh)) {
-            realRefresh = afterEffectOrRefresh;
-            realAfterEffect = undefined;
-        } else {
-            realAfterEffect = afterEffectOrRefresh;
-        }
-
-        if (isBoolean(destroyOrRefresh)) {
-            realRefresh = destroyOrRefresh;
-            realDestroy = undefined;
-        } else {
-            realDestroy = destroyOrRefresh;
-        }
-
-        if (isFunction(drawer)) {
-            customDrawer = {
-                afterEffect: realAfterEffect,
-                destroy: realDestroy,
-                draw: drawer,
-                init: realInit,
-            };
-        } else {
-            customDrawer = drawer;
-        }
-
+    async addShape(shape: SingleOrMultiple<string>, drawer: IShapeDrawer, refresh = true): Promise<void> {
         executeOnSingleOrMultiple(shape, (type) => {
-            !this.getShapeDrawer(type) && this.drawers.set(type, customDrawer);
+            !this.getShapeDrawer(type) && this.drawers.set(type, drawer);
         });
 
-        await this.refresh(realRefresh);
+        await this.refresh(refresh);
     }
 
     clearPlugins(container: Container): void {

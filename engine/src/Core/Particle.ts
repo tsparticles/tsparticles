@@ -25,7 +25,6 @@ import type { Engine } from "./Engine.js";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
-import type { IParticle } from "./Interfaces/IParticle.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
@@ -95,7 +94,7 @@ const fixOutMode = (data: FixOutModeParams): void => {
 /**
  * The single particle object
  */
-export class Particle implements IParticle {
+export class Particle {
     /**
      * Particles back color
      */

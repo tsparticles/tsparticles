@@ -1,11 +1,13 @@
-import { type Container, type IShapeDrawer, isObject } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, isObject } from "@tsparticles/engine";
 import type { CircleParticle } from "./CircleParticle.js";
 import type { ICircleShapeData } from "./ICircleShapeData.js";
 
 /**
  */
-export class CircleDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: CircleParticle, radius: number): void {
+export class CircleDrawer implements IShapeDrawer<CircleParticle> {
+    draw(data: IShapeDrawData<CircleParticle>): void {
+        const { context, particle, radius } = data;
+
         if (!particle.circleRange) {
             particle.circleRange = { min: 0, max: Math.PI * 2 };
         }

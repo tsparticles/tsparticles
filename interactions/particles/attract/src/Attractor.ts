@@ -1,10 +1,4 @@
-import {
-    type Container,
-    type IParticle,
-    type Particle,
-    ParticlesInteractorBase,
-    getDistances,
-} from "@tsparticles/engine";
+import { type Container, type Particle, ParticlesInteractorBase, getDistances } from "@tsparticles/engine";
 
 /**
  */
@@ -21,7 +15,7 @@ export class Attractor extends ParticlesInteractorBase {
         // do nothing
     }
 
-    async interact(p1: IParticle): Promise<void> {
+    async interact(p1: Particle): Promise<void> {
         const container = this.container,
             distance = p1.retina.attractDistance ?? container.retina.attractDistance,
             pos1 = p1.getPosition(),

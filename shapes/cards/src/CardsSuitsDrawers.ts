@@ -1,26 +1,26 @@
-import type { IParticle, IShapeDrawer } from "@tsparticles/engine";
+import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 import { drawPath, paths } from "./Utils.js";
 
 export class SpadeDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, _particle: IParticle, radius: number): void {
-        drawPath(context, radius, paths.spade);
+    draw(data: IShapeDrawData): void {
+        drawPath(data, paths.spade);
     }
 }
 
 export class HeartDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, _particle: IParticle, radius: number): void {
-        drawPath(context, radius, paths.heart);
+    draw(data: IShapeDrawData): void {
+        drawPath(data, paths.heart);
     }
 }
 
 export class DiamondDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, _particle: IParticle, radius: number): void {
-        drawPath(context, radius, paths.diamond);
+    draw(data: IShapeDrawData): void {
+        drawPath(data, paths.diamond);
     }
 }
 
 export class ClubDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, _particle: IParticle, radius: number): void {
-        drawPath(context, radius, paths.club);
+    draw(data: IShapeDrawData): void {
+        drawPath(data, paths.club);
     }
 }

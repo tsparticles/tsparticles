@@ -1,7 +1,9 @@
-import type { IParticle, IShapeDrawer } from "@tsparticles/engine";
+import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 
 export class HeartDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, _particle: IParticle, radius: number): void {
+    draw(data: IShapeDrawData): void {
+        const { context, radius } = data;
+
         const x = -radius,
             y = -radius;
 

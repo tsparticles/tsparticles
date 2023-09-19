@@ -1,5 +1,6 @@
 import {
     type Container,
+    type IShapeDrawData,
     type IShapeDrawer,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
@@ -10,9 +11,10 @@ import {
 import type { IMultilineTextShape } from "./IMultilineTextShape.js";
 import type { MultilineTextParticle } from "./MultilineTextParticle.js";
 
-export class MultilineTextDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: MultilineTextParticle, radius: number, opacity: number): void {
-        const character = particle.shapeData as IMultilineTextShape;
+export class MultilineTextDrawer implements IShapeDrawer<MultilineTextParticle> {
+    draw(data: IShapeDrawData<MultilineTextParticle>): void {
+        const { particle, context, radius, opacity } = data,
+            character = particle.shapeData as IMultilineTextShape;
 
         if (character === undefined) {
             return;

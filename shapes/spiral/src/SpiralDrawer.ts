@@ -1,9 +1,11 @@
-import { type Container, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { ISpiralData } from "./ISpiralData.js";
 import type { SpiralParticle } from "./SpiralParticle.js";
 
-export class SpiralDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: SpiralParticle, radius: number): void {
+export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
+    draw(data: IShapeDrawData<SpiralParticle>): void {
+        const { context, particle, radius } = data;
+
         if (
             particle.spiralInnerRadius === undefined ||
             particle.spiralLineSpacing === undefined ||

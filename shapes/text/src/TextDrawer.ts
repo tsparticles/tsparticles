@@ -1,5 +1,6 @@
 import {
     type Container,
+    type IShapeDrawData,
     type IShapeDrawer,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
@@ -14,9 +15,10 @@ export const validTypes = ["text", "character", "char"];
 
 /**
  */
-export class TextDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: TextParticle, radius: number, opacity: number): void {
-        const character = particle.shapeData as ICharacterShape;
+export class TextDrawer implements IShapeDrawer<TextParticle> {
+    draw(data: IShapeDrawData<TextParticle>): void {
+        const { context, particle, radius, opacity } = data,
+            character = particle.shapeData as ICharacterShape;
 
         if (character === undefined) {
             return;

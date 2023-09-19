@@ -1,5 +1,5 @@
-import type { IParticle } from "@tsparticles/engine";
+import type { Particle } from "@tsparticles/engine";
 
-export interface MultilineTextParticle extends IParticle {
+export interface MultilineTextParticle extends Particle {
     text?: string;
 }

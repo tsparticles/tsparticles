@@ -1,6 +1,7 @@
 import {
     type Container,
     type ICoordinates,
+    type IShapeDrawData,
     type IShapeDrawer,
     type Particle,
     getRangeValue,
@@ -48,8 +49,10 @@ function roundedPath(context: CanvasRenderingContext2D, path: ICoordinates[], ra
 
 /**
  */
-export class RoundedPolygonDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: RoundedParticle, radius: number): void {
+export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
+    draw(data: IShapeDrawData<RoundedParticle>): void {
+        const { context, particle, radius } = data;
+
         roundedPath(context, polygon(particle.sides, radius), particle.borderRadius ?? 5);
     }
 

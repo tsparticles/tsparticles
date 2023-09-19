@@ -17,11 +17,11 @@ import type { DivMode } from "../Enums/Modes/DivMode.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
-import type { IParticle } from "../Core/Interfaces/IParticle.js";
 import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
+import type { Particle } from "../Core/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
@@ -409,7 +409,7 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
  * @param p - the particle to get the circle bounds data for
  * @returns the circle bounce data for the given particle
  */
-export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
+export function circleBounceDataFromParticle(p: Particle): ICircleBouncer {
     return {
         position: p.getPosition(),
         radius: p.getRadius(),
@@ -455,7 +455,7 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
  * @param particle - the particle to bounce
  * @param divBounds - the div bounds to bounce
  */
-export function rectBounce(particle: IParticle, divBounds: IBounds): void {
+export function rectBounce(particle: Particle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
         size = particle.getRadius(),
         bounds = calculateBounds(pPos, size),

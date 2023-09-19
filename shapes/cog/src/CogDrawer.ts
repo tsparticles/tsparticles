@@ -1,9 +1,11 @@
-import { type Container, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { CogParticle } from "./CogParticle.js";
 import type { ICogData } from "./ICogData.js";
 
-export class CogDrawer implements IShapeDrawer {
-    afterEffect(ctx: CanvasRenderingContext2D, particle: CogParticle, radius: number): void {
+export class CogDrawer implements IShapeDrawer<CogParticle> {
+    afterEffect(data: IShapeDrawData<CogParticle>): void {
+        const { context, particle, radius } = data;
+
         if (
             particle.cogHoleRadius === undefined ||
             particle.cogInnerRadius === undefined ||
@@ -17,18 +19,20 @@ export class CogDrawer implements IShapeDrawer {
         const pi2 = 2 * Math.PI,
             holeRadius = (radius * particle.cogHoleRadius) / 100;
 
-        ctx.globalCompositeOperation = "destination-out";
+        context.globalCompositeOperation = "destination-out";
 
-        ctx.beginPath();
-        ctx.moveTo(holeRadius, 0);
-        ctx.arc(0, 0, holeRadius, 0, pi2);
-        ctx.closePath();
-        ctx.fill();
+        context.beginPath();
+        context.moveTo(holeRadius, 0);
+        context.arc(0, 0, holeRadius, 0, pi2);
+        context.closePath();
+        context.fill();
 
-        ctx.globalCompositeOperation = "source-over";
+        context.globalCompositeOperation = "source-over";
     }
 
-    draw(ctx: CanvasRenderingContext2D, particle: CogParticle, radius: number): void {
+    draw(data: IShapeDrawData<CogParticle>): void {
+        const { context, particle, radius } = data;
+
         if (
             particle.cogHoleRadius === undefined ||
             particle.cogInnerRadius === undefined ||
@@ -49,23 +53,23 @@ export class CogDrawer implements IShapeDrawer {
             toggle = false; // notch radius level (i/o)
 
         // move to starting point
-        ctx.moveTo(radius * Math.cos(taperAO), radius * Math.sin(taperAO));
+        context.moveTo(radius * Math.cos(taperAO), radius * Math.sin(taperAO));
 
         // loop
         for (; a <= pi2; a += angle) {
             // draw inner to outer line
             if (toggle) {
-                ctx.lineTo(innerRadius * Math.cos(a - taperAI), innerRadius * Math.sin(a - taperAI));
-                ctx.lineTo(radius * Math.cos(a + taperAO), radius * Math.sin(a + taperAO));
+                context.lineTo(innerRadius * Math.cos(a - taperAI), innerRadius * Math.sin(a - taperAI));
+                context.lineTo(radius * Math.cos(a + taperAO), radius * Math.sin(a + taperAO));
             }
 
             // draw outer to inner line
             else {
-                ctx.lineTo(
+                context.lineTo(
                     radius * Math.cos(a - taperAO), // outer line
                     radius * Math.sin(a - taperAO),
                 );
-                ctx.lineTo(
+                context.lineTo(
                     innerRadius * Math.cos(a + taperAI), // inner line
                     innerRadius * Math.sin(a + taperAI),
                 );

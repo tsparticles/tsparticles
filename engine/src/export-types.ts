@@ -17,7 +17,6 @@ export * from "./Core/Interfaces/IInteractor.js";
 export * from "./Core/Interfaces/ILoadParams.js";
 export * from "./Core/Interfaces/IMouseData.js";
 export * from "./Core/Interfaces/IMovePathGenerator.js";
-export * from "./Core/Interfaces/IParticle.js";
 export * from "./Core/Interfaces/IParticleColorStyle.js";
 export * from "./Core/Interfaces/IParticleHslAnimation.js";
 export * from "./Core/Interfaces/IParticleLife.js";
@@ -111,7 +110,6 @@ export * from "./Types/PathOptions.js";
 export * from "./Types/RangeValue.js";
 export * from "./Types/RecursivePartial.js";
 export * from "./Types/ShapeData.js";
-export * from "./Types/ShapeDrawerFunctions.js";
 export * from "./Types/SingleOrMultiple.js";
 
 export type { EventListeners } from "./Core/Utils/EventListeners.js";

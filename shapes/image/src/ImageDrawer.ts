@@ -1,4 +1,4 @@
-import { type Container, type IDelta, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
 import type { IImage, IParticleImage, ImageParticle } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod.js";
@@ -8,7 +8,7 @@ import { replaceImageColor } from "./Utils.js";
 /**
  * Particles Image Drawer
  */
-export class ImageDrawer implements IShapeDrawer {
+export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     private readonly _engine: ImageEngine;
 
     /**
@@ -33,20 +33,11 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * The draw image method
-     * @param context - the context used for drawing
-     * @param particle - the particle to be drawn
-     * @param radius - the particle radius
-     * @param opacity - the particle opacity
-     * @param delta - delta time since last draw
+     * @param data - the shape draw data
      */
-    draw(
-        context: CanvasRenderingContext2D,
-        particle: ImageParticle,
-        radius: number,
-        opacity: number,
-        delta: IDelta,
-    ): void {
-        const image = particle.image,
+    draw(data: IShapeDrawData<ImageParticle>): void {
+        const { context, radius, particle, opacity, delta } = data,
+            image = particle.image,
             element = image?.element;
 
         if (!image) {

@@ -145,7 +145,9 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.strokeStyle = colorStyles.stroke;
     }
 
-    drawShape(container, context, particle, radius, opacity, delta);
+    const drawData = { container, context, particle, radius, opacity, delta };
+
+    drawShape(drawData);
 
     if (strokeWidth > 0) {
         context.stroke();
@@ -159,29 +161,51 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.fill();
     }
 
-    drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
+    drawShapeAfterEffect(drawData);
 
     context.globalCompositeOperation = "source-over";
     context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
+type DrawShapeData = {
+    /**
+     * the container of the particle.
+     */
+    container: Container;
+
+    /**
+     * the canvas context.
+     */
+    context: CanvasRenderingContext2D;
+
+    /**
+     * this variable contains the delta between the current frame and the previous frame
+     */
+    delta: IDelta;
+
+    /**
+     * the opacity of the particle.
+     */
+    opacity: number;
+
+    /**
+     * the particle to draw.
+     */
+    particle: Particle;
+
+    /**
+     * the radius of the particle.
+     */
+    radius: number;
+};
+
 /**
  * Draws the particle shape using the plugin's shape renderer.
- * @param container - The container of the particle.
- * @param context - The canvas context.
- * @param particle - The particle to draw.
- * @param radius - The radius of the particle.
- * @param opacity - The opacity of the particle.
- * @param delta - this variable contains the delta between the current frame and the previous frame
+ * @param data - the function parameters.
  */
-export function drawShape(
-    container: Container,
-    context: CanvasRenderingContext2D,
-    particle: Particle,
-    radius: number,
-    opacity: number,
-    delta: IDelta,
-): void {
+export function drawShape(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, delta } = data;
+
     if (!particle.shape) {
         return;
     }
@@ -192,26 +216,16 @@ export function drawShape(
         return;
     }
 
-    drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+    drawer.draw({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
 }
 
 /**
  * Draws the particle effect after the plugin's shape renderer.
- * @param container - The container of the particle.
- * @param context - The canvas context.
- * @param particle - The particle to draw.
- * @param radius - The radius of the particle.
- * @param opacity - The opacity of the particle.
- * @param delta - this variable contains the delta between the current frame and the previous frame
+ * @param data - the function parameters.
  */
-export function drawShapeAfterEffect(
-    container: Container,
-    context: CanvasRenderingContext2D,
-    particle: Particle,
-    radius: number,
-    opacity: number,
-    delta: IDelta,
-): void {
+export function drawShapeAfterEffect(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, delta } = data;
+
     if (!particle.shape) {
         return;
     }
@@ -222,7 +236,7 @@ export function drawShapeAfterEffect(
         return;
     }
 
-    drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+    drawer.afterEffect({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
 }
 
 /**
