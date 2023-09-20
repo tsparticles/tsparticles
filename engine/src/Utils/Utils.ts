@@ -177,6 +177,20 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 
 /**
  * @param callback -
+ * @returns the interaction observer, if supported
+ */
+export function safeIntersectionObserver(
+    callback: (records: IntersectionObserverEntry[]) => void,
+): IntersectionObserver | undefined {
+    if (isSsr() || typeof IntersectionObserver === "undefined") {
+        return;
+    }
+
+    return new IntersectionObserver(callback);
+}
+
+/**
+ * @param callback -
  * @returns the mutation observer, if supported
  */
 export function safeMutationObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {

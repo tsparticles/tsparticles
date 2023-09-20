@@ -6,8 +6,6 @@ import collisionsBounce from "./collisionsBounce.js";
 import collisionsDestroy from "./collisionsDestroy.js";
 import colorAnimation from "./colorAnimation.js";
 import connect from "./connect.js";
-import customPreset from "./customPreset.js";
-import customShape from "./customShape.js";
 
 export default {
     cards,
@@ -18,6 +16,4 @@ export default {
     collisionsDestroy,
     colorAnimation,
     connect,
-    customPreset,
-    customShape,
 };

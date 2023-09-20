@@ -1,3 +1,4 @@
+import { getLogger, safeIntersectionObserver } from "../Utils/Utils.js";
 import { Canvas } from "./Canvas.js";
 import type { ClickMode } from "../Enums/Modes/ClickMode.js";
 import type { Engine } from "./Engine.js";
@@ -15,7 +16,6 @@ import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
 import { errorPrefix } from "./Utils/Constants.js";
-import { getLogger } from "../Utils/Utils.js";
 import { getRangeValue } from "../Utils/NumberUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
 
@@ -89,6 +89,8 @@ export class Container {
      */
     fpsLimit;
 
+    readonly id;
+
     interactivity: IContainerInteractivity;
 
     /**
@@ -153,12 +155,9 @@ export class Container {
      * @param id - the id to identify this instance
      * @param sourceOptions - the options to load
      */
-    constructor(
-        engine: Engine,
-        readonly id: string,
-        sourceOptions?: ISourceOptions,
-    ) {
+    constructor(engine: Engine, id: string, sourceOptions?: ISourceOptions) {
         this._engine = engine;
+        this.id = Symbol(id);
         this.fpsLimit = 120;
         this.smooth = false;
         this._delay = 0;
@@ -191,11 +190,7 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-
-        if (typeof IntersectionObserver !== "undefined" && IntersectionObserver) {
-            this._intersectionObserver = new IntersectionObserver((entries) => this._intersectionManager(entries));
-        }
-
+        this._intersectionObserver = safeIntersectionObserver((entries) => this._intersectionManager(entries));
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 

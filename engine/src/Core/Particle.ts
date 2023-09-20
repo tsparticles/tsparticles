@@ -73,11 +73,40 @@ type FixOutModeParams = {
 };
 
 /**
+ *
+ * @param shape -
+ * @param shapeOptions -
+ * @param id -
+ * @param reduceDuplicates -
+ * @returns the shape data
+ */
+function loadShapeData(
+    shape: string,
+    shapeOptions: IShape,
+    id: number,
+    reduceDuplicates: boolean,
+): IShapeValues | undefined {
+    const shapeData = shapeOptions.options[shape];
+
+    if (!shapeData) {
+        return;
+    }
+
+    return deepExtend(
+        {
+            close: shapeOptions.close,
+            fill: shapeOptions.fill,
+        },
+        itemFromSingleOrMultiple(shapeData, id, reduceDuplicates),
+    ) as IShapeValues;
+}
+
+/**
  * fixes out mode, calling the given callback if needed
  * @internal
  * @param data -
  */
-const fixOutMode = (data: FixOutModeParams): void => {
+function fixOutMode(data: FixOutModeParams): void {
     if (!isInArray(data.outMode, data.checkModes)) {
         return;
     }
@@ -89,7 +118,7 @@ const fixOutMode = (data: FixOutModeParams): void => {
     } else if (data.coord < diameter) {
         data.setCb(data.radius);
     }
-};
+}
 
 /**
  * The single particle object
@@ -416,7 +445,7 @@ export class Particle {
             }
         }
 
-        this.shapeData = this._loadShapeData(shapeOptions, reduceDuplicates);
+        this.shapeData = loadShapeData(this.shape, shapeOptions, this.id, reduceDuplicates);
 
         particlesOptions.load(overrideOptions);
 
@@ -706,24 +735,5 @@ export class Particle {
 
         /* parallax */
         this.offset = Vector.origin;
-    };
-
-    private readonly _loadShapeData: (shapeOptions: IShape, reduceDuplicates: boolean) => IShapeValues | undefined = (
-        shapeOptions,
-        reduceDuplicates,
-    ) => {
-        const shapeData = shapeOptions.options[this.shape];
-
-        if (!shapeData) {
-            return;
-        }
-
-        return deepExtend(
-            {
-                close: shapeOptions.close,
-                fill: shapeOptions.fill,
-            },
-            itemFromSingleOrMultiple(shapeData, this.id, reduceDuplicates),
-        ) as IShapeValues;
     };
 }
