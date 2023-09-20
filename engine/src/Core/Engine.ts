@@ -8,6 +8,7 @@ import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
+import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
@@ -198,7 +199,11 @@ export class Engine {
     }
 
     addConfig(config: ISourceOptions): void {
-        this._configs.set(config.name ?? "default", config);
+        const name = config.name ?? "default";
+
+        this._configs.set(name, config);
+
+        this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name, config } });
     }
 
     /**
