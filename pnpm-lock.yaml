@@ -64,7 +64,7 @@ importers:
         version: 1.5.0(typedoc@0.25.1)
       typedoc-plugin-missing-exports:
         specifier: ^2.0.0
-        version: 2.0.1(typedoc@0.25.1)
+        version: 2.1.0(typedoc@0.25.1)
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
@@ -20591,10 +20591,10 @@ packages:
       typescript: 5.2.2
     dev: true
 
-  /typedoc-plugin-missing-exports@2.0.1(typedoc@0.25.1):
-    resolution: {integrity: sha512-+A78kT78uC0Dbv2EFB9RXHO3iywJ5x89jd4z0bLL7Z8DlOSQjJxhRHf8otXsHZbgRUWAuYqYMA9LzxfuSOc87A==}
+  /typedoc-plugin-missing-exports@2.1.0(typedoc@0.25.1):
+    resolution: {integrity: sha512-+1DhqZCEu7Vu5APnrqpPwl31D+hXpt1fV0Le9ycCRL1eLVdatdl6KVt4SEVwPxnEpKwgOn2dNX6I9+0F1aO2aA==}
     peerDependencies:
-      typedoc: 0.24.x
+      typedoc: 0.24.x || 0.25.x
     dependencies:
       typedoc: 0.25.1(typescript@5.0.4)
     dev: true
