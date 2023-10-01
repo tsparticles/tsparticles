@@ -3,8 +3,11 @@ import type { IRangedAnimation } from "../../IAnimation";
 
 /**
  */
+import { EasingType } from "../../../../Utils/EasingFunctions";
+
 export interface ISizeAnimation extends IRangedAnimation {
     destroy: DestroyType | keyof typeof DestroyType;
+    easing: EasingType;
 
     /**
      * @deprecated use the new minimumValue instead
