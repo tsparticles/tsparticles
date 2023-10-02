@@ -270,23 +270,27 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 },
             },
             rotate: {
-                value: {
-                    min: 0,
-                    max: 360,
-                },
+                value: actualOptions.flat
+                    ? 0
+                    : {
+                          min: 0,
+                          max: 360,
+                      },
                 direction: "random",
                 animation: {
-                    enable: true,
+                    enable: actualOptions.flat,
                     speed: 60,
                 },
             },
             tilt: {
                 direction: "random",
-                enable: true,
-                value: {
-                    min: 0,
-                    max: 360,
-                },
+                enable: actualOptions.flat,
+                value: actualOptions.flat
+                    ? 0
+                    : {
+                          min: 0,
+                          max: 360,
+                      },
                 animation: {
                     enable: true,
                     speed: 60,
@@ -297,7 +301,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                     enable: true,
                     value: 25,
                 },
-                enable: true,
+                enable: actualOptions.flat,
                 speed: {
                     min: 15,
                     max: 25,
@@ -305,7 +309,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             },
             wobble: {
                 distance: 30,
-                enable: true,
+                enable: actualOptions.flat,
                 speed: {
                     min: -15,
                     max: 15,

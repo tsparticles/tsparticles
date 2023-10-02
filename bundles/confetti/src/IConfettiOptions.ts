@@ -37,6 +37,11 @@ export interface IConfettiOptions {
     /**
      *
      */
+    flat: boolean;
+
+    /**
+     *
+     */
     gravity: number;
 
     /**
