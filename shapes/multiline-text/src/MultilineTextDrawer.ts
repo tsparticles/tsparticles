@@ -42,13 +42,13 @@ export class MultilineTextDrawer implements IShapeDrawer<MultilineTextParticle> 
             font = character.font ?? "Verdana",
             fill = particle.fill;
 
-        context.font = `${style} ${weight} ${size}px "${font}"`;
-
         const lines = text?.split("\n");
 
         if (!lines) {
             return;
         }
+
+        context.font = `${style} ${weight} ${size}px "${font}"`;
 
         context.globalAlpha = opacity;
 
@@ -60,7 +60,7 @@ export class MultilineTextDrawer implements IShapeDrawer<MultilineTextParticle> 
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.options;
+        const options = container.actualOptions;
 
         if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
             const shapeOptions = validTypes
@@ -82,7 +82,7 @@ export class MultilineTextDrawer implements IShapeDrawer<MultilineTextParticle> 
      * @param particle - the particle loading the text shape
      */
     particleInit(container: Container, particle: MultilineTextParticle): void {
-        if (particle.shape !== "multiline-text") {
+        if (!particle.shape || !validTypes.includes(particle.shape)) {
             return;
         }
 
