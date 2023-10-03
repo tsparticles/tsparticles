@@ -18,9 +18,9 @@ const options: ISourceOptions = {
             },
         },
         shape: {
-            type: "multiline-text",
+            type: "text",
             options: {
-                "multiline-text": {
+                text: {
                     value: "pippo\npluto",
                 },
             },

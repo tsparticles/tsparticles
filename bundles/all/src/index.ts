@@ -22,7 +22,6 @@ import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
-import { loadMultilineTextShape } from "@tsparticles/shape-multiline-text";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
 import { loadPathShape } from "@tsparticles/shape-path";
@@ -80,7 +79,6 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadCardsShape(engine, false);
     await loadCogShape(engine, false);
     await loadHeartShape(engine, false);
-    await loadMultilineTextShape(engine, false);
     await loadPathShape(engine, false);
     await loadRoundedPolygonShape(engine, false);
     await loadRoundedRectShape(engine, false);

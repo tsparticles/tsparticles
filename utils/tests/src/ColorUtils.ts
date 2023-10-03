@@ -28,7 +28,7 @@ describe("ColorUtils", () => {
                 value: "#ff0000",
             };
 
-            expect(colorToRgb(color)).include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("array string value", () => {
@@ -52,7 +52,7 @@ describe("ColorUtils", () => {
                 },
             };
 
-            expect(colorToRgb(color)).include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("IValueColor w/ hsl value", () => {
@@ -66,7 +66,7 @@ describe("ColorUtils", () => {
                 },
             };
 
-            expect(colorToRgb(color)).include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("rgb value", () => {
@@ -78,7 +78,7 @@ describe("ColorUtils", () => {
                 },
             };
 
-            expect(colorToRgb(color)).include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("hsl value", () => {
@@ -138,7 +138,7 @@ describe("ColorUtils", () => {
         it("from hex string to rgb value", () => {
             const color = "#ff0000";
 
-            expect(stringToRgb(color)).include(red).and.not.be.undefined.and.not.be.null;
+            expect(stringToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("invalid string value", () => {
@@ -167,9 +167,9 @@ describe("ColorUtils", () => {
             };
 
             const grey: IRgb = {
-                b: 127,
-                g: 127,
-                r: 127,
+                b: 128,
+                g: 128,
+                r: 128,
             };
 
             expect(hslToRgb(color)).to.include(grey).and.not.be.undefined.and.not.be.null;
@@ -185,7 +185,11 @@ describe("ColorUtils", () => {
                 s: 100,
             };
 
-            expect(hslaToRgba(color)).to.include(red).and.include({ a: 1 }).and.not.be.undefined.and.not.be.null;
+            const rgb = hslaToRgba(color);
+
+            console.log("rgb", rgb, red);
+
+            expect(rgb).include(red).and.to.include({ a: 1 }).and.not.be.undefined.and.not.be.null;
         });
     });
 

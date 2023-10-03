@@ -8,19 +8,20 @@ import {
     itemFromSingleOrMultiple,
     loadFont,
 } from "@tsparticles/engine";
-import type { ICharacterShape } from "./ICharacterShape.js";
+import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
 
-export const validTypes = ["text", "character", "char"];
+export const validTypes = ["text", "character", "char", "multiline-text"];
 
 /**
+ * Multiline text drawer
  */
 export class TextDrawer implements IShapeDrawer<TextParticle> {
     draw(data: IShapeDrawData<TextParticle>): void {
         const { context, particle, radius, opacity } = data,
-            character = particle.shapeData as ICharacterShape;
+            character = particle.shapeData as ITextShape;
 
-        if (character === undefined) {
+        if (!character) {
             return;
         }
 
@@ -39,29 +40,23 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
             weight = character.weight ?? "400",
             size = Math.round(radius) * 2,
             font = character.font ?? "Verdana",
-            fill = particle.fill,
-            offsetX = (text.length * radius) / 2;
+            fill = particle.fill;
+
+        const lines = text?.split("\n");
+
+        if (!lines) {
+            return;
+        }
 
         context.font = `${style} ${weight} ${size}px "${font}"`;
 
-        const pos = {
-            x: -offsetX,
-            y: radius / 2,
-        };
-
         context.globalAlpha = opacity;
 
-        if (fill) {
-            context.fillText(text, pos.x, pos.y);
-        } else {
-            context.strokeText(text, pos.x, pos.y);
+        for (let i = 0; i < lines.length; i++) {
+            this._drawLine(context, lines[i], radius, opacity, i, fill);
         }
 
         context.globalAlpha = 1;
-    }
-
-    getSidesCount(): number {
-        return 12;
     }
 
     async init(container: Container): Promise<void> {
@@ -70,7 +65,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
         if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
             const shapeOptions = validTypes
                     .map((t) => options.particles.shape.options[t])
-                    .find((t) => !!t) as SingleOrMultiple<ICharacterShape>,
+                    .find((t) => !!t) as SingleOrMultiple<ITextShape>,
                 promises: Promise<void>[] = [];
 
             executeOnSingleOrMultiple(shapeOptions, (shape) => {
@@ -91,7 +86,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
             return;
         }
 
-        const character = particle.shapeData as ICharacterShape;
+        const character = particle.shapeData as ITextShape;
 
         if (character === undefined) {
             return;
@@ -105,4 +100,25 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
 
         particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
     }
+
+    private readonly _drawLine: (
+        context: CanvasRenderingContext2D,
+        line: string,
+        radius: number,
+        opacity: number,
+        index: number,
+        fill: boolean,
+    ) => void = (context, line, radius, opacity, index, fill) => {
+        const offsetX = (line.length * radius) / 2,
+            pos = {
+                x: -offsetX,
+                y: radius / 2,
+            };
+
+        if (fill) {
+            context.fillText(line, pos.x, pos.y + radius * 2 * index);
+        } else {
+            context.strokeText(line, pos.x, pos.y + radius * 2 * index);
+        }
+    };
 }

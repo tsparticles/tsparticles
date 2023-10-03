@@ -72,7 +72,6 @@
         "@tsparticles/shape-heart": "^3.0.0-beta.3",
         "@tsparticles/shape-image": "^3.0.0-beta.3",
         "@tsparticles/shape-line": "^3.0.0-beta.3",
-        "@tsparticles/shape-multiline-text": "^3.0.0-beta.3",
         "@tsparticles/shape-polygon": "^3.0.0-beta.3",
         "@tsparticles/shape-rounded-rect": "^3.0.0-beta.3",
         "@tsparticles/shape-spiral": "^3.0.0-beta.3",

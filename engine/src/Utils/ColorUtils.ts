@@ -225,14 +225,10 @@ export function hslToRgb(hsl: IHsl): IRgb {
     if (s === 0) {
         // If saturation is 0, the color is grayscale
         const grayscaleValue = Math.round(lNormalized * 255);
-
         return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
     }
 
-    const temp1 =
-            lNormalized < 0.5 ? lNormalized * (1 + sNormalized) : lNormalized + sNormalized - lNormalized * sNormalized,
-        temp2 = 2 * lNormalized - temp1,
-        channel = (temp3: number): number => {
+    const channel = (temp1: number, temp2: number, temp3: number): number => {
             if (temp3 < 0) {
                 temp3 += 1;
             }
@@ -255,9 +251,12 @@ export function hslToRgb(hsl: IHsl): IRgb {
 
             return temp1;
         },
-        red = Math.min(255, 255 * channel(hNormalized + 1 / 3)),
-        green = Math.min(255, 255 * channel(hNormalized)),
-        blue = Math.min(255, 255 * channel(hNormalized - 1 / 3));
+        temp1 =
+            lNormalized < 0.5 ? lNormalized * (1 + sNormalized) : lNormalized + sNormalized - lNormalized * sNormalized,
+        temp2 = 2 * lNormalized - temp1,
+        red = Math.min(255, 255 * channel(temp2, temp1, hNormalized + 1 / 3)),
+        green = Math.min(255, 255 * channel(temp2, temp1, hNormalized)),
+        blue = Math.min(255, 255 * channel(temp2, temp1, hNormalized - 1 / 3));
 
     return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }

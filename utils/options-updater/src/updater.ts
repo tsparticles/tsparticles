@@ -20,7 +20,6 @@ import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
-import { loadMultilineTextShape } from "@tsparticles/shape-multiline-text";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
 import { loadPerlinNoisePath } from "@tsparticles/path-perlin-noise";
@@ -135,7 +134,6 @@ const objectDifference = (object: CustomRecord, base: CustomRecord): CustomRecor
     await loadSimplexNoisePath(tsParticles);
     await loadBubbleShape(tsParticles);
     await loadHeartShape(tsParticles);
-    await loadMultilineTextShape(tsParticles);
     await loadRoundedRectShape(tsParticles);
     await loadSpiralShape(tsParticles);
 

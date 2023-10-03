@@ -1,6 +1,8 @@
 import type { IShapeValues, SingleOrMultiple } from "@tsparticles/engine";
 
-export interface IMultilineTextShape extends IShapeValues {
+/**
+ */
+export interface ITextShape extends IShapeValues {
     font: string;
     style: string;
     value: SingleOrMultiple<string>;

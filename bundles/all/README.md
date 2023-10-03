@@ -37,7 +37,6 @@
 - [@tsparticles/shape-cards](https://github.com/tsparticles/tsparticles/tree/main/shapes/cards)
 - [@tsparticles/shape-cog](https://github.com/tsparticles/tsparticles/tree/main/shapes/cog)
 - [@tsparticles/shape-heart](https://github.com/tsparticles/tsparticles/tree/main/shapes/heart)
-- [@tsparticles/shape-multiline-text](https://github.com/tsparticles/tsparticles/tree/main/shapes/multiline-text)
 - [@tsparticles/shape-path](https://github.com/tsparticles/tsparticles/tree/main/shapes/path)
 - [@tsparticles/shape-rounded-polygon](https://github.com/tsparticles/tsparticles/tree/main/shapes/polygon)
 - [@tsparticles/shape-rounded-rect](https://github.com/tsparticles/tsparticles/tree/main/shapes/rect)
