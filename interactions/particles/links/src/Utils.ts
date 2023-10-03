@@ -1,7 +1,6 @@
 import {
     type ICoordinates,
     drawLine,
-    drawTriangle,
     getDistance,
     getDistances,
     getRandom,
@@ -9,6 +8,26 @@ import {
     rangeColorToRgb,
 } from "@tsparticles/engine";
 import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from "./Types.js";
+
+/**
+ * Draws a triangle with three points using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param p1 - The first point of the triangle.
+ * @param p2 - The second point of the triangle.
+ * @param p3 - The third point of the triangle.
+ */
+export function drawTriangle(
+    context: CanvasRenderingContext2D,
+    p1: ICoordinates,
+    p2: ICoordinates,
+    p3: ICoordinates,
+): void {
+    context.beginPath();
+    context.moveTo(p1.x, p1.y);
+    context.lineTo(p2.x, p2.y);
+    context.lineTo(p3.x, p3.y);
+    context.closePath();
+}
 
 /**
  * @param params -
