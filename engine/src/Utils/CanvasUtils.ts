@@ -129,12 +129,12 @@ export function drawParticle(data: IDrawParticleParams): void {
 
     drawShape(drawData);
 
-    if (strokeWidth > 0) {
-        context.stroke();
-    }
-
     if (particle.close) {
         context.closePath();
+    }
+
+    if (strokeWidth > 0) {
+        context.stroke();
     }
 
     if (particle.fill) {

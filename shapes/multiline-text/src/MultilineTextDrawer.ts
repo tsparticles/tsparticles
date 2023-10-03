@@ -11,9 +11,14 @@ import {
 import type { IMultilineTextShape } from "./IMultilineTextShape.js";
 import type { MultilineTextParticle } from "./MultilineTextParticle.js";
 
+export const validTypes = ["text", "character", "char", "multiline-text"];
+
+/**
+ * Multiline text drawer
+ */
 export class MultilineTextDrawer implements IShapeDrawer<MultilineTextParticle> {
     draw(data: IShapeDrawData<MultilineTextParticle>): void {
-        const { particle, context, radius, opacity } = data,
+        const { context, particle, radius, opacity } = data,
             character = particle.shapeData as IMultilineTextShape;
 
         if (character === undefined) {
@@ -55,11 +60,12 @@ export class MultilineTextDrawer implements IShapeDrawer<MultilineTextParticle> 
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.options,
-            shapeType = "multiline-text";
+        const options = container.options;
 
-        if (isInArray(shapeType, options.particles.shape.type)) {
-            const shapeOptions = options.particles.shape.options[shapeType] as SingleOrMultiple<IMultilineTextShape>,
+        if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
+            const shapeOptions = validTypes
+                    .map((t) => options.particles.shape.options[t])
+                    .find((t) => !!t) as SingleOrMultiple<IMultilineTextShape>,
                 promises: Promise<void>[] = [];
 
             executeOnSingleOrMultiple(shapeOptions, (shape) => {
