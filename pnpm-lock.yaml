@@ -22,7 +22,7 @@ importers:
         version: 1.9.0
       '@types/node':
         specifier: ^20.1.0
-        version: 20.1.0
+        version: 20.8.2
       copyfiles:
         specifier: ^2.4.1
         version: 2.4.1
@@ -8329,7 +8329,7 @@ packages:
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.1(@types/node@20.1.0)(typescript@5.0.4)
+      ts-node: 10.9.1(@types/node@20.8.2)(typescript@5.0.4)
       typescript: 5.2.2
     transitivePeerDependencies:
       - '@swc/core'
@@ -11300,7 +11300,7 @@ packages:
       '@babel/preset-env': 7.22.10(@babel/core@7.22.11)
       '@tsparticles/eslint-config': 1.20.0
       '@tsparticles/prettier-config': 1.12.0
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
       '@types/webpack-bundle-analyzer': 4.6.0(webpack-cli@5.1.4)
       '@types/webpack-env': 1.18.1
       '@typescript-eslint/eslint-plugin': 6.5.0(@typescript-eslint/parser@6.5.0)(eslint@8.48.0)(typescript@5.2.2)
@@ -11361,7 +11361,7 @@ packages:
     dependencies:
       '@types/http-cache-semantics': 4.0.1
       '@types/keyv': 3.1.4
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
       '@types/responselike': 1.0.0
     dev: true
 
@@ -11400,7 +11400,7 @@ packages:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 20.6.3
+      '@types/node': 20.7.0
     dev: true
 
   /@types/hast@2.3.4:
@@ -11416,7 +11416,7 @@ packages:
   /@types/jsdom@21.1.1:
     resolution: {integrity: sha512-cZFuoVLtzKP3gmq9eNosUL1R50U+USkbLtUQ1bYVgl/lKp0FZM7Cq4aIHAL8oIvQ17uSHi7jXPtfDOdjPwBE7A==}
     dependencies:
-      '@types/node': 20.6.3
+      '@types/node': 20.7.0
       '@types/tough-cookie': 4.0.2
       parse5: 7.1.2
     dev: true
@@ -11433,19 +11433,19 @@ packages:
   /@types/jsonfile@6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
     dev: true
 
   /@types/keyv@3.1.4:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
     dev: true
 
   /@types/klaw@3.0.3:
     resolution: {integrity: sha512-mXlRDFbTLpVysvxahXUQav0hFctgu3Fqr2xmSrpf/ptO/FwOp7SFEGsJkEihwshMbof3/BIiVJ/o42cuOOuv6g==}
     dependencies:
-      '@types/node': 20.6.3
+      '@types/node': 20.7.0
     dev: true
 
   /@types/lodash@4.14.194:
@@ -11488,12 +11488,12 @@ packages:
     resolution: {integrity: sha512-bUBrPjEry2QUTsnuEjzjbS7voGWCc30W0qzgMf90GPeDGFRakvrz47ju+oqDAKCXLUCe39u57/ORMl/O/04/9g==}
     dev: true
 
-  /@types/node@20.6.3:
-    resolution: {integrity: sha512-HksnYH4Ljr4VQgEy2lTStbCKv/P590tmPe5HqOnv9Gprffgv5WXAY+Y5Gqniu0GGqeTCUdBnzC3QSrzPkBkAMA==}
-    dev: true
-
   /@types/node@20.7.0:
     resolution: {integrity: sha512-zI22/pJW2wUZOVyguFaUL1HABdmSVxpXrzIqkjsHmyUjNhPoWM1CKfvVuXfetHhIok4RY573cqS0mZ1SJEnoTg==}
+    dev: true
+
+  /@types/node@20.8.2:
+    resolution: {integrity: sha512-Vvycsc9FQdwhxE3y3DzeIxuEJbWGDsnrxvMADzTDF/lcdR9/K+AQIeAghTQsHtotg/q0j3WEOYS/jQgSdWue3w==}
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -11512,7 +11512,7 @@ packages:
   /@types/responselike@1.0.0:
     resolution: {integrity: sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==}
     dependencies:
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
     dev: true
 
   /@types/semver@7.5.1:
@@ -11533,7 +11533,7 @@ packages:
   /@types/webpack-bundle-analyzer@4.6.0(webpack-cli@5.1.4):
     resolution: {integrity: sha512-XeQmQCCXdZdap+A/60UKmxW5Mz31Vp9uieGlHB3T4z/o2OLVLtTI3bvTuS6A2OWd/rbAAQiGGWIEFQACu16szA==}
     dependencies:
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
       tapable: 2.2.1
       webpack: 5.88.2(webpack-cli@5.1.4)
     transitivePeerDependencies:
@@ -11553,7 +11553,7 @@ packages:
     resolution: {integrity: sha512-Cn6WYCm0tXv8p6k+A8PvbDG763EDpBoTzHdA+Q/MF6H3sapGjCm9NzoaJncJS9tUKSuCoDs9XHxYYsQDgxR6kw==}
     requiresBuild: true
     dependencies:
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
     dev: true
     optional: true
 
@@ -13554,7 +13554,7 @@ packages:
     dependencies:
       '@types/node': 20.4.7
       cosmiconfig: 8.2.0
-      ts-node: 10.9.1(@types/node@20.1.0)(typescript@5.0.4)
+      ts-node: 10.9.1(@types/node@20.8.2)(typescript@5.0.4)
       typescript: 5.2.2
     dev: true
 
@@ -15989,7 +15989,7 @@ packages:
     resolution: {integrity: sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==}
     engines: {node: '>= 10.13.0'}
     dependencies:
-      '@types/node': 20.7.0
+      '@types/node': 20.8.2
       merge-stream: 2.0.0
       supports-color: 8.1.1
 
@@ -20423,6 +20423,37 @@ packages:
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
       '@types/node': 20.1.0
+      acorn: 8.8.2
+      acorn-walk: 8.2.0
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 5.0.4
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    dev: true
+
+  /ts-node@10.9.1(@types/node@20.8.2)(typescript@5.0.4):
+    resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
+    hasBin: true
+    peerDependencies:
+      '@swc/core': '>=1.2.50'
+      '@swc/wasm': '>=1.2.50'
+      '@types/node': '*'
+      typescript: '>=2.7'
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      '@swc/wasm':
+        optional: true
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.9
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.3
+      '@types/node': 20.8.2
       acorn: 8.8.2
       acorn-walk: 8.2.0
       arg: 4.1.3
