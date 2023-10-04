@@ -46,7 +46,7 @@ importers:
         version: 3.0.3
       rimraf:
         specifier: ^5.0.0
-        version: 5.0.0
+        version: 5.0.5
       typedoc:
         specifier: ^0.25.0
         version: 0.25.1(typescript@5.0.4)
@@ -10699,7 +10699,7 @@ packages:
       fs-extra: 11.1.1
       klaw: 4.1.0
       prettier: 2.8.8
-      rimraf: 5.0.1
+      rimraf: 5.0.4
       typescript: 5.2.2
       webpack: 5.88.2(webpack-cli@5.0.2)
       webpack-tsparticles-plugin: 1.11.1
@@ -10962,7 +10962,7 @@ packages:
       klaw: 4.1.0
       lodash: 4.17.21
       prettier: 3.0.3
-      rimraf: 5.0.1
+      rimraf: 5.0.4
       tsparticles: 3.0.0-beta.1
       typescript: 5.2.2
       webpack: 5.88.2(webpack-cli@5.0.2)
@@ -11314,7 +11314,7 @@ packages:
       eslint-plugin-jsdoc: 46.5.1(eslint@8.48.0)
       eslint-plugin-tsdoc: 0.2.17
       prettier: 3.0.3
-      rimraf: 5.0.4
+      rimraf: 5.0.5
       terser-webpack-plugin: 5.3.9(webpack@5.88.2)
       typescript: 5.2.2
       webpack: 5.88.2(webpack-cli@5.1.4)
@@ -19329,15 +19329,15 @@ packages:
     dependencies:
       glob: 10.2.2
 
-  /rimraf@5.0.1:
-    resolution: {integrity: sha512-OfFZdwtd3lZ+XZzYP/6gTACubwFcHdLRqS9UX3UwpU2dnGQYkPFISRwvM3w9IiB2w7bW5qGo/uAwE4SmXXSKvg==}
+  /rimraf@5.0.4:
+    resolution: {integrity: sha512-rizQI/o/YAMM1us0Zyax0uRfIK39XR52EAjjOi0fzMolpGp0onj6CWzBAXuOx6+6Xi9Rgi0d9tUZojhJerLUmQ==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
       glob: 10.3.7
 
-  /rimraf@5.0.4:
-    resolution: {integrity: sha512-rizQI/o/YAMM1us0Zyax0uRfIK39XR52EAjjOi0fzMolpGp0onj6CWzBAXuOx6+6Xi9Rgi0d9tUZojhJerLUmQ==}
+  /rimraf@5.0.5:
+    resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
@@ -21382,7 +21382,7 @@ packages:
       eslint: 8.48.0
       eslint-config-prettier: 8.8.0(eslint@8.48.0)
       prettier: 2.8.8
-      rimraf: 5.0.1
+      rimraf: 5.0.4
       terser-webpack-plugin: 5.3.9(webpack@5.88.2)
       typescript: 5.2.2
       webpack: 5.88.2(webpack-cli@5.1.4)
