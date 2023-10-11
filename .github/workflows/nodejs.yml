@@ -3,14 +3,12 @@ on:
   push:
     branches:
       - main
-      - dev
       - v3
       - v2
       - v1
   pull_request:
     branches:
       - main
-      - dev
       - v3
       - v2
       - v1
