@@ -7,7 +7,6 @@ Before you can start making changes, it's mandatory to run a `lerna bootstrap` f
 After that, you can start coding. Here is the folder layout
 
 - `demo` is where all the demo apps are present.
-- `editor` is the source of the GUI editor.
 - `engine` is the main source folder.
 - `interactions` contains some additional interaction plugins.
 - `paths` contains some additional path plugins.
@@ -64,27 +63,27 @@ There's a `demo` folder where you can find some demo apps used for testing confi
 
 *The build task will be performed automatically by the CI\CD, but a first local check should be done*
 
-If you want to contribute to the project, please use *v1* or *dev* as the base branch, *v1* is the current release, *dev* is what is coming in *v2*.
+If you want to contribute to the project, please use *v2* or *v3* as the base branch, *v2* is the current release, *v3* is what is coming in *v3*.
 
 Use *main* branch **ONLY** for critical bug fixes.
 
-Once done, create the **Pull Request** to *v1* or *dev* branch. If it's a critical bug fix, use *main*.
+Once done, create the **Pull Request** to *v2* or *v3* branch. If it's a critical bug fix, use *main*.
 
 ## Branches
 
 ### *v1*
 
-This branch is the main version 1 development branch, it's going to be deprecated once the version 2 will be released officially.
+This branch is the version 1 branch, it's not active, it's there only for historical purpose.
 
-### *dev*
+### *v2*
+
+This branch is the version 2 branch, the actual release. It will be closed once version 3 will be released.
+
+### *v3*
+
 This branch is the main development branch, and it has the lowest priority branch under CI.
 
 This branch should always build. Sometimes it can be necessary to break this rule. This is why it is **should** and not **must**.
- 
-### *next*
-This branch is for testing the version 2 before being released officially.
-
-This branch is the one used to make PR to *main*, so this branch **MUST** build.
 
 ### *main*
 This is the production branch.
