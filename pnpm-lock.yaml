@@ -156,8 +156,8 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
       typescript-json-schema:
-        specifier: ^0.61.0
-        version: 0.61.0
+        specifier: ^0.62.0
+        version: 0.62.0
       webpack:
         specifier: ^5.88.2
         version: 5.88.2(webpack-cli@5.1.4)
@@ -6537,7 +6537,7 @@ packages:
     dependencies:
       '@npmcli/fs': 3.1.0
       fs-minipass: 3.0.2
-      glob: 10.3.1
+      glob: 10.3.10
       lru-cache: 7.18.3
       minipass: 5.0.0
       minipass-collect: 1.0.2
@@ -8488,6 +8488,7 @@ packages:
       minimatch: 9.0.2
       minipass: 6.0.2
       path-scurry: 1.10.0
+    dev: false
 
   /glob@10.3.10:
     resolution: {integrity: sha512-fa46+tv1Ak0UPK1TOy/pZrIybNNt4HCv7SDzwyfiOZkvZLEbjsZkJBPtDHVshZjbecAoAGSC20MjLDG/qr679g==}
@@ -9280,6 +9281,7 @@ packages:
       '@isaacs/cliui': 8.0.2
     optionalDependencies:
       '@pkgjs/parseargs': 0.11.0
+    dev: false
 
   /jackspeak@2.3.6:
     resolution: {integrity: sha512-N3yCS/NegsOBokc8GAdM8UcmfsKiSS8cipheD/nivzr700H+nsMOxJjQnvwOcRYVuFkdH0wGUvW2WbXGmrZGbQ==}
@@ -10082,6 +10084,7 @@ packages:
     engines: {node: '>=16 || 14 >=14.17'}
     dependencies:
       brace-expansion: 2.0.1
+    dev: false
 
   /minimatch@9.0.3:
     resolution: {integrity: sha512-RHiac9mvaRw0x3AYRgDC1CxAP7HTcNrrECeA8YYJeWnpo+2Q5CegtZjaotWTWxDG3UeGA1coE05iH1mPjT/2mg==}
@@ -11033,6 +11036,7 @@ packages:
     dependencies:
       lru-cache: 10.0.0
       minipass: 6.0.2
+    dev: false
 
   /path-scurry@1.10.1:
     resolution: {integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==}
@@ -11385,7 +11389,7 @@ packages:
     resolution: {integrity: sha512-AEtWXYfopBj2z5N5PbkAOeNHRPUg5q+Nen7QLxV8M2zJq1ym6/lCz3fYNTCXe19puu2d06jfHhrP7v/S2PtMMw==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      glob: 10.3.1
+      glob: 10.3.10
       json-parse-even-better-errors: 3.0.0
       normalize-package-data: 5.0.0
       npm-normalize-package-bin: 3.0.1
@@ -12715,8 +12719,8 @@ packages:
       typescript: 5.2.2
     dev: true
 
-  /typescript-json-schema@0.61.0:
-    resolution: {integrity: sha512-sYKnLJjvh9ljdSQkh91LM9PEzgzrgnYfvU226IauISFd+379VCti/VtAFXd00Z9euLkVffh5LRTAO8eamsxUlw==}
+  /typescript-json-schema@0.62.0:
+    resolution: {integrity: sha512-qRO6pCgyjKJ230QYdOxDRpdQrBeeino4v5p2rYmSD72Jf4rD3O+cJcROv46sQukm46CLWoeusqvBgKpynEv25g==}
     hasBin: true
     dependencies:
       '@types/json-schema': 7.0.12
