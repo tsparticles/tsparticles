@@ -33,13 +33,8 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
  */
 export class Particles {
     lastZIndex;
-    limit;
     movers;
     needsSort;
-
-    pool: Particle[];
-
-    pushing?: boolean;
 
     /**
      * The quad tree used to search particles withing ranges
@@ -52,13 +47,14 @@ export class Particles {
      * All the particles used in canvas
      */
     private _array: Particle[];
-
     private readonly _container: Container;
     private readonly _engine;
-
+    private readonly _groupLimits: Map<string, number>;
     private readonly _interactionManager;
+    private _limit;
     private _nextId;
-
+    private readonly _pool: Particle[];
+    private _pushing?: boolean;
     private _zArray: Particle[];
 
     /**
@@ -72,8 +68,9 @@ export class Particles {
         this._nextId = 0;
         this._array = [];
         this._zArray = [];
-        this.pool = [];
-        this.limit = 0;
+        this._pool = [];
+        this._limit = 0;
+        this._groupLimits = new Map<string, number>();
         this.needsSort = false;
         this.lastZIndex = 0;
         this._interactionManager = new InteractionManager(engine, container);
@@ -108,11 +105,9 @@ export class Particles {
         group?: string,
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
-        this.pushing = true;
+        this._pushing = true;
 
-        const container = this._container,
-            options = container.actualOptions,
-            limit = options.particles.number.limit;
+        const limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit;
 
         if (limit > 0) {
             const countToRemove = this.count + 1 - limit;
@@ -124,7 +119,7 @@ export class Particles {
 
         const res = this._pushParticle(position, overrideOptions, group, initializer);
 
-        this.pushing = false;
+        this._pushing = false;
 
         return res;
     }
@@ -336,7 +331,7 @@ export class Particles {
 
             this._array = this.filter(checkDelete);
             this._zArray = this._zArray.filter(checkDelete);
-            this.pool.push(...particlesToDelete);
+            this._pool.push(...particlesToDelete);
         }
 
         await this._interactionManager.externalInteract(delta);
@@ -369,18 +364,18 @@ export class Particles {
         manualCount,
         group,
     ) => {
-        if (!options.number.density?.enable) {
-            return;
-        }
-
         const numberOptions = options.number,
-            densityFactor = this._initDensityFactor(numberOptions.density),
+            densityFactor = options.number.density?.enable ? this._initDensityFactor(numberOptions.density) : 1,
             optParticlesNumber = numberOptions.value,
             optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
             particlesCount = Math.min(this.count, this.filter((t) => t.group === group).length);
 
-        this.limit = numberOptions.limit * densityFactor;
+        if (group === undefined) {
+            this._limit = numberOptions.limit * densityFactor;
+        } else {
+            this._groupLimits.set(group, numberOptions.limit * densityFactor);
+        }
 
         if (particlesCount < particlesNumber) {
             this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
@@ -409,7 +404,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean,
     ) => Particle | undefined = (position, overrideOptions, group, initializer) => {
         try {
-            let particle = this.pool.pop();
+            let particle = this._pool.pop();
 
             if (particle) {
                 particle.init(this._nextId, position, overrideOptions, group);
@@ -465,7 +460,7 @@ export class Particles {
         this._array.splice(index, 1);
         this._zArray.splice(zIdx, 1);
 
-        this.pool.push(particle);
+        this._pool.push(particle);
 
         this._engine.dispatchEvent(EventType.particleRemoved, {
             container: this._container,

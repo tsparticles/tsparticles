@@ -381,3 +381,5 @@ options.schema.json
 demo/vanilla/views/index.html
 demo/vanilla/public/stylesheets/*.css
 docs.json
+
+.nx/cache
