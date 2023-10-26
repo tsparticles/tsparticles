@@ -1,4 +1,4 @@
-import { EasingType, EasingTypeAlt } from "../../../../exports";
+import type { EasingType, EasingTypeAlt } from "../../../../exports";
 import type { ISizeAnimation } from "./ISizeAnimation";
 import type { IValueWithRandom } from "../../IValueWithRandom";
 
