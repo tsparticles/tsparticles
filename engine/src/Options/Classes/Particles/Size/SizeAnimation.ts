@@ -3,16 +3,19 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
 import { RangedAnimationOptions } from "../../AnimationOptions";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import { EasingType, EasingTypeAlt } from "../../../../exports";
 
 /**
  */
 export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimation, IOptionLoader<ISizeAnimation> {
     destroy: DestroyType | keyof typeof DestroyType;
+    easing: EasingType | EasingTypeAlt;
 
     constructor() {
         super();
 
         this.destroy = DestroyType.none;
+        this.easing = EasingType.easeInCirc;
         this.speed = 5;
     }
 
@@ -45,6 +48,10 @@ export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimat
 
         if (data.destroy !== undefined) {
             this.destroy = data.destroy;
+        }
+
+        if(data.easing !== undefined) {
+            this.easing = data.easing;
         }
     }
 }
