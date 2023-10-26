@@ -4,6 +4,7 @@
 
 /**
  * Linear easing function: no easing, no acceleration
+ * @param t
  */
 export function linear(t: number): number {
     return t;
@@ -11,6 +12,7 @@ export function linear(t: number): number {
 
 /**
  * Quadratic easing in - accelerating from zero velocity
+ * @param t
  */
 export function easeInQuad(t: number): number {
     return t * t;
@@ -18,6 +20,7 @@ export function easeInQuad(t: number): number {
 
 /**
  * Quadratic easing out - decelerating to zero velocity
+ * @param t
  */
 export function easeOutQuad(t: number): number {
     return t * (2 - t);
@@ -25,6 +28,7 @@ export function easeOutQuad(t: number): number {
 
 /**
  * Quadratic easing in/out - acceleration until halfway, then deceleration
+ * @param t
  */
 export function easeInOutQuad(t: number): number {
     return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
@@ -32,6 +36,7 @@ export function easeInOutQuad(t: number): number {
 
 /**
  * Cubic easing in - accelerating from zero velocity
+ * @param t
  */
 export function easeInCubic(t: number): number {
     return t * t * t;
@@ -39,6 +44,7 @@ export function easeInCubic(t: number): number {
 
 /**
  * Cubic easing out - decelerating to zero velocity
+ * @param t
  */
 export function easeOutCubic(t: number): number {
     return --t * t * t + 1;
@@ -46,6 +52,7 @@ export function easeOutCubic(t: number): number {
 
 /**
  * Cubic easing in/out - acceleration until halfway, then deceleration
+ * @param t
  */
 export function easeInOutCubic(t: number): number {
     return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
@@ -53,6 +60,7 @@ export function easeInOutCubic(t: number): number {
 
 /**
  * Quartic easing in - accelerating from zero velocity
+ * @param t
  */
 export function easeInQuart(t: number): number {
     return t * t * t * t;
@@ -60,6 +68,7 @@ export function easeInQuart(t: number): number {
 
 /**
  * Quartic easing out - decelerating to zero velocity
+ * @param t
  */
 export function easeOutQuart(t: number): number {
     return 1 - --t * t * t * t;
@@ -67,6 +76,7 @@ export function easeOutQuart(t: number): number {
 
 /**
  * Quartic easing in/out - acceleration until halfway, then deceleration
+ * @param t
  */
 export function easeInOutQuart(t: number): number {
     return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
@@ -74,6 +84,7 @@ export function easeInOutQuart(t: number): number {
 
 /**
  * Quintic easing in - accelerating from zero velocity
+ * @param t
  */
 export function easeInQuint(t: number): number {
     return t * t * t * t * t;
@@ -81,6 +92,7 @@ export function easeInQuint(t: number): number {
 
 /**
  * Quintic easing out - decelerating to zero velocity
+ * @param t
  */
 export function easeOutQuint(t: number): number {
     return 1 + --t * t * t * t * t;
@@ -88,6 +100,7 @@ export function easeOutQuint(t: number): number {
 
 /**
  * Quintic easing in/out - acceleration until halfway, then deceleration
+ * @param t
  */
 export function easeInOutQuint(t: number): number {
     return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
