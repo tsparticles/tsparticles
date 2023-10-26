@@ -1,3 +1,4 @@
+import { EasingType, EasingTypeAlt } from "../../../../exports";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";
@@ -10,12 +11,14 @@ import { setRangeValue } from "../../../../Utils/NumberUtils";
  */
 export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
     animation;
+    easing: EasingType | EasingTypeAlt;
 
     constructor() {
         super();
         this.animation = new SizeAnimation();
         this.random.minimumValue = 1;
         this.value = 3;
+        this.easing = EasingType.easeInBack;
     }
 
     /**
@@ -47,6 +50,10 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
             this.animation.load(animation);
 
             this.value = setRangeValue(this.value, this.animation.enable ? this.animation.minimumValue : undefined);
+        }
+
+        if(data.easing !== undefined) {
+            this.easing = data.easing;
         }
     }
 }

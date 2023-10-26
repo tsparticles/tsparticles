@@ -1,6 +1,6 @@
+import type { EasingType, EasingTypeAlt } from "../../../../exports";
 import type { DestroyType } from "../../../../Enums/Types/DestroyType";
 import type { IRangedAnimation } from "../../IAnimation";
-import type { EasingType, EasingTypeAlt } from "../../../../exports";
 
 /**
  */
