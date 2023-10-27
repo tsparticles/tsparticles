@@ -1,4 +1,4 @@
-import type { EasingType, EasingTypeAlt } from "../../../../exports";
+import type { EasingType, EasingTypeAlt } from "../../../../Enums/Types/EasingType";
 import type { ISizeAnimation } from "./ISizeAnimation";
 import type { IValueWithRandom } from "../../IValueWithRandom";
 

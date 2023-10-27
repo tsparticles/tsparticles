@@ -1,5 +1,5 @@
-import { EasingType } from "../../../../exports";
-import type { EasingTypeAlt } from "../../../../exports";
+import { EasingType } from "../../../../Enums/Types/EasingType";
+import type { EasingTypeAlt } from "../../../../Enums/Types/EasingType";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISize } from "../../../Interfaces/Particles/Size/ISize";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial";

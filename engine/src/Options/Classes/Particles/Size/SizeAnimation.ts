@@ -1,6 +1,6 @@
 import { DestroyType } from "../../../../Enums/Types/DestroyType";
-import { EasingType } from "../../../../exports";
-import type { EasingTypeAlt } from "../../../../exports";
+import { EasingType } from "../../../../Enums/Types/EasingType";
+import type { EasingTypeAlt } from "../../../../Enums/Types/EasingType";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation";
 import { RangedAnimationOptions } from "../../AnimationOptions";
