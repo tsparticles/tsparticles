@@ -29,11 +29,11 @@ export function applyDistance(particle: MoveParticle): void {
         particle.misplaced = (!!hDistance && dxFixed > hDistance) || (!!vDistance && dyFixed > vDistance);
 
         if (hDistance) {
-            particle.velocity.x = particle.velocity.y / 2 - particle.velocity.x;
+            particle.velocity.x = particle.velocity.y * 0.5 - particle.velocity.x;
         }
 
         if (vDistance) {
-            particle.velocity.y = particle.velocity.x / 2 - particle.velocity.y;
+            particle.velocity.y = particle.velocity.x * 0.5 - particle.velocity.y;
         }
     } else if ((!hDistance || dxFixed < hDistance) && (!vDistance || dyFixed < vDistance) && particle.misplaced) {
         particle.misplaced = false;
@@ -135,17 +135,18 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
     particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
     particle.spin.radius += particle.spin.acceleration;
 
-    const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height);
+    const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height),
+        halfMaxSize = maxCanvasSize * 0.5;
 
-    if (particle.spin.radius > maxCanvasSize / 2) {
-        particle.spin.radius = maxCanvasSize / 2;
+    if (particle.spin.radius > halfMaxSize) {
+        particle.spin.radius = halfMaxSize;
         particle.spin.acceleration *= -1;
     } else if (particle.spin.radius < 0) {
         particle.spin.radius = 0;
         particle.spin.acceleration *= -1;
     }
 
-    particle.spin.angle += (moveSpeed / 100) * (1 - particle.spin.radius / maxCanvasSize);
+    particle.spin.angle += moveSpeed * 0.01 * (1 - particle.spin.radius / maxCanvasSize);
 }
 
 /**

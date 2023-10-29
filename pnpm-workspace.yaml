@@ -1,6 +1,7 @@
 packages:
   - 'bundles/*'
   - 'demo/*'
+  - 'effects/*'
   - 'engine'
   - 'interactions/*'
   - 'interactions/external/*'

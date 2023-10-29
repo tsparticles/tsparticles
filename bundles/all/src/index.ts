@@ -1,6 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
-import { loadBubbleShape } from "@tsparticles/shape-bubble";
+import { loadBubbleEffect } from "@tsparticles/effect-bubble";
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 import { loadCardsShape } from "@tsparticles/shape-cards";
 import { loadCogShape } from "@tsparticles/shape-cog";
@@ -74,8 +74,8 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadPolygonPath(engine, false);
     await loadSVGPath(engine, false);
     await loadSimplexNoisePath(engine, false);
+    await loadBubbleEffect(engine, false);
     await loadArrowShape(engine, false);
-    await loadBubbleShape(engine, false);
     await loadCardsShape(engine, false);
     await loadCogShape(engine, false);
     await loadHeartShape(engine, false);

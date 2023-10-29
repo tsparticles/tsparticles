@@ -61,7 +61,9 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
     }
 
     private readonly _calculateField: () => void = () => {
-        const { field, noiseGen, options } = this;
+        const { field, noiseGen, options } = this,
+            lengthFactor = 0.01,
+            angleFactor = 0.02;
 
         for (let x = 0; x < options.columns; x++) {
             const column = field[x];
@@ -69,8 +71,8 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             for (let y = 0; y < options.rows; y++) {
                 const cell = column[y];
 
-                cell.length = noiseGen.noise(x / 100 + 40000, y / 100 + 40000, this.noiseZ);
-                cell.angle = noiseGen.noise(x / 50, y / 50, this.noiseZ) * Math.PI * 2;
+                cell.length = noiseGen.noise(x * lengthFactor + 40000, y * lengthFactor + 40000, this.noiseZ);
+                cell.angle = noiseGen.noise(x * angleFactor, y * angleFactor, this.noiseZ) * Math.PI * 2;
             }
         }
     };

@@ -8,6 +8,7 @@ import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivi
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
@@ -80,9 +81,9 @@ export class Container {
     destroyed;
 
     /**
-     * All the shape drawers used by the container
+     * All the effect drawers used by the container
      */
-    readonly drawers;
+    readonly effectDrawers;
 
     /**
      * The container fps limit, coming from options
@@ -94,11 +95,6 @@ export class Container {
     interactivity: IContainerInteractivity;
 
     /**
-     * Last frame time, used for delta values, for keeping animation correct in lower frame rates
-     */
-    lastFrameTime?: number;
-
-    /**
      * The container check if it's hidden on the web page
      */
     pageHidden;
@@ -108,18 +104,19 @@ export class Container {
      */
     readonly particles;
 
-    pathGenerators: Map<string, IMovePathGenerator>;
+    readonly pathGenerators: Map<string, IMovePathGenerator>;
 
     /**
      * All the plugins used by the container
      */
     readonly plugins;
 
-    responsiveMaxWidth?: number;
-
     readonly retina;
 
-    smooth;
+    /**
+     * All the shape drawers used by the container
+     */
+    readonly shapeDrawers;
 
     /**
      * Check if the particles container is started
@@ -142,11 +139,17 @@ export class Container {
     private _initialSourceOptions;
     private readonly _intersectionObserver;
     /**
+     * Last frame time, used for delta values, for keeping animation correct in lower frame rates
+     */
+    private _lastFrameTime?: number;
+    /**
      * The container lifetime
      */
     private _lifeTime;
     private _options;
     private _paused;
+    private _responsiveMaxWidth?: number;
+    private _smooth;
     private _sourceOptions;
 
     /**
@@ -159,7 +162,7 @@ export class Container {
         this._engine = engine;
         this.id = Symbol(id);
         this.fpsLimit = 120;
-        this.smooth = false;
+        this._smooth = false;
         this._delay = 0;
         this._duration = 0;
         this._lifeTime = 0;
@@ -167,7 +170,7 @@ export class Container {
         this.started = false;
         this.destroyed = false;
         this._paused = true;
-        this.lastFrameTime = 0;
+        this._lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
@@ -183,7 +186,8 @@ export class Container {
             },
         };
         this.plugins = new Map<string, IContainerPlugin>();
-        this.drawers = new Map<string, IShapeDrawer>();
+        this.effectDrawers = new Map<string, IEffectDrawer>();
+        this.shapeDrawers = new Map<string, IShapeDrawer>();
         /* tsParticles variables with default values */
         this._options = loadContainerOptions(this._engine, this);
         this.actualOptions = loadContainerOptions(this._engine, this);
@@ -359,12 +363,20 @@ export class Container {
         this.particles.destroy();
         this.canvas.destroy();
 
-        for (const [, drawer] of this.drawers) {
-            drawer.destroy && drawer.destroy(this);
+        for (const [, effectDrawer] of this.effectDrawers) {
+            effectDrawer.destroy && effectDrawer.destroy(this);
         }
 
-        for (const key of this.drawers.keys()) {
-            this.drawers.delete(key);
+        for (const [, shapeDrawer] of this.shapeDrawers) {
+            shapeDrawer.destroy && shapeDrawer.destroy(this);
+        }
+
+        for (const key of this.effectDrawers.keys()) {
+            this.effectDrawers.delete(key);
+        }
+
+        for (const key of this.shapeDrawers.keys()) {
+            this.shapeDrawers.delete(key);
         }
 
         this._engine.clearPlugins(this);
@@ -394,7 +406,7 @@ export class Container {
 
         this._drawAnimationFrame = requestAnimationFrame(async (timestamp) => {
             if (refreshTime) {
-                this.lastFrameTime = undefined;
+                this._lastFrameTime = undefined;
 
                 refreshTime = false;
             }
@@ -453,13 +465,23 @@ export class Container {
             return;
         }
 
+        const effects = this._engine.getSupportedEffects();
+
+        for (const type of effects) {
+            const drawer = this._engine.getEffectDrawer(type);
+
+            if (drawer) {
+                this.effectDrawers.set(type, drawer);
+            }
+        }
+
         const shapes = this._engine.getSupportedShapes();
 
         for (const type of shapes) {
             const drawer = this._engine.getShapeDrawer(type);
 
             if (drawer) {
-                this.drawers.set(type, drawer);
+                this.shapeDrawers.set(type, drawer);
             }
         }
 
@@ -487,9 +509,13 @@ export class Container {
         this._delay = getRangeValue(this.actualOptions.delay) * 1000;
         this._lifeTime = 0;
         this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
-        this.smooth = this.actualOptions.smooth;
+        this._smooth = this.actualOptions.smooth;
 
-        for (const [, drawer] of this.drawers) {
+        for (const [, drawer] of this.effectDrawers) {
+            drawer.init && (await drawer.init(this));
+        }
+
+        for (const [, drawer] of this.shapeDrawers) {
             drawer.init && (await drawer.init(this));
         }
 
@@ -698,11 +724,11 @@ export class Container {
 
         this.actualOptions.setTheme(this._currentTheme);
 
-        if (this.responsiveMaxWidth === newMaxWidth) {
+        if (this._responsiveMaxWidth === newMaxWidth) {
             return false;
         }
 
-        this.responsiveMaxWidth = newMaxWidth;
+        this._responsiveMaxWidth = newMaxWidth;
 
         return true;
     }
@@ -725,21 +751,21 @@ export class Container {
         try {
             // FPS limit logic - if we are too fast, just draw without updating
             if (
-                !this.smooth &&
-                this.lastFrameTime !== undefined &&
-                timestamp < this.lastFrameTime + 1000 / this.fpsLimit
+                !this._smooth &&
+                this._lastFrameTime !== undefined &&
+                timestamp < this._lastFrameTime + 1000 / this.fpsLimit
             ) {
                 this.draw(false);
 
                 return;
             }
 
-            this.lastFrameTime ??= timestamp;
+            this._lastFrameTime ??= timestamp;
 
-            const delta = initDelta(timestamp - this.lastFrameTime, this.fpsLimit, this.smooth);
+            const delta = initDelta(timestamp - this._lastFrameTime, this.fpsLimit, this._smooth);
 
             this.addLifeTime(delta.value);
-            this.lastFrameTime = timestamp;
+            this._lastFrameTime = timestamp;
 
             if (delta.value > 1000) {
                 this.draw(false);

@@ -2,15 +2,7 @@ import type { Container } from "../Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { Particle } from "../Particle.js";
 
-/**
- */
-export interface IShapeDrawer<TParticle extends Particle = Particle> {
-    /**
-     * Shape after draw effect function
-     * @param data - the data used for drawing
-     */
-    afterDraw?: (data: IShapeDrawData<TParticle>) => void;
-
+export interface IEffectDrawer<TParticle extends Particle = Particle> {
     /**
      * Shape destroy function
      * @param container - the container initializing the shape
@@ -24,23 +16,16 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
     draw: (data: IShapeDrawData<TParticle>) => void;
 
     /**
-     * Shape sides count function
-     * @param particle - the particle using the shape
-     * @returns the number of sides for the used shape
-     */
-    getSidesCount?: (particle: TParticle) => number;
-
-    /**
      * Shape init function
      * @param container - the container initializing the shape
      */
     init?: (container: Container) => Promise<void>;
 
     /**
-     * Shape load function
+     * Effect load function
      * @param particle - the particle using the shape
      */
-    loadShape?: (particle: TParticle) => void;
+    loadEffect?: (particle: TParticle) => void;
 
     /**
      * Shape particle init function

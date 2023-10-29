@@ -40,7 +40,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
             weight = character.weight ?? "400",
             size = Math.round(radius) * 2,
             font = character.font ?? "Verdana",
-            fill = particle.fill;
+            fill = particle.shapeFill;
 
         const lines = text?.split("\n");
 

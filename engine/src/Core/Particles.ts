@@ -20,21 +20,18 @@ import { errorPrefix } from "./Utils/Constants.js";
 const qTreeCapacity = 4;
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
-    return new Rectangle(
-        -canvasSize.width / 4,
-        -canvasSize.height / 4,
-        (canvasSize.width * 3) / 2,
-        (canvasSize.height * 3) / 2,
-    );
+    const { height, width } = canvasSize,
+        posOffset = -0.25,
+        sizeFactor = 1.5;
+
+    return new Rectangle(posOffset * width, posOffset * height, sizeFactor * width, sizeFactor * height);
 };
 
 /**
  * Particles manager object
  */
 export class Particles {
-    lastZIndex;
     movers;
-    needsSort;
 
     /**
      * The quad tree used to search particles withing ranges
@@ -51,10 +48,13 @@ export class Particles {
     private readonly _engine;
     private readonly _groupLimits: Map<string, number>;
     private readonly _interactionManager;
+    private _lastZIndex;
     private _limit;
+    private _needsSort;
     private _nextId;
     private readonly _pool: Particle[];
     private _pushing?: boolean;
+    private _resizeFactor?: IDimension;
     private _zArray: Particle[];
 
     /**
@@ -71,8 +71,8 @@ export class Particles {
         this._pool = [];
         this._limit = 0;
         this._groupLimits = new Map<string, number>();
-        this.needsSort = false;
-        this.lastZIndex = 0;
+        this._needsSort = false;
+        this._lastZIndex = 0;
         this._interactionManager = new InteractionManager(engine, container);
 
         const canvasSize = container.canvas.size;
@@ -185,8 +185,8 @@ export class Particles {
         const container = this._container,
             options = container.actualOptions;
 
-        this.lastZIndex = 0;
-        this.needsSort = false;
+        this._lastZIndex = 0;
+        this._needsSort = false;
 
         let handled = false;
 
@@ -277,6 +277,15 @@ export class Particles {
         this._applyDensity(options.particles, options.manualParticles.length);
     }
 
+    setLastZIndex(zIndex: number): void {
+        this._lastZIndex = zIndex;
+        this._needsSort = this._needsSort || this._lastZIndex < zIndex;
+    }
+
+    setResizeFactor(factor: IDimension): void {
+        this._resizeFactor = factor;
+    }
+
     async update(delta: IDelta): Promise<void> {
         const container = this._container,
             particlesToDelete = new Set<Particle>();
@@ -292,7 +301,7 @@ export class Particles {
         }
 
         for (const particle of this._array) {
-            const resizeFactor = container.canvas.resizeFactor;
+            const resizeFactor = this._resizeFactor;
 
             if (resizeFactor && !particle.ignoresResizeRatio) {
                 particle.position.x *= resizeFactor.width;
@@ -347,15 +356,15 @@ export class Particles {
             }
         }
 
-        delete container.canvas.resizeFactor;
+        delete this._resizeFactor;
 
-        if (this.needsSort) {
+        if (this._needsSort) {
             const zArray = this._zArray;
 
             zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-            this.lastZIndex = zArray[zArray.length - 1].position.z;
-            this.needsSort = false;
+            this._lastZIndex = zArray[zArray.length - 1].position.z;
+            this._needsSort = false;
         }
     }
 

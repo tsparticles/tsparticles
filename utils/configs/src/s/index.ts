@@ -1,7 +1,6 @@
 import seaAnemone from "./seaAnemone.js";
 import shadow from "./shadow.js";
 import shapeArrow from "./shapeArrow.js";
-import shapeBubble from "./shapeBubble.js";
 import shapeCog from "./shapeCog.js";
 import shapeHeart from "./shapeHeart.js";
 import shapeMultilineText from "./shapeMultilineText.js";
@@ -28,7 +27,6 @@ export default {
     seaAnemone,
     shadow,
     shapeArrow,
-    shapeBubble,
     shapeCog,
     shapeHeart,
     shapeMultilineText,

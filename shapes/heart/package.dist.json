@@ -60,7 +60,7 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "@tsparticles/shape"
+    "tsparticles-shape"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",

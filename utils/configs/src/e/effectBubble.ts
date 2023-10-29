@@ -1,7 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-    name: "Shape Bubble",
+    name: "Effect Bubble",
     particles: {
         number: {
             value: 80,
@@ -17,8 +17,11 @@ const options: ISourceOptions = {
                 sync: true,
             },
         },
-        shape: {
+        effect: {
             type: "bubble",
+        },
+        shape: {
+            type: ["circle", "square"],
         },
         opacity: {
             value: 0.5,

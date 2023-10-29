@@ -124,8 +124,8 @@ function rectSideBounce(data: RectSideBounceData): IRectSideResult {
     }
 
     if (
-        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
-        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
+        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) * 0.5 && velocity > 0) ||
+        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) * 0.5 && velocity < 0)
     ) {
         res.velocity = velocity * -factor;
         res.bounced = true;

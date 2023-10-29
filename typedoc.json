@@ -51,7 +51,6 @@
     "plugins/exports/image",
     "plugins/exports/json",
     "shapes/arrow",
-    "shapes/bubble",
     "shapes/cards",
     "shapes/circle",
     "shapes/cog",
@@ -79,7 +78,8 @@
     "updaters/strokeColor",
     "updaters/tilt",
     "updaters/twinkle",
-    "updaters/wobble"
+    "updaters/wobble",
+    "effects/bubble"
   ],
   "entryPointStrategy": "packages",
   "name": "tsParticles",

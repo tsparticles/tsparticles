@@ -3,7 +3,7 @@ import type { CogParticle } from "./CogParticle.js";
 import type { ICogData } from "./ICogData.js";
 
 export class CogDrawer implements IShapeDrawer<CogParticle> {
-    afterEffect(data: IShapeDrawData<CogParticle>): void {
+    afterDraw(data: IShapeDrawData<CogParticle>): void {
         const { context, particle, radius } = data;
 
         if (

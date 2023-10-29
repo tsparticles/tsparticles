@@ -39,8 +39,6 @@ export class Canvas {
      */
     element?: HTMLCanvasElement;
 
-    resizeFactor?: IDimension;
-
     /**
      * The particles canvas dimension
      */
@@ -415,10 +413,10 @@ export class Canvas {
         this.element.height = size.height = this.element.offsetHeight * pxRatio;
 
         if (this.container.started) {
-            this.resizeFactor = {
+            container.particles.setResizeFactor({
                 width: size.width / oldSize.width,
                 height: size.height / oldSize.height,
-            };
+            });
         }
 
         return true;

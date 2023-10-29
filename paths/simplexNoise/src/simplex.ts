@@ -13,8 +13,8 @@ export default function shuffleSeed(seed: Uint32Array): Uint32Array {
 }
 
 const NORM_4D = 1.0 / 30.0,
-    SQUISH_4D = (Math.sqrt(4 + 1) - 1) / 4,
-    STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) / 4;
+    SQUISH_4D = (Math.sqrt(4 + 1) - 1) * 0.25,
+    STRETCH_4D = (1 / Math.sqrt(4 + 1) - 1) * 0.25;
 
 export type Noise4D = (x: number, y: number, z: number, w: number) => number;
 

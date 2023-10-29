@@ -44,7 +44,7 @@
         if (container) {
             particlesCount.innerText = `${container.particles.count}`;
             zParticlesCount.innerText = `${container.particles._zArray.length}`;
-            poolCount.innerText = `${container.particles.pool.length}`;
+            poolCount.innerText = `${container.particles._pool.length}`;
         }
     }, 100);
 

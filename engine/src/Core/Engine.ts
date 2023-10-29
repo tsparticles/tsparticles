@@ -10,6 +10,7 @@ import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
@@ -114,9 +115,9 @@ async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple
  */
 export class Engine {
     /**
-     * The drawers (additional shapes) array
+     * The drawers (additional effects) array
      */
-    readonly drawers;
+    readonly effectDrawers;
 
     /**
      * The interaction managers array
@@ -139,6 +140,11 @@ export class Engine {
      * The presets array
      */
     readonly presets;
+
+    /**
+     * The drawers (additional shapes) array
+     */
+    readonly shapeDrawers;
 
     /**
      * The updaters array
@@ -180,7 +186,8 @@ export class Engine {
         this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
         this.presets = new Map<string, ISourceOptions>();
-        this.drawers = new Map<string, IShapeDrawer>();
+        this.effectDrawers = new Map<string, IEffectDrawer>();
+        this.shapeDrawers = new Map<string, IShapeDrawer>();
         this.pathGenerators = new Map<string, IMovePathGenerator>();
     }
 
@@ -204,6 +211,20 @@ export class Engine {
         this._configs.set(name, config);
 
         this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name, config } });
+    }
+
+    /**
+     * addEffect adds effect to tsParticles, it will be available to all future instances created
+     * @param effect - the effect name
+     * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
+     * @param refresh - should refresh the dom after adding the effect
+     */
+    async addEffect(effect: SingleOrMultiple<string>, drawer: IEffectDrawer, refresh = true): Promise<void> {
+        executeOnSingleOrMultiple(effect, (type) => {
+            !this.getEffectDrawer(type) && this.effectDrawers.set(type, drawer);
+        });
+
+        await this.refresh(refresh);
     }
 
     /**
@@ -311,7 +332,7 @@ export class Engine {
      */
     async addShape(shape: SingleOrMultiple<string>, drawer: IShapeDrawer, refresh = true): Promise<void> {
         executeOnSingleOrMultiple(shape, (type) => {
-            !this.getShapeDrawer(type) && this.drawers.set(type, drawer);
+            !this.getShapeDrawer(type) && this.shapeDrawers.set(type, drawer);
         });
 
         await this.refresh(refresh);
@@ -374,6 +395,15 @@ export class Engine {
     }
 
     /**
+     * Searches the given effect drawer type with the given type name
+     * @param type - the effect drawer type name
+     * @returns the effect drawer if found, or undefined
+     */
+    getEffectDrawer(type: string): IEffectDrawer | undefined {
+        return this.effectDrawers.get(type);
+    }
+
+    /**
      * Returns all the container interaction managers
      * @param container - the container used to check which interaction managers are compatible
      * @param force - if true reloads the interaction managers collection for the given container
@@ -420,7 +450,15 @@ export class Engine {
      * @returns the shape drawer if found, or undefined
      */
     getShapeDrawer(type: string): IShapeDrawer | undefined {
-        return this.drawers.get(type);
+        return this.shapeDrawers.get(type);
+    }
+
+    /**
+     * This method returns all the supported effects with this Plugins instance
+     * @returns all the supported effects type name
+     */
+    getSupportedEffects(): IterableIterator<string> {
+        return this.effectDrawers.keys();
     }
 
     /**
@@ -428,7 +466,7 @@ export class Engine {
      * @returns all the supported shapes type name
      */
     getSupportedShapes(): IterableIterator<string> {
-        return this.drawers.keys();
+        return this.shapeDrawers.keys();
     }
 
     /**

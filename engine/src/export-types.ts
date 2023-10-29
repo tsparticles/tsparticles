@@ -12,6 +12,7 @@ export * from "./Core/Interfaces/IDelta.js";
 export * from "./Core/Interfaces/IDimension.js";
 export * from "./Core/Interfaces/IDistance.js";
 export * from "./Core/Interfaces/IDrawParticleParams.js";
+export * from "./Core/Interfaces/IEffectDrawer.js";
 export * from "./Core/Interfaces/IExternalInteractor.js";
 export * from "./Core/Interfaces/IInteractor.js";
 export * from "./Core/Interfaces/ILoadParams.js";
@@ -31,6 +32,7 @@ export * from "./Core/Interfaces/IPlugin.js";
 export * from "./Core/Interfaces/IPositionFromSizeParams.js";
 export * from "./Core/Interfaces/IRangeValue.js";
 export * from "./Core/Interfaces/IRectSideResult.js";
+export * from "./Core/Interfaces/IShapeDrawData.js";
 export * from "./Core/Interfaces/IShapeDrawer.js";
 export * from "./Core/Interfaces/IShapeValues.js";
 export * from "./Core/Interfaces/ISlowParticleData.js";
@@ -70,6 +72,8 @@ export * from "./Options/Interfaces/Particles/Bounce/IParticlesBounce.js";
 export * from "./Options/Interfaces/Particles/Collisions/ICollisions.js";
 export * from "./Options/Interfaces/Particles/Collisions/ICollisionsAbsorb.js";
 export * from "./Options/Interfaces/Particles/Collisions/ICollisionsOverlap.js";
+
+export * from "./Options/Interfaces/Particles/Effect/IEffect.js";
 
 export * from "./Options/Interfaces/Particles/IParticlesOptions.js";
 export * from "./Options/Interfaces/Particles/IShadow.js";

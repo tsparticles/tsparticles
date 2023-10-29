@@ -86,8 +86,8 @@ export class BaseMover implements IParticleMover {
 
         const spinPos = spinOptions.position ?? { x: 50, y: 50 },
             spinCenter = {
-                x: (spinPos.x / 100) * container.canvas.size.width,
-                y: (spinPos.y / 100) * container.canvas.size.height,
+                x: spinPos.x * 0.01 * container.canvas.size.width,
+                y: spinPos.y * 0.01 * container.canvas.size.height,
             },
             pos = particle.getPosition(),
             distance = getDistance(pos, spinCenter),

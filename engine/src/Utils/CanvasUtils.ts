@@ -98,8 +98,6 @@ export function drawParticle(data: IDrawParticleParams): void {
 
     context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
-    context.beginPath();
-
     if (backgroundMask) {
         context.globalCompositeOperation = composite;
     }
@@ -127,9 +125,11 @@ export function drawParticle(data: IDrawParticleParams): void {
 
     const drawData = { container, context, particle, radius, opacity, delta };
 
+    context.beginPath();
+
     drawShape(drawData);
 
-    if (particle.close) {
+    if (particle.shapeClose) {
         context.closePath();
     }
 
@@ -137,11 +137,12 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.stroke();
     }
 
-    if (particle.fill) {
+    if (particle.shapeFill) {
         context.fill();
     }
 
-    drawShapeAfterEffect(drawData);
+    drawShapeAfterDraw(drawData);
+    drawEffect(drawData);
 
     context.globalCompositeOperation = "source-over";
     context.setTransform(1, 0, 0, 1, 0, 0);
@@ -183,14 +184,14 @@ type DrawShapeData = {
  * Draws the particle shape using the plugin's shape renderer.
  * @param data - the function parameters.
  */
-export function drawShape(data: DrawShapeData): void {
+export function drawEffect(data: DrawShapeData): void {
     const { container, context, particle, radius, opacity, delta } = data;
 
-    if (!particle.shape) {
+    if (!particle.effect) {
         return;
     }
 
-    const drawer = container.drawers.get(particle.shape);
+    const drawer = container.effectDrawers.get(particle.effect);
 
     if (!drawer) {
         return;
@@ -200,23 +201,43 @@ export function drawShape(data: DrawShapeData): void {
 }
 
 /**
- * Draws the particle effect after the plugin's shape renderer.
+ * Draws the particle shape using the plugin's shape renderer.
  * @param data - the function parameters.
  */
-export function drawShapeAfterEffect(data: DrawShapeData): void {
+export function drawShape(data: DrawShapeData): void {
     const { container, context, particle, radius, opacity, delta } = data;
 
     if (!particle.shape) {
         return;
     }
 
-    const drawer = container.drawers.get(particle.shape);
+    const drawer = container.shapeDrawers.get(particle.shape);
 
-    if (!drawer || !drawer.afterEffect) {
+    if (!drawer) {
         return;
     }
 
-    drawer.afterEffect({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
+    drawer.draw({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
+}
+
+/**
+ * Calls the afterDraw function of the plugin's shape renderer, this is called after drawShape.
+ * @param data - the function parameters.
+ */
+export function drawShapeAfterDraw(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, delta } = data;
+
+    if (!particle.shape) {
+        return;
+    }
+
+    const drawer = container.shapeDrawers.get(particle.shape);
+
+    if (!drawer || !drawer.afterDraw) {
+        return;
+    }
+
+    drawer.afterDraw({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
 }
 
 /**

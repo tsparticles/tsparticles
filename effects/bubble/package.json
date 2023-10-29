@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/shape-bubble",
+  "name": "@tsparticles/effect-bubble",
   "version": "3.0.0-beta.3",
-  "description": "tsParticles bubble shape",
+  "description": "tsParticles bubble effect",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "shapes/bubble"
+    "directory": "effects/bubble"
   },
   "keywords": [
     "front-end",
@@ -66,7 +66,7 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "@tsparticles/shape"
+    "tsparticles-effect"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",

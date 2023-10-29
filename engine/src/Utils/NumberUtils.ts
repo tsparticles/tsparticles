@@ -191,21 +191,21 @@ export function getParticleDirectionAngle(
 
     switch (direction) {
         case MoveDirection.top:
-            return -Math.PI / 2;
+            return -Math.PI * 0.5;
         case MoveDirection.topRight:
-            return -Math.PI / 4;
+            return -Math.PI * 0.25;
         case MoveDirection.right:
             return 0;
         case MoveDirection.bottomRight:
-            return Math.PI / 4;
+            return Math.PI * 0.25;
         case MoveDirection.bottom:
-            return Math.PI / 2;
+            return Math.PI * 0.5;
         case MoveDirection.bottomLeft:
-            return (3 * Math.PI) / 4;
+            return Math.PI * 0.75;
         case MoveDirection.left:
             return Math.PI;
         case MoveDirection.topLeft:
-            return (-3 * Math.PI) / 4;
+            return -Math.PI * 0.75;
         case MoveDirection.inside:
             return Math.atan2(center.y - position.y, center.x - position.x);
         case MoveDirection.outside:

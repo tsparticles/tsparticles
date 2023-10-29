@@ -39,7 +39,7 @@
     "css3",
     "animated",
     "background",
-    "@tsparticles/shape"
+    "tsparticles-shape"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",

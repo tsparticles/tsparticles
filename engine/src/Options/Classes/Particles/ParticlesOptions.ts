@@ -2,6 +2,7 @@ import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
 import { Collisions } from "./Collisions/Collisions.js";
 import type { Container } from "../../../Core/Container.js";
+import { Effect } from "./Effect/Effect.js";
 import type { Engine } from "../../../Core/Engine.js";
 import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
@@ -28,6 +29,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     bounce;
     collisions;
     color;
+    effect;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
     move;
@@ -51,6 +53,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.color.value = "#fff";
+        this.effect = new Effect();
         this.groups = {};
         this.move = new Move();
         this.number = new ParticlesNumber();
@@ -70,6 +73,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
         this.bounce.load(data.bounce);
         this.color.load(AnimatableColor.create(this.color, data.color));
+        this.effect.load(data.effect);
 
         if (data.groups !== undefined) {
             for (const group in data.groups) {

@@ -43,8 +43,8 @@ export class ParallaxMover implements IParticleMover {
         /* smaller is the particle, longer is the offset distance */
         const canvasSize = container.canvas.size,
             canvasCenter = {
-                x: canvasSize.width / 2,
-                y: canvasSize.height / 2,
+                x: canvasSize.width * 0.5,
+                y: canvasSize.height * 0.5,
             },
             parallaxSmooth = parallaxOptions.smooth,
             factor = particle.getRadius() / parallaxForce,

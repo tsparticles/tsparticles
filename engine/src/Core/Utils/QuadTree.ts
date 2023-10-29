@@ -146,10 +146,10 @@ export class QuadTree {
             this._subs.push(
                 new QuadTree(
                     new Rectangle(
-                        x + (width / 2) * (i % 2),
-                        y + (height / 2) * (Math.round(i / 2) - (i % 2)),
-                        width / 2,
-                        height / 2,
+                        x + width * 0.5 * (i % 2),
+                        y + height * 0.5 * (Math.round(i * 0.5) - (i % 2)),
+                        width * 0.5,
+                        height * 0.5,
                     ),
                     capacity,
                 ),

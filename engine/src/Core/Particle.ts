@@ -24,6 +24,7 @@ import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
+import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
@@ -71,6 +72,35 @@ type FixOutModeParams = {
      */
     setCb: (value: number) => void;
 };
+
+/**
+ *
+ * @param effect -
+ * @param effectOptions -
+ * @param id -
+ * @param reduceDuplicates -
+ * @returns the effect data
+ */
+function loadEffectData(
+    effect: string,
+    effectOptions: IEffect,
+    id: number,
+    reduceDuplicates: boolean,
+): IShapeValues | undefined {
+    const effectData = effectOptions.options[effect];
+
+    if (!effectData) {
+        return;
+    }
+
+    return deepExtend(
+        {
+            close: effectOptions.close,
+            fill: effectOptions.fill,
+        },
+        itemFromSingleOrMultiple(effectData, id, reduceDuplicates),
+    ) as IShapeValues;
+}
 
 /**
  *
@@ -135,11 +165,6 @@ export class Particle {
     bubble!: IBubbleParticleData;
 
     /**
-     * Checks if the particle shape needs a closed path
-     */
-    close!: boolean;
-
-    /**
      * Gets the particle color options
      */
     color?: IParticleHslAnimation;
@@ -155,9 +180,24 @@ export class Particle {
     direction!: number;
 
     /**
-     * Checks if the particle shape needs to be filled with a color
+     * Gets particle effect type
      */
-    fill!: boolean;
+    effect!: string;
+
+    /**
+     * Checks if the particle effect needs a closed path
+     */
+    effectClose!: boolean;
+
+    /**
+     * Gets particle effect options
+     */
+    effectData?: IShapeValues;
+
+    /**
+     * Checks if the particle effect needs to be filled with a color
+     */
+    effectFill!: boolean;
 
     group?: string;
 
@@ -265,9 +305,19 @@ export class Particle {
     shape!: string;
 
     /**
+     * Checks if the particle shape needs a closed path
+     */
+    shapeClose!: boolean;
+
+    /**
      * Gets particle shape options
      */
     shapeData?: IShapeValues;
+
+    /**
+     * Checks if the particle shape needs to be filled with a color
+     */
+    shapeFill!: boolean;
 
     /**
      * Gets the particle side count
@@ -348,20 +398,14 @@ export class Particle {
             pathGenerator = this.pathGenerator;
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.particleDestroyed) {
-                plugin.particleDestroyed(this, override);
-            }
+            plugin.particleDestroyed && plugin.particleDestroyed(this, override);
         }
 
         for (const updater of container.particles.updaters) {
-            if (updater.particleDestroyed) {
-                updater.particleDestroyed(this, override);
-            }
+            updater.particleDestroyed && updater.particleDestroyed(this, override);
         }
 
-        if (pathGenerator) {
-            pathGenerator.reset(this);
-        }
+        pathGenerator && pathGenerator.reset(this);
     }
 
     draw(delta: IDelta): void {
@@ -380,7 +424,7 @@ export class Particle {
     }
 
     getMass(): number {
-        return (this.getRadius() ** 2 * Math.PI) / 2;
+        return this.getRadius() ** 2 * Math.PI * 0.5;
     }
 
     getPosition(): ICoordinates3d {
@@ -410,9 +454,11 @@ export class Particle {
 
         this.id = id;
         this.group = group;
-        this.fill = true;
+        this.effectClose = true;
+        this.effectFill = true;
+        this.shapeClose = true;
+        this.shapeFill = true;
         this.pathRotation = false;
-        this.close = true;
         this.lastPathTime = 0;
         this.destroyed = false;
         this.unbreakable = false;
@@ -427,27 +473,50 @@ export class Particle {
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
             particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
+            effectType = particlesOptions.effect.type,
             shapeType = particlesOptions.shape.type,
             { reduceDuplicates } = particlesOptions;
 
+        this.effect = itemFromSingleOrMultiple(effectType, this.id, reduceDuplicates);
         this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
 
-        const shapeOptions = particlesOptions.shape;
+        const effectOptions = particlesOptions.effect,
+            shapeOptions = particlesOptions.shape;
 
-        if (overrideOptions && overrideOptions.shape && overrideOptions.shape.type) {
-            const overrideShapeType = overrideOptions.shape.type,
-                shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
+        if (overrideOptions) {
+            if (overrideOptions.effect && overrideOptions.effect.type) {
+                const overrideEffectType = overrideOptions.effect.type,
+                    effect = itemFromSingleOrMultiple(overrideEffectType, this.id, reduceDuplicates);
 
-            if (shape) {
-                this.shape = shape;
+                if (effect) {
+                    this.effect = effect;
 
-                shapeOptions.load(overrideOptions.shape);
+                    effectOptions.load(overrideOptions.effect);
+                }
+            }
+
+            if (overrideOptions.shape && overrideOptions.shape.type) {
+                const overrideShapeType = overrideOptions.shape.type,
+                    shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
+
+                if (shape) {
+                    this.shape = shape;
+
+                    shapeOptions.load(overrideOptions.shape);
+                }
             }
         }
 
+        this.effectData = loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates);
         this.shapeData = loadShapeData(this.shape, shapeOptions, this.id, reduceDuplicates);
 
         particlesOptions.load(overrideOptions);
+
+        const effectData = this.effectData;
+
+        if (effectData) {
+            particlesOptions.load(effectData.particles);
+        }
 
         const shapeData = this.shapeData;
 
@@ -462,8 +531,10 @@ export class Particle {
 
         this.interactivity = interactivity;
 
-        this.fill = shapeData?.fill ?? particlesOptions.shape.fill;
-        this.close = shapeData?.close ?? particlesOptions.shape.close;
+        this.effectFill = effectData?.fill ?? particlesOptions.effect.fill;
+        this.effectClose = effectData?.close ?? particlesOptions.effect.close;
+        this.shapeFill = shapeData?.fill ?? particlesOptions.shape.fill;
+        this.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
         this.options = particlesOptions;
 
         const pathOptions = this.options.move.path;
@@ -501,28 +572,41 @@ export class Particle {
 
         const particles = container.particles;
 
-        particles.needsSort = particles.needsSort || particles.lastZIndex < this.position.z;
-        particles.lastZIndex = this.position.z;
+        particles.setLastZIndex(this.position.z);
 
         // Scale z-index factor
         this.zIndexFactor = this.position.z / container.zLayers;
         this.sides = 24;
 
-        let drawer = container.drawers.get(this.shape);
+        let effectDrawer = container.effectDrawers.get(this.effect);
 
-        if (!drawer) {
-            drawer = this._engine.getShapeDrawer(this.shape);
+        if (!effectDrawer) {
+            effectDrawer = this._engine.getEffectDrawer(this.effect);
 
-            if (drawer) {
-                container.drawers.set(this.shape, drawer);
+            if (effectDrawer) {
+                container.effectDrawers.set(this.effect, effectDrawer);
             }
         }
 
-        if (drawer && drawer.loadShape) {
-            drawer.loadShape(this);
+        if (effectDrawer && effectDrawer.loadEffect) {
+            effectDrawer.loadEffect(this);
         }
 
-        const sideCountFunc = drawer?.getSidesCount;
+        let shapeDrawer = container.shapeDrawers.get(this.shape);
+
+        if (!shapeDrawer) {
+            shapeDrawer = this._engine.getShapeDrawer(this.shape);
+
+            if (shapeDrawer) {
+                container.shapeDrawers.set(this.shape, shapeDrawer);
+            }
+        }
+
+        if (shapeDrawer && shapeDrawer.loadShape) {
+            shapeDrawer.loadShape(this);
+        }
+
+        const sideCountFunc = shapeDrawer?.getSidesCount;
 
         if (sideCountFunc) {
             this.sides = sideCountFunc(this);
@@ -531,16 +615,20 @@ export class Particle {
         this.spawning = false;
         this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
-        for (const updater of container.particles.updaters) {
+        for (const updater of particles.updaters) {
             updater.init(this);
         }
 
-        for (const mover of container.particles.movers) {
+        for (const mover of particles.movers) {
             mover.init && mover.init(this);
         }
 
-        if (drawer && drawer.particleInit) {
-            drawer.particleInit(container, this);
+        if (effectDrawer && effectDrawer.particleInit) {
+            effectDrawer.particleInit(container, this);
+        }
+
+        if (shapeDrawer && shapeDrawer.particleInit) {
+            shapeDrawer.particleInit(container, this);
         }
 
         for (const [, plugin] of container.plugins) {
@@ -643,8 +731,8 @@ export class Particle {
         const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value),
             radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset),
             range = {
-                left: radOffset - rad / 2,
-                right: radOffset + rad / 2,
+                left: radOffset - rad * 0.5,
+                right: radOffset + rad * 0.5,
             };
 
         if (!moveOptions.straight) {
@@ -689,7 +777,7 @@ export class Particle {
         }
 
         const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
-            backSum = this.roll.horizontal ? Math.PI / 2 : 0,
+            backSum = this.roll.horizontal ? Math.PI * 0.5 : 0,
             rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
 
         if (!rolled) {

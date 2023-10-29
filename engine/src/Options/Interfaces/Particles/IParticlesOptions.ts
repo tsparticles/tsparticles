@@ -3,6 +3,7 @@
  */
 import type { IAnimatableColor } from "../IAnimatableColor.js";
 import type { ICollisions } from "./Collisions/ICollisions.js";
+import type { IEffect } from "./Effect/IEffect.js";
 import type { IInteractivity } from "../Interactivity/IInteractivity.js";
 import type { IMove } from "./Move/IMove.js";
 import type { IOpacity } from "./Opacity/IOpacity.js";
@@ -26,6 +27,7 @@ export interface IParticlesOptions {
     bounce: IParticlesBounce;
     collisions: ICollisions;
     color: IAnimatableColor;
+    effect: IEffect;
     groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
     move: IMove;

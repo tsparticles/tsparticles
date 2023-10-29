@@ -160,7 +160,7 @@ export function rgbToHsl(color: IRgb): IHsl {
         //Calculate L:
         res = {
             h: 0,
-            l: (max + min) / 2,
+            l: (max + min) * 0.5,
             s: 0,
         };
 
