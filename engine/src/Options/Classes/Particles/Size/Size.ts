@@ -1,14 +1,14 @@
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { ISize } from "../../../Interfaces/Particles/Size/ISize.js";
+import { RangedAnimationValueWithRandom } from "../../ValueWithRandom.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { SizeAnimation } from "./SizeAnimation.js";
-import { ValueWithRandom } from "../../ValueWithRandom.js";
 
 /**
  * [[include:Options/Particles/Size.md]]
  */
-export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize> {
-    animation;
+export class Size extends RangedAnimationValueWithRandom implements ISize, IOptionLoader<ISize> {
+    readonly animation;
 
     constructor() {
         super();

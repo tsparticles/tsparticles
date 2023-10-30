@@ -28,7 +28,7 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
 }
 
 export class AnimationValueWithRandom extends ValueWithRandom implements IOptionLoader<IAnimationValueWithRandom> {
-    animation;
+    readonly animation;
 
     constructor() {
         super();
@@ -55,7 +55,7 @@ export class RangedAnimationValueWithRandom
     extends AnimationValueWithRandom
     implements IOptionLoader<IRangedAnimationValueWithRandom>
 {
-    animation: RangedAnimationOptions;
+    readonly animation: RangedAnimationOptions;
 
     constructor() {
         super();

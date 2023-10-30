@@ -13,12 +13,12 @@ import { setRangeValue } from "../../../../Utils/NumberUtils.js";
  * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
-    absorb;
-    bounce;
+    readonly absorb;
+    readonly bounce;
     enable;
     maxSpeed: RangeValue;
     mode: CollisionMode | keyof typeof CollisionMode;
-    overlap;
+    readonly overlap;
 
     constructor() {
         this.absorb = new CollisionsAbsorb();

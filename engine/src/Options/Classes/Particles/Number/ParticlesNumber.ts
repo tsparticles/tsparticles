@@ -7,7 +7,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
  * [[include:Options/Particles/Number.md]]
  */
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
-    density;
+    readonly density;
     limit;
     value;
 

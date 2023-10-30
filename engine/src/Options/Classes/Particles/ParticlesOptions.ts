@@ -26,21 +26,21 @@ import { ZIndex } from "./ZIndex/ZIndex.js";
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
     [name: string]: unknown;
 
-    bounce;
-    collisions;
+    readonly bounce;
+    readonly collisions;
     color;
-    effect;
-    groups: ParticlesGroups;
+    readonly effect;
+    readonly groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
-    move;
-    number;
-    opacity;
+    readonly move;
+    readonly number;
+    readonly opacity;
     reduceDuplicates;
-    shadow;
-    shape;
-    size;
+    readonly shadow;
+    readonly shape;
+    readonly size;
     stroke: SingleOrMultiple<Stroke>;
-    zIndex;
+    readonly zIndex;
 
     private readonly _container;
     private readonly _engine;

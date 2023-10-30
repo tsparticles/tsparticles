@@ -30,25 +30,25 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     [name: string]: unknown;
 
     autoPlay;
-    background;
-    backgroundMask;
+    readonly background;
+    readonly backgroundMask;
     defaultThemes: DefaultThemes;
     delay: RangeValue;
     detectRetina;
     duration: RangeValue;
     fpsLimit;
-    fullScreen;
-    interactivity;
+    readonly fullScreen;
+    readonly interactivity;
     manualParticles: ManualParticle[];
     name?: string;
-    particles;
+    readonly particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
     preset?: SingleOrMultiple<string>;
     responsive: Responsive[];
     smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
-    themes: Theme[];
+    readonly themes: Theme[];
     zLayers;
 
     private readonly _container;

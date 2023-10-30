@@ -11,7 +11,7 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
     enable;
     mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;
-    parallax;
+    readonly parallax;
 
     constructor() {
         this.enable = false;

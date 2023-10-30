@@ -19,7 +19,7 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     /**
      * Background covering color
      */
-    cover;
+    readonly cover;
 
     /**
      * Background mask enabling options
@@ -42,8 +42,8 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
         }
 
         if (data.cover !== undefined) {
-            const cover = data.cover as IBackgroundMaskCover;
-            const color = (isString(data.cover) ? { color: data.cover } : data.cover) as IColor;
+            const cover = data.cover as IBackgroundMaskCover,
+                color = (isString(data.cover) ? { color: data.cover } : data.cover) as IColor;
 
             this.cover.load(cover.color !== undefined ? cover : { color: color });
         }

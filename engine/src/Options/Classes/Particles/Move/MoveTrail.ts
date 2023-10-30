@@ -7,7 +7,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
  */
 export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
     enable;
-    fill;
+    readonly fill;
     length;
 
     constructor() {

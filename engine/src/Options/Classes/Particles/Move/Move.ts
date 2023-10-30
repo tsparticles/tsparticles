@@ -20,23 +20,23 @@ import { setRangeValue } from "../../../../Utils/NumberUtils.js";
  * [[include:Options/Particles/Move.md]]
  */
 export class Move implements IMove, IOptionLoader<IMove> {
-    angle;
-    attract;
-    center: MoveCenter;
+    readonly angle;
+    readonly attract;
+    readonly center: MoveCenter;
     decay: RangeValue;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
     drift: RangeValue;
     enable;
-    gravity;
-    outModes: OutModes;
-    path;
+    readonly gravity;
+    readonly outModes: OutModes;
+    readonly path;
     random;
     size;
     speed: RangeValue;
-    spin;
+    readonly spin;
     straight;
-    trail;
+    readonly trail;
     vibrate;
     warp;
 

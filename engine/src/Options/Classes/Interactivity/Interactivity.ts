@@ -15,8 +15,8 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
 
     detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
 
-    events;
-    modes;
+    readonly events;
+    readonly modes;
 
     constructor(engine: Engine, container?: Container) {
         this.detectsOn = InteractivityDetect.window;

@@ -12,10 +12,10 @@ import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
  * [[include:Options/Interactivity/Events.md]]
  */
 export class Events implements IEvents, IOptionLoader<IEvents> {
-    onClick;
+    readonly onClick;
     onDiv: SingleOrMultiple<DivEvent>;
-    onHover;
-    resize;
+    readonly onHover;
+    readonly resize;
 
     constructor() {
         this.onClick = new ClickEvent();

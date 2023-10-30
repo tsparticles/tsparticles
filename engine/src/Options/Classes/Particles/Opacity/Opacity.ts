@@ -1,14 +1,14 @@
 import type { IOpacity } from "../../../Interfaces/Particles/Opacity/IOpacity.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { OpacityAnimation } from "./OpacityAnimation.js";
+import { RangedAnimationValueWithRandom } from "../../ValueWithRandom.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { ValueWithRandom } from "../../ValueWithRandom.js";
 
 /**
  * [[include:Options/Particles/Opacity.md]]
  */
-export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
-    animation;
+export class Opacity extends RangedAnimationValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
+    readonly animation;
 
     constructor() {
         super();

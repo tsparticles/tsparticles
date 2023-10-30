@@ -6,7 +6,7 @@ import { ThemeDefault } from "./ThemeDefault.js";
 import { deepExtend } from "../../../Utils/Utils.js";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
-    default;
+    readonly default;
     name;
     options?: RecursivePartial<IOptions>;
 
