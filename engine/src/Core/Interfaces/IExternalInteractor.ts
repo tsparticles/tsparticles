@@ -8,12 +8,12 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  */
-export interface IExternalInteractor extends IInteractor {
+export interface IExternalInteractor<TParticle extends Particle = Particle> extends IInteractor<TParticle> {
     handleClickMode?: (mode: ClickMode | string) => void;
 
     loadModeOptions?: (options: Modes, ...sources: RecursivePartial<IModes | undefined>[]) => void;
 
     interact(delta: IDelta): Promise<void>;
 
-    isEnabled(particle?: Particle): boolean;
+    isEnabled(particle?: TParticle): boolean;
 }

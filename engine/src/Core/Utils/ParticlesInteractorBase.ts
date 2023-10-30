@@ -7,8 +7,10 @@ import type { Particle } from "../Particle.js";
 /**
  * Particles interactions manager, base abstract class
  */
-export abstract class ParticlesInteractorBase<TContainer extends Container = Container>
-    implements IParticlesInteractor
+export abstract class ParticlesInteractorBase<
+    TContainer extends Container = Container,
+    TParticle extends Particle = Particle,
+> implements IParticlesInteractor<TParticle>
 {
     /**
      * Particles interactions type
@@ -27,7 +29,7 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
      * @param particle - the particle to clear
      * @param delta - this variable contains the delta between the current frame and the previous frame
      */
-    abstract clear(particle: Particle, delta: IDelta): void;
+    abstract clear(particle: TParticle, delta: IDelta): void;
 
     /**
      * Initializes the interactivity manager
@@ -39,18 +41,18 @@ export abstract class ParticlesInteractorBase<TContainer extends Container = Con
      * @param particle - the particle responsible for interactions
      * @param delta - this variable contains the delta between the current frame and the previous frame
      */
-    abstract interact(particle: Particle, delta: IDelta): Promise<void>;
+    abstract interact(particle: TParticle, delta: IDelta): Promise<void>;
 
     /**
      * Interaction enable check
      * @param particle - the particle responsible for interactions
      * @returns true or false, checking if the options enable this interaction manager
      */
-    abstract isEnabled(particle: Particle): boolean;
+    abstract isEnabled(particle: TParticle): boolean;
 
     /**
      * Before interaction reset
      * @param particle - the particle to be reset
      */
-    abstract reset(particle: Particle): void;
+    abstract reset(particle: TParticle): void;
 }

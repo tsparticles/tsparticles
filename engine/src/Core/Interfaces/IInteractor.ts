@@ -9,7 +9,7 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  */
-export interface IInteractor {
+export interface IInteractor<TParticle extends Particle = Particle> {
     loadOptions?: (options: Options, ...sources: (ISourceOptions | undefined)[]) => void;
 
     loadParticlesOptions?: (
@@ -19,9 +19,9 @@ export interface IInteractor {
 
     type: InteractorType;
 
-    clear(particle: Particle, delta: IDelta): void;
+    clear(particle: TParticle, delta: IDelta): void;
 
     init(): void;
 
-    reset(particle: Particle): void;
+    reset(particle: TParticle): void;
 }

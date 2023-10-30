@@ -7,7 +7,11 @@ import type { Particle } from "../Particle.js";
 /**
  * External Interactivity manager, base abstract class
  */
-export abstract class ExternalInteractorBase<TContainer extends Container = Container> implements IExternalInteractor {
+export abstract class ExternalInteractorBase<
+    TContainer extends Container = Container,
+    TParticle extends Particle = Particle,
+> implements IExternalInteractor<TParticle>
+{
     /**
      * External Interactivity type
      */
@@ -25,7 +29,7 @@ export abstract class ExternalInteractorBase<TContainer extends Container = Cont
      * @param particle - the particle to clear
      * @param delta - this variable contains the delta between the current frame and the previous frame
      */
-    abstract clear(particle: Particle, delta: IDelta): void;
+    abstract clear(particle: TParticle, delta: IDelta): void;
 
     /**
      * Initializes the interactivity manager
@@ -43,11 +47,11 @@ export abstract class ExternalInteractorBase<TContainer extends Container = Cont
      * @param particle - the particle to check, if null, checks the container
      * @returns true or false, checking if the options enable this interaction manager
      */
-    abstract isEnabled(particle?: Particle): boolean;
+    abstract isEnabled(particle?: TParticle): boolean;
 
     /**
      * Before interaction reset
      * @param particle - the particle to reset
      */
-    abstract reset(particle: Particle): void;
+    abstract reset(particle: TParticle): void;
 }

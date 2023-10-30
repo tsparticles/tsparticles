@@ -10,9 +10,9 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;
     decay: RangeValue;
     delay: RangeValue;
-    enable: boolean;
+    enable;
     speed: RangeValue;
-    sync: boolean;
+    sync;
 
     constructor() {
         this.count = 0;
