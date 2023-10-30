@@ -5,22 +5,14 @@ import type {
     IValueWithRandom,
 } from "../Interfaces/IValueWithRandom.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
-import { Random } from "./Random.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
-import { isBoolean } from "../../Utils/Utils.js";
 import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
-    /**
-     * @deprecated use the new {@link RangeValue} type instead
-     */
-    random: Random;
-
     value: RangeValue;
 
     constructor() {
-        this.random = new Random();
         this.value = 0;
     }
 
@@ -29,14 +21,8 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
             return;
         }
 
-        if (isBoolean(data.random)) {
-            this.random.enable = data.random;
-        } else {
-            this.random.load(data.random);
-        }
-
         if (data.value !== undefined) {
-            this.value = setRangeValue(data.value, this.random.enable ? this.random.minimumValue : undefined);
+            this.value = setRangeValue(data.value);
         }
     }
 }

@@ -65,10 +65,6 @@ describe("Themes", async () => {
                 },
                 size: {
                     value: 30,
-                    random: {
-                        enable: true,
-                        minimumValue: 15,
-                    },
                 },
                 rotate: {
                     value: 0,

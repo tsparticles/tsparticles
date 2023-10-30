@@ -7,7 +7,6 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
-    getValue,
     randomInRange,
 } from "./NumberUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
@@ -429,7 +428,10 @@ export function circleBounceDataFromParticle(p: Particle): ICircleBouncer {
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: Vector.create(
+            getRangeValue(p.options.bounce.horizontal.value),
+            getRangeValue(p.options.bounce.vertical.value),
+        ),
     };
 }
 
@@ -473,6 +475,7 @@ export function rectBounce(particle: Particle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
         size = particle.getRadius(),
         bounds = calculateBounds(pPos, size),
+        bounceOptions = particle.options.bounce,
         resH = rectSideBounce({
             pSide: {
                 min: bounds.left,
@@ -491,7 +494,7 @@ export function rectBounce(particle: Particle, divBounds: IBounds): void {
                 max: divBounds.bottom,
             },
             velocity: particle.velocity.x,
-            factor: getValue(particle.options.bounce.horizontal),
+            factor: getRangeValue(bounceOptions.horizontal.value),
         });
 
     if (resH.bounced) {
@@ -522,7 +525,7 @@ export function rectBounce(particle: Particle, divBounds: IBounds): void {
             max: divBounds.right,
         },
         velocity: particle.velocity.y,
-        factor: getValue(particle.options.bounce.vertical),
+        factor: getRangeValue(bounceOptions.vertical.value),
     });
 
     if (resV.bounced) {

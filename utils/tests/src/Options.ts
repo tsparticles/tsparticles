@@ -257,7 +257,6 @@ describe("Options tests", () => {
                     },
                     size: {
                         value: { min: 0.1, max: 5 },
-                        random: true,
                         animation: {
                             enable: true,
                             speed: 20,
@@ -433,7 +432,6 @@ describe("Options tests", () => {
                     },
                     opacity: {
                         value: 0.5,
-                        random: false,
                         animation: {
                             enable: false,
                             speed: 1,

@@ -8,7 +8,6 @@ import {
     getParticleDirectionAngle,
     getRandom,
     getRangeValue,
-    getValue,
     randomInRange,
     setRangeValue,
 } from "../Utils/NumberUtils.js";
@@ -539,7 +538,7 @@ export class Particle {
 
         const pathOptions = this.options.move.path;
 
-        this.pathDelay = getValue(pathOptions.delay) * 1000;
+        this.pathDelay = getRangeValue(pathOptions.delay.value) * 1000;
 
         if (pathOptions.generator) {
             this.pathGenerator = this._engine.getPathGenerator(pathOptions.generator);

@@ -3,13 +3,12 @@ import type {
     IPositionFromSizeParams,
     IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams.js";
-import { isBoolean, isNumber } from "./Utils.js";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
 import type { RangeValue } from "../Types/RangeValue.js";
 import { Vector } from "../Core/Utils/Vector.js";
+import { isNumber } from "./Utils.js";
 
 type EasingFunction = (value: number) => number;
 
@@ -133,22 +132,6 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
               max: Math.max(max, value),
           }
         : setRangeValue(min, max);
-}
-
-/**
- * @param options -
- * @returns the same as {@link getRangeValue}, since it calls that function, converting the parameters to a range value
- */
-export function getValue(options: IValueWithRandom): number {
-    const random = options.random,
-        { enable, minimumValue } = isBoolean(random)
-            ? {
-                  enable: random,
-                  minimumValue: 0,
-              }
-            : random;
-
-    return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
 }
 
 /**

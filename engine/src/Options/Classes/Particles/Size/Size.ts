@@ -13,7 +13,6 @@ export class Size extends ValueWithRandom implements ISize, IOptionLoader<ISize>
     constructor() {
         super();
         this.animation = new SizeAnimation();
-        this.random.minimumValue = 1;
         this.value = 3;
     }
 

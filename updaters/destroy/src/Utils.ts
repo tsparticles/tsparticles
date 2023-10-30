@@ -6,7 +6,6 @@ import {
     PixelMode,
     type RecursivePartial,
     getRangeValue,
-    getValue,
     isNumber,
     itemFromSingleOrMultiple,
     loadParticlesOptions,
@@ -37,7 +36,7 @@ function addSplitParticle(
 
     const splitOptions = destroyOptions.split,
         options = loadParticlesOptions(engine, container, parent.options),
-        factor = getValue(splitOptions.factor),
+        factor = getRangeValue(splitOptions.factor.value),
         parentColor = parent.getFillColor();
 
     if (splitOptions.color) {
@@ -120,7 +119,7 @@ export function split(engine: Engine, container: Container, particle: DestroyPar
         return;
     }
 
-    const rate = getValue(splitOptions.rate),
+    const rate = getRangeValue(splitOptions.rate.value),
         particlesSplitOptions = itemFromSingleOrMultiple(splitOptions.particles);
 
     for (let i = 0; i < rate; i++) {

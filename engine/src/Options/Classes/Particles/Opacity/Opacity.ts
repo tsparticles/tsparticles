@@ -13,7 +13,6 @@ export class Opacity extends ValueWithRandom implements IOpacity, IOptionLoader<
     constructor() {
         super();
         this.animation = new OpacityAnimation();
-        this.random.minimumValue = 0.1;
         this.value = 1;
     }
 
