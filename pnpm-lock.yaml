@@ -218,6 +218,9 @@ importers:
       '@tsparticles/plugin-easing-expo':
         specifier: ^3.0.0-beta.3
         version: link:../../plugins/easings/expo/dist
+      '@tsparticles/plugin-easing-linear':
+        specifier: ^3.0.0-beta.3
+        version: link:../../plugins/easings/linear/dist
       '@tsparticles/plugin-easing-quart':
         specifier: ^3.0.0-beta.3
         version: link:../../plugins/easings/quart/dist
@@ -1129,6 +1132,13 @@ importers:
     publishDirectory: dist
 
   plugins/easings/expo:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^3.0.0-beta.3
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/easings/linear:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.0-beta.3

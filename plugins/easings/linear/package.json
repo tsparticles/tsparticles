@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/all",
+  "name": "@tsparticles/plugin-easing-linear",
   "version": "3.0.0-beta.3",
-  "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "description": "tsParticles easing linear plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "bundles/all"
+    "directory": "plugins/easings/linear"
   },
   "keywords": [
     "front-end",
@@ -65,7 +65,8 @@
     "confetti-js",
     "confettijs",
     "fireworksjs",
-    "canvas-confetti"
+    "canvas-confetti",
+    "@tsparticles/plugin"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -87,9 +88,7 @@
     }
   ],
   "prettier": "@tsparticles/prettier-config",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "sideEffects": false,
   "browser": "dist/browser/index.js",
   "main": "dist/cjs/index.js",
@@ -107,43 +106,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/effect-bubble": "^3.0.0-beta.3",
-    "@tsparticles/engine": "^3.0.0-beta.3",
-    "@tsparticles/interaction-light": "^3.0.0-beta.3",
-    "@tsparticles/interaction-particles-repulse": "^3.0.0-beta.3",
-    "@tsparticles/path-curves": "^3.0.0-beta.3",
-    "@tsparticles/path-perlin-noise": "^3.0.0-beta.3",
-    "@tsparticles/path-polygon": "^3.0.0-beta.3",
-    "@tsparticles/path-simplex-noise": "^3.0.0-beta.3",
-    "@tsparticles/path-svg": "^3.0.0-beta.3",
-    "@tsparticles/plugin-canvas-mask": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-back": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-circ": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-cubic": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-expo": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-linear": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-quart": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-quint": "^3.0.0-beta.3",
-    "@tsparticles/plugin-easing-sine": "^3.0.0-beta.3",
-    "@tsparticles/plugin-export-image": "^3.0.0-beta.3",
-    "@tsparticles/plugin-export-json": "^3.0.0-beta.3",
-    "@tsparticles/plugin-export-video": "^3.0.0-beta.3",
-    "@tsparticles/plugin-hsv-color": "^3.0.0-beta.3",
-    "@tsparticles/plugin-infection": "^3.0.0-beta.3",
-    "@tsparticles/plugin-motion": "^3.0.0-beta.3",
-    "@tsparticles/plugin-polygon-mask": "^3.0.0-beta.3",
-    "@tsparticles/plugin-sounds": "^3.0.0-beta.3",
-    "@tsparticles/shape-arrow": "^3.0.0-beta.3",
-    "@tsparticles/shape-cards": "^3.0.0-beta.3",
-    "@tsparticles/shape-cog": "^3.0.0-beta.3",
-    "@tsparticles/shape-heart": "^3.0.0-beta.3",
-    "@tsparticles/shape-path": "^3.0.0-beta.3",
-    "@tsparticles/shape-rounded-polygon": "^3.0.0-beta.3",
-    "@tsparticles/shape-rounded-rect": "^3.0.0-beta.3",
-    "@tsparticles/shape-spiral": "^3.0.0-beta.3",
-    "@tsparticles/updater-gradient": "^3.0.0-beta.3",
-    "@tsparticles/updater-orbit": "^3.0.0-beta.3",
-    "tsparticles": "^3.0.0-beta.3"
+    "@tsparticles/engine": "^3.0.0-beta.3"
   },
   "publishConfig": {
     "access": "public",

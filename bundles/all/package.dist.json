@@ -113,6 +113,7 @@
     "@tsparticles/plugin-easing-circ": "^3.0.0-beta.3",
     "@tsparticles/plugin-easing-cubic": "^3.0.0-beta.3",
     "@tsparticles/plugin-easing-expo": "^3.0.0-beta.3",
+    "@tsparticles/plugin-easing-linear": "^3.0.0-beta.3",
     "@tsparticles/plugin-easing-quart": "^3.0.0-beta.3",
     "@tsparticles/plugin-easing-quint": "^3.0.0-beta.3",
     "@tsparticles/plugin-easing-sine": "^3.0.0-beta.3",

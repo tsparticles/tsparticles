@@ -9,6 +9,7 @@ import { loadEasingBackPlugin } from "@tsparticles/plugin-easing-back";
 import { loadEasingCircPlugin } from "@tsparticles/plugin-easing-circ";
 import { loadEasingCubicPlugin } from "@tsparticles/plugin-easing-cubic";
 import { loadEasingExpoPlugin } from "@tsparticles/plugin-easing-expo";
+import { loadEasingLinearPlugin } from "@tsparticles/plugin-easing-linear";
 import { loadEasingQuartPlugin } from "@tsparticles/plugin-easing-quart";
 import { loadEasingQuintPlugin } from "@tsparticles/plugin-easing-quint";
 import { loadEasingSinePlugin } from "@tsparticles/plugin-easing-sine";
@@ -52,6 +53,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadEasingCircPlugin();
     await loadEasingCubicPlugin();
     await loadEasingExpoPlugin();
+    await loadEasingLinearPlugin();
     await loadEasingQuartPlugin();
     await loadEasingQuintPlugin();
     await loadEasingSinePlugin();
