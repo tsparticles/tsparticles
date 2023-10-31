@@ -26,6 +26,10 @@ export type RepulseContainer = Container & {
     };
 };
 
+/*export type RepulsParticle = Particle & {
+    repulseCurrentTime?: number;
+}*/
+
 /*import type { Container, Particle, Vector } from "@tsparticles/engine";
 import type { IRepulse } from "./Options/Interfaces/IRepulse.js";
 import type { Repulse } from "./Options/Classes/Repulse.js";
