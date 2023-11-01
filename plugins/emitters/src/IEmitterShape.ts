@@ -6,5 +6,5 @@ export interface IEmitterShape {
         size: IDimension,
         fill: boolean,
         options?: Record<string, unknown>,
-    ): ICoordinates;
+    ): ICoordinates | null;
 }

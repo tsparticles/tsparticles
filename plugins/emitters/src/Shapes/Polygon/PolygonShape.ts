@@ -1,4 +1,4 @@
-import { type ICoordinates, type IDimension, errorPrefix, getRandom } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
 import type { IEmitterShape } from "../../IEmitterShape.js";
 
 /**
@@ -119,16 +119,11 @@ export class PolygonShape implements IEmitterShape {
         size: IDimension,
         fill: boolean,
         options: Record<string, unknown>,
-    ): ICoordinates {
+    ): ICoordinates | null {
         const sides = <number>options.sides ?? 5,
             angle = ((<number>options.angle ?? 0) * Math.PI) / 180,
-            polygon = generateRandomPolygon(position, sides, size.width / 2, angle),
-            pos = fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
+            polygon = generateRandomPolygon(position, sides, size.width / 2, angle);
 
-        if (!pos) {
-            throw new Error(`${errorPrefix} No position found`);
-        }
-
-        return pos;
+        return fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
     }
 }

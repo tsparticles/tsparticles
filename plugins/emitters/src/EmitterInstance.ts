@@ -347,9 +347,11 @@ export class EmitterInstance {
                 return;
             }
 
-            const pPosition = this._shape?.randomPosition(position, size, this.fill, this._shapeOptions) ?? position;
+            const pPosition = this._shape?.randomPosition(position, size, this.fill, this._shapeOptions);
 
-            this.container.particles.addParticle(pPosition, particlesOptions);
+            if (pPosition) {
+                this.container.particles.addParticle(pPosition, particlesOptions);
+            }
         }
     };
 
