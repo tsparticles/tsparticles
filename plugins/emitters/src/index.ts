@@ -16,6 +16,7 @@ import { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
+import { PolygonShape } from "./Shapes/Polygon/PolygonShape.js";
 import { ShapeManager } from "./ShapeManager.js";
 import { SquareShape } from "./Shapes/Square/SquareShape.js";
 
@@ -150,6 +151,7 @@ export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true)
 
     engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
     engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
+    engine.addEmitterShape(EmitterShapeType.polygon, new PolygonShape());
 }
 
 export * from "./EmitterContainer.js";
