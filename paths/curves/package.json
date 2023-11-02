@@ -66,7 +66,7 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "@tsparticles/plugin",
+    "tsparticles-plugin",
     "@tsparticles/path"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",

@@ -1,5 +1,5 @@
 import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
-import type { IEmitterShape } from "../../IEmitterShape.js";
+import type { IEmitterShape } from "@tsparticles/plugin-emitters";
 
 /**
  * @param position -

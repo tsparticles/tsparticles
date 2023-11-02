@@ -103,6 +103,8 @@
     "@tsparticles/interaction-external-trail": "^3.0.0-beta.3",
     "@tsparticles/plugin-absorbers": "^3.0.0-beta.3",
     "@tsparticles/plugin-emitters": "^3.0.0-beta.3",
+    "@tsparticles/plugin-emitters-shape-circle": "^3.0.0-beta.3",
+    "@tsparticles/plugin-emitters-shape-square": "^3.0.0-beta.3",
     "@tsparticles/slim": "^3.0.0-beta.3",
     "@tsparticles/updater-destroy": "^3.0.0-beta.3",
     "@tsparticles/updater-roll": "^3.0.0-beta.3",

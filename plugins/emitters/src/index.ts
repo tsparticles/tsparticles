@@ -7,19 +7,14 @@ import {
     isArray,
     isInArray,
 } from "@tsparticles/engine";
-import { CircleShape } from "./Shapes/Circle/CircleShape.js";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import { EmitterShapeType } from "./Enums/EmitterShapeType.js";
 import { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
-import { PathShape } from "./Shapes/Path/PathShape.js";
-import { PolygonShape } from "./Shapes/Polygon/PolygonShape.js";
 import { ShapeManager } from "./ShapeManager.js";
-import { SquareShape } from "./Shapes/Square/SquareShape.js";
 
 /**
  */
@@ -149,14 +144,9 @@ export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true)
     const plugin = new EmittersPlugin(engine);
 
     await engine.addPlugin(plugin, refresh);
-
-    engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
-    engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
-    engine.addEmitterShape(EmitterShapeType.polygon, new PolygonShape());
-    engine.addEmitterShape(EmitterShapeType.path, new PathShape());
 }
 
+export * from "./IEmitterShape.js";
 export * from "./EmitterContainer.js";
 export * from "./EmittersEngine.js";
 export * from "./Enums/EmitterClickMode.js";
-export * from "./Enums/EmitterShapeType.js";

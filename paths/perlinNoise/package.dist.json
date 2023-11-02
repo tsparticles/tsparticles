@@ -60,7 +60,7 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "@tsparticles/plugin",
+    "tsparticles-plugin",
     "@tsparticles/path"
   ],
   "publishConfig": {

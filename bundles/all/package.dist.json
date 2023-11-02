@@ -117,6 +117,8 @@
     "@tsparticles/plugin-easing-quart": "^3.0.0-beta.3",
     "@tsparticles/plugin-easing-quint": "^3.0.0-beta.3",
     "@tsparticles/plugin-easing-sine": "^3.0.0-beta.3",
+    "@tsparticles/plugin-emitters-shape-path": "^3.0.0-beta.3",
+    "@tsparticles/plugin-emitters-shape-polygon": "^3.0.0-beta.3",
     "@tsparticles/plugin-export-image": "^3.0.0-beta.3",
     "@tsparticles/plugin-export-json": "^3.0.0-beta.3",
     "@tsparticles/plugin-export-video": "^3.0.0-beta.3",

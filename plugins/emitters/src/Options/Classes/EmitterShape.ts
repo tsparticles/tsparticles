@@ -1,15 +1,14 @@
 import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-import { EmitterShapeType } from "../../Enums/EmitterShapeType.js";
 import type { IEmitterShape } from "../Interfaces/IEmitterShape.js";
 import { deepExtend } from "@tsparticles/engine";
 
 export class EmitterShape implements IEmitterShape, IOptionLoader<IEmitterShape> {
     options: Record<string, unknown>;
-    type: EmitterShapeType | keyof typeof EmitterShapeType;
+    type: string;
 
     constructor() {
         this.options = {};
-        this.type = EmitterShapeType.square;
+        this.type = "square";
     }
 
     load(data?: RecursivePartial<IEmitterShape> | undefined): void {

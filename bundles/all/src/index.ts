@@ -13,6 +13,8 @@ import { loadEasingLinearPlugin } from "@tsparticles/plugin-easing-linear";
 import { loadEasingQuartPlugin } from "@tsparticles/plugin-easing-quart";
 import { loadEasingQuintPlugin } from "@tsparticles/plugin-easing-quint";
 import { loadEasingSinePlugin } from "@tsparticles/plugin-easing-sine";
+import { loadEmittersShapePath } from "@tsparticles/plugin-emitters-shape-path";
+import { loadEmittersShapePolygon } from "@tsparticles/plugin-emitters-shape-polygon";
 import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
 import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
 import { loadExportVideoPlugin } from "@tsparticles/plugin-export-video";
@@ -57,6 +59,10 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadEasingQuartPlugin();
     await loadEasingQuintPlugin();
     await loadEasingSinePlugin();
+
+    loadEmittersShapePath(engine);
+    loadEmittersShapePolygon(engine);
+
     await loadHsvColorPlugin();
 
     await loadCanvasMaskPlugin(engine, false);

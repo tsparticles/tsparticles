@@ -2,6 +2,8 @@ import type { Engine } from "@tsparticles/engine";
 import { loadAbsorbersPlugin } from "@tsparticles/plugin-absorbers";
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadEmittersShapeCircle } from "@tsparticles/plugin-emitters-shape-circle";
+import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
 import { loadExternalTrailInteraction } from "@tsparticles/interaction-external-trail";
 import { loadRollUpdater } from "@tsparticles/updater-roll";
 import { loadSlim } from "@tsparticles/slim";
@@ -29,6 +31,9 @@ export async function loadFull(engine: Engine, refresh = true): Promise<void> {
 
     await loadAbsorbersPlugin(engine, false);
     await loadEmittersPlugin(engine, false);
+
+    loadEmittersShapeCircle(engine);
+    loadEmittersShapeSquare(engine);
 
     await loadSlim(engine, refresh);
 }

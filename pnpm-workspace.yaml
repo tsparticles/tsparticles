@@ -10,6 +10,7 @@ packages:
   - 'paths/*'
   - 'plugins/*'
   - 'plugins/easings/*'
+  - 'plugins/emittersShapes/*'
   - 'plugins/exports/*'
   - 'shapes/*'
   - 'updaters/*'
