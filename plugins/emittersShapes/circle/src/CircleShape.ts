@@ -2,6 +2,10 @@ import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engi
 import type { IEmitterShape } from "@tsparticles/plugin-emitters";
 
 export class CircleShape implements IEmitterShape {
+    init(): void {
+        // do nothing
+    }
+
     randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {
         const generateTheta = (x: number, y: number): number => {
                 const u = getRandom() / 4.0,

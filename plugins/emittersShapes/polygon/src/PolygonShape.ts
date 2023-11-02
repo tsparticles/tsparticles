@@ -114,15 +114,16 @@ function isPointInPolygon(point: ICoordinates, polygon: ICoordinates[]): boolean
 }
 
 export class PolygonShape implements IEmitterShape {
-    randomPosition(
-        position: ICoordinates,
-        size: IDimension,
-        fill: boolean,
-        options: Record<string, unknown>,
-    ): ICoordinates | null {
-        const sides = <number>options.sides ?? 5,
-            angle = ((<number>options.angle ?? 0) * Math.PI) / 180,
-            polygon = generateRandomPolygon(position, sides, size.width / 2, angle);
+    angle!: number;
+    sides!: number;
+
+    init(options: Record<string, unknown>): void {
+        this.sides = <number>options.sides ?? 5;
+        this.angle = ((<number>options.angle ?? 0) * Math.PI) / 180;
+    }
+
+    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates | null {
+        const polygon = generateRandomPolygon(position, this.sides, size.width / 2, this.angle);
 
         return fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
     }

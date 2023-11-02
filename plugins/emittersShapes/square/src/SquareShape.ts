@@ -11,6 +11,10 @@ function randomSquareCoordinate(position: number, offset: number): number {
 }
 
 export class SquareShape implements IEmitterShape {
+    init(): void {
+        // do nothing
+    }
+
     randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {
         if (fill) {
             return {

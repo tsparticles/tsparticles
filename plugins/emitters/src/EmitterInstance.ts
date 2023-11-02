@@ -49,7 +49,6 @@ export class EmitterInstance {
     private readonly _particlesOptions: RecursivePartial<IParticlesOptions>;
     private _paused;
     private readonly _shape?: IEmitterShape;
-    private readonly _shapeOptions?: Record<string, unknown>;
     private _spawnDelay?: number;
     private _startParticlesAdded;
 
@@ -80,7 +79,7 @@ export class EmitterInstance {
         const shapeOptions = this.options.shape;
 
         this._shape = this._engine.emitterShapeManager?.getShape(shapeOptions.type);
-        this._shapeOptions = shapeOptions.options;
+        this._shape?.init(shapeOptions.options);
 
         this.fill = this.options.fill;
         this._firstSpawn = !this.options.life.wait;
@@ -347,7 +346,7 @@ export class EmitterInstance {
                 return;
             }
 
-            const pPosition = this._shape?.randomPosition(position, size, this.fill, this._shapeOptions);
+            const pPosition = this._shape?.randomPosition(position, size, this.fill);
 
             if (pPosition) {
                 this.container.particles.addParticle(pPosition, particlesOptions);

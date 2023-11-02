@@ -66,19 +66,27 @@ function generateRandomPointOnPathPerimeter(
 }
 
 export class PathShape implements IEmitterShape {
-    randomPosition(
-        position: ICoordinates,
-        size: IDimension,
-        fill: boolean,
-        options: Record<string, unknown>,
-    ): ICoordinates | null {
-        const pathData = <ICoordinates[]>options.points ?? [],
-            path = new Path2D(),
-            ctx = document.createElement("canvas").getContext("2d");
+    checkContext: CanvasRenderingContext2D;
+    pathData!: ICoordinates[];
+
+    constructor() {
+        const ctx = document.createElement("canvas").getContext("2d");
 
         if (!ctx) {
             throw new Error(`${errorPrefix} No 2d context available`);
         }
+
+        this.checkContext = ctx;
+    }
+
+    init(options: Record<string, unknown>): void {
+        this.pathData = <ICoordinates[]>options.points ?? [];
+    }
+
+    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates | null {
+        const pathData = this.pathData,
+            path = new Path2D(),
+            ctx = this.checkContext;
 
         const offset = {
             x: position.x - size.width / 2,

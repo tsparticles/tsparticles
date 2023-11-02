@@ -1,10 +1,7 @@
 import type { ICoordinates, IDimension } from "@tsparticles/engine";
 
 export interface IEmitterShape {
-    randomPosition(
-        position: ICoordinates,
-        size: IDimension,
-        fill: boolean,
-        options?: Record<string, unknown>,
-    ): ICoordinates | null;
+    init(options: Record<string, unknown>): void;
+
+    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates | null;
 }
