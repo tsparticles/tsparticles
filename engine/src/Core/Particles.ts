@@ -300,9 +300,9 @@ export class Particles {
             plugin.update && plugin.update(delta);
         }
 
-        for (const particle of this._array) {
-            const resizeFactor = this._resizeFactor;
+        const resizeFactor = this._resizeFactor;
 
+        for (const particle of this._array) {
             if (resizeFactor && !particle.ignoresResizeRatio) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
@@ -373,8 +373,12 @@ export class Particles {
         manualCount,
         group,
     ) => {
+        if (!options.number.density?.enable) {
+            return;
+        }
+
         const numberOptions = options.number,
-            densityFactor = options.number.density?.enable ? this._initDensityFactor(numberOptions.density) : 1,
+            densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
             optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
