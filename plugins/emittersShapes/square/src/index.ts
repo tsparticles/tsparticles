@@ -1,6 +1,6 @@
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
+import { EmittersSquareShapeGenerator } from "./EmittersSquareShapeGenerator.js";
 import type { Engine } from "@tsparticles/engine";
-import { SquareShape } from "./SquareShape.js";
 
 /**
  *
@@ -9,5 +9,6 @@ import { SquareShape } from "./SquareShape.js";
 export function loadEmittersShapeSquare(engine: Engine): void {
     const emittersEngine = engine as EmittersEngine;
 
-    emittersEngine.addEmitterShape && emittersEngine.addEmitterShape("square", new SquareShape());
+    emittersEngine.addEmitterShapeGenerator &&
+        emittersEngine.addEmitterShapeGenerator("square", new EmittersSquareShapeGenerator());
 }

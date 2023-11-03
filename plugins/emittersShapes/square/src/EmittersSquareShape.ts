@@ -1,5 +1,5 @@
 import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
-import type { IEmitterShape } from "@tsparticles/plugin-emitters";
+import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 
 /**
  * @param position -
@@ -10,12 +10,16 @@ function randomSquareCoordinate(position: number, offset: number): number {
     return position + offset * (getRandom() - 0.5);
 }
 
-export class SquareShape implements IEmitterShape {
-    init(): void {
-        // do nothing
+export class EmittersSquareShape extends EmitterShapeBase {
+    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+        super(position, size, fill, options);
     }
 
-    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {
+    randomPosition(): ICoordinates {
+        const fill = this.fill,
+            position = this.position,
+            size = this.size;
+
         if (fill) {
             return {
                 x: randomSquareCoordinate(position.x, size.width),

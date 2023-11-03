@@ -1,5 +1,5 @@
 import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
-import type { IEmitterShape } from "@tsparticles/plugin-emitters";
+import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 
 /**
  *
@@ -113,18 +113,29 @@ function isPointInPolygon(point: ICoordinates, polygon: ICoordinates[]): boolean
     return inside;
 }
 
-export class PolygonShape implements IEmitterShape {
+export class EmittersPolygonShape extends EmitterShapeBase {
     angle!: number;
+    polygon!: ICoordinates[];
     sides!: number;
 
-    init(options: Record<string, unknown>): void {
+    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+        super(position, size, fill, options);
+
         this.sides = <number>options.sides ?? 5;
         this.angle = ((<number>options.angle ?? 0) * Math.PI) / 180;
+        this.polygon = generateRandomPolygon(position, this.sides, size.width / 2, this.angle);
     }
 
-    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates | null {
-        const polygon = generateRandomPolygon(position, this.sides, size.width / 2, this.angle);
+    randomPosition(): ICoordinates | null {
+        const fill = this.fill,
+            polygon = this.polygon;
 
         return fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
+    }
+
+    resize(position: ICoordinates, size: IDimension): void {
+        super.resize(position, size);
+
+        this.polygon = generateRandomPolygon(position, this.sides, size.width / 2, this.angle);
     }
 }

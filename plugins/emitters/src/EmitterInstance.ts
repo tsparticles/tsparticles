@@ -4,6 +4,7 @@ import {
     type ICoordinates,
     type IDelta,
     type IDimension,
+    type IDimensionWithMode,
     type IHsl,
     type IParticlesOptions,
     PixelMode,
@@ -32,8 +33,8 @@ export class EmitterInstance {
     fill;
     readonly name?: string;
     options;
-    position?: ICoordinates;
-    size;
+    position: ICoordinates;
+    size: IDimension;
     spawnColor?: IHsl;
 
     private _currentDuration;
@@ -46,9 +47,12 @@ export class EmitterInstance {
     private readonly _immortal;
     private readonly _initialPosition?: ICoordinates;
     private _lifeCount;
+    private _mutationObserver?: MutationObserver;
     private readonly _particlesOptions: RecursivePartial<IParticlesOptions>;
     private _paused;
+    private _resizeObserver?: ResizeObserver;
     private readonly _shape?: IEmitterShape;
+    private _size;
     private _spawnDelay?: number;
     private _startParticlesAdded;
 
@@ -78,10 +82,8 @@ export class EmitterInstance {
 
         const shapeOptions = this.options.shape;
 
-        this._shape = this._engine.emitterShapeManager?.getShape(shapeOptions.type);
-        this._shape?.init(shapeOptions.options);
-
         this.fill = this.options.fill;
+
         this._firstSpawn = !this.options.life.wait;
         this._startParticlesAdded = false;
 
@@ -97,21 +99,36 @@ export class EmitterInstance {
 
         this._paused = !this.options.autoPlay;
         this._particlesOptions = particlesOptions;
-        this.size =
-            this.options.size ??
-            ((): IEmitterSize => {
-                const size = new EmitterSize();
-
-                size.load({
-                    height: 0,
-                    mode: PixelMode.percent,
-                    width: 0,
-                });
-
-                return size;
-            })();
+        this._size = this._calcSize();
+        this.size = getSize(this._size, this.container.canvas.size);
         this._lifeCount = this.options.life.count ?? -1;
         this._immortal = this._lifeCount <= 0;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                this._mutationObserver = new MutationObserver(() => {
+                    this.resize();
+                });
+
+                this._resizeObserver = new ResizeObserver(() => {
+                    this.resize();
+                });
+
+                this._mutationObserver.observe(element, {
+                    attributes: true,
+                    attributeFilter: ["style", "width", "height"],
+                });
+                this._resizeObserver.observe(element);
+            }
+        }
+
+        const shapeGenerator = this._engine.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
+
+        if (shapeGenerator) {
+            this._shape = shapeGenerator.generate(this.position, this.size, this.fill, shapeOptions.options);
+        }
 
         this._engine.dispatchEvent("emitterCreated", {
             container,
@@ -133,43 +150,6 @@ export class EmitterInstance {
         this._paused = false;
 
         this.play();
-    }
-
-    getPosition(): ICoordinates | undefined {
-        if (this.options.domId) {
-            const container = this.container,
-                element = document.getElementById(this.options.domId);
-
-            if (element) {
-                const elRect = element.getBoundingClientRect();
-
-                return {
-                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
-                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
-                };
-            }
-        }
-
-        return this.position;
-    }
-
-    getSize(): IDimension {
-        const container = this.container;
-
-        if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
-
-            if (element) {
-                const elRect = element.getBoundingClientRect();
-
-                return {
-                    width: elRect.width * container.retina.pixelRatio,
-                    height: elRect.height * container.retina.pixelRatio,
-                };
-            }
-        }
-
-        return getSize(this.size, container.canvas.size);
     }
 
     pause(): void {
@@ -213,6 +193,11 @@ export class EmitterInstance {
             initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
                 ? initialPosition
                 : this._calcPosition();
+
+        this._size = this._calcSize();
+        this.size = getSize(this._size, this.container.canvas.size);
+
+        this._shape?.resize(this.position, this.size);
     }
 
     update(delta: IDelta): void {
@@ -288,14 +273,67 @@ export class EmitterInstance {
         }
     }
 
-    private readonly _calcPosition: () => ICoordinates = () => {
+    private _calcPosition(): ICoordinates {
+        if (this.options.domId) {
+            const container = this.container,
+                element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
+                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                };
+            }
+        }
+
         return calcPositionOrRandomFromSizeRanged({
             size: this.container.canvas.size,
             position: this.options.position,
         });
-    };
+    }
+
+    private _calcSize(): IDimensionWithMode {
+        const container = this.container;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    width: elRect.width * container.retina.pixelRatio,
+                    height: elRect.height * container.retina.pixelRatio,
+                    mode: PixelMode.precise,
+                };
+            }
+        }
+
+        return (
+            this.options.size ??
+            ((): IEmitterSize => {
+                const size = new EmitterSize();
+
+                size.load({
+                    height: 0,
+                    mode: PixelMode.percent,
+                    width: 0,
+                });
+
+                return size;
+            })()
+        );
+    }
 
     private readonly _destroy: () => void = () => {
+        this._mutationObserver?.disconnect();
+        this._mutationObserver = undefined;
+
+        this._resizeObserver?.disconnect();
+        this._resizeObserver = undefined;
+
         this.emitters.removeEmitter(this);
 
         this._engine.dispatchEvent("emitterDestroyed", {
@@ -317,9 +355,7 @@ export class EmitterInstance {
     };
 
     private readonly _emitParticles: (quantity: number) => void = (quantity) => {
-        const position = this.getPosition(),
-            size = this.getSize(),
-            singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
+        const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;
@@ -342,15 +378,17 @@ export class EmitterInstance {
                 }
             }
 
-            if (!position) {
-                return;
+            let position = this.position;
+
+            if (this._shape) {
+                const pPosition = this._shape?.randomPosition();
+
+                if (pPosition) {
+                    position = pPosition;
+                }
             }
 
-            const pPosition = this._shape?.randomPosition(position, size, this.fill);
-
-            if (pPosition) {
-                this.container.particles.addParticle(pPosition, particlesOptions);
-            }
+            this.container.particles.addParticle(position, particlesOptions);
         }
     };
 

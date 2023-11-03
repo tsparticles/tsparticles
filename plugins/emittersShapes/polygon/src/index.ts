@@ -1,6 +1,6 @@
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
+import { EmittersPolygonShapeGenerator } from "./EmittersPolygonShapeGenerator.js";
 import type { Engine } from "@tsparticles/engine";
-import { PolygonShape } from "./PolygonShape.js";
 
 /**
  *
@@ -9,5 +9,6 @@ import { PolygonShape } from "./PolygonShape.js";
 export function loadEmittersShapePolygon(engine: Engine): void {
     const emittersEngine = engine as EmittersEngine;
 
-    emittersEngine.addEmitterShape && emittersEngine.addEmitterShape("polygon", new PolygonShape());
+    emittersEngine.addEmitterShapeGenerator &&
+        emittersEngine.addEmitterShapeGenerator("polygon", new EmittersPolygonShapeGenerator());
 }

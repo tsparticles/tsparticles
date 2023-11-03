@@ -1,13 +1,16 @@
 import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
-import type { IEmitterShape } from "@tsparticles/plugin-emitters";
+import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 
-export class CircleShape implements IEmitterShape {
-    init(): void {
-        // do nothing
+export class EmittersCircleShape extends EmitterShapeBase {
+    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+        super(position, size, fill, options);
     }
 
-    randomPosition(position: ICoordinates, size: IDimension, fill: boolean): ICoordinates {
-        const generateTheta = (x: number, y: number): number => {
+    randomPosition(): ICoordinates {
+        const size = this.size,
+            fill = this.fill,
+            position = this.position,
+            generateTheta = (x: number, y: number): number => {
                 const u = getRandom() / 4.0,
                     theta = Math.atan((y / x) * Math.tan(2 * Math.PI * u)),
                     v = getRandom();

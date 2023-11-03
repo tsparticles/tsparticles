@@ -1,6 +1,6 @@
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
+import { EmittersPathShapeGenerator } from "./EmittersPathShapeGenerator.js";
 import type { Engine } from "@tsparticles/engine";
-import { PathShape } from "./PathShape.js";
 
 /**
  *
@@ -9,5 +9,6 @@ import { PathShape } from "./PathShape.js";
 export function loadEmittersShapePath(engine: Engine): void {
     const emittersEngine = engine as EmittersEngine;
 
-    emittersEngine.addEmitterShape && emittersEngine.addEmitterShape("path", new PathShape());
+    emittersEngine.addEmitterShapeGenerator &&
+        emittersEngine.addEmitterShapeGenerator("path", new EmittersPathShapeGenerator());
 }

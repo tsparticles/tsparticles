@@ -1,4 +1,4 @@
-import { CircleShape } from "./CircleShape.js";
+import { EmittersCircleShapeGenerator } from "./EmittersCircleShapeGenerator.js";
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
 import type { Engine } from "@tsparticles/engine";
 
@@ -9,5 +9,6 @@ import type { Engine } from "@tsparticles/engine";
 export function loadEmittersShapeCircle(engine: Engine): void {
     const emittersEngine = engine as EmittersEngine;
 
-    emittersEngine.addEmitterShape && emittersEngine.addEmitterShape("circle", new CircleShape());
+    emittersEngine.addEmitterShapeGenerator &&
+        emittersEngine.addEmitterShapeGenerator("circle", new EmittersCircleShapeGenerator());
 }

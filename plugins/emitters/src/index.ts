@@ -13,7 +13,7 @@ import type { EmitterContainer } from "./EmitterContainer.js";
 import { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
-import type { IEmitterShape } from "./IEmitterShape.js";
+import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
 import { ShapeManager } from "./ShapeManager.js";
 
 /**
@@ -135,9 +135,9 @@ export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true)
         engine.emitterShapeManager = new ShapeManager(engine);
     }
 
-    if (!engine.addEmitterShape) {
-        engine.addEmitterShape = (name: string, shape: IEmitterShape): void => {
-            engine.emitterShapeManager?.addShape(name, shape);
+    if (!engine.addEmitterShapeGenerator) {
+        engine.addEmitterShapeGenerator = (name: string, generator: IEmitterShapeGenerator): void => {
+            engine.emitterShapeManager?.addShapeGenerator(name, generator);
         };
     }
 
@@ -146,7 +146,9 @@ export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true)
     await engine.addPlugin(plugin, refresh);
 }
 
-export * from "./IEmitterShape.js";
 export * from "./EmitterContainer.js";
+export * from "./EmitterShapeBase.js";
 export * from "./EmittersEngine.js";
+export * from "./IEmitterShape.js";
+export * from "./IEmitterShapeGenerator.js";
 export * from "./Enums/EmitterClickMode.js";

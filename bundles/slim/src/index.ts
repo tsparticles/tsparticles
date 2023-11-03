@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { initPjs } from "@tsparticles/particles.js";
+import { initPjs } from "@tsparticles/pjs";
 import { loadBasic } from "@tsparticles/basic";
 import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
 import { loadExternalAttractInteraction } from "@tsparticles/interaction-external-attract";
