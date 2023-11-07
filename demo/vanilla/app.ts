@@ -123,6 +123,7 @@ app.use("/plugin-easing-quad", express.static("./node_modules/@tsparticles/plugi
 app.use("/plugin-easing-quart", express.static("./node_modules/@tsparticles/plugin-easing-quart"));
 app.use("/plugin-easing-quint", express.static("./node_modules/@tsparticles/plugin-easing-quint"));
 app.use("/plugin-easing-sine", express.static("./node_modules/@tsparticles/plugin-easing-sine"));
+app.use("/plugin-emitters-shape-canvas", express.static("./node_modules/@tsparticles/plugin-emitters-shape-canvas"));
 app.use("/plugin-emitters-shape-circle", express.static("./node_modules/@tsparticles/plugin-emitters-shape-circle"));
 app.use("/plugin-emitters-shape-path", express.static("./node_modules/@tsparticles/plugin-emitters-shape-path"));
 app.use("/plugin-emitters-shape-polygon", express.static("./node_modules/@tsparticles/plugin-emitters-shape-polygon"));

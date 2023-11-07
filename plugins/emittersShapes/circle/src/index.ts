@@ -5,10 +5,13 @@ import type { Engine } from "@tsparticles/engine";
 /**
  *
  * @param engine -
+ * @param refresh -
  */
-export function loadEmittersShapeCircle(engine: Engine): void {
+export async function loadEmittersShapeCircle(engine: Engine, refresh = true): Promise<void> {
     const emittersEngine = engine as EmittersEngine;
 
     emittersEngine.addEmitterShapeGenerator &&
         emittersEngine.addEmitterShapeGenerator("circle", new EmittersCircleShapeGenerator());
+
+    await emittersEngine.refresh(refresh);
 }

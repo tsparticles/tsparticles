@@ -756,3 +756,19 @@ export function isObject<T extends object>(arg: unknown): arg is T {
 export function isArray<T>(arg: unknown): arg is T[] {
     return Array.isArray(arg);
 }
+
+/**
+ * @param array -
+ * @returns the shuffled array
+ */
+export function shuffleArray<T>(array: T[]): T[] {
+    for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
+        const randomIndex = Math.floor(getRandom() * currentIndex);
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+export const arrayRange = (n: number): Array<number> => [...Array(n).keys()];

@@ -32,8 +32,8 @@ export async function loadFull(engine: Engine, refresh = true): Promise<void> {
     await loadAbsorbersPlugin(engine, false);
     await loadEmittersPlugin(engine, false);
 
-    loadEmittersShapeCircle(engine);
-    loadEmittersShapeSquare(engine);
+    await loadEmittersShapeCircle(engine, false);
+    await loadEmittersShapeSquare(engine, false);
 
     await loadSlim(engine, refresh);
 }
