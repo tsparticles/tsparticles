@@ -5,10 +5,9 @@ import {
     type IParticlesOptions,
     type IRgba,
     type RecursivePartial,
-    arrayRange,
     errorPrefix,
+    getRandom,
     isNumber,
-    shuffleArray,
 } from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
 import type { TextMask } from "./Options/Classes/TextMask.js";
@@ -44,7 +43,7 @@ export function addParticlesFromCanvasPixels(
 ): void {
     const { height, width } = data,
         numPixels = height * width,
-        indexArray = shuffleArray(arrayRange(numPixels)),
+        indexArray = shuffle(range(numPixels)),
         maxParticles = Math.min(numPixels, container.actualOptions.particles.number.value),
         canvasSize = container.canvas.size;
 
@@ -227,3 +226,19 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
 
     return getCanvasImageData(context, canvas, offset);
 }
+
+/**
+ * @param array -
+ * @returns the shuffled array
+ */
+function shuffle<T>(array: T[]): T[] {
+    for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
+        const randomIndex = Math.floor(getRandom() * currentIndex);
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+const range = (n: number): Array<number> => [...Array(n).keys()];
