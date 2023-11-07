@@ -29,7 +29,7 @@ const generateEmitter = (
 };
 
 const options: ISourceOptions = {
-    name: "Emitter Canvas Shape",
+    name: "Emitter Image Shape",
     particles: {
         number: {
             value: 0,
@@ -88,22 +88,13 @@ const options: ISourceOptions = {
         generateEmitter(
             "canvas",
             {
-                scale: 1,
+                scale: 5,
                 pixels: {
-                    filter: "pixelTextFilter",
+                    filter: "pixelFilter",
                     offset: 4,
                 },
-                text: {
-                    color: "#ff0000",
-                    font: {
-                        size: 500,
-                        family: "Verdana",
-                    },
-                    text: "Particles",
-                    lines: {
-                        separator: "\n",
-                        spacing: 10,
-                    },
+                image: {
+                    src: "https://particles.js.org/images/amongus_cyan.png",
                 },
             },
             true,

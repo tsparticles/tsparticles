@@ -2,12 +2,11 @@ import {
     type ICoordinates,
     type IDimension,
     type IRgba,
-    arrayRange,
     errorPrefix,
+    getRandom,
     isFunction,
     isNumber,
     isString,
-    shuffleArray,
 } from "@tsparticles/engine";
 import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 
@@ -175,7 +174,6 @@ export function getTextData(textOptions: TextOptions, offset: number): CanvasPix
 
 export class EmittersCanvasShape extends EmitterShapeBase {
     filter: (pixel: IRgba) => boolean;
-    indexArray: number[];
     pixelData: CanvasPixelData;
     scale: number;
 
@@ -207,7 +205,6 @@ export class EmittersCanvasShape extends EmitterShapeBase {
         }
 
         this.filter = filterFunc;
-        this.indexArray = [];
 
         this.scale = <number>options.scale;
 
@@ -257,11 +254,6 @@ export class EmittersCanvasShape extends EmitterShapeBase {
             }
 
             this.pixelData = pixelData;
-
-            const { height, width } = this.pixelData,
-                numPixels = height * width;
-
-            this.indexArray = shuffleArray(arrayRange(numPixels));
         })();
     }
 
@@ -269,16 +261,15 @@ export class EmittersCanvasShape extends EmitterShapeBase {
         const { height, width } = this.pixelData,
             data = this.pixelData,
             position = this.position,
-            scale = this.scale,
-            indexArray = this.indexArray;
+            scale = this.scale;
 
         const positionOffset = {
             x: position.x - (width * scale) / 2,
             y: position.y - (height * scale) / 2,
         };
 
-        while (indexArray.length) {
-            const nextIndex = indexArray.pop() || 0,
+        for (let i = 0; i < 100; i++) {
+            const nextIndex = Math.floor(getRandom() * width * height),
                 pixelPos = {
                     x: nextIndex % width,
                     y: Math.floor(nextIndex / width),
