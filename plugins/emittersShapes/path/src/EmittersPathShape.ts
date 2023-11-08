@@ -1,77 +1,14 @@
-import { type ICoordinates, type IDimension, errorPrefix, getRandom } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, errorPrefix } from "@tsparticles/engine";
+import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
 import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
+import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 
-/**
- *
- * @param ctx -
- * @param path -
- * @param center -
- * @param size -
- * @returns the random point within the path
- */
-function generateRandomPointWithinPath(
-    ctx: CanvasRenderingContext2D,
-    path: Path2D,
-    center: ICoordinates,
-    size: IDimension,
-): ICoordinates | null {
-    let randomPoint: ICoordinates | null = null;
-
-    for (let attempts = 0; attempts < 100; attempts++) {
-        const tmpPoint: ICoordinates = {
-            x: center.x + getRandom() * size.width - size.width / 2,
-            y: center.y + getRandom() * size.height - size.height / 2,
-        };
-
-        if (ctx.isPointInPath(path, tmpPoint.x, tmpPoint.y)) {
-            randomPoint = tmpPoint;
-
-            break;
-        }
-    }
-
-    return randomPoint;
-}
-
-/**
- *
- * @param ctx -
- * @param path -
- * @param center -
- * @param size -
- * @returns the random point on the perimeter of the path
- */
-function generateRandomPointOnPathPerimeter(
-    ctx: CanvasRenderingContext2D,
-    path: Path2D,
-    center: ICoordinates,
-    size: IDimension,
-): ICoordinates | null {
-    let randomPoint: ICoordinates | null = null;
-
-    for (let attempts = 0; attempts < 100; attempts++) {
-        const tmpPoint: ICoordinates = {
-            x: center.x + getRandom() * size.width - size.width / 2,
-            y: center.y + getRandom() * size.height - size.height / 2,
-        };
-
-        if (ctx.isPointInStroke(path, tmpPoint.x, tmpPoint.y)) {
-            randomPoint = tmpPoint;
-
-            break;
-        }
-    }
-
-    return randomPoint;
-}
-
-export class EmittersPathShape extends EmitterShapeBase {
+export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions> {
     checkContext: CanvasRenderingContext2D;
-    path!: Path2D;
-    pathData!: ICoordinates[];
-    points!: ICoordinates[];
+    path: Path2D;
+    points: ICoordinates[];
 
-    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersPathShapeOptions) {
         super(position, size, fill, options);
 
         const ctx = document.createElement("canvas").getContext("2d");
@@ -82,7 +19,7 @@ export class EmittersPathShape extends EmitterShapeBase {
 
         this.checkContext = ctx;
 
-        this.points = <ICoordinates[]>options.points ?? [];
+        this.points = options.points;
 
         const pathData = this.points,
             path = new Path2D(),
@@ -116,7 +53,7 @@ export class EmittersPathShape extends EmitterShapeBase {
         this.path = path;
     }
 
-    randomPosition(): ICoordinates | null {
+    async randomPosition(): Promise<ICoordinates | null> {
         const ctx = this.checkContext,
             position = this.position,
             size = this.size,

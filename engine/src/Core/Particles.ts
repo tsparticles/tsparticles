@@ -297,7 +297,7 @@ export class Particles {
         }
 
         for (const [, plugin] of container.plugins) {
-            plugin.update && plugin.update(delta);
+            plugin.update && (await plugin.update(delta));
         }
 
         const resizeFactor = this._resizeFactor;

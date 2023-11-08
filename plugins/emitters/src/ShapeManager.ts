@@ -1,7 +1,7 @@
 import type { Engine } from "@tsparticles/engine";
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
 
-const shapes: Map<string, IEmitterShapeGenerator> = new Map<string, IEmitterShapeGenerator>();
+const shapeGeneratorss: Map<string, IEmitterShapeGenerator> = new Map<string, IEmitterShapeGenerator>();
 
 export class ShapeManager {
     private readonly _engine;
@@ -12,15 +12,15 @@ export class ShapeManager {
 
     addShapeGenerator(name: string, generator: IEmitterShapeGenerator): void {
         if (!this.getShapeGenerator(name)) {
-            shapes.set(name, generator);
+            shapeGeneratorss.set(name, generator);
         }
     }
 
     getShapeGenerator(name: string): IEmitterShapeGenerator | undefined {
-        return shapes.get(name);
+        return shapeGeneratorss.get(name);
     }
 
     getSupportedShapeGenerators(): IterableIterator<string> {
-        return shapes.keys();
+        return shapeGeneratorss.keys();
     }
 }

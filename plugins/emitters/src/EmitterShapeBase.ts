@@ -1,13 +1,13 @@
 import type { ICoordinates, IDimension } from "@tsparticles/engine";
 import type { IEmitterShape } from "./IEmitterShape.js";
 
-export abstract class EmitterShapeBase implements IEmitterShape {
+export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterShape {
     fill: boolean;
-    options: Record<string, unknown>;
+    options: TOptions;
     position: ICoordinates;
     size: IDimension;
 
-    protected constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+    protected constructor(position: ICoordinates, size: IDimension, fill: boolean, options: TOptions) {
         this.position = position;
         this.size = size;
         this.fill = fill;
@@ -19,5 +19,5 @@ export abstract class EmitterShapeBase implements IEmitterShape {
         this.size = size;
     }
 
-    abstract randomPosition(): ICoordinates | null;
+    abstract randomPosition(): Promise<ICoordinates | null>;
 }

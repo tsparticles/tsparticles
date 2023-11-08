@@ -2,11 +2,11 @@ import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engi
 import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 
 export class EmittersCircleShape extends EmitterShapeBase {
-    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: unknown) {
         super(position, size, fill, options);
     }
 
-    randomPosition(): ICoordinates {
+    async randomPosition(): Promise<ICoordinates> {
         const size = this.size,
             fill = this.fill,
             position = this.position,

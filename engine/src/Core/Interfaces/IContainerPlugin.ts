@@ -30,5 +30,5 @@ export interface IContainerPlugin {
     resize?: () => void;
     start?: () => Promise<void>;
     stop?: () => void;
-    update?: (delta: IDelta) => void;
+    update?: (delta: IDelta) => Promise<void>;
 }

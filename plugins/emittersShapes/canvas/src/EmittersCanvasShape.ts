@@ -1,192 +1,28 @@
-import {
-    type ICoordinates,
-    type IDimension,
-    type IRgba,
-    errorPrefix,
-    getRandom,
-    isFunction,
-    isNumber,
-    isString,
-} from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, type IRgba, getRandom, isFunction, isString } from "@tsparticles/engine";
+import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
+import type { CanvasPixelData } from "./types";
 import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
-
-export type CanvasPixelData = {
-    height: number;
-    pixels: IRgba[][];
-    width: number;
-};
-
-type TextLineData = {
-    height: number;
-    measure: TextMetrics;
-    text: string;
-    width: number;
-};
-
-type TextOptions = {
-    color: string;
-    font: {
-        family: string;
-        size: string | number;
-        style: string;
-        variant: string;
-        weight: string;
-    };
-    lines: { separator: string; spacing: number };
-    text: string;
-};
-
-/**
- * @param ctx -
- * @param size -
- * @param offset -
- * @param clear -
- * @returns the canvas pixel data
- */
-export function getCanvasImageData(
-    ctx: CanvasRenderingContext2D,
-    size: IDimension,
-    offset: number,
-    clear = true,
-): CanvasPixelData {
-    const imageData = ctx.getImageData(0, 0, size.width, size.height).data;
-
-    if (clear) {
-        ctx.clearRect(0, 0, size.width, size.height);
-    }
-
-    const pixels: IRgba[][] = [];
-
-    for (let i = 0; i < imageData.length; i += offset) {
-        const idx = i / offset,
-            pos = {
-                x: idx % size.width,
-                y: Math.floor(idx / size.width),
-            };
-
-        if (!pixels[pos.y]) {
-            pixels[pos.y] = [];
-        }
-
-        pixels[pos.y][pos.x] = {
-            r: imageData[i],
-            g: imageData[i + 1],
-            b: imageData[i + 2],
-            a: imageData[i + 3] / 255,
-        };
-    }
-
-    return {
-        pixels,
-        width: Math.min(...pixels.map((row) => row.length)),
-        height: pixels.length,
-    };
-}
-
-/**
- * @param src -
- * @param offset -
- * @returns the canvas pixel data
- */
-export function getImageData(src: string, offset: number): Promise<CanvasPixelData> {
-    const image = new Image();
-
-    image.crossOrigin = "Anonymous";
-
-    const p = new Promise<CanvasPixelData>((resolve, reject) => {
-        image.onerror = reject;
-        image.onload = (): void => {
-            const canvas = document.createElement("canvas");
-
-            canvas.width = image.width;
-            canvas.height = image.height;
-
-            const context = canvas.getContext("2d");
-
-            if (!context) {
-                return reject(new Error(`${errorPrefix} Could not get canvas context`));
-            }
-
-            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
-
-            resolve(getCanvasImageData(context, canvas, offset));
-        };
-    });
-
-    image.src = src;
-
-    return p;
-}
-
-/**
- * @param textOptions -
- * @param offset -
- * @returns the canvas pixel data
- */
-export function getTextData(textOptions: TextOptions, offset: number): CanvasPixelData | undefined {
-    const canvas = document.createElement("canvas"),
-        context = canvas.getContext("2d"),
-        { font, text, lines: linesOptions, color } = textOptions;
-
-    if (!text || !context) {
-        return;
-    }
-
-    const lines = text.split(linesOptions.separator),
-        fontSize = isNumber(font.size) ? `${font.size}px` : font.size,
-        linesData: TextLineData[] = [];
-
-    let maxWidth = 0,
-        totalHeight = 0;
-
-    for (const line of lines) {
-        context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
-
-        const measure = context.measureText(line),
-            lineData = {
-                measure,
-                text: line,
-                height: measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent,
-                width: measure.width,
-            };
-
-        maxWidth = Math.max(maxWidth || 0, lineData.width);
-        totalHeight += lineData.height + linesOptions.spacing;
-
-        linesData.push(lineData);
-    }
-
-    canvas.width = maxWidth;
-    canvas.height = totalHeight;
-
-    let currentHeight = 0;
-
-    for (const line of linesData) {
-        context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
-        context.fillStyle = color;
-        context.fillText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
-
-        currentHeight += line.height + linesOptions.spacing;
-    }
-
-    return getCanvasImageData(context, canvas, offset);
-}
+import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
 export class EmittersCanvasShape extends EmitterShapeBase {
     filter: (pixel: IRgba) => boolean;
     pixelData: CanvasPixelData;
     scale: number;
 
-    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+    private _initializing;
+
+    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersCanvasShapeOptions) {
         super(position, size, fill, options);
 
-        const selector = <string>options.selector,
-            pixels = <{ offset: number }>options.pixels,
-            image = <HTMLImageElement>options.image,
-            element = <HTMLCanvasElement>options.element,
-            text = <TextOptions>options.text,
+        this._initializing = true;
+
+        const selector = options.selector,
+            pixels = options.pixels,
+            image = options.image,
+            element = options.element,
+            text = options.text,
             offset = pixels.offset,
-            filter = <string | ((pixel: IRgba) => boolean)>options.filter;
+            filter = options.filter;
 
         let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > 0;
 
@@ -206,7 +42,7 @@ export class EmittersCanvasShape extends EmitterShapeBase {
 
         this.filter = filterFunc;
 
-        this.scale = <number>options.scale;
+        this.scale = options.scale;
 
         this.pixelData = {
             pixels: [],
@@ -221,6 +57,8 @@ export class EmittersCanvasShape extends EmitterShapeBase {
                 const url = image.src;
 
                 if (!url) {
+                    this._initializing = false;
+
                     return;
                 }
 
@@ -229,6 +67,8 @@ export class EmittersCanvasShape extends EmitterShapeBase {
                 const data = getTextData(text, offset);
 
                 if (!data) {
+                    this._initializing = false;
+
                     return;
                 }
 
@@ -237,17 +77,23 @@ export class EmittersCanvasShape extends EmitterShapeBase {
                 const canvas = element || (selector && document.querySelector<HTMLCanvasElement>(selector));
 
                 if (!canvas) {
+                    this._initializing = false;
+
                     return;
                 }
 
                 const context = canvas.getContext("2d");
 
                 if (!context) {
+                    this._initializing = false;
+
                     return;
                 }
 
                 pixelData = getCanvasImageData(context, canvas, offset);
             }
+
+            this._initializing = false;
 
             if (!pixelData) {
                 return;
@@ -257,7 +103,13 @@ export class EmittersCanvasShape extends EmitterShapeBase {
         })();
     }
 
-    randomPosition(): ICoordinates | null {
+    async randomPosition(): Promise<ICoordinates | null> {
+        while (this._initializing) {
+            await new Promise((resolve): void => {
+                setTimeout(resolve, 100);
+            });
+        }
+
         const { height, width } = this.pixelData,
             data = this.pixelData,
             position = this.position,

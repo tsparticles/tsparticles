@@ -11,11 +11,11 @@ function randomSquareCoordinate(position: number, offset: number): number {
 }
 
 export class EmittersSquareShape extends EmitterShapeBase {
-    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: Record<string, unknown>) {
+    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: unknown) {
         super(position, size, fill, options);
     }
 
-    randomPosition(): ICoordinates {
+    async randomPosition(): Promise<ICoordinates> {
         const fill = this.fill,
             position = this.position,
             size = this.size;

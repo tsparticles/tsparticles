@@ -80,8 +80,6 @@ export class EmitterInstance {
         this.position = this._initialPosition ?? this._calcPosition();
         this.name = this.options.name;
 
-        const shapeOptions = this.options.shape;
-
         this.fill = this.options.fill;
 
         this._firstSpawn = !this.options.life.wait;
@@ -124,7 +122,8 @@ export class EmitterInstance {
             }
         }
 
-        const shapeGenerator = this._engine.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
+        const shapeOptions = this.options.shape,
+            shapeGenerator = this._engine.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
 
         if (shapeGenerator) {
             this._shape = shapeGenerator.generate(this.position, this.size, this.fill, shapeOptions.options);
@@ -200,7 +199,7 @@ export class EmitterInstance {
         this._shape?.resize(this.position, this.size);
     }
 
-    update(delta: IDelta): void {
+    async update(delta: IDelta): Promise<void> {
         if (this._paused) {
             return;
         }
@@ -215,7 +214,7 @@ export class EmitterInstance {
         if (!this._startParticlesAdded) {
             this._startParticlesAdded = true;
 
-            this._emitParticles(this.options.startCount);
+            await this._emitParticles(this.options.startCount);
         }
 
         if (this._duration !== undefined) {
@@ -344,17 +343,17 @@ export class EmitterInstance {
         });
     };
 
-    private readonly _emit: () => void = () => {
+    private async _emit(): Promise<void> {
         if (this._paused) {
             return;
         }
 
         const quantity = getRangeValue(this.options.rate.quantity);
 
-        this._emitParticles(quantity);
-    };
+        await this._emitParticles(quantity);
+    }
 
-    private readonly _emitParticles: (quantity: number) => void = (quantity) => {
+    private async _emitParticles(quantity: number): Promise<void> {
         const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
 
         for (let i = 0; i < quantity; i++) {
@@ -381,7 +380,7 @@ export class EmitterInstance {
             let position = this.position;
 
             if (this._shape) {
-                const pPosition = this._shape?.randomPosition();
+                const pPosition = await this._shape?.randomPosition();
 
                 if (pPosition) {
                     position = pPosition;
@@ -390,7 +389,7 @@ export class EmitterInstance {
 
             this.container.particles.addParticle(position, particlesOptions);
         }
-    };
+    }
 
     private readonly _prepareToDie: () => void = () => {
         if (this._paused) {
