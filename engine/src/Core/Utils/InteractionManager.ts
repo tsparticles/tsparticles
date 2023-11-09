@@ -1,6 +1,5 @@
 /**
  */
-import type { ClickMode } from "../../Enums/Modes/ClickMode.js";
 import type { Container } from "../Container.js";
 import type { Engine } from "../Engine.js";
 import type { IDelta } from "../Interfaces/IDelta.js";
@@ -59,7 +58,7 @@ export class InteractionManager {
         }
     }
 
-    handleClickMode(mode: ClickMode | string): void {
+    handleClickMode(mode: string): void {
         for (const interactor of this._externalInteractors) {
             interactor.handleClickMode && interactor.handleClickMode(mode);
         }

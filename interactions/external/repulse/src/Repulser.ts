@@ -1,12 +1,9 @@
 import {
     Circle,
-    ClickMode,
     type DivEvent,
-    DivMode,
     DivType,
     type Engine,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IModes,
     type Modes,
@@ -49,7 +46,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             const options = this.container.actualOptions,
                 repulseOpts = options.interactivity.modes.repulse;
 
-            if (!repulseOpts || mode !== ClickMode.repulse) {
+            if (!repulseOpts || mode !== "repulse") {
                 return;
             }
 
@@ -111,12 +108,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             clickMode = click.mode,
             divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray("repulse", hoverMode)) {
             this._hoverRepulse();
-        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
+        } else if (clickEnabled && isInArray("repulse", clickMode)) {
             this._clickRepulse();
         } else {
-            divModeExecute(DivMode.repulse, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
+            divModeExecute("repulse", divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
         }
     }
 
@@ -128,7 +125,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             divs = events.onDiv,
             hover = events.onHover,
             click = events.onClick,
-            divRepulse = isDivModeEnabled(DivMode.repulse, divs);
+            divRepulse = isDivModeEnabled("repulse", divs);
 
         if (!(divRepulse || (hover.enable && mouse.position) || (click.enable && mouse.clickPosition))) {
             return false;
@@ -137,7 +134,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         const hoverMode = hover.mode,
             clickMode = click.mode;
 
-        return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
+        return isInArray("repulse", hoverMode) || isInArray("repulse", clickMode) || divRepulse;
     }
 
     loadModeOptions(
@@ -304,13 +301,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
 /*import {
     Circle,
-    ClickMode,
     type DivEvent,
-    DivMode,
     DivType,
     type Engine,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IDelta,
     type IModes,
@@ -350,7 +344,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             const options = this.container.actualOptions,
                 repulse = options.interactivity.modes.repulse;
 
-            if (!repulse || mode !== ClickMode.repulse) {
+            if (!repulse || mode !== "repulse") {
                 return;
             }
         };
@@ -391,12 +385,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             clickMode = events.onClick.mode,
             divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray("repulse", hoverMode)) {
             this.hoverRepulse(delta, inverse);
-        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
+        } else if (clickEnabled && isInArray("repulse", clickMode)) {
             this.clickRepulse(delta, inverse);
         } else {
-            divModeExecute(DivMode.repulse, divs, (selector, div): void =>
+            divModeExecute("repulse", divs, (selector, div): void =>
                 this.singleSelectorRepulse(delta, inverse, selector, div)
             );
         }
@@ -423,7 +417,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
-            divRepulse = isDivModeEnabled(DivMode.repulse, divs);
+            divRepulse = isDivModeEnabled("repulse", divs);
 
         if (
             !(divRepulse || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -434,7 +428,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         const hoverMode = events.onHover.mode,
             clickMode = events.onClick.mode;
 
-        return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
+        return isInArray("repulse", hoverMode) || isInArray("repulse", clickMode) || divRepulse;
     }
 
     loadModeOptions(

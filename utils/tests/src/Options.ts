@@ -1,8 +1,7 @@
 import {
-    ClickMode,
     CollisionMode,
-    HoverMode,
     InteractivityDetect,
+    LimitMode,
     MoveDirection,
     OptionsColor,
     OutMode,
@@ -127,7 +126,8 @@ describe("Options tests", () => {
         expect(options.particles.number.density.width).to.equal(1920);
         expect(options.particles.number.density.height).to.equal(1080);
         expect(options.particles.number.density.enable).to.be.false;
-        expect(options.particles.number.limit).to.equal(0);
+        expect(options.particles.number.limit.value).to.equal(0);
+        expect(options.particles.number.limit.mode).to.equal(LimitMode.delete);
         expect(options.particles.number.value).to.equal(0);
 
         /* particles opacity */
@@ -180,11 +180,11 @@ describe("Options tests", () => {
                     events: {
                         onClick: {
                             enable: true,
-                            mode: ClickMode.push,
+                            mode: "push",
                         },
                         onHover: {
                             enable: true,
-                            mode: HoverMode.repulse,
+                            mode: "repulse",
                         },
                         resize: true,
                     },
@@ -290,9 +290,9 @@ describe("Options tests", () => {
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.push);
+        expect(options.interactivity.events.onClick.mode).to.equal("push");
         expect(options.interactivity.events.onHover.enable).to.be.true;
-        expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.repulse);
+        expect(options.interactivity.events.onHover.mode).to.equal("repulse");
         expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */
@@ -363,11 +363,11 @@ describe("Options tests", () => {
                     events: {
                         onClick: {
                             enable: true,
-                            mode: ClickMode.repulse,
+                            mode: "repulse",
                         },
                         onHover: {
                             enable: false,
-                            mode: HoverMode.grab,
+                            mode: "grab",
                         },
                         resize: true,
                     },
@@ -470,9 +470,9 @@ describe("Options tests", () => {
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.repulse);
+        expect(options.interactivity.events.onClick.mode).to.equal("repulse");
         expect(options.interactivity.events.onHover.enable).to.be.false;
-        expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.grab);
+        expect(options.interactivity.events.onHover.mode).to.equal("grab");
         expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */

@@ -1,10 +1,8 @@
 import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
 import {
     Circle,
-    ClickMode,
     type Engine,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IModes,
     type Modes,
@@ -41,7 +39,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             const options = this.container.actualOptions,
                 attract = options.interactivity.modes.attract;
 
-            if (!attract || mode !== ClickMode.attract) {
+            if (!attract || mode !== "attract") {
                 return;
             }
 
@@ -102,9 +100,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             clickEnabled = events.onClick.enable,
             clickMode = events.onClick.mode;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray("attract", hoverMode)) {
             this._hoverAttract();
-        } else if (clickEnabled && isInArray(ClickMode.attract, clickMode)) {
+        } else if (clickEnabled && isInArray("attract", clickMode)) {
             this._clickAttract();
         }
     }
@@ -122,7 +120,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         const hoverMode = events.onHover.mode,
             clickMode = events.onClick.mode;
 
-        return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
+        return isInArray("attract", hoverMode) || isInArray("attract", clickMode);
     }
 
     loadModeOptions(

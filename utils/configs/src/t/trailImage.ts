@@ -27,7 +27,7 @@ const options: ISourceOptions = {
     particles: {
         number: {
             value: 0,
-            limit: 300,
+            limit: { value: 300 },
         },
         color: {
             value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],

@@ -25,7 +25,7 @@ const options: ISourceOptions = {
         },
         number: {
             value: 20,
-            limit: 30,
+            limit: { value: 30 },
         },
         opacity: {
             value: 1,

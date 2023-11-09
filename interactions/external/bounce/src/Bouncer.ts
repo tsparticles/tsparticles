@@ -2,10 +2,8 @@ import type { BounceContainer, BounceMode, IBounceMode } from "./Types.js";
 import {
     Circle,
     type DivEvent,
-    DivMode,
     DivType,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IModes,
     type Modes,
@@ -54,10 +52,10 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             hoverMode = events.onHover.mode,
             divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray("bounce", hoverMode)) {
             this._processMouseBounce();
         } else {
-            divModeExecute(DivMode.bounce, divs, (selector, div): void => this._singleSelectorBounce(selector, div));
+            divModeExecute("bounce", divs, (selector, div): void => this._singleSelectorBounce(selector, div));
         }
     }
 
@@ -69,8 +67,8 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             divs = events.onDiv;
 
         return (
-            (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
-            isDivModeEnabled(DivMode.bounce, divs)
+            (mouse.position && events.onHover.enable && isInArray("bounce", events.onHover.mode)) ||
+            isDivModeEnabled("bounce", divs)
         );
     }
 

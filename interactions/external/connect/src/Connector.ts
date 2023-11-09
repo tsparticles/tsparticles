@@ -1,7 +1,6 @@
 import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types.js";
 import {
     ExternalInteractorBase,
-    HoverMode,
     type IModes,
     type Modes,
     type Particle,
@@ -88,7 +87,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
             return false;
         }
 
-        return isInArray(HoverMode.connect, events.onHover.mode);
+        return isInArray("connect", events.onHover.mode);
     }
 
     loadModeOptions(

@@ -1,5 +1,4 @@
 import { getLogger, getPosition } from "../Utils/Utils.js";
-import type { ClickMode } from "../Enums/Modes/ClickMode.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
@@ -10,6 +9,7 @@ import type { IMouseData } from "./Interfaces/IMouseData.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import { InteractionManager } from "./Utils/InteractionManager.js";
+import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
@@ -53,7 +53,6 @@ export class Particles {
     private _needsSort;
     private _nextId;
     private readonly _pool: Particle[];
-    private _pushing?: boolean;
     private _resizeFactor?: IDimension;
     private _zArray: Particle[];
 
@@ -105,23 +104,25 @@ export class Particles {
         group?: string,
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
-        this._pushing = true;
-
-        const limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit;
+        const limitOptions = this._container.actualOptions.particles.number.limit,
+            limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit,
+            currentCount = this.count;
 
         if (limit > 0) {
-            const countToRemove = this.count + 1 - limit;
+            if (limitOptions.mode === LimitMode.delete) {
+                const countToRemove = currentCount + 1 - limit;
 
-            if (countToRemove > 0) {
-                this.removeQuantity(countToRemove);
+                if (countToRemove > 0) {
+                    this.removeQuantity(countToRemove);
+                }
+            } else if (limitOptions.mode === LimitMode.wait) {
+                if (currentCount >= limit) {
+                    return;
+                }
             }
         }
 
-        const res = this._pushParticle(position, overrideOptions, group, initializer);
-
-        this._pushing = false;
-
-        return res;
+        return this._pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**
@@ -176,7 +177,7 @@ export class Particles {
         return this._array[index];
     }
 
-    handleClickMode(mode: ClickMode | string): void {
+    handleClickMode(mode: string): void {
         this._interactionManager.handleClickMode(mode);
     }
 
@@ -373,21 +374,28 @@ export class Particles {
         manualCount,
         group,
     ) => {
+        const numberOptions = options.number;
+
         if (!options.number.density?.enable) {
+            if (group === undefined) {
+                this._limit = numberOptions.limit.value;
+            } else {
+                this._groupLimits.set(group, numberOptions.limit.value);
+            }
+
             return;
         }
 
-        const numberOptions = options.number,
-            densityFactor = this._initDensityFactor(numberOptions.density),
+        const densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
-            optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
+            optParticlesLimit = numberOptions.limit.value > 0 ? numberOptions.limit.value : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
             particlesCount = Math.min(this.count, this.filter((t) => t.group === group).length);
 
         if (group === undefined) {
-            this._limit = numberOptions.limit * densityFactor;
+            this._limit = numberOptions.limit.value * densityFactor;
         } else {
-            this._groupLimits.set(group, numberOptions.limit * densityFactor);
+            this._groupLimits.set(group, numberOptions.limit.value * densityFactor);
         }
 
         if (particlesCount < particlesNumber) {

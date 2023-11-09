@@ -91,6 +91,7 @@ export * from "./Options/Interfaces/Particles/Move/IMoveTrail.js";
 
 export * from "./Options/Interfaces/Particles/Number/IParticlesDensity.js";
 export * from "./Options/Interfaces/Particles/Number/IParticlesNumber.js";
+export * from "./Options/Interfaces/Particles/Number/IParticlesNumberLimit.js";
 
 export * from "./Options/Interfaces/Particles/Opacity/IOpacity.js";
 export * from "./Options/Interfaces/Particles/Opacity/IOpacityAnimation.js";
@@ -125,3 +126,4 @@ export type { Particle } from "./Core/Particle.js";
 export type { Particles } from "./Core/Particles.js";
 export type { Retina } from "./Core/Retina.js";
 export type { Engine, Engine as Main };
+export type { IParticlesNumberLimit } from "./Options/Interfaces/Particles/Number/IParticlesNumberLimit.js";

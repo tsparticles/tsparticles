@@ -1,6 +1,5 @@
 import {
     ExternalInteractorBase,
-    HoverMode,
     type IModes,
     type Modes,
     type Particle,
@@ -114,7 +113,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
+        return events.onHover.enable && !!mouse.position && isInArray("grab", events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {

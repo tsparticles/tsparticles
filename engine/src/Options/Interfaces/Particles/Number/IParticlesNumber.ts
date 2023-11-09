@@ -1,10 +1,11 @@
 import type { IParticlesDensity } from "./IParticlesDensity.js";
+import type { IParticlesNumberLimit } from "./IParticlesNumberLimit.js";
 
 /**
  * [[include:Options/Particles/Number.md]]
  */
 export interface IParticlesNumber {
     density: IParticlesDensity;
-    limit: number;
+    limit: IParticlesNumberLimit;
     value: number;
 }

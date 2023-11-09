@@ -1,6 +1,5 @@
 import {
     ExternalInteractorBase,
-    HoverMode,
     type IDelta,
     type IModes,
     type Modes,
@@ -48,7 +47,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(HoverMode.slow, events.onHover.mode);
+        return events.onHover.enable && !!mouse.position && isInArray("slow", events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & SlowMode, ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]): void {

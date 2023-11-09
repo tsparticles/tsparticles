@@ -12,7 +12,6 @@ import {
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
-import type { DivMode } from "../Enums/Modes/DivMode.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
@@ -363,7 +362,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
  * @param divs - the div elements to check
  * @returns true if the div mode is enabled
  */
-export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
+export function isDivModeEnabled(mode: string, divs: SingleOrMultiple<DivEvent>): boolean {
     return !!findItemFromSingleOrMultiple(divs, (t) => t.enable && isInArray(mode, t.mode));
 }
 
@@ -374,7 +373,7 @@ export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>
  * @param callback - the callback to execute
  */
 export function divModeExecute(
-    mode: DivMode,
+    mode: string,
     divs: SingleOrMultiple<DivEvent>,
     callback: (id: string, div: DivEvent) => void,
 ): void {

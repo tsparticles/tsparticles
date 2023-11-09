@@ -1,4 +1,3 @@
-import type { ClickMode } from "../../../../Enums/Modes/ClickMode.js";
 import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClickEvent.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
@@ -14,9 +13,9 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     enable;
 
     /**
-     * Click mode values described in {@link ClickMode}, an array of these values is also valid
+     * Click modes used by the event
      */
-    mode: SingleOrMultiple<ClickMode | keyof typeof ClickMode | string>;
+    mode: SingleOrMultiple<string>;
 
     constructor() {
         this.enable = false;

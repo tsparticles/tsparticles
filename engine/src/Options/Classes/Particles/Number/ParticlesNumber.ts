@@ -1,6 +1,7 @@
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber.js";
 import { ParticlesDensity } from "./ParticlesDensity.js";
+import { ParticlesNumberLimit } from "./ParticlesNumberLimit.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
@@ -13,7 +14,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
 
     constructor() {
         this.density = new ParticlesDensity();
-        this.limit = 0;
+        this.limit = new ParticlesNumberLimit();
         this.value = 0;
     }
 
@@ -23,12 +24,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
         }
 
         this.density.load(data.density);
-
-        const limit = data.limit;
-
-        if (limit !== undefined) {
-            this.limit = limit;
-        }
+        this.limit.load(data.limit);
 
         if (data.value !== undefined) {
             this.value = data.value;

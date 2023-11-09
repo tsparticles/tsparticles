@@ -5,6 +5,7 @@ import planes from "./planes.js";
 import plasma from "./plasma.js";
 import polygonMask from "./polygonMask.js";
 import polygons from "./polygons.js";
+import pop from "./pop.js";
 
 export default {
     parallax,
@@ -14,4 +15,5 @@ export default {
     plasma,
     polygonMask,
     polygons,
+    pop,
 };

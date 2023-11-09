@@ -35,7 +35,6 @@ const options: ISourceOptions = {
             speed: 1,
         },
         number: {
-            limit: 0,
             value: 80,
         },
         opacity: {

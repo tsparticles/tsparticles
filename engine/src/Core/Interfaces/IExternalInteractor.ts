@@ -1,4 +1,3 @@
-import type { ClickMode } from "../../Enums/Modes/ClickMode.js";
 import type { IDelta } from "./IDelta.js";
 import type { IInteractor } from "./IInteractor.js";
 import type { IModes } from "../../Options/Interfaces/Interactivity/Modes/IModes.js";
@@ -9,7 +8,7 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 /**
  */
 export interface IExternalInteractor<TParticle extends Particle = Particle> extends IInteractor<TParticle> {
-    handleClickMode?: (mode: ClickMode | string) => void;
+    handleClickMode?: (mode: string) => void;
 
     loadModeOptions?: (options: Modes, ...sources: RecursivePartial<IModes | undefined>[]) => void;
 

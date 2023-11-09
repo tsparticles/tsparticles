@@ -13,10 +13,8 @@ export * from "./Enums/Directions/RotateDirection.js";
 export * from "./Enums/Directions/OutModeDirection.js";
 
 export * from "./Enums/Modes/AnimationMode.js";
-export * from "./Enums/Modes/ClickMode.js";
-export * from "./Enums/Modes/DivMode.js";
-export * from "./Enums/Modes/HoverMode.js";
 export * from "./Enums/Modes/CollisionMode.js";
+export * from "./Enums/Modes/LimitMode.js";
 export * from "./Enums/Modes/OutMode.js";
 export * from "./Enums/Modes/PixelMode.js";
 export * from "./Enums/Modes/ThemeMode.js";
@@ -85,6 +83,7 @@ export * from "./Options/Classes/Particles/Move/Spin.js";
 export * from "./Options/Classes/Particles/Move/MoveTrail.js";
 
 export * from "./Options/Classes/Particles/Number/ParticlesNumber.js";
+export * from "./Options/Classes/Particles/Number/ParticlesNumberLimit.js";
 export * from "./Options/Classes/Particles/Number/ParticlesDensity.js";
 
 export * from "./Options/Classes/Particles/Opacity/Opacity.js";

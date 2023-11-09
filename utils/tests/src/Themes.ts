@@ -1,12 +1,4 @@
-import {
-    ClickMode,
-    HoverMode,
-    type ISourceOptions,
-    MoveDirection,
-    OutMode,
-    ThemeMode,
-    tsParticles,
-} from "@tsparticles/engine";
+import { type ISourceOptions, MoveDirection, OutMode, ThemeMode, tsParticles } from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 
@@ -85,11 +77,11 @@ describe("Themes", async () => {
                 events: {
                     onHover: {
                         enable: true,
-                        mode: HoverMode.repulse,
+                        mode: "repulse",
                     },
                     onClick: {
                         enable: true,
-                        mode: ClickMode.push,
+                        mode: "push",
                     },
                     resize: true,
                 },

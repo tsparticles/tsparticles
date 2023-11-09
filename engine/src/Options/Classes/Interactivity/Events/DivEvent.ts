@@ -1,4 +1,3 @@
-import type { DivMode } from "../../../../Enums/Modes/DivMode.js";
 import { DivType } from "../../../../Enums/Types/DivType.js";
 import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
@@ -15,9 +14,9 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     enable;
 
     /**
-     * Div mode values described in {@link DivMode}, an array of these values is also valid.
+     * Div mode values used by the event
      */
-    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
+    mode: SingleOrMultiple<string>;
 
     selectors: SingleOrMultiple<string>;
 

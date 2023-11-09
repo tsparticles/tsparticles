@@ -1,6 +1,5 @@
 import { getLogger, safeIntersectionObserver } from "../Utils/Utils.js";
 import { Canvas } from "./Canvas.js";
-import type { ClickMode } from "../Enums/Modes/ClickMode.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
@@ -445,7 +444,7 @@ export class Container {
      * Handles click event in the container
      * @param mode - click mode to handle
      */
-    handleClickMode(mode: ClickMode | string): void {
+    handleClickMode(mode: string): void {
         if (!guardCheck(this)) {
             return;
         }

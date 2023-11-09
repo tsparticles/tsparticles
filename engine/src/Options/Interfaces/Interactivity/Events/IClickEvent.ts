@@ -1,4 +1,3 @@
-import type { ClickMode } from "../../../../Enums/Modes/ClickMode.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
@@ -12,8 +11,8 @@ export interface IClickEvent {
     enable: boolean;
 
     /**
-     * This property contains a {@link ClickMode} value or an array of those values.
+     * This property contains a click mode value or an array of those values.
      * If this value is an array, every mode will be used on click.
      */
-    mode: SingleOrMultiple<ClickMode | keyof typeof ClickMode | string>;
+    mode: SingleOrMultiple<string>;
 }

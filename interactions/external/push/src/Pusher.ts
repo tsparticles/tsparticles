@@ -1,5 +1,4 @@
 import {
-    ClickMode,
     ExternalInteractorBase,
     type IModes,
     type Modes,
@@ -20,7 +19,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
         super(container);
 
         this.handleClickMode = (mode): void => {
-            if (mode !== ClickMode.push) {
+            if (mode !== "push") {
                 return;
             }
 

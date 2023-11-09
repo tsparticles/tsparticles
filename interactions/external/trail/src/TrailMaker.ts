@@ -1,7 +1,5 @@
 import {
-    ClickMode,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IDelta,
     type IModes,
@@ -87,8 +85,8 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             events = (particle?.interactivity ?? options.interactivity).events;
 
         return (
-            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||
-            (mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode))
+            (mouse.clicking && mouse.inside && !!mouse.position && isInArray("trail", events.onClick.mode)) ||
+            (mouse.inside && !!mouse.position && isInArray("trail", events.onHover.mode))
         );
     }
 

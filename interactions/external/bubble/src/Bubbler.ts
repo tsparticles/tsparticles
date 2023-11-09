@@ -1,12 +1,9 @@
 import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types.js";
 import {
     Circle,
-    ClickMode,
     type DivEvent,
-    DivMode,
     DivType,
     ExternalInteractorBase,
-    HoverMode,
     type IDelta,
     type IModes,
     type Modes,
@@ -36,7 +33,7 @@ import { calculateBubbleValue } from "./Utils.js";
  * Particle bubble manager
  */
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
-    handleClickMode: (mode: ClickMode | string) => void;
+    handleClickMode: (mode: string) => void;
 
     constructor(container: BubbleContainer) {
         super(container);
@@ -46,7 +43,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
 
         this.handleClickMode = (mode): void => {
-            if (mode !== ClickMode.bubble) {
+            if (mode !== "bubble") {
                 return;
             }
 
@@ -96,14 +93,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             divs = events.onDiv;
 
         /* on hover event */
-        if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
+        if (hoverEnabled && isInArray("bubble", hoverMode)) {
             this._hoverBubble();
-        } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
+        } else if (clickEnabled && isInArray("bubble", clickMode)) {
             this._clickBubble();
         } else {
-            divModeExecute(DivMode.bubble, divs, (selector, div): void =>
-                this._singleSelectorHover(delta, selector, div),
-            );
+            divModeExecute("bubble", divs, (selector, div): void => this._singleSelectorHover(delta, selector, div));
         }
     }
 
@@ -113,13 +108,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             { onClick, onDiv, onHover } = events,
-            divBubble = isDivModeEnabled(DivMode.bubble, onDiv);
+            divBubble = isDivModeEnabled("bubble", onDiv);
 
         if (!(divBubble || (onHover.enable && mouse.position) || (onClick.enable && mouse.clickPosition))) {
             return false;
         }
 
-        return isInArray(HoverMode.bubble, onHover.mode) || isInArray(ClickMode.bubble, onClick.mode) || divBubble;
+        return isInArray("bubble", onHover.mode) || isInArray("bubble", onClick.mode) || divBubble;
     }
 
     loadModeOptions(

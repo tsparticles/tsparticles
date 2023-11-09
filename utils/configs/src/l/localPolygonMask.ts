@@ -40,7 +40,6 @@ const options: ISourceOptions = {
             density: {
                 enable: false,
             },
-            limit: 0,
             value: 200,
         },
         opacity: {

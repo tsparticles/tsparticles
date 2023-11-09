@@ -19,6 +19,7 @@ import { loadEmittersShapePolygon } from "@tsparticles/plugin-emitters-shape-pol
 import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
 import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
 import { loadExportVideoPlugin } from "@tsparticles/plugin-export-video";
+import { loadExternalPopInteraction } from "@tsparticles/interaction-external-pop";
 import { loadFull } from "tsparticles";
 import { loadGradientUpdater } from "@tsparticles/updater-gradient";
 import { loadHeartShape } from "@tsparticles/shape-heart";
@@ -75,6 +76,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadExportImagePlugin(engine, false);
     await loadExportJSONPlugin(engine, false);
     await loadExportVideoPlugin(engine, false);
+    await loadExternalPopInteraction(engine, false);
     await loadLightInteraction(engine, false);
     await loadParticlesRepulseInteraction(engine, false);
     await loadGradientUpdater(engine, false);

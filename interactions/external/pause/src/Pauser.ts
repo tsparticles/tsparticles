@@ -1,4 +1,4 @@
-import { ClickMode, type Container, ExternalInteractorBase } from "@tsparticles/engine";
+import { type Container, ExternalInteractorBase } from "@tsparticles/engine";
 
 /**
  * Particle attract manager
@@ -10,7 +10,7 @@ export class Pauser extends ExternalInteractorBase {
         super(container);
 
         this.handleClickMode = (mode): void => {
-            if (mode !== ClickMode.pause) {
+            if (mode !== "pause") {
                 return;
             }
 

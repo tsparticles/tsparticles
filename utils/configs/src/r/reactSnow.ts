@@ -76,7 +76,6 @@ const options: ISourceOptions = {
             enable: true,
         },
         number: {
-            limit: -1,
             value: 160,
         },
         opacity: {

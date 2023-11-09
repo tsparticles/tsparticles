@@ -1,5 +1,4 @@
 import {
-    ClickMode,
     ExternalInteractorBase,
     type IModes,
     type Modes,
@@ -22,7 +21,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
             const container = this.container,
                 options = container.actualOptions;
 
-            if (!options.interactivity.modes.remove || mode !== ClickMode.remove) {
+            if (!options.interactivity.modes.remove || mode !== "remove") {
                 return;
             }
 

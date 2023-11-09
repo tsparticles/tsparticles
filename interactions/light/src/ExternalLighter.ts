@@ -1,6 +1,5 @@
 import {
     ExternalInteractorBase,
-    HoverMode,
     type IModes,
     type Modes,
     type RecursivePartial,
@@ -55,7 +54,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
             return false;
         }
 
-        const res = isInArray(HoverMode.light, events.onHover.mode);
+        const res = isInArray("light", events.onHover.mode);
 
         if (res && interactivity.modes.light) {
             const lightGradient = interactivity.modes.light.area.gradient;
