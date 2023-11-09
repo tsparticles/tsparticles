@@ -53,6 +53,10 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         this.path = path;
     }
 
+    async init(): Promise<void> {
+        // nothing to do
+    }
+
     async randomPosition(): Promise<ICoordinates | null> {
         const ctx = this.checkContext,
             position = this.position,

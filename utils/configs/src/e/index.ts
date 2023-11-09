@@ -7,6 +7,7 @@ import emitterImages from "./emitterImages.js";
 import emitterPaths from "./emitterPaths.js";
 import emitterShapes from "./emitterShapes.js";
 import emitterTextShape from "./emitterTextShape.js";
+import emitterTextStrokeShape from "./emitterTextStrokeShape.js";
 
 export default {
     effectBubble,
@@ -18,4 +19,5 @@ export default {
     emitterPaths,
     emitterShapes,
     emitterTextShape,
+    emitterTextStrokeShape,
 };

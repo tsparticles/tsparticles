@@ -4,25 +4,15 @@ import type { CanvasPixelData } from "./types";
 import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
-export class EmittersCanvasShape extends EmitterShapeBase {
+export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOptions> {
     filter: (pixel: IRgba) => boolean;
     pixelData: CanvasPixelData;
     scale: number;
 
-    private _initializing;
-
     constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersCanvasShapeOptions) {
         super(position, size, fill, options);
 
-        this._initializing = true;
-
-        const selector = options.selector,
-            pixels = options.pixels,
-            image = options.image,
-            element = options.element,
-            text = options.text,
-            offset = pixels.offset,
-            filter = options.filter;
+        const filter = options.filter;
 
         let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > 0;
 
@@ -49,67 +39,59 @@ export class EmittersCanvasShape extends EmitterShapeBase {
             height: 0,
             width: 0,
         };
+    }
 
-        (async (): Promise<void> => {
-            let pixelData: CanvasPixelData | undefined;
+    async init(): Promise<void> {
+        let pixelData: CanvasPixelData | undefined;
 
-            if (image) {
-                const url = image.src;
+        const options = this.options,
+            selector = options.selector,
+            pixels = options.pixels,
+            image = options.image,
+            element = options.element,
+            text = options.text,
+            offset = pixels.offset;
 
-                if (!url) {
-                    this._initializing = false;
+        if (image) {
+            const url = image.src;
 
-                    return;
-                }
-
-                pixelData = await getImageData(url, offset);
-            } else if (text) {
-                const data = getTextData(text, offset);
-
-                if (!data) {
-                    this._initializing = false;
-
-                    return;
-                }
-
-                pixelData = data;
-            } else if (element || selector) {
-                const canvas = element || (selector && document.querySelector<HTMLCanvasElement>(selector));
-
-                if (!canvas) {
-                    this._initializing = false;
-
-                    return;
-                }
-
-                const context = canvas.getContext("2d");
-
-                if (!context) {
-                    this._initializing = false;
-
-                    return;
-                }
-
-                pixelData = getCanvasImageData(context, canvas, offset);
-            }
-
-            this._initializing = false;
-
-            if (!pixelData) {
+            if (!url) {
                 return;
             }
 
-            this.pixelData = pixelData;
-        })();
+            pixelData = await getImageData(url, offset);
+        } else if (text) {
+            const data = getTextData(text, offset, this.fill);
+
+            if (!data) {
+                return;
+            }
+
+            pixelData = data;
+        } else if (element || selector) {
+            const canvas = element || (selector && document.querySelector<HTMLCanvasElement>(selector));
+
+            if (!canvas) {
+                return;
+            }
+
+            const context = canvas.getContext("2d");
+
+            if (!context) {
+                return;
+            }
+
+            pixelData = getCanvasImageData(context, canvas, offset);
+        }
+
+        if (!pixelData) {
+            return;
+        }
+
+        this.pixelData = pixelData;
     }
 
     async randomPosition(): Promise<ICoordinates | null> {
-        while (this._initializing) {
-            await new Promise((resolve): void => {
-                setTimeout(resolve, 100);
-            });
-        }
-
         const { height, width } = this.pixelData,
             data = this.pixelData,
             position = this.position,

@@ -151,6 +151,10 @@ export class EmitterInstance {
         this.play();
     }
 
+    async init(): Promise<void> {
+        await this._shape?.init();
+    }
+
     pause(): void {
         if (this._paused) {
             return;
@@ -377,17 +381,11 @@ export class EmitterInstance {
                 }
             }
 
-            let position = this.position;
+            const position = this._shape ? await this._shape?.randomPosition() : this.position;
 
-            if (this._shape) {
-                const pPosition = await this._shape?.randomPosition();
-
-                if (pPosition) {
-                    position = pPosition;
-                }
+            if (position) {
+                this.container.particles.addParticle(position, particlesOptions);
             }
-
-            this.container.particles.addParticle(position, particlesOptions);
         }
     }
 

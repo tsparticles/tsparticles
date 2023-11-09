@@ -20,6 +20,10 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
         this.polygon = generateRandomPolygon(position, this.sides, size.width / 2, this.angle);
     }
 
+    async init(): Promise<void> {
+        // nothing to do
+    }
+
     async randomPosition(): Promise<ICoordinates | null> {
         const fill = this.fill,
             polygon = this.polygon;

@@ -15,6 +15,10 @@ export class EmittersSquareShape extends EmitterShapeBase {
         super(position, size, fill, options);
     }
 
+    async init(): Promise<void> {
+        // nothing to do
+    }
+
     async randomPosition(): Promise<ICoordinates> {
         const fill = this.fill,
             position = this.position,

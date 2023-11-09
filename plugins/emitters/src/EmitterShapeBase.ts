@@ -19,5 +19,7 @@ export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterSh
         this.size = size;
     }
 
+    abstract init(): Promise<void>;
+
     abstract randomPosition(): Promise<ICoordinates | null>;
 }

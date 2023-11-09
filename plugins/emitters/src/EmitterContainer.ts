@@ -5,7 +5,7 @@ import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 export type EmitterContainer = Container & {
     actualOptions: EmitterOptions;
-    addEmitter: (options: RecursivePartial<IEmitter>, position?: ICoordinates) => EmitterInstance;
+    addEmitter: (options: RecursivePartial<IEmitter>, position?: ICoordinates) => Promise<EmitterInstance>;
     getEmitter: (idxOrName?: number | string) => EmitterInstance | undefined;
     pauseEmitter: (idxOrName?: number | string) => void;
     playEmitter: (idxOrName?: number | string) => void;

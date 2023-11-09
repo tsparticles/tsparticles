@@ -6,6 +6,10 @@ export class EmittersCircleShape extends EmitterShapeBase {
         super(position, size, fill, options);
     }
 
+    async init(): Promise<void> {
+        // nothing to do
+    }
+
     async randomPosition(): Promise<ICoordinates> {
         const size = this.size,
             fill = this.fill,

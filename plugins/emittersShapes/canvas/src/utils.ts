@@ -88,9 +88,10 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
 /**
  * @param textOptions -
  * @param offset -
+ * @param fill -
  * @returns the canvas pixel data
  */
-export function getTextData(textOptions: TextOptions, offset: number): CanvasPixelData | undefined {
+export function getTextData(textOptions: TextOptions, offset: number, fill: boolean): CanvasPixelData | undefined {
     const canvas = document.createElement("canvas"),
         context = canvas.getContext("2d"),
         { font, text, lines: linesOptions, color } = textOptions;
@@ -130,8 +131,14 @@ export function getTextData(textOptions: TextOptions, offset: number): CanvasPix
 
     for (const line of linesData) {
         context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
-        context.fillStyle = color;
-        context.fillText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
+
+        if (fill) {
+            context.fillStyle = color;
+            context.fillText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
+        } else {
+            context.strokeStyle = color;
+            context.strokeText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
+        }
 
         currentHeight += line.height + linesOptions.spacing;
     }

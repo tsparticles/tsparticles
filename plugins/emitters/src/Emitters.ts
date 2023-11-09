@@ -47,8 +47,10 @@ export class Emitters implements IContainerPlugin {
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        container.addEmitter = (options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance =>
-            this.addEmitter(options, position);
+        container.addEmitter = async (
+            options: RecursivePartial<IEmitter>,
+            position?: ICoordinates,
+        ): Promise<EmitterInstance> => await this.addEmitter(options, position);
 
         container.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
@@ -75,12 +77,14 @@ export class Emitters implements IContainerPlugin {
         };
     }
 
-    addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance {
+    async addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): Promise<EmitterInstance> {
         const emitterOptions = new Emitter();
 
         emitterOptions.load(options);
 
         const emitter = new EmitterInstance(this._engine, this, this.container, emitterOptions, position);
+
+        await emitter.init();
 
         this.array.push(emitter);
 
@@ -138,10 +142,10 @@ export class Emitters implements IContainerPlugin {
 
         if (isArray(this.emitters)) {
             for (const emitterOptions of this.emitters) {
-                this.addEmitter(emitterOptions);
+                await this.addEmitter(emitterOptions);
             }
         } else {
-            this.addEmitter(this.emitters);
+            await this.addEmitter(this.emitters);
         }
     }
 
