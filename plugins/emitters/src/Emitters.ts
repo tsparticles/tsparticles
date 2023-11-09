@@ -50,7 +50,7 @@ export class Emitters implements IContainerPlugin {
         container.addEmitter = async (
             options: RecursivePartial<IEmitter>,
             position?: ICoordinates,
-        ): Promise<EmitterInstance> => await this.addEmitter(options, position);
+        ): Promise<EmitterInstance> => this.addEmitter(options, position);
 
         container.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
