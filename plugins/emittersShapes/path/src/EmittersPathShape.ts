@@ -1,6 +1,6 @@
+import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import { type ICoordinates, type IDimension, errorPrefix } from "@tsparticles/engine";
 import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
-import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 
 export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions> {
@@ -57,16 +57,17 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         // nothing to do
     }
 
-    async randomPosition(): Promise<ICoordinates | null> {
+    async randomPosition(): Promise<IRandomPositionData | null> {
         const ctx = this.checkContext,
             position = this.position,
             size = this.size,
             fill = this.fill,
-            path = this.path;
+            path = this.path,
+            res = fill
+                ? generateRandomPointWithinPath(ctx, path, position, size)
+                : generateRandomPointOnPathPerimeter(ctx, path, position, size);
 
-        return fill
-            ? generateRandomPointWithinPath(ctx, path, position, size)
-            : generateRandomPointOnPathPerimeter(ctx, path, position, size);
+        return res ? { position: res } : null;
     }
 
     resize(position: ICoordinates, size: IDimension): void {

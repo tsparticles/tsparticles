@@ -1,10 +1,10 @@
+import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import { type ICoordinates, type IDimension } from "@tsparticles/engine";
 import {
     generateRandomPointOnPolygonPerimeter,
     generateRandomPointWithinPolygon,
     generateRandomPolygon,
 } from "./utils.js";
-import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 import type { EmittersPolygonShapeOptions } from "./Options/Classes/EmittersPolygonShapeOptions.js";
 
 export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeOptions> {
@@ -24,11 +24,12 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
         // nothing to do
     }
 
-    async randomPosition(): Promise<ICoordinates | null> {
+    async randomPosition(): Promise<IRandomPositionData | null> {
         const fill = this.fill,
-            polygon = this.polygon;
+            polygon = this.polygon,
+            res = fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
 
-        return fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
+        return res ? { position: res } : null;
     }
 
     resize(position: ICoordinates, size: IDimension): void {

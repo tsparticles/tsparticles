@@ -7,6 +7,7 @@ import {
     type IDimensionWithMode,
     type IHsl,
     type IParticlesOptions,
+    type IRgb,
     PixelMode,
     type RecursivePartial,
     Vector,
@@ -26,6 +27,21 @@ import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
+
+/**
+ *
+ * @param particlesOptions -
+ * @param color -
+ */
+function setParticlesOptionsColor(particlesOptions: RecursivePartial<IParticlesOptions>, color: IHsl | IRgb): void {
+    if (particlesOptions.color) {
+        particlesOptions.color.value = color;
+    } else {
+        particlesOptions.color = {
+            value: color,
+        };
+    }
+}
 
 /**
  */
@@ -372,16 +388,38 @@ export class EmitterInstance {
                     this.spawnColor.l = this._setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
                 }
 
-                if (!particlesOptions.color) {
-                    particlesOptions.color = {
-                        value: this.spawnColor,
-                    };
-                } else {
-                    particlesOptions.color.value = this.spawnColor;
-                }
+                setParticlesOptionsColor(particlesOptions, this.spawnColor);
             }
 
-            const position = this._shape ? await this._shape?.randomPosition() : this.position;
+            const shapeOptions = this.options.shape;
+
+            let position: ICoordinates | null = this.position;
+
+            if (this._shape) {
+                const shapePosData = await this._shape.randomPosition();
+
+                if (shapePosData) {
+                    position = shapePosData.position;
+
+                    const replaceData = shapeOptions.replace;
+
+                    if (replaceData.color && shapePosData.color) {
+                        setParticlesOptionsColor(particlesOptions, shapePosData.color);
+                    }
+
+                    if (replaceData.opacity) {
+                        if (particlesOptions.opacity) {
+                            particlesOptions.opacity.value = shapePosData.opacity;
+                        } else {
+                            particlesOptions.opacity = {
+                                value: shapePosData.opacity,
+                            };
+                        }
+                    }
+                } else {
+                    position = null;
+                }
+            }
 
             if (position) {
                 this.container.particles.addParticle(position, particlesOptions);

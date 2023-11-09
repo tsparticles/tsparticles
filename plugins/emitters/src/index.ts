@@ -152,3 +152,4 @@ export * from "./EmittersEngine.js";
 export * from "./IEmitterShape.js";
 export * from "./IEmitterShapeGenerator.js";
 export * from "./Enums/EmitterClickMode.js";
+export * from "./IRandomPositionData.js";

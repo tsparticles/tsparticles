@@ -1,7 +1,7 @@
+import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import { type ICoordinates, type IDimension, type IRgba, getRandom, isFunction, isString } from "@tsparticles/engine";
 import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types";
-import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
 export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOptions> {
@@ -91,7 +91,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         this.pixelData = pixelData;
     }
 
-    async randomPosition(): Promise<ICoordinates | null> {
+    async randomPosition(): Promise<IRandomPositionData | null> {
         const { height, width } = this.pixelData,
             data = this.pixelData,
             position = this.position,
@@ -116,8 +116,12 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
             }
 
             return {
-                x: pixelPos.x * scale + positionOffset.x,
-                y: pixelPos.y * scale + positionOffset.y,
+                position: {
+                    x: pixelPos.x * scale + positionOffset.x,
+                    y: pixelPos.y * scale + positionOffset.y,
+                },
+                color: { ...pixel },
+                opacity: pixel.a,
             };
         }
 

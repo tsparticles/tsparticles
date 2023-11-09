@@ -13,6 +13,10 @@ const generateEmitter = (
 ): unknown => {
     return {
         shape: {
+            replace: {
+                color: true,
+                opacity: true,
+            },
             type: shape,
             options,
         },

@@ -1,5 +1,5 @@
+import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
-import { EmitterShapeBase } from "@tsparticles/plugin-emitters";
 
 export class EmittersCircleShape extends EmitterShapeBase {
     constructor(position: ICoordinates, size: IDimension, fill: boolean, options: unknown) {
@@ -10,7 +10,7 @@ export class EmittersCircleShape extends EmitterShapeBase {
         // nothing to do
     }
 
-    async randomPosition(): Promise<ICoordinates> {
+    async randomPosition(): Promise<IRandomPositionData> {
         const size = this.size,
             fill = this.fill,
             position = this.position,
@@ -37,8 +37,10 @@ export class EmittersCircleShape extends EmitterShapeBase {
             randomRadius = fill ? maxRadius * Math.sqrt(getRandom()) : maxRadius;
 
         return {
-            x: position.x + randomRadius * Math.cos(randomTheta),
-            y: position.y + randomRadius * Math.sin(randomTheta),
+            position: {
+                x: position.x + randomRadius * Math.cos(randomTheta),
+                y: position.y + randomRadius * Math.sin(randomTheta),
+            },
         };
     }
 }

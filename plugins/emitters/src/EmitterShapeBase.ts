@@ -1,5 +1,6 @@
 import type { ICoordinates, IDimension } from "@tsparticles/engine";
 import type { IEmitterShape } from "./IEmitterShape.js";
+import type { IRandomPositionData } from "./IRandomPositionData.js";
 
 export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterShape {
     fill: boolean;
@@ -21,5 +22,5 @@ export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterSh
 
     abstract init(): Promise<void>;
 
-    abstract randomPosition(): Promise<ICoordinates | null>;
+    abstract randomPosition(): Promise<IRandomPositionData | null>;
 }
