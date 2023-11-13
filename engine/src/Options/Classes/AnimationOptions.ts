@@ -68,6 +68,7 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
 
     load(data?: RecursivePartial<IRangedAnimation>): void {
         super.load(data);
+
         if (!data) {
             return;
         }

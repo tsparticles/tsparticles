@@ -18,6 +18,8 @@ export class ColorAnimation extends AnimationOptions implements IColorAnimation,
     }
 
     load(data?: RecursivePartial<IColorAnimation>): void {
+        super.load(data);
+
         if (!data) {
             return;
         }
