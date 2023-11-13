@@ -23,7 +23,7 @@ const defaultOptions: ISimplexOptions = {
         x: 40000,
         y: 40000,
         z: 40000,
-    }
+    },
 };
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
@@ -114,7 +114,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
                 this.field[x][y] = new Array(this.options.layers);
 
                 for (let z = 0; z < this.options.layers; z++) {
-                    this.field[x][y][z] = [ 0, 0 ];
+                    this.field[x][y][z] = [0, 0];
                 }
             }
         }
@@ -124,7 +124,8 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
         this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
-        this.options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
+        this.options.increment =
+            (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
         this.options.width = container.canvas.size.width;
         this.options.height = container.canvas.size.height;
 

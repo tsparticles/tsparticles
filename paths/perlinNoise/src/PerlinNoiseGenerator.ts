@@ -89,7 +89,11 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             for (let y = 0; y < options.rows; y++) {
                 const cell = column[y];
 
-                cell.length = noiseGen.noise(x * lengthFactor + options.offset.x, y * lengthFactor + options.offset.y, this.noiseZ);
+                cell.length = noiseGen.noise(
+                    x * lengthFactor + options.offset.x,
+                    y * lengthFactor + options.offset.y,
+                    this.noiseZ,
+                );
                 cell.angle = noiseGen.noise(x * angleFactor, y * angleFactor, this.noiseZ) * Math.PI * 2;
             }
         }
@@ -137,7 +141,8 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             { options } = this;
 
         options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
-        options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
+        options.increment =
+            (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
         options.draw = !!sourceOptions.draw;
 
         const offset = sourceOptions.offset as IOffsetValues | undefined;
