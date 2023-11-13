@@ -36,7 +36,7 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
     }
 
     getSidesCount(particle: Particle): number {
-        const polygon = particle.shapeData as IPolygonShape;
+        const polygon = particle.shapeData as IPolygonShape | undefined;
 
         return Math.round(getRangeValue(polygon?.sides ?? 5));
     }

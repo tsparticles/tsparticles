@@ -60,7 +60,7 @@ export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
     }
 
     particleInit(container: Container, particle: RoundedParticle): void {
-        const shapeData = particle.shapeData as IRoundedRectData;
+        const shapeData = particle.shapeData as IRoundedRectData | undefined;
 
         particle.borderRadius = getRangeValue(shapeData?.radius ?? 5) * container.retina.pixelRatio;
     }

@@ -19,7 +19,7 @@ export const validTypes = ["text", "character", "char", "multiline-text"];
 export class TextDrawer implements IShapeDrawer<TextParticle> {
     draw(data: IShapeDrawData<TextParticle>): void {
         const { context, particle, radius, opacity } = data,
-            character = particle.shapeData as ITextShape;
+            character = particle.shapeData as ITextShape | undefined;
 
         if (!character) {
             return;
@@ -86,7 +86,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
             return;
         }
 
-        const character = particle.shapeData as ITextShape;
+        const character = particle.shapeData as ITextShape | undefined;
 
         if (character === undefined) {
             return;

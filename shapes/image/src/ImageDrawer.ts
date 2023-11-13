@@ -197,8 +197,13 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             this._engine.images = [];
         }
 
-        const imageData = particle.shapeData as IImageShape,
-            image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+        const imageData = particle.shapeData as IImageShape | undefined;
+
+        if (!imageData) {
+            return;
+        }
+
+        const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
             this.loadImageShape(imageData).then(() => {
@@ -222,8 +227,13 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         }
 
         const images = this._engine.images,
-            imageData = particle.shapeData as IImageShape,
-            color = particle.getFillColor(),
+            imageData = particle.shapeData as IImageShape | undefined;
+
+        if (!imageData) {
+            return;
+        }
+
+        const color = particle.getFillColor(),
             image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {

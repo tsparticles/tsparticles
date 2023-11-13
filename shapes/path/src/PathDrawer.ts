@@ -15,7 +15,7 @@ export class PathDrawer implements IShapeDrawer<PathParticle> {
     }
 
     particleInit(container: Container, particle: PathParticle): void {
-        const shape = particle.shapeData as IPathData;
+        const shape = particle.shapeData as IPathData | undefined;
 
         if (!shape) {
             return;

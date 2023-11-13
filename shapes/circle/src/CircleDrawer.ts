@@ -22,7 +22,7 @@ export class CircleDrawer implements IShapeDrawer<CircleParticle> {
     }
 
     particleInit(container: Container, particle: CircleParticle): void {
-        const shapeData = particle.shapeData as ICircleShapeData,
+        const shapeData = particle.shapeData as ICircleShapeData | undefined,
             angle = shapeData?.angle ?? {
                 max: 360,
                 min: 0,

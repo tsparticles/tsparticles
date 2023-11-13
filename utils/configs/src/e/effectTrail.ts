@@ -13,18 +13,26 @@ const options: ISourceOptions = {
             value: "#ff0000",
             animation: {
                 enable: true,
-                speed: 20,
+                speed: 360,
                 sync: true,
             },
         },
         effect: {
             type: "trail",
+            options: {
+                trail: {
+                    length: {
+                        min: 10,
+                        max: 30,
+                    },
+                },
+            },
         },
         shape: {
             type: "circle",
         },
         size: {
-            value: 5,
+            value: 10,
         },
         move: {
             path: {

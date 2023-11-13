@@ -3,17 +3,28 @@ import {
     type ICoordinates,
     type IEffectDrawer,
     type IShapeDrawData,
+    type IShapeValues,
     type Particle,
+    type RangeValue,
     getDistance,
     getRangeValue,
 } from "@tsparticles/engine";
 
-const maxLength = { max: 30, min: 10 };
+type TrailStep = {
+    color: string | CanvasGradient | CanvasPattern;
+    position: ICoordinates;
+};
 
 type TrailParticle = Particle & {
-    path?: ICoordinates[];
+    path?: TrailStep[];
     pathLength?: number;
+    pathMaxWidth?: number;
 };
+
+interface ITrailData extends IShapeValues {
+    length: RangeValue;
+    maxWidth: RangeValue;
+}
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     draw(data: IShapeDrawData<TrailParticle>): void {
@@ -27,43 +38,47 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
         const pathLength = particle.pathLength;
 
-        // add the current position to the path, at the beginning
         particle.path.push({
-            x: currentPos.x,
-            y: currentPos.y,
+            color: context.fillStyle ?? context.strokeStyle,
+            position: {
+                x: currentPos.x,
+                y: currentPos.y,
+            },
         });
 
         if (particle.path.length < 2) {
             return;
         }
 
-        // remove the oldest position from the path
         if (particle.path.length > pathLength) {
             particle.path.shift();
         }
 
-        // draw the path of the particle
         const trailLength = Math.min(particle.path.length, pathLength),
-            velAngle = particle.velocity.angle,
             offsetPos = {
-                x: currentPos.x + radius * Math.cos(velAngle),
-                y: currentPos.y + radius * Math.sin(velAngle),
+                x: currentPos.x,
+                y: currentPos.y,
             };
 
-        let lastPos = particle.path[trailLength - 1];
-
-        context.moveTo(lastPos.x - offsetPos.x, lastPos.y - offsetPos.y);
+        let lastPos = particle.path[trailLength - 1].position;
 
         for (let i = trailLength; i > 0; i--) {
-            const position = particle.path[i - 1];
+            const step = particle.path[i - 1],
+                position = step.position;
 
             if (getDistance(lastPos, position) > radius * 2) {
                 continue;
             }
 
+            context.beginPath();
+            context.moveTo(lastPos.x - offsetPos.x, lastPos.y - offsetPos.y);
             context.lineTo(position.x - offsetPos.x, position.y - offsetPos.y);
 
-            context.lineWidth = Math.max((i / trailLength) * radius * 2 * pxRatio, pxRatio);
+            const width = Math.max((i / trailLength) * radius * 2, pxRatio);
+
+            context.lineWidth = particle.pathMaxWidth ? Math.min(width, particle.pathMaxWidth) : width;
+
+            context.strokeStyle = step.color;
 
             context.stroke();
 
@@ -72,13 +87,13 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     }
 
     particleInit(container: Container, particle: TrailParticle): void {
-        particle.path = [
-            {
-                x: particle.getPosition().x,
-                y: particle.getPosition().y,
-            },
-        ];
+        particle.path = [];
 
-        particle.pathLength = getRangeValue(maxLength) * container.retina.pixelRatio;
+        const effectData = particle.effectData as ITrailData | undefined;
+
+        particle.pathLength = getRangeValue(effectData?.length ?? 10) * container.retina.pixelRatio;
+        particle.pathMaxWidth = effectData?.maxWidth
+            ? getRangeValue(effectData.maxWidth) * container.retina.pixelRatio
+            : undefined;
     }
 }
