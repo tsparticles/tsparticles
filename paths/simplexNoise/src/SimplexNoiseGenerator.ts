@@ -1,7 +1,30 @@
-import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "@tsparticles/engine";
+import {
+    type Container,
+    type IMovePathGenerator,
+    type Particle,
+    Vector,
+    deepExtend,
+    getRandom,
+} from "@tsparticles/engine";
+import type { IOffsetValues } from "./IOffsetValues.js";
 import type { ISimplexOptions } from "./ISimplexOptions.js";
 import type { Noise4D } from "./simplex.js";
 import { makeNoise4D } from "./simplex.js";
+
+const defaultOptions: ISimplexOptions = {
+    size: 20,
+    increment: 0.004,
+    columns: 0,
+    rows: 0,
+    layers: 0,
+    width: 0,
+    height: 0,
+    offset: {
+        x: 40000,
+        y: 40000,
+        z: 40000,
+    }
+};
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
     container?: Container;
@@ -16,15 +39,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         this.field = [];
         this.noiseFunc = makeNoise4D(getRandom());
         this.noiseW = 0;
-        this.options = {
-            size: 20,
-            increment: 0.004,
-            columns: 0,
-            rows: 0,
-            layers: 0,
-            width: 0,
-            height: 0,
-        };
+        this.options = deepExtend({}, defaultOptions) as ISimplexOptions;
     }
 
     generate(particle: Particle): Vector {
@@ -72,14 +87,16 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
     }
 
     private readonly _calculateField: () => void = () => {
-        for (let x = 0; x < this.options.columns; x++) {
-            for (let y = 0; y < this.options.rows; y++) {
-                for (let z = 0; z < this.options.layers; z++) {
+        const options = this.options;
+
+        for (let x = 0; x < options.columns; x++) {
+            for (let y = 0; y < options.rows; y++) {
+                for (let z = 0; z < options.layers; z++) {
                     this.field[x][y][z][0] = this.noiseFunc(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
                     this.field[x][y][z][1] = this.noiseFunc(
-                        x / 100 + 40000,
-                        y / 100 + 40000,
-                        z / 100 + 40000,
+                        x / 100 + options.offset.x,
+                        y / 100 + options.offset.y,
+                        z / 100 + options.offset.z,
                         this.noiseW,
                     );
                 }
@@ -97,7 +114,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
                 this.field[x][y] = new Array(this.options.layers);
 
                 for (let z = 0; z < this.options.layers; z++) {
-                    this.field[x][y][z] = [0, 0];
+                    this.field[x][y][z] = [ 0, 0 ];
                 }
             }
         }
@@ -106,10 +123,16 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
     private readonly _resetField: (container: Container) => void = (container) => {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
-        this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
-        this.options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : 0.004;
+        this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
+        this.options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
         this.options.width = container.canvas.size.width;
         this.options.height = container.canvas.size.height;
+
+        const offset = sourceOptions.offset as IOffsetValues | undefined;
+
+        this.options.offset.x = offset?.x ?? defaultOptions.offset.x;
+        this.options.offset.y = offset?.y ?? defaultOptions.offset.y;
+        this.options.offset.z = offset?.z ?? defaultOptions.offset.z;
 
         this.noiseFunc = makeNoise4D((sourceOptions.seed as number) ?? getRandom());
 

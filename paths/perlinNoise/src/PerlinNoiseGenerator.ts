@@ -1,6 +1,32 @@
-import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "@tsparticles/engine";
+import {
+    type Container,
+    type IMovePathGenerator,
+    type Particle,
+    Vector,
+    deepExtend,
+    getRandom,
+} from "@tsparticles/engine";
+import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { IPerlinOptions } from "./IPerlinOptions.js";
 import { PerlinNoise } from "./PerlinNoise.js";
+
+const defaultOptions: IPerlinOptions = {
+    draw: false,
+    size: 20,
+    increment: 0.004,
+    columns: 0,
+    rows: 0,
+    width: 0,
+    height: 0,
+    factor: {
+        angle: 0.02,
+        length: 0.01,
+    },
+    offset: {
+        x: 40000,
+        y: 40000,
+    },
+};
 
 export class PerlinNoiseGenerator implements IMovePathGenerator {
     container?: Container;
@@ -13,15 +39,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.noiseGen = new PerlinNoise();
         this.field = [];
         this.noiseZ = 0;
-        this.options = {
-            draw: false,
-            size: 20,
-            increment: 0.004,
-            columns: 0,
-            rows: 0,
-            width: 0,
-            height: 0,
-        };
+        this.options = deepExtend({}, defaultOptions) as IPerlinOptions;
     }
 
     generate(particle: Particle): Vector {
@@ -62,8 +80,8 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
 
     private readonly _calculateField: () => void = () => {
         const { field, noiseGen, options } = this,
-            lengthFactor = 0.01,
-            angleFactor = 0.02;
+            lengthFactor = options.factor.length,
+            angleFactor = options.factor.angle;
 
         for (let x = 0; x < options.columns; x++) {
             const column = field[x];
@@ -71,7 +89,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             for (let y = 0; y < options.rows; y++) {
                 const cell = column[y];
 
-                cell.length = noiseGen.noise(x * lengthFactor + 40000, y * lengthFactor + 40000, this.noiseZ);
+                cell.length = noiseGen.noise(x * lengthFactor + options.offset.x, y * lengthFactor + options.offset.y, this.noiseZ);
                 cell.angle = noiseGen.noise(x * angleFactor, y * angleFactor, this.noiseZ) * Math.PI * 2;
             }
         }
@@ -118,9 +136,20 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
-        options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
-        options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : 0.004;
+        options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
+        options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
         options.draw = !!sourceOptions.draw;
+
+        const offset = sourceOptions.offset as IOffsetValues | undefined;
+
+        options.offset.x = (offset?.x as number) ?? defaultOptions.offset.x;
+        options.offset.y = (offset?.y as number) ?? defaultOptions.offset.y;
+
+        const factor = sourceOptions.factor as IFactorValues | undefined;
+
+        options.factor.angle = (factor?.angle as number) ?? defaultOptions.factor.angle;
+        options.factor.length = (factor?.length as number) ?? defaultOptions.factor.length;
+
         options.width = container.canvas.size.width;
         options.height = container.canvas.size.height;
 
