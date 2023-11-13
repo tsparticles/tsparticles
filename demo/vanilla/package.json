@@ -107,6 +107,7 @@
     "@tsparticles/plugin-polygon-mask": "^3.0.0-beta.3",
     "@tsparticles/plugin-sounds": "^3.0.0-beta.3",
     "@tsparticles/effect-bubble": "^3.0.0-beta.3",
+    "@tsparticles/effect-trail": "^3.0.0-beta.3",
     "@tsparticles/shape-arrow": "^3.0.0-beta.3",
     "@tsparticles/shape-cards": "^3.0.0-beta.3",
     "@tsparticles/shape-circle": "^3.0.0-beta.3",

@@ -137,6 +137,7 @@ app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-
 app.use("/plugin-motion", express.static("./node_modules/@tsparticles/plugin-motion"));
 app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sounds"));
 app.use("/effect-bubble", express.static("./node_modules/@tsparticles/effect-bubble"));
+app.use("/effect-trail", express.static("./node_modules/@tsparticles/effect-trail"));
 app.use("/shape-arrow", express.static("./node_modules/@tsparticles/shape-arrow"));
 app.use("/shape-cards", express.static("./node_modules/@tsparticles/shape-cards"));
 app.use("/shape-cog", express.static("./node_modules/@tsparticles/shape-cog"));

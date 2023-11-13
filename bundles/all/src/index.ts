@@ -39,6 +39,7 @@ import { loadSVGPath } from "@tsparticles/path-svg";
 import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadSpiralShape } from "@tsparticles/shape-spiral";
+import { loadTrailEffect } from "@tsparticles/effect-trail";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles All package.
@@ -95,6 +96,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadRoundedPolygonShape(engine, false);
     await loadRoundedRectShape(engine, false);
     await loadSpiralShape(engine, false);
+    await loadTrailEffect(engine, false);
 
     await engine.refresh(refresh);
 }
