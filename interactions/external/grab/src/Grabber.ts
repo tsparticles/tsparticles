@@ -14,6 +14,8 @@ import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.j
 import { Grab } from "./Options/Classes/Grab.js";
 import { drawGrab } from "./Utils.js";
 
+const grabMode = "grab";
+
 /**
  * Particle grab manager
  */
@@ -113,7 +115,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
-        return events.onHover.enable && !!mouse.position && isInArray("grab", events.onHover.mode);
+        return events.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {

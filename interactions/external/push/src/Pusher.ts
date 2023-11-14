@@ -9,6 +9,8 @@ import {
 import type { IPushMode, PushContainer, PushMode } from "./Types.js";
 import { Push } from "./Options/Classes/Push.js";
 
+const pushMode = "push";
+
 /**
  * Particle attract manager
  */
@@ -19,7 +21,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
         super(container);
 
         this.handleClickMode = (mode): void => {
-            if (mode !== "push") {
+            if (mode !== pushMode) {
                 return;
             }
 

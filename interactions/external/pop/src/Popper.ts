@@ -1,5 +1,7 @@
 import { type Container, ExternalInteractorBase } from "@tsparticles/engine";
 
+const popMode = "pop";
+
 /**
  * Particle attract manager
  */
@@ -12,7 +14,7 @@ export class Popper extends ExternalInteractorBase {
         this.handleClickMode = (mode): void => {
             const container = this.container;
 
-            if (mode !== "pop") {
+            if (mode !== popMode) {
                 return;
             }
 

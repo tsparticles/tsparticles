@@ -1,6 +1,8 @@
 import { type ICoordinates, getStyleFromRgb } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types.js";
 
+export const lightMode = "light";
+
 /**
  * @param container -
  * @param context -

@@ -18,6 +18,8 @@ import {
 } from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract.js";
 
+const attractMode = "attract";
+
 /**
  * Particle external attract manager
  */
@@ -39,7 +41,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             const options = this.container.actualOptions,
                 attract = options.interactivity.modes.attract;
 
-            if (!attract || mode !== "attract") {
+            if (!attract || mode !== attractMode) {
                 return;
             }
 
@@ -100,9 +102,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             clickEnabled = events.onClick.enable,
             clickMode = events.onClick.mode;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray("attract", hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
             this._hoverAttract();
-        } else if (clickEnabled && isInArray("attract", clickMode)) {
+        } else if (clickEnabled && isInArray(attractMode, clickMode)) {
             this._clickAttract();
         }
     }
@@ -120,7 +122,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         const hoverMode = events.onHover.mode,
             clickMode = events.onClick.mode;
 
-        return isInArray("attract", hoverMode) || isInArray("attract", clickMode);
+        return isInArray(attractMode, hoverMode) || isInArray(attractMode, clickMode);
     }
 
     loadModeOptions(

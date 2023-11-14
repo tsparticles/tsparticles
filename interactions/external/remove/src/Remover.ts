@@ -8,6 +8,8 @@ import {
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types.js";
 import { Remove } from "./Options/Classes/Remove.js";
 
+const removeMode = "remove";
+
 /**
  * Particle attract manager
  */
@@ -21,7 +23,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
             const container = this.container,
                 options = container.actualOptions;
 
-            if (!options.interactivity.modes.remove || mode !== "remove") {
+            if (!options.interactivity.modes.remove || mode !== removeMode) {
                 return;
             }
 

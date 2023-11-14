@@ -29,6 +29,8 @@ import type { Interfaces } from "./Interfaces.js";
 import { ProcessBubbleType } from "./Enums.js";
 import { calculateBubbleValue } from "./Utils.js";
 
+const bubbleMode = "bubble";
+
 /**
  * Particle bubble manager
  */
@@ -43,7 +45,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
 
         this.handleClickMode = (mode): void => {
-            if (mode !== "bubble") {
+            if (mode !== bubbleMode) {
                 return;
             }
 
@@ -93,12 +95,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             divs = events.onDiv;
 
         /* on hover event */
-        if (hoverEnabled && isInArray("bubble", hoverMode)) {
+        if (hoverEnabled && isInArray(bubbleMode, hoverMode)) {
             this._hoverBubble();
-        } else if (clickEnabled && isInArray("bubble", clickMode)) {
+        } else if (clickEnabled && isInArray(bubbleMode, clickMode)) {
             this._clickBubble();
         } else {
-            divModeExecute("bubble", divs, (selector, div): void => this._singleSelectorHover(delta, selector, div));
+            divModeExecute(bubbleMode, divs, (selector, div): void => this._singleSelectorHover(delta, selector, div));
         }
     }
 
@@ -108,13 +110,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             { onClick, onDiv, onHover } = events,
-            divBubble = isDivModeEnabled("bubble", onDiv);
+            divBubble = isDivModeEnabled(bubbleMode, onDiv);
 
         if (!(divBubble || (onHover.enable && mouse.position) || (onClick.enable && mouse.clickPosition))) {
             return false;
         }
 
-        return isInArray("bubble", onHover.mode) || isInArray("bubble", onClick.mode) || divBubble;
+        return isInArray(bubbleMode, onHover.mode) || isInArray(bubbleMode, onClick.mode) || divBubble;
     }
 
     loadModeOptions(

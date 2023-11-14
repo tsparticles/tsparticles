@@ -8,8 +8,8 @@ import {
 } from "@tsparticles/engine";
 import type { ILightMode, LightMode } from "./Types.js";
 import type { LightContainer, LightParticle } from "./Types.js";
+import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
-import { drawLight } from "./Utils.js";
 
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     constructor(container: LightContainer) {
@@ -54,7 +54,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
             return false;
         }
 
-        const res = isInArray("light", events.onHover.mode);
+        const res = isInArray(lightMode, events.onHover.mode);
 
         if (res && interactivity.modes.light) {
             const lightGradient = interactivity.modes.light.area.gradient;
