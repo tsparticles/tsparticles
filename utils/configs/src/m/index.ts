@@ -5,6 +5,7 @@ import mouseAttract from "./mouseAttract.js";
 import mouseBounce from "./mouseBounce.js";
 import mouseFollow from "./mouseFollow.js";
 import mouseTrail from "./mouseTrail.js";
+import mouseTrailNoise from "./mouseTrailNoise.js";
 import moveAngle from "./moveAngle.js";
 import moveDistance from "./moveDistance.js";
 import moveInside from "./moveInside.js";
@@ -20,6 +21,7 @@ export default {
     mouseBounce,
     mouseFollow,
     mouseTrail,
+    mouseTrailNoise,
     moveAngle,
     moveDistance,
     moveInside,
