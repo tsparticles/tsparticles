@@ -61,7 +61,7 @@
     "fireworksjs",
     "canvas-confetti",
     "tsparticles-plugin",
-    "@tsparticles/path"
+    "tsparticles-path"
   ],
   "publishConfig": {
     "access": "public"
@@ -104,6 +104,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.0.0-beta.3"
+    "@tsparticles/engine": "^3.0.0-beta.3",
+    "@tsparticles/simplex-noise": "^3.0.0-beta.3"
   }
 }

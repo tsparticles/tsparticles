@@ -4,6 +4,7 @@ import { loadBubbleEffect } from "@tsparticles/effect-bubble";
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 import { loadCardsShape } from "@tsparticles/shape-cards";
 import { loadCogShape } from "@tsparticles/shape-cog";
+import { loadCurlNoisePath } from "@tsparticles/path-curl-noise";
 import { loadCurvesPath } from "@tsparticles/path-curves";
 import { loadEasingBackPlugin } from "@tsparticles/plugin-easing-back";
 import { loadEasingCircPlugin } from "@tsparticles/plugin-easing-circ";
@@ -83,6 +84,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadGradientUpdater(engine, false);
     await loadOrbitUpdater(engine, false);
     await loadCurvesPath(engine, false);
+    await loadCurlNoisePath(engine, false);
     await loadPerlinNoisePath(engine, false);
     await loadPolygonPath(engine, false);
     await loadSVGPath(engine, false);

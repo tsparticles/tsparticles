@@ -106,6 +106,7 @@
     "@tsparticles/interaction-light": "^3.0.0-beta.3",
     "@tsparticles/interaction-particles-repulse": "^3.0.0-beta.3",
     "@tsparticles/path-curves": "^3.0.0-beta.3",
+    "@tsparticles/path-curl-noise": "^3.0.0-beta.3",
     "@tsparticles/path-perlin-noise": "^3.0.0-beta.3",
     "@tsparticles/path-polygon": "^3.0.0-beta.3",
     "@tsparticles/path-simplex-noise": "^3.0.0-beta.3",

@@ -206,8 +206,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         return options.type === PolygonMaskType.inside
             ? inside
             : options.type === PolygonMaskType.outside
-            ? !inside
-            : false;
+              ? !inside
+              : false;
     };
 
     private readonly _createPath2D: () => void = () => {

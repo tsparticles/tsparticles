@@ -67,7 +67,7 @@
     "fireworksjs",
     "canvas-confetti",
     "tsparticles-plugin",
-    "@tsparticles/path"
+    "tsparticles-path"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -107,7 +107,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.0.0-beta.3"
+    "@tsparticles/engine": "^3.0.0-beta.3",
+    "@tsparticles/perlin-noise": "^3.0.0-beta.3"
   },
   "publishConfig": {
     "access": "public",

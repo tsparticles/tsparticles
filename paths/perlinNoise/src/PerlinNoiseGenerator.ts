@@ -8,7 +8,7 @@ import {
 } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { IPerlinOptions } from "./IPerlinOptions.js";
-import { PerlinNoise } from "./PerlinNoise.js";
+import { PerlinNoise } from "@tsparticles/perlin-noise";
 
 const defaultOptions: IPerlinOptions = {
     draw: false,
@@ -57,7 +57,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
     init(container: Container): void {
         this.container = container;
 
-        this._setup(container);
+        this._setup();
     }
 
     reset(): void {
@@ -89,12 +89,12 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             for (let y = 0; y < options.rows; y++) {
                 const cell = column[y];
 
-                cell.length = noiseGen.noise(
+                cell.length = noiseGen.noise3d(
                     x * lengthFactor + options.offset.x,
                     y * lengthFactor + options.offset.y,
                     this.noiseZ,
                 );
-                cell.angle = noiseGen.noise(x * angleFactor, y * angleFactor, this.noiseZ) * Math.PI * 2;
+                cell.angle = noiseGen.noise3d(x * angleFactor, y * angleFactor, this.noiseZ) * Math.PI * 2;
             }
         }
     };
@@ -136,7 +136,13 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         }
     };
 
-    private readonly _resetField: (container: Container) => void = (container) => {
+    private _resetField(): void {
+        const container = this.container;
+
+        if (!container) {
+            return;
+        }
+
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
@@ -158,19 +164,21 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         options.width = container.canvas.size.width;
         options.height = container.canvas.size.height;
 
-        this.noiseGen.seed((sourceOptions.seed as number) ?? getRandom());
+        this.options.seed = sourceOptions.seed as number | undefined;
+
+        this.noiseGen.seed(this.options.seed ?? getRandom());
 
         options.columns = Math.floor(this.options.width / this.options.size) + 1;
         options.rows = Math.floor(this.options.height / this.options.size) + 1;
 
         this._initField();
-    };
+    }
 
-    private readonly _setup: (container: Container) => void = (container) => {
+    private _setup(): void {
         this.noiseZ = 0;
 
-        this._resetField(container);
+        this._resetField();
 
-        window.addEventListener("resize", () => this._resetField(container));
-    };
+        window.addEventListener("resize", () => this._resetField());
+    }
 }

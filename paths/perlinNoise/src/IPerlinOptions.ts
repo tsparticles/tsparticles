@@ -8,6 +8,7 @@ export interface IPerlinOptions {
     increment: number;
     offset: IOffsetValues;
     rows: number;
+    seed?: number;
     size: number;
     width: number;
 }

@@ -61,7 +61,7 @@
     "fireworksjs",
     "canvas-confetti",
     "tsparticles-plugin",
-    "@tsparticles/path"
+    "tsparticles-path"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",

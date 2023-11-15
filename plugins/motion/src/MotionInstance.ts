@@ -61,8 +61,8 @@ export class MotionInstance implements IContainerPlugin {
             ? motion.disable
                 ? 0
                 : motion.reduce.value
-                ? 1 / motion.reduce.factor
-                : 1
+                  ? 1 / motion.reduce.factor
+                  : 1
             : 1;
     };
 }

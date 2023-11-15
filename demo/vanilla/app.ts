@@ -54,6 +54,8 @@ app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/lodash", express.static("./node_modules/lodash"));
 app.use("/ace", express.static("./node_modules/ace-builds"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
+app.use("/tsparticles-perlin-noise", express.static("./node_modules/@tsparticles/perlin-noise"));
+app.use("/tsparticles-simplex-noise", express.static("./node_modules/@tsparticles/simplex-noise"));
 app.use("/tsparticles-all", express.static("./node_modules/@tsparticles/all"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
 app.use("/tsparticles-engine", express.static("./node_modules/@tsparticles/engine"));
@@ -110,6 +112,7 @@ app.use("/updater-orbit", express.static("./node_modules/@tsparticles/updater-or
 app.use("/move-base", express.static("./node_modules/@tsparticles/move-base"));
 app.use("/move-parallax", express.static("./node_modules/@tsparticles/move-parallax"));
 app.use("/path-curves", express.static("./node_modules/@tsparticles/path-curves"));
+app.use("/path-curl-noise", express.static("./node_modules/@tsparticles/path-curl-noise"));
 app.use("/path-perlin-noise", express.static("./node_modules/@tsparticles/path-perlin-noise"));
 app.use("/path-polygon", express.static("./node_modules/@tsparticles/path-polygon"));
 app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-simplex-noise"));
