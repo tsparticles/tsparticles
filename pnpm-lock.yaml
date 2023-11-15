@@ -20,7 +20,7 @@ importers:
       '@istanbuljs/nyc-config-typescript':
         specifier: ^1.0.2
         version: 1.0.2(nyc@15.1.0)
-      '@nrwl/workspace':
+      '@nx/workspace':
         specifier: ^16.10.0
         version: 16.10.0
       '@tsparticles/cli':

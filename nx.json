@@ -24,7 +24,7 @@
       ]
     }
   },
-  "extends": "@nrwl/workspace/presets/npm.json",
+  "extends": "@nx/workspace/presets/npm.json",
   "npmScope": "@tsparticles/workspace",
   "tasksRunnerOptions": {
     "default": {
