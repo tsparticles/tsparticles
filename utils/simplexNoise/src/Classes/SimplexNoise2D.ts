@@ -19,8 +19,8 @@ export class SimplexNoise2D {
         this._SQUISH_2D = (Math.sqrt(2 + 1) - 1) / 2;
         this._STRETCH_2D = (1 / Math.sqrt(2 + 1) - 1) / 2;
         this._base2D = [
-            [ 1, 1, 0, 1, 0, 1, 0, 0, 0 ],
-            [ 1, 1, 0, 1, 0, 1, 2, 1, 1 ],
+            [1, 1, 0, 1, 0, 1, 0, 0, 0],
+            [1, 1, 0, 1, 0, 1, 2, 1, 1],
         ];
         this._gradients2D = [
             5,
