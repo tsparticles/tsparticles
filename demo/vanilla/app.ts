@@ -157,6 +157,12 @@ app.get("/", function(req, res) {
     res.render("index");
 });
 
+app.get("/basic", function(req, res) {
+    logger.info("basic requested");
+
+    res.render("basic");
+});
+
 app.get("/playground", function(req, res) {
     logger.info("playground requested");
 
