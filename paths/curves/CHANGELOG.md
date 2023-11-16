@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-beta.4](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2023-11-16)
+
+### Features
+
+-   added curl noise path plugin ([3d40e98](https://github.com/tsparticles/tsparticles/commit/3d40e98d4d830c4b813ca3b2f8f57095e8f73ff2))
+-   added flat options to tsparticles-confetti options ([dff6c75](https://github.com/tsparticles/tsparticles/commit/dff6c7590c5a844e34547513637c8ad0f13a3d66))
+
 # [3.0.0-beta.3](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2023-09-20)
 
 **Note:** Version bump only for package @tsparticles/path-curves
