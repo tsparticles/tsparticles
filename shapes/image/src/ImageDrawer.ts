@@ -159,9 +159,10 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
                 pos = {
                     x: -radius,
                     y: -radius,
-                };
+                },
+                diameter = radius * 2;
 
-            context.drawImage(element, pos.x, pos.y, radius * 2, (radius * 2) / ratio);
+            context.drawImage(element, pos.x, pos.y, diameter, diameter / ratio);
         }
 
         context.globalAlpha = 1;

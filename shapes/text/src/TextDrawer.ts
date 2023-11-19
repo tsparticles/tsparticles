@@ -113,12 +113,13 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
             pos = {
                 x: -offsetX,
                 y: radius / 2,
-            };
+            },
+            diameter = radius * 2;
 
         if (fill) {
-            context.fillText(line, pos.x, pos.y + radius * 2 * index);
+            context.fillText(line, pos.x, pos.y + diameter * index);
         } else {
-            context.strokeText(line, pos.x, pos.y + radius * 2 * index);
+            context.strokeText(line, pos.x, pos.y + diameter * index);
         }
     };
 }

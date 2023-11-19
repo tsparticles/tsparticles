@@ -31,6 +31,7 @@ interface ITrailData extends IShapeValues {
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     draw(data: IShapeDrawData<TrailParticle>): void {
         const { context, radius, particle } = data,
+            diameter = radius * 2,
             pxRatio = particle.container.retina.pixelRatio,
             currentPos = particle.getPosition();
 
@@ -68,7 +69,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             const step = particle.trail[i - 1],
                 position = step.position;
 
-            if (getDistance(lastPos, position) > radius * 2) {
+            if (getDistance(lastPos, position) > diameter) {
                 continue;
             }
 
@@ -76,7 +77,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             context.moveTo(lastPos.x - offsetPos.x, lastPos.y - offsetPos.y);
             context.lineTo(position.x - offsetPos.x, position.y - offsetPos.y);
 
-            const width = Math.max((i / trailLength) * radius * 2, pxRatio, particle.trailMinWidth ?? -1);
+            const width = Math.max((i / trailLength) * diameter, pxRatio, particle.trailMinWidth ?? -1);
 
             context.lineWidth = particle.trailMaxWidth ? Math.min(width, particle.trailMaxWidth) : width;
 
