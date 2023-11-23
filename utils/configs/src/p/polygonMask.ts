@@ -97,8 +97,11 @@ const options: ISourceOptions = {
     polygon: {
         draw: {
             enable: true,
-            lineColor: "rgba(255,255,255,0.2)",
-            lineWidth: 1,
+            stroke: {
+                color: "#fff",
+                width: 1,
+                opacity: 0.2,
+            },
         },
         enable: true,
         move: {
