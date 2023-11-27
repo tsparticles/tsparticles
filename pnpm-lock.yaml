@@ -138,23 +138,23 @@ importers:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@20.9.4)(typescript@5.3.2)
       typedoc:
-        specifier: ^0.25.3
-        version: 0.25.3(typescript@5.3.2)
+        specifier: ^0.25.4
+        version: 0.25.4(typescript@5.3.2)
       typedoc-plugin-carbon-ads:
-        specifier: ^1.5.0
-        version: 1.5.0(typedoc@0.25.3)
+        specifier: ^1.6.0
+        version: 1.6.0(typedoc@0.25.4)
       typedoc-plugin-clarity:
-        specifier: ^1.5.0
-        version: 1.5.0(typedoc@0.25.3)
+        specifier: ^1.6.0
+        version: 1.6.0(typedoc@0.25.4)
       typedoc-plugin-coverage:
         specifier: ^2.2.0
-        version: 2.2.0(typedoc@0.25.3)
+        version: 2.2.0(typedoc@0.25.4)
       typedoc-plugin-keywords:
-        specifier: ^1.5.0
-        version: 1.5.0(typedoc@0.25.3)
+        specifier: ^1.6.0
+        version: 1.6.0(typedoc@0.25.4)
       typedoc-plugin-missing-exports:
         specifier: ^2.1.0
-        version: 2.1.0(typedoc@0.25.3)
+        version: 2.1.0(typedoc@0.25.4)
       typescript:
         specifier: ^5.3.2
         version: 5.3.2
@@ -11450,56 +11450,56 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-carbon-ads@1.5.0(typedoc@0.25.3):
-    resolution: {integrity: sha512-teIF+jz7ivQwXrwSsH+JR7O90BfWbEfcnNy45utTDIDLH/jiqdL/68z69NyAyUglcFHBkY4uFu9i7UkmP06Lpw==}
+  /typedoc-plugin-carbon-ads@1.6.0(typedoc@0.25.4):
+    resolution: {integrity: sha512-PzWe1iqnul+9DOZh3/OCcndjTstoxHET4XIXEMif1l/LbxpHdIBQ+h5HlcS6D2nW8HoiZqxMYjvWIqtaqPmRAQ==}
     peerDependencies:
-      typedoc: ^0.25.0
+      typedoc: ^0.25.4
     dependencies:
-      typedoc: 0.25.3(typescript@5.3.2)
+      typedoc: 0.25.4(typescript@5.3.2)
       typescript: 5.3.2
     dev: true
 
-  /typedoc-plugin-clarity@1.5.0(typedoc@0.25.3):
-    resolution: {integrity: sha512-S16lBJ+RySSJPis53TTITDpASJGNnkoujRulubaVCYKEusKKHaFldinaZXQyOUj+xvj5prG70Y1DmdxDXK6XnQ==}
+  /typedoc-plugin-clarity@1.6.0(typedoc@0.25.4):
+    resolution: {integrity: sha512-BvJj8ZvgCZzS2sLO7yIkRg9EWLPdll+xLyQekjMAtypHITOXSwCO9E9Ir77R2fctsVC9BVJiToGAYcsMtyuPdw==}
     peerDependencies:
-      typedoc: ^0.25.0
+      typedoc: ^0.25.4
     dependencies:
-      typedoc: 0.25.3(typescript@5.3.2)
+      typedoc: 0.25.4(typescript@5.3.2)
       typescript: 5.3.2
     dev: true
 
-  /typedoc-plugin-coverage@2.2.0(typedoc@0.25.3):
+  /typedoc-plugin-coverage@2.2.0(typedoc@0.25.4):
     resolution: {integrity: sha512-/hq9nwSNBz2p7+VYfljT/zFSmaxN8tlfcIp6CCAaQN6VIxXCciYFIqR+pcckRhjmfHIeSJ5uy2OpCt5F683npA==}
     engines: {node: '>= 16'}
     peerDependencies:
       typedoc: ^0.22.12 || 0.23.x || 0.24.x || 0.25.x
     dependencies:
-      typedoc: 0.25.3(typescript@5.3.2)
+      typedoc: 0.25.4(typescript@5.3.2)
     dev: true
 
-  /typedoc-plugin-keywords@1.5.0(typedoc@0.25.3):
-    resolution: {integrity: sha512-8dkuTwwiuXzyM6T1/5M85JGyqArGnEYkANqItLXLAxmfx9SNkEDSwqfDiMGBVrcJmLMc/0nuCf/H4ixyA/8/tA==}
+  /typedoc-plugin-keywords@1.6.0(typedoc@0.25.4):
+    resolution: {integrity: sha512-URyCIHw6+Lwil0ywy6lVb2TckfDVGjAWnRnTAiiSZaRaglI6vaaP1EhhwEipOIlHaJSnHZfdwpWe1t4mffTIpA==}
     peerDependencies:
-      typedoc: ^0.25.0
+      typedoc: ^0.25.4
     dependencies:
-      typedoc: 0.25.3(typescript@5.3.2)
+      typedoc: 0.25.4(typescript@5.3.2)
       typescript: 5.3.2
     dev: true
 
-  /typedoc-plugin-missing-exports@2.1.0(typedoc@0.25.3):
+  /typedoc-plugin-missing-exports@2.1.0(typedoc@0.25.4):
     resolution: {integrity: sha512-+1DhqZCEu7Vu5APnrqpPwl31D+hXpt1fV0Le9ycCRL1eLVdatdl6KVt4SEVwPxnEpKwgOn2dNX6I9+0F1aO2aA==}
     peerDependencies:
       typedoc: 0.24.x || 0.25.x
     dependencies:
-      typedoc: 0.25.3(typescript@5.3.2)
+      typedoc: 0.25.4(typescript@5.3.2)
     dev: true
 
-  /typedoc@0.25.3(typescript@5.3.2):
-    resolution: {integrity: sha512-Ow8Bo7uY1Lwy7GTmphRIMEo6IOZ+yYUyrc8n5KXIZg1svpqhZSWgni2ZrDhe+wLosFS8yswowUzljTAV/3jmWw==}
+  /typedoc@0.25.4(typescript@5.3.2):
+    resolution: {integrity: sha512-Du9ImmpBCw54bX275yJrxPVnjdIyJO/84co0/L9mwe0R3G4FSR6rQ09AlXVRvZEGMUg09+z/usc8mgygQ1aidA==}
     engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:
-      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x
+      typescript: 4.6.x || 4.7.x || 4.8.x || 4.9.x || 5.0.x || 5.1.x || 5.2.x || 5.3.x
     dependencies:
       lunr: 2.3.9
       marked: 4.3.0
