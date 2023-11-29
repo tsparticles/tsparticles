@@ -119,6 +119,7 @@
     "@tsparticles/path-polygon": "^3.0.0-beta.4",
     "@tsparticles/path-simplex-noise": "^3.0.0-beta.4",
     "@tsparticles/path-svg": "^3.0.0-beta.4",
+    "@tsparticles/pjs": "^3.0.0-beta.4",
     "@tsparticles/plugin-canvas-mask": "^3.0.0-beta.4",
     "@tsparticles/plugin-easing-back": "^3.0.0-beta.4",
     "@tsparticles/plugin-easing-circ": "^3.0.0-beta.4",

@@ -212,6 +212,9 @@ importers:
       '@tsparticles/path-svg':
         specifier: ^3.0.0-beta.4
         version: link:../../paths/svg/dist
+      '@tsparticles/pjs':
+        specifier: ^3.0.0-beta.4
+        version: link:../pjs/dist
       '@tsparticles/plugin-canvas-mask':
         specifier: ^3.0.0-beta.4
         version: link:../../plugins/canvasMask/dist
@@ -515,9 +518,6 @@ importers:
       '@tsparticles/move-parallax':
         specifier: ^3.0.0-beta.4
         version: link:../../move/parallax/dist
-      '@tsparticles/pjs':
-        specifier: ^3.0.0-beta.4
-        version: link:../pjs/dist
       '@tsparticles/plugin-easing-quad':
         specifier: ^3.0.0-beta.4
         version: link:../../plugins/easings/quad/dist

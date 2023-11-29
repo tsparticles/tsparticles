@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { initPjs } from "@tsparticles/pjs";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
 import { loadBubbleEffect } from "@tsparticles/effect-bubble";
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
@@ -52,6 +53,8 @@ import { loadTrailEffect } from "@tsparticles/effect-trail";
  * @param refresh -
  */
 export async function loadAll(engine: Engine, refresh = true): Promise<void> {
+    initPjs(engine);
+
     await loadFull(engine, false);
 
     await loadHsvColorPlugin();

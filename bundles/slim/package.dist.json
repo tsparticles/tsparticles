@@ -116,7 +116,6 @@
     "@tsparticles/interaction-particles-links": "^3.0.0-beta.4",
     "@tsparticles/move-base": "^3.0.0-beta.4",
     "@tsparticles/move-parallax": "^3.0.0-beta.4",
-    "@tsparticles/pjs": "^3.0.0-beta.4",
     "@tsparticles/plugin-easing-quad": "^3.0.0-beta.4",
     "@tsparticles/shape-circle": "^3.0.0-beta.4",
     "@tsparticles/shape-image": "^3.0.0-beta.4",

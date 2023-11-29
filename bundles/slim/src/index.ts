@@ -1,5 +1,4 @@
 import type { Engine } from "@tsparticles/engine";
-import { initPjs } from "@tsparticles/pjs";
 import { loadBasic } from "@tsparticles/basic";
 import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
 import { loadExternalAttractInteraction } from "@tsparticles/interaction-external-attract";
@@ -36,8 +35,6 @@ import { loadTextShape } from "@tsparticles/shape-text";
  * @param refresh -
  */
 export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
-    initPjs(engine);
-
     await loadParallaxMover(engine, false);
 
     await loadExternalAttractInteraction(engine, false);
