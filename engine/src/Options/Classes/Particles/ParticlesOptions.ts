@@ -71,33 +71,34 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
             return;
         }
 
-        this.bounce.load(data.bounce);
-        this.color.load(AnimatableColor.create(this.color, data.color));
-        this.effect.load(data.effect);
-
         if (data.groups !== undefined) {
-            for (const group in data.groups) {
+            for (const group of Object.keys(data.groups)) {
+                if (!Object.hasOwn(data.groups, group)) {
+                    continue;
+                }
+
                 const item = data.groups[group];
 
                 if (item !== undefined) {
-                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
+                    this.groups[group] = <IParticlesOptions>deepExtend(this.groups[group] ?? {}, item);
                 }
             }
         }
-
-        this.move.load(data.move);
-        this.number.load(data.number);
-        this.opacity.load(data.opacity);
 
         if (data.reduceDuplicates !== undefined) {
             this.reduceDuplicates = data.reduceDuplicates;
         }
 
+        this.bounce.load(data.bounce);
+        this.color.load(AnimatableColor.create(this.color, data.color));
+        this.effect.load(data.effect);
+        this.move.load(data.move);
+        this.number.load(data.number);
+        this.opacity.load(data.opacity);
         this.shape.load(data.shape);
         this.size.load(data.size);
         this.shadow.load(data.shadow);
         this.zIndex.load(data.zIndex);
-
         this.collisions.load(data.collisions);
 
         if (data.interactivity !== undefined) {

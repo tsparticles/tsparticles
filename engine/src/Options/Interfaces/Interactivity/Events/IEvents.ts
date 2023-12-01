@@ -11,5 +11,5 @@ export interface IEvents {
     onClick: IClickEvent;
     onDiv: SingleOrMultiple<IDivEvent>;
     onHover: IHoverEvent;
-    resize: boolean | IResizeEvent;
+    resize: IResizeEvent;
 }

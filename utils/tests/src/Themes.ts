@@ -83,7 +83,6 @@ describe("Themes", async () => {
                         enable: true,
                         mode: "push",
                     },
-                    resize: true,
                 },
             },
             detectRetina: true,

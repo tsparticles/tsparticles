@@ -5,7 +5,6 @@ import { OptionsColor } from "../OptionsColor.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
- 
  * [[include:Shadow.md]]
  */
 export class Shadow implements IShadow, IOptionLoader<IShadow> {

@@ -159,7 +159,9 @@ const initParticlesJS = (
                             enable: fixedOptions.interactivity.events.onclick.enable,
                             mode: fixedOptions.interactivity.events.onclick.mode,
                         },
-                        resize: fixedOptions.interactivity.events.resize,
+                        resize: {
+                            enable: fixedOptions.interactivity.events.resize,
+                        },
                     },
                     modes: {
                         grab: {

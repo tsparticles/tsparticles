@@ -186,7 +186,6 @@ describe("Options tests", () => {
                             enable: true,
                             mode: "repulse",
                         },
-                        resize: true,
                     },
                     modes: {
                         bubble: {
@@ -369,7 +368,6 @@ describe("Options tests", () => {
                             enable: false,
                             mode: "grab",
                         },
-                        resize: true,
                     },
                     modes: {
                         bubble: {

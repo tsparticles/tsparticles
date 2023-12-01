@@ -164,7 +164,6 @@ const options: ISourceOptions = {
                 enable: true,
                 mode: "push",
             },
-            resize: true,
         },
     },
     detectRetina: true,
