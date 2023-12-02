@@ -140,7 +140,7 @@ export class Linker extends ParticlesInteractorBase {
         }
 
         for (const source of sources) {
-            options.links.load(source?.links ?? source?.lineLinked ?? source?.line_linked);
+            options.links.load(source?.links);
         }
     }
 

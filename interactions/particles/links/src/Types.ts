@@ -52,16 +52,6 @@ export type LinkTriangleDrawParams = {
 };
 
 export type IParticlesLinkOptions = IParticlesOptions & {
-    /**
-     * @deprecated use the new links instead
-     */
-    lineLinked?: ILinks;
-
-    /**
-     * @deprecated use the new links instead
-     */
-    line_linked?: ILinks;
-
     links?: ILinks;
 };
 
