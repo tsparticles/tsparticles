@@ -166,7 +166,7 @@ const initParticlesJS = (
                     modes: {
                         grab: {
                             distance: fixedOptions.interactivity.modes.grab.distance,
-                            lineLinked: {
+                            links: {
                                 opacity: fixedOptions.interactivity.modes.grab.line_linked.opacity,
                             },
                         },
@@ -182,10 +182,10 @@ const initParticlesJS = (
                             duration: fixedOptions.interactivity.modes.repulse.duration,
                         },
                         push: {
-                            particles_nb: fixedOptions.interactivity.modes.push.particles_nb,
+                            quantity: fixedOptions.interactivity.modes.push.particles_nb,
                         },
                         remove: {
-                            particles_nb: fixedOptions.interactivity.modes.remove.particles_nb,
+                            quantity: fixedOptions.interactivity.modes.remove.particles_nb,
                         },
                     },
                 },
@@ -213,7 +213,7 @@ const initParticlesJS = (
                         type: fixedOptions.particles.shape.type,
                         options: {
                             polygon: {
-                                nb_sides: fixedOptions.particles.shape.polygon.nb_sides,
+                                sides: fixedOptions.particles.shape.polygon.nb_sides,
                             },
                             image: {
                                 src: fixedOptions.particles.shape.image.src,
