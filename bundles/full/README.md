@@ -13,6 +13,7 @@ a `@tsparticles/engine` instance.
 - [@tsparticles/interaction-external-trail](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/trail)
 - [@tsparticles/plugin-absorbers](https://github.com/tsparticles/tsparticles/tree/main/plugins/absorbers)
 - [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
+- [@tsparticles/shape-text](https://github.com/tsparticles/tsparticles/tree/main/shapes/text)
 - [@tsparticles/updater-destroy](https://github.com/tsparticles/tsparticles/tree/main/updaters/destroy)
 - [@tsparticles/updater-roll](https://github.com/tsparticles/tsparticles/tree/main/updaters/roll)
 - [@tsparticles/updater-tilt](https://github.com/tsparticles/tsparticles/tree/main/updaters/tilt)

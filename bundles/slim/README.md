@@ -31,7 +31,7 @@ a `@tsparticles/engine` instance.
 - [@tsparticles/shape-polygon](https://github.com/tsparticles/tsparticles/tree/main/shapes/polygon)
 - [@tsparticles/shape-square](https://github.com/tsparticles/tsparticles/tree/main/shapes/square)
 - [@tsparticles/shape-star](https://github.com/tsparticles/tsparticles/tree/main/shapes/star)
-- [@tsparticles/shape-text](https://github.com/tsparticles/tsparticles/tree/main/shapes/text)
+- [@tsparticles/shape-emoji](https://github.com/tsparticles/tsparticles/tree/main/shapes/emoji)
 - [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
 - [@tsparticles/updater-rotate](https://github.com/tsparticles/tsparticles/tree/main/updaters/rotate)
 - [@tsparticles/updater-stroke-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/strokeColor)

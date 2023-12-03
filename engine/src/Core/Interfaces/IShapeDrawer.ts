@@ -43,6 +43,12 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
     loadShape?: (particle: TParticle) => void;
 
     /**
+     * Shape particle destroy function
+     * @param particle - the particle being destroyed
+     */
+    particleDestroy?: (particle: TParticle) => void;
+
+    /**
      * Shape particle init function
      * @param container - the container containing the shape
      * @param particle - the particle using the shape

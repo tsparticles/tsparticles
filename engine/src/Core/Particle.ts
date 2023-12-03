@@ -394,7 +394,10 @@ export class Particle {
         this.slow.inRange = false;
 
         const container = this.container,
-            pathGenerator = this.pathGenerator;
+            pathGenerator = this.pathGenerator,
+            shapeDrawer = container.shapeDrawers.get(this.shape);
+
+        shapeDrawer && shapeDrawer.particleDestroy && shapeDrawer.particleDestroy(this);
 
         for (const [, plugin] of container.plugins) {
             plugin.particleDestroyed && plugin.particleDestroyed(this, override);

@@ -7,6 +7,7 @@ import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-squa
 import { loadExternalTrailInteraction } from "@tsparticles/interaction-external-trail";
 import { loadRollUpdater } from "@tsparticles/updater-roll";
 import { loadSlim } from "@tsparticles/slim";
+import { loadTextShape } from "@tsparticles/shape-text";
 import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 import { loadTwinkleUpdater } from "@tsparticles/updater-twinkle";
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
@@ -26,6 +27,8 @@ export async function loadFull(engine: Engine, refresh = true): Promise<void> {
     await loadTiltUpdater(engine, false);
     await loadTwinkleUpdater(engine, false);
     await loadWobbleUpdater(engine, false);
+
+    await loadTextShape(engine, false);
 
     await loadExternalTrailInteraction(engine, false);
 

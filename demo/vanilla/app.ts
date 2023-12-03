@@ -82,6 +82,7 @@ app.use(
 );
 app.use("/interaction-particles-links", express.static("./node_modules/@tsparticles/interaction-particles-links"));
 app.use("/shape-circle", express.static("./node_modules/@tsparticles/shape-circle"));
+app.use("/shape-emoji", express.static("./node_modules/@tsparticles/shape-emoji"));
 app.use("/shape-image", express.static("./node_modules/@tsparticles/shape-image"));
 app.use("/shape-line", express.static("./node_modules/@tsparticles/shape-line"));
 app.use("/shape-polygon", express.static("./node_modules/@tsparticles/shape-polygon"));
@@ -151,73 +152,73 @@ app.use("/shape-rounded-rect", express.static("./node_modules/@tsparticles/shape
 app.use("/shape-spiral", express.static("./node_modules/@tsparticles/shape-spiral"));
 app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     logger.info("index requested");
 
     res.render("index");
 });
 
-app.get("/basic", function(req, res) {
+app.get("/basic", function (req, res) {
     logger.info("basic requested");
 
     res.render("basic");
 });
 
-app.get("/playground", function(req, res) {
+app.get("/playground", function (req, res) {
     logger.info("playground requested");
 
     res.render("playground");
 });
 
-app.get("/confetti", function(req, res) {
+app.get("/confetti", function (req, res) {
     logger.info("confetti requested");
 
     res.render("confetti");
 });
 
-app.get("/fireworks", function(req, res) {
+app.get("/fireworks", function (req, res) {
     logger.info("firefox requested");
 
     res.render("fireworks");
 });
 
-app.get("/domEmitters", function(req, res) {
+app.get("/domEmitters", function (req, res) {
     logger.info("dom emitters requested");
 
     res.render("domEmitters");
 });
 
-app.get("/slim", function(req, res) {
+app.get("/slim", function (req, res) {
     logger.info("slim requested");
 
     res.render("slim");
 });
 
-app.get("/themes", function(req, res) {
+app.get("/themes", function (req, res) {
     logger.info("themes requested");
 
     res.render("themes");
 });
 
-app.get("/click", function(req, res) {
+app.get("/click", function (req, res) {
     logger.info("click requested");
 
     res.render("click");
 });
 
-app.get("/noid", function(req, res) {
+app.get("/noid", function (req, res) {
     logger.info("noid requested");
 
     res.render("noid");
 });
 
-app.get("/pjs", function(req, res) {
+app.get("/pjs", function (req, res) {
     logger.info("pjs requested");
 
     res.render("pjs");
 });
 
-app.get("/pjs2", function(req, res) {
+app.get("/pjs2", function (req, res) {
     logger.info("pjs2 requested");
 
     res.render("pjs2");
@@ -236,7 +237,7 @@ if (cluster.isMaster) {
         cluster.fork();
     });
 
-    process.on("SIGHUP", function() {
+    process.on("SIGHUP", function () {
         if (!cluster.workers) {
             return;
         }
@@ -264,7 +265,7 @@ if (cluster.isMaster) {
     app.use(limiter);*/
     //app.use(helmet()); // Safari requires https, probably a bug
 } else {
-    process.on("SIGHUP", function() {
+    process.on("SIGHUP", function () {
         //no-op
     });
 

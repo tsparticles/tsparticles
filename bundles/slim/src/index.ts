@@ -1,6 +1,7 @@
 import type { Engine } from "@tsparticles/engine";
 import { loadBasic } from "@tsparticles/basic";
 import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
+import { loadEmojiShape } from "@tsparticles/shape-emoji";
 import { loadExternalAttractInteraction } from "@tsparticles/interaction-external-attract";
 import { loadExternalBounceInteraction } from "@tsparticles/interaction-external-bounce";
 import { loadExternalBubbleInteraction } from "@tsparticles/interaction-external-bubble";
@@ -23,7 +24,6 @@ import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 import { loadSquareShape } from "@tsparticles/shape-square";
 import { loadStarShape } from "@tsparticles/shape-star";
 import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
-import { loadTextShape } from "@tsparticles/shape-text";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles Slim package.
@@ -54,12 +54,12 @@ export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
 
     await loadEasingQuadPlugin();
 
+    await loadEmojiShape(engine, false);
     await loadImageShape(engine, false);
     await loadLineShape(engine, false);
     await loadPolygonShape(engine, false);
     await loadSquareShape(engine, false);
     await loadStarShape(engine, false);
-    await loadTextShape(engine, false);
 
     await loadLifeUpdater(engine, false);
     await loadRotateUpdater(engine, false);

@@ -2,6 +2,7 @@ import seaAnemone from "./seaAnemone.js";
 import shadow from "./shadow.js";
 import shapeArrow from "./shapeArrow.js";
 import shapeCog from "./shapeCog.js";
+import shapeEmoji from "./shapeEmoji.js";
 import shapeHeart from "./shapeHeart.js";
 import shapeMultilineText from "./shapeMultilineText.js";
 import shapeOptions from "./shapeOptions.js";
@@ -28,6 +29,7 @@ export default {
     shadow,
     shapeArrow,
     shapeCog,
+    shapeEmoji,
     shapeHeart,
     shapeMultilineText,
     shapeOptions,
