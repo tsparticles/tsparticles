@@ -146,6 +146,9 @@ const options: ISourceOptions = {
                 },
             },
         },
+        rotate: {
+            path: true,
+        },
         shape: {
             type: "circle",
         },

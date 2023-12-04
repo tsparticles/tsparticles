@@ -31,4 +31,29 @@ export type IShapeDrawData<TParticle extends Particle = Particle> = {
      * the particle radius
      */
     radius: number;
+
+    /**
+     * the transform data of the particle
+     */
+    transformData: {
+        /**
+         * the horizontal scale of the particle
+         */
+        a: number;
+
+        /**
+         * the horizontal skew of the particle
+         */
+        b: number;
+
+        /**
+         * the vertical skew of the particle
+         */
+        c: number;
+
+        /**
+         * the vertical scale of the particle
+         */
+        d: number;
+    };
 };

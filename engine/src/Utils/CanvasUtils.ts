@@ -123,7 +123,7 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.strokeStyle = colorStyles.stroke;
     }
 
-    const drawData = { container, context, particle, radius, opacity, delta };
+    const drawData: DrawShapeData = { container, context, particle, radius, opacity, delta, transformData };
 
     context.beginPath();
 
@@ -178,6 +178,16 @@ type DrawShapeData = {
      * the radius of the particle.
      */
     radius: number;
+
+    /**
+     * the transform data of the particle.
+     */
+    transformData: {
+        a: number;
+        b: number;
+        c: number;
+        d: number;
+    };
 };
 
 /**
@@ -185,7 +195,7 @@ type DrawShapeData = {
  * @param data - the function parameters.
  */
 export function drawEffect(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta } = data;
+    const { container, context, particle, radius, opacity, delta, transformData } = data;
 
     if (!particle.effect) {
         return;
@@ -197,7 +207,15 @@ export function drawEffect(data: DrawShapeData): void {
         return;
     }
 
-    drawer.draw({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
+    drawer.draw({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        transformData: { ...transformData },
+    });
 }
 
 /**
@@ -205,7 +223,7 @@ export function drawEffect(data: DrawShapeData): void {
  * @param data - the function parameters.
  */
 export function drawShape(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta } = data;
+    const { container, context, particle, radius, opacity, delta, transformData } = data;
 
     if (!particle.shape) {
         return;
@@ -217,7 +235,15 @@ export function drawShape(data: DrawShapeData): void {
         return;
     }
 
-    drawer.draw({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
+    drawer.draw({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        transformData: { ...transformData },
+    });
 }
 
 /**
@@ -225,7 +251,7 @@ export function drawShape(data: DrawShapeData): void {
  * @param data - the function parameters.
  */
 export function drawShapeAfterDraw(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta } = data;
+    const { container, context, particle, radius, opacity, delta, transformData } = data;
 
     if (!particle.shape) {
         return;
@@ -237,7 +263,15 @@ export function drawShapeAfterDraw(data: DrawShapeData): void {
         return;
     }
 
-    drawer.afterDraw({ context, particle, radius, opacity, delta, pixelRatio: container.retina.pixelRatio });
+    drawer.afterDraw({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        transformData: { ...transformData },
+    });
 }
 
 /**

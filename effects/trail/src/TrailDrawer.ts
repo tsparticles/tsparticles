@@ -70,6 +70,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
         let lastPos = particle.trail[trailLength - 1].position;
 
+        context.setTransform(1, 0, 0, 1, currentPos.x, currentPos.y);
+
         for (let i = trailLength; i > 0; i--) {
             const step = particle.trail[i - 1],
                 position = step.position;
@@ -112,6 +114,17 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
             lastPos = position;
         }
+
+        const { transformData } = data;
+
+        context.setTransform(
+            transformData.a,
+            transformData.b,
+            transformData.c,
+            transformData.d,
+            currentPos.x,
+            currentPos.y,
+        );
     }
 
     particleInit(container: Container, particle: TrailParticle): void {
