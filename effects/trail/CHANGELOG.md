@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.5...v3.0.0) (2023-12-04)
+
+### Bug Fixes
+
+-   fixed new trail with rotated or tilted particles ([a43f809](https://github.com/tsparticles/tsparticles/commit/a43f8093204e46b2f22404960459aa0a114708c8))
+
+### Features
+
+-   added fade to trail effect ([17750ea](https://github.com/tsparticles/tsparticles/commit/17750eacdf86de208b2e723decc2ffb65521474b))
+
 # [3.0.0-beta.5](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2023-12-03)
 
 **Note:** Version bump only for package @tsparticles/effect-trail
