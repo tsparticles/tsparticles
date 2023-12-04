@@ -1,9 +1,9 @@
-import type { IMovePath } from "../../../../Interfaces/Particles/Move/Path/IMovePath";
-import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader";
-import type { PathOptions } from "../../../../../Types/PathOptions";
-import type { RecursivePartial } from "../../../../../Types/RecursivePartial";
-import { ValueWithRandom } from "../../../ValueWithRandom";
-import { deepExtend } from "../../../../../Utils/Utils";
+import type { IMovePath } from "../../../../Interfaces/Particles/Move/Path/IMovePath.js";
+import type { IOptionLoader } from "../../../../Interfaces/IOptionLoader.js";
+import type { PathOptions } from "../../../../../Types/PathOptions.js";
+import type { RecursivePartial } from "../../../../../Types/RecursivePartial.js";
+import { ValueWithRandom } from "../../../ValueWithRandom.js";
+import { deepExtend } from "../../../../../Utils/Utils.js";
 
 /**
  */

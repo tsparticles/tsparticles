@@ -7,9 +7,9 @@ import {
     getRangeValue,
     itemFromSingleOrMultiple,
     rangeColorToHsl,
-} from "tsparticles-engine";
-import type { StrokeParticle } from "./Types";
-import { updateStrokeColor } from "./Utils";
+} from "@tsparticles/engine";
+import type { StrokeParticle } from "./Types.js";
+import { updateStrokeColor } from "./Utils.js";
 
 export class StrokeColorUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

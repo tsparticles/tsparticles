@@ -1,12 +1,19 @@
-import { type ICoordinates, type IShapeDrawer, type Particle, getRangeValue } from "tsparticles-engine";
-import type { IPolygonShape } from "./IPolygonShape";
-import type { ISide } from "./ISide";
+import {
+    type ICoordinates,
+    type IShapeDrawData,
+    type IShapeDrawer,
+    type Particle,
+    getRangeValue,
+} from "@tsparticles/engine";
+import type { IPolygonShape } from "./IPolygonShape.js";
+import type { ISide } from "./ISide.js";
 
 /**
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: Particle, radius: number): void {
-        const start = this.getCenter(particle, radius),
+    draw(data: IShapeDrawData): void {
+        const { context, particle, radius } = data,
+            start = this.getCenter(particle, radius),
             side = this.getSidesData(particle, radius),
             sideCount = side.count.numerator * side.count.denominator,
             decimalSides = side.count.numerator / side.count.denominator,
@@ -29,9 +36,9 @@ export abstract class PolygonDrawerBase implements IShapeDrawer {
     }
 
     getSidesCount(particle: Particle): number {
-        const polygon = particle.shapeData as IPolygonShape;
+        const polygon = particle.shapeData as IPolygonShape | undefined;
 
-        return Math.round(getRangeValue(polygon?.sides ?? polygon?.nb_sides ?? 5));
+        return Math.round(getRangeValue(polygon?.sides ?? 5));
     }
 
     abstract getCenter(particle: Particle, radius: number): ICoordinates;

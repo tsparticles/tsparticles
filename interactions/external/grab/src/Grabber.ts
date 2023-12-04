@@ -1,6 +1,5 @@
 import {
     ExternalInteractorBase,
-    HoverMode,
     type IModes,
     type Modes,
     type Particle,
@@ -10,10 +9,12 @@ import {
     getLinkRandomColor,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types";
-import { Grab } from "./Options/Classes/Grab";
-import { drawGrab } from "./Utils";
+} from "@tsparticles/engine";
+import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.js";
+import { Grab } from "./Options/Classes/Grab.js";
+import { drawGrab } from "./Utils.js";
+
+const grabMode = "grab";
 
 /**
  * Particle grab manager
@@ -114,7 +115,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(HoverMode.grab, events.onHover.mode);
+        return events.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {

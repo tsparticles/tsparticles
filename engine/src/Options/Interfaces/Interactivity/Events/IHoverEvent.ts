@@ -1,12 +1,11 @@
-import type { HoverMode } from "../../../../Enums/Modes/HoverMode";
-import type { IParallax } from "./IParallax";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IParallax } from "./IParallax.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Interactivity/Hover.md]]
  */
 export interface IHoverEvent {
     enable: boolean;
-    mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;
+    mode: SingleOrMultiple<string>;
     parallax: IParallax;
 }

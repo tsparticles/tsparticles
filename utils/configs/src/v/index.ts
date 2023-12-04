@@ -1,5 +1,5 @@
-import vibrate from "./vibrate";
-import virus from "./virus";
+import vibrate from "./vibrate.js";
+import virus from "./virus.js";
 
 export default {
     vibrate,

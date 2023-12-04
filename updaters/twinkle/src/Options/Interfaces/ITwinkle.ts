@@ -1,4 +1,4 @@
-import type { ITwinkleValues } from "./ITwinkleValues";
+import type { ITwinkleValues } from "./ITwinkleValues.js";
 
 /**
  * [[include:Options/Particles/Twinkle.md]]

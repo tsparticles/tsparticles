@@ -1,4 +1,4 @@
-import type { ISoundsIcon } from "./ISoundsIcon";
+import type { ISoundsIcon } from "./ISoundsIcon.js";
 
 export interface ISoundsIcons {
     mute: ISoundsIcon;

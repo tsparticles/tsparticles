@@ -7,8 +7,8 @@ import {
     type Particle,
     Vector,
     isPointInside,
-} from "tsparticles-engine";
-import type { IOutModeManager } from "./IOutModeManager";
+} from "@tsparticles/engine";
+import type { IOutModeManager } from "./IOutModeManager.js";
 
 export class NoneOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];

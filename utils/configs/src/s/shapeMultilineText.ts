@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Shape Multiline Text",
@@ -18,9 +18,9 @@ const options: ISourceOptions = {
             },
         },
         shape: {
-            type: "multiline-text",
+            type: "text",
             options: {
-                "multiline-text": {
+                text: {
                     value: "pippo\npluto",
                 },
             },

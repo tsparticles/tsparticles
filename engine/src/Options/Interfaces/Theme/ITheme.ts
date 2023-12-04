@@ -1,6 +1,6 @@
-import type { IOptions } from "../IOptions";
-import type { IThemeDefault } from "./IThemeDefault";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IOptions } from "../IOptions.js";
+import type { IThemeDefault } from "./IThemeDefault.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * The options to configure themes that can be easily switched

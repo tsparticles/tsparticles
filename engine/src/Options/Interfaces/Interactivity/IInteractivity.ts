@@ -1,6 +1,6 @@
-import type { IEvents } from "./Events/IEvents";
-import type { IModes } from "./Modes/IModes";
-import type { InteractivityDetect } from "../../../Enums/InteractivityDetect";
+import type { IEvents } from "./Events/IEvents.js";
+import type { IModes } from "./Modes/IModes.js";
+import type { InteractivityDetect } from "../../../Enums/InteractivityDetect.js";
 
 /**
  * Particles interactivity options
@@ -8,11 +8,6 @@ import type { InteractivityDetect } from "../../../Enums/InteractivityDetect";
  */
 export interface IInteractivity {
     [name: string]: unknown;
-
-    /**
-     * @deprecated use the new detectsOn instead
-     */
-    detect_on: InteractivityDetect | keyof typeof InteractivityDetect;
 
     /**
      * Where the mouse events will be detected

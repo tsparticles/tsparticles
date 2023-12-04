@@ -1,4 +1,4 @@
-import type { PixelMode } from "../../Enums/Modes/PixelMode";
+import type { PixelMode } from "../../Enums/Modes/PixelMode.js";
 
 /**
  */

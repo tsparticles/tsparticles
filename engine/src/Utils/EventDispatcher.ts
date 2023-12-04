@@ -1,5 +1,5 @@
-import type { CustomEventArgs } from "../Types/CustomEventArgs";
-import type { CustomEventListener } from "../Types/CustomEventListener";
+import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
+import type { CustomEventListener } from "../Types/CustomEventListener.js";
 
 /**
  */

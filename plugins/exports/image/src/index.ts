@@ -1,5 +1,5 @@
-import type { Container, Engine, IPlugin } from "tsparticles-engine";
-import { ExportImageInstance } from "./ExportImageInstance";
+import type { Container, Engine, IPlugin } from "@tsparticles/engine";
+import { ExportImageInstance } from "./ExportImageInstance.js";
 
 /**
  */

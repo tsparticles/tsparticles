@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { StarDrawer } from "./StarDrawer";
+import type { Engine } from "@tsparticles/engine";
+import { StarDrawer } from "./StarDrawer.js";
 
 /**
  * @param engine -

@@ -1,12 +1,11 @@
-import type { Container } from "./Container";
-import type { Particle } from "./Particle";
-import { getRangeValue } from "../Utils/NumberUtils";
-import { isSsr } from "../Utils/Utils";
+import type { Container } from "./Container.js";
+import type { Particle } from "./Particle.js";
+import { getRangeValue } from "../Utils/NumberUtils.js";
+import { isSsr } from "../Utils/Utils.js";
 
 /**
  */
 export class Retina {
-    attractDistance!: number;
     maxSpeed!: number;
     pixelRatio: number;
     reduceFactor: number;
@@ -40,7 +39,6 @@ export class Retina {
         const particles = options.particles,
             moveOptions = particles.move;
 
-        this.attractDistance = getRangeValue(moveOptions.attract.distance) * ratio;
         this.maxSpeed = getRangeValue(moveOptions.gravity.maxSpeed) * ratio;
         this.sizeAnimationSpeed = getRangeValue(particles.size.animation.speed) * ratio;
     }
@@ -52,7 +50,6 @@ export class Retina {
             moveDistance = moveOptions.distance,
             props = particle.retina;
 
-        props.attractDistance = getRangeValue(moveOptions.attract.distance) * ratio;
         props.moveDrift = getRangeValue(moveOptions.drift) * ratio;
         props.moveSpeed = getRangeValue(moveOptions.speed) * ratio;
         props.sizeAnimationSpeed = getRangeValue(options.size.animation.speed) * ratio;

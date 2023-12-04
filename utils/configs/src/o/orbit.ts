@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Orbit",
@@ -14,7 +14,7 @@ const options: ISourceOptions = {
             density: {
                 enable: true,
             },
-            limit: 300,
+            limit: { value: 300 },
             value: 100,
         },
         opacity: {

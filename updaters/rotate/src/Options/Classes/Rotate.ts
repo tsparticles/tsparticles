@@ -4,9 +4,9 @@ import {
     RotateDirection,
     type RotateDirectionAlt,
     ValueWithRandom,
-} from "tsparticles-engine";
-import type { IRotate } from "../Interfaces/IRotate";
-import { RotateAnimation } from "./RotateAnimation";
+} from "@tsparticles/engine";
+import type { IRotate } from "../Interfaces/IRotate.js";
+import { RotateAnimation } from "./RotateAnimation.js";
 
 /**
  * [[include:Options/Particles/Rotate.md]]

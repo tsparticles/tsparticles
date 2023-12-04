@@ -1,5 +1,5 @@
-import type { IModeDiv } from "tsparticles-engine";
-import type { IRepulseBase } from "./IRepulseBase";
+import type { IModeDiv } from "@tsparticles/engine";
+import type { IRepulseBase } from "./IRepulseBase.js";
 
 /**
  */

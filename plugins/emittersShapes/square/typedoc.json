@@ -1,0 +1,15 @@
+{
+  "includes": "./markdown",
+  "entryPoints": [
+    "./src/"
+  ],
+  "entryPointStrategy": "expand",
+  "name": "tsParticles Emitters Shape Square Plugin",
+  "includeVersion": true,
+  "hideGenerator": true,
+  "out": "./docs",
+  "validation": {
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}

@@ -1,11 +1,10 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "React Defaults",
     particles: {
         number: {
             value: 40,
-            max: -1,
         },
         color: {
             value: "#FFF",

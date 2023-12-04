@@ -2,11 +2,11 @@
 
 # tsParticles Size Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-size/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-size)
-[![npmjs](https://badge.fury.io/js/tsparticles-updater-size.svg)](https://www.npmjs.com/package/tsparticles-updater-size)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-size)](https://www.npmjs.com/package/tsparticles-updater-size) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-size/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-size)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-size.svg)](https://www.npmjs.com/package/@tsparticles/updater-size)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-size)](https://www.npmjs.com/package/@tsparticles/updater-size) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for size animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for size animations.
 
 ## How to use it
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-updater-size
+$ npm install @tsparticles/updater-size
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-updater-size
+$ yarn add @tsparticles/updater-size
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadSizeUpdater } = require("tsparticles-updater-size");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadSizeUpdater } = require("@tsparticles/updater-size");
 
 (async () => {
   await loadSizeUpdater(tsParticles);
@@ -65,8 +65,8 @@ const { loadSizeUpdater } = require("tsparticles-updater-size");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadSizeUpdater } from "tsparticles-updater-size";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSizeUpdater } from "@tsparticles/updater-size";
 
 (async () => {
   await loadSizeUpdater(tsParticles);

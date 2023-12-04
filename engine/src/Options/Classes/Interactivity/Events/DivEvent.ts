@@ -1,10 +1,8 @@
-import type { DivMode } from "../../../../Enums/Modes/DivMode";
-import { DivType } from "../../../../Enums/Types/DivType";
-import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
-import { executeOnSingleOrMultiple } from "../../../../Utils/Utils";
+import { DivType } from "../../../../Enums/Types/DivType.js";
+import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEvent.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Interactivity/Div.md]]
@@ -16,9 +14,9 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     enable;
 
     /**
-     * Div mode values described in {@link DivMode}, an array of these values is also valid.
+     * Div mode values used by the event
      */
-    mode: SingleOrMultiple<DivMode | keyof typeof DivMode | string>;
+    mode: SingleOrMultiple<string>;
 
     selectors: SingleOrMultiple<string>;
 
@@ -31,72 +29,9 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
         this.type = DivType.circle;
     }
 
-    /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new selectors
-     * @returns the element id
-     */
-    get el(): SingleOrMultiple<string> {
-        return this.elementId;
-    }
-
-    /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new selectors
-     * @param value -
-     */
-    set el(value: SingleOrMultiple<string>) {
-        this.elementId = value;
-    }
-
-    /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new selectors
-     * @returns the element id
-     */
-    get elementId(): SingleOrMultiple<string> {
-        return this.ids;
-    }
-
-    /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new selectors
-     * @param value -
-     */
-    set elementId(value: SingleOrMultiple<string>) {
-        this.ids = value;
-    }
-
-    /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new ids
-     * @returns the element id
-     */
-    get ids(): SingleOrMultiple<string> {
-        return executeOnSingleOrMultiple(this.selectors, (t) => t.replace("#", ""));
-
-        // this is the best we can do, if a non-id selector is used the old property won't work
-        // but ids is deprecated so who cares.
-    }
-
-    /**
-     * The element id to detect the event
-     * @deprecated this property is obsolete, please use the new ids
-     * @param value -
-     */
-    set ids(value: SingleOrMultiple<string>) {
-        this.selectors = executeOnSingleOrMultiple(value, (t) => `#${t}`);
-    }
-
     load(data?: RecursivePartial<IDivEvent>): void {
         if (!data) {
             return;
-        }
-
-        const ids = data.ids ?? data.elementId ?? data.el;
-
-        if (ids !== undefined) {
-            this.ids = ids;
         }
 
         if (data.selectors !== undefined) {

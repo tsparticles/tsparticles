@@ -5,7 +5,7 @@ import {
     type IParticleValueAnimation,
     type Particle,
     randomInRange,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 /**
  * @param delta -

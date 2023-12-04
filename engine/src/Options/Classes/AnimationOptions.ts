@@ -1,18 +1,18 @@
-import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation";
-import { AnimationMode } from "../../Enums/Modes/AnimationMode";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { RangeValue } from "../../Types/RangeValue";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { StartValueType } from "../../Enums/Types/StartValueType";
-import { setRangeValue } from "../../Utils/NumberUtils";
+import type { IAnimation, IRangedAnimation } from "../Interfaces/IAnimation.js";
+import { AnimationMode } from "../../Enums/Modes/AnimationMode.js";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { StartValueType } from "../../Enums/Types/StartValueType.js";
+import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     count: RangeValue;
     decay: RangeValue;
     delay: RangeValue;
-    enable: boolean;
+    enable;
     speed: RangeValue;
-    sync: boolean;
+    sync;
 
     constructor() {
         this.count = 0;
@@ -55,11 +55,6 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
 }
 
 export class RangedAnimationOptions extends AnimationOptions implements IOptionLoader<IRangedAnimation> {
-    /**
-     * @deprecated this property is obsolete, please use the new min/max object in the size value
-     */
-    minimumValue?: number;
-
     mode: AnimationMode | keyof typeof AnimationMode;
 
     startValue: StartValueType | keyof typeof StartValueType;
@@ -73,11 +68,9 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
 
     load(data?: RecursivePartial<IRangedAnimation>): void {
         super.load(data);
+
         if (!data) {
             return;
-        }
-        if (data.minimumValue !== undefined) {
-            this.minimumValue = data.minimumValue;
         }
 
         if (data.mode !== undefined) {

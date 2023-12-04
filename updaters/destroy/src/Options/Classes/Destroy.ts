@@ -1,8 +1,8 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import { DestroyBounds } from "./DestroyBounds";
-import { DestroyMode } from "../../Enums/DestroyMode";
-import type { IDestroy } from "../Interfaces/IDestroy";
-import { Split } from "./Split";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { DestroyBounds } from "./DestroyBounds.js";
+import { DestroyMode } from "../../Enums/DestroyMode.js";
+import type { IDestroy } from "../Interfaces/IDestroy.js";
+import { Split } from "./Split.js";
 
 export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
     bounds: DestroyBounds;

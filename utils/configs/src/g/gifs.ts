@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Gifs",
@@ -25,7 +25,7 @@ const options: ISourceOptions = {
         },
         number: {
             value: 20,
-            max: 30,
+            limit: { value: 30 },
         },
         opacity: {
             value: 1,

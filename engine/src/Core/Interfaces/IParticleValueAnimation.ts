@@ -1,4 +1,4 @@
-import type { AnimationStatus } from "../../Enums/AnimationStatus";
+import type { AnimationStatus } from "../../Enums/AnimationStatus.js";
 
 /**
  */

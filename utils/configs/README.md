@@ -5,26 +5,26 @@
 ## Installation
 
 ```bash
-npm install --save-dev tsparticles-demo-configs
+npm install --save-dev @tsparticles/configs
 ```
 
 or
 
 ```bash
-yarn add --dev tsparticles-demo-configs
+yarn add --dev @tsparticles/configs
 ```
 
 or
 
 ```bash
-pnpm add --save-dev tsparticles-demo-configs
+pnpm add --save-dev @tsparticles/configs
 ```
 
 ## CDN
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-engine/tsparticles.engine.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/tsparticles-demo-configs/tsparticles.configs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/engine/tsparticles.engine.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tsparticles/configs/tsparticles.configs.min.js"></script>
 ```
 
 ## Usage
@@ -32,8 +32,8 @@ pnpm add --save-dev tsparticles-demo-configs
 ### JavaScript
 
 ```javascript
-import { tsParticles } from "tsparticles-engine"; // not needed with CDN
-import * as configs from "tsparticles-demo-configs"; // not needed with CDN
+import { tsParticles } from "@tsparticles/engine"; // not needed with CDN
+import * as configs from "@tsparticles/configs"; // not needed with CDN
 
 (async () => {
   await tsParticles.load({ id: "tsparticles", options: configs.basic });
@@ -43,8 +43,8 @@ import * as configs from "tsparticles-demo-configs"; // not needed with CDN
 ### TypeScript
 
 ```typescript
-import { tsParticles } from "tsparticles-engine";
-import * as configs from "tsparticles-demo-configs";
+import { tsParticles } from "@tsparticles/engine";
+import * as configs from "@tsparticles/configs";
 
 (async () => {
   await tsParticles.load({ id: "tsparticles", options: configs.basic });

@@ -1,5 +1,5 @@
-import type { IOptionsColor, IRangedCoordinates, RecursivePartial } from "tsparticles-engine";
-import type { IAbsorberSize } from "./IAbsorberSize";
+import type { IOptionsColor, IRangedCoordinates, RecursivePartial } from "@tsparticles/engine";
+import type { IAbsorberSize } from "./IAbsorberSize.js";
 
 /**
  * Absorber options

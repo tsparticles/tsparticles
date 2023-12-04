@@ -9,14 +9,14 @@ import {
     isArray,
     isNumber,
     itemFromArray,
-} from "tsparticles-engine";
-import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterClickMode } from "./Enums/EmitterClickMode";
-import type { EmitterContainer } from "./EmitterContainer";
-import { EmitterInstance } from "./EmitterInstance";
-import type { EmitterModeOptions } from "./types";
-import type { EmittersEngine } from "./EmittersEngine";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
+} from "@tsparticles/engine";
+import { Emitter } from "./Options/Classes/Emitter.js";
+import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
+import type { EmitterContainer } from "./EmitterContainer.js";
+import { EmitterInstance } from "./EmitterInstance.js";
+import type { EmitterModeOptions } from "./types.js";
+import type { EmittersEngine } from "./EmittersEngine.js";
+import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 /**
  */
@@ -47,8 +47,10 @@ export class Emitters implements IContainerPlugin {
                 ? this.array[idxOrName || 0]
                 : this.array.find((t) => t.name === idxOrName);
 
-        container.addEmitter = (options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance =>
-            this.addEmitter(options, position);
+        container.addEmitter = async (
+            options: RecursivePartial<IEmitter>,
+            position?: ICoordinates,
+        ): Promise<EmitterInstance> => this.addEmitter(options, position);
 
         container.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
@@ -75,12 +77,14 @@ export class Emitters implements IContainerPlugin {
         };
     }
 
-    addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): EmitterInstance {
+    async addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): Promise<EmitterInstance> {
         const emitterOptions = new Emitter();
 
         emitterOptions.load(options);
 
         const emitter = new EmitterInstance(this._engine, this, this.container, emitterOptions, position);
+
+        await emitter.init();
 
         this.array.push(emitter);
 
@@ -138,10 +142,10 @@ export class Emitters implements IContainerPlugin {
 
         if (isArray(this.emitters)) {
             for (const emitterOptions of this.emitters) {
-                this.addEmitter(emitterOptions);
+                await this.addEmitter(emitterOptions);
             }
         } else {
-            this.addEmitter(this.emitters);
+            await this.addEmitter(this.emitters);
         }
     }
 
@@ -175,9 +179,9 @@ export class Emitters implements IContainerPlugin {
         this.array = [];
     }
 
-    update(delta: IDelta): void {
+    async update(delta: IDelta): Promise<void> {
         for (const emitter of this.array) {
-            emitter.update(delta);
+            await emitter.update(delta);
         }
     }
 }

@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { Pauser } from "./Pauser";
+import type { Engine } from "@tsparticles/engine";
+import { Pauser } from "./Pauser.js";
 
 /**
  * @param engine -

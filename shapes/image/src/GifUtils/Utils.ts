@@ -1,11 +1,11 @@
-import type { IRgb, IRgba } from "tsparticles-engine";
-import { InterlaceOffsets, InterlaceSteps } from "./Constants";
-import type { ApplicationExtension } from "./Types/ApplicationExtension";
-import { ByteStream } from "./ByteStream";
+import type { IRgb, IRgba } from "@tsparticles/engine";
+import { InterlaceOffsets, InterlaceSteps } from "./Constants.js";
+import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
+import { ByteStream } from "./ByteStream.js";
 import { DisposalMethod } from "./Enums/DisposalMethod.js";
-import type { GIF } from "./Types/GIF";
-import { GIFDataHeaders } from "./Types/GIFDataHeaders";
-import type { GIFProgressCallbackFunction } from "./Types/GIFProgressCallbackFunction";
+import type { GIF } from "./Types/GIF.js";
+import { GIFDataHeaders } from "./Types/GIFDataHeaders.js";
+import type { GIFProgressCallbackFunction } from "./Types/GIFProgressCallbackFunction.js";
 
 /**
  * __get a color table of length `count`__

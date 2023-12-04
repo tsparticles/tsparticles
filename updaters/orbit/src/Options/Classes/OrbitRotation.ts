@@ -1,4 +1,4 @@
-import { type IValueWithRandom, type RecursivePartial, ValueWithRandom } from "tsparticles-engine";
+import { type IValueWithRandom, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
 
 /**
  */
@@ -7,8 +7,6 @@ export class OrbitRotation extends ValueWithRandom {
         super();
 
         this.value = 45;
-        this.random.enable = false;
-        this.random.minimumValue = 0;
     }
 
     load(data?: RecursivePartial<IValueWithRandom>): void {

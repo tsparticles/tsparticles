@@ -1,5 +1,5 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "tsparticles-engine";
-import type { IRotateAnimation } from "../Interfaces/IRotateAnimation";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import type { IRotateAnimation } from "../Interfaces/IRotateAnimation.js";
 
 /**
  */

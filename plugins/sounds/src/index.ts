@@ -1,7 +1,7 @@
-import type { Container, Engine, IPlugin, RecursivePartial } from "tsparticles-engine";
-import type { ISoundsOptions, SoundsOptions } from "./types";
-import { Sounds } from "./Options/Classes/Sounds";
-import { SoundsInstance } from "./SoundsInstance";
+import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { ISoundsOptions, SoundsOptions } from "./types.js";
+import { Sounds } from "./Options/Classes/Sounds.js";
+import { SoundsInstance } from "./SoundsInstance.js";
 
 /**
  */

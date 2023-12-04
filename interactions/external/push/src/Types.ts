@@ -1,6 +1,6 @@
-import type { Container, Options } from "tsparticles-engine";
-import type { IPush } from "./Options/Interfaces/IPush";
-import type { Push } from "./Options/Classes/Push";
+import type { Container, Options } from "@tsparticles/engine";
+import type { IPush } from "./Options/Interfaces/IPush.js";
+import type { Push } from "./Options/Classes/Push.js";
 
 export type IPushMode = {
     push: IPush;

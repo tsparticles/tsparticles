@@ -5,10 +5,10 @@ import {
     type RecursivePartial,
     isNumber,
     setRangeValue,
-} from "tsparticles-engine";
-import type { IWobble } from "../Interfaces/IWobble";
-import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed";
-import { WobbleSpeed } from "./WobbleSpeed";
+} from "@tsparticles/engine";
+import type { IWobble } from "../Interfaces/IWobble.js";
+import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed.js";
+import { WobbleSpeed } from "./WobbleSpeed.js";
 
 export class Wobble implements IWobble, IOptionLoader<IWobble> {
     distance: RangeValue;

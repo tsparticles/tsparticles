@@ -1,5 +1,5 @@
-import { Attractor } from "./Attractor";
-import type { Engine } from "tsparticles-engine";
+import { Attractor } from "./Attractor.js";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

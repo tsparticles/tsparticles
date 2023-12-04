@@ -1,5 +1,5 @@
-import { ClubDrawer, DiamondDrawer, HeartDrawer, SpadeDrawer } from "./CardsSuitsDrawers";
-import type { Engine } from "tsparticles-engine";
+import { ClubDrawer, DiamondDrawer, HeartDrawer, SpadeDrawer } from "./CardsSuitsDrawers.js";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

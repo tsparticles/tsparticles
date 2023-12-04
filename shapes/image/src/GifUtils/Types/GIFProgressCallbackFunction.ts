@@ -1,4 +1,4 @@
-import type { ICoordinates, IDimension } from "tsparticles-engine";
+import type { ICoordinates, IDimension } from "@tsparticles/engine";
 
 export type GIFProgressCallbackFunction = (
     percentageRead: number,

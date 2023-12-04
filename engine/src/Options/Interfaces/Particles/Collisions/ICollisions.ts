@@ -1,8 +1,8 @@
-import type { CollisionMode } from "../../../../Enums/Modes/CollisionMode";
-import type { ICollisionsAbsorb } from "./ICollisionsAbsorb";
-import type { ICollisionsOverlap } from "./ICollisionsOverlap";
-import type { IParticlesBounce } from "../Bounce/IParticlesBounce";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { CollisionMode } from "../../../../Enums/Modes/CollisionMode.js";
+import type { ICollisionsAbsorb } from "./ICollisionsAbsorb.js";
+import type { ICollisionsOverlap } from "./ICollisionsOverlap.js";
+import type { IParticlesBounce } from "../Bounce/IParticlesBounce.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
 
 /**
  

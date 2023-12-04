@@ -1,7 +1,7 @@
-import type { Container, Particle } from "tsparticles-engine";
-import type { IRepulse } from "./Options/Interfaces/IRepulse";
-import type { Repulse } from "./Options/Classes/Repulse";
-import type { RepulseOptions } from "./Options/Classes/RepulseOptions";
+import type { Container, Particle } from "@tsparticles/engine";
+import type { IRepulse } from "./Options/Interfaces/IRepulse.js";
+import type { Repulse } from "./Options/Classes/Repulse.js";
+import type { RepulseOptions } from "./Options/Classes/RepulseOptions.js";
 
 export type IRepulseMode = {
     repulse: IRepulse;
@@ -26,10 +26,14 @@ export type RepulseContainer = Container & {
     };
 };
 
-/*import type { Container, Particle, Vector } from "tsparticles-engine";
-import type { IRepulse } from "./Options/Interfaces/IRepulse";
-import type { Repulse } from "./Options/Classes/Repulse";
-import type { RepulseOptions } from "./Options/Classes/RepulseOptions";
+/*export type RepulsParticle = Particle & {
+    repulseCurrentTime?: number;
+}*/
+
+/*import type { Container, Particle, Vector } from "@tsparticles/engine";
+import type { IRepulse } from "./Options/Interfaces/IRepulse.js";
+import type { Repulse } from "./Options/Classes/Repulse.js";
+import type { RepulseOptions } from "./Options/Classes/RepulseOptions.js";
 
 export type IRepulseMode = {
     repulse: IRepulse;

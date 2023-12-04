@@ -2,11 +2,11 @@
 
 # tsParticles Perlin Noise Path
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-path-perlin-noise/badge)](https://www.jsdelivr.com/package/npm/tsparticles-path-perlin-noise)
-[![npmjs](https://badge.fury.io/js/tsparticles-path-perlin-noise.svg)](https://www.npmjs.com/package/tsparticles-path-perlin-noise)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-perlin-noise)](https://www.npmjs.com/package/tsparticles-path-perlin-noise) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/path-perlin-noise/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/path-perlin-noise)
+[![npmjs](https://badge.fury.io/js/@tsparticles/path-perlin-noise.svg)](https://www.npmjs.com/package/@tsparticles/path-perlin-noise)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/path-perlin-noise)](https://www.npmjs.com/package/@tsparticles/path-perlin-noise) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) path plugin for perlin noise movement.
+[tsParticles](https://github.com/tsparticles/tsparticles) path plugin for perlin noise movement.
 
 ## How to use it
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the path plugin lik
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-path-perlin-noise
+$ npm install @tsparticles/path-perlin-noise
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-path-perlin-noise
+$ yarn add @tsparticles/path-perlin-noise
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadPerlinNoisePath } = require("tsparticles-path-perlin-noise");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadPerlinNoisePath } = require("@tsparticles/path-perlin-noise");
 
 (async () => {
   await loadPerlinNoisePath(tsParticles);
@@ -65,8 +65,8 @@ const { loadPerlinNoisePath } = require("tsparticles-path-perlin-noise");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadPerlinNoisePath } from "tsparticles-path-perlin-noise";
+import { tsParticles } from "@tsparticles/engine";
+import { loadPerlinNoisePath } from "@tsparticles/path-perlin-noise";
 
 (async () => {
   await loadPerlinNoisePath(tsParticles);

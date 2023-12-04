@@ -14,7 +14,7 @@ import {
     getRangeValue,
     getStyleFromHsl,
     parseAlpha,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 /**
  * Converts a RGB ({@link IRgb}) object in a {@link IHsv} object

@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { PathDrawer } from "./PathDrawer";
+import type { Engine } from "@tsparticles/engine";
+import { PathDrawer } from "./PathDrawer.js";
 
 /**
  * @param engine -

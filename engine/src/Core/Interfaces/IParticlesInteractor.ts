@@ -1,11 +1,11 @@
-import type { IDelta } from "./IDelta";
-import type { IInteractor } from "./IInteractor";
-import type { Particle } from "../Particle";
+import type { IDelta } from "./IDelta.js";
+import type { IInteractor } from "./IInteractor.js";
+import type { Particle } from "../Particle.js";
 
 /**
  */
-export interface IParticlesInteractor extends IInteractor {
-    interact(particle: Particle, delta: IDelta): Promise<void>;
+export interface IParticlesInteractor<TParticle extends Particle = Particle> extends IInteractor<TParticle> {
+    interact(particle: TParticle, delta: IDelta): Promise<void>;
 
-    isEnabled(particle: Particle): boolean;
+    isEnabled(particle: TParticle): boolean;
 }

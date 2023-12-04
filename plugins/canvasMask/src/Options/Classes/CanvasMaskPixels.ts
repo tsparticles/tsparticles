@@ -1,6 +1,6 @@
-import type { IOptionLoader, IRgba, RecursivePartial } from "tsparticles-engine";
-import { isFunction, isString } from "tsparticles-engine";
-import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels";
+import type { IOptionLoader, IRgba, RecursivePartial } from "@tsparticles/engine";
+import { isFunction, isString } from "@tsparticles/engine";
+import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels.js";
 
 export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanvasMaskPixels> {
     filter: (pixel: IRgba) => boolean;

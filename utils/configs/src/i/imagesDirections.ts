@@ -1,4 +1,4 @@
-import { type ISourceOptions, MoveDirection } from "tsparticles-engine";
+import { type ISourceOptions, MoveDirection } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Images with Custom Directions",
@@ -86,8 +86,11 @@ const options: ISourceOptions = {
     polygon: {
         draw: {
             enable: false,
-            lineColor: "#ffffff",
-            lineWidth: 0.5,
+            stroke: {
+                color: "#fff",
+                width: 0.5,
+                opacity: 0.2,
+            },
         },
         move: {
             radius: 10,

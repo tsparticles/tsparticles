@@ -1,6 +1,6 @@
-import type { ApplicationExtension } from "./ApplicationExtension";
-import type { Frame } from "./Frame";
-import type { IRgb } from "tsparticles-engine";
+import type { ApplicationExtension } from "./ApplicationExtension.js";
+import type { Frame } from "./Frame.js";
+import type { IRgb } from "@tsparticles/engine";
 
 export interface GIF {
     /**

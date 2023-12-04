@@ -1,6 +1,6 @@
-import type { IParticle, Vector } from "tsparticles-engine";
+import type { Particle, Vector } from "@tsparticles/engine";
 
-export type CurvesPathParticle = IParticle & {
+export type CurvesPathParticle = Particle & {
     curveVelocity?: Vector;
     pathGen?: () => number;
 };

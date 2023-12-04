@@ -1,5 +1,5 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { IBounce } from "../Interfaces/IBounce";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import type { IBounce } from "../Interfaces/IBounce.js";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {
     distance: number;

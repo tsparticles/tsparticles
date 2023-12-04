@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { LineDrawer } from "./LineDrawer";
+import type { Engine } from "@tsparticles/engine";
+import { LineDrawer } from "./LineDrawer.js";
 
 /**
  * @param engine -

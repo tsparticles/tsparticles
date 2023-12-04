@@ -2,11 +2,11 @@
 
 # tsParticles Line Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-line/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-line)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-line.svg)](https://www.npmjs.com/package/tsparticles-shape-line)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-line)](https://www.npmjs.com/package/tsparticles-shape-line) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-line/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-line)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-line.svg)](https://www.npmjs.com/package/@tsparticles/shape-line)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-line)](https://www.npmjs.com/package/@tsparticles/shape-line) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional line shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional line shape.
 
 ## How to use it
 
@@ -43,20 +43,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-line
+$ npm install @tsparticles/shape-line
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-line
+$ yarn add @tsparticles/shape-line
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadLineShape } = require("tsparticles-shape-line");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadLineShape } = require("@tsparticles/shape-line");
 
 (async () => {
   await loadLineShape(tsParticles);
@@ -66,8 +66,8 @@ const { loadLineShape } = require("tsparticles-shape-line");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadLineShape } from "tsparticles-shape-line";
+import { tsParticles } from "@tsparticles/engine";
+import { loadLineShape } from "@tsparticles/shape-line";
 
 (async () => {
   await loadLineShape(tsParticles);

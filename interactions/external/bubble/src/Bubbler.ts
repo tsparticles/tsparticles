@@ -1,12 +1,9 @@
-import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types";
+import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types.js";
 import {
     Circle,
-    ClickMode,
     type DivEvent,
-    DivMode,
     DivType,
     ExternalInteractorBase,
-    HoverMode,
     type IDelta,
     type IModes,
     type Modes,
@@ -25,18 +22,20 @@ import {
     mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
-} from "tsparticles-engine";
-import { Bubble } from "./Options/Classes/Bubble";
-import type { BubbleDiv } from "./Options/Classes/BubbleDiv";
-import type { Interfaces } from "./Interfaces";
-import { ProcessBubbleType } from "./Enums";
-import { calculateBubbleValue } from "./Utils";
+} from "@tsparticles/engine";
+import { Bubble } from "./Options/Classes/Bubble.js";
+import type { BubbleDiv } from "./Options/Classes/BubbleDiv.js";
+import type { Interfaces } from "./Interfaces.js";
+import { ProcessBubbleType } from "./Enums.js";
+import { calculateBubbleValue } from "./Utils.js";
+
+const bubbleMode = "bubble";
 
 /**
  * Particle bubble manager
  */
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
-    handleClickMode: (mode: ClickMode | string) => void;
+    handleClickMode: (mode: string) => void;
 
     constructor(container: BubbleContainer) {
         super(container);
@@ -46,7 +45,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
 
         this.handleClickMode = (mode): void => {
-            if (mode !== ClickMode.bubble) {
+            if (mode !== bubbleMode) {
                 return;
             }
 
@@ -96,14 +95,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             divs = events.onDiv;
 
         /* on hover event */
-        if (hoverEnabled && isInArray(HoverMode.bubble, hoverMode)) {
+        if (hoverEnabled && isInArray(bubbleMode, hoverMode)) {
             this._hoverBubble();
-        } else if (clickEnabled && isInArray(ClickMode.bubble, clickMode)) {
+        } else if (clickEnabled && isInArray(bubbleMode, clickMode)) {
             this._clickBubble();
         } else {
-            divModeExecute(DivMode.bubble, divs, (selector, div): void =>
-                this._singleSelectorHover(delta, selector, div),
-            );
+            divModeExecute(bubbleMode, divs, (selector, div): void => this._singleSelectorHover(delta, selector, div));
         }
     }
 
@@ -113,13 +110,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             { onClick, onDiv, onHover } = events,
-            divBubble = isDivModeEnabled(DivMode.bubble, onDiv);
+            divBubble = isDivModeEnabled(bubbleMode, onDiv);
 
         if (!(divBubble || (onHover.enable && mouse.position) || (onClick.enable && mouse.clickPosition))) {
             return false;
         }
 
-        return isInArray(HoverMode.bubble, onHover.mode) || isInArray(ClickMode.bubble, onClick.mode) || divBubble;
+        return isInArray(bubbleMode, onHover.mode) || isInArray(bubbleMode, onClick.mode) || divBubble;
     }
 
     loadModeOptions(

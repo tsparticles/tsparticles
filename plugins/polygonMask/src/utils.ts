@@ -1,14 +1,14 @@
-import { type ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "tsparticles-engine";
+import { type ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "@tsparticles/engine";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
     SVGPathSegLinetoHorizontalRel,
     SVGPathSegLinetoVerticalAbs,
     SVGPathSegLinetoVerticalRel,
-} from "./pathseg";
-import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types";
-import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke";
-import type { ISvgPath } from "./Interfaces/ISvgPath";
+} from "./pathseg.js";
+import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from "./types.js";
+import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke.js";
+import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 
 /**
  * @param context -

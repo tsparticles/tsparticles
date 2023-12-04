@@ -2,11 +2,11 @@
 
 # tsParticles SVG Path
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-path-svg/badge)](https://www.jsdelivr.com/package/npm/tsparticles-path-svg)
-[![npmjs](https://badge.fury.io/js/tsparticles-path-svg.svg)](https://www.npmjs.com/package/tsparticles-path-svg)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-path-svg)](https://www.npmjs.com/package/tsparticles-path-svg) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/path-svg/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/path-svg)
+[![npmjs](https://badge.fury.io/js/@tsparticles/path-svg.svg)](https://www.npmjs.com/package/@tsparticles/path-svg)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/path-svg)](https://www.npmjs.com/package/@tsparticles/path-svg) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) path plugin for on svg path movement.
+[tsParticles](https://github.com/tsparticles/tsparticles) path plugin for on svg path movement.
 
 ## How to use it
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the path plugin lik
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-path-svg
+$ npm install @tsparticles/path-svg
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-path-svg
+$ yarn add @tsparticles/path-svg
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadSVGPath } = require("tsparticles-path-svg");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadSVGPath } = require("@tsparticles/path-svg");
 
 (async () => {
   await loadSVGPath(tsParticles);
@@ -65,8 +65,8 @@ const { loadSVGPath } = require("tsparticles-path-svg");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadSVGPath } from "tsparticles-path-svg";
+import { tsParticles } from "@tsparticles/engine";
+import { loadSVGPath } from "@tsparticles/path-svg";
 
 (async () => {
   await loadSVGPath(tsParticles);

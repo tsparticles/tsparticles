@@ -1,9 +1,11 @@
-import { type Container, type IShapeDrawer, getRangeValue } from "tsparticles-engine";
-import type { ISpiralData } from "./ISpiralData";
-import type { SpiralParticle } from "./SpiralParticle";
+import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import type { ISpiralData } from "./ISpiralData.js";
+import type { SpiralParticle } from "./SpiralParticle.js";
 
-export class SpiralDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: SpiralParticle, radius: number): void {
+export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
+    draw(data: IShapeDrawData<SpiralParticle>): void {
+        const { context, particle, radius } = data;
+
         if (
             particle.spiralInnerRadius === undefined ||
             particle.spiralLineSpacing === undefined ||
@@ -29,10 +31,10 @@ export class SpiralDrawer implements IShapeDrawer {
 
     particleInit(container: Container, particle: SpiralParticle): void {
         const pixelRatio = container.retina.pixelRatio,
-            shapeData = particle.shapeData as ISpiralData;
+            shapeData = particle.shapeData as ISpiralData | undefined;
 
-        particle.spiralInnerRadius = getRangeValue(shapeData.innerRadius ?? 1) * pixelRatio;
-        particle.spiralLineSpacing = getRangeValue(shapeData.lineSpacing ?? 1) * pixelRatio;
-        particle.spiralWidthFactor = getRangeValue(shapeData.widthFactor ?? 10);
+        particle.spiralInnerRadius = getRangeValue(shapeData?.innerRadius ?? 1) * pixelRatio;
+        particle.spiralLineSpacing = getRangeValue(shapeData?.lineSpacing ?? 1) * pixelRatio;
+        particle.spiralWidthFactor = getRangeValue(shapeData?.widthFactor ?? 10);
     }
 }

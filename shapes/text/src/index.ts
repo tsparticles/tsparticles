@@ -1,5 +1,5 @@
-import { TextDrawer, validTypes } from "./TextDrawer";
-import type { Engine } from "tsparticles-engine";
+import { TextDrawer, validTypes } from "./TextDrawer.js";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

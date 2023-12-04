@@ -1,9 +1,9 @@
-import type { ICoordinates, IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import { CanvasMaskOverride } from "./CanvasMaskOverride";
-import { CanvasMaskPixels } from "./CanvasMaskPixels";
-import type { ICanvasMask } from "../Interfaces/ICanvasMask";
-import { ImageMask } from "./ImageMask";
-import { TextMask } from "./TextMask";
+import type { ICoordinates, IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { CanvasMaskOverride } from "./CanvasMaskOverride.js";
+import { CanvasMaskPixels } from "./CanvasMaskPixels.js";
+import type { ICanvasMask } from "../Interfaces/ICanvasMask.js";
+import { ImageMask } from "./ImageMask.js";
+import { TextMask } from "./TextMask.js";
 
 /**
  * [[include:Options/Plugins/CanvasMask.md]]

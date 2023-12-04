@@ -1,14 +1,15 @@
 import {
-    ClickMode,
     ExternalInteractorBase,
     type IModes,
     type Modes,
     type RecursivePartial,
     getRangeValue,
     itemFromArray,
-} from "tsparticles-engine";
-import type { IPushMode, PushContainer, PushMode } from "./Types";
-import { Push } from "./Options/Classes/Push";
+} from "@tsparticles/engine";
+import type { IPushMode, PushContainer, PushMode } from "./Types.js";
+import { Push } from "./Options/Classes/Push.js";
+
+const pushMode = "push";
 
 /**
  * Particle attract manager
@@ -20,7 +21,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
         super(container);
 
         this.handleClickMode = (mode): void => {
-            if (mode !== ClickMode.push) {
+            if (mode !== pushMode) {
                 return;
             }
 

@@ -1,6 +1,6 @@
-import type { Engine } from "tsparticles-engine";
-import type { LinkContainer } from "./Types";
-import { Linker } from "./Linker";
+import type { Engine } from "@tsparticles/engine";
+import type { LinkContainer } from "./Types.js";
+import { Linker } from "./Linker.js";
 
 /**
  * @param engine -

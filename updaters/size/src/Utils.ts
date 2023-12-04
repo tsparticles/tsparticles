@@ -1,4 +1,4 @@
-import { AnimationStatus, DestroyType, type IDelta, type Particle, clamp } from "tsparticles-engine";
+import { AnimationStatus, DestroyType, type IDelta, type Particle, clamp } from "@tsparticles/engine";
 
 /**
  * @param particle -

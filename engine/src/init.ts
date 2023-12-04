@@ -1,7 +1,7 @@
-import { Engine } from "./Core/Engine";
-import { HslColorManager } from "./Utils/HslColorManager";
-import { RgbColorManager } from "./Utils/RgbColorManager";
-import { addColorManager } from "./Utils/ColorUtils";
+import { Engine } from "./Core/Engine.js";
+import { HslColorManager } from "./Utils/HslColorManager.js";
+import { RgbColorManager } from "./Utils/RgbColorManager.js";
+import { addColorManager } from "./Utils/ColorUtils.js";
 
 /**
  *

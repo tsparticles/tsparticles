@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "React Polygon Mask",
@@ -46,7 +46,6 @@ const options: ISourceOptions = {
             speed: 1,
         },
         number: {
-            limit: -1,
             value: 200,
         },
         opacity: {

@@ -1,13 +1,13 @@
-import { AlterType } from "../Enums/Types/AlterType";
-import type { Container } from "../Core/Container";
-import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IDelta } from "../Core/Interfaces/IDelta";
-import type { IDimension } from "../Core/Interfaces/IDimension";
-import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams";
-import type { IHsl } from "../Core/Interfaces/Colors";
-import type { Particle } from "../Core/Particle";
-import { getStyleFromRgb } from "./ColorUtils";
+import { AlterType } from "../Enums/Types/AlterType.js";
+import type { Container } from "../Core/Container.js";
+import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
+import type { IDelta } from "../Core/Interfaces/IDelta.js";
+import type { IDimension } from "../Core/Interfaces/IDimension.js";
+import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams.js";
+import type { IHsl } from "../Core/Interfaces/Colors.js";
+import type { Particle } from "../Core/Particle.js";
+import { getStyleFromRgb } from "./ColorUtils.js";
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -19,26 +19,6 @@ export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates,
     context.beginPath();
     context.moveTo(begin.x, begin.y);
     context.lineTo(end.x, end.y);
-    context.closePath();
-}
-
-/**
- * Draws a triangle with three points using canvas API in the given context.
- * @param context - The canvas context to draw on.
- * @param p1 - The first point of the triangle.
- * @param p2 - The second point of the triangle.
- * @param p3 - The third point of the triangle.
- */
-export function drawTriangle(
-    context: CanvasRenderingContext2D,
-    p1: ICoordinates,
-    p2: ICoordinates,
-    p3: ICoordinates,
-): void {
-    context.beginPath();
-    context.moveTo(p1.x, p1.y);
-    context.lineTo(p2.x, p2.y);
-    context.lineTo(p3.x, p3.y);
     context.closePath();
 }
 
@@ -118,8 +98,6 @@ export function drawParticle(data: IDrawParticleParams): void {
 
     context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
-    context.beginPath();
-
     if (backgroundMask) {
         context.globalCompositeOperation = composite;
     }
@@ -145,84 +123,155 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.strokeStyle = colorStyles.stroke;
     }
 
-    drawShape(container, context, particle, radius, opacity, delta);
+    const drawData: DrawShapeData = { container, context, particle, radius, opacity, delta, transformData };
+
+    context.beginPath();
+
+    drawShape(drawData);
+
+    if (particle.shapeClose) {
+        context.closePath();
+    }
 
     if (strokeWidth > 0) {
         context.stroke();
     }
 
-    if (particle.close) {
-        context.closePath();
-    }
-
-    if (particle.fill) {
+    if (particle.shapeFill) {
         context.fill();
     }
 
-    drawShapeAfterEffect(container, context, particle, radius, opacity, delta);
+    drawShapeAfterDraw(drawData);
+    drawEffect(drawData);
 
     context.globalCompositeOperation = "source-over";
     context.setTransform(1, 0, 0, 1, 0, 0);
 }
 
+type DrawShapeData = {
+    /**
+     * the container of the particle.
+     */
+    container: Container;
+
+    /**
+     * the canvas context.
+     */
+    context: CanvasRenderingContext2D;
+
+    /**
+     * this variable contains the delta between the current frame and the previous frame
+     */
+    delta: IDelta;
+
+    /**
+     * the opacity of the particle.
+     */
+    opacity: number;
+
+    /**
+     * the particle to draw.
+     */
+    particle: Particle;
+
+    /**
+     * the radius of the particle.
+     */
+    radius: number;
+
+    /**
+     * the transform data of the particle.
+     */
+    transformData: {
+        a: number;
+        b: number;
+        c: number;
+        d: number;
+    };
+};
+
 /**
  * Draws the particle shape using the plugin's shape renderer.
- * @param container - The container of the particle.
- * @param context - The canvas context.
- * @param particle - The particle to draw.
- * @param radius - The radius of the particle.
- * @param opacity - The opacity of the particle.
- * @param delta - this variable contains the delta between the current frame and the previous frame
+ * @param data - the function parameters.
  */
-export function drawShape(
-    container: Container,
-    context: CanvasRenderingContext2D,
-    particle: Particle,
-    radius: number,
-    opacity: number,
-    delta: IDelta,
-): void {
-    if (!particle.shape) {
+export function drawEffect(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, delta, transformData } = data;
+
+    if (!particle.effect) {
         return;
     }
 
-    const drawer = container.drawers.get(particle.shape);
+    const drawer = container.effectDrawers.get(particle.effect);
 
     if (!drawer) {
         return;
     }
 
-    drawer.draw(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+    drawer.draw({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        transformData: { ...transformData },
+    });
 }
 
 /**
- * Draws the particle effect after the plugin's shape renderer.
- * @param container - The container of the particle.
- * @param context - The canvas context.
- * @param particle - The particle to draw.
- * @param radius - The radius of the particle.
- * @param opacity - The opacity of the particle.
- * @param delta - this variable contains the delta between the current frame and the previous frame
+ * Draws the particle shape using the plugin's shape renderer.
+ * @param data - the function parameters.
  */
-export function drawShapeAfterEffect(
-    container: Container,
-    context: CanvasRenderingContext2D,
-    particle: Particle,
-    radius: number,
-    opacity: number,
-    delta: IDelta,
-): void {
+export function drawShape(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, delta, transformData } = data;
+
     if (!particle.shape) {
         return;
     }
 
-    const drawer = container.drawers.get(particle.shape);
+    const drawer = container.shapeDrawers.get(particle.shape);
 
-    if (!drawer || !drawer.afterEffect) {
+    if (!drawer) {
         return;
     }
 
-    drawer.afterEffect(context, particle, radius, opacity, delta, container.retina.pixelRatio);
+    drawer.draw({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        transformData: { ...transformData },
+    });
+}
+
+/**
+ * Calls the afterDraw function of the plugin's shape renderer, this is called after drawShape.
+ * @param data - the function parameters.
+ */
+export function drawShapeAfterDraw(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, delta, transformData } = data;
+
+    if (!particle.shape) {
+        return;
+    }
+
+    const drawer = container.shapeDrawers.get(particle.shape);
+
+    if (!drawer || !drawer.afterDraw) {
+        return;
+    }
+
+    drawer.afterDraw({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        transformData: { ...transformData },
+    });
 }
 
 /**

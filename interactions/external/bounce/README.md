@@ -2,11 +2,11 @@
 
 # tsParticles External Bounce Interaction
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-interaction-external-bounce/badge)](https://www.jsdelivr.com/package/npm/tsparticles-interaction-external-bounce)
-[![npmjs](https://badge.fury.io/js/tsparticles-interaction-external-bounce.svg)](https://www.npmjs.com/package/tsparticles-interaction-external-bounce)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-interaction-external-bounce)](https://www.npmjs.com/package/tsparticles-interaction-external-bounce) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/interaction-external-bounce/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/interaction-external-bounce)
+[![npmjs](https://badge.fury.io/js/@tsparticles/interaction-external-bounce.svg)](https://www.npmjs.com/package/@tsparticles/interaction-external-bounce)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-external-bounce)](https://www.npmjs.com/package/@tsparticles/interaction-external-bounce) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) interaction plugin for bounce effect around mouse or HTML
+[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for bounce effect around mouse or HTML
 elements.
 
 ## How to use it
@@ -44,20 +44,20 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-interaction-external-bounce
+$ npm install @tsparticles/interaction-external-bounce
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-interaction-external-bounce
+$ yarn add @tsparticles/interaction-external-bounce
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadExternalBounceInteraction } = require("tsparticles-interaction-external-bounce");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadExternalBounceInteraction } = require("@tsparticles/interaction-external-bounce");
 
 (async () => {
   await loadExternalBounceInteraction(tsParticles);
@@ -67,8 +67,8 @@ const { loadExternalBounceInteraction } = require("tsparticles-interaction-exter
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadExternalBounceInteraction } from "tsparticles-interaction-external-bounce";
+import { tsParticles } from "@tsparticles/engine";
+import { loadExternalBounceInteraction } from "@tsparticles/interaction-external-bounce";
 
 (async () => {
   await loadExternalBounceInteraction(tsParticles);

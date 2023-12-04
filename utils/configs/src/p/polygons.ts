@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Polygon Shape",
@@ -51,7 +51,7 @@ const options: ISourceOptions = {
                         },
                     },
                     {
-                        nb_sides: 8,
+                        sides: 8,
                         particles: {
                             opacity: {
                                 value: 1,

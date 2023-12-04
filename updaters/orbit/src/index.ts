@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { OrbitUpdater } from "./OrbitUpdater";
+import type { Engine } from "@tsparticles/engine";
+import { OrbitUpdater } from "./OrbitUpdater.js";
 
 /**
  * @param engine -

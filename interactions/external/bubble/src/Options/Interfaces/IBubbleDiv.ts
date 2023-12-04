@@ -1,5 +1,5 @@
-import type { IBubbleBase } from "./IBubbleBase";
-import type { IModeDiv } from "tsparticles-engine";
+import type { IBubbleBase } from "./IBubbleBase.js";
+import type { IModeDiv } from "@tsparticles/engine";
 
 /**
  */

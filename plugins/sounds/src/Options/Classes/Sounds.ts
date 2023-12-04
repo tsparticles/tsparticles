@@ -1,8 +1,8 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { ISounds } from "../Interfaces/ISounds";
-import { SoundsEvent } from "./SoundsEvent";
-import { SoundsIcons } from "./SoundsIcons";
-import { SoundsVolume } from "./SoundsVolume";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import type { ISounds } from "../Interfaces/ISounds.js";
+import { SoundsEvent } from "./SoundsEvent.js";
+import { SoundsIcons } from "./SoundsIcons.js";
+import { SoundsVolume } from "./SoundsVolume.js";
 
 export class Sounds implements ISounds, IOptionLoader<ISounds> {
     enable;

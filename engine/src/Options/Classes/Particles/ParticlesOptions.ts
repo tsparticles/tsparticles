@@ -1,23 +1,24 @@
-import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils";
-import { AnimatableColor } from "../AnimatableColor";
-import { Collisions } from "./Collisions/Collisions";
-import type { Container } from "../../../Core/Container";
-import type { Engine } from "../../../Core/Engine";
-import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions";
-import { Move } from "./Move/Move";
-import { Opacity } from "./Opacity/Opacity";
-import { ParticlesBounce } from "./Bounce/ParticlesBounce";
-import type { ParticlesGroups } from "../../../Types/ParticlesGroups";
-import { ParticlesNumber } from "./Number/ParticlesNumber";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { Shadow } from "./Shadow";
-import { Shape } from "./Shape/Shape";
-import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple";
-import { Size } from "./Size/Size";
-import { Stroke } from "./Stroke";
-import { ZIndex } from "./ZIndex/ZIndex";
+import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
+import { AnimatableColor } from "../AnimatableColor.js";
+import { Collisions } from "./Collisions/Collisions.js";
+import type { Container } from "../../../Core/Container.js";
+import { Effect } from "./Effect/Effect.js";
+import type { Engine } from "../../../Core/Engine.js";
+import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
+import { Move } from "./Move/Move.js";
+import { Opacity } from "./Opacity/Opacity.js";
+import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
+import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
+import { ParticlesNumber } from "./Number/ParticlesNumber.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { Shadow } from "./Shadow.js";
+import { Shape } from "./Shape/Shape.js";
+import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
+import { Size } from "./Size/Size.js";
+import { Stroke } from "./Stroke.js";
+import { ZIndex } from "./ZIndex/ZIndex.js";
 
 /**
  * [[include:Options/Particles.md]]
@@ -25,20 +26,21 @@ import { ZIndex } from "./ZIndex/ZIndex";
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
     [name: string]: unknown;
 
-    bounce;
-    collisions;
+    readonly bounce;
+    readonly collisions;
     color;
-    groups: ParticlesGroups;
+    readonly effect;
+    readonly groups: ParticlesGroups;
     interactivity?: RecursivePartial<IInteractivity>;
-    move;
-    number;
-    opacity;
+    readonly move;
+    readonly number;
+    readonly opacity;
     reduceDuplicates;
-    shadow;
-    shape;
-    size;
+    readonly shadow;
+    readonly shape;
+    readonly size;
     stroke: SingleOrMultiple<Stroke>;
-    zIndex;
+    readonly zIndex;
 
     private readonly _container;
     private readonly _engine;
@@ -51,6 +53,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.color.value = "#fff";
+        this.effect = new Effect();
         this.groups = {};
         this.move = new Move();
         this.number = new ParticlesNumber();
@@ -68,45 +71,41 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
             return;
         }
 
-        this.bounce.load(data.bounce);
-        this.color.load(AnimatableColor.create(this.color, data.color));
-
         if (data.groups !== undefined) {
-            for (const group in data.groups) {
+            for (const group of Object.keys(data.groups)) {
+                if (!Object.hasOwn(data.groups, group)) {
+                    continue;
+                }
+
                 const item = data.groups[group];
 
                 if (item !== undefined) {
-                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
+                    this.groups[group] = <IParticlesOptions>deepExtend(this.groups[group] ?? {}, item);
                 }
             }
         }
-
-        this.move.load(data.move);
-        this.number.load(data.number);
-        this.opacity.load(data.opacity);
 
         if (data.reduceDuplicates !== undefined) {
             this.reduceDuplicates = data.reduceDuplicates;
         }
 
+        this.bounce.load(data.bounce);
+        this.color.load(AnimatableColor.create(this.color, data.color));
+        this.effect.load(data.effect);
+        this.move.load(data.move);
+        this.number.load(data.number);
+        this.opacity.load(data.opacity);
         this.shape.load(data.shape);
         this.size.load(data.size);
         this.shadow.load(data.shadow);
         this.zIndex.load(data.zIndex);
-
-        const collisions = data.move?.collisions ?? data.move?.bounce;
-
-        if (collisions !== undefined) {
-            this.collisions.enable = collisions;
-        }
-
         this.collisions.load(data.collisions);
 
         if (data.interactivity !== undefined) {
             this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;
         }
 
-        const strokeToLoad = data.stroke ?? data.shape?.stroke;
+        const strokeToLoad = data.stroke;
 
         if (strokeToLoad) {
             this.stroke = executeOnSingleOrMultiple(strokeToLoad, (t) => {

@@ -1,4 +1,4 @@
-import type { RangeValue } from "tsparticles-engine";
+import type { RangeValue } from "@tsparticles/engine";
 
 export interface IDestroyBounds {
     bottom?: RangeValue;

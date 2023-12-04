@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { LifeUpdater } from "./LifeUpdater";
+import type { Engine } from "@tsparticles/engine";
+import { LifeUpdater } from "./LifeUpdater.js";
 
 /**
  * @param engine -

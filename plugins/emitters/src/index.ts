@@ -1,4 +1,4 @@
-import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types";
+import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types.js";
 import {
     type IOptions,
     type IPlugin,
@@ -6,18 +6,15 @@ import {
     executeOnSingleOrMultiple,
     isArray,
     isInArray,
-} from "tsparticles-engine";
-import { CircleShape } from "./Shapes/Circle/CircleShape";
-import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterClickMode } from "./Enums/EmitterClickMode";
-import type { EmitterContainer } from "./EmitterContainer";
-import { EmitterShapeType } from "./Enums/EmitterShapeType";
-import { Emitters } from "./Emitters";
-import type { EmittersEngine } from "./EmittersEngine";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { IEmitterShape } from "./IEmitterShape";
-import { ShapeManager } from "./ShapeManager";
-import { SquareShape } from "./Shapes/Square/SquareShape";
+} from "@tsparticles/engine";
+import { Emitter } from "./Options/Classes/Emitter.js";
+import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
+import type { EmitterContainer } from "./EmitterContainer.js";
+import { Emitters } from "./Emitters.js";
+import type { EmittersEngine } from "./EmittersEngine.js";
+import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
+import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
+import { ShapeManager } from "./ShapeManager.js";
 
 /**
  */
@@ -138,21 +135,21 @@ export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true)
         engine.emitterShapeManager = new ShapeManager(engine);
     }
 
-    if (!engine.addEmitterShape) {
-        engine.addEmitterShape = (name: string, shape: IEmitterShape): void => {
-            engine.emitterShapeManager?.addShape(name, shape);
+    if (!engine.addEmitterShapeGenerator) {
+        engine.addEmitterShapeGenerator = (name: string, generator: IEmitterShapeGenerator): void => {
+            engine.emitterShapeManager?.addShapeGenerator(name, generator);
         };
     }
 
     const plugin = new EmittersPlugin(engine);
 
     await engine.addPlugin(plugin, refresh);
-
-    engine.addEmitterShape(EmitterShapeType.circle, new CircleShape());
-    engine.addEmitterShape(EmitterShapeType.square, new SquareShape());
 }
 
-export * from "./EmitterContainer";
-export * from "./EmittersEngine";
-export * from "./Enums/EmitterClickMode";
-export * from "./Enums/EmitterShapeType";
+export * from "./EmitterContainer.js";
+export * from "./EmitterShapeBase.js";
+export * from "./EmittersEngine.js";
+export * from "./IEmitterShape.js";
+export * from "./IEmitterShapeGenerator.js";
+export * from "./Enums/EmitterClickMode.js";
+export * from "./IRandomPositionData.js";

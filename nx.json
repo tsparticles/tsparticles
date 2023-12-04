@@ -1,76 +1,75 @@
 {
-  "targetDefaults": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ]
+    "targetDefaults": {
+        "build": {
+            "dependsOn": [
+                "^build"
+            ]
+        },
+        "build:ci": {
+            "dependsOn": [
+                "^build:ci"
+            ]
+        },
+        "prepare": {
+            "dependsOn": [
+                "^build",
+                "^prepare"
+            ]
+        },
+        "package": {
+            "dependsOn": [
+                "^build",
+                "^prepare",
+                "^package"
+            ]
+        }
     },
-    "build:ci": {
-      "dependsOn": [
-        "^build:ci"
-      ]
+    "extends": "@nx/workspace/presets/npm.json",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "nx-cloud",
+            "options": {
+                "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
+                "cacheableOperations": [
+                    "build",
+                    "build:ci",
+                    "test",
+                    "lint",
+                    "package",
+                    "prepare"
+                ]
+            }
+        },
+        "local": {
+            "runner": "nx/tasks-runners/default",
+            "options": {
+                "cacheableOperations": [
+                    "build",
+                    "build:ci",
+                    "lint",
+                    "test",
+                    "e2e"
+                ]
+            }
+        }
     },
-    "prepare": {
-      "dependsOn": [
-        "^build",
-        "^prepare"
-      ]
+    "affected": {
+        "defaultBase": "main"
     },
-    "package": {
-      "dependsOn": [
-        "^build",
-        "^prepare",
-        "^package"
-      ]
-    }
-  },
-  "extends": "@nrwl/workspace/presets/npm.json",
-  "npmScope": "tsparticles-workspace",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
-        "cacheableOperations": [
-          "build",
-          "build:ci",
-          "test",
-          "lint",
-          "package",
-          "prepare"
+    "pluginsConfig": {
+        "@nrwl/js": {
+            "analyzeSourceFiles": false
+        }
+    },
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "namedInputs": {
+        "default": [
+            "{projectRoot}/**/*",
+            "sharedGlobals"
+        ],
+        "sharedGlobals": [],
+        "production": [
+            "default"
         ]
-      }
-    },
-    "local": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "build:ci",
-          "lint",
-          "test",
-          "e2e"
-        ]
-      }
     }
-  },
-  "affected": {
-    "defaultBase": "main"
-  },
-  "pluginsConfig": {
-    "@nrwl/js": {
-      "analyzeSourceFiles": false
-    }
-  },
-  "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
-    "sharedGlobals": [],
-    "production": [
-      "default"
-    ]
-  }
 }

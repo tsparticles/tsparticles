@@ -1,6 +1,6 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IParallax } from "../../../Interfaces/Interactivity/Events/IParallax";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { IParallax } from "../../../Interfaces/Interactivity/Events/IParallax.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
  */

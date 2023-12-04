@@ -2,11 +2,11 @@
 
 # tsParticles Arrow Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-arrow/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-arrow)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-arrow.svg)](https://www.npmjs.com/package/tsparticles-shape-arrow)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-arrow)](https://www.npmjs.com/package/tsparticles-shape-arrow) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-arrow/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-arrow)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-arrow.svg)](https://www.npmjs.com/package/@tsparticles/shape-arrow)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-arrow)](https://www.npmjs.com/package/@tsparticles/shape-arrow) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional arrow shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional arrow shape.
 
 ## How to use it
 
@@ -43,20 +43,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-arrow
+$ npm install @tsparticles/shape-arrow
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-arrow
+$ yarn add @tsparticles/shape-arrow
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadArrowShape } = require("tsparticles-shape-arrow");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadArrowShape } = require("@tsparticles/shape-arrow");
 
 (async () => {
   await loadArrowShape(tsParticles);
@@ -66,8 +66,8 @@ const { loadArrowShape } = require("tsparticles-shape-arrow");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadArrowShape } from "tsparticles-shape-arrow";
+import { tsParticles } from "@tsparticles/engine";
+import { loadArrowShape } from "@tsparticles/shape-arrow";
 
 (async () => {
   await loadArrowShape(tsParticles);

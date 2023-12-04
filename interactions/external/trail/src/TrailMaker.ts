@@ -1,7 +1,5 @@
 import {
-    ClickMode,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IDelta,
     type IModes,
@@ -9,9 +7,11 @@ import {
     type Particle,
     type RecursivePartial,
     isInArray,
-} from "tsparticles-engine";
-import type { ITrailMode, TrailContainer, TrailMode } from "./Types";
-import { Trail } from "./Options/Classes/Trail";
+} from "@tsparticles/engine";
+import type { ITrailMode, TrailContainer, TrailMode } from "./Types.js";
+import { Trail } from "./Options/Classes/Trail.js";
+
+const trailMode = "trail";
 
 /**
  */
@@ -87,8 +87,8 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             events = (particle?.interactivity ?? options.interactivity).events;
 
         return (
-            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(ClickMode.trail, events.onClick.mode)) ||
-            (mouse.inside && !!mouse.position && isInArray(HoverMode.trail, events.onHover.mode))
+            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(trailMode, events.onClick.mode)) ||
+            (mouse.inside && !!mouse.position && isInArray(trailMode, events.onHover.mode))
         );
     }
 

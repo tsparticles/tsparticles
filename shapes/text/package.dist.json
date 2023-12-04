@@ -1,11 +1,11 @@
 {
-  "name": "tsparticles-shape-text",
-  "version": "2.12.0",
+  "name": "@tsparticles/shape-text",
+  "version": "3.0.0",
   "description": "tsParticles text shape",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "shapes/text"
   },
   "keywords": [
@@ -38,15 +38,30 @@
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
-  "main": "cjs/index.js",
+  "sideEffects": false,
   "jsdelivr": "tsparticles.shape.text.min.js",
   "unpkg": "tsparticles.shape.text.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
-  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^3.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

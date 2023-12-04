@@ -5,12 +5,12 @@ import {
     isArray,
     isFunction,
     isString,
-} from "tsparticles-engine";
-import type { FilterFunction } from "../../types";
-import type { ISoundsEvent } from "../Interfaces/ISoundsEvent";
-import { SoundsAudio } from "./SoundsAudio";
-import { SoundsMelody } from "./SoundsMelody";
-import { SoundsNote } from "./SoundsNote";
+} from "@tsparticles/engine";
+import type { FilterFunction } from "../../types.js";
+import type { ISoundsEvent } from "../Interfaces/ISoundsEvent.js";
+import { SoundsAudio } from "./SoundsAudio.js";
+import { SoundsMelody } from "./SoundsMelody.js";
+import { SoundsNote } from "./SoundsNote.js";
 
 declare global {
     interface Window {

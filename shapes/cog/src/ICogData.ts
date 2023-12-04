@@ -1,4 +1,4 @@
-import type { IShapeValues, RangeValue } from "tsparticles-engine";
+import type { IShapeValues, RangeValue } from "@tsparticles/engine";
 
 export interface ICogData extends IShapeValues {
     holeRadius?: RangeValue;

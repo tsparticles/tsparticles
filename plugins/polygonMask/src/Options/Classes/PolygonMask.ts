@@ -1,14 +1,16 @@
-import { type ICoordinates, type IOptionLoader, type RecursivePartial, deepExtend, isString } from "tsparticles-engine";
-import type {
-    PolygonMaskInlineArrangement,
-    PolygonMaskInlineArrangementAlt,
-} from "../../Enums/PolygonMaskInlineArrangement";
-import type { IPolygonMask } from "../Interfaces/IPolygonMask";
-import { PolygonMaskDraw } from "./PolygonMaskDraw";
-import { PolygonMaskInline } from "./PolygonMaskInline";
-import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg";
-import { PolygonMaskMove } from "./PolygonMaskMove";
-import { PolygonMaskType } from "../../Enums/PolygonMaskType";
+import {
+    type ICoordinates,
+    type IOptionLoader,
+    type RecursivePartial,
+    deepExtend,
+    isString,
+} from "@tsparticles/engine";
+import type { IPolygonMask } from "../Interfaces/IPolygonMask.js";
+import { PolygonMaskDraw } from "./PolygonMaskDraw.js";
+import { PolygonMaskInline } from "./PolygonMaskInline.js";
+import { PolygonMaskLocalSvg } from "./PolygonMaskLocalSvg.js";
+import { PolygonMaskMove } from "./PolygonMaskMove.js";
+import { PolygonMaskType } from "../../Enums/PolygonMaskType.js";
 
 /**
  * [[include:Options/Plugins/PolygonMask.md]]
@@ -31,28 +33,6 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
         this.move = new PolygonMaskMove();
         this.scale = 1;
         this.type = PolygonMaskType.none;
-    }
-
-    /**
-     * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
-     */
-    get inlineArrangement():
-        | PolygonMaskInlineArrangement
-        | keyof typeof PolygonMaskInlineArrangement
-        | PolygonMaskInlineArrangementAlt {
-        return this.inline.arrangement;
-    }
-
-    /**
-     * @deprecated the property inlineArrangement is deprecated, please use the new inline.arrangement
-     */
-    set inlineArrangement(
-        value:
-            | PolygonMaskInlineArrangement
-            | keyof typeof PolygonMaskInlineArrangement
-            | PolygonMaskInlineArrangementAlt,
-    ) {
-        this.inline.arrangement = value;
     }
 
     load(data?: RecursivePartial<IPolygonMask>): void {

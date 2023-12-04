@@ -1,12 +1,12 @@
-import dataImages from "./dataImages";
-import delay from "./delay";
-import delayColor from "./delayColor";
-import delayOpacity from "./delayOpacity";
-import delaySize from "./delaySize";
-import delayStrokeColor from "./delayStrokeColor";
-import destroy from "./destroy";
-import disappearing from "./disappearing";
-import divEvents from "./divEvents";
+import dataImages from "./dataImages.js";
+import delay from "./delay.js";
+import delayColor from "./delayColor.js";
+import delayOpacity from "./delayOpacity.js";
+import delaySize from "./delaySize.js";
+import delayStrokeColor from "./delayStrokeColor.js";
+import destroy from "./destroy.js";
+import disappearing from "./disappearing.js";
+import divEvents from "./divEvents.js";
 
 export default {
     dataImages,

@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { Remover } from "./Remover";
+import type { Engine } from "@tsparticles/engine";
+import { Remover } from "./Remover.js";
 
 /**
  * @param engine -
@@ -9,5 +9,5 @@ export async function loadExternalRemoveInteraction(engine: Engine, refresh = tr
     await engine.addInteractor("externalRemove", (container) => new Remover(container), refresh);
 }
 
-export * from "./Options/Classes/Remove";
-export * from "./Options/Interfaces/IRemove";
+export * from "./Options/Classes/Remove.js";
+export * from "./Options/Interfaces/IRemove.js";

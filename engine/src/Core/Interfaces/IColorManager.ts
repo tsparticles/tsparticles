@@ -1,4 +1,4 @@
-import type { IColor, IRangeColor, IRgb, IRgba } from "./Colors";
+import type { IColor, IRangeColor, IRgb, IRgba } from "./Colors.js";
 
 export interface IColorManager {
     readonly key: string;

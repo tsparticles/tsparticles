@@ -2,43 +2,31 @@
  * Engine class for creating the singleton on window.
  * It's a singleton class for initializing {@link Container} instances
  */
-import type {
-    ShapeDrawerAfterEffectFunction,
-    ShapeDrawerDestroyFunction,
-    ShapeDrawerDrawFunction,
-    ShapeDrawerInitFunction,
-} from "../Types/ShapeDrawerFunctions";
-import { errorPrefix, generatedAttribute } from "./Utils/Constants";
-import {
-    executeOnSingleOrMultiple,
-    getLogger,
-    isBoolean,
-    isFunction,
-    isNumber,
-    isString,
-    itemFromSingleOrMultiple,
-} from "../Utils/Utils";
-import { Container } from "./Container";
-import type { CustomEventArgs } from "../Types/CustomEventArgs";
-import type { CustomEventListener } from "../Types/CustomEventListener";
-import { EventDispatcher } from "../Utils/EventDispatcher";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin";
-import type { IInteractor } from "./Interfaces/IInteractor";
-import type { ILoadParams } from "./Interfaces/ILoadParams";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator";
-import type { IOptions } from "../Options/Interfaces/IOptions";
-import type { IParticleMover } from "./Interfaces/IParticleMover";
-import type { IParticleUpdater } from "./Interfaces/IParticleUpdater";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import type { IPlugin } from "./Interfaces/IPlugin";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer";
-import type { ISourceOptions } from "../Types/ISourceOptions";
-import type { Options } from "../Options/Classes/Options";
-import type { Particle } from "./Particle";
-import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
-import { getRandom } from "../Utils/NumberUtils";
+import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
+import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
+import { Container } from "./Container.js";
+import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
+import type { CustomEventListener } from "../Types/CustomEventListener.js";
+import { EventDispatcher } from "../Utils/EventDispatcher.js";
+import { EventType } from "../Enums/Types/EventType.js";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
+import type { IInteractor } from "./Interfaces/IInteractor.js";
+import type { ILoadParams } from "./Interfaces/ILoadParams.js";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
+import type { IOptions } from "../Options/Interfaces/IOptions.js";
+import type { IParticleMover } from "./Interfaces/IParticleMover.js";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { IPlugin } from "./Interfaces/IPlugin.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
+import type { ISourceOptions } from "../Types/ISourceOptions.js";
+import type { Options } from "../Options/Classes/Options.js";
+import type { Particle } from "./Particle.js";
+import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
+import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
+import { getRandom } from "../Utils/NumberUtils.js";
 
 declare const __VERSION__: string;
 
@@ -121,33 +109,15 @@ async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple
 }
 
 /**
- *
- * @param params -
- * @returns true if the params are empty, false otherwise
- */
-function isParamsEmpty(params: ILoadParams): boolean {
-    return !params.id && !params.element && !params.url && !params.options;
-}
-
-/**
- *
- * @param obj -
- * @returns true if the params are valid, false otherwise
- */
-function isParams(obj: unknown): obj is ILoadParams {
-    return !isParamsEmpty(obj as ILoadParams);
-}
-
-/**
  * Engine class for creating the singleton on window.
  * It's a singleton class for initializing {@link Container} instances,
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
     /**
-     * The drawers (additional shapes) array
+     * The drawers (additional effects) array
      */
-    readonly drawers;
+    readonly effectDrawers;
 
     /**
      * The interaction managers array
@@ -170,6 +140,11 @@ export class Engine {
      * The presets array
      */
     readonly presets;
+
+    /**
+     * The drawers (additional shapes) array
+     */
+    readonly shapeDrawers;
 
     /**
      * The updaters array
@@ -211,7 +186,8 @@ export class Engine {
         this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
         this.presets = new Map<string, ISourceOptions>();
-        this.drawers = new Map<string, IShapeDrawer>();
+        this.effectDrawers = new Map<string, IEffectDrawer>();
+        this.shapeDrawers = new Map<string, IShapeDrawer>();
         this.pathGenerators = new Map<string, IMovePathGenerator>();
     }
 
@@ -229,16 +205,26 @@ export class Engine {
         return __VERSION__;
     }
 
-    addConfig(nameOrConfig: string | ISourceOptions, config?: ISourceOptions): void {
-        if (isString(nameOrConfig)) {
-            if (config) {
-                config.name = nameOrConfig;
+    addConfig(config: ISourceOptions): void {
+        const name = config.name ?? "default";
 
-                this._configs.set(nameOrConfig, config);
-            }
-        } else {
-            this._configs.set(nameOrConfig.name ?? "default", nameOrConfig);
-        }
+        this._configs.set(name, config);
+
+        this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name, config } });
+    }
+
+    /**
+     * addEffect adds effect to tsParticles, it will be available to all future instances created
+     * @param effect - the effect name
+     * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
+     * @param refresh - should refresh the dom after adding the effect
+     */
+    async addEffect(effect: SingleOrMultiple<string>, drawer: IEffectDrawer, refresh = true): Promise<void> {
+        executeOnSingleOrMultiple(effect, (type) => {
+            !this.getEffectDrawer(type) && this.effectDrawers.set(type, drawer);
+        });
+
+        await this.refresh(refresh);
     }
 
     /**
@@ -342,63 +328,14 @@ export class Engine {
      * addShape adds shape to tsParticles, it will be available to all future instances created
      * @param shape - the shape name
      * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
-     * @param initOrRefresh - Optional: the shape drawer init function, used only if the drawer parameter is a function
-     * @param afterEffectOrRefresh - Optional: the shape drawer after effect function, used only if the drawer parameter is a function
-     * @param destroyOrRefresh - Optional: the shape drawer destroy function, used only if the drawer parameter is a function
      * @param refresh - should refresh the dom after adding the shape
      */
-    async addShape(
-        shape: SingleOrMultiple<string>,
-        drawer: IShapeDrawer | ShapeDrawerDrawFunction,
-        initOrRefresh?: ShapeDrawerInitFunction | boolean,
-        afterEffectOrRefresh?: ShapeDrawerAfterEffectFunction | boolean,
-        destroyOrRefresh?: ShapeDrawerDestroyFunction | boolean,
-        refresh = true,
-    ): Promise<void> {
-        let customDrawer: IShapeDrawer;
-
-        let realRefresh = refresh,
-            realInit: ShapeDrawerInitFunction | undefined,
-            realAfterEffect: ShapeDrawerAfterEffectFunction | undefined,
-            realDestroy: ShapeDrawerDestroyFunction | undefined;
-
-        if (isBoolean(initOrRefresh)) {
-            realRefresh = initOrRefresh;
-            realInit = undefined;
-        } else {
-            realInit = initOrRefresh;
-        }
-
-        if (isBoolean(afterEffectOrRefresh)) {
-            realRefresh = afterEffectOrRefresh;
-            realAfterEffect = undefined;
-        } else {
-            realAfterEffect = afterEffectOrRefresh;
-        }
-
-        if (isBoolean(destroyOrRefresh)) {
-            realRefresh = destroyOrRefresh;
-            realDestroy = undefined;
-        } else {
-            realDestroy = destroyOrRefresh;
-        }
-
-        if (isFunction(drawer)) {
-            customDrawer = {
-                afterEffect: realAfterEffect,
-                destroy: realDestroy,
-                draw: drawer,
-                init: realInit,
-            };
-        } else {
-            customDrawer = drawer;
-        }
-
+    async addShape(shape: SingleOrMultiple<string>, drawer: IShapeDrawer, refresh = true): Promise<void> {
         executeOnSingleOrMultiple(shape, (type) => {
-            !this.getShapeDrawer(type) && this.drawers.set(type, customDrawer);
+            !this.getShapeDrawer(type) && this.shapeDrawers.set(type, drawer);
         });
 
-        await this.refresh(realRefresh);
+        await this.refresh(refresh);
     }
 
     clearPlugins(container: Container): void {
@@ -458,6 +395,15 @@ export class Engine {
     }
 
     /**
+     * Searches the given effect drawer type with the given type name
+     * @param type - the effect drawer type name
+     * @returns the effect drawer if found, or undefined
+     */
+    getEffectDrawer(type: string): IEffectDrawer | undefined {
+        return this.effectDrawers.get(type);
+    }
+
+    /**
      * Returns all the container interaction managers
      * @param container - the container used to check which interaction managers are compatible
      * @param force - if true reloads the interaction managers collection for the given container
@@ -504,7 +450,15 @@ export class Engine {
      * @returns the shape drawer if found, or undefined
      */
     getShapeDrawer(type: string): IShapeDrawer | undefined {
-        return this.drawers.get(type);
+        return this.shapeDrawers.get(type);
+    }
+
+    /**
+     * This method returns all the supported effects with this Plugins instance
+     * @returns all the supported effects type name
+     */
+    getSupportedEffects(): IterableIterator<string> {
+        return this.effectDrawers.keys();
     }
 
     /**
@@ -512,7 +466,7 @@ export class Engine {
      * @returns all the supported shapes type name
      */
     getSupportedShapes(): IterableIterator<string> {
-        return this.drawers.keys();
+        return this.shapeDrawers.keys();
     }
 
     /**
@@ -538,222 +492,10 @@ export class Engine {
 
     /**
      * Loads the provided options to create a {@link Container} object.
-     * @param tagIdOrOptionsOrParams - The particles container element id, or options, or {@link ILoadParams} object
-     * @param options - The options object to initialize the {@link Container}
+     * @param params - The particles container params {@link ILoadParams} object
      * @returns A Promise with the {@link Container} object created
      */
-    async load(
-        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>>,
-    ): Promise<Container | undefined> {
-        return this.loadFromArray(tagIdOrOptionsOrParams, options);
-    }
-
-    /**
-     * Loads an options object from the provided array to create a {@link Container} object.
-     * @param tagIdOrOptionsOrParams - The particles container element id
-     * @param optionsOrIndex - The options array to get the item from
-     * @param index - If provided gets the corresponding item from the array
-     * @returns A Promise with the {@link Container} object created
-     */
-    async loadFromArray(
-        tagIdOrOptionsOrParams: string | SingleOrMultiple<RecursivePartial<IOptions>> | ILoadParams,
-        optionsOrIndex?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        let params: ILoadParams;
-
-        if (!isParams(tagIdOrOptionsOrParams)) {
-            params = {};
-
-            if (isString(tagIdOrOptionsOrParams)) {
-                params.id = tagIdOrOptionsOrParams;
-            } else {
-                params.options = tagIdOrOptionsOrParams;
-            }
-
-            if (isNumber(optionsOrIndex)) {
-                params.index = optionsOrIndex;
-            } else {
-                params.options = optionsOrIndex ?? params.options;
-            }
-
-            params.index = index ?? params.index;
-        } else {
-            params = tagIdOrOptionsOrParams;
-        }
-
-        return this._loadParams(params);
-    }
-
-    /**
-     * Loads the provided json with a GET request. The content will be used to create a {@link Container} object.
-     * This method is async, so if you need a callback refer to JavaScript function `fetch`
-     * @param tagId - the particles container element id
-     * @param pathConfigJson - the json path (or paths array) to use in the GET request
-     * @param index - the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the {@link Container} object created
-     */
-    async loadJSON(
-        tagId: string | SingleOrMultiple<string>,
-        pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        let url: SingleOrMultiple<string>, id: string | undefined;
-
-        if (isNumber(pathConfigJson) || pathConfigJson === undefined) {
-            url = tagId;
-        } else {
-            id = tagId as string;
-            url = pathConfigJson;
-        }
-
-        return this._loadParams({ id: id, url, index });
-    }
-
-    /**
-     * Load the given options for all the plugins
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        for (const plugin of this.plugins) {
-            plugin.loadOptions(options, sourceOptions);
-        }
-    }
-
-    /**
-     * Load the given particles options for all the updaters
-     * @param container - the container of the updaters
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadParticlesOptions(
-        container: Container,
-        options: ParticlesOptions,
-        ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
-    ): void {
-        const updaters = this.updaters.get(container);
-
-        if (!updaters) {
-            return;
-        }
-
-        for (const updater of updaters) {
-            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
-        }
-    }
-
-    /**
-     * Reloads all existing tsParticles loaded instances
-     * @param refresh - should refresh the dom after reloading
-     */
-    async refresh(refresh = true): Promise<void> {
-        if (!refresh) {
-            return;
-        }
-
-        this.dom().forEach((t) => t.refresh());
-    }
-
-    /**
-     * Removes a listener from the specified event
-     * @param type - The event to stop listening to
-     * @param listener - The listener of the specified event
-     */
-    removeEventListener(type: string, listener: CustomEventListener): void {
-        this._eventDispatcher.removeEventListener(type, listener);
-    }
-
-    /**
-     * Loads the provided option to create a {@link Container} object using the element parameter as a container
-     * @param id - The particles container id
-     * @param element - The dom element used to contain the particles
-     * @param options - The options object to initialize the {@link Container}
-     * @param index - The index of the options to use, if options is an array
-     * @returns A Promise with the {@link Container} object created
-     */
-    async set(
-        id: string | HTMLElement,
-        element: HTMLElement | RecursivePartial<IOptions>,
-        options?: SingleOrMultiple<RecursivePartial<IOptions>> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        const params: ILoadParams = { index };
-
-        if (isString(id)) {
-            params.id = id;
-        } else {
-            params.element = id;
-        }
-
-        if (element instanceof HTMLElement) {
-            params.element = element;
-        } else {
-            params.options = element;
-        }
-
-        if (isNumber(options)) {
-            params.index = options;
-        } else {
-            params.options = options ?? params.options;
-        }
-
-        return this._loadParams(params);
-    }
-
-    /**
-     * Loads the provided option to create a {@link Container} object using the element parameter as a container
-     * @param id - The particles container id
-     * @param element - The dom element used to contain the particles
-     * @param pathConfigJson - the json path (or paths array) to use in the GET request
-     * @param index - the index of the paths array, if a single path is passed this value is ignored
-     * @returns A Promise with the {@link Container} object created
-     */
-    async setJSON(
-        id: string | HTMLElement,
-        element: HTMLElement | SingleOrMultiple<string>,
-        pathConfigJson?: SingleOrMultiple<string> | number,
-        index?: number,
-    ): Promise<Container | undefined> {
-        const params: ILoadParams = {};
-
-        if (id instanceof HTMLElement) {
-            params.element = id;
-            params.url = element as SingleOrMultiple<string>;
-            params.index = pathConfigJson as number;
-        } else {
-            params.id = id;
-            params.element = element as HTMLElement;
-            params.url = pathConfigJson as SingleOrMultiple<string>;
-            params.index = index;
-        }
-
-        return this._loadParams(params);
-    }
-
-    /**
-     * Adds another click handler to all the loaded {@link Container} objects.
-     * @param callback - The function called after the click event is fired
-     */
-    setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const dom = this.dom();
-
-        if (!dom.length) {
-            throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
-        }
-
-        for (const domItem of dom) {
-            domItem.addClickHandler(callback);
-        }
-    }
-
-    /**
-     * Starts an animation in a container, starting from the given options
-     * @param params - all the parameters required for loading options in the current animation
-     * @returns A Promise with the {@link Container} object created
-     */
-    private async _loadParams(params: ILoadParams): Promise<Container | undefined> {
+    async load(params: ILoadParams): Promise<Container | undefined> {
         const id = params.id ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
             { index, url } = params,
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
@@ -771,7 +513,7 @@ export class Engine {
 
         const currentOptions = itemFromSingleOrMultiple(options, index),
             dom = this.dom(),
-            oldIndex = dom.findIndex((v) => v.id === id);
+            oldIndex = dom.findIndex((v) => v.id.description === id);
 
         if (oldIndex >= 0) {
             const old = this.domItem(oldIndex);
@@ -830,5 +572,75 @@ export class Engine {
         await newItem.start();
 
         return newItem;
+    }
+
+    /**
+     * Load the given options for all the plugins
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
+     */
+    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
+        for (const plugin of this.plugins) {
+            plugin.loadOptions(options, sourceOptions);
+        }
+    }
+
+    /**
+     * Load the given particles options for all the updaters
+     * @param container - the container of the updaters
+     * @param options - the actual options to set
+     * @param sourceOptions - the source options to read
+     */
+    loadParticlesOptions(
+        container: Container,
+        options: ParticlesOptions,
+        ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
+    ): void {
+        const updaters = this.updaters.get(container);
+
+        if (!updaters) {
+            return;
+        }
+
+        for (const updater of updaters) {
+            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
+        }
+    }
+
+    /**
+     * Reloads all existing tsParticles loaded instances
+     * @param refresh - should refresh the dom after reloading
+     */
+    async refresh(refresh = true): Promise<void> {
+        if (!refresh) {
+            return;
+        }
+
+        this.dom().forEach((t) => t.refresh());
+    }
+
+    /**
+     * Removes a listener from the specified event
+     * @param type - The event to stop listening to
+     * @param listener - The listener of the specified event
+     */
+    removeEventListener(type: string, listener: CustomEventListener): void {
+        this._eventDispatcher.removeEventListener(type, listener);
+    }
+
+    /**
+     * Adds another click handler to all the loaded {@link Container} objects.
+     * @param callback - The function called after the click event is fired
+     */
+    setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
+        const dom = this.dom();
+
+        if (!dom.length) {
+            throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
+        }
+
+        for (const domItem of dom) {
+            domItem.addClickHandler(callback);
+        }
     }
 }

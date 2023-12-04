@@ -1,6 +1,6 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { ISoundsMelody } from "../Interfaces/ISoundsMelody";
-import { SoundsNote } from "./SoundsNote";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import type { ISoundsMelody } from "../Interfaces/ISoundsMelody.js";
+import { SoundsNote } from "./SoundsNote.js";
 
 export class SoundsMelody implements ISoundsMelody, IOptionLoader<ISoundsMelody> {
     loop;

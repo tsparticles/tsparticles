@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import { Vector3d } from "./Vector3d";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import { Vector3d } from "./Vector3d.js";
 
 /**
  */

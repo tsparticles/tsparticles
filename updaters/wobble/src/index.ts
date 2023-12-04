@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { WobbleUpdater } from "./WobbleUpdater";
+import type { Engine } from "@tsparticles/engine";
+import { WobbleUpdater } from "./WobbleUpdater.js";
 
 /**
  * @param engine -

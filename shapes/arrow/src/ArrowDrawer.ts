@@ -1,10 +1,11 @@
-import { type Container, type IShapeDrawer, getRangeValue } from "tsparticles-engine";
-import type { ArrowParticle } from "./ArrowParticle";
-import type { IArrowData } from "./IArrowData";
+import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import type { ArrowParticle } from "./ArrowParticle.js";
+import type { IArrowData } from "./IArrowData.js";
 
-export class ArrowDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: ArrowParticle, radius: number): void {
-        const width = radius * 2,
+export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
+    draw(data: IShapeDrawData<ArrowParticle>): void {
+        const { context, particle, radius } = data,
+            width = radius * 2,
             heightFactor = particle.heightFactor ?? 0.5,
             headWidthFactor = particle.headWidthFactor ?? 0.2,
             bodyHeightFactor = particle.bodyHeightFactor ?? 0.5,
@@ -24,7 +25,7 @@ export class ArrowDrawer implements IShapeDrawer {
     }
 
     particleInit(container: Container, particle: ArrowParticle): void {
-        const shapeData = particle.shapeData as IArrowData;
+        const shapeData = particle.shapeData as IArrowData | undefined;
 
         particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? 0.5);
         particle.headWidthFactor = getRangeValue(shapeData?.headWidthFactor ?? 0.2);

@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { Repulser } from "./Repulser";
+import type { Engine } from "@tsparticles/engine";
+import { Repulser } from "./Repulser.js";
 
 /**
  * @param engine -

@@ -1,5 +1,5 @@
-import { type Engine, type IContainerPlugin, safeMatchMedia } from "tsparticles-engine";
-import type { MotionContainer } from "./types";
+import { type Engine, type IContainerPlugin, safeMatchMedia } from "@tsparticles/engine";
+import type { MotionContainer } from "./types.js";
 
 export class MotionInstance implements IContainerPlugin {
     private readonly _container;
@@ -61,8 +61,8 @@ export class MotionInstance implements IContainerPlugin {
             ? motion.disable
                 ? 0
                 : motion.reduce.value
-                ? 1 / motion.reduce.factor
-                : 1
+                  ? 1 / motion.reduce.factor
+                  : 1
             : 1;
     };
 }

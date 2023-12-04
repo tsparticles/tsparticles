@@ -1,6 +1,6 @@
-import { type IContainerPlugin, type IOptionsColor, type Particle, itemFromArray } from "tsparticles-engine";
-import type { InfectableContainer, InfectableParticle } from "./Types";
-import { Infecter } from "./Infecter";
+import { type IContainerPlugin, type IOptionsColor, type Particle, itemFromArray } from "@tsparticles/engine";
+import type { InfectableContainer, InfectableParticle } from "./Types.js";
+import { Infecter } from "./Infecter.js";
 
 export class InfectionInstance implements IContainerPlugin {
     private readonly _container;

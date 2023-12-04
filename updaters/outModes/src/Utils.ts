@@ -1,5 +1,5 @@
-import { OutMode, OutModeDirection, getValue } from "tsparticles-engine";
-import type { IBounceData } from "./IBounceData";
+import { OutMode, OutModeDirection, getRangeValue } from "@tsparticles/engine";
+import type { IBounceData } from "./IBounceData.js";
 
 /**
  * @param data -
@@ -28,7 +28,7 @@ export function bounceHorizontal(data: IBounceData): void {
         (data.direction === OutModeDirection.right && data.bounds.right >= data.canvasSize.width && velocity > 0) ||
         (data.direction === OutModeDirection.left && data.bounds.left <= 0 && velocity < 0)
     ) {
-        const newVelocity = getValue(data.particle.options.bounce.horizontal);
+        const newVelocity = getRangeValue(data.particle.options.bounce.horizontal.value);
 
         data.particle.velocity.x *= -newVelocity;
 
@@ -79,7 +79,7 @@ export function bounceVertical(data: IBounceData): void {
         (data.direction === OutModeDirection.bottom && data.bounds.bottom >= data.canvasSize.height && velocity > 0) ||
         (data.direction === OutModeDirection.top && data.bounds.top <= 0 && velocity < 0)
     ) {
-        const newVelocity = getValue(data.particle.options.bounce.vertical);
+        const newVelocity = getRangeValue(data.particle.options.bounce.vertical.value);
 
         data.particle.velocity.y *= -newVelocity;
 

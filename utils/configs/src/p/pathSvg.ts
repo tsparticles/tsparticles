@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Path SVG",
@@ -34,7 +34,6 @@ const options: ISourceOptions = {
             },
         },
         number: {
-            limit: 0,
             value: 80,
         },
         opacity: {

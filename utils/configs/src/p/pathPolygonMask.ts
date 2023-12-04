@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Path Polygon Mask",
@@ -35,7 +35,6 @@ const options: ISourceOptions = {
             speed: 1,
         },
         number: {
-            limit: 0,
             value: 80,
         },
         opacity: {
@@ -59,8 +58,11 @@ const options: ISourceOptions = {
     polygon: {
         draw: {
             enable: true,
-            lineColor: "rgba(255,255,255,0.2)",
-            lineWidth: 0.5,
+            stroke: {
+                color: "#fff",
+                width: 0.5,
+                opacity: 0.2,
+            },
         },
         enable: true,
         move: {

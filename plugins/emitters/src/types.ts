@@ -1,6 +1,6 @@
-import type { IOptions, Options, SingleOrMultiple } from "tsparticles-engine";
-import type { Emitter } from "./Options/Classes/Emitter";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
+import type { IOptions, Options, SingleOrMultiple } from "@tsparticles/engine";
+import type { Emitter } from "./Options/Classes/Emitter.js";
+import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 export interface IEmitterModeOptions {
     random: IEmitterModeRandomOptions;

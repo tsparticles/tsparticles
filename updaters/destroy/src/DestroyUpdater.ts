@@ -5,11 +5,11 @@ import {
     type Particle,
     type RecursivePartial,
     getRangeValue,
-} from "tsparticles-engine";
-import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types";
-import { Destroy } from "./Options/Classes/Destroy";
-import { DestroyMode } from "./Enums/DestroyMode";
-import { split } from "./Utils";
+} from "@tsparticles/engine";
+import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types.js";
+import { Destroy } from "./Options/Classes/Destroy.js";
+import { DestroyMode } from "./Enums/DestroyMode.js";
+import { split } from "./Utils.js";
 
 export class DestroyUpdater implements IParticleUpdater {
     constructor(

@@ -1,21 +1,23 @@
-import type { ICardsPath, IPath } from "./ICardsPath";
+import type { ICardsPath, IPath } from "./ICardsPath.js";
+import type { IShapeDrawData } from "@tsparticles/engine";
 
 /**
- * @param ctx
- * @param radius
- * @param path
+ * @param data -
+ * @param path -
  */
-export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IPath): void {
+export function drawPath(data: IShapeDrawData, path: IPath): void {
     if (!path.segments.length || !path.segments[0].values.length) {
         return;
     }
 
-    ctx.moveTo(path.segments[0].values[0].x * radius, path.segments[0].values[0].y * radius);
+    const { context, radius } = data;
+
+    context.moveTo(path.segments[0].values[0].x * radius, path.segments[0].values[0].y * radius);
 
     for (let i = 0; i < path.segments.length; i++) {
         const segment = path.segments[i];
 
-        ctx.bezierCurveTo(
+        context.bezierCurveTo(
             segment.values[1].x * radius,
             segment.values[1].y * radius,
             segment.values[2].x * radius,
@@ -28,7 +30,7 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
     for (let i = path.segments.length - 1; i >= 0; i--) {
         const segment = path.segments[i];
 
-        ctx.bezierCurveTo(
+        context.bezierCurveTo(
             -segment.values[2].x * radius,
             segment.values[2].y * radius,
             -segment.values[1].x * radius,

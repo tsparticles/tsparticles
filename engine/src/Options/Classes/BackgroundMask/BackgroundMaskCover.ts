@@ -1,7 +1,7 @@
-import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { OptionsColor } from "../OptionsColor";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import { OptionsColor } from "../OptionsColor.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  */

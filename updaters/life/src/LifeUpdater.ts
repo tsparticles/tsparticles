@@ -8,9 +8,9 @@ import {
     getRangeValue,
     randomInRange,
     setRangeValue,
-} from "tsparticles-engine";
-import type { ILifeParticlesOptions, LifeParticle, LifeParticlesOptions } from "./Types";
-import { Life } from "./Options/Classes/Life";
+} from "@tsparticles/engine";
+import type { ILifeParticlesOptions, LifeParticle, LifeParticlesOptions } from "./Types.js";
+import { Life } from "./Options/Classes/Life.js";
 
 export class LifeUpdater implements IParticleUpdater {
     constructor(private readonly container: Container) {}

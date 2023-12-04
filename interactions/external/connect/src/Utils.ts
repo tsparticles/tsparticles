@@ -1,4 +1,4 @@
-import type { ConnectContainer, LinkParticle } from "./Types";
+import type { ConnectContainer, LinkParticle } from "./Types.js";
 import {
     type ICoordinates,
     type Particle,
@@ -6,7 +6,7 @@ import {
     drawLine,
     getStyleFromHsl,
     getStyleFromRgb,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 /**
  * Creates a gradient using two particles colors and opacity.

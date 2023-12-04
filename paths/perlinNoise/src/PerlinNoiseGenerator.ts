@@ -1,6 +1,32 @@
-import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "tsparticles-engine";
-import type { IPerlinOptions } from "./IPerlinOptions";
-import { PerlinNoise } from "./PerlinNoise";
+import {
+    type Container,
+    type IMovePathGenerator,
+    type Particle,
+    Vector,
+    deepExtend,
+    getRandom,
+} from "@tsparticles/engine";
+import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
+import type { IPerlinOptions } from "./IPerlinOptions.js";
+import { PerlinNoise } from "@tsparticles/perlin-noise";
+
+const defaultOptions: IPerlinOptions = {
+    draw: false,
+    size: 20,
+    increment: 0.004,
+    columns: 0,
+    rows: 0,
+    width: 0,
+    height: 0,
+    factor: {
+        angle: 0.02,
+        length: 0.01,
+    },
+    offset: {
+        x: 40000,
+        y: 40000,
+    },
+};
 
 export class PerlinNoiseGenerator implements IMovePathGenerator {
     container?: Container;
@@ -13,15 +39,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.noiseGen = new PerlinNoise();
         this.field = [];
         this.noiseZ = 0;
-        this.options = {
-            draw: false,
-            size: 20,
-            increment: 0.004,
-            columns: 0,
-            rows: 0,
-            width: 0,
-            height: 0,
-        };
+        this.options = deepExtend({}, defaultOptions) as IPerlinOptions;
     }
 
     generate(particle: Particle): Vector {
@@ -39,7 +57,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
     init(container: Container): void {
         this.container = container;
 
-        this._setup(container);
+        this._setup();
     }
 
     reset(): void {
@@ -61,7 +79,9 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
     }
 
     private readonly _calculateField: () => void = () => {
-        const { field, noiseGen, options } = this;
+        const { field, noiseGen, options } = this,
+            lengthFactor = options.factor.length,
+            angleFactor = options.factor.angle;
 
         for (let x = 0; x < options.columns; x++) {
             const column = field[x];
@@ -69,8 +89,12 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             for (let y = 0; y < options.rows; y++) {
                 const cell = column[y];
 
-                cell.length = noiseGen.noise(x / 100 + 40000, y / 100 + 40000, this.noiseZ);
-                cell.angle = noiseGen.noise(x / 50, y / 50, this.noiseZ) * Math.PI * 2;
+                cell.length = noiseGen.noise3d(
+                    x * lengthFactor + options.offset.x,
+                    y * lengthFactor + options.offset.y,
+                    this.noiseZ,
+                );
+                cell.angle = noiseGen.noise3d(x * angleFactor, y * angleFactor, this.noiseZ) * Math.PI * 2;
             }
         }
     };
@@ -112,29 +136,49 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         }
     };
 
-    private readonly _resetField: (container: Container) => void = (container) => {
+    private _resetField(): void {
+        const container = this.container;
+
+        if (!container) {
+            return;
+        }
+
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
-        options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
-        options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : 0.004;
+        options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
+        options.increment =
+            (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
         options.draw = !!sourceOptions.draw;
+
+        const offset = sourceOptions.offset as IOffsetValues | undefined;
+
+        options.offset.x = (offset?.x as number) ?? defaultOptions.offset.x;
+        options.offset.y = (offset?.y as number) ?? defaultOptions.offset.y;
+
+        const factor = sourceOptions.factor as IFactorValues | undefined;
+
+        options.factor.angle = (factor?.angle as number) ?? defaultOptions.factor.angle;
+        options.factor.length = (factor?.length as number) ?? defaultOptions.factor.length;
+
         options.width = container.canvas.size.width;
         options.height = container.canvas.size.height;
 
-        this.noiseGen.seed((sourceOptions.seed as number) ?? getRandom());
+        this.options.seed = sourceOptions.seed as number | undefined;
+
+        this.noiseGen.seed(this.options.seed ?? getRandom());
 
         options.columns = Math.floor(this.options.width / this.options.size) + 1;
         options.rows = Math.floor(this.options.height / this.options.size) + 1;
 
         this._initField();
-    };
+    }
 
-    private readonly _setup: (container: Container) => void = (container) => {
+    private _setup(): void {
         this.noiseZ = 0;
 
-        this._resetField(container);
+        this._resetField();
 
-        window.addEventListener("resize", () => this._resetField(container));
-    };
+        window.addEventListener("resize", () => this._resetField());
+    }
 }

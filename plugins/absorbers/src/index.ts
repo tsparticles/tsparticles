@@ -1,4 +1,4 @@
-import type { AbsorberOptions, IAbsorberOptions } from "./types";
+import type { AbsorberOptions, IAbsorberOptions } from "./types.js";
 import {
     type Engine,
     type IOptions,
@@ -7,11 +7,11 @@ import {
     executeOnSingleOrMultiple,
     isArray,
     isInArray,
-} from "tsparticles-engine";
-import { Absorber } from "./Options/Classes/Absorber";
-import { AbsorberClickMode } from "./Enums/AbsorberClickMode";
-import type { AbsorberContainer } from "./AbsorberContainer";
-import { Absorbers } from "./Absorbers";
+} from "@tsparticles/engine";
+import { Absorber } from "./Options/Classes/Absorber.js";
+import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
+import type { AbsorberContainer } from "./AbsorberContainer.js";
+import { Absorbers } from "./Absorbers.js";
 
 /**
  */
@@ -83,5 +83,5 @@ export async function loadAbsorbersPlugin(engine: Engine, refresh = true): Promi
     await engine.addPlugin(new AbsorbersPlugin(), refresh);
 }
 
-export * from "./AbsorberContainer";
-export * from "./Enums/AbsorberClickMode";
+export * from "./AbsorberContainer.js";
+export * from "./Enums/AbsorberClickMode.js";

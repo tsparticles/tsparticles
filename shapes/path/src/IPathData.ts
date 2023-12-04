@@ -1,5 +1,5 @@
-import type { ICoordinates, IShapeValues } from "tsparticles-engine";
-import type { SegmentType } from "./SegmentType";
+import type { ICoordinates, IShapeValues } from "@tsparticles/engine";
+import type { SegmentType } from "./SegmentType.js";
 
 export interface IPathData extends IShapeValues {
     half: boolean;

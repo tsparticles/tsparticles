@@ -1,13 +1,12 @@
-import cards from "./cards";
-import chars from "./chars";
-import clickPause from "./clickPause";
-import collisionsAbsorb from "./collisionsAbsorb";
-import collisionsBounce from "./collisionsBounce";
-import collisionsDestroy from "./collisionsDestroy";
-import colorAnimation from "./colorAnimation";
-import connect from "./connect";
-import customPreset from "./customPreset";
-import customShape from "./customShape";
+import cards from "./cards.js";
+import chars from "./chars.js";
+import clickPause from "./clickPause.js";
+import collisionsAbsorb from "./collisionsAbsorb.js";
+import collisionsBounce from "./collisionsBounce.js";
+import collisionsDestroy from "./collisionsDestroy.js";
+import colorAnimation from "./colorAnimation.js";
+import connect from "./connect.js";
+import curlNoise from "./curlNoise.js";
 
 export default {
     cards,
@@ -18,6 +17,5 @@ export default {
     collisionsDestroy,
     colorAnimation,
     connect,
-    customPreset,
-    customShape,
+    curlNoise,
 };

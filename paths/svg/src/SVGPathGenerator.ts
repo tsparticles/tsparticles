@@ -11,7 +11,7 @@ import {
     getPosition,
     getRandom,
     randomInRange,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 
 declare global {
     interface Window {

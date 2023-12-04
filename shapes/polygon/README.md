@@ -2,11 +2,11 @@
 
 # tsParticles Polygon Shape
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-shape-polygon/badge)](https://www.jsdelivr.com/package/npm/tsparticles-shape-polygon)
-[![npmjs](https://badge.fury.io/js/tsparticles-shape-polygon.svg)](https://www.npmjs.com/package/tsparticles-shape-polygon)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-shape-polygon)](https://www.npmjs.com/package/tsparticles-shape-polygon) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/shape-polygon/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/shape-polygon)
+[![npmjs](https://badge.fury.io/js/@tsparticles/shape-polygon.svg)](https://www.npmjs.com/package/@tsparticles/shape-polygon)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/shape-polygon)](https://www.npmjs.com/package/@tsparticles/shape-polygon) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) additional polygon shape.
+[tsParticles](https://github.com/tsparticles/tsparticles) additional polygon shape.
 
 ## How to use it
 
@@ -44,20 +44,20 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-shape-polygon
+$ npm install @tsparticles/shape-polygon
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-shape-polygon
+$ yarn add @tsparticles/shape-polygon
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadPolygonShape } = require("tsparticles-shape-polygon");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadPolygonShape } = require("@tsparticles/shape-polygon");
 
 (async () => {
   await loadPolygonShape(tsParticles);
@@ -67,8 +67,8 @@ const { loadPolygonShape } = require("tsparticles-shape-polygon");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadPolygonShape } from "tsparticles-shape-polygon";
+import { tsParticles } from "@tsparticles/engine";
+import { loadPolygonShape } from "@tsparticles/shape-polygon";
 
 (async () => {
   await loadPolygonShape(tsParticles);

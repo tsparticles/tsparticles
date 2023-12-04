@@ -3,10 +3,10 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
-} from "tsparticles-engine";
-import type { IRepulse } from "../Interfaces/IRepulse";
-import { RepulseBase } from "./RepulseBase";
-import { RepulseDiv } from "./RepulseDiv";
+} from "@tsparticles/engine";
+import type { IRepulse } from "../Interfaces/IRepulse.js";
+import { RepulseBase } from "./RepulseBase.js";
+import { RepulseDiv } from "./RepulseDiv.js";
 
 /**
  */

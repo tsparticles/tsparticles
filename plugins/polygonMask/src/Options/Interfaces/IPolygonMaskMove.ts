@@ -1,4 +1,4 @@
-import type { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType";
+import type { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 
 /**
  */

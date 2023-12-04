@@ -1,6 +1,6 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove";
-import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove.js";
+import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 
 /**
  */

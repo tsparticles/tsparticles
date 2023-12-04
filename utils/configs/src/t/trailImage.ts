@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Trails Image",
@@ -27,7 +27,7 @@ const options: ISourceOptions = {
     particles: {
         number: {
             value: 0,
-            limit: 300,
+            limit: { value: 300 },
         },
         color: {
             value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
@@ -57,7 +57,6 @@ const options: ISourceOptions = {
             outModes: {
                 default: "destroy",
             },
-            bounce: false,
             path: {
                 enable: true,
                 delay: {
@@ -74,11 +73,6 @@ const options: ISourceOptions = {
                 enable: true,
                 fill: { image: "https://particles.js.org/images/background3.jpg" },
                 length: 20,
-            },
-            attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200,
             },
         },
     },

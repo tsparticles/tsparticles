@@ -1,11 +1,11 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Style",
     particles: {
         number: {
             value: 200,
-            limit: 200,
+            limit: { value: 200 },
         },
         color: {
             value: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],

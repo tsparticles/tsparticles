@@ -1,8 +1,8 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "tsparticles-engine";
-import type { ITilt } from "../Interfaces/ITilt";
-import { TiltAnimation } from "./TiltAnimation";
-import { TiltDirection } from "../../TiltDirection";
-import type { TiltDirectionAlt } from "../../TiltDirection";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
+import type { ITilt } from "../Interfaces/ITilt.js";
+import { TiltAnimation } from "./TiltAnimation.js";
+import { TiltDirection } from "../../TiltDirection.js";
+import type { TiltDirectionAlt } from "../../TiltDirection.js";
 
 /**
  * [[include:Options/Particles/Rotate.md]]

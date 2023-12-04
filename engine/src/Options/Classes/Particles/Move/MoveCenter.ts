@@ -1,7 +1,7 @@
-import type { IMoveCenter } from "../../../Interfaces/Particles/Move/IMoveCenter";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { PixelMode } from "../../../../Enums/Modes/PixelMode";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IMoveCenter } from "../../../Interfaces/Particles/Move/IMoveCenter.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { PixelMode } from "../../../../Enums/Modes/PixelMode.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 export class MoveCenter implements IMoveCenter, IOptionLoader<IMoveCenter> {
     mode: PixelMode | keyof typeof PixelMode;

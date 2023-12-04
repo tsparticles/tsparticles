@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "React Night Sky",
@@ -57,7 +57,6 @@ const options: ISourceOptions = {
             density: {
                 enable: true,
             },
-            limit: -1,
             value: 60,
         },
         opacity: {

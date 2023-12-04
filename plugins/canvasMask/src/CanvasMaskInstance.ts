@@ -1,7 +1,7 @@
-import type { Engine, IContainerPlugin } from "tsparticles-engine";
-import { addParticlesFromCanvasPixels, getCanvasImageData, getImageData, getTextData } from "./utils";
-import type { CanvasMaskContainer } from "./types";
-import type { CanvasPixelData } from "./utils";
+import type { Engine, IContainerPlugin } from "@tsparticles/engine";
+import { addParticlesFromCanvasPixels, getCanvasImageData, getImageData, getTextData } from "./utils.js";
+import type { CanvasMaskContainer } from "./types.js";
+import type { CanvasPixelData } from "./utils.js";
 
 export class CanvasMaskInstance implements IContainerPlugin {
     private readonly _container;

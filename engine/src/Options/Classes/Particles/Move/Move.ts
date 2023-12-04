@@ -1,43 +1,42 @@
-import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode";
-import { isNumber, isObject } from "../../../../Utils/Utils";
-import type { IDistance } from "../../../../Core/Interfaces/IDistance";
-import type { IMove } from "../../../Interfaces/Particles/Move/IMove";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { MoveAngle } from "./MoveAngle";
-import { MoveAttract } from "./MoveAttract";
-import { MoveCenter } from "./MoveCenter";
-import { MoveDirection } from "../../../../Enums/Directions/MoveDirection";
-import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection";
-import { MoveGravity } from "./MoveGravity";
-import { MovePath } from "./Path/MovePath";
-import { MoveTrail } from "./MoveTrail";
-import { OutModes } from "./OutModes";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { Spin } from "./Spin";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import { isNumber, isObject } from "../../../../Utils/Utils.js";
+import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
+import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { MoveAngle } from "./MoveAngle.js";
+import { MoveAttract } from "./MoveAttract.js";
+import { MoveCenter } from "./MoveCenter.js";
+import { MoveDirection } from "../../../../Enums/Directions/MoveDirection.js";
+import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
+import { MoveGravity } from "./MoveGravity.js";
+import { MovePath } from "./Path/MovePath.js";
+import { MoveTrail } from "./MoveTrail.js";
+import { OutModes } from "./OutModes.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { Spin } from "./Spin.js";
+import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 /**
  * [[include:Options/Particles/Move.md]]
  */
 export class Move implements IMove, IOptionLoader<IMove> {
-    angle;
-    attract;
-    center: MoveCenter;
+    readonly angle;
+    readonly attract;
+    readonly center: MoveCenter;
     decay: RangeValue;
     direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
     distance: Partial<IDistance>;
     drift: RangeValue;
     enable;
-    gravity;
-    outModes: OutModes;
-    path;
+    readonly gravity;
+    readonly outModes: OutModes;
+    readonly path;
     random;
     size;
     speed: RangeValue;
-    spin;
+    readonly spin;
     straight;
-    trail;
+    readonly trail;
     vibrate;
     warp;
 
@@ -61,85 +60,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.trail = new MoveTrail();
         this.vibrate = false;
         this.warp = false;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @returns the collisions value
-     */
-    get bounce(): boolean {
-        return this.collisions;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param value -
-     */
-    set bounce(value: boolean) {
-        this.collisions = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @returns the collisions value
-     */
-    get collisions(): boolean {
-        return false;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new collisions object on particles options
-     * @param _ -
-     */
-    set collisions(_: boolean) {
-        // deprecated
-    }
-
-    /**
-     * @deprecated use the new {@link Move.path} property instead
-     * @returns the noise value
-     */
-    get noise(): MovePath {
-        return this.path;
-    }
-
-    /**
-     * @deprecated use the new {@link Move.path} property instead
-     */
-    set noise(value: MovePath) {
-        this.path = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new outMode
-     * @returns the outMode value
-     */
-    get outMode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outModes.default;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value -
-     */
-    set outMode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outModes.default = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new outMode
-     * @returns the outMode value
-     */
-    get out_mode(): OutMode | keyof typeof OutMode | OutModeAlt {
-        return this.outMode;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new outMode
-     * @param value -
-     */
-    set out_mode(value: OutMode | keyof typeof OutMode | OutModeAlt) {
-        this.outMode = value;
     }
 
     load(data?: RecursivePartial<IMove>): void {
@@ -179,7 +99,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
         this.gravity.load(data.gravity);
 
-        const outModes = data.outModes ?? data.outMode ?? data.out_mode;
+        const outModes = data.outModes;
 
         if (outModes !== undefined) {
             if (isObject(outModes)) {
@@ -191,7 +111,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
             }
         }
 
-        this.path.load(data.path ?? data.noise);
+        this.path.load(data.path);
 
         if (data.random !== undefined) {
             this.random = data.random;

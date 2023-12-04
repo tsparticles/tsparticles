@@ -1,7 +1,7 @@
-import { Circle } from "./Circle";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import type { IDimension } from "../Interfaces/IDimension";
-import { Range } from "./Range";
+import { Circle } from "./Circle.js";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { IDimension } from "../Interfaces/IDimension.js";
+import { Range } from "./Range.js";
 
 /**
  */

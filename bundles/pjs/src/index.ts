@@ -1,10 +1,10 @@
 /**
  * [[include:pjsMigration.md]]
  */
-import { type Container, type Engine } from "tsparticles-engine";
-import type { IParticlesJS } from "./VincentGarreau/IParticlesJS";
-import { Particles } from "./marcbruederlin/Particles";
-import { initParticlesJS } from "./VincentGarreau/particles";
+import { type Container, type Engine } from "@tsparticles/engine";
+import type { IParticlesJS } from "./VincentGarreau/IParticlesJS.js";
+import { Particles } from "./marcbruederlin/Particles.js";
+import { initParticlesJS } from "./VincentGarreau/particles.js";
 
 declare global {
     interface Window {

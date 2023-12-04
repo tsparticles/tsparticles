@@ -1,11 +1,11 @@
-import { Circle } from "./Circle";
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import type { IDimension } from "../Interfaces/IDimension";
-import type { Particle } from "../Particle";
-import type { Point } from "./Point";
-import type { Range } from "./Range";
-import { Rectangle } from "./Rectangle";
-import { getDistance } from "../../Utils/NumberUtils";
+import { Circle } from "./Circle.js";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { IDimension } from "../Interfaces/IDimension.js";
+import type { Particle } from "../Particle.js";
+import type { Point } from "./Point.js";
+import type { Range } from "./Range.js";
+import { Rectangle } from "./Rectangle.js";
+import { getDistance } from "../../Utils/NumberUtils.js";
 
 /**
  */
@@ -146,10 +146,10 @@ export class QuadTree {
             this._subs.push(
                 new QuadTree(
                     new Rectangle(
-                        x + (width / 2) * (i % 2),
-                        y + (height / 2) * (Math.round(i / 2) - (i % 2)),
-                        width / 2,
-                        height / 2,
+                        x + width * 0.5 * (i % 2),
+                        y + height * 0.5 * (Math.round(i * 0.5) - (i % 2)),
+                        width * 0.5,
+                        height * 0.5,
                     ),
                     capacity,
                 ),

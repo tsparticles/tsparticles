@@ -1,4 +1,4 @@
-import type { IValueWithRandom } from "../../IValueWithRandom";
+import type { IValueWithRandom } from "../../IValueWithRandom.js";
 
 export interface IParticlesBounce {
     horizontal: IValueWithRandom;

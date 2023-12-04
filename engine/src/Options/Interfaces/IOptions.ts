@@ -1,16 +1,16 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Container } from "../../Core/Container";
-import type { IBackground } from "./Background/IBackground";
-import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask";
-import type { IFullScreen } from "./FullScreen/IFullScreen";
-import type { IInteractivity } from "./Interactivity/IInteractivity";
-import type { IManualParticle } from "./IManualParticle";
-import type { IParticlesOptions } from "./Particles/IParticlesOptions";
-import type { IResponsive } from "./IResponsive";
-import type { ITheme } from "./Theme/ITheme";
-import type { RangeValue } from "../../Types/RangeValue";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { Container } from "../../Core/Container.js";
+import type { IBackground } from "./Background/IBackground.js";
+import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask.js";
+import type { IFullScreen } from "./FullScreen/IFullScreen.js";
+import type { IInteractivity } from "./Interactivity/IInteractivity.js";
+import type { IManualParticle } from "./IManualParticle.js";
+import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
+import type { IResponsive } from "./IResponsive.js";
+import type { ITheme } from "./Theme/ITheme.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 /**
  * The Options interface, defines all the options that can be used by `tsParticles`
@@ -38,10 +38,9 @@ export interface IOptions {
     backgroundMask: IBackgroundMask;
 
     /**
-     * Sets the animated background mode for particles canvas bringing it to the back
-     * @deprecated use the new fullScreen instead
+     * Clears the canvas on every frame if enabled
      */
-    backgroundMode: RecursivePartial<IFullScreen> | boolean;
+    clear: boolean;
 
     /**
      * The initial delay before starting the animation
@@ -62,12 +61,6 @@ export interface IOptions {
      * The FPS (Frame Per Second) limit applied to all particles animations.
      */
     fpsLimit: number;
-
-    /**
-     * The Frame Per Second limit applied to all particles animations.
-     * @deprecated use the new fpsLimit instead
-     */
-    fps_limit: number;
 
     /**
      * Sets the animated background mode for particles canvas bringing it to the back
@@ -110,12 +103,6 @@ export interface IOptions {
      * This sets custom options based on canvas size
      */
     responsive: IResponsive[];
-
-    /**
-     * Enables the retina detection, if disabled the ratio used by canvas will be always 1 and not the device setting.
-     * @deprecated use the new detectRetina instead
-     */
-    retina_detect: boolean;
 
     /**
      * Enables a smooth effect, by default it's disabled

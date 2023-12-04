@@ -1,30 +1,45 @@
-import { type Container, type IMovePathGenerator, type Particle, Vector, getRandom } from "tsparticles-engine";
-import type { ISimplexOptions } from "./ISimplexOptions";
-import type { Noise4D } from "./simplex";
-import { makeNoise4D } from "./simplex";
+import {
+    type Container,
+    type IMovePathGenerator,
+    type Particle,
+    Vector,
+    deepExtend,
+    getRandom,
+} from "@tsparticles/engine";
+import type { IOffsetValues } from "./IOffsetValues.js";
+import type { ISimplexOptions } from "./ISimplexOptions.js";
+import { SimplexNoise } from "@tsparticles/simplex-noise";
+
+const defaultOptions: ISimplexOptions = {
+    size: 20,
+    increment: 0.004,
+    columns: 0,
+    rows: 0,
+    layers: 0,
+    width: 0,
+    height: 0,
+    offset: {
+        x: 40000,
+        y: 40000,
+        z: 40000,
+    },
+};
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
     container?: Container;
-
     field: number[][][][];
-    noiseFunc: Noise4D;
     noiseW: number;
-
     readonly options: ISimplexOptions;
 
+    private readonly _simplex;
+
     constructor() {
+        const simplex = new SimplexNoise();
+
+        this._simplex = simplex.noise4d;
         this.field = [];
-        this.noiseFunc = makeNoise4D(getRandom());
         this.noiseW = 0;
-        this.options = {
-            size: 20,
-            increment: 0.004,
-            columns: 0,
-            rows: 0,
-            layers: 0,
-            width: 0,
-            height: 0,
-        };
+        this.options = deepExtend({}, defaultOptions) as ISimplexOptions;
     }
 
     generate(particle: Particle): Vector {
@@ -45,8 +60,10 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
             return v;
         }
 
-        v.length = this.field[point.x][point.y][point.z][1];
-        v.angle = this.field[point.x][point.y][point.z][0];
+        const cell = this.field[point.x][point.y][point.z];
+
+        v.length = cell[1];
+        v.angle = cell[0];
 
         return v;
     }
@@ -54,7 +71,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
     init(container: Container): void {
         this.container = container;
 
-        this._setup(this.container);
+        this._setup();
     }
 
     reset(): void {
@@ -71,23 +88,25 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         this.noiseW += this.options.increment;
     }
 
-    private readonly _calculateField: () => void = () => {
-        for (let x = 0; x < this.options.columns; x++) {
-            for (let y = 0; y < this.options.rows; y++) {
-                for (let z = 0; z < this.options.layers; z++) {
-                    this.field[x][y][z][0] = this.noiseFunc(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
-                    this.field[x][y][z][1] = this.noiseFunc(
-                        x / 100 + 40000,
-                        y / 100 + 40000,
-                        z / 100 + 40000,
+    private _calculateField(): void {
+        const options = this.options;
+
+        for (let x = 0; x < options.columns; x++) {
+            for (let y = 0; y < options.rows; y++) {
+                for (let z = 0; z < options.layers; z++) {
+                    this.field[x][y][z][0] = this._simplex.noise(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
+                    this.field[x][y][z][1] = this._simplex.noise(
+                        x / 100 + options.offset.x,
+                        y / 100 + options.offset.y,
+                        z / 100 + options.offset.z,
                         this.noiseW,
                     );
                 }
             }
         }
-    };
+    }
 
-    private readonly _initField: () => void = () => {
+    private _initField(): void {
         this.field = new Array(this.options.columns);
 
         for (let x = 0; x < this.options.columns; x++) {
@@ -101,30 +120,45 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
                 }
             }
         }
-    };
+    }
 
-    private readonly _resetField: (container: Container) => void = (container) => {
+    private _resetField(): void {
+        const container = this.container;
+
+        if (!container) {
+            return;
+        }
+
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
-        this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : 20;
-        this.options.increment = (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : 0.004;
+        this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
+        this.options.increment =
+            (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
         this.options.width = container.canvas.size.width;
         this.options.height = container.canvas.size.height;
 
-        this.noiseFunc = makeNoise4D((sourceOptions.seed as number) ?? getRandom());
+        const offset = sourceOptions.offset as IOffsetValues | undefined;
+
+        this.options.offset.x = offset?.x ?? defaultOptions.offset.x;
+        this.options.offset.y = offset?.y ?? defaultOptions.offset.y;
+        this.options.offset.z = offset?.z ?? defaultOptions.offset.z;
+
+        this.options.seed = (sourceOptions.seed as number | undefined) ?? defaultOptions.seed;
+
+        this._simplex.seed(this.options.seed ?? getRandom());
 
         this.options.columns = Math.floor(this.options.width / this.options.size) + 1;
         this.options.rows = Math.floor(this.options.height / this.options.size) + 1;
         this.options.layers = Math.floor(container.zLayers / this.options.size) + 1;
 
         this._initField();
-    };
+    }
 
-    private readonly _setup: (container: Container) => void = (container) => {
+    private _setup(): void {
         this.noiseW = 0;
 
-        this._resetField(container);
+        this._resetField();
 
-        addEventListener("resize", () => this._resetField(container));
-    };
+        addEventListener("resize", () => this._resetField());
+    }
 }

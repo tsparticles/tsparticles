@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "React Simple",
@@ -47,7 +47,6 @@ const options: ISourceOptions = {
             enable: true,
         },
         number: {
-            limit: -1,
             value: 50,
         },
         opacity: {

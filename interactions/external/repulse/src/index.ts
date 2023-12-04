@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { Repulser } from "./Repulser";
+import type { Engine } from "@tsparticles/engine";
+import { Repulser } from "./Repulser.js";
 
 /**
  * @param engine -
@@ -9,9 +9,9 @@ export async function loadExternalRepulseInteraction(engine: Engine, refresh = t
     await engine.addInteractor("externalRepulse", (container) => new Repulser(engine, container), refresh);
 }
 
-export * from "./Options/Classes/RepulseBase";
-export * from "./Options/Classes/RepulseDiv";
-export * from "./Options/Classes/Repulse";
-export * from "./Options/Interfaces/IRepulseBase";
-export * from "./Options/Interfaces/IRepulseDiv";
-export * from "./Options/Interfaces/IRepulse";
+export * from "./Options/Classes/RepulseBase.js";
+export * from "./Options/Classes/RepulseDiv.js";
+export * from "./Options/Classes/Repulse.js";
+export * from "./Options/Interfaces/IRepulseBase.js";
+export * from "./Options/Interfaces/IRepulseDiv.js";
+export * from "./Options/Interfaces/IRepulse.js";

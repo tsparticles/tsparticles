@@ -1,4 +1,4 @@
-import { type Particle, circleBounce, circleBounceDataFromParticle, getRangeValue } from "tsparticles-engine";
+import { type Particle, circleBounce, circleBounceDataFromParticle, getRangeValue } from "@tsparticles/engine";
 
 type BounceParticle = Particle & {
     collisionMaxSpeed?: number;

@@ -1,7 +1,7 @@
 import type {
     PolygonMaskInlineArrangement,
     PolygonMaskInlineArrangementAlt,
-} from "../../Enums/PolygonMaskInlineArrangement";
+} from "../../Enums/PolygonMaskInlineArrangement.js";
 
 /**
  */

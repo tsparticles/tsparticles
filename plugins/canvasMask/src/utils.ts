@@ -8,9 +8,9 @@ import {
     errorPrefix,
     getRandom,
     isNumber,
-} from "tsparticles-engine";
-import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride";
-import type { TextMask } from "./Options/Classes/TextMask";
+} from "@tsparticles/engine";
+import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
+import type { TextMask } from "./Options/Classes/TextMask.js";
 
 export type CanvasPixelData = {
     height: number;
@@ -24,20 +24,6 @@ type TextLineData = {
     text: string;
     width: number;
 };
-
-/**
- * @param array -
- * @returns the shuffled array
- */
-export function shuffle<T>(array: T[]): T[] {
-    for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
-        const randomIndex = Math.floor(getRandom() * currentIndex);
-
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-
-    return array;
-}
 
 /**
  * @param container -
@@ -241,4 +227,18 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     return getCanvasImageData(context, canvas, offset);
 }
 
-export const range = (n: number): Array<number> => [...Array(n).keys()];
+/**
+ * @param array -
+ * @returns the shuffled array
+ */
+function shuffle<T>(array: T[]): T[] {
+    for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
+        const randomIndex = Math.floor(getRandom() * currentIndex);
+
+        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+
+    return array;
+}
+
+const range = (n: number): Array<number> => [...Array(n).keys()];

@@ -1,6 +1,13 @@
-import { type Container, type ICoordinates, type IShapeDrawer, type Particle, getRangeValue } from "tsparticles-engine";
-import type { IRoundedPolygonShape } from "./IRoundedPolygonShape";
-import type { RoundedParticle } from "./RoundedParticle";
+import {
+    type Container,
+    type ICoordinates,
+    type IShapeDrawData,
+    type IShapeDrawer,
+    type Particle,
+    getRangeValue,
+} from "@tsparticles/engine";
+import type { IRoundedPolygonShape } from "./IRoundedPolygonShape.js";
+import type { RoundedParticle } from "./RoundedParticle.js";
 
 /**
  * @param sides -
@@ -42,19 +49,21 @@ function roundedPath(context: CanvasRenderingContext2D, path: ICoordinates[], ra
 
 /**
  */
-export class RoundedPolygonDrawer implements IShapeDrawer {
-    draw(context: CanvasRenderingContext2D, particle: RoundedParticle, radius: number): void {
+export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
+    draw(data: IShapeDrawData<RoundedParticle>): void {
+        const { context, particle, radius } = data;
+
         roundedPath(context, polygon(particle.sides, radius), particle.borderRadius ?? 5);
     }
 
     getSidesCount(particle: Particle): number {
-        const roundedPolygon = particle.shapeData as IRoundedPolygonShape;
+        const roundedPolygon = particle.shapeData as IRoundedPolygonShape | undefined;
 
         return Math.round(getRangeValue(roundedPolygon?.sides ?? 5));
     }
 
     particleInit(container: Container, particle: RoundedParticle): void {
-        const shapeData = particle.shapeData as IRoundedPolygonShape;
+        const shapeData = particle.shapeData as IRoundedPolygonShape | undefined;
 
         particle.borderRadius = Math.round(getRangeValue(shapeData?.radius ?? 5)) * container.retina.pixelRatio;
     }

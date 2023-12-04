@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Data URI Images",
@@ -7,11 +7,6 @@ const options: ISourceOptions = {
             onClick: {
                 enable: true,
                 mode: "push",
-            },
-            onDiv: {
-                elementId: "repulse-div",
-                enable: false,
-                mode: "repulse",
             },
             onHover: {
                 enable: true,
@@ -68,7 +63,6 @@ const options: ISourceOptions = {
             density: {
                 enable: true,
             },
-            limit: 0,
             value: 80,
         },
         opacity: {

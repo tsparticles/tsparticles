@@ -4,8 +4,8 @@ import {
     type IDelta,
     type IParticleValueAnimation,
     randomInRange,
-} from "tsparticles-engine";
-import type { StrokeParticle } from "./Types";
+} from "@tsparticles/engine";
+import type { StrokeParticle } from "./Types.js";
 
 /**
  * @param delta -

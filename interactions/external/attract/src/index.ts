@@ -1,5 +1,5 @@
-import { Attractor } from "./Attractor";
-import type { Engine } from "tsparticles-engine";
+import { Attractor } from "./Attractor.js";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -
@@ -9,5 +9,5 @@ export async function loadExternalAttractInteraction(engine: Engine, refresh = t
     await engine.addInteractor("externalAttract", (container) => new Attractor(engine, container), refresh);
 }
 
-export * from "./Options/Classes/Attract";
-export * from "./Options/Interfaces/IAttract";
+export * from "./Options/Classes/Attract.js";
+export * from "./Options/Interfaces/IAttract.js";

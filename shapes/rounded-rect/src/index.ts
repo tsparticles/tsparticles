@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { RoundedRectDrawer } from "./RoundedRectDrawer";
+import type { Engine } from "@tsparticles/engine";
+import { RoundedRectDrawer } from "./RoundedRectDrawer.js";
 
 /**
  * @param engine -

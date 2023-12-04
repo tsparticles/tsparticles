@@ -1,6 +1,5 @@
 import {
     ExternalInteractorBase,
-    HoverMode,
     type IDelta,
     type IModes,
     type Modes,
@@ -8,9 +7,11 @@ import {
     type RecursivePartial,
     getDistance,
     isInArray,
-} from "tsparticles-engine";
-import type { ISlowMode, SlowContainer, SlowMode } from "./Types";
-import { Slow } from "./Options/Classes/Slow";
+} from "@tsparticles/engine";
+import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
+import { Slow } from "./Options/Classes/Slow.js";
+
+const slowMode = "slow";
 
 /**
  * Particle slow manager
@@ -48,7 +49,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(HoverMode.slow, events.onHover.mode);
+        return events.onHover.enable && !!mouse.position && isInArray(slowMode, events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & SlowMode, ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]): void {

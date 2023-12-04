@@ -1,5 +1,5 @@
-import warp from "./warp";
-import wobble from "./wobble";
+import warp from "./warp.js";
+import wobble from "./wobble.js";
 
 export default {
     warp,

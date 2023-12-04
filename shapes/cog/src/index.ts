@@ -1,5 +1,5 @@
-import { CogDrawer } from "./CogDrawer";
-import type { Engine } from "tsparticles-engine";
+import { CogDrawer } from "./CogDrawer.js";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

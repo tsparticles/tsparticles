@@ -1,14 +1,9 @@
-import type { ISizeAnimation } from "./ISizeAnimation";
-import type { IValueWithRandom } from "../../IValueWithRandom";
+import type { ISizeAnimation } from "./ISizeAnimation.js";
+import type { IValueWithRandom } from "../../IValueWithRandom.js";
 
 /**
  * [[include:Options/Particles/Size.md]]
  */
 export interface ISize extends IValueWithRandom {
-    /**
-     * @deprecated use the new animation instead
-     */
-    anim: ISizeAnimation;
-
     animation: ISizeAnimation;
 }

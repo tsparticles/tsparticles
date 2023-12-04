@@ -1,11 +1,11 @@
-import type { Container } from "../../../Core/Container";
-import type { Engine } from "../../../Core/Engine";
-import { Events } from "./Events/Events";
-import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import { InteractivityDetect } from "../../../Enums/InteractivityDetect";
-import { Modes } from "./Modes/Modes";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { Container } from "../../../Core/Container.js";
+import type { Engine } from "../../../Core/Engine.js";
+import { Events } from "./Events/Events.js";
+import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import { InteractivityDetect } from "../../../Enums/InteractivityDetect.js";
+import { Modes } from "./Modes/Modes.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * [[include:Options/Interactivity.md]]
@@ -15,8 +15,8 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
 
     detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
 
-    events;
-    modes;
+    readonly events;
+    readonly modes;
 
     constructor(engine: Engine, container?: Container) {
         this.detectsOn = InteractivityDetect.window;
@@ -24,28 +24,12 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
         this.modes = new Modes(engine, container);
     }
 
-    /**
-     * @deprecated this property is obsolete, please use the new detectsOn
-     * @returns the detectsOn value
-     */
-    get detect_on(): InteractivityDetect | keyof typeof InteractivityDetect {
-        return this.detectsOn;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new detectsOn
-     * @param value -
-     */
-    set detect_on(value: InteractivityDetect | keyof typeof InteractivityDetect) {
-        this.detectsOn = value;
-    }
-
     load(data?: RecursivePartial<IInteractivity>): void {
         if (!data) {
             return;
         }
 
-        const detectsOn = data.detectsOn ?? data.detect_on;
+        const detectsOn = data.detectsOn;
 
         if (detectsOn !== undefined) {
             this.detectsOn = detectsOn;

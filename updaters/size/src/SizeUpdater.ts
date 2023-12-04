@@ -1,5 +1,5 @@
-import { type IDelta, type IParticleUpdater, type Particle, getRandom } from "tsparticles-engine";
-import { updateSize } from "./Utils";
+import { type IDelta, type IParticleUpdater, type Particle, getRandom } from "@tsparticles/engine";
+import { updateSize } from "./Utils.js";
 
 export class SizeUpdater implements IParticleUpdater {
     init(particle: Particle): void {

@@ -1,5 +1,5 @@
-import type { IDelta } from "tsparticles-engine";
-import type { WobbleParticle } from "./Types";
+import type { IDelta } from "@tsparticles/engine";
+import type { WobbleParticle } from "./Types.js";
 
 /**
  * Updates particle wobbling values

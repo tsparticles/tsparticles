@@ -1,5 +1,5 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { IImageMask } from "../Interfaces/IImageMask";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import type { IImageMask } from "../Interfaces/IImageMask.js";
 
 export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
     src: string;

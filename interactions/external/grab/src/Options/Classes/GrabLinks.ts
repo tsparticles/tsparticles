@@ -1,5 +1,5 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparticles-engine";
-import type { IGrabLinks } from "../Interfaces/IGrabLinks";
+import { type IOptionLoader, OptionsColor, type RecursivePartial } from "@tsparticles/engine";
+import type { IGrabLinks } from "../Interfaces/IGrabLinks.js";
 
 /**
  */

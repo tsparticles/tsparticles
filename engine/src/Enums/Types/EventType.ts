@@ -1,4 +1,5 @@
 export const enum EventType {
+    configAdded = "configAdded",
     containerInit = "containerInit",
     particlesSetup = "particlesSetup",
     containerStarted = "containerStarted",

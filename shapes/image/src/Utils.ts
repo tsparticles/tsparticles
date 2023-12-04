@@ -1,7 +1,7 @@
-import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "tsparticles-engine";
-import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils";
-import type { GIF } from "./GifUtils/Types/GIF";
-import type { IImageShape } from "./IImageShape";
+import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
+import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils.js";
+import type { GIF } from "./GifUtils/Types/GIF.js";
+import type { IImageShape } from "./IImageShape.js";
 
 /**
  */
@@ -193,7 +193,7 @@ export function replaceImageColor(
             },
             loaded: false,
             ratio: imageData.width / imageData.height,
-            replaceColor: imageData.replaceColor ?? imageData.replace_color,
+            replaceColor: imageData.replaceColor,
             source: imageData.src,
         };
 

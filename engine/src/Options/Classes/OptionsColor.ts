@@ -1,9 +1,9 @@
-import type { IRangeHsl, IRangeHsv, IRangeRgb, IRangeValueColor } from "../../Core/Interfaces/Colors";
-import { isArray, isString } from "../../Utils/Utils";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IOptionsColor } from "../Interfaces/IOptionsColor";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
+import type { IRangeHsl, IRangeHsv, IRangeRgb, IRangeValueColor } from "../../Core/Interfaces/Colors.js";
+import { isArray, isString } from "../../Utils/Utils.js";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { IOptionsColor } from "../Interfaces/IOptionsColor.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Color.md]]

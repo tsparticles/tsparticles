@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Connect",
@@ -8,19 +8,9 @@ const options: ISourceOptions = {
                 enable: true,
                 mode: "push",
             },
-            onDiv: {
-                elementId: "repulse-div",
-                enable: false,
-                mode: "repulse",
-            },
             onHover: {
                 enable: true,
                 mode: "connect",
-                parallax: {
-                    enable: false,
-                    force: 60,
-                    smooth: 10,
-                },
             },
         },
         modes: {
@@ -76,7 +66,9 @@ const options: ISourceOptions = {
             density: {
                 enable: true,
             },
-            limit: 500,
+            limit: {
+                value: 500,
+            },
             value: 300,
         },
         opacity: {

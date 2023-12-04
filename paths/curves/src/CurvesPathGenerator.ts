@@ -1,7 +1,7 @@
-import { type Container, type IMovePathGenerator, Vector, getRandom, isFunction, isString } from "tsparticles-engine";
-import { CurvesPathGen } from "./Curves";
-import type { CurvesPathParticle } from "./CurvesPathParticle";
-import type { ICurvesOptions } from "./ICurvesOptions";
+import { type Container, type IMovePathGenerator, Vector, getRandom, isFunction, isString } from "@tsparticles/engine";
+import { CurvesPathGen } from "./Curves.js";
+import type { CurvesPathParticle } from "./CurvesPathParticle.js";
+import type { ICurvesOptions } from "./ICurvesOptions.js";
 
 declare global {
     interface Window {

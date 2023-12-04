@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { PerlinNoiseGenerator } from "./PerlinNoiseGenerator";
+import type { Engine } from "@tsparticles/engine";
+import { PerlinNoiseGenerator } from "./PerlinNoiseGenerator.js";
 
 export const perlinNoisePathName = "perlinNoise";
 

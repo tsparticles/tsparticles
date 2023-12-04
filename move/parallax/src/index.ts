@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { ParallaxMover } from "./ParallaxMover";
+import type { Engine } from "@tsparticles/engine";
+import { ParallaxMover } from "./ParallaxMover.js";
 
 /**
  * @param engine -

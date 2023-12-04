@@ -1,5 +1,5 @@
 import { describe, it } from "mocha";
-import { calcExactPositionOrRandomFromSize, errorPrefix, ICoordinates, tsParticles } from "tsparticles-engine";
+import { calcExactPositionOrRandomFromSize, errorPrefix, ICoordinates, tsParticles } from "@tsparticles/engine";
 import { TestWindow } from "./Fixture/Window";
 import { expect } from "chai";
 import { createCanvas } from "canvas";
@@ -12,7 +12,7 @@ describe("Particle", async () => {
         options: {
             autoPlay: false,
         },
-        element: createCanvas(1920, 1080),
+        element: createCanvas(1920, 1080) as any,
     });
 
     if (!container) {
@@ -93,8 +93,8 @@ describe("Particle", async () => {
                 const particle = container.particles.addParticle();
 
                 expect(particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
-                expect(particle?.close).to.eql(squareShapeOptions.particles.shape.options.square.close);
-                expect(particle?.fill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
+                expect(particle?.shapeClose).to.eql(squareShapeOptions.particles.shape.options.square.close);
+                expect(particle?.shapeFill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
             });
 
             it("should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles", async () => {
@@ -124,8 +124,8 @@ describe("Particle", async () => {
                         throw new Error(`${errorPrefix} Unexpected shape type "${particle?.shape}"`);
                 }
 
-                expect(particle?.close).to.eql(expectedShapeData.close);
-                expect(particle?.fill).to.eql(expectedShapeData.fill);
+                expect(particle?.shapeClose).to.eql(expectedShapeData.close);
+                expect(particle?.shapeFill).to.eql(expectedShapeData.fill);
             });
 
             after(async () => {

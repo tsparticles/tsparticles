@@ -1,4 +1,51 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ICoordinates, ISourceOptions } from "@tsparticles/engine";
+
+const rate = {
+    delay: 0.1,
+    quantity: 3,
+};
+
+const generateEmitter = (
+    shape: string,
+    options: Record<string, unknown>,
+    fill: boolean,
+    position: ICoordinates,
+): unknown => {
+    return {
+        shape: {
+            type: shape,
+            options,
+        },
+        position: position,
+        size: {
+            width: 200,
+            height: 200,
+            mode: "precise",
+        },
+        life: {
+            duration: 10,
+            delay: 0.5,
+            count: 1,
+        },
+        rate,
+        fill,
+    };
+};
+
+const path = [
+    { x: 0, y: 0 },
+    { x: 0, y: 50 },
+    { x: 25, y: 50 },
+    { x: 0, y: 100 },
+    { x: 50, y: 100 },
+    { x: 50, y: 75 },
+    { x: 100, y: 100 },
+    { x: 100, y: 50 },
+    { x: 75, y: 50 },
+    { x: 100, y: 0 },
+    { x: 50, y: 0 },
+    { x: 50, y: 25 },
+];
 
 const options: ISourceOptions = {
     name: "Emitter Shapes",
@@ -23,76 +70,43 @@ const options: ISourceOptions = {
         color: "#fff",
     },
     emitters: [
-        {
-            shape: "square",
-            position: {
-                x: 33,
-                y: 33,
+        generateEmitter("square", {}, true, { x: 25, y: 25 }),
+        generateEmitter("circle", {}, true, { x: 50, y: 25 }),
+        generateEmitter(
+            "polygon",
+            {
+                angle: -18,
+                sides: 5,
             },
-            size: {
-                width: 200,
-                height: 200,
-                mode: "precise",
+            true,
+            { x: 75, y: 25 },
+        ),
+        generateEmitter("square", {}, false, { x: 25, y: 50 }),
+        generateEmitter("circle", {}, false, { x: 50, y: 50 }),
+        generateEmitter(
+            "polygon",
+            {
+                sides: 6,
             },
-            life: {
-                duration: 10,
-                delay: 0.5,
-                count: 1,
+            false,
+            { x: 75, y: 50 },
+        ),
+        generateEmitter(
+            "path",
+            {
+                points: path,
             },
-        },
-        {
-            shape: "circle",
-            position: {
-                x: 67,
-                y: 33,
+            true,
+            { x: 25, y: 75 },
+        ),
+        generateEmitter(
+            "path",
+            {
+                points: path,
             },
-            size: {
-                width: 200,
-                height: 200,
-                mode: "precise",
-            },
-            life: {
-                duration: 10,
-                delay: 0.5,
-                count: 1,
-            },
-        },
-        {
-            fill: false,
-            shape: "square",
-            position: {
-                x: 33,
-                y: 67,
-            },
-            size: {
-                width: 200,
-                height: 200,
-                mode: "precise",
-            },
-            life: {
-                duration: 10,
-                delay: 0.5,
-                count: 1,
-            },
-        },
-        {
-            fill: false,
-            shape: "circle",
-            position: {
-                x: 67,
-                y: 67,
-            },
-            size: {
-                width: 200,
-                height: 200,
-                mode: "precise",
-            },
-            life: {
-                duration: 10,
-                delay: 0.5,
-                count: 1,
-            },
-        },
+            false,
+            { x: 50, y: 75 },
+        ),
     ],
 };
 

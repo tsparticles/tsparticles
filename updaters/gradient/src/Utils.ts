@@ -3,8 +3,8 @@ import {
     type IDelta,
     type IParticleNumericValueAnimation,
     type IParticleValueAnimation,
-} from "tsparticles-engine";
-import type { GradientParticle } from "./Types";
+} from "@tsparticles/engine";
+import type { GradientParticle } from "./Types.js";
 
 /**
  * @param delta -

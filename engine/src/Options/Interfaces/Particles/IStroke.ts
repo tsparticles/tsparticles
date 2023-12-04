@@ -1,7 +1,7 @@
-import type { IAnimatableColor } from "../IAnimatableColor";
-import type { IColor } from "../../../Core/Interfaces/Colors";
-import type { RangeValue } from "../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IAnimatableColor } from "../IAnimatableColor.js";
+import type { IColor } from "../../../Core/Interfaces/Colors.js";
+import type { RangeValue } from "../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * Particle stroke, outlines the particle with a customizable line

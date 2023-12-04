@@ -1,16 +1,11 @@
-import type { IParticlesDensity } from "./IParticlesDensity";
+import type { IParticlesDensity } from "./IParticlesDensity.js";
+import type { IParticlesNumberLimit } from "./IParticlesNumberLimit.js";
 
 /**
  * [[include:Options/Particles/Number.md]]
  */
 export interface IParticlesNumber {
     density: IParticlesDensity;
-    limit: number;
-
-    /**
-     * @deprecated the property max is deprecated, use the new limit instead
-     */
-    max: number;
-
+    limit: IParticlesNumberLimit;
     value: number;
 }

@@ -1,4 +1,4 @@
-import type { Container, Engine, ExportResult, IContainerPlugin } from "tsparticles-engine";
+import type { Container, Engine, ExportResult, IContainerPlugin } from "@tsparticles/engine";
 
 export class ExportJSONInstance implements IContainerPlugin {
     private readonly _container: Container;

@@ -1,35 +1,35 @@
-import seaAnemone from "./seaAnemone";
-import shadow from "./shadow";
-import shapeArrow from "./shapeArrow";
-import shapeBubble from "./shapeBubble";
-import shapeCog from "./shapeCog";
-import shapeHeart from "./shapeHeart";
-import shapeMultilineText from "./shapeMultilineText";
-import shapeOptions from "./shapeOptions";
-import shapePath from "./shapePath";
-import shapeRoundedPolygon from "./shapeRoundedPolygon";
-import shapeRoundedRect from "./shapeRoundedRect";
-import shapeSpiral from "./shapeSpiral";
-import slow from "./slow";
-import snow from "./snow";
-import soundsAudio from "./soundsAudio";
-import soundsLoop from "./soundsLoop";
-import soundsMelodies from "./soundsMelodies";
-import soundsMelodyLoop from "./soundsMelodyLoop";
-import soundsNotes from "./soundsNotes";
-import speedDecay from "./speedDecay";
-import spin from "./spin";
-import star from "./star";
-import strokeAnimation from "./strokeAnimation";
-import style from "./style";
-import svgReplace from "./svgReplace";
+import seaAnemone from "./seaAnemone.js";
+import shadow from "./shadow.js";
+import shapeArrow from "./shapeArrow.js";
+import shapeCog from "./shapeCog.js";
+import shapeEmoji from "./shapeEmoji.js";
+import shapeHeart from "./shapeHeart.js";
+import shapeMultilineText from "./shapeMultilineText.js";
+import shapeOptions from "./shapeOptions.js";
+import shapePath from "./shapePath.js";
+import shapeRoundedPolygon from "./shapeRoundedPolygon.js";
+import shapeRoundedRect from "./shapeRoundedRect.js";
+import shapeSpiral from "./shapeSpiral.js";
+import slow from "./slow.js";
+import snow from "./snow.js";
+import soundsAudio from "./soundsAudio.js";
+import soundsLoop from "./soundsLoop.js";
+import soundsMelodies from "./soundsMelodies.js";
+import soundsMelodyLoop from "./soundsMelodyLoop.js";
+import soundsNotes from "./soundsNotes.js";
+import speedDecay from "./speedDecay.js";
+import spin from "./spin.js";
+import star from "./star.js";
+import strokeAnimation from "./strokeAnimation.js";
+import style from "./style.js";
+import svgReplace from "./svgReplace.js";
 
 export default {
     seaAnemone,
     shadow,
     shapeArrow,
-    shapeBubble,
     shapeCog,
+    shapeEmoji,
     shapeHeart,
     shapeMultilineText,
     shapeOptions,

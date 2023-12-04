@@ -1,6 +1,6 @@
-import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates";
-import { errorPrefix } from "./Constants";
-import { isNumber } from "../../Utils/Utils";
+import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
+import { errorPrefix } from "./Constants.js";
+import { isNumber } from "../../Utils/Utils.js";
 
 /**
  */

@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Collisions Bounce",
@@ -8,6 +8,9 @@ const options: ISourceOptions = {
             density: {
                 enable: true,
             },
+        },
+        collisions: {
+            enable: true,
         },
         color: {
             value: "#ffffff",
@@ -32,7 +35,6 @@ const options: ISourceOptions = {
             width: 1,
         },
         move: {
-            bounce: true,
             enable: true,
             speed: 10,
         },

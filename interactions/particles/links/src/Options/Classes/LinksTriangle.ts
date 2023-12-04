@@ -1,5 +1,5 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial } from "tsparticles-engine";
-import type { ILinksTriangle } from "../Interfaces/ILinksTriangle";
+import { type IOptionLoader, OptionsColor, type RecursivePartial } from "@tsparticles/engine";
+import type { ILinksTriangle } from "../Interfaces/ILinksTriangle.js";
 
 /**
  */

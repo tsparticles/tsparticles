@@ -1,4 +1,4 @@
-import type { Particle } from "tsparticles-engine";
+import type { Particle } from "@tsparticles/engine";
 
 export type ArrowParticle = Particle & {
     bodyHeightFactor?: number;

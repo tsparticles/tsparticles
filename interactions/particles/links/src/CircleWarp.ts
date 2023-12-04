@@ -1,4 +1,4 @@
-import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } from "tsparticles-engine";
+import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } from "@tsparticles/engine";
 
 /**
  */

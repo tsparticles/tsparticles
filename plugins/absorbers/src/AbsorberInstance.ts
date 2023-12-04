@@ -15,11 +15,11 @@ import {
     getStyleFromRgb,
     isPointInside,
     rangeColorToRgb,
-} from "tsparticles-engine";
-import { Absorber } from "./Options/Classes/Absorber";
-import type { Absorbers } from "./Absorbers";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber";
-import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit";
+} from "@tsparticles/engine";
+import { Absorber } from "./Options/Classes/Absorber.js";
+import type { Absorbers } from "./Absorbers.js";
+import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
+import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit.js";
 
 /**
  * Particle extension type for Absorber orbit options

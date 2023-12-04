@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { TiltUpdater } from "./TiltUpdater";
+import type { Engine } from "@tsparticles/engine";
+import { TiltUpdater } from "./TiltUpdater.js";
 
 /**
  * @param engine - The engine to load the updater for

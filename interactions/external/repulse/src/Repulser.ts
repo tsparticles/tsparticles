@@ -1,12 +1,9 @@
 import {
     Circle,
-    ClickMode,
     type DivEvent,
-    DivMode,
     DivType,
     type Engine,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IModes,
     type Modes,
@@ -23,10 +20,12 @@ import {
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types";
-import { Repulse } from "./Options/Classes/Repulse";
-import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
+} from "@tsparticles/engine";
+import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types.js";
+import { Repulse } from "./Options/Classes/Repulse.js";
+import type { RepulseDiv } from "./Options/Classes/RepulseDiv.js";
+
+const repulseMode = "repulse";
 
 /**
  * Particle repulse manager
@@ -49,7 +48,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             const options = this.container.actualOptions,
                 repulseOpts = options.interactivity.modes.repulse;
 
-            if (!repulseOpts || mode !== ClickMode.repulse) {
+            if (!repulseOpts || mode !== repulseMode) {
                 return;
             }
 
@@ -111,12 +110,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             clickMode = click.mode,
             divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(repulseMode, hoverMode)) {
             this._hoverRepulse();
-        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
+        } else if (clickEnabled && isInArray(repulseMode, clickMode)) {
             this._clickRepulse();
         } else {
-            divModeExecute(DivMode.repulse, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
+            divModeExecute(repulseMode, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
         }
     }
 
@@ -128,7 +127,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             divs = events.onDiv,
             hover = events.onHover,
             click = events.onClick,
-            divRepulse = isDivModeEnabled(DivMode.repulse, divs);
+            divRepulse = isDivModeEnabled(repulseMode, divs);
 
         if (!(divRepulse || (hover.enable && mouse.position) || (click.enable && mouse.clickPosition))) {
             return false;
@@ -137,7 +136,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         const hoverMode = hover.mode,
             clickMode = click.mode;
 
-        return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
+        return isInArray(repulseMode, hoverMode) || isInArray(repulseMode, clickMode) || divRepulse;
     }
 
     loadModeOptions(
@@ -247,14 +246,13 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
+        const { easing, speed, factor, maxSpeed } = repulseOptions,
+            easingFunc = getEasing(easing),
+            velocity = (divRepulse?.speed ?? speed) * factor;
+
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position),
-                velocity = (divRepulse?.speed ?? repulseOptions.speed) * repulseOptions.factor,
-                repulseFactor = clamp(
-                    getEasing(repulseOptions.easing)(1 - distance / repulseRadius) * velocity,
-                    0,
-                    repulseOptions.maxSpeed,
-                ),
+                repulseFactor = clamp(easingFunc(1 - distance / repulseRadius) * velocity, 0, maxSpeed),
                 normVec = Vector.create(
                     distance === 0 ? velocity : (dx / distance) * repulseFactor,
                     distance === 0 ? velocity : (dy / distance) * repulseFactor,
@@ -305,13 +303,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
 /*import {
     Circle,
-    ClickMode,
     type DivEvent,
-    DivMode,
     DivType,
     type Engine,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IDelta,
     type IModes,
@@ -328,10 +323,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     isDivModeEnabled,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types";
-import { Repulse } from "./Options/Classes/Repulse";
-import type { RepulseDiv } from "./Options/Classes/RepulseDiv";
+} from "@tsparticles/engine";
+import type { IRepulseMode, RepulseContainer, RepulseMode, RepulseParticle } from "./Types.js";
+import { Repulse } from "./Options/Classes/Repulse.js";
+import type { RepulseDiv } from "./Options/Classes/RepulseDiv.js";
 
 /**
  * Particle repulse manager
@@ -351,7 +346,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             const options = this.container.actualOptions,
                 repulse = options.interactivity.modes.repulse;
 
-            if (!repulse || mode !== ClickMode.repulse) {
+            if (!repulse || mode !== repulseMode) {
                 return;
             }
         };
@@ -392,12 +387,12 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             clickMode = events.onClick.mode,
             divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.repulse, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(repulseMode, hoverMode)) {
             this.hoverRepulse(delta, inverse);
-        } else if (clickEnabled && isInArray(ClickMode.repulse, clickMode)) {
+        } else if (clickEnabled && isInArray(repulseMode, clickMode)) {
             this.clickRepulse(delta, inverse);
         } else {
-            divModeExecute(DivMode.repulse, divs, (selector, div): void =>
+            divModeExecute(repulseMode, divs, (selector, div): void =>
                 this.singleSelectorRepulse(delta, inverse, selector, div)
             );
         }
@@ -424,7 +419,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             mouse = container.interactivity.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
-            divRepulse = isDivModeEnabled(DivMode.repulse, divs);
+            divRepulse = isDivModeEnabled(repulseMode, divs);
 
         if (
             !(divRepulse || (events.onHover.enable && mouse.position) || (events.onClick.enable && mouse.clickPosition))
@@ -435,7 +430,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         const hoverMode = events.onHover.mode,
             clickMode = events.onClick.mode;
 
-        return isInArray(HoverMode.repulse, hoverMode) || isInArray(ClickMode.repulse, clickMode) || divRepulse;
+        return isInArray(repulseMode, hoverMode) || isInArray(repulseMode, clickMode) || divRepulse;
     }
 
     loadModeOptions(

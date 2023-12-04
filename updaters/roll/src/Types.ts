@@ -1,6 +1,6 @@
-import { type IParticlesOptions, type Particle, type ParticlesOptions } from "tsparticles-engine";
-import type { IRoll } from "./Options/Interfaces/IRoll";
-import type { Roll } from "./Options/Classes/Roll";
+import { type IParticlesOptions, type Particle, type ParticlesOptions } from "@tsparticles/engine";
+import type { IRoll } from "./Options/Interfaces/IRoll.js";
+import type { Roll } from "./Options/Classes/Roll.js";
 
 export type RollParticle = Particle & {
     options: RollParticlesOptions;

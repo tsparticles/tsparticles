@@ -3,10 +3,10 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
-} from "tsparticles-engine";
-import { BubbleBase } from "./BubbleBase";
-import { BubbleDiv } from "./BubbleDiv";
-import type { IBubble } from "../Interfaces/IBubble";
+} from "@tsparticles/engine";
+import { BubbleBase } from "./BubbleBase.js";
+import { BubbleDiv } from "./BubbleDiv.js";
+import type { IBubble } from "../Interfaces/IBubble.js";
 
 /**
  */

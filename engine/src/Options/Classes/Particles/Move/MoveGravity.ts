@@ -1,8 +1,8 @@
-import type { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { RangeValue } from "../../../../Types/RangeValue";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { setRangeValue } from "../../../../Utils/NumberUtils";
+import type { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravity.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
     acceleration: RangeValue;

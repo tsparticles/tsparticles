@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "React Snow",
@@ -76,7 +76,6 @@ const options: ISourceOptions = {
             enable: true,
         },
         number: {
-            limit: -1,
             value: 160,
         },
         opacity: {

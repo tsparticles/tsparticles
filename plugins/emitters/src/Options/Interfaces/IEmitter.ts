@@ -6,11 +6,11 @@ import type {
     MoveDirectionAlt,
     RecursivePartial,
     SingleOrMultiple,
-} from "tsparticles-engine";
-import type { EmitterShapeType } from "../../Enums/EmitterShapeType";
-import type { IEmitterLife } from "./IEmitterLife";
-import type { IEmitterRate } from "./IEmitterRate";
-import type { IEmitterSize } from "./IEmitterSize";
+} from "@tsparticles/engine";
+import type { IEmitterLife } from "./IEmitterLife.js";
+import type { IEmitterRate } from "./IEmitterRate.js";
+import type { IEmitterShape } from "./IEmitterShape.js";
+import type { IEmitterSize } from "./IEmitterSize.js";
 
 /**
  * Particles emitter object options
@@ -68,7 +68,7 @@ export interface IEmitter {
     /**
      * The emitter shape type (circle or square)
      */
-    shape: EmitterShapeType | keyof typeof EmitterShapeType;
+    shape: IEmitterShape;
 
     /**
      * The size of the particles emitter area

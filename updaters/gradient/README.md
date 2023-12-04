@@ -2,11 +2,11 @@
 
 # tsParticles Gradient Updater
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-updater-gradient/badge)](https://www.jsdelivr.com/package/npm/tsparticles-updater-gradient)
-[![npmjs](https://badge.fury.io/js/tsparticles-updater-gradient.svg)](https://www.npmjs.com/package/tsparticles-updater-gradient)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-updater-gradient)](https://www.npmjs.com/package/tsparticles-updater-gradient) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/updater-gradient/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/updater-gradient)
+[![npmjs](https://badge.fury.io/js/@tsparticles/updater-gradient.svg)](https://www.npmjs.com/package/@tsparticles/updater-gradient)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/updater-gradient)](https://www.npmjs.com/package/@tsparticles/updater-gradient) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) updater plugin for gradient animations.
+[tsParticles](https://github.com/tsparticles/tsparticles) updater plugin for gradient animations.
 
 ## How to use it
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the updater plugin 
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-updater-gradient
+$ npm install @tsparticles/updater-gradient
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-updater-gradient
+$ yarn add @tsparticles/updater-gradient
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadGradientUpdater } = require("tsparticles-updater-gradient");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadGradientUpdater } = require("@tsparticles/updater-gradient");
 
 (async () => {
   await loadGradientUpdater(tsParticles);
@@ -65,8 +65,8 @@ const { loadGradientUpdater } = require("tsparticles-updater-gradient");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadGradientUpdater } from "tsparticles-updater-gradient";
+import { tsParticles } from "@tsparticles/engine";
+import { loadGradientUpdater } from "@tsparticles/updater-gradient";
 
 (async () => {
   await loadGradientUpdater(tsParticles);

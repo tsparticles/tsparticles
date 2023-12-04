@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { OpacityUpdater } from "./OpacityUpdater";
+import type { Engine } from "@tsparticles/engine";
+import { OpacityUpdater } from "./OpacityUpdater.js";
 
 /**
  * @param engine - The engine instance to load the updater for

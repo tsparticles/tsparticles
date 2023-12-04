@@ -1,4 +1,4 @@
-import { Circle, Point, Rectangle, tsParticles } from "tsparticles-engine";
+import { Circle, Point, Rectangle, tsParticles } from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 import { createCanvas } from "canvas";
@@ -9,7 +9,7 @@ describe("QuadTree tests", async () => {
         options: {
             autoPlay: false,
         },
-        element: createCanvas(200, 200),
+        element: createCanvas(200, 200) as any,
     });
 
     if (!container) {

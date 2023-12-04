@@ -4,8 +4,10 @@ import {
     type ICoordinates,
     type IDelta,
     type IDimension,
+    type IDimensionWithMode,
     type IHsl,
     type IParticlesOptions,
+    type IRgb,
     PixelMode,
     type RecursivePartial,
     Vector,
@@ -17,14 +19,29 @@ import {
     itemFromSingleOrMultiple,
     randomInRange,
     rangeColorToHsl,
-} from "tsparticles-engine";
-import { Emitter } from "./Options/Classes/Emitter";
-import { EmitterSize } from "./Options/Classes/EmitterSize";
-import type { Emitters } from "./Emitters";
-import type { EmittersEngine } from "./EmittersEngine";
-import type { IEmitter } from "./Options/Interfaces/IEmitter";
-import type { IEmitterShape } from "./IEmitterShape";
-import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize";
+} from "@tsparticles/engine";
+import { Emitter } from "./Options/Classes/Emitter.js";
+import { EmitterSize } from "./Options/Classes/EmitterSize.js";
+import type { Emitters } from "./Emitters.js";
+import type { EmittersEngine } from "./EmittersEngine.js";
+import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
+import type { IEmitterShape } from "./IEmitterShape.js";
+import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
+
+/**
+ *
+ * @param particlesOptions -
+ * @param color -
+ */
+function setParticlesOptionsColor(particlesOptions: RecursivePartial<IParticlesOptions>, color: IHsl | IRgb): void {
+    if (particlesOptions.color) {
+        particlesOptions.color.value = color;
+    } else {
+        particlesOptions.color = {
+            value: color,
+        };
+    }
+}
 
 /**
  */
@@ -32,8 +49,8 @@ export class EmitterInstance {
     fill;
     readonly name?: string;
     options;
-    position?: ICoordinates;
-    size;
+    position: ICoordinates;
+    size: IDimension;
     spawnColor?: IHsl;
 
     private _currentDuration;
@@ -46,9 +63,12 @@ export class EmitterInstance {
     private readonly _immortal;
     private readonly _initialPosition?: ICoordinates;
     private _lifeCount;
+    private _mutationObserver?: MutationObserver;
     private readonly _particlesOptions: RecursivePartial<IParticlesOptions>;
     private _paused;
+    private _resizeObserver?: ResizeObserver;
     private readonly _shape?: IEmitterShape;
+    private _size;
     private _spawnDelay?: number;
     private _startParticlesAdded;
 
@@ -75,9 +95,9 @@ export class EmitterInstance {
         this._spawnDelay = (getRangeValue(this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
         this.position = this._initialPosition ?? this._calcPosition();
         this.name = this.options.name;
-        this._shape = this._engine.emitterShapeManager?.getShape(this.options.shape);
 
         this.fill = this.options.fill;
+
         this._firstSpawn = !this.options.life.wait;
         this._startParticlesAdded = false;
 
@@ -93,21 +113,37 @@ export class EmitterInstance {
 
         this._paused = !this.options.autoPlay;
         this._particlesOptions = particlesOptions;
-        this.size =
-            this.options.size ??
-            ((): IEmitterSize => {
-                const size = new EmitterSize();
-
-                size.load({
-                    height: 0,
-                    mode: PixelMode.percent,
-                    width: 0,
-                });
-
-                return size;
-            })();
+        this._size = this._calcSize();
+        this.size = getSize(this._size, this.container.canvas.size);
         this._lifeCount = this.options.life.count ?? -1;
         this._immortal = this._lifeCount <= 0;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                this._mutationObserver = new MutationObserver(() => {
+                    this.resize();
+                });
+
+                this._resizeObserver = new ResizeObserver(() => {
+                    this.resize();
+                });
+
+                this._mutationObserver.observe(element, {
+                    attributes: true,
+                    attributeFilter: ["style", "width", "height"],
+                });
+                this._resizeObserver.observe(element);
+            }
+        }
+
+        const shapeOptions = this.options.shape,
+            shapeGenerator = this._engine.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
+
+        if (shapeGenerator) {
+            this._shape = shapeGenerator.generate(this.position, this.size, this.fill, shapeOptions.options);
+        }
 
         this._engine.dispatchEvent("emitterCreated", {
             container,
@@ -131,41 +167,8 @@ export class EmitterInstance {
         this.play();
     }
 
-    getPosition(): ICoordinates | undefined {
-        if (this.options.domId) {
-            const container = this.container,
-                element = document.getElementById(this.options.domId);
-
-            if (element) {
-                const elRect = element.getBoundingClientRect();
-
-                return {
-                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
-                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
-                };
-            }
-        }
-
-        return this.position;
-    }
-
-    getSize(): IDimension {
-        const container = this.container;
-
-        if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
-
-            if (element) {
-                const elRect = element.getBoundingClientRect();
-
-                return {
-                    width: elRect.width * container.retina.pixelRatio,
-                    height: elRect.height * container.retina.pixelRatio,
-                };
-            }
-        }
-
-        return getSize(this.size, container.canvas.size);
+    async init(): Promise<void> {
+        await this._shape?.init();
     }
 
     pause(): void {
@@ -209,9 +212,14 @@ export class EmitterInstance {
             initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
                 ? initialPosition
                 : this._calcPosition();
+
+        this._size = this._calcSize();
+        this.size = getSize(this._size, this.container.canvas.size);
+
+        this._shape?.resize(this.position, this.size);
     }
 
-    update(delta: IDelta): void {
+    async update(delta: IDelta): Promise<void> {
         if (this._paused) {
             return;
         }
@@ -226,7 +234,7 @@ export class EmitterInstance {
         if (!this._startParticlesAdded) {
             this._startParticlesAdded = true;
 
-            this._emitParticles(this.options.startCount);
+            await this._emitParticles(this.options.startCount);
         }
 
         if (this._duration !== undefined) {
@@ -284,14 +292,67 @@ export class EmitterInstance {
         }
     }
 
-    private readonly _calcPosition: () => ICoordinates = () => {
+    private _calcPosition(): ICoordinates {
+        if (this.options.domId) {
+            const container = this.container,
+                element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
+                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                };
+            }
+        }
+
         return calcPositionOrRandomFromSizeRanged({
             size: this.container.canvas.size,
             position: this.options.position,
         });
-    };
+    }
+
+    private _calcSize(): IDimensionWithMode {
+        const container = this.container;
+
+        if (this.options.domId) {
+            const element = document.getElementById(this.options.domId);
+
+            if (element) {
+                const elRect = element.getBoundingClientRect();
+
+                return {
+                    width: elRect.width * container.retina.pixelRatio,
+                    height: elRect.height * container.retina.pixelRatio,
+                    mode: PixelMode.precise,
+                };
+            }
+        }
+
+        return (
+            this.options.size ??
+            ((): IEmitterSize => {
+                const size = new EmitterSize();
+
+                size.load({
+                    height: 0,
+                    mode: PixelMode.percent,
+                    width: 0,
+                });
+
+                return size;
+            })()
+        );
+    }
 
     private readonly _destroy: () => void = () => {
+        this._mutationObserver?.disconnect();
+        this._mutationObserver = undefined;
+
+        this._resizeObserver?.disconnect();
+        this._resizeObserver = undefined;
+
         this.emitters.removeEmitter(this);
 
         this._engine.dispatchEvent("emitterDestroyed", {
@@ -302,20 +363,18 @@ export class EmitterInstance {
         });
     };
 
-    private readonly _emit: () => void = () => {
+    private async _emit(): Promise<void> {
         if (this._paused) {
             return;
         }
 
         const quantity = getRangeValue(this.options.rate.quantity);
 
-        this._emitParticles(quantity);
-    };
+        await this._emitParticles(quantity);
+    }
 
-    private readonly _emitParticles: (quantity: number) => void = (quantity) => {
-        const position = this.getPosition(),
-            size = this.getSize(),
-            singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
+    private async _emitParticles(quantity: number): Promise<void> {
+        const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
 
         for (let i = 0; i < quantity; i++) {
             const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;
@@ -329,24 +388,44 @@ export class EmitterInstance {
                     this.spawnColor.l = this._setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
                 }
 
-                if (!particlesOptions.color) {
-                    particlesOptions.color = {
-                        value: this.spawnColor,
-                    };
+                setParticlesOptionsColor(particlesOptions, this.spawnColor);
+            }
+
+            const shapeOptions = this.options.shape;
+
+            let position: ICoordinates | null = this.position;
+
+            if (this._shape) {
+                const shapePosData = await this._shape.randomPosition();
+
+                if (shapePosData) {
+                    position = shapePosData.position;
+
+                    const replaceData = shapeOptions.replace;
+
+                    if (replaceData.color && shapePosData.color) {
+                        setParticlesOptionsColor(particlesOptions, shapePosData.color);
+                    }
+
+                    if (replaceData.opacity) {
+                        if (particlesOptions.opacity) {
+                            particlesOptions.opacity.value = shapePosData.opacity;
+                        } else {
+                            particlesOptions.opacity = {
+                                value: shapePosData.opacity,
+                            };
+                        }
+                    }
                 } else {
-                    particlesOptions.color.value = this.spawnColor;
+                    position = null;
                 }
             }
 
-            if (!position) {
-                return;
+            if (position) {
+                this.container.particles.addParticle(position, particlesOptions);
             }
-
-            const pPosition = this._shape?.randomPosition(position, size, this.fill) ?? position;
-
-            this.container.particles.addParticle(pPosition, particlesOptions);
         }
-    };
+    }
 
     private readonly _prepareToDie: () => void = () => {
         if (this._paused) {

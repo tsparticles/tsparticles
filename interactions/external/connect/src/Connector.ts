@@ -1,15 +1,16 @@
-import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types";
+import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types.js";
 import {
     ExternalInteractorBase,
-    HoverMode,
     type IModes,
     type Modes,
     type Particle,
     type RecursivePartial,
     isInArray,
-} from "tsparticles-engine";
-import { Connect } from "./Options/Classes/Connect";
-import { drawConnection } from "./Utils";
+} from "@tsparticles/engine";
+import { Connect } from "./Options/Classes/Connect.js";
+import { drawConnection } from "./Utils.js";
+
+const connectMode = "connect";
 
 /**
  * Particle connection manager
@@ -88,7 +89,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
             return false;
         }
 
-        return isInArray(HoverMode.connect, events.onHover.mode);
+        return isInArray(connectMode, events.onHover.mode);
     }
 
     loadModeOptions(

@@ -1,23 +1,23 @@
 {
-    "name": "tsparticles-demo-new",
+    "name": "@tsparticles/demo-new",
     "private": true,
-    "version": "2.12.0",
+    "version": "3.0.0",
     "description": "tsParticles Demo Website",
     "main": "index.html",
     "scripts": {
         "clear:cache": "rimraf ./node_modules/.cache",
         "build:js": "minify ./js/404.js > ./js/404.min.js && pnpm run copy:engine && pnpm run copy:light && pnpm run copy:p-repulse && pnpm run copy:curves && pnpm run copy:polygon && pnpm run copy:perlin && pnpm run copy:simplex && pnpm run copy:infection && pnpm run copy:gradient && pnpm run copy:orbit && pnpm run copy:configs",
-        "copy:configs": "copyfiles -u 2 ./node_modules/tsparticles-demo-configs/*.json ./configs && rimraf ./configs/package.json && copyfiles -u 2 ./node_modules/tsparticles-demo-configs/tsparticles.configs.min.js ./js",
+        "copy:configs": "copyfiles -u 2 ./node_modules/@tsparticles/configs/*.json ./configs && rimraf ./configs/package.json && copyfiles -u 2 ./node_modules/@tsparticles/configs/tsparticles.configs.min.js ./js",
         "copy:engine": "copyfiles -u 2 ./node_modules/tsparticles/tsparticles.bundle.min.js ./js",
-        "copy:light": "copyfiles -u 2 ./node_modules/tsparticles-interaction-light/tsparticles.interaction.light.min.js ./js",
-        "copy:p-repulse": "copyfiles -u 2 ./node_modules/tsparticles-interaction-particles-repulse/tsparticles.interaction.particles.repulse.min.js ./js",
-        "copy:curves": "copyfiles -u 2 ./node_modules/tsparticles-path-curves/tsparticles.path.curves.min.js ./js",
-        "copy:polygon": "copyfiles -u 2 ./node_modules/tsparticles-path-polygon/tsparticles.path.polygon.min.js ./js",
-        "copy:perlin": "copyfiles -u 2 ./node_modules/tsparticles-path-perlin-noise/tsparticles.path.perlin.noise.min.js ./js",
-        "copy:simplex": "copyfiles -u 2 ./node_modules/tsparticles-path-simplex-noise/tsparticles.path.simplex.noise.min.js ./js",
-        "copy:infection": "copyfiles -u 2 ./node_modules/tsparticles-plugin-infection/tsparticles.plugin.infection.min.js ./js",
-        "copy:gradient": "copyfiles -u 2 ./node_modules/tsparticles-updater-gradient/tsparticles.updater.gradient.min.js ./js",
-        "copy:orbit": "copyfiles -u 2 ./node_modules/tsparticles-updater-orbit/tsparticles.updater.orbit.min.js ./js",
+        "copy:light": "copyfiles -u 2 ./node_modules/@tsparticles/interaction-light/tsparticles.interaction.light.min.js ./js",
+        "copy:p-repulse": "copyfiles -u 2 ./node_modules/@tsparticles/interaction-particles-repulse/tsparticles.interaction.particles.repulse.min.js ./js",
+        "copy:curves": "copyfiles -u 2 ./node_modules/@tsparticles/path-curves/tsparticles.path.curves.min.js ./js",
+        "copy:polygon": "copyfiles -u 2 ./node_modules/@tsparticles/path-polygon/tsparticles.path.polygon.min.js ./js",
+        "copy:perlin": "copyfiles -u 2 ./node_modules/@tsparticles/path-perlin-noise/tsparticles.path.perlin.noise.min.js ./js",
+        "copy:simplex": "copyfiles -u 2 ./node_modules/@tsparticles/path-simplex-noise/tsparticles.path.simplex.noise.min.js ./js",
+        "copy:infection": "copyfiles -u 2 ./node_modules/@tsparticles/plugin-infection/tsparticles.plugin.infection.min.js ./js",
+        "copy:gradient": "copyfiles -u 2 ./node_modules/@tsparticles/updater-gradient/tsparticles.updater.gradient.min.js ./js",
+        "copy:orbit": "copyfiles -u 2 ./node_modules/@tsparticles/updater-orbit/tsparticles.updater.orbit.min.js ./js",
         "build:css": "sass ./css/main.scss ./css/main.css && minify ./css/main.css > ./css/main.min.css && sass ./css/404.scss ./css/404.css && minify ./css/404.css > ./css/404.min.css",
         "build": " pnpm run clear:cache && pnpm run build:css && pnpm run build:js",
         "build:ci": " pnpm run clear:cache && pnpm run build:css && pnpm run build:js",
@@ -25,31 +25,31 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/matteobruni/tsparticles.git"
+        "url": "git+https://github.com/tsparticles/tsparticles.git"
     },
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/matteobruni/tsparticles/issues"
+        "url": "https://github.com/tsparticles/tsparticles/issues"
     },
     "homepage": "https://particles.js.org",
     "devDependencies": {
         "fs-extra": "^11.1.1",
-        "minify": "^10.3.0",
-        "sass": "^1.64.1"
+        "minify": "^10.5.2",
+        "sass": "^1.69.5"
     },
     "dependencies": {
-        "tsparticles": "^2.12.0",
-        "tsparticles-demo-configs": "^2.12.0",
-        "tsparticles-engine": "^2.12.0",
-        "tsparticles-interaction-light": "^2.12.0",
-        "tsparticles-interaction-particles-repulse": "^2.12.0",
-        "tsparticles-path-curves": "^2.12.0",
-        "tsparticles-path-perlin-noise": "^2.12.0",
-        "tsparticles-path-polygon": "^2.12.0",
-        "tsparticles-path-simplex-noise": "^2.12.0",
-        "tsparticles-plugin-infection": "^2.12.0",
-        "tsparticles-updater-gradient": "^2.12.0",
-        "tsparticles-updater-orbit": "^2.12.0"
+        "@tsparticles/configs": "^3.0.0",
+        "@tsparticles/engine": "^3.0.0",
+        "@tsparticles/interaction-light": "^3.0.0",
+        "@tsparticles/interaction-particles-repulse": "^3.0.0",
+        "@tsparticles/path-curves": "^3.0.0",
+        "@tsparticles/path-perlin-noise": "^3.0.0",
+        "@tsparticles/path-polygon": "^3.0.0",
+        "@tsparticles/path-simplex-noise": "^3.0.0",
+        "@tsparticles/plugin-infection": "^3.0.0",
+        "@tsparticles/updater-gradient": "^3.0.0",
+        "@tsparticles/updater-orbit": "^3.0.0",
+        "tsparticles": "^3.0.0"
     }
 }

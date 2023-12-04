@@ -4,20 +4,21 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles/badge)](https://www.jsdelivr.com/package/npm/tsparticles) [![npmjs](https://badge.fury.io/js/tsparticles.svg)](https://www.npmjs.com/package/tsparticles) [![npmjs](https://img.shields.io/npm/dt/tsparticles)](https://www.npmjs.com/package/tsparticles) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) full bundle loads all the v1 features to
-a `tsparticles-engine` instance.
+[tsParticles](https://github.com/tsparticles/tsparticles) full bundle loads all the v1 features to
+a `@tsparticles/engine` instance.
 
 **Included Packages**
 
-- [tsparticles-slim (and all its dependencies)](https://github.com/matteobruni/tsparticles/tree/main/bundles/slim)
-- [tsparticles-interaction-external-trail](https://github.com/matteobruni/tsparticles/tree/main/interactions/external/trail)
-- [tsparticles-plugin-absorbers](https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers)
-- [tsparticles-plugin-emitters](https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters)
-- [tsparticles-updater-destroy](https://github.com/matteobruni/tsparticles/tree/main/updaters/destroy)
-- [tsparticles-updater-roll](https://github.com/matteobruni/tsparticles/tree/main/updaters/roll)
-- [tsparticles-updater-tilt](https://github.com/matteobruni/tsparticles/tree/main/updaters/tilt)
-- [tsparticles-updater-twinkle](https://github.com/matteobruni/tsparticles/tree/main/updaters/twinkle)
-- [tsparticles-updater-wobble](https://github.com/matteobruni/tsparticles/tree/main/updaters/wobble)
+- [@tsparticles/slim (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/slim)
+- [@tsparticles/interaction-external-trail](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/trail)
+- [@tsparticles/plugin-absorbers](https://github.com/tsparticles/tsparticles/tree/main/plugins/absorbers)
+- [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
+- [@tsparticles/shape-text](https://github.com/tsparticles/tsparticles/tree/main/shapes/text)
+- [@tsparticles/updater-destroy](https://github.com/tsparticles/tsparticles/tree/main/updaters/destroy)
+- [@tsparticles/updater-roll](https://github.com/tsparticles/tsparticles/tree/main/updaters/roll)
+- [@tsparticles/updater-tilt](https://github.com/tsparticles/tsparticles/tree/main/updaters/tilt)
+- [@tsparticles/updater-twinkle](https://github.com/tsparticles/tsparticles/tree/main/updaters/twinkle)
+- [@tsparticles/updater-wobble](https://github.com/tsparticles/tsparticles/tree/main/updaters/wobble)
 
 ## How to use it
 
@@ -43,8 +44,8 @@ All new features will be added as external packages, this bundle is recommended 
 This installation requires more work since all dependencies must be included in the page. Some lines above are all
 specified in the **Included Packages** section.
 
-A note about `tsparticles-slim` can be made: it's not mandatory to include all of its dependencies, the slim bundle file
-is enough, and if this is done the `tsparticles-engine` is not needed, since it's already bundled in the slim bundle.
+A note about `@tsparticles/slim` can be made: it's not mandatory to include all of its dependencies, the slim bundle file
+is enough, and if this is done the `@tsparticles/engine` is not needed, since it's already bundled in the slim bundle.
 
 ### Usage
 
@@ -74,7 +75,7 @@ _Class Components_
 ```typescript jsx
 import React from "react";
 import Particles from "react-particles";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export class ParticlesContainer extends PureComponent<unknown> {
@@ -99,7 +100,7 @@ _Hooks / Functional Components_
 ```typescript jsx
 import React, { useCallback } from "react";
 import Particles from "react-particles";
-import type { Engine } from "tsparticles-engine";
+import type { Engine } from "@tsparticles/engine";
 import { loadFull } from "tsparticles";
 
 export function ParticlesContainer(props: unknown) {

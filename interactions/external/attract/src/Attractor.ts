@@ -1,10 +1,8 @@
-import type { AttractContainer, AttractMode, IAttractMode } from "./Types";
+import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
 import {
     Circle,
-    ClickMode,
     type Engine,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IModes,
     type Modes,
@@ -17,8 +15,10 @@ import {
     getEasing,
     isInArray,
     mouseMoveEvent,
-} from "tsparticles-engine";
-import { Attract } from "./Options/Classes/Attract";
+} from "@tsparticles/engine";
+import { Attract } from "./Options/Classes/Attract.js";
+
+const attractMode = "attract";
 
 /**
  * Particle external attract manager
@@ -41,7 +41,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             const options = this.container.actualOptions,
                 attract = options.interactivity.modes.attract;
 
-            if (!attract || mode !== ClickMode.attract) {
+            if (!attract || mode !== attractMode) {
                 return;
             }
 
@@ -102,9 +102,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             clickEnabled = events.onClick.enable,
             clickMode = events.onClick.mode;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.attract, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
             this._hoverAttract();
-        } else if (clickEnabled && isInArray(ClickMode.attract, clickMode)) {
+        } else if (clickEnabled && isInArray(attractMode, clickMode)) {
             this._clickAttract();
         }
     }
@@ -122,7 +122,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         const hoverMode = events.onHover.mode,
             clickMode = events.onClick.mode;
 
-        return isInArray(HoverMode.attract, hoverMode) || isInArray(ClickMode.attract, clickMode);
+        return isInArray(attractMode, hoverMode) || isInArray(attractMode, clickMode);
     }
 
     loadModeOptions(

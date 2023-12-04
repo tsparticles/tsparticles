@@ -1,5 +1,5 @@
-import { BaseMover } from "./BaseMover";
-import type { Engine } from "tsparticles-engine";
+import { BaseMover } from "./BaseMover.js";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

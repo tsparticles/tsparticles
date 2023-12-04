@@ -1,17 +1,16 @@
-import type { HoverMode } from "../../../../Enums/Modes/HoverMode";
-import type { IHoverEvent } from "../../../Interfaces/Interactivity/Events/IHoverEvent";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import { Parallax } from "./Parallax";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { IHoverEvent } from "../../../Interfaces/Interactivity/Events/IHoverEvent.js";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import { Parallax } from "./Parallax.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  * [[include:Options/Interactivity/Hover.md]]
  */
 export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
     enable;
-    mode: SingleOrMultiple<HoverMode | keyof typeof HoverMode | string>;
-    parallax;
+    mode: SingleOrMultiple<string>;
+    readonly parallax;
 
     constructor() {
         this.enable = false;

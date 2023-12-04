@@ -1,5 +1,5 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isString, stringToAlpha } from "tsparticles-engine";
-import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isString, stringToAlpha } from "@tsparticles/engine";
+import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke.js";
 
 /**
  */

@@ -2,11 +2,11 @@
 
 # tsParticles Infection Plugin
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-plugin-infection/badge)](https://www.jsdelivr.com/package/npm/tsparticles-plugin-infection)
-[![npmjs](https://badge.fury.io/js/tsparticles-plugin-infection.svg)](https://www.npmjs.com/package/tsparticles-plugin-infection)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-plugin-infection)](https://www.npmjs.com/package/tsparticles-plugin-infection) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/plugin-infection/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/plugin-infection)
+[![npmjs](https://badge.fury.io/js/@tsparticles/plugin-infection.svg)](https://www.npmjs.com/package/@tsparticles/plugin-infection)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-infection)](https://www.npmjs.com/package/@tsparticles/plugin-infection) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for particles infection simulation effect.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for particles infection simulation effect.
 
 ## How to use it
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-plugin-infection
+$ npm install @tsparticles/plugin-infection
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-plugin-infection
+$ yarn add @tsparticles/plugin-infection
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadInfectionPlugin } = require("tsparticles-plugin-infection");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadInfectionPlugin } = require("@tsparticles/plugin-infection");
 
 (async () => {
   await loadInfectionPlugin(tsParticles);
@@ -65,8 +65,8 @@ const { loadInfectionPlugin } = require("tsparticles-plugin-infection");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadInfectionPlugin } from "tsparticles-plugin-infection";
+import { tsParticles } from "@tsparticles/engine";
+import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 
 (async () => {
   await loadInfectionPlugin(tsParticles);

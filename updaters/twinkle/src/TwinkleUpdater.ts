@@ -7,9 +7,9 @@ import {
     getRangeValue,
     getStyleFromHsl,
     rangeColorToHsl,
-} from "tsparticles-engine";
-import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types";
-import { Twinkle } from "./Options/Classes/Twinkle";
+} from "@tsparticles/engine";
+import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions } from "./Types.js";
+import { Twinkle } from "./Options/Classes/Twinkle.js";
 
 export class TwinkleUpdater implements IParticleUpdater {
     getColorStyles(

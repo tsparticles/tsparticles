@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Polygon Mask",
@@ -7,11 +7,6 @@ const options: ISourceOptions = {
             onClick: {
                 enable: false,
                 mode: "push",
-            },
-            onDiv: {
-                elementId: "repulse-div",
-                enable: false,
-                mode: "repulse",
             },
             onHover: {
                 enable: true,
@@ -79,7 +74,6 @@ const options: ISourceOptions = {
             speed: 1,
         },
         number: {
-            limit: 0,
             value: 200,
         },
         opacity: {
@@ -103,8 +97,11 @@ const options: ISourceOptions = {
     polygon: {
         draw: {
             enable: true,
-            lineColor: "rgba(255,255,255,0.2)",
-            lineWidth: 1,
+            stroke: {
+                color: "#fff",
+                width: 1,
+                opacity: 0.2,
+            },
         },
         enable: true,
         move: {

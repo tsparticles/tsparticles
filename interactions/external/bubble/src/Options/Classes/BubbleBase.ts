@@ -5,8 +5,8 @@ import {
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
     isArray,
-} from "tsparticles-engine";
-import type { IBubbleBase } from "../Interfaces/IBubbleBase";
+} from "@tsparticles/engine";
+import type { IBubbleBase } from "../Interfaces/IBubbleBase.js";
 
 /**
  */

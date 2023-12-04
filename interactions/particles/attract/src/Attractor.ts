@@ -1,14 +1,15 @@
 import {
     type Container,
-    type IParticle,
     type Particle,
     ParticlesInteractorBase,
     getDistances,
-} from "tsparticles-engine";
+    getRangeValue,
+} from "@tsparticles/engine";
+import type { AttractParticle } from "./AttractParticle.js";
 
 /**
  */
-export class Attractor extends ParticlesInteractorBase {
+export class Attractor extends ParticlesInteractorBase<Container, AttractParticle> {
     constructor(container: Container) {
         super(container);
     }
@@ -21,9 +22,14 @@ export class Attractor extends ParticlesInteractorBase {
         // do nothing
     }
 
-    async interact(p1: IParticle): Promise<void> {
-        const container = this.container,
-            distance = p1.retina.attractDistance ?? container.retina.attractDistance,
+    async interact(p1: AttractParticle): Promise<void> {
+        const container = this.container;
+
+        if (p1.attractDistance === undefined) {
+            p1.attractDistance = getRangeValue(p1.options.move.attract.distance) * container.retina.pixelRatio;
+        }
+
+        const distance = p1.attractDistance,
             pos1 = p1.getPosition(),
             query = container.particles.quadTree.queryCircle(pos1, distance);
 

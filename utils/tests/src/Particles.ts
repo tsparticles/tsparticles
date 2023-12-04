@@ -1,19 +1,18 @@
 import { describe, it } from "mocha";
-import { ICoordinates3d, errorPrefix, getRandom, tsParticles } from "tsparticles-engine";
+import { ICoordinates3d, errorPrefix, getRandom, tsParticles } from "@tsparticles/engine";
 import { TestWindow } from "./Fixture/Window";
 import { expect } from "chai";
 import { createCanvas } from "canvas";
 
 describe("Particles", async () => {
     globalThis.window = TestWindow;
-    const testCanvas = createCanvas(1920, 1080),
-        container = await tsParticles.load({
-            id: "test",
-            options: {
-                autoPlay: false,
-            },
-            element: testCanvas,
-        });
+    const container = await tsParticles.load({
+        id: "test",
+        options: {
+            autoPlay: false,
+        },
+        element: createCanvas(1920, 1080) as any,
+    });
 
     if (!container) {
         throw new Error(`${errorPrefix} test container not initialized`);

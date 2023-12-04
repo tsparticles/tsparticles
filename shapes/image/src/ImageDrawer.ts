@@ -1,14 +1,14 @@
-import { type Container, type IDelta, type IShapeDrawer, errorPrefix } from "tsparticles-engine";
-import type { IImage, IParticleImage, ImageParticle } from "./Utils";
-import type { ImageContainer, ImageEngine } from "./types";
-import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod";
-import type { IImageShape } from "./IImageShape";
-import { replaceImageColor } from "./Utils";
+import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
+import type { IImage, IParticleImage, ImageParticle } from "./Utils.js";
+import type { ImageContainer, ImageEngine } from "./types.js";
+import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod.js";
+import type { IImageShape } from "./IImageShape.js";
+import { replaceImageColor } from "./Utils.js";
 
 /**
  * Particles Image Drawer
  */
-export class ImageDrawer implements IShapeDrawer {
+export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     private readonly _engine: ImageEngine;
 
     /**
@@ -33,20 +33,11 @@ export class ImageDrawer implements IShapeDrawer {
 
     /**
      * The draw image method
-     * @param context - the context used for drawing
-     * @param particle - the particle to be drawn
-     * @param radius - the particle radius
-     * @param opacity - the particle opacity
-     * @param delta - delta time since last draw
+     * @param data - the shape draw data
      */
-    draw(
-        context: CanvasRenderingContext2D,
-        particle: ImageParticle,
-        radius: number,
-        opacity: number,
-        delta: IDelta,
-    ): void {
-        const image = particle.image,
+    draw(data: IShapeDrawData<ImageParticle>): void {
+        const { context, radius, particle, opacity, delta } = data,
+            image = particle.image,
             element = image?.element;
 
         if (!image) {
@@ -168,9 +159,10 @@ export class ImageDrawer implements IShapeDrawer {
                 pos = {
                     x: -radius,
                     y: -radius,
-                };
+                },
+                diameter = radius * 2;
 
-            context.drawImage(element, pos.x, pos.y, radius * 2, (radius * 2) / ratio);
+            context.drawImage(element, pos.x, pos.y, diameter, diameter / ratio);
         }
 
         context.globalAlpha = 1;
@@ -206,8 +198,13 @@ export class ImageDrawer implements IShapeDrawer {
             this._engine.images = [];
         }
 
-        const imageData = particle.shapeData as IImageShape,
-            image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+        const imageData = particle.shapeData as IImageShape | undefined;
+
+        if (!imageData) {
+            return;
+        }
+
+        const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
             this.loadImageShape(imageData).then(() => {
@@ -231,15 +228,20 @@ export class ImageDrawer implements IShapeDrawer {
         }
 
         const images = this._engine.images,
-            imageData = particle.shapeData as IImageShape,
-            color = particle.getFillColor(),
+            imageData = particle.shapeData as IImageShape | undefined;
+
+        if (!imageData) {
+            return;
+        }
+
+        const color = particle.getFillColor(),
             image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
             return;
         }
 
-        const replaceColor = imageData.replaceColor ?? imageData.replace_color ?? image.replaceColor;
+        const replaceColor = imageData.replaceColor ?? image.replaceColor;
 
         if (image.loading) {
             setTimeout((): void => {
@@ -273,8 +275,8 @@ export class ImageDrawer implements IShapeDrawer {
                 imageRes.ratio = 1;
             }
 
-            const fill = imageData.fill ?? particle.fill,
-                close = imageData.close ?? particle.close,
+            const fill = imageData.fill ?? particle.shapeFill,
+                close = imageData.close ?? particle.shapeClose,
                 imageShape = {
                     image: imageRes,
                     fill,
@@ -282,8 +284,8 @@ export class ImageDrawer implements IShapeDrawer {
                 };
 
             particle.image = imageShape.image;
-            particle.fill = imageShape.fill;
-            particle.close = imageShape.close;
+            particle.shapeFill = imageShape.fill;
+            particle.shapeClose = imageShape.close;
         })();
     }
 
@@ -300,7 +302,7 @@ export class ImageDrawer implements IShapeDrawer {
         await this._engine.loadImage({
             gif: imageShape.gif,
             name: imageShape.name,
-            replaceColor: imageShape.replaceColor ?? imageShape.replace_color ?? false,
+            replaceColor: imageShape.replaceColor ?? false,
             src: imageShape.src,
         });
     };

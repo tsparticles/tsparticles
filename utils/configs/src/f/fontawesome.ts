@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Font Awesome",
@@ -50,7 +50,6 @@ const options: ISourceOptions = {
             density: {
                 enable: true,
             },
-            limit: 0,
             value: 80,
         },
         opacity: {

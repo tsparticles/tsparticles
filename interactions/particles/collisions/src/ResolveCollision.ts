@@ -1,7 +1,7 @@
-import { CollisionMode, type IDelta, type Particle } from "tsparticles-engine";
-import { absorb } from "./Absorb";
-import { bounce } from "./Bounce";
-import { destroy } from "./Destroy";
+import { CollisionMode, type IDelta, type Particle } from "@tsparticles/engine";
+import { absorb } from "./Absorb.js";
+import { bounce } from "./Bounce.js";
+import { destroy } from "./Destroy.js";
 
 /**
  * @param p1 -

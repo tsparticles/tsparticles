@@ -1,5 +1,5 @@
-import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates";
-import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension";
+import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates.js";
+import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension.js";
 import {
     collisionVelocity,
     getDistances,
@@ -7,26 +7,24 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
-    getValue,
     randomInRange,
-} from "./NumberUtils";
-import { AnimationMode } from "../Enums/Modes/AnimationMode";
-import { AnimationStatus } from "../Enums/AnimationStatus";
-import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent";
-import type { DivMode } from "../Enums/Modes/DivMode";
-import type { IBounds } from "../Core/Interfaces/IBounds";
-import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer";
-import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
-import type { IRangeValue } from "../Core/Interfaces/IRangeValue";
-import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult";
-import { OutModeDirection } from "../Enums/Directions/OutModeDirection";
-import { PixelMode } from "../Enums/Modes/PixelMode";
-import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom";
-import type { SingleOrMultiple } from "../Types/SingleOrMultiple";
-import { StartValueType } from "../Enums/Types/StartValueType";
-import { Vector } from "../Core/Utils/Vector";
+} from "./NumberUtils.js";
+import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
+import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
+import type { IBounds } from "../Core/Interfaces/IBounds.js";
+import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
+import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
+import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
+import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
+import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult.js";
+import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
+import type { Particle } from "../Core/Particle.js";
+import { PixelMode } from "../Enums/Modes/PixelMode.js";
+import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom.js";
+import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
+import { StartValueType } from "../Enums/Types/StartValueType.js";
+import { Vector } from "../Core/Utils/Vector.js";
 
 type RectSideBounceData = {
     /**
@@ -124,8 +122,8 @@ function rectSideBounce(data: RectSideBounceData): IRectSideResult {
     }
 
     if (
-        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) / 2 && velocity > 0) ||
-        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) / 2 && velocity < 0)
+        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) * 0.5 && velocity > 0) ||
+        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) * 0.5 && velocity < 0)
     ) {
         res.velocity = velocity * -factor;
         res.bounced = true;
@@ -173,6 +171,20 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
     }
 
     return matchMedia(query);
+}
+
+/**
+ * @param callback -
+ * @returns the interaction observer, if supported
+ */
+export function safeIntersectionObserver(
+    callback: (records: IntersectionObserverEntry[]) => void,
+): IntersectionObserver | undefined {
+    if (isSsr() || typeof IntersectionObserver === "undefined") {
+        return;
+    }
+
+    return new IntersectionObserver(callback);
 }
 
 /**
@@ -350,7 +362,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
  * @param divs - the div elements to check
  * @returns true if the div mode is enabled
  */
-export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>): boolean {
+export function isDivModeEnabled(mode: string, divs: SingleOrMultiple<DivEvent>): boolean {
     return !!findItemFromSingleOrMultiple(divs, (t) => t.enable && isInArray(mode, t.mode));
 }
 
@@ -361,7 +373,7 @@ export function isDivModeEnabled(mode: DivMode, divs: SingleOrMultiple<DivEvent>
  * @param callback - the callback to execute
  */
 export function divModeExecute(
-    mode: DivMode,
+    mode: string,
     divs: SingleOrMultiple<DivEvent>,
     callback: (id: string, div: DivEvent) => void,
 ): void {
@@ -409,13 +421,16 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
  * @param p - the particle to get the circle bounds data for
  * @returns the circle bounce data for the given particle
  */
-export function circleBounceDataFromParticle(p: IParticle): ICircleBouncer {
+export function circleBounceDataFromParticle(p: Particle): ICircleBouncer {
     return {
         position: p.getPosition(),
         radius: p.getRadius(),
         mass: p.getMass(),
         velocity: p.velocity,
-        factor: Vector.create(getValue(p.options.bounce.horizontal), getValue(p.options.bounce.vertical)),
+        factor: Vector.create(
+            getRangeValue(p.options.bounce.horizontal.value),
+            getRangeValue(p.options.bounce.vertical.value),
+        ),
     };
 }
 
@@ -455,10 +470,11 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
  * @param particle - the particle to bounce
  * @param divBounds - the div bounds to bounce
  */
-export function rectBounce(particle: IParticle, divBounds: IBounds): void {
+export function rectBounce(particle: Particle, divBounds: IBounds): void {
     const pPos = particle.getPosition(),
         size = particle.getRadius(),
         bounds = calculateBounds(pPos, size),
+        bounceOptions = particle.options.bounce,
         resH = rectSideBounce({
             pSide: {
                 min: bounds.left,
@@ -477,7 +493,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
                 max: divBounds.bottom,
             },
             velocity: particle.velocity.x,
-            factor: getValue(particle.options.bounce.horizontal),
+            factor: getRangeValue(bounceOptions.horizontal.value),
         });
 
     if (resH.bounced) {
@@ -508,7 +524,7 @@ export function rectBounce(particle: IParticle, divBounds: IBounds): void {
             max: divBounds.right,
         },
         velocity: particle.velocity.y,
-        factor: getValue(particle.options.bounce.vertical),
+        factor: getRangeValue(bounceOptions.vertical.value),
     });
 
     if (resV.bounced) {

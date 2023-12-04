@@ -1,4 +1,4 @@
-import type { Container, IOptions, Options } from "tsparticles-engine";
+import type { Container, IOptions, Options } from "@tsparticles/engine";
 import type {
     SVGPathSegArcAbs,
     SVGPathSegArcRel,
@@ -14,9 +14,9 @@ import type {
     SVGPathSegLinetoRel,
     SVGPathSegMovetoAbs,
     SVGPathSegMovetoRel,
-} from "./pathseg";
-import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask";
-import type { PolygonMask } from "./Options/Classes/PolygonMask";
+} from "./pathseg.js";
+import type { IPolygonMask } from "./Options/Interfaces/IPolygonMask.js";
+import type { PolygonMask } from "./Options/Classes/PolygonMask.js";
 
 export type SvgAbsoluteCoordinatesTypes =
     | SVGPathSegArcAbs

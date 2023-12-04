@@ -1,5 +1,5 @@
-import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial } from "tsparticles-engine";
-import type { IAttract } from "../Interfaces/IAttract";
+import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial } from "@tsparticles/engine";
+import type { IAttract } from "../Interfaces/IAttract.js";
 
 /**
  */

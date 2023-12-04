@@ -1,6 +1,6 @@
-import type { IFireworkOptions } from "./IFireworkOptions";
-import type { RecursivePartial } from "tsparticles-engine";
+import type { IFireworkOptions } from "./IFireworkOptions.js";
+import type { RecursivePartial } from "@tsparticles/engine";
 
 export type FireworkOptions = RecursivePartial<IFireworkOptions>;
 
-export * from "./fireworks";
+export * from "./fireworks.js";

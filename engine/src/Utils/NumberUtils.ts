@@ -1,15 +1,14 @@
-import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType";
+import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import type {
     IPositionFromSizeParams,
     IRangedPositionFromSizeParams,
-} from "../Core/Interfaces/IPositionFromSizeParams";
-import { isBoolean, isNumber } from "./Utils";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates";
-import type { IValueWithRandom } from "../Options/Interfaces/IValueWithRandom";
-import { MoveDirection } from "../Enums/Directions/MoveDirection";
-import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection";
-import type { RangeValue } from "../Types/RangeValue";
-import { Vector } from "../Core/Utils/Vector";
+} from "../Core/Interfaces/IPositionFromSizeParams.js";
+import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
+import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
+import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
+import type { RangeValue } from "../Types/RangeValue.js";
+import { Vector } from "../Core/Utils/Vector.js";
+import { isNumber } from "./Utils.js";
 
 type EasingFunction = (value: number) => number;
 
@@ -136,22 +135,6 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
 }
 
 /**
- * @param options -
- * @returns the same as {@link getRangeValue}, since it calls that function, converting the parameters to a range value
- */
-export function getValue(options: IValueWithRandom): number {
-    const random = options.random,
-        { enable, minimumValue } = isBoolean(random)
-            ? {
-                  enable: random,
-                  minimumValue: 0,
-              }
-            : random;
-
-    return enable ? getRangeValue(setRangeValue(options.value, minimumValue)) : getRangeValue(options.value);
-}
-
-/**
  * Gets the distance between two coordinates
  * @param pointA - the first coordinate
  * @param pointB - the second coordinate
@@ -191,21 +174,21 @@ export function getParticleDirectionAngle(
 
     switch (direction) {
         case MoveDirection.top:
-            return -Math.PI / 2;
+            return -Math.PI * 0.5;
         case MoveDirection.topRight:
-            return -Math.PI / 4;
+            return -Math.PI * 0.25;
         case MoveDirection.right:
             return 0;
         case MoveDirection.bottomRight:
-            return Math.PI / 4;
+            return Math.PI * 0.25;
         case MoveDirection.bottom:
-            return Math.PI / 2;
+            return Math.PI * 0.5;
         case MoveDirection.bottomLeft:
-            return (3 * Math.PI) / 4;
+            return Math.PI * 0.75;
         case MoveDirection.left:
             return Math.PI;
         case MoveDirection.topLeft:
-            return (-3 * Math.PI) / 4;
+            return -Math.PI * 0.75;
         case MoveDirection.inside:
             return Math.atan2(center.y - position.y, center.x - position.x);
         case MoveDirection.outside:

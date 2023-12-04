@@ -1,5 +1,5 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "tsparticles-engine";
-import type { IRollLight } from "../Interfaces/IRollLight";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import type { IRollLight } from "../Interfaces/IRollLight.js";
 
 export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
     enable;

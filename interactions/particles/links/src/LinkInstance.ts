@@ -6,10 +6,10 @@ import {
     getRandom,
     getRangeValue,
     rangeColorToRgb,
-} from "tsparticles-engine";
-import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces";
-import type { LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types";
-import { drawLinkLine, drawLinkTriangle, setLinkFrequency } from "./Utils";
+} from "@tsparticles/engine";
+import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces.js";
+import type { LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
+import { drawLinkLine, drawLinkTriangle, setLinkFrequency } from "./Utils.js";
 
 export class LinkInstance implements IContainerPlugin {
     private readonly _freqs: IParticlesFrequencies;

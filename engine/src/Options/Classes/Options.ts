@@ -1,22 +1,22 @@
-import { deepExtend, executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils";
-import { Background } from "./Background/Background";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask";
-import type { Container } from "../../Core/Container";
-import type { Engine } from "../../Core/Engine";
-import { FullScreen } from "./FullScreen/FullScreen";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader";
-import type { IOptions } from "../Interfaces/IOptions";
-import { Interactivity } from "./Interactivity/Interactivity";
-import { ManualParticle } from "./ManualParticle";
-import type { RangeValue } from "../../Types/RangeValue";
-import type { RecursivePartial } from "../../Types/RecursivePartial";
-import { Responsive } from "./Responsive";
-import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode";
-import type { SingleOrMultiple } from "../../Types/SingleOrMultiple";
-import { Theme } from "./Theme/Theme";
-import { ThemeMode } from "../../Enums/Modes/ThemeMode";
-import { loadParticlesOptions } from "../../Utils/OptionsUtils";
-import { setRangeValue } from "../../Utils/NumberUtils";
+import { deepExtend, executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils.js";
+import { Background } from "./Background/Background.js";
+import { BackgroundMask } from "./BackgroundMask/BackgroundMask.js";
+import type { Container } from "../../Core/Container.js";
+import type { Engine } from "../../Core/Engine.js";
+import { FullScreen } from "./FullScreen/FullScreen.js";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { IOptions } from "../Interfaces/IOptions.js";
+import { Interactivity } from "./Interactivity/Interactivity.js";
+import { ManualParticle } from "./ManualParticle.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { Responsive } from "./Responsive.js";
+import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
+import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
+import { Theme } from "./Theme/Theme.js";
+import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
+import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
+import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 interface DefaultThemes {
     dark?: string;
@@ -30,25 +30,26 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     [name: string]: unknown;
 
     autoPlay;
-    background;
-    backgroundMask;
+    readonly background;
+    readonly backgroundMask;
+    clear: boolean;
     defaultThemes: DefaultThemes;
     delay: RangeValue;
     detectRetina;
     duration: RangeValue;
     fpsLimit;
-    fullScreen;
-    interactivity;
+    readonly fullScreen;
+    readonly interactivity;
     manualParticles: ManualParticle[];
     name?: string;
-    particles;
+    readonly particles;
     pauseOnBlur;
     pauseOnOutsideViewport;
     preset?: SingleOrMultiple<string>;
     responsive: Responsive[];
     smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
-    themes: Theme[];
+    readonly themes: Theme[];
     zLayers;
 
     private readonly _container;
@@ -60,6 +61,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
+        this.clear = true;
         this.defaultThemes = {};
         this.delay = 0;
         this.fullScreen = new FullScreen();
@@ -79,54 +81,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     * @returns the full screen options object
-     */
-    get backgroundMode(): FullScreen {
-        return this.fullScreen;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fullScreen
-     * @param value -
-     */
-    set backgroundMode(value: FullScreen) {
-        this.fullScreen.load(value);
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fpsLimit
-     * @returns the fps limit
-     */
-    get fps_limit(): number {
-        return this.fpsLimit;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new fpsLimit
-     * @param value -
-     */
-    set fps_limit(value: number) {
-        this.fpsLimit = value;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new retinaDetect
-     * @returns if the retina display should be supported
-     */
-    get retina_detect(): boolean {
-        return this.detectRetina;
-    }
-
-    /**
-     * @deprecated this property is obsolete, please use the new retinaDetect
-     * @param value -
-     */
-    set retina_detect(value: boolean) {
-        this.detectRetina = value;
-    }
-
-    /**
      * This method loads the source object in the current instance
      * @param data - the source data to load into the instance
      */
@@ -143,11 +97,19 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.autoPlay = data.autoPlay;
         }
 
+        if (data.clear !== undefined) {
+            this.clear = data.clear;
+        }
+
+        if (data.name !== undefined) {
+            this.name = data.name;
+        }
+
         if (data.delay !== undefined) {
             this.delay = setRangeValue(data.delay);
         }
 
-        const detectRetina = data.detectRetina ?? data.retina_detect;
+        const detectRetina = data.detectRetina;
 
         if (detectRetina !== undefined) {
             this.detectRetina = detectRetina;
@@ -157,7 +119,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.duration = setRangeValue(data.duration);
         }
 
-        const fpsLimit = data.fpsLimit ?? data.fps_limit;
+        const fpsLimit = data.fpsLimit;
 
         if (fpsLimit !== undefined) {
             this.fpsLimit = fpsLimit;
@@ -177,7 +139,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.background.load(data.background);
 
-        const fullScreen = data.fullScreen ?? data.backgroundMode;
+        const fullScreen = data.fullScreen;
 
         if (isBoolean(fullScreen)) {
             this.fullScreen.enable = fullScreen;

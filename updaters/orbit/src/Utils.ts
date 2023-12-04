@@ -1,4 +1,4 @@
-import { type IHsl, type Particle, getStyleFromHsl } from "tsparticles-engine";
+import { type IHsl, type Particle, getStyleFromHsl } from "@tsparticles/engine";
 
 /**
  * Draws an ellipse for the given particle.

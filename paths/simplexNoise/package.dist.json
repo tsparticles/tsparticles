@@ -1,11 +1,11 @@
 {
-  "name": "tsparticles-path-simplex-noise",
-  "version": "2.12.0",
+  "name": "@tsparticles/path-simplex-noise",
+  "version": "3.0.0",
   "description": "tsParticles simplex noise path",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/matteobruni/tsparticles.git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
     "directory": "paths/simplexNoise"
   },
   "keywords": [
@@ -64,13 +64,12 @@
     "tsparticles-path"
   ],
   "publishConfig": {
-    "directory": "dist",
-    "linkDirectory": true
+    "access": "public"
   },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/matteobruni/tsparticles/issues"
+    "url": "https://github.com/tsparticles/tsparticles/issues"
   },
   "funding": [
     {
@@ -86,13 +85,26 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
-  "main": "cjs/index.js",
+  "sideEffects": false,
   "jsdelivr": "tsparticles.path.simplex.noise.min.js",
   "unpkg": "tsparticles.path.simplex.noise.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
   "module": "esm/index.js",
   "types": "types/index.d.ts",
-  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "dependencies": {
-    "tsparticles-engine": "^2.12.0"
+    "@tsparticles/engine": "^3.0.0",
+    "@tsparticles/simplex-noise": "^3.0.0"
   }
 }

@@ -2,9 +2,9 @@
 
 # tsParticles Particles.js Compatibility Package
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-particles.js/badge)](https://www.jsdelivr.com/package/npm/tsparticles-particles.js) [![npmjs](https://badge.fury.io/js/tsparticles-particles.js.svg)](https://www.npmjs.com/package/tsparticles-particles.js) [![npmjs](https://img.shields.io/npm/dt/tsparticles-particles.js)](https://www.npmjs.com/package/tsparticles-particles.js) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/particles.js/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/particles.js) [![npmjs](https://badge.fury.io/js/@tsparticles/particles.js.svg)](https://www.npmjs.com/package/@tsparticles/particles.js) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/particles.js)](https://www.npmjs.com/package/@tsparticles/particles.js) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) particles.js compatibility library.
+[tsParticles](https://github.com/tsparticles/tsparticles) particles.js compatibility library.
 
 ## How to use it
 

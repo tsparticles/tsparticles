@@ -1,7 +1,7 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IZIndex } from "../../../Interfaces/Particles/ZIndex/IZIndex";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
-import { ValueWithRandom } from "../../ValueWithRandom";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { IZIndex } from "../../../Interfaces/Particles/ZIndex/IZIndex.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { ValueWithRandom } from "../../ValueWithRandom.js";
 
 /**
  */

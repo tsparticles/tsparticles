@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../Interfaces/ICoordinates";
-import type { Particle } from "../Particle";
+import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { Particle } from "../Particle.js";
 
 /**
  */

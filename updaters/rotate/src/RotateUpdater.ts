@@ -11,9 +11,9 @@ import {
     RotateDirection,
     getRandom,
     getRangeValue,
-} from "tsparticles-engine";
-import type { IRotate } from "./Options/Interfaces/IRotate";
-import { Rotate } from "./Options/Classes/Rotate";
+} from "@tsparticles/engine";
+import type { IRotate } from "./Options/Interfaces/IRotate.js";
+import { Rotate } from "./Options/Classes/Rotate.js";
 
 type RotateParticle = Particle & {
     options: RotateParticlesOptions;

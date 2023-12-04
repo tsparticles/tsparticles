@@ -1,6 +1,6 @@
-import { HoverMode, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "tsparticles-engine";
-import type { LightContainer, LightParticle } from "./Types";
-import { drawParticleShadow } from "./Utils";
+import type { LightContainer, LightParticle } from "./Types.js";
+import { ParticlesInteractorBase, isInArray, rangeColorToRgb } from "@tsparticles/engine";
+import { drawParticleShadow, lightMode } from "./Utils.js";
 
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     constructor(container: LightContainer) {
@@ -45,7 +45,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
             return false;
         }
 
-        const res = isInArray(HoverMode.light, events.onHover.mode);
+        const res = isInArray(lightMode, events.onHover.mode);
 
         if (res && interactivity.modes.light) {
             const shadowOptions = interactivity.modes.light.shadow;

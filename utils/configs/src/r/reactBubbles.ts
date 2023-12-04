@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "React Bubbles",
@@ -6,11 +6,6 @@ const options: ISourceOptions = {
         events: {
             onClick: {
                 enable: true,
-                mode: "repulse",
-            },
-            onDiv: {
-                elementId: "repulse-div",
-                enable: false,
                 mode: "repulse",
             },
             onHover: {
@@ -58,6 +53,9 @@ const options: ISourceOptions = {
         color: {
             value: "#FFF",
         },
+        collisions: {
+            enable: true,
+        },
         move: {
             attract: {
                 enable: false,
@@ -66,7 +64,6 @@ const options: ISourceOptions = {
                     y: 3000,
                 },
             },
-            collisions: true,
             direction: "top",
             enable: true,
             speed: {
@@ -75,7 +72,6 @@ const options: ISourceOptions = {
             },
         },
         number: {
-            limit: -1,
             value: 160,
         },
         opacity: {

@@ -1,8 +1,7 @@
 import {
-    ClickMode,
     CollisionMode,
-    HoverMode,
     InteractivityDetect,
+    LimitMode,
     MoveDirection,
     OptionsColor,
     OutMode,
@@ -10,7 +9,7 @@ import {
     type RecursivePartial,
     tsParticles,
     type ISourceOptions,
-} from "tsparticles-engine";
+} from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 import { TestWindow } from "./Fixture/Window";
@@ -119,7 +118,7 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fillColor).to.be.undefined;
+        expect(options.particles.move.trail.fill.color).to.be.undefined;
         expect(options.particles.move.trail.enable).to.be.false;
         expect(options.particles.move.trail.length).to.equal(10);
 
@@ -127,7 +126,8 @@ describe("Options tests", () => {
         expect(options.particles.number.density.width).to.equal(1920);
         expect(options.particles.number.density.height).to.equal(1080);
         expect(options.particles.number.density.enable).to.be.false;
-        expect(options.particles.number.limit).to.equal(0);
+        expect(options.particles.number.limit.value).to.equal(0);
+        expect(options.particles.number.limit.mode).to.equal(LimitMode.delete);
         expect(options.particles.number.value).to.equal(0);
 
         /* particles opacity */
@@ -180,13 +180,12 @@ describe("Options tests", () => {
                     events: {
                         onClick: {
                             enable: true,
-                            mode: ClickMode.push,
+                            mode: "push",
                         },
                         onHover: {
                             enable: true,
-                            mode: HoverMode.repulse,
+                            mode: "repulse",
                         },
-                        resize: true,
                     },
                     modes: {
                         bubble: {
@@ -257,7 +256,6 @@ describe("Options tests", () => {
                     },
                     size: {
                         value: { min: 0.1, max: 5 },
-                        random: true,
                         animation: {
                             enable: true,
                             speed: 20,
@@ -291,9 +289,9 @@ describe("Options tests", () => {
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.push);
+        expect(options.interactivity.events.onClick.mode).to.equal("push");
         expect(options.interactivity.events.onHover.enable).to.be.true;
-        expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.repulse);
+        expect(options.interactivity.events.onHover.mode).to.equal("repulse");
         expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */
@@ -364,13 +362,12 @@ describe("Options tests", () => {
                     events: {
                         onClick: {
                             enable: true,
-                            mode: ClickMode.repulse,
+                            mode: "repulse",
                         },
                         onHover: {
                             enable: false,
-                            mode: HoverMode.grab,
+                            mode: "grab",
                         },
-                        resize: true,
                     },
                     modes: {
                         bubble: {
@@ -414,7 +411,6 @@ describe("Options tests", () => {
                         random: false,
                         straight: false,
                         outModes: OutMode.bounce,
-                        bounce: false,
                         attract: {
                             enable: false,
                             rotate: {
@@ -434,11 +430,9 @@ describe("Options tests", () => {
                     },
                     opacity: {
                         value: 0.5,
-                        random: false,
                         animation: {
                             enable: false,
                             speed: 1,
-                            opacity_min: 0.1,
                             sync: false,
                         },
                     },
@@ -474,9 +468,9 @@ describe("Options tests", () => {
 
         /* interactivity events */
         expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal(ClickMode.repulse);
+        expect(options.interactivity.events.onClick.mode).to.equal("repulse");
         expect(options.interactivity.events.onHover.enable).to.be.false;
-        expect(options.interactivity.events.onHover.mode).to.equal(HoverMode.grab);
+        expect(options.interactivity.events.onHover.mode).to.equal("grab");
         expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */
@@ -515,7 +509,7 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fillColor).to.be.undefined;
+        expect(options.particles.move.trail.fill.color).to.be.undefined;
         expect(options.particles.move.trail.enable).to.be.false;
         expect(options.particles.move.trail.length).to.equal(10);
 

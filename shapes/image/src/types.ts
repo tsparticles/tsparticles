@@ -1,7 +1,7 @@
-import type { Container, Engine, IOptions, Options } from "tsparticles-engine";
-import type { IImage } from "./Utils";
-import type { IPreload } from "./Options/Interfaces/IPreload";
-import type { Preload } from "./Options/Classes/Preload";
+import type { Container, Engine, IOptions, Options } from "@tsparticles/engine";
+import type { IImage } from "./Utils.js";
+import type { IPreload } from "./Options/Interfaces/IPreload.js";
+import type { Preload } from "./Options/Classes/Preload.js";
 
 export type ImageEngine = Engine & {
     images?: IImage[];

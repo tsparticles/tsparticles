@@ -7,9 +7,9 @@ import {
     clamp,
     getDistances,
     getRangeValue,
-} from "tsparticles-engine";
-import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types";
-import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse";
+} from "@tsparticles/engine";
+import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types.js";
+import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse.js";
 
 type RepulseParticle = Particle & {
     options: RepulseParticlesOptions;

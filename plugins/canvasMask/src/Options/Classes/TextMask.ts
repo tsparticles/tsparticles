@@ -1,7 +1,7 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import { FontTextMask } from "./FontTextMask";
-import type { ITextMask } from "../Interfaces/ITextMask";
-import { TextMaskLine } from "./TextMaskLine";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { FontTextMask } from "./FontTextMask.js";
+import type { ITextMask } from "../Interfaces/ITextMask.js";
+import { TextMaskLine } from "./TextMaskLine.js";
 
 export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
     color;

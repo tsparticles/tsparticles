@@ -1,8 +1,8 @@
-import type { Engine } from "tsparticles-engine";
-import type { IEmitterShape } from "./IEmitterShape";
-import type { ShapeManager } from "./ShapeManager";
+import type { Engine } from "@tsparticles/engine";
+import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
+import type { ShapeManager } from "./ShapeManager.js";
 
 export type EmittersEngine = Engine & {
-    addEmitterShape?: (name: string, shape: IEmitterShape) => void;
+    addEmitterShapeGenerator?: (name: string, shape: IEmitterShapeGenerator) => void;
     emitterShapeManager?: ShapeManager;
 };

@@ -2,11 +2,11 @@
 
 # tsParticles Easing Back Plugin
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/tsparticles-plugin-easing-back/badge)](https://www.jsdelivr.com/package/npm/tsparticles-plugin-easing-back)
-[![npmjs](https://badge.fury.io/js/tsparticles-plugin-easing-back.svg)](https://www.npmjs.com/package/tsparticles-plugin-easing-back)
-[![npmjs](https://img.shields.io/npm/dt/tsparticles-plugin-easing-back)](https://www.npmjs.com/package/tsparticles-plugin-easing-back) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/plugin-easing-back/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/plugin-easing-back)
+[![npmjs](https://badge.fury.io/js/@tsparticles/plugin-easing-back.svg)](https://www.npmjs.com/package/@tsparticles/plugin-easing-back)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-easing-back)](https://www.npmjs.com/package/@tsparticles/plugin-easing-back) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/matteobruni/tsparticles) plugin for adding the easing back support.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for adding the easing back support.
 
 ## How to use it
 
@@ -42,20 +42,20 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install tsparticles-plugin-easing-back
+$ npm install @tsparticles/plugin-easing-back
 ```
 
 or
 
 ```shell
-$ yarn add tsparticles-plugin-easing-back
+$ yarn add @tsparticles/plugin-easing-back
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
-const { tsParticles } = require("tsparticles-engine");
-const { loadEasingBackPlugin } = require("tsparticles-plugin-easing-back");
+const { tsParticles } = require("@tsparticles/engine");
+const { loadEasingBackPlugin } = require("@tsparticles/plugin-easing-back");
 
 (async () => {
   await loadEasingBackPlugin();
@@ -65,8 +65,8 @@ const { loadEasingBackPlugin } = require("tsparticles-plugin-easing-back");
 or
 
 ```javascript
-import { tsParticles } from "tsparticles-engine";
-import { loadEasingBackPlugin } from "tsparticles-plugin-easing-back";
+import { tsParticles } from "@tsparticles/engine";
+import { loadEasingBackPlugin } from "@tsparticles/plugin-easing-back";
 
 (async () => {
   await loadEasingBackPlugin();

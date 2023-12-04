@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Virus",
@@ -54,7 +54,7 @@ const options: ISourceOptions = {
             options: {
                 image: {
                     height: 32,
-                    replace_color: true,
+                    replaceColor: true,
                     src: "https://particles.js.org/images/sars-cov-2.png",
                     width: 32,
                 },

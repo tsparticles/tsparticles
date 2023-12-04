@@ -44,7 +44,7 @@
         if (container) {
             particlesCount.innerText = `${container.particles.count}`;
             zParticlesCount.innerText = `${container.particles._zArray.length}`;
-            poolCount.innerText = `${container.particles.pool.length}`;
+            poolCount.innerText = `${container.particles._pool.length}`;
         }
     }, 100);
 
@@ -320,7 +320,7 @@
                 const inputData = document.getElementById("code-pen-data");
                 const particlesContainer = document.getElementById("tsparticles");
                 const data = {
-                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/matteobruni/tsparticles -->
+                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/tsparticles/tsparticles -->
 <div id="tsparticles"></div>`,
                     css: `/* ---- reset ---- */
 body {

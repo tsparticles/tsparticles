@@ -6,25 +6,25 @@ import {
     isSsr,
     isString,
     tsParticles,
-} from "tsparticles-engine";
-import { ConfettiOptions } from "./ConfettiOptions";
-import type { EmitterContainer } from "tsparticles-plugin-emitters";
-import type { IConfettiOptions } from "./IConfettiOptions";
-import { loadBasic } from "tsparticles-basic";
-import { loadCardsShape } from "tsparticles-shape-cards";
-import { loadEmittersPlugin } from "tsparticles-plugin-emitters";
-import { loadHeartShape } from "tsparticles-shape-heart";
-import { loadImageShape } from "tsparticles-shape-image";
-import { loadLifeUpdater } from "tsparticles-updater-life";
-import { loadMotionPlugin } from "tsparticles-plugin-motion";
-import { loadPolygonShape } from "tsparticles-shape-polygon";
-import { loadRollUpdater } from "tsparticles-updater-roll";
-import { loadRotateUpdater } from "tsparticles-updater-rotate";
-import { loadSquareShape } from "tsparticles-shape-square";
-import { loadStarShape } from "tsparticles-shape-star";
-import { loadTextShape } from "tsparticles-shape-text";
-import { loadTiltUpdater } from "tsparticles-updater-tilt";
-import { loadWobbleUpdater } from "tsparticles-updater-wobble";
+} from "@tsparticles/engine";
+import { ConfettiOptions } from "./ConfettiOptions.js";
+import type { EmitterContainer } from "@tsparticles/plugin-emitters";
+import type { IConfettiOptions } from "./IConfettiOptions.js";
+import { loadBasic } from "@tsparticles/basic";
+import { loadCardsShape } from "@tsparticles/shape-cards";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadHeartShape } from "@tsparticles/shape-heart";
+import { loadImageShape } from "@tsparticles/shape-image";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+import { loadPolygonShape } from "@tsparticles/shape-polygon";
+import { loadRollUpdater } from "@tsparticles/updater-roll";
+import { loadRotateUpdater } from "@tsparticles/updater-rotate";
+import { loadSquareShape } from "@tsparticles/shape-square";
+import { loadStarShape } from "@tsparticles/shape-star";
+import { loadTextShape } from "@tsparticles/shape-text";
+import { loadTiltUpdater } from "@tsparticles/updater-tilt";
+import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
 /**
  *
@@ -270,23 +270,27 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 },
             },
             rotate: {
-                value: {
-                    min: 0,
-                    max: 360,
-                },
+                value: actualOptions.flat
+                    ? 0
+                    : {
+                          min: 0,
+                          max: 360,
+                      },
                 direction: "random",
                 animation: {
-                    enable: true,
+                    enable: actualOptions.flat,
                     speed: 60,
                 },
             },
             tilt: {
                 direction: "random",
-                enable: true,
-                value: {
-                    min: 0,
-                    max: 360,
-                },
+                enable: actualOptions.flat,
+                value: actualOptions.flat
+                    ? 0
+                    : {
+                          min: 0,
+                          max: 360,
+                      },
                 animation: {
                     enable: true,
                     speed: 60,
@@ -297,7 +301,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                     enable: true,
                     value: 25,
                 },
-                enable: true,
+                enable: actualOptions.flat,
                 speed: {
                     min: 15,
                     max: 25,
@@ -305,7 +309,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             },
             wobble: {
                 distance: 30,
-                enable: true,
+                enable: actualOptions.flat,
                 speed: {
                     min: -15,
                     max: 15,

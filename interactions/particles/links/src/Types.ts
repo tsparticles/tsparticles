@@ -7,10 +7,10 @@ import type {
     IRgb,
     Particle,
     ParticlesOptions,
-} from "tsparticles-engine";
-import type { ILink } from "./Interfaces";
-import type { ILinks } from "./Options/Interfaces/ILinks";
-import type { Links } from "./Options/Classes/Links";
+} from "@tsparticles/engine";
+import type { ILink } from "./Interfaces.js";
+import type { ILinks } from "./Options/Interfaces/ILinks.js";
+import type { Links } from "./Options/Classes/Links.js";
 
 export type LinkContainer = Container & {
     particles: {
@@ -52,16 +52,6 @@ export type LinkTriangleDrawParams = {
 };
 
 export type IParticlesLinkOptions = IParticlesOptions & {
-    /**
-     * @deprecated use the new links instead
-     */
-    lineLinked?: ILinks;
-
-    /**
-     * @deprecated use the new links instead
-     */
-    line_linked?: ILinks;
-
     links?: ILinks;
 };
 

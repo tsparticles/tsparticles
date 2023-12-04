@@ -1,6 +1,6 @@
-import { type Container, type ICoordinates, type IMovePathGenerator, Vector, getRandom } from "tsparticles-engine";
-import type { IPolygonPathOptions } from "./IPolygonPathOptions";
-import type { PolygonPathParticle } from "./PolygonPathParticle";
+import { type Container, type ICoordinates, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
+import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
+import type { PolygonPathParticle } from "./PolygonPathParticle.js";
 
 export class PolygonPathGenerator implements IMovePathGenerator {
     dirsList: ICoordinates[];

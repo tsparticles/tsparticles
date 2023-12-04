@@ -1,12 +1,7 @@
-import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple";
+import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
  */
 export interface IModeDiv {
-    /**
-     * @deprecated This property is deprecated, please use selectors instead
-     */
-    ids: SingleOrMultiple<string>;
-
     selectors: SingleOrMultiple<string>;
 }

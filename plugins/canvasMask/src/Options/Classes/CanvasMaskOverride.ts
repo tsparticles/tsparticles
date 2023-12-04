@@ -1,5 +1,5 @@
-import type { IOptionLoader, RecursivePartial } from "tsparticles-engine";
-import type { ICanvasMaskOverride } from "../Interfaces/ICanvasMaskOverride";
+import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import type { ICanvasMaskOverride } from "../Interfaces/ICanvasMaskOverride.js";
 
 export class CanvasMaskOverride implements ICanvasMaskOverride, IOptionLoader<ICanvasMaskOverride> {
     color: boolean;

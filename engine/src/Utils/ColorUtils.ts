@@ -1,14 +1,14 @@
-import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors";
-import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils";
-import { isArray, isString, itemFromArray } from "./Utils";
-import { AnimationStatus } from "../Enums/AnimationStatus";
-import type { HslAnimation } from "../Options/Classes/HslAnimation";
-import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation";
-import type { IColorManager } from "../Core/Interfaces/IColorManager";
-import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor";
-import type { IParticle } from "../Core/Interfaces/IParticle";
-import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation";
-import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation";
+import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
+import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils.js";
+import { isArray, isString, itemFromArray } from "./Utils.js";
+import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
+import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
+import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
+import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
+import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
+import type { Particle } from "../Core/Particle.js";
 
 const randomColorValue = "random",
     midColorValue = "mid",
@@ -19,37 +19,6 @@ const randomColorValue = "random",
  */
 export function addColorManager(manager: IColorManager): void {
     colorManagers.set(manager.key, manager);
-}
-
-/**
- * Converts hue to RGB values.
- * @param p -
- * @param q -
- * @param t -
- * @returns the hue calculated from the rgb values
- */
-function hue2rgb(p: number, q: number, t: number): number {
-    if (t < 0) {
-        t += 1;
-    }
-
-    if (t > 1) {
-        t -= 1;
-    }
-
-    if (t < 1 / 6) {
-        return p + (q - p) * 6 * t;
-    }
-
-    if (t < 1 / 2) {
-        return q;
-    }
-
-    if (t < 2 / 3) {
-        return p + (q - p) * (2 / 3 - t) * 6;
-    }
-
-    return p;
 }
 
 /**
@@ -191,7 +160,7 @@ export function rgbToHsl(color: IRgb): IHsl {
         //Calculate L:
         res = {
             h: 0,
-            l: (max + min) / 2,
+            l: (max + min) * 0.5,
             s: 0,
         };
 
@@ -244,32 +213,52 @@ export function stringToRgb(input: string): IRgb | undefined {
  * @returns the {@link IRgb} object
  */
 export function hslToRgb(hsl: IHsl): IRgb {
-    const result: IRgb = { b: 0, g: 0, r: 0 },
-        hslPercent: IHsl = {
-            h: hsl.h / 360,
-            l: hsl.l / 100,
-            s: hsl.s / 100,
-        };
+    // Ensure that h, s, and l are in the valid range
+    const h = ((hsl.h % 360) + 360) % 360,
+        s = Math.max(0, Math.min(100, hsl.s)),
+        l = Math.max(0, Math.min(100, hsl.l)),
+        // Convert h, s, and l to the range [0, 1]
+        hNormalized = h / 360,
+        sNormalized = s / 100,
+        lNormalized = l / 100;
 
-    if (!hslPercent.s) {
-        result.r = result.g = result.b = hslPercent.l; // achromatic
-    } else {
-        const q =
-                hslPercent.l < 0.5
-                    ? hslPercent.l * (1 + hslPercent.s)
-                    : hslPercent.l + hslPercent.s - hslPercent.l * hslPercent.s,
-            p = 2 * hslPercent.l - q;
-
-        result.r = hue2rgb(p, q, hslPercent.h + 1 / 3);
-        result.g = hue2rgb(p, q, hslPercent.h);
-        result.b = hue2rgb(p, q, hslPercent.h - 1 / 3);
+    if (s === 0) {
+        // If saturation is 0, the color is grayscale
+        const grayscaleValue = Math.round(lNormalized * 255);
+        return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
     }
 
-    result.r = Math.floor(result.r * 255);
-    result.g = Math.floor(result.g * 255);
-    result.b = Math.floor(result.b * 255);
+    const channel = (temp1: number, temp2: number, temp3: number): number => {
+            if (temp3 < 0) {
+                temp3 += 1;
+            }
 
-    return result;
+            if (temp3 > 1) {
+                temp3 -= 1;
+            }
+
+            if (temp3 * 6 < 1) {
+                return temp1 + (temp2 - temp1) * 6 * temp3;
+            }
+
+            if (temp3 * 2 < 1) {
+                return temp2;
+            }
+
+            if (temp3 * 3 < 2) {
+                return temp1 + (temp2 - temp1) * (2 / 3 - temp3) * 6;
+            }
+
+            return temp1;
+        },
+        temp1 =
+            lNormalized < 0.5 ? lNormalized * (1 + sNormalized) : lNormalized + sNormalized - lNormalized * sNormalized,
+        temp2 = 2 * lNormalized - temp1,
+        red = Math.min(255, 255 * channel(temp2, temp1, hNormalized + 1 / 3)),
+        green = Math.min(255, 255 * channel(temp2, temp1, hNormalized)),
+        blue = Math.min(255, 255 * channel(temp2, temp1, hNormalized - 1 / 3));
+
+    return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
 
 /**
@@ -355,7 +344,7 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
  * @param linkColor -
  * @returns the link color calculated using the two linked particles
  */
-export function getLinkColor(p1: IParticle, p2?: IParticle, linkColor?: string | IRgb): IRgb | undefined {
+export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb): IRgb | undefined {
     if (linkColor === randomColorValue) {
         return getRandomRgbColor();
     } else if (linkColor === midColorValue) {

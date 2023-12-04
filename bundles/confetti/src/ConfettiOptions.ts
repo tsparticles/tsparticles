@@ -7,8 +7,8 @@ import {
     type SingleOrMultiple,
     deepExtend,
     isArray,
-} from "tsparticles-engine";
-import type { IConfettiOptions } from "./IConfettiOptions";
+} from "@tsparticles/engine";
+import type { IConfettiOptions } from "./IConfettiOptions.js";
 
 /**
  *
@@ -43,6 +43,11 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
      *
      */
     drift: number;
+
+    /**
+     *
+     */
+    flat: boolean;
 
     /**
      *
@@ -110,6 +115,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
         this.scalar = 1;
         this.zIndex = 100;
         this.disableForReducedMotion = true;
+        this.flat = false;
         this.shapeOptions = {};
     }
 
@@ -176,6 +182,10 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
         if (data.decay !== undefined) {
             this.decay = data.decay;
+        }
+
+        if (data.flat !== undefined) {
+            this.flat = data.flat;
         }
 
         if (data.gravity !== undefined) {

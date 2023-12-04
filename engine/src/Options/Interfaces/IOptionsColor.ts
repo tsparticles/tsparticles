@@ -1,4 +1,4 @@
-import type { IRangeColor } from "../../Core/Interfaces/Colors";
+import type { IRangeColor } from "../../Core/Interfaces/Colors.js";
 
 /**
  * Color options

@@ -14,5 +14,5 @@
 | `repulse.duration`      | `number`           | `1.2`   | seconds                                                                                                |
 | `push.quantity`         | `number`           | `4`     |                                                                                                        |
 | `remove.quantity`       | `number`           | `4`     |                                                                                                        |
-| `emitter`               | `object` / `array` |         | See `Emitters` documentation <https://github.com/matteobruni/tsparticles/tree/main/plugins/emitters>   |
-| `absorber`              | `object` / `array` |         | See `Absorbers` documentation <https://github.com/matteobruni/tsparticles/tree/main/plugins/absorbers> |
+| `emitter`               | `object` / `array` |         | See `Emitters` documentation <https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters>   |
+| `absorber`              | `object` / `array` |         | See `Absorbers` documentation <https://github.com/tsparticles/tsparticles/tree/main/plugins/absorbers> |

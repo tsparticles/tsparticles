@@ -1,5 +1,5 @@
-import { ColorUpdater } from "./ColorUpdater";
-import type { Engine } from "tsparticles-engine";
+import { ColorUpdater } from "./ColorUpdater.js";
+import type { Engine } from "@tsparticles/engine";
 
 /**
  * @param engine -

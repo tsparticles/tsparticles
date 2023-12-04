@@ -6,8 +6,8 @@ import {
     getRandom,
     getRangeValue,
     initParticleNumericAnimationValue,
-} from "tsparticles-engine";
-import { updateOpacity } from "./Utils";
+} from "@tsparticles/engine";
+import { updateOpacity } from "./Utils.js";
 
 /**
  * The opacity updater, it manages the opacity on each particle

@@ -1,10 +1,10 @@
-import { BackgroundMaskCover } from "./BackgroundMaskCover";
-import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroundMask";
-import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover";
-import type { IColor } from "../../../Core/Interfaces/Colors";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
-import { isString } from "../../../Utils/Utils";
+import { BackgroundMaskCover } from "./BackgroundMaskCover.js";
+import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroundMask.js";
+import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover.js";
+import type { IColor } from "../../../Core/Interfaces/Colors.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { isString } from "../../../Utils/Utils.js";
 
 /**
  * [[include:Options/BackgroundMask.md]]
@@ -19,7 +19,7 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     /**
      * Background covering color
      */
-    cover;
+    readonly cover;
 
     /**
      * Background mask enabling options
@@ -42,8 +42,8 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
         }
 
         if (data.cover !== undefined) {
-            const cover = data.cover as IBackgroundMaskCover;
-            const color = (isString(data.cover) ? { color: data.cover } : data.cover) as IColor;
+            const cover = data.cover as IBackgroundMaskCover,
+                color = (isString(data.cover) ? { color: data.cover } : data.cover) as IColor;
 
             this.cover.load(cover.color !== undefined ? cover : { color: color });
         }

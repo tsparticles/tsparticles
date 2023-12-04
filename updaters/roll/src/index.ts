@@ -1,5 +1,5 @@
-import type { Engine } from "tsparticles-engine";
-import { RollUpdater } from "./RollUpdater";
+import type { Engine } from "@tsparticles/engine";
+import { RollUpdater } from "./RollUpdater.js";
 
 /**
  * @param engine - The engine instance

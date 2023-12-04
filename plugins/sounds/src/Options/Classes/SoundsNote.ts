@@ -1,5 +1,5 @@
-import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "tsparticles-engine";
-import type { ISoundsNote } from "../Interfaces/ISoundsNote";
+import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "@tsparticles/engine";
+import type { ISoundsNote } from "../Interfaces/ISoundsNote.js";
 
 export class SoundsNote implements ISoundsNote, IOptionLoader<ISoundsNote> {
     duration: number;

@@ -1,36 +1,21 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader";
-import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber";
-import { ParticlesDensity } from "./ParticlesDensity";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial";
+import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
+import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IParticlesNumber.js";
+import { ParticlesDensity } from "./ParticlesDensity.js";
+import { ParticlesNumberLimit } from "./ParticlesNumberLimit.js";
+import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 /**
  * [[include:Options/Particles/Number.md]]
  */
 export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticlesNumber> {
-    density;
+    readonly density;
     limit;
     value;
 
     constructor() {
         this.density = new ParticlesDensity();
-        this.limit = 0;
+        this.limit = new ParticlesNumberLimit();
         this.value = 0;
-    }
-
-    /**
-     * @deprecated the max property is deprecated, please use the new limit
-     * @returns the max particles number
-     */
-    get max(): number {
-        return this.limit;
-    }
-
-    /**
-     * @deprecated the max property is deprecated, please use the new limit
-     * @param value - the max particles number
-     */
-    set max(value: number) {
-        this.limit = value;
     }
 
     load(data?: RecursivePartial<IParticlesNumber>): void {
@@ -39,12 +24,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
         }
 
         this.density.load(data.density);
-
-        const limit = data.limit ?? data.max;
-
-        if (limit !== undefined) {
-            this.limit = limit;
-        }
+        this.limit.load(data.limit);
 
         if (data.value !== undefined) {
             this.value = data.value;

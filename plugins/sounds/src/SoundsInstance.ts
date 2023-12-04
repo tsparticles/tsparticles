@@ -9,12 +9,12 @@ import {
     isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
-} from "tsparticles-engine";
-import { ImageDisplay, SoundsEventType } from "./enums";
-import type { ImageMargins, InitImageData, SoundsContainer } from "./types";
-import type { SoundsAudio } from "./Options/Classes/SoundsAudio";
-import type { SoundsNote } from "./Options/Classes/SoundsNote";
-import { getNoteFrequency } from "./utils";
+} from "@tsparticles/engine";
+import { ImageDisplay, SoundsEventType } from "./enums.js";
+import type { ImageMargins, InitImageData, SoundsContainer } from "./types.js";
+import type { SoundsAudio } from "./Options/Classes/SoundsAudio.js";
+import type { SoundsNote } from "./Options/Classes/SoundsNote.js";
+import { getNoteFrequency } from "./utils.js";
 
 /**
  * @param data -

@@ -1,6 +1,6 @@
-import type { IParticlesOptions, Particle, ParticlesOptions } from "tsparticles-engine";
-import type { IWobble } from "./Options/Interfaces/IWobble";
-import type { Wobble } from "./Options/Classes/Wobble";
+import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
+import type { IWobble } from "./Options/Interfaces/IWobble.js";
+import type { Wobble } from "./Options/Classes/Wobble.js";
 
 interface IParticleWobble {
     angle: number;

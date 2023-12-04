@@ -1,10 +1,9 @@
-import type { ClickMode } from "../../Enums/Modes/ClickMode";
-import type { ExportResult } from "../../Types/ExportResult";
-import type { ICoordinates } from "./ICoordinates";
-import type { IDelta } from "./IDelta";
-import type { IOptionsColor } from "../../Options/Interfaces/IOptionsColor";
-import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection";
-import type { Particle } from "../Particle";
+import type { ExportResult } from "../../Types/ExportResult.js";
+import type { ICoordinates } from "./ICoordinates.js";
+import type { IDelta } from "./IDelta.js";
+import type { IOptionsColor } from "../../Options/Interfaces/IOptionsColor.js";
+import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection.js";
+import type { Particle } from "../Particle.js";
 
 /**
  */
@@ -13,7 +12,7 @@ export interface IContainerPlugin {
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
     export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;
-    handleClickMode?: (mode: ClickMode | string) => void;
+    handleClickMode?: (mode: string) => void;
     init?: () => Promise<void>;
     particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
     particleCreated?: (particle: Particle) => void;
@@ -30,5 +29,5 @@ export interface IContainerPlugin {
     resize?: () => void;
     start?: () => Promise<void>;
     stop?: () => void;
-    update?: (delta: IDelta) => void;
+    update?: (delta: IDelta) => Promise<void>;
 }

@@ -1,11 +1,9 @@
-import type { BounceContainer, BounceMode, IBounceMode } from "./Types";
+import type { BounceContainer, BounceMode, IBounceMode } from "./Types.js";
 import {
     Circle,
     type DivEvent,
-    DivMode,
     DivType,
     ExternalInteractorBase,
-    HoverMode,
     type ICoordinates,
     type IModes,
     type Modes,
@@ -22,8 +20,10 @@ import {
     isInArray,
     mouseMoveEvent,
     rectBounce,
-} from "tsparticles-engine";
-import { Bounce } from "./Options/Classes/Bounce";
+} from "@tsparticles/engine";
+import { Bounce } from "./Options/Classes/Bounce.js";
+
+const bounceMode = "bounce";
 
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     constructor(container: BounceContainer) {
@@ -54,10 +54,10 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             hoverMode = events.onHover.mode,
             divs = events.onDiv;
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(HoverMode.bounce, hoverMode)) {
+        if (mouseMoveStatus && hoverEnabled && isInArray(bounceMode, hoverMode)) {
             this._processMouseBounce();
         } else {
-            divModeExecute(DivMode.bounce, divs, (selector, div): void => this._singleSelectorBounce(selector, div));
+            divModeExecute(bounceMode, divs, (selector, div): void => this._singleSelectorBounce(selector, div));
         }
     }
 
@@ -69,8 +69,8 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             divs = events.onDiv;
 
         return (
-            (mouse.position && events.onHover.enable && isInArray(HoverMode.bounce, events.onHover.mode)) ||
-            isDivModeEnabled(DivMode.bounce, divs)
+            (mouse.position && events.onHover.enable && isInArray(bounceMode, events.onHover.mode)) ||
+            isDivModeEnabled(bounceMode, divs)
         );
     }
 

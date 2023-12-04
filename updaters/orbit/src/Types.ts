@@ -6,9 +6,9 @@ import type {
     Particle,
     ParticlesOptions,
     Retina,
-} from "tsparticles-engine";
-import type { IOrbit } from "./Options/Interfaces/IOrbit";
-import type { Orbit } from "./Options/Classes/Orbit";
+} from "@tsparticles/engine";
+import type { IOrbit } from "./Options/Interfaces/IOrbit.js";
+import type { Orbit } from "./Options/Classes/Orbit.js";
 
 export type IOrbitParticlesOptions = IParticlesOptions & {
     orbit?: IOrbit;

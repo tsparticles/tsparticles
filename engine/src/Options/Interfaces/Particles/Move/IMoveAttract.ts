@@ -1,5 +1,5 @@
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates";
-import type { RangeValue } from "../../../../Types/RangeValue";
+import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates.js";
+import type { RangeValue } from "../../../../Types/RangeValue.js";
 
 /**
  */
@@ -9,14 +9,4 @@ export interface IMoveAttract {
     enable: boolean;
 
     rotate: ICoordinates;
-
-    /**
-     * @deprecated use the new rotate.x instead
-     */
-    rotateX: number;
-
-    /**
-     * @deprecated use the new rotate.y instead
-     */
-    rotateY: number;
 }

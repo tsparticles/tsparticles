@@ -1,45 +1,37 @@
-import { getLogger, getPosition } from "../Utils/Utils";
-import type { ClickMode } from "../Enums/Modes/ClickMode";
-import type { Container } from "./Container";
-import type { Engine } from "./Engine";
-import { EventType } from "../Enums/Types/EventType";
-import type { ICoordinates } from "./Interfaces/ICoordinates";
-import type { IDelta } from "./Interfaces/IDelta";
-import type { IDimension } from "./Interfaces/IDimension";
-import type { IMouseData } from "./Interfaces/IMouseData";
-import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity";
-import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions";
-import { InteractionManager } from "./Utils/InteractionManager";
-import { Particle } from "./Particle";
-import { Point } from "./Utils/Point";
-import { QuadTree } from "./Utils/QuadTree";
-import { Rectangle } from "./Utils/Rectangle";
-import type { RecursivePartial } from "../Types/RecursivePartial";
-import { errorPrefix } from "./Utils/Constants";
+import { getLogger, getPosition } from "../Utils/Utils.js";
+import type { Container } from "./Container.js";
+import type { Engine } from "./Engine.js";
+import { EventType } from "../Enums/Types/EventType.js";
+import type { ICoordinates } from "./Interfaces/ICoordinates.js";
+import type { IDelta } from "./Interfaces/IDelta.js";
+import type { IDimension } from "./Interfaces/IDimension.js";
+import type { IMouseData } from "./Interfaces/IMouseData.js";
+import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
+import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import { InteractionManager } from "./Utils/InteractionManager.js";
+import { LimitMode } from "../Enums/Modes/LimitMode.js";
+import { Particle } from "./Particle.js";
+import { Point } from "./Utils/Point.js";
+import { QuadTree } from "./Utils/QuadTree.js";
+import { Rectangle } from "./Utils/Rectangle.js";
+import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import { errorPrefix } from "./Utils/Constants.js";
 
 const qTreeCapacity = 4;
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
-    return new Rectangle(
-        -canvasSize.width / 4,
-        -canvasSize.height / 4,
-        (canvasSize.width * 3) / 2,
-        (canvasSize.height * 3) / 2,
-    );
+    const { height, width } = canvasSize,
+        posOffset = -0.25,
+        sizeFactor = 1.5;
+
+    return new Rectangle(posOffset * width, posOffset * height, sizeFactor * width, sizeFactor * height);
 };
 
 /**
  * Particles manager object
  */
 export class Particles {
-    lastZIndex;
-    limit;
     movers;
-    needsSort;
-
-    pool: Particle[];
-
-    pushing?: boolean;
 
     /**
      * The quad tree used to search particles withing ranges
@@ -52,13 +44,16 @@ export class Particles {
      * All the particles used in canvas
      */
     private _array: Particle[];
-
     private readonly _container: Container;
     private readonly _engine;
-
+    private readonly _groupLimits: Map<string, number>;
     private readonly _interactionManager;
+    private _lastZIndex;
+    private _limit;
+    private _needsSort;
     private _nextId;
-
+    private readonly _pool: Particle[];
+    private _resizeFactor?: IDimension;
     private _zArray: Particle[];
 
     /**
@@ -72,10 +67,11 @@ export class Particles {
         this._nextId = 0;
         this._array = [];
         this._zArray = [];
-        this.pool = [];
-        this.limit = 0;
-        this.needsSort = false;
-        this.lastZIndex = 0;
+        this._pool = [];
+        this._limit = 0;
+        this._groupLimits = new Map<string, number>();
+        this._needsSort = false;
+        this._lastZIndex = 0;
         this._interactionManager = new InteractionManager(engine, container);
 
         const canvasSize = container.canvas.size;
@@ -108,25 +104,25 @@ export class Particles {
         group?: string,
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
-        this.pushing = true;
-
-        const container = this._container,
-            options = container.actualOptions,
-            limit = options.particles.number.limit;
+        const limitOptions = this._container.actualOptions.particles.number.limit,
+            limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit,
+            currentCount = this.count;
 
         if (limit > 0) {
-            const countToRemove = this.count + 1 - limit;
+            if (limitOptions.mode === LimitMode.delete) {
+                const countToRemove = currentCount + 1 - limit;
 
-            if (countToRemove > 0) {
-                this.removeQuantity(countToRemove);
+                if (countToRemove > 0) {
+                    this.removeQuantity(countToRemove);
+                }
+            } else if (limitOptions.mode === LimitMode.wait) {
+                if (currentCount >= limit) {
+                    return;
+                }
             }
         }
 
-        const res = this._pushParticle(position, overrideOptions, group, initializer);
-
-        this.pushing = false;
-
-        return res;
+        return this._pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**
@@ -181,7 +177,7 @@ export class Particles {
         return this._array[index];
     }
 
-    handleClickMode(mode: ClickMode | string): void {
+    handleClickMode(mode: string): void {
         this._interactionManager.handleClickMode(mode);
     }
 
@@ -190,8 +186,8 @@ export class Particles {
         const container = this._container,
             options = container.actualOptions;
 
-        this.lastZIndex = 0;
-        this.needsSort = false;
+        this._lastZIndex = 0;
+        this._needsSort = false;
 
         let handled = false;
 
@@ -218,7 +214,7 @@ export class Particles {
 
         if (!handled) {
             const particlesOptions = options.particles,
-                groups = options.particles.groups;
+                groups = particlesOptions.groups;
 
             for (const group in groups) {
                 const groupOptions = groups[group];
@@ -282,6 +278,15 @@ export class Particles {
         this._applyDensity(options.particles, options.manualParticles.length);
     }
 
+    setLastZIndex(zIndex: number): void {
+        this._lastZIndex = zIndex;
+        this._needsSort = this._needsSort || this._lastZIndex < zIndex;
+    }
+
+    setResizeFactor(factor: IDimension): void {
+        this._resizeFactor = factor;
+    }
+
     async update(delta: IDelta): Promise<void> {
         const container = this._container,
             particlesToDelete = new Set<Particle>();
@@ -293,12 +298,12 @@ export class Particles {
         }
 
         for (const [, plugin] of container.plugins) {
-            plugin.update && plugin.update(delta);
+            plugin.update && (await plugin.update(delta));
         }
 
-        for (const particle of this._array) {
-            const resizeFactor = container.canvas.resizeFactor;
+        const resizeFactor = this._resizeFactor;
 
+        for (const particle of this._array) {
             if (resizeFactor && !particle.ignoresResizeRatio) {
                 particle.position.x *= resizeFactor.width;
                 particle.position.y *= resizeFactor.height;
@@ -336,7 +341,7 @@ export class Particles {
 
             this._array = this.filter(checkDelete);
             this._zArray = this._zArray.filter(checkDelete);
-            this.pool.push(...particlesToDelete);
+            this._pool.push(...particlesToDelete);
         }
 
         await this._interactionManager.externalInteract(delta);
@@ -352,15 +357,15 @@ export class Particles {
             }
         }
 
-        delete container.canvas.resizeFactor;
+        delete this._resizeFactor;
 
-        if (this.needsSort) {
+        if (this._needsSort) {
             const zArray = this._zArray;
 
             zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-            this.lastZIndex = zArray[zArray.length - 1].position.z;
-            this.needsSort = false;
+            this._lastZIndex = zArray[zArray.length - 1].position.z;
+            this._needsSort = false;
         }
     }
 
@@ -369,18 +374,29 @@ export class Particles {
         manualCount,
         group,
     ) => {
+        const numberOptions = options.number;
+
         if (!options.number.density?.enable) {
+            if (group === undefined) {
+                this._limit = numberOptions.limit.value;
+            } else {
+                this._groupLimits.set(group, numberOptions.limit.value);
+            }
+
             return;
         }
 
-        const numberOptions = options.number,
-            densityFactor = this._initDensityFactor(numberOptions.density),
+        const densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
-            optParticlesLimit = numberOptions.limit > 0 ? numberOptions.limit : optParticlesNumber,
+            optParticlesLimit = numberOptions.limit.value > 0 ? numberOptions.limit.value : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
             particlesCount = Math.min(this.count, this.filter((t) => t.group === group).length);
 
-        this.limit = numberOptions.limit * densityFactor;
+        if (group === undefined) {
+            this._limit = numberOptions.limit.value * densityFactor;
+        } else {
+            this._groupLimits.set(group, numberOptions.limit.value * densityFactor);
+        }
 
         if (particlesCount < particlesNumber) {
             this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
@@ -409,7 +425,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean,
     ) => Particle | undefined = (position, overrideOptions, group, initializer) => {
         try {
-            let particle = this.pool.pop();
+            let particle = this._pool.pop();
 
             if (particle) {
                 particle.init(this._nextId, position, overrideOptions, group);
@@ -460,10 +476,12 @@ export class Particles {
 
         particle.destroy(override);
 
-        this._array.splice(index, 1);
-        this._zArray = this._zArray.splice(this._zArray.indexOf(particle), 1);
+        const zIdx = this._zArray.indexOf(particle);
 
-        this.pool.push(particle);
+        this._array.splice(index, 1);
+        this._zArray.splice(zIdx, 1);
+
+        this._pool.push(particle);
 
         this._engine.dispatchEvent(EventType.particleRemoved, {
             container: this._container,

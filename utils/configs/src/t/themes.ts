@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "tsparticles-engine";
+import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Themes",
@@ -124,7 +124,6 @@ const options: ISourceOptions = {
             value: 30,
             density: {
                 enable: true,
-                value_area: 800,
             },
         },
         shape: {
@@ -134,10 +133,9 @@ const options: ISourceOptions = {
             value: 1,
         },
         size: {
-            value: 30,
-            random: {
-                enable: true,
-                minimumValue: 15,
+            value: {
+                min: 15,
+                max: 30,
             },
         },
         rotate: {
@@ -152,7 +150,7 @@ const options: ISourceOptions = {
             enable: true,
             speed: 6,
             direction: "none",
-            out_mode: "out",
+            outModes: "out",
         },
     },
     interactivity: {
@@ -166,7 +164,6 @@ const options: ISourceOptions = {
                 enable: true,
                 mode: "push",
             },
-            resize: true,
         },
     },
     detectRetina: true,

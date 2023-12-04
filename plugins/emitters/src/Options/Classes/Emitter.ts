@@ -10,12 +10,12 @@ import {
     deepExtend,
     executeOnSingleOrMultiple,
     setRangeValue,
-} from "tsparticles-engine";
-import { EmitterLife } from "./EmitterLife";
-import { EmitterRate } from "./EmitterRate";
-import { EmitterShapeType } from "../../Enums/EmitterShapeType";
-import { EmitterSize } from "./EmitterSize";
-import type { IEmitter } from "../Interfaces/IEmitter";
+} from "@tsparticles/engine";
+import { EmitterLife } from "./EmitterLife.js";
+import { EmitterRate } from "./EmitterRate.js";
+import { EmitterShape } from "./EmitterShape.js";
+import { EmitterSize } from "./EmitterSize.js";
+import type { IEmitter } from "../Interfaces/IEmitter.js";
 
 /**
  * [[include:Options/Plugins/Emitters.md]]
@@ -30,7 +30,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
     position?: RecursivePartial<IRangedCoordinates>;
     rate;
-    shape: EmitterShapeType | keyof typeof EmitterShapeType;
+    shape: EmitterShape;
     size?: EmitterSize;
     spawnColor?: AnimatableColor;
     startCount;
@@ -40,7 +40,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         this.fill = true;
         this.life = new EmitterLife();
         this.rate = new EmitterRate();
-        this.shape = EmitterShapeType.square;
+        this.shape = new EmitterShape();
         this.startCount = 0;
     }
 
@@ -80,10 +80,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         });
 
         this.rate.load(data.rate);
-
-        if (data.shape !== undefined) {
-            this.shape = data.shape;
-        }
+        this.shape.load(data.shape);
 
         if (data.position !== undefined) {
             this.position = {};

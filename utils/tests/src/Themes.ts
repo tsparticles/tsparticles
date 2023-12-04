@@ -1,12 +1,4 @@
-import {
-    ClickMode,
-    HoverMode,
-    type ISourceOptions,
-    MoveDirection,
-    OutMode,
-    ThemeMode,
-    tsParticles,
-} from "tsparticles-engine";
+import { type ISourceOptions, MoveDirection, OutMode, ThemeMode, tsParticles } from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
 
@@ -55,7 +47,6 @@ describe("Themes", async () => {
                     value: 30,
                     density: {
                         enable: true,
-                        value_area: 800,
                     },
                 },
                 shape: {
@@ -66,10 +57,6 @@ describe("Themes", async () => {
                 },
                 size: {
                     value: 30,
-                    random: {
-                        enable: true,
-                        minimumValue: 15,
-                    },
                 },
                 rotate: {
                     value: 0,
@@ -83,20 +70,19 @@ describe("Themes", async () => {
                     enable: true,
                     speed: 6,
                     direction: MoveDirection.none,
-                    outMode: OutMode.out,
+                    outModes: OutMode.out,
                 },
             },
             interactivity: {
                 events: {
                     onHover: {
                         enable: true,
-                        mode: HoverMode.repulse,
+                        mode: "repulse",
                     },
                     onClick: {
                         enable: true,
-                        mode: ClickMode.push,
+                        mode: "push",
                     },
-                    resize: true,
                 },
             },
             detectRetina: true,

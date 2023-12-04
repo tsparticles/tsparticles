@@ -1,6 +1,6 @@
-import type { IFullScreen } from "../../Interfaces/FullScreen/IFullScreen";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader";
-import type { RecursivePartial } from "../../../Types/RecursivePartial";
+import type { IFullScreen } from "../../Interfaces/FullScreen/IFullScreen.js";
+import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * The options to set the particles in the background using CSS `fixed` position

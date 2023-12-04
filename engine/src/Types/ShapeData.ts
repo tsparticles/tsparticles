@@ -1,5 +1,5 @@
-import type { IShapeValues } from "../Core/Interfaces/IShapeValues";
-import type { SingleOrMultiple } from "./SingleOrMultiple";
+import type { IShapeValues } from "../Core/Interfaces/IShapeValues.js";
+import type { SingleOrMultiple } from "./SingleOrMultiple.js";
 
 /**
  */

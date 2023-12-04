@@ -12,8 +12,8 @@ import {
     getRandom,
     isPointInside,
     randomInRange,
-} from "tsparticles-engine";
-import type { IOutModeManager } from "./IOutModeManager";
+} from "@tsparticles/engine";
+import type { IOutModeManager } from "./IOutModeManager.js";
 
 export class OutOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
@@ -113,7 +113,7 @@ export class OutOutMode implements IOutModeManager {
                     }
 
                     case ParticleOutType.normal: {
-                        const wrap = particle.options.move.warp,
+                        const warp = particle.options.move.warp,
                             canvasSize = container.canvas.size,
                             newPos = {
                                 bottom: canvasSize.height + particle.getRadius() + particle.offset.y,
@@ -131,7 +131,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.position.x = newPos.left;
                             particle.initialPosition.x = particle.position.x;
 
-                            if (!wrap) {
+                            if (!warp) {
                                 particle.position.y = getRandom() * canvasSize.height;
                                 particle.initialPosition.y = particle.position.y;
                             }
@@ -139,7 +139,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.position.x = newPos.right;
                             particle.initialPosition.x = particle.position.x;
 
-                            if (!wrap) {
+                            if (!warp) {
                                 particle.position.y = getRandom() * canvasSize.height;
                                 particle.initialPosition.y = particle.position.y;
                             }
@@ -149,7 +149,7 @@ export class OutOutMode implements IOutModeManager {
                             direction === OutModeDirection.bottom &&
                             nextBounds.top > canvasSize.height + particle.offset.y
                         ) {
-                            if (!wrap) {
+                            if (!warp) {
                                 particle.position.x = getRandom() * canvasSize.width;
                                 particle.initialPosition.x = particle.position.x;
                             }
@@ -157,7 +157,7 @@ export class OutOutMode implements IOutModeManager {
                             particle.position.y = newPos.top;
                             particle.initialPosition.y = particle.position.y;
                         } else if (direction === OutModeDirection.top && nextBounds.bottom < -particle.offset.y) {
-                            if (!wrap) {
+                            if (!warp) {
                                 particle.position.x = getRandom() * canvasSize.width;
                                 particle.initialPosition.x = particle.position.x;
                             }

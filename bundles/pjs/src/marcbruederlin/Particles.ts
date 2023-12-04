@@ -1,4 +1,4 @@
-import { type Container, type RecursivePartial, type SingleOrMultiple, tsParticles } from "tsparticles-engine";
+import { type Container, type RecursivePartial, type SingleOrMultiple, tsParticles } from "@tsparticles/engine";
 
 interface ResponsiveOptions {
     breakpoint: number;
@@ -34,54 +34,58 @@ export class Particles {
         }
 
         tsParticles
-            .set(selector.replace(".", "").replace("!", ""), el, {
-                fullScreen: {
-                    enable: false,
-                },
-                particles: {
-                    color: {
-                        value: options.color ?? "!000000",
+            .load({
+                id: selector.replace(".", "").replace("!", ""),
+                element: el,
+                options: {
+                    fullScreen: {
+                        enable: false,
                     },
-                    links: {
-                        color: "random",
-                        distance: options.minDistance ?? 120,
-                        enable: options.connectParticles ?? false,
-                    },
-                    move: {
-                        enable: true,
-                        speed: options.speed ?? 0.5,
-                    },
-                    number: {
-                        value: options.maxParticles ?? 100,
-                    },
-                    size: {
-                        value: { min: 1, max: options.sizeVariations ?? 3 },
-                    },
-                },
-                responsive: options.responsive?.map((responsive) => ({
-                    maxWidth: responsive.breakpoint,
-                    options: {
-                        particles: {
-                            color: {
-                                value: responsive.options?.color,
-                            },
-                            links: {
-                                distance: responsive.options?.minDistance,
-                                enable: responsive.options?.connectParticles,
-                            },
-                            number: {
-                                value: options.maxParticles,
-                            },
-                            move: {
-                                enable: true,
-                                speed: responsive.options?.speed,
-                            },
-                            size: {
-                                value: responsive.options?.sizeVariations,
-                            },
+                    particles: {
+                        color: {
+                            value: options.color ?? "!000000",
+                        },
+                        links: {
+                            color: "random",
+                            distance: options.minDistance ?? 120,
+                            enable: options.connectParticles ?? false,
+                        },
+                        move: {
+                            enable: true,
+                            speed: options.speed ?? 0.5,
+                        },
+                        number: {
+                            value: options.maxParticles ?? 100,
+                        },
+                        size: {
+                            value: { min: 1, max: options.sizeVariations ?? 3 },
                         },
                     },
-                })),
+                    responsive: options.responsive?.map((responsive) => ({
+                        maxWidth: responsive.breakpoint,
+                        options: {
+                            particles: {
+                                color: {
+                                    value: responsive.options?.color,
+                                },
+                                links: {
+                                    distance: responsive.options?.minDistance,
+                                    enable: responsive.options?.connectParticles,
+                                },
+                                number: {
+                                    value: options.maxParticles,
+                                },
+                                move: {
+                                    enable: true,
+                                    speed: responsive.options?.speed,
+                                },
+                                size: {
+                                    value: responsive.options?.sizeVariations,
+                                },
+                            },
+                        },
+                    })),
+                },
             })
             .then((container) => {
                 particles._container = container;

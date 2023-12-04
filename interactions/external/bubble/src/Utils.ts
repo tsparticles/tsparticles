@@ -1,4 +1,4 @@
-import { clamp } from "tsparticles-engine";
+import { clamp } from "@tsparticles/engine";
 
 /**
  * @param particleValue -

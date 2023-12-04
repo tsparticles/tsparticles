@@ -1,5 +1,5 @@
-import type { Container, Engine, IPlugin } from "tsparticles-engine";
-import { ExportJSONInstance } from "./ExportJSONInstance";
+import type { Container, Engine, IPlugin } from "@tsparticles/engine";
+import { ExportJSONInstance } from "./ExportJSONInstance.js";
 
 /**
  */

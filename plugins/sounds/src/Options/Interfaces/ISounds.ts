@@ -1,6 +1,6 @@
-import type { ISoundsEvent } from "./ISoundsEvent";
-import type { ISoundsIcons } from "./ISoundsIcons";
-import type { ISoundsVolume } from "./ISoundsVolume";
+import type { ISoundsEvent } from "./ISoundsEvent.js";
+import type { ISoundsIcons } from "./ISoundsIcons.js";
+import type { ISoundsVolume } from "./ISoundsVolume.js";
 
 export interface ISounds {
     enable: boolean;
