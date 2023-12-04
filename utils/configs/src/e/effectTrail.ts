@@ -21,6 +21,7 @@ const options: ISourceOptions = {
             type: "trail",
             options: {
                 trail: {
+                    fade: true,
                     length: {
                         min: 10,
                         max: 30,
@@ -45,7 +46,7 @@ const options: ISourceOptions = {
                 generator: "simplexNoise",
             },
             enable: true,
-            speed: 6,
+            speed: { min: 6, max: 15 },
         },
     },
     background: {

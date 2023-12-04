@@ -16,11 +16,11 @@ export const validTypes = ["emoji"];
 const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"';
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
-    private readonly _emojiShapeDict: Map<string, ImageBitmap> = new Map<string, ImageBitmap>();
+    private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
 
     destroy(): void {
         for (const [, emojiData] of this._emojiShapeDict) {
-            emojiData?.close();
+            emojiData instanceof ImageBitmap && emojiData?.close();
         }
     }
 
@@ -86,22 +86,45 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
                 return;
             }
 
-            const canvasSize = getRangeMax(particle.size.value) * 2,
-                canvas = new OffscreenCanvas(canvasSize, canvasSize);
+            const canvasSize = getRangeMax(particle.size.value) * 2;
 
-            const context = canvas.getContext("2d");
+            let emojiData: ImageBitmap | HTMLCanvasElement;
 
-            if (!context) {
-                return;
+            if (typeof OffscreenCanvas !== "undefined") {
+                const canvas = new OffscreenCanvas(canvasSize, canvasSize),
+                    context = canvas.getContext("2d");
+
+                if (!context) {
+                    return;
+                }
+
+                context.font = `400 ${getRangeMax(particle.size.value) * 2}px ${font}`;
+                context.textBaseline = "middle";
+                context.textAlign = "center";
+
+                context.fillText(emoji, getRangeMax(particle.size.value), getRangeMax(particle.size.value));
+
+                emojiData = canvas.transferToImageBitmap();
+            } else {
+                const canvas = document.createElement("canvas");
+
+                canvas.width = canvasSize;
+                canvas.height = canvasSize;
+
+                const context = canvas.getContext("2d");
+
+                if (!context) {
+                    return;
+                }
+
+                context.font = `400 ${getRangeMax(particle.size.value) * 2}px ${font}`;
+                context.textBaseline = "middle";
+                context.textAlign = "center";
+
+                context.fillText(emoji, getRangeMax(particle.size.value), getRangeMax(particle.size.value));
+
+                emojiData = canvas;
             }
-
-            context.font = `400 ${getRangeMax(particle.size.value) * 2}px ${font}`;
-
-            context.textBaseline = "middle";
-            context.textAlign = "center";
-            context.fillText(emoji, getRangeMax(particle.size.value), getRangeMax(particle.size.value));
-
-            const emojiData = canvas.transferToImageBitmap();
 
             this._emojiShapeDict.set(key, emojiData);
 

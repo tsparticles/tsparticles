@@ -6,7 +6,6 @@ import {
     type IShapeValues,
     type Particle,
     type RangeValue,
-    getDistance,
     getRangeValue,
 } from "@tsparticles/engine";
 
@@ -17,12 +16,14 @@ type TrailStep = {
 
 type TrailParticle = Particle & {
     trail?: TrailStep[];
+    trailFade?: boolean;
     trailLength?: number;
     trailMaxWidth?: number;
     trailMinWidth?: number;
 };
 
 interface ITrailData extends IShapeValues {
+    fade: boolean;
     length: RangeValue;
     maxWidth: RangeValue;
     minWidth: RangeValue;
@@ -53,7 +54,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             return;
         }
 
-        if (particle.trail.length > pathLength) {
+        while (particle.trail.length > pathLength) {
             particle.trail.shift();
         }
 
@@ -61,6 +62,10 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             offsetPos = {
                 x: currentPos.x,
                 y: currentPos.y,
+            },
+            canvasSize = {
+                width: particle.container.canvas.size.width + diameter,
+                height: particle.container.canvas.size.height + diameter,
             };
 
         let lastPos = particle.trail[trailLength - 1].position;
@@ -69,21 +74,41 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             const step = particle.trail[i - 1],
                 position = step.position;
 
-            if (getDistance(lastPos, position) > diameter) {
+            context.beginPath();
+            context.moveTo(lastPos.x - offsetPos.x, lastPos.y - offsetPos.y);
+
+            // Calculate wrapping points
+            const warp = {
+                x: (lastPos.x + canvasSize.width) % canvasSize.width,
+                y: (lastPos.y + canvasSize.height) % canvasSize.height,
+            };
+
+            if (
+                Math.abs(lastPos.x - position.x) > canvasSize.width / 2 ||
+                Math.abs(lastPos.y - position.y) > canvasSize.height / 2
+            ) {
+                lastPos = position;
+
                 continue;
             }
 
-            context.beginPath();
-            context.moveTo(lastPos.x - offsetPos.x, lastPos.y - offsetPos.y);
-            context.lineTo(position.x - offsetPos.x, position.y - offsetPos.y);
+            // Draw the line using wrapping points
+            context.lineTo(
+                (Math.abs(lastPos.x - position.x) > canvasSize.width / 2 ? warp.x : position.x) - offsetPos.x,
+                (Math.abs(lastPos.y - position.y) > canvasSize.height / 2 ? warp.y : position.y) - offsetPos.y,
+            );
 
             const width = Math.max((i / trailLength) * diameter, pxRatio, particle.trailMinWidth ?? -1);
 
+            const oldAlpha = context.globalAlpha;
+
+            context.globalAlpha = particle.trailFade ? i / trailLength : 1;
+
             context.lineWidth = particle.trailMaxWidth ? Math.min(width, particle.trailMaxWidth) : width;
-
             context.strokeStyle = step.color;
-
             context.stroke();
+
+            context.globalAlpha = oldAlpha;
 
             lastPos = position;
         }
@@ -94,6 +119,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
         const effectData = particle.effectData as ITrailData | undefined;
 
+        particle.trailFade = effectData?.fade ?? true;
         particle.trailLength = getRangeValue(effectData?.length ?? 10) * container.retina.pixelRatio;
         particle.trailMaxWidth = effectData?.maxWidth
             ? getRangeValue(effectData.maxWidth) * container.retina.pixelRatio
