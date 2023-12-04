@@ -98,7 +98,7 @@ export class Canvas {
             } else if (trailFill.image) {
                 this._paintImage(trailFill.image, trailFill.opacity);
             }
-        } else {
+        } else if (options.clear) {
             this.draw((ctx) => {
                 clear(ctx, this.size);
             });

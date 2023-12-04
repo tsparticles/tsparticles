@@ -38,6 +38,11 @@ export interface IOptions {
     backgroundMask: IBackgroundMask;
 
     /**
+     * Clears the canvas on every frame if enabled
+     */
+    clear: boolean;
+
+    /**
      * The initial delay before starting the animation
      */
     delay: RangeValue;

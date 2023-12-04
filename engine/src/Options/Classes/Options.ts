@@ -32,6 +32,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     autoPlay;
     readonly background;
     readonly backgroundMask;
+    clear: boolean;
     defaultThemes: DefaultThemes;
     delay: RangeValue;
     detectRetina;
@@ -60,6 +61,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.autoPlay = true;
         this.background = new Background();
         this.backgroundMask = new BackgroundMask();
+        this.clear = true;
         this.defaultThemes = {};
         this.delay = 0;
         this.fullScreen = new FullScreen();
@@ -93,6 +95,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (data.autoPlay !== undefined) {
             this.autoPlay = data.autoPlay;
+        }
+
+        if (data.clear !== undefined) {
+            this.clear = data.clear;
+        }
+
+        if (data.name !== undefined) {
+            this.name = data.name;
         }
 
         if (data.delay !== undefined) {
