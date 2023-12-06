@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "@tsparticles/engine";
+import { EventType, type ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Fireworks",
@@ -167,7 +167,7 @@ const options: ISourceOptions = {
         enable: true,
         events: [
             {
-                event: "particleRemoved",
+                event: EventType.particleDestroyed,
                 filter: "explodeSoundCheck",
                 audio: [
                     "https://particles.js.org/audio/explosion0.mp3",

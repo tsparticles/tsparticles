@@ -22,11 +22,13 @@ import type { IFireworkOptions } from "./IFireworkOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
 import { loadLifeUpdater } from "@tsparticles/updater-life";
 import { loadLineShape } from "@tsparticles/shape-line";
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
+import { loadTrailEffect } from "@tsparticles/effect-trail";
 
 let initialized = false;
 let initializing = false;
@@ -43,9 +45,9 @@ declare global {
 }
 
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
-    const data = args.data as { particle: Particle };
+    const data = args.data as { particle: Particle & { splitCount?: number } };
 
-    return data.particle.shape === "line";
+    return data.particle.shape === "circle" && !!data.particle.splitCount && data.particle.splitCount < 2;
 };
 
 class FireworksInstance {
@@ -91,12 +93,14 @@ async function initPlugins(): Promise<void> {
     initializing = true;
 
     await loadEmittersPlugin(tsParticles, false);
+    await loadEmittersShapeSquare(tsParticles, false);
     await loadSoundsPlugin(tsParticles, false);
     await loadLineShape(tsParticles, false);
     await loadRotateUpdater(tsParticles, false);
     await loadDestroyUpdater(tsParticles, false);
     await loadLifeUpdater(tsParticles, false);
     await loadStrokeColorUpdater(tsParticles, false);
+    await loadTrailEffect(tsParticles, false);
     await loadBasic(tsParticles, false);
 
     initializing = false;
@@ -129,9 +133,9 @@ export async function fireworks(
     const particlesOptions: ISourceOptions = {
         detectRetina: true,
         background: {
-            color: "#000",
+            color: options.background,
         },
-        fpsLimit: 120,
+        fpsLimit: 60,
         emitters: {
             direction: MoveDirection.top,
             life: {
@@ -159,7 +163,7 @@ export async function fireworks(
                 value: 0,
             },
             color: {
-                value: options.colors,
+                value: "#fff",
             },
             destroy: {
                 mode: "split",
@@ -180,8 +184,8 @@ export async function fireworks(
                         l: options.brightness,
                     },
                     particles: {
-                        stroke: {
-                            width: 0,
+                        color: {
+                            value: options.colors,
                         },
                         number: {
                             value: 0,
@@ -193,10 +197,21 @@ export async function fireworks(
                             },
                             animation: {
                                 enable: true,
-                                speed: 0.7,
+                                speed: 1,
                                 sync: false,
                                 startValue: StartValueType.max,
                                 destroy: DestroyType.min,
+                            },
+                        },
+                        effect: {
+                            type: "trail",
+                            options: {
+                                trail: {
+                                    length: {
+                                        min: 5,
+                                        max: 10,
+                                    },
+                                },
                             },
                         },
                         shape: {
@@ -240,32 +255,27 @@ export async function fireworks(
             life: {
                 count: 1,
             },
-            shape: {
-                type: "line",
+            effect: {
+                type: "trail",
                 options: {
-                    line: {
-                        cap: "round",
+                    trail: {
+                        length: {
+                            min: 10,
+                            max: 30,
+                        },
+                        minWidth: 1,
+                        maxWidth: 1,
                     },
                 },
             },
-            size: {
-                value: {
-                    min: 0.1,
-                    max: 50,
-                },
-                animation: {
-                    enable: true,
-                    sync: true,
-                    speed: 90,
-                    startValue: StartValueType.max,
-                    destroy: DestroyType.min,
-                },
+            shape: {
+                type: "circle",
             },
-            stroke: {
-                color: {
-                    value: "#ffffff",
-                },
-                width: 0.5,
+            size: {
+                value: 1,
+            },
+            opacity: {
+                value: 0.5,
             },
             rotate: {
                 path: true,
@@ -286,20 +296,13 @@ export async function fireworks(
                     default: OutMode.destroy,
                     top: OutMode.none,
                 },
-                trail: {
-                    fill: {
-                        color: "#000",
-                    },
-                    enable: true,
-                    length: 10,
-                },
             },
         },
         sounds: {
             enable: options.sounds,
             events: [
                 {
-                    event: EventType.particleRemoved,
+                    event: EventType.particleDestroyed,
                     filter: explodeSoundCheck,
                     audio: [
                         "https://particles.js.org/audio/explosion0.mp3",

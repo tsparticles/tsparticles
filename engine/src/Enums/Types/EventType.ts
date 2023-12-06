@@ -9,5 +9,6 @@ export const enum EventType {
     containerPlay = "containerPlay",
     containerBuilt = "containerBuilt",
     particleAdded = "particleAdded",
+    particleDestroyed = "particleDestroyed",
     particleRemoved = "particleRemoved",
 }

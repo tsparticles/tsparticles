@@ -9,6 +9,7 @@ import {
 import type { IFireworkOptions } from "./IFireworkOptions.js";
 
 export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFireworkOptions> {
+    background: string;
     brightness: RangeValue;
     colors: SingleOrMultiple<string>;
     gravity: RangeValue;
@@ -20,6 +21,7 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
     splitCount: RangeValue;
 
     constructor() {
+        this.background = "none";
         this.brightness = {
             min: -30,
             max: 30,
@@ -30,7 +32,7 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
             min: 10,
             max: 30,
         };
-        this.rate = 20;
+        this.rate = 10;
         this.saturation = {
             min: -30,
             max: 30,
@@ -46,6 +48,10 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
     load(data?: RecursivePartial<IFireworkOptions>): void {
         if (!data) {
             return;
+        }
+
+        if (data.background !== undefined) {
+            this.background = data.background;
         }
 
         if (data.colors !== undefined) {

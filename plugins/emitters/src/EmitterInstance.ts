@@ -254,6 +254,8 @@ export class EmitterInstance {
                 if (this._lifeCount > 0 || this._immortal) {
                     this.position = this._calcPosition();
 
+                    this._shape?.resize(this.position, this.size);
+
                     this._spawnDelay =
                         (getRangeValue(this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
                 } else {

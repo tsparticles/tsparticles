@@ -13,6 +13,7 @@ import type { IConfettiOptions } from "./IConfettiOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadCardsShape } from "@tsparticles/shape-cards";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadEmojiShape } from "@tsparticles/shape-emoji";
 import { loadHeartShape } from "@tsparticles/shape-heart";
 import { loadImageShape } from "@tsparticles/shape-image";
 import { loadLifeUpdater } from "@tsparticles/updater-life";
@@ -22,7 +23,6 @@ import { loadRollUpdater } from "@tsparticles/updater-roll";
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 import { loadSquareShape } from "@tsparticles/shape-square";
 import { loadStarShape } from "@tsparticles/shape-star";
-import { loadTextShape } from "@tsparticles/shape-text";
 import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
@@ -113,7 +113,7 @@ async function initPlugins(engine: Engine): Promise<void> {
     await loadPolygonShape(engine, false);
     await loadSquareShape(engine, false);
     await loadStarShape(engine, false);
-    await loadTextShape(engine, false);
+    await loadEmojiShape(engine, false);
     await loadRotateUpdater(engine, false);
     await loadLifeUpdater(engine, false);
     await loadRollUpdater(engine, false);
@@ -278,13 +278,13 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                       },
                 direction: "random",
                 animation: {
-                    enable: actualOptions.flat,
+                    enable: !actualOptions.flat,
                     speed: 60,
                 },
             },
             tilt: {
                 direction: "random",
-                enable: actualOptions.flat,
+                enable: !actualOptions.flat,
                 value: actualOptions.flat
                     ? 0
                     : {
@@ -301,7 +301,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                     enable: true,
                     value: 25,
                 },
-                enable: actualOptions.flat,
+                enable: !actualOptions.flat,
                 speed: {
                     min: 15,
                     max: 25,
@@ -309,7 +309,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             },
             wobble: {
                 distance: 30,
-                enable: actualOptions.flat,
+                enable: !actualOptions.flat,
                 speed: {
                     min: -15,
                     max: 15,

@@ -36,6 +36,9 @@ const options: ISourceOptions = {
         },
     },
     particles: {
+        color: {
+            value: "#fff",
+        },
         number: {
             value: 0,
         },
@@ -154,12 +157,6 @@ const options: ISourceOptions = {
         },
         size: {
             value: 1,
-        },
-        stroke: {
-            color: {
-                value: "#ffffff",
-            },
-            width: 1,
         },
         move: {
             enable: true,

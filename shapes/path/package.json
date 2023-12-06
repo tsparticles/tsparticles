@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/shape-path",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "tsParticles path shape",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -108,7 +108,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.0.1"
+        "@tsparticles/engine": "^3.0.2"
     },
     "publishConfig": {
         "access": "public",

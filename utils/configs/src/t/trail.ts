@@ -47,7 +47,7 @@ const options: ISourceOptions = {
                     value: 0.1,
                 },
                 options: {
-                    size: 5,
+                    size: 20,
                     draw: false,
                     increment: 0.001,
                 },
