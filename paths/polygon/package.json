@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/path-polygon",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "tsParticles polygon path",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -109,7 +109,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.0.0"
+        "@tsparticles/engine": "^3.0.1"
     },
     "publishConfig": {
         "access": "public",

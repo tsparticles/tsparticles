@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/tsparticles/tsparticles/compare/v3.0.0...v3.0.1) (2023-12-06)
+
+### Bug Fixes
+
+-   fixed bug when using particles groups ([d8b840d](https://github.com/tsparticles/tsparticles/commit/d8b840d30a591a6febc65fbfeb74b8588f7af9c2))
+
 # [3.0.0](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.5...v3.0.0) (2023-12-04)
 
 ### Bug Fixes
