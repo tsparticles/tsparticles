@@ -379,7 +379,7 @@ export class Particles {
         if (!options.number.density?.enable) {
             if (group === undefined) {
                 this._limit = numberOptions.limit.value;
-            } else {
+            } else if (numberOptions.limit) {
                 this._groupLimits.set(group, numberOptions.limit.value);
             }
 

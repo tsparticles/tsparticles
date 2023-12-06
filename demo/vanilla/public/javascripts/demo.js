@@ -1,4 +1,4 @@
-(async function() {
+(async () => {
     const initParticles = async (engine) => {
         await loadAll(engine);
     };
@@ -48,7 +48,7 @@
         }
     }, 100);
 
-    let updateParticles = async function(editor) {
+    let updateParticles = async (editor) => {
         let presetId = localStorage.presetId || "basic";
 
         if (presetId === "divEvents") {
@@ -148,7 +148,7 @@
         tsParticles.domItem(0).refresh();
     };
 
-    window.addEventListener("load", async function() {
+    window.addEventListener("load", async () => {
         await initParticles(tsParticles);
 
         for (const presetId in tsParticles.configs) {
@@ -176,10 +176,14 @@
 
         const cmbPresets = document.getElementById("presets");
 
-        cmbPresets.onchange = async function() {
-            localStorage.presetId = this.value;
+        cmbPresets.onchange = async () => {
+            localStorage.presetId = cmbPresets.value;
 
-            await updateParticles(editor);
+            try {
+                await updateParticles(editor);
+            } catch (e) {
+                console.error(e);
+            }
         };
 
         if (!localStorage.presetId) {
