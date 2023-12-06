@@ -21,6 +21,7 @@ import {
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
+import { EventType } from "../Enums/Types/EventType.js";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
@@ -408,6 +409,13 @@ export class Particle {
         }
 
         pathGenerator && pathGenerator.reset(this);
+
+        this._engine.dispatchEvent(EventType.particleDestroyed, {
+            container: this.container,
+            data: {
+                particle: this,
+            },
+        });
     }
 
     draw(delta: IDelta): void {

@@ -10,8 +10,10 @@ beautiful fireworks effects with ease.
 **Included Packages**
 
 - [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
+- [@tsparticles/effect-trail](https://github.com/tsparticles/tsparticles/tree/main/effects/trail)
 - [@tsparticles/move-base](https://github.com/tsparticles/tsparticles/tree/main/move/base)
 - [@tsparticles/plugin-emitters](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters)
+- [@tsparticles/plugin-emitters-shape-square](https://github.com/tsparticles/tsparticles/tree/main/plugins/emitters/shape/square)
 - [@tsparticles/plugin-sounds](https://github.com/tsparticles/tsparticles/tree/main/plugins/sounds)
 - [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
 - [@tsparticles/shape-line](https://github.com/tsparticles/tsparticles/tree/main/shapes/line)
@@ -78,6 +80,7 @@ fireworks({
 
 The `fireworks` has only a single `options` object parameter, with the following properties:
 
+- `background` String: The background color of the canvas, it can be any valid CSS color, can be transparent as well.
 - `brightness` Number or { min: number; max: number; }: The brightness offset applied to the particles color, from -100
   to 100.
 - `colors` String or _Array&lt;String&gt;_: An array of color strings, in the HEX format... you know, like `#bada55`.

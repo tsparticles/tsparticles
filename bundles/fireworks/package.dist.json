@@ -101,7 +101,9 @@
   "dependencies": {
     "@tsparticles/basic": "^3.0.1",
     "@tsparticles/engine": "^3.0.1",
+    "@tsparticles/effect-trail": "^3.0.1",
     "@tsparticles/plugin-emitters": "^3.0.1",
+    "@tsparticles/plugin-emitters-shape-square": "^3.0.1",
     "@tsparticles/plugin-sounds": "^3.0.1",
     "@tsparticles/shape-line": "^3.0.1",
     "@tsparticles/updater-destroy": "^3.0.1",

@@ -25,8 +25,8 @@
     stats.dom.style.top = "3px";
     stats.dom.id = "stats-graph";
 
-    let initStats = function() {
-        const update = function() {
+    let initStats = function () {
+        const update = function () {
             stats.begin();
             stats.end();
 
@@ -36,7 +36,9 @@
         requestAnimationFrame(update);
     };
 
-    const particlesCount = document.getElementById("particles-count"), zParticlesCount = document.getElementById("z-particles-count"), poolCount = document.getElementById("pool-count");
+    const particlesCount = document.getElementById("particles-count"),
+        zParticlesCount = document.getElementById("z-particles-count"),
+        poolCount = document.getElementById("pool-count");
 
     setInterval(() => {
         const container = tsParticles.domItem(0);
@@ -90,7 +92,7 @@
         };
 
         const transform = obj => {
-            return _.transform(omit(obj), function(result, value, key) {
+            return _.transform(omit(obj), function (result, value, key) {
                 result[key] = !_.isArray(value) && _.isObject(value) ? transform(omit(value)) : value;
             });
         };
@@ -107,14 +109,14 @@
             const { [parts[0]]: todo, ...rest } = obj;
             return {
                 ...omit(rest, keys),
-                [parts[0]]: omit(todo, [parts[1]])
+                [parts[0]]: omit(todo, [ parts[1] ])
             };
         }
         const { [key]: omitted, ...rest } = obj;
         return omit(rest, keys);
     };
 
-    let initSidebar = function() {
+    let initSidebar = function () {
         const rightCaret = document.body.querySelector(".caret-right");
         const leftCaret = document.body.querySelector(".caret-left");
         const sidebar = document.getElementById("sidebar");
@@ -129,7 +131,7 @@
         }
     };
 
-    let toggleSidebar = function() {
+    let toggleSidebar = function () {
         const rightCaret = document.body.querySelector(".caret-right");
         const leftCaret = document.body.querySelector(".caret-left");
         const sidebar = document.getElementById("sidebar");
@@ -163,13 +165,13 @@
 
         const element = document.getElementById("editor"), options = {
             mode: "form",
-            modes: ["code", "form", "view", "preview", "text"], // allowed modes
-            onError: function(err) {
+            modes: [ "code", "form", "view", "preview", "text" ], // allowed modes
+            onError: function (err) {
                 alert(err.toString());
             },
-            onModeChange: function(newMode, oldMode) {
+            onModeChange: function (newMode, oldMode) {
             },
-            onChange: function() {
+            onChange: function () {
             }
         };
         const editor = new JSONEditor(element, options);
@@ -200,7 +202,7 @@
 
         const btnUpdate = document.getElementById("btnUpdate");
 
-        btnUpdate.onclick = function() {
+        btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
 
             particles.options.load(editor.get());
@@ -213,7 +215,7 @@
 
         const statsToggler = document.body.querySelector("#toggle-stats");
 
-        statsToggler.addEventListener("click", function() {
+        statsToggler.addEventListener("click", function () {
             const statsEl = document.body.querySelector("#stats");
             if (statsEl.hasAttribute("hidden")) {
                 statsEl.removeAttribute("hidden");
@@ -224,15 +226,15 @@
 
         const sidebarToggler = document.body.querySelector(".toggle-sidebar");
 
-        sidebarToggler.addEventListener("click", function() {
+        sidebarToggler.addEventListener("click", function () {
             toggleSidebar();
         });
 
-        document.getElementById("export-image").addEventListener("click", function() {
+        document.getElementById("export-image").addEventListener("click", function () {
             const container = tsParticles.domItem(0);
 
             if (container) {
-                container.export("image").then(function(blob) {
+                container.export("image").then(function (blob) {
                     const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
                     modalBody.innerHTML = "";
@@ -257,11 +259,11 @@
             }
         });
 
-        document.getElementById("export-video").addEventListener("click", function() {
+        document.getElementById("export-video").addEventListener("click", function () {
             const container = tsParticles.domItem(0);
 
             if (container) {
-                container.export("video").then(function(blob) {
+                container.export("video").then(function (blob) {
                     const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
                     modalBody.innerHTML = "";
@@ -298,12 +300,12 @@
             }
         });
 
-        document.getElementById("export-config").addEventListener("click", function() {
+        document.getElementById("export-config").addEventListener("click", function () {
             const container = tsParticles.domItem(0);
 
             if (container) {
-                container.export("json").then(function(blob) {
-                    blob.text().then(function(json) {
+                container.export("json").then(function (blob) {
+                    blob.text().then(function (json) {
                         const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
 
                         modalBody.innerHTML = `<pre>${json}</pre>`;
@@ -316,7 +318,7 @@
             }
         });
 
-        document.getElementById("codepen-export").addEventListener("click", function() {
+        document.getElementById("codepen-export").addEventListener("click", function () {
             const container = tsParticles.domItem(0);
 
             if (container) {
@@ -375,5 +377,7 @@ function pixelTextFilter(pixel) {
 }
 
 function explodeSoundCheck(args) {
-    return args.data.particle.shape === "line";
+    const particle = args.data.particle;
+
+    return particle.shape === "circle" && particle.splitCount < 2;
 }

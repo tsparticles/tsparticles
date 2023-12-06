@@ -341,7 +341,17 @@ export class Particles {
 
             this._array = this.filter(checkDelete);
             this._zArray = this._zArray.filter(checkDelete);
-            this._pool.push(...particlesToDelete);
+
+            for (const particle of particlesToDelete) {
+                this._engine.dispatchEvent(EventType.particleRemoved, {
+                    container: this._container,
+                    data: {
+                        particle,
+                    },
+                });
+            }
+
+            this._addToPool(...particlesToDelete);
         }
 
         await this._interactionManager.externalInteract(delta);
@@ -368,6 +378,12 @@ export class Particles {
             this._needsSort = false;
         }
     }
+
+    private readonly _addToPool: (...particles: Particle[]) => void = (...particles) => {
+        for (const particle of particles) {
+            this._pool.push(particle);
+        }
+    };
 
     private readonly _applyDensity: (options: IParticlesOptions, manualCount: number, group?: string) => void = (
         options,
@@ -474,14 +490,12 @@ export class Particles {
             return false;
         }
 
-        particle.destroy(override);
-
         const zIdx = this._zArray.indexOf(particle);
 
         this._array.splice(index, 1);
         this._zArray.splice(zIdx, 1);
 
-        this._pool.push(particle);
+        particle.destroy(override);
 
         this._engine.dispatchEvent(EventType.particleRemoved, {
             container: this._container,
@@ -489,6 +503,8 @@ export class Particles {
                 particle,
             },
         });
+
+        this._addToPool(particle);
 
         return true;
     };

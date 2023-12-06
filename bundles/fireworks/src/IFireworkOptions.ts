@@ -1,6 +1,7 @@
 import type { RangeValue, SingleOrMultiple } from "@tsparticles/engine";
 
 export interface IFireworkOptions {
+    background: string;
     brightness: RangeValue;
     colors: SingleOrMultiple<string>;
     gravity: RangeValue;

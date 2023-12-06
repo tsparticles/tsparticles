@@ -162,11 +162,11 @@ export class SoundsInstance implements IContainerPlugin {
             { mute, unmute, volumeDown, volumeUp } = soundsOptions.icons,
             margin = 10;
 
-        const toggleMute = (): void => {
+        const toggleMute = async (): Promise<void> => {
             container.muted = !container.muted;
 
             this._updateMuteIcons();
-            this._updateMuteStatus();
+            await this._updateMuteStatus();
         };
 
         this._muteImg = initImage({
@@ -197,14 +197,14 @@ export class SoundsInstance implements IContainerPlugin {
             iconOptions: volumeDown,
             margin,
             rightOffsets: [volumeUp.width],
-            clickCb: () => {
+            clickCb: async () => {
                 if (container.muted) {
                     this._volume = 0;
                 }
 
                 this._volume -= soundsOptions.volume.step;
 
-                this._updateVolume();
+                await this._updateVolume();
             },
         });
         this._volumeUpImg = initImage({
@@ -215,14 +215,14 @@ export class SoundsInstance implements IContainerPlugin {
             iconOptions: volumeUp,
             margin,
             rightOffsets: [],
-            clickCb: (): void => {
+            clickCb: async (): Promise<void> => {
                 if (container.muted) {
                     this._volume = 0;
                 }
 
                 this._volume += soundsOptions.volume.step;
 
-                this._updateVolume();
+                await this._updateVolume();
             },
         });
     }
@@ -263,38 +263,44 @@ export class SoundsInstance implements IContainerPlugin {
         }
 
         for (const event of soundsOptions.events) {
-            const cb = async (args: CustomEventArgs): Promise<void> => {
-                if (this._container !== args.container) {
-                    return;
-                }
+            const cb = (args: CustomEventArgs): void => {
+                (async (): Promise<void> => {
+                    const filterNotValid = event.filter && !event.filter(args);
 
-                if (!this._container || this._container.muted || this._container.destroyed) {
-                    executeOnSingleOrMultiple(event.event, (item) => {
-                        this._engine.removeEventListener(item, cb);
-                    });
-
-                    return;
-                }
-
-                if (event.filter && !event.filter(args)) {
-                    return;
-                }
-
-                if (event.audio) {
-                    this._playBuffer(itemFromSingleOrMultiple(event.audio));
-                } else if (event.melodies) {
-                    const melody = itemFromArray(event.melodies);
-
-                    if (melody.melodies.length) {
-                        await Promise.allSettled(melody.melodies.map((m) => this._playNote(m.notes, 0, melody.loop)));
-                    } else {
-                        await this._playNote(melody.notes, 0, melody.loop);
+                    if (this._container !== args.container) {
+                        return;
                     }
-                } else if (event.notes) {
-                    const note = itemFromArray(event.notes);
 
-                    await this._playNote([note], 0, false);
-                }
+                    if (!this._container || this._container.muted || this._container.destroyed) {
+                        executeOnSingleOrMultiple(event.event, (item) => {
+                            this._engine.removeEventListener(item, cb);
+                        });
+
+                        return;
+                    }
+
+                    if (filterNotValid) {
+                        return;
+                    }
+
+                    if (event.audio) {
+                        this._playBuffer(itemFromSingleOrMultiple(event.audio));
+                    } else if (event.melodies) {
+                        const melody = itemFromArray(event.melodies);
+
+                        if (melody.melodies.length) {
+                            await Promise.allSettled(
+                                melody.melodies.map((m) => this._playNote(m.notes, 0, melody.loop)),
+                            );
+                        } else {
+                            await this._playNote(melody.notes, 0, melody.loop);
+                        }
+                    } else if (event.notes) {
+                        const note = itemFromArray(event.notes);
+
+                        await this._playNote([note], 0, false);
+                    }
+                })();
             };
 
             executeOnSingleOrMultiple(event.event, (item) => {
@@ -513,19 +519,21 @@ export class SoundsInstance implements IContainerPlugin {
         }
     };
 
-    private readonly _updateMuteStatus: () => void = () => {
+    private readonly _updateMuteStatus: () => Promise<void> = async () => {
         const container = this._container;
 
         if (container.muted) {
+            await container.audioContext?.suspend();
             this._mute();
         } else {
+            await container.audioContext?.resume();
             this._unmute();
 
             this._playMuteSound();
         }
     };
 
-    private readonly _updateVolume: () => void = () => {
+    private readonly _updateVolume: () => Promise<void> = async () => {
         const container = this._container,
             soundsOptions = container.actualOptions.sounds;
 
@@ -549,7 +557,7 @@ export class SoundsInstance implements IContainerPlugin {
 
         if (stateChanged) {
             this._updateMuteIcons();
-            this._updateMuteStatus();
+            await this._updateMuteStatus();
         }
 
         if (this._gain?.gain) {
