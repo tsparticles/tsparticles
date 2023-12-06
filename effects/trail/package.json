@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/effect-trail",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "tsParticles trail effect",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -108,7 +108,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.0.0"
+        "@tsparticles/engine": "^3.0.1"
     },
     "publishConfig": {
         "access": "public",
