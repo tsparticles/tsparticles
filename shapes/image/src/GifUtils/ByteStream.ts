@@ -81,13 +81,13 @@ export class ByteStream {
         const emptySize = 0,
             increment = 1;
 
-        for (let offset = 0; (size = this.data[this.pos + offset]) !== emptySize; offset += size + increment) {
+        for (let offset = 0; size !== emptySize; offset += size + increment, size = this.data[this.pos + offset]) {
             len += size;
         }
 
         const blockData = new Uint8Array(len);
 
-        for (let i = 0; (size = this.data[this.pos++]) !== emptySize;) {
+        for (let i = 0; size !== emptySize; size = this.data[this.pos++]) {
             for (let count = size; --count >= emptySize; blockData[i++] = this.data[this.pos++]) {
                 // do nothing
             }
@@ -100,10 +100,11 @@ export class ByteStream {
      * skips the next set of blocks in the stream
      */
     skipSubBlocks(): void {
-        const increment = 1,
-            noData = 0;
-
-        for (; this.data[this.pos] !== noData; this.pos += this.data[this.pos] + increment) {
+        for (
+            const increment = 1, noData = 0;
+            this.data[this.pos] !== noData;
+            this.pos += this.data[this.pos] + increment
+        ) {
             // do nothing
         }
 
