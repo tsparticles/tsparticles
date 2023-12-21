@@ -921,8 +921,8 @@ importers:
         specifier: ^3.7.1
         version: 3.7.1
       jsoneditor:
-        specifier: ^9.10.3
-        version: 9.10.3
+        specifier: ^10.0.0
+        version: 10.0.0
       livereload:
         specifier: ^0.9.3
         version: 0.9.3
@@ -4482,6 +4482,10 @@ packages:
 
   /ace-builds@1.31.1:
     resolution: {integrity: sha512-3DnE5bZF6Ji+l4F5acoLk+rV7mxrUt1C4r61Xy9owp5rVM4lj5NL8GJfoX6Jnnbhx6kKV7Vdpb+Tco+0ORTvhg==}
+    dev: true
+
+  /ace-builds@1.32.2:
+    resolution: {integrity: sha512-mnJAc803p+7eeDt07r6XI7ufV7VdkpPq4gJZT8Jb3QsowkaBTVy4tdBgPrVT0WbXLm0toyEQXURKSVNj/7dfJQ==}
     dev: true
 
   /acorn-import-assertions@1.9.0(acorn@8.10.0):
@@ -8107,15 +8111,15 @@ packages:
     resolution: {integrity: sha512-gfFQZrcTc8CnKXp6Y4/CBT3fTc0OVuDofpre4aEeEpSBPV5X5v4+Vmx+8snU7RLPrNHPKSgLxGo9YuQzz20o+w==}
     dev: true
 
-  /jsoneditor@9.10.3:
-    resolution: {integrity: sha512-9vSMTPKBZzz56WY0SjbV7VQqa1+wUPKmwqtitmVXmTT5ohAMOYlOLgOdRwj0bl81nHP5HsKsYEVLCPiArHNSFw==}
+  /jsoneditor@10.0.0:
+    resolution: {integrity: sha512-yh/kj/Ecxacj7ZG2ynmJvHcESgdHiAe1N7iKUVIYFpeP4/rwp87yua2y0BDayyY6uJz01KgRvdl4W1Wt94EkOQ==}
     dependencies:
-      ace-builds: 1.31.1
+      ace-builds: 1.32.2
       ajv: 6.12.6
       javascript-natural-sort: 0.7.1
       jmespath: 0.16.0
       json-source-map: 0.6.1
-      jsonrepair: 3.4.0
+      jsonrepair: 3.5.0
       mobius1-selectr: 2.4.13
       picomodal: 3.0.0
       vanilla-picker: 2.12.2
@@ -8140,8 +8144,8 @@ packages:
     engines: {'0': node >= 0.2.0}
     dev: true
 
-  /jsonrepair@3.4.0:
-    resolution: {integrity: sha512-dFI5+BXlOra3SsJXEODXjHMpDPkZje6q2kCTPS9Ugb3Bdj9aok7HtrSPCXCOMsCbTStdUzhUVNS2xuVyMn2qFg==}
+  /jsonrepair@3.5.0:
+    resolution: {integrity: sha512-SavvDsUP9Xnqo2MoC6Wl6zNyX3f+I5199hRbXBtAITyP2NTPyAgyx5xM0bgcIljRjzsIvOBANbgfWe8XXlyeLA==}
     hasBin: true
     dev: true
 
@@ -10015,11 +10019,6 @@ packages:
       once: 1.4.0
     dev: true
 
-  /punycode@2.3.0:
-    resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
-    engines: {node: '>=6'}
-    dev: true
-
   /punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -11701,7 +11700,7 @@ packages:
   /uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
-      punycode: 2.3.0
+      punycode: 2.3.1
     dev: true
 
   /url-parse@1.5.10:
