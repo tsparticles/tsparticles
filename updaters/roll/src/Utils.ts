@@ -1,6 +1,10 @@
-import { AlterType, type IDelta, getRandom, getRangeValue, rangeColorToHsl } from "@tsparticles/engine";
+import { AlterType, type IDelta, getRandom, getRangeValue, halfRandom, rangeColorToHsl } from "@tsparticles/engine";
 import { RollMode } from "./RollMode.js";
 import type { RollParticle } from "./Types.js";
+
+const double = 2,
+    doublePI = Math.PI * double,
+    maxAngle = 360;
 
 /**
  *
@@ -25,14 +29,14 @@ export function initParticle(particle: RollParticle): void {
         enable: rollOpt.enable,
         horizontal: rollOpt.mode === RollMode.horizontal || rollOpt.mode === RollMode.both,
         vertical: rollOpt.mode === RollMode.vertical || rollOpt.mode === RollMode.both,
-        angle: getRandom() * Math.PI * 2,
-        speed: getRangeValue(rollOpt.speed) / 360,
+        angle: getRandom() * doublePI,
+        speed: getRangeValue(rollOpt.speed) / maxAngle,
     };
 
     if (rollOpt.backColor) {
         particle.backColor = rangeColorToHsl(rollOpt.backColor);
     } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
-        const alterType = getRandom() >= 0.5 ? AlterType.darken : AlterType.enlighten;
+        const alterType = getRandom() >= halfRandom ? AlterType.darken : AlterType.enlighten;
 
         particle.roll.alter = {
             type: alterType,
@@ -64,7 +68,7 @@ export function updateRoll(particle: RollParticle, delta: IDelta): void {
     }
 
     const speed = data.speed * delta.factor,
-        max = 2 * Math.PI;
+        max = doublePI;
 
     data.angle += speed;
 

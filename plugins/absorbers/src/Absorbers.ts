@@ -14,6 +14,8 @@ import type { AbsorberContainer } from "./AbsorberContainer.js";
 import { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
+const defaultIndex = 0;
+
 /**
  */
 export class Absorbers implements IContainerPlugin {
@@ -28,7 +30,7 @@ export class Absorbers implements IContainerPlugin {
 
         container.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
-                ? this.array[idxOrName || 0]
+                ? this.array[idxOrName ?? defaultIndex]
                 : this.array.find((t) => t.name === idxOrName);
 
         container.addAbsorber = (options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance =>
@@ -53,7 +55,7 @@ export class Absorbers implements IContainerPlugin {
         const absorberOptions = this.absorbers,
             modeAbsorbers = this.interactivityAbsorbers;
 
-        if (mode === AbsorberClickMode.absorber) {
+        if (mode === (AbsorberClickMode.absorber as string)) {
             const absorbersModeOptions = itemFromSingleOrMultiple(modeAbsorbers),
                 absorbersOptions = absorbersModeOptions ?? itemFromSingleOrMultiple(absorberOptions),
                 aPosition = this.container.interactivity.mouse.clickPosition;
@@ -69,6 +71,8 @@ export class Absorbers implements IContainerPlugin {
         executeOnSingleOrMultiple(this.absorbers, (absorber) => {
             this.addAbsorber(absorber);
         });
+
+        await Promise.resolve();
     }
 
     particleUpdate(particle: Particle): void {
@@ -82,10 +86,11 @@ export class Absorbers implements IContainerPlugin {
     }
 
     removeAbsorber(absorber: AbsorberInstance): void {
-        const index = this.array.indexOf(absorber);
+        const index = this.array.indexOf(absorber),
+            deleteCount = 1;
 
-        if (index >= 0) {
-            this.array.splice(index, 1);
+        if (index >= defaultIndex) {
+            this.array.splice(index, deleteCount);
         }
     }
 

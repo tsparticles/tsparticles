@@ -1,4 +1,10 @@
-import type { Container, Engine, ExportResult, IContainerPlugin } from "@tsparticles/engine";
+import {
+    type Container,
+    type Engine,
+    type ExportResult,
+    type IContainerPlugin,
+    millisecondsToSeconds,
+} from "@tsparticles/engine";
 import type { IExportVideoData } from "./IExportVideoData.js";
 
 const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],
@@ -24,7 +30,7 @@ const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],
  * @returns the video supported mime types
  */
 function getVideoSupportedMimeTypes(): string[] {
-    const isSupported = MediaRecorder.isTypeSupported,
+    const isSupported = (type: string): boolean => MediaRecorder.isTypeSupported(type),
         supported: string[] = [];
 
     videoTypes.forEach((type) => {
@@ -89,11 +95,13 @@ export class ExportVideoInstance implements IContainerPlugin {
 
         return new Promise<Blob | undefined>((resolve) => {
             const stream = element.captureStream(data.fps ?? this._container.actualOptions.fpsLimit),
-                mimeType = data.mimeType ?? this._supportedTypes[0],
+                firstIndex = 0,
+                mimeType = data.mimeType ?? this._supportedTypes[firstIndex],
                 recorder = new MediaRecorder(stream, {
                     mimeType,
                 }),
-                chunks: Blob[] = [];
+                chunks: Blob[] = [],
+                defaultDuration = 5;
 
             recorder.addEventListener("dataavailable", (event): void => {
                 chunks.push(event.data);
@@ -105,9 +113,12 @@ export class ExportVideoInstance implements IContainerPlugin {
 
             recorder.start();
 
-            setTimeout(() => {
-                recorder.stop();
-            }, data.duration ?? 5000);
+            setTimeout(
+                () => {
+                    recorder.stop();
+                },
+                data.duration ?? defaultDuration * millisecondsToSeconds,
+            );
         });
     };
 }

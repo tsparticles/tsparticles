@@ -1,6 +1,13 @@
 import { AnimationStatus, type IDelta } from "@tsparticles/engine";
 import type { TiltParticle } from "./Types.js";
 
+const defaultVelocity = 0,
+    defaultDecay = 1,
+    double = 2,
+    doublePI = Math.PI * double,
+    minValue = 0,
+    identity = 1;
+
 /**
  * @param particle -
  * @param delta -
@@ -12,9 +19,9 @@ export function updateTilt(particle: TiltParticle, delta: IDelta): void {
 
     const tilt = particle.options.tilt,
         tiltAnimation = tilt.animation,
-        speed = (particle.tilt.velocity ?? 0) * delta.factor,
-        max = 2 * Math.PI,
-        decay = particle.tilt.decay ?? 1;
+        speed = (particle.tilt.velocity ?? defaultVelocity) * delta.factor,
+        max = doublePI,
+        decay = particle.tilt.decay ?? defaultDecay;
 
     if (!tiltAnimation.enable) {
         return;
@@ -33,14 +40,14 @@ export function updateTilt(particle: TiltParticle, delta: IDelta): void {
         default:
             particle.tilt.value -= speed;
 
-            if (particle.tilt.value < 0) {
+            if (particle.tilt.value < minValue) {
                 particle.tilt.value += max;
             }
 
             break;
     }
 
-    if (particle.tilt.velocity && decay !== 1) {
+    if (particle.tilt.velocity && decay !== identity) {
         particle.tilt.velocity *= decay;
     }
 }

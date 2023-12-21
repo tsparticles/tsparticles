@@ -27,7 +27,7 @@ export class EventDispatcher {
     dispatchEvent(type: string, args: CustomEventArgs): void {
         const listeners = this._listeners.get(type);
 
-        listeners && listeners.forEach((handler) => handler(args));
+        listeners?.forEach((handler) => handler(args));
     }
 
     hasEventListener(type: string): boolean {
@@ -50,16 +50,19 @@ export class EventDispatcher {
         }
 
         const length = arr.length,
-            idx = arr.indexOf(listener);
+            idx = arr.indexOf(listener),
+            minIndex = 0;
 
-        if (idx < 0) {
+        if (idx < minIndex) {
             return;
         }
 
-        if (length === 1) {
+        const deleteCount = 1;
+
+        if (length === deleteCount) {
             this._listeners.delete(type);
         } else {
-            arr.splice(idx, 1);
+            arr.splice(idx, deleteCount);
         }
     }
 }

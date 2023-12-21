@@ -19,7 +19,7 @@ export class EmitterShape implements IEmitterShape, IOptionLoader<IEmitterShape>
         }
 
         if (data.options !== undefined) {
-            this.options = <Record<string, unknown>>deepExtend({}, data.options ?? {});
+            this.options = deepExtend({}, data.options ?? {}) as Record<string, unknown>;
         }
 
         this.replace.load(data.replace);

@@ -1,5 +1,7 @@
 import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } from "@tsparticles/engine";
 
+const double = 2;
+
 /**
  */
 export class CircleWarp extends Circle {
@@ -56,11 +58,11 @@ export class CircleWarp extends Circle {
             };
 
         if (circle.radius !== undefined) {
-            const biggerCircle = new Circle(newPos.x, newPos.y, circle.radius * 2);
+            const biggerCircle = new Circle(newPos.x, newPos.y, circle.radius * double);
 
             return super.intersects(biggerCircle);
         } else if (rect.size !== undefined) {
-            const rectSW = new Rectangle(newPos.x, newPos.y, rect.size.width * 2, rect.size.height * 2);
+            const rectSW = new Rectangle(newPos.x, newPos.y, rect.size.width * double, rect.size.height * double);
 
             return super.intersects(rectSW);
         }

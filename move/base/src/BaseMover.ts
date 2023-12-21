@@ -59,8 +59,10 @@ export class BaseMover implements IParticleMover {
                 container.retina.reduceFactor,
             moveDrift = (particle.retina.moveDrift ??= getRangeValue(particle.options.move.drift) * pxRatio),
             maxSize = getRangeMax(particleOptions.size.value) * pxRatio,
-            sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : 1,
-            moveSpeed = (baseSpeed * sizeFactor * slowFactor * (delta.factor || 1)) / diffFactor,
+            defaultSizeFactor = 1,
+            defaultDeltaFactor = 1,
+            sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
+            moveSpeed = (baseSpeed * sizeFactor * slowFactor * (delta.factor || defaultDeltaFactor)) / diffFactor,
             maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
 
         if (moveOptions.spin.enable) {
@@ -85,9 +87,10 @@ export class BaseMover implements IParticleMover {
         }
 
         const spinPos = spinOptions.position ?? { x: 50, y: 50 },
+            spinFactor = 0.01,
             spinCenter = {
-                x: spinPos.x * 0.01 * container.canvas.size.width,
-                y: spinPos.y * 0.01 * container.canvas.size.height,
+                x: spinPos.x * spinFactor * container.canvas.size.width,
+                y: spinPos.y * spinFactor * container.canvas.size.height,
             },
             pos = particle.getPosition(),
             distance = getDistance(pos, spinCenter),
@@ -95,9 +98,12 @@ export class BaseMover implements IParticleMover {
 
         particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
 
+        const minVelocity = 0;
+
         particle.spin = {
             center: spinCenter,
-            direction: particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise,
+            direction:
+                particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise,
             angle: particle.velocity.angle,
             radius: distance,
             acceleration: particle.retina.spinAcceleration,

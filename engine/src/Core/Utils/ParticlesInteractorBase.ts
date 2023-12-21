@@ -17,12 +17,16 @@ export abstract class ParticlesInteractorBase<
      */
     type: InteractorType = InteractorType.particles;
 
+    protected readonly container: TContainer;
+
     /**
      * The particles interactions manager constructor
      * @param container - the parent container
      * @internal
      */
-    protected constructor(protected readonly container: TContainer) {}
+    protected constructor(container: TContainer) {
+        this.container = container;
+    }
 
     /**
      * Before interaction clear

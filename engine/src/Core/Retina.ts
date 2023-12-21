@@ -3,6 +3,9 @@ import type { Particle } from "./Particle.js";
 import { getRangeValue } from "../Utils/NumberUtils.js";
 import { isSsr } from "../Utils/Utils.js";
 
+const defaultRatio = 1,
+    defaultReduceFactor = 1;
+
 /**
  */
 export class Retina {
@@ -12,8 +15,8 @@ export class Retina {
     sizeAnimationSpeed!: number;
 
     constructor(private readonly container: Container) {
-        this.pixelRatio = 1;
-        this.reduceFactor = 1;
+        this.pixelRatio = defaultRatio;
+        this.reduceFactor = defaultReduceFactor;
     }
 
     /**
@@ -23,8 +26,8 @@ export class Retina {
         const container = this.container,
             options = container.actualOptions;
 
-        this.pixelRatio = !options.detectRetina || isSsr() ? 1 : window.devicePixelRatio;
-        this.reduceFactor = 1;
+        this.pixelRatio = !options.detectRetina || isSsr() ? defaultRatio : window.devicePixelRatio;
+        this.reduceFactor = defaultReduceFactor;
 
         const ratio = this.pixelRatio,
             canvas = container.canvas;

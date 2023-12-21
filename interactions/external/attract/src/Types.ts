@@ -3,13 +3,13 @@ import type { Attract } from "./Options/Classes/Attract.js";
 import type { AttractOptions } from "./Options/Classes/AttractOptions.js";
 import type { IAttract } from "./Options/Interfaces/IAttract.js";
 
-export type IAttractMode = {
+export interface IAttractMode {
     attract: IAttract;
-};
+}
 
-export type AttractMode = {
+export interface AttractMode {
     attract?: Attract;
-};
+}
 
 interface IContainerAttract {
     clicking?: boolean;

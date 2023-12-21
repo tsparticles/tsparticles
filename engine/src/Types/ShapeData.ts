@@ -3,6 +3,4 @@ import type { SingleOrMultiple } from "./SingleOrMultiple.js";
 
 /**
  */
-export type ShapeData = {
-    [type: string]: SingleOrMultiple<IShapeValues>;
-};
+export type ShapeData = Record<string, SingleOrMultiple<IShapeValues>>;

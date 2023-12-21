@@ -14,6 +14,7 @@ import {
     isArray,
     isString,
     itemFromArray,
+    percentDenominator,
 } from "@tsparticles/engine";
 import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
@@ -22,7 +23,13 @@ import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangeme
 import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 
 const noPolygonDataLoaded = `${errorPrefix} No polygon data loaded.`,
-    noPolygonFound = `${errorPrefix} No polygon found, you need to specify SVG url in config.`;
+    noPolygonFound = `${errorPrefix} No polygon found, you need to specify SVG url in config.`,
+    origin: ICoordinates = {
+        x: 0,
+        y: 0,
+    },
+    half = 0.5,
+    double = 2;
 
 /**
  * Polygon Mask manager
@@ -118,9 +125,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     particlePosition(position?: ICoordinates): ICoordinates | undefined {
-        const options = this._container.actualOptions.polygon;
+        const options = this._container.actualOptions.polygon,
+            defaultLength = 0;
 
-        if (!(options?.enable && (this.raw?.length ?? 0) > 0)) {
+        if (!(options?.enable && (this.raw?.length ?? defaultLength) > defaultLength)) {
             return;
         }
 
@@ -156,11 +164,15 @@ export class PolygonMaskInstance implements IContainerPlugin {
             clearTimeout(this.redrawTimeout);
         }
 
-        this.redrawTimeout = window.setTimeout(async () => {
-            await this._initRawData(true);
+        const timeout = 250;
 
-            await container.particles.redraw();
-        }, 250);
+        this.redrawTimeout = window.setTimeout(() => {
+            void (async (): Promise<void> => {
+                await this._initRawData(true);
+
+                await container.particles.redraw();
+            })();
+        }, timeout);
     }
 
     stop(): void {
@@ -185,14 +197,15 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         const canvasSize = container.canvas.size,
             x = position?.x ?? getRandom() * canvasSize.width,
-            y = position?.y ?? getRandom() * canvasSize.height;
+            y = position?.y ?? getRandom() * canvasSize.height,
+            indexOffset = 1;
 
         let inside = false;
 
         // if (this.polygonPath && position) {
         //     inside = container.canvas.isPointInPath(this.polygonPath, position);
         // } else {
-        for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+        for (let i = 0, j = this.raw.length - indexOffset; i < this.raw.length; j = i++) {
             const pi = this.raw[i],
                 pj = this.raw[j],
                 intersect = pi.y > y !== pj.y > y && x < ((pj.x - pi.x) * (y - pi.y)) / (pj.y - pi.y) + pi.x;
@@ -203,11 +216,11 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
         // }
 
-        return options.type === PolygonMaskType.inside
-            ? inside
-            : options.type === PolygonMaskType.outside
-              ? !inside
-              : false;
+        if (options.type === PolygonMaskType.inside) {
+            return inside;
+        } else {
+            return options.type === PolygonMaskType.outside ? !inside : false;
+        }
     };
 
     private readonly _createPath2D: () => void = () => {
@@ -238,15 +251,19 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 delete path.path2d;
             }
 
-            if (path.path2d || !this.raw) {
+            if (path.path2d ?? !this.raw) {
                 continue;
             }
 
             path.path2d = new Path2D();
-            path.path2d.moveTo(this.raw[0].x, this.raw[0].y);
+
+            const firstIndex = 0,
+                firstPoint = this.raw[firstIndex];
+
+            path.path2d.moveTo(firstPoint.x, firstPoint.y);
 
             this.raw.forEach((pos, i) => {
-                if (i > 0) {
+                if (i > firstIndex) {
                     path.path2d?.lineTo(pos.x, pos.y);
                 }
             });
@@ -274,7 +291,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 return;
             }
 
-            const url = svgUrl || options.url,
+            const url = svgUrl ?? options.url,
                 forceDownload = force ?? false;
 
             // Load SVG from file on server
@@ -313,14 +330,15 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        if (!this.raw || !this.raw.length || !this.paths?.length) {
+        if (!this.raw?.length || !this.paths?.length) {
             throw new Error(noPolygonDataLoaded);
         }
 
         let offset = 0,
             point: DOMPoint | undefined;
 
-        const totalLength = this.paths.reduce((tot: number, path: ISvgPath) => tot + path.length, 0),
+        const baseAccumulator = 0,
+            totalLength = this.paths.reduce((tot: number, path: ISvgPath) => tot + path.length, baseAccumulator),
             distance = totalLength / options.particles.number.value;
 
         for (const path of this.paths) {
@@ -338,13 +356,13 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const scale = this._scale;
 
         return {
-            x: (point?.x ?? 0) * scale + (this.offset?.x ?? 0),
-            y: (point?.y ?? 0) * scale + (this.offset?.y ?? 0),
+            x: (point?.x ?? origin.x) * scale + (this.offset?.x ?? origin.x),
+            y: (point?.y ?? origin.y) * scale + (this.offset?.y ?? origin.y),
         };
     };
 
     private readonly _getPointByIndex: (index: number) => ICoordinates = (index) => {
-        if (!this.raw || !this.raw.length) {
+        if (!this.raw?.length) {
             throw new Error(noPolygonDataLoaded);
         }
 
@@ -357,7 +375,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     };
 
     private readonly _getRandomPoint: () => ICoordinates = () => {
-        if (!this.raw || !this.raw.length) {
+        if (!this.raw?.length) {
             throw new Error(noPolygonDataLoaded);
         }
 
@@ -377,18 +395,19 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        if (!this.raw || !this.raw.length || !this.paths?.length) {
+        if (!this.raw?.length || !this.paths?.length) {
             throw new Error(noPolygonDataLoaded);
         }
 
         const path = itemFromArray(this.paths),
-            distance = Math.floor(getRandom() * path.length) + 1,
+            offset = 1,
+            distance = Math.floor(getRandom() * path.length) + offset,
             point = path.element.getPointAtLength(distance),
             scale = this._scale;
 
         return {
-            x: point.x * scale + (this.offset?.x || 0),
-            y: point.y * scale + (this.offset?.y || 0),
+            x: point.x * scale + (this.offset?.x ?? origin.x),
+            y: point.y * scale + (this.offset?.y ?? origin.y),
         };
     };
 
@@ -443,7 +462,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         const parser = new DOMParser(),
             doc = parser.parseFromString(xml, "image/svg+xml"),
-            svg = doc.getElementsByTagName("svg")[0];
+            firstIndex = 0,
+            svg = doc.getElementsByTagName("svg")[firstIndex];
 
         let svgPaths = svg.getElementsByTagName("path");
 
@@ -477,8 +497,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         /* centering of the polygon mask */
         this.offset = {
-            x: (canvasSize.width * position.x) / 100 - this.dimension.width / 2,
-            y: (canvasSize.height * position.y) / 100 - this.dimension.height / 2,
+            x: (canvasSize.width * position.x) / percentDenominator - this.dimension.width * half,
+            y: (canvasSize.height * position.y) / percentDenominator - this.dimension.height * half,
         };
 
         return parsePaths(this.paths, scale, this.offset);
@@ -498,9 +518,10 @@ export class PolygonMaskInstance implements IContainerPlugin {
         if (options.type === PolygonMaskType.inside || options.type === PolygonMaskType.outside) {
             let closest: ICoordinates | undefined, dx: number | undefined, dy: number | undefined;
             const pos = particle.getPosition(),
-                radius = particle.getRadius();
+                radius = particle.getRadius(),
+                offset = 1;
 
-            for (let i = 0, j = this.raw.length - 1; i < this.raw.length; j = i++) {
+            for (let i = 0, j = this.raw.length - offset; i < this.raw.length; j = i++) {
                 const pi = this.raw[i],
                     pj = this.raw[j];
 
@@ -519,7 +540,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
             if (closest && dx !== undefined && dy !== undefined && !this._checkInsidePolygon(pos)) {
                 const factor = { x: 1, y: 1 },
-                    diameter = radius * 2;
+                    diameter = radius * double,
+                    inverse = -1;
 
                 if (pos.x >= closest.x) {
                     factor.x = -1;
@@ -532,7 +554,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 particle.position.x = closest.x + diameter * factor.x;
                 particle.position.y = closest.y + diameter * factor.y;
 
-                particle.velocity.mult(-1);
+                particle.velocity.mult(inverse);
 
                 return true;
             }
@@ -541,8 +563,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 { velocity } = particle;
 
             if (dist > this._moveRadius) {
-                velocity.x = velocity.y / 2 - velocity.x;
-                velocity.y = velocity.x / 2 - velocity.y;
+                velocity.x = velocity.y * half - velocity.x;
+                velocity.y = velocity.x * half - velocity.y;
 
                 return true;
             }

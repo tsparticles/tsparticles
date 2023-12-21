@@ -1,9 +1,28 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
-import type { IImage, IParticleImage, ImageParticle } from "./Utils.js";
+import {
+    type Container,
+    type ICoordinates,
+    type IShapeDrawData,
+    type IShapeDrawer,
+    errorPrefix,
+} from "@tsparticles/engine";
+import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod.js";
 import type { IImageShape } from "./IImageShape.js";
-import { replaceImageColor } from "./Utils.js";
+
+const origin: ICoordinates = {
+        x: 0,
+        y: 0,
+    },
+    defaultLoopCount = 0,
+    defaultFrame = 0,
+    half = 0.5,
+    initialTime = 0,
+    firstIndex = 0,
+    double = 2,
+    defaultAlpha = 1,
+    sides = 12,
+    defaultRatio = 1;
 
 /**
  * Particles Image Drawer
@@ -57,19 +76,19 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             offscreenContext.imageSmoothingQuality = "low";
             offscreenContext.imageSmoothingEnabled = false;
 
-            offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+            offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
 
             if (particle.gifLoopCount === undefined) {
-                particle.gifLoopCount = image.gifLoopCount ?? 0;
+                particle.gifLoopCount = image.gifLoopCount ?? defaultLoopCount;
             }
 
-            let frameIndex = particle.gifFrame ?? 0;
+            let frameIndex = particle.gifFrame ?? defaultFrame;
 
-            const pos = { x: -image.gifData.width * 0.5, y: -image.gifData.height * 0.5 },
+            const pos = { x: -image.gifData.width * half, y: -image.gifData.height * half },
                 frame = image.gifData.frames[frameIndex];
 
             if (particle.gifTime === undefined) {
-                particle.gifTime = 0;
+                particle.gifTime = initialTime;
             }
 
             if (!frame.bitmap) {
@@ -79,16 +98,16 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             context.scale(radius / image.gifData.width, radius / image.gifData.height);
 
             switch (frame.disposalMethod) {
-                case DisposalMethod.UndefinedA: //! fall through
-                case DisposalMethod.UndefinedB: //! fall through
-                case DisposalMethod.UndefinedC: //! fall through
-                case DisposalMethod.UndefinedD: //! fall through
+                case DisposalMethod.UndefinedA: // ! fall through
+                case DisposalMethod.UndefinedB: // ! fall through
+                case DisposalMethod.UndefinedC: // ! fall through
+                case DisposalMethod.UndefinedD: // ! fall through
                 case DisposalMethod.Replace:
                     offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
 
                     context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-                    offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+                    offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
 
                     break;
                 case DisposalMethod.Combine:
@@ -102,11 +121,11 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
                     context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-                    offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+                    offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
 
-                    if (image.gifData.globalColorTable.length === 0) {
+                    if (!image.gifData.globalColorTable.length) {
                         offscreenContext.putImageData(
-                            image.gifData.frames[0].image,
+                            image.gifData.frames[firstIndex].image,
                             pos.x + frame.left,
                             pos.y + frame.top,
                         );
@@ -118,8 +137,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
                 case DisposalMethod.RestorePrevious:
                     {
                         const previousImageData = offscreenContext.getImageData(
-                            0,
-                            0,
+                            origin.x,
+                            origin.y,
                             offscreenCanvas.width,
                             offscreenCanvas.height,
                         );
@@ -128,8 +147,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
                         context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-                        offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
-                        offscreenContext.putImageData(previousImageData, 0, 0);
+                        offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
+                        offscreenContext.putImageData(previousImageData, origin.x, origin.y);
                     }
                     break;
             }
@@ -140,14 +159,14 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
                 particle.gifTime -= frame.delayTime;
 
                 if (++frameIndex >= image.gifData.frames.length) {
-                    if (--particle.gifLoopCount <= 0) {
+                    if (--particle.gifLoopCount <= defaultLoopCount) {
                         return;
                     }
 
-                    frameIndex = 0;
+                    frameIndex = firstIndex;
 
-                    //? so apparently some GIFs seam to set the disposal method of the last frame wrong?...so this is a "fix" for that (clear after the last frame)
-                    offscreenContext.clearRect(0, 0, offscreenCanvas.width, offscreenCanvas.height);
+                    // ? so apparently some GIFs seam to set the disposal method of the last frame wrong?...so this is a "fix" for that (clear after the last frame)
+                    offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
                 }
 
                 particle.gifFrame = frameIndex;
@@ -160,12 +179,12 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
                     x: -radius,
                     y: -radius,
                 },
-                diameter = radius * 2;
+                diameter = radius * double;
 
             context.drawImage(element, pos.x, pos.y, diameter, diameter / ratio);
         }
 
-        context.globalAlpha = 1;
+        context.globalAlpha = defaultAlpha;
     }
 
     /**
@@ -174,7 +193,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * @returns the number of sides of the image shape
      */
     getSidesCount(): number {
-        return 12;
+        return sides;
     }
 
     async init(container: ImageContainer): Promise<void> {
@@ -207,7 +226,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
-            this.loadImageShape(imageData).then(() => {
+            void this.loadImageShape(imageData).then(() => {
                 this.loadShape(particle);
             });
         }
@@ -251,7 +270,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             return;
         }
 
-        (async (): Promise<void> => {
+        void (async (): Promise<void> => {
             let imageRes: IParticleImage;
 
             if (image.svgData && color) {
@@ -265,7 +284,10 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
                     gifData: image.gifData,
                     gifLoopCount: image.gifLoopCount,
                     loaded: true,
-                    ratio: imageData.width && imageData.height ? imageData.width / imageData.height : image.ratio ?? 1,
+                    ratio:
+                        imageData.width && imageData.height
+                            ? imageData.width / imageData.height
+                            : image.ratio ?? defaultRatio,
                     replaceColor: replaceColor,
                     source: imageData.src,
                 };

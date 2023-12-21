@@ -1,6 +1,24 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import {
+    type Container,
+    type ICoordinates,
+    type IShapeDrawData,
+    type IShapeDrawer,
+    getRangeValue,
+    percentDenominator,
+} from "@tsparticles/engine";
 import type { CogParticle } from "./CogParticle.js";
 import type { ICogData } from "./ICogData.js";
+
+const double = 2,
+    doublePI = Math.PI * double,
+    minAngle = 0,
+    origin: ICoordinates = { x: 0, y: 0 },
+    taperFactor = 0.005,
+    defaultHoleRadius = 44,
+    defaultInnerRadius = 72,
+    defaultInnerTaper = 35,
+    defaultNotches = 7,
+    defaultOuterTaper = 50;
 
 export class CogDrawer implements IShapeDrawer<CogParticle> {
     afterDraw(data: IShapeDrawData<CogParticle>): void {
@@ -16,14 +34,13 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
             return;
         }
 
-        const pi2 = 2 * Math.PI,
-            holeRadius = (radius * particle.cogHoleRadius) / 100;
+        const holeRadius = (radius * particle.cogHoleRadius) / percentDenominator;
 
         context.globalCompositeOperation = "destination-out";
 
         context.beginPath();
-        context.moveTo(holeRadius, 0);
-        context.arc(0, 0, holeRadius, 0, pi2);
+        context.moveTo(holeRadius, origin.y);
+        context.arc(origin.x, origin.y, holeRadius, minAngle, doublePI);
         context.closePath();
         context.fill();
 
@@ -43,11 +60,10 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
             return;
         }
 
-        const pi2 = 2 * Math.PI,
-            angle = pi2 / (particle.cogNotches * 2),
-            taperAI = angle * particle.cogInnerTaper * 0.005,
-            taperAO = angle * particle.cogOuterTaper * 0.005,
-            innerRadius = (radius * particle.cogInnerRadius) / 100;
+        const angle = doublePI / (particle.cogNotches * double),
+            taperAI = angle * particle.cogInnerTaper * taperFactor,
+            taperAO = angle * particle.cogOuterTaper * taperFactor,
+            innerRadius = (radius * particle.cogInnerRadius) / percentDenominator;
 
         let a = angle, // iterator (angle)
             toggle = false; // notch radius level (i/o)
@@ -56,7 +72,7 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
         context.moveTo(radius * Math.cos(taperAO), radius * Math.sin(taperAO));
 
         // loop
-        for (; a <= pi2; a += angle) {
+        for (; a <= doublePI; a += angle) {
             // draw inner to outer line
             if (toggle) {
                 context.lineTo(innerRadius * Math.cos(a - taperAI), innerRadius * Math.sin(a - taperAI));
@@ -83,10 +99,10 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
     particleInit(container: Container, particle: CogParticle): void {
         const shapeData = particle.shapeData as ICogData | undefined;
 
-        particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? 44);
-        particle.cogInnerRadius = getRangeValue(shapeData?.innerRadius ?? 72);
-        particle.cogInnerTaper = getRangeValue(shapeData?.innerTaper ?? 35);
-        particle.cogNotches = getRangeValue(shapeData?.notches ?? 7);
-        particle.cogOuterTaper = getRangeValue(shapeData?.outerTaper ?? 50);
+        particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? defaultHoleRadius);
+        particle.cogInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius);
+        particle.cogInnerTaper = getRangeValue(shapeData?.innerTaper ?? defaultInnerTaper);
+        particle.cogNotches = getRangeValue(shapeData?.notches ?? defaultNotches);
+        particle.cogOuterTaper = getRangeValue(shapeData?.outerTaper ?? defaultOuterTaper);
     }
 }

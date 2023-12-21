@@ -9,7 +9,11 @@ import {
 import { updateColor } from "./Utils.js";
 
 export class ColorUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {}
+    private readonly container;
+
+    constructor(container: Container) {
+        this.container = container;
+    }
 
     init(particle: Particle): void {
         /* color */

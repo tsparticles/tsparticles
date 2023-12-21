@@ -1,15 +1,18 @@
-import type { Engine, IContainerPlugin } from "@tsparticles/engine";
-import { addParticlesFromCanvasPixels, getCanvasImageData, getImageData, getTextData } from "./utils.js";
+import {
+    type CanvasPixelData,
+    addParticlesFromCanvasPixels,
+    getCanvasImageData,
+    getImageData,
+    getTextData,
+} from "./utils.js";
 import type { CanvasMaskContainer } from "./types.js";
-import type { CanvasPixelData } from "./utils.js";
+import type { IContainerPlugin } from "@tsparticles/engine";
 
 export class CanvasMaskInstance implements IContainerPlugin {
     private readonly _container;
-    private readonly _engine;
 
-    constructor(container: CanvasMaskContainer, engine: Engine) {
+    constructor(container: CanvasMaskContainer) {
         this._container = container;
-        this._engine = engine;
     }
 
     async init(): Promise<void> {
@@ -46,9 +49,9 @@ export class CanvasMaskInstance implements IContainerPlugin {
             }
 
             pixelData = data;
-        } else if (options.element || options.selector) {
+        } else if (options.element ?? options.selector) {
             const canvas =
-                options.element || (options.selector && document.querySelector<HTMLCanvasElement>(options.selector));
+                options.element ?? (options.selector && document.querySelector<HTMLCanvasElement>(options.selector));
 
             if (!canvas) {
                 return;

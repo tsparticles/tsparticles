@@ -1,24 +1,19 @@
+import type { CanvasMaskOptions, ICanvasMaskOptions } from "./types.js";
 import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import { CanvasMask } from "./Options/Classes/CanvasMask.js";
 import { CanvasMaskInstance } from "./CanvasMaskInstance.js";
-import type { CanvasMaskOptions } from "./types.js";
-import type { ICanvasMaskOptions } from "./types.js";
 
 /**
  */
 class CanvasMaskPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
-
-    constructor(engine: Engine) {
+    constructor() {
         this.id = "canvasMask";
-
-        this._engine = engine;
     }
 
     getPlugin(container: Container): CanvasMaskInstance {
-        return new CanvasMaskInstance(container, this._engine);
+        return new CanvasMaskInstance(container);
     }
 
     loadOptions(options: CanvasMaskOptions, source?: RecursivePartial<ICanvasMaskOptions>): void {
@@ -45,5 +40,5 @@ class CanvasMaskPlugin implements IPlugin {
  * @param refresh -
  */
 export async function loadCanvasMaskPlugin(engine: Engine, refresh = true): Promise<void> {
-    await engine.addPlugin(new CanvasMaskPlugin(engine), refresh);
+    await engine.addPlugin(new CanvasMaskPlugin(), refresh);
 }

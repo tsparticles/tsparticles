@@ -1,6 +1,10 @@
 import { type Engine, type IContainerPlugin, safeMatchMedia } from "@tsparticles/engine";
 import type { MotionContainer } from "./types.js";
 
+const defaultFactor = 1,
+    defaultReduce = 0,
+    identity = 1;
+
 export class MotionInstance implements IContainerPlugin {
     private readonly _container;
     private readonly _engine;
@@ -23,7 +27,7 @@ export class MotionInstance implements IContainerPlugin {
         const mediaQuery = safeMatchMedia("(prefers-reduced-motion: reduce)");
 
         if (!mediaQuery) {
-            container.retina.reduceFactor = 1;
+            container.retina.reduceFactor = defaultFactor;
 
             return;
         }
@@ -32,14 +36,16 @@ export class MotionInstance implements IContainerPlugin {
         this._handleMotionChange(mediaQuery);
 
         // Ads an event listener to check for changes in the media query's value.
-        const handleChange = async (): Promise<void> => {
-            this._handleMotionChange(mediaQuery);
+        const handleChange = (): void => {
+            void (async (): Promise<void> => {
+                this._handleMotionChange(mediaQuery);
 
-            try {
-                await container.refresh();
-            } catch {
-                // ignore
-            }
+                try {
+                    await container.refresh();
+                } catch {
+                    // ignore
+                }
+            })();
         };
 
         if (mediaQuery.addEventListener !== undefined) {
@@ -47,6 +53,8 @@ export class MotionInstance implements IContainerPlugin {
         } else if (mediaQuery.addListener !== undefined) {
             mediaQuery.addListener(handleChange);
         }
+
+        await Promise.resolve();
     }
 
     private readonly _handleMotionChange: (mediaQuery: MediaQueryList) => void = (mediaQuery) => {
@@ -57,12 +65,14 @@ export class MotionInstance implements IContainerPlugin {
             return;
         }
 
-        container.retina.reduceFactor = mediaQuery.matches
-            ? motion.disable
-                ? 0
-                : motion.reduce.value
-                  ? 1 / motion.reduce.factor
-                  : 1
-            : 1;
+        if (mediaQuery.matches) {
+            if (motion.disable) {
+                container.retina.reduceFactor = defaultReduce;
+            } else {
+                container.retina.reduceFactor = motion.reduce.value ? identity / motion.reduce.factor : defaultFactor;
+            }
+        } else {
+            container.retina.reduceFactor = 1;
+        }
     };
 }

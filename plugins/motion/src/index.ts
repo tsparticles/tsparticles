@@ -25,7 +25,7 @@ class MotionPlugin implements IPlugin {
             return;
         }
 
-        let motionOptions = options.motion as Motion;
+        let motionOptions = options.motion!;
 
         if (!motionOptions?.load) {
             options.motion = motionOptions = new Motion();

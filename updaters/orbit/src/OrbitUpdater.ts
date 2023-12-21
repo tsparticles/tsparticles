@@ -10,6 +10,17 @@ import { Orbit } from "./Options/Classes/Orbit.js";
 import { OrbitType } from "./Enums.js";
 import { drawEllipse } from "./Utils.js";
 
+const double = 2,
+    half = 0.5,
+    doublePI = Math.PI * double,
+    defaultOrbitSpeed = 0,
+    halfPI = Math.PI * half,
+    piAndAHalf = Math.PI + halfPI,
+    startAngle = 0,
+    defaultOpacity = 1,
+    defaultWidth = 1,
+    defaultRotation = 0;
+
 export class OrbitUpdater implements IParticleUpdater {
     constructor(private readonly container: OrbitContainer) {}
 
@@ -36,16 +47,16 @@ export class OrbitUpdater implements IParticleUpdater {
 
         switch (type) {
             case OrbitType.back:
-                start = Math.PI / 2;
-                end = (Math.PI * 3) / 2;
+                start = halfPI;
+                end = piAndAHalf;
                 break;
             case OrbitType.front:
-                start = (Math.PI * 3) / 2;
-                end = Math.PI / 2;
+                start = piAndAHalf;
+                end = halfPI;
                 break;
             default:
-                start = 0;
-                end = 2 * Math.PI;
+                start = startAngle;
+                end = doublePI;
         }
 
         container.canvas.draw((ctx) => {
@@ -54,9 +65,9 @@ export class OrbitUpdater implements IParticleUpdater {
                 particle,
                 particle.orbitColor ?? particle.getFillColor(),
                 particle.retina.orbitRadius ?? container.retina.orbitRadius ?? particle.getRadius(),
-                particle.orbitOpacity ?? 1,
-                particle.orbitWidth ?? 1,
-                (particle.orbitRotation ?? 0) * container.retina.pixelRatio,
+                particle.orbitOpacity ?? defaultOpacity,
+                particle.orbitWidth ?? defaultWidth,
+                (particle.orbitRotation ?? defaultRotation) * container.retina.pixelRatio,
                 start,
                 end,
             );
@@ -80,7 +91,9 @@ export class OrbitUpdater implements IParticleUpdater {
                 ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio
                 : undefined;
         container.retina.orbitRadius = particle.retina.orbitRadius;
-        particle.orbitAnimationSpeed = orbitOptions.animation.enable ? getRangeValue(orbitOptions.animation.speed) : 0;
+        particle.orbitAnimationSpeed = orbitOptions.animation.enable
+            ? getRangeValue(orbitOptions.animation.speed)
+            : defaultOrbitSpeed;
         particle.orbitWidth = getRangeValue(orbitOptions.width);
         particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
     }
@@ -110,9 +123,9 @@ export class OrbitUpdater implements IParticleUpdater {
         }
 
         if (particle.orbitRotation === undefined) {
-            particle.orbitRotation = 0;
+            particle.orbitRotation = defaultRotation;
         }
 
-        particle.orbitRotation += (particle.orbitAnimationSpeed ?? 0 / (Math.PI * 2)) * delta.factor;
+        particle.orbitRotation += (particle.orbitAnimationSpeed ?? defaultOrbitSpeed / doublePI) * delta.factor;
     }
 }

@@ -10,19 +10,21 @@ import {
     Vector,
     getPosition,
     getRandom,
+    halfRandom,
     randomInRange,
 } from "@tsparticles/engine";
-
-declare global {
-    interface Window {
-        [key: string]: unknown;
-    }
-}
 
 const enum SVGPathDirection {
     normal,
     reverse,
 }
+
+const defaultSpeed = 1,
+    half = 0.5,
+    minStep = 0,
+    minIndex = 0,
+    minWidth = 0,
+    minScale = 1;
 
 type SVGPathParticle = Particle & {
     svgDirection?: SVGPathDirection;
@@ -72,7 +74,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
             pxRatio = container.retina.pixelRatio;
 
         if (particle.svgDirection === undefined) {
-            particle.svgDirection = getRandom() > 0.5 ? SVGPathDirection.normal : SVGPathDirection.reverse;
+            particle.svgDirection = getRandom() > halfRandom ? SVGPathDirection.normal : SVGPathDirection.reverse;
         }
 
         if (particle.svgPathIndex === undefined) {
@@ -80,7 +82,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         }
 
         if (particle.svgSpeed === undefined) {
-            particle.svgSpeed = particle.velocity.mult((particle.retina.moveSpeed ?? 1) / 2).length;
+            particle.svgSpeed = particle.velocity.mult((particle.retina.moveSpeed ?? defaultSpeed) * half).length;
         }
 
         if (particle.svgStep === undefined) {
@@ -89,8 +91,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
         if (particle.svgOffset === undefined) {
             particle.svgOffset = {
-                width: randomInRange({ min: -this._width / 2, max: this._width / 2 }) * pxRatio,
-                height: randomInRange({ min: -this._width / 2, max: this._width / 2 }) * pxRatio,
+                width: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
+                height: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
             };
         }
 
@@ -110,14 +112,15 @@ export class SVGPathGenerator implements IMovePathGenerator {
         let path = this._paths[particle.svgPathIndex];
 
         if (path) {
-            const pathLength = path.length;
+            const pathLength = path.length,
+                indexOffset = 1;
 
             if (particle.svgStep >= pathLength) {
-                particle.svgPathIndex = particle.svgPathIndex + 1;
+                particle.svgPathIndex = particle.svgPathIndex + indexOffset;
 
                 if (particle.svgPathIndex >= this._paths.length) {
                     if (this._reverse) {
-                        particle.svgPathIndex = this._paths.length - 1;
+                        particle.svgPathIndex = this._paths.length - indexOffset;
 
                         particle.svgDirection = SVGPathDirection.reverse;
                     } else {
@@ -126,16 +129,16 @@ export class SVGPathGenerator implements IMovePathGenerator {
                         particle.svgStep = 0;
                     }
                 }
-            } else if (particle.svgStep <= 0) {
-                particle.svgPathIndex = particle.svgPathIndex - 1;
+            } else if (particle.svgStep <= minStep) {
+                particle.svgPathIndex = particle.svgPathIndex - indexOffset;
 
-                if (particle.svgPathIndex < 0) {
+                if (particle.svgPathIndex < minIndex) {
                     if (this._reverse) {
                         particle.svgPathIndex = 0;
 
                         particle.svgDirection = SVGPathDirection.normal;
                     } else {
-                        particle.svgPathIndex = this._paths.length - 1;
+                        particle.svgPathIndex = this._paths.length - indexOffset;
 
                         path = this._paths[particle.svgPathIndex];
 
@@ -155,12 +158,12 @@ export class SVGPathGenerator implements IMovePathGenerator {
                 scale = this._scale * pxRatio;
 
             particle.position.x =
-                (pos.x - this._size.width / 2) * scale +
+                (pos.x - this._size.width * half) * scale +
                 particle.svgInitialPosition.x +
                 offset.x +
                 particle.svgOffset.width;
             particle.position.y =
-                (pos.y - this._size.height / 2) * scale +
+                (pos.y - this._size.height * half) * scale +
                 particle.svgInitialPosition.y +
                 offset.y +
                 particle.svgOffset.height;
@@ -174,23 +177,24 @@ export class SVGPathGenerator implements IMovePathGenerator {
             position = options.position ?? this._offset;
 
         this._reverse = options.reverse ?? this._reverse;
-        this._scale = options.scale ?? 1;
+        this._scale = options.scale ?? minScale;
         this._offset.x = position.x;
         this._offset.y = position.y;
         this._offset.mode = position.mode;
-        this._width = options.width ?? 0;
+        this._width = options.width ?? minWidth;
 
         if (options.url && !options.path) {
             const url = options.url;
 
-            (async (): Promise<void> => {
+            void (async (): Promise<void> => {
                 const response = await fetch(url),
                     data = await response.text();
 
                 // retrieve the svg path from the url
                 const parser = new DOMParser(),
                     doc = parser.parseFromString(data, "image/svg+xml"),
-                    svg = doc.getElementsByTagName("svg")[0];
+                    firstIndex = 0,
+                    svg = doc.getElementsByTagName("svg")[firstIndex];
 
                 let svgPaths = svg.getElementsByTagName("path");
 

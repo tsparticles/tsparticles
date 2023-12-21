@@ -18,6 +18,7 @@ import {
     isDivModeEnabled,
     isInArray,
     itemFromSingleOrMultiple,
+    millisecondsToSeconds,
     mouseLeaveEvent,
     mouseMoveEvent,
     rangeColorToHsl,
@@ -29,7 +30,16 @@ import type { Interfaces } from "./Interfaces.js";
 import { ProcessBubbleType } from "./Enums.js";
 import { calculateBubbleValue } from "./Utils.js";
 
-const bubbleMode = "bubble";
+const bubbleMode = "bubble",
+    minDistance = 0,
+    defaultClickTime = 0,
+    double = 2,
+    defaultOpacity = 1,
+    ratioOffset = 1,
+    defaultBubbleValue = 0,
+    minRatio = 0,
+    half = 0.5,
+    defaultRatio = 1;
 
 /**
  * Particle bubble manager
@@ -102,6 +112,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         } else {
             divModeExecute(bubbleMode, divs, (selector, div): void => this._singleSelectorHover(delta, selector, div));
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -112,7 +124,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             { onClick, onDiv, onHover } = events,
             divBubble = isDivModeEnabled(bubbleMode, onDiv);
 
-        if (!(divBubble || (onHover.enable && mouse.position) || (onClick.enable && mouse.clickPosition))) {
+        if (!(divBubble || (onHover.enable && !!mouse.position) || (onClick.enable && mouse.clickPosition))) {
             return false;
         }
 
@@ -152,7 +164,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
         const distance = container.retina.bubbleModeDistance;
 
-        if (!distance || distance < 0) {
+        if (!distance || distance < minDistance) {
             return;
         }
 
@@ -168,13 +180,15 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
             const pos = particle.getPosition(),
                 distMouse = getDistance(pos, mouseClickPos),
-                timeSpent = (new Date().getTime() - (container.interactivity.mouse.clickTime || 0)) / 1000;
+                timeSpent =
+                    (new Date().getTime() - (container.interactivity.mouse.clickTime ?? defaultClickTime)) /
+                    millisecondsToSeconds;
 
             if (timeSpent > bubbleOptions.duration) {
                 bubble.durationEnd = true;
             }
 
-            if (timeSpent > bubbleOptions.duration * 2) {
+            if (timeSpent > bubbleOptions.duration * double) {
                 bubble.clicking = false;
                 bubble.durationEnd = false;
             }
@@ -200,7 +214,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                 },
                 particlesObj: {
                     optValue: getRangeMax(particle.options.opacity.value),
-                    value: particle.opacity?.value ?? 1,
+                    value: particle.opacity?.value ?? defaultOpacity,
                 },
                 type: ProcessBubbleType.opacity,
             };
@@ -220,23 +234,23 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             mousePos = container.interactivity.mouse.position,
             distance = container.retina.bubbleModeDistance;
 
-        if (!distance || distance < 0 || mousePos === undefined) {
+        if (!distance || distance < minDistance || !mousePos) {
             return;
         }
 
         const query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
 
-        //for (const { distance, particle } of query) {
+        // for (const { distance, particle } of query) {
         for (const particle of query) {
             particle.bubble.inRange = true;
 
             const pos = particle.getPosition(),
                 pointDistance = getDistance(pos, mousePos),
-                ratio = 1 - pointDistance / distance;
+                ratio = ratioOffset - pointDistance / distance;
 
             /* mousemove - check ratio */
             if (pointDistance <= distance) {
-                if (ratio >= 0 && container.interactivity.status === mouseMoveEvent) {
+                if (ratio >= minRatio && container.interactivity.status === mouseMoveEvent) {
                     /* size */
                     this._hoverBubbleSize(particle, ratio);
 
@@ -291,7 +305,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             const pColor = particle.getFillColor();
 
             particle.bubble.color = pColor
-                ? rgbToHsl(colorMix(pColor, particle.bubble.finalColor, 1 - ratio, ratio))
+                ? rgbToHsl(colorMix(pColor, particle.bubble.finalColor, ratioOffset - ratio, ratio))
                 : particle.bubble.finalColor;
         } else {
             particle.bubble.color = particle.bubble.finalColor;
@@ -312,7 +326,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
 
         const optOpacity = particle.options.opacity.value,
-            pOpacity = particle.opacity?.value ?? 1,
+            pOpacity = particle.opacity?.value ?? defaultOpacity,
             opacity = calculateBubbleValue(pOpacity, modeOpacity, getRangeMax(optOpacity), ratio);
 
         if (opacity !== undefined) {
@@ -360,10 +374,10 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             bubbleDistance = container.retina.bubbleModeDistance,
             particlesParam = data.particlesObj.optValue,
             pObjBubble = data.bubbleObj.value,
-            pObj = data.particlesObj.value || 0,
+            pObj = data.particlesObj.value ?? defaultBubbleValue,
             type = data.type;
 
-        if (!bubbleDistance || bubbleDistance < 0 || bubbleParam === particlesParam) {
+        if (!bubbleDistance || bubbleDistance < minDistance || bubbleParam === particlesParam) {
             return;
         }
 
@@ -425,10 +439,10 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
-                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                    x: (elem.offsetLeft + elem.offsetWidth * half) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight * half) * pxRatio,
                 },
-                repulseRadius = (elem.offsetWidth / 2) * pxRatio,
+                repulseRadius = elem.offsetWidth * half * pxRatio,
                 area =
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, repulseRadius)
@@ -457,13 +471,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                 }
 
                 /* size */
-                this._hoverBubbleSize(particle, 1, divBubble);
+                this._hoverBubbleSize(particle, defaultRatio, divBubble);
 
                 /* opacity */
-                this._hoverBubbleOpacity(particle, 1, divBubble);
+                this._hoverBubbleOpacity(particle, defaultRatio, divBubble);
 
                 /* color */
-                this._hoverBubbleColor(particle, 1, divBubble);
+                this._hoverBubbleColor(particle, defaultRatio, divBubble);
             }
         });
     };

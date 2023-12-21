@@ -11,6 +11,11 @@ import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces.js";
 import type { LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
 import { drawLinkLine, drawLinkTriangle, setLinkFrequency } from "./Utils.js";
 
+const minOpacity = 0,
+    minWidth = 0,
+    minDistance = 0,
+    half = 0.5;
+
 export class LinkInstance implements IContainerPlugin {
     private readonly _freqs: IParticlesFrequencies;
 
@@ -24,7 +29,7 @@ export class LinkInstance implements IContainerPlugin {
     drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
         const { links, options } = particle;
 
-        if (!links || links.length <= 0) {
+        if (!links?.length) {
             return;
         }
 
@@ -35,7 +40,7 @@ export class LinkInstance implements IContainerPlugin {
         for (const link of p1Links) {
             this._drawTriangles(options, particle, link, p1Links);
 
-            if (link.opacity > 0 && (particle.retina.linksWidth ?? 0) > 0) {
+            if (link.opacity > minOpacity && (particle.retina.linksWidth ?? minWidth) > minWidth) {
                 this._drawLinkLine(particle, link);
             }
         }
@@ -44,6 +49,8 @@ export class LinkInstance implements IContainerPlugin {
     async init(): Promise<void> {
         this._freqs.links = new Map<string, number>();
         this._freqs.triangles = new Map<string, number>();
+
+        await Promise.resolve();
     }
 
     particleCreated(particle: LinkParticle): void {
@@ -117,8 +124,8 @@ export class LinkInstance implements IContainerPlugin {
                 return;
             }
 
-            const width = p1.retina.linksWidth ?? 0,
-                maxDistance = p1.retina.linksDistance ?? 0,
+            const width = p1.retina.linksWidth ?? minWidth,
+                maxDistance = p1.retina.linksDistance ?? minDistance,
                 { backgroundMask } = options;
 
             drawLinkLine({
@@ -153,9 +160,9 @@ export class LinkInstance implements IContainerPlugin {
             options = container.actualOptions,
             p2 = link1.destination,
             p3 = link2.destination,
-            opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) / 2;
+            opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) * half;
 
-        if (opacityTriangle <= 0) {
+        if (opacityTriangle <= minOpacity) {
             return;
         }
 
@@ -163,7 +170,7 @@ export class LinkInstance implements IContainerPlugin {
             const pos1 = p1.getPosition(),
                 pos2 = p2.getPosition(),
                 pos3 = p3.getPosition(),
-                linksDistance = p1.retina.linksDistance ?? 0;
+                linksDistance = p1.retina.linksDistance ?? minDistance;
 
             if (
                 getDistance(pos1, pos2) > linksDistance ||
@@ -213,12 +220,13 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         const vertices = p2.links?.filter((t) => {
-            const linkFreq = this._getLinkFrequency(p2, t.destination);
+            const linkFreq = this._getLinkFrequency(p2, t.destination),
+                minCount = 0;
 
             return (
                 p2.options.links &&
                 linkFreq <= p2.options.links.frequency &&
-                p1Links.findIndex((l) => l.destination === t.destination) >= 0
+                p1Links.findIndex((l) => l.destination === t.destination) >= minCount
             );
         });
 

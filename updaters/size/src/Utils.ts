@@ -1,5 +1,11 @@
 import { AnimationStatus, DestroyType, type IDelta, type Particle, clamp } from "@tsparticles/engine";
 
+const minLoops = 0,
+    minDelay = 0,
+    identity = 1,
+    minVelocity = 0,
+    minDecay = 1;
+
 /**
  * @param particle -
  * @param value -
@@ -32,25 +38,25 @@ export function updateSize(particle: Particle, delta: IDelta): void {
         particle.destroyed ||
         !data ||
         !data.enable ||
-        ((data.maxLoops ?? 0) > 0 && (data.loops ?? 0) > (data.maxLoops ?? 0))
+        ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
     ) {
         return;
     }
 
-    const sizeVelocity = (data.velocity ?? 0) * delta.factor,
+    const sizeVelocity = (data.velocity ?? minVelocity) * delta.factor,
         minValue = data.min,
         maxValue = data.max,
-        decay = data.decay ?? 1;
+        decay = data.decay ?? minDecay;
 
     if (!data.time) {
         data.time = 0;
     }
 
-    if ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) {
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
         data.time += delta.value;
     }
 
-    if ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) {
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
         return;
     }
 
@@ -60,7 +66,7 @@ export function updateSize(particle: Particle, delta: IDelta): void {
                 data.status = AnimationStatus.decreasing;
 
                 if (!data.loops) {
-                    data.loops = 0;
+                    data.loops = minLoops;
                 }
 
                 data.loops++;
@@ -74,7 +80,7 @@ export function updateSize(particle: Particle, delta: IDelta): void {
                 data.status = AnimationStatus.increasing;
 
                 if (!data.loops) {
-                    data.loops = 0;
+                    data.loops = minLoops;
                 }
 
                 data.loops++;
@@ -83,7 +89,7 @@ export function updateSize(particle: Particle, delta: IDelta): void {
             }
     }
 
-    if (data.velocity && decay !== 1) {
+    if (data.velocity && decay !== identity) {
         data.velocity *= decay;
     }
 

@@ -7,9 +7,13 @@ import {
 } from "@tsparticles/engine";
 import type { AttractParticle } from "./AttractParticle.js";
 
+const attractFactor = 1000,
+    identity = 1;
+
 /**
  */
 export class Attractor extends ParticlesInteractorBase<Container, AttractParticle> {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: Container) {
         super(container);
     }
@@ -41,16 +45,18 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
             const pos2 = p2.getPosition(),
                 { dx, dy } = getDistances(pos1, pos2),
                 rotate = p1.options.move.attract.rotate,
-                ax = dx / (rotate.x * 1000),
-                ay = dy / (rotate.y * 1000),
+                ax = dx / (rotate.x * attractFactor),
+                ay = dy / (rotate.y * attractFactor),
                 p1Factor = p2.size.value / p1.size.value,
-                p2Factor = 1 / p1Factor;
+                p2Factor = identity / p1Factor;
 
             p1.velocity.x -= ax * p1Factor;
             p1.velocity.y -= ay * p1Factor;
             p2.velocity.x += ax * p2Factor;
             p2.velocity.y += ay * p2Factor;
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {

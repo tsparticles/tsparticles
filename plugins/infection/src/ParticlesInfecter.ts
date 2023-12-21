@@ -1,9 +1,13 @@
 import { type IDelta, ParticlesInteractorBase, getRandom } from "@tsparticles/engine";
 import type { InfectableContainer, InfectableParticle } from "./Types.js";
 
+const minStagesCount = 1,
+    double = 2;
+
 /**
  */
 export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContainer> {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: InfectableContainer) {
         super(container);
     }
@@ -33,13 +37,13 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
             options = container.actualOptions,
             infectionOptions = options.infection;
 
-        if (!infectionOptions?.enable || infectionOptions.stages.length < 1) {
+        if (!infectionOptions?.enable || infectionOptions.stages.length < minStagesCount) {
             return;
         }
 
         const infectionStage1 = infectionOptions.stages[p1.infection.stage],
             pxRatio = container.retina.pixelRatio,
-            radius = p1.getRadius() * 2 + infectionStage1.radius * pxRatio,
+            radius = p1.getRadius() * double + infectionStage1.radius * pxRatio,
             pos = p1.getPosition(),
             infectedStage1 = infectionStage1.infectedStage ?? p1.infection.stage,
             query = container.particles.quadTree.queryCircle(pos, radius),
@@ -70,6 +74,8 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
                 infecter.updateInfectionStage(p1, infectedStage2);
             }
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(): boolean {

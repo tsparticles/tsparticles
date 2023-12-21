@@ -1,5 +1,10 @@
 import { type ICoordinates, getRandom } from "@tsparticles/engine";
 
+const double = 2,
+    doublePI = Math.PI * double,
+    defaultRotation = 0,
+    maxAttempts = 100;
+
 /**
  *
  * @param position -
@@ -12,10 +17,10 @@ export function generateRandomPolygon(
     position: ICoordinates,
     sides: number,
     radius: number,
-    rotationAngle = 0,
+    rotationAngle = defaultRotation,
 ): ICoordinates[] {
     const polygon = [],
-        angle = (Math.PI * 2) / sides;
+        angle = doublePI / sides;
 
     for (let i = 0; i < sides; i++) {
         const currentAngle = angle * i + rotationAngle;
@@ -35,8 +40,10 @@ export function generateRandomPolygon(
  * @returns a random point within the polygon
  */
 export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoordinates | null {
-    const min = { ...polygon[0] },
-        max = { ...polygon[0] };
+    const firstIndex = 0,
+        firstPoint = polygon[firstIndex],
+        min = { ...firstPoint },
+        max = { ...firstPoint };
 
     for (const point of polygon) {
         if (point.x < min.x) {
@@ -58,7 +65,7 @@ export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoor
 
     let randomPoint: ICoordinates | null = null;
 
-    for (let attempts = 0; attempts < 100; attempts++) {
+    for (let attempts = 0; attempts < maxAttempts; attempts++) {
         const tmpPoint: ICoordinates = {
             x: min.x + getRandom() * (max.x - min.x),
             y: min.y + getRandom() * (max.y - min.y),
@@ -82,7 +89,8 @@ export function generateRandomPointWithinPolygon(polygon: ICoordinates[]): ICoor
 export function generateRandomPointOnPolygonPerimeter(polygon: ICoordinates[]): ICoordinates {
     const sideIndex = Math.floor(getRandom() * polygon.length),
         startPoint = polygon[sideIndex],
-        endPoint = polygon[(sideIndex + 1) % polygon.length],
+        offset = 1,
+        endPoint = polygon[(sideIndex + offset) % polygon.length],
         t = getRandom();
 
     return { x: startPoint.x + (endPoint.x - startPoint.x) * t, y: startPoint.y + (endPoint.y - startPoint.y) * t };
@@ -97,7 +105,9 @@ export function generateRandomPointOnPolygonPerimeter(polygon: ICoordinates[]): 
 export function isPointInPolygon(point: ICoordinates, polygon: ICoordinates[]): boolean {
     let inside = false;
 
-    for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const offset = 1;
+
+    for (let i = 0, j = polygon.length - offset; i < polygon.length; j = i++) {
         const pi = polygon[i],
             pj = polygon[j];
 

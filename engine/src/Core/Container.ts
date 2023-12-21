@@ -1,3 +1,4 @@
+import { errorPrefix, millisecondsToSeconds } from "./Utils/Constants.js";
 import { getLogger, safeIntersectionObserver } from "../Utils/Utils.js";
 import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
@@ -15,7 +16,6 @@ import { Options } from "../Options/Classes/Options.js";
 import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
-import { errorPrefix } from "./Utils/Constants.js";
 import { getRangeValue } from "../Utils/NumberUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
 
@@ -28,16 +28,18 @@ function guardCheck(container: Container): boolean {
     return container && !container.destroyed;
 }
 
+const defaultFps = 60;
+
 /**
  * @param value -
  * @param fpsLimit -
  * @param smooth -
  * @returns the initialized delta value
  */
-function initDelta(value: number, fpsLimit = 60, smooth = false): IDelta {
+function initDelta(value: number, fpsLimit = defaultFps, smooth = false): IDelta {
     return {
         value,
-        factor: smooth ? 60 / fpsLimit : (60 * value) / 1000,
+        factor: smooth ? defaultFps / fpsLimit : (defaultFps * value) / millisecondsToSeconds,
     };
 }
 
@@ -252,9 +254,10 @@ export class Container {
                 pos = {
                     x: mouseEvent.offsetX || mouseEvent.clientX,
                     y: mouseEvent.offsetY || mouseEvent.clientY,
-                };
+                },
+                radius = 1;
 
-            clickOrTouchHandler(e, pos, 1);
+            clickOrTouchHandler(e, pos, radius);
         };
 
         const touchStartHandler = (): void => {
@@ -281,10 +284,13 @@ export class Container {
 
             if (touched && !touchMoved) {
                 const touchEvent = e as TouchEvent;
-                let lastTouch = touchEvent.touches[touchEvent.touches.length - 1];
+
+                const lengthOffset = 1;
+
+                let lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset];
 
                 if (!lastTouch) {
-                    lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - 1];
+                    lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - lengthOffset];
 
                     if (!lastTouch) {
                         return;
@@ -293,9 +299,10 @@ export class Container {
 
                 const element = this.canvas.element,
                     canvasRect = element ? element.getBoundingClientRect() : undefined,
+                    minCoordinate = 0,
                     pos = {
-                        x: lastTouch.clientX - (canvasRect ? canvasRect.left : 0),
-                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : 0),
+                        x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
+                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
                     };
 
                 clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
@@ -363,11 +370,11 @@ export class Container {
         this.canvas.destroy();
 
         for (const [, effectDrawer] of this.effectDrawers) {
-            effectDrawer.destroy && effectDrawer.destroy(this);
+            effectDrawer.destroy?.(this);
         }
 
         for (const [, shapeDrawer] of this.shapeDrawers) {
-            shapeDrawer.destroy && shapeDrawer.destroy(this);
+            shapeDrawer.destroy?.(this);
         }
 
         for (const key of this.effectDrawers.keys()) {
@@ -383,10 +390,13 @@ export class Container {
         this.destroyed = true;
 
         const mainArr = this._engine.dom(),
-            idx = mainArr.findIndex((t) => t === this);
+            idx = mainArr.findIndex((t) => t === this),
+            minIndex = 0;
 
-        if (idx >= 0) {
-            mainArr.splice(idx, 1);
+        if (idx >= minIndex) {
+            const deleteCount = 1;
+
+            mainArr.splice(idx, deleteCount);
         }
 
         this._engine.dispatchEvent(EventType.containerDestroyed, { container: this });
@@ -403,7 +413,7 @@ export class Container {
 
         let refreshTime = force;
 
-        this._drawAnimationFrame = requestAnimationFrame(async (timestamp) => {
+        const frame = async (timestamp: number): Promise<void> => {
             if (refreshTime) {
                 this._lastFrameTime = undefined;
 
@@ -411,7 +421,9 @@ export class Container {
             }
 
             await this._nextFrame(timestamp);
-        });
+        };
+
+        this._drawAnimationFrame = requestAnimationFrame((timestamp) => void frame(timestamp));
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -452,7 +464,7 @@ export class Container {
         this.particles.handleClickMode(mode);
 
         for (const [, plugin] of this.plugins) {
-            plugin.handleClickMode && plugin.handleClickMode(mode);
+            plugin.handleClickMode?.(mode);
         }
     }
 
@@ -504,22 +516,26 @@ export class Container {
         this.canvas.resize();
 
         this.zLayers = this.actualOptions.zLayers;
-        this._duration = getRangeValue(this.actualOptions.duration) * 1000;
-        this._delay = getRangeValue(this.actualOptions.delay) * 1000;
+        this._duration = getRangeValue(this.actualOptions.duration) * millisecondsToSeconds;
+        this._delay = getRangeValue(this.actualOptions.delay) * millisecondsToSeconds;
         this._lifeTime = 0;
-        this.fpsLimit = this.actualOptions.fpsLimit > 0 ? this.actualOptions.fpsLimit : 120;
+
+        const defaultFpsLimit = 120,
+            minFpsLimit = 0;
+
+        this.fpsLimit = this.actualOptions.fpsLimit > minFpsLimit ? this.actualOptions.fpsLimit : defaultFpsLimit;
         this._smooth = this.actualOptions.smooth;
 
         for (const [, drawer] of this.effectDrawers) {
-            drawer.init && (await drawer.init(this));
+            await drawer.init?.(this);
         }
 
         for (const [, drawer] of this.shapeDrawers) {
-            drawer.init && (await drawer.init(this));
+            await drawer.init?.(this);
         }
 
         for (const [, plugin] of this.plugins) {
-            plugin.init && (await plugin.init());
+            await plugin.init?.();
         }
 
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
@@ -528,7 +544,7 @@ export class Container {
         this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
-            plugin.particlesSetup && plugin.particlesSetup();
+            plugin.particlesSetup?.();
         }
 
         this._engine.dispatchEvent(EventType.particlesSetup, { container: this });
@@ -567,7 +583,7 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            plugin.pause && plugin.pause();
+            plugin.pause?.();
         }
 
         if (!this.pageHidden) {
@@ -607,7 +623,7 @@ export class Container {
 
         this._engine.dispatchEvent(EventType.containerPlay, { container: this });
 
-        this.draw(needsUpdate || false);
+        this.draw(needsUpdate ?? false);
     }
 
     /**
@@ -650,7 +666,7 @@ export class Container {
         this.started = true;
 
         await new Promise<void>((resolve) => {
-            this._delayTimeout = setTimeout(async () => {
+            const start = async (): Promise<void> => {
                 this._eventListeners.addListeners();
 
                 if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
@@ -658,7 +674,7 @@ export class Container {
                 }
 
                 for (const [, plugin] of this.plugins) {
-                    plugin.start && (await plugin.start());
+                    await plugin.start?.();
                 }
 
                 this._engine.dispatchEvent(EventType.containerStarted, { container: this });
@@ -666,7 +682,9 @@ export class Container {
                 this.play();
 
                 resolve();
-            }, this._delay);
+            };
+
+            this._delayTimeout = setTimeout(() => void start(), this._delay);
         });
     }
 
@@ -696,7 +714,7 @@ export class Container {
         }
 
         for (const [, plugin] of this.plugins) {
-            plugin.stop && plugin.stop();
+            plugin.stop?.();
         }
 
         for (const key of this.plugins.keys()) {
@@ -742,7 +760,11 @@ export class Container {
                 continue;
             }
 
-            (entry.isIntersecting ? this.play : this.pause)();
+            if (entry.isIntersecting) {
+                this.play();
+            } else {
+                this.pause();
+            }
         }
     };
 
@@ -752,7 +774,7 @@ export class Container {
             if (
                 !this._smooth &&
                 this._lastFrameTime !== undefined &&
-                timestamp < this._lastFrameTime + 1000 / this.fpsLimit
+                timestamp < this._lastFrameTime + millisecondsToSeconds / this.fpsLimit
             ) {
                 this.draw(false);
 
@@ -766,7 +788,7 @@ export class Container {
             this.addLifeTime(delta.value);
             this._lastFrameTime = timestamp;
 
-            if (delta.value > 1000) {
+            if (delta.value > millisecondsToSeconds) {
                 this.draw(false);
 
                 return;

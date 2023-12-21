@@ -7,6 +7,10 @@ import type { Range } from "./Range.js";
 import { Rectangle } from "./Rectangle.js";
 import { getDistance } from "../../Utils/NumberUtils.js";
 
+const half = 0.5,
+    double = 2,
+    subdivideCount = 4;
+
 /**
  */
 export class QuadTree {
@@ -37,7 +41,7 @@ export class QuadTree {
         this._subs = [];
     }
 
-    /*draw(context: CanvasRenderingContext2D): void {
+    /* draw(context: CanvasRenderingContext2D): void {
         context.strokeStyle = "#fff";
         context.lineWidth = 1;
         context.strokeRect(
@@ -52,7 +56,7 @@ export class QuadTree {
                 sub.draw(context);
             }
         }
-    }*/
+    } */
 
     /**
      * Inserts the given point in the instance, or to its subtrees
@@ -85,7 +89,7 @@ export class QuadTree {
      * @returns the particles inside the given range
      */
     query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
-        const res = found || [];
+        const res = found ?? [];
 
         if (!range.intersects(this.rectangle)) {
             return [];
@@ -142,14 +146,16 @@ export class QuadTree {
             { width, height } = this.rectangle.size,
             { capacity } = this;
 
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < subdivideCount; i++) {
+            const fixedIndex = i % double;
+
             this._subs.push(
                 new QuadTree(
                     new Rectangle(
-                        x + width * 0.5 * (i % 2),
-                        y + height * 0.5 * (Math.round(i * 0.5) - (i % 2)),
-                        width * 0.5,
-                        height * 0.5,
+                        x + width * half * fixedIndex,
+                        y + height * half * (Math.round(i * half) - fixedIndex),
+                        width * half,
+                        height * half,
                     ),
                     capacity,
                 ),

@@ -3,6 +3,8 @@ import type { IEmittersCanvasShapeOptions } from "../Interfaces/IEmittersCanvasS
 import { PixelsOptions } from "./PixelsOptions.js";
 import { TextOptions } from "./TextOptions.js";
 
+const minAlpha = 0;
+
 export class EmittersCanvasShapeOptions
     implements IEmittersCanvasShapeOptions, IOptionLoader<IEmittersCanvasShapeOptions>
 {
@@ -15,7 +17,7 @@ export class EmittersCanvasShapeOptions
     text: TextOptions;
 
     constructor() {
-        this.filter = (pixel): boolean => pixel.a > 0;
+        this.filter = (pixel): boolean => pixel.a > minAlpha;
         this.pixels = new PixelsOptions();
         this.scale = 1;
         this.selector = "";
@@ -28,7 +30,7 @@ export class EmittersCanvasShapeOptions
         }
 
         if (data.element !== undefined) {
-            this.element = <HTMLCanvasElement>data.element;
+            this.element = data.element as HTMLCanvasElement;
         }
 
         if (data.filter !== undefined) {
@@ -46,7 +48,7 @@ export class EmittersCanvasShapeOptions
         }
 
         if (data.image !== undefined) {
-            this.image = <HTMLImageElement>data.image;
+            this.image = data.image as HTMLImageElement;
         }
 
         this.text.load(data.text);

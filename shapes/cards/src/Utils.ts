@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 import type { ICardsPath, IPath } from "./ICardsPath.js";
 import type { IShapeDrawData } from "@tsparticles/engine";
 
@@ -14,9 +16,7 @@ export function drawPath(data: IShapeDrawData, path: IPath): void {
 
     context.moveTo(path.segments[0].values[0].x * radius, path.segments[0].values[0].y * radius);
 
-    for (let i = 0; i < path.segments.length; i++) {
-        const segment = path.segments[i];
-
+    for (const segment of path.segments) {
         context.bezierCurveTo(
             segment.values[1].x * radius,
             segment.values[1].y * radius,

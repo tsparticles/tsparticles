@@ -1,116 +1,119 @@
 import { type Container, type Engine, type Particle, type RecursivePartial, deepExtend } from "@tsparticles/engine";
 import type { IParticlesJS, IParticlesJSOptions } from "./IParticlesJS.js";
 
-const defaultPjsOptions: IParticlesJSOptions = {
-    particles: {
-        number: {
-            value: 400,
-            density: {
-                enable: true,
-                value_area: 800,
-            },
-        },
-        color: {
-            value: "#fff",
-        },
-        shape: {
-            type: "circle",
-            stroke: {
-                width: 0,
-                color: "#ff0000",
-            },
-            polygon: {
-                nb_sides: 5,
-            },
-            image: {
-                src: "",
-                width: 100,
-                height: 100,
-            },
-        },
-        opacity: {
-            value: 1,
-            random: false,
-            anim: {
-                enable: false,
-                speed: 2,
-                opacity_min: 0,
-                sync: false,
-            },
-        },
-        size: {
-            value: 20,
-            random: false,
-            anim: {
-                enable: false,
-                speed: 20,
-                size_min: 0,
-                sync: false,
-            },
-        },
-        line_linked: {
-            enable: true,
-            distance: 100,
-            color: "#fff",
-            opacity: 1,
-            width: 1,
-        },
-        move: {
-            enable: true,
-            speed: 2,
-            direction: "none",
-            random: false,
-            straight: false,
-            out_mode: "out",
-            bounce: false,
-            attract: {
-                enable: false,
-                rotateX: 3000,
-                rotateY: 3000,
-            },
-        },
-    },
-    interactivity: {
-        detect_on: "canvas",
-        events: {
-            onhover: {
-                enable: true,
-                mode: "grab",
-            },
-            onclick: {
-                enable: true,
-                mode: "push",
-            },
-            resize: true,
-        },
-        modes: {
-            grab: {
-                distance: 100,
-                line_linked: {
-                    opacity: 1,
+const defaultMinOpacity = 0,
+    defaultMinSize = 0,
+    speedFactor = 3,
+    defaultPjsOptions: IParticlesJSOptions = {
+        particles: {
+            number: {
+                value: 400,
+                density: {
+                    enable: true,
+                    value_area: 800,
                 },
             },
-            bubble: {
-                distance: 200,
-                size: 80,
-                duration: 0.4,
+            color: {
+                value: "#fff",
+            },
+            shape: {
+                type: "circle",
+                stroke: {
+                    width: 0,
+                    color: "#ff0000",
+                },
+                polygon: {
+                    nb_sides: 5,
+                },
+                image: {
+                    src: "",
+                    width: 100,
+                    height: 100,
+                },
+            },
+            opacity: {
+                value: 1,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 2,
+                    opacity_min: 0,
+                    sync: false,
+                },
+            },
+            size: {
+                value: 20,
+                random: false,
+                anim: {
+                    enable: false,
+                    speed: 20,
+                    size_min: 0,
+                    sync: false,
+                },
+            },
+            line_linked: {
+                enable: true,
+                distance: 100,
+                color: "#fff",
                 opacity: 1,
-                speed: 3,
+                width: 1,
             },
-            repulse: {
-                distance: 200,
-                duration: 0.4,
-            },
-            push: {
-                particles_nb: 4,
-            },
-            remove: {
-                particles_nb: 2,
+            move: {
+                enable: true,
+                speed: 2,
+                direction: "none",
+                random: false,
+                straight: false,
+                out_mode: "out",
+                bounce: false,
+                attract: {
+                    enable: false,
+                    rotateX: 3000,
+                    rotateY: 3000,
+                },
             },
         },
-    },
-    retina_detect: false,
-};
+        interactivity: {
+            detect_on: "canvas",
+            events: {
+                onhover: {
+                    enable: true,
+                    mode: "grab",
+                },
+                onclick: {
+                    enable: true,
+                    mode: "push",
+                },
+                resize: true,
+            },
+            modes: {
+                grab: {
+                    distance: 100,
+                    line_linked: {
+                        opacity: 1,
+                    },
+                },
+                bubble: {
+                    distance: 200,
+                    size: 80,
+                    duration: 0.4,
+                    opacity: 1,
+                    speed: 3,
+                },
+                repulse: {
+                    distance: 200,
+                    duration: 0.4,
+                },
+                push: {
+                    particles_nb: 4,
+                },
+                remove: {
+                    particles_nb: 2,
+                },
+            },
+        },
+        retina_detect: false,
+    };
 
 const initParticlesJS = (
     engine: Engine,
@@ -227,7 +230,7 @@ const initParticlesJS = (
                             ? {
                                   min: fixedOptions.particles.opacity.anim.enable
                                       ? fixedOptions.particles.opacity.anim.opacity_min
-                                      : 0,
+                                      : defaultMinOpacity,
                                   max: fixedOptions.particles.opacity.value,
                               }
                             : fixedOptions.particles.opacity.value,
@@ -242,7 +245,7 @@ const initParticlesJS = (
                             ? {
                                   min: fixedOptions.particles.size.anim.enable
                                       ? fixedOptions.particles.size.anim.size_min
-                                      : 0,
+                                      : defaultMinSize,
                                   max: fixedOptions.particles.size.value,
                               }
                             : fixedOptions.particles.size.value,
@@ -261,7 +264,7 @@ const initParticlesJS = (
                     },
                     move: {
                         enable: fixedOptions.particles.move.enable,
-                        speed: fixedOptions.particles.move.speed / 3,
+                        speed: fixedOptions.particles.move.speed / speedFactor,
                         direction: fixedOptions.particles.move.direction,
                         random: fixedOptions.particles.move.random,
                         straight: fixedOptions.particles.move.straight,

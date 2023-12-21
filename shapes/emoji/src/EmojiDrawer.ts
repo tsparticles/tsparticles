@@ -20,13 +20,18 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
     destroy(): void {
         for (const [, emojiData] of this._emojiShapeDict) {
-            emojiData instanceof ImageBitmap && emojiData?.close();
+            if (emojiData instanceof ImageBitmap) {
+                emojiData?.close();
+            }
         }
     }
 
     draw(data: IShapeDrawData<EmojiParticle>): void {
         const { context, particle, radius, opacity } = data,
-            emojiData = particle.emojiData;
+            emojiData = particle.emojiData,
+            double = 2,
+            diameter = radius * double,
+            previousAlpha = context.globalAlpha;
 
         if (!emojiData) {
             return;
@@ -34,9 +39,9 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
         context.globalAlpha = opacity;
 
-        context.drawImage(emojiData, -radius, -radius, radius * 2, radius * 2);
+        context.drawImage(emojiData, -radius, -radius, diameter, diameter);
 
-        context.globalAlpha = 1;
+        context.globalAlpha = previousAlpha;
     }
 
     async init(container: Container): Promise<void> {
@@ -50,7 +55,9 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
             if (shapeOptions) {
                 executeOnSingleOrMultiple(shapeOptions, (shape) => {
-                    shape.font && promises.push(loadFont(shape.font));
+                    if (shape.font) {
+                        promises.push(loadFont(shape.font));
+                    }
                 });
             }
 
@@ -63,6 +70,8 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     }
 
     particleInit(container: Container, particle: EmojiParticle): void {
+        const double = 2;
+
         if (!particle.emojiData) {
             const shapeData = particle.shapeData as unknown as IEmojiShape;
 
@@ -86,9 +95,11 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
                 return;
             }
 
-            const canvasSize = getRangeMax(particle.size.value) * 2;
+            const canvasSize = getRangeMax(particle.size.value) * double;
 
             let emojiData: ImageBitmap | HTMLCanvasElement;
+
+            const maxSize = getRangeMax(particle.size.value);
 
             if (typeof OffscreenCanvas !== "undefined") {
                 const canvas = new OffscreenCanvas(canvasSize, canvasSize),
@@ -98,11 +109,11 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
                     return;
                 }
 
-                context.font = `400 ${getRangeMax(particle.size.value) * 2}px ${font}`;
+                context.font = `400 ${maxSize * double}px ${font}`;
                 context.textBaseline = "middle";
                 context.textAlign = "center";
 
-                context.fillText(emoji, getRangeMax(particle.size.value), getRangeMax(particle.size.value));
+                context.fillText(emoji, maxSize, maxSize);
 
                 emojiData = canvas.transferToImageBitmap();
             } else {
@@ -117,11 +128,11 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
                     return;
                 }
 
-                context.font = `400 ${getRangeMax(particle.size.value) * 2}px ${font}`;
+                context.font = `400 ${maxSize * double}px ${font}`;
                 context.textBaseline = "middle";
                 context.textAlign = "center";
 
-                context.fillText(emoji, getRangeMax(particle.size.value), getRangeMax(particle.size.value));
+                context.fillText(emoji, maxSize, maxSize);
 
                 emojiData = canvas;
             }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 import { Grad } from "./Grad.js";
 
 export class PerlinNoise {
@@ -279,8 +281,8 @@ export class PerlinNoise {
             156,
             180,
         ];
-        this._gradP = new Array(512);
-        this._perm = new Array(512);
+        this._gradP = new Array<Grad>(512);
+        this._perm = new Array<number>(512);
     }
 
     noise2d(x: number, y: number): number {

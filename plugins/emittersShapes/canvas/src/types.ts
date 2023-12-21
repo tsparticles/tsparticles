@@ -1,14 +1,14 @@
 import type { IRgba } from "@tsparticles/engine";
 
-export type CanvasPixelData = {
+export interface CanvasPixelData {
     height: number;
     pixels: IRgba[][];
     width: number;
-};
+}
 
-export type TextLineData = {
+export interface TextLineData {
     height: number;
     measure: TextMetrics;
     text: string;
     width: number;
-};
+}

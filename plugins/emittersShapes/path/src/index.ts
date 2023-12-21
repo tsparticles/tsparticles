@@ -10,8 +10,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadEmittersShapePath(engine: Engine, refresh = true): Promise<void> {
     const emittersEngine = engine as EmittersEngine;
 
-    emittersEngine.addEmitterShapeGenerator &&
-        emittersEngine.addEmitterShapeGenerator("path", new EmittersPathShapeGenerator());
+    emittersEngine.addEmitterShapeGenerator?.("path", new EmittersPathShapeGenerator());
 
     await emittersEngine.refresh(refresh);
 }

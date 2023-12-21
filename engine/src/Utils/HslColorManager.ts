@@ -1,11 +1,23 @@
-import type { IColor, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
+import type {
+    IColor,
+    IHsl,
+    IRangeColor,
+    IRangeHsl,
+    IRangeValueColor,
+    IRgb,
+    IRgba,
+    IValueColor,
+} from "../Core/Interfaces/Colors.js";
 import { getRangeValue, parseAlpha } from "./NumberUtils.js";
 import { hslToRgb, hslaToRgba } from "./ColorUtils.js";
 import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
-import type { IHsl } from "../Core/Interfaces/Colors.js";
-import type { IRangeHsl } from "../Core/Interfaces/Colors.js";
-import type { IRangeValueColor } from "../Core/Interfaces/Colors.js";
-import type { IValueColor } from "../Core/Interfaces/Colors.js";
+
+const enum HslIndexes {
+    h = 1,
+    s = 2,
+    l = 3,
+    a = 5,
+}
 
 /**
  */
@@ -46,14 +58,17 @@ export class HslColorManager implements IColorManager {
         }
 
         const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.%]+)\s*)?\)/i,
-            result = regex.exec(input);
+            result = regex.exec(input),
+            minLength = 4,
+            defaultAlpha = 1,
+            radix = 10;
 
         return result
             ? hslaToRgba({
-                  a: result.length > 4 ? parseAlpha(result[5]) : 1,
-                  h: parseInt(result[1], 10),
-                  l: parseInt(result[3], 10),
-                  s: parseInt(result[2], 10),
+                  a: result.length > minLength ? parseAlpha(result[HslIndexes.a]) : defaultAlpha,
+                  h: parseInt(result[HslIndexes.h], radix),
+                  l: parseInt(result[HslIndexes.l], radix),
+                  s: parseInt(result[HslIndexes.s], radix),
               })
             : undefined;
     }

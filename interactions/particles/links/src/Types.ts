@@ -28,7 +28,7 @@ export type LinkParticle = Particle & {
     };
 };
 
-export type LinkLineDrawParams = {
+export interface LinkLineDrawParams {
     backgroundMask: BackgroundMask;
     begin: ICoordinates;
     canvasSize: IDimension;
@@ -39,9 +39,9 @@ export type LinkLineDrawParams = {
     maxDistance: number;
     opacity: number;
     width: number;
-};
+}
 
-export type LinkTriangleDrawParams = {
+export interface LinkTriangleDrawParams {
     backgroundMask: BackgroundMask;
     colorTriangle: IRgb;
     context: CanvasRenderingContext2D;
@@ -49,7 +49,7 @@ export type LinkTriangleDrawParams = {
     pos1: ICoordinates;
     pos2: ICoordinates;
     pos3: ICoordinates;
-};
+}
 
 export type IParticlesLinkOptions = IParticlesOptions & {
     links?: ILinks;

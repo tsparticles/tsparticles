@@ -14,6 +14,13 @@ import {
 } from "@tsparticles/engine";
 import type { DestroyParticle } from "./Types.js";
 
+const defaultOffset = 0,
+    minDestroySize = 0.5,
+    defaultSplitCount = 0,
+    increment = 1,
+    unbreakableTime = 500,
+    minSplitCount = 0;
+
 /**
  *
  * @param engine -
@@ -45,9 +52,9 @@ function addSplitParticle(
         options.color.load({
             value: {
                 hsl: {
-                    h: parentColor.h + getRangeValue(splitOptions.colorOffset.h ?? 0),
-                    s: parentColor.s + getRangeValue(splitOptions.colorOffset.s ?? 0),
-                    l: parentColor.l + getRangeValue(splitOptions.colorOffset.l ?? 0),
+                    h: parentColor.h + getRangeValue(splitOptions.colorOffset.h ?? defaultOffset),
+                    s: parentColor.s + getRangeValue(splitOptions.colorOffset.s ?? defaultOffset),
+                    l: parentColor.l + getRangeValue(splitOptions.colorOffset.l ?? defaultOffset),
                 },
             },
         });
@@ -64,7 +71,7 @@ function addSplitParticle(
             x: parent.position.x,
             y: parent.position.y,
             mode: PixelMode.precise,
-            //radius: parent.size.value,
+            // radius: parent.size.value,
         },
     });
 
@@ -77,24 +84,24 @@ function addSplitParticle(
 
     options.load(splitParticlesOptions);
 
-    const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : 0,
+    const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : defaultOffset,
         position = {
             x: parent.position.x + randomInRange(offset),
             y: parent.position.y + randomInRange(offset),
         };
 
     return container.particles.addParticle(position, options, parent.group, (particle: DestroyParticle) => {
-        if (particle.size.value < 0.5) {
+        if (particle.size.value < minDestroySize) {
             return false;
         }
 
         particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
-        particle.splitCount = (parent.splitCount ?? 0) + 1;
+        particle.splitCount = (parent.splitCount ?? defaultSplitCount) + increment;
         particle.unbreakable = true;
 
         setTimeout(() => {
             particle.unbreakable = false;
-        }, 500);
+        }, unbreakableTime);
 
         return true;
     });
@@ -115,7 +122,10 @@ export function split(engine: Engine, container: Container, particle: DestroyPar
 
     const splitOptions = destroyOptions.split;
 
-    if (splitOptions.count >= 0 && (particle.splitCount === undefined || particle.splitCount++ > splitOptions.count)) {
+    if (
+        splitOptions.count >= minSplitCount &&
+        (particle.splitCount === undefined || particle.splitCount++ > splitOptions.count)
+    ) {
         return;
     }
 

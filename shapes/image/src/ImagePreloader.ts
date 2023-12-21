@@ -18,7 +18,7 @@ export class ImagePreloaderPlugin implements IPlugin {
     }
 
     loadOptions(options: PreloadOptions, source?: RecursivePartial<IPreloadOptions>): void {
-        if (!source || !source.preload) {
+        if (!source?.preload) {
             return;
         }
 

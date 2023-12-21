@@ -1,4 +1,8 @@
-import { type IHsl, type Particle, getStyleFromHsl } from "@tsparticles/engine";
+import { type IHsl, type Particle, degToRad, getStyleFromHsl } from "@tsparticles/engine";
+
+const minWidth = 0,
+    half = 0.5,
+    double = 2;
 
 /**
  * Draws an ellipse for the given particle.
@@ -23,7 +27,7 @@ export function drawEllipse(
     start: number,
     end: number,
 ): void {
-    if (width <= 0) {
+    if (width <= minWidth) {
         return;
     }
 
@@ -35,9 +39,9 @@ export function drawEllipse(
 
     context.lineWidth = width;
 
-    const rotationRadian = (rotation * Math.PI) / 180;
+    const rotationRadian = degToRad(rotation);
 
     context.beginPath();
-    context.ellipse(pos.x, pos.y, radius / 2, radius * 2, rotationRadian, start, end);
+    context.ellipse(pos.x, pos.y, radius * half, radius * double, rotationRadian, start, end);
     context.stroke();
 }

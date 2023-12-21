@@ -7,6 +7,7 @@ import {
     type SingleOrMultiple,
     deepExtend,
     isArray,
+    percentDenominator,
 } from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
 
@@ -125,8 +126,8 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
      */
     get origin(): ICoordinates {
         return {
-            x: this.position.x / 100,
-            y: this.position.y / 100,
+            x: this.position.x / percentDenominator,
+            y: this.position.y / percentDenominator,
         };
     }
 
@@ -134,8 +135,8 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
      * @deprecated use position instead
      */
     set origin(value: ICoordinates) {
-        this.position.x = value.x * 100;
-        this.position.y = value.y * 100;
+        this.position.x = value.x * percentDenominator;
+        this.position.y = value.y * percentDenominator;
     }
 
     /**
@@ -204,8 +205,8 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
         if (origin && !data.position) {
             data.position = {
-                x: origin.x !== undefined ? origin.x * 100 : undefined,
-                y: origin.y !== undefined ? origin.y * 100 : undefined,
+                x: origin.x !== undefined ? origin.x * percentDenominator : undefined,
+                y: origin.y !== undefined ? origin.y * percentDenominator : undefined,
             };
         }
 

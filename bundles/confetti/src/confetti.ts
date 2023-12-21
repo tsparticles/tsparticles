@@ -5,14 +5,14 @@ import {
     type RecursivePartial,
     isSsr,
     isString,
+    millisecondsToSeconds,
     tsParticles,
 } from "@tsparticles/engine";
+import { type EmitterContainer, loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { ConfettiOptions } from "./ConfettiOptions.js";
-import type { EmitterContainer } from "@tsparticles/plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
 import { loadBasic } from "@tsparticles/basic";
 import { loadCardsShape } from "@tsparticles/shape-cards";
-import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { loadEmojiShape } from "@tsparticles/shape-emoji";
 import { loadHeartShape } from "@tsparticles/shape-heart";
 import { loadImageShape } from "@tsparticles/shape-image";
@@ -25,6 +25,13 @@ import { loadSquareShape } from "@tsparticles/shape-square";
 import { loadStarShape } from "@tsparticles/shape-star";
 import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
+
+const defaultGravity = 9.81,
+    sizeFactor = 5,
+    speedFactor = 3,
+    decayOffset = 1,
+    disableRotate = 0,
+    disableTilt = 0;
 
 /**
  *
@@ -64,7 +71,7 @@ const ids = new Map<string, Container | undefined>();
 /**
  * The {@link confetti} parameter object definition
  */
-type ConfettiParams = {
+interface ConfettiParams {
     /**
      *
      */
@@ -79,7 +86,7 @@ type ConfettiParams = {
      *
      */
     options: RecursivePartial<IConfettiOptions>;
-};
+}
 
 /**
  * This function prepares all the plugins needed by the confetti bundle
@@ -92,14 +99,15 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     if (initializing) {
         return new Promise<void>((resolve) => {
-            const interval = setInterval(() => {
-                if (!initialized) {
-                    return;
-                }
+            const timeout = 100,
+                interval = setInterval(() => {
+                    if (!initialized) {
+                        return;
+                    }
 
-                clearInterval(interval);
-                resolve();
-            }, 100);
+                    clearInterval(interval);
+                    resolve();
+                }, timeout);
         });
     }
 
@@ -137,7 +145,9 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
     let container;
 
     const fpsLimit = 120,
-        opacitySpeed = (actualOptions.ticks * 1000) / (3600 * fpsLimit);
+        fpsLimitFactor = 3.6,
+        opacitySpeed =
+            (actualOptions.ticks * millisecondsToSeconds) / (fpsLimitFactor * millisecondsToSeconds * fpsLimit);
 
     if (ids.has(params.id)) {
         container = ids.get(params.id);
@@ -146,7 +156,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             const alias = container as EmitterContainer;
 
             if (alias.addEmitter) {
-                alias.addEmitter({
+                await alias.addEmitter({
                     startCount: actualOptions.count,
                     position: actualOptions.position,
                     size: {
@@ -183,7 +193,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             },
                         },
                         size: {
-                            value: 5 * actualOptions.scalar,
+                            value: sizeFactor * actualOptions.scalar,
                         },
                         move: {
                             angle: {
@@ -195,10 +205,10 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                                 max: actualOptions.drift,
                             },
                             gravity: {
-                                acceleration: actualOptions.gravity * 9.81,
+                                acceleration: actualOptions.gravity * defaultGravity,
                             },
-                            speed: actualOptions.startVelocity * 3,
-                            decay: 1 - actualOptions.decay,
+                            speed: actualOptions.startVelocity * speedFactor,
+                            decay: decayOffset - actualOptions.decay,
                             direction: -actualOptions.angle,
                         },
                     },
@@ -237,7 +247,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 },
             },
             size: {
-                value: 5 * actualOptions.scalar,
+                value: sizeFactor * actualOptions.scalar,
             },
             links: {
                 enable: false,
@@ -257,10 +267,10 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 enable: true,
                 gravity: {
                     enable: true,
-                    acceleration: actualOptions.gravity * 9.81,
+                    acceleration: actualOptions.gravity * defaultGravity,
                 },
-                speed: actualOptions.startVelocity * 3,
-                decay: 1 - actualOptions.decay,
+                speed: actualOptions.startVelocity * speedFactor,
+                decay: decayOffset - actualOptions.decay,
                 direction: -actualOptions.angle,
                 random: true,
                 straight: false,
@@ -271,7 +281,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             },
             rotate: {
                 value: actualOptions.flat
-                    ? 0
+                    ? disableRotate
                     : {
                           min: 0,
                           max: 360,
@@ -286,7 +296,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 direction: "random",
                 enable: !actualOptions.flat,
                 value: actualOptions.flat
-                    ? 0
+                    ? disableTilt
                     : {
                           min: 0,
                           max: 360,
@@ -401,7 +411,7 @@ confetti.create = async (
 
     await initPlugins(tsParticles);
 
-    const id = canvas.getAttribute("id") || "confetti";
+    const id = canvas.getAttribute("id") ?? "confetti";
 
     canvas.setAttribute("id", id);
 

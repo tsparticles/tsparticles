@@ -26,25 +26,35 @@ function checkDestroy(particle: Particle, value: number, minValue: number, maxVa
  * @param delta -
  */
 export function updateOpacity(particle: Particle, delta: IDelta): void {
-    const data = particle.opacity;
+    const data = particle.opacity,
+        defaultMaxLoops = 0,
+        defaultDecay = 1,
+        defaultDelayTime = 0,
+        defaultVelocity = 0,
+        minLoops = 0;
 
-    if (particle.destroyed || !data?.enable || ((data.maxLoops ?? 0) > 0 && (data.loops ?? 0) > (data.maxLoops ?? 0))) {
+    if (
+        particle.destroyed ||
+        !data?.enable ||
+        ((data.maxLoops ?? defaultMaxLoops) > defaultMaxLoops &&
+            (data.loops ?? defaultMaxLoops) > (data.maxLoops ?? defaultMaxLoops))
+    ) {
         return;
     }
 
     const minValue = data.min,
         maxValue = data.max,
-        decay = data.decay ?? 1;
+        decay = data.decay ?? defaultDecay;
 
     if (!data.time) {
         data.time = 0;
     }
 
-    if ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) {
+    if ((data.delayTime ?? defaultDelayTime) > defaultDelayTime && data.time < (data.delayTime ?? defaultDelayTime)) {
         data.time += delta.value;
     }
 
-    if ((data.delayTime ?? 0) > 0 && data.time < (data.delayTime ?? 0)) {
+    if ((data.delayTime ?? defaultDelayTime) > defaultDelayTime && data.time < (data.delayTime ?? defaultDelayTime)) {
         return;
     }
 
@@ -54,12 +64,12 @@ export function updateOpacity(particle: Particle, delta: IDelta): void {
                 data.status = AnimationStatus.decreasing;
 
                 if (!data.loops) {
-                    data.loops = 0;
+                    data.loops = minLoops;
                 }
 
                 data.loops++;
             } else {
-                data.value += (data.velocity ?? 0) * delta.factor;
+                data.value += (data.velocity ?? defaultVelocity) * delta.factor;
             }
 
             break;
@@ -68,18 +78,20 @@ export function updateOpacity(particle: Particle, delta: IDelta): void {
                 data.status = AnimationStatus.increasing;
 
                 if (!data.loops) {
-                    data.loops = 0;
+                    data.loops = minLoops;
                 }
 
                 data.loops++;
             } else {
-                data.value -= (data.velocity ?? 0) * delta.factor;
+                data.value -= (data.velocity ?? defaultVelocity) * delta.factor;
             }
 
             break;
     }
 
-    if (data.velocity && data.decay !== 1) {
+    const identity = 1;
+
+    if (data.velocity && data.decay !== identity) {
         data.velocity *= decay;
     }
 

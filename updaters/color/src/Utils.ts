@@ -21,10 +21,17 @@ function updateColorValue(
     max: number,
     decrease: boolean,
 ): void {
+    const defaultMaxLoops = 0,
+        defaultDelayTime = 0,
+        defaultVelocity = 0,
+        defaultDecay = 1,
+        velocityFactor = 3.6;
+
     if (
         !colorValue ||
         !valueAnimation.enable ||
-        ((colorValue.maxLoops ?? 0) > 0 && (colorValue.loops ?? 0) > (colorValue.maxLoops ?? 0))
+        ((colorValue.maxLoops ?? defaultMaxLoops) > defaultMaxLoops &&
+            (colorValue.loops ?? defaultMaxLoops) > (colorValue.maxLoops ?? defaultMaxLoops))
     ) {
         return;
     }
@@ -33,17 +40,23 @@ function updateColorValue(
         colorValue.time = 0;
     }
 
-    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+    if (
+        (colorValue.delayTime ?? defaultDelayTime) > defaultDelayTime &&
+        colorValue.time < (colorValue.delayTime ?? defaultDelayTime)
+    ) {
         colorValue.time += delta.value;
     }
 
-    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+    if (
+        (colorValue.delayTime ?? defaultDelayTime) > defaultDelayTime &&
+        colorValue.time < (colorValue.delayTime ?? defaultDelayTime)
+    ) {
         return;
     }
 
     const offset = randomInRange(valueAnimation.offset),
-        velocity = (colorValue.velocity ?? 0) * delta.factor + offset * 3.6,
-        decay = colorValue.decay ?? 1;
+        velocity = (colorValue.velocity ?? defaultVelocity) * delta.factor + offset * velocityFactor,
+        decay = colorValue.decay ?? defaultDecay;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
@@ -63,7 +76,9 @@ function updateColorValue(
     } else {
         colorValue.value -= velocity;
 
-        if (colorValue.value < 0) {
+        const minValue = 0;
+
+        if (colorValue.value < minValue) {
             if (!colorValue.loops) {
                 colorValue.loops = 0;
             }
@@ -75,7 +90,9 @@ function updateColorValue(
         }
     }
 
-    if (colorValue.velocity && decay !== 1) {
+    const identity = 1;
+
+    if (colorValue.velocity && decay !== identity) {
         colorValue.velocity *= decay;
     }
 
@@ -98,15 +115,21 @@ export function updateColor(particle: Particle, delta: IDelta): void {
 
     const { h, s, l } = color;
 
+    const maxValues = {
+        h: 360,
+        s: 100,
+        l: 100,
+    };
+
     if (h) {
-        updateColorValue(delta, h, hAnimation, 360, false);
+        updateColorValue(delta, h, hAnimation, maxValues.h, false);
     }
 
     if (s) {
-        updateColorValue(delta, s, sAnimation, 100, true);
+        updateColorValue(delta, s, sAnimation, maxValues.s, true);
     }
 
     if (l) {
-        updateColorValue(delta, l, lAnimation, 100, true);
+        updateColorValue(delta, l, lAnimation, maxValues.l, true);
     }
 }

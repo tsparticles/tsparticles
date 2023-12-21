@@ -23,10 +23,11 @@ function setTransformValue(
     newFactor: IParticleTransformValues,
     key: keyof IParticleTransformValues,
 ): void {
-    const newValue = newFactor[key];
+    const newValue = newFactor[key],
+        defaultValue = 1;
 
     if (newValue !== undefined) {
-        factor[key] = (factor[key] ?? 1) * newValue;
+        factor[key] = (factor[key] ?? defaultValue) * newValue;
     }
 }
 
@@ -88,11 +89,12 @@ export class Canvas {
     clear(): void {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
-            trailFill = this._trailFill;
+            trailFill = this._trailFill,
+            minimumLength = 0;
 
         if (options.backgroundMask.enable) {
             this.paint();
-        } else if (trail.enable && trail.length > 0 && trailFill) {
+        } else if (trail.enable && trail.length > minimumLength && trailFill) {
             if (trailFill.color) {
                 this._paintBase(getStyleFromRgb(trailFill.color, trailFill.opacity));
             } else if (trailFill.image) {
@@ -114,7 +116,7 @@ export class Canvas {
         if (this._generated) {
             const element = this.element;
 
-            element && element.remove();
+            element?.remove();
         } else {
             this._resetOriginalStyle();
         }
@@ -150,9 +152,10 @@ export class Canvas {
             return;
         }
 
-        const radius = particle.getRadius();
+        const radius = particle.getRadius(),
+            minimumSize = 0;
 
-        if (radius <= 0) {
+        if (radius <= minimumSize) {
             return;
         }
 
@@ -177,8 +180,11 @@ export class Canvas {
             const container = this.container,
                 options = container.actualOptions,
                 zIndexOptions = particle.options.zIndex,
-                zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
-                opacity = particle.bubble.opacity ?? particle.opacity?.value ?? 1,
+                zIndexFactorOffset = 1,
+                zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
+                zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
+                defaultOpacity = 1,
+                opacity = particle.bubble.opacity ?? particle.opacity?.value ?? defaultOpacity,
                 strokeOpacity = particle.strokeOpacity ?? opacity,
                 zOpacity = opacity * zOpacityFactor,
                 zStrokeOpacity = strokeOpacity * zOpacityFactor,
@@ -199,7 +205,7 @@ export class Canvas {
                 colorStyles,
                 backgroundMask: options.backgroundMask.enable,
                 composite: options.backgroundMask.composite,
-                radius: radius * (1 - particle.zIndexFactor) ** zIndexOptions.sizeRate,
+                radius: radius * zIndexFactor ** zIndexOptions.sizeRate,
                 opacity: zOpacity,
                 shadow: particle.options.shadow,
                 transform,
@@ -308,7 +314,7 @@ export class Canvas {
                 this._resizePlugins.push(plugin);
             }
 
-            if (plugin.particleFillColor || plugin.particleStrokeColor) {
+            if (plugin.particleFillColor ?? plugin.particleStrokeColor) {
                 this._colorPlugins.push(plugin);
             }
         }
@@ -326,7 +332,7 @@ export class Canvas {
                 this._postDrawUpdaters.push(updater);
             }
 
-            if (updater.getColorStyles || updater.getTransformValues || updater.beforeDraw) {
+            if (updater.getColorStyles ?? updater.getTransformValues ?? updater.beforeDraw) {
                 this._preDrawUpdaters.push(updater);
             }
         }
@@ -452,7 +458,7 @@ export class Canvas {
 
     private readonly _applyPostDrawUpdaters: (particle: Particle) => void = (particle) => {
         for (const updater of this._postDrawUpdaters) {
-            updater.afterDraw && updater.afterDraw(particle);
+            updater.afterDraw?.(particle);
         }
     };
 
@@ -485,13 +491,13 @@ export class Canvas {
                 }
             }
 
-            updater.beforeDraw && updater.beforeDraw(particle);
+            updater.beforeDraw?.(particle);
         }
     };
 
     private readonly _applyResizePlugins: () => void = () => {
         for (const plugin of this._resizePlugins) {
-            plugin.resize && plugin.resize();
+            plugin.resize?.();
         }
     };
 
@@ -571,6 +577,9 @@ export class Canvas {
             return;
         }
 
+        const factorNumerator = 1,
+            opacity = factorNumerator / trail.length;
+
         if (trailFill.color) {
             const fillColor = rangeColorToRgb(trailFill.color);
 
@@ -578,13 +587,11 @@ export class Canvas {
                 return;
             }
 
-            const trail = options.particles.move.trail;
-
             this._trailFill = {
                 color: {
                     ...fillColor,
                 },
-                opacity: 1 / trail.length,
+                opacity,
             };
         } else {
             await new Promise<void>((resolve, reject) => {
@@ -597,7 +604,7 @@ export class Canvas {
                 img.addEventListener("load", () => {
                     this._trailFill = {
                         image: img,
-                        opacity: 1 / trail.length,
+                        opacity,
                     };
 
                     resolve();
@@ -669,10 +676,11 @@ export class Canvas {
         }
 
         const priority = "important",
-            style = element.style;
+            style = element.style,
+            radix = 10;
 
         style.setProperty("position", "fixed", priority);
-        style.setProperty("z-index", this.container.actualOptions.fullScreen.zIndex.toString(10), priority);
+        style.setProperty("z-index", this.container.actualOptions.fullScreen.zIndex.toString(radix), priority);
         style.setProperty("top", "0", priority);
         style.setProperty("left", "0", priority);
         style.setProperty("width", "100%", priority);

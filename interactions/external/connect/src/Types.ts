@@ -3,13 +3,13 @@ import type { Connect } from "./Options/Classes/Connect.js";
 import type { ConnectOptions } from "./Options/Classes/ConnectOptions.js";
 import type { IConnect } from "./Options/Interfaces/IConnect.js";
 
-export type IConnectMode = {
+export interface IConnectMode {
     connect: IConnect;
-};
+}
 
-export type ConnectMode = {
+export interface ConnectMode {
     connect?: Connect;
-};
+}
 
 export type ConnectContainer = Container & {
     actualOptions: ConnectOptions;

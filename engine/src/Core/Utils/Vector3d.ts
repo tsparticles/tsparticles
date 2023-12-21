@@ -2,6 +2,14 @@ import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js
 import { errorPrefix } from "./Constants.js";
 import { isNumber } from "../../Utils/Utils.js";
 
+const origin = {
+        x: 0,
+        y: 0,
+        z: 0,
+    },
+    squareExp = 2,
+    inverseFactorNumerator = 1.0;
+
 /**
  */
 export class Vector3d implements ICoordinates3d {
@@ -34,11 +42,11 @@ export class Vector3d implements ICoordinates3d {
 
             const coords3d = xOrCoords as ICoordinates3d;
 
-            this.z = coords3d.z ? coords3d.z : 0;
+            this.z = coords3d.z ? coords3d.z : origin.z;
         } else if (xOrCoords !== undefined && y !== undefined) {
             this.x = xOrCoords;
             this.y = y;
-            this.z = z ?? 0;
+            this.z = z ?? origin.z;
         } else {
             throw new Error(`${errorPrefix} Vector3d not initialized correctly`);
         }
@@ -49,7 +57,7 @@ export class Vector3d implements ICoordinates3d {
      * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector3d {
-        return Vector3d.create(0, 0, 0);
+        return Vector3d.create(origin.x, origin.y, origin.z);
     }
 
     /**
@@ -173,7 +181,7 @@ export class Vector3d implements ICoordinates3d {
      * @returns the squared length value
      */
     getLengthSq(): number {
-        return this.x ** 2 + this.y ** 2;
+        return this.x ** squareExp + this.y ** squareExp;
     }
 
     /**
@@ -199,10 +207,11 @@ export class Vector3d implements ICoordinates3d {
      * Normalizes the current vector, modifying it
      */
     normalize(): void {
-        const length = this.length;
+        const length = this.length,
+            noLength = 0;
 
-        if (length != 0) {
-            this.multTo(1.0 / length);
+        if (length != noLength) {
+            this.multTo(inverseFactorNumerator / length);
         }
     }
 
@@ -215,7 +224,7 @@ export class Vector3d implements ICoordinates3d {
         return Vector3d.create(
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle),
-            0,
+            origin.z,
         );
     }
 
@@ -229,7 +238,7 @@ export class Vector3d implements ICoordinates3d {
 
         const v3d = c as ICoordinates3d;
 
-        this.z = v3d.z ? v3d.z : 0;
+        this.z = v3d.z ? v3d.z : origin.z;
     }
 
     /**

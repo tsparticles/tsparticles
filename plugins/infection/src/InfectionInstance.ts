@@ -2,6 +2,8 @@ import { type IContainerPlugin, type IOptionsColor, type Particle, itemFromArray
 import type { InfectableContainer, InfectableParticle } from "./Types.js";
 import { Infecter } from "./Infecter.js";
 
+const minStage = 0;
+
 export class InfectionInstance implements IContainerPlugin {
     private readonly _container;
 
@@ -48,7 +50,7 @@ export class InfectionInstance implements IContainerPlugin {
 
             const infected = itemFromArray(notInfected);
 
-            this._container.infecter?.startInfection(infected, 0);
+            this._container.infecter?.startInfection(infected, minStage);
         }
     }
 }

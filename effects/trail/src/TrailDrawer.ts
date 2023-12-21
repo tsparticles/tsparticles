@@ -9,10 +9,19 @@ import {
     getRangeValue,
 } from "@tsparticles/engine";
 
-type TrailStep = {
+const double = 2,
+    minTrailLength = 2,
+    trailLengthOffset = 1,
+    noItems = 0,
+    half = 0.5,
+    minWidth = -1,
+    defaultLength = 10,
+    defaultAlpha = 1;
+
+interface TrailStep {
     color: string | CanvasGradient | CanvasPattern;
     position: ICoordinates;
-};
+}
 
 type TrailParticle = Particle & {
     trail?: TrailStep[];
@@ -32,7 +41,7 @@ interface ITrailData extends IShapeValues {
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     draw(data: IShapeDrawData<TrailParticle>): void {
         const { context, radius, particle } = data,
-            diameter = radius * 2,
+            diameter = radius * double,
             pxRatio = particle.container.retina.pixelRatio,
             currentPos = particle.getPosition();
 
@@ -50,7 +59,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             },
         });
 
-        if (particle.trail.length < 2) {
+        if (particle.trail.length < minTrailLength) {
             return;
         }
 
@@ -68,12 +77,26 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
                 height: particle.container.canvas.size.height + diameter,
             };
 
-        let lastPos = particle.trail[trailLength - 1].position;
+        let lastPos = particle.trail[trailLength - trailLengthOffset].position;
 
-        context.setTransform(1, 0, 0, 1, currentPos.x, currentPos.y);
+        const defaultTransform = {
+            a: 1,
+            b: 0,
+            c: 0,
+            d: 1,
+        };
 
-        for (let i = trailLength; i > 0; i--) {
-            const step = particle.trail[i - 1],
+        context.setTransform(
+            defaultTransform.a,
+            defaultTransform.b,
+            defaultTransform.c,
+            defaultTransform.d,
+            currentPos.x,
+            currentPos.y,
+        );
+
+        for (let i = trailLength; i > noItems; i--) {
+            const step = particle.trail[i - trailLengthOffset],
                 position = step.position;
 
             context.beginPath();
@@ -86,8 +109,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             };
 
             if (
-                Math.abs(lastPos.x - position.x) > canvasSize.width / 2 ||
-                Math.abs(lastPos.y - position.y) > canvasSize.height / 2
+                Math.abs(lastPos.x - position.x) > canvasSize.width * half ||
+                Math.abs(lastPos.y - position.y) > canvasSize.height * half
             ) {
                 lastPos = position;
 
@@ -96,15 +119,14 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
             // Draw the line using wrapping points
             context.lineTo(
-                (Math.abs(lastPos.x - position.x) > canvasSize.width / 2 ? warp.x : position.x) - offsetPos.x,
-                (Math.abs(lastPos.y - position.y) > canvasSize.height / 2 ? warp.y : position.y) - offsetPos.y,
+                (Math.abs(lastPos.x - position.x) > canvasSize.width * half ? warp.x : position.x) - offsetPos.x,
+                (Math.abs(lastPos.y - position.y) > canvasSize.height * half ? warp.y : position.y) - offsetPos.y,
             );
 
-            const width = Math.max((i / trailLength) * diameter, pxRatio, particle.trailMinWidth ?? -1);
+            const width = Math.max((i / trailLength) * diameter, pxRatio, particle.trailMinWidth ?? minWidth),
+                oldAlpha = context.globalAlpha;
 
-            const oldAlpha = context.globalAlpha;
-
-            context.globalAlpha = particle.trailFade ? i / trailLength : 1;
+            context.globalAlpha = particle.trailFade ? i / trailLength : defaultAlpha;
 
             context.lineWidth = particle.trailMaxWidth ? Math.min(width, particle.trailMaxWidth) : width;
             context.strokeStyle = step.color;
@@ -133,7 +155,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         const effectData = particle.effectData as ITrailData | undefined;
 
         particle.trailFade = effectData?.fade ?? true;
-        particle.trailLength = getRangeValue(effectData?.length ?? 10) * container.retina.pixelRatio;
+        particle.trailLength = getRangeValue(effectData?.length ?? defaultLength) * container.retina.pixelRatio;
         particle.trailMaxWidth = effectData?.maxWidth
             ? getRangeValue(effectData.maxWidth) * container.retina.pixelRatio
             : undefined;

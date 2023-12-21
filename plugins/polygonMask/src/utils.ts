@@ -10,6 +10,13 @@ import type { SvgAbsoluteCoordinatesTypes, SvgRelativeCoordinatesTypes } from ".
 import type { IPolygonMaskDrawStroke } from "./Options/Interfaces/IPolygonMaskDrawStroke.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 
+const squareExp = 2,
+    inSegmentRange = {
+        min: 0,
+        max: 1,
+    },
+    double = 2;
+
 /**
  * @param context -
  * @param rawData -
@@ -26,8 +33,11 @@ export function drawPolygonMask(
         return;
     }
 
+    const firstIndex = 0,
+        firstItem = rawData[firstIndex];
+
     context.beginPath();
-    context.moveTo(rawData[0].x, rawData[0].y);
+    context.moveTo(firstItem.x, firstItem.y);
 
     for (const item of rawData) {
         context.lineTo(item.x, item.y);
@@ -51,7 +61,21 @@ export function drawPolygonMaskPath(
     stroke: IPolygonMaskDrawStroke,
     position: ICoordinates,
 ): void {
-    context.setTransform(1, 0, 0, 1, position.x, position.y);
+    const defaultTransform = {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 1,
+    };
+
+    context.setTransform(
+        defaultTransform.a,
+        defaultTransform.b,
+        defaultTransform.c,
+        defaultTransform.d,
+        position.x,
+        position.y,
+    );
 
     const color = rangeColorToRgb(stroke.color);
 
@@ -62,7 +86,7 @@ export function drawPolygonMaskPath(
     context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
-    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.resetTransform();
 }
 
 /**
@@ -72,11 +96,12 @@ export function drawPolygonMaskPath(
  * @returns the coordinates of the points
  */
 export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinates): ICoordinates[] {
-    const res: ICoordinates[] = [];
+    const res: ICoordinates[] = [],
+        defaultCount = 0;
 
     for (const path of paths) {
         const segments = path.element.pathSegList,
-            len = segments?.numberOfItems ?? 0,
+            len = segments?.numberOfItems ?? defaultCount,
             p = {
                 x: 0,
                 y: 0,
@@ -167,19 +192,19 @@ export function calcClosestPtOnSegment(
         { dx: dx2, dy: dy2 } = getDistances(s2, s1),
         // Calc position on line normalized between 0.00 & 1.00
         // == dot product divided by delta line distances squared
-        t = (dx1 * dx2 + dy1 * dy2) / (dx2 ** 2 + dy2 ** 2),
+        t = (dx1 * dx2 + dy1 * dy2) / (dx2 ** squareExp + dy2 ** squareExp),
         // calc nearest pt on line
         res = {
             x: s1.x + dx2 * t,
             y: s1.y + dy2 * t,
-            isOnSegment: t >= 0 && t <= 1,
+            isOnSegment: t >= inSegmentRange.min && t <= inSegmentRange.max,
         };
 
     // clamp results to being on the segment
-    if (t < 0) {
+    if (t < inSegmentRange.min) {
         res.x = s1.x;
         res.y = s1.y;
-    } else if (t > 1) {
+    } else if (t > inSegmentRange.max) {
         res.x = s2.x;
         res.y = s2.y;
     }
@@ -196,7 +221,7 @@ export function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity:
     const { dx, dy } = getDistances(start, stop),
         wallAngle = Math.atan2(dy, dx), // + Math.PI / 2;
         wallNormal = Vector.create(Math.sin(wallAngle), -Math.cos(wallAngle)),
-        d = 2 * (velocity.x * wallNormal.x + velocity.y * wallNormal.y);
+        d = double * (velocity.x * wallNormal.x + velocity.y * wallNormal.y);
 
     wallNormal.multTo(d);
 

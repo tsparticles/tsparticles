@@ -1,7 +1,7 @@
 import { loadFull } from ".";
 import { tsParticles } from "@tsparticles/engine";
 
-loadFull(tsParticles);
+void loadFull(tsParticles);
 
 export { loadFull };
 

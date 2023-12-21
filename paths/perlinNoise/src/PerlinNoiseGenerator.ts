@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 import {
     type Container,
     type IMovePathGenerator,
@@ -51,7 +53,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             },
             { field } = this;
 
-        return !field || !field[point.x] || !field[point.x][point.y] ? Vector.origin : field[point.x][point.y].copy();
+        return !field?.[point.x]?.[point.y] ? Vector.origin : field[point.x][point.y].copy();
     }
 
     init(container: Container): void {
@@ -109,7 +111,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 const cell = column[y],
                     { angle, length } = cell;
 
-                //ctx.save();
+                // ctx.save();
                 ctx.setTransform(1, 0, 0, 1, x * this.options.size, y * this.options.size);
                 ctx.rotate(angle);
                 ctx.strokeStyle = "white";
@@ -118,17 +120,17 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                 ctx.lineTo(0, this.options.size * length);
                 ctx.stroke();
                 ctx.setTransform(1, 0, 0, 1, 0, 0);
-                //ctx.restore();
+                // ctx.restore();
             }
         }
     };
 
     private readonly _initField: () => void = () => {
         const { columns, rows } = this.options;
-        this.field = new Array(columns);
+        this.field = new Array<Vector[]>(columns);
 
         for (let x = 0; x < columns; x++) {
-            this.field[x] = new Array(rows);
+            this.field[x] = new Array<Vector>(rows);
 
             for (let y = 0; y < rows; y++) {
                 this.field[x][y] = Vector.origin;
@@ -153,13 +155,13 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
 
         const offset = sourceOptions.offset as IOffsetValues | undefined;
 
-        options.offset.x = (offset?.x as number) ?? defaultOptions.offset.x;
-        options.offset.y = (offset?.y as number) ?? defaultOptions.offset.y;
+        options.offset.x = offset?.x ?? defaultOptions.offset.x;
+        options.offset.y = offset?.y ?? defaultOptions.offset.y;
 
         const factor = sourceOptions.factor as IFactorValues | undefined;
 
-        options.factor.angle = (factor?.angle as number) ?? defaultOptions.factor.angle;
-        options.factor.length = (factor?.length as number) ?? defaultOptions.factor.length;
+        options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
+        options.factor.length = factor?.length ?? defaultOptions.factor.length;
 
         options.width = container.canvas.size.width;
         options.height = container.canvas.size.height;

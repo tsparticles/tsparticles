@@ -6,6 +6,12 @@ import {
 } from "@tsparticles/engine";
 import type { GradientParticle } from "./Types.js";
 
+const defaultVelocity = 0,
+    identity = 1,
+    defaultDelayTime = 0,
+    double = 2,
+    doublePI = Math.PI * double;
+
 /**
  * @param delta -
  * @param value -
@@ -15,14 +21,14 @@ function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation
         return;
     }
 
-    const decay = value.decay ?? 1;
+    const decay = value.decay ?? identity;
 
     switch (value.status) {
         case AnimationStatus.increasing:
             if (value.value >= value.max) {
                 value.status = AnimationStatus.decreasing;
             } else {
-                value.value += (value.velocity ?? 0) * delta.factor;
+                value.value += (value.velocity ?? defaultVelocity) * delta.factor;
             }
 
             break;
@@ -30,13 +36,13 @@ function updateColorOpacity(delta: IDelta, value: IParticleNumericValueAnimation
             if (value.value <= value.min) {
                 value.status = AnimationStatus.increasing;
             } else {
-                value.value -= (value.velocity ?? 0) * delta.factor;
+                value.value -= (value.velocity ?? defaultVelocity) * delta.factor;
             }
 
             break;
     }
 
-    if (value.velocity && decay !== 1) {
+    if (value.velocity && decay !== identity) {
         value.velocity *= decay;
     }
 }
@@ -61,17 +67,22 @@ function updateColorValue(
         colorValue.time = 0;
     }
 
-    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+    if (
+        (colorValue.delayTime ?? defaultDelayTime) > defaultDelayTime &&
+        colorValue.time < (colorValue.delayTime ?? defaultDelayTime)
+    ) {
         colorValue.time += delta.value;
     }
 
-    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+    if (
+        (colorValue.delayTime ?? defaultDelayTime) > defaultDelayTime &&
+        colorValue.time < (colorValue.delayTime ?? defaultDelayTime)
+    ) {
         return;
     }
 
-    //const offset = NumberUtils.randomInRange(valueAnimation.offset);
-    const velocity = (colorValue.velocity ?? 0) * delta.factor,
-        decay = colorValue.decay ?? 1; // + offset * 3.6;
+    const velocity = (colorValue.velocity ?? defaultVelocity) * delta.factor,
+        decay = colorValue.decay ?? identity;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
@@ -83,7 +94,7 @@ function updateColorValue(
     } else {
         colorValue.value -= velocity;
 
-        if (colorValue.value < 0) {
+        if (colorValue.value < defaultVelocity) {
             colorValue.status = AnimationStatus.increasing;
             colorValue.value += colorValue.value;
         }
@@ -93,7 +104,7 @@ function updateColorValue(
         colorValue.value %= max;
     }
 
-    if (colorValue.velocity && decay !== 1) {
+    if (colorValue.velocity && decay !== identity) {
         colorValue.velocity *= decay;
     }
 }
@@ -103,9 +114,9 @@ function updateColorValue(
  * @param angle -
  */
 function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): void {
-    const speed = (angle.velocity ?? 0) * delta.factor,
-        max = 2 * Math.PI,
-        decay = angle.decay ?? 1;
+    const speed = (angle.velocity ?? defaultVelocity) * delta.factor,
+        max = doublePI,
+        decay = angle.decay ?? identity;
 
     if (!angle.enable) {
         return;
@@ -124,14 +135,14 @@ function updateAngle(delta: IDelta, angle: IParticleValueAnimation<number>): voi
         default:
             angle.value -= speed;
 
-            if (angle.value < 0) {
+            if (angle.value < defaultVelocity) {
                 angle.value += max;
             }
 
             break;
     }
 
-    if (angle.velocity && decay !== 1) {
+    if (angle.velocity && decay !== identity) {
         angle.velocity *= decay;
     }
 }
@@ -149,17 +160,23 @@ export function updateGradient(particle: GradientParticle, delta: IDelta): void 
 
     updateAngle(delta, gradient.angle);
 
+    const maxColorValues = {
+        h: 360,
+        s: 100,
+        l: 100,
+    };
+
     for (const color of gradient.colors) {
         if (particle.color?.h !== undefined) {
-            updateColorValue(delta, color.value.h, 360, false);
+            updateColorValue(delta, color.value.h, maxColorValues.h, false);
         }
 
         if (particle.color?.s !== undefined) {
-            updateColorValue(delta, color.value.s, 100, true);
+            updateColorValue(delta, color.value.s, maxColorValues.s, true);
         }
 
         if (particle.color?.l !== undefined) {
-            updateColorValue(delta, color.value.l, 100, true);
+            updateColorValue(delta, color.value.l, maxColorValues.l, true);
         }
 
         if (color.opacity) {

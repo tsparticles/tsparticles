@@ -30,6 +30,8 @@ import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
 
+const minSplitCount = 2;
+
 let initialized = false;
 let initializing = false;
 
@@ -47,7 +49,7 @@ declare global {
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
     const data = args.data as { particle: Particle & { splitCount?: number } };
 
-    return data.particle.shape === "circle" && !!data.particle.splitCount && data.particle.splitCount < 2;
+    return data.particle.shape === "circle" && !!data.particle.splitCount && data.particle.splitCount < minSplitCount;
 };
 
 class FireworksInstance {
@@ -79,14 +81,15 @@ async function initPlugins(): Promise<void> {
 
     if (initializing) {
         return new Promise<void>((resolve) => {
-            const interval = setInterval(() => {
-                if (!initialized) {
-                    return;
-                }
+            const timeout = 100,
+                interval = setInterval(() => {
+                    if (!initialized) {
+                        return;
+                    }
 
-                clearInterval(interval);
-                resolve();
-            }, 100);
+                    clearInterval(interval);
+                    resolve();
+                }, timeout);
         });
     }
 
@@ -130,190 +133,191 @@ export async function fireworks(
         options.load(idOrOptions);
     }
 
-    const particlesOptions: ISourceOptions = {
-        detectRetina: true,
-        background: {
-            color: options.background,
-        },
-        fpsLimit: 60,
-        emitters: {
-            direction: MoveDirection.top,
-            life: {
-                count: 0,
-                duration: 0.1,
-                delay: 0.1,
+    const identity = 1,
+        particlesOptions: ISourceOptions = {
+            detectRetina: true,
+            background: {
+                color: options.background,
             },
-            rate: {
-                delay: isNumber(options.rate)
-                    ? 1 / options.rate
-                    : { min: 1 / getRangeMin(options.rate), max: 1 / getRangeMax(options.rate) },
-                quantity: 1,
-            },
-            size: {
-                width: 100,
-                height: 0,
-            },
-            position: {
-                y: 100,
-                x: 50,
-            },
-        },
-        particles: {
-            number: {
-                value: 0,
-            },
-            color: {
-                value: "#fff",
-            },
-            destroy: {
-                mode: "split",
-                bounds: {
-                    top: setRangeValue(options.minHeight),
+            fpsLimit: 60,
+            emitters: {
+                direction: MoveDirection.top,
+                life: {
+                    count: 0,
+                    duration: 0.1,
+                    delay: 0.1,
                 },
-                split: {
-                    sizeOffset: false,
-                    count: 1,
-                    factor: {
-                        value: 0.333333,
+                rate: {
+                    delay: isNumber(options.rate)
+                        ? identity / options.rate
+                        : { min: identity / getRangeMin(options.rate), max: identity / getRangeMax(options.rate) },
+                    quantity: 1,
+                },
+                size: {
+                    width: 100,
+                    height: 0,
+                },
+                position: {
+                    y: 100,
+                    x: 50,
+                },
+            },
+            particles: {
+                number: {
+                    value: 0,
+                },
+                color: {
+                    value: "#fff",
+                },
+                destroy: {
+                    mode: "split",
+                    bounds: {
+                        top: setRangeValue(options.minHeight),
                     },
-                    rate: {
-                        value: options.splitCount,
-                    },
-                    colorOffset: {
-                        s: options.saturation,
-                        l: options.brightness,
-                    },
-                    particles: {
-                        color: {
-                            value: options.colors,
+                    split: {
+                        sizeOffset: false,
+                        count: 1,
+                        factor: {
+                            value: 0.333333,
                         },
-                        number: {
-                            value: 0,
+                        rate: {
+                            value: options.splitCount,
                         },
-                        opacity: {
-                            value: {
-                                min: 0.1,
-                                max: 1,
+                        colorOffset: {
+                            s: options.saturation,
+                            l: options.brightness,
+                        },
+                        particles: {
+                            color: {
+                                value: options.colors,
                             },
-                            animation: {
-                                enable: true,
-                                speed: 1,
-                                sync: false,
-                                startValue: StartValueType.max,
-                                destroy: DestroyType.min,
+                            number: {
+                                value: 0,
                             },
-                        },
-                        effect: {
-                            type: "trail",
-                            options: {
-                                trail: {
-                                    length: {
-                                        min: 5,
-                                        max: 10,
+                            opacity: {
+                                value: {
+                                    min: 0.1,
+                                    max: 1,
+                                },
+                                animation: {
+                                    enable: true,
+                                    speed: 1,
+                                    sync: false,
+                                    startValue: StartValueType.max,
+                                    destroy: DestroyType.min,
+                                },
+                            },
+                            effect: {
+                                type: "trail",
+                                options: {
+                                    trail: {
+                                        length: {
+                                            min: 5,
+                                            max: 10,
+                                        },
                                     },
                                 },
                             },
-                        },
-                        shape: {
-                            type: "circle",
-                        },
-                        size: {
-                            value: { min: 1, max: 2 },
-                            animation: {
-                                enable: true,
-                                speed: 5,
-                                count: 1,
-                                sync: false,
-                                startValue: StartValueType.min,
-                                destroy: DestroyType.none,
+                            shape: {
+                                type: "circle",
                             },
-                        },
-                        life: {
-                            count: 1,
-                            duration: {
-                                value: {
-                                    min: 0.25,
-                                    max: 0.5,
+                            size: {
+                                value: { min: 1, max: 2 },
+                                animation: {
+                                    enable: true,
+                                    speed: 5,
+                                    count: 1,
+                                    sync: false,
+                                    startValue: StartValueType.min,
+                                    destroy: DestroyType.none,
                                 },
                             },
-                        },
-                        move: {
-                            decay: { min: 0.05, max: 0.1 },
-                            enable: true,
-                            gravity: {
-                                enable: true,
-                                inverse: false,
-                                acceleration: setRangeValue(options.gravity),
+                            life: {
+                                count: 1,
+                                duration: {
+                                    value: {
+                                        min: 0.25,
+                                        max: 0.5,
+                                    },
+                                },
                             },
-                            speed: setRangeValue(options.speed),
-                            direction: "none",
-                            outModes: OutMode.destroy,
+                            move: {
+                                decay: { min: 0.05, max: 0.1 },
+                                enable: true,
+                                gravity: {
+                                    enable: true,
+                                    inverse: false,
+                                    acceleration: setRangeValue(options.gravity),
+                                },
+                                speed: setRangeValue(options.speed),
+                                direction: "none",
+                                outModes: OutMode.destroy,
+                            },
                         },
                     },
                 },
-            },
-            life: {
-                count: 1,
-            },
-            effect: {
-                type: "trail",
-                options: {
-                    trail: {
-                        length: {
-                            min: 10,
-                            max: 30,
+                life: {
+                    count: 1,
+                },
+                effect: {
+                    type: "trail",
+                    options: {
+                        trail: {
+                            length: {
+                                min: 10,
+                                max: 30,
+                            },
+                            minWidth: 1,
+                            maxWidth: 1,
                         },
-                        minWidth: 1,
-                        maxWidth: 1,
                     },
                 },
-            },
-            shape: {
-                type: "circle",
-            },
-            size: {
-                value: 1,
-            },
-            opacity: {
-                value: 0.5,
-            },
-            rotate: {
-                path: true,
-            },
-            move: {
-                enable: true,
-                gravity: {
-                    acceleration: 15,
+                shape: {
+                    type: "circle",
+                },
+                size: {
+                    value: 1,
+                },
+                opacity: {
+                    value: 0.5,
+                },
+                rotate: {
+                    path: true,
+                },
+                move: {
                     enable: true,
-                    inverse: true,
-                    maxSpeed: 100,
-                },
-                speed: {
-                    min: 10,
-                    max: 20,
-                },
-                outModes: {
-                    default: OutMode.destroy,
-                    top: OutMode.none,
+                    gravity: {
+                        acceleration: 15,
+                        enable: true,
+                        inverse: true,
+                        maxSpeed: 100,
+                    },
+                    speed: {
+                        min: 10,
+                        max: 20,
+                    },
+                    outModes: {
+                        default: OutMode.destroy,
+                        top: OutMode.none,
+                    },
                 },
             },
-        },
-        sounds: {
-            enable: options.sounds,
-            events: [
-                {
-                    event: EventType.particleDestroyed,
-                    filter: explodeSoundCheck,
-                    audio: [
-                        "https://particles.js.org/audio/explosion0.mp3",
-                        "https://particles.js.org/audio/explosion1.mp3",
-                        "https://particles.js.org/audio/explosion2.mp3",
-                    ],
-                },
-            ],
-            volume: 50,
-        },
-    };
+            sounds: {
+                enable: options.sounds,
+                events: [
+                    {
+                        event: EventType.particleDestroyed,
+                        filter: explodeSoundCheck,
+                        audio: [
+                            "https://particles.js.org/audio/explosion0.mp3",
+                            "https://particles.js.org/audio/explosion1.mp3",
+                            "https://particles.js.org/audio/explosion2.mp3",
+                        ],
+                    },
+                ],
+                volume: 50,
+            },
+        };
 
     const container = await tsParticles.load({ id, options: particlesOptions });
 

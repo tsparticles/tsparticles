@@ -1,5 +1,9 @@
 import { type IDelta, type Particle, clamp } from "@tsparticles/engine";
 
+const half = 0.5,
+    absorbFactor = 10,
+    minAbsorbFactor = 0;
+
 /**
  * @param p1 -
  * @param r1 -
@@ -9,9 +13,9 @@ import { type IDelta, type Particle, clamp } from "@tsparticles/engine";
  * @param pixelRatio -
  */
 function updateAbsorb(p1: Particle, r1: number, p2: Particle, r2: number, delta: IDelta, pixelRatio: number): void {
-    const factor = clamp((p1.options.collisions.absorb.speed * delta.factor) / 10, 0, r2);
+    const factor = clamp((p1.options.collisions.absorb.speed * delta.factor) / absorbFactor, minAbsorbFactor, r2);
 
-    p1.size.value += factor / 2;
+    p1.size.value += factor * half;
     p2.size.value -= factor;
 
     if (r2 <= pixelRatio) {

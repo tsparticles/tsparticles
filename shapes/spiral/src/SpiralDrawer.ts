@@ -2,6 +2,10 @@ import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue }
 import type { ISpiralData } from "./ISpiralData.js";
 import type { SpiralParticle } from "./SpiralParticle.js";
 
+const defaultInnerRadius = 1,
+    defaultLineSpacing = 1,
+    defaultWidthFactor = 10;
+
 export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
     draw(data: IShapeDrawData<SpiralParticle>): void {
         const { context, particle, radius } = data;
@@ -33,8 +37,8 @@ export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
         const pixelRatio = container.retina.pixelRatio,
             shapeData = particle.shapeData as ISpiralData | undefined;
 
-        particle.spiralInnerRadius = getRangeValue(shapeData?.innerRadius ?? 1) * pixelRatio;
-        particle.spiralLineSpacing = getRangeValue(shapeData?.lineSpacing ?? 1) * pixelRatio;
-        particle.spiralWidthFactor = getRangeValue(shapeData?.widthFactor ?? 10);
+        particle.spiralInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius) * pixelRatio;
+        particle.spiralLineSpacing = getRangeValue(shapeData?.lineSpacing ?? defaultLineSpacing) * pixelRatio;
+        particle.spiralWidthFactor = getRangeValue(shapeData?.widthFactor ?? defaultWidthFactor);
     }
 }

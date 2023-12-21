@@ -56,7 +56,7 @@ const configs = {
 };
 
 for (const key of Object.keys(configs)) {
-    tsParticles.addConfig((configs as { [key: string]: ISourceOptions })[key]);
+    tsParticles.addConfig((configs as Record<string, ISourceOptions>)[key]);
 }
 
 export default configs;

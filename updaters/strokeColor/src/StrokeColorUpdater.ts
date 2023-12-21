@@ -11,8 +11,14 @@ import {
 import type { StrokeParticle } from "./Types.js";
 import { updateStrokeColor } from "./Utils.js";
 
+const defaultOpacity = 1;
+
 export class StrokeColorUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {}
+    private readonly container;
+
+    constructor(container: Container) {
+        this.container = container;
+    }
 
     init(particle: StrokeParticle): void {
         const container = this.container,
@@ -22,7 +28,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
         const stroke = itemFromSingleOrMultiple(options.stroke, particle.id, options.reduceDuplicates);
 
         particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
-        particle.strokeOpacity = getRangeValue(stroke.opacity ?? 1);
+        particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
         particle.strokeAnimation = stroke.color?.animation;
 
         const strokeHslColor = rangeColorToHsl(stroke.color) ?? particle.getFillColor();

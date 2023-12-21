@@ -7,6 +7,7 @@ import {
     type Particle,
     type RecursivePartial,
     isInArray,
+    millisecondsToSeconds,
 } from "@tsparticles/engine";
 import type { ITrailMode, TrailContainer, TrailMode } from "./Types.js";
 import { Trail } from "./Options/Classes/Trail.js";
@@ -48,7 +49,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
             return;
         }
 
-        const optDelay = (trailOptions.delay * 1000) / this.container.retina.reduceFactor;
+        const optDelay = (trailOptions.delay * millisecondsToSeconds) / this.container.retina.reduceFactor;
 
         if (this._delay < optDelay) {
             this._delay += delta.value;
@@ -78,6 +79,8 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         this._delay -= optDelay;
+
+        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

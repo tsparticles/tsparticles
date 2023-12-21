@@ -1,9 +1,12 @@
 import { type Container, type IDelta, type Particle, ParticlesInteractorBase, getDistance } from "@tsparticles/engine";
 import { resolveCollision } from "./ResolveCollision.js";
 
+const double = 2;
+
 /**
  */
 export class Collider extends ParticlesInteractorBase {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: Container) {
         super(container);
     }
@@ -24,7 +27,7 @@ export class Collider extends ParticlesInteractorBase {
         const container = this.container,
             pos1 = p1.getPosition(),
             radius1 = p1.getRadius(),
-            query = container.particles.quadTree.queryCircle(pos1, radius1 * 2);
+            query = container.particles.quadTree.queryCircle(pos1, radius1 * double);
 
         for (const p2 of query) {
             if (
@@ -53,6 +56,8 @@ export class Collider extends ParticlesInteractorBase {
 
             resolveCollision(p1, p2, delta, container.retina.pixelRatio);
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {

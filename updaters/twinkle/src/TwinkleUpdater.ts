@@ -28,7 +28,8 @@ export class TwinkleUpdater implements IParticleUpdater {
         const twinkle = twinkleOptions.particles,
             twinkling = twinkle.enable && getRandom() < twinkle.frequency,
             zIndexOptions = particle.options.zIndex,
-            zOpacityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.opacityRate,
+            zOffset = 1,
+            zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
             twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
             twinkleRgb = rangeColorToHsl(twinkle.color),
             twinkleStyle = twinkleRgb ? getStyleFromHsl(twinkleRgb, twinklingOpacity) : undefined,
@@ -47,7 +48,7 @@ export class TwinkleUpdater implements IParticleUpdater {
 
     isEnabled(particle: TwinkeParticle): boolean {
         const pOptions = particle.options,
-            twinkleOptions = pOptions.twinkle as Twinkle;
+            twinkleOptions = pOptions.twinkle!;
 
         if (!twinkleOptions) {
             return false;

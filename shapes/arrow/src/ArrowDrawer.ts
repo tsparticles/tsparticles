@@ -1,34 +1,50 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import {
+    type Container,
+    type ICoordinates,
+    type IShapeDrawData,
+    type IShapeDrawer,
+    getRangeValue,
+} from "@tsparticles/engine";
 import type { ArrowParticle } from "./ArrowParticle.js";
 import type { IArrowData } from "./IArrowData.js";
+
+const double = 2,
+    defaultHeightFactor = 0.5,
+    defaultHeadWidthFactor = 0.2,
+    defaultBodyHeightFactor = 0.5,
+    half = 0.5,
+    origin: ICoordinates = {
+        x: 0,
+        y: 0,
+    };
 
 export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
     draw(data: IShapeDrawData<ArrowParticle>): void {
         const { context, particle, radius } = data,
-            width = radius * 2,
-            heightFactor = particle.heightFactor ?? 0.5,
-            headWidthFactor = particle.headWidthFactor ?? 0.2,
-            bodyHeightFactor = particle.bodyHeightFactor ?? 0.5,
+            width = radius * double,
+            heightFactor = particle.heightFactor ?? defaultHeightFactor,
+            headWidthFactor = particle.headWidthFactor ?? defaultHeadWidthFactor,
+            bodyHeightFactor = particle.bodyHeightFactor ?? defaultBodyHeightFactor,
             height = width * heightFactor,
             headWidth = width * headWidthFactor,
             bodyHeight = height * bodyHeightFactor;
 
-        context.moveTo(-width / 2, 0);
-        context.lineTo(-width / 2, -bodyHeight / 2);
-        context.lineTo(width / 2 - headWidth, -bodyHeight / 2);
-        context.lineTo(width / 2 - headWidth, -height / 2);
-        context.lineTo(width / 2 + headWidth, 0);
-        context.lineTo(width / 2 - headWidth, height / 2);
-        context.lineTo(width / 2 - headWidth, bodyHeight / 2);
-        context.lineTo(-width / 2, bodyHeight / 2);
-        context.lineTo(-width / 2, 0);
+        context.moveTo(-width * half, origin.y);
+        context.lineTo(-width * half, -bodyHeight * half);
+        context.lineTo(width * half - headWidth, -bodyHeight * half);
+        context.lineTo(width * half - headWidth, -height * half);
+        context.lineTo(width * half + headWidth, origin.y);
+        context.lineTo(width * half - headWidth, height * half);
+        context.lineTo(width * half - headWidth, bodyHeight * half);
+        context.lineTo(-width * half, bodyHeight * half);
+        context.lineTo(-width * half, origin.y);
     }
 
     particleInit(container: Container, particle: ArrowParticle): void {
         const shapeData = particle.shapeData as IArrowData | undefined;
 
-        particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? 0.5);
-        particle.headWidthFactor = getRangeValue(shapeData?.headWidthFactor ?? 0.2);
-        particle.bodyHeightFactor = getRangeValue(shapeData?.bodyHeightFactor ?? 0.5);
+        particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? defaultHeightFactor);
+        particle.headWidthFactor = getRangeValue(shapeData?.headWidthFactor ?? defaultHeadWidthFactor);
+        particle.bodyHeightFactor = getRangeValue(shapeData?.bodyHeightFactor ?? defaultBodyHeightFactor);
     }
 }

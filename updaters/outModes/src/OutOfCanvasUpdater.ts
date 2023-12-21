@@ -16,7 +16,10 @@ import { OutOutMode } from "./OutOutMode.js";
 export class OutOfCanvasUpdater implements IParticleUpdater {
     updaters: IOutModeManager[];
 
-    constructor(private readonly container: Container) {
+    private readonly container;
+
+    constructor(container: Container) {
+        this.container = container;
         this.updaters = [
             new BounceOutMode(container),
             new DestroyOutMode(container),

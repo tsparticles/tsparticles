@@ -6,6 +6,8 @@ import { PixelMode } from "../../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { deepExtend } from "../../Utils/Utils.js";
 
+const defaultPosition = 50;
+
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {
     options?: RecursivePartial<IParticlesOptions>;
     position?: ICoordinatesWithMode;
@@ -17,8 +19,8 @@ export class ManualParticle implements IManualParticle, IOptionLoader<IManualPar
 
         if (data.position) {
             this.position = {
-                x: data.position.x ?? 50,
-                y: data.position.y ?? 50,
+                x: data.position.x ?? defaultPosition,
+                y: data.position.y ?? defaultPosition,
                 mode: data.position.mode ?? PixelMode.percent,
             };
         }

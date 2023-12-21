@@ -10,6 +10,8 @@ import {
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
+const minVelocity = 0;
+
 export class NoneOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
 
@@ -29,7 +31,7 @@ export class NoneOutMode implements IOutModeManager {
 
         if (
             (particle.options.move.distance.horizontal &&
-                (direction === OutModeDirection.left || direction === OutModeDirection.right)) ||
+                (direction === OutModeDirection.left || direction === OutModeDirection.right)) ??
             (particle.options.move.distance.vertical &&
                 (direction === OutModeDirection.top || direction === OutModeDirection.bottom))
         ) {
@@ -44,10 +46,10 @@ export class NoneOutMode implements IOutModeManager {
 
         if (!gravityOptions.enable) {
             if (
-                (particle.velocity.y > 0 && particle.position.y <= canvasSize.height + pRadius) ||
-                (particle.velocity.y < 0 && particle.position.y >= -pRadius) ||
-                (particle.velocity.x > 0 && particle.position.x <= canvasSize.width + pRadius) ||
-                (particle.velocity.x < 0 && particle.position.x >= -pRadius)
+                (particle.velocity.y > minVelocity && particle.position.y <= canvasSize.height + pRadius) ||
+                (particle.velocity.y < minVelocity && particle.position.y >= -pRadius) ||
+                (particle.velocity.x > minVelocity && particle.position.x <= canvasSize.width + pRadius) ||
+                (particle.velocity.x < minVelocity && particle.position.x >= -pRadius)
             ) {
                 return;
             }

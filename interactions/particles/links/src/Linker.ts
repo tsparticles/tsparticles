@@ -12,6 +12,14 @@ import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkO
 import { CircleWarp } from "./CircleWarp.js";
 import { Links } from "./Options/Classes/Links.js";
 
+const squarePower = 2,
+    opacityOffset = 1,
+    origin: ICoordinates = {
+        x: 0,
+        y: 0,
+    },
+    minDistance = 0;
+
 /**
  * @param pos1 -
  * @param pos2 -
@@ -42,7 +50,7 @@ function getLinkDistance(
             y: Math.min(absDiffs.y, canvasSize.height - absDiffs.y),
         };
 
-    return Math.sqrt(warpDistances.x ** 2 + warpDistances.y ** 2);
+    return Math.sqrt(warpDistances.x ** squarePower + warpDistances.y ** squarePower);
 }
 
 export class Linker extends ParticlesInteractorBase {
@@ -74,13 +82,13 @@ export class Linker extends ParticlesInteractorBase {
             container = this.container,
             canvasSize = container.canvas.size;
 
-        if (pos1.x < 0 || pos1.y < 0 || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
+        if (pos1.x < origin.x || pos1.y < origin.y || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
             return;
         }
 
         const linkOpt1 = p1.options.links,
             optOpacity = linkOpt1.opacity,
-            optDistance = p1.retina.linksDistance ?? 0,
+            optDistance = p1.retina.linksDistance ?? minDistance,
             warp = linkOpt1.warp,
             range = warp
                 ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
@@ -105,7 +113,7 @@ export class Linker extends ParticlesInteractorBase {
 
             const pos2 = p2.getPosition();
 
-            if (pos2.x < 0 || pos2.y < 0 || pos2.x > canvasSize.width || pos2.y > canvasSize.height) {
+            if (pos2.x < origin.x || pos2.y < origin.y || pos2.x > canvasSize.width || pos2.y > canvasSize.height) {
                 continue;
             }
 
@@ -116,7 +124,7 @@ export class Linker extends ParticlesInteractorBase {
             }
 
             /* draw a line between p1 and p2 */
-            const opacityLine = (1 - distance / optDistance) * optOpacity;
+            const opacityLine = (opacityOffset - distance / optDistance) * optOpacity;
 
             this._setColor(p1);
 
@@ -125,6 +133,8 @@ export class Linker extends ParticlesInteractorBase {
                 opacity: opacityLine,
             });
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: LinkParticle): boolean {

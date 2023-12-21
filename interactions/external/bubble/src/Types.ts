@@ -3,13 +3,13 @@ import type { BubbleOptions } from "./Options/Classes/BubbleOptions.js";
 import type { Container } from "@tsparticles/engine";
 import type { IBubble } from "./Options/Interfaces/IBubble.js";
 
-export type IBubbleMode = {
+export interface IBubbleMode {
     bubble: IBubble;
-};
+}
 
-export type BubbleMode = {
+export interface BubbleMode {
     bubble?: Bubble;
-};
+}
 
 interface IContainerBubble {
     clicking?: boolean;

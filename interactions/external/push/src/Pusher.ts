@@ -9,7 +9,8 @@ import {
 import type { IPushMode, PushContainer, PushMode } from "./Types.js";
 import { Push } from "./Options/Classes/Push.js";
 
-const pushMode = "push";
+const pushMode = "push",
+    minQuantity = 0;
 
 /**
  * Particle attract manager
@@ -35,7 +36,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
 
             const quantity = getRangeValue(pushOptions.quantity);
 
-            if (quantity <= 0) {
+            if (quantity <= minQuantity) {
                 return;
             }
 

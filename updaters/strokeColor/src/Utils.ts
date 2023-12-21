@@ -7,6 +7,18 @@ import {
 } from "@tsparticles/engine";
 import type { StrokeParticle } from "./Types.js";
 
+const minLoops = 0,
+    defaultTime = 0,
+    defaultVelocity = 0,
+    offsetFactor = 3.6,
+    minValue = 0,
+    colorMaxValues = {
+        h: 360,
+        s: 100,
+        l: 100,
+    },
+    defaultDecay = 1;
+
 /**
  * @param delta -
  * @param colorValue -
@@ -24,33 +36,40 @@ function updateColorValue(
     if (
         !colorValue ||
         !valueAnimation.enable ||
-        ((colorValue.maxLoops ?? 0) > 0 && (colorValue.loops ?? 0) > (colorValue.maxLoops ?? 0))
+        ((colorValue.maxLoops ?? minLoops) > minLoops &&
+            (colorValue.loops ?? minLoops) > (colorValue.maxLoops ?? minLoops))
     ) {
         return;
     }
 
     if (!colorValue.time) {
-        colorValue.time = 0;
+        colorValue.time = defaultTime;
     }
 
-    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+    if (
+        (colorValue.delayTime ?? defaultTime) > defaultTime &&
+        colorValue.time < (colorValue.delayTime ?? defaultTime)
+    ) {
         colorValue.time += delta.value;
     }
 
-    if ((colorValue.delayTime ?? 0) > 0 && colorValue.time < (colorValue.delayTime ?? 0)) {
+    if (
+        (colorValue.delayTime ?? defaultTime) > defaultTime &&
+        colorValue.time < (colorValue.delayTime ?? defaultTime)
+    ) {
         return;
     }
 
     const offset = randomInRange(valueAnimation.offset),
-        velocity = (colorValue.velocity ?? 0) * delta.factor + offset * 3.6,
-        decay = colorValue.decay ?? 1;
+        velocity = (colorValue.velocity ?? defaultVelocity) * delta.factor + offset * offsetFactor,
+        decay = colorValue.decay ?? defaultDecay;
 
     if (!decrease || colorValue.status === AnimationStatus.increasing) {
         colorValue.value += velocity;
 
         if (colorValue.value > max) {
             if (!colorValue.loops) {
-                colorValue.loops = 0;
+                colorValue.loops = minLoops;
             }
 
             colorValue.loops++;
@@ -63,9 +82,9 @@ function updateColorValue(
     } else {
         colorValue.value -= velocity;
 
-        if (colorValue.value < 0) {
+        if (colorValue.value < minValue) {
             if (!colorValue.loops) {
-                colorValue.loops = 0;
+                colorValue.loops = minLoops;
             }
             colorValue.loops++;
             colorValue.status = AnimationStatus.increasing;
@@ -73,7 +92,7 @@ function updateColorValue(
         }
     }
 
-    if (colorValue.velocity && decay !== 1) {
+    if (colorValue.velocity && decay !== defaultDecay) {
         colorValue.velocity *= decay;
     }
 
@@ -95,14 +114,14 @@ export function updateStrokeColor(particle: StrokeParticle, delta: IDelta): void
         { h: hAnimation, s: sAnimation, l: lAnimation } = particle.strokeAnimation;
 
     if (h) {
-        updateColorValue(delta, h, hAnimation, 360, false);
+        updateColorValue(delta, h, hAnimation, colorMaxValues.h, false);
     }
 
     if (s) {
-        updateColorValue(delta, s, sAnimation, 100, true);
+        updateColorValue(delta, s, sAnimation, colorMaxValues.s, true);
     }
 
     if (l) {
-        updateColorValue(delta, l, lAnimation, 100, true);
+        updateColorValue(delta, l, lAnimation, colorMaxValues.l, true);
     }
 }

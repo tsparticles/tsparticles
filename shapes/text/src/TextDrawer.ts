@@ -13,6 +13,9 @@ import type { TextParticle } from "./TextParticle.js";
 
 export const validTypes = ["text", "character", "char", "multiline-text"];
 
+const double = 2,
+    half = 0.5;
+
 /**
  * Multiline text drawer
  */
@@ -38,7 +41,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
         const text = particle.text,
             style = character.style ?? "",
             weight = character.weight ?? "400",
-            size = Math.round(radius) * 2,
+            size = Math.round(radius) * double,
             font = character.font ?? "Verdana",
             fill = particle.shapeFill;
 
@@ -109,12 +112,12 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
         index: number,
         fill: boolean,
     ) => void = (context, line, radius, opacity, index, fill) => {
-        const offsetX = (line.length * radius) / 2,
+        const offsetX = line.length * radius * half,
             pos = {
                 x: -offsetX,
-                y: radius / 2,
+                y: radius * half,
             },
-            diameter = radius * 2;
+            diameter = radius * double;
 
         if (fill) {
             context.fillText(line, pos.x, pos.y + diameter * index);

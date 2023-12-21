@@ -9,12 +9,17 @@ import {
     isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
+    percentDenominator,
 } from "@tsparticles/engine";
 import { ImageDisplay, SoundsEventType } from "./enums.js";
 import type { ImageMargins, InitImageData, SoundsContainer } from "./types.js";
 import type { SoundsAudio } from "./Options/Classes/SoundsAudio.js";
 import type { SoundsNote } from "./Options/Classes/SoundsNote.js";
 import { getNoteFrequency } from "./utils.js";
+
+const zIndexOffset = 1,
+    rightOffset = 1,
+    minVolume = 0;
 
 /**
  * @param data -
@@ -23,25 +28,31 @@ import { getNoteFrequency } from "./utils.js";
 function initImage(data: InitImageData): HTMLImageElement {
     const img = document.createElement("img"),
         { clickCb, container, display, iconOptions, margin, options, pos, rightOffsets } = data,
-        { width, path, svg } = iconOptions;
+        { width, path, svg } = iconOptions,
+        defaultAccumulator = 0;
 
     setIconStyle(
         img,
         pos.top + margin,
-        pos.right - (margin * (rightOffsets.length + 1) + width + rightOffsets.reduce((a, b) => a + b, 0)),
+        pos.right -
+            (margin * (rightOffsets.length + rightOffset) +
+                width +
+                rightOffsets.reduce((a, b) => a + b, defaultAccumulator)),
         display,
-        options.fullScreen.zIndex + 1,
+        options.fullScreen.zIndex + zIndexOffset,
         width,
         margin,
     );
 
     img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
 
-    const parent = container.canvas.element?.parentNode || document.body;
+    const parent = container.canvas.element?.parentNode ?? document.body;
 
     parent.append(img);
 
-    img.addEventListener("click", clickCb);
+    img.addEventListener("click", (): void => {
+        void clickCb();
+    });
 
     return img;
 }
@@ -82,7 +93,7 @@ function setIconStyle(
     icon.style.top = `${top + margin}px`;
     icon.style.left = `${left - margin - width}px`;
     icon.style.display = display;
-    icon.style.zIndex = `${zIndex + 1}`;
+    icon.style.zIndex = `${zIndex + zIndexOffset}`;
 }
 
 export class SoundsInstance implements IContainerPlugin {
@@ -125,7 +136,7 @@ export class SoundsInstance implements IContainerPlugin {
                 continue;
             }
 
-            executeOnSingleOrMultiple(event.audio, async (audio) => {
+            await executeOnSingleOrMultiple(event.audio, async (audio) => {
                 const response = await fetch(audio.source);
 
                 if (!response.ok) {
@@ -197,7 +208,7 @@ export class SoundsInstance implements IContainerPlugin {
             iconOptions: volumeDown,
             margin,
             rightOffsets: [volumeUp.width],
-            clickCb: async () => {
+            clickCb: async (): Promise<void> => {
                 if (container.muted) {
                     this._volume = 0;
                 }
@@ -225,17 +236,21 @@ export class SoundsInstance implements IContainerPlugin {
                 await this._updateVolume();
             },
         });
+
+        await Promise.resolve();
     }
 
     stop(): void {
         this._container.muted = true;
 
-        this._mute();
+        void (async (): Promise<void> => {
+            await this._mute();
 
-        removeImage(this._muteImg);
-        removeImage(this._unmuteImg);
-        removeImage(this._volumeDownImg);
-        removeImage(this._volumeUpImg);
+            removeImage(this._muteImg);
+            removeImage(this._unmuteImg);
+            removeImage(this._volumeDownImg);
+            removeImage(this._volumeUpImg);
+        })();
     }
 
     private readonly _addBuffer: (audioCtx: AudioContext) => AudioBufferSourceNode = (audioCtx) => {
@@ -264,14 +279,14 @@ export class SoundsInstance implements IContainerPlugin {
 
         for (const event of soundsOptions.events) {
             const cb = (args: CustomEventArgs): void => {
-                (async (): Promise<void> => {
+                void (async (): Promise<void> => {
                     const filterNotValid = event.filter && !event.filter(args);
 
                     if (this._container !== args.container) {
                         return;
                     }
 
-                    if (!this._container || this._container.muted || this._container.destroyed) {
+                    if (!this._container || !!this._container.muted || this._container.destroyed) {
                         executeOnSingleOrMultiple(event.event, (item) => {
                             this._engine.removeEventListener(item, cb);
                         });
@@ -283,6 +298,8 @@ export class SoundsInstance implements IContainerPlugin {
                         return;
                     }
 
+                    const defaultNoteIndex = 0;
+
                     if (event.audio) {
                         this._playBuffer(itemFromSingleOrMultiple(event.audio));
                     } else if (event.melodies) {
@@ -290,15 +307,15 @@ export class SoundsInstance implements IContainerPlugin {
 
                         if (melody.melodies.length) {
                             await Promise.allSettled(
-                                melody.melodies.map((m) => this._playNote(m.notes, 0, melody.loop)),
+                                melody.melodies.map((m) => this._playNote(m.notes, defaultNoteIndex, melody.loop)),
                             );
                         } else {
-                            await this._playNote(melody.notes, 0, melody.loop);
+                            await this._playNote(melody.notes, defaultNoteIndex, melody.loop);
                         }
                     } else if (event.notes) {
                         const note = itemFromArray(event.notes);
 
-                        await this._playNote([note], 0, false);
+                        await this._playNote([note], defaultNoteIndex, false);
                     }
                 })();
             };
@@ -309,7 +326,7 @@ export class SoundsInstance implements IContainerPlugin {
         }
     };
 
-    private readonly _mute: () => void = () => {
+    private readonly _mute: () => Promise<void> = async () => {
         const container = this._container;
 
         if (!container.audioContext) {
@@ -324,7 +341,7 @@ export class SoundsInstance implements IContainerPlugin {
             this._gain.disconnect();
         }
 
-        container.audioContext.close();
+        await container.audioContext.close();
         container.audioContext = undefined;
 
         this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
@@ -427,7 +444,9 @@ export class SoundsInstance implements IContainerPlugin {
 
         await (isArray(promises) ? Promise.allSettled(promises) : promises);
 
-        let nextNoteIdx = noteIdx + 1;
+        const indexOffset = 1;
+
+        let nextNoteIdx = noteIdx + indexOffset;
 
         if (loop && nextNoteIdx >= notes.length) {
             nextNoteIdx = nextNoteIdx % notes.length;
@@ -470,7 +489,9 @@ export class SoundsInstance implements IContainerPlugin {
         source.stop();
         source.disconnect();
 
-        this._audioSources.splice(this._audioSources.indexOf(source), 1);
+        const deleteCount = 1;
+
+        this._audioSources.splice(this._audioSources.indexOf(source), deleteCount);
     };
 
     private readonly _unmute: () => void = () => {
@@ -496,7 +517,7 @@ export class SoundsInstance implements IContainerPlugin {
 
         gain.connect(audioContext.destination);
 
-        gain.gain.value = soundsOptions.volume.value / 100;
+        gain.gain.value = soundsOptions.volume.value / percentDenominator;
 
         this._gain = gain;
 
@@ -524,7 +545,7 @@ export class SoundsInstance implements IContainerPlugin {
 
         if (container.muted) {
             await container.audioContext?.suspend();
-            this._mute();
+            await this._mute();
         } else {
             await container.audioContext?.resume();
             this._unmute();
@@ -545,12 +566,12 @@ export class SoundsInstance implements IContainerPlugin {
 
         let stateChanged = false;
 
-        if (this._volume <= 0 && !container.muted) {
+        if (this._volume <= minVolume && !container.muted) {
             this._volume = 0;
 
             container.muted = true;
             stateChanged = true;
-        } else if (this._volume > 0 && container.muted) {
+        } else if (this._volume > minVolume && container.muted) {
             container.muted = false;
             stateChanged = true;
         }
@@ -561,7 +582,7 @@ export class SoundsInstance implements IContainerPlugin {
         }
 
         if (this._gain?.gain) {
-            this._gain.gain.value = this._volume / 100;
+            this._gain.gain.value = this._volume / percentDenominator;
         }
     };
 }

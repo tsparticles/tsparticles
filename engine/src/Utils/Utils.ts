@@ -9,6 +9,7 @@ import {
     getRangeValue,
     randomInRange,
 } from "./NumberUtils.js";
+import { halfRandom, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
@@ -26,7 +27,7 @@ import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { StartValueType } from "../Enums/Types/StartValueType.js";
 import { Vector } from "../Core/Utils/Vector.js";
 
-type RectSideBounceData = {
+interface RectSideBounceData {
     /**
      * bounce factor
      */
@@ -51,20 +52,20 @@ type RectSideBounceData = {
      * particle velocity
      */
     velocity: number;
-};
+}
 
 interface ILogger {
-    debug(message?: unknown, ...optionalParams: unknown[]): void;
+    debug(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
-    error(message?: unknown, ...optionalParams: unknown[]): void;
+    error(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
-    info(message?: unknown, ...optionalParams: unknown[]): void;
+    info(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
-    log(message?: unknown, ...optionalParams: unknown[]): void;
+    log(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
-    verbose(message?: unknown, ...optionalParams: unknown[]): void;
+    verbose(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
-    warning(message?: unknown, ...optionalParams: unknown[]): void;
+    warning(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 }
 
 const _logger: ILogger = {
@@ -110,7 +111,9 @@ export function getLogger(): ILogger {
  */
 function rectSideBounce(data: RectSideBounceData): IRectSideResult {
     const res: IRectSideResult = { bounced: false },
-        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
+        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data,
+        half = 0.5,
+        minVelocity = 0;
 
     if (
         pOtherSide.min < rectOtherSide.min ||
@@ -122,8 +125,8 @@ function rectSideBounce(data: RectSideBounceData): IRectSideResult {
     }
 
     if (
-        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) * 0.5 && velocity > 0) ||
-        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) * 0.5 && velocity < 0)
+        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) * half && velocity > minVelocity) ||
+        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) * half && velocity < minVelocity)
     ) {
         res.velocity = velocity * -factor;
         res.bounced = true;
@@ -206,7 +209,9 @@ export function safeMutationObserver(callback: (records: MutationRecord[]) => vo
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    return value === array || (isArray(array) && array.indexOf(value) > -1);
+    const invalidIndex = -1;
+
+    return value === array || (isArray(array) && array.indexOf(value) > invalidIndex);
 }
 
 /**
@@ -258,7 +263,9 @@ export function isPointInside(
     radius?: number,
     direction?: OutModeDirection,
 ): boolean {
-    return areBoundsInside(calculateBounds(point, radius ?? 0), size, offset, direction);
+    const minRadius = 0;
+
+    return areBoundsInside(calculateBounds(point, radius ?? minRadius), size, offset, direction);
 }
 
 /**
@@ -442,10 +449,11 @@ export function circleBounceDataFromParticle(p: Particle): ICircleBouncer {
 export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
     const { x: xVelocityDiff, y: yVelocityDiff } = p1.velocity.sub(p2.velocity),
         [pos1, pos2] = [p1.position, p2.position],
-        { dx: xDist, dy: yDist } = getDistances(pos2, pos1);
+        { dx: xDist, dy: yDist } = getDistances(pos2, pos1),
+        minimumDistance = 0;
 
     // Prevent accidental overlap of particles
-    if (xVelocityDiff * xDist + yVelocityDiff * yDist < 0) {
+    if (xVelocityDiff * xDist + yVelocityDiff * yDist < minimumDistance) {
         return;
     }
 
@@ -547,7 +555,9 @@ export function executeOnSingleOrMultiple<T, U = void>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => U,
 ): SingleOrMultiple<U> {
-    return isArray(obj) ? obj.map((item, index) => callback(item, index)) : callback(obj, 0);
+    const defaultIndex = 0;
+
+    return isArray(obj) ? obj.map((item, index) => callback(item, index)) : callback(obj, defaultIndex);
 }
 
 /**
@@ -569,7 +579,13 @@ export function findItemFromSingleOrMultiple<T>(
     obj: SingleOrMultiple<T>,
     callback: (obj: T, index: number) => boolean,
 ): T | undefined {
-    return isArray(obj) ? obj.find((t, index) => callback(t, index)) : callback(obj, 0) ? obj : undefined;
+    if (isArray(obj)) {
+        return obj.find((t, index) => callback(t, index));
+    }
+
+    const defaultIndex = 0;
+
+    return callback(obj, defaultIndex) ? obj : undefined;
 }
 
 /**
@@ -584,7 +600,7 @@ export function initParticleNumericAnimationValue(
     const valueRange = options.value,
         animationOptions = options.animation,
         res: IParticleNumericValueAnimation = {
-            delayTime: getRangeValue(animationOptions.delay) * 1000,
+            delayTime: getRangeValue(animationOptions.delay) * millisecondsToSeconds,
             enable: animationOptions.enable,
             value: getRangeValue(options.value) * pxRatio,
             max: getRangeMax(valueRange) * pxRatio,
@@ -592,10 +608,11 @@ export function initParticleNumericAnimationValue(
             loops: 0,
             maxLoops: getRangeValue(animationOptions.count),
             time: 0,
-        };
+        },
+        decayOffset = 1;
 
     if (animationOptions.enable) {
-        res.decay = 1 - getRangeValue(animationOptions.decay);
+        res.decay = decayOffset - getRangeValue(animationOptions.decay);
 
         switch (animationOptions.mode) {
             case AnimationMode.increase:
@@ -608,7 +625,7 @@ export function initParticleNumericAnimationValue(
                 break;
 
             case AnimationMode.random:
-                res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                res.status = getRandom() >= halfRandom ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                 break;
         }
@@ -639,7 +656,7 @@ export function initParticleNumericAnimationValue(
                 res.value = randomInRange(res);
 
                 if (autoStatus) {
-                    res.status = getRandom() >= 0.5 ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                    res.status = getRandom() >= halfRandom ? AnimationStatus.increasing : AnimationStatus.decreasing;
                 }
 
                 break;
@@ -672,13 +689,13 @@ function getPositionOrSize(
 
     if (isPosition) {
         return {
-            x: (positionOrSize.x / 100) * canvasSize.width,
-            y: (positionOrSize.y / 100) * canvasSize.height,
+            x: (positionOrSize.x / percentDenominator) * canvasSize.width,
+            y: (positionOrSize.y / percentDenominator) * canvasSize.height,
         };
     } else {
         return {
-            width: (positionOrSize.width / 100) * canvasSize.width,
-            height: (positionOrSize.height / 100) * canvasSize.height,
+            width: (positionOrSize.width / percentDenominator) * canvasSize.width,
+            height: (positionOrSize.height / percentDenominator) * canvasSize.height,
         };
     }
 }

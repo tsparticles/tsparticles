@@ -3,18 +3,20 @@ import type {
     IPositionFromSizeParams,
     IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams.js";
+import { MoveDirection, type MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
-import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
-import type { MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
 import type { RangeValue } from "../Types/RangeValue.js";
 import { Vector } from "../Core/Utils/Vector.js";
 import { isNumber } from "./Utils.js";
+import { percentDenominator } from "../Core/Utils/Constants.js";
 
 type EasingFunction = (value: number) => number;
 
 let _random = Math.random;
 
-const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>();
+const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
+    double = 2,
+    doublePI = Math.PI * double;
 
 /**
  * @param name -
@@ -33,7 +35,7 @@ export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFuncti
  * @returns the easing function
  */
 export function getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
-    return easings.get(name) || ((value: number): number => value);
+    return easings.get(name) ?? ((value: number): number => value);
 }
 
 /**
@@ -49,7 +51,10 @@ export function setRandom(rnd: () => number = Math.random): void {
  * @returns a random number between 0 and 1
  */
 export function getRandom(): number {
-    return clamp(_random(), 0, 1 - 1e-16);
+    const min = 0,
+        max = 1;
+
+    return clamp(_random(), min, max - Number.EPSILON);
 }
 
 /**
@@ -79,11 +84,12 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
  * @returns the random value in the given range
  */
 export function randomInRange(r: RangeValue): number {
-    const max = getRangeMax(r);
+    const max = getRangeMax(r),
+        minOffset = 0;
     let min = getRangeMin(r);
 
     if (max === min) {
-        min = 0;
+        min = minOffset;
     }
 
     return getRandom() * (max - min) + min;
@@ -142,9 +148,10 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
     const dx = pointA.x - pointB.x,
-        dy = pointA.y - pointB.y;
+        dy = pointA.y - pointB.y,
+        squareExp = 2;
 
-    return { dx: dx, dy: dy, distance: Math.sqrt(dx ** 2 + dy ** 2) };
+    return { dx: dx, dy: dy, distance: Math.sqrt(dx ** squareExp + dy ** squareExp) };
 }
 
 /**
@@ -155,6 +162,17 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
  */
 export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
     return getDistances(pointA, pointB).distance;
+}
+
+/**
+ * Converts the given degrees to radians
+ * @param degrees - the degrees value to convert
+ * @returns the radians value of the given degrees
+ */
+export function degToRad(degrees: number): number {
+    const PIDeg = 180;
+
+    return (degrees * Math.PI) / PIDeg;
 }
 
 /**
@@ -169,32 +187,37 @@ export function getParticleDirectionAngle(
     center: ICoordinates,
 ): number {
     if (isNumber(direction)) {
-        return (direction * Math.PI) / 180;
+        return degToRad(direction);
     }
+
+    const empty = 0,
+        half = 0.5,
+        quarter = 0.25,
+        threeQuarter = half + quarter;
 
     switch (direction) {
         case MoveDirection.top:
-            return -Math.PI * 0.5;
+            return -Math.PI * half;
         case MoveDirection.topRight:
-            return -Math.PI * 0.25;
+            return -Math.PI * quarter;
         case MoveDirection.right:
-            return 0;
+            return empty;
         case MoveDirection.bottomRight:
-            return Math.PI * 0.25;
+            return Math.PI * quarter;
         case MoveDirection.bottom:
-            return Math.PI * 0.5;
+            return Math.PI * half;
         case MoveDirection.bottomLeft:
-            return Math.PI * 0.75;
+            return Math.PI * threeQuarter;
         case MoveDirection.left:
             return Math.PI;
         case MoveDirection.topLeft:
-            return -Math.PI * 0.75;
+            return -Math.PI * threeQuarter;
         case MoveDirection.inside:
             return Math.atan2(center.y - position.y, center.x - position.x);
         case MoveDirection.outside:
             return Math.atan2(position.y - center.y, position.x - center.x);
         default:
-            return getRandom() * Math.PI * 2;
+            return getRandom() * doublePI;
     }
 }
 
@@ -220,7 +243,9 @@ export function getParticleBaseVelocity(direction: number): Vector {
  * @returns the velocity after collision
  */
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
-    return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * 2 * m2) / (m1 + m2), v1.y);
+    const double = 2;
+
+    return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * double * m2) / (m1 + m2), v1.y);
 }
 
 /**
@@ -229,10 +254,10 @@ export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number
  * @returns the exact position
  */
 export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
-    return data.position && data.position.x !== undefined && data.position.y !== undefined
+    return data.position?.x !== undefined && data.position.y !== undefined
         ? {
-              x: (data.position.x * data.size.width) / 100,
-              y: (data.position.y * data.size.height) / 100,
+              x: (data.position.x * data.size.width) / percentDenominator,
+              y: (data.position.y * data.size.height) / percentDenominator,
           }
         : undefined;
 }
@@ -244,8 +269,8 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
  */
 export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
     return {
-        x: ((data.position?.x ?? getRandom() * 100) * data.size.width) / 100,
-        y: ((data.position?.y ?? getRandom() * 100) * data.size.height) / 100,
+        x: ((data.position?.x ?? getRandom() * percentDenominator) * data.size.width) / percentDenominator,
+        y: ((data.position?.y ?? getRandom() * percentDenominator) * data.size.height) / percentDenominator,
     };
 }
 
@@ -294,5 +319,11 @@ export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFro
  * @returns the parsed color
  */
 export function parseAlpha(input?: string): number {
-    return input ? (input.endsWith("%") ? parseFloat(input) / 100 : parseFloat(input)) : 1;
+    const defaultAlpha = 1;
+
+    if (!input) {
+        return defaultAlpha;
+    }
+
+    return input.endsWith("%") ? parseFloat(input) / percentDenominator : parseFloat(input);
 }

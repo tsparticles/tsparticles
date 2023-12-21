@@ -28,7 +28,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
             return;
         }
 
-        const interactors = <IExternalInteractor[]>this._engine.interactors.get(this._container);
+        const interactors = this._engine.interactors.get(this._container) as IExternalInteractor[];
 
         if (!interactors) {
             return;
