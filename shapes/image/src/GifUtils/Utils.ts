@@ -252,7 +252,11 @@ async function parseImageBlock(
     if (interlacedFlag) {
         for (let code = 0, size = minCodeSize + 1, pos = 0, dic = [[0]], pass = 0; pass < 4; pass++) {
             if (InterlaceOffsets[pass] < frame.height) {
-                for (let pixelPos = 0, lineIndex = 0; ;) {
+                let pixelPos = 0,
+                    lineIndex = 0,
+                    exit = false;
+
+                while (!exit) {
                     const last = code;
 
                     code = readBits(pos, size);
@@ -294,7 +298,7 @@ async function parseImageBlock(
                         lineIndex++;
 
                         if (InterlaceOffsets[pass] + InterlaceSteps[pass] * lineIndex >= frame.height) {
-                            break;
+                            exit = true;
                         }
                     }
                 }
@@ -312,7 +316,15 @@ async function parseImageBlock(
         frame.image = image;
         frame.bitmap = await createImageBitmap(image);
     } else {
-        for (let code = 0, size = minCodeSize + 1, pos = 0, dic = [[0]], pixelPos = -4; ;) {
+        let code = 0,
+            size = minCodeSize + 1,
+            pos = 0,
+            pixelPos = -4,
+            exit = false;
+
+        const dic = [[0]];
+
+        while (!exit) {
             const last = code;
 
             code = readBits(pos, size);
@@ -328,6 +340,7 @@ async function parseImageBlock(
             } else {
                 // ~ clear code +1 = end of information code
                 if (code === clearCode + 1) {
+                    exit = true;
                     break;
                 }
 
