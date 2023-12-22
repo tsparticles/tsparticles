@@ -644,20 +644,7 @@ Otherwise, there's the demo page link below.
 
 Want to see even more demos? Clone the repository on your computer and follow these instructions
 
-```shell
-$ pnpm i
-$ pnpm run build
-$ cd demo/vanilla
-$ pnpm start
-```
-
-**Boom! 💥** <http://localhost:3000> and you can check out other demos.
-
-_If you are brave enough_ you can switch to the `dev` branch for trying the features under development.
-
----
-
-## Migrating from Particles.js
+ ## Migrating from Particles.js
 
 **tsParticles** has a package that makes this library 100% compatible with the _particles.js_ configuration.
 
@@ -837,7 +824,7 @@ e --> u
 
 ---
 
-<p>  
+<p>
     <a href="https://www.jetbrains.com/?from=tsParticles">  
         <img src="https://raw.githubusercontent.com/tsparticles/tsparticles/gh-pages/images/jetbrains-logos/jetbrains-variant-4.png" height="150" alt="JetBrains" />  
     </a>  
