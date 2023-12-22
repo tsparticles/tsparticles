@@ -57,7 +57,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
         -   [Preact](#preact)
             -   [`preact-particles`](#preact-particles)
         -   [ReactJS](#reactjs)
-            -   [`react-particles`](#react-particles)
+            -   [`@tsparticles/react`](#@tsparticles/react)
         -   [RiotJS](#riotjs)
             -   [`riot-particles`](#riot-particles)
         -   [SolidJS](#solidjs)
@@ -65,9 +65,9 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
         -   [Svelte](#svelte)
             -   [`svelte-particles`](#svelte-particles)
         -   [VueJS 2.x](#vuejs-2x)
-            -   [`vue2-particles`](#vue2-particles)
+            -   [`@tsparticles/vue2`](#@tsparticles/vue2)
         -   [VueJS 3.x](#vuejs-3x)
-            -   [`vue3-particles`](#vue3-particles)
+            -   [`@tsparticles/vue3`](#@tsparticles/vue3)
         -   [Web Components](#web-components)
             -   [`web-particles`](#web-particles)
         -   [WordPress](#wordpress)
@@ -360,9 +360,9 @@ Instructions available [here](https://github.com/tsparticles/preact/#readme)
 
 ### ReactJS
 
-#### `react-particles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react)
 
 Instructions available [here](https://github.com/tsparticles/react/#readme)
 
@@ -392,17 +392,17 @@ Instructions available [here](https://github.com/tsparticles/svelte/#readme)
 
 ### VueJS 2.x
 
-#### `vue2-particles`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Instructions available [here](https://github.com/tsparticles/vue2/#readme)
 
 ### VueJS 3.x
 
-#### `vue3-particles`
+#### `@tsparticles/vue3`
 
-[![npm](https://img.shields.io/npm/v/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Instruction available [here](https://github.com/tsparticles/vue3/#readme)
 
