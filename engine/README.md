@@ -30,78 +30,78 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
-- [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
-  - [Table of Contents](#table-of-contents)
-  - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
-  - [**_Library installation_**](#library-installation)
-    - [**_Hosting / CDN_**](#hosting--cdn)
-      - [jsDelivr](#jsdelivr)
-      - [cdnjs](#cdnjs)
-      - [unpkg](#unpkg)
-    - [**_npm_**](#npm)
-    - [**_yarn_**](#yarn)
-    - [**_pnpm_**](#pnpm)
-      - [Import and require](#import-and-require)
-    - [**_Usage_**](#usage)
-  - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
-    - [Angular](#angular)
-      - [`ng-particles`](#ng-particles)
-    - [Astro](#astro)
-      - [`astro-particles`](#astro-particles)
-    - [Ember.js](#emberjs)
-      - [`ember-tsparticles`](#ember-tsparticles)
-    - [Inferno](#inferno)
-      - [`inferno-particles`](#inferno-particles)
-    - [jQuery](#jquery)
-      - [`jquery-particles`](#jquery-particles)
-    - [Preact](#preact)
-      - [`preact-particles`](#preact-particles)
-    - [ReactJS](#reactjs)
-      - [`react-particles`](#react-particles)
-    - [RiotJS](#riotjs)
-      - [`riot-particles`](#riot-particles)
-    - [SolidJS](#solidjs)
-      - [`solid-particles`](#solid-particles)
-    - [Svelte](#svelte)
-      - [`svelte-particles`](#svelte-particles)
-    - [VueJS 2.x](#vuejs-2x)
-      - [`vue2-particles`](#vue2-particles)
-    - [VueJS 3.x](#vuejs-3x)
-      - [`vue3-particles`](#vue3-particles)
-    - [Web Components](#web-components)
-      - [`web-particles`](#web-particles)
-    - [WordPress](#wordpress)
-      - [`wordpress-particles`](#wordpress-particles)
-    - [Elementor](#elementor)
-  - [Presets](#presets)
-    - [Big Circles](#big-circles)
-    - [Bubbles](#bubbles)
-    - [Confetti](#confetti)
-    - [Fire](#fire)
-    - [Firefly](#firefly)
-    - [Fireworks](#fireworks)
-    - [Fountain](#fountain)
-    - [Links](#links)
-    - [Sea Anemone](#sea-anemone)
-    - [Snow](#snow)
-    - [Stars](#stars)
-    - [Triangles](#triangles)
-  - [Templates and Resources](#templates-and-resources)
-  - [**_Demo / Generator_**](#demo--generator)
-  - [**_Video Tutorials_**](#video-tutorials)
-    - [Characters as particles](#characters-as-particles)
-    - [Polygon mask](#polygon-mask)
-    - [Animated stars](#animated-stars)
-    - [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
-    - [Snow particles](#snow-particles)
-    - [Background Mask particles](#background-mask-particles)
-  - [**_Options_**](#options)
-  - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
-  - [Migrating from Particles.js](#migrating-from-particlesjs)
-  - [Plugins/Customizations](#pluginscustomizations)
-  - [Dependency Graph](#dependency-graph)
-  - [Sponsors](#sponsors)
-    - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
+-   [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
+    -   [Table of Contents](#table-of-contents)
+    -   [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+    -   [**_Library installation_**](#library-installation)
+        -   [**_Hosting / CDN_**](#hosting--cdn)
+            -   [jsDelivr](#jsdelivr)
+            -   [cdnjs](#cdnjs)
+            -   [unpkg](#unpkg)
+        -   [**_npm_**](#npm)
+        -   [**_yarn_**](#yarn)
+        -   [**_pnpm_**](#pnpm)
+            -   [Import and require](#import-and-require)
+        -   [**_Usage_**](#usage)
+    -   [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+        -   [Angular](#angular)
+            -   [`@tsparticles/angular`](#@tsparticles/angular)
+        -   [Astro](#astro)
+            -   [`astro-particles`](#astro-particles)
+        -   [Ember.js](#emberjs)
+            -   [`ember-tsparticles`](#ember-tsparticles)
+        -   [Inferno](#inferno)
+            -   [`inferno-particles`](#inferno-particles)
+        -   [jQuery](#jquery)
+            -   [`jquery-particles`](#jquery-particles)
+        -   [Preact](#preact)
+            -   [`preact-particles`](#preact-particles)
+        -   [ReactJS](#reactjs)
+            -   [`@tsparticles/react`](#tsparticlesreact)
+        -   [RiotJS](#riotjs)
+            -   [`riot-particles`](#riot-particles)
+        -   [SolidJS](#solidjs)
+            -   [`solid-particles`](#solid-particles)
+        -   [Svelte](#svelte)
+            -   [`@tsparticles/svelte`](#@tsparticles/svelte)
+        -   [VueJS 2.x](#vuejs-2x)
+            -   [`@tsparticles/vue2`](#tsparticlesvue2)
+        -   [VueJS 3.x](#vuejs-3x)
+            -   [`@tsparticles/vue3`](#tsparticlesvue3)
+        -   [Web Components](#web-components)
+            -   [`web-particles`](#web-particles)
+        -   [WordPress](#wordpress)
+            -   [`@tsparticles/wordpress`](#@tsparticles/wordpress)
+        -   [Elementor](#elementor)
+    -   [Presets](#presets)
+        -   [Big Circles](#big-circles)
+        -   [Bubbles](#bubbles)
+        -   [Confetti](#confetti)
+        -   [Fire](#fire)
+        -   [Firefly](#firefly)
+        -   [Fireworks](#fireworks)
+        -   [Fountain](#fountain)
+        -   [Links](#links)
+        -   [Sea Anemone](#sea-anemone)
+        -   [Snow](#snow)
+        -   [Stars](#stars)
+        -   [Triangles](#triangles)
+    -   [Templates and Resources](#templates-and-resources)
+    -   [**_Demo / Generator_**](#demo--generator)
+    -   [**_Video Tutorials_**](#video-tutorials)
+        -   [Characters as particles](#characters-as-particles)
+        -   [Polygon mask](#polygon-mask)
+        -   [Animated stars](#animated-stars)
+        -   [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+        -   [Snow particles](#snow-particles)
+        -   [Background Mask particles](#background-mask-particles)
+    -   [**_Options_**](#options)
+    -   [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+    -   [Migrating from Particles.js](#migrating-from-particlesjs)
+    -   [Plugins/Customizations](#pluginscustomizations)
+    -   [Dependency Graph](#dependency-graph)
+    -   [Sponsors](#sponsors)
+        -   [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -235,52 +235,52 @@ Load tsParticles and configure the particles:
 /* tsParticles.load(@params); */
 
 tsParticles
-  .load({
-    id: "tsparticles",
-    url: "presets/default.json",
-  })
-  .then((container) => {
-    console.log("callback - tsparticles config loaded");
-  })
-  .catch((error) => {
-    console.error(error);
-  });
+    .load({
+        id: "tsparticles",
+        url: "presets/default.json",
+    })
+    .then(container => {
+        console.log("callback - tsparticles config loaded");
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
 //or
 
 tsParticles.load({
-  id: "tsparticles",
-  options: {
-    /* options here */
-  },
+    id: "tsparticles",
+    options: {
+        /* options here */
+    },
 });
 
 //or
 
 tsParticles.load({
-  id: "tsparticles",
-  options: [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
+    id: "tsparticles",
+    options: [
+        {
+            /* options here */
+        },
+        {
+            /* other options here */
+        },
+    ],
 });
 //random object
 
 tsParticles.load({
-  id: "tsparticles",
-  options: [
-    {
-      /* options here */
-    },
-    {
-      /* other options here */
-    },
-  ],
-  index: 1,
+    id: "tsparticles",
+    options: [
+        {
+            /* options here */
+        },
+        {
+            /* other options here */
+        },
+    ],
+    index: 1,
 }); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -291,7 +291,7 @@ tsParticles.load({
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-  /* custom on click handler */
+    /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -312,9 +312,9 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+#### `@tsparticles/angular`
 
-[![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Instructions available [here](https://github.com/tsparticles/angular/#readme)
 
@@ -360,9 +360,9 @@ Instructions available [here](https://github.com/tsparticles/preact/#readme)
 
 ### ReactJS
 
-#### `react-particles`
+#### `@tsparticles/react`
 
-[![npm](https://img.shields.io/npm/v/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles) [![npm](https://img.shields.io/npm/dm/react-particles?style=for-the-badge)](https://www.npmjs.com/package/react-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react) [![npm](https://img.shields.io/npm/dm/@tsparticles/react?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/react)
 
 Instructions available [here](https://github.com/tsparticles/react/#readme)
 
@@ -384,25 +384,25 @@ You can find the instructions [here](https://github.com/tsparticles/solid/#readm
 
 ### Svelte
 
-#### `svelte-particles`
+#### `@tsparticles/svelte`
 
-[![npm](https://img.shields.io/npm/v/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/svelte)
 
 Instructions available [here](https://github.com/tsparticles/svelte/#readme)
 
 ### VueJS 2.x
 
-#### `vue2-particles`
+#### `@tsparticles/vue2`
 
-[![npm](https://img.shields.io/npm/v/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles) [![npm](https://img.shields.io/npm/dm/vue2-particles?style=for-the-badge)](https://www.npmjs.com/package/vue2-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue2?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue2)
 
 Instructions available [here](https://github.com/tsparticles/vue2/#readme)
 
 ### VueJS 3.x
 
-#### `vue3-particles`
+#### `@tsparticles/vue3`
 
-[![npm](https://img.shields.io/npm/v/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles) [![npm](https://img.shields.io/npm/dm/vue3-particles?style=for-the-badge)](https://www.npmjs.com/package/vue3-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/vue3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue3) [![npm](https://img.shields.io/npm/dm/@tsparticles/vue3?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/vue3)
 
 Instruction available [here](https://github.com/tsparticles/vue3/#readme)
 
@@ -416,9 +416,9 @@ You can find the instructions [here](https://github.com/tsparticles/webcomponent
 
 ### WordPress
 
-#### `wordpress-particles`
+#### `@tsparticles/wordpress`
 
-[![npm](https://img.shields.io/npm/v/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![npm](https://img.shields.io/npm/dm/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/@tsparticles/block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
+[![npm](https://img.shields.io/npm/v/@tsparticles/wordpress?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/wordpress) [![npm](https://img.shields.io/npm/dm/@tsparticles/wordpress?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/wordpress) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/@tsparticles/block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
 
 The plugin page hosted on WordPress.org can be
 found [here](https://wordpress.org/plugins/tsparticles-block/#description)
