@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.3](https://github.com/tsparticles/tsparticles/compare/v3.0.2...v3.0.3) (2023-12-26)
+
+### Bug Fixes
+
+-   used element id when present and fixed emoji memory management ([1990bbc](https://github.com/tsparticles/tsparticles/commit/1990bbcd9079366db7ec3dedf4477ba43d2c47cf))
+
 ## [3.0.2](https://github.com/tsparticles/tsparticles/compare/v3.0.1...v3.0.2) (2023-12-06)
 
 **Note:** Version bump only for package @tsparticles/interaction-particles-links

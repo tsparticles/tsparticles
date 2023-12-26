@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-cards",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "tsParticles cards shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.0.2"
+    "@tsparticles/engine": "^3.0.3"
   },
   "publishConfig": {
     "access": "public"

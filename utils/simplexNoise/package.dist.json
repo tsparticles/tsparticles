@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/simplex-noise",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "tsParticles simplex noise library",
   "homepage": "https://particles.js.org",
   "repository": {
