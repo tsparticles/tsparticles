@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-text",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "tsParticles text shape",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -67,7 +67,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.0.2"
+    "@tsparticles/engine": "^3.0.3"
   },
   "publishConfig": {
     "access": "public",
