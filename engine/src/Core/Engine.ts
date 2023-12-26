@@ -100,7 +100,7 @@ async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple
     const response = await fetch(url);
 
     if (response.ok) {
-        return (response.json() as Promise<SingleOrMultiple<ISourceOptions>>);
+        return response.json() as Promise<SingleOrMultiple<ISourceOptions>>;
     }
 
     getLogger().error(`${errorPrefix} ${response.status} while retrieving config file`);
