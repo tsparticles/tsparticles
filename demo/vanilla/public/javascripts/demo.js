@@ -205,9 +205,11 @@
         btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
 
-            particles.options.load(editor.get());
-            particles.refresh().then(() => {
-                // do nothing
+            particles.reset().then(() => {
+                particles.options.load(editor.get());
+                particles.refresh().then(() => {
+                    // do nothing
+                });
             });
         };
 

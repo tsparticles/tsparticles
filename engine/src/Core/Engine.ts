@@ -511,7 +511,7 @@ export class Engine {
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
         const randomFactor = 10000,
-            id = params.id ?? `tsparticles${Math.floor(getRandom() * randomFactor)}`,
+            id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * randomFactor)}`,
             { index, url } = params,
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
