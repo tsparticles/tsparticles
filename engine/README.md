@@ -45,7 +45,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
         -   [**_Usage_**](#usage)
     -   [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
         -   [Angular](#angular)
-            -   [`ng-particles`](#ng-particles)
+            -   [`@tsparticles/angular`](#@tsparticles/angular)
         -   [Astro](#astro)
             -   [`astro-particles`](#astro-particles)
         -   [Ember.js](#emberjs)
@@ -63,7 +63,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
         -   [SolidJS](#solidjs)
             -   [`solid-particles`](#solid-particles)
         -   [Svelte](#svelte)
-            -   [`svelte-particles`](#svelte-particles)
+            -   [`@tsparticles/svelte`](#@tsparticles/svelte)
         -   [VueJS 2.x](#vuejs-2x)
             -   [`@tsparticles/vue2`](#tsparticlesvue2)
         -   [VueJS 3.x](#vuejs-3x)
@@ -71,7 +71,7 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
         -   [Web Components](#web-components)
             -   [`web-particles`](#web-particles)
         -   [WordPress](#wordpress)
-            -   [`wordpress-particles`](#wordpress-particles)
+            -   [`@tsparticles/wordpress`](#@tsparticles/wordpress)
         -   [Elementor](#elementor)
     -   [Presets](#presets)
         -   [Big Circles](#big-circles)
@@ -312,9 +312,9 @@ particles.pause();
 
 ### Angular
 
-#### `ng-particles`
+#### `@tsparticles/angular`
 
-[![npm](https://img.shields.io/npm/v/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles) [![npm](https://img.shields.io/npm/dm/ng-particles?style=for-the-badge)](https://www.npmjs.com/package/ng-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/angular?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/angular) [![npm](https://img.shields.io/npm/dm/@tsparticles/angular?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/angular)
 
 Instructions available [here](https://github.com/tsparticles/angular/#readme)
 
@@ -384,9 +384,9 @@ You can find the instructions [here](https://github.com/tsparticles/solid/#readm
 
 ### Svelte
 
-#### `svelte-particles`
+#### `@tsparticles/svelte`
 
-[![npm](https://img.shields.io/npm/v/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles) [![npm downloads](https://img.shields.io/npm/dm/svelte-particles?style=for-the-badge)](https://www.npmjs.com/package/svelte-particles)
+[![npm](https://img.shields.io/npm/v/@tsparticles/svelte?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/svelte) [![npm downloads](https://img.shields.io/npm/dm/@tsparticles/svelte?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/svelte)
 
 Instructions available [here](https://github.com/tsparticles/svelte/#readme)
 
@@ -416,9 +416,9 @@ You can find the instructions [here](https://github.com/tsparticles/webcomponent
 
 ### WordPress
 
-#### `wordpress-particles`
+#### `@tsparticles/wordpress`
 
-[![npm](https://img.shields.io/npm/v/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![npm](https://img.shields.io/npm/dm/wordpress-particles?style=for-the-badge)](https://www.npmjs.com/package/wordpress-particles) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/@tsparticles/block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
+[![npm](https://img.shields.io/npm/v/@tsparticles/wordpress?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/wordpress) [![npm](https://img.shields.io/npm/dm/@tsparticles/wordpress?style=for-the-badge)](https://www.npmjs.com/package/@tsparticles/wordpress) [![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dw/@tsparticles/block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/) [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/tsparticles-block?style=for-the-badge)](https://wordpress.org/plugins/tsparticles-block/)
 
 The plugin page hosted on WordPress.org can be
 found [here](https://wordpress.org/plugins/tsparticles-block/#description)
