@@ -1,6 +1,5 @@
 {
   "baseBranches": [
-    "dev",
     "v3"
   ],
   "extends": [
