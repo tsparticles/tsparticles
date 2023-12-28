@@ -15,7 +15,13 @@ export interface IShape {
      */
     fill: boolean;
 
+    /**
+     * Shape options
+     */
     options: ShapeData;
 
+    /**
+     * Shape type
+     */
     type: SingleOrMultiple<string>;
 }

@@ -3,6 +3,9 @@ import type { RangeValue } from "../../Types/RangeValue.js";
 import type { StartValueType } from "../../Enums/Types/StartValueType.js";
 
 export interface IAnimation {
+    /**
+     * Animation loop count
+     */
     count: RangeValue;
 
     /**
@@ -11,7 +14,7 @@ export interface IAnimation {
     decay: RangeValue;
 
     /**
-     * Animation delay
+     * Animation delay, first time only
      */
     delay: RangeValue;
 

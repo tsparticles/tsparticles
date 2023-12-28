@@ -2,7 +2,6 @@ import type { ICoordinates } from "../../../Core/Interfaces/ICoordinates.js";
 import type { IOptionsColor } from "../IOptionsColor.js";
 
 /**
- 
  * [[include:Shadow.md]]
  */
 export interface IShadow {
