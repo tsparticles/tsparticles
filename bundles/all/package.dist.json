@@ -130,6 +130,7 @@
     "@tsparticles/plugin-hsv-color": "^3.0.3",
     "@tsparticles/plugin-infection": "^3.0.3",
     "@tsparticles/plugin-motion": "^3.0.3",
+    "@tsparticles/plugin-poisson-disc": "^3.0.3",
     "@tsparticles/plugin-polygon-mask": "^3.0.3",
     "@tsparticles/plugin-sounds": "^3.0.3",
     "@tsparticles/shape-arrow": "^3.0.3",

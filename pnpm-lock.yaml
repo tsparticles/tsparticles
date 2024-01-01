@@ -269,6 +269,9 @@ importers:
       '@tsparticles/plugin-motion':
         specifier: ^3.0.3
         version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-poisson-disc':
+        specifier: ^3.0.3
+        version: link:../../plugins/poisson/dist
       '@tsparticles/plugin-polygon-mask':
         specifier: ^3.0.3
         version: link:../../plugins/polygonMask/dist
@@ -766,6 +769,9 @@ importers:
       '@tsparticles/plugin-motion':
         specifier: ^3.0.3
         version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-poisson-disc':
+        specifier: ^3.0.3
+        version: link:../../plugins/poisson/dist
       '@tsparticles/plugin-polygon-mask':
         specifier: ^3.0.3
         version: link:../../plugins/polygonMask/dist
@@ -1365,6 +1371,13 @@ importers:
     publishDirectory: dist
 
   plugins/motion:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^3.0.3
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  plugins/poisson:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.3
