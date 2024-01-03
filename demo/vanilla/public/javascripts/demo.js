@@ -379,7 +379,5 @@ function pixelTextFilter(pixel) {
 }
 
 function explodeSoundCheck(args) {
-    const particle = args.data.particle;
-
-    return particle.shape === "circle" && particle.splitCount < 2;
+    return args.data.particle.options.move.gravity.inverse;
 }
