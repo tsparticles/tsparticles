@@ -167,7 +167,7 @@ const options: ISourceOptions = {
         enable: true,
         events: [
             {
-                event: EventType.particleDestroyed,
+                event: EventType.particleRemoved,
                 filter: "explodeSoundCheck",
                 audio: [
                     "https://particles.js.org/audio/explosion0.mp3",

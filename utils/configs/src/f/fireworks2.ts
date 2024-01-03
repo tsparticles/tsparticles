@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "@tsparticles/engine";
+import { EventType, type ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     name: "Fireworks 2",
@@ -60,7 +60,7 @@ const options: ISourceOptions = {
                         width: 0,
                     },
                     color: {
-                        value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
+                        value: [ "#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93" ],
                     },
                     number: {
                         value: 0,
@@ -149,9 +149,6 @@ const options: ISourceOptions = {
                 },
             },
         },
-        rotate: {
-            path: true,
-        },
         shape: {
             type: "circle",
         },
@@ -180,7 +177,7 @@ const options: ISourceOptions = {
         enable: true,
         events: [
             {
-                event: "particleRemoved",
+                event: EventType.particleRemoved,
                 filter: "explodeSoundCheck",
                 audio: [
                     "https://particles.js.org/audio/explosion0.mp3",
