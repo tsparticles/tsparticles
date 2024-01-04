@@ -1,9 +1,10 @@
 import {
     AnimationStatus,
     type Container,
+    DestroyType,
     type IDelta,
+    type IParticleNumericValueAnimation,
     type IParticleUpdater,
-    type IParticleValueAnimation,
     type IParticlesOptions,
     type Particle,
     type ParticlesOptions,
@@ -12,13 +13,14 @@ import {
     degToRad,
     getRandom,
     getRangeValue,
+    updateAnimation,
 } from "@tsparticles/engine";
 import type { IRotate } from "./Options/Interfaces/IRotate.js";
 import { Rotate } from "./Options/Classes/Rotate.js";
 
 type RotateParticle = Particle & {
     options: RotateParticlesOptions;
-    rotate?: IParticleValueAnimation<number>;
+    rotate?: IParticleNumericValueAnimation;
 };
 
 type IRotateParticlesOptions = IParticlesOptions & {
@@ -29,59 +31,10 @@ type RotateParticlesOptions = ParticlesOptions & {
     rotate?: Rotate;
 };
 
-const minVelocity = 0,
-    defaultDecay = 1,
-    double = 2,
+const double = 2,
     doublePI = Math.PI * double,
     identity = 1,
-    minValue = 0,
     doublePIDeg = 360;
-
-/**
- * @param particle -
- * @param delta -
- */
-function updateRotate(particle: RotateParticle, delta: IDelta): void {
-    const rotate = particle.rotate,
-        rotateOptions = particle.options.rotate;
-
-    if (!rotate || !rotateOptions) {
-        return;
-    }
-
-    const rotateAnimation = rotateOptions.animation,
-        speed = (rotate.velocity ?? minVelocity) * delta.factor,
-        max = doublePI,
-        decay = rotate.decay ?? defaultDecay;
-
-    if (!rotateAnimation.enable) {
-        return;
-    }
-
-    switch (rotate.status) {
-        case AnimationStatus.increasing:
-            rotate.value += speed;
-
-            if (rotate.value > max) {
-                rotate.value -= max;
-            }
-
-            break;
-        case AnimationStatus.decreasing:
-        default:
-            rotate.value -= speed;
-
-            if (rotate.value < minValue) {
-                rotate.value += max;
-            }
-
-            break;
-    }
-
-    if (rotate.velocity && decay !== identity) {
-        rotate.velocity *= decay;
-    }
-}
 
 export class RotateUpdater implements IParticleUpdater {
     private readonly container;
@@ -100,6 +53,8 @@ export class RotateUpdater implements IParticleUpdater {
         particle.rotate = {
             enable: rotateOptions.animation.enable,
             value: degToRad(getRangeValue(rotateOptions.value)),
+            min: 0,
+            max: doublePI,
         };
 
         particle.pathRotation = rotateOptions.path;
@@ -166,8 +121,12 @@ export class RotateUpdater implements IParticleUpdater {
             return;
         }
 
-        updateRotate(particle, delta);
+        if (!particle.rotate) {
+            return;
+        }
 
-        particle.rotation = particle.rotate?.value ?? minValue;
+        updateAnimation(particle, particle.rotate, false, DestroyType.none, delta);
+
+        particle.rotation = particle.rotate.value;
     }
 }

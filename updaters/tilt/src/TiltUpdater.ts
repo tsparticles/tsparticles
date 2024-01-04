@@ -1,23 +1,24 @@
 import {
     AnimationStatus,
     type Container,
+    DestroyType,
     type IDelta,
     type IParticleTransformValues,
     type IParticleUpdater,
-    type Particle,
     type RecursivePartial,
     degToRad,
     getRandom,
     getRangeValue,
     halfRandom,
+    updateAnimation,
 } from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
 import { Tilt } from "./Options/Classes/Tilt.js";
 import { TiltDirection } from "./TiltDirection.js";
-import { updateTilt } from "./Utils.js";
 
 const identity = 1,
     double = 2,
+    doublePI = Math.PI * double,
     maxAngle = 360;
 
 export class TiltUpdater implements IParticleUpdater {
@@ -48,6 +49,8 @@ export class TiltUpdater implements IParticleUpdater {
             value: degToRad(getRangeValue(tiltOptions.value)),
             sinDirection: getRandom() >= halfRandom ? identity : -identity,
             cosDirection: getRandom() >= halfRandom ? identity : -identity,
+            min: 0,
+            max: doublePI,
         };
 
         let tiltDirection = tiltOptions.direction;
@@ -101,11 +104,11 @@ export class TiltUpdater implements IParticleUpdater {
         }
     }
 
-    update(particle: Particle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
+    update(particle: TiltParticle, delta: IDelta): void {
+        if (!this.isEnabled(particle) || !particle.tilt) {
             return;
         }
 
-        updateTilt(particle, delta);
+        updateAnimation(particle, particle.tilt, false, DestroyType.none, delta);
     }
 }

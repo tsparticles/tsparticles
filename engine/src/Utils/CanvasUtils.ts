@@ -72,20 +72,19 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
  */
 export function drawParticle(data: IDrawParticleParams): void {
     const {
-        container,
-        context,
-        particle,
-        delta,
-        colorStyles,
-        backgroundMask,
-        composite,
-        radius,
-        opacity,
-        shadow,
-        transform,
-    } = data;
-
-    const pos = particle.getPosition(),
+            container,
+            context,
+            particle,
+            delta,
+            colorStyles,
+            backgroundMask,
+            composite,
+            radius,
+            opacity,
+            shadow,
+            transform,
+        } = data,
+        pos = particle.getPosition(),
         defaultAngle = 0,
         angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : defaultAngle),
         rotateData = {
@@ -128,24 +127,18 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.strokeStyle = colorStyles.stroke;
     }
 
-    const drawData: DrawShapeData = { container, context, particle, radius, opacity, delta, transformData };
-
-    context.beginPath();
+    const drawData: DrawShapeData = {
+        container,
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        transformData,
+        strokeWidth,
+    };
 
     drawShape(drawData);
-
-    if (particle.shapeClose) {
-        context.closePath();
-    }
-
-    if (strokeWidth > minStrokeWidth) {
-        context.stroke();
-    }
-
-    if (particle.shapeFill) {
-        context.fill();
-    }
-
     drawShapeAfterDraw(drawData);
     drawEffect(drawData);
 
@@ -184,6 +177,11 @@ interface DrawShapeData {
      * the radius of the particle.
      */
     radius: number;
+
+    /**
+     * the stroke width of the particle.
+     */
+    strokeWidth: number;
 
     /**
      * the transform data of the particle.
@@ -229,7 +227,8 @@ export function drawEffect(data: DrawShapeData): void {
  * @param data - the function parameters.
  */
 export function drawShape(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta, transformData } = data;
+    const { container, context, particle, radius, opacity, delta, strokeWidth, transformData } = data,
+        minStrokeWidth = 0;
 
     if (!particle.shape) {
         return;
@@ -241,6 +240,8 @@ export function drawShape(data: DrawShapeData): void {
         return;
     }
 
+    context.beginPath();
+
     drawer.draw({
         context,
         particle,
@@ -250,6 +251,18 @@ export function drawShape(data: DrawShapeData): void {
         pixelRatio: container.retina.pixelRatio,
         transformData: { ...transformData },
     });
+
+    if (particle.shapeClose) {
+        context.closePath();
+    }
+
+    if (strokeWidth > minStrokeWidth) {
+        context.stroke();
+    }
+
+    if (particle.shapeFill) {
+        context.fill();
+    }
 }
 
 /**

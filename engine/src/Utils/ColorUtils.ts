@@ -1,14 +1,25 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
-import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils.js";
+import {
+    clamp,
+    getRandom,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    mix,
+    randomInRange,
+    setRangeValue,
+} from "./NumberUtils.js";
 import { isArray, isString, itemFromArray } from "./Utils.js";
 import { millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
+import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
-import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
+import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
 
 const enum RgbIndexes {
@@ -504,7 +515,7 @@ export function getHslAnimationFromHsl(
  * @param reduceFactor -
  */
 function setColorAnimation(
-    colorValue: IParticleValueAnimation<number>,
+    colorValue: IParticleColorAnimation,
     colorAnimation: IColorAnimation,
     reduceFactor: number,
 ): void {
@@ -530,7 +541,122 @@ function setColorAnimation(
         }
 
         colorValue.initialValue = colorValue.value;
+        colorValue.offset = setRangeValue(colorAnimation.offset);
     } else {
         colorValue.velocity = defaultVelocity;
+    }
+}
+
+/**
+ * @param data -
+ * @param range -
+ * @param decrease -
+ * @param delta -
+ */
+export function updateColorValue(
+    data: IParticleColorAnimation,
+    range: IRangeValue,
+    decrease: boolean,
+    delta: IDelta,
+): void {
+    const minLoops = 0,
+        minDelay = 0,
+        identity = 1,
+        minVelocity = 0,
+        minOffset = 0,
+        velocityFactor = 3.6;
+
+    if (
+        !data ||
+        !data.enable ||
+        ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
+    ) {
+        return;
+    }
+
+    if (!data.time) {
+        data.time = 0;
+    }
+
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+        data.time += delta.value;
+    }
+
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+        return;
+    }
+
+    const offset = data.offset ? randomInRange(data.offset) : minOffset,
+        velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
+        decay = data.decay ?? identity,
+        max = getRangeMax(range),
+        min = getRangeMin(range);
+
+    if (!decrease || data.status === AnimationStatus.increasing) {
+        data.value += velocity;
+
+        if (data.value > max) {
+            if (!data.loops) {
+                data.loops = 0;
+            }
+
+            data.loops++;
+
+            if (decrease) {
+                data.status = AnimationStatus.decreasing;
+            } else {
+                data.value -= max;
+            }
+        }
+    } else {
+        data.value -= velocity;
+
+        const minValue = 0;
+
+        if (data.value < minValue) {
+            if (!data.loops) {
+                data.loops = 0;
+            }
+
+            data.loops++;
+
+            data.status = AnimationStatus.increasing;
+        }
+    }
+
+    if (data.velocity && decay !== identity) {
+        data.velocity *= decay;
+    }
+
+    data.value = clamp(data.value, min, max);
+}
+
+/**
+ * @param color -
+ * @param delta -
+ */
+export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta): void {
+    if (!color) {
+        return;
+    }
+
+    const { h, s, l } = color;
+
+    const ranges = {
+        h: { min: 0, max: 360 },
+        s: { min: 0, max: 100 },
+        l: { min: 0, max: 100 },
+    };
+
+    if (h) {
+        updateColorValue(h, ranges.h, false, delta);
+    }
+
+    if (s) {
+        updateColorValue(s, ranges.s, true, delta);
+    }
+
+    if (l) {
+        updateColorValue(l, ranges.l, true, delta);
     }
 }

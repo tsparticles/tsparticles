@@ -12,10 +12,21 @@ const options: ISourceOptions = {
         color: {
             value: "#ff0000",
             animation: {
-                count: 1,
-                enable: true,
-                speed: 60,
-                sync: true,
+                h: {
+                    enable: true,
+                    speed: { min: 30, max: 60 },
+                    sync: true,
+                },
+                s: {
+                    enable: true,
+                    speed: { min: 5, max: 10 },
+                    sync: true,
+                },
+                l: {
+                    enable: true,
+                    speed: { min: 5, max: 10 },
+                    sync: true,
+                },
             },
         },
         stroke: {
@@ -23,10 +34,21 @@ const options: ISourceOptions = {
             color: {
                 value: "#0000ff",
                 animation: {
-                    count: 1,
-                    enable: true,
-                    speed: 60,
-                    sync: true,
+                    h: {
+                        enable: true,
+                        speed: { min: 30, max: 60 },
+                        sync: true,
+                    },
+                    s: {
+                        enable: true,
+                        speed: { min: 5, max: 10 },
+                        sync: true,
+                    },
+                    l: {
+                        enable: true,
+                        speed: { min: 5, max: 10 },
+                        sync: true,
+                    },
                 },
             },
         },

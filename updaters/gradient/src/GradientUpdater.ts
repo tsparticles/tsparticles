@@ -26,6 +26,9 @@ import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOpti
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
 import { updateGradient } from "./Utils.js";
 
+const double = 2,
+    doublePI = Math.PI * double;
+
 export class GradientUpdater implements IParticleUpdater {
     getColorStyles(
         particle: GradientParticle,
@@ -87,6 +90,8 @@ export class GradientUpdater implements IParticleUpdater {
                 velocity: (getRangeValue(angle.animation.speed) / speedFactor) * particle.container.retina.reduceFactor,
                 decay: delayOffset - getRangeValue(angle.animation.decay),
                 delayTime: getRangeValue(angle.animation.delay) * millisecondsToSeconds,
+                max: doublePI,
+                min: 0,
                 time: 0,
             },
             type: gradient.type,

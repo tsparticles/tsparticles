@@ -7,8 +7,8 @@ import {
     getRangeValue,
     initParticleNumericAnimationValue,
     percentDenominator,
+    updateAnimation,
 } from "@tsparticles/engine";
-import { updateOpacity } from "./Utils.js";
 
 /**
  * The opacity updater, it manages the opacity on each particle
@@ -83,10 +83,10 @@ export class OpacityUpdater implements IParticleUpdater {
      * @param delta -
      */
     update(particle: Particle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
+        if (!this.isEnabled(particle) || !particle.opacity) {
             return;
         }
 
-        updateOpacity(particle, delta);
+        updateAnimation(particle, particle.opacity, true, particle.options.opacity.animation.destroy, delta);
     }
 }

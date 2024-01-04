@@ -7,9 +7,9 @@ import {
     getRangeValue,
     itemFromSingleOrMultiple,
     rangeColorToHsl,
+    updateColor,
 } from "@tsparticles/engine";
 import type { StrokeParticle } from "./Types.js";
-import { updateStrokeColor } from "./Utils.js";
 
 const defaultOpacity = 1;
 
@@ -61,6 +61,6 @@ export class StrokeColorUpdater implements IParticleUpdater {
             return;
         }
 
-        updateStrokeColor(particle, delta);
+        updateColor(particle.strokeColor, delta);
     }
 }

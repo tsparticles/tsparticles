@@ -1,6 +1,7 @@
 import type { ICoordinates, ICoordinatesWithMode } from "../Core/Interfaces/ICoordinates.js";
 import type { IDimension, IDimensionWithMode } from "../Core/Interfaces/IDimension.js";
 import {
+    clamp,
     collisionVelocity,
     getDistances,
     getRandom,
@@ -12,9 +13,11 @@ import {
 import { halfRandom, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import { DestroyType } from "../Enums/Types/DestroyType.js";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
+import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
 import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
@@ -771,4 +774,126 @@ export function isObject<T extends object>(arg: unknown): arg is T {
  */
 export function isArray<T>(arg: unknown): arg is T[] {
     return Array.isArray(arg);
+}
+
+/**
+ * @param particle -
+ * @param destroyType -
+ * @param value -
+ * @param minValue -
+ * @param maxValue -
+ */
+function checkDestroy(
+    particle: Particle,
+    destroyType: DestroyType | keyof typeof DestroyType,
+    value: number,
+    minValue: number,
+    maxValue: number,
+): void {
+    switch (destroyType) {
+        case DestroyType.max:
+            if (value >= maxValue) {
+                particle.destroy();
+            }
+            break;
+        case DestroyType.min:
+            if (value <= minValue) {
+                particle.destroy();
+            }
+            break;
+    }
+}
+
+/**
+ * @param particle -
+ * @param data -
+ * @param changeDirection -
+ * @param destroyType -
+ * @param delta -
+ */
+export function updateAnimation(
+    particle: Particle,
+    data: IParticleNumericValueAnimation,
+    changeDirection: boolean,
+    destroyType: DestroyType | keyof typeof DestroyType,
+    delta: IDelta,
+): void {
+    const minLoops = 0,
+        minDelay = 0,
+        identity = 1,
+        minVelocity = 0,
+        minDecay = 1;
+
+    if (
+        particle.destroyed ||
+        !data ||
+        !data.enable ||
+        ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
+    ) {
+        return;
+    }
+
+    const velocity = (data.velocity ?? minVelocity) * delta.factor,
+        minValue = data.min,
+        maxValue = data.max,
+        decay = data.decay ?? minDecay;
+
+    if (!data.time) {
+        data.time = 0;
+    }
+
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+        data.time += delta.value;
+    }
+
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+        return;
+    }
+
+    switch (data.status) {
+        case AnimationStatus.increasing:
+            if (data.value >= maxValue) {
+                if (changeDirection) {
+                    data.status = AnimationStatus.decreasing;
+                } else {
+                    data.value -= maxValue;
+                }
+
+                if (!data.loops) {
+                    data.loops = minLoops;
+                }
+
+                data.loops++;
+            } else {
+                data.value += velocity;
+            }
+
+            break;
+        case AnimationStatus.decreasing:
+            if (data.value <= minValue) {
+                if (changeDirection) {
+                    data.status = AnimationStatus.increasing;
+                } else {
+                    data.value += maxValue;
+                }
+
+                if (!data.loops) {
+                    data.loops = minLoops;
+                }
+
+                data.loops++;
+            } else {
+                data.value -= velocity;
+            }
+    }
+
+    if (data.velocity && decay !== identity) {
+        data.velocity *= decay;
+    }
+
+    checkDestroy(particle, destroyType, data.value, minValue, maxValue);
+
+    if (!particle.destroyed) {
+        data.value = clamp(data.value, minValue, maxValue);
+    }
 }

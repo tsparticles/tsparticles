@@ -1,5 +1,11 @@
-import { type IDelta, type IParticleUpdater, type Particle, getRandom, percentDenominator } from "@tsparticles/engine";
-import { updateSize } from "./Utils.js";
+import {
+    type IDelta,
+    type IParticleUpdater,
+    type Particle,
+    getRandom,
+    percentDenominator,
+    updateAnimation,
+} from "@tsparticles/engine";
 
 const minLoops = 0;
 
@@ -40,6 +46,6 @@ export class SizeUpdater implements IParticleUpdater {
             return;
         }
 
-        updateSize(particle, delta);
+        updateAnimation(particle, particle.size, true, particle.options.size.animation.destroy, delta);
     }
 }
