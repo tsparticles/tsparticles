@@ -5,12 +5,14 @@ import { SoundsIcons } from "./SoundsIcons.js";
 import { SoundsVolume } from "./SoundsVolume.js";
 
 export class Sounds implements ISounds, IOptionLoader<ISounds> {
+    autoPlay: boolean;
     enable;
     events: SoundsEvent[];
     icons;
     volume;
 
     constructor() {
+        this.autoPlay = true;
         this.enable = false;
         this.events = [];
         this.icons = new SoundsIcons();
@@ -20,6 +22,10 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
     load(data?: RecursivePartial<ISounds>): void {
         if (!data) {
             return;
+        }
+
+        if (data.autoPlay !== undefined) {
+            this.autoPlay = data.autoPlay;
         }
 
         if (data.enable !== undefined) {

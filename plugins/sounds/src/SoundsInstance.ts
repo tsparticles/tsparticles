@@ -21,6 +21,8 @@ const zIndexOffset = 1,
     rightOffset = 1,
     minVolume = 0;
 
+let muted = true;
+
 /**
  * @param data -
  * @returns the image element
@@ -129,6 +131,18 @@ export class SoundsInstance implements IContainerPlugin {
             return;
         }
 
+        if (soundsOptions.autoPlay && muted) {
+            const firstClickHandler = (): void => {
+                removeEventListener("click", firstClickHandler);
+
+                muted = false;
+
+                void this.unmute();
+            };
+
+            addEventListener("click", firstClickHandler);
+        }
+
         this._volume = soundsOptions.volume.value;
 
         const events = soundsOptions.events;
@@ -179,22 +193,24 @@ export class SoundsInstance implements IContainerPlugin {
                 right: canvas.offsetLeft + canvas.offsetWidth,
             },
             { mute, unmute, volumeDown, volumeUp } = soundsOptions.icons,
-            margin = 10;
-
-        const toggleMute = async (): Promise<void> => {
-            await this.toggleMute();
-        };
+            margin = 10,
+            toggleMute = async (): Promise<void> => {
+                await this.toggleMute();
+            },
+            enableIcons = soundsOptions.icons.enable,
+            display = enableIcons ? ImageDisplay.Block : ImageDisplay.None;
 
         this._muteImg = initImage({
             container,
             options,
             pos,
-            display: ImageDisplay.Block,
+            display,
             iconOptions: mute,
             margin,
             rightOffsets: [volumeDown.width, volumeUp.width],
             clickCb: toggleMute,
         });
+
         this._unmuteImg = initImage({
             container,
             options,
@@ -205,11 +221,12 @@ export class SoundsInstance implements IContainerPlugin {
             rightOffsets: [volumeDown.width, volumeUp.width],
             clickCb: toggleMute,
         });
+
         this._volumeDownImg = initImage({
             container,
             options,
             pos,
-            display: ImageDisplay.Block,
+            display,
             iconOptions: volumeDown,
             margin,
             rightOffsets: [volumeUp.width],
@@ -217,11 +234,12 @@ export class SoundsInstance implements IContainerPlugin {
                 await this.volumeDown();
             },
         });
+
         this._volumeUpImg = initImage({
             container,
             options,
             pos,
-            display: ImageDisplay.Block,
+            display,
             iconOptions: volumeUp,
             margin,
             rightOffsets: [],
@@ -230,7 +248,9 @@ export class SoundsInstance implements IContainerPlugin {
             },
         });
 
-        await Promise.resolve();
+        if (!muted && soundsOptions.autoPlay) {
+            await this.unmute();
+        }
     }
 
     stop(): void {
@@ -570,7 +590,13 @@ export class SoundsInstance implements IContainerPlugin {
 
     private readonly _updateMuteIcons: () => void = () => {
         const container = this._container,
-            muteImg = this._muteImg,
+            soundsOptions = container.actualOptions.sounds;
+
+        if (!soundsOptions?.enable || !soundsOptions.icons.enable) {
+            return;
+        }
+
+        const muteImg = this._muteImg,
             unmuteImg = this._unmuteImg;
 
         if (muteImg) {

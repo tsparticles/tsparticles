@@ -3,6 +3,7 @@ import type { ISoundsIcons } from "../Interfaces/ISoundsIcons.js";
 import { SoundsIcon } from "./SoundsIcon.js";
 
 export class SoundsIcons implements ISoundsIcons, IOptionLoader<ISoundsIcons> {
+    enable: boolean;
     mute;
     unmute;
     volumeDown;
@@ -13,6 +14,7 @@ export class SoundsIcons implements ISoundsIcons, IOptionLoader<ISoundsIcons> {
         this.unmute = new SoundsIcon();
         this.volumeDown = new SoundsIcon();
         this.volumeUp = new SoundsIcon();
+        this.enable = false;
 
         this.mute.svg = `<?xml version="1.0"?>
 <svg baseProfile="tiny" height="24px" version="1.2" viewBox="0 0 24 24" width="24px"
@@ -55,6 +57,10 @@ export class SoundsIcons implements ISoundsIcons, IOptionLoader<ISoundsIcons> {
     load(data?: RecursivePartial<ISoundsIcons>): void {
         if (!data) {
             return;
+        }
+
+        if (data.enable !== undefined) {
+            this.enable = data.enable;
         }
 
         this.mute.load(data.mute);
