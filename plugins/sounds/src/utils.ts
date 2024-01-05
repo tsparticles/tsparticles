@@ -51,3 +51,13 @@ export function getNoteFrequency(note: string): number | undefined {
 
     return noteItem[parseInt(result[innerGroupKey] || "0")];
 }
+
+let muted = true;
+
+export const isWindowMuted = (): boolean => {
+    return muted;
+};
+
+export const unmuteWindow = (): void => {
+    muted = false;
+};

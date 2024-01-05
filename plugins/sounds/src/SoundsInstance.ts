@@ -9,19 +9,19 @@ import {
     isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
+    mouseDownEvent,
     percentDenominator,
+    touchStartEvent,
 } from "@tsparticles/engine";
 import { ImageDisplay, SoundsEventType } from "./enums.js";
 import type { ImageMargins, InitImageData, SoundsContainer } from "./types.js";
+import { getNoteFrequency, isWindowMuted, unmuteWindow } from "./utils.js";
 import type { SoundsAudio } from "./Options/Classes/SoundsAudio.js";
 import type { SoundsNote } from "./Options/Classes/SoundsNote.js";
-import { getNoteFrequency } from "./utils.js";
 
 const zIndexOffset = 1,
     rightOffset = 1,
     minVolume = 0;
-
-let muted = true;
 
 /**
  * @param data -
@@ -131,16 +131,23 @@ export class SoundsInstance implements IContainerPlugin {
             return;
         }
 
-        if (soundsOptions.autoPlay && muted) {
+        if (soundsOptions.autoPlay && isWindowMuted()) {
             const firstClickHandler = (): void => {
-                removeEventListener("click", firstClickHandler);
+                removeEventListener(mouseDownEvent, firstClickHandler);
+                removeEventListener(touchStartEvent, firstClickHandler);
 
-                muted = false;
+                unmuteWindow();
 
                 void this.unmute();
             };
 
-            addEventListener("click", firstClickHandler);
+            const listenerOptions = {
+                capture: true,
+                once: true,
+            };
+
+            addEventListener(mouseDownEvent, firstClickHandler, listenerOptions);
+            addEventListener(touchStartEvent, firstClickHandler, listenerOptions);
         }
 
         this._volume = soundsOptions.volume.value;
@@ -248,7 +255,7 @@ export class SoundsInstance implements IContainerPlugin {
             },
         });
 
-        if (!muted && soundsOptions.autoPlay) {
+        if (!isWindowMuted() && soundsOptions.autoPlay) {
             await this.unmute();
         }
     }
