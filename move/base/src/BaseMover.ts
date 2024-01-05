@@ -10,7 +10,9 @@ import {
 import { applyDistance, getProximitySpeedFactor, move, spin } from "./Utils.js";
 import type { MoveParticle } from "./Types.js";
 
-const diffFactor = 2;
+const diffFactor = 2,
+    defaultSizeFactor = 1,
+    defaultDeltaFactor = 1;
 
 /**
  */
@@ -52,17 +54,18 @@ export class BaseMover implements IParticleMover {
         }
 
         const container = particle.container,
-            pxRatio = container.retina.pixelRatio,
-            slowFactor = getProximitySpeedFactor(particle),
-            baseSpeed =
-                (particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * pxRatio) *
-                container.retina.reduceFactor,
-            moveDrift = (particle.retina.moveDrift ??= getRangeValue(particle.options.move.drift) * pxRatio),
+            pxRatio = container.retina.pixelRatio;
+
+        particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * pxRatio;
+        particle.retina.moveDrift ??= getRangeValue(particle.options.move.drift) * pxRatio;
+
+        const slowFactor = getProximitySpeedFactor(particle),
+            baseSpeed = particle.retina.moveSpeed * container.retina.reduceFactor,
+            moveDrift = particle.retina.moveDrift,
             maxSize = getRangeMax(particleOptions.size.value) * pxRatio,
-            defaultSizeFactor = 1,
-            defaultDeltaFactor = 1,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
-            moveSpeed = (baseSpeed * sizeFactor * slowFactor * (delta.factor || defaultDeltaFactor)) / diffFactor,
+            deltaFactor = delta.factor || defaultDeltaFactor,
+            moveSpeed = (baseSpeed * sizeFactor * slowFactor * deltaFactor) / diffFactor,
             maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
 
         if (moveOptions.spin.enable) {

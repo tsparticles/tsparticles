@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "lightHover",
     name: "Light Hover",
     particles: {
         number: {

@@ -1,6 +1,7 @@
 import { EventType, type ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "fireworks",
     name: "Fireworks",
     fullScreen: {
         enable: true,

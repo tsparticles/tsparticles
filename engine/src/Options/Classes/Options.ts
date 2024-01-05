@@ -40,6 +40,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     fpsLimit;
     readonly fullScreen;
     readonly interactivity;
+    key?: string;
     manualParticles: ManualParticle[];
     name?: string;
     readonly particles;
@@ -99,6 +100,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (data.clear !== undefined) {
             this.clear = data.clear;
+        }
+
+        if (data.key !== undefined) {
+            this.key = data.key;
         }
 
         if (data.name !== undefined) {

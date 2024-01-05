@@ -5,6 +5,7 @@ const emitterRate = {
         quantity: 2,
     },
     options: ISourceOptions = {
+        key: "shapeEmoji",
         name: "Shape Emoji",
         particles: {
             opacity: {

@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "fontawesome",
     name: "Font Awesome",
     interactivity: {
         events: {

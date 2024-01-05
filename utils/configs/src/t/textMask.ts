@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "textMask",
     name: "Text Mask",
     smooth: true,
     interactivity: {

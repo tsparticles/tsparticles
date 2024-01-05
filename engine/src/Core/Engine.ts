@@ -206,11 +206,10 @@ export class Engine {
     }
 
     addConfig(config: ISourceOptions): void {
-        const name = config.name ?? "default";
+        const key = config.key ?? config.name ?? "default";
 
-        this._configs.set(name, config);
-
-        this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name, config } });
+        this._configs.set(key, config);
+        this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
     }
 
     /**

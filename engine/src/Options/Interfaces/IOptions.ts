@@ -73,10 +73,18 @@ export interface IOptions {
     interactivity: IInteractivity;
 
     /**
+     * The key used to store the options in the {@link Engine.configs} collection
+     */
+    key?: string;
+
+    /**
      * Particles inserted at load time with a specific position
      */
     manualParticles: IManualParticle[];
 
+    /**
+     * The name of the config, if it needs to be shown to the user, used also if key is missing
+     */
     name?: string;
 
     /**

@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "delaySize",
     name: "Delay Size",
     background: {
         color: {

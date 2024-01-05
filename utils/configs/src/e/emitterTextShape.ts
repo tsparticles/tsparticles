@@ -29,6 +29,7 @@ const generateEmitter = (
 };
 
 const options: ISourceOptions = {
+    key: "emitterTextShape",
     name: "Emitter Text Shape",
     particles: {
         number: {

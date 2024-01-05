@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "collisionsBounce",
     name: "Collisions Bounce",
     particles: {
         number: {

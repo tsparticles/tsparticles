@@ -33,6 +33,7 @@ const generateEmitter = (
 };
 
 const options: ISourceOptions = {
+    key: "emitterImageShape",
     name: "Emitter Image Shape",
     particles: {
         number: {

@@ -156,6 +156,12 @@ export class SoundsInstance implements IContainerPlugin {
         }
     }
 
+    async mute(): Promise<void> {
+        if (!this._container.muted) {
+            await this.toggleMute();
+        }
+    }
+
     async start(): Promise<void> {
         const container = this._container,
             options = container.actualOptions,
@@ -247,6 +253,12 @@ export class SoundsInstance implements IContainerPlugin {
 
         this._updateMuteIcons();
         await this._updateMuteStatus();
+    }
+
+    async unmute(): Promise<void> {
+        if (this._container.muted) {
+            await this.toggleMute();
+        }
     }
 
     async volumeDown(): Promise<void> {

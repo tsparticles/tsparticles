@@ -1,6 +1,7 @@
 import { GradientType, type ISourceOptions, RotateDirection } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "gradients",
     name: "Gradients",
     particles: {
         number: {
