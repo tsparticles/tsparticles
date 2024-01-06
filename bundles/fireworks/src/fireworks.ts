@@ -306,7 +306,7 @@ export async function fireworks(
                 enable: options.sounds,
                 events: [
                     {
-                        event: EventType.particleDestroyed,
+                        event: EventType.particleRemoved,
                         filter: explodeSoundCheck,
                         audio: [
                             "https://particles.js.org/audio/explosion0.mp3",
