@@ -1,7 +1,7 @@
 # Particles Links
 
 | key         | option type    | example          | notes                                                                                                           |
-|-------------|----------------|------------------|-----------------------------------------------------------------------------------------------------------------|
+| ----------- | -------------- | ---------------- | --------------------------------------------------------------------------------------------------------------- |
 | `blink`     | `boolean`      | `true` / `false` | This option works with `color` with "random" value, if set to `true` the links will blink with random colors    |
 | `color`     | `color object` |                  | This `color` object is the same described here {@links IColor}                                                  |
 | `consent`   | `boolean`      | `true` / `false` | This option works with `color` with "random" value, if set to `true` the links will have a random common color  |
@@ -17,7 +17,7 @@
 ## Links Shadow
 
 | key      | option type                   | example          | notes                                                          |
-|----------|-------------------------------|------------------|----------------------------------------------------------------|
+| -------- | ----------------------------- | ---------------- | -------------------------------------------------------------- |
 | `blur`   | `number`                      | `4`              |                                                                |
 | `color`  | `string`<br /> `color object` |                  | This `color` object is the same described here {@links IColor} |
 | `enable` | `boolean`                     | `true` / `false` |                                                                |
@@ -25,7 +25,7 @@
 ## Links Triangles
 
 | key       | option type                   | example          | notes                                                          |
-|-----------|-------------------------------|------------------|----------------------------------------------------------------|
+| --------- | ----------------------------- | ---------------- | -------------------------------------------------------------- |
 | `color`   | `string`<br /> `color object` |                  | This `color` object is the same described here {@links IColor} |
 | `enable`  | `boolean`                     | `true` / `false` |                                                                |
 | `opacity` | `number`                      | `0...1`          |                                                                |

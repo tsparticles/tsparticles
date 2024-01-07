@@ -1,7 +1,7 @@
 # **_Options_**
 
 | property                 | option type          | example                                   | notes                                                                                                                                                                                                  |
-|--------------------------|----------------------|-------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ------------------------ | -------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `autoPlay`               | `boolean`            | `true` / `false`                          |                                                                                                                                                                                                        |
 | `background`             | `object`             |                                           | See Background options here {@link IBackground}                                                                                                                                                        |
 | `backgroundMask`         | `object`             |                                           | See Background Mask options here {@link IBackgroundMask}                                                                                                                                               |
@@ -24,7 +24,7 @@
 These options are not part of the slim bundle
 
 | property      | option type        | example | notes                                           |
-|---------------|--------------------|---------|-------------------------------------------------|
+| ------------- | ------------------ | ------- | ----------------------------------------------- |
 | `absorbers`   | `object` / `array` |         | See Absorbers options here {@link IAbsorber}    |
 | `emitters`    | `object` / `array` |         | See Emitter options here {@link IEmitter}       |
 | `polygonMask` | `object`           |         | See Particles options here {@link IPolygonMask} |
