@@ -524,18 +524,12 @@ importers:
       '@tsparticles/interaction-particles-links':
         specifier: ^3.0.3
         version: link:../../interactions/particles/links/dist
-      '@tsparticles/move-base':
-        specifier: ^3.0.3
-        version: link:../../move/base/dist
       '@tsparticles/move-parallax':
         specifier: ^3.0.3
         version: link:../../move/parallax/dist
       '@tsparticles/plugin-easing-quad':
         specifier: ^3.0.3
         version: link:../../plugins/easings/quad/dist
-      '@tsparticles/shape-circle':
-        specifier: ^3.0.3
-        version: link:../../shapes/circle/dist
       '@tsparticles/shape-emoji':
         specifier: ^3.0.3
         version: link:../../shapes/emoji/dist
@@ -554,24 +548,12 @@ importers:
       '@tsparticles/shape-star':
         specifier: ^3.0.3
         version: link:../../shapes/star/dist
-      '@tsparticles/updater-color':
-        specifier: ^3.0.3
-        version: link:../../updaters/color/dist
       '@tsparticles/updater-life':
         specifier: ^3.0.3
         version: link:../../updaters/life/dist
-      '@tsparticles/updater-opacity':
-        specifier: ^3.0.3
-        version: link:../../updaters/opacity/dist
-      '@tsparticles/updater-out-modes':
-        specifier: ^3.0.3
-        version: link:../../updaters/outModes/dist
       '@tsparticles/updater-rotate':
         specifier: ^3.0.3
         version: link:../../updaters/rotate/dist
-      '@tsparticles/updater-size':
-        specifier: ^3.0.3
-        version: link:../../updaters/size/dist
       '@tsparticles/updater-stroke-color':
         specifier: ^3.0.3
         version: link:../../updaters/strokeColor/dist
