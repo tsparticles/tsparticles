@@ -688,180 +688,184 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 ## Dependency Graph
 
 ```mermaid
-flowchart LR
+flowchart TD
+  subgraph b [Bundles]
+    bb[tsParticles Basic] --> bs[tsParticles Slim]
+    bb --> bc[tsParticles Confetti]
+    bb --> bfi[tsParticles Fireworks]
+    bp[Particles.js compatibility bundle]
+    bs --> bf[tsParticles]
+    bf --> ba[tsParticles All]
+  end
 
-subgraph b [Bundles]
-bb[tsParticles Basic] --> bs[tsParticles Slim]
-bp[Particles.js compatibility bundle]
-bs --> bf[tsParticles]
-bf --> ba[tsParticles All]
-end
+  e[tsParticles Engine] --> b
+  mb --> bb
+  sci --> bb
+  uc & uop & uou & usi --> bb
+  iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
+  ipa & ipc & ipl --> bs
+  mp --> bs
+  pleq --> bs
+  se & si & sl & spo & ssq & sst --> bs
+  ul & urot & ust --> bs
+  iet --> bf
+  pla & plem --> bf
+  plemsci & plemss --> bf
+  st --> bf
+  ud & urol & uti & utw & uw --> bf
+  bp --> ba
+  efb & eft --> ba
+  iepo --> ba
+  ipr --> ba
+  il --> ba
+  pac & pacn & papn & pap & pasn & pasvg --> ba
+  plcm & plp & plpoi --> ba
+  pleb & pleci & plecu & plee & plel & ple4 & ple5 & ples --> ba
+  plemsca & plemspa & plemspo --> ba
+  plexi & plexj & plexv --> ba
+  ug & uor --> ba
+  plem & plm --> bc
+  sca & se & sh & si & spo & ssq & sst --> bc
+  ul & urol & urot & uti & uw --> bc
+  eft --> bfi
+  plem & pls --> bfi
+  plemss --> bfi
+  ud & ul & urot & ust --> bfi
 
-e[tsParticles Engine] --> b
+  subgraph ef [Effects]
+    efb[Bubble]
+    eft[Trails]
+  end
 
-mb --> bb
-sci --> bb
-uc & uop & uou & usi --> bb
+  subgraph i[Interactions]
+    subgraph ie [Externals]
+      iea[Attract]
+      iebo[Bounce]
+      iebu[Bubble]
+      iec[Connect]
+      ieg[Grab]
+      iepa[Pause]
+      iepo[Pop]
+      iepu[Push]
+      ierem[Remove]
+      ierep[Repulse]
+      ies[Slow]
+      iet[Trail]
+    end
 
-iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
-ipa & ipc & ipl --> bs
-mp --> bs
-pleq --> bs
-se & si & sl & spo & ssq & sst --> bs
-ul & urot & ust --> bs
+    il[Light]
 
-iet --> bf
-pla & plem --> bf
-plemsci & plemss --> bf
-st --> bf
-ud & urol & uti & utw & uw --> bf
+    subgraph ip [Particles]
+      ipa[Attract]
+      ipc[Collisions]
+      ipl[Links]
+      ipr[Repulse]
+    end
 
-bp --> ba
-efb & eft --> ba
-iepo --> ba
-ipr --> ba
-il --> ba
-pac & pacn & papn & pap & pasn & pasvg --> ba
-plcm & plp & plpoi --> ba
-pleb & pleci & plecu & plee & plel & ple4 & ple5 & ples --> ba
-plemsca & plemspa & plemspo --> ba
-plexi & plexj & plexv --> ba
-ug & uor --> ba
+  end
 
-subgraph ef [Effects]
-efb[Bubble]
-eft[Trails]
-end
+  e --> i
 
-subgraph i[Interactions]
+  subgraph m [Movers]
+    mb[Base]
+    mp[Parallax]
+  end
 
-subgraph ie [Externals]
-iea[Attract]
-iebo[Bounce]
-iebu[Bubble]
-iec[Connect]
-ieg[Grab]
-iepa[Pause]
-iepo[Pop]
-iepu[Push]
-ierem[Remove]
-ierep[Repulse]
-ies[Slow]
-iet[Trail]
-end
+  e --> m
 
-il[Light]
+  subgraph pa [Paths]
+    pacn[Curl Noise]
+    pac[Curves]
+    papn[Perlin Noise]
+    pap[Polygon]
+    pasn[Simplex Noise]
+    pasvg[SVG]
+  end
 
-subgraph ip [Particles]
-ipa[Attract]
-ipc[Collisions]
-ipl[Links]
-ipr[Repulse]
-end
+  e --> pa
 
-end
+  subgraph pl [Plugins]
+    pla[Absorbers]
+    plcm[Canvas Mask]
+    plem[Emitters]
+    plh[HSV Color]
+    pli[Infection]
+    plm[Motion]
+    plp[Polygon Mask]
+    plpoi[Poisson Disc]
+    pls[Sounds]
 
-e --> i
+    subgraph plea [Easings]
+      pleb[Back]
+      pleci[Circ]
+      plecu[Cubic]
+      plee[Expo]
+      plel[Linear]
+      pleq[Quad]
+      ple4[Quart]
+      ple5[Quint]
+      ples[Sine]
+    end
 
-subgraph m [Movers]
-mb[Base]
-mp[Parallax]
-end
+    subgraph plems [Emitter Shapes]
+      plemsca[Canvas]
+      plemsci[Circle]
+      plemspa[Path]
+      plemspo[Polygon]
+      plemss[Square]
+    end
 
-e --> m
+    subgraph plex [Exports]
+      plexi[Image]
+      plexj[JSON]
+      plexv[Video]
+    end
 
-subgraph pa [Paths]
-pacn[Curl Noise]
-pac[Curves]
-papn[Perlin Noise]
-pap[Polygon]
-pasn[Simplex Noise]
-pasvg[SVG]
-end
+  end
 
-e --> pa
+  e --> pl
 
-subgraph pl [Plugins]
-pla[Absorbers]
-plcm[Canvas Mask]
-plem[Emitters]
-plh[HSV Color]
-pli[Infection]
-plm[Motion]
-plp[Polygon Mask]
-plpoi[Poisson Disc]
-pls[Sounds]
+  subgraph s [Shapes]
+    sa[Arrow]
+    sb[Bubble]
+    sca[Cards]
+    sci[Circle]
+    scog[Cog]
+    se[Emoji]
+    sh[Heart]
+    si[Image]
+    sl[Line]
+    smt[Multiline Text]
+    spa[Path]
+    spo[Polygon]
+    srp[Rounded Polygon]
+    srr[Rounded Rectangle]
+    ssp[Spiral]
+    ssq[Square]
+    sst[Star]
+    st[Text]
+  end
 
-subgraph plea [Easings]
-pleb[Back]
-pleci[Circ]
-plecu[Cubic]
-plee[Expo]
-plel[Linear]
-pleq[Quad]
-ple4[Quart]
-ple5[Quint]
-ples[Sine]
-end
+  e --> s
 
-subgraph plems [Emitter Shapes]
-plemsca[Canvas]
-plemsci[Circle]
-plemspa[Path]
-plemspo[Polygon]
-plemss[Square]
-end
+  subgraph u [Updaters]
+    uc[Color]
+    ud[Destroy]
+    ug[Gradient]
+    ul[Life]
+    uop[Opacity]
+    uor[Orbit]
+    uou[Out Modes]
+    urol[Roll]
+    urot[Rotate]
+    usi[Size]
+    ust[Stroke Color]
+    uti[Tilt]
+    utw[Twinkle]
+    uw[Wobble]
+  end
 
-subgraph plex [Exports]
-plexi[Image]
-plexj[JSON]
-plexv[Video]
-end
-
-end
-
-e --> pl
-
-subgraph s [Shapes]
-sa[Arrow]
-sb[Bubble]
-sci[Circle]
-scog[Cog]
-se[Emoji]
-sh[Heart]
-si[Image]
-sl[Line]
-smt[Multiline Text]
-spa[Path]
-spo[Polygon]
-srp[Rounded Polygon]
-srr[Rounded Rectangle]
-ssp[Spiral]
-ssq[Square]
-sst[Star]
-st[Text]
-end
-
-e --> s
-
-subgraph u [Updaters]
-uc[Color]
-ud[Destroy]
-ug[Gradient]
-ul[Life]
-uop[Opacity]
-uor[Orbit]
-uou[Out Modes]
-urol[Roll]
-urot[Rotate]
-usi[Size]
-ust[Stroke Color]
-uti[Tilt]
-utw[Twinkle]
-uw[Wobble]
-end
-
-e --> u
+  e --> u
 ```
 
 ---

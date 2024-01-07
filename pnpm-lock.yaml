@@ -410,9 +410,6 @@ importers:
       '@tsparticles/plugin-sounds':
         specifier: ^3.0.3
         version: link:../../plugins/sounds/dist
-      '@tsparticles/shape-line':
-        specifier: ^3.0.3
-        version: link:../../shapes/line/dist
       '@tsparticles/updater-destroy':
         specifier: ^3.0.3
         version: link:../../updaters/destroy/dist
@@ -422,9 +419,6 @@ importers:
       '@tsparticles/updater-rotate':
         specifier: ^3.0.3
         version: link:../../updaters/rotate/dist
-      '@tsparticles/updater-stroke-color':
-        specifier: ^3.0.3
-        version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   bundles/full:

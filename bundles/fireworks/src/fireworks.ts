@@ -24,10 +24,8 @@ import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
 import { loadLifeUpdater } from "@tsparticles/updater-life";
-import { loadLineShape } from "@tsparticles/shape-line";
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
-import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
 
 const minSplitCount = 2;
@@ -98,11 +96,9 @@ async function initPlugins(): Promise<void> {
     await loadEmittersPlugin(tsParticles, false);
     await loadEmittersShapeSquare(tsParticles, false);
     await loadSoundsPlugin(tsParticles, false);
-    await loadLineShape(tsParticles, false);
     await loadRotateUpdater(tsParticles, false);
     await loadDestroyUpdater(tsParticles, false);
     await loadLifeUpdater(tsParticles, false);
-    await loadStrokeColorUpdater(tsParticles, false);
     await loadTrailEffect(tsParticles, false);
     await loadBasic(tsParticles, false);
 

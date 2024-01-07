@@ -105,11 +105,9 @@
     "@tsparticles/plugin-emitters": "^3.0.3",
     "@tsparticles/plugin-emitters-shape-square": "^3.0.3",
     "@tsparticles/plugin-sounds": "^3.0.3",
-    "@tsparticles/shape-line": "^3.0.3",
     "@tsparticles/updater-destroy": "^3.0.3",
     "@tsparticles/updater-life": "^3.0.3",
-    "@tsparticles/updater-rotate": "^3.0.3",
-    "@tsparticles/updater-stroke-color": "^3.0.3"
+    "@tsparticles/updater-rotate": "^3.0.3"
   },
   "publishConfig": {
     "access": "public"
