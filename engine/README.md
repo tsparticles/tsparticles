@@ -692,27 +692,48 @@ flowchart LR
 
 subgraph b [Bundles]
 bb[tsParticles Basic] --> bs[tsParticles Slim]
-bp[Particles.js compatibility bundle] --> bs
+bp[Particles.js compatibility bundle]
 bs --> bf[tsParticles]
+bf --> ba[tsParticles All]
 end
 
 e[tsParticles Engine] --> b
 
+mb --> bb
+sci --> bb
+uc & uop & uou & usi --> bb
+
 iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
 ipa & ipc & ipl --> bs
-mb --> bb
 mp --> bs
 pleq --> bs
-sci --> bb
-si & sl & spo & ssq & sst & st --> bs
-uc & uop & uou & usi --> bb
+se & si & sl & spo & ssq & sst --> bs
 ul & urot & ust --> bs
 
 iet --> bf
 pla & plem --> bf
-urol & uti & utw & uw --> bf
+plemsci & plemss --> bf
+st --> bf
+ud & urol & uti & utw & uw --> bf
 
-subgraph i [Interactions]
+bp --> ba
+efb & eft --> ba
+iepo --> ba
+ipr --> ba
+il --> ba
+pac & pacn & papn & pap & pasn & pasvg --> ba
+plcm & plp & plpoi --> ba
+pleb & pleci & plecu & plee & plel & ple4 & ple5 & ples --> ba
+plemsca & plemspa & plemspo --> ba
+plexi & plexj & plexv --> ba
+ug & uor --> ba
+
+subgraph ef [Effects]
+efb[Bubble]
+eft[Trails]
+end
+
+subgraph i[Interactions]
 
 subgraph ie [Externals]
 iea[Attract]
@@ -721,6 +742,7 @@ iebu[Bubble]
 iec[Connect]
 ieg[Grab]
 iepa[Pause]
+iepo[Pop]
 iepu[Push]
 ierem[Remove]
 ierep[Repulse]
@@ -739,9 +761,6 @@ end
 
 end
 
-i --> ie
-i --> ip
-
 e --> i
 
 subgraph m [Movers]
@@ -752,6 +771,7 @@ end
 e --> m
 
 subgraph pa [Paths]
+pacn[Curl Noise]
 pac[Curves]
 papn[Perlin Noise]
 pap[Polygon]
@@ -769,6 +789,7 @@ plh[HSV Color]
 pli[Infection]
 plm[Motion]
 plp[Polygon Mask]
+plpoi[Poisson Disc]
 pls[Sounds]
 
 subgraph plea [Easings]
@@ -776,10 +797,19 @@ pleb[Back]
 pleci[Circ]
 plecu[Cubic]
 plee[Expo]
+plel[Linear]
 pleq[Quad]
 ple4[Quart]
 ple5[Quint]
 ples[Sine]
+end
+
+subgraph plems [Emitter Shapes]
+plemsca[Canvas]
+plemsci[Circle]
+plemspa[Path]
+plemspo[Polygon]
+plemss[Square]
 end
 
 subgraph plex [Exports]
@@ -790,8 +820,6 @@ end
 
 end
 
-pl --> plea
-
 e --> pl
 
 subgraph s [Shapes]
@@ -799,6 +827,7 @@ sa[Arrow]
 sb[Bubble]
 sci[Circle]
 scog[Cog]
+se[Emoji]
 sh[Heart]
 si[Image]
 sl[Line]
