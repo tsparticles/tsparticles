@@ -1,8 +1,8 @@
 # Particles Rotate
 
 | key                | option type        | example                    | notes                                                                                                                 |
-| ------------------ | ------------------ | -------------------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
-| `backColor`        | `color object`     |                            | This `color` object is the same described {@links IColor                                                              | here} |
+|--------------------|--------------------|----------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| `backColor`        | `color object`     |                            | This `color` object is the same described here {@links IColor}                                                        |
 | `darken.enable`    | `boolean`          | `true` / `false`           |                                                                                                                       |
 | `darken.value`     | `number`           | `5`                        | The percent value subtracted to the particle fill color luminosity                                                    |
 | `enable`           | `boolean`          | `true` / `false`           |                                                                                                                       |

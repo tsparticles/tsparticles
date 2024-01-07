@@ -1,8 +1,8 @@
 # Absorbers
 
 | key            | option type         | example                       | notes                                                                                          |
-| -------------- | ------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------- | ----- |
-| `color`        | `color object`      |                               | This `color` object is the same described {@link IColor                                        | here} |
+|----------------|---------------------|-------------------------------|------------------------------------------------------------------------------------------------|
+| `color`        | `color object`      |                               | This `color` object is the same described here {@link IColor}                                  |
 | `opacity`      | `number`            | `0...1`                       |                                                                                                |
 | `position`     | `object`            | `{ "x": 50, "y": 50 }`        | The position specified is not absolute, it will be used as a percent value of the canvas size. |
 | `size.density` | `number`            | `5`                           | The higher the value, the more the particles are attracted                                     |

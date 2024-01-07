@@ -1,9 +1,9 @@
 # Particles Links
 
 | key         | option type    | example          | notes                                                                                                           |
-| ----------- | -------------- | ---------------- | --------------------------------------------------------------------------------------------------------------- | ----- |
+|-------------|----------------|------------------|-----------------------------------------------------------------------------------------------------------------|
 | `blink`     | `boolean`      | `true` / `false` | This option works with `color` with "random" value, if set to `true` the links will blink with random colors    |
-| `color`     | `color object` |                  | This `color` object is the same described {@links IColor                                                        | here} |
+| `color`     | `color object` |                  | This `color` object is the same described here {@links IColor}                                                  |
 | `consent`   | `boolean`      | `true` / `false` | This option works with `color` with "random" value, if set to `true` the links will have a random common color  |
 | `distance`  | `number`       | `150`            |                                                                                                                 |
 | `enable`    | `boolean`      | `true` / `false` |                                                                                                                 |
@@ -16,16 +16,16 @@
 
 ## Links Shadow
 
-| key      | option type                   | example          | notes                                                    |
-| -------- | ----------------------------- | ---------------- | -------------------------------------------------------- | ----- |
-| `blur`   | `number`                      | `4`              |                                                          |
-| `color`  | `string`<br /> `color object` |                  | This `color` object is the same described {@links IColor | here} |
-| `enable` | `boolean`                     | `true` / `false` |                                                          |
+| key      | option type                   | example          | notes                                                          |
+|----------|-------------------------------|------------------|----------------------------------------------------------------|
+| `blur`   | `number`                      | `4`              |                                                                |
+| `color`  | `string`<br /> `color object` |                  | This `color` object is the same described here {@links IColor} |
+| `enable` | `boolean`                     | `true` / `false` |                                                                |
 
 ## Links Triangles
 
-| key       | option type                   | example          | notes                                                    |
-| --------- | ----------------------------- | ---------------- | -------------------------------------------------------- | ----- |
-| `color`   | `string`<br /> `color object` |                  | This `color` object is the same described {@links IColor | here} |
-| `enable`  | `boolean`                     | `true` / `false` |                                                          |
-| `opacity` | `number`                      | `0...1`          |                                                          |
+| key       | option type                   | example          | notes                                                          |
+|-----------|-------------------------------|------------------|----------------------------------------------------------------|
+| `color`   | `string`<br /> `color object` |                  | This `color` object is the same described here {@links IColor} |
+| `enable`  | `boolean`                     | `true` / `false` |                                                                |
+| `opacity` | `number`                      | `0...1`          |                                                                |
