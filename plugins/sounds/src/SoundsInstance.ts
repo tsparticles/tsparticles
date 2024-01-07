@@ -161,7 +161,7 @@ export class SoundsInstance implements IContainerPlugin {
                 continue;
             }
 
-            await executeOnSingleOrMultiple(event.audio, async (audio) => {
+            const promises = executeOnSingleOrMultiple(event.audio, async (audio) => {
                 const response = await fetch(audio.source);
 
                 if (!response.ok) {
@@ -174,6 +174,12 @@ export class SoundsInstance implements IContainerPlugin {
 
                 this._audioMap.set(audio.source, audioBuffer);
             });
+
+            if (promises instanceof Promise) {
+                await promises;
+            } else {
+                await Promise.allSettled(promises);
+            }
         }
     }
 
