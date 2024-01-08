@@ -689,183 +689,270 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 
 ```mermaid
 flowchart TD
-  subgraph b [Bundles]
-    bb[tsParticles Basic] --> bs[tsParticles Slim]
-    bb --> bc[tsParticles Confetti]
-    bb --> bfi[tsParticles Fireworks]
-    bp[Particles.js compatibility bundle]
-    bs --> bf[tsParticles]
-    bf --> ba[tsParticles All]
+
+  subgraph core [Core]
+    engine[tsParticles Engine]
+    perlin-noise[Perlin Noise Lib]
+    simplex-noise[Simplex Noise Lib]
+    configs[tsParticles Configs]
   end
 
-  e[tsParticles Engine] --> b
-  mb --> bb
-  sci --> bb
-  uc & uop & uou & usi --> bb
-  iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
-  ipa & ipc & ipl --> bs
-  mp --> bs
-  pleq --> bs
-  se & si & sl & spo & ssq & sst --> bs
-  ul & urot & ust --> bs
-  iet --> bf
-  pla & plem --> bf
-  plemsci & plemss --> bf
-  st --> bf
-  ud & urol & uti & utw & uw --> bf
-  bp --> ba
-  efb & eft --> ba
-  iepo --> ba
-  ipr --> ba
-  il --> ba
-  pac & pacn & papn & pap & pasn & pasvg --> ba
-  plcm & plp & plpoi --> ba
-  pleb & pleci & plecu & plee & plel & ple4 & ple5 & ples --> ba
-  plemsca & plemspa & plemspo --> ba
-  plexi & plexj & plexv --> ba
-  ug & uor --> ba
-  plem & plm --> bc
-  sca & se & sh & si & spo & ssq & sst --> bc
-  ul & urol & urot & uti & uw --> bc
-  eft --> bfi
-  plem & pls --> bfi
-  plemss --> bfi
-  ud & ul & urot & ust --> bfi
+  subgraph bundle-basic [tsParticles Basic]
 
-  subgraph ef [Effects]
-    efb[Bubble]
-    eft[Trails]
-  end
-
-  subgraph i[Interactions]
-    subgraph ie [Externals]
-      iea[Attract]
-      iebo[Bounce]
-      iebu[Bubble]
-      iec[Connect]
-      ieg[Grab]
-      iepa[Pause]
-      iepo[Pop]
-      iepu[Push]
-      ierem[Remove]
-      ierep[Repulse]
-      ies[Slow]
-      iet[Trail]
+    subgraph basic-movers [Movers]
+      move-base[Base]
     end
 
-    il[Light]
+    subgraph basic-shapes [Shapes]
+      shape-circle[Circle]
+    end
 
-    subgraph ip [Particles]
-      ipa[Attract]
-      ipc[Collisions]
-      ipl[Links]
-      ipr[Repulse]
+    subgraph basic-updates [Updaters]
+      updater-color[Color]
+      updater-opacity[Opacity]
+      updater-out-modes[Out Modes]
+      updater-size[Size]
     end
 
   end
 
-  e --> i
+  engine --> bundle-basic
 
-  subgraph m [Movers]
-    mb[Base]
-    mp[Parallax]
-  end
+  subgraph bundle-confetti [tsParticles Confetti]
 
-  e --> m
-
-  subgraph pa [Paths]
-    pacn[Curl Noise]
-    pac[Curves]
-    papn[Perlin Noise]
-    pap[Polygon]
-    pasn[Simplex Noise]
-    pasvg[SVG]
-  end
-
-  e --> pa
-
-  subgraph pl [Plugins]
-    pla[Absorbers]
-    plcm[Canvas Mask]
-    plem[Emitters]
-    plh[HSV Color]
-    pli[Infection]
-    plm[Motion]
-    plp[Polygon Mask]
-    plpoi[Poisson Disc]
-    pls[Sounds]
-
-    subgraph plea [Easings]
-      pleb[Back]
-      pleci[Circ]
-      plecu[Cubic]
-      plee[Expo]
-      plel[Linear]
-      pleq[Quad]
-      ple4[Quart]
-      ple5[Quint]
-      ples[Sine]
+    subgraph confetti-plugins [Plugins]
+      plugin-emitters
+      plugin-motion
     end
 
-    subgraph plems [Emitter Shapes]
-      plemsca[Canvas]
-      plemsci[Circle]
-      plemspa[Path]
-      plemspo[Polygon]
-      plemss[Square]
+    subgraph confetti-shapes [Shapes]
+      shape-cards
+      shape-emoji
+      shape-heart
+      shape-image
+      shape-polygon
+      shape-square
+      shape-star
     end
 
-    subgraph plex [Exports]
-      plexi[Image]
-      plexj[JSON]
-      plexv[Video]
+    subgraph confetti-updaters [Updaters]
+      updater-life
+      updater-roll
+      updater-rotate
+      updater-tilt
+      updater-wobble
     end
 
   end
 
-  e --> pl
+  bundle-basic --> bundle-confetti
 
-  subgraph s [Shapes]
-    sa[Arrow]
-    sb[Bubble]
-    sca[Cards]
-    sci[Circle]
-    scog[Cog]
-    se[Emoji]
-    sh[Heart]
-    si[Image]
-    sl[Line]
-    smt[Multiline Text]
-    spa[Path]
-    spo[Polygon]
-    srp[Rounded Polygon]
-    srr[Rounded Rectangle]
-    ssp[Spiral]
-    ssq[Square]
-    sst[Star]
-    st[Text]
+  subgraph bundle-slim [tsParticles Slim]
+
+    subgraph slim-interactions [Interactions]
+
+      subgraph slim-interactions-external [Externals]
+        interaction-external-attract[Attract]
+        interaction-external-bounce[Bounce]
+        interaction-external-bubble[Bubble]
+        interaction-external-connect[Connect]
+        interaction-external-grab[Grab]
+        interaction-external-pause[Pause]
+        interaction-external-push[Push]
+        interaction-external-remove[Remove]
+        interaction-external-repulse[Repulse]
+        interaction-external-slow[Slow]
+      end
+
+      subgraph slim-interactions-particles [Particles]
+        interaction-particles-attract[Attract]
+        interaction-particles-collisions[Collisions]
+        interaction-particles-links[Links]
+      end
+
+    end
+
+    subgraph slim-movers [Movers]
+      move-parallax[Parallax]
+    end
+
+    subgraph slim-plugins [Plugins]
+
+      subgraph slim-plugins-easings [Easings]
+        plugin-easing-quad[Quad]
+      end
+
+    end
+
+    subgraph slim-shapes [Shapes]
+      shape-emoji[Emoji]
+      shape-image[Image]
+      shape-line[Line]
+      shape-polygon[Polygon]
+      shape-square[Square]
+      shape-star[Star]
+    end
+
+    subgraph slim-updaters [Updaters]
+      updater-life[Life]
+      updater-rotate[Rotate]
+      updater-stroke-color[Stroke Color]
+    end
+
   end
 
-  e --> s
+  bundle-basic --> bundle-slim
 
-  subgraph u [Updaters]
-    uc[Color]
-    ud[Destroy]
-    ug[Gradient]
-    ul[Life]
-    uop[Opacity]
-    uor[Orbit]
-    uou[Out Modes]
-    urol[Roll]
-    urot[Rotate]
-    usi[Size]
-    ust[Stroke Color]
-    uti[Tilt]
-    utw[Twinkle]
-    uw[Wobble]
+  subgraph bundle-fireworks [tsParticles Fireworks]
+
+    subgraph fireworks-effects [Effects]
+      effect-trail
+    end
+
+    subgraph fireworks-plugins [Plugins]
+      plugin-emitters
+
+      subgraph fireworks-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-square
+      end
+
+      plugin-sounds
+    end
+
+    subgraph fireworks-updaters [Updaters]
+      updater-destroy
+      updater-life
+      updater-rotate
+    end
+
   end
 
-  e --> u
+  bundle-basic --> bundle-fireworks
+
+  subgraph bundle-full [tsParticles]
+
+    subgraph full-interactions [Interactions]
+
+      subgraph full-interactions-external [Externals]
+        interaction-external-trail[Trail]
+      end
+
+    end
+
+    subgraph full-plugins [Plugins]
+      plugin-absorbers[Absorbers]
+      plugin-emitters[Emitters]
+
+      subgraph full-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-circle[Circle]
+        plugin-emitters-shape-square[Square]
+      end
+
+    end
+
+    subgraph full-shapes [Shapes]
+      shape-text[Text]
+    end
+
+    subgraph full-updaters [Updaters]
+      updater-destroy[Destroy]
+      updater-roll[Roll]
+      updater-tilt[Tilt]
+      updater-twinkle[Twinkle]
+      updater-wobble[Wobble]
+    end
+
+  end
+
+  bundle-slim --> bundle-full
+
+  subgraph bundle-all [tsParticles All]
+
+    bundle-pjs[tsParticles Particles.js Compatibility]
+
+    subgraph all-effects [Effects]
+      effect-bubble[Bubble]
+      effect-trail[Trail]
+    end
+
+    subgraph all-interactions [Interactions]
+      subgraph all-interactions-external [External]
+        interaction-external-pop[Pop]
+      end
+
+      interaction-light[Light]
+
+      subgraph all-interactions-particles [Particles]
+        interaction-particles-repulse[Repulse]
+      end
+    end
+
+    subgraph all-paths [Paths]
+      path-curl-noise[Curl Noise]
+      path-curves[Curves]
+      path-perlin-noise[Perlin Noise]
+      path-polygon[Polygon]
+      path-simplex-noise[Simplex Noise]
+      path-svg[SVG]
+    end
+
+    subgraph all-plugins [Plugins]
+      plugin-canvas-mask[Canvas Mask]
+
+      subgraph all-plugins-easings [Easings]
+        plugin-easing-back[Back]
+        plugin-easing-circ[Circ]
+        plugin-easing-cubic[Cubic]
+        plugin-easing-expo[Expo]
+        plugin-easing-linear[Linear]
+        plugin-easing-quart[Quart]
+        plugin-easing-quint[Quint]
+        plugin-easing-sine[Sine]
+      end
+
+      subgraph all-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-canvas[Canvas]
+        plugin-emitters-shape-path[Path]
+        plugin-emitters-shape-polygon[Polygon]
+      end
+
+      subgraph all-plugins-exports [Exports]
+        plugin-export-image[Image]
+        plugin-export-json[JSON]
+        plugin-export-video[Video]
+      end
+
+      plugin-hsv-color[HSV Color]
+      plugin-infection[Infection]
+      plugin-motion[Motion]
+      plugin-poisson-disc[Poisson Disc]
+      plugin-polygon-mask[Polygon Mask]
+      plugin-sounds[Sounds]
+    end
+
+    subgraph all-shapes [Shapes]
+      shape-arrow[Arrow]
+      shape-cards[Cards]
+      shape-cog[Cog]
+      shape-heart[Heart]
+      shape-path[Path]
+      shape-rounded-polygon[Rounded Polygon]
+      shape-rounded-rect[Rounded Rect]
+      shape-spiral[Spiral]
+    end
+
+    subgraph all-updaters [Updaters]
+      updater-gradient[Gradient]
+      updater-orbit[Orbit]
+    end
+
+    simplex-noise --> path-curl-noise
+    perlin-noise --> path-perlin-noise
+    simplex-noise --> path-simplex-noise
+
+  end
+
+  bundle-full --> bundle-all
 ```
 
 ---
