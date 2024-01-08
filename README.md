@@ -30,78 +30,78 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 
 ## Table of Contents
 
--   [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
-    -   [Table of Contents](#table-of-contents)
-    -   [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
-    -   [**_Library installation_**](#library-installation)
-        -   [**_Hosting / CDN_**](#hosting--cdn)
-            -   [jsDelivr](#jsdelivr)
-            -   [cdnjs](#cdnjs)
-            -   [unpkg](#unpkg)
-        -   [**_npm_**](#npm)
-        -   [**_yarn_**](#yarn)
-        -   [**_pnpm_**](#pnpm)
-            -   [Import and require](#import-and-require)
-        -   [**_Usage_**](#usage)
-    -   [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
-        -   [Angular](#angular)
-            -   [`@tsparticles/angular`](#@tsparticles/angular)
-        -   [Astro](#astro)
-            -   [`astro-particles`](#astro-particles)
-        -   [Ember.js](#emberjs)
-            -   [`ember-tsparticles`](#ember-tsparticles)
-        -   [Inferno](#inferno)
-            -   [`inferno-particles`](#inferno-particles)
-        -   [jQuery](#jquery)
-            -   [`jquery-particles`](#jquery-particles)
-        -   [Preact](#preact)
-            -   [`preact-particles`](#preact-particles)
-        -   [ReactJS](#reactjs)
-            -   [`@tsparticles/react`](#tsparticlesreact)
-        -   [RiotJS](#riotjs)
-            -   [`riot-particles`](#riot-particles)
-        -   [SolidJS](#solidjs)
-            -   [`solid-particles`](#solid-particles)
-        -   [Svelte](#svelte)
-            -   [`@tsparticles/svelte`](#@tsparticles/svelte)
-        -   [VueJS 2.x](#vuejs-2x)
-            -   [`@tsparticles/vue2`](#tsparticlesvue2)
-        -   [VueJS 3.x](#vuejs-3x)
-            -   [`@tsparticles/vue3`](#tsparticlesvue3)
-        -   [Web Components](#web-components)
-            -   [`web-particles`](#web-particles)
-        -   [WordPress](#wordpress)
-            -   [`@tsparticles/wordpress`](#@tsparticles/wordpress)
-        -   [Elementor](#elementor)
-    -   [Presets](#presets)
-        -   [Big Circles](#big-circles)
-        -   [Bubbles](#bubbles)
-        -   [Confetti](#confetti)
-        -   [Fire](#fire)
-        -   [Firefly](#firefly)
-        -   [Fireworks](#fireworks)
-        -   [Fountain](#fountain)
-        -   [Links](#links)
-        -   [Sea Anemone](#sea-anemone)
-        -   [Snow](#snow)
-        -   [Stars](#stars)
-        -   [Triangles](#triangles)
-    -   [Templates and Resources](#templates-and-resources)
-    -   [**_Demo / Generator_**](#demo--generator)
-    -   [**_Video Tutorials_**](#video-tutorials)
-        -   [Characters as particles](#characters-as-particles)
-        -   [Polygon mask](#polygon-mask)
-        -   [Animated stars](#animated-stars)
-        -   [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
-        -   [Snow particles](#snow-particles)
-        -   [Background Mask particles](#background-mask-particles)
-    -   [**_Options_**](#options)
-    -   [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
-    -   [Migrating from Particles.js](#migrating-from-particlesjs)
-    -   [Plugins/Customizations](#pluginscustomizations)
-    -   [Dependency Graph](#dependency-graph)
-    -   [Sponsors](#sponsors)
-        -   [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
+- [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
+    - [Table of Contents](#table-of-contents)
+    - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+    - [**_Library installation_**](#library-installation)
+        - [**_Hosting / CDN_**](#hosting--cdn)
+            - [jsDelivr](#jsdelivr)
+            - [cdnjs](#cdnjs)
+            - [unpkg](#unpkg)
+        - [**_npm_**](#npm)
+        - [**_yarn_**](#yarn)
+        - [**_pnpm_**](#pnpm)
+            - [Import and require](#import-and-require)
+        - [**_Usage_**](#usage)
+    - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+        - [Angular](#angular)
+            - [`@tsparticles/angular`](#@tsparticles/angular)
+        - [Astro](#astro)
+            - [`astro-particles`](#astro-particles)
+        - [Ember.js](#emberjs)
+            - [`ember-tsparticles`](#ember-tsparticles)
+        - [Inferno](#inferno)
+            - [`inferno-particles`](#inferno-particles)
+        - [jQuery](#jquery)
+            - [`jquery-particles`](#jquery-particles)
+        - [Preact](#preact)
+            - [`preact-particles`](#preact-particles)
+        - [ReactJS](#reactjs)
+            - [`@tsparticles/react`](#tsparticlesreact)
+        - [RiotJS](#riotjs)
+            - [`riot-particles`](#riot-particles)
+        - [SolidJS](#solidjs)
+            - [`solid-particles`](#solid-particles)
+        - [Svelte](#svelte)
+            - [`@tsparticles/svelte`](#@tsparticles/svelte)
+        - [VueJS 2.x](#vuejs-2x)
+            - [`@tsparticles/vue2`](#tsparticlesvue2)
+        - [VueJS 3.x](#vuejs-3x)
+            - [`@tsparticles/vue3`](#tsparticlesvue3)
+        - [Web Components](#web-components)
+            - [`web-particles`](#web-particles)
+        - [WordPress](#wordpress)
+            - [`@tsparticles/wordpress`](#@tsparticles/wordpress)
+        - [Elementor](#elementor)
+    - [Presets](#presets)
+        - [Big Circles](#big-circles)
+        - [Bubbles](#bubbles)
+        - [Confetti](#confetti)
+        - [Fire](#fire)
+        - [Firefly](#firefly)
+        - [Fireworks](#fireworks)
+        - [Fountain](#fountain)
+        - [Links](#links)
+        - [Sea Anemone](#sea-anemone)
+        - [Snow](#snow)
+        - [Stars](#stars)
+        - [Triangles](#triangles)
+    - [Templates and Resources](#templates-and-resources)
+    - [**_Demo / Generator_**](#demo--generator)
+    - [**_Video Tutorials_**](#video-tutorials)
+        - [Characters as particles](#characters-as-particles)
+        - [Polygon mask](#polygon-mask)
+        - [Animated stars](#animated-stars)
+        - [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+        - [Snow particles](#snow-particles)
+        - [Background Mask particles](#background-mask-particles)
+    - [**_Options_**](#options)
+    - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+    - [Migrating from Particles.js](#migrating-from-particlesjs)
+    - [Plugins/Customizations](#pluginscustomizations)
+    - [Dependency Graph](#dependency-graph)
+    - [Sponsors](#sponsors)
+        - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -235,52 +235,52 @@ Load tsParticles and configure the particles:
 /* tsParticles.load(@params); */
 
 tsParticles
-    .load({
-        id: "tsparticles",
-        url: "presets/default.json",
-    })
-    .then(container => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch(error => {
-        console.error(error);
-    });
+  .load({
+    id: "tsparticles",
+    url: "presets/default.json",
+  })
+  .then((container) => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch((error) => {
+    console.error(error);
+  });
 
 //or
 
 tsParticles.load({
-    id: "tsparticles",
-    options: {
-        /* options here */
-    },
+  id: "tsparticles",
+  options: {
+    /* options here */
+  },
 });
 
 //or
 
 tsParticles.load({
-    id: "tsparticles",
-    options: [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        },
-    ],
+  id: "tsparticles",
+  options: [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
 });
 //random object
 
 tsParticles.load({
-    id: "tsparticles",
-    options: [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        },
-    ],
-    index: 1,
+  id: "tsparticles",
+  options: [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  index: 1,
 }); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -291,7 +291,7 @@ tsParticles.load({
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* custom on click handler */
+  /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations
@@ -688,151 +688,271 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 ## Dependency Graph
 
 ```mermaid
-flowchart LR
+flowchart TD
 
-subgraph b [Bundles]
-bb[tsParticles Basic] --> bs[tsParticles Slim]
-bp[Particles.js compatibility bundle] --> bs
-bs --> bf[tsParticles]
-end
+  subgraph core [Core]
+    engine[tsParticles Engine]
+    perlin-noise[Perlin Noise Lib]
+    simplex-noise[Simplex Noise Lib]
+    configs[tsParticles Configs]
+  end
 
-e[tsParticles Engine] --> b
+  subgraph bundle-basic [tsParticles Basic]
 
-iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
-ipa & ipc & ipl --> bs
-mb --> bb
-mp --> bs
-pleq --> bs
-sci --> bb
-si & sl & spo & ssq & sst & st --> bs
-uc & uop & uou & usi --> bb
-ul & urot & ust --> bs
+    subgraph basic-movers [Movers]
+      move-base[Base]
+    end
 
-iet --> bf
-pla & plem --> bf
-urol & uti & utw & uw --> bf
+    subgraph basic-shapes [Shapes]
+      shape-circle[Circle]
+    end
 
-subgraph i [Interactions]
+    subgraph basic-updates [Updaters]
+      updater-color[Color]
+      updater-opacity[Opacity]
+      updater-out-modes[Out Modes]
+      updater-size[Size]
+    end
 
-subgraph ie [Externals]
-iea[Attract]
-iebo[Bounce]
-iebu[Bubble]
-iec[Connect]
-ieg[Grab]
-iepa[Pause]
-iepu[Push]
-ierem[Remove]
-ierep[Repulse]
-ies[Slow]
-iet[Trail]
-end
+  end
 
-il[Light]
+  engine --> bundle-basic
 
-subgraph ip [Particles]
-ipa[Attract]
-ipc[Collisions]
-ipl[Links]
-ipr[Repulse]
-end
+  subgraph bundle-confetti [tsParticles Confetti]
 
-end
+    subgraph confetti-plugins [Plugins]
+      plugin-emitters
+      plugin-motion
+    end
 
-i --> ie
-i --> ip
+    subgraph confetti-shapes [Shapes]
+      shape-cards
+      shape-emoji
+      shape-heart
+      shape-image
+      shape-polygon
+      shape-square
+      shape-star
+    end
 
-e --> i
+    subgraph confetti-updaters [Updaters]
+      updater-life
+      updater-roll
+      updater-rotate
+      updater-tilt
+      updater-wobble
+    end
 
-subgraph m [Movers]
-mb[Base]
-mp[Parallax]
-end
+  end
 
-e --> m
+  bundle-basic --> bundle-confetti
 
-subgraph pa [Paths]
-pac[Curves]
-papn[Perlin Noise]
-pap[Polygon]
-pasn[Simplex Noise]
-pasvg[SVG]
-end
+  subgraph bundle-slim [tsParticles Slim]
 
-e --> pa
+    subgraph slim-interactions [Interactions]
 
-subgraph pl [Plugins]
-pla[Absorbers]
-plcm[Canvas Mask]
-plem[Emitters]
-plh[HSV Color]
-pli[Infection]
-plm[Motion]
-plp[Polygon Mask]
-pls[Sounds]
+      subgraph slim-interactions-external [Externals]
+        interaction-external-attract[Attract]
+        interaction-external-bounce[Bounce]
+        interaction-external-bubble[Bubble]
+        interaction-external-connect[Connect]
+        interaction-external-grab[Grab]
+        interaction-external-pause[Pause]
+        interaction-external-push[Push]
+        interaction-external-remove[Remove]
+        interaction-external-repulse[Repulse]
+        interaction-external-slow[Slow]
+      end
 
-subgraph plea [Easings]
-pleb[Back]
-pleci[Circ]
-plecu[Cubic]
-plee[Expo]
-pleq[Quad]
-ple4[Quart]
-ple5[Quint]
-ples[Sine]
-end
+      subgraph slim-interactions-particles [Particles]
+        interaction-particles-attract[Attract]
+        interaction-particles-collisions[Collisions]
+        interaction-particles-links[Links]
+      end
 
-subgraph plex [Exports]
-plexi[Image]
-plexj[JSON]
-plexv[Video]
-end
+    end
 
-end
+    subgraph slim-movers [Movers]
+      move-parallax[Parallax]
+    end
 
-pl --> plea
+    subgraph slim-plugins [Plugins]
 
-e --> pl
+      subgraph slim-plugins-easings [Easings]
+        plugin-easing-quad[Quad]
+      end
 
-subgraph s [Shapes]
-sa[Arrow]
-sb[Bubble]
-sci[Circle]
-scog[Cog]
-sh[Heart]
-si[Image]
-sl[Line]
-smt[Multiline Text]
-spa[Path]
-spo[Polygon]
-srp[Rounded Polygon]
-srr[Rounded Rectangle]
-ssp[Spiral]
-ssq[Square]
-sst[Star]
-st[Text]
-end
+    end
 
-e --> s
+    subgraph slim-shapes [Shapes]
+      shape-emoji[Emoji]
+      shape-image[Image]
+      shape-line[Line]
+      shape-polygon[Polygon]
+      shape-square[Square]
+      shape-star[Star]
+    end
 
-subgraph u [Updaters]
-uc[Color]
-ud[Destroy]
-ug[Gradient]
-ul[Life]
-uop[Opacity]
-uor[Orbit]
-uou[Out Modes]
-urol[Roll]
-urot[Rotate]
-usi[Size]
-ust[Stroke Color]
-uti[Tilt]
-utw[Twinkle]
-uw[Wobble]
-end
+    subgraph slim-updaters [Updaters]
+      updater-life[Life]
+      updater-rotate[Rotate]
+      updater-stroke-color[Stroke Color]
+    end
 
-e --> u
+  end
+
+  bundle-basic --> bundle-slim
+
+  subgraph bundle-fireworks [tsParticles Fireworks]
+
+    subgraph fireworks-effects [Effects]
+      effect-trail
+    end
+
+    subgraph fireworks-plugins [Plugins]
+      plugin-emitters
+
+      subgraph fireworks-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-square
+      end
+
+      plugin-sounds
+    end
+
+    subgraph fireworks-updaters [Updaters]
+      updater-destroy
+      updater-life
+      updater-rotate
+    end
+
+  end
+
+  bundle-basic --> bundle-fireworks
+
+  subgraph bundle-full [tsParticles]
+
+    subgraph full-interactions [Interactions]
+
+      subgraph full-interactions-external [Externals]
+        interaction-external-trail[Trail]
+      end
+
+    end
+
+    subgraph full-plugins [Plugins]
+      plugin-absorbers[Absorbers]
+      plugin-emitters[Emitters]
+
+      subgraph full-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-circle[Circle]
+        plugin-emitters-shape-square[Square]
+      end
+
+    end
+
+    subgraph full-shapes [Shapes]
+      shape-text[Text]
+    end
+
+    subgraph full-updaters [Updaters]
+      updater-destroy[Destroy]
+      updater-roll[Roll]
+      updater-tilt[Tilt]
+      updater-twinkle[Twinkle]
+      updater-wobble[Wobble]
+    end
+
+  end
+
+  bundle-slim --> bundle-full
+
+  subgraph bundle-all [tsParticles All]
+
+    bundle-pjs[tsParticles Particles.js Compatibility]
+
+    subgraph all-effects [Effects]
+      effect-bubble[Bubble]
+      effect-trail[Trail]
+    end
+
+    subgraph all-interactions [Interactions]
+      subgraph all-interactions-external [External]
+        interaction-external-pop[Pop]
+      end
+
+      interaction-light[Light]
+
+      subgraph all-interactions-particles [Particles]
+        interaction-particles-repulse[Repulse]
+      end
+    end
+
+    subgraph all-paths [Paths]
+      path-curl-noise[Curl Noise]
+      path-curves[Curves]
+      path-perlin-noise[Perlin Noise]
+      path-polygon[Polygon]
+      path-simplex-noise[Simplex Noise]
+      path-svg[SVG]
+    end
+
+    subgraph all-plugins [Plugins]
+      plugin-canvas-mask[Canvas Mask]
+
+      subgraph all-plugins-easings [Easings]
+        plugin-easing-back[Back]
+        plugin-easing-circ[Circ]
+        plugin-easing-cubic[Cubic]
+        plugin-easing-expo[Expo]
+        plugin-easing-linear[Linear]
+        plugin-easing-quart[Quart]
+        plugin-easing-quint[Quint]
+        plugin-easing-sine[Sine]
+      end
+
+      subgraph all-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-canvas[Canvas]
+        plugin-emitters-shape-path[Path]
+        plugin-emitters-shape-polygon[Polygon]
+      end
+
+      subgraph all-plugins-exports [Exports]
+        plugin-export-image[Image]
+        plugin-export-json[JSON]
+        plugin-export-video[Video]
+      end
+
+      plugin-hsv-color[HSV Color]
+      plugin-infection[Infection]
+      plugin-motion[Motion]
+      plugin-poisson-disc[Poisson Disc]
+      plugin-polygon-mask[Polygon Mask]
+      plugin-sounds[Sounds]
+    end
+
+    subgraph all-shapes [Shapes]
+      shape-arrow[Arrow]
+      shape-cards[Cards]
+      shape-cog[Cog]
+      shape-heart[Heart]
+      shape-path[Path]
+      shape-rounded-polygon[Rounded Polygon]
+      shape-rounded-rect[Rounded Rect]
+      shape-spiral[Spiral]
+    end
+
+    subgraph all-updaters [Updaters]
+      updater-gradient[Gradient]
+      updater-orbit[Orbit]
+    end
+
+    simplex-noise --> path-curl-noise
+    perlin-noise --> path-perlin-noise
+    simplex-noise --> path-simplex-noise
+
+  end
+
+  bundle-full --> bundle-all
 ```
 
 ---
