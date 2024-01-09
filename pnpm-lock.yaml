@@ -138,23 +138,26 @@ importers:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.10.7)(typescript@5.3.3)
       typedoc:
-        specifier: ^0.25.6
-        version: 0.25.6(typescript@5.3.3)
+        specifier: ^0.25.7
+        version: 0.25.7(typescript@5.3.3)
       typedoc-plugin-carbon-ads:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.25.6)
+        version: 1.6.0(typedoc@0.25.7)
       typedoc-plugin-clarity:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.25.6)
+        version: 1.6.0(typedoc@0.25.7)
       typedoc-plugin-coverage:
         specifier: ^2.2.0
-        version: 2.2.0(typedoc@0.25.6)
+        version: 2.2.0(typedoc@0.25.7)
       typedoc-plugin-keywords:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.25.6)
+        version: 1.6.0(typedoc@0.25.7)
+      typedoc-plugin-mdn-links:
+        specifier: ^3.1.11
+        version: 3.1.11(typedoc@0.25.7)
       typedoc-plugin-missing-exports:
         specifier: ^2.1.0
-        version: 2.1.0(typedoc@0.25.6)
+        version: 2.1.0(typedoc@0.25.7)
       typescript:
         specifier: ^5.3.3
         version: 5.3.3
@@ -212,6 +215,9 @@ importers:
       '@tsparticles/path-svg':
         specifier: ^3.0.3
         version: link:../../paths/svg/dist
+      '@tsparticles/path-zig-zag':
+        specifier: ^3.0.3
+        version: link:../../paths/zigzag/dist
       '@tsparticles/pjs':
         specifier: ^3.0.3
         version: link:../pjs/dist
@@ -670,6 +676,9 @@ importers:
       '@tsparticles/path-svg':
         specifier: ^3.0.3
         version: link:../../paths/svg/dist
+      '@tsparticles/path-zig-zag':
+        specifier: ^3.0.3
+        version: link:../../paths/zigzag/dist
       '@tsparticles/perlin-noise':
         specifier: ^3.0.3
         version: link:../../utils/perlinNoise/dist
@@ -1171,6 +1180,13 @@ importers:
     publishDirectory: dist
 
   paths/svg:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^3.0.3
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  paths/zigzag:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.0.3
@@ -11742,52 +11758,60 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-carbon-ads@1.6.0(typedoc@0.25.6):
+  /typedoc-plugin-carbon-ads@1.6.0(typedoc@0.25.7):
     resolution: {integrity: sha512-PzWe1iqnul+9DOZh3/OCcndjTstoxHET4XIXEMif1l/LbxpHdIBQ+h5HlcS6D2nW8HoiZqxMYjvWIqtaqPmRAQ==}
     peerDependencies:
       typedoc: ^0.25.4
     dependencies:
-      typedoc: 0.25.6(typescript@5.3.3)
+      typedoc: 0.25.7(typescript@5.3.3)
       typescript: 5.3.3
     dev: true
 
-  /typedoc-plugin-clarity@1.6.0(typedoc@0.25.6):
+  /typedoc-plugin-clarity@1.6.0(typedoc@0.25.7):
     resolution: {integrity: sha512-BvJj8ZvgCZzS2sLO7yIkRg9EWLPdll+xLyQekjMAtypHITOXSwCO9E9Ir77R2fctsVC9BVJiToGAYcsMtyuPdw==}
     peerDependencies:
       typedoc: ^0.25.4
     dependencies:
-      typedoc: 0.25.6(typescript@5.3.3)
+      typedoc: 0.25.7(typescript@5.3.3)
       typescript: 5.3.3
     dev: true
 
-  /typedoc-plugin-coverage@2.2.0(typedoc@0.25.6):
+  /typedoc-plugin-coverage@2.2.0(typedoc@0.25.7):
     resolution: {integrity: sha512-/hq9nwSNBz2p7+VYfljT/zFSmaxN8tlfcIp6CCAaQN6VIxXCciYFIqR+pcckRhjmfHIeSJ5uy2OpCt5F683npA==}
     engines: {node: '>= 16'}
     peerDependencies:
       typedoc: ^0.22.12 || 0.23.x || 0.24.x || 0.25.x
     dependencies:
-      typedoc: 0.25.6(typescript@5.3.3)
+      typedoc: 0.25.7(typescript@5.3.3)
     dev: true
 
-  /typedoc-plugin-keywords@1.6.0(typedoc@0.25.6):
+  /typedoc-plugin-keywords@1.6.0(typedoc@0.25.7):
     resolution: {integrity: sha512-URyCIHw6+Lwil0ywy6lVb2TckfDVGjAWnRnTAiiSZaRaglI6vaaP1EhhwEipOIlHaJSnHZfdwpWe1t4mffTIpA==}
     peerDependencies:
       typedoc: ^0.25.4
     dependencies:
-      typedoc: 0.25.6(typescript@5.3.3)
+      typedoc: 0.25.7(typescript@5.3.3)
       typescript: 5.3.3
     dev: true
 
-  /typedoc-plugin-missing-exports@2.1.0(typedoc@0.25.6):
+  /typedoc-plugin-mdn-links@3.1.11(typedoc@0.25.7):
+    resolution: {integrity: sha512-WmEt+FD6HKXCkcbQEmdVKtkEEJb9SLmUnGnKwKM9U5grocy9TOUQ1GmO2cXnzMBQ2i/o/wF8LK4JQf5Vch3DKg==}
+    peerDependencies:
+      typedoc: '>= 0.23.14 || 0.24.x || 0.25.x'
+    dependencies:
+      typedoc: 0.25.7(typescript@5.3.3)
+    dev: true
+
+  /typedoc-plugin-missing-exports@2.1.0(typedoc@0.25.7):
     resolution: {integrity: sha512-+1DhqZCEu7Vu5APnrqpPwl31D+hXpt1fV0Le9ycCRL1eLVdatdl6KVt4SEVwPxnEpKwgOn2dNX6I9+0F1aO2aA==}
     peerDependencies:
       typedoc: 0.24.x || 0.25.x
     dependencies:
-      typedoc: 0.25.6(typescript@5.3.3)
+      typedoc: 0.25.7(typescript@5.3.3)
     dev: true
 
-  /typedoc@0.25.6(typescript@5.3.3):
-    resolution: {integrity: sha512-1rdionQMpOkpA58qfym1J+YD+ukyA1IEIa4VZahQI2ZORez7dhOvEyUotQL/8rSoMBopdzOS+vAIsORpQO4cTA==}
+  /typedoc@0.25.7(typescript@5.3.3):
+    resolution: {integrity: sha512-m6A6JjQRg39p2ZVRIN3NKXgrN8vzlHhOS+r9ymUYtcUP/TIQPvWSq7YgE5ZjASfv5Vd5BW5xrir6Gm2XNNcOow==}
     engines: {node: '>= 16'}
     hasBin: true
     peerDependencies:

@@ -43,6 +43,7 @@ import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadSpiralShape } from "@tsparticles/shape-spiral";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
+import { loadZigZagPath } from "@tsparticles/path-zig-zag";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles All package.
@@ -93,6 +94,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadPoissonDiscPlugin(engine, false);
     await loadPolygonPath(engine, false);
     await loadSVGPath(engine, false);
+    await loadZigZagPath(engine, false);
     await loadSimplexNoisePath(engine, false);
     await loadBubbleEffect(engine, false);
     await loadArrowShape(engine, false);

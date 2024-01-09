@@ -1,6 +1,7 @@
 import parallax from "./parallax.js";
 import pathPolygonMask from "./pathPolygonMask.js";
 import pathSvg from "./pathSvg.js";
+import pathZigZag from "./pathZigZag.js";
 import planes from "./planes.js";
 import plasma from "./plasma.js";
 import poisson from "./poisson.js";
@@ -12,6 +13,7 @@ export default {
     parallax,
     pathPolygonMask,
     pathSvg,
+    pathZigZag,
     planes,
     plasma,
     poisson,
