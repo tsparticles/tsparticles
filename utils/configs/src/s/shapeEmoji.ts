@@ -177,7 +177,7 @@ const emitterRate = {
                         type: "emoji",
                         options: {
                             emoji: {
-                                value: "👻",
+                                value: "🍑",
                             },
                         },
                     },
