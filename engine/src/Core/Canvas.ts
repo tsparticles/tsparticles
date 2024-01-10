@@ -3,6 +3,7 @@ import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { IHsl } from "./Interfaces/Colors.js";
@@ -11,6 +12,7 @@ import type { IParticleTransformValues } from "./Interfaces/IParticleTransformVa
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { ITrailFillData } from "./Interfaces/ITrailFillData.js";
 import type { Particle } from "./Particle.js";
+import { clamp } from "../Utils/NumberUtils.js";
 import { generatedAttribute } from "./Utils/Constants.js";
 
 /**
@@ -55,10 +57,12 @@ export class Canvas {
     private _coverColorStyle?: string;
     private _generated;
     private _mutationObserver?: MutationObserver;
+    private readonly _origin: ICoordinates;
     private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
+    private _scale;
     private _trailFill?: ITrailFillData;
 
     /**
@@ -70,6 +74,11 @@ export class Canvas {
             height: 0,
             width: 0,
         };
+        this._origin = {
+            x: 0,
+            y: 0,
+        };
+        this._scale = 1;
 
         this._context = null;
         this._generated = false;
@@ -387,6 +396,26 @@ export class Canvas {
         });
     }
 
+    resetTransform(): void {
+        const scale = this._scale,
+            origin = this._origin,
+            defaultTransformValues = {
+                a: 1,
+                b: 0,
+                c: 0,
+                d: 1,
+            };
+
+        this._context?.setTransform(
+            defaultTransformValues.a / scale,
+            defaultTransformValues.b,
+            defaultTransformValues.c,
+            defaultTransformValues.d / scale,
+            -origin.x / scale,
+            -origin.y / scale,
+        );
+    }
+
     /**
      * Calculates the size of the canvas
      * @returns true if the size changed
@@ -428,6 +457,20 @@ export class Canvas {
         return true;
     }
 
+    setTransform(scaleX: number, skewX: number, skewY: number, scaleY: number, dx: number, dy: number): void {
+        const scale = this._scale,
+            origin = this._origin;
+
+        this._context?.setTransform(
+            scaleX * scale,
+            skewX,
+            skewY,
+            scaleY * scale,
+            dx * scale + origin.x,
+            dy * scale + origin.y,
+        );
+    }
+
     stop(): void {
         this._safeMutationObserver((obs) => obs.disconnect());
         this._mutationObserver = undefined;
@@ -454,6 +497,29 @@ export class Canvas {
         if (needsRefresh) {
             await container.refresh();
         }
+    }
+
+    zoom(mousePos: ICoordinates, zoom: number): void {
+        const context = this._context;
+
+        if (!context) {
+            return;
+        }
+
+        const origin = this._origin,
+            oldScale = this._scale,
+            container = this.container,
+            reduceFactor = container.retina.reduceFactor,
+            options = container.actualOptions,
+            zoomOptions = options.interactivity.events.zoom;
+
+        this._scale *= zoom * reduceFactor;
+        this._scale = clamp(this._scale, zoomOptions.min, zoomOptions.max);
+
+        const scale = this._scale;
+
+        origin.x = mousePos.x / oldScale + origin.x - mousePos.x / (scale * zoom);
+        origin.y = mousePos.y / oldScale + origin.y - mousePos.y / (scale * zoom);
     }
 
     private readonly _applyPostDrawUpdaters: (particle: Particle) => void = (particle) => {

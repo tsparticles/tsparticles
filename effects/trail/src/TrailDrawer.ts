@@ -80,13 +80,14 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         let lastPos = particle.trail[trailLength - trailLengthOffset].position;
 
         const defaultTransform = {
-            a: 1,
-            b: 0,
-            c: 0,
-            d: 1,
-        };
+                a: 1,
+                b: 0,
+                c: 0,
+                d: 1,
+            },
+            canvas = particle.container.canvas;
 
-        context.setTransform(
+        canvas.setTransform(
             defaultTransform.a,
             defaultTransform.b,
             defaultTransform.c,
@@ -139,7 +140,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
         const { transformData } = data;
 
-        context.setTransform(
+        canvas.setTransform(
             transformData.a,
             transformData.b,
             transformData.c,

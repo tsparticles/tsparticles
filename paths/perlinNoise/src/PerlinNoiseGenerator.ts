@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import {
+    type Canvas,
     type Container,
     type IMovePathGenerator,
     type Particle,
@@ -76,7 +77,9 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.noiseZ += this.options.increment;
 
         if (this.options.draw) {
-            this.container.canvas.draw((ctx) => this._drawField(ctx));
+            const canvas = this.container.canvas;
+
+            this.container.canvas.draw((ctx) => this._drawField(canvas, ctx));
         }
     }
 
@@ -101,7 +104,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         }
     };
 
-    private readonly _drawField: (ctx: CanvasRenderingContext2D) => void = (ctx) => {
+    private readonly _drawField = (canvas: Canvas, ctx: CanvasRenderingContext2D): void => {
         const { field, options } = this;
 
         for (let x = 0; x < options.columns; x++) {
@@ -112,14 +115,14 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                     { angle, length } = cell;
 
                 // ctx.save();
-                ctx.setTransform(1, 0, 0, 1, x * this.options.size, y * this.options.size);
+                canvas.setTransform(1, 0, 0, 1, x * this.options.size, y * this.options.size);
                 ctx.rotate(angle);
                 ctx.strokeStyle = "white";
                 ctx.beginPath();
                 ctx.moveTo(0, 0);
                 ctx.lineTo(0, this.options.size * length);
                 ctx.stroke();
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                canvas.resetTransform();
                 // ctx.restore();
             }
         }

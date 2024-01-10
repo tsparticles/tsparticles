@@ -95,7 +95,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
 
             if (path2d && this.offset) {
-                drawPolygonMaskPath(context, path2d, polygonDraw.stroke, this.offset);
+                drawPolygonMaskPath(this._container.canvas, context, path2d, polygonDraw.stroke, this.offset);
             } else if (rawData) {
                 drawPolygonMask(context, rawData, polygonDraw.stroke);
             }

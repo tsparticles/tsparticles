@@ -12,6 +12,7 @@ import {
     touchMoveEvent,
     touchStartEvent,
     visibilityChangeEvent,
+    wheelEvent,
 } from "./Constants.js";
 import type { Container } from "../Container.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
@@ -65,6 +66,7 @@ interface EventListenersHandlers {
     readonly touchMove: EventListenerOrEventListenerObject;
     readonly touchStart: EventListenerOrEventListenerObject;
     readonly visibilityChange: EventListenerOrEventListenerObject;
+    readonly wheel: EventListenerOrEventListenerObject;
 }
 
 /**
@@ -101,6 +103,9 @@ export class EventListeners {
             oldThemeChange: (e): void => this._handleThemeChange(e),
             resize: (): void => {
                 this._handleWindowResize();
+            },
+            wheel: (e): void => {
+                this._handleWheel(e as WheelEvent);
             },
         };
     }
@@ -197,6 +202,29 @@ export class EventListeners {
         }
     };
 
+    private readonly _handleWheel = (event: WheelEvent): void => {
+        event.preventDefault();
+
+        const zoomOptions = this.container.actualOptions.interactivity.events.zoom;
+
+        if (!zoomOptions.enable) {
+            return;
+        }
+
+        const noDelta = 0,
+            identity = 1,
+            target = event.target as HTMLElement,
+            mousePos = {
+                x: event.clientX - target.offsetLeft,
+                y: event.clientY - target.offsetTop,
+            },
+            wheel = event.deltaY < noDelta ? identity : -identity,
+            scaleMultiplier = zoomOptions.sensitivity,
+            zoom = Math.exp(wheel * scaleMultiplier);
+
+        this.container.canvas.zoom(mousePos, zoom);
+    };
+
     /**
      * Handles window resize event
      * @internal
@@ -257,6 +285,10 @@ export class EventListeners {
             manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
             manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
             manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
+        }
+
+        if (options.interactivity.events.zoom.enable) {
+            manageListener(interactivityEl, wheelEvent, handlers.wheel, add);
         }
 
         manageListener(interactivityEl, mouseLeaveTmpEvent, handlers.mouseLeave, add);

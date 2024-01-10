@@ -1,4 +1,11 @@
-import { type ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "@tsparticles/engine";
+import {
+    type Canvas,
+    type ICoordinates,
+    Vector,
+    getDistances,
+    getStyleFromRgb,
+    rangeColorToRgb,
+} from "@tsparticles/engine";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
@@ -50,12 +57,14 @@ export function drawPolygonMask(
 }
 
 /**
+ * @param canvas -
  * @param context -
  * @param path -
  * @param stroke -
  * @param position -
  */
 export function drawPolygonMaskPath(
+    canvas: Canvas,
     context: CanvasRenderingContext2D,
     path: Path2D,
     stroke: IPolygonMaskDrawStroke,
@@ -68,7 +77,7 @@ export function drawPolygonMaskPath(
         d: 1,
     };
 
-    context.setTransform(
+    canvas.setTransform(
         defaultTransform.a,
         defaultTransform.b,
         defaultTransform.c,
@@ -86,7 +95,7 @@ export function drawPolygonMaskPath(
     context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
-    context.resetTransform();
+    canvas.resetTransform();
 }
 
 /**

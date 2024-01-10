@@ -6,6 +6,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
+import { ZoomEvent } from "./ZoomEvent.js";
 import { executeOnSingleOrMultiple } from "../../../../Utils/Utils.js";
 
 /**
@@ -16,12 +17,14 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     onDiv: SingleOrMultiple<DivEvent>;
     readonly onHover;
     readonly resize;
+    readonly zoom;
 
     constructor() {
         this.onClick = new ClickEvent();
         this.onDiv = new DivEvent();
         this.onHover = new HoverEvent();
         this.resize = new ResizeEvent();
+        this.zoom = new ZoomEvent();
     }
 
     load(data?: RecursivePartial<IEvents>): void {
@@ -45,5 +48,6 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
 
         this.onHover.load(data.onHover);
         this.resize.load(data.resize);
+        this.zoom.load(data.zoom);
     }
 }

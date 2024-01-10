@@ -63,6 +63,7 @@ export function paintImage(
  * @param dimension - The dimension of the canvas.
  */
 export function clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
+    context.resetTransform();
     context.clearRect(origin.x, origin.y, dimension.width, dimension.height);
 }
 
@@ -97,9 +98,10 @@ export function drawParticle(data: IDrawParticleParams): void {
             b: rotateData.sin * (transform.b ?? defaultTransformFactor),
             c: -rotateData.sin * (transform.c ?? defaultTransformFactor),
             d: rotateData.cos * (transform.d ?? defaultTransformFactor),
-        };
+        },
+        canvas = container.canvas;
 
-    context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
+    canvas.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
     if (backgroundMask) {
         context.globalCompositeOperation = composite;
@@ -144,7 +146,7 @@ export function drawParticle(data: IDrawParticleParams): void {
 
     context.globalCompositeOperation = "source-over";
 
-    context.resetTransform();
+    canvas.resetTransform();
 }
 
 interface DrawShapeData {

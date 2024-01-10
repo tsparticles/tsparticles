@@ -14,6 +14,8 @@ export const touchEndEvent = "touchend";
 export const touchMoveEvent = "touchmove";
 export const touchCancelEvent = "touchcancel";
 
+export const wheelEvent = "wheel";
+
 export const resizeEvent = "resize";
 export const visibilityChangeEvent = "visibilitychange";
 
