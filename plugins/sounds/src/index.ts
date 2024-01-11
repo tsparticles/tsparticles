@@ -3,7 +3,6 @@ import {
     type Engine,
     type IPlugin,
     type RecursivePartial,
-    getLogger,
     mouseDownEvent,
     touchStartEvent,
 } from "@tsparticles/engine";
@@ -15,8 +14,6 @@ import { unmuteWindow } from "./utils.js";
 const generalFirstClickHandler = (): void => {
     removeEventListener(mouseDownEvent, generalFirstClickHandler);
     removeEventListener(touchStartEvent, generalFirstClickHandler);
-
-    getLogger().log("sounds", "first click detected, unmuting window");
 
     unmuteWindow();
 };
