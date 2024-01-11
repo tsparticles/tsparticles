@@ -114,6 +114,6 @@ export class Particles {
     resumeAnimation(): void {
         const container = this._container;
 
-        container?.play();
+        void container?.play();
     }
 }

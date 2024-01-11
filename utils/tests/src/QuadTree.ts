@@ -150,8 +150,8 @@ describe("QuadTree tests", async () => {
              */
         });
 
-        describe("Particle (100, 5) tests", () => {
-            const p1 = container.particles.addParticle({ x: 100, y: 5 });
+        describe("Particle (100, 5) tests", async () => {
+            const p1 = await container.particles.addParticle({ x: 100, y: 5 });
 
             expect(p1).to.not.be.undefined;
 
@@ -180,8 +180,8 @@ describe("QuadTree tests", async () => {
             });*/
         });
 
-        describe("Particle (5, 100) tests", () => {
-            const p1 = container.particles.addParticle({ x: 5, y: 100 });
+        describe("Particle (5, 100) tests", async () => {
+            const p1 = await container.particles.addParticle({ x: 5, y: 100 });
 
             expect(p1).to.not.be.undefined;
 

@@ -195,7 +195,7 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-        this._intersectionObserver = safeIntersectionObserver((entries) => this._intersectionManager(entries));
+        this._intersectionObserver = safeIntersectionObserver((entries) => void this._intersectionManager(entries));
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
@@ -406,24 +406,28 @@ export class Container {
      * Draws a frame
      * @param force -
      */
-    draw(force: boolean): void {
+    async draw(force: boolean): Promise<void> {
         if (!guardCheck(this)) {
             return;
         }
 
         let refreshTime = force;
 
-        const frame = async (timestamp: number): Promise<void> => {
-            if (refreshTime) {
-                this._lastFrameTime = undefined;
+        return new Promise<void>((resolve) => {
+            const frame = async (timestamp: number): Promise<void> => {
+                if (refreshTime) {
+                    this._lastFrameTime = undefined;
 
-                refreshTime = false;
-            }
+                    refreshTime = false;
+                }
 
-            await this._nextFrame(timestamp);
-        };
+                await this._nextFrame(timestamp);
 
-        this._drawAnimationFrame = requestAnimationFrame((timestamp) => void frame(timestamp));
+                resolve();
+            };
+
+            this._drawAnimationFrame = requestAnimationFrame((timestamp) => void frame(timestamp));
+        });
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -597,7 +601,7 @@ export class Container {
      * Starts animations and resume from pause
      * @param force -
      */
-    play(force?: boolean): void {
+    async play(force?: boolean): Promise<void> {
         if (!guardCheck(this)) {
             return;
         }
@@ -623,7 +627,7 @@ export class Container {
 
         this._engine.dispatchEvent(EventType.containerPlay, { container: this });
 
-        this.draw(needsUpdate ?? false);
+        await this.draw(needsUpdate ?? false);
     }
 
     /**
@@ -679,7 +683,7 @@ export class Container {
 
                 this._engine.dispatchEvent(EventType.containerStarted, { container: this });
 
-                this.play();
+                await this.play();
 
                 resolve();
             };
@@ -750,7 +754,7 @@ export class Container {
         return true;
     }
 
-    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = (entries) => {
+    private readonly _intersectionManager = async (entries: IntersectionObserverEntry[]): Promise<void> => {
         if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
@@ -761,14 +765,14 @@ export class Container {
             }
 
             if (entry.isIntersecting) {
-                this.play();
+                await this.play();
             } else {
                 this.pause();
             }
         }
     };
 
-    private readonly _nextFrame: (timestamp: DOMHighResTimeStamp) => Promise<void> = async (timestamp) => {
+    private readonly _nextFrame = async (timestamp: DOMHighResTimeStamp): Promise<void> => {
         try {
             // FPS limit logic - if we are too fast, just draw without updating
             if (
@@ -776,7 +780,7 @@ export class Container {
                 this._lastFrameTime !== undefined &&
                 timestamp < this._lastFrameTime + millisecondsToSeconds / this.fpsLimit
             ) {
-                this.draw(false);
+                await this.draw(false);
 
                 return;
             }
@@ -789,7 +793,7 @@ export class Container {
             this._lastFrameTime = timestamp;
 
             if (delta.value > millisecondsToSeconds) {
-                this.draw(false);
+                await this.draw(false);
 
                 return;
             }
@@ -802,7 +806,7 @@ export class Container {
             }
 
             if (this.getAnimationStatus()) {
-                this.draw(false);
+                await this.draw(false);
             }
         } catch (e) {
             getLogger().error(`${errorPrefix} in animation loop`, e);

@@ -53,8 +53,8 @@ class FireworksInstance {
         this._container.pause();
     }
 
-    play(): void {
-        this._container.play();
+    async play(): Promise<void> {
+        await this._container.play();
     }
 
     stop(): void {

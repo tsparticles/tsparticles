@@ -43,7 +43,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
             const group = itemFromArray([undefined, ...pushOptions.groups]),
                 groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
 
-            container.particles.push(quantity, container.interactivity.mouse, groupOptions, group);
+            void container.particles.push(quantity, container.interactivity.mouse, groupOptions, group);
         };
     }
 

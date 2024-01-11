@@ -88,7 +88,7 @@ describe("Themes", async () => {
             detectRetina: true,
         },
         container = await tsParticles.load({
-            id: "test",
+            id: "test-theme",
             options: sourceOptions,
         });
 
@@ -96,18 +96,18 @@ describe("Themes", async () => {
         throw new Error(`container not initialized`);
     }
 
-    it("Set theme", () => {
-        container.loadTheme();
+    it("Set theme", async () => {
+        await container.loadTheme();
 
         const theme = container.options.themes.find(t => t.default);
 
         expect(container.actualOptions.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
     });
 
-    it("Set dark theme", () => {
+    it("Set dark theme", async () => {
         const themeName = "dark";
 
-        container.loadTheme(themeName);
+        await container.loadTheme(themeName);
 
         const theme = container.options.themes.find(t => t.name === themeName);
 
@@ -119,10 +119,10 @@ describe("Themes", async () => {
         expect(container.actualOptions.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
     });
 
-    it("Set light theme", () => {
+    it("Set light theme", async () => {
         const themeName = "light";
 
-        container.loadTheme(themeName);
+        await container.loadTheme(themeName);
 
         const theme = container.options.themes.find(t => t.name === themeName);
 

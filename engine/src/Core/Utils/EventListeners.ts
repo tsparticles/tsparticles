@@ -96,7 +96,7 @@ export class EventListeners {
             touchEnd: (e): void => this._touchEnd(e),
             touchCancel: (e: Event): void => this._touchEnd(e),
             touchEndClick: (e): void => this._touchEndClick(e),
-            visibilityChange: (): void => this._handleVisibilityChange(),
+            visibilityChange: (): void => void this._handleVisibilityChange(),
             themeChange: (e): void => this._handleThemeChange(e),
             oldThemeChange: (e): void => this._handleThemeChange(e),
             resize: (): void => {
@@ -172,7 +172,7 @@ export class EventListeners {
      * Handles blur event
      * @internal
      */
-    private readonly _handleVisibilityChange: () => void = () => {
+    private readonly _handleVisibilityChange = async (): Promise<void> => {
         const container = this.container,
             options = container.actualOptions;
 
@@ -190,9 +190,9 @@ export class EventListeners {
             container.pageHidden = false;
 
             if (container.getAnimationStatus()) {
-                container.play(true);
+                await container.play(true);
             } else {
-                container.draw(true);
+                await container.draw(true);
             }
         }
     };
