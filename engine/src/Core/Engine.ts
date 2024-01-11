@@ -4,7 +4,7 @@
  */
 import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
 import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
-import { Container } from "./Container.js";
+import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
@@ -578,7 +578,8 @@ export class Engine {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(this, id, currentOptions);
+        const { Container } = await import("./Container.js"),
+            newItem = new Container(this, id, currentOptions);
 
         if (oldIndex >= minIndex) {
             const deleteCount = 0;

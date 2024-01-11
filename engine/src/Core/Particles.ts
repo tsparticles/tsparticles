@@ -10,7 +10,7 @@ import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/I
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import { InteractionManager } from "./Utils/InteractionManager.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
-import { Particle } from "./Particle.js";
+import type { Particle } from "./Particle.js";
 import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Rectangle.js";
@@ -88,24 +88,24 @@ export class Particles {
         return this._array.length;
     }
 
-    addManualParticles(): void {
+    async addManualParticles(): Promise<void> {
         const container = this._container,
             options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
-            this.addParticle(
+            await this.addParticle(
                 particle.position ? getPosition(particle.position, container.canvas.size) : undefined,
                 particle.options,
             );
         }
     }
 
-    addParticle(
+    async addParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean,
-    ): Particle | undefined {
+    ): Promise<Particle | undefined> {
         const limitOptions = this._container.actualOptions.particles.number.limit,
             limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit,
             currentCount = this.count,
@@ -127,7 +127,7 @@ export class Particles {
             }
         }
 
-        return this._pushParticle(position, overrideOptions, group, initializer);
+        return await this._pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**
@@ -187,7 +187,7 @@ export class Particles {
     }
 
     /* --------- tsParticles functions - particles ----------- */
-    init(): void {
+    async init(): Promise<void> {
         const container = this._container,
             options = container.actualOptions;
 
@@ -215,7 +215,7 @@ export class Particles {
             pathGenerator.init(container);
         }
 
-        this.addManualParticles();
+        await this.addManualParticles();
 
         if (!handled) {
             const particlesOptions = options.particles,
@@ -229,25 +229,30 @@ export class Particles {
                     j < groupOptions.number?.value && i < particlesOptions.number.value;
                     i++, j++
                 ) {
-                    this.addParticle(undefined, groupOptions, group);
+                    await this.addParticle(undefined, groupOptions, group);
                 }
             }
 
             for (let i = this.count; i < particlesOptions.number.value; i++) {
-                this.addParticle();
+                await this.addParticle();
             }
         }
     }
 
-    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
+    async push(
+        nb: number,
+        mouse?: IMouseData,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
+        group?: string,
+    ): Promise<void> {
         for (let i = 0; i < nb; i++) {
-            this.addParticle(mouse?.position, overrideOptions, group);
+            await this.addParticle(mouse?.position, overrideOptions, group);
         }
     }
 
     async redraw(): Promise<void> {
         this.clear();
-        this.init();
+        await this.init();
 
         await this.draw({ value: 0, factor: 0 });
     }
@@ -278,16 +283,16 @@ export class Particles {
         this.removeAt(defaultIndex, quantity, group);
     }
 
-    setDensity(): void {
+    async setDensity(): Promise<void> {
         const options = this._container.actualOptions,
             groups = options.particles.groups,
             manualCount = 0;
 
         for (const group in groups) {
-            this._applyDensity(groups[group], manualCount, group);
+            await this._applyDensity(groups[group], manualCount, group);
         }
 
-        this._applyDensity(options.particles, options.manualParticles.length);
+        await this._applyDensity(options.particles, options.manualParticles.length);
     }
 
     setLastZIndex(zIndex: number): void {
@@ -401,11 +406,11 @@ export class Particles {
         }
     };
 
-    private readonly _applyDensity: (options: IParticlesOptions, manualCount: number, group?: string) => void = (
-        options,
-        manualCount,
-        group,
-    ) => {
+    private readonly _applyDensity = async (
+        options: IParticlesOptions,
+        manualCount: number,
+        group?: string,
+    ): Promise<void> => {
         const numberOptions = options.number;
 
         if (!options.number.density?.enable) {
@@ -432,7 +437,7 @@ export class Particles {
         }
 
         if (particlesCount < particlesNumber) {
-            this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
+            await this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
         } else if (particlesCount > particlesNumber) {
             this.removeQuantity(particlesCount - particlesNumber, group);
         }
@@ -452,18 +457,20 @@ export class Particles {
         return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
     };
 
-    private readonly _pushParticle: (
+    private readonly _pushParticle = async (
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean,
-    ) => Particle | undefined = (position, overrideOptions, group, initializer) => {
+    ): Promise<Particle | undefined> => {
         try {
             let particle = this._pool.pop();
 
             if (particle) {
                 particle.init(this._nextId, position, overrideOptions, group);
             } else {
+                const { Particle } = await import("./Particle.js");
+
                 particle = new Particle(this._engine, this._nextId, this._container, position, overrideOptions, group);
             }
 

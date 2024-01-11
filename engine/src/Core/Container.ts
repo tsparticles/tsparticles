@@ -540,8 +540,8 @@ export class Container {
 
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
-        this.particles.init();
-        this.particles.setDensity();
+        await this.particles.init();
+        await this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
             plugin.particlesSetup?.();
