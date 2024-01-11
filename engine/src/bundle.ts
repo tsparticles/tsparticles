@@ -1,6 +1,4 @@
-import { init } from "./init.js";
-
-const tsParticles = init();
+import { tsParticles } from "./index.js";
 
 window.tsParticles = tsParticles;
 

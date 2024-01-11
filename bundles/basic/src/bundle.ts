@@ -1,4 +1,4 @@
-import { loadBasic } from ".";
+import { loadBasic } from "./index.js";
 import { tsParticles } from "@tsparticles/engine";
 
 void loadBasic(tsParticles);

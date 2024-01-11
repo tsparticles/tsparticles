@@ -1,4 +1,4 @@
-import { initPjs } from ".";
+import { initPjs } from "./index.js";
 import { tsParticles } from "@tsparticles/engine";
 
 const { particlesJS, pJSDom, Particles } = initPjs(tsParticles);

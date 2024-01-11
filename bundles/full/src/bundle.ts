@@ -1,4 +1,4 @@
-import { loadFull } from ".";
+import { loadFull } from "./index.js";
 import { tsParticles } from "@tsparticles/engine";
 
 void loadFull(tsParticles);
