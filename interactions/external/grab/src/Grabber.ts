@@ -12,7 +12,6 @@ import {
 } from "@tsparticles/engine";
 import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.js";
 import { Grab } from "./Options/Classes/Grab.js";
-import { drawGrab } from "./Utils.js";
 
 const grabMode = "grab",
     minDistance = 0,
@@ -68,8 +67,9 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         }
 
         const query = container.particles.quadTree.queryCircle(mousePos, distance, (p) =>
-            this.isEnabled(p),
-        ) as LinkParticle[];
+                this.isEnabled(p),
+            ) as LinkParticle[],
+            { drawGrab } = await import("./Utils.js");
 
         for (const particle of query) {
             /**
@@ -111,8 +111,6 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
             drawGrab(container, particle, colorLine, opacityLine, mousePos);
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

@@ -6,6 +6,7 @@ import {
     type IShapeValues,
     type Particle,
     type RangeValue,
+    defaultTransformValues,
     getRangeValue,
 } from "@tsparticles/engine";
 
@@ -79,18 +80,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
         let lastPos = particle.trail[trailLength - trailLengthOffset].position;
 
-        const defaultTransform = {
-            a: 1,
-            b: 0,
-            c: 0,
-            d: 1,
-        };
-
         context.setTransform(
-            defaultTransform.a,
-            defaultTransform.b,
-            defaultTransform.c,
-            defaultTransform.d,
+            defaultTransformValues.a,
+            defaultTransformValues.b,
+            defaultTransformValues.c,
+            defaultTransformValues.d,
             currentPos.x,
             currentPos.y,
         );

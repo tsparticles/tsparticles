@@ -11,7 +11,7 @@ const options: ISourceOptions = {
             value: "#ff0000",
             animation: {
                 enable: true,
-                speed: 360,
+                speed: { min: 60, max: 360 },
                 sync: true,
             },
         },
@@ -19,7 +19,7 @@ const options: ISourceOptions = {
             type: "circle",
         },
         size: {
-            value: 3,
+            value: { min: 1, max: 3 },
         },
         move: {
             path: {
@@ -35,7 +35,7 @@ const options: ISourceOptions = {
                 generator: "curlNoise",
             },
             enable: true,
-            speed: 3,
+            speed: { min: 1, max: 3 },
             trail: {
                 fill: {
                     color: "#000",

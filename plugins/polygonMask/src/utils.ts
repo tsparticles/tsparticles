@@ -1,4 +1,11 @@
-import { type ICoordinates, Vector, getDistances, getStyleFromRgb, rangeColorToRgb } from "@tsparticles/engine";
+import {
+    type ICoordinates,
+    Vector,
+    defaultTransformValues,
+    getDistances,
+    getStyleFromRgb,
+    rangeColorToRgb,
+} from "@tsparticles/engine";
 import type {
     SVGPathSeg,
     SVGPathSegLinetoHorizontalAbs,
@@ -61,18 +68,11 @@ export function drawPolygonMaskPath(
     stroke: IPolygonMaskDrawStroke,
     position: ICoordinates,
 ): void {
-    const defaultTransform = {
-        a: 1,
-        b: 0,
-        c: 0,
-        d: 1,
-    };
-
     context.setTransform(
-        defaultTransform.a,
-        defaultTransform.b,
-        defaultTransform.c,
-        defaultTransform.d,
+        defaultTransformValues.a,
+        defaultTransformValues.b,
+        defaultTransformValues.c,
+        defaultTransformValues.d,
         position.x,
         position.y,
     );

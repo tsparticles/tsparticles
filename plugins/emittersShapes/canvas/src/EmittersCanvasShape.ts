@@ -1,6 +1,5 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import { type ICoordinates, type IDimension, type IRgba, getRandom, isFunction, isString } from "@tsparticles/engine";
-import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
@@ -63,9 +62,12 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
                 return;
             }
 
+            const { getImageData } = await import("./utils.js");
+
             pixelData = await getImageData(url, offset);
         } else if (text) {
-            const data = getTextData(text, offset, this.fill);
+            const { getTextData } = await import("./utils.js"),
+                data = getTextData(text, offset, this.fill);
 
             if (!data) {
                 return;
@@ -84,6 +86,8 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
             if (!context) {
                 return;
             }
+
+            const { getCanvasImageData } = await import("./utils.js");
 
             pixelData = getCanvasImageData(context, canvas, offset);
         }

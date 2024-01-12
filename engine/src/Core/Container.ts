@@ -406,28 +406,24 @@ export class Container {
      * Draws a frame
      * @param force -
      */
-    async draw(force: boolean): Promise<void> {
+    draw(force: boolean): void {
         if (!guardCheck(this)) {
             return;
         }
 
         let refreshTime = force;
 
-        return new Promise<void>((resolve) => {
-            const frame = async (timestamp: number): Promise<void> => {
-                if (refreshTime) {
-                    this._lastFrameTime = undefined;
+        const frame = async (timestamp: number): Promise<void> => {
+            if (refreshTime) {
+                this._lastFrameTime = undefined;
 
-                    refreshTime = false;
-                }
+                refreshTime = false;
+            }
 
-                await this._nextFrame(timestamp);
+            await this._nextFrame(timestamp);
+        };
 
-                resolve();
-            };
-
-            this._drawAnimationFrame = requestAnimationFrame((timestamp) => void frame(timestamp));
-        });
+        this._drawAnimationFrame = requestAnimationFrame((timestamp) => void frame(timestamp));
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -601,7 +597,7 @@ export class Container {
      * Starts animations and resume from pause
      * @param force -
      */
-    async play(force?: boolean): Promise<void> {
+    play(force?: boolean): void {
         if (!guardCheck(this)) {
             return;
         }
@@ -627,7 +623,7 @@ export class Container {
 
         this._engine.dispatchEvent(EventType.containerPlay, { container: this });
 
-        await this.draw(needsUpdate ?? false);
+        this.draw(needsUpdate ?? false);
     }
 
     /**
@@ -683,7 +679,7 @@ export class Container {
 
                 this._engine.dispatchEvent(EventType.containerStarted, { container: this });
 
-                await this.play();
+                this.play();
 
                 resolve();
             };
@@ -754,7 +750,7 @@ export class Container {
         return true;
     }
 
-    private readonly _intersectionManager = async (entries: IntersectionObserverEntry[]): Promise<void> => {
+    private readonly _intersectionManager = (entries: IntersectionObserverEntry[]): void => {
         if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }
@@ -765,7 +761,7 @@ export class Container {
             }
 
             if (entry.isIntersecting) {
-                await this.play();
+                this.play();
             } else {
                 this.pause();
             }
@@ -780,7 +776,7 @@ export class Container {
                 this._lastFrameTime !== undefined &&
                 timestamp < this._lastFrameTime + millisecondsToSeconds / this.fpsLimit
             ) {
-                await this.draw(false);
+                this.draw(false);
 
                 return;
             }
@@ -793,7 +789,7 @@ export class Container {
             this._lastFrameTime = timestamp;
 
             if (delta.value > millisecondsToSeconds) {
-                await this.draw(false);
+                this.draw(false);
 
                 return;
             }
@@ -806,7 +802,7 @@ export class Container {
             }
 
             if (this.getAnimationStatus()) {
-                await this.draw(false);
+                this.draw(false);
             }
         } catch (e) {
             getLogger().error(`${errorPrefix} in animation loop`, e);

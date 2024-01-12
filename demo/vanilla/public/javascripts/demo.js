@@ -51,54 +51,60 @@
     }, 100);
 
     let updateParticles = async (editor) => {
-        let presetId = localStorage.presetId || "basic";
+        try {
+            let presetId = localStorage.presetId || "basic";
 
-        if (presetId === "divEvents") {
-            document.querySelectorAll(".bubble").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-            document.querySelectorAll(".repulse").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-            document.querySelectorAll(".bounce").forEach(elem => {
-                elem.classList.add("d-block");
-                elem.classList.remove("d-none");
-            });
-        } else {
-            document.querySelectorAll(".bubble").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
-            document.querySelectorAll(".repulse").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
-            document.querySelectorAll(".bounce").forEach(elem => {
-                elem.classList.add("d-none");
-                elem.classList.remove("d-block");
-            });
+            if (presetId === "divEvents") {
+                document.querySelectorAll(".bubble").forEach(elem => {
+                    elem.classList.add("d-block");
+                    elem.classList.remove("d-none");
+                });
+                document.querySelectorAll(".repulse").forEach(elem => {
+                    elem.classList.add("d-block");
+                    elem.classList.remove("d-none");
+                });
+                document.querySelectorAll(".bounce").forEach(elem => {
+                    elem.classList.add("d-block");
+                    elem.classList.remove("d-none");
+                });
+            } else {
+                document.querySelectorAll(".bubble").forEach(elem => {
+                    elem.classList.add("d-none");
+                    elem.classList.remove("d-block");
+                });
+                document.querySelectorAll(".repulse").forEach(elem => {
+                    elem.classList.add("d-none");
+                    elem.classList.remove("d-block");
+                });
+                document.querySelectorAll(".bounce").forEach(elem => {
+                    elem.classList.add("d-none");
+                    elem.classList.remove("d-block");
+                });
+            }
+
+            const particles = await tsParticles.load({ id: "tsparticles", options: tsParticles.configs[presetId] });
+
+            localStorage.presetId = presetId;
+
+            const omit = obj => {
+                return _.omitBy(obj, (value, key) => {
+                    return _.startsWith(key, "_");
+                });
+            };
+
+            const transform = obj => {
+                return _.transform(omit(obj), function (result, value, key) {
+                    result[key] = !_.isArray(value) && _.isObject(value) ? transform(omit(value)) : value;
+                });
+            };
+
+            console.log("options", particles.options, particles.actualOptions);
+
+            editor.update(transform(particles.actualOptions));
+            editor.expandAll();
+        } catch (e) {
+            console.log(e);
         }
-
-        const particles = await tsParticles.load({ id: "tsparticles", options: tsParticles.configs[presetId] });
-
-        localStorage.presetId = presetId;
-
-        const omit = obj => {
-            return _.omitBy(obj, (value, key) => {
-                return _.startsWith(key, "_");
-            });
-        };
-
-        const transform = obj => {
-            return _.transform(omit(obj), function (result, value, key) {
-                result[key] = !_.isArray(value) && _.isObject(value) ? transform(omit(value)) : value;
-            });
-        };
-
-        editor.update(transform(particles.options));
-        editor.expandAll();
     };
 
     const omit = (obj, keys) => {
@@ -117,10 +123,10 @@
     };
 
     let initSidebar = function () {
-        const rightCaret = document.body.querySelector(".caret-right");
-        const leftCaret = document.body.querySelector(".caret-left");
-        const sidebar = document.getElementById("sidebar");
-        const sidebarHidden = sidebar.hasAttribute("hidden");
+        const rightCaret = document.body.querySelector(".caret-right"),
+            leftCaret = document.body.querySelector(".caret-left"),
+            sidebar = document.getElementById("sidebar"),
+            sidebarHidden = sidebar.hasAttribute("hidden");
 
         if (sidebarHidden) {
             leftCaret.setAttribute("hidden", "");
@@ -132,10 +138,10 @@
     };
 
     let toggleSidebar = function () {
-        const rightCaret = document.body.querySelector(".caret-right");
-        const leftCaret = document.body.querySelector(".caret-left");
-        const sidebar = document.getElementById("sidebar");
-        const sidebarHidden = sidebar.hasAttribute("hidden");
+        const rightCaret = document.body.querySelector(".caret-right"),
+            leftCaret = document.body.querySelector(".caret-left"),
+            sidebar = document.getElementById("sidebar"),
+            sidebarHidden = sidebar.hasAttribute("hidden");
 
         if (sidebarHidden) {
             rightCaret.setAttribute("hidden", "");
@@ -154,9 +160,9 @@
         await initParticles(tsParticles);
 
         for (const presetId in tsParticles.configs) {
-            const preset = tsParticles.configs[presetId];
+            const preset = tsParticles.configs[presetId],
+                option = document.createElement("option");
 
-            const option = document.createElement("option");
             option.value = presetId;
             option.text = preset.name || presetId;
 
@@ -164,19 +170,18 @@
         }
 
         const element = document.getElementById("editor"), options = {
-            mode: "form",
-            modes: [ "code", "form", "view", "preview", "text" ], // allowed modes
-            onError: function (err) {
-                alert(err.toString());
+                mode: "form",
+                modes: [ "code", "form", "view", "preview", "text" ], // allowed modes
+                onError: function (err) {
+                    alert(err.toString());
+                },
+                onModeChange: function (newMode, oldMode) {
+                },
+                onChange: function () {
+                }
             },
-            onModeChange: function (newMode, oldMode) {
-            },
-            onChange: function () {
-            }
-        };
-        const editor = new JSONEditor(element, options);
-
-        const cmbPresets = document.getElementById("presets");
+            editor = new JSONEditor(element, options),
+            cmbPresets = document.getElementById("presets");
 
         cmbPresets.onchange = async () => {
             localStorage.presetId = cmbPresets.value;
@@ -324,13 +329,13 @@
             const container = tsParticles.domItem(0);
 
             if (container) {
-                const form = document.getElementById("code-pen-form");
-                const inputData = document.getElementById("code-pen-data");
-                const particlesContainer = document.getElementById("tsparticles");
-                const data = {
-                    html: `<!-- tsParticles - https://particles.js.org - https://github.com/tsparticles/tsparticles -->
+                const form = document.getElementById("code-pen-form"),
+                    inputData = document.getElementById("code-pen-data"),
+                    particlesContainer = document.getElementById("tsparticles"),
+                    data = {
+                        html: `<!-- tsParticles - https://particles.js.org - https://github.com/tsparticles/tsparticles -->
 <div id="tsparticles"></div>`,
-                    css: `/* ---- reset ---- */
+                        css: `/* ---- reset ---- */
 body {
     margin: 0;
     font: normal 75% Arial, Helvetica, sans-serif;
@@ -351,13 +356,13 @@ canvas {
     background-size: ${particlesContainer.style.backgroundSize};
     background-position: ${particlesContainer.style.backgroundPosition};
 }`,
-                    js: `tsParticles.load({ id: "tsparticles", options: ${JSON.stringify(container.options)} });`,
-                    js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
-                    title: "tsParticles example",
-                    description: "This pen was created with tsParticles from https://particles.js.org",
-                    tags: "tsparticles, javascript, typescript, design, animation",
-                    editors: "001"
-                };
+                        js: `tsParticles.load({ id: "tsparticles", options: ${JSON.stringify(container.options)} });`,
+                        js_external: "https://cdn.jsdelivr.net/npm/tsparticles@1/tsparticles.min.js",
+                        title: "tsParticles example",
+                        description: "This pen was created with tsParticles from https://particles.js.org",
+                        tags: "tsparticles, javascript, typescript, design, animation",
+                        editors: "001"
+                    };
 
                 inputData.value = JSON.stringify(data).replace(/"/g, "&quot;").replace(/'/g, "&apos;");
 

@@ -1,6 +1,6 @@
 import type { LightContainer, LightParticle } from "./Types.js";
 import { ParticlesInteractorBase, isInArray, rangeColorToRgb } from "@tsparticles/engine";
-import { drawParticleShadow, lightMode } from "./Utils.js";
+import { lightMode } from "./Utils.js";
 
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
     // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -31,11 +31,11 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
             return;
         }
 
+        const { drawParticleShadow } = await import("./Utils.js");
+
         container.canvas.draw((ctx) => {
             drawParticleShadow(container, ctx, particle, mousePos);
         });
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: LightParticle): boolean {

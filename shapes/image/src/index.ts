@@ -1,8 +1,6 @@
 import { type IImage, downloadSvgImage, loadGifImage, loadImage } from "./Utils.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
-import { ImageDrawer } from "./ImageDrawer.js";
 import type { ImageEngine } from "./types.js";
-import { ImagePreloaderPlugin } from "./ImagePreloader.js";
 import { errorPrefix } from "@tsparticles/engine";
 
 const extLength = 3;
@@ -66,7 +64,9 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 export async function loadImageShape(engine: ImageEngine, refresh = true): Promise<void> {
     addLoadImageToEngine(engine);
 
-    const preloader = new ImagePreloaderPlugin(engine);
+    const { ImagePreloaderPlugin } = await import("./ImagePreloader.js"),
+        preloader = new ImagePreloaderPlugin(engine),
+        { ImageDrawer } = await import("./ImageDrawer.js");
 
     await engine.addPlugin(preloader, refresh);
     await engine.addShape(["image", "images"], new ImageDrawer(engine), refresh);

@@ -14,7 +14,6 @@ import {
     Vector,
     clamp,
     divMode,
-    divModeExecute,
     getDistances,
     getEasing,
     isDivModeEnabled,
@@ -124,10 +123,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         } else if (clickEnabled && isInArray(repulseMode, clickMode)) {
             this._clickRepulse();
         } else {
+            const { divModeExecute } = await import("@tsparticles/engine");
+
             divModeExecute(repulseMode, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

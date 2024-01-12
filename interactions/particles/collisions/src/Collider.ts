@@ -1,5 +1,4 @@
 import { type Container, type IDelta, type Particle, ParticlesInteractorBase, getDistance } from "@tsparticles/engine";
-import { resolveCollision } from "./ResolveCollision.js";
 
 const double = 2;
 
@@ -54,10 +53,10 @@ export class Collider extends ParticlesInteractorBase {
                 continue;
             }
 
-            resolveCollision(p1, p2, delta, container.retina.pixelRatio);
-        }
+            const { resolveCollision } = await import("./ResolveCollision.js");
 
-        await Promise.resolve();
+            await resolveCollision(p1, p2, delta, container.retina.pixelRatio);
+        }
     }
 
     isEnabled(particle: Particle): boolean {

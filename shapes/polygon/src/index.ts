@@ -1,12 +1,12 @@
 import type { Engine } from "@tsparticles/engine";
-import { PolygonDrawer } from "./PolygonDrawer.js";
-import { TriangleDrawer } from "./TriangleDrawer.js";
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadGenericPolygonShape(engine: Engine, refresh = true): Promise<void> {
+    const { PolygonDrawer } = await import("./PolygonDrawer.js");
+
     await engine.addShape("polygon", new PolygonDrawer(), refresh);
 }
 
@@ -15,6 +15,8 @@ export async function loadGenericPolygonShape(engine: Engine, refresh = true): P
  * @param refresh -
  */
 export async function loadTriangleShape(engine: Engine, refresh = true): Promise<void> {
+    const { TriangleDrawer } = await import("./TriangleDrawer.js");
+
     await engine.addShape("triangle", new TriangleDrawer(), refresh);
 }
 

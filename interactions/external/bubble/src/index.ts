@@ -1,4 +1,3 @@
-import { Bubbler } from "./Bubbler.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -6,6 +5,8 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadExternalBubbleInteraction(engine: Engine, refresh = true): Promise<void> {
+    const { Bubbler } = await import("./Bubbler.js");
+
     await engine.addInteractor("externalBubble", (container) => new Bubbler(container), refresh);
 }
 

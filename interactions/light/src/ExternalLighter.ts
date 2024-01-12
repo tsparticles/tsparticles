@@ -7,8 +7,8 @@ import {
     rangeColorToRgb,
 } from "@tsparticles/engine";
 import type { ILightMode, LightContainer, LightMode, LightParticle } from "./Types.js";
-import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
+import { lightMode } from "./Utils.js";
 
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     // eslint-disable-next-line @typescript-eslint/no-useless-constructor
@@ -39,11 +39,11 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
             return;
         }
 
+        const { drawLight } = await import("./Utils.js");
+
         container.canvas.draw((ctx) => {
             drawLight(container, ctx, mousePos);
         });
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: LightParticle): boolean {

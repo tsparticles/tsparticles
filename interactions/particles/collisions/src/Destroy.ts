@@ -1,13 +1,14 @@
 import type { Particle } from "@tsparticles/engine";
-import { bounce } from "./Bounce.js";
 
 /**
  * @param p1 -
  * @param p2 -
  */
-export function destroy(p1: Particle, p2: Particle): void {
+export async function destroy(p1: Particle, p2: Particle): Promise<void> {
     if (!p1.unbreakable && !p2.unbreakable) {
-        bounce(p1, p2);
+        const { bounce } = await import("./Bounce.js");
+
+        await bounce(p1, p2);
     }
 
     if (p1.getRadius() === undefined && p2.getRadius() !== undefined) {

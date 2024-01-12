@@ -1,4 +1,4 @@
-import { type Particle, circleBounce, circleBounceDataFromParticle, getRangeValue } from "@tsparticles/engine";
+import { type Particle, getRangeValue } from "@tsparticles/engine";
 
 type BounceParticle = Particle & {
     collisionMaxSpeed?: number;
@@ -18,7 +18,9 @@ const fixBounceSpeed = (p: BounceParticle): void => {
  * @param p1 - first particle to bounce
  * @param p2 - second particle to bounce
  */
-export function bounce(p1: BounceParticle, p2: BounceParticle): void {
+export async function bounce(p1: BounceParticle, p2: BounceParticle): Promise<void> {
+    const { circleBounce, circleBounceDataFromParticle } = await import("@tsparticles/engine");
+
     circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
 
     fixBounceSpeed(p1);

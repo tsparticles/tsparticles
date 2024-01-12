@@ -24,3 +24,35 @@ export const percentDenominator = 100;
 export const halfRandom = 0.5;
 
 export const millisecondsToSeconds = 1000;
+
+export const defaultTransformValues = {
+    /**
+     * Scale X
+     */
+    a: 1,
+
+    /**
+     * Skew X
+     */
+    b: 0,
+
+    /**
+     * Skew Y
+     */
+    c: 0,
+
+    /**
+     * Scale Y
+     */
+    d: 1,
+
+    /**
+     * Translate X
+     */
+    e: 0,
+
+    /**
+     * Translate Y
+     */
+    f: 0,
+};

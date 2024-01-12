@@ -1,4 +1,3 @@
-import { ColorUpdater } from "./ColorUpdater.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -6,5 +5,7 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadColorUpdater(engine: Engine, refresh = true): Promise<void> {
+    const { ColorUpdater } = await import("./ColorUpdater.js");
+
     await engine.addParticleUpdater("color", (container) => new ColorUpdater(container), refresh);
 }

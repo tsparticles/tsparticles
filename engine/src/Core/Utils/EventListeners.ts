@@ -172,7 +172,7 @@ export class EventListeners {
      * Handles blur event
      * @internal
      */
-    private readonly _handleVisibilityChange = async (): Promise<void> => {
+    private readonly _handleVisibilityChange = (): void => {
         const container = this.container,
             options = container.actualOptions;
 
@@ -190,9 +190,9 @@ export class EventListeners {
             container.pageHidden = false;
 
             if (container.getAnimationStatus()) {
-                await container.play(true);
+                container.play(true);
             } else {
-                await container.draw(true);
+                container.draw(true);
             }
         }
     };

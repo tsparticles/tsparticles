@@ -1,11 +1,12 @@
 import type { Engine } from "@tsparticles/engine";
-import { Pusher } from "./Pusher.js";
 
 /**
  * @param engine - The engine to use for the interaction
  * @param refresh -
  */
 export async function loadExternalPushInteraction(engine: Engine, refresh = true): Promise<void> {
+    const { Pusher } = await import("./Pusher.js");
+
     await engine.addInteractor("externalPush", (container) => new Pusher(container), refresh);
 }
 
