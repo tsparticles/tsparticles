@@ -11,7 +11,6 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import { InteractionManager } from "./Utils/InteractionManager.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import type { Particle } from "./Particle.js";
-import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Rectangle.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
@@ -351,6 +350,8 @@ export class Particles {
 
                 continue;
             }
+
+            const { Point } = await import("./Utils/Point.js");
 
             this.quadTree.insert(new Point(particle.getPosition(), particle));
         }
