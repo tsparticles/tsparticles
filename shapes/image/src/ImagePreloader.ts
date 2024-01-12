@@ -13,8 +13,10 @@ export class ImagePreloaderPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    getPlugin(): IContainerPlugin {
-        return {};
+    async getPlugin(): Promise<IContainerPlugin> {
+        return await new Promise((success) => {
+            success({});
+        });
     }
 
     loadOptions(options: PreloadOptions, source?: RecursivePartial<IPreloadOptions>): void {

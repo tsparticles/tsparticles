@@ -1,7 +1,7 @@
 import type { Container, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IInfectionOptions, InfectionOptions } from "./Types.js";
 import { Infection } from "./Options/Classes/Infection.js";
-import { InfectionInstance } from "./InfectionInstance.js";
+import type { InfectionInstance } from "./InfectionInstance.js";
 
 /**
  */
@@ -12,7 +12,9 @@ export class InfectionPlugin implements IPlugin {
         this.id = "infection";
     }
 
-    getPlugin(container: Container): InfectionInstance {
+    async getPlugin(container: Container): Promise<InfectionInstance> {
+        const { InfectionInstance } = await import("./InfectionInstance.js");
+
         return new InfectionInstance(container);
     }
 

@@ -10,7 +10,7 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 export interface IPlugin {
     readonly id: string;
 
-    getPlugin(container: Container): IContainerPlugin;
+    getPlugin(container: Container): Promise<IContainerPlugin>;
 
     loadOptions(options: Options, source?: RecursivePartial<IOptions>): void;
 

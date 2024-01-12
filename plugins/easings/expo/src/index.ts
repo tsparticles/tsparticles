@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
-import { EasingType, addEasing } from "@tsparticles/engine";
-
 /**
  */
 export async function loadEasingExpoPlugin(): Promise<void> {
+    const { EasingType, addEasing } = await import("@tsparticles/engine");
+
     addEasing(EasingType.easeInExpo, (value) => (!value ? 0 : 2 ** (10 * value - 10)));
     addEasing(EasingType.easeOutExpo, (value) => (value === 1 ? 1 : 1 - Math.pow(2, -10 * value)));
     addEasing(EasingType.easeInOutExpo, (value) => {
@@ -16,6 +16,4 @@ export async function loadEasingExpoPlugin(): Promise<void> {
             return value < 0.5 ? 2 ** (20 * value - 10) / 2 : (2 - 2 ** (-20 * value + 10)) / 2;
         }
     });
-
-    await Promise.resolve();
 }

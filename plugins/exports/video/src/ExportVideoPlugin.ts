@@ -1,5 +1,5 @@
 import type { Container, Engine, IPlugin } from "@tsparticles/engine";
-import { ExportVideoInstance } from "./ExportVideoInstance.js";
+import type { ExportVideoInstance } from "./ExportVideoInstance.js";
 
 /**
  */
@@ -14,7 +14,9 @@ export class ExportVideoPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    getPlugin(container: Container): ExportVideoInstance {
+    async getPlugin(container: Container): Promise<ExportVideoInstance> {
+        const { ExportVideoInstance } = await import("./ExportVideoInstance.js");
+
         return new ExportVideoInstance(container, this._engine);
     }
 

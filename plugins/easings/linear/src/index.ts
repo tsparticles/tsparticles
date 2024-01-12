@@ -1,8 +1,8 @@
-import { EasingType, addEasing } from "@tsparticles/engine";
-
 /**
  */
 export async function loadEasingLinearPlugin(): Promise<void> {
+    const { EasingType, addEasing } = await import("@tsparticles/engine");
+
     addEasing(EasingType.easeInLinear, (value) => {
         return value;
     });
@@ -12,6 +12,4 @@ export async function loadEasingLinearPlugin(): Promise<void> {
     addEasing(EasingType.easeInOutLinear, (value) => {
         return value;
     });
-
-    await Promise.resolve();
 }

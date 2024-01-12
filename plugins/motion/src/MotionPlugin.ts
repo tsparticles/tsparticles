@@ -1,7 +1,7 @@
 import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IMotionOptions, MotionOptions } from "./types.js";
 import { Motion } from "./Options/Classes/Motion.js";
-import { MotionInstance } from "./MotionInstance.js";
+import type { MotionInstance } from "./MotionInstance.js";
 
 /**
  */
@@ -16,7 +16,9 @@ export class MotionPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    getPlugin(container: Container): MotionInstance {
+    async getPlugin(container: Container): Promise<MotionInstance> {
+        const { MotionInstance } = await import("./MotionInstance.js");
+
         return new MotionInstance(container, this._engine);
     }
 
