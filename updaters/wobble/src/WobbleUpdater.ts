@@ -1,11 +1,4 @@
-import {
-    type Container,
-    type IDelta,
-    type IParticleUpdater,
-    type RecursivePartial,
-    getRandom,
-    getRangeValue,
-} from "@tsparticles/engine";
+import { type Container, type IDelta, type IParticleUpdater, type RecursivePartial } from "@tsparticles/engine";
 import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } from "./Types.js";
 import { Wobble } from "./Options/Classes/Wobble.js";
 import { updateWobble } from "./Utils.js";
@@ -34,8 +27,9 @@ export class WobbleUpdater implements IParticleUpdater {
      * Initializing the particle for wobble animation
      * @param particle - the particle to init
      */
-    init(particle: WobbleParticle): void {
-        const wobbleOpt = particle.options.wobble;
+    async init(particle: WobbleParticle): Promise<void> {
+        const wobbleOpt = particle.options.wobble,
+            { getRandom, getRangeValue } = await import("@tsparticles/engine");
 
         if (wobbleOpt?.enable) {
             particle.wobble = {

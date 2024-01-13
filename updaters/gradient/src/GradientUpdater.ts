@@ -16,7 +16,6 @@ import {
     getRangeValue,
     getStyleFromHsl,
     halfRandom,
-    itemFromSingleOrMultiple,
     millisecondsToSeconds,
     percentDenominator,
     randomInRange,
@@ -72,8 +71,9 @@ export class GradientUpdater implements IParticleUpdater {
         return { fill: fillGradient };
     }
 
-    init(particle: GradientParticle): void {
-        const gradient = itemFromSingleOrMultiple(particle.options.gradient);
+    async init(particle: GradientParticle): Promise<void> {
+        const { itemFromSingleOrMultiple } = await import("@tsparticles/engine"),
+            gradient = itemFromSingleOrMultiple(particle.options.gradient);
 
         if (!gradient) {
             return;

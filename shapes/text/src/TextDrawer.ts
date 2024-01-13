@@ -84,7 +84,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
      * @param container - the particles container
      * @param particle - the particle loading the text shape
      */
-    particleInit(container: Container, particle: TextParticle): void {
+    async particleInit(container: Container, particle: TextParticle): Promise<void> {
         if (!particle.shape || !validTypes.includes(particle.shape)) {
             return;
         }
@@ -102,6 +102,8 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
         }
 
         particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
+
+        await Promise.resolve();
     }
 
     private readonly _drawLine: (

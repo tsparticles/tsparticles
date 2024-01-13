@@ -4,7 +4,6 @@ import {
     type IParticleUpdater,
     type Particle,
     type RecursivePartial,
-    getRangeValue,
     percentDenominator,
 } from "@tsparticles/engine";
 import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types.js";
@@ -21,7 +20,7 @@ export class DestroyUpdater implements IParticleUpdater {
         this.engine = engine;
     }
 
-    init(particle: DestroyParticle): void {
+    async init(particle: DestroyParticle): Promise<void> {
         const container = this.container,
             particlesOptions = particle.options,
             destroyOptions = particlesOptions.destroy;
@@ -40,7 +39,8 @@ export class DestroyUpdater implements IParticleUpdater {
 
         const { bottom, left, right, top } = destroyBoundsOptions,
             { destroyBounds } = particle,
-            canvasSize = container.canvas.size;
+            canvasSize = container.canvas.size,
+            { getRangeValue } = await import("@tsparticles/engine");
 
         if (bottom) {
             destroyBounds.bottom = (getRangeValue(bottom) * canvasSize.height) / percentDenominator;

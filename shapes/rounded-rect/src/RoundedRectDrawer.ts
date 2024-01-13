@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer } from "@tsparticles/engine";
 import type { IRoundedRectData } from "./IRoundedRectData.js";
 import type { RadiusInfo } from "./RadiusInfo.js";
 import type { RectInfo } from "./RectInfo.js";
@@ -61,8 +61,9 @@ export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
         }
     }
 
-    particleInit(container: Container, particle: RoundedParticle): void {
-        const shapeData = particle.shapeData as IRoundedRectData | undefined;
+    async particleInit(container: Container, particle: RoundedParticle): Promise<void> {
+        const shapeData = particle.shapeData as IRoundedRectData | undefined,
+            { getRangeValue } = await import("@tsparticles/engine");
 
         particle.borderRadius = getRangeValue(shapeData?.radius ?? defaultRadius) * container.retina.pixelRatio;
     }

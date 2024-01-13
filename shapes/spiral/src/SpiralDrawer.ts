@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer } from "@tsparticles/engine";
 import type { ISpiralData } from "./ISpiralData.js";
 import type { SpiralParticle } from "./SpiralParticle.js";
 
@@ -33,9 +33,10 @@ export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
         }
     }
 
-    particleInit(container: Container, particle: SpiralParticle): void {
+    async particleInit(container: Container, particle: SpiralParticle): Promise<void> {
         const pixelRatio = container.retina.pixelRatio,
-            shapeData = particle.shapeData as ISpiralData | undefined;
+            shapeData = particle.shapeData as ISpiralData | undefined,
+            { getRangeValue } = await import("@tsparticles/engine");
 
         particle.spiralInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius) * pixelRatio;
         particle.spiralLineSpacing = getRangeValue(shapeData?.lineSpacing ?? defaultLineSpacing) * pixelRatio;

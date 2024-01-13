@@ -189,7 +189,7 @@ export class EventListeners {
         } else {
             container.pageHidden = false;
 
-            if (container.getAnimationStatus()) {
+            if (container.animationStatus) {
                 container.play(true);
             } else {
                 container.draw(true);

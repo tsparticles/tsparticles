@@ -1,12 +1,4 @@
-import {
-    type Container,
-    type IDelta,
-    type IParticleUpdater,
-    type Particle,
-    getHslAnimationFromHsl,
-    rangeColorToHsl,
-    updateColor,
-} from "@tsparticles/engine";
+import { type Container, type IDelta, type IParticleUpdater, type Particle, updateColor } from "@tsparticles/engine";
 
 export class ColorUpdater implements IParticleUpdater {
     private readonly container;
@@ -15,11 +7,14 @@ export class ColorUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    init(particle: Particle): void {
+    async init(particle: Particle): Promise<void> {
         /* color */
-        const hslColor = rangeColorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
+        const { rangeColorToHsl } = await import("@tsparticles/engine"),
+            hslColor = rangeColorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
 
         if (hslColor) {
+            const { getHslAnimationFromHsl } = await import("@tsparticles/engine");
+
             particle.color = getHslAnimationFromHsl(
                 hslColor,
                 particle.options.color.animation,

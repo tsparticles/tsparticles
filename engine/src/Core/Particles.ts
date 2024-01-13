@@ -341,7 +341,7 @@ export class Particles {
 
             for (const mover of this.movers) {
                 if (mover.isEnabled(particle)) {
-                    mover.move(particle, delta);
+                    await mover.move(particle, delta);
                 }
             }
 
@@ -468,11 +468,18 @@ export class Particles {
             let particle = this._pool.pop();
 
             if (particle) {
-                particle.init(this._nextId, position, overrideOptions, group);
+                await particle.init(this._nextId, position, overrideOptions, group);
             } else {
                 const { Particle } = await import("./Particle.js");
 
-                particle = new Particle(this._engine, this._nextId, this._container, position, overrideOptions, group);
+                particle = await Particle.create(
+                    this._engine,
+                    this._nextId,
+                    this._container,
+                    position,
+                    overrideOptions,
+                    group,
+                );
             }
 
             let canAdd = true;

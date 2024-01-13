@@ -42,7 +42,7 @@ export class TwinkleUpdater implements IParticleUpdater {
         return res;
     }
 
-    init(): void {
+    async init(): Promise<void> {
         // do nothing
     }
 

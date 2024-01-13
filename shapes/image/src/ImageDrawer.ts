@@ -1,25 +1,9 @@
-import {
-    type Container,
-    type ICoordinates,
-    type IShapeDrawData,
-    type IShapeDrawer,
-    errorPrefix,
-} from "@tsparticles/engine";
-import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor } from "./Utils.js";
+import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
+import { type IImage, type IParticleImage, type ImageParticle, drawGifImage, replaceImageColor } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
-import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod.js";
 import type { IImageShape } from "./IImageShape.js";
 
-const origin: ICoordinates = {
-        x: 0,
-        y: 0,
-    },
-    defaultLoopCount = 0,
-    defaultFrame = 0,
-    half = 0.5,
-    initialTime = 0,
-    firstIndex = 0,
-    double = 2,
+const double = 2,
     defaultAlpha = 1,
     sides = 12,
     defaultRatio = 1;
@@ -66,113 +50,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         context.globalAlpha = opacity;
 
         if (image.gif && image.gifData) {
-            const offscreenCanvas = new OffscreenCanvas(image.gifData.width, image.gifData.height),
-                offscreenContext = offscreenCanvas.getContext("2d");
-
-            if (!offscreenContext) {
-                throw new Error("could not create offscreen canvas context");
-            }
-
-            offscreenContext.imageSmoothingQuality = "low";
-            offscreenContext.imageSmoothingEnabled = false;
-
-            offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-
-            if (particle.gifLoopCount === undefined) {
-                particle.gifLoopCount = image.gifLoopCount ?? defaultLoopCount;
-            }
-
-            let frameIndex = particle.gifFrame ?? defaultFrame;
-
-            const pos = { x: -image.gifData.width * half, y: -image.gifData.height * half },
-                frame = image.gifData.frames[frameIndex];
-
-            if (particle.gifTime === undefined) {
-                particle.gifTime = initialTime;
-            }
-
-            if (!frame.bitmap) {
-                return;
-            }
-
-            context.scale(radius / image.gifData.width, radius / image.gifData.height);
-
-            switch (frame.disposalMethod) {
-                case DisposalMethod.UndefinedA: // ! fall through
-                case DisposalMethod.UndefinedB: // ! fall through
-                case DisposalMethod.UndefinedC: // ! fall through
-                case DisposalMethod.UndefinedD: // ! fall through
-                case DisposalMethod.Replace:
-                    offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-                    context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-                    offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-
-                    break;
-                case DisposalMethod.Combine:
-                    offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-                    context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-                    break;
-                case DisposalMethod.RestoreBackground:
-                    offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-                    context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-                    offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-
-                    if (!image.gifData.globalColorTable.length) {
-                        offscreenContext.putImageData(
-                            image.gifData.frames[firstIndex].image,
-                            pos.x + frame.left,
-                            pos.y + frame.top,
-                        );
-                    } else {
-                        offscreenContext.putImageData(image.gifData.backgroundImage, pos.x, pos.y);
-                    }
-
-                    break;
-                case DisposalMethod.RestorePrevious:
-                    {
-                        const previousImageData = offscreenContext.getImageData(
-                            origin.x,
-                            origin.y,
-                            offscreenCanvas.width,
-                            offscreenCanvas.height,
-                        );
-
-                        offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-                        context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-                        offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-                        offscreenContext.putImageData(previousImageData, origin.x, origin.y);
-                    }
-                    break;
-            }
-
-            particle.gifTime += delta.value;
-
-            if (particle.gifTime > frame.delayTime) {
-                particle.gifTime -= frame.delayTime;
-
-                if (++frameIndex >= image.gifData.frames.length) {
-                    if (--particle.gifLoopCount <= defaultLoopCount) {
-                        return;
-                    }
-
-                    frameIndex = firstIndex;
-
-                    // ? so apparently some GIFs seam to set the disposal method of the last frame wrong?...so this is a "fix" for that (clear after the last frame)
-                    offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-                }
-
-                particle.gifFrame = frameIndex;
-            }
-
-            context.scale(image.gifData.width / radius, image.gifData.height / radius);
+            drawGifImage(context, particle, image, radius, delta);
         } else if (element) {
             const ratio = image.ratio,
                 pos = {
@@ -208,7 +86,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         }
     }
 
-    loadShape(particle: ImageParticle): void {
+    async loadShape(particle: ImageParticle): Promise<void> {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
@@ -226,9 +104,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
-            void this.loadImageShape(imageData).then(() => {
-                this.loadShape(particle);
-            });
+            await this.loadImageShape(imageData);
+            await this.loadShape(particle);
         }
     }
 
@@ -237,7 +114,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * @param container - the particles container
      * @param particle - the particle loading the image shape
      */
-    particleInit(container: Container, particle: ImageParticle): void {
+    async particleInit(container: Container, particle: ImageParticle): Promise<void> {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
@@ -264,51 +141,49 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
         if (image.loading) {
             setTimeout((): void => {
-                this.particleInit(container, particle);
+                void this.particleInit(container, particle);
             });
 
             return;
         }
 
-        void (async (): Promise<void> => {
-            let imageRes: IParticleImage;
+        let imageRes: IParticleImage;
 
-            if (image.svgData && color) {
-                imageRes = await replaceImageColor(image, imageData, color, particle);
-            } else {
-                imageRes = {
-                    color,
-                    data: image,
-                    element: image.element,
-                    gif: image.gif,
-                    gifData: image.gifData,
-                    gifLoopCount: image.gifLoopCount,
-                    loaded: true,
-                    ratio:
-                        imageData.width && imageData.height
-                            ? imageData.width / imageData.height
-                            : image.ratio ?? defaultRatio,
-                    replaceColor: replaceColor,
-                    source: imageData.src,
-                };
-            }
+        if (image.svgData && color) {
+            imageRes = await replaceImageColor(image, imageData, color, particle);
+        } else {
+            imageRes = {
+                color,
+                data: image,
+                element: image.element,
+                gif: image.gif,
+                gifData: image.gifData,
+                gifLoopCount: image.gifLoopCount,
+                loaded: true,
+                ratio:
+                    imageData.width && imageData.height
+                        ? imageData.width / imageData.height
+                        : image.ratio ?? defaultRatio,
+                replaceColor: replaceColor,
+                source: imageData.src,
+            };
+        }
 
-            if (!imageRes.ratio) {
-                imageRes.ratio = 1;
-            }
+        if (!imageRes.ratio) {
+            imageRes.ratio = 1;
+        }
 
-            const fill = imageData.fill ?? particle.shapeFill,
-                close = imageData.close ?? particle.shapeClose,
-                imageShape = {
-                    image: imageRes,
-                    fill,
-                    close,
-                };
+        const fill = imageData.fill ?? particle.shapeFill,
+            close = imageData.close ?? particle.shapeClose,
+            imageShape = {
+                image: imageRes,
+                fill,
+                close,
+            };
 
-            particle.image = imageShape.image;
-            particle.shapeFill = imageShape.fill;
-            particle.shapeClose = imageShape.close;
-        })();
+        particle.image = imageShape.image;
+        particle.shapeFill = imageShape.fill;
+        particle.shapeClose = imageShape.close;
     }
 
     /**

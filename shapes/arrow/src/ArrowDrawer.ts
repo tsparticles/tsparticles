@@ -1,10 +1,4 @@
-import {
-    type Container,
-    type ICoordinates,
-    type IShapeDrawData,
-    type IShapeDrawer,
-    getRangeValue,
-} from "@tsparticles/engine";
+import type { Container, ICoordinates, IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 import type { ArrowParticle } from "./ArrowParticle.js";
 import type { IArrowData } from "./IArrowData.js";
 
@@ -40,8 +34,9 @@ export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
         context.lineTo(-width * half, origin.y);
     }
 
-    particleInit(container: Container, particle: ArrowParticle): void {
-        const shapeData = particle.shapeData as IArrowData | undefined;
+    async particleInit(container: Container, particle: ArrowParticle): Promise<void> {
+        const shapeData = particle.shapeData as IArrowData | undefined,
+            { getRangeValue } = await import("@tsparticles/engine");
 
         particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? defaultHeightFactor);
         particle.headWidthFactor = getRangeValue(shapeData?.headWidthFactor ?? defaultHeadWidthFactor);

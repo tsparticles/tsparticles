@@ -3,7 +3,6 @@ import {
     type IDelta,
     type IParticleUpdater,
     type Particle,
-    getHslAnimationFromHsl,
     getRangeValue,
     itemFromSingleOrMultiple,
     rangeColorToHsl,
@@ -20,12 +19,11 @@ export class StrokeColorUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    init(particle: StrokeParticle): void {
+    async init(particle: StrokeParticle): Promise<void> {
         const container = this.container,
-            options = particle.options;
-
-        /* strokeColor */
-        const stroke = itemFromSingleOrMultiple(options.stroke, particle.id, options.reduceDuplicates);
+            options = particle.options,
+            /* strokeColor */
+            stroke = itemFromSingleOrMultiple(options.stroke, particle.id, options.reduceDuplicates);
 
         particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
         particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
@@ -34,6 +32,8 @@ export class StrokeColorUpdater implements IParticleUpdater {
         const strokeHslColor = rangeColorToHsl(stroke.color) ?? particle.getFillColor();
 
         if (strokeHslColor) {
+            const { getHslAnimationFromHsl } = await import("@tsparticles/engine");
+
             particle.strokeColor = getHslAnimationFromHsl(
                 strokeHslColor,
                 particle.strokeAnimation,

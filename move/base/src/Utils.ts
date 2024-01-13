@@ -4,8 +4,10 @@ import {
     type Particle,
     RotateDirection,
     clamp,
+    getDistance,
     getDistances,
     getRandom,
+    getRangeValue,
 } from "@tsparticles/engine";
 import type { MoveParticle } from "./Types.js";
 
@@ -205,4 +207,34 @@ export function applyPath(particle: Particle, delta: IDelta): void {
  */
 export function getProximitySpeedFactor(particle: Particle): number {
     return particle.slow.inRange ? particle.slow.factor : identity;
+}
+
+/**
+ *
+ * @param particle
+ */
+export function initSpin(particle: MoveParticle): void {
+    const container = particle.container,
+        options = particle.options,
+        spinOptions = options.move.spin,
+        spinPos = spinOptions.position ?? { x: 50, y: 50 },
+        spinFactor = 0.01,
+        spinCenter = {
+            x: spinPos.x * spinFactor * container.canvas.size.width,
+            y: spinPos.y * spinFactor * container.canvas.size.height,
+        },
+        pos = particle.getPosition(),
+        distance = getDistance(pos, spinCenter),
+        spinAcceleration = getRangeValue(spinOptions.acceleration),
+        minVelocity = 0;
+
+    particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
+
+    particle.spin = {
+        center: spinCenter,
+        direction: particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise,
+        angle: particle.velocity.angle,
+        radius: distance,
+        acceleration: particle.retina.spinAcceleration,
+    };
 }

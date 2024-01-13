@@ -7,7 +7,6 @@ import {
     type Particle,
     type RangeValue,
     defaultTransformValues,
-    getRangeValue,
 } from "@tsparticles/engine";
 
 const double = 2,
@@ -143,10 +142,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         );
     }
 
-    particleInit(container: Container, particle: TrailParticle): void {
+    async particleInit(container: Container, particle: TrailParticle): Promise<void> {
         particle.trail = [];
 
-        const effectData = particle.effectData as ITrailData | undefined;
+        const effectData = particle.effectData as ITrailData | undefined,
+            { getRangeValue } = await import("@tsparticles/engine");
 
         particle.trailFade = effectData?.fade ?? true;
         particle.trailLength = getRangeValue(effectData?.length ?? defaultLength) * container.retina.pixelRatio;

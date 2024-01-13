@@ -199,6 +199,18 @@ export class Container {
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
+    get alive(): boolean {
+        return !this._duration || this._lifeTime <= this._duration;
+    }
+
+    /**
+     * Gets the animation status
+     * @returns `true` is playing, `false` is paused
+     */
+    get animationStatus(): boolean {
+        return !this._paused && !this.pageHidden && guardCheck(this);
+    }
+
     /**
      * The options used by the container, it's a full {@link Options} object
      * @returns the options used by the container
@@ -352,10 +364,6 @@ export class Container {
         return true;
     }
 
-    alive(): boolean {
-        return !this._duration || this._lifeTime <= this._duration;
-    }
-
     /**
      * Destroys the current container, invalidating it
      */
@@ -442,14 +450,6 @@ export class Container {
         }
 
         getLogger().error(`${errorPrefix} - Export plugin with type ${type} not found`);
-    }
-
-    /**
-     * Gets the animation status
-     * @returns `true` is playing, `false` is paused
-     */
-    getAnimationStatus(): boolean {
-        return !this._paused && !this.pageHidden && guardCheck(this);
     }
 
     /**
@@ -796,12 +796,12 @@ export class Container {
 
             await this.particles.draw(delta);
 
-            if (!this.alive()) {
+            if (!this.alive) {
                 this.destroy();
                 return;
             }
 
-            if (this.getAnimationStatus()) {
+            if (this.animationStatus) {
                 this.draw(false);
             }
         } catch (e) {

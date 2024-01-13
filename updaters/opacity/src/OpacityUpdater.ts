@@ -4,7 +4,6 @@ import {
     type IParticleUpdater,
     type Particle,
     getRandom,
-    getRangeValue,
     initParticleNumericAnimationValue,
     percentDenominator,
     updateAnimation,
@@ -28,7 +27,7 @@ export class OpacityUpdater implements IParticleUpdater {
      * Init a single particle opacity
      * @param particle -
      */
-    init(particle: Particle): void {
+    async init(particle: Particle): Promise<void> {
         /* opacity */
         const opacityOptions = particle.options.opacity,
             pxRatio = 1;
@@ -38,6 +37,8 @@ export class OpacityUpdater implements IParticleUpdater {
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
+            const { getRangeValue } = await import("@tsparticles/engine");
+
             particle.opacity.velocity =
                 (getRangeValue(opacityAnimation.speed) / percentDenominator) * this.container.retina.reduceFactor;
 

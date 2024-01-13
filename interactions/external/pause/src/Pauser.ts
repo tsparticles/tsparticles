@@ -18,7 +18,7 @@ export class Pauser extends ExternalInteractorBase {
 
             const container = this.container;
 
-            if (container.getAnimationStatus()) {
+            if (container.animationStatus) {
                 container.pause();
             } else {
                 void container.play();

@@ -43,7 +43,7 @@ export class RotateUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    init(particle: RotateParticle): void {
+    async init(particle: RotateParticle): Promise<void> {
         const rotateOptions = particle.options.rotate;
 
         if (!rotateOptions) {
@@ -91,6 +91,8 @@ export class RotateUpdater implements IParticleUpdater {
         }
 
         particle.rotation = particle.rotate.value;
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: RotateParticle): boolean {

@@ -1,14 +1,4 @@
-import {
-    type Container,
-    type IShapeDrawData,
-    type IShapeDrawer,
-    type SingleOrMultiple,
-    executeOnSingleOrMultiple,
-    getRangeMax,
-    isInArray,
-    itemFromSingleOrMultiple,
-    loadFont,
-} from "@tsparticles/engine";
+import type { Container, IShapeDrawData, IShapeDrawer, SingleOrMultiple } from "@tsparticles/engine";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
 
@@ -47,15 +37,19 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.actualOptions;
+        const options = container.actualOptions,
+            { isInArray } = await import("@tsparticles/engine");
 
         if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
-            const promises: Promise<void>[] = [loadFont(defaultFont)],
+            const { loadFont } = await import("@tsparticles/engine"),
+                promises: Promise<void>[] = [loadFont(defaultFont)],
                 shapeOptions = validTypes
                     .map((t) => options.particles.shape.options[t])
                     .find((t) => !!t) as SingleOrMultiple<IEmojiShape>;
 
             if (shapeOptions) {
+                const { executeOnSingleOrMultiple } = await import("@tsparticles/engine");
+
                 executeOnSingleOrMultiple(shapeOptions, (shape) => {
                     if (shape.font) {
                         promises.push(loadFont(shape.font));
@@ -71,7 +65,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         delete particle.emojiData;
     }
 
-    particleInit(container: Container, particle: EmojiParticle): void {
+    async particleInit(container: Container, particle: EmojiParticle): Promise<void> {
         const double = 2,
             shapeData = particle.shapeData as unknown as IEmojiShape;
 
@@ -79,7 +73,8 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
             return;
         }
 
-        const emoji = itemFromSingleOrMultiple(shapeData.value, particle.randomIndexData),
+        const { itemFromSingleOrMultiple } = await import("@tsparticles/engine"),
+            emoji = itemFromSingleOrMultiple(shapeData.value, particle.randomIndexData),
             font = shapeData.font ?? defaultFont;
 
         if (!emoji) {
@@ -95,7 +90,8 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
             return;
         }
 
-        const canvasSize = getRangeMax(particle.size.value) * double;
+        const { getRangeMax } = await import("@tsparticles/engine"),
+            canvasSize = getRangeMax(particle.size.value) * double;
 
         let emojiData: ImageBitmap | HTMLCanvasElement;
 

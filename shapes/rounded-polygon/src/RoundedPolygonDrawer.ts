@@ -73,10 +73,12 @@ export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
         return Math.round(getRangeValue(roundedPolygon?.sides ?? defaultSides));
     }
 
-    particleInit(container: Container, particle: RoundedParticle): void {
+    async particleInit(container: Container, particle: RoundedParticle): Promise<void> {
         const shapeData = particle.shapeData as IRoundedPolygonShape | undefined;
 
         particle.borderRadius =
             Math.round(getRangeValue(shapeData?.radius ?? defaultSides)) * container.retina.pixelRatio;
+
+        await Promise.resolve();
     }
 }

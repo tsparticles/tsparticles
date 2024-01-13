@@ -28,7 +28,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         ];
     }
 
-    init(): void {
+    async init(): Promise<void> {
         // nothing
     }
 

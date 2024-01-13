@@ -3,7 +3,6 @@ import {
     type ICoordinates,
     type IShapeDrawData,
     type IShapeDrawer,
-    getRangeValue,
     percentDenominator,
 } from "@tsparticles/engine";
 import type { CogParticle } from "./CogParticle.js";
@@ -96,8 +95,9 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
         }
     }
 
-    particleInit(container: Container, particle: CogParticle): void {
-        const shapeData = particle.shapeData as ICogData | undefined;
+    async particleInit(container: Container, particle: CogParticle): Promise<void> {
+        const shapeData = particle.shapeData as ICogData | undefined,
+            { getRangeValue } = await import("@tsparticles/engine");
 
         particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? defaultHoleRadius);
         particle.cogInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius);

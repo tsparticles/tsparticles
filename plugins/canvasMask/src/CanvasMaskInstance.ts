@@ -1,11 +1,5 @@
-import {
-    type CanvasPixelData,
-    addParticlesFromCanvasPixels,
-    getCanvasImageData,
-    getImageData,
-    getTextData,
-} from "./utils.js";
 import type { CanvasMaskContainer } from "./types.js";
+import type { CanvasPixelData } from "./utils.js";
 import type { IContainerPlugin } from "@tsparticles/engine";
 
 export class CanvasMaskInstance implements IContainerPlugin {
@@ -38,11 +32,13 @@ export class CanvasMaskInstance implements IContainerPlugin {
                 return;
             }
 
+            const { getImageData } = await import("./utils.js");
+
             pixelData = await getImageData(url, offset);
         } else if (options.text) {
-            const textOptions = options.text;
-
-            const data = getTextData(textOptions, offset);
+            const textOptions = options.text,
+                { getTextData } = await import("./utils.js"),
+                data = getTextData(textOptions, offset);
 
             if (!data) {
                 return;
@@ -63,8 +59,12 @@ export class CanvasMaskInstance implements IContainerPlugin {
                 return;
             }
 
+            const { getCanvasImageData } = await import("./utils.js");
+
             pixelData = getCanvasImageData(context, canvas, offset);
         }
+
+        const { addParticlesFromCanvasPixels } = await import("./utils.js");
 
         await addParticlesFromCanvasPixels(
             container,
