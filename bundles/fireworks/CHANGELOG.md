@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
+
+### Bug Fixes
+
+-   fixed sounds in fireworks bundle ([ed77e79](https://github.com/tsparticles/tsparticles/commit/ed77e79521a73dc30ce5a7517ea8cf54b72f1f78))
+
 ## [3.0.3](https://github.com/tsparticles/tsparticles/compare/v3.0.2...v3.0.3) (2023-12-26)
 
 ### Bug Fixes

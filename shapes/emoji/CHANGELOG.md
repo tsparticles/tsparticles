@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
+
+### Bug Fixes
+
+-   fixed memory allocation of emoji shape ([3d84380](https://github.com/tsparticles/tsparticles/commit/3d84380b45cbbc3f01d39deb069d37ce54268c68))
+
 ## [3.0.3](https://github.com/tsparticles/tsparticles/compare/v3.0.2...v3.0.3) (2023-12-26)
 
 ### Bug Fixes

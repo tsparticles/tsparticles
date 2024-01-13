@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
+
+### Features
+
+-   added new zig-zag path ([48bc5d1](https://github.com/tsparticles/tsparticles/commit/48bc5d16324989faab1830976b968c054c2003eb))
+-   added poisson disc plugin for better particles initial positions ([405f1df](https://github.com/tsparticles/tsparticles/commit/405f1dff34c380f576b2676cab8296e25b5d4e1f))
+
 ## [3.0.3](https://github.com/tsparticles/tsparticles/compare/v3.0.2...v3.0.3) (2023-12-26)
 
 ### Bug Fixes
