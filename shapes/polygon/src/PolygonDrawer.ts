@@ -2,13 +2,17 @@ import type { ICoordinates, Particle } from "@tsparticles/engine";
 import type { ISide } from "./ISide.js";
 import { PolygonDrawerBase } from "./PolygonDrawerBase.js";
 
+const sidesCenterFactor = 3.5,
+    yFactor = 2.66,
+    sidesFactor = 3;
+
 /**
  */
 export class PolygonDrawer extends PolygonDrawerBase {
     getCenter(particle: Particle, radius: number): ICoordinates {
         return {
-            x: -radius / (particle.sides / 3.5),
-            y: -radius / (2.66 / 3.5),
+            x: -radius / (particle.sides / sidesCenterFactor),
+            y: -radius / (yFactor / sidesCenterFactor),
         };
     }
 
@@ -20,7 +24,7 @@ export class PolygonDrawer extends PolygonDrawerBase {
                 denominator: 1,
                 numerator: sides,
             },
-            length: (radius * 2.66) / (sides / 3),
+            length: (radius * yFactor) / (sides / sidesFactor),
         };
     }
 }

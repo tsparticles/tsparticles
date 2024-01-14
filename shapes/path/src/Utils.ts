@@ -7,55 +7,62 @@ import { SegmentType } from "./SegmentType.js";
  * @param path -
  */
 export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IPathData): void {
-    ctx.moveTo(path.segments[0].values[0].x * radius, path.segments[0].values[0].y * radius);
+    const firstIndex = 0,
+        firstSegment = path.segments[firstIndex],
+        firstValue = firstSegment.values[firstIndex];
 
-    for (let i = 0; i < path.segments.length; i++) {
-        const segment = path.segments[i];
+    ctx.moveTo(firstValue.x * radius, firstValue.y * radius);
+
+    for (const segment of path.segments) {
+        const value = segment.values[firstIndex],
+            index2 = 1,
+            index3 = 2,
+            index4 = 3;
 
         switch (segment.type) {
             case SegmentType.line:
-                ctx.lineTo(segment.values[0].x * radius, segment.values[0].y * radius);
+                ctx.lineTo(value.x * radius, value.y * radius);
                 break;
 
             case SegmentType.bezier:
                 ctx.bezierCurveTo(
-                    segment.values[1].x * radius,
-                    segment.values[1].y * radius,
-                    segment.values[2].x * radius,
-                    segment.values[2].y * radius,
-                    segment.values[3].x * radius,
-                    segment.values[3].y * radius,
+                    segment.values[index2].x * radius,
+                    segment.values[index2].y * radius,
+                    segment.values[index3].x * radius,
+                    segment.values[index3].y * radius,
+                    segment.values[index4].x * radius,
+                    segment.values[index4].y * radius,
                 );
                 break;
 
             case SegmentType.quadratic:
                 ctx.quadraticCurveTo(
-                    segment.values[1].x * radius,
-                    segment.values[1].y * radius,
-                    segment.values[2].x * radius,
-                    segment.values[2].y * radius,
+                    segment.values[index2].x * radius,
+                    segment.values[index2].y * radius,
+                    segment.values[index3].x * radius,
+                    segment.values[index3].y * radius,
                 );
                 break;
 
             case SegmentType.arc:
                 ctx.arc(
-                    segment.values[0].x * radius,
-                    segment.values[0].y * radius,
-                    segment.values[1].x * radius,
-                    segment.values[2].x,
-                    segment.values[2].y,
+                    value.x * radius,
+                    value.y * radius,
+                    segment.values[index2].x * radius,
+                    segment.values[index3].x,
+                    segment.values[index3].y,
                 );
                 break;
 
             case SegmentType.ellipse:
                 ctx.ellipse(
-                    segment.values[0].x * radius,
-                    segment.values[0].y * radius,
-                    segment.values[1].x * radius,
-                    segment.values[1].y * radius,
-                    segment.values[2].x,
-                    segment.values[3].x,
-                    segment.values[3].y,
+                    value.x * radius,
+                    value.y * radius,
+                    segment.values[index2].x * radius,
+                    segment.values[index2].y * radius,
+                    segment.values[index3].x,
+                    segment.values[index4].x,
+                    segment.values[index4].y,
                 );
         }
     }
@@ -64,32 +71,43 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
         return;
     }
 
-    for (let i = path.segments.length - 1; i >= 0; i--) {
-        const segment = path.segments[i];
+    const lengthOffset = 1,
+        minLength = 0;
+
+    for (let i = path.segments.length - lengthOffset; i >= minLength; i--) {
+        const segment = path.segments[i],
+            value = segment.values[firstIndex],
+            index2 = 1,
+            index3 = 2;
 
         switch (segment.type) {
-            case "line":
-                ctx.lineTo(segment.values[0].x * -radius, segment.values[0].y * radius);
+            case SegmentType.line:
+                ctx.lineTo(value.x * -radius, value.y * radius);
                 break;
 
-            case "bezier":
+            case SegmentType.bezier:
                 ctx.bezierCurveTo(
-                    -segment.values[2].x * radius,
-                    segment.values[2].y * radius,
-                    -segment.values[1].x * radius,
-                    segment.values[1].y * radius,
-                    -segment.values[0].x * radius,
-                    segment.values[0].y * radius,
+                    -segment.values[index3].x * radius,
+                    segment.values[index3].y * radius,
+                    -segment.values[index2].x * radius,
+                    segment.values[index2].y * radius,
+                    value.x * radius,
+                    value.y * radius,
                 );
                 break;
 
             case SegmentType.quadratic:
                 ctx.quadraticCurveTo(
-                    -segment.values[1].x * radius,
-                    segment.values[1].y * radius,
-                    -segment.values[2].x * radius,
-                    segment.values[2].y * radius,
+                    -segment.values[index2].x * radius,
+                    segment.values[index2].y * radius,
+                    -segment.values[index3].x * radius,
+                    segment.values[index3].y * radius,
                 );
+                break;
+
+            case SegmentType.arc:
+            case SegmentType.ellipse:
+            default:
                 break;
         }
     }

@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "mouseFollow",
     name: "Mouse Follow",
     background: {
         color: "#000000",

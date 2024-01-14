@@ -6,18 +6,23 @@ import {
     getRandom,
     getRangeValue,
     initParticleNumericAnimationValue,
+    percentDenominator,
+    updateAnimation,
 } from "@tsparticles/engine";
-import { updateOpacity } from "./Utils.js";
 
 /**
  * The opacity updater, it manages the opacity on each particle
  */
 export class OpacityUpdater implements IParticleUpdater {
+    private readonly container;
+
     /**
      * Constructor of opacity updater
      * @param container - The container to manage
      */
-    constructor(private readonly container: Container) {}
+    constructor(container: Container) {
+        this.container = container;
+    }
 
     /**
      * Init a single particle opacity
@@ -25,15 +30,16 @@ export class OpacityUpdater implements IParticleUpdater {
      */
     init(particle: Particle): void {
         /* opacity */
-        const opacityOptions = particle.options.opacity;
+        const opacityOptions = particle.options.opacity,
+            pxRatio = 1;
 
-        particle.opacity = initParticleNumericAnimationValue(opacityOptions, 1);
+        particle.opacity = initParticleNumericAnimationValue(opacityOptions, pxRatio);
 
         const opacityAnimation = opacityOptions.animation;
 
         if (opacityAnimation.enable) {
             particle.opacity.velocity =
-                (getRangeValue(opacityAnimation.speed) / 100) * this.container.retina.reduceFactor;
+                (getRangeValue(opacityAnimation.speed) / percentDenominator) * this.container.retina.reduceFactor;
 
             if (!opacityAnimation.sync) {
                 particle.opacity.velocity *= getRandom();
@@ -47,14 +53,16 @@ export class OpacityUpdater implements IParticleUpdater {
      * @returns true if opacity updater is enabled, false otherwise
      */
     isEnabled(particle: Particle): boolean {
+        const none = 0;
+
         return (
             !particle.destroyed &&
             !particle.spawning &&
             !!particle.opacity &&
             particle.opacity.enable &&
-            ((particle.opacity.maxLoops ?? 0) <= 0 ||
-                ((particle.opacity.maxLoops ?? 0) > 0 &&
-                    (particle.opacity.loops ?? 0) < (particle.opacity.maxLoops ?? 0)))
+            ((particle.opacity.maxLoops ?? none) <= none ||
+                ((particle.opacity.maxLoops ?? none) > none &&
+                    (particle.opacity.loops ?? none) < (particle.opacity.maxLoops ?? none)))
         );
     }
 
@@ -75,10 +83,10 @@ export class OpacityUpdater implements IParticleUpdater {
      * @param delta -
      */
     update(particle: Particle, delta: IDelta): void {
-        if (!this.isEnabled(particle)) {
+        if (!this.isEnabled(particle) || !particle.opacity) {
             return;
         }
 
-        updateOpacity(particle, delta);
+        updateAnimation(particle, particle.opacity, true, particle.options.opacity.animation.destroy, delta);
     }
 }

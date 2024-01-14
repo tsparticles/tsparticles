@@ -14,7 +14,12 @@ import {
     getRangeValue,
     getStyleFromHsl,
     parseAlpha,
+    percentDenominator,
 } from "@tsparticles/engine";
+
+const rgbFactor = 255,
+    double = 2,
+    half = 0.5;
 
 /**
  * Converts a RGB ({@link IRgb}) object in a {@link IHsv} object
@@ -23,9 +28,9 @@ import {
  */
 export function rgbToHsv(rgb: IRgb): IHsv {
     const rgbPercent = {
-            r: rgb.r / 255,
-            g: rgb.g / 255,
-            b: rgb.b / 255,
+            r: rgb.r / rgbFactor,
+            g: rgb.g / rgbFactor,
+            b: rgb.b / rgbFactor,
         },
         xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b),
         xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b),
@@ -34,26 +39,35 @@ export function rgbToHsv(rgb: IRgb): IHsv {
 
     let h = 0;
 
+    const phaseOffset = {
+            r: 0,
+            g: 2,
+            b: 4,
+        },
+        phaseValue = 60;
+
     if (v === rgbPercent.r) {
-        h = 60 * ((rgbPercent.g - rgbPercent.b) / c);
+        h = phaseValue * (phaseOffset.r + (rgbPercent.g - rgbPercent.b) / c);
     } else if (v === rgbPercent.g) {
-        h = 60 * (2 + (rgbPercent.b - rgbPercent.r) / c);
+        h = phaseValue * (phaseOffset.g + (rgbPercent.b - rgbPercent.r) / c);
     } else if (v === rgbPercent.b) {
-        h = 60 * (4 + (rgbPercent.r - rgbPercent.g) / c);
+        h = phaseValue * (phaseOffset.b + (rgbPercent.r - rgbPercent.g) / c);
     }
 
-    const s = !v ? 0 : c / v;
+    const defaultSaturation = 0,
+        s = !v ? defaultSaturation : c / v;
 
     return {
         h,
-        s: s * 100,
-        v: v * 100,
+        s: s * percentDenominator,
+        v: v * percentDenominator,
     };
 }
 
 /**
  * Converts a RGB ({@link IRgba}) object in a {@link IHsva} object
  * @param rgba - the RGB ({@link IRgba}) object
+ * @returns the {@link IHsva} object
  */
 export function rgbaToHsva(rgba: IRgba): IHsva {
     return {
@@ -78,15 +92,17 @@ export function getStyleFromHsv(color: IHsv, opacity?: number): string {
  * @returns the {@link IHsv} object
  */
 export function hslToHsv(hsl: IHsl): IHsv {
-    const l = hsl.l / 100,
-        sl = hsl.s / 100,
-        v = l + sl * Math.min(l, 1 - l),
-        sv = !v ? 0 : 2 * (1 - l / v);
+    const l = hsl.l / percentDenominator,
+        sl = hsl.s / percentDenominator,
+        offset = 1,
+        noValue = 0,
+        v = l + sl * Math.min(l, offset - l),
+        sv = !v ? noValue : double * (offset - l / v);
 
     return {
         h: hsl.h,
-        s: sv * 100,
-        v: v * 100,
+        s: sv * percentDenominator,
+        v: v * percentDenominator,
     };
 }
 
@@ -108,15 +124,17 @@ export function hslaToHsva(hsla: IHsla): IHsva {
  * @returns the {@link IHsl} object
  */
 export function hsvToHsl(hsv: IHsv): IHsl {
-    const v = hsv.v / 100,
-        sv = hsv.s / 100,
-        l = v * (1 - sv / 2),
-        sl = l === 0 || l === 1 ? 0 : (v - l) / Math.min(l, 1 - l);
+    const v = hsv.v / percentDenominator,
+        sv = hsv.s / percentDenominator,
+        offset = 1,
+        noValue = 0,
+        l = v * (offset - sv * half),
+        sl = !l || l === offset ? noValue : (v - l) / Math.min(l, offset - l);
 
     return {
         h: hsv.h,
-        l: l * 100,
-        s: sl * 100,
+        l: l * percentDenominator,
+        s: sl * percentDenominator,
     };
 }
 
@@ -139,47 +157,57 @@ export function hsvaToHsla(hsva: IHsva): IHsla {
  */
 export function hsvToRgb(hsv: IHsv): IRgb {
     const result: IRgb = { b: 0, g: 0, r: 0 },
+        phase = 60,
         hsvPercent = {
-            h: hsv.h / 60,
-            s: hsv.s / 100,
-            v: hsv.v / 100,
+            h: hsv.h / phase,
+            s: hsv.s / percentDenominator,
+            v: hsv.v / percentDenominator,
         },
+        offset = 1,
+        hPercentFactor = 2,
         c = hsvPercent.v * hsvPercent.s,
-        x = c * (1 - Math.abs((hsvPercent.h % 2) - 1));
+        x = c * (offset - Math.abs((hsvPercent.h % hPercentFactor) - offset));
 
     let tempRgb: IRgb | undefined;
 
-    if (hsvPercent.h >= 0 && hsvPercent.h <= 1) {
+    const cxzRange = { min: 0, max: 1 },
+        xczRange = { min: 1, max: 2 },
+        zcxRange = { min: 2, max: 3 },
+        zxcRange = { min: 3, max: 4 },
+        xzcRange = { min: 4, max: 5 },
+        czxRange = { min: 5, max: 6 };
+
+    if (hsvPercent.h >= cxzRange.min && hsvPercent.h <= cxzRange.max) {
         tempRgb = {
             r: c,
             g: x,
             b: 0,
         };
-    } else if (hsvPercent.h > 1 && hsvPercent.h <= 2) {
+    } else if (hsvPercent.h > xczRange.min && hsvPercent.h <= xczRange.max) {
         tempRgb = {
             r: x,
             g: c,
             b: 0,
         };
-    } else if (hsvPercent.h > 2 && hsvPercent.h <= 3) {
+    } else if (hsvPercent.h > zcxRange.min && hsvPercent.h <= zcxRange.max) {
         tempRgb = {
             r: 0,
             g: c,
             b: x,
         };
-    } else if (hsvPercent.h > 3 && hsvPercent.h <= 4) {
+    } else if (hsvPercent.h > zxcRange.min && hsvPercent.h <= zxcRange.max) {
         tempRgb = {
             r: 0,
             g: x,
             b: c,
         };
-    } else if (hsvPercent.h > 4 && hsvPercent.h <= 5) {
+    } else if (hsvPercent.h > xzcRange.min && hsvPercent.h <= xzcRange.max) {
         tempRgb = {
             r: x,
             g: 0,
             b: c,
         };
-    } else if (hsvPercent.h > 5 && hsvPercent.h <= 6) {
+    } else if (hsvPercent.h > czxRange.min && hsvPercent.h <= czxRange.max) {
         tempRgb = {
             r: c,
             g: 0,
@@ -190,9 +218,9 @@ export function hsvToRgb(hsv: IHsv): IRgb {
     if (tempRgb) {
         const m = hsvPercent.v - c;
 
-        result.r = Math.floor((tempRgb.r + m) * 255);
-        result.g = Math.floor((tempRgb.g + m) * 255);
-        result.b = Math.floor((tempRgb.b + m) * 255);
+        result.r = Math.floor((tempRgb.r + m) * rgbFactor);
+        result.g = Math.floor((tempRgb.g + m) * rgbFactor);
+        result.b = Math.floor((tempRgb.b + m) * rgbFactor);
     }
 
     return result;
@@ -247,14 +275,23 @@ export class HsvColorManager implements IColorManager {
         }
 
         const regex = /hsva?\(\s*(\d+)°\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.%]+)\s*)?\)/i,
-            result = regex.exec(input);
+            result = regex.exec(input),
+            fullLength = 4,
+            indexes = {
+                h: 1,
+                s: 2,
+                v: 3,
+                a: 5,
+            },
+            defaultAlpha = 1,
+            radix = 10;
 
         return result
             ? hsvaToRgba({
-                  a: result.length > 4 ? parseAlpha(result[5]) : 1,
-                  h: parseInt(result[1], 10),
-                  s: parseInt(result[2], 10),
-                  v: parseInt(result[3], 10),
+                  a: result.length > fullLength ? parseAlpha(result[indexes.a]) : defaultAlpha,
+                  h: parseInt(result[indexes.h], radix),
+                  s: parseInt(result[indexes.s], radix),
+                  v: parseInt(result[indexes.v], radix),
               })
             : undefined;
     }

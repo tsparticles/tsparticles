@@ -8,22 +8,30 @@ import {
     errorPrefix,
     getRandom,
     isNumber,
+    percentDenominator,
 } from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
 import type { TextMask } from "./Options/Classes/TextMask.js";
 
-export type CanvasPixelData = {
+const half = 0.5,
+    origin: ICoordinates = {
+        x: 0,
+        y: 0,
+    },
+    defaultWidth = 0;
+
+export interface CanvasPixelData {
     height: number;
     pixels: IRgba[][];
     width: number;
-};
+}
 
-type TextLineData = {
+interface TextLineData {
     height: number;
     measure: TextMetrics;
     text: string;
     width: number;
-};
+}
 
 /**
  * @param container -
@@ -50,12 +58,13 @@ export function addParticlesFromCanvasPixels(
     let selectedPixels = 0;
 
     const positionOffset = {
-        x: (canvasSize.width * position.x) / 100 - (width * scale) / 2,
-        y: (canvasSize.height * position.y) / 100 - (height * scale) / 2,
+        x: (canvasSize.width * position.x) / percentDenominator - width * scale * half,
+        y: (canvasSize.height * position.y) / percentDenominator - height * scale * half,
     };
 
     while (selectedPixels < maxParticles && indexArray.length) {
-        const nextIndex = indexArray.pop() || 0,
+        const defaultIndex = 0,
+            nextIndex = indexArray.pop() ?? defaultIndex,
             pixelPos = {
                 x: nextIndex % width,
                 y: Math.floor(nextIndex / width),
@@ -104,10 +113,10 @@ export function getCanvasImageData(
     offset: number,
     clear = true,
 ): CanvasPixelData {
-    const imageData = ctx.getImageData(0, 0, size.width, size.height).data;
+    const imageData = ctx.getImageData(origin.x, origin.y, size.width, size.height).data;
 
     if (clear) {
-        ctx.clearRect(0, 0, size.width, size.height);
+        ctx.clearRect(origin.x, origin.y, size.width, size.height);
     }
 
     const pixels: IRgba[][] = [];
@@ -123,11 +132,19 @@ export function getCanvasImageData(
             pixels[pos.y] = [];
         }
 
+        const indexesOffset = {
+                r: 0,
+                g: 1,
+                b: 2,
+                a: 3,
+            },
+            alphaFactor = 255;
+
         pixels[pos.y][pos.x] = {
-            r: imageData[i],
-            g: imageData[i + 1],
-            b: imageData[i + 2],
-            a: imageData[i + 3] / 255,
+            r: imageData[i + indexesOffset.r],
+            g: imageData[i + indexesOffset.g],
+            b: imageData[i + indexesOffset.b],
+            a: imageData[i + indexesOffset.a] / alphaFactor,
         };
     }
 
@@ -162,7 +179,17 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
                 return reject(new Error(`${errorPrefix} Could not get canvas context`));
             }
 
-            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
+            context.drawImage(
+                image,
+                origin.x,
+                origin.y,
+                image.width,
+                image.height,
+                origin.x,
+                origin.y,
+                canvas.width,
+                canvas.height,
+            );
 
             resolve(getCanvasImageData(context, canvas, offset));
         };
@@ -195,7 +222,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
         totalHeight = 0;
 
     for (const line of lines) {
-        context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
+        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight ?? ""} ${fontSize} ${font.family}`;
 
         const measure = context.measureText(line),
             lineData = {
@@ -205,7 +232,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
                 width: measure.width,
             };
 
-        maxWidth = Math.max(maxWidth || 0, lineData.width);
+        maxWidth = Math.max(maxWidth || defaultWidth, lineData.width);
         totalHeight += lineData.height + linesOptions.spacing;
 
         linesData.push(lineData);
@@ -217,9 +244,9 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     let currentHeight = 0;
 
     for (const line of linesData) {
-        context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
+        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight ?? ""} ${fontSize} ${font.family}`;
         context.fillStyle = color;
-        context.fillText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
+        context.fillText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
 
         currentHeight += line.height + linesOptions.spacing;
     }
@@ -232,7 +259,10 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
  * @returns the shuffled array
  */
 function shuffle<T>(array: T[]): T[] {
-    for (let currentIndex = array.length - 1; currentIndex >= 0; currentIndex--) {
+    const lengthOffset = 1,
+        minIndex = 0;
+
+    for (let currentIndex = array.length - lengthOffset; currentIndex >= minIndex; currentIndex--) {
         const randomIndex = Math.floor(getRandom() * currentIndex);
 
         [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
@@ -241,4 +271,4 @@ function shuffle<T>(array: T[]): T[] {
     return array;
 }
 
-const range = (n: number): Array<number> => [...Array(n).keys()];
+const range = (n: number): number[] => [...Array(n).keys()];

@@ -1,5 +1,6 @@
 import { executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils.js";
 import {
+    millisecondsToSeconds,
     mouseDownEvent,
     mouseLeaveEvent,
     mouseMoveEvent,
@@ -15,6 +16,8 @@ import {
 import type { Container } from "../Container.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
+
+const double = 2;
 
 /**
  * Manage the given event listeners
@@ -48,7 +51,7 @@ function manageListener(
     }
 }
 
-type EventListenersHandlers = {
+interface EventListenersHandlers {
     readonly mouseDown: EventListenerOrEventListenerObject;
     readonly mouseLeave: EventListenerOrEventListenerObject;
     readonly mouseMove: EventListenerOrEventListenerObject;
@@ -62,7 +65,7 @@ type EventListenersHandlers = {
     readonly touchMove: EventListenerOrEventListenerObject;
     readonly touchStart: EventListenerOrEventListenerObject;
     readonly visibilityChange: EventListenerOrEventListenerObject;
-};
+}
 
 /**
  * Particles container event listeners manager
@@ -141,7 +144,9 @@ export class EventListeners {
         }
 
         if (e.type === "touchend") {
-            setTimeout(() => this._mouseTouchFinish(), 500);
+            const touchDelay = 500;
+
+            setTimeout(() => this._mouseTouchFinish(), touchDelay);
         }
     };
 
@@ -150,7 +155,7 @@ export class EventListeners {
      * @param e - the media query event
      * @internal
      */
-    private readonly _handleThemeChange: (e: Event) => void = (e) => {
+    private readonly _handleThemeChange = (e: Event): void => {
         const mediaEvent = e as MediaQueryListEvent,
             container = this.container,
             options = container.options,
@@ -159,7 +164,7 @@ export class EventListeners {
             theme = options.themes.find((theme) => theme.name === themeName);
 
         if (theme && theme.default.auto) {
-            container.loadTheme(themeName);
+            void container.loadTheme(themeName);
         }
     };
 
@@ -196,18 +201,23 @@ export class EventListeners {
      * Handles window resize event
      * @internal
      */
-    private readonly _handleWindowResize: () => Promise<void> = async () => {
+    private readonly _handleWindowResize = (): void => {
         if (this._resizeTimeout) {
             clearTimeout(this._resizeTimeout);
 
             delete this._resizeTimeout;
         }
 
-        this._resizeTimeout = setTimeout(async () => {
+        const handleResize = async (): Promise<void> => {
             const canvas = this.container.canvas;
 
-            canvas && (await canvas.windowResize());
-        }, this.container.actualOptions.interactivity.events.resize.delay * 1000);
+            await canvas?.windowResize();
+        };
+
+        this._resizeTimeout = setTimeout(
+            () => void handleResize(),
+            this.container.actualOptions.interactivity.events.resize.delay * millisecondsToSeconds,
+        );
     };
 
     private readonly _manageInteractivityListeners: (mouseLeaveTmpEvent: string, add: boolean) => void = (
@@ -336,14 +346,14 @@ export class EventListeners {
 
             delete this._resizeObserver;
         } else if (!this._resizeObserver && add && canvasEl) {
-            this._resizeObserver = new ResizeObserver(async (entries) => {
+            this._resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]): void => {
                 const entry = entries.find((e) => e.target === canvasEl);
 
                 if (!entry) {
                     return;
                 }
 
-                await this._handleWindowResize();
+                this._handleWindowResize();
             });
 
             this._resizeObserver.observe(canvasEl);
@@ -437,7 +447,7 @@ export class EventListeners {
             interactivity = container.interactivity,
             canvasEl = container.canvas.element;
 
-        if (!interactivity || !interactivity.element) {
+        if (!interactivity?.element) {
             return;
         }
 
@@ -469,8 +479,8 @@ export class EventListeners {
                         canvasRect = canvasEl.getBoundingClientRect();
 
                     pos = {
-                        x: mouseEvent.offsetX + 2 * sourceRect.left - (targetRect.left + canvasRect.left),
-                        y: mouseEvent.offsetY + 2 * sourceRect.top - (targetRect.top + canvasRect.top),
+                        x: mouseEvent.offsetX + double * sourceRect.left - (targetRect.left + canvasRect.left),
+                        y: mouseEvent.offsetY + double * sourceRect.top - (targetRect.top + canvasRect.top),
                     };
                 } else {
                     pos = {
@@ -489,12 +499,14 @@ export class EventListeners {
 
             if (canvasEl) {
                 const touchEvent = e as TouchEvent,
-                    lastTouch = touchEvent.touches[touchEvent.touches.length - 1],
-                    canvasRect = canvasEl.getBoundingClientRect();
+                    lengthOffset = 1,
+                    lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset],
+                    canvasRect = canvasEl.getBoundingClientRect(),
+                    defaultCoordinate = 0;
 
                 pos = {
-                    x: lastTouch.clientX - (canvasRect.left ?? 0),
-                    y: lastTouch.clientY - (canvasRect.top ?? 0),
+                    x: lastTouch.clientX - (canvasRect.left ?? defaultCoordinate),
+                    y: lastTouch.clientY - (canvasRect.top ?? defaultCoordinate),
                 };
             }
         }

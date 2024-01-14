@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "hyperspace",
     name: "Hyperspace",
     background: {
         color: "#000",

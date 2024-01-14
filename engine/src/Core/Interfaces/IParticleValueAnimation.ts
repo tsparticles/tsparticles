@@ -1,4 +1,5 @@
 import type { AnimationStatus } from "../../Enums/AnimationStatus.js";
+import type { RangeValue } from "../../Types/RangeValue.js";
 
 /**
  */
@@ -13,6 +14,10 @@ export interface IParticleValueAnimation<T> {
     time?: number;
     value: T;
     velocity?: number;
+}
+
+export interface IParticleColorAnimation extends IParticleValueAnimation<number> {
+    offset?: RangeValue;
 }
 
 export interface IParticleNumericValueAnimation extends IParticleValueAnimation<number> {

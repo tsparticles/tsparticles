@@ -56,11 +56,11 @@ type MoverInitializer = GenericInitializer<IParticleMover>;
  */
 type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
 
-type Initializers = {
+interface Initializers {
     interactors: Map<string, InteractorInitializer>;
     movers: Map<string, MoverInitializer>;
     updaters: Map<string, UpdaterInitializer>;
-};
+}
 
 /**
  * @param container -
@@ -100,7 +100,7 @@ async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple
     const response = await fetch(url);
 
     if (response.ok) {
-        return response.json();
+        return response.json() as Promise<SingleOrMultiple<ISourceOptions>>;
     }
 
     getLogger().error(`${errorPrefix} ${response.status} while retrieving config file`);
@@ -192,7 +192,7 @@ export class Engine {
     }
 
     get configs(): Record<string, ISourceOptions> {
-        const res: { [key: string]: ISourceOptions } = {};
+        const res: Record<string, ISourceOptions> = {};
 
         for (const [name, config] of this._configs) {
             res[name] = config;
@@ -206,11 +206,10 @@ export class Engine {
     }
 
     addConfig(config: ISourceOptions): void {
-        const name = config.name ?? "default";
+        const key = config.key ?? config.name ?? "default";
 
-        this._configs.set(name, config);
-
-        this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name, config } });
+        this._configs.set(key, config);
+        this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
     }
 
     /**
@@ -221,7 +220,9 @@ export class Engine {
      */
     async addEffect(effect: SingleOrMultiple<string>, drawer: IEffectDrawer, refresh = true): Promise<void> {
         executeOnSingleOrMultiple(effect, (type) => {
-            !this.getEffectDrawer(type) && this.effectDrawers.set(type, drawer);
+            if (!this.getEffectDrawer(type)) {
+                this.effectDrawers.set(type, drawer);
+            }
         });
 
         await this.refresh(refresh);
@@ -290,7 +291,9 @@ export class Engine {
      * @param refresh - should refresh the dom after adding the path generator
      */
     async addPathGenerator(name: string, generator: IMovePathGenerator, refresh = true): Promise<void> {
-        !this.getPathGenerator(name) && this.pathGenerators.set(name, generator);
+        if (!this.getPathGenerator(name)) {
+            this.pathGenerators.set(name, generator);
+        }
 
         await this.refresh(refresh);
     }
@@ -301,7 +304,9 @@ export class Engine {
      * @param refresh - should refresh the dom after adding the plugin
      */
     async addPlugin(plugin: IPlugin, refresh = true): Promise<void> {
-        !this.getPlugin(plugin.id) && this.plugins.push(plugin);
+        if (!this.getPlugin(plugin.id)) {
+            this.plugins.push(plugin);
+        }
 
         await this.refresh(refresh);
     }
@@ -319,7 +324,9 @@ export class Engine {
         override = false,
         refresh = true,
     ): Promise<void> {
-        (override || !this.getPreset(preset)) && this.presets.set(preset, options);
+        if (override || !this.getPreset(preset)) {
+            this.presets.set(preset, options);
+        }
 
         await this.refresh(refresh);
     }
@@ -332,7 +339,9 @@ export class Engine {
      */
     async addShape(shape: SingleOrMultiple<string>, drawer: IShapeDrawer, refresh = true): Promise<void> {
         executeOnSingleOrMultiple(shape, (type) => {
-            !this.getShapeDrawer(type) && this.shapeDrawers.set(type, drawer);
+            if (!this.getShapeDrawer(type)) {
+                this.shapeDrawers.set(type, drawer);
+            }
         });
 
         await this.refresh(refresh);
@@ -371,7 +380,9 @@ export class Engine {
             item = dom[index];
 
         if (!item || item.destroyed) {
-            dom.splice(index, 1);
+            const deleteCount = 1;
+
+            dom.splice(index, deleteCount);
 
             return;
         }
@@ -388,7 +399,9 @@ export class Engine {
         const res = new Map<string, IContainerPlugin>();
 
         for (const plugin of this.plugins) {
-            plugin.needsPlugin(container.actualOptions) && res.set(plugin.id, plugin.getPlugin(container));
+            if (plugin.needsPlugin(container.actualOptions)) {
+                res.set(plugin.id, plugin.getPlugin(container));
+            }
         }
 
         return res;
@@ -496,7 +509,8 @@ export class Engine {
      * @returns A Promise with the {@link Container} object created
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
-        const id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * 10000)}`,
+        const randomFactor = 10000,
+            id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * randomFactor)}`,
             { index, url } = params,
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
@@ -513,15 +527,18 @@ export class Engine {
 
         const currentOptions = itemFromSingleOrMultiple(options, index),
             dom = this.dom(),
-            oldIndex = dom.findIndex((v) => v.id.description === id);
+            oldIndex = dom.findIndex((v) => v.id.description === id),
+            minIndex = 0;
 
-        if (oldIndex >= 0) {
+        if (oldIndex >= minIndex) {
             const old = this.domItem(oldIndex);
 
             if (old && !old.destroyed) {
                 old.destroy();
 
-                dom.splice(oldIndex, 1);
+                const deleteCount = 1;
+
+                dom.splice(oldIndex, deleteCount);
             }
         }
 
@@ -536,7 +553,9 @@ export class Engine {
 
             /* get existing canvas if present, otherwise a new one will be created */
             if (existingCanvases.length) {
-                canvasEl = existingCanvases[0];
+                const firstIndex = 0;
+
+                canvasEl = existingCanvases[firstIndex];
 
                 canvasEl.dataset[generatedAttribute] = "false";
             } else {
@@ -561,8 +580,10 @@ export class Engine {
         /* launch tsParticles */
         const newItem = new Container(this, id, currentOptions);
 
-        if (oldIndex >= 0) {
-            dom.splice(oldIndex, 0, newItem);
+        if (oldIndex >= minIndex) {
+            const deleteCount = 0;
+
+            dom.splice(oldIndex, deleteCount, newItem);
         } else {
             dom.push(newItem);
         }
@@ -603,7 +624,7 @@ export class Engine {
         }
 
         for (const updater of updaters) {
-            updater.loadOptions && updater.loadOptions(options, ...sourceOptions);
+            updater.loadOptions?.(options, ...sourceOptions);
         }
     }
 
@@ -616,7 +637,7 @@ export class Engine {
             return;
         }
 
-        this.dom().forEach((t) => t.refresh());
+        await Promise.allSettled(this.dom().map((t) => t.refresh()));
     }
 
     /**

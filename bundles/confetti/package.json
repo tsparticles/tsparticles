@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/confetti",
-    "version": "3.0.3",
+    "version": "3.1.0",
     "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -107,22 +107,22 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/basic": "^3.0.3",
-        "@tsparticles/engine": "^3.0.3",
-        "@tsparticles/plugin-emitters": "^3.0.3",
-        "@tsparticles/plugin-motion": "^3.0.3",
-        "@tsparticles/shape-cards": "^3.0.3",
-        "@tsparticles/shape-emoji": "^3.0.3",
-        "@tsparticles/shape-heart": "^3.0.3",
-        "@tsparticles/shape-image": "^3.0.3",
-        "@tsparticles/shape-polygon": "^3.0.3",
-        "@tsparticles/shape-square": "^3.0.3",
-        "@tsparticles/shape-star": "^3.0.3",
-        "@tsparticles/updater-life": "^3.0.3",
-        "@tsparticles/updater-roll": "^3.0.3",
-        "@tsparticles/updater-rotate": "^3.0.3",
-        "@tsparticles/updater-tilt": "^3.0.3",
-        "@tsparticles/updater-wobble": "^3.0.3"
+        "@tsparticles/basic": "^3.1.0",
+        "@tsparticles/engine": "^3.1.0",
+        "@tsparticles/plugin-emitters": "^3.1.0",
+        "@tsparticles/plugin-motion": "^3.1.0",
+        "@tsparticles/shape-cards": "^3.1.0",
+        "@tsparticles/shape-emoji": "^3.1.0",
+        "@tsparticles/shape-heart": "^3.1.0",
+        "@tsparticles/shape-image": "^3.1.0",
+        "@tsparticles/shape-polygon": "^3.1.0",
+        "@tsparticles/shape-square": "^3.1.0",
+        "@tsparticles/shape-star": "^3.1.0",
+        "@tsparticles/updater-life": "^3.1.0",
+        "@tsparticles/updater-roll": "^3.1.0",
+        "@tsparticles/updater-rotate": "^3.1.0",
+        "@tsparticles/updater-tilt": "^3.1.0",
+        "@tsparticles/updater-wobble": "^3.1.0"
     },
     "publishConfig": {
         "access": "public",

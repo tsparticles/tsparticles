@@ -17,6 +17,7 @@ import {
     getSize,
     isPointInside,
     itemFromSingleOrMultiple,
+    millisecondsToSeconds,
     randomInRange,
     rangeColorToHsl,
 } from "@tsparticles/engine";
@@ -27,6 +28,13 @@ import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
+
+const half = 0.5,
+    defaultLifeDelay = 0,
+    minLifeCount = 0,
+    defaultSpawnDelay = 0,
+    defaultEmitDelay = 0,
+    defaultLifeCount = -1;
 
 /**
  *
@@ -92,7 +100,9 @@ export class EmitterInstance {
             this.options.load(options);
         }
 
-        this._spawnDelay = (getRangeValue(this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+        this._spawnDelay =
+            (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+            this.container.retina.reduceFactor;
         this.position = this._initialPosition ?? this._calcPosition();
         this.name = this.options.name;
 
@@ -115,8 +125,8 @@ export class EmitterInstance {
         this._particlesOptions = particlesOptions;
         this._size = this._calcSize();
         this.size = getSize(this._size, this.container.canvas.size);
-        this._lifeCount = this.options.life.count ?? -1;
-        this._immortal = this._lifeCount <= 0;
+        this._lifeCount = this.options.life.count ?? defaultLifeCount;
+        this._immortal = this._lifeCount <= minLifeCount;
 
         if (this.options.domId) {
             const element = document.getElementById(this.options.domId);
@@ -187,8 +197,8 @@ export class EmitterInstance {
         if (
             !(
                 this.container.retina.reduceFactor &&
-                (this._lifeCount > 0 || this._immortal || !this.options.life.count) &&
-                (this._firstSpawn || this._currentSpawnDelay >= (this._spawnDelay ?? 0))
+                (this._lifeCount > minLifeCount || this._immortal || !this.options.life.count) &&
+                (this._firstSpawn || this._currentSpawnDelay >= (this._spawnDelay ?? defaultSpawnDelay))
             )
         ) {
             return;
@@ -197,10 +207,10 @@ export class EmitterInstance {
         if (this._emitDelay === undefined) {
             const delay = getRangeValue(this.options.rate.delay);
 
-            this._emitDelay = (1000 * delay) / this.container.retina.reduceFactor;
+            this._emitDelay = (delay * millisecondsToSeconds) / this.container.retina.reduceFactor;
         }
 
-        if (this._lifeCount > 0 || this._immortal) {
+        if (this._lifeCount > minLifeCount || this._immortal) {
             this._prepareToDie();
         }
     }
@@ -227,8 +237,8 @@ export class EmitterInstance {
         if (this._firstSpawn) {
             this._firstSpawn = false;
 
-            this._currentSpawnDelay = this._spawnDelay ?? 0;
-            this._currentEmitDelay = this._emitDelay ?? 0;
+            this._currentSpawnDelay = this._spawnDelay ?? defaultSpawnDelay;
+            this._currentEmitDelay = this._emitDelay ?? defaultEmitDelay;
         }
 
         if (!this._startParticlesAdded) {
@@ -251,13 +261,14 @@ export class EmitterInstance {
                     this._lifeCount--;
                 }
 
-                if (this._lifeCount > 0 || this._immortal) {
+                if (this._lifeCount > minLifeCount || this._immortal) {
                     this.position = this._calcPosition();
 
                     this._shape?.resize(this.position, this.size);
 
                     this._spawnDelay =
-                        (getRangeValue(this.options.life.delay ?? 0) * 1000) / this.container.retina.reduceFactor;
+                        (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+                        this.container.retina.reduceFactor;
                 } else {
                     this._destroy();
                 }
@@ -288,7 +299,7 @@ export class EmitterInstance {
             this._currentEmitDelay += delta.value;
 
             if (this._currentEmitDelay >= this._emitDelay) {
-                this._emit();
+                await this._emit();
                 this._currentEmitDelay -= this._emitDelay;
             }
         }
@@ -300,11 +311,12 @@ export class EmitterInstance {
                 element = document.getElementById(this.options.domId);
 
             if (element) {
-                const elRect = element.getBoundingClientRect();
+                const elRect = element.getBoundingClientRect(),
+                    pxRatio = container.retina.pixelRatio;
 
                 return {
-                    x: (elRect.x + elRect.width / 2) * container.retina.pixelRatio,
-                    y: (elRect.y + elRect.height / 2) * container.retina.pixelRatio,
+                    x: (elRect.x + elRect.width * half) * pxRatio,
+                    y: (elRect.y + elRect.height * half) * pxRatio,
                 };
             }
         }
@@ -385,9 +397,15 @@ export class EmitterInstance {
                 const hslAnimation = this.options.spawnColor?.animation;
 
                 if (hslAnimation) {
-                    this.spawnColor.h = this._setColorAnimation(hslAnimation.h, this.spawnColor.h, 360);
-                    this.spawnColor.s = this._setColorAnimation(hslAnimation.s, this.spawnColor.s, 100);
-                    this.spawnColor.l = this._setColorAnimation(hslAnimation.l, this.spawnColor.l, 100);
+                    const maxValues = {
+                        h: 360,
+                        s: 100,
+                        l: 100,
+                    };
+
+                    this.spawnColor.h = this._setColorAnimation(hslAnimation.h, this.spawnColor.h, maxValues.h);
+                    this.spawnColor.s = this._setColorAnimation(hslAnimation.s, this.spawnColor.s, maxValues.s);
+                    this.spawnColor.l = this._setColorAnimation(hslAnimation.l, this.spawnColor.l, maxValues.l);
                 }
 
                 setParticlesOptionsColor(particlesOptions, this.spawnColor);
@@ -435,15 +453,17 @@ export class EmitterInstance {
         }
 
         const duration =
-            this.options.life?.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined;
+                this.options.life?.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+            minDuration = 0,
+            minLifeCount = 0;
 
         if (
             this.container.retina.reduceFactor &&
-            (this._lifeCount > 0 || this._immortal) &&
+            (this._lifeCount > minLifeCount || this._immortal) &&
             duration !== undefined &&
-            duration > 0
+            duration > minDuration
         ) {
-            this._duration = duration * 1000;
+            this._duration = duration * millisecondsToSeconds;
         }
     };
 
@@ -460,9 +480,11 @@ export class EmitterInstance {
 
         const colorOffset = randomInRange(animation.offset),
             delay = getRangeValue(this.options.rate.delay),
-            emitFactor = (1000 * delay) / container.retina.reduceFactor,
-            colorSpeed = getRangeValue(animation.speed ?? 0);
+            emitFactor = (delay * millisecondsToSeconds) / container.retina.reduceFactor,
+            defaultColorSpeed = 0,
+            colorFactor = 3.6,
+            colorSpeed = getRangeValue(animation.speed ?? defaultColorSpeed);
 
-        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * 3.6) % maxValue;
+        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * colorFactor) % maxValue;
     };
 }

@@ -1,5 +1,10 @@
-import type { IDelta } from "@tsparticles/engine";
+import { type IDelta, millisecondsToSeconds } from "@tsparticles/engine";
 import type { WobbleParticle } from "./Types.js";
+
+const defaultDistance = 0,
+    double = 2,
+    doublePI = Math.PI * double,
+    distanceFactor = 60;
 
 /**
  * Updates particle wobbling values
@@ -16,8 +21,10 @@ export function updateWobble(particle: WobbleParticle, delta: IDelta): void {
 
     const angleSpeed = wobble.angleSpeed * delta.factor,
         moveSpeed = wobble.moveSpeed * delta.factor,
-        distance = (moveSpeed * ((particle.retina.wobbleDistance ?? 0) * delta.factor)) / (1000 / 60),
-        max = 2 * Math.PI,
+        distance =
+            (moveSpeed * ((particle.retina.wobbleDistance ?? defaultDistance) * delta.factor)) /
+            (millisecondsToSeconds / distanceFactor),
+        max = doublePI,
         { position } = particle;
 
     wobble.angle += angleSpeed;

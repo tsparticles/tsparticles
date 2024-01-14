@@ -17,7 +17,9 @@ import { Rectangle } from "./Utils/Rectangle.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { errorPrefix } from "./Utils/Constants.js";
 
-const qTreeCapacity = 4;
+const qTreeCapacity = 4,
+    squareExp = 2,
+    defaultRemoveQuantity = 1;
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
     const { height, width } = canvasSize,
@@ -106,13 +108,16 @@ export class Particles {
     ): Particle | undefined {
         const limitOptions = this._container.actualOptions.particles.number.limit,
             limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit,
-            currentCount = this.count;
+            currentCount = this.count,
+            minLimit = 0;
 
-        if (limit > 0) {
+        if (limit > minLimit) {
             if (limitOptions.mode === LimitMode.delete) {
-                const countToRemove = currentCount + 1 - limit;
+                const countOffset = 1,
+                    minCount = 0,
+                    countToRemove = currentCount + countOffset - limit;
 
-                if (countToRemove > 0) {
+                if (countToRemove > minCount) {
                     this.removeQuantity(countToRemove);
                 }
             } else if (limitOptions.mode === LimitMode.wait) {
@@ -155,9 +160,9 @@ export class Particles {
             canvas.drawPlugin(plugin, delta);
         }
 
-        /*container.canvas.draw((ctx) => {
+        /* container.canvas.draw((ctx) => {
             this.quadTree.draw(ctx);
-        });*/
+        }); */
 
         /* draw each particle */
         for (const p of this._zArray) {
@@ -251,28 +256,35 @@ export class Particles {
         this.removeAt(this._array.indexOf(particle), undefined, group, override);
     }
 
-    removeAt(index: number, quantity = 1, group?: string, override?: boolean): void {
-        if (index < 0 || index > this.count) {
+    removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
+        const minIndex = 0;
+
+        if (index < minIndex || index > this.count) {
             return;
         }
 
         let deleted = 0;
 
         for (let i = index; deleted < quantity && i < this.count; i++) {
-            this._removeParticle(i--, group, override) && deleted++;
+            if (this._removeParticle(i--, group, override)) {
+                deleted++;
+            }
         }
     }
 
     removeQuantity(quantity: number, group?: string): void {
-        this.removeAt(0, quantity, group);
+        const defaultIndex = 0;
+
+        this.removeAt(defaultIndex, quantity, group);
     }
 
     setDensity(): void {
         const options = this._container.actualOptions,
-            groups = options.particles.groups;
+            groups = options.particles.groups,
+            manualCount = 0;
 
         for (const group in groups) {
-            this._applyDensity(groups[group], 0, group);
+            this._applyDensity(groups[group], manualCount, group);
         }
 
         this._applyDensity(options.particles, options.manualParticles.length);
@@ -298,7 +310,7 @@ export class Particles {
         }
 
         for (const [, plugin] of container.plugins) {
-            plugin.update && (await plugin.update(delta));
+            await plugin.update?.(delta);
         }
 
         const resizeFactor = this._resizeFactor;
@@ -313,18 +325,20 @@ export class Particles {
 
             particle.ignoresResizeRatio = false;
 
-            await this._interactionManager.reset(particle);
+            this._interactionManager.reset(particle);
 
             for (const [, plugin] of this._container.plugins) {
                 if (particle.destroyed) {
                     break;
                 }
 
-                plugin.particleUpdate && plugin.particleUpdate(particle, delta);
+                plugin.particleUpdate?.(particle, delta);
             }
 
             for (const mover of this.movers) {
-                mover.isEnabled(particle) && mover.move(particle, delta);
+                if (mover.isEnabled(particle)) {
+                    mover.move(particle, delta);
+                }
             }
 
             if (particle.destroyed) {
@@ -374,7 +388,9 @@ export class Particles {
 
             zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-            this._lastZIndex = zArray[zArray.length - 1].position.z;
+            const lengthOffset = 1;
+
+            this._lastZIndex = zArray[zArray.length - lengthOffset].position.z;
             this._needsSort = false;
         }
     }
@@ -404,7 +420,8 @@ export class Particles {
 
         const densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
-            optParticlesLimit = numberOptions.limit.value > 0 ? numberOptions.limit.value : optParticlesNumber,
+            minLimit = 0,
+            optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
             particlesCount = Math.min(this.count, this.filter((t) => t.group === group).length);
 
@@ -422,16 +439,17 @@ export class Particles {
     };
 
     private readonly _initDensityFactor: (densityOptions: IParticlesDensity) => number = (densityOptions) => {
-        const container = this._container;
+        const container = this._container,
+            defaultFactor = 1;
 
         if (!container.canvas.element || !densityOptions.enable) {
-            return 1;
+            return defaultFactor;
         }
 
         const canvas = container.canvas.element,
             pxRatio = container.retina.pixelRatio;
 
-        return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** 2);
+        return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
     };
 
     private readonly _pushParticle: (
@@ -472,10 +490,8 @@ export class Particles {
             });
 
             return particle;
-        } catch (e) {
-            getLogger().warning(`${errorPrefix} adding particle: ${e}`);
-
-            return;
+        } catch (e: unknown) {
+            getLogger().warning(`${errorPrefix} adding particle: ${e as string}`);
         }
     };
 
@@ -490,10 +506,11 @@ export class Particles {
             return false;
         }
 
-        const zIdx = this._zArray.indexOf(particle);
+        const zIdx = this._zArray.indexOf(particle),
+            deleteCount = 1;
 
-        this._array.splice(index, 1);
-        this._zArray.splice(zIdx, 1);
+        this._array.splice(index, deleteCount);
+        this._zArray.splice(zIdx, deleteCount);
 
         particle.destroy(override);
 

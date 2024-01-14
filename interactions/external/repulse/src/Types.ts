@@ -3,13 +3,13 @@ import type { IRepulse } from "./Options/Interfaces/IRepulse.js";
 import type { Repulse } from "./Options/Classes/Repulse.js";
 import type { RepulseOptions } from "./Options/Classes/RepulseOptions.js";
 
-export type IRepulseMode = {
+export interface IRepulseMode {
     repulse: IRepulse;
-};
+}
 
-export type RepulseMode = {
+export interface RepulseMode {
     repulse?: Repulse;
-};
+}
 
 interface IContainerRepulse {
     clicking?: boolean;
@@ -26,11 +26,11 @@ export type RepulseContainer = Container & {
     };
 };
 
-/*export type RepulsParticle = Particle & {
+/* export type RepulsParticle = Particle & {
     repulseCurrentTime?: number;
-}*/
+} */
 
-/*import type { Container, Particle, Vector } from "@tsparticles/engine";
+/* import type { Container, Particle, Vector } from "@tsparticles/engine";
 import type { IRepulse } from "./Options/Interfaces/IRepulse.js";
 import type { Repulse } from "./Options/Classes/Repulse.js";
 import type { RepulseOptions } from "./Options/Classes/RepulseOptions.js";

@@ -1,7 +1,22 @@
-import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import {
+    type Container,
+    type Engine,
+    type IPlugin,
+    type RecursivePartial,
+    mouseDownEvent,
+    touchStartEvent,
+} from "@tsparticles/engine";
 import type { ISoundsOptions, SoundsOptions } from "./types.js";
 import { Sounds } from "./Options/Classes/Sounds.js";
 import { SoundsInstance } from "./SoundsInstance.js";
+import { unmuteWindow } from "./utils.js";
+
+const generalFirstClickHandler = (): void => {
+    removeEventListener(mouseDownEvent, generalFirstClickHandler);
+    removeEventListener(touchStartEvent, generalFirstClickHandler);
+
+    unmuteWindow();
+};
 
 /**
  */
@@ -14,6 +29,14 @@ class SoundsPlugin implements IPlugin {
         this.id = "sounds";
 
         this._engine = engine;
+
+        const listenerOptions = {
+            capture: true,
+            once: true,
+        };
+
+        addEventListener(mouseDownEvent, generalFirstClickHandler, listenerOptions);
+        addEventListener(touchStartEvent, generalFirstClickHandler, listenerOptions);
     }
 
     getPlugin(container: Container): SoundsInstance {

@@ -10,15 +10,25 @@ import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } 
 import { Wobble } from "./Options/Classes/Wobble.js";
 import { updateWobble } from "./Utils.js";
 
+const double = 2,
+    doublePI = Math.PI * double,
+    maxAngle = 360,
+    moveSpeedFactor = 10,
+    defaultDistance = 0;
+
 /**
  * The Wobble updater plugin
  */
 export class WobbleUpdater implements IParticleUpdater {
+    private readonly container;
+
     /**
      * The Wobble updater plugin constructor, assigns the container using the plugin
      * @param container - the container using the plugin
      */
-    constructor(private readonly container: Container) {}
+    constructor(container: Container) {
+        this.container = container;
+    }
 
     /**
      * Initializing the particle for wobble animation
@@ -29,9 +39,9 @@ export class WobbleUpdater implements IParticleUpdater {
 
         if (wobbleOpt?.enable) {
             particle.wobble = {
-                angle: getRandom() * Math.PI * 2,
-                angleSpeed: getRangeValue(wobbleOpt.speed.angle) / 360,
-                moveSpeed: getRangeValue(wobbleOpt.speed.move) / 10,
+                angle: getRandom() * doublePI,
+                angleSpeed: getRangeValue(wobbleOpt.speed.angle) / maxAngle,
+                moveSpeed: getRangeValue(wobbleOpt.speed.move) / moveSpeedFactor,
             };
         } else {
             particle.wobble = {
@@ -41,7 +51,8 @@ export class WobbleUpdater implements IParticleUpdater {
             };
         }
 
-        particle.retina.wobbleDistance = getRangeValue(wobbleOpt?.distance ?? 0) * this.container.retina.pixelRatio;
+        particle.retina.wobbleDistance =
+            getRangeValue(wobbleOpt?.distance ?? defaultDistance) * this.container.retina.pixelRatio;
     }
 
     /**

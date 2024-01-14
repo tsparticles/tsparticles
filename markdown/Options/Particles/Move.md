@@ -77,8 +77,8 @@
 
 ## Particles Move Trail
 
-| key         | option type    | example          | notes                                                    |
-| ----------- | -------------- | ---------------- | -------------------------------------------------------- | ----- |
-| `enable`    | `boolean`      | `true` / `false` |                                                          |
-| `length`    | `number`       | `10`             |                                                          |
-| `fillColor` | `color object` |                  | This `color` object is the same described {@links IColor | here} |
+| key         | option type    | example          | notes                                                          |
+| ----------- | -------------- | ---------------- | -------------------------------------------------------------- |
+| `enable`    | `boolean`      | `true` / `false` |                                                                |
+| `length`    | `number`       | `10`             |                                                                |
+| `fillColor` | `color object` |                  | This `color` object is the same described here {@links IColor} |

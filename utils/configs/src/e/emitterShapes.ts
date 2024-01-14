@@ -48,6 +48,7 @@ const path = [
 ];
 
 const options: ISourceOptions = {
+    key: "emitterShapes",
     name: "Emitter Shapes",
     particles: {
         number: {

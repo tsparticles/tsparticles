@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "delay",
     name: "Delay",
     delay: 5,
     particles: {

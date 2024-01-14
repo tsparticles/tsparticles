@@ -4,6 +4,9 @@ import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
+const maxRetries = 100,
+    half = 0.5;
+
 export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOptions> {
     filter: (pixel: IRgba) => boolean;
     pixelData: CanvasPixelData;
@@ -12,14 +15,15 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
     constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersCanvasShapeOptions) {
         super(position, size, fill, options);
 
-        const filter = options.filter;
+        const filter = options.filter,
+            minAlpha = 0;
 
-        let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > 0;
+        let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
 
         if (filter !== undefined) {
             if (isString(filter)) {
                 if (Object.hasOwn(window, filter)) {
-                    const wndFilter = (window as unknown as { [key: string]: (pixel: IRgba) => boolean })[filter];
+                    const wndFilter = (window as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
 
                     if (isFunction(wndFilter)) {
                         filterFunc = wndFilter;
@@ -68,8 +72,8 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
             }
 
             pixelData = data;
-        } else if (element || selector) {
-            const canvas = element || (selector && document.querySelector<HTMLCanvasElement>(selector));
+        } else if (element ?? selector) {
+            const canvas = element ?? (selector && document.querySelector<HTMLCanvasElement>(selector));
 
             if (!canvas) {
                 return;
@@ -95,14 +99,13 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         const { height, width } = this.pixelData,
             data = this.pixelData,
             position = this.position,
-            scale = this.scale;
+            scale = this.scale,
+            positionOffset = {
+                x: position.x - width * scale * half,
+                y: position.y - height * scale * half,
+            };
 
-        const positionOffset = {
-            x: position.x - (width * scale) / 2,
-            y: position.y - (height * scale) / 2,
-        };
-
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < maxRetries; i++) {
             const nextIndex = Math.floor(getRandom() * width * height),
                 pixelPos = {
                     x: nextIndex % width,
@@ -115,17 +118,17 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
                 continue;
             }
 
-            return {
+            return Promise.resolve({
                 position: {
                     x: pixelPos.x * scale + positionOffset.x,
                     y: pixelPos.y * scale + positionOffset.y,
                 },
                 color: { ...pixel },
                 opacity: pixel.a,
-            };
+            });
         }
 
-        return null;
+        return Promise.resolve(null);
     }
 
     resize(position: ICoordinates, size: IDimension): void {

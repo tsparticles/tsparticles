@@ -2,11 +2,16 @@ import type { ConnectContainer, LinkParticle } from "./Types.js";
 import {
     type ICoordinates,
     type Particle,
+    clamp,
     colorMix,
     drawLine,
     getStyleFromHsl,
     getStyleFromRgb,
 } from "@tsparticles/engine";
+
+const gradientMin = 0,
+    gradientMax = 1,
+    defaultLinksWidth = 0;
 
 /**
  * Creates a gradient using two particles colors and opacity.
@@ -35,9 +40,9 @@ export function gradient(
         midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
         grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-    grad.addColorStop(0, getStyleFromHsl(color1, opacity));
-    grad.addColorStop(gradStop > 1 ? 1 : gradStop, getStyleFromRgb(midRgb, opacity));
-    grad.addColorStop(1, getStyleFromHsl(color2, opacity));
+    grad.addColorStop(gradientMin, getStyleFromHsl(color1, opacity));
+    grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getStyleFromRgb(midRgb, opacity));
+    grad.addColorStop(gradientMax, getStyleFromHsl(color2, opacity));
 
     return grad;
 }
@@ -102,6 +107,6 @@ export function drawConnection(container: ConnectContainer, p1: LinkParticle, p2
         const pos1 = p1.getPosition(),
             pos2 = p2.getPosition();
 
-        drawConnectLine(ctx, p1.retina.linksWidth ?? 0, ls, pos1, pos2);
+        drawConnectLine(ctx, p1.retina.linksWidth ?? defaultLinksWidth, ls, pos1, pos2);
     });
 }

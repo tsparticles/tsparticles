@@ -1,7 +1,12 @@
 import type { CanvasPixelData, TextLineData } from "./types.js";
-import type { IDimension, IRgba } from "@tsparticles/engine";
-import { errorPrefix, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, type IRgba, errorPrefix, isNumber } from "@tsparticles/engine";
 import type { TextOptions } from "./Options/Classes/TextOptions.js";
+
+const origin: ICoordinates = {
+        x: 0,
+        y: 0,
+    },
+    minWidth = 0;
 
 /**
  * @param ctx -
@@ -16,10 +21,10 @@ export function getCanvasImageData(
     offset: number,
     clear = true,
 ): CanvasPixelData {
-    const imageData = ctx.getImageData(0, 0, size.width, size.height).data;
+    const imageData = ctx.getImageData(origin.x, origin.y, size.width, size.height).data;
 
     if (clear) {
-        ctx.clearRect(0, 0, size.width, size.height);
+        ctx.clearRect(origin.x, origin.y, size.width, size.height);
     }
 
     const pixels: IRgba[][] = [];
@@ -35,11 +40,19 @@ export function getCanvasImageData(
             pixels[pos.y] = [];
         }
 
+        const indexesOffset = {
+                r: 0,
+                g: 1,
+                b: 2,
+                a: 3,
+            },
+            alphaFactor = 255;
+
         pixels[pos.y][pos.x] = {
-            r: imageData[i],
-            g: imageData[i + 1],
-            b: imageData[i + 2],
-            a: imageData[i + 3] / 255,
+            r: imageData[i + indexesOffset.r],
+            g: imageData[i + indexesOffset.g],
+            b: imageData[i + indexesOffset.b],
+            a: imageData[i + indexesOffset.a] / alphaFactor,
         };
     }
 
@@ -74,7 +87,17 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
                 return reject(new Error(`${errorPrefix} Could not get canvas context`));
             }
 
-            context.drawImage(image, 0, 0, image.width, image.height, 0, 0, canvas.width, canvas.height);
+            context.drawImage(
+                image,
+                origin.x,
+                origin.y,
+                image.width,
+                image.height,
+                origin.x,
+                origin.y,
+                canvas.width,
+                canvas.height,
+            );
 
             resolve(getCanvasImageData(context, canvas, offset));
         };
@@ -118,7 +141,7 @@ export function getTextData(textOptions: TextOptions, offset: number, fill: bool
                 width: measure.width,
             };
 
-        maxWidth = Math.max(maxWidth || 0, lineData.width);
+        maxWidth = Math.max(maxWidth || minWidth, lineData.width);
         totalHeight += lineData.height + linesOptions.spacing;
 
         linesData.push(lineData);
@@ -134,10 +157,10 @@ export function getTextData(textOptions: TextOptions, offset: number, fill: bool
 
         if (fill) {
             context.fillStyle = color;
-            context.fillText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
+            context.fillText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
         } else {
             context.strokeStyle = color;
-            context.strokeText(line.text, 0, currentHeight + line.measure.actualBoundingBoxAscent);
+            context.strokeText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
         }
 
         currentHeight += line.height + linesOptions.spacing;

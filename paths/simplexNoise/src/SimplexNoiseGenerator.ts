@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 import {
     type Container,
     type IMovePathGenerator,
@@ -27,7 +29,7 @@ const defaultOptions: ISimplexOptions = {
 
 export class SimplexNoiseGenerator implements IMovePathGenerator {
     container?: Container;
-    field: number[][][][];
+    field: Vector[][][];
     noiseW: number;
     readonly options: ISimplexOptions;
 
@@ -51,19 +53,11 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
             },
             v = Vector.origin;
 
-        if (
-            !this.field ||
-            !this.field[point.x] ||
-            !this.field[point.x][point.y] ||
-            !this.field[point.x][point.y][point.z]
-        ) {
+        if (!this.field?.[point.x]?.[point.y]?.[point.z]) {
             return v;
         }
 
-        const cell = this.field[point.x][point.y][point.z];
-
-        v.length = cell[1];
-        v.angle = cell[0];
+        v.setTo(this.field[point.x][point.y][point.z]);
 
         return v;
     }
@@ -94,8 +88,8 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         for (let x = 0; x < options.columns; x++) {
             for (let y = 0; y < options.rows; y++) {
                 for (let z = 0; z < options.layers; z++) {
-                    this.field[x][y][z][0] = this._simplex.noise(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
-                    this.field[x][y][z][1] = this._simplex.noise(
+                    this.field[x][y][z].angle = this._simplex.noise(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
+                    this.field[x][y][z].length = this._simplex.noise(
                         x / 100 + options.offset.x,
                         y / 100 + options.offset.y,
                         z / 100 + options.offset.z,
@@ -107,16 +101,16 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
     }
 
     private _initField(): void {
-        this.field = new Array(this.options.columns);
+        this.field = new Array<Vector[][]>(this.options.columns);
 
         for (let x = 0; x < this.options.columns; x++) {
-            this.field[x] = new Array(this.options.rows);
+            this.field[x] = new Array<Vector[]>(this.options.rows);
 
             for (let y = 0; y < this.options.rows; y++) {
-                this.field[x][y] = new Array(this.options.layers);
+                this.field[x][y] = new Array<Vector>(this.options.layers);
 
                 for (let z = 0; z < this.options.layers; z++) {
-                    this.field[x][y][z] = [0, 0];
+                    this.field[x][y][z] = Vector.origin;
                 }
             }
         }

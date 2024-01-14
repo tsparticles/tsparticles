@@ -68,10 +68,12 @@ class EmittersPlugin implements IPlugin {
                 const emitterMode = interactivityEmitters as IEmitterModeOptions;
 
                 if (emitterMode.value !== undefined) {
+                    const defaultCount = 1;
+
                     if (isArray(emitterMode.value)) {
                         options.interactivity.modes.emitters = {
                             random: {
-                                count: emitterMode.random.count ?? 1,
+                                count: emitterMode.random.count ?? defaultCount,
                                 enable: emitterMode.random.enable ?? false,
                             },
                             value: emitterMode.value.map((s) => {
@@ -89,7 +91,7 @@ class EmittersPlugin implements IPlugin {
 
                         options.interactivity.modes.emitters = {
                             random: {
-                                count: emitterMode.random.count ?? 1,
+                                count: emitterMode.random.count ?? defaultCount,
                                 enable: emitterMode.random.enable ?? false,
                             },
                             value: tmp,

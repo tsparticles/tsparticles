@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+
 import { type Container, type ICoordinates, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
 import type { PolygonPathParticle } from "./PolygonPathParticle.js";

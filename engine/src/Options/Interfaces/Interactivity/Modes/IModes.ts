@@ -1,6 +1,4 @@
 /**
  * [[include:Options/Interactivity/Modes.md]]
  */
-export interface IModes {
-    [name: string]: unknown;
-}
+export type IModes = Record<string, unknown>;

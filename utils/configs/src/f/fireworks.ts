@@ -1,6 +1,7 @@
-import { EventType, type ISourceOptions } from "@tsparticles/engine";
+import { EventType, type ISourceOptions, type Particle } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "fireworks",
     name: "Fireworks",
     fullScreen: {
         enable: true,
@@ -167,8 +168,8 @@ const options: ISourceOptions = {
         enable: true,
         events: [
             {
-                event: EventType.particleDestroyed,
-                filter: "explodeSoundCheck",
+                event: EventType.particleRemoved,
+                filter: (args: { data: { particle: Particle } }) => args.data.particle.options.move.gravity.inverse,
                 audio: [
                     "https://particles.js.org/audio/explosion0.mp3",
                     "https://particles.js.org/audio/explosion1.mp3",

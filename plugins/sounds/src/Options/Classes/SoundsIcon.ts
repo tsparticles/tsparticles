@@ -4,12 +4,14 @@ import type { ISoundsIcon } from "../Interfaces/ISoundsIcon.js";
 export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {
     height;
     path?: string;
+    style: string;
     svg?: string;
     width;
 
     constructor() {
         this.width = 24;
         this.height = 24;
+        this.style = "";
     }
 
     load(data?: RecursivePartial<ISoundsIcon>): void {

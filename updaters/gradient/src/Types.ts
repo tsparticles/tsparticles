@@ -2,7 +2,6 @@ import type {
     GradientType,
     IParticleHslAnimation,
     IParticleNumericValueAnimation,
-    IParticleValueAnimation,
     IParticlesOptions,
     Particle,
     ParticlesOptions,
@@ -18,7 +17,7 @@ export interface IParticleGradientColorAnimation {
 }
 
 export interface IParticleGradientAnimation {
-    angle: IParticleValueAnimation<number>;
+    angle: IParticleNumericValueAnimation;
     colors: IParticleGradientColorAnimation[];
     type: GradientType;
 }

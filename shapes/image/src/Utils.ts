@@ -3,8 +3,9 @@ import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils.js";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
-/**
- */
+const stringStart = 0,
+    defaultLoopCount = 0,
+    defaultOpacity = 1;
 
 /**
  * The image interface, used for keeping useful data for drawing
@@ -80,7 +81,7 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): stri
 
     const preFillIndex = svgData.indexOf(">");
 
-    return `${svgData.substring(0, preFillIndex)} fill="${colorStyle}"${svgData.substring(preFillIndex)}`;
+    return `${svgData.substring(stringStart, preFillIndex)} fill="${colorStyle}"${svgData.substring(preFillIndex)}`;
 }
 
 /**
@@ -131,9 +132,9 @@ export async function loadGifImage(image: IImage): Promise<void> {
     try {
         image.gifData = await decodeGIF(image.source);
 
-        image.gifLoopCount = getGIFLoopAmount(image.gifData) ?? 0;
+        image.gifLoopCount = getGIFLoopAmount(image.gifData) ?? defaultLoopCount;
 
-        if (image.gifLoopCount === 0) {
+        if (!image.gifLoopCount) {
             image.gifLoopCount = Infinity;
         }
     } catch {
@@ -183,7 +184,7 @@ export function replaceImageColor(
     color: IHsl,
     particle: Particle,
 ): Promise<IParticleImage> {
-    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? 1),
+    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity),
         imageRes: IParticleImage = {
             color,
             gif: imageData.gif,
@@ -212,7 +213,7 @@ export function replaceImageColor(
             domUrl.revokeObjectURL(url);
         });
 
-        img.addEventListener("error", async () => {
+        const errorHandler = async (): Promise<void> => {
             domUrl.revokeObjectURL(url);
 
             const img2 = {
@@ -228,7 +229,9 @@ export function replaceImageColor(
             imageRes.element = img2.element;
 
             resolve(imageRes);
-        });
+        };
+
+        img.addEventListener("error", () => void errorHandler());
 
         img.src = url;
     });

@@ -4,20 +4,23 @@ interface ILineData {
     cap?: CanvasLineCap;
 }
 
+const sides = 1;
+
 /**
  */
 export class LineDrawer implements IShapeDrawer {
     draw(data: IShapeDrawData): void {
         const { context, particle, radius } = data,
-            shapeData = particle.shapeData as ILineData | undefined;
+            shapeData = particle.shapeData as ILineData | undefined,
+            centerY = 0;
 
-        context.moveTo(-radius / 2, 0);
-        context.lineTo(radius / 2, 0);
+        context.moveTo(-radius, centerY);
+        context.lineTo(radius, centerY);
 
         context.lineCap = shapeData?.cap ?? "butt";
     }
 
     getSidesCount(): number {
-        return 1;
+        return sides;
     }
 }

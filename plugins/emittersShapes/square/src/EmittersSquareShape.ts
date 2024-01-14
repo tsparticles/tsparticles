@@ -1,5 +1,16 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, getRandom, halfRandom } from "@tsparticles/engine";
+
+const half = 0.5,
+    sides = 4,
+    double = 2;
+
+const enum Sides {
+    TopLeft = 0,
+    TopRight = 1,
+    BottomRight = 2,
+    BottomLeft = 3,
+}
 
 /**
  * @param position -
@@ -7,10 +18,11 @@ import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engi
  * @returns the offset
  */
 function randomSquareCoordinate(position: number, offset: number): number {
-    return position + offset * (getRandom() - 0.5);
+    return position + offset * (getRandom() - halfRandom);
 }
 
 export class EmittersSquareShape extends EmitterShapeBase {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(position: ICoordinates, size: IDimension, fill: boolean, options: unknown) {
         super(position, size, fill, options);
     }
@@ -20,58 +32,60 @@ export class EmittersSquareShape extends EmitterShapeBase {
     }
 
     async randomPosition(): Promise<IRandomPositionData> {
-        const fill = this.fill,
-            position = this.position,
-            size = this.size;
+        return await new Promise<IRandomPositionData>((success) => {
+            const fill = this.fill,
+                position = this.position,
+                size = this.size;
 
-        if (fill) {
-            return {
-                position: {
-                    x: randomSquareCoordinate(position.x, size.width),
-                    y: randomSquareCoordinate(position.y, size.height),
-                },
-            };
-        } else {
-            const halfW = size.width / 2,
-                halfH = size.height / 2,
-                side = Math.floor(getRandom() * 4),
-                v = (getRandom() - 0.5) * 2;
+            if (fill) {
+                return success({
+                    position: {
+                        x: randomSquareCoordinate(position.x, size.width),
+                        y: randomSquareCoordinate(position.y, size.height),
+                    },
+                });
+            } else {
+                const halfW = size.width * half,
+                    halfH = size.height * half,
+                    side = Math.floor(getRandom() * sides) as Sides,
+                    v = (getRandom() - halfRandom) * double;
 
-            switch (side) {
-                case 0:
-                    // top-left
-                    return {
-                        position: {
-                            x: position.x + v * halfW,
-                            y: position.y - halfH,
-                        },
-                    };
-                case 1:
-                    // top-right
-                    return {
-                        position: {
-                            x: position.x - halfW,
-                            y: position.y + v * halfH,
-                        },
-                    };
-                case 2:
-                    // bottom-right
-                    return {
-                        position: {
-                            x: position.x + v * halfW,
-                            y: position.y + halfH,
-                        },
-                    };
-                case 3:
-                default:
-                    // bottom-left
-                    return {
-                        position: {
-                            x: position.x + halfW,
-                            y: position.y + v * halfH,
-                        },
-                    };
+                switch (side) {
+                    case Sides.TopLeft:
+                        // top-left
+                        return success({
+                            position: {
+                                x: position.x + v * halfW,
+                                y: position.y - halfH,
+                            },
+                        });
+                    case Sides.TopRight:
+                        // top-right
+                        return success({
+                            position: {
+                                x: position.x - halfW,
+                                y: position.y + v * halfH,
+                            },
+                        });
+                    case Sides.BottomRight:
+                        // bottom-right
+                        return success({
+                            position: {
+                                x: position.x + v * halfW,
+                                y: position.y + halfH,
+                            },
+                        });
+                    case Sides.BottomLeft:
+                    default:
+                        // bottom-left
+                        return success({
+                            position: {
+                                x: position.x + halfW,
+                                y: position.y + v * halfH,
+                            },
+                        });
+                }
             }
-        }
+        });
     }
 }

@@ -10,12 +10,14 @@ import {
 import { Connect } from "./Options/Classes/Connect.js";
 import { drawConnection } from "./Utils.js";
 
-const connectMode = "connect";
+const connectMode = "connect",
+    minDistance = 0;
 
 /**
  * Particle connection manager
  */
 export class Connector extends ExternalInteractorBase<ConnectContainer> {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: ConnectContainer) {
         super(container);
     }
@@ -44,29 +46,29 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
             options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
-            const mousePos = container.interactivity.mouse.position;
+            const mousePos = container.interactivity.mouse.position,
+                { connectModeDistance, connectModeRadius } = container.retina;
 
             if (
-                !container.retina.connectModeDistance ||
-                container.retina.connectModeDistance < 0 ||
-                !container.retina.connectModeRadius ||
-                container.retina.connectModeRadius < 0 ||
+                !connectModeDistance ||
+                connectModeDistance < minDistance ||
+                !connectModeRadius ||
+                connectModeRadius < minDistance ||
                 !mousePos
             ) {
                 return;
             }
 
-            const distance = Math.abs(container.retina.connectModeRadius),
+            const distance = Math.abs(connectModeRadius),
                 query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
 
-            let i = 0;
+            query.forEach((p1, i) => {
+                const pos1 = p1.getPosition(),
+                    indexOffset = 1;
 
-            for (const p1 of query) {
-                const pos1 = p1.getPosition();
-
-                for (const p2 of query.slice(i + 1)) {
+                for (const p2 of query.slice(i + indexOffset)) {
                     const pos2 = p2.getPosition(),
-                        distMax = Math.abs(container.retina.connectModeDistance),
+                        distMax = Math.abs(connectModeDistance),
                         xDiff = Math.abs(pos1.x - pos2.x),
                         yDiff = Math.abs(pos1.y - pos2.y);
 
@@ -74,10 +76,10 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
                         drawConnection(container, p1, p2);
                     }
                 }
-
-                ++i;
-            }
+            });
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

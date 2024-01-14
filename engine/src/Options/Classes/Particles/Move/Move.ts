@@ -1,3 +1,4 @@
+import { MoveDirection, type MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
 import { isNumber, isObject } from "../../../../Utils/Utils.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
@@ -5,8 +6,6 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { MoveAngle } from "./MoveAngle.js";
 import { MoveAttract } from "./MoveAttract.js";
 import { MoveCenter } from "./MoveCenter.js";
-import { MoveDirection } from "../../../../Enums/Directions/MoveDirection.js";
-import type { MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
 import { MoveGravity } from "./MoveGravity.js";
 import { MovePath } from "./Path/MovePath.js";
 import { MoveTrail } from "./MoveTrail.js";

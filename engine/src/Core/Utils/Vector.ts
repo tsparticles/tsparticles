@@ -1,5 +1,11 @@
-import type { ICoordinates } from "../Interfaces/ICoordinates.js";
+import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
 import { Vector3d } from "./Vector3d.js";
+
+const origin: ICoordinates3d = {
+    x: 0,
+    y: 0,
+    z: 0,
+};
 
 /**
  */
@@ -11,7 +17,7 @@ export class Vector extends Vector3d {
      * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates, y?: number) {
-        super(xOrCoords, y, 0);
+        super(xOrCoords, y, origin.z);
     }
 
     /**
@@ -19,7 +25,7 @@ export class Vector extends Vector3d {
      * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector {
-        return Vector.create(0, 0);
+        return Vector.create(origin.x, origin.y);
     }
 
     /**

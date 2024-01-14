@@ -1,9 +1,13 @@
 export class Grad {
-    constructor(
-        readonly x: number,
-        readonly y: number,
-        readonly z: number,
-    ) {}
+    readonly x;
+    readonly y;
+    readonly z;
+
+    constructor(x: number, y: number, z: number) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
     dot2(x: number, y: number): number {
         return this.x * x + this.y * y;

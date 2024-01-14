@@ -1,15 +1,18 @@
 import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 
+const half = 0.5,
+    double = 2;
+
 export class HeartDrawer implements IShapeDrawer {
     draw(data: IShapeDrawData): void {
         const { context, radius } = data,
-            diameter = radius * 2,
-            halfRadius = radius * 0.5,
+            diameter = radius * double,
+            halfRadius = radius * half,
             radiusAndHalf = radius + halfRadius,
             x = -radius,
             y = -radius;
 
-        context.moveTo(x, y + radius / 2);
+        context.moveTo(x, y + halfRadius);
         context.quadraticCurveTo(x, y, x + halfRadius, y);
         context.quadraticCurveTo(x + radius, y, x + radius, y + halfRadius);
         context.quadraticCurveTo(x + radius, y, x + radiusAndHalf, y);

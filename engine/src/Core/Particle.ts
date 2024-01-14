@@ -1,8 +1,10 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
 import type { IHsl, IRgb } from "./Interfaces/Colors.js";
+import { OutMode, type OutModeAlt } from "../Enums/Modes/OutMode.js";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
+    degToRad,
     getDistance,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
@@ -18,6 +20,7 @@ import {
     isInArray,
     itemFromSingleOrMultiple,
 } from "../Utils/Utils.js";
+import { errorPrefix, millisecondsToSeconds } from "./Utils/Constants.js";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
@@ -36,8 +39,6 @@ import type { IShapeValues } from "./Interfaces/IShapeValues.js";
 import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
 import { Interactivity } from "../Options/Classes/Interactivity/Interactivity.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
-import { OutMode } from "../Enums/Modes/OutMode.js";
-import type { OutModeAlt } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
@@ -45,13 +46,17 @@ import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { Vector } from "./Utils/Vector.js";
 import { Vector3d } from "./Utils/Vector3d.js";
 import { alterHsl } from "../Utils/CanvasUtils.js";
-import { errorPrefix } from "./Utils/Constants.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
+
+const defaultRetryCount = 0,
+    double = 2,
+    half = 0.5,
+    squareExp = 2;
 
 /**
  * @internal
  */
-type FixOutModeParams = {
+interface FixOutModeParams {
     /**
      */
     checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
@@ -71,7 +76,7 @@ type FixOutModeParams = {
      * @param value -
      */
     setCb: (value: number) => void;
-};
+}
 
 /**
  *
@@ -141,7 +146,7 @@ function fixOutMode(data: FixOutModeParams): void {
         return;
     }
 
-    const diameter = data.radius * 2;
+    const diameter = data.radius * double;
 
     if (data.coord > data.maxCoord - diameter) {
         data.setCb(-data.radius);
@@ -398,17 +403,17 @@ export class Particle {
             pathGenerator = this.pathGenerator,
             shapeDrawer = container.shapeDrawers.get(this.shape);
 
-        shapeDrawer && shapeDrawer.particleDestroy && shapeDrawer.particleDestroy(this);
+        shapeDrawer?.particleDestroy?.(this);
 
         for (const [, plugin] of container.plugins) {
-            plugin.particleDestroyed && plugin.particleDestroyed(this, override);
+            plugin.particleDestroyed?.(this, override);
         }
 
         for (const updater of container.particles.updaters) {
-            updater.particleDestroyed && updater.particleDestroyed(this, override);
+            updater.particleDestroyed?.(this, override);
         }
 
-        pathGenerator && pathGenerator.reset(this);
+        pathGenerator?.reset(this);
 
         this._engine.dispatchEvent(EventType.particleDestroyed, {
             container: this.container,
@@ -434,7 +439,7 @@ export class Particle {
     }
 
     getMass(): number {
-        return this.getRadius() ** 2 * Math.PI * 0.5;
+        return this.getRadius() ** squareExp * Math.PI * half;
     }
 
     getPosition(): ICoordinates3d {
@@ -494,7 +499,7 @@ export class Particle {
             shapeOptions = particlesOptions.shape;
 
         if (overrideOptions) {
-            if (overrideOptions.effect && overrideOptions.effect.type) {
+            if (overrideOptions.effect?.type) {
                 const overrideEffectType = overrideOptions.effect.type,
                     effect = itemFromSingleOrMultiple(overrideEffectType, this.id, reduceDuplicates);
 
@@ -505,7 +510,7 @@ export class Particle {
                 }
             }
 
-            if (overrideOptions.shape && overrideOptions.shape.type) {
+            if (overrideOptions.shape?.type) {
                 const overrideShapeType = overrideOptions.shape.type,
                     shape = itemFromSingleOrMultiple(overrideShapeType, this.id, reduceDuplicates);
 
@@ -549,7 +554,7 @@ export class Particle {
 
         const pathOptions = this.options.move.path;
 
-        this.pathDelay = getRangeValue(pathOptions.delay.value) * 1000;
+        this.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
 
         if (pathOptions.generator) {
             this.pathGenerator = this._engine.getPathGenerator(pathOptions.generator);
@@ -578,7 +583,10 @@ export class Particle {
         /* animation - velocity for speed */
         this.initialVelocity = this._calculateVelocity();
         this.velocity = this.initialVelocity.copy();
-        this.moveDecay = 1 - getRangeValue(this.options.move.decay);
+
+        const decayOffset = 1;
+
+        this.moveDecay = decayOffset - getRangeValue(this.options.move.decay);
 
         const particles = container.particles;
 
@@ -598,7 +606,7 @@ export class Particle {
             }
         }
 
-        if (effectDrawer && effectDrawer.loadEffect) {
+        if (effectDrawer?.loadEffect) {
             effectDrawer.loadEffect(this);
         }
 
@@ -612,7 +620,7 @@ export class Particle {
             }
         }
 
-        if (shapeDrawer && shapeDrawer.loadShape) {
+        if (shapeDrawer?.loadShape) {
             shapeDrawer.loadShape(this);
         }
 
@@ -630,19 +638,14 @@ export class Particle {
         }
 
         for (const mover of particles.movers) {
-            mover.init && mover.init(this);
+            mover.init?.(this);
         }
 
-        if (effectDrawer && effectDrawer.particleInit) {
-            effectDrawer.particleInit(container, this);
-        }
-
-        if (shapeDrawer && shapeDrawer.particleInit) {
-            shapeDrawer.particleInit(container, this);
-        }
+        effectDrawer?.particleInit?.(container, this);
+        shapeDrawer?.particleInit?.(container, this);
 
         for (const [, plugin] of container.plugins) {
-            plugin.particleCreated && plugin.particleCreated(this);
+            plugin.particleCreated?.(this);
         }
     }
 
@@ -668,7 +671,7 @@ export class Particle {
      */
     reset(): void {
         for (const updater of this.container.particles.updaters) {
-            updater.reset && updater.reset(this);
+            updater.reset?.(this);
         }
     }
 
@@ -677,7 +680,7 @@ export class Particle {
         position: ICoordinates | undefined,
         zIndex: number,
         tryCount?: number,
-    ) => Vector3d = (container, position, zIndex, tryCount = 0) => {
+    ) => Vector3d = (container, position, zIndex, tryCount = defaultRetryCount) => {
         for (const [, plugin] of container.plugins) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
@@ -723,7 +726,9 @@ export class Particle {
         fixVertical(outModes.bottom ?? outModes.default);
 
         if (this._checkOverlap(pos, tryCount)) {
-            return this._calcPosition(container, undefined, zIndex, tryCount + 1);
+            const increment = 1;
+
+            return this._calcPosition(container, undefined, zIndex, tryCount + increment);
         }
 
         return pos;
@@ -738,11 +743,11 @@ export class Particle {
             return res;
         }
 
-        const rad = (Math.PI / 180) * getRangeValue(moveOptions.angle.value),
-            radOffset = (Math.PI / 180) * getRangeValue(moveOptions.angle.offset),
+        const rad = degToRad(getRangeValue(moveOptions.angle.value)),
+            radOffset = degToRad(getRangeValue(moveOptions.angle.offset)),
             range = {
-                left: radOffset - rad * 0.5,
-                right: radOffset + rad * 0.5,
+                left: radOffset - rad * half,
+                right: radOffset + rad * half,
             };
 
         if (!moveOptions.straight) {
@@ -756,7 +761,10 @@ export class Particle {
         return res;
     };
 
-    private readonly _checkOverlap: (pos: ICoordinates, tryCount?: number) => boolean = (pos, tryCount = 0) => {
+    private readonly _checkOverlap: (pos: ICoordinates, tryCount?: number) => boolean = (
+        pos,
+        tryCount = defaultRetryCount,
+    ) => {
         const collisionsOptions = this.options.collisions,
             radius = this.getRadius();
 
@@ -770,9 +778,10 @@ export class Particle {
             return false;
         }
 
-        const retries = overlapOptions.retries;
+        const retries = overlapOptions.retries,
+            minRetries = 0;
 
-        if (retries >= 0 && tryCount > retries) {
+        if (retries >= minRetries && tryCount > retries) {
             throw new Error(`${errorPrefix} particle is overlapping and can't be placed`);
         }
 
@@ -786,9 +795,11 @@ export class Particle {
             return color;
         }
 
-        const backFactor = this.roll.horizontal && this.roll.vertical ? 2 : 1,
-            backSum = this.roll.horizontal ? Math.PI * 0.5 : 0,
-            rolled = Math.floor(((this.roll.angle ?? 0) + backSum) / (Math.PI / backFactor)) % 2;
+        const rollFactor = 1,
+            none = 0,
+            backFactor = this.roll.horizontal && this.roll.vertical ? double * rollFactor : rollFactor,
+            backSum = this.roll.horizontal ? Math.PI * half : none,
+            rolled = Math.floor(((this.roll.angle ?? none) + backSum) / (Math.PI / backFactor)) % double;
 
         if (!rolled) {
             return color;
@@ -807,16 +818,18 @@ export class Particle {
 
     private readonly _initPosition: (position?: ICoordinates) => void = (position) => {
         const container = this.container,
-            zIndexValue = getRangeValue(this.options.zIndex.value);
+            zIndexValue = getRangeValue(this.options.zIndex.value),
+            minZ = 0;
 
-        this.position = this._calcPosition(container, position, clamp(zIndexValue, 0, container.zLayers));
+        this.position = this._calcPosition(container, position, clamp(zIndexValue, minZ, container.zLayers));
         this.initialPosition = this.position.copy();
 
-        const canvasSize = container.canvas.size;
+        const canvasSize = container.canvas.size,
+            defaultRadius = 0;
 
         this.moveCenter = {
             ...getPosition(this.options.move.center, canvasSize),
-            radius: this.options.move.center.radius ?? 0,
+            radius: this.options.move.center.radius ?? defaultRadius,
             mode: this.options.move.center.mode ?? PixelMode.percent,
         };
 

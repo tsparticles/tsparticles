@@ -80,7 +80,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
                 const item = data.groups[group];
 
                 if (item !== undefined) {
-                    this.groups[group] = <IParticlesOptions>deepExtend(this.groups[group] ?? {}, item);
+                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
                 }
             }
         }

@@ -18,3 +18,9 @@ export const resizeEvent = "resize";
 export const visibilityChangeEvent = "visibilitychange";
 
 export const errorPrefix = "tsParticles - Error";
+
+export const percentDenominator = 100;
+
+export const halfRandom = 0.5;
+
+export const millisecondsToSeconds = 1000;

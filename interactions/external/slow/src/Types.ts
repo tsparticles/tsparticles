@@ -3,13 +3,13 @@ import type { ISlow } from "./Options/Interfaces/ISlow.js";
 import type { Slow } from "./Options/Classes/Slow.js";
 import type { SlowOptions } from "./Options/Classes/SlowOptions.js";
 
-export type ISlowMode = {
+export interface ISlowMode {
     slow: ISlow;
-};
+}
 
-export type SlowMode = {
+export interface SlowMode {
     slow?: Slow;
-};
+}
 
 export type SlowContainer = Container & {
     actualOptions: SlowOptions;

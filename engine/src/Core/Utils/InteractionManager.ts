@@ -54,13 +54,15 @@ export class InteractionManager {
      */
     async externalInteract(delta: IDelta): Promise<void> {
         for (const interactor of this._externalInteractors) {
-            interactor.isEnabled() && (await interactor.interact(delta));
+            if (interactor.isEnabled()) {
+                await interactor.interact(delta);
+            }
         }
     }
 
     handleClickMode(mode: string): void {
         for (const interactor of this._externalInteractors) {
-            interactor.handleClickMode && interactor.handleClickMode(mode);
+            interactor.handleClickMode?.(mode);
         }
     }
 
@@ -97,7 +99,9 @@ export class InteractionManager {
 
         /* interaction auto between particles */
         for (const interactor of this._particleInteractors) {
-            interactor.isEnabled(particle) && (await interactor.interact(particle, delta));
+            if (interactor.isEnabled(particle)) {
+                await interactor.interact(particle, delta);
+            }
         }
     }
 
@@ -105,13 +109,17 @@ export class InteractionManager {
      * Iterates through the external interactivity manager and call the interact method, if they are enabled
      * @param particle - the particle to reset
      */
-    async reset(particle: Particle): Promise<void> {
+    reset(particle: Particle): void {
         for (const interactor of this._externalInteractors) {
-            interactor.isEnabled() && interactor.reset(particle);
+            if (interactor.isEnabled()) {
+                interactor.reset(particle);
+            }
         }
 
         for (const interactor of this._particleInteractors) {
-            interactor.isEnabled(particle) && interactor.reset(particle);
+            if (interactor.isEnabled(particle)) {
+                interactor.reset(particle);
+            }
         }
     }
 }

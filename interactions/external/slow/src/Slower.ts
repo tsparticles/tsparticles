@@ -11,12 +11,14 @@ import {
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
 import { Slow } from "./Options/Classes/Slow.js";
 
-const slowMode = "slow";
+const slowMode = "slow",
+    minRadius = 0;
 
 /**
  * Particle slow manager
  */
 export class Slower extends ExternalInteractorBase<SlowContainer> {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: SlowContainer) {
         super(container);
     }
@@ -71,7 +73,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
             radius = container.retina.slowModeRadius,
             slowOptions = options.interactivity.modes.slow;
 
-        if (!slowOptions || !radius || radius < 0 || !mousePos) {
+        if (!slowOptions || !radius || radius < minRadius || !mousePos) {
             return;
         }
 

@@ -1,6 +1,7 @@
-import type { ISourceOptions } from "@tsparticles/engine";
+import { GradientType, type ISourceOptions, RotateDirection } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "gradients",
     name: "Gradients",
     particles: {
         number: {
@@ -8,7 +9,7 @@ const options: ISourceOptions = {
         },
         gradient: [
             {
-                type: "radial",
+                type: GradientType.radial,
                 colors: [
                     {
                         stop: 0.25,
@@ -22,7 +23,7 @@ const options: ISourceOptions = {
                 ],
             },
             {
-                type: "radial",
+                type: GradientType.radial,
                 colors: [
                     {
                         stop: 0.25,
@@ -36,7 +37,7 @@ const options: ISourceOptions = {
                 ],
             },
             {
-                type: "radial",
+                type: GradientType.radial,
                 colors: [
                     {
                         stop: 0.25,
@@ -50,7 +51,7 @@ const options: ISourceOptions = {
                 ],
             },
             {
-                type: "radial",
+                type: GradientType.radial,
                 colors: [
                     {
                         stop: 0.25,
@@ -64,7 +65,7 @@ const options: ISourceOptions = {
                 ],
             },
             {
-                type: "radial",
+                type: GradientType.radial,
                 colors: [
                     {
                         stop: 0.25,
@@ -74,6 +75,75 @@ const options: ISourceOptions = {
                         stop: 1,
                         value: "#000000",
                         opacity: 0,
+                    },
+                ],
+            },
+            {
+                type: GradientType.radial,
+                colors: [
+                    {
+                        stop: 0.25,
+                        value: {
+                            value: "#ff0000",
+                            animation: {
+                                enable: true,
+                                speed: 60,
+                                sync: true,
+                            },
+                        },
+                    },
+                    {
+                        stop: 0.5,
+                        value: {
+                            value: "#00ff00",
+                            animation: {
+                                enable: true,
+                                speed: 60,
+                                sync: true,
+                            },
+                        },
+                    },
+                    {
+                        stop: 0.75,
+                        value: {
+                            value: "#0000ff",
+                            animation: {
+                                enable: true,
+                                speed: 60,
+                                sync: true,
+                            },
+                        },
+                    },
+                    {
+                        stop: 1,
+                        value: "#000000",
+                        opacity: 0,
+                    },
+                ],
+            },
+            {
+                type: GradientType.linear,
+                angle: {
+                    value: 0,
+                    direction: RotateDirection.random,
+                    animation: {
+                        enable: true,
+                        speed: 60,
+                        sync: true,
+                    },
+                },
+                colors: [
+                    {
+                        stop: 0,
+                        value: "#00ffff",
+                    },
+                    {
+                        stop: 0.5,
+                        value: "#ff00ff",
+                    },
+                    {
+                        stop: 1,
+                        value: "#ffff00",
                     },
                 ],
             },

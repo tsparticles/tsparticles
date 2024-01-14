@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "warp",
     name: "Warp",
     fullScreen: false,
     fpsLimit: 120,

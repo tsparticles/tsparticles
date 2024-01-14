@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
+
+### Bug Fixes
+
+-   improved support for element id ([54a1683](https://github.com/tsparticles/tsparticles/commit/54a1683cfe05b8809f5ee7941f920cc1e9a13f07))
+
+### Features
+
+-   added mute/unmute functions to sound plugin for an easier control of the volume ([b2169ef](https://github.com/tsparticles/tsparticles/commit/b2169ef5b24ab38295294ea77dd5e2549f9558df))
+-   added new zig-zag path ([48bc5d1](https://github.com/tsparticles/tsparticles/commit/48bc5d16324989faab1830976b968c054c2003eb))
+
 ## [3.0.3](https://github.com/tsparticles/tsparticles/compare/v3.0.2...v3.0.3) (2023-12-26)
 
 ### Bug Fixes

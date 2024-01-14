@@ -12,12 +12,6 @@ import { SoundsAudio } from "./SoundsAudio.js";
 import { SoundsMelody } from "./SoundsMelody.js";
 import { SoundsNote } from "./SoundsNote.js";
 
-declare global {
-    interface Window {
-        [key: string]: unknown;
-    }
-}
-
 export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
     audio?: SingleOrMultiple<SoundsAudio>;
 
@@ -79,10 +73,12 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
             });
         }
 
-        if (data.filter !== undefined) {
+        if (data.filter) {
             if (isString(data.filter)) {
-                if (isFunction(window[data.filter])) {
-                    this.filter = window[data.filter] as FilterFunction;
+                const filterFunc = (window as unknown as Record<string, unknown>)[data.filter];
+
+                if (isFunction(filterFunc)) {
+                    this.filter = filterFunc as FilterFunction;
                 }
             } else {
                 this.filter = data.filter;

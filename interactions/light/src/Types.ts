@@ -3,13 +3,13 @@ import type { LightOptions, LightParticlesOptions } from "./Options/Classes/Ligh
 import type { ILight } from "./Options/Interfaces/ILight.js";
 import type { Light } from "./Options/Classes/Light.js";
 
-export type ILightMode = {
+export interface ILightMode {
     light?: ILight;
-};
+}
 
-export type LightMode = {
+export interface LightMode {
     light?: Light;
-};
+}
 
 export type LightContainer = Container & {
     actualOptions: LightOptions;

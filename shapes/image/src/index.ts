@@ -1,10 +1,11 @@
-import { downloadSvgImage, loadGifImage, loadImage } from "./Utils.js";
-import type { IImage } from "./Utils.js";
+import { type IImage, downloadSvgImage, loadGifImage, loadImage } from "./Utils.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import { ImageDrawer } from "./ImageDrawer.js";
 import type { ImageEngine } from "./types.js";
 import { ImagePreloaderPlugin } from "./ImagePreloader.js";
 import { errorPrefix } from "@tsparticles/engine";
+
+const extLength = 3;
 
 /**
  *
@@ -33,7 +34,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
                 gif: data.gif ?? false,
                 name: data.name ?? data.src,
                 source: data.src,
-                type: data.src.substring(data.src.length - 3),
+                type: data.src.substring(data.src.length - extLength),
                 error: false,
                 loading: true,
                 replaceColor: data.replaceColor,
@@ -42,7 +43,13 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
             engine.images.push(image);
 
-            const imageFunc = data.gif ? loadGifImage : data.replaceColor ? downloadSvgImage : loadImage;
+            let imageFunc: (image: IImage) => Promise<void>;
+
+            if (data.gif) {
+                imageFunc = loadGifImage;
+            } else {
+                imageFunc = data.replaceColor ? downloadSvgImage : loadImage;
+            }
 
             await imageFunc(image);
         } catch {

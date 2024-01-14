@@ -3,6 +3,8 @@ import { Range } from "./Range.js";
 import { Rectangle } from "./Rectangle.js";
 import { getDistance } from "../../Utils/NumberUtils.js";
 
+const squareExp = 2;
+
 /**
  */
 export class Circle extends Range {
@@ -42,15 +44,15 @@ export class Circle extends Range {
 
         if (range instanceof Circle) {
             const rSum = r + range.radius,
-                dist = Math.sqrt(distPos.x ** 2 + distPos.y ** 2);
+                dist = Math.sqrt(distPos.x ** squareExp + distPos.y ** squareExp);
 
             return rSum > dist;
         } else if (range instanceof Rectangle) {
             const { width, height } = range.size,
-                edges = Math.pow(distPos.x - width, 2) + Math.pow(distPos.y - height, 2);
+                edges = Math.pow(distPos.x - width, squareExp) + Math.pow(distPos.y - height, squareExp);
 
             return (
-                edges <= r ** 2 ||
+                edges <= r ** squareExp ||
                 (distPos.x <= r + width && distPos.y <= r + height) ||
                 distPos.x <= width ||
                 distPos.y <= height

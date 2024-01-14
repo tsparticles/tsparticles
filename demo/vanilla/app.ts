@@ -105,6 +105,7 @@ app.use("/interaction-external-trail", express.static("./node_modules/@tsparticl
 app.use("/plugin-absorbers", express.static("./node_modules/@tsparticles/plugin-absorbers"));
 app.use("/plugin-emitters", express.static("./node_modules/@tsparticles/plugin-emitters"));
 app.use("/plugin-polygon-mask", express.static("./node_modules/@tsparticles/plugin-polygon-mask"));
+app.use("/plugin-poisson-disc", express.static("./node_modules/@tsparticles/plugin-poisson-disc"));
 app.use("/interaction-external-pop", express.static("./node_modules/@tsparticles/interaction-external-pop"));
 app.use("/interaction-light", express.static("./node_modules/@tsparticles/interaction-light"));
 app.use("/interaction-particles-repulse", express.static("./node_modules/@tsparticles/interaction-particles-repulse"));
@@ -118,6 +119,7 @@ app.use("/path-perlin-noise", express.static("./node_modules/@tsparticles/path-p
 app.use("/path-polygon", express.static("./node_modules/@tsparticles/path-polygon"));
 app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-simplex-noise"));
 app.use("/path-svg", express.static("./node_modules/@tsparticles/path-svg"));
+app.use("/path-zig-zag", express.static("./node_modules/@tsparticles/path-zig-zag"));
 app.use("/plugin-canvas-mask", express.static("./node_modules/@tsparticles/plugin-canvas-mask"));
 app.use("/plugin-easing-back", express.static("./node_modules/@tsparticles/plugin-easing-back"));
 app.use("/plugin-easing-circ", express.static("./node_modules/@tsparticles/plugin-easing-circ"));

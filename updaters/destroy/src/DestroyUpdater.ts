@@ -5,6 +5,7 @@ import {
     type Particle,
     type RecursivePartial,
     getRangeValue,
+    percentDenominator,
 } from "@tsparticles/engine";
 import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types.js";
 import { Destroy } from "./Options/Classes/Destroy.js";
@@ -12,10 +13,13 @@ import { DestroyMode } from "./Enums/DestroyMode.js";
 import { split } from "./Utils.js";
 
 export class DestroyUpdater implements IParticleUpdater {
-    constructor(
-        private readonly engine: Engine,
-        private readonly container: Container,
-    ) {}
+    private readonly container;
+    private readonly engine;
+
+    constructor(engine: Engine, container: Container) {
+        this.container = container;
+        this.engine = engine;
+    }
 
     init(particle: DestroyParticle): void {
         const container = this.container,
@@ -39,19 +43,19 @@ export class DestroyUpdater implements IParticleUpdater {
             canvasSize = container.canvas.size;
 
         if (bottom) {
-            destroyBounds.bottom = (getRangeValue(bottom) * canvasSize.height) / 100;
+            destroyBounds.bottom = (getRangeValue(bottom) * canvasSize.height) / percentDenominator;
         }
 
         if (left) {
-            destroyBounds.left = (getRangeValue(left) * canvasSize.width) / 100;
+            destroyBounds.left = (getRangeValue(left) * canvasSize.width) / percentDenominator;
         }
 
         if (right) {
-            destroyBounds.right = (getRangeValue(right) * canvasSize.width) / 100;
+            destroyBounds.right = (getRangeValue(right) * canvasSize.width) / percentDenominator;
         }
 
         if (top) {
-            destroyBounds.top = (getRangeValue(top) * canvasSize.height) / 100;
+            destroyBounds.top = (getRangeValue(top) * canvasSize.height) / percentDenominator;
         }
     }
 

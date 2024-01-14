@@ -9,6 +9,13 @@ import {
 } from "@tsparticles/engine";
 import type { MoveParticle } from "./Types.js";
 
+const half = 0.5,
+    minVelocity = 0,
+    identity = 1,
+    moveSpeedFactor = 60,
+    minSpinRadius = 0,
+    spinFactor = 0.01;
+
 /**
  * @param particle -
  */
@@ -25,15 +32,18 @@ export function applyDistance(particle: MoveParticle): void {
         return;
     }
 
-    if (((hDistance && dxFixed >= hDistance) || (vDistance && dyFixed >= vDistance)) && !particle.misplaced) {
+    const hasHDistance = (hDistance && dxFixed >= hDistance) ?? false,
+        hasVDistance = (vDistance && dyFixed >= vDistance) ?? false;
+
+    if ((hasHDistance || hasVDistance) && !particle.misplaced) {
         particle.misplaced = (!!hDistance && dxFixed > hDistance) || (!!vDistance && dyFixed > vDistance);
 
         if (hDistance) {
-            particle.velocity.x = particle.velocity.y * 0.5 - particle.velocity.x;
+            particle.velocity.x = particle.velocity.y * half - particle.velocity.x;
         }
 
         if (vDistance) {
-            particle.velocity.y = particle.velocity.x * 0.5 - particle.velocity.y;
+            particle.velocity.y = particle.velocity.x * half - particle.velocity.y;
         }
     } else if ((!hDistance || dxFixed < hDistance) && (!vDistance || dyFixed < vDistance) && particle.misplaced) {
         particle.misplaced = false;
@@ -41,11 +51,17 @@ export function applyDistance(particle: MoveParticle): void {
         const pos = particle.position,
             vel = particle.velocity;
 
-        if (hDistance && ((pos.x < initialPosition.x && vel.x < 0) || (pos.x > initialPosition.x && vel.x > 0))) {
+        if (
+            hDistance &&
+            ((pos.x < initialPosition.x && vel.x < minVelocity) || (pos.x > initialPosition.x && vel.x > minVelocity))
+        ) {
             vel.x *= -getRandom();
         }
 
-        if (vDistance && ((pos.y < initialPosition.y && vel.y < 0) || (pos.y > initialPosition.y && vel.y > 0))) {
+        if (
+            vDistance &&
+            ((pos.y < initialPosition.y && vel.y < minVelocity) || (pos.y > initialPosition.y && vel.y > minVelocity))
+        ) {
             vel.y *= -getRandom();
         }
     }
@@ -71,14 +87,15 @@ export function move(
     applyPath(particle, delta);
 
     const gravityOptions = particle.gravity,
-        gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -1 : 1;
+        gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity;
 
     if (moveDrift && moveSpeed) {
-        particle.velocity.x += (moveDrift * delta.factor) / (60 * moveSpeed);
+        particle.velocity.x += (moveDrift * delta.factor) / (moveSpeedFactor * moveSpeed);
     }
 
     if (gravityOptions?.enable && moveSpeed) {
-        particle.velocity.y += (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (60 * moveSpeed);
+        particle.velocity.y +=
+            (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (moveSpeedFactor * moveSpeed);
     }
 
     const decay = particle.moveDecay;
@@ -89,9 +106,9 @@ export function move(
 
     if (
         gravityOptions?.enable &&
-        maxSpeed > 0 &&
-        ((!gravityOptions.inverse && velocity.y >= 0 && velocity.y >= maxSpeed) ||
-            (gravityOptions.inverse && velocity.y <= 0 && velocity.y <= -maxSpeed))
+        maxSpeed > minVelocity &&
+        ((!gravityOptions.inverse && velocity.y >= minVelocity && velocity.y >= maxSpeed) ||
+            (gravityOptions.inverse && velocity.y <= minVelocity && velocity.y <= -maxSpeed))
     ) {
         velocity.y = gravityFactor * maxSpeed;
 
@@ -101,7 +118,7 @@ export function move(
     }
 
     const zIndexOptions = particle.options.zIndex,
-        zVelocityFactor = (1 - particle.zIndexFactor) ** zIndexOptions.velocityRate;
+        zVelocityFactor = (identity - particle.zIndexFactor) ** zIndexOptions.velocityRate;
 
     velocity.multTo(zVelocityFactor);
 
@@ -136,17 +153,17 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
     particle.spin.radius += particle.spin.acceleration;
 
     const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height),
-        halfMaxSize = maxCanvasSize * 0.5;
+        halfMaxSize = maxCanvasSize * half;
 
     if (particle.spin.radius > halfMaxSize) {
         particle.spin.radius = halfMaxSize;
-        particle.spin.acceleration *= -1;
-    } else if (particle.spin.radius < 0) {
-        particle.spin.radius = 0;
-        particle.spin.acceleration *= -1;
+        particle.spin.acceleration *= -identity;
+    } else if (particle.spin.radius < minSpinRadius) {
+        particle.spin.radius = minSpinRadius;
+        particle.spin.acceleration *= -identity;
     }
 
-    particle.spin.angle += moveSpeed * 0.01 * (1 - particle.spin.radius / maxCanvasSize);
+    particle.spin.angle += moveSpeed * spinFactor * (identity - particle.spin.radius / maxCanvasSize);
 }
 
 /**
@@ -175,8 +192,8 @@ export function applyPath(particle: Particle, delta: IDelta): void {
     }
 
     if (pathOptions.clamp) {
-        particle.velocity.x = clamp(particle.velocity.x, -1, 1);
-        particle.velocity.y = clamp(particle.velocity.y, -1, 1);
+        particle.velocity.x = clamp(particle.velocity.x, -identity, identity);
+        particle.velocity.y = clamp(particle.velocity.y, -identity, identity);
     }
 
     particle.lastPathTime -= particle.pathDelay;
@@ -187,5 +204,5 @@ export function applyPath(particle: Particle, delta: IDelta): void {
  * @returns proximity speed factor
  */
 export function getProximitySpeedFactor(particle: Particle): number {
-    return particle.slow.inRange ? particle.slow.factor : 1;
+    return particle.slow.inRange ? particle.slow.factor : identity;
 }

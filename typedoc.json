@@ -95,7 +95,8 @@
     "typedoc-plugin-carbon-ads",
     "typedoc-plugin-clarity",
     "typedoc-plugin-coverage",
-    "typedoc-plugin-keywords"
+    "typedoc-plugin-keywords",
+    "typedoc-plugin-mdn-links"
   ],
   "clarityId": "8q4bxin4tm",
   "carbonServe": "CEAI6KJL",

@@ -1,4 +1,8 @@
 import type { InfectableContainer, InfectableParticle } from "./Types.js";
+import { millisecondsToSeconds } from "@tsparticles/engine";
+
+const minStage = 0,
+    minDuration = 0;
 
 /**
  */
@@ -20,7 +24,7 @@ export class Infecter {
         const stages = infectionOptions.stages,
             stagesCount = stages.length;
 
-        if (stage > stagesCount || stage < 0) {
+        if (stage > stagesCount || stage < minStage) {
             return;
         }
 
@@ -42,11 +46,11 @@ export class Infecter {
         if (infection.delay !== undefined && infection.delayStage !== undefined) {
             const stage = infection.delayStage;
 
-            if (stage > stagesCount || stage < 0) {
+            if (stage > stagesCount || stage < minStage) {
                 return;
             }
 
-            if (infection.delay >= infectionOptions.delay * 1000) {
+            if (infection.delay >= infectionOptions.delay * millisecondsToSeconds) {
                 infection.stage = stage;
                 infection.time = 0;
 
@@ -63,8 +67,8 @@ export class Infecter {
         if (infection.stage !== undefined && infection.time !== undefined) {
             const infectionStage = stages[infection.stage];
 
-            if (infectionStage.duration !== undefined && infectionStage.duration >= 0) {
-                if (infection.time > infectionStage.duration * 1000) {
+            if (infectionStage.duration !== undefined && infectionStage.duration >= minDuration) {
+                if (infection.time > infectionStage.duration * millisecondsToSeconds) {
                     this._nextInfectionStage(particle);
                 } else {
                     infection.time += delta;
@@ -88,7 +92,7 @@ export class Infecter {
 
         const stagesCount = options.infection.stages.length;
 
-        if (stage > stagesCount || stage < 0 || (infection.stage !== undefined && infection.stage > stage)) {
+        if (stage > stagesCount || stage < minStage || (infection.stage !== undefined && infection.stage > stage)) {
             return;
         }
 
@@ -106,7 +110,7 @@ export class Infecter {
 
         const stagesCount = infectionOptions.stages.length;
 
-        if (stagesCount <= 0 || infection.stage === undefined) {
+        if (stagesCount <= minStage || infection.stage === undefined) {
             return;
         }
 
@@ -116,7 +120,6 @@ export class Infecter {
             if (infectionOptions.cure) {
                 delete infection.stage;
                 delete infection.time;
-                return;
             } else {
                 infection.stage = 0;
                 infection.time = 0;

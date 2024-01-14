@@ -1,6 +1,6 @@
-export type RectInfo = {
+export interface RectInfo {
     height: number;
     width: number;
     x: number;
     y: number;
-};
+}

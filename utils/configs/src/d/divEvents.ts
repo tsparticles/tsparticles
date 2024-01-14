@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "divEvents",
     name: "Div Events",
     background: {
         color: "#0d47a1",

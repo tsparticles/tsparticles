@@ -1,6 +1,7 @@
 import { type ISourceOptions, MoveDirection } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "imagesDirections",
     name: "Images with Custom Directions",
     interactivity: {
         events: {

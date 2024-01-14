@@ -1,7 +1,7 @@
 import type { IDelta } from "./IDelta.js";
 import type { Particle } from "../Particle.js";
 
-export type IShapeDrawData<TParticle extends Particle = Particle> = {
+export interface IShapeDrawData<TParticle extends Particle = Particle> {
     /**
      * the canvas context for drawing
      */
@@ -56,4 +56,4 @@ export type IShapeDrawData<TParticle extends Particle = Particle> = {
          */
         d: number;
     };
-};
+}

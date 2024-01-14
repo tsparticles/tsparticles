@@ -4,6 +4,4 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
  
  * [[include:Options/Particles/Group.md]]
  */
-export type ParticlesGroups = {
-    [name: string]: IParticlesOptions;
-};
+export type ParticlesGroups = Record<string, IParticlesOptions>;

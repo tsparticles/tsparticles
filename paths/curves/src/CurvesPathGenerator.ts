@@ -3,10 +3,17 @@ import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
 
-declare global {
-    interface Window {
-        [key: string]: unknown;
-    }
+const double = 2,
+    doublePI = Math.PI * double;
+
+/**
+ * @returns a random velocity
+ */
+function randomVelocity(): number {
+    const offset = 0.8,
+        factor = 0.6;
+
+    return getRandom() * factor + offset;
 }
 
 export class CurvesPathGenerator implements IMovePathGenerator {
@@ -40,11 +47,11 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         if (!p.curveVelocity) {
             p.curveVelocity = Vector.origin;
 
-            p.curveVelocity.length = getRandom() * 0.6 + 0.8;
-            p.curveVelocity.angle = getRandom() * Math.PI * 2;
+            p.curveVelocity.length = randomVelocity();
+            p.curveVelocity.angle = getRandom() * doublePI;
         } else {
             p.curveVelocity.length += 0.01;
-            p.curveVelocity.angle = (p.curveVelocity.angle + p.pathGen()) % (Math.PI * 2);
+            p.curveVelocity.angle = (p.curveVelocity.angle + p.pathGen()) % doublePI;
         }
 
         p.velocity.x = 0;
@@ -61,7 +68,10 @@ export class CurvesPathGenerator implements IMovePathGenerator {
             options.rndFunc = sourceOptions.rndFunc as () => number;
         } else if (isString(sourceOptions.rndFunc)) {
             options.rndFunc =
-                (window[sourceOptions.rndFunc] as (() => number) | null | undefined) || this.options.rndFunc;
+                ((window as unknown as Record<string, unknown>)[sourceOptions.rndFunc] as
+                    | (() => number)
+                    | null
+                    | undefined) ?? this.options.rndFunc;
         }
 
         options.period = (sourceOptions.period as number) ?? options.period;

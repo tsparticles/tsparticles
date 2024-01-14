@@ -22,7 +22,7 @@ class InfectionPlugin implements IPlugin {
             return;
         }
 
-        let infectionOptions = options.infection as Infection;
+        let infectionOptions = options.infection!;
 
         if (infectionOptions?.load === undefined) {
             options.infection = infectionOptions = new Infection();

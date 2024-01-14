@@ -33,6 +33,7 @@ import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
 import { loadPathShape } from "@tsparticles/shape-path";
 import { loadPerlinNoisePath } from "@tsparticles/path-perlin-noise";
+import { loadPoissonDiscPlugin } from "@tsparticles/plugin-poisson-disc";
 import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
 import { loadPolygonPath } from "@tsparticles/path-polygon";
 import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
@@ -42,6 +43,7 @@ import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadSpiralShape } from "@tsparticles/shape-spiral";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
+import { loadZigZagPath } from "@tsparticles/path-zig-zag";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles All package.
@@ -89,8 +91,10 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadCurvesPath(engine, false);
     await loadCurlNoisePath(engine, false);
     await loadPerlinNoisePath(engine, false);
+    await loadPoissonDiscPlugin(engine, false);
     await loadPolygonPath(engine, false);
     await loadSVGPath(engine, false);
+    await loadZigZagPath(engine, false);
     await loadSimplexNoisePath(engine, false);
     await loadBubbleEffect(engine, false);
     await loadArrowShape(engine, false);

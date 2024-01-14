@@ -42,9 +42,11 @@ export class Emitters implements IContainerPlugin {
             value: [],
         };
 
+        const defaultIndex = 0;
+
         container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
-                ? this.array[idxOrName || 0]
+                ? this.array[idxOrName ?? defaultIndex]
                 : this.array.find((t) => t.name === idxOrName);
 
         container.addEmitter = async (
@@ -95,14 +97,16 @@ export class Emitters implements IContainerPlugin {
         const emitterOptions = this.emitters,
             modeEmitters = this.interactivityEmitters;
 
-        if (mode !== EmitterClickMode.emitter) {
+        if (mode !== (EmitterClickMode.emitter as string)) {
             return;
         }
 
         let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
 
         if (modeEmitters && isArray(modeEmitters.value)) {
-            if (modeEmitters.value.length > 0 && modeEmitters.random.enable) {
+            const minLength = 0;
+
+            if (modeEmitters.value.length > minLength && modeEmitters.random.enable) {
                 emittersModeOptions = [];
                 const usedIndexes: number[] = [];
 
@@ -127,8 +131,8 @@ export class Emitters implements IContainerPlugin {
         const emittersOptions = emittersModeOptions ?? emitterOptions,
             ePosition = this.container.interactivity.mouse.clickPosition;
 
-        executeOnSingleOrMultiple(emittersOptions, (emitter) => {
-            this.addEmitter(emitter, ePosition);
+        void executeOnSingleOrMultiple(emittersOptions, async (emitter) => {
+            await this.addEmitter(emitter, ePosition);
         });
     }
 
@@ -162,10 +166,12 @@ export class Emitters implements IContainerPlugin {
     }
 
     removeEmitter(emitter: EmitterInstance): void {
-        const index = this.array.indexOf(emitter);
+        const index = this.array.indexOf(emitter),
+            minIndex = 0,
+            deleteCount = 1;
 
-        if (index >= 0) {
-            this.array.splice(index, 1);
+        if (index >= minIndex) {
+            this.array.splice(index, deleteCount);
         }
     }
 

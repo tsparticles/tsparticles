@@ -1,5 +1,7 @@
 import type { Container, Engine, ExportResult, IContainerPlugin } from "@tsparticles/engine";
 
+const indent = 2;
+
 export class ExportJSONInstance implements IContainerPlugin {
     private readonly _container: Container;
     private readonly _engine: Engine;
@@ -28,16 +30,16 @@ export class ExportJSONInstance implements IContainerPlugin {
     private readonly _exportJSON = async (): Promise<Blob | undefined> => {
         const json = JSON.stringify(
             this._container.actualOptions,
-            (key, value) => {
+            (key, value: unknown) => {
                 if (key.startsWith("_")) {
                     return;
                 }
 
                 return value;
             },
-            2,
+            indent,
         );
 
-        return new Blob([json], { type: "application/json" });
+        return Promise.resolve(new Blob([json], { type: "application/json" }));
     };
 }

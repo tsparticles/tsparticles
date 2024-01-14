@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "clickConfetti",
     name: "Click Confetti",
     fpsLimit: 60,
     interactivity: {

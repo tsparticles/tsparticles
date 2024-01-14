@@ -17,12 +17,16 @@ export abstract class ExternalInteractorBase<
      */
     type: InteractorType = InteractorType.external;
 
+    protected readonly container: TContainer;
+
     /**
      * Constructor of external interactivity manager
      * @param container - the parent container
      * @internal
      */
-    protected constructor(protected readonly container: TContainer) {}
+    protected constructor(container: TContainer) {
+        this.container = container;
+    }
 
     /**
      * Before interaction clear

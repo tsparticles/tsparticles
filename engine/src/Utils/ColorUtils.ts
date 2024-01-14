@@ -1,14 +1,33 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
-import { getRandom, getRangeValue, mix, randomInRange, setRangeValue } from "./NumberUtils.js";
+import {
+    clamp,
+    getRandom,
+    getRangeMax,
+    getRangeMin,
+    getRangeValue,
+    mix,
+    randomInRange,
+    setRangeValue,
+} from "./NumberUtils.js";
 import { isArray, isString, itemFromArray } from "./Utils.js";
+import { millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
+import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
-import type { IParticleValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
+import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
+
+const enum RgbIndexes {
+    r = 1,
+    g = 2,
+    b = 3,
+    a = 4,
+}
 
 const randomColorValue = "random",
     midColorValue = "mid",
@@ -34,18 +53,24 @@ function stringToRgba(input: string): IRgba | undefined {
     }
 
     const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
-        hexFixed = input.replace(shorthandRegex, (_, r, g, b, a) => {
+        hexFixed = input.replace(shorthandRegex, (_, r: string, g: string, b: string, a: string) => {
             return r + r + g + g + b + b + (a !== undefined ? a + a : "");
         }),
         regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i,
-        result = regex.exec(hexFixed);
+        result = regex.exec(hexFixed),
+        radix = 16,
+        defaultAlpha = 1,
+        alphaFactor = 0xff;
 
     return result
         ? {
-              a: result[4] !== undefined ? parseInt(result[4], 16) / 0xff : 1,
-              b: parseInt(result[3], 16),
-              g: parseInt(result[2], 16),
-              r: parseInt(result[1], 16),
+              a:
+                  result[RgbIndexes.a] !== undefined
+                      ? parseInt(result[RgbIndexes.a], radix) / alphaFactor
+                      : defaultAlpha,
+              b: parseInt(result[RgbIndexes.b], radix),
+              g: parseInt(result[RgbIndexes.g], radix),
+              r: parseInt(result[RgbIndexes.r], radix),
           }
         : undefined;
 }
@@ -152,38 +177,47 @@ export function rangeColorToHsl(
  * @returns hsl color
  */
 export function rgbToHsl(color: IRgb): IHsl {
-    const r1 = color.r / 255,
-        g1 = color.g / 255,
-        b1 = color.b / 255,
+    const rgbMax = 255,
+        hMax = 360,
+        sMax = 100,
+        lMax = 100,
+        hMin = 0,
+        sMin = 0,
+        hPhase = 60,
+        half = 0.5,
+        double = 2,
+        r1 = color.r / rgbMax,
+        g1 = color.g / rgbMax,
+        b1 = color.b / rgbMax,
         max = Math.max(r1, g1, b1),
         min = Math.min(r1, g1, b1),
-        //Calculate L:
+        // Calculate L:
         res = {
-            h: 0,
-            l: (max + min) * 0.5,
-            s: 0,
+            h: hMin,
+            l: (max + min) * half,
+            s: sMin,
         };
 
     if (max !== min) {
-        //Calculate S:
-        res.s = res.l < 0.5 ? (max - min) / (max + min) : (max - min) / (2.0 - max - min);
-        //Calculate H:
+        // Calculate S:
+        res.s = res.l < half ? (max - min) / (max + min) : (max - min) / (double - max - min);
+        // Calculate H:
         res.h =
             r1 === max
                 ? (g1 - b1) / (max - min)
-                : (res.h = g1 === max ? 2.0 + (b1 - r1) / (max - min) : 4.0 + (r1 - g1) / (max - min));
+                : (res.h = g1 === max ? double + (b1 - r1) / (max - min) : double * double + (r1 - g1) / (max - min));
     }
 
-    res.l *= 100;
-    res.s *= 100;
-    res.h *= 60;
+    res.l *= lMax;
+    res.s *= sMax;
+    res.h *= hPhase;
 
-    if (res.h < 0) {
-        res.h += 360;
+    if (res.h < hMin) {
+        res.h += hMax;
     }
 
-    if (res.h >= 360) {
-        res.h -= 360;
+    if (res.h >= hMax) {
+        res.h -= hMax;
     }
 
     return res;
@@ -214,49 +248,69 @@ export function stringToRgb(input: string): IRgb | undefined {
  */
 export function hslToRgb(hsl: IHsl): IRgb {
     // Ensure that h, s, and l are in the valid range
-    const h = ((hsl.h % 360) + 360) % 360,
-        s = Math.max(0, Math.min(100, hsl.s)),
-        l = Math.max(0, Math.min(100, hsl.l)),
+    const hMax = 360,
+        sMax = 100,
+        lMax = 100,
+        sMin = 0,
+        lMin = 0,
+        h = ((hsl.h % hMax) + hMax) % hMax,
+        s = Math.max(sMin, Math.min(sMax, hsl.s)),
+        l = Math.max(lMin, Math.min(lMax, hsl.l)),
         // Convert h, s, and l to the range [0, 1]
-        hNormalized = h / 360,
-        sNormalized = s / 100,
-        lNormalized = l / 100;
+        hNormalized = h / hMax,
+        sNormalized = s / sMax,
+        lNormalized = l / lMax,
+        rgbFactor = 255,
+        triple = 3;
 
-    if (s === 0) {
+    if (s === sMin) {
         // If saturation is 0, the color is grayscale
-        const grayscaleValue = Math.round(lNormalized * 255);
+        const grayscaleValue = Math.round(lNormalized * rgbFactor);
         return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
     }
 
-    const channel = (temp1: number, temp2: number, temp3: number): number => {
-            if (temp3 < 0) {
-                temp3 += 1;
+    const half = 0.5,
+        double = 2,
+        channel = (temp1: number, temp2: number, temp3: number): number => {
+            const temp3Min = 0,
+                temp3Max = 1,
+                sextuple = 6;
+
+            if (temp3 < temp3Min) {
+                temp3++;
             }
 
-            if (temp3 > 1) {
-                temp3 -= 1;
+            if (temp3 > temp3Max) {
+                temp3--;
             }
 
-            if (temp3 * 6 < 1) {
-                return temp1 + (temp2 - temp1) * 6 * temp3;
+            if (temp3 * sextuple < temp3Max) {
+                return temp1 + (temp2 - temp1) * sextuple * temp3;
             }
 
-            if (temp3 * 2 < 1) {
+            if (temp3 * double < temp3Max) {
                 return temp2;
             }
 
-            if (temp3 * 3 < 2) {
-                return temp1 + (temp2 - temp1) * (2 / 3 - temp3) * 6;
+            if (temp3 * triple < temp3Max * double) {
+                const temp3Offset = double / triple;
+
+                return temp1 + (temp2 - temp1) * (temp3Offset - temp3) * sextuple;
             }
 
             return temp1;
         },
+        sNormalizedOffset = 1,
         temp1 =
-            lNormalized < 0.5 ? lNormalized * (1 + sNormalized) : lNormalized + sNormalized - lNormalized * sNormalized,
-        temp2 = 2 * lNormalized - temp1,
-        red = Math.min(255, 255 * channel(temp2, temp1, hNormalized + 1 / 3)),
-        green = Math.min(255, 255 * channel(temp2, temp1, hNormalized)),
-        blue = Math.min(255, 255 * channel(temp2, temp1, hNormalized - 1 / 3));
+            lNormalized < half
+                ? lNormalized * (sNormalizedOffset + sNormalized)
+                : lNormalized + sNormalized - lNormalized * sNormalized,
+        temp2 = double * lNormalized - temp1,
+        phaseNumerator = 1,
+        phaseThird = phaseNumerator / triple,
+        red = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized + phaseThird)),
+        green = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized)),
+        blue = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized - phaseThird));
 
     return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
@@ -283,12 +337,14 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  * @returns the random ({@link IRgb}) color
  */
 export function getRandomRgbColor(min?: number): IRgb {
-    const fixedMin = min ?? 0;
+    const defaultMin = 0,
+        fixedMin = min ?? defaultMin,
+        rgbMax = 256;
 
     return {
-        b: Math.floor(randomInRange(setRangeValue(fixedMin, 256))),
-        g: Math.floor(randomInRange(setRangeValue(fixedMin, 256))),
-        r: Math.floor(randomInRange(setRangeValue(fixedMin, 256))),
+        b: Math.floor(randomInRange(setRangeValue(fixedMin, rgbMax))),
+        g: Math.floor(randomInRange(setRangeValue(fixedMin, rgbMax))),
+        r: Math.floor(randomInRange(setRangeValue(fixedMin, rgbMax))),
     };
 }
 
@@ -299,7 +355,9 @@ export function getRandomRgbColor(min?: number): IRgb {
  * @returns the CSS style string
  */
 export function getStyleFromRgb(color: IRgb, opacity?: number): string {
-    return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? 1})`;
+    const defaultOpacity = 1;
+
+    return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? defaultOpacity})`;
 }
 
 /**
@@ -309,7 +367,9 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
  * @returns the CSS style string
  */
 export function getStyleFromHsl(color: IHsl, opacity?: number): string {
-    return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? 1})`;
+    const defaultOpacity = 1;
+
+    return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? defaultOpacity})`;
 }
 
 /**
@@ -455,20 +515,25 @@ export function getHslAnimationFromHsl(
  * @param reduceFactor -
  */
 function setColorAnimation(
-    colorValue: IParticleValueAnimation<number>,
+    colorValue: IParticleColorAnimation,
     colorAnimation: IColorAnimation,
     reduceFactor: number,
 ): void {
     colorValue.enable = colorAnimation.enable;
 
+    const defaultVelocity = 0,
+        decayOffset = 1,
+        defaultLoops = 0,
+        defaultTime = 0;
+
     if (colorValue.enable) {
-        colorValue.velocity = (getRangeValue(colorAnimation.speed) / 100) * reduceFactor;
-        colorValue.decay = 1 - getRangeValue(colorAnimation.decay);
+        colorValue.velocity = (getRangeValue(colorAnimation.speed) / percentDenominator) * reduceFactor;
+        colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay);
         colorValue.status = AnimationStatus.increasing;
-        colorValue.loops = 0;
+        colorValue.loops = defaultLoops;
         colorValue.maxLoops = getRangeValue(colorAnimation.count);
-        colorValue.time = 0;
-        colorValue.delayTime = getRangeValue(colorAnimation.delay) * 1000;
+        colorValue.time = defaultTime;
+        colorValue.delayTime = getRangeValue(colorAnimation.delay) * millisecondsToSeconds;
 
         if (!colorAnimation.sync) {
             colorValue.velocity *= getRandom();
@@ -476,7 +541,122 @@ function setColorAnimation(
         }
 
         colorValue.initialValue = colorValue.value;
+        colorValue.offset = setRangeValue(colorAnimation.offset);
     } else {
-        colorValue.velocity = 0;
+        colorValue.velocity = defaultVelocity;
+    }
+}
+
+/**
+ * @param data -
+ * @param range -
+ * @param decrease -
+ * @param delta -
+ */
+export function updateColorValue(
+    data: IParticleColorAnimation,
+    range: IRangeValue,
+    decrease: boolean,
+    delta: IDelta,
+): void {
+    const minLoops = 0,
+        minDelay = 0,
+        identity = 1,
+        minVelocity = 0,
+        minOffset = 0,
+        velocityFactor = 3.6;
+
+    if (
+        !data ||
+        !data.enable ||
+        ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
+    ) {
+        return;
+    }
+
+    if (!data.time) {
+        data.time = 0;
+    }
+
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+        data.time += delta.value;
+    }
+
+    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+        return;
+    }
+
+    const offset = data.offset ? randomInRange(data.offset) : minOffset,
+        velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
+        decay = data.decay ?? identity,
+        max = getRangeMax(range),
+        min = getRangeMin(range);
+
+    if (!decrease || data.status === AnimationStatus.increasing) {
+        data.value += velocity;
+
+        if (data.value > max) {
+            if (!data.loops) {
+                data.loops = 0;
+            }
+
+            data.loops++;
+
+            if (decrease) {
+                data.status = AnimationStatus.decreasing;
+            } else {
+                data.value -= max;
+            }
+        }
+    } else {
+        data.value -= velocity;
+
+        const minValue = 0;
+
+        if (data.value < minValue) {
+            if (!data.loops) {
+                data.loops = 0;
+            }
+
+            data.loops++;
+
+            data.status = AnimationStatus.increasing;
+        }
+    }
+
+    if (data.velocity && decay !== identity) {
+        data.velocity *= decay;
+    }
+
+    data.value = clamp(data.value, min, max);
+}
+
+/**
+ * @param color -
+ * @param delta -
+ */
+export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta): void {
+    if (!color) {
+        return;
+    }
+
+    const { h, s, l } = color;
+
+    const ranges = {
+        h: { min: 0, max: 360 },
+        s: { min: 0, max: 100 },
+        l: { min: 0, max: 100 },
+    };
+
+    if (h) {
+        updateColorValue(h, ranges.h, false, delta);
+    }
+
+    if (s) {
+        updateColorValue(s, ranges.s, true, delta);
+    }
+
+    if (l) {
+        updateColorValue(l, ranges.l, true, delta);
     }
 }

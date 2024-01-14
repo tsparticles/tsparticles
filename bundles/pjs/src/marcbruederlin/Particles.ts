@@ -16,6 +16,11 @@ interface ParticlesOptions {
     speed: number;
 }
 
+const linksMinDistance = 120,
+    moveMinSpeed = 0.5,
+    particlesMinCount = 100,
+    sizeMinValue = 3;
+
 export class Particles {
     private _container?: Container;
 
@@ -27,16 +32,16 @@ export class Particles {
             throw new Error("No selector provided");
         }
 
-        const el = document.querySelector(selector) as HTMLElement;
+        const el = document.querySelector(selector)!;
 
         if (!el) {
             throw new Error("No element found for selector");
         }
 
-        tsParticles
+        void tsParticles
             .load({
+                element: el as HTMLElement,
                 id: selector.replace(".", "").replace("!", ""),
-                element: el,
                 options: {
                     fullScreen: {
                         enable: false,
@@ -47,18 +52,18 @@ export class Particles {
                         },
                         links: {
                             color: "random",
-                            distance: options.minDistance ?? 120,
+                            distance: options.minDistance ?? linksMinDistance,
                             enable: options.connectParticles ?? false,
                         },
                         move: {
                             enable: true,
-                            speed: options.speed ?? 0.5,
+                            speed: options.speed ?? moveMinSpeed,
                         },
                         number: {
-                            value: options.maxParticles ?? 100,
+                            value: options.maxParticles ?? particlesMinCount,
                         },
                         size: {
-                            value: { min: 1, max: options.sizeVariations ?? 3 },
+                            value: { min: 1, max: options.sizeVariations ?? sizeMinValue },
                         },
                     },
                     responsive: options.responsive?.map((responsive) => ({
@@ -97,18 +102,18 @@ export class Particles {
     destroy(): void {
         const container = this._container;
 
-        container && container.destroy();
+        container?.destroy();
     }
 
     pauseAnimation(): void {
         const container = this._container;
 
-        container && container.pause();
+        container?.pause();
     }
 
     resumeAnimation(): void {
         const container = this._container;
 
-        container && container.play();
+        container?.play();
     }
 }

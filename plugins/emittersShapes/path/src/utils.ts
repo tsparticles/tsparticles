@@ -1,5 +1,8 @@
 import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
 
+const maxAttempts = 100,
+    half = 0.5;
+
 /**
  *
  * @param ctx -
@@ -16,10 +19,10 @@ export function generateRandomPointWithinPath(
 ): ICoordinates | null {
     let randomPoint: ICoordinates | null = null;
 
-    for (let attempts = 0; attempts < 100; attempts++) {
+    for (let attempts = 0; attempts < maxAttempts; attempts++) {
         const tmpPoint: ICoordinates = {
-            x: center.x + getRandom() * size.width - size.width / 2,
-            y: center.y + getRandom() * size.height - size.height / 2,
+            x: center.x + getRandom() * size.width - size.width * half,
+            y: center.y + getRandom() * size.height - size.height * half,
         };
 
         if (ctx.isPointInPath(path, tmpPoint.x, tmpPoint.y)) {
@@ -48,10 +51,10 @@ export function generateRandomPointOnPathPerimeter(
 ): ICoordinates | null {
     let randomPoint: ICoordinates | null = null;
 
-    for (let attempts = 0; attempts < 100; attempts++) {
+    for (let attempts = 0; attempts < maxAttempts; attempts++) {
         const tmpPoint: ICoordinates = {
-            x: center.x + getRandom() * size.width - size.width / 2,
-            y: center.y + getRandom() * size.height - size.height / 2,
+            x: center.x + getRandom() * size.width - size.width * half,
+            y: center.y + getRandom() * size.height - size.height * half,
         };
 
         if (ctx.isPointInStroke(path, tmpPoint.x, tmpPoint.y)) {

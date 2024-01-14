@@ -5,11 +5,15 @@ import {
     type Particle,
     getHslAnimationFromHsl,
     rangeColorToHsl,
+    updateColor,
 } from "@tsparticles/engine";
-import { updateColor } from "./Utils.js";
 
 export class ColorUpdater implements IParticleUpdater {
-    constructor(private readonly container: Container) {}
+    private readonly container;
+
+    constructor(container: Container) {
+        this.container = container;
+    }
 
     init(particle: Particle): void {
         /* color */
@@ -38,6 +42,6 @@ export class ColorUpdater implements IParticleUpdater {
     }
 
     update(particle: Particle, delta: IDelta): void {
-        updateColor(particle, delta);
+        updateColor(particle.color, delta);
     }
 }

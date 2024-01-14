@@ -1,7 +1,9 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, errorPrefix } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, errorPrefix, percentDenominator } from "@tsparticles/engine";
 import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
+
+const half = 0.5;
 
 export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions> {
     checkContext: CanvasRenderingContext2D;
@@ -24,27 +26,30 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         const pathData = this.points,
             path = new Path2D(),
             offset = {
-                x: position.x - size.width / 2,
-                y: position.y - size.height / 2,
+                x: position.x - size.width * half,
+                y: position.y - size.height * half,
             };
 
         for (const [index, point] of pathData.entries()) {
             const coords = {
-                x: offset.x + (point.x * size.width) / 100,
-                y: offset.y + (point.y * size.height) / 100,
+                x: offset.x + (point.x * size.width) / percentDenominator,
+                y: offset.y + (point.y * size.height) / percentDenominator,
             };
 
-            if (index === 0) {
+            if (!index) {
                 path.moveTo(coords.x, coords.y);
             } else {
                 path.lineTo(coords.x, coords.y);
             }
         }
 
-        if (pathData[0]) {
+        const firstIndex = 0,
+            firstPathData = pathData[firstIndex];
+
+        if (firstPathData) {
             const coords = {
-                x: offset.x + (pathData[0].x * size.width) / 100,
-                y: offset.y + (pathData[0].y * size.height) / 100,
+                x: offset.x + (firstPathData.x * size.width) / percentDenominator,
+                y: offset.y + (firstPathData.y * size.height) / percentDenominator,
             };
 
             path.lineTo(coords.x, coords.y);
@@ -67,7 +72,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
                 ? generateRandomPointWithinPath(ctx, path, position, size)
                 : generateRandomPointOnPathPerimeter(ctx, path, position, size);
 
-        return res ? { position: res } : null;
+        return Promise.resolve(res ? { position: res } : null);
     }
 
     resize(position: ICoordinates, size: IDimension): void {
@@ -76,27 +81,30 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         const pathData = this.points,
             path = new Path2D(),
             offset = {
-                x: position.x - size.width / 2,
-                y: position.y - size.height / 2,
+                x: position.x - size.width * half,
+                y: position.y - size.height * half,
             };
 
         for (const [index, point] of pathData.entries()) {
             const coords = {
-                x: offset.x + (point.x * size.width) / 100,
-                y: offset.y + (point.y * size.height) / 100,
+                x: offset.x + (point.x * size.width) / percentDenominator,
+                y: offset.y + (point.y * size.height) / percentDenominator,
             };
 
-            if (index === 0) {
+            if (!index) {
                 path.moveTo(coords.x, coords.y);
             } else {
                 path.lineTo(coords.x, coords.y);
             }
         }
 
-        if (pathData[0]) {
+        const firstIndex = 0,
+            firstPathData = pathData[firstIndex];
+
+        if (firstPathData) {
             const coords = {
-                x: offset.x + (pathData[0].x * size.width) / 100,
-                y: offset.y + (pathData[0].y * size.height) / 100,
+                x: offset.x + (firstPathData.x * size.width) / percentDenominator,
+                y: offset.y + (firstPathData.y * size.height) / percentDenominator,
             };
 
             path.lineTo(coords.x, coords.y);

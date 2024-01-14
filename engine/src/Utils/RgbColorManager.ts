@@ -2,6 +2,13 @@ import type { IColor, IRangeColor, IRangeRgb, IRgb, IRgba, IValueColor } from ".
 import { getRangeValue, parseAlpha } from "./NumberUtils.js";
 import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
 
+const enum RgbIndexes {
+    r = 1,
+    g = 2,
+    b = 3,
+    a = 5,
+}
+
 /**
  */
 export class RgbColorManager implements IColorManager {
@@ -41,14 +48,17 @@ export class RgbColorManager implements IColorManager {
         }
 
         const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.%]+)\s*)?\)/i,
-            result = regex.exec(input);
+            result = regex.exec(input),
+            radix = 10,
+            minLength = 4,
+            defaultAlpha = 1;
 
         return result
             ? {
-                  a: result.length > 4 ? parseAlpha(result[5]) : 1,
-                  b: parseInt(result[3], 10),
-                  g: parseInt(result[2], 10),
-                  r: parseInt(result[1], 10),
+                  a: result.length > minLength ? parseAlpha(result[RgbIndexes.a]) : defaultAlpha,
+                  b: parseInt(result[RgbIndexes.b], radix),
+                  g: parseInt(result[RgbIndexes.g], radix),
+                  r: parseInt(result[RgbIndexes.r], radix),
               }
             : undefined;
     }

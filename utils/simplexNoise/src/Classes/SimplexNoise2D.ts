@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers */
 import type { Contribution2D } from "../Contributions.js";
 import { shuffleSeed } from "../utils.js";
 

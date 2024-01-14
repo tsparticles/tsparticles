@@ -9,6 +9,8 @@ import type { IHsl } from "../Core/Interfaces/Colors.js";
 import type { Particle } from "../Core/Particle.js";
 import { getStyleFromRgb } from "./ColorUtils.js";
 
+const origin: ICoordinates = { x: 0, y: 0 };
+
 /**
  * Draws a line between two points using canvas API in the given context.
  * @param context - The canvas context to draw on.
@@ -30,7 +32,7 @@ export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates,
  */
 export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
     context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
-    context.fillRect(0, 0, dimension.width, dimension.height);
+    context.fillRect(origin.x, origin.y, dimension.width, dimension.height);
 }
 
 /**
@@ -51,7 +53,7 @@ export function paintImage(
     }
 
     context.globalAlpha = opacity;
-    context.drawImage(image, 0, 0, dimension.width, dimension.height);
+    context.drawImage(image, origin.x, origin.y, dimension.width, dimension.height);
     context.globalAlpha = 1;
 }
 
@@ -61,7 +63,7 @@ export function paintImage(
  * @param dimension - The dimension of the canvas.
  */
 export function clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
-    context.clearRect(0, 0, dimension.width, dimension.height);
+    context.clearRect(origin.x, origin.y, dimension.width, dimension.height);
 }
 
 /**
@@ -70,30 +72,31 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
  */
 export function drawParticle(data: IDrawParticleParams): void {
     const {
-        container,
-        context,
-        particle,
-        delta,
-        colorStyles,
-        backgroundMask,
-        composite,
-        radius,
-        opacity,
-        shadow,
-        transform,
-    } = data;
-
-    const pos = particle.getPosition(),
-        angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : 0),
+            container,
+            context,
+            particle,
+            delta,
+            colorStyles,
+            backgroundMask,
+            composite,
+            radius,
+            opacity,
+            shadow,
+            transform,
+        } = data,
+        pos = particle.getPosition(),
+        defaultAngle = 0,
+        angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : defaultAngle),
         rotateData = {
             sin: Math.sin(angle),
             cos: Math.cos(angle),
         },
+        defaultTransformFactor = 1,
         transformData = {
-            a: rotateData.cos * (transform.a ?? 1),
-            b: rotateData.sin * (transform.b ?? 1),
-            c: -rotateData.sin * (transform.c ?? 1),
-            d: rotateData.cos * (transform.d ?? 1),
+            a: rotateData.cos * (transform.a ?? defaultTransformFactor),
+            b: rotateData.sin * (transform.b ?? defaultTransformFactor),
+            c: -rotateData.sin * (transform.c ?? defaultTransformFactor),
+            d: rotateData.cos * (transform.d ?? defaultTransformFactor),
         };
 
     context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
@@ -115,7 +118,8 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.fillStyle = colorStyles.fill;
     }
 
-    const strokeWidth = particle.strokeWidth ?? 0;
+    const minStrokeWidth = 0,
+        strokeWidth = particle.strokeWidth ?? minStrokeWidth;
 
     context.lineWidth = strokeWidth;
 
@@ -123,32 +127,27 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.strokeStyle = colorStyles.stroke;
     }
 
-    const drawData: DrawShapeData = { container, context, particle, radius, opacity, delta, transformData };
-
-    context.beginPath();
+    const drawData: DrawShapeData = {
+        container,
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        transformData,
+        strokeWidth,
+    };
 
     drawShape(drawData);
-
-    if (particle.shapeClose) {
-        context.closePath();
-    }
-
-    if (strokeWidth > 0) {
-        context.stroke();
-    }
-
-    if (particle.shapeFill) {
-        context.fill();
-    }
-
     drawShapeAfterDraw(drawData);
     drawEffect(drawData);
 
     context.globalCompositeOperation = "source-over";
-    context.setTransform(1, 0, 0, 1, 0, 0);
+
+    context.resetTransform();
 }
 
-type DrawShapeData = {
+interface DrawShapeData {
     /**
      * the container of the particle.
      */
@@ -180,6 +179,11 @@ type DrawShapeData = {
     radius: number;
 
     /**
+     * the stroke width of the particle.
+     */
+    strokeWidth: number;
+
+    /**
      * the transform data of the particle.
      */
     transformData: {
@@ -188,7 +192,7 @@ type DrawShapeData = {
         c: number;
         d: number;
     };
-};
+}
 
 /**
  * Draws the particle shape using the plugin's shape renderer.
@@ -223,7 +227,8 @@ export function drawEffect(data: DrawShapeData): void {
  * @param data - the function parameters.
  */
 export function drawShape(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta, transformData } = data;
+    const { container, context, particle, radius, opacity, delta, strokeWidth, transformData } = data,
+        minStrokeWidth = 0;
 
     if (!particle.shape) {
         return;
@@ -235,6 +240,8 @@ export function drawShape(data: DrawShapeData): void {
         return;
     }
 
+    context.beginPath();
+
     drawer.draw({
         context,
         particle,
@@ -244,6 +251,18 @@ export function drawShape(data: DrawShapeData): void {
         pixelRatio: container.retina.pixelRatio,
         transformData: { ...transformData },
     });
+
+    if (particle.shapeClose) {
+        context.closePath();
+    }
+
+    if (strokeWidth > minStrokeWidth) {
+        context.stroke();
+    }
+
+    if (particle.shapeFill) {
+        context.fill();
+    }
 }
 
 /**
@@ -259,7 +278,7 @@ export function drawShapeAfterDraw(data: DrawShapeData): void {
 
     const drawer = container.shapeDrawers.get(particle.shape);
 
-    if (!drawer || !drawer.afterDraw) {
+    if (!drawer?.afterDraw) {
         return;
     }
 
@@ -316,9 +335,11 @@ export function drawParticlePlugin(
  * @returns the altered {@link IHsl} color
  */
 export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
+    const lFactor = 1;
+
     return {
         h: color.h,
         s: color.s,
-        l: color.l + (type === AlterType.darken ? -1 : 1) * value,
+        l: color.l + (type === AlterType.darken ? -lFactor : lFactor) * value,
     };
 }

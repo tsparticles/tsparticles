@@ -15,6 +15,9 @@ import {
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
+const minVelocity = 0,
+    minDistance = 0;
+
 export class OutOutMode implements IOutModeManager {
     modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
 
@@ -47,7 +50,12 @@ export class OutOutMode implements IOutModeManager {
 
                 const { dx, dy } = getDistances(particle.position, circVec);
 
-                if ((vx <= 0 && dx >= 0) || (vy <= 0 && dy >= 0) || (vx >= 0 && dx <= 0) || (vy >= 0 && dy <= 0)) {
+                if (
+                    (vx <= minVelocity && dx >= minDistance) ||
+                    (vy <= minVelocity && dy >= minDistance) ||
+                    (vx >= minVelocity && dx <= minDistance) ||
+                    (vy >= minVelocity && dy <= minDistance)
+                ) {
                     return;
                 }
 

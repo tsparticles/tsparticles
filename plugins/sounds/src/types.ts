@@ -20,13 +20,13 @@ export type SoundsContainer = Container & {
     muted?: boolean;
 };
 
-export type ImageMargins = {
+export interface ImageMargins {
     right: number;
     top: number;
-};
+}
 
-export type InitImageData = {
-    clickCb: () => void;
+export interface InitImageData {
+    clickCb: () => Promise<void>;
     container: SoundsContainer;
     display: ImageDisplay;
     iconOptions: SoundsIcon;
@@ -34,4 +34,4 @@ export type InitImageData = {
     options: Options;
     pos: ImageMargins;
     rightOffsets: number[];
-};
+}

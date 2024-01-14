@@ -205,9 +205,11 @@
         btnUpdate.onclick = function () {
             const particles = tsParticles.domItem(0);
 
-            particles.options.load(editor.get());
-            particles.refresh().then(() => {
-                // do nothing
+            particles.reset().then(() => {
+                particles.options.load(editor.get());
+                particles.refresh().then(() => {
+                    // do nothing
+                });
             });
         };
 
@@ -367,17 +369,3 @@ canvas {
         initStats();
     });
 })();
-
-function pixelFilter(pixel) {
-    return pixel.r < 30 && pixel.g < 30 && pixel.b < 30 ? false : pixel.a > 0;
-}
-
-function pixelTextFilter(pixel) {
-    return pixel.a > 0;
-}
-
-function explodeSoundCheck(args) {
-    const particle = args.data.particle;
-
-    return particle.shape === "circle" && particle.splitCount < 2;
-}

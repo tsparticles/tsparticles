@@ -1,11 +1,13 @@
-import type { Container, IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import type { IRoundedRectData } from "./IRoundedRectData.js";
 import type { RadiusInfo } from "./RadiusInfo.js";
 import type { RectInfo } from "./RectInfo.js";
 import type { RoundedParticle } from "./RoundedParticle.js";
-import { getRangeValue } from "@tsparticles/engine";
 
-const fixFactor = Math.sqrt(2),
+const fixFactorSquare = 2,
+    fixFactor = Math.sqrt(fixFactorSquare),
+    double = 2,
+    defaultRadius = 5,
     drawRoundedRect = (
         ctx: CanvasRenderingContext2D,
         info: RectInfo,
@@ -35,8 +37,8 @@ export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
     draw(data: IShapeDrawData<RoundedParticle>): void {
         const { context, particle, radius } = data,
             fixedRadius = radius / fixFactor,
-            fixedDiameter = fixedRadius * 2,
-            borderRadius = particle.borderRadius ?? 5;
+            fixedDiameter = fixedRadius * double,
+            borderRadius = particle.borderRadius ?? defaultRadius;
 
         if ("roundRect" in context) {
             context.roundRect(-fixedRadius, -fixedRadius, fixedDiameter, fixedDiameter, borderRadius);
@@ -62,6 +64,6 @@ export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
     particleInit(container: Container, particle: RoundedParticle): void {
         const shapeData = particle.shapeData as IRoundedRectData | undefined;
 
-        particle.borderRadius = getRangeValue(shapeData?.radius ?? 5) * container.retina.pixelRatio;
+        particle.borderRadius = getRangeValue(shapeData?.radius ?? defaultRadius) * container.retina.pixelRatio;
     }
 }

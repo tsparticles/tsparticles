@@ -19,13 +19,22 @@ import {
     getEasing,
     isDivModeEnabled,
     isInArray,
+    millisecondsToSeconds,
     mouseMoveEvent,
 } from "@tsparticles/engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types.js";
 import { Repulse } from "./Options/Classes/Repulse.js";
 import type { RepulseDiv } from "./Options/Classes/RepulseDiv.js";
 
-const repulseMode = "repulse";
+const repulseMode = "repulse",
+    minDistance = 0,
+    repulseRadiusFactor = 6,
+    repulseRadiusPower = 3,
+    squarePower = 2,
+    minRadius = 0,
+    minSpeed = 0,
+    easingOffset = 1,
+    half = 0.5;
 
 /**
  * Particle repulse manager
@@ -78,7 +87,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 }
 
                 repulse.clicking = false;
-            }, repulseOpts.duration * 1000);
+            }, repulseOpts.duration * millisecondsToSeconds);
         };
     }
 
@@ -117,6 +126,8 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         } else {
             divModeExecute(repulseMode, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -129,7 +140,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             click = events.onClick,
             divRepulse = isDivModeEnabled(repulseMode, divs);
 
-        if (!(divRepulse || (hover.enable && mouse.position) || (click.enable && mouse.clickPosition))) {
+        if (!(divRepulse || (hover.enable && !!mouse.position) || (click.enable && mouse.clickPosition))) {
             return false;
         }
 
@@ -164,7 +175,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        const repulse = container.repulse || { particles: [] };
+        const repulse = container.repulse ?? { particles: [] };
 
         if (!repulse.finish) {
             if (!repulse.count) {
@@ -181,11 +192,11 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         if (repulse.clicking) {
             const repulseDistance = container.retina.repulseModeDistance;
 
-            if (!repulseDistance || repulseDistance < 0) {
+            if (!repulseDistance || repulseDistance < minDistance) {
                 return;
             }
 
-            const repulseRadius = Math.pow(repulseDistance / 6, 3),
+            const repulseRadius = Math.pow(repulseDistance / repulseRadiusFactor, repulseRadiusPower),
                 mouseClickPos = container.interactivity.mouse.clickPosition;
 
             if (mouseClickPos === undefined) {
@@ -197,7 +208,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
             for (const particle of query) {
                 const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
-                    d = distance ** 2,
+                    d = distance ** squarePower,
                     velocity = repulseOptions.speed,
                     force = (-repulseRadius * velocity) / d;
 
@@ -225,7 +236,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             mousePos = container.interactivity.mouse.position,
             repulseRadius = container.retina.repulseModeDistance;
 
-        if (!repulseRadius || repulseRadius < 0 || !mousePos) {
+        if (!repulseRadius || repulseRadius < minRadius || !mousePos) {
             return;
         }
 
@@ -252,10 +263,14 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
         for (const particle of query) {
             const { dx, dy, distance } = getDistances(particle.position, position),
-                repulseFactor = clamp(easingFunc(1 - distance / repulseRadius) * velocity, 0, maxSpeed),
+                repulseFactor = clamp(
+                    easingFunc(easingOffset - distance / repulseRadius) * velocity,
+                    minSpeed,
+                    maxSpeed,
+                ),
                 normVec = Vector.create(
-                    distance === 0 ? velocity : (dx / distance) * repulseFactor,
-                    distance === 0 ? velocity : (dy / distance) * repulseFactor,
+                    !distance ? velocity : (dx / distance) * repulseFactor,
+                    !distance ? velocity : (dy / distance) * repulseFactor,
                 );
 
             particle.position.addTo(normVec);
@@ -280,10 +295,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
-                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                    x: (elem.offsetLeft + elem.offsetWidth * half) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight * half) * pxRatio,
                 },
-                repulseRadius = (elem.offsetWidth / 2) * pxRatio,
+                repulseRadius = elem.offsetWidth * half * pxRatio,
                 area =
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, repulseRadius)
@@ -301,7 +316,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     };
 }
 
-/*import {
+/* import {
     Circle,
     type DivEvent,
     DivType,

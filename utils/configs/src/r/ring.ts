@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "ring",
     name: "Ring",
     particles: {
         number: {
@@ -43,7 +44,9 @@ const options: ISourceOptions = {
     },
     emitters: {
         fill: false,
-        shape: "circle",
+        shape: {
+            type: "circle",
+        },
         position: {
             x: 50,
             y: 50,

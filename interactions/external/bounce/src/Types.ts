@@ -3,13 +3,13 @@ import type { BounceOptions } from "./Options/Classes/BounceOptions.js";
 import type { Container } from "@tsparticles/engine";
 import type { IBounce } from "./Options/Interfaces/IBounce.js";
 
-export type IBounceMode = {
+export interface IBounceMode {
     bounce: IBounce;
-};
+}
 
-export type BounceMode = {
+export interface BounceMode {
     bounce?: Bounce;
-};
+}
 
 export type BounceContainer = Container & {
     actualOptions: BounceOptions;

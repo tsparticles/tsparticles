@@ -1,5 +1,5 @@
-export type ExportResult = {
+export interface ExportResult {
     blob?: Blob;
     error?: Error;
     supported: boolean;
-};
+}

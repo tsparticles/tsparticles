@@ -3,13 +3,13 @@ import type { Grab } from "./Options/Classes/Grab.js";
 import type { GrabOptions } from "./Options/Classes/GrabOptions.js";
 import type { IGrab } from "./Options/Interfaces/IGrab.js";
 
-export type IGrabMode = {
+export interface IGrabMode {
     grab: IGrab;
-};
+}
 
-export type GrabMode = {
+export interface GrabMode {
     grab?: Grab;
-};
+}
 
 export type GrabContainer = Container & {
     actualOptions: GrabOptions;

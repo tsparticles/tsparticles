@@ -1,6 +1,7 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "multipleClickEmitters",
     name: "Multiple Click Emitters",
     background: {
         color: "#f00",

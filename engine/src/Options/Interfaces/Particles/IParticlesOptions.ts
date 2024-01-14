@@ -24,19 +24,78 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 export interface IParticlesOptions {
     [name: string]: unknown;
 
+    /**
+     * Options for customizing the behavior when a particle bounces
+     */
     bounce: IParticlesBounce;
+
+    /**
+     * Particles collisions options
+     */
     collisions: ICollisions;
+
+    /**
+     * Particles color options
+     */
     color: IAnimatableColor;
+
+    /**
+     * Particles effects options
+     */
     effect: IEffect;
+
+    /**
+     * Particles groups
+     */
     groups: ParticlesGroups;
+
+    /**
+     * Particles interactivity options, overrides general interactivity options
+     */
     interactivity?: RecursivePartial<IInteractivity>;
+
+    /**
+     * Particles movement options
+     */
     move: IMove;
+
+    /**
+     * Particles number options
+     */
     number: IParticlesNumber;
+
+    /**
+     * Particles opacity options
+     */
     opacity: IOpacity;
+
+    /**
+     * Particles options for reducing the randomization of duplicate particles, the index will be used for choosing the array values
+     */
     reduceDuplicates: boolean;
+
+    /**
+     * Particles shadow options
+     */
     shadow: IShadow;
+
+    /**
+     * Particles shape options
+     */
     shape: IShape;
+
+    /**
+     * Particles size options
+     */
     size: ISize;
+
+    /**
+     * Particles stroke options
+     */
     stroke: SingleOrMultiple<IStroke>;
+
+    /**
+     * Particles z-index options
+     */
     zIndex: IZIndex;
 }

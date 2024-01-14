@@ -14,12 +14,15 @@ import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.j
 import { Grab } from "./Options/Classes/Grab.js";
 import { drawGrab } from "./Utils.js";
 
-const grabMode = "grab";
+const grabMode = "grab",
+    minDistance = 0,
+    minOpacity = 0;
 
 /**
  * Particle grab manager
  */
 export class Grabber extends ExternalInteractorBase<GrabContainer> {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: GrabContainer) {
         super(container);
     }
@@ -60,7 +63,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
         const distance = container.retina.grabModeDistance;
 
-        if (!distance || distance < 0) {
+        if (!distance || distance < minDistance) {
             return;
         }
 
@@ -84,7 +87,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
                 lineOpacity = grabLineOptions.opacity,
                 opacityLine = lineOpacity - (pointDistance * lineOpacity) / distance;
 
-            if (opacityLine <= 0) {
+            if (opacityLine <= minOpacity) {
                 continue;
             }
 
@@ -108,6 +111,8 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
             drawGrab(container, particle, colorLine, opacityLine, mousePos);
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

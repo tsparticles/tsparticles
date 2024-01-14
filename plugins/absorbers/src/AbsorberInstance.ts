@@ -14,12 +14,27 @@ import {
     getRangeValue,
     getStyleFromRgb,
     isPointInside,
+    percentDenominator,
     rangeColorToRgb,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { Absorbers } from "./Absorbers.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit.js";
+
+const squareExp = 2,
+    absorbFactor = 0.033,
+    minOrbitLength = 0,
+    minRadius = 0,
+    minMass = 0,
+    origin: ICoordinates = {
+        x: 0,
+        y: 0,
+    },
+    minAngle = 0,
+    double = 2,
+    maxAngle = Math.PI * double,
+    minVelocity = 0;
 
 /**
  * Particle extension type for Absorber orbit options
@@ -172,14 +187,14 @@ export class AbsorberInstance {
             { dx, dy, distance } = getDistances(this.position, pos),
             v = Vector.create(dx, dy);
 
-        v.length = (this.mass / Math.pow(distance, 2)) * container.retina.reduceFactor;
+        v.length = (this.mass / Math.pow(distance, squareExp)) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
-            const sizeFactor = particle.getRadius() * 0.033 * container.retina.pixelRatio;
+            const sizeFactor = particle.getRadius() * absorbFactor * container.retina.pixelRatio;
 
             if (
                 (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||
-                (particle.absorberOrbit !== undefined && particle.absorberOrbit.length < 0)
+                (particle.absorberOrbit !== undefined && particle.absorberOrbit.length < minOrbitLength)
             ) {
                 if (options.destroy) {
                     particle.destroy();
@@ -196,11 +211,11 @@ export class AbsorberInstance {
                 this._updateParticlePosition(particle, v);
             }
 
-            if (this.limit.radius <= 0 || this.size < this.limit.radius) {
+            if (this.limit.radius <= minRadius || this.size < this.limit.radius) {
                 this.size += sizeFactor;
             }
 
-            if (this.limit.mass <= 0 || this.mass < this.limit.mass) {
+            if (this.limit.mass <= minMass || this.mass < this.limit.mass) {
                 this.mass += sizeFactor * this.options.size.density * container.retina.reduceFactor;
             }
         } else {
@@ -215,7 +230,7 @@ export class AbsorberInstance {
     draw(context: CanvasRenderingContext2D): void {
         context.translate(this.position.x, this.position.y);
         context.beginPath();
-        context.arc(0, 0, this.size, 0, Math.PI * 2, false);
+        context.arc(origin.x, origin.y, this.size, minAngle, maxAngle, false);
         context.closePath();
         context.fillStyle = getStyleFromRgb(this.color, this.opacity);
         context.fill();
@@ -272,20 +287,23 @@ export class AbsorberInstance {
 
         if (this.options.orbits) {
             if (particle.absorberOrbit === undefined) {
-                particle.absorberOrbit = Vector.create(0, 0);
+                particle.absorberOrbit = Vector.origin;
                 particle.absorberOrbit.length = getDistance(particle.getPosition(), this.position);
-                particle.absorberOrbit.angle = getRandom() * Math.PI * 2;
+                particle.absorberOrbit.angle = getRandom() * maxAngle;
             }
 
             if (particle.absorberOrbit.length <= this.size && !this.options.destroy) {
-                const minSize = Math.min(canvasSize.width, canvasSize.height);
+                const minSize = Math.min(canvasSize.width, canvasSize.height),
+                    offset = 1,
+                    randomOffset = 0.1,
+                    randomFactor = 0.2;
 
-                particle.absorberOrbit.length = minSize * (1 + (getRandom() * 0.2 - 0.1));
+                particle.absorberOrbit.length = minSize * (offset + (getRandom() * randomFactor - randomOffset));
             }
 
             if (particle.absorberOrbitDirection === undefined) {
                 particle.absorberOrbitDirection =
-                    particle.velocity.x >= 0 ? RotateDirection.clockwise : RotateDirection.counterClockwise;
+                    particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise;
             }
 
             const orbitRadius = particle.absorberOrbit.length,
@@ -304,7 +322,7 @@ export class AbsorberInstance {
 
             particle.absorberOrbit.length -= v.length;
             particle.absorberOrbit.angle +=
-                (((particle.retina.moveSpeed ?? 0) * container.retina.pixelRatio) / 100) *
+                (((particle.retina.moveSpeed ?? minVelocity) * container.retina.pixelRatio) / percentDenominator) *
                 container.retina.reduceFactor;
         } else {
             const addV = Vector.origin;

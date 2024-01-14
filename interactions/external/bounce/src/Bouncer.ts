@@ -23,9 +23,16 @@ import {
 } from "@tsparticles/engine";
 import { Bounce } from "./Options/Classes/Bounce.js";
 
-const bounceMode = "bounce";
+const bounceMode = "bounce",
+    squareExp = 2,
+    double = 2,
+    half = 0.5,
+    halfPI = Math.PI * half,
+    toleranceFactor = 10,
+    minRadius = 0;
 
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: BounceContainer) {
         super(container);
     }
@@ -59,6 +66,8 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
         } else {
             divModeExecute(bounceMode, divs, (selector, div): void => this._singleSelectorBounce(selector, div));
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -69,7 +78,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             divs = events.onDiv;
 
         return (
-            (mouse.position && events.onHover.enable && isInArray(bounceMode, events.onHover.mode)) ||
+            (!!mouse.position && events.onHover.enable && isInArray(bounceMode, events.onHover.mode)) ||
             isDivModeEnabled(bounceMode, divs)
         );
     }
@@ -103,7 +112,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
                 circleBounce(circleBounceDataFromParticle(particle), {
                     position,
                     radius,
-                    mass: (radius ** 2 * Math.PI) / 2,
+                    mass: radius ** squareExp * halfPI,
                     velocity: Vector.origin,
                     factor: Vector.origin,
                 });
@@ -116,11 +125,11 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     private readonly _processMouseBounce: () => void = () => {
         const container = this.container,
             pxRatio = container.retina.pixelRatio,
-            tolerance = 10 * pxRatio,
+            tolerance = toleranceFactor * pxRatio,
             mousePos = container.interactivity.mouse.position,
             radius = container.retina.bounceModeDistance;
 
-        if (!radius || radius < 0 || !mousePos) {
+        if (!radius || radius < minRadius || !mousePos) {
             return;
         }
 
@@ -139,19 +148,19 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             const elem = item as HTMLElement,
                 pxRatio = container.retina.pixelRatio,
                 pos = {
-                    x: (elem.offsetLeft + elem.offsetWidth / 2) * pxRatio,
-                    y: (elem.offsetTop + elem.offsetHeight / 2) * pxRatio,
+                    x: (elem.offsetLeft + elem.offsetWidth * half) * pxRatio,
+                    y: (elem.offsetTop + elem.offsetHeight * half) * pxRatio,
                 },
-                radius = (elem.offsetWidth / 2) * pxRatio,
-                tolerance = 10 * pxRatio,
+                radius = elem.offsetWidth * half * pxRatio,
+                tolerance = toleranceFactor * pxRatio,
                 area =
                     div.type === DivType.circle
                         ? new Circle(pos.x, pos.y, radius + tolerance)
                         : new Rectangle(
                               elem.offsetLeft * pxRatio - tolerance,
                               elem.offsetTop * pxRatio - tolerance,
-                              elem.offsetWidth * pxRatio + tolerance * 2,
-                              elem.offsetHeight * pxRatio + tolerance * 2,
+                              elem.offsetWidth * pxRatio + tolerance * double,
+                              elem.offsetHeight * pxRatio + tolerance * double,
                           );
 
             this._processBounce(pos, radius, area);

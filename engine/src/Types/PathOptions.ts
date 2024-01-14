@@ -1,3 +1,1 @@
-export type PathOptions = {
-    [key: string]: unknown;
-};
+export type PathOptions = Record<string, unknown>;

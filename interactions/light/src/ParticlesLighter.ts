@@ -3,6 +3,7 @@ import { ParticlesInteractorBase, isInArray, rangeColorToRgb } from "@tsparticle
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: LightContainer) {
         super(container);
     }
@@ -33,6 +34,8 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
         container.canvas.draw((ctx) => {
             drawParticleShadow(container, ctx, particle, mousePos);
         });
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: LightParticle): boolean {

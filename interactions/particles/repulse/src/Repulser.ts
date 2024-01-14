@@ -11,6 +11,11 @@ import {
 import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types.js";
 import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse.js";
 
+const minDistance = 0,
+    identity = 1,
+    squareExp = 2,
+    minVelocity = 0;
+
 type RepulseParticle = Particle & {
     options: RepulseParticlesOptions;
     repulse?: {
@@ -21,8 +26,11 @@ type RepulseParticle = Particle & {
 };
 
 export class Repulser extends ParticlesInteractorBase {
+    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
     constructor(container: Container) {
         super(container);
+
+        // do nothing
     }
 
     clear(): void {
@@ -58,12 +66,17 @@ export class Repulser extends ParticlesInteractorBase {
                 continue;
             }
 
-            const pos2 = p2.getPosition();
-            const { dx, dy, distance } = getDistances(pos2, pos1);
-            const velocity = p1.repulse.speed * p1.repulse.factor;
-            if (distance > 0) {
-                const repulseFactor = clamp((1 - Math.pow(distance / p1.repulse.distance, 2)) * velocity, 0, velocity);
-                const normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
+            const pos2 = p2.getPosition(),
+                { dx, dy, distance } = getDistances(pos2, pos1),
+                velocity = p1.repulse.speed * p1.repulse.factor;
+
+            if (distance > minDistance) {
+                const repulseFactor = clamp(
+                        (identity - Math.pow(distance / p1.repulse.distance, squareExp)) * velocity,
+                        minVelocity,
+                        velocity,
+                    ),
+                    normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
 
                 p2.position.addTo(normVec);
             } else {
@@ -72,6 +85,8 @@ export class Repulser extends ParticlesInteractorBase {
                 p2.position.addTo(velocityVec);
             }
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: RepulseParticle): boolean {

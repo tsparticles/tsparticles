@@ -688,151 +688,271 @@ _Read more [here](https://particles.js.org/docs/modules/Core_Interfaces_IPlugin.
 ## Dependency Graph
 
 ```mermaid
-flowchart LR
+flowchart TD
 
-subgraph b [Bundles]
-bb[tsParticles Basic] --> bs[tsParticles Slim]
-bp[Particles.js compatibility bundle] --> bs
-bs --> bf[tsParticles]
-end
+  subgraph core [Core]
+    engine[tsParticles Engine]
+    perlin-noise[Perlin Noise Lib]
+    simplex-noise[Simplex Noise Lib]
+    configs[tsParticles Configs]
+  end
 
-e[tsParticles Engine] --> b
+  subgraph bundle-basic [tsParticles Basic]
 
-iea & iebo & iebu & iec & ieg & iepa & iepu & ierem & ierep & ies --> bs
-ipa & ipc & ipl --> bs
-mb --> bb
-mp --> bs
-pleq --> bs
-sci --> bb
-si & sl & spo & ssq & sst & st --> bs
-uc & uop & uou & usi --> bb
-ul & urot & ust --> bs
+    subgraph basic-movers [Movers]
+      move-base[Base]
+    end
 
-iet --> bf
-pla & plem --> bf
-urol & uti & utw & uw --> bf
+    subgraph basic-shapes [Shapes]
+      shape-circle[Circle]
+    end
 
-subgraph i [Interactions]
+    subgraph basic-updates [Updaters]
+      updater-color[Color]
+      updater-opacity[Opacity]
+      updater-out-modes[Out Modes]
+      updater-size[Size]
+    end
 
-subgraph ie [Externals]
-iea[Attract]
-iebo[Bounce]
-iebu[Bubble]
-iec[Connect]
-ieg[Grab]
-iepa[Pause]
-iepu[Push]
-ierem[Remove]
-ierep[Repulse]
-ies[Slow]
-iet[Trail]
-end
+  end
 
-il[Light]
+  engine --> bundle-basic
 
-subgraph ip [Particles]
-ipa[Attract]
-ipc[Collisions]
-ipl[Links]
-ipr[Repulse]
-end
+  subgraph bundle-confetti [tsParticles Confetti]
 
-end
+    subgraph confetti-plugins [Plugins]
+      plugin-emitters
+      plugin-motion
+    end
 
-i --> ie
-i --> ip
+    subgraph confetti-shapes [Shapes]
+      shape-cards
+      shape-emoji
+      shape-heart
+      shape-image
+      shape-polygon
+      shape-square
+      shape-star
+    end
 
-e --> i
+    subgraph confetti-updaters [Updaters]
+      updater-life
+      updater-roll
+      updater-rotate
+      updater-tilt
+      updater-wobble
+    end
 
-subgraph m [Movers]
-mb[Base]
-mp[Parallax]
-end
+  end
 
-e --> m
+  bundle-basic --> bundle-confetti
 
-subgraph pa [Paths]
-pac[Curves]
-papn[Perlin Noise]
-pap[Polygon]
-pasn[Simplex Noise]
-pasvg[SVG]
-end
+  subgraph bundle-slim [tsParticles Slim]
 
-e --> pa
+    subgraph slim-interactions [Interactions]
 
-subgraph pl [Plugins]
-pla[Absorbers]
-plcm[Canvas Mask]
-plem[Emitters]
-plh[HSV Color]
-pli[Infection]
-plm[Motion]
-plp[Polygon Mask]
-pls[Sounds]
+      subgraph slim-interactions-external [Externals]
+        interaction-external-attract[Attract]
+        interaction-external-bounce[Bounce]
+        interaction-external-bubble[Bubble]
+        interaction-external-connect[Connect]
+        interaction-external-grab[Grab]
+        interaction-external-pause[Pause]
+        interaction-external-push[Push]
+        interaction-external-remove[Remove]
+        interaction-external-repulse[Repulse]
+        interaction-external-slow[Slow]
+      end
 
-subgraph plea [Easings]
-pleb[Back]
-pleci[Circ]
-plecu[Cubic]
-plee[Expo]
-pleq[Quad]
-ple4[Quart]
-ple5[Quint]
-ples[Sine]
-end
+      subgraph slim-interactions-particles [Particles]
+        interaction-particles-attract[Attract]
+        interaction-particles-collisions[Collisions]
+        interaction-particles-links[Links]
+      end
 
-subgraph plex [Exports]
-plexi[Image]
-plexj[JSON]
-plexv[Video]
-end
+    end
 
-end
+    subgraph slim-movers [Movers]
+      move-parallax[Parallax]
+    end
 
-pl --> plea
+    subgraph slim-plugins [Plugins]
 
-e --> pl
+      subgraph slim-plugins-easings [Easings]
+        plugin-easing-quad[Quad]
+      end
 
-subgraph s [Shapes]
-sa[Arrow]
-sb[Bubble]
-sci[Circle]
-scog[Cog]
-sh[Heart]
-si[Image]
-sl[Line]
-smt[Multiline Text]
-spa[Path]
-spo[Polygon]
-srp[Rounded Polygon]
-srr[Rounded Rectangle]
-ssp[Spiral]
-ssq[Square]
-sst[Star]
-st[Text]
-end
+    end
 
-e --> s
+    subgraph slim-shapes [Shapes]
+      shape-emoji[Emoji]
+      shape-image[Image]
+      shape-line[Line]
+      shape-polygon[Polygon]
+      shape-square[Square]
+      shape-star[Star]
+    end
 
-subgraph u [Updaters]
-uc[Color]
-ud[Destroy]
-ug[Gradient]
-ul[Life]
-uop[Opacity]
-uor[Orbit]
-uou[Out Modes]
-urol[Roll]
-urot[Rotate]
-usi[Size]
-ust[Stroke Color]
-uti[Tilt]
-utw[Twinkle]
-uw[Wobble]
-end
+    subgraph slim-updaters [Updaters]
+      updater-life[Life]
+      updater-rotate[Rotate]
+      updater-stroke-color[Stroke Color]
+    end
 
-e --> u
+  end
+
+  bundle-basic --> bundle-slim
+
+  subgraph bundle-fireworks [tsParticles Fireworks]
+
+    subgraph fireworks-effects [Effects]
+      effect-trail
+    end
+
+    subgraph fireworks-plugins [Plugins]
+      plugin-emitters
+
+      subgraph fireworks-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-square
+      end
+
+      plugin-sounds
+    end
+
+    subgraph fireworks-updaters [Updaters]
+      updater-destroy
+      updater-life
+      updater-rotate
+    end
+
+  end
+
+  bundle-basic --> bundle-fireworks
+
+  subgraph bundle-full [tsParticles]
+
+    subgraph full-interactions [Interactions]
+
+      subgraph full-interactions-external [Externals]
+        interaction-external-trail[Trail]
+      end
+
+    end
+
+    subgraph full-plugins [Plugins]
+      plugin-absorbers[Absorbers]
+      plugin-emitters[Emitters]
+
+      subgraph full-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-circle[Circle]
+        plugin-emitters-shape-square[Square]
+      end
+
+    end
+
+    subgraph full-shapes [Shapes]
+      shape-text[Text]
+    end
+
+    subgraph full-updaters [Updaters]
+      updater-destroy[Destroy]
+      updater-roll[Roll]
+      updater-tilt[Tilt]
+      updater-twinkle[Twinkle]
+      updater-wobble[Wobble]
+    end
+
+  end
+
+  bundle-slim --> bundle-full
+
+  subgraph bundle-all [tsParticles All]
+
+    bundle-pjs[tsParticles Particles.js Compatibility]
+
+    subgraph all-effects [Effects]
+      effect-bubble[Bubble]
+      effect-trail[Trail]
+    end
+
+    subgraph all-interactions [Interactions]
+      subgraph all-interactions-external [External]
+        interaction-external-pop[Pop]
+      end
+
+      interaction-light[Light]
+
+      subgraph all-interactions-particles [Particles]
+        interaction-particles-repulse[Repulse]
+      end
+    end
+
+    subgraph all-paths [Paths]
+      path-curl-noise[Curl Noise]
+      path-curves[Curves]
+      path-perlin-noise[Perlin Noise]
+      path-polygon[Polygon]
+      path-simplex-noise[Simplex Noise]
+      path-svg[SVG]
+    end
+
+    subgraph all-plugins [Plugins]
+      plugin-canvas-mask[Canvas Mask]
+
+      subgraph all-plugins-easings [Easings]
+        plugin-easing-back[Back]
+        plugin-easing-circ[Circ]
+        plugin-easing-cubic[Cubic]
+        plugin-easing-expo[Expo]
+        plugin-easing-linear[Linear]
+        plugin-easing-quart[Quart]
+        plugin-easing-quint[Quint]
+        plugin-easing-sine[Sine]
+      end
+
+      subgraph all-plugin-emitters-shapes [Emitters Shapes]
+        plugin-emitters-shape-canvas[Canvas]
+        plugin-emitters-shape-path[Path]
+        plugin-emitters-shape-polygon[Polygon]
+      end
+
+      subgraph all-plugins-exports [Exports]
+        plugin-export-image[Image]
+        plugin-export-json[JSON]
+        plugin-export-video[Video]
+      end
+
+      plugin-hsv-color[HSV Color]
+      plugin-infection[Infection]
+      plugin-motion[Motion]
+      plugin-poisson-disc[Poisson Disc]
+      plugin-polygon-mask[Polygon Mask]
+      plugin-sounds[Sounds]
+    end
+
+    subgraph all-shapes [Shapes]
+      shape-arrow[Arrow]
+      shape-cards[Cards]
+      shape-cog[Cog]
+      shape-heart[Heart]
+      shape-path[Path]
+      shape-rounded-polygon[Rounded Polygon]
+      shape-rounded-rect[Rounded Rect]
+      shape-spiral[Spiral]
+    end
+
+    subgraph all-updaters [Updaters]
+      updater-gradient[Gradient]
+      updater-orbit[Orbit]
+    end
+
+    simplex-noise --> path-curl-noise
+    perlin-noise --> path-perlin-noise
+    simplex-noise --> path-simplex-noise
+
+  end
+
+  bundle-full --> bundle-all
 ```
 
 ---

@@ -12,4 +12,6 @@ export async function loadEasingLinearPlugin(): Promise<void> {
     addEasing(EasingType.easeInOutLinear, (value) => {
         return value;
     });
+
+    await Promise.resolve();
 }

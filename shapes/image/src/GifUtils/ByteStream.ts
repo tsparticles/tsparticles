@@ -40,9 +40,13 @@ export class ByteStream {
      * @returns the next two bytes as one number
      */
     nextTwoBytes(): number {
-        this.pos += 2;
+        const increment = 2,
+            previous = 1,
+            shift = 8;
 
-        return this.data[this.pos - 2] + (this.data[this.pos - 1] << 8);
+        this.pos += increment;
+
+        return this.data[this.pos - increment] + (this.data[this.pos - previous] << shift);
     }
 
     /**
@@ -52,14 +56,16 @@ export class ByteStream {
     readSubBlocks(): string {
         let blockString = "",
             size = 0;
+        const minCount = 0,
+            emptySize = 0;
 
         do {
             size = this.data[this.pos++];
 
-            for (let count = size; --count >= 0; blockString += String.fromCharCode(this.data[this.pos++])) {
+            for (let count = size; --count >= minCount; blockString += String.fromCharCode(this.data[this.pos++])) {
                 // do nothing
             }
-        } while (size !== 0);
+        } while (size !== emptySize);
 
         return blockString;
     }
@@ -72,14 +78,17 @@ export class ByteStream {
         let size = 0,
             len = 0;
 
-        for (let offset = 0; (size = this.data[this.pos + offset]) !== 0; offset += size + 1) {
+        const emptySize = 0,
+            increment = 1;
+
+        for (let offset = 0; size !== emptySize; offset += size + increment, size = this.data[this.pos + offset]) {
             len += size;
         }
 
         const blockData = new Uint8Array(len);
 
-        for (let i = 0; (size = this.data[this.pos++]) !== 0; ) {
-            for (let count = size; --count >= 0; blockData[i++] = this.data[this.pos++]) {
+        for (let i = 0; size !== emptySize; size = this.data[this.pos++]) {
+            for (let count = size; --count >= emptySize; blockData[i++] = this.data[this.pos++]) {
                 // do nothing
             }
         }
@@ -91,7 +100,11 @@ export class ByteStream {
      * skips the next set of blocks in the stream
      */
     skipSubBlocks(): void {
-        for (; this.data[this.pos] !== 0; this.pos += this.data[this.pos] + 1) {
+        for (
+            const increment = 1, noData = 0;
+            this.data[this.pos] !== noData;
+            this.pos += this.data[this.pos] + increment
+        ) {
             // do nothing
         }
 

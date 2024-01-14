@@ -1,6 +1,8 @@
 import type { GrabContainer, LinkParticle } from "./Types.js";
 import { type ICoordinates, type IRgb, drawLine, getStyleFromRgb } from "@tsparticles/engine";
 
+const defaultWidth = 0;
+
 /**
  * Draws a grab line between two points using canvas API in the given context.
  * @param context - The canvas context to draw on.
@@ -42,6 +44,6 @@ export function drawGrab(
     container.canvas.draw((ctx) => {
         const beginPos = particle.getPosition();
 
-        drawGrabLine(ctx, particle.retina.linksWidth ?? 0, beginPos, mousePos, lineColor, opacity);
+        drawGrabLine(ctx, particle.retina.linksWidth ?? defaultWidth, beginPos, mousePos, lineColor, opacity);
     });
 }

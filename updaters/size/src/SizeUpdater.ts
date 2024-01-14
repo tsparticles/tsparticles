@@ -1,5 +1,13 @@
-import { type IDelta, type IParticleUpdater, type Particle, getRandom } from "@tsparticles/engine";
-import { updateSize } from "./Utils.js";
+import {
+    type IDelta,
+    type IParticleUpdater,
+    type Particle,
+    getRandom,
+    percentDenominator,
+    updateAnimation,
+} from "@tsparticles/engine";
+
+const minLoops = 0;
 
 export class SizeUpdater implements IParticleUpdater {
     init(particle: Particle): void {
@@ -9,7 +17,7 @@ export class SizeUpdater implements IParticleUpdater {
 
         if (sizeAnimation.enable) {
             particle.size.velocity =
-                ((particle.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / 100) *
+                ((particle.retina.sizeAnimationSpeed ?? container.retina.sizeAnimationSpeed) / percentDenominator) *
                 container.retina.reduceFactor;
 
             if (!sizeAnimation.sync) {
@@ -23,13 +31,14 @@ export class SizeUpdater implements IParticleUpdater {
             !particle.destroyed &&
             !particle.spawning &&
             particle.size.enable &&
-            ((particle.size.maxLoops ?? 0) <= 0 ||
-                ((particle.size.maxLoops ?? 0) > 0 && (particle.size.loops ?? 0) < (particle.size.maxLoops ?? 0)))
+            ((particle.size.maxLoops ?? minLoops) <= minLoops ||
+                ((particle.size.maxLoops ?? minLoops) > minLoops &&
+                    (particle.size.loops ?? minLoops) < (particle.size.maxLoops ?? minLoops)))
         );
     }
 
     reset(particle: Particle): void {
-        particle.size.loops = 0;
+        particle.size.loops = minLoops;
     }
 
     update(particle: Particle, delta: IDelta): void {
@@ -37,6 +46,6 @@ export class SizeUpdater implements IParticleUpdater {
             return;
         }
 
-        updateSize(particle, delta);
+        updateAnimation(particle, particle.size, true, particle.options.size.animation.destroy, delta);
     }
 }

@@ -2,13 +2,13 @@ import type { Container, Options } from "@tsparticles/engine";
 import type { IRemove } from "./Options/Interfaces/IRemove.js";
 import type { Remove } from "./Options/Classes/Remove.js";
 
-export type IRemoveMode = {
+export interface IRemoveMode {
     remove: IRemove;
-};
+}
 
-export type RemoveMode = {
+export interface RemoveMode {
     remove?: Remove;
-};
+}
 
 export type RemoveContainer = Container & {
     actualOptions: RemoveOptions;

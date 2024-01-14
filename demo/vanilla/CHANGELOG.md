@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
+
+### Bug Fixes
+
+-   fixed sounds in fireworks bundle ([ed77e79](https://github.com/tsparticles/tsparticles/commit/ed77e79521a73dc30ce5a7517ea8cf54b72f1f78))
+-   improved support for element id ([54a1683](https://github.com/tsparticles/tsparticles/commit/54a1683cfe05b8809f5ee7941f920cc1e9a13f07))
+
+### Features
+
+-   added new zig-zag path ([48bc5d1](https://github.com/tsparticles/tsparticles/commit/48bc5d16324989faab1830976b968c054c2003eb))
+-   added poisson disc plugin for better particles initial positions ([405f1df](https://github.com/tsparticles/tsparticles/commit/405f1dff34c380f576b2676cab8296e25b5d4e1f))
+
 ## [3.0.3](https://github.com/tsparticles/tsparticles/compare/v3.0.2...v3.0.3) (2023-12-26)
 
 **Note:** Version bump only for package @tsparticles/demo

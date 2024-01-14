@@ -1,6 +1,7 @@
 import { type ISourceOptions, LimitMode } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
+    key: "pop",
     name: "Pop",
     particles: {
         number: {
