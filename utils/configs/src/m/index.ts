@@ -4,6 +4,8 @@ import motionReduce from "./motionReduce.js";
 import mouseAttract from "./mouseAttract.js";
 import mouseBounce from "./mouseBounce.js";
 import mouseFollow from "./mouseFollow.js";
+import mouseParticle from "./mouseParticle.js";
+import mouseParticle2 from "./mouseParticle2.js";
 import mouseTrail from "./mouseTrail.js";
 import mouseTrailNoise from "./mouseTrailNoise.js";
 import moveAngle from "./moveAngle.js";
@@ -20,6 +22,8 @@ export default {
     mouseAttract,
     mouseBounce,
     mouseFollow,
+    mouseParticle,
+    mouseParticle2,
     mouseTrail,
     mouseTrailNoise,
     moveAngle,

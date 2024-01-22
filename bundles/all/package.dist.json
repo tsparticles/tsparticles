@@ -102,6 +102,7 @@
     "@tsparticles/effect-bubble": "^3.1.0",
     "@tsparticles/effect-trail": "^3.1.0",
     "@tsparticles/engine": "^3.1.0",
+    "@tsparticles/interaction-external-particle": "^3.1.0",
     "@tsparticles/interaction-external-pop": "^3.1.0",
     "@tsparticles/interaction-light": "^3.1.0",
     "@tsparticles/interaction-particles-repulse": "^3.1.0",
