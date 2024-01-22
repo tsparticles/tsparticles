@@ -54,7 +54,7 @@
     "eslint-plugin-tsdoc": "^0.2.17",
     "gh-pages": "^6.1.1",
     "husky": "^8.0.3",
-    "jsdom": "^23.2.0",
+    "jsdom": "^24.0.0",
     "jsdom-global": "^3.0.2",
     "lerna": "^8.0.2",
     "mocha": "^10.2.0",
