@@ -877,6 +877,7 @@ flowchart TD
 
     subgraph all-interactions [Interactions]
       subgraph all-interactions-external [External]
+        interaction-external-particle[Particle]
         interaction-external-pop[Pop]
       end
 

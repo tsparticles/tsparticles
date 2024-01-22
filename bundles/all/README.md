@@ -9,6 +9,8 @@
 **Included Packages**
 
 - [tsparticles (and all its dependencies)](https://github.com/tsparticles/tsparticles/tree/main/bundles/full)
+- [@tsparticles/interaction-external-particle](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/particle)
+- [@tsparticles/interaction-external-pop](https://github.com/tsparticles/tsparticles/tree/main/interactions/external/pop)
 - [@tsparticles/interaction-light](https://github.com/tsparticles/tsparticles/tree/main/interactions/light)
 - [@tsparticles/interaction-particles-repulse](https://github.com/tsparticles/tsparticles/tree/main/interactions/particles/repulse)
 - [@tsparticles/path-curves](https://github.com/tsparticles/tsparticles/tree/main/paths/curves)
