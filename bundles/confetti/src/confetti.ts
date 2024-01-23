@@ -71,7 +71,7 @@ const ids = new Map<string, Container | undefined>();
 /**
  * The {@link confetti} parameter object definition
  */
-interface ConfettiParams {
+export interface ConfettiParams {
     /**
      *
      */
