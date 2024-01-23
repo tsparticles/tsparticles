@@ -1,7 +1,7 @@
 import type { CanvasMaskOptions, ICanvasMaskOptions } from "./types.js";
 import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import { CanvasMask } from "./Options/Classes/CanvasMask.js";
-import { CanvasMaskInstance } from "./CanvasMaskInstance.js";
+import type { CanvasMaskInstance } from "./CanvasMaskInstance.js";
 
 /**
  */
@@ -12,7 +12,9 @@ class CanvasMaskPlugin implements IPlugin {
         this.id = "canvasMask";
     }
 
-    getPlugin(container: Container): CanvasMaskInstance {
+    async getPlugin(container: Container): Promise<CanvasMaskInstance> {
+        const { CanvasMaskInstance } = await import("./CanvasMaskInstance.js");
+
         return new CanvasMaskInstance(container);
     }
 

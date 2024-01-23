@@ -11,7 +11,7 @@ import {
 import { Absorber } from "./Options/Classes/Absorber.js";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import { Absorbers } from "./Absorbers.js";
+import type { Absorbers } from "./Absorbers.js";
 
 /**
  */
@@ -22,7 +22,9 @@ class AbsorbersPlugin implements IPlugin {
         this.id = "absorbers";
     }
 
-    getPlugin(container: AbsorberContainer): Absorbers {
+    async getPlugin(container: AbsorberContainer): Promise<Absorbers> {
+        const { Absorbers } = await import("./Absorbers.js");
+
         return new Absorbers(container);
     }
 

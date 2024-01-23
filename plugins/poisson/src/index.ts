@@ -1,7 +1,7 @@
 import { type Container, type Engine, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
 import type { IPoissonOptions, PoissonOptions } from "./types.js";
 import { Poisson } from "./Options/Classes/Poisson.js";
-import { PoissonInstance } from "./PoissonInstance.js";
+import type { PoissonInstance } from "./PoissonInstance.js";
 
 /**
  */
@@ -16,7 +16,9 @@ class PoissonDiscPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    getPlugin(container: Container): PoissonInstance {
+    async getPlugin(container: Container): Promise<PoissonInstance> {
+        const { PoissonInstance } = await import("./PoissonInstance.js");
+
         return new PoissonInstance(container, this._engine);
     }
 

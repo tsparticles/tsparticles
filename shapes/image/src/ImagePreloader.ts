@@ -13,7 +13,9 @@ export class ImagePreloaderPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    getPlugin(): IContainerPlugin {
+    async getPlugin(): Promise<IContainerPlugin> {
+        await Promise.resolve();
+
         return {};
     }
 

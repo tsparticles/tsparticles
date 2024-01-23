@@ -500,7 +500,7 @@ export class Container {
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
-        const availablePlugins = this._engine.getAvailablePlugins(this);
+        const availablePlugins = await this._engine.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);

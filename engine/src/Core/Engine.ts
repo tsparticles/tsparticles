@@ -395,12 +395,12 @@ export class Engine {
      * @param container - the container used to check which are the valid plugins
      * @returns a map containing all enabled plugins, with the id as a key
      */
-    getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
+    async getAvailablePlugins(container: Container): Promise<Map<string, IContainerPlugin>> {
         const res = new Map<string, IContainerPlugin>();
 
         for (const plugin of this.plugins) {
             if (plugin.needsPlugin(container.actualOptions)) {
-                res.set(plugin.id, plugin.getPlugin(container));
+                res.set(plugin.id, await plugin.getPlugin(container));
             }
         }
 
