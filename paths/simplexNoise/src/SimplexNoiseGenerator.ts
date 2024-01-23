@@ -62,10 +62,12 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         return v;
     }
 
-    init(container: Container): void {
+    async init(container: Container): Promise<void> {
         this.container = container;
 
         this._setup();
+
+        await Promise.resolve();
     }
 
     reset(): void {

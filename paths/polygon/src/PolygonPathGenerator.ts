@@ -46,7 +46,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
     }
 
-    init(container: Container): void {
+    async init(container: Container): Promise<void> {
         const options = container.actualOptions.particles.move.path.options;
 
         this.options.sides = (options.sides as number) > 0 ? (options.sides as number) : 6;
@@ -54,6 +54,8 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         this.options.turnSteps = (options.turnSteps as number) >= 0 ? (options.turnSteps as number) : 20;
 
         this._createDirs();
+
+        await Promise.resolve();
     }
 
     reset(particle: PolygonPathParticle): void {

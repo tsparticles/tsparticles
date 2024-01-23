@@ -56,10 +56,12 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         return !field?.[point.x]?.[point.y] ? Vector.origin : field[point.x][point.y].copy();
     }
 
-    init(container: Container): void {
+    async init(container: Container): Promise<void> {
         this.container = container;
 
         this._setup();
+
+        await Promise.resolve();
     }
 
     reset(): void {

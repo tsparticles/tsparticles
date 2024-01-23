@@ -72,7 +72,7 @@ export class GradientUpdater implements IParticleUpdater {
         return { fill: fillGradient };
     }
 
-    init(particle: GradientParticle): void {
+    async init(particle: GradientParticle): Promise<void> {
         const gradient = itemFromSingleOrMultiple(particle.options.gradient);
 
         if (!gradient) {
@@ -183,6 +183,8 @@ export class GradientUpdater implements IParticleUpdater {
 
             particle.gradient.colors.push(addColor);
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: GradientParticle): boolean {

@@ -447,7 +447,7 @@ export class Canvas {
             needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
-        container.particles.setDensity();
+        await container.particles.setDensity();
 
         this._applyResizePlugins();
 

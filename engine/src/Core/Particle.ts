@@ -379,15 +379,9 @@ export class Particle {
 
     constructor(
         engine: Engine,
-        id: number,
         readonly container: Container,
-        position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string,
     ) {
         this._engine = engine;
-
-        this.init(id, position, overrideOptions, group);
     }
 
     destroy(override?: boolean): void {
@@ -458,12 +452,12 @@ export class Particle {
         return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
     }
 
-    init(
+    async init(
         id: number,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
-    ): void {
+    ): Promise<void> {
         const container = this.container,
             engine = this._engine;
 
@@ -560,7 +554,7 @@ export class Particle {
             this.pathGenerator = this._engine.getPathGenerator(pathOptions.generator);
 
             if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
-                this.pathGenerator.init(container);
+                await this.pathGenerator.init(container);
             }
         }
 
@@ -634,11 +628,11 @@ export class Particle {
         this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of particles.updaters) {
-            updater.init(this);
+            await updater.init(this);
         }
 
         for (const mover of particles.movers) {
-            mover.init?.(this);
+            await mover.init?.(this);
         }
 
         effectDrawer?.particleInit?.(container, this);

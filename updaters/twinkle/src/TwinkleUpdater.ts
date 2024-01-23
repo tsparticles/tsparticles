@@ -42,8 +42,8 @@ export class TwinkleUpdater implements IParticleUpdater {
         return res;
     }
 
-    init(): void {
-        // do nothing
+    async init(): Promise<void> {
+        await Promise.resolve();
     }
 
     isEnabled(particle: TwinkeParticle): boolean {

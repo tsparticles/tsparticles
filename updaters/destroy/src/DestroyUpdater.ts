@@ -21,7 +21,7 @@ export class DestroyUpdater implements IParticleUpdater {
         this.engine = engine;
     }
 
-    init(particle: DestroyParticle): void {
+    async init(particle: DestroyParticle): Promise<void> {
         const container = this.container,
             particlesOptions = particle.options,
             destroyOptions = particlesOptions.destroy;
@@ -57,6 +57,8 @@ export class DestroyUpdater implements IParticleUpdater {
         if (top) {
             destroyBounds.top = (getRangeValue(top) * canvasSize.height) / percentDenominator;
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {
@@ -84,7 +86,7 @@ export class DestroyUpdater implements IParticleUpdater {
         const destroyOptions = particle.options.destroy;
 
         if (destroyOptions && destroyOptions.mode === DestroyMode.split) {
-            split(this.engine, this.container, particle);
+            void split(this.engine, this.container, particle);
         }
     }
 

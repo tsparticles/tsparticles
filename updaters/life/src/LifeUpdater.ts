@@ -26,7 +26,7 @@ export class LifeUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    init(particle: LifeParticle): void {
+    async init(particle: LifeParticle): Promise<void> {
         const container = this.container,
             particlesOptions = particle.options,
             lifeOptions = particlesOptions.life;
@@ -62,6 +62,8 @@ export class LifeUpdater implements IParticleUpdater {
         if (particle.life) {
             particle.spawning = particle.life.delay > noTime;
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {

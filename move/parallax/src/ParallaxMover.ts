@@ -7,8 +7,8 @@ const half = 0.5;
 export class ParallaxMover implements IParticleMover {
     /**
      */
-    init(): void {
-        // nothing to init
+    async init(): Promise<void> {
+        await Promise.resolve();
     }
 
     /**

@@ -46,7 +46,7 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
         return Vector.create(speed * a, speed * -b);
     }
 
-    init(container: Container): void {
+    async init(container: Container): Promise<void> {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
         this.options.seed = sourceOptions?.seed as number | undefined;
@@ -55,6 +55,8 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
         this.options.step = (sourceOptions?.step as number | undefined) ?? defaultOptions.step;
 
         this._simplex.seed(this.options.seed ?? getRandom());
+
+        await Promise.resolve();
     }
 
     reset(): void {

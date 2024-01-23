@@ -60,7 +60,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         return p.curveVelocity;
     }
 
-    init(container: Container): void {
+    async init(container: Container): Promise<void> {
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
@@ -79,6 +79,8 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         options.attenHarmonics = (sourceOptions.attenHarmonics as number) ?? options.attenHarmonics;
         options.lowValue = (sourceOptions.lowValue as number) ?? options.lowValue;
         options.highValue = (sourceOptions.highValue as number) ?? options.highValue;
+
+        await Promise.resolve();
     }
 
     reset(particle: CurvesPathParticle): void {

@@ -2,16 +2,23 @@ import {
     type Container,
     type IDelta,
     type IParticleUpdater,
-    type OutMode,
+    OutMode,
     type OutModeAlt,
     OutModeDirection,
+    type OutModes,
     type Particle,
 } from "@tsparticles/engine";
-import { BounceOutMode } from "./BounceOutMode.js";
-import { DestroyOutMode } from "./DestroyOutMode.js";
 import type { IOutModeManager } from "./IOutModeManager.js";
-import { NoneOutMode } from "./NoneOutMode.js";
-import { OutOutMode } from "./OutOutMode.js";
+
+const checkOutMode = (outModes: OutModes, outMode: OutMode | keyof typeof OutMode | OutModeAlt): boolean => {
+    return (
+        outModes.default === outMode ||
+        outModes.bottom === outMode ||
+        outModes.left === outMode ||
+        outModes.right === outMode ||
+        outModes.top === outMode
+    );
+};
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
     updaters: IOutModeManager[];
@@ -20,16 +27,31 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
 
     constructor(container: Container) {
         this.container = container;
-        this.updaters = [
-            new BounceOutMode(container),
-            new DestroyOutMode(container),
-            new OutOutMode(container),
-            new NoneOutMode(container),
-        ];
+        this.updaters = [];
     }
 
-    init(): void {
-        // nothing
+    async init(particle: Particle): Promise<void> {
+        this.updaters = [];
+
+        const outModes = particle.options.move.outModes;
+
+        if (checkOutMode(outModes, OutMode.bounce)) {
+            const { BounceOutMode } = await import("./BounceOutMode.js");
+
+            this.updaters.push(new BounceOutMode(this.container));
+        } else if (checkOutMode(outModes, OutMode.out)) {
+            const { OutOutMode } = await import("./OutOutMode.js");
+
+            this.updaters.push(new OutOutMode(this.container));
+        } else if (checkOutMode(outModes, OutMode.destroy)) {
+            const { DestroyOutMode } = await import("./DestroyOutMode.js");
+
+            this.updaters.push(new DestroyOutMode(this.container));
+        } else if (checkOutMode(outModes, OutMode.none)) {
+            const { NoneOutMode } = await import("./NoneOutMode.js");
+
+            this.updaters.push(new NoneOutMode(this.container));
+        }
     }
 
     isEnabled(particle: Particle): boolean {

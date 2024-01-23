@@ -59,11 +59,13 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
         return Vector.origin;
     }
 
-    init(container: Container): void {
+    async init(container: Container): Promise<void> {
         const options = container.actualOptions.particles.move.path.options;
 
         this.options.waveLength = (options.waveLength as RangeValue) ?? this.options.waveLength;
         this.options.waveHeight = (options.waveHeight as RangeValue) ?? this.options.waveHeight;
+
+        await Promise.resolve();
     }
 
     reset(): void {

@@ -70,15 +70,15 @@ describe("Particles", async () => {
 
         expect(container.particles.count).to.equal(0);
 
-        const particle1 = container.particles.addParticle({ x: 1, y: 1 });
+        const particle1 = await container.particles.addParticle({ x: 1, y: 1 });
         expect(container.particles.count).to.equal(1);
         expect(container.particles.find(t => t === particle1)).to.be.not.undefined;
 
-        const particle2 = container.particles.addParticle({ x: 2, y: 2 });
+        const particle2 = await container.particles.addParticle({ x: 2, y: 2 });
         expect(container.particles.count).to.equal(2);
         expect(container.particles.filter(t => t === particle1 || t === particle2).length).to.equal(2);
 
-        const particle3 = container.particles.addParticle({ x: 3, y: 3 });
+        const particle3 = await container.particles.addParticle({ x: 3, y: 3 });
         expect(container.particles.count).to.equal(3);
         expect(container.particles.filter(t => t === particle1 || t === particle2 || t === particle3).length).to.equal(
             3,

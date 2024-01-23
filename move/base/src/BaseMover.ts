@@ -20,7 +20,7 @@ export class BaseMover implements IParticleMover {
     /**
      * @param particle -
      */
-    init(particle: MoveParticle): void {
+    async init(particle: MoveParticle): Promise<void> {
         const options = particle.options,
             gravityOptions = options.move.gravity;
 
@@ -31,6 +31,8 @@ export class BaseMover implements IParticleMover {
         };
 
         this._initSpin(particle);
+
+        await Promise.resolve();
     }
 
     /**

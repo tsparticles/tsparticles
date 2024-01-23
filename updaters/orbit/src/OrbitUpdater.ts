@@ -74,7 +74,7 @@ export class OrbitUpdater implements IParticleUpdater {
         });
     }
 
-    init(particle: OrbitParticle): void {
+    async init(particle: OrbitParticle): Promise<void> {
         /* orbit */
         const container = this.container,
             particlesOptions = particle.options,
@@ -96,6 +96,8 @@ export class OrbitUpdater implements IParticleUpdater {
             : defaultOrbitSpeed;
         particle.orbitWidth = getRangeValue(orbitOptions.width);
         particle.orbitOpacity = getRangeValue(orbitOptions.opacity);
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: OrbitParticle): boolean {

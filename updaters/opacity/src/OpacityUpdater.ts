@@ -28,7 +28,7 @@ export class OpacityUpdater implements IParticleUpdater {
      * Init a single particle opacity
      * @param particle -
      */
-    init(particle: Particle): void {
+    async init(particle: Particle): Promise<void> {
         /* opacity */
         const opacityOptions = particle.options.opacity,
             pxRatio = 1;
@@ -45,6 +45,8 @@ export class OpacityUpdater implements IParticleUpdater {
                 particle.opacity.velocity *= getRandom();
             }
         }
+
+        await Promise.resolve();
     }
 
     /**

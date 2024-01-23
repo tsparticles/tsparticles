@@ -34,7 +34,7 @@ export class WobbleUpdater implements IParticleUpdater {
      * Initializing the particle for wobble animation
      * @param particle - the particle to init
      */
-    init(particle: WobbleParticle): void {
+    async init(particle: WobbleParticle): Promise<void> {
         const wobbleOpt = particle.options.wobble;
 
         if (wobbleOpt?.enable) {
@@ -53,6 +53,8 @@ export class WobbleUpdater implements IParticleUpdater {
 
         particle.retina.wobbleDistance =
             getRangeValue(wobbleOpt?.distance ?? defaultDistance) * this.container.retina.pixelRatio;
+
+        await Promise.resolve();
     }
 
     /**
