@@ -496,6 +496,8 @@ export class Container {
             }
         }
 
+        await this.particles.initPlugins();
+
         /* options settings */
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
@@ -540,7 +542,7 @@ export class Container {
 
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
-        this.particles.init();
+        await this.particles.init();
         this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {

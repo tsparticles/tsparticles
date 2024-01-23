@@ -4,6 +4,7 @@ import type { Container } from "../Container.js";
 import type { Engine } from "../Engine.js";
 import type { IDelta } from "../Interfaces/IDelta.js";
 import type { IExternalInteractor } from "../Interfaces/IExternalInteractor.js";
+import type { IInteractor } from "../Interfaces/IInteractor.js";
 import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor.js";
 import { InteractorType } from "../../Enums/Types/InteractorType.js";
 import type { Particle } from "../Particle.js";
@@ -25,7 +26,7 @@ export class InteractionManager {
      * The interactors that are used for initialization
      * @internal
      */
-    private readonly _interactors;
+    private _interactors: IInteractor[];
 
     /**
      * Registered particles interactions managers
@@ -43,7 +44,7 @@ export class InteractionManager {
         private readonly container: Container,
     ) {
         this._engine = engine;
-        this._interactors = engine.getInteractors(this.container, true);
+        this._interactors = [];
         this._externalInteractors = [];
         this._particleInteractors = [];
     }
@@ -69,7 +70,9 @@ export class InteractionManager {
     /**
      * Initializes the interaction manager, loading all the engine registered managers into the container
      */
-    init(): void {
+    async init(): Promise<void> {
+        this._interactors = await this._engine.getInteractors(this.container, true);
+
         this._externalInteractors = [];
         this._particleInteractors = [];
 

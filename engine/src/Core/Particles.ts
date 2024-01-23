@@ -6,6 +6,8 @@ import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { IMouseData } from "./Interfaces/IMouseData.js";
+import type { IParticleMover } from "./Interfaces/IParticleMover.js";
+import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import { InteractionManager } from "./Utils/InteractionManager.js";
@@ -33,14 +35,14 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
  * Particles manager object
  */
 export class Particles {
-    movers;
+    movers: IParticleMover[];
 
     /**
      * The quad tree used to search particles withing ranges
      */
     quadTree;
 
-    updaters;
+    updaters: IParticleUpdater[];
 
     /**
      * All the particles used in canvas
@@ -54,6 +56,7 @@ export class Particles {
     private _limit;
     private _needsSort;
     private _nextId;
+    private _pluginsInitialized;
     private readonly _pool: Particle[];
     private _resizeFactor?: IDimension;
     private _zArray: Particle[];
@@ -75,13 +78,14 @@ export class Particles {
         this._needsSort = false;
         this._lastZIndex = 0;
         this._interactionManager = new InteractionManager(engine, container);
+        this._pluginsInitialized = false;
 
         const canvasSize = container.canvas.size;
 
         this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
-        this.movers = this._engine.getMovers(container, true);
-        this.updaters = this._engine.getUpdaters(container, true);
+        this.movers = [];
+        this.updaters = [];
     }
 
     get count(): number {
@@ -136,6 +140,7 @@ export class Particles {
     clear(): void {
         this._array = [];
         this._zArray = [];
+        this._pluginsInitialized = false;
     }
 
     destroy(): void {
@@ -187,17 +192,16 @@ export class Particles {
     }
 
     /* --------- tsParticles functions - particles ----------- */
-    init(): void {
+    async init(): Promise<void> {
         const container = this._container,
             options = container.actualOptions;
 
         this._lastZIndex = 0;
         this._needsSort = false;
 
-        let handled = false;
+        await this.initPlugins();
 
-        this.updaters = this._engine.getUpdaters(container, true);
-        this._interactionManager.init();
+        let handled = false;
 
         for (const [, plugin] of container.plugins) {
             if (plugin.particlesInitialization !== undefined) {
@@ -207,12 +211,6 @@ export class Particles {
             if (handled) {
                 break;
             }
-        }
-
-        this._interactionManager.init();
-
-        for (const [, pathGenerator] of container.pathGenerators) {
-            pathGenerator.init(container);
         }
 
         this.addManualParticles();
@@ -239,6 +237,22 @@ export class Particles {
         }
     }
 
+    async initPlugins(): Promise<void> {
+        if (this._pluginsInitialized) {
+            return;
+        }
+
+        const container = this._container;
+
+        this.movers = await this._engine.getMovers(container, true);
+        this.updaters = await this._engine.getUpdaters(container, true);
+        await this._interactionManager.init();
+
+        for (const [, pathGenerator] of container.pathGenerators) {
+            pathGenerator.init(container);
+        }
+    }
+
     push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
         for (let i = 0; i < nb; i++) {
             this.addParticle(mouse?.position, overrideOptions, group);
@@ -247,7 +261,7 @@ export class Particles {
 
     async redraw(): Promise<void> {
         this.clear();
-        this.init();
+        await this.init();
 
         await this.draw({ value: 0, factor: 0 });
     }

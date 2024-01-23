@@ -1,10 +1,17 @@
 import type { Engine } from "@tsparticles/engine";
-import { Repulser } from "./Repulser.js";
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadParticlesRepulseInteraction(engine: Engine, refresh = true): Promise<void> {
-    await engine.addInteractor("particlesRepulse", (container) => new Repulser(container), refresh);
+    await engine.addInteractor(
+        "particlesRepulse",
+        async (container) => {
+            const { Repulser } = await import("./Repulser.js");
+
+            return new Repulser(container);
+        },
+        refresh,
+    );
 }

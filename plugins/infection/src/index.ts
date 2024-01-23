@@ -2,7 +2,6 @@ import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/
 import type { IInfectionOptions, InfectionOptions } from "./Types.js";
 import { Infection } from "./Options/Classes/Infection.js";
 import type { InfectionInstance } from "./InfectionInstance.js";
-import { ParticlesInfecter } from "./ParticlesInfecter.js";
 
 /**
  */
@@ -46,7 +45,15 @@ export async function loadInfectionPlugin(engine: Engine, refresh = true): Promi
     const plugin = new InfectionPlugin();
 
     await engine.addPlugin(plugin, refresh);
-    await engine.addInteractor("particlesInfection", (container) => new ParticlesInfecter(container), refresh);
+    await engine.addInteractor(
+        "particlesInfection",
+        async (container) => {
+            const { ParticlesInfecter } = await import("./ParticlesInfecter.js");
+
+            return new ParticlesInfecter(container);
+        },
+        refresh,
+    );
 }
 
 export * from "./Options/Interfaces/IInfection.js";
