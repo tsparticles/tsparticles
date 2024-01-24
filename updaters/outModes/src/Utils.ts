@@ -9,10 +9,7 @@ const minVelocity = 0,
  */
 export function bounceHorizontal(data: IBounceData): void {
     if (
-        (data.outMode !== OutMode.bounce &&
-            data.outMode !== OutMode.bounceHorizontal &&
-            data.outMode !== "bounceHorizontal" &&
-            data.outMode !== OutMode.split) ||
+        (data.outMode !== OutMode.bounce && data.outMode !== OutMode.split) ||
         (data.direction !== OutModeDirection.left && data.direction !== OutModeDirection.right)
     ) {
         return;
@@ -62,10 +59,7 @@ export function bounceHorizontal(data: IBounceData): void {
  */
 export function bounceVertical(data: IBounceData): void {
     if (
-        (data.outMode !== OutMode.bounce &&
-            data.outMode !== OutMode.bounceVertical &&
-            data.outMode !== "bounceVertical" &&
-            data.outMode !== OutMode.split) ||
+        (data.outMode !== OutMode.bounce && data.outMode !== OutMode.split) ||
         (data.direction !== OutModeDirection.bottom && data.direction !== OutModeDirection.top)
     ) {
         return;

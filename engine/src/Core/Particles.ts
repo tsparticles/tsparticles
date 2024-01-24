@@ -392,7 +392,7 @@ export class Particles {
         // this loop is required to be done after mouse interactions
         for (const particle of this._array) {
             for (const updater of this.updaters) {
-                updater.update(particle, delta);
+                await updater.update(particle, delta);
             }
 
             if (!particle.destroyed && !particle.spawning) {

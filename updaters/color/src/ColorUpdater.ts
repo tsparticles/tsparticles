@@ -43,7 +43,9 @@ export class ColorUpdater implements IParticleUpdater {
         );
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         updateColor(particle.color, delta);
+
+        await Promise.resolve();
     }
 }

@@ -90,7 +90,7 @@ export class DestroyUpdater implements IParticleUpdater {
         }
     }
 
-    update(particle: DestroyParticle): void {
+    async update(particle: DestroyParticle): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }
@@ -110,5 +110,7 @@ export class DestroyUpdater implements IParticleUpdater {
         ) {
             particle.destroy();
         }
+
+        await Promise.resolve();
     }
 }

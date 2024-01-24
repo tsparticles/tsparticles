@@ -119,7 +119,7 @@ export class OrbitUpdater implements IParticleUpdater {
         }
     }
 
-    update(particle: OrbitParticle, delta: IDelta): void {
+    async update(particle: OrbitParticle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }
@@ -129,5 +129,7 @@ export class OrbitUpdater implements IParticleUpdater {
         }
 
         particle.orbitRotation += (particle.orbitAnimationSpeed ?? defaultOrbitSpeed / doublePI) * delta.factor;
+
+        await Promise.resolve();
     }
 }

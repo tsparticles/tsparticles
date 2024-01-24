@@ -1,6 +1,5 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
 import type { IHsl, IRgb } from "./Interfaces/Colors.js";
-import { OutMode, type OutModeAlt } from "../Enums/Modes/OutMode.js";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
@@ -39,6 +38,7 @@ import type { IShapeValues } from "./Interfaces/IShapeValues.js";
 import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
 import { Interactivity } from "../Options/Classes/Interactivity/Interactivity.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
+import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
@@ -59,7 +59,7 @@ const defaultRetryCount = 0,
 interface FixOutModeParams {
     /**
      */
-    checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
+    checkModes: (OutMode | keyof typeof OutMode)[];
     /**
      */
     coord: number;
@@ -68,7 +68,7 @@ interface FixOutModeParams {
     maxCoord: number;
     /**
      */
-    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    outMode: OutMode | keyof typeof OutMode;
     /**
      */
     radius: number;
@@ -693,20 +693,20 @@ export class Particle {
             radius = this.getRadius(),
             /* check position - into the canvas */
             outModes = this.options.move.outModes,
-            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
+            fixHorizontal = (outMode: OutMode | keyof typeof OutMode): void => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
+                    checkModes: [OutMode.bounce],
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
                     setCb: (value: number) => (pos.x += value),
                     radius,
                 });
             },
-            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
+            fixVertical = (outMode: OutMode | keyof typeof OutMode): void => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceVertical],
+                    checkModes: [OutMode.bounce],
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
                     setCb: (value: number) => (pos.y += value),

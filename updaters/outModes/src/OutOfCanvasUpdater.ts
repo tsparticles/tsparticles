@@ -3,14 +3,13 @@ import {
     type IDelta,
     type IParticleUpdater,
     OutMode,
-    type OutModeAlt,
     OutModeDirection,
     type OutModes,
     type Particle,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
-const checkOutMode = (outModes: OutModes, outMode: OutMode | keyof typeof OutMode | OutModeAlt): boolean => {
+const checkOutMode = (outModes: OutModes, outMode: OutMode | keyof typeof OutMode): boolean => {
     return (
         outModes.default === outMode ||
         outModes.bottom === outMode ||
@@ -58,19 +57,21 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         return !particle.destroyed && !particle.spawning;
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         const outModes = particle.options.move.outModes;
 
         this._updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
         this._updateOutMode(particle, delta, outModes.left ?? outModes.default, OutModeDirection.left);
         this._updateOutMode(particle, delta, outModes.right ?? outModes.default, OutModeDirection.right);
         this._updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
+
+        await Promise.resolve();
     }
 
     private readonly _updateOutMode: (
         particle: Particle,
         delta: IDelta,
-        outMode: OutMode | keyof typeof OutMode | OutModeAlt,
+        outMode: OutMode | keyof typeof OutMode,
         direction: OutModeDirection,
     ) => void = (particle, delta, outMode, direction) => {
         for (const updater of this.updaters) {

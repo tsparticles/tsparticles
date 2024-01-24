@@ -7,7 +7,6 @@ import {
 } from "@tsparticles/engine";
 import type { IRollParticlesOptions, RollParticle, RollParticlesOptions } from "./Types.js";
 import { Roll } from "./Options/Classes/Roll.js";
-import { updateRoll } from "./Utils.js";
 
 export class RollUpdater implements IParticleUpdater {
     getTransformValues(particle: Particle): IParticleTransformValues {
@@ -46,10 +45,12 @@ export class RollUpdater implements IParticleUpdater {
         }
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }
+
+        const { updateRoll } = await import("./Utils.js");
 
         updateRoll(particle, delta);
     }

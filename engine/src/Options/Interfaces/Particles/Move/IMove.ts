@@ -1,5 +1,4 @@
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
-import type { OutMode, OutModeAlt } from "../../../../Enums/Modes/OutMode.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMoveAngle } from "./IMoveAngle.js";
 import type { IMoveAttract } from "./IMoveAttract.js";
@@ -9,6 +8,7 @@ import type { IMovePath } from "./Path/IMovePath.js";
 import type { IMoveTrail } from "./IMoveTrail.js";
 import type { IOutModes } from "./IOutModes.js";
 import type { ISpin } from "./ISpin.js";
+import type { OutMode } from "../../../../Enums/Modes/OutMode.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 
 /**
@@ -63,7 +63,7 @@ export interface IMove {
     /**
      * The particles out modes when leaving canvas bounds.
      */
-    outModes: IOutModes | OutMode | keyof typeof OutMode | OutModeAlt;
+    outModes: IOutModes | OutMode | keyof typeof OutMode;
 
     /**
      * The particles path options.

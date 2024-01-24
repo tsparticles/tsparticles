@@ -118,7 +118,7 @@ export class RotateUpdater implements IParticleUpdater {
         }
     }
 
-    update(particle: RotateParticle, delta: IDelta): void {
+    async update(particle: RotateParticle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }
@@ -130,5 +130,7 @@ export class RotateUpdater implements IParticleUpdater {
         updateAnimation(particle, particle.rotate, false, DestroyType.none, delta);
 
         particle.rotation = particle.rotate.value;
+
+        await Promise.resolve();
     }
 }

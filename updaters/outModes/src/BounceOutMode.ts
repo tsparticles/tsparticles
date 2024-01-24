@@ -2,7 +2,6 @@ import {
     type Container,
     type IDelta,
     OutMode,
-    type OutModeAlt,
     type OutModeDirection,
     type Particle,
     calculateBounds,
@@ -11,15 +10,11 @@ import { bounceHorizontal, bounceVertical } from "./Utils.js";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
 export class BounceOutMode implements IOutModeManager {
-    modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
+    modes: (OutMode | keyof typeof OutMode)[];
 
     constructor(private readonly container: Container) {
         this.modes = [
             OutMode.bounce,
-            OutMode.bounceVertical,
-            OutMode.bounceHorizontal,
-            "bounceVertical",
-            "bounceHorizontal",
             OutMode.split,
         ];
     }
@@ -28,7 +23,7 @@ export class BounceOutMode implements IOutModeManager {
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
+        outMode: OutMode | keyof typeof OutMode,
     ): void {
         if (!this.modes.includes(outMode)) {
             return;

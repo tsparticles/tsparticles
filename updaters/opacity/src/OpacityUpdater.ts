@@ -84,11 +84,13 @@ export class OpacityUpdater implements IParticleUpdater {
      * @param particle -
      * @param delta -
      */
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle) || !particle.opacity) {
             return;
         }
 
         updateAnimation(particle, particle.opacity, true, particle.options.opacity.animation.destroy, delta);
+
+        await Promise.resolve();
     }
 }

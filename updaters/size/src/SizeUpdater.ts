@@ -43,11 +43,13 @@ export class SizeUpdater implements IParticleUpdater {
         particle.size.loops = minLoops;
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }
 
         updateAnimation(particle, particle.size, true, particle.options.size.animation.destroy, delta);
+
+        await Promise.resolve();
     }
 }

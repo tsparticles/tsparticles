@@ -2,7 +2,6 @@ import {
     type Container,
     type IDelta,
     OutMode,
-    type OutModeAlt,
     type OutModeDirection,
     type Particle,
     ParticleOutType,
@@ -15,7 +14,7 @@ import type { IOutModeManager } from "./IOutModeManager.js";
 const minVelocity = 0;
 
 export class DestroyOutMode implements IOutModeManager {
-    modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
+    modes: (OutMode | keyof typeof OutMode)[];
 
     constructor(private readonly container: Container) {
         this.modes = [OutMode.destroy];
@@ -25,7 +24,7 @@ export class DestroyOutMode implements IOutModeManager {
         particle: Particle,
         direction: OutModeDirection,
         _delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
+        outMode: OutMode | keyof typeof OutMode,
     ): void {
         if (!this.modes.includes(outMode)) {
             return;
