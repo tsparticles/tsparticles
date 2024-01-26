@@ -142,12 +142,22 @@ export class Canvas {
         return cb(ctx);
     }
 
+    drawAsync<T>(cb: (context: CanvasRenderingContext2D) => Promise<T>): Promise<T | undefined> {
+        const ctx = this._context;
+
+        if (!ctx) {
+            return Promise.resolve(undefined);
+        }
+
+        return cb(ctx);
+    }
+
     /**
      * Draws the specified particle in the canvas
      * @param particle - the particle to draw
      * @param delta - the frame delta time values
      */
-    drawParticle(particle: Particle, delta: IDelta): void {
+    async drawParticle(particle: Particle, delta: IDelta): Promise<void> {
         if (particle.spawning || particle.destroyed) {
             return;
         }
@@ -176,7 +186,7 @@ export class Canvas {
             return;
         }
 
-        this.draw((ctx) => {
+        await this.drawAsync(async (ctx): Promise<void> => {
             const container = this.container,
                 options = container.actualOptions,
                 zIndexOptions = particle.options.zIndex,
@@ -197,7 +207,7 @@ export class Canvas {
 
             this._applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
 
-            drawParticle({
+            await drawParticle({
                 container,
                 context: ctx,
                 particle,
@@ -221,8 +231,8 @@ export class Canvas {
      * @param particle - the particle used
      * @param delta - the frame delta time values
      */
-    drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        this.draw((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
+    async drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): Promise<void> {
+        await this.drawAsync((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
     }
 
     /**
@@ -230,8 +240,8 @@ export class Canvas {
      * @param plugin - the plugin to use for drawing stuff
      * @param delta - the frame delta time values
      */
-    drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
-        this.draw((ctx) => drawPlugin(ctx, plugin, delta));
+    async drawPlugin(plugin: IContainerPlugin, delta: IDelta): Promise<void> {
+        await this.drawAsync((ctx) => drawPlugin(ctx, plugin, delta));
     }
 
     /**

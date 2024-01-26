@@ -1,19 +1,14 @@
 import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
 
-const fixFactorSquared = 2,
-    fixFactor = Math.sqrt(fixFactorSquared),
-    sides = 4,
-    double = 2;
+const sides = 4;
 
 /**
  */
 export class SquareDrawer implements IShapeDrawer {
-    draw(data: IShapeDrawData): void {
-        const { context, radius } = data,
-            fixedRadius = radius / fixFactor,
-            fixedDiameter = fixedRadius * double;
+    async draw(data: IShapeDrawData): Promise<void> {
+        const { drawSquare } = await import("./Utils.js");
 
-        context.rect(-fixedRadius, -fixedRadius, fixedDiameter, fixedDiameter);
+        drawSquare(data);
     }
 
     getSidesCount(): number {

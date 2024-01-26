@@ -48,9 +48,9 @@ export class Absorbers implements IContainerPlugin {
         return absorber;
     }
 
-    draw(context: CanvasRenderingContext2D): void {
+    async draw(context: CanvasRenderingContext2D): Promise<void> {
         for (const absorber of this.array) {
-            absorber.draw(context);
+            await absorber.draw(context);
         }
     }
 

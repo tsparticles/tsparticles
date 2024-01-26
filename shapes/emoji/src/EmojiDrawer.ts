@@ -28,22 +28,10 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         }
     }
 
-    draw(data: IShapeDrawData<EmojiParticle>): void {
-        const { context, particle, radius, opacity } = data,
-            emojiData = particle.emojiData,
-            double = 2,
-            diameter = radius * double,
-            previousAlpha = context.globalAlpha;
+    async draw(data: IShapeDrawData<EmojiParticle>): Promise<void> {
+        const { drawEmoji } = await import("./Utils.js");
 
-        if (!emojiData) {
-            return;
-        }
-
-        context.globalAlpha = opacity;
-
-        context.drawImage(emojiData, -radius, -radius, diameter, diameter);
-
-        context.globalAlpha = previousAlpha;
+        drawEmoji(data);
     }
 
     async init(container: Container): Promise<void> {
@@ -71,7 +59,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         delete particle.emojiData;
     }
 
-    particleInit(container: Container, particle: EmojiParticle): void {
+    async particleInit(container: Container, particle: EmojiParticle): Promise<void> {
         const double = 2,
             shapeData = particle.shapeData as unknown as IEmojiShape;
 
@@ -140,5 +128,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         this._emojiShapeDict.set(key, emojiData);
 
         particle.emojiData = emojiData;
+
+        await Promise.resolve();
     }
 }

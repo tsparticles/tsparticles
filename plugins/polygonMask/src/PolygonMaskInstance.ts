@@ -16,7 +16,7 @@ import {
     itemFromArray,
     percentDenominator,
 } from "@tsparticles/engine";
-import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils.js";
+import { calcClosestPtOnSegment, parsePaths, segmentBounce } from "./utils.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 import type { PolygonMaskContainer } from "./types.js";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement.js";
@@ -68,7 +68,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         );
     }
 
-    draw(context: CanvasRenderingContext2D): void {
+    async draw(context: CanvasRenderingContext2D): Promise<void> {
         if (!this.paths?.length) {
             return;
         }
@@ -95,8 +95,12 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
 
             if (path2d && this.offset) {
+                const { drawPolygonMaskPath } = await import("./utils.js");
+
                 drawPolygonMaskPath(context, path2d, polygonDraw.stroke, this.offset);
             } else if (rawData) {
+                const { drawPolygonMask } = await import("./utils.js");
+
                 drawPolygonMask(context, rawData, polygonDraw.stroke);
             }
         }

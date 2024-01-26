@@ -39,7 +39,7 @@ interface ITrailData extends IShapeValues {
 }
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
-    draw(data: IShapeDrawData<TrailParticle>): void {
+    async draw(data: IShapeDrawData<TrailParticle>): Promise<void> {
         const { context, radius, particle } = data,
             diameter = radius * double,
             pxRatio = particle.container.retina.pixelRatio,
@@ -102,7 +102,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             context.beginPath();
             context.moveTo(lastPos.x - offsetPos.x, lastPos.y - offsetPos.y);
 
-            // Calculate wrapping points
             const warp = {
                 x: (lastPos.x + canvasSize.width) % canvasSize.width,
                 y: (lastPos.y + canvasSize.height) % canvasSize.height,
@@ -117,7 +116,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
                 continue;
             }
 
-            // Draw the line using wrapping points
             context.lineTo(
                 (Math.abs(lastPos.x - position.x) > canvasSize.width * half ? warp.x : position.x) - offsetPos.x,
                 (Math.abs(lastPos.y - position.y) > canvasSize.height * half ? warp.y : position.y) - offsetPos.y,
@@ -147,9 +145,11 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             currentPos.x,
             currentPos.y,
         );
+
+        await Promise.resolve();
     }
 
-    particleInit(container: Container, particle: TrailParticle): void {
+    async particleInit(container: Container, particle: TrailParticle): Promise<void> {
         particle.trail = [];
 
         const effectData = particle.effectData as ITrailData | undefined;
@@ -162,5 +162,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         particle.trailMinWidth = effectData?.minWidth
             ? getRangeValue(effectData.minWidth) * container.retina.pixelRatio
             : undefined;
+
+        await Promise.resolve();
     }
 }

@@ -162,7 +162,7 @@ export class Particles {
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
-            canvas.drawPlugin(plugin, delta);
+            await canvas.drawPlugin(plugin, delta);
         }
 
         /* container.canvas.draw((ctx) => {
@@ -171,7 +171,7 @@ export class Particles {
 
         /* draw each particle */
         for (const p of this._zArray) {
-            p.draw(delta);
+            await p.draw(delta);
         }
     }
 

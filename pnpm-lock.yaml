@@ -93,8 +93,8 @@ importers:
         specifier: ^6.1.1
         version: 6.1.1
       husky:
-        specifier: ^9.0.0
-        version: 9.0.1
+        specifier: ^9.0.6
+        version: 9.0.6
       jsdom:
         specifier: ^24.0.0
         version: 24.0.0(canvas@2.11.2)
@@ -7529,8 +7529,8 @@ packages:
       ms: 2.1.3
     dev: true
 
-  /husky@9.0.1:
-    resolution: {integrity: sha512-rXCT8yF2v3awSG03AG6IgICDhJ+m8o3jL1ROwsT4nQZ6urEyKSj0IWFDIh5YC2zgZeAxWksNMbN6rYY4BE1Zrw==}
+  /husky@9.0.6:
+    resolution: {integrity: sha512-EEuw/rfTiMjOfuL7pGO/i9otg1u36TXxqjIA6D9qxVjd/UXoDOsLor/BSFf5hTK50shwzCU3aVVwdXDp/lp7RA==}
     engines: {node: '>=18'}
     hasBin: true
     dev: true

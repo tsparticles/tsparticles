@@ -417,15 +417,15 @@ export class Particle {
         });
     }
 
-    draw(delta: IDelta): void {
+    async draw(delta: IDelta): Promise<void> {
         const container = this.container,
             canvas = container.canvas;
 
         for (const [, plugin] of container.plugins) {
-            canvas.drawParticlePlugin(plugin, this, delta);
+            await canvas.drawParticlePlugin(plugin, this, delta);
         }
 
-        canvas.drawParticle(this, delta);
+        await canvas.drawParticle(this, delta);
     }
 
     getFillColor(): IHsl | undefined {
@@ -601,7 +601,7 @@ export class Particle {
         }
 
         if (effectDrawer?.loadEffect) {
-            effectDrawer.loadEffect(this);
+            await effectDrawer.loadEffect(this);
         }
 
         let shapeDrawer = container.shapeDrawers.get(this.shape);
@@ -615,7 +615,7 @@ export class Particle {
         }
 
         if (shapeDrawer?.loadShape) {
-            shapeDrawer.loadShape(this);
+            await shapeDrawer.loadShape(this);
         }
 
         const sideCountFunc = shapeDrawer?.getSidesCount;
@@ -635,8 +635,8 @@ export class Particle {
             await mover.init?.(this);
         }
 
-        effectDrawer?.particleInit?.(container, this);
-        shapeDrawer?.particleInit?.(container, this);
+        await effectDrawer?.particleInit?.(container, this);
+        await shapeDrawer?.particleInit?.(container, this);
 
         for (const [, plugin] of container.plugins) {
             plugin.particleCreated?.(this);
