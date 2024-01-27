@@ -1,134 +1,5 @@
-import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types.js";
-import {
-    type IOptions,
-    type IPlugin,
-    type RecursivePartial,
-    executeOnSingleOrMultiple,
-    isArray,
-    isInArray,
-} from "@tsparticles/engine";
-import { Emitter } from "./Options/Classes/Emitter.js";
-import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
-import type { EmitterContainer } from "./EmitterContainer.js";
-import type { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
-import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
-import { ShapeManager } from "./ShapeManager.js";
-
-/**
- */
-class EmittersPlugin implements IPlugin {
-    readonly id;
-
-    private readonly _engine;
-
-    constructor(engine: EmittersEngine) {
-        this._engine = engine;
-        this.id = "emitters";
-    }
-
-    async getPlugin(container: EmitterContainer): Promise<Emitters> {
-        const { Emitters } = await import("./Emitters.js");
-
-        return new Emitters(this._engine, container);
-    }
-
-    loadOptions(options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
-
-        if (source?.emitters) {
-            options.emitters = executeOnSingleOrMultiple(source.emitters, (emitter) => {
-                const tmp = new Emitter();
-
-                tmp.load(emitter);
-
-                return tmp;
-            });
-        }
-
-        const interactivityEmitters = source?.interactivity?.modes?.emitters;
-
-        if (interactivityEmitters) {
-            if (isArray(interactivityEmitters)) {
-                options.interactivity.modes.emitters = {
-                    random: {
-                        count: 1,
-                        enable: true,
-                    },
-                    value: interactivityEmitters.map((s) => {
-                        const tmp = new Emitter();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    }),
-                };
-            } else {
-                const emitterMode = interactivityEmitters as IEmitterModeOptions;
-
-                if (emitterMode.value !== undefined) {
-                    const defaultCount = 1;
-
-                    if (isArray(emitterMode.value)) {
-                        options.interactivity.modes.emitters = {
-                            random: {
-                                count: emitterMode.random.count ?? defaultCount,
-                                enable: emitterMode.random.enable ?? false,
-                            },
-                            value: emitterMode.value.map((s) => {
-                                const tmp = new Emitter();
-
-                                tmp.load(s);
-
-                                return tmp;
-                            }),
-                        };
-                    } else {
-                        const tmp = new Emitter();
-
-                        tmp.load(emitterMode.value);
-
-                        options.interactivity.modes.emitters = {
-                            random: {
-                                count: emitterMode.random.count ?? defaultCount,
-                                enable: emitterMode.random.enable ?? false,
-                            },
-                            value: tmp,
-                        };
-                    }
-                } else {
-                    const emitterOptions = (options.interactivity.modes.emitters = {
-                        random: {
-                            count: 1,
-                            enable: false,
-                        },
-                        value: new Emitter(),
-                    });
-
-                    emitterOptions.value.load(interactivityEmitters as IEmitter);
-                }
-            }
-        }
-    }
-
-    needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
-        if (!options) {
-            return false;
-        }
-
-        const emitters = options.emitters;
-
-        return (
-            (isArray(emitters) && !!emitters.length) ||
-            emitters !== undefined ||
-            (!!options.interactivity?.events?.onClick?.mode &&
-                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode))
-        );
-    }
-}
 
 /**
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
@@ -136,6 +7,8 @@ class EmittersPlugin implements IPlugin {
  */
 export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true): Promise<void> {
     if (!engine.emitterShapeManager) {
+        const { ShapeManager } = await import("./ShapeManager.js");
+
         engine.emitterShapeManager = new ShapeManager(engine);
     }
 
@@ -145,7 +18,8 @@ export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true)
         };
     }
 
-    const plugin = new EmittersPlugin(engine);
+    const { EmittersPlugin } = await import("./EmittersPlugin.js"),
+        plugin = new EmittersPlugin(engine);
 
     await engine.addPlugin(plugin, refresh);
 }

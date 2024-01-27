@@ -84,7 +84,7 @@ export class EmitterInstance {
         engine: EmittersEngine,
         private readonly emitters: Emitters,
         private readonly container: Container,
-        options: RecursivePartial<IEmitter>,
+        options: Emitter | RecursivePartial<IEmitter>,
         position?: ICoordinates,
     ) {
         this._engine = engine;
