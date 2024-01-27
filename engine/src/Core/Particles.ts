@@ -356,7 +356,7 @@ export class Particles {
 
             for (const mover of this.movers) {
                 if (mover.isEnabled(particle)) {
-                    mover.move(particle, delta);
+                    await mover.move(particle, delta);
                 }
             }
 

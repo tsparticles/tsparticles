@@ -6,5 +6,5 @@ export interface IParticleMover {
 
     isEnabled(particle: Particle): boolean;
 
-    move(particle: Particle, delta: IDelta): void;
+    move(particle: Particle, delta: IDelta): Promise<void>;
 }
