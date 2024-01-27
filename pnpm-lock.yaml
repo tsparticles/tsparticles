@@ -93,14 +93,14 @@ importers:
         specifier: ^6.1.1
         version: 6.1.1
       husky:
-        specifier: ^8.0.3
-        version: 8.0.3
+        specifier: ^9.0.6
+        version: 9.0.6
       jsdom:
-        specifier: ^23.2.0
-        version: 23.2.0(canvas@2.11.2)
+        specifier: ^24.0.0
+        version: 24.0.0(canvas@2.11.2)
       jsdom-global:
         specifier: ^3.0.2
-        version: 3.0.2(jsdom@23.2.0)
+        version: 3.0.2(jsdom@24.0.0)
       lerna:
         specifier: ^8.0.2
         version: 8.0.2
@@ -188,6 +188,9 @@ importers:
       '@tsparticles/engine':
         specifier: ^3.1.0
         version: link:../../engine/dist
+      '@tsparticles/interaction-external-particle':
+        specifier: ^3.1.0
+        version: link:../../interactions/external/particle/dist
       '@tsparticles/interaction-external-pop':
         specifier: ^3.1.0
         version: link:../../interactions/external/pop/dist
@@ -578,289 +581,292 @@ importers:
   demo/vanilla:
     dependencies:
       '@tsparticles/all':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../bundles/all/dist
       '@tsparticles/basic':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../bundles/basic/dist
       '@tsparticles/confetti':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../bundles/confetti/dist
       '@tsparticles/configs':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../utils/configs/dist
       '@tsparticles/effect-bubble':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../effects/bubble/dist
       '@tsparticles/effect-trail':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../effects/trail/dist
       '@tsparticles/engine':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../engine/dist
       '@tsparticles/fireworks':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../bundles/fireworks/dist
       '@tsparticles/interaction-external-attract':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/attract/dist
       '@tsparticles/interaction-external-bounce':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/bounce/dist
       '@tsparticles/interaction-external-bubble':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/bubble/dist
       '@tsparticles/interaction-external-connect':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/connect/dist
       '@tsparticles/interaction-external-grab':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/grab/dist
+      '@tsparticles/interaction-external-particle':
+        specifier: workspace:^
+        version: link:../../interactions/external/particle/dist
       '@tsparticles/interaction-external-pause':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/pause/dist
       '@tsparticles/interaction-external-pop':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/pop/dist
       '@tsparticles/interaction-external-push':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/push/dist
       '@tsparticles/interaction-external-remove':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/remove/dist
       '@tsparticles/interaction-external-repulse':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/repulse/dist
       '@tsparticles/interaction-external-slow':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/slow/dist
       '@tsparticles/interaction-external-trail':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/external/trail/dist
       '@tsparticles/interaction-light':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/light/dist
       '@tsparticles/interaction-particles-attract':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/particles/attract/dist
       '@tsparticles/interaction-particles-collisions':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/particles/collisions/dist
       '@tsparticles/interaction-particles-links':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/particles/links/dist
       '@tsparticles/interaction-particles-repulse':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../interactions/particles/repulse/dist
       '@tsparticles/move-base':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../move/base/dist
       '@tsparticles/move-parallax':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../move/parallax/dist
       '@tsparticles/path-curl-noise':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../paths/curlNoise/dist
       '@tsparticles/path-curves':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../paths/curves/dist
       '@tsparticles/path-perlin-noise':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../paths/perlinNoise/dist
       '@tsparticles/path-polygon':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../paths/polygon/dist
       '@tsparticles/path-simplex-noise':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../paths/simplexNoise/dist
       '@tsparticles/path-svg':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../paths/svg/dist
       '@tsparticles/path-zig-zag':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../paths/zigzag/dist
       '@tsparticles/perlin-noise':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../utils/perlinNoise/dist
       '@tsparticles/pjs':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../bundles/pjs/dist
       '@tsparticles/plugin-absorbers':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/absorbers/dist
       '@tsparticles/plugin-canvas-mask':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/canvasMask/dist
       '@tsparticles/plugin-easing-back':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/back/dist
       '@tsparticles/plugin-easing-circ':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/circ/dist
       '@tsparticles/plugin-easing-cubic':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/cubic/dist
       '@tsparticles/plugin-easing-expo':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/expo/dist
       '@tsparticles/plugin-easing-linear':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/linear/dist
       '@tsparticles/plugin-easing-quad':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/quad/dist
       '@tsparticles/plugin-easing-quart':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/quart/dist
       '@tsparticles/plugin-easing-quint':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/quint/dist
       '@tsparticles/plugin-easing-sine':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/easings/sine/dist
       '@tsparticles/plugin-emitters':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/emitters/dist
       '@tsparticles/plugin-emitters-shape-canvas':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/emittersShapes/canvas/dist
       '@tsparticles/plugin-emitters-shape-circle':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/emittersShapes/circle/dist
       '@tsparticles/plugin-emitters-shape-path':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/emittersShapes/path/dist
       '@tsparticles/plugin-emitters-shape-polygon':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/emittersShapes/polygon/dist
       '@tsparticles/plugin-emitters-shape-square':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/emittersShapes/square/dist
       '@tsparticles/plugin-export-image':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/exports/image/dist
       '@tsparticles/plugin-export-json':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/exports/json/dist
       '@tsparticles/plugin-export-video':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/exports/video/dist
       '@tsparticles/plugin-hsv-color':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/hsvColor/dist
       '@tsparticles/plugin-infection':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/infection/dist
       '@tsparticles/plugin-motion':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/motion/dist
       '@tsparticles/plugin-poisson-disc':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/poisson/dist
       '@tsparticles/plugin-polygon-mask':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/polygonMask/dist
       '@tsparticles/plugin-sounds':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../plugins/sounds/dist
       '@tsparticles/shape-arrow':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/arrow/dist
       '@tsparticles/shape-cards':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/cards/dist
       '@tsparticles/shape-circle':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/circle/dist
       '@tsparticles/shape-cog':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/cog/dist
       '@tsparticles/shape-emoji':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/emoji/dist
       '@tsparticles/shape-heart':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/heart/dist
       '@tsparticles/shape-image':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/image/dist
       '@tsparticles/shape-line':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/line/dist
       '@tsparticles/shape-path':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/path/dist
       '@tsparticles/shape-polygon':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/polygon/dist
       '@tsparticles/shape-rounded-polygon':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/rounded-polygon/dist
       '@tsparticles/shape-rounded-rect':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/rounded-rect/dist
       '@tsparticles/shape-spiral':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/spiral/dist
       '@tsparticles/shape-square':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/square/dist
       '@tsparticles/shape-star':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/star/dist
       '@tsparticles/shape-text':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../shapes/text/dist
       '@tsparticles/simplex-noise':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../utils/simplexNoise/dist
       '@tsparticles/slim':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../bundles/slim/dist
       '@tsparticles/updater-color':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/color/dist
       '@tsparticles/updater-destroy':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/destroy/dist
       '@tsparticles/updater-gradient':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/gradient/dist
       '@tsparticles/updater-life':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/life/dist
       '@tsparticles/updater-opacity':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/opacity/dist
       '@tsparticles/updater-orbit':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/orbit/dist
       '@tsparticles/updater-out-modes':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/outModes/dist
       '@tsparticles/updater-roll':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/roll/dist
       '@tsparticles/updater-rotate':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/rotate/dist
       '@tsparticles/updater-size':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/size/dist
       '@tsparticles/updater-stroke-color':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/strokeColor/dist
       '@tsparticles/updater-tilt':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/tilt/dist
       '@tsparticles/updater-twinkle':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/twinkle/dist
       '@tsparticles/updater-wobble':
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../updaters/wobble/dist
       tsparticles:
-        specifier: ^3.1.0
+        specifier: workspace:^
         version: link:../../bundles/full/dist
     devDependencies:
       '@datalust/winston-seq':
@@ -1031,6 +1037,13 @@ importers:
     publishDirectory: dist
 
   interactions/external/grab:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^3.1.0
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  interactions/external/particle:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.1.0
@@ -1636,14 +1649,6 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
-    dev: true
-
-  /@asamuzakjp/dom-selector@2.0.1:
-    resolution: {integrity: sha512-QJAJffmCiymkv6YyQ7voyQb5caCth6jzZsQncYCpHXrJ7RqdYG5y43+is8mnFcYubdOkr7cn1+na9BdFMxqw7w==}
-    dependencies:
-      bidi-js: 1.0.3
-      css-tree: 2.3.1
-      is-potential-custom-element-name: 1.0.1
     dev: true
 
   /@augment-vir/common@22.0.0:
@@ -4997,12 +5002,6 @@ packages:
     resolution: {integrity: sha512-NzUnlZexiaH/46WDhANlyR2bXRopNg4F/zuSA3OpZnllCUgRaOF2znDioDWrmbNVsuZk6l9pMquQB38cfBZwkQ==}
     dev: true
 
-  /bidi-js@1.0.3:
-    resolution: {integrity: sha512-RKshQI1R3YQ+n9YJz2QQ147P66ELpa1FQEg20Dk8oW9t2KgLbpDLLp9aGZ7y8WHSshDknG0bknqGw5/tyCs5tw==}
-    dependencies:
-      require-from-string: 2.0.2
-    dev: true
-
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
@@ -5774,14 +5773,6 @@ packages:
   /css-b64-images@0.2.5:
     resolution: {integrity: sha512-TgQBEdP07adhrDfXvI5o6bHGukKBNMzp2Ngckc/6d09zpjD2gc1Hl3Ca1CKgb8FXjHi88+Phv2Uegs2kTL4zjg==}
     hasBin: true
-    dev: true
-
-  /css-tree@2.3.1:
-    resolution: {integrity: sha512-6Fv1DV/TYw//QF5IzQdqsNDjx/wc8TrMBZsqjL9eW01tWb7R7k/mq+/VXfJCl7SoD5emsJop9cOByJZfs8hYIw==}
-    engines: {node: ^10 || ^12.20.0 || ^14.13.0 || >=15.0.0}
-    dependencies:
-      mdn-data: 2.0.30
-      source-map-js: 1.0.2
     dev: true
 
   /cssstyle@4.0.1:
@@ -7538,9 +7529,9 @@ packages:
       ms: 2.1.3
     dev: true
 
-  /husky@8.0.3:
-    resolution: {integrity: sha512-+dQSyqPh4x1hlO1swXBiNb2HzTDN1I2IGLQx1GrBuiqFJfoMrnZWwVmatvSiO+Iz8fBUnf+lekwNo4c2LlXItg==}
-    engines: {node: '>=14'}
+  /husky@9.0.6:
+    resolution: {integrity: sha512-EEuw/rfTiMjOfuL7pGO/i9otg1u36TXxqjIA6D9qxVjd/UXoDOsLor/BSFf5hTK50shwzCU3aVVwdXDp/lp7RA==}
+    engines: {node: '>=18'}
     hasBin: true
     dev: true
 
@@ -8135,16 +8126,16 @@ packages:
     engines: {node: '>=12.0.0'}
     dev: true
 
-  /jsdom-global@3.0.2(jsdom@23.2.0):
+  /jsdom-global@3.0.2(jsdom@24.0.0):
     resolution: {integrity: sha512-t1KMcBkz/pT5JrvcJbpUR2u/w1kO9jXctaaGJ0vZDzwFnIvGWw9IDSRciT83kIs8Bnw4qpOl8bQK08V01YgMPg==}
     peerDependencies:
       jsdom: '>=10.0.0'
     dependencies:
-      jsdom: 23.2.0(canvas@2.11.2)
+      jsdom: 24.0.0(canvas@2.11.2)
     dev: true
 
-  /jsdom@23.2.0(canvas@2.11.2):
-    resolution: {integrity: sha512-L88oL7D/8ufIES+Zjz7v0aes+oBMh2Xnh3ygWvL0OaICOomKEPKuPnIfBJekiXr+BHbbMjrWn/xqrDQuxFTeyA==}
+  /jsdom@24.0.0(canvas@2.11.2):
+    resolution: {integrity: sha512-UDS2NayCvmXSXVP6mpTj+73JnNQadZlr9N68189xib2tx5Mls7swlTNao26IoHv46BZJFvXygyRtyXd1feAk1A==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -8152,7 +8143,6 @@ packages:
       canvas:
         optional: true
     dependencies:
-      '@asamuzakjp/dom-selector': 2.0.1
       canvas: 2.11.2
       cssstyle: 4.0.1
       data-urls: 5.0.0
@@ -8162,6 +8152,7 @@ packages:
       http-proxy-agent: 7.0.0
       https-proxy-agent: 7.0.2
       is-potential-custom-element-name: 1.0.1
+      nwsapi: 2.2.7
       parse5: 7.1.2
       rrweb-cssom: 0.6.0
       saxes: 6.0.0
@@ -8735,10 +8726,6 @@ packages:
       escape-string-regexp: 4.0.0
     dev: true
     optional: true
-
-  /mdn-data@2.0.30:
-    resolution: {integrity: sha512-GaqWWShW4kv/G9IEucWScBx9G1/vsFZZJUO+tD26M8J8z3Kw5RDQjaoZe03YAClgeS/SWPOcb4nkFBTEi5DUEA==}
-    dev: true
 
   /media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -9400,6 +9387,10 @@ packages:
       console-control-strings: 1.1.0
       gauge: 4.0.4
       set-blocking: 2.0.0
+    dev: true
+
+  /nwsapi@2.2.7:
+    resolution: {integrity: sha512-ub5E4+FBPKwAZx0UwIQOjYWGHTEq5sPqHQNRN8Z9e4A7u3Tj1weLJsL59yH9vmvqEtBHaOmT6cYQKIZOxp35FQ==}
     dev: true
 
   /nx-cloud@16.5.2:
