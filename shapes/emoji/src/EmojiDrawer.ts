@@ -11,8 +11,8 @@ import {
 } from "@tsparticles/engine";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
+import { validTypes } from "./Constants.js";
 
-export const validTypes = ["emoji"];
 const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"';
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
@@ -37,22 +37,24 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     async init(container: Container): Promise<void> {
         const options = container.actualOptions;
 
-        if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
-            const promises: Promise<void>[] = [loadFont(defaultFont)],
-                shapeOptions = validTypes
-                    .map((t) => options.particles.shape.options[t])
-                    .find((t) => !!t) as SingleOrMultiple<IEmojiShape>;
-
-            if (shapeOptions) {
-                executeOnSingleOrMultiple(shapeOptions, (shape) => {
-                    if (shape.font) {
-                        promises.push(loadFont(shape.font));
-                    }
-                });
-            }
-
-            await Promise.all(promises);
+        if (!validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
+            return;
         }
+
+        const promises: Promise<void>[] = [loadFont(defaultFont)],
+            shapeOptions = validTypes
+                .map((t) => options.particles.shape.options[t])
+                .find((t) => !!t) as SingleOrMultiple<IEmojiShape>;
+
+        if (shapeOptions) {
+            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+                if (shape.font) {
+                    promises.push(loadFont(shape.font));
+                }
+            });
+        }
+
+        await Promise.all(promises);
     }
 
     particleDestroy(particle: EmojiParticle): void {

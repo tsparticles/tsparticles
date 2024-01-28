@@ -24,12 +24,12 @@ export class OutOutMode implements IOutModeManager {
         this.modes = [OutMode.out];
     }
 
-    update(
+    async update(
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
         outMode: OutMode | keyof typeof OutMode,
-    ): void {
+    ): Promise<void> {
         if (!this.modes.includes(outMode)) {
             return;
         }
@@ -180,5 +180,7 @@ export class OutOutMode implements IOutModeManager {
                 break;
             }
         }
+
+        await Promise.resolve();
     }
 }

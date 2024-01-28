@@ -1,6 +1,5 @@
 import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
 import {
-    Circle,
     type Engine,
     ExternalInteractorBase,
     type IModes,
@@ -13,8 +12,7 @@ import {
 } from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract.js";
 
-const attractMode = "attract",
-    minRadius = 0;
+const attractMode = "attract";
 
 /**
  * Particle external attract manager
@@ -97,9 +95,13 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             { enable: clickEnabled, mode: clickMode } = events.onClick;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
-            await this._hoverAttract();
+            const { hoverAttract } = await import("./Utils.js");
+
+            hoverAttract(this.container, (p) => this.isEnabled(p));
         } else if (clickEnabled && isInArray(attractMode, clickMode)) {
-            await this._clickAttract();
+            const { clickAttract } = await import("./Utils.js");
+
+            clickAttract(this.container, (p) => this.isEnabled(p));
         }
     }
 
@@ -134,68 +136,5 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
     reset(): void {
         // do nothing
-    }
-
-    private async _clickAttract(): Promise<void> {
-        const container = this.container;
-
-        if (!container.attract) {
-            container.attract = { particles: [] };
-        }
-
-        const { attract } = container;
-
-        if (!attract.finish) {
-            if (!attract.count) {
-                attract.count = 0;
-            }
-
-            attract.count++;
-
-            if (attract.count === container.particles.count) {
-                attract.finish = true;
-            }
-        }
-
-        if (attract.clicking) {
-            const mousePos = container.interactivity.mouse.clickPosition,
-                attractRadius = container.retina.attractModeDistance;
-
-            if (!attractRadius || attractRadius < minRadius || !mousePos) {
-                return;
-            }
-
-            const { processAttract } = await import("./Utils.js");
-
-            processAttract(
-                container,
-                mousePos,
-                attractRadius,
-                new Circle(mousePos.x, mousePos.y, attractRadius),
-                (p: Particle) => this.isEnabled(p),
-            );
-        } else if (attract.clicking === false) {
-            attract.particles = [];
-        }
-    }
-
-    private async _hoverAttract(): Promise<void> {
-        const container = this.container,
-            mousePos = container.interactivity.mouse.position,
-            attractRadius = container.retina.attractModeDistance;
-
-        if (!attractRadius || attractRadius < minRadius || !mousePos) {
-            return;
-        }
-
-        const { processAttract } = await import("./Utils.js");
-
-        processAttract(
-            container,
-            mousePos,
-            attractRadius,
-            new Circle(mousePos.x, mousePos.y, attractRadius),
-            (p: Particle) => this.isEnabled(p),
-        );
     }
 }

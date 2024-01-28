@@ -1,28 +1,9 @@
-import {
-    type ICoordinates,
-    type IHsl,
-    type IShapeDrawData,
-    type Particle,
-    errorPrefix,
-    getLogger,
-    getStyleFromHsl,
-} from "@tsparticles/engine";
-import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils.js";
-import { DisposalMethod } from "./GifUtils/Enums/DisposalMethod.js";
+import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
 const stringStart = 0,
-    defaultLoopCount = 0,
-    defaultOpacity = 1,
-    origin: ICoordinates = {
-        x: 0,
-        y: 0,
-    },
-    defaultFrame = 0,
-    half = 0.5,
-    initialTime = 0,
-    firstIndex = 0;
+    defaultOpacity = 1;
 
 /**
  * The image interface, used for keeping useful data for drawing
@@ -134,34 +115,6 @@ export async function loadImage(image: IImage): Promise<void> {
 }
 
 /**
- * Loads the GIF image
- * @param image - the image to load
- */
-export async function loadGifImage(image: IImage): Promise<void> {
-    if (image.type !== "gif") {
-        await loadImage(image);
-
-        return;
-    }
-
-    image.loading = true;
-
-    try {
-        image.gifData = await decodeGIF(image.source);
-
-        image.gifLoopCount = getGIFLoopAmount(image.gifData) ?? defaultLoopCount;
-
-        if (!image.gifLoopCount) {
-            image.gifLoopCount = Infinity;
-        }
-    } catch {
-        image.error = true;
-    }
-
-    image.loading = false;
-}
-
-/**
  * Downloads the SVG image data, using `fetch`
  * @param image - the image to download
  */
@@ -252,125 +205,4 @@ export function replaceImageColor(
 
         img.src = url;
     });
-}
-
-/**
- *
- * @param data -
- */
-export function drawGif(data: IShapeDrawData<ImageParticle>): void {
-    const { context, radius, particle, delta } = data,
-        image = particle.image;
-
-    if (!image?.gifData || !image.gif) {
-        return;
-    }
-
-    const offscreenCanvas = new OffscreenCanvas(image.gifData.width, image.gifData.height),
-        offscreenContext = offscreenCanvas.getContext("2d");
-
-    if (!offscreenContext) {
-        throw new Error("could not create offscreen canvas context");
-    }
-
-    offscreenContext.imageSmoothingQuality = "low";
-    offscreenContext.imageSmoothingEnabled = false;
-
-    offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-
-    if (particle.gifLoopCount === undefined) {
-        particle.gifLoopCount = image.gifLoopCount ?? defaultLoopCount;
-    }
-
-    let frameIndex = particle.gifFrame ?? defaultFrame;
-
-    const pos = { x: -image.gifData.width * half, y: -image.gifData.height * half },
-        frame = image.gifData.frames[frameIndex];
-
-    if (particle.gifTime === undefined) {
-        particle.gifTime = initialTime;
-    }
-
-    if (!frame.bitmap) {
-        return;
-    }
-
-    context.scale(radius / image.gifData.width, radius / image.gifData.height);
-
-    switch (frame.disposalMethod) {
-        case DisposalMethod.UndefinedA: // ! fall through
-        case DisposalMethod.UndefinedB: // ! fall through
-        case DisposalMethod.UndefinedC: // ! fall through
-        case DisposalMethod.UndefinedD: // ! fall through
-        case DisposalMethod.Replace:
-            offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-            context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-            offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-
-            break;
-        case DisposalMethod.Combine:
-            offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-            context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-            break;
-        case DisposalMethod.RestoreBackground:
-            offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-            context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-            offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-
-            if (!image.gifData.globalColorTable.length) {
-                offscreenContext.putImageData(
-                    image.gifData.frames[firstIndex].image,
-                    pos.x + frame.left,
-                    pos.y + frame.top,
-                );
-            } else {
-                offscreenContext.putImageData(image.gifData.backgroundImage, pos.x, pos.y);
-            }
-
-            break;
-        case DisposalMethod.RestorePrevious:
-            {
-                const previousImageData = offscreenContext.getImageData(
-                    origin.x,
-                    origin.y,
-                    offscreenCanvas.width,
-                    offscreenCanvas.height,
-                );
-
-                offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
-
-                context.drawImage(offscreenCanvas, pos.x, pos.y);
-
-                offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-                offscreenContext.putImageData(previousImageData, origin.x, origin.y);
-            }
-            break;
-    }
-
-    particle.gifTime += delta.value;
-
-    if (particle.gifTime > frame.delayTime) {
-        particle.gifTime -= frame.delayTime;
-
-        if (++frameIndex >= image.gifData.frames.length) {
-            if (--particle.gifLoopCount <= defaultLoopCount) {
-                return;
-            }
-
-            frameIndex = firstIndex;
-
-            // ? so apparently some GIFs seam to set the disposal method of the last frame wrong?...so this is a "fix" for that (clear after the last frame)
-            offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-        }
-
-        particle.gifFrame = frameIndex;
-    }
-
-    context.scale(image.gifData.width / radius, image.gifData.height / radius);
 }

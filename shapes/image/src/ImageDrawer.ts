@@ -1,5 +1,5 @@
 import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
-import { type IImage, type IParticleImage, type ImageParticle } from "./Utils.js";
+import type { IImage, IParticleImage, ImageParticle } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
 
@@ -50,7 +50,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         context.globalAlpha = opacity;
 
         if (image.gif && image.gifData) {
-            const { drawGif } = await import("./Utils.js");
+            const { drawGif } = await import("./GifUtils/Utils.js");
 
             drawGif(data);
         } else if (element) {

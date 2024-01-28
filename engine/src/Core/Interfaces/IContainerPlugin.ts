@@ -14,7 +14,7 @@ export interface IContainerPlugin {
     export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;
     handleClickMode?: (mode: string) => void;
     init?: () => Promise<void>;
-    particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
+    particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => Promise<boolean>;
     particleCreated?: (particle: Particle) => void;
     particleDestroyed?: (particle: Particle, override?: boolean) => void;
     particleFillColor?: (particle: Particle) => string | IOptionsColor | undefined;

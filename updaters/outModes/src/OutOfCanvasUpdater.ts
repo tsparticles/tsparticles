@@ -60,22 +60,20 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     async update(particle: Particle, delta: IDelta): Promise<void> {
         const outModes = particle.options.move.outModes;
 
-        this._updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
-        this._updateOutMode(particle, delta, outModes.left ?? outModes.default, OutModeDirection.left);
-        this._updateOutMode(particle, delta, outModes.right ?? outModes.default, OutModeDirection.right);
-        this._updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
-
-        await Promise.resolve();
+        await this._updateOutMode(particle, delta, outModes.bottom ?? outModes.default, OutModeDirection.bottom);
+        await this._updateOutMode(particle, delta, outModes.left ?? outModes.default, OutModeDirection.left);
+        await this._updateOutMode(particle, delta, outModes.right ?? outModes.default, OutModeDirection.right);
+        await this._updateOutMode(particle, delta, outModes.top ?? outModes.default, OutModeDirection.top);
     }
 
-    private readonly _updateOutMode: (
+    private readonly _updateOutMode = async (
         particle: Particle,
         delta: IDelta,
         outMode: OutMode | keyof typeof OutMode,
         direction: OutModeDirection,
-    ) => void = (particle, delta, outMode, direction) => {
+    ): Promise<void> => {
         for (const updater of this.updaters) {
-            updater.update(particle, direction, delta, outMode);
+            await updater.update(particle, direction, delta, outMode);
         }
     };
 }

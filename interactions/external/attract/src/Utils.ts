@@ -1,4 +1,5 @@
 import {
+    Circle,
     type ICoordinates,
     type Particle,
     type Range,
@@ -10,17 +11,18 @@ import {
 import type { AttractContainer } from "./Types.js";
 
 const minFactor = 1,
-    identity = 1;
+    identity = 1,
+    minRadius = 0;
 
 /**
  *
- * @param container
- * @param position
- * @param attractRadius
- * @param area
- * @param queryCb
+ * @param container -
+ * @param position -
+ * @param attractRadius -
+ * @param area -
+ * @param queryCb -
  */
-export function processAttract(
+function processAttract(
     container: AttractContainer,
     position: ICoordinates,
     attractRadius: number,
@@ -50,4 +52,70 @@ export function processAttract(
 
         particle.position.subFrom(normVec);
     }
+}
+
+/**
+ *
+ * @param container -
+ * @param enabledCb -
+ */
+export function clickAttract(container: AttractContainer, enabledCb: (particle: Particle) => boolean): void {
+    if (!container.attract) {
+        container.attract = { particles: [] };
+    }
+
+    const { attract } = container;
+
+    if (!attract.finish) {
+        if (!attract.count) {
+            attract.count = 0;
+        }
+
+        attract.count++;
+
+        if (attract.count === container.particles.count) {
+            attract.finish = true;
+        }
+    }
+
+    if (attract.clicking) {
+        const mousePos = container.interactivity.mouse.clickPosition,
+            attractRadius = container.retina.attractModeDistance;
+
+        if (!attractRadius || attractRadius < minRadius || !mousePos) {
+            return;
+        }
+
+        processAttract(
+            container,
+            mousePos,
+            attractRadius,
+            new Circle(mousePos.x, mousePos.y, attractRadius),
+            (p: Particle) => enabledCb(p),
+        );
+    } else if (attract.clicking === false) {
+        attract.particles = [];
+    }
+}
+
+/**
+ *
+ * @param container -
+ * @param enabledCb -
+ */
+export function hoverAttract(container: AttractContainer, enabledCb: (particle: Particle) => boolean): void {
+    const mousePos = container.interactivity.mouse.position,
+        attractRadius = container.retina.attractModeDistance;
+
+    if (!attractRadius || attractRadius < minRadius || !mousePos) {
+        return;
+    }
+
+    processAttract(
+        container,
+        mousePos,
+        attractRadius,
+        new Circle(mousePos.x, mousePos.y, attractRadius),
+        (p: Particle) => enabledCb(p),
+    );
 }

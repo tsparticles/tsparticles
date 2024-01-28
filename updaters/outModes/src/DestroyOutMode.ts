@@ -20,12 +20,12 @@ export class DestroyOutMode implements IOutModeManager {
         this.modes = [OutMode.destroy];
     }
 
-    update(
+    async update(
         particle: Particle,
         direction: OutModeDirection,
         _delta: IDelta,
         outMode: OutMode | keyof typeof OutMode,
-    ): void {
+    ): Promise<void> {
         if (!this.modes.includes(outMode)) {
             return;
         }
@@ -49,8 +49,8 @@ export class DestroyOutMode implements IOutModeManager {
 
                 break;
             case ParticleOutType.inside: {
-                const { dx, dy } = getDistances(particle.position, particle.moveCenter);
-                const { x: vx, y: vy } = particle.velocity;
+                const { dx, dy } = getDistances(particle.position, particle.moveCenter),
+                    { x: vx, y: vy } = particle.velocity;
 
                 if (
                     (vx < minVelocity && dx > particle.moveCenter.radius) ||
@@ -66,5 +66,7 @@ export class DestroyOutMode implements IOutModeManager {
         }
 
         container.particles.remove(particle, undefined, true);
+
+        await Promise.resolve();
     }
 }

@@ -181,7 +181,7 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
  * @param pos -
  * @returns the closest point on the segment
  */
-export function calcClosestPtOnSegment(
+export function calcClosestPointOnSegment(
     s1: ICoordinates,
     s2: ICoordinates,
     pos: ICoordinates,

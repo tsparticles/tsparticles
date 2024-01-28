@@ -1,5 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
-import { validTypes } from "./EmojiDrawer.js";
+import { validTypes } from "./Constants.js";
 
 /**
  * @param engine -

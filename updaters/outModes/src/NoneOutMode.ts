@@ -18,12 +18,12 @@ export class NoneOutMode implements IOutModeManager {
         this.modes = [OutMode.none];
     }
 
-    update(
+    async update(
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
         outMode: OutMode | keyof typeof OutMode,
-    ): void {
+    ): Promise<void> {
         if (!this.modes.includes(outMode)) {
             return;
         }
@@ -67,5 +67,7 @@ export class NoneOutMode implements IOutModeManager {
                 container.particles.remove(particle);
             }
         }
+
+        await Promise.resolve();
     }
 }
