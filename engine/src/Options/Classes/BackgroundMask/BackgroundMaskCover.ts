@@ -6,12 +6,11 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 /**
  */
 export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<IBackgroundMaskCover> {
-    color;
+    color?: OptionsColor;
+    image?: string;
     opacity;
 
     constructor() {
-        this.color = new OptionsColor();
-        this.color.value = "#fff";
         this.opacity = 1;
     }
 
@@ -22,6 +21,10 @@ export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<
 
         if (data.color !== undefined) {
             this.color = OptionsColor.create(this.color, data.color);
+        }
+
+        if (data.image !== undefined) {
+            this.image = data.image;
         }
 
         if (data.opacity !== undefined) {
