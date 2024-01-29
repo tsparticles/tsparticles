@@ -71,7 +71,7 @@ export class BaseMover implements IParticleMover {
         } else {
             const { move } = await import("./Utils.js");
 
-            move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, delta);
+            await move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, delta);
         }
 
         const { applyDistance } = await import("./Utils.js");

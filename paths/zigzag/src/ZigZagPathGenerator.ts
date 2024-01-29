@@ -38,7 +38,7 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
         };
     }
 
-    generate(particle: ZigZagParticle, delta: IDelta): Vector {
+    generate(particle: ZigZagParticle, delta: IDelta): Promise<Vector> {
         if (particle.zigzag === undefined) {
             particle.zigzag = {
                 counter: getRandom(),
@@ -56,7 +56,7 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
         particle.position.x += zigzagAngle * Math.cos(particle.velocity.angle + halfPI);
         particle.position.y += zigzagAngle * Math.sin(particle.velocity.angle + halfPI);
 
-        return Vector.origin;
+        return Promise.resolve(Vector.origin);
     }
 
     async init(container: Container): Promise<void> {

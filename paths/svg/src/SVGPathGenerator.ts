@@ -69,7 +69,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         this._width = 0;
     }
 
-    generate(particle: SVGPathParticle, delta: IDelta): Vector {
+    generate(particle: SVGPathParticle, delta: IDelta): Promise<Vector> {
         const container = particle.container,
             pxRatio = container.retina.pixelRatio;
 
@@ -169,7 +169,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
                 particle.svgOffset.height;
         }
 
-        return Vector.origin;
+        return Promise.resolve(Vector.origin);
     }
 
     async init(container: Container): Promise<void> {

@@ -17,7 +17,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
         };
     }
 
-    generate(p: PolygonPathParticle): Vector {
+    generate(p: PolygonPathParticle): Promise<Vector> {
         const { sides } = this.options;
 
         if (p.hexStep === undefined) {
@@ -43,7 +43,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         const direction = this.dirsList[p.hexDirection];
 
-        return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
+        return Promise.resolve(Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed));
     }
 
     async init(container: Container): Promise<void> {

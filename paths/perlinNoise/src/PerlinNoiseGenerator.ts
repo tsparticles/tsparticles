@@ -12,23 +12,25 @@ import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { IPerlinOptions } from "./IPerlinOptions.js";
 import { PerlinNoise } from "@tsparticles/perlin-noise";
 
-const defaultOptions: IPerlinOptions = {
-    draw: false,
-    size: 20,
-    increment: 0.004,
-    columns: 0,
-    rows: 0,
-    width: 0,
-    height: 0,
-    factor: {
-        angle: 0.02,
-        length: 0.01,
-    },
-    offset: {
-        x: 40000,
-        y: 40000,
-    },
-};
+const double = 2,
+    doublePI = Math.PI * double,
+    defaultOptions: IPerlinOptions = {
+        draw: false,
+        size: 20,
+        increment: 0.004,
+        columns: 0,
+        rows: 0,
+        width: 0,
+        height: 0,
+        factor: {
+            angle: 0.02,
+            length: 0.01,
+        },
+        offset: {
+            x: 40000,
+            y: 40000,
+        },
+    };
 
 export class PerlinNoiseGenerator implements IMovePathGenerator {
     container?: Container;
@@ -44,7 +46,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.options = deepExtend({}, defaultOptions) as IPerlinOptions;
     }
 
-    generate(particle: Particle): Vector {
+    generate(particle: Particle): Promise<Vector> {
         const pos = particle.getPosition(),
             { size } = this.options,
             point = {
@@ -53,7 +55,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             },
             { field } = this;
 
-        return !field?.[point.x]?.[point.y] ? Vector.origin : field[point.x][point.y].copy();
+        return Promise.resolve(!field?.[point.x]?.[point.y] ? Vector.origin : field[point.x][point.y].copy());
     }
 
     async init(container: Container): Promise<void> {
@@ -98,7 +100,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
                     y * lengthFactor + options.offset.y,
                     this.noiseZ,
                 );
-                cell.angle = noiseGen.noise3d(x * angleFactor, y * angleFactor, this.noiseZ) * Math.PI * 2;
+                cell.angle = noiseGen.noise3d(x * angleFactor, y * angleFactor, this.noiseZ) * doublePI;
             }
         }
     };

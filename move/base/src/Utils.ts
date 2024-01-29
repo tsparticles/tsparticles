@@ -78,15 +78,15 @@ export function applyDistance(particle: MoveParticle): void {
  * @param moveDrift -
  * @param delta -
  */
-export function move(
+export async function move(
     particle: MoveParticle,
     moveOptions: Move,
     moveSpeed: number,
     maxSpeed: number,
     moveDrift: number,
     delta: IDelta,
-): void {
-    applyPath(particle, delta);
+): Promise<void> {
+    await applyPath(particle, delta);
 
     const gravityOptions = particle.gravity,
         gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity;
@@ -172,7 +172,7 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
  * @param particle -
  * @param delta -
  */
-export function applyPath(particle: Particle, delta: IDelta): void {
+export async function applyPath(particle: Particle, delta: IDelta): Promise<void> {
     const particlesOptions = particle.options,
         pathOptions = particlesOptions.move.path,
         pathEnabled = pathOptions.enable;
@@ -187,7 +187,7 @@ export function applyPath(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const path = particle.pathGenerator?.generate(particle, delta);
+    const path = await particle.pathGenerator?.generate(particle, delta);
 
     if (path) {
         particle.velocity.addTo(path);

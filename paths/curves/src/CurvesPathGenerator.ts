@@ -1,5 +1,4 @@
 import { type Container, type IMovePathGenerator, Vector, getRandom, isFunction, isString } from "@tsparticles/engine";
-import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
 
@@ -30,9 +29,10 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         };
     }
 
-    generate(p: CurvesPathParticle): Vector {
+    async generate(p: CurvesPathParticle): Promise<Vector> {
         if (!p.pathGen) {
-            const options = this.options;
+            const options = this.options,
+                { CurvesPathGen } = await import("./Curves.js");
 
             p.pathGen = CurvesPathGen(
                 options.rndFunc,
