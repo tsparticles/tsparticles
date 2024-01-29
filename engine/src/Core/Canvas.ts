@@ -32,6 +32,40 @@ function setTransformValue(
 }
 
 /**
+ *
+ * @param canvas -
+ * @param style -
+ * @param important -
+ */
+function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration>, important = false): void {
+    if (!style) {
+        return;
+    }
+
+    const element = canvas;
+
+    if (!element) {
+        return;
+    }
+
+    const elementStyle = element.style;
+
+    if (!elementStyle) {
+        return;
+    }
+
+    for (const key in style) {
+        const value = style[key];
+
+        if (!value) {
+            continue;
+        }
+
+        elementStyle.setProperty(key, value, important ? "important" : "");
+    }
+}
+
+/**
  * Canvas manager
  */
 export class Canvas {
@@ -693,14 +727,7 @@ export class Canvas {
             return;
         }
 
-        const style = element.style;
-
-        style.position = originalStyle.position;
-        style.zIndex = originalStyle.zIndex;
-        style.top = originalStyle.top;
-        style.left = originalStyle.left;
-        style.width = originalStyle.width;
-        style.height = originalStyle.height;
+        setStyle(element, originalStyle);
     };
 
     private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = (callback) => {
@@ -718,15 +745,19 @@ export class Canvas {
             return;
         }
 
-        const priority = "important",
-            style = element.style,
-            radix = 10;
+        const radix = 10;
 
-        style.setProperty("position", "fixed", priority);
-        style.setProperty("z-index", this.container.actualOptions.fullScreen.zIndex.toString(radix), priority);
-        style.setProperty("top", "0", priority);
-        style.setProperty("left", "0", priority);
-        style.setProperty("width", "100%", priority);
-        style.setProperty("height", "100%", priority);
+        setStyle(
+            element,
+            {
+                position: "fixed",
+                zIndex: this.container.actualOptions.fullScreen.zIndex.toString(radix),
+                top: "0",
+                left: "0",
+                width: "100%",
+                height: "100%",
+            },
+            true,
+        );
     };
 }
