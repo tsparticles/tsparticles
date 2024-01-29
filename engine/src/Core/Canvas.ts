@@ -53,6 +53,7 @@ export class Canvas {
     private _context: CanvasRenderingContext2D | null;
 
     private _coverColorStyle?: string;
+    private _coverImage?: { image: HTMLImageElement; opacity: number };
     private _generated;
     private _mutationObserver?: MutationObserver;
     private _originalStyle?: CSSStyleDeclaration;
@@ -248,7 +249,7 @@ export class Canvas {
         });
         this.resize();
         this._initStyle();
-        this._initCover();
+        await this._initCover();
 
         try {
             await this._initTrail();
@@ -380,7 +381,13 @@ export class Canvas {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
                 clear(ctx, this.size);
 
-                this._paintBase(this._coverColorStyle);
+                if (this._coverImage) {
+                    this._paintImage(this._coverImage.image, this._coverImage.opacity);
+                } else if (this._coverColorStyle) {
+                    this._paintBase(this._coverColorStyle);
+                } else {
+                    this._paintBase();
+                }
             } else {
                 this._paintBase();
             }
@@ -521,19 +528,45 @@ export class Canvas {
         return [fColor, sColor];
     };
 
-    private readonly _initCover: () => void = () => {
+    private readonly _initCover = async (): Promise<void> => {
         const options = this.container.actualOptions,
             cover = options.backgroundMask.cover,
-            color = cover.color,
-            coverRgb = rangeColorToRgb(color);
+            color = cover.color;
 
-        if (coverRgb) {
-            const coverColor = {
-                ...coverRgb,
-                a: cover.opacity,
-            };
+        if (color) {
+            const coverRgb = rangeColorToRgb(color);
 
-            this._coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+            if (coverRgb) {
+                const coverColor = {
+                    ...coverRgb,
+                    a: cover.opacity,
+                };
+
+                this._coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+            }
+        } else {
+            await new Promise<void>((resolve, reject) => {
+                if (!cover.image) {
+                    return;
+                }
+
+                const img = document.createElement("img");
+
+                img.addEventListener("load", () => {
+                    this._coverImage = {
+                        image: img,
+                        opacity: cover.opacity,
+                    };
+
+                    resolve();
+                });
+
+                img.addEventListener("error", (evt) => {
+                    reject(evt.error);
+                });
+
+                img.src = cover.image;
+            });
         }
     };
 
