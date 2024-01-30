@@ -3,6 +3,6 @@
   "extension": [
     "ts"
   ],
-  "spec": "src/**/*.ts",
+  "spec": "src/*.ts",
   "recursive": true
 }
