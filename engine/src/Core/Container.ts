@@ -200,6 +200,14 @@ export class Container {
     }
 
     /**
+     * Gets the animation status
+     * @returns `true` is playing, `false` is paused
+     */
+    get animationStatus(): boolean {
+        return !this._paused && !this.pageHidden && guardCheck(this);
+    }
+
+    /**
      * The options used by the container, it's a full {@link Options} object
      * @returns the options used by the container
      */
@@ -442,14 +450,6 @@ export class Container {
         }
 
         getLogger().error(`${errorPrefix} - Export plugin with type ${type} not found`);
-    }
-
-    /**
-     * Gets the animation status
-     * @returns `true` is playing, `false` is paused
-     */
-    getAnimationStatus(): boolean {
-        return !this._paused && !this.pageHidden && guardCheck(this);
     }
 
     /**
@@ -770,7 +770,7 @@ export class Container {
         }
     };
 
-    private readonly _nextFrame: (timestamp: DOMHighResTimeStamp) => Promise<void> = async (timestamp) => {
+    private readonly _nextFrame = async (timestamp: DOMHighResTimeStamp): Promise<void> => {
         try {
             // FPS limit logic - if we are too fast, just draw without updating
             if (
@@ -803,7 +803,7 @@ export class Container {
                 return;
             }
 
-            if (this.getAnimationStatus()) {
+            if (this.animationStatus) {
                 this.draw(false);
             }
         } catch (e) {
