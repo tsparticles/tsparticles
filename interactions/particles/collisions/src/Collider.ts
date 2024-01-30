@@ -54,10 +54,8 @@ export class Collider extends ParticlesInteractorBase {
                 continue;
             }
 
-            resolveCollision(p1, p2, delta, container.retina.pixelRatio);
+            await resolveCollision(p1, p2, delta, container.retina.pixelRatio);
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {

@@ -75,12 +75,14 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         if (canEmit) {
-            container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
+            await container.particles.push(
+                trailOptions.quantity,
+                container.interactivity.mouse,
+                trailOptions.particles,
+            );
         }
 
         this._delay -= optDelay;
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

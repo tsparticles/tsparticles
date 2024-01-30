@@ -1,5 +1,5 @@
 import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
-import { type IImage, type IParticleImage, type ImageParticle, drawGif, replaceImageColor } from "./Utils.js";
+import type { IImage, IParticleImage, ImageParticle } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
 
@@ -38,7 +38,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * The draw image method
      * @param data - the shape draw data
      */
-    draw(data: IShapeDrawData<ImageParticle>): void {
+    async draw(data: IShapeDrawData<ImageParticle>): Promise<void> {
         const { context, radius, particle, opacity } = data,
             image = particle.image,
             element = image?.element;
@@ -50,6 +50,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         context.globalAlpha = opacity;
 
         if (image.gif && image.gifData) {
+            const { drawGif } = await import("./GifUtils/Utils.js");
+
             drawGif(data);
         } else if (element) {
             const ratio = image.ratio,
@@ -86,7 +88,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         }
     }
 
-    loadShape(particle: ImageParticle): void {
+    async loadShape(particle: ImageParticle): Promise<void> {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
@@ -104,9 +106,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
-            void this.loadImageShape(imageData).then(() => {
-                this.loadShape(particle);
-            });
+            await this.loadImageShape(imageData);
+            await this.loadShape(particle);
         }
     }
 
@@ -115,7 +116,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * @param container - the particles container
      * @param particle - the particle loading the image shape
      */
-    particleInit(container: Container, particle: ImageParticle): void {
+    async particleInit(container: Container, particle: ImageParticle): Promise<void> {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
@@ -142,51 +143,51 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
         if (image.loading) {
             setTimeout((): void => {
-                this.particleInit(container, particle);
+                void this.particleInit(container, particle);
             });
 
             return;
         }
 
-        void (async (): Promise<void> => {
-            let imageRes: IParticleImage;
+        let imageRes: IParticleImage;
 
-            if (image.svgData && color) {
-                imageRes = await replaceImageColor(image, imageData, color, particle);
-            } else {
-                imageRes = {
-                    color,
-                    data: image,
-                    element: image.element,
-                    gif: image.gif,
-                    gifData: image.gifData,
-                    gifLoopCount: image.gifLoopCount,
-                    loaded: true,
-                    ratio:
-                        imageData.width && imageData.height
-                            ? imageData.width / imageData.height
-                            : image.ratio ?? defaultRatio,
-                    replaceColor: replaceColor,
-                    source: imageData.src,
-                };
-            }
+        if (image.svgData && color) {
+            const { replaceImageColor } = await import("./Utils.js");
 
-            if (!imageRes.ratio) {
-                imageRes.ratio = 1;
-            }
+            imageRes = await replaceImageColor(image, imageData, color, particle);
+        } else {
+            imageRes = {
+                color,
+                data: image,
+                element: image.element,
+                gif: image.gif,
+                gifData: image.gifData,
+                gifLoopCount: image.gifLoopCount,
+                loaded: true,
+                ratio:
+                    imageData.width && imageData.height
+                        ? imageData.width / imageData.height
+                        : image.ratio ?? defaultRatio,
+                replaceColor: replaceColor,
+                source: imageData.src,
+            };
+        }
 
-            const fill = imageData.fill ?? particle.shapeFill,
-                close = imageData.close ?? particle.shapeClose,
-                imageShape = {
-                    image: imageRes,
-                    fill,
-                    close,
-                };
+        if (!imageRes.ratio) {
+            imageRes.ratio = 1;
+        }
 
-            particle.image = imageShape.image;
-            particle.shapeFill = imageShape.fill;
-            particle.shapeClose = imageShape.close;
-        })();
+        const fill = imageData.fill ?? particle.shapeFill,
+            close = imageData.close ?? particle.shapeClose,
+            imageShape = {
+                image: imageRes,
+                fill,
+                close,
+            };
+
+        particle.image = imageShape.image;
+        particle.shapeFill = imageShape.fill;
+        particle.shapeClose = imageShape.close;
     }
 
     /**

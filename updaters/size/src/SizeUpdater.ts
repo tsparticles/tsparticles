@@ -10,7 +10,7 @@ import {
 const minLoops = 0;
 
 export class SizeUpdater implements IParticleUpdater {
-    init(particle: Particle): void {
+    async init(particle: Particle): Promise<void> {
         const container = particle.container,
             sizeOptions = particle.options.size,
             sizeAnimation = sizeOptions.animation;
@@ -24,6 +24,8 @@ export class SizeUpdater implements IParticleUpdater {
                 particle.size.velocity *= getRandom();
             }
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {
@@ -41,11 +43,13 @@ export class SizeUpdater implements IParticleUpdater {
         particle.size.loops = minLoops;
     }
 
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle)) {
             return;
         }
 
         updateAnimation(particle, particle.size, true, particle.options.size.animation.destroy, delta);
+
+        await Promise.resolve();
     }
 }

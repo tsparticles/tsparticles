@@ -2,7 +2,6 @@ import {
     type Container,
     type IDelta,
     OutMode,
-    type OutModeAlt,
     OutModeDirection,
     type Particle,
     Vector,
@@ -13,18 +12,18 @@ import type { IOutModeManager } from "./IOutModeManager.js";
 const minVelocity = 0;
 
 export class NoneOutMode implements IOutModeManager {
-    modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
+    modes: (OutMode | keyof typeof OutMode)[];
 
     constructor(private readonly container: Container) {
         this.modes = [OutMode.none];
     }
 
-    update(
+    async update(
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
-    ): void {
+        outMode: OutMode | keyof typeof OutMode,
+    ): Promise<void> {
         if (!this.modes.includes(outMode)) {
             return;
         }
@@ -39,10 +38,9 @@ export class NoneOutMode implements IOutModeManager {
         }
 
         const gravityOptions = particle.options.move.gravity,
-            container = this.container;
-
-        const canvasSize = container.canvas.size;
-        const pRadius = particle.getRadius();
+            container = this.container,
+            canvasSize = container.canvas.size,
+            pRadius = particle.getRadius();
 
         if (!gravityOptions.enable) {
             if (
@@ -69,5 +67,7 @@ export class NoneOutMode implements IOutModeManager {
                 container.particles.remove(particle);
             }
         }
+
+        await Promise.resolve();
     }
 }

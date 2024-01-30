@@ -1,12 +1,12 @@
-import type { IDelta, OutMode, OutModeAlt, OutModeDirection, Particle } from "@tsparticles/engine";
+import type { IDelta, OutMode, OutModeDirection, Particle } from "@tsparticles/engine";
 
 export interface IOutModeManager {
-    modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
+    modes: (OutMode | keyof typeof OutMode)[];
 
     update(
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
-    ): void;
+        outMode: OutMode | keyof typeof OutMode,
+    ): Promise<void>;
 }

@@ -24,7 +24,6 @@ import {
 } from "@tsparticles/engine";
 import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOptions } from "./Types.js";
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
-import { updateGradient } from "./Utils.js";
 
 const double = 2,
     doublePI = Math.PI * double;
@@ -72,7 +71,7 @@ export class GradientUpdater implements IParticleUpdater {
         return { fill: fillGradient };
     }
 
-    init(particle: GradientParticle): void {
+    async init(particle: GradientParticle): Promise<void> {
         const gradient = itemFromSingleOrMultiple(particle.options.gradient);
 
         if (!gradient) {
@@ -183,6 +182,8 @@ export class GradientUpdater implements IParticleUpdater {
 
             particle.gradient.colors.push(addColor);
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: GradientParticle): boolean {
@@ -220,7 +221,9 @@ export class GradientUpdater implements IParticleUpdater {
         }
     }
 
-    update(particle: GradientParticle, delta: IDelta): void {
+    async update(particle: GradientParticle, delta: IDelta): Promise<void> {
+        const { updateGradient } = await import("./Utils.js");
+
         updateGradient(particle, delta);
     }
 }

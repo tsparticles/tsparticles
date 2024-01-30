@@ -26,9 +26,9 @@ export interface IParticleUpdater {
 
     reset?: (particle: Particle) => void;
 
-    init(particle: Particle): void;
+    init(particle: Particle): Promise<void>;
 
     isEnabled(particle: Particle): boolean;
 
-    update(particle: Particle, delta: IDelta): void;
+    update(particle: Particle, delta: IDelta): Promise<void>;
 }

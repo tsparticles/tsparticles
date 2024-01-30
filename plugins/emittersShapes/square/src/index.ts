@@ -1,5 +1,4 @@
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
-import { EmittersSquareShapeGenerator } from "./EmittersSquareShapeGenerator.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -8,7 +7,8 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadEmittersShapeSquare(engine: Engine, refresh = true): Promise<void> {
-    const emittersEngine = engine as EmittersEngine;
+    const emittersEngine = engine as EmittersEngine,
+        { EmittersSquareShapeGenerator } = await import("./EmittersSquareShapeGenerator.js");
 
     emittersEngine.addEmitterShapeGenerator?.("square", new EmittersSquareShapeGenerator());
 

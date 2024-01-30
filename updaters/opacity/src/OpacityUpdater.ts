@@ -28,7 +28,7 @@ export class OpacityUpdater implements IParticleUpdater {
      * Init a single particle opacity
      * @param particle -
      */
-    init(particle: Particle): void {
+    async init(particle: Particle): Promise<void> {
         /* opacity */
         const opacityOptions = particle.options.opacity,
             pxRatio = 1;
@@ -45,6 +45,8 @@ export class OpacityUpdater implements IParticleUpdater {
                 particle.opacity.velocity *= getRandom();
             }
         }
+
+        await Promise.resolve();
     }
 
     /**
@@ -82,11 +84,13 @@ export class OpacityUpdater implements IParticleUpdater {
      * @param particle -
      * @param delta -
      */
-    update(particle: Particle, delta: IDelta): void {
+    async update(particle: Particle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle) || !particle.opacity) {
             return;
         }
 
         updateAnimation(particle, particle.opacity, true, particle.options.opacity.animation.destroy, delta);
+
+        await Promise.resolve();
     }
 }

@@ -2,7 +2,6 @@ import {
     type Container,
     type IDelta,
     OutMode,
-    type OutModeAlt,
     OutModeDirection,
     type Particle,
     ParticleOutType,
@@ -19,18 +18,18 @@ const minVelocity = 0,
     minDistance = 0;
 
 export class OutOutMode implements IOutModeManager {
-    modes: (OutMode | OutModeAlt | keyof typeof OutMode)[];
+    modes: (OutMode | keyof typeof OutMode)[];
 
     constructor(private readonly container: Container) {
         this.modes = [OutMode.out];
     }
 
-    update(
+    async update(
         particle: Particle,
         direction: OutModeDirection,
         delta: IDelta,
-        outMode: OutMode | OutModeAlt | keyof typeof OutMode,
-    ): void {
+        outMode: OutMode | keyof typeof OutMode,
+    ): Promise<void> {
         if (!this.modes.includes(outMode)) {
             return;
         }
@@ -181,5 +180,7 @@ export class OutOutMode implements IOutModeManager {
                 break;
             }
         }
+
+        await Promise.resolve();
     }
 }

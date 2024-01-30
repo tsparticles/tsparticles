@@ -448,7 +448,7 @@ export class EmitterInstance {
             }
 
             if (position) {
-                this.container.particles.addParticle(position, particlesOptions);
+                await this.container.particles.addParticle(position, particlesOptions);
             }
         }
     }

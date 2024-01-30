@@ -110,7 +110,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
                 },
             }) as RecursivePartial<ParticlesOptions>;
 
-            this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
+            this._particle = await container.particles.addParticle(this._lastPosition, particleOptions);
 
             if (interactivityParticleOptions.replaceCursor) {
                 const element = interactivity.element as HTMLElement | Window | undefined;
@@ -131,8 +131,6 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
         this._particle.position.x = this._lastPosition.x;
         this._particle.position.y = this._lastPosition.y;
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

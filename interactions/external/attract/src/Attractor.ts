@@ -1,28 +1,18 @@
 import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
 import {
-    Circle,
     type Engine,
     ExternalInteractorBase,
-    type ICoordinates,
     type IModes,
     type Modes,
     type Particle,
-    type Range,
     type RecursivePartial,
-    Vector,
-    clamp,
-    getDistances,
-    getEasing,
     isInArray,
     millisecondsToSeconds,
     mouseMoveEvent,
 } from "@tsparticles/engine";
 import { Attract } from "./Options/Classes/Attract.js";
 
-const attractMode = "attract",
-    minRadius = 0,
-    minFactor = 1,
-    identity = 1;
+const attractMode = "attract";
 
 /**
  * Particle external attract manager
@@ -101,18 +91,18 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
             events = options.interactivity.events,
-            hoverEnabled = events.onHover.enable,
-            hoverMode = events.onHover.mode,
-            clickEnabled = events.onClick.enable,
-            clickMode = events.onClick.mode;
+            { enable: hoverEnabled, mode: hoverMode } = events.onHover,
+            { enable: clickEnabled, mode: clickMode } = events.onClick;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
-            this._hoverAttract();
-        } else if (clickEnabled && isInArray(attractMode, clickMode)) {
-            this._clickAttract();
-        }
+            const { hoverAttract } = await import("./Utils.js");
 
-        await Promise.resolve();
+            hoverAttract(this.container, (p) => this.isEnabled(p));
+        } else if (clickEnabled && isInArray(attractMode, clickMode)) {
+            const { clickAttract } = await import("./Utils.js");
+
+            clickAttract(this.container, (p) => this.isEnabled(p));
+        }
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -147,82 +137,4 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     reset(): void {
         // do nothing
     }
-
-    private readonly _clickAttract: () => void = () => {
-        const container = this.container;
-
-        if (!container.attract) {
-            container.attract = { particles: [] };
-        }
-
-        const { attract } = container;
-
-        if (!attract.finish) {
-            if (!attract.count) {
-                attract.count = 0;
-            }
-
-            attract.count++;
-
-            if (attract.count === container.particles.count) {
-                attract.finish = true;
-            }
-        }
-
-        if (attract.clicking) {
-            const mousePos = container.interactivity.mouse.clickPosition,
-                attractRadius = container.retina.attractModeDistance;
-
-            if (!attractRadius || attractRadius < minRadius || !mousePos) {
-                return;
-            }
-
-            this._processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
-        } else if (attract.clicking === false) {
-            attract.particles = [];
-        }
-    };
-
-    private readonly _hoverAttract: () => void = () => {
-        const container = this.container,
-            mousePos = container.interactivity.mouse.position,
-            attractRadius = container.retina.attractModeDistance;
-
-        if (!attractRadius || attractRadius < minRadius || !mousePos) {
-            return;
-        }
-
-        this._processAttract(mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius));
-    };
-
-    private readonly _processAttract: (position: ICoordinates, attractRadius: number, area: Range) => void = (
-        position,
-        attractRadius,
-        area,
-    ) => {
-        const container = this.container,
-            attractOptions = container.actualOptions.interactivity.modes.attract;
-
-        if (!attractOptions) {
-            return;
-        }
-
-        const query = container.particles.quadTree.query(area, (p) => this.isEnabled(p));
-
-        for (const particle of query) {
-            const { dx, dy, distance } = getDistances(particle.position, position),
-                velocity = attractOptions.speed * attractOptions.factor,
-                attractFactor = clamp(
-                    getEasing(attractOptions.easing)(identity - distance / attractRadius) * velocity,
-                    minFactor,
-                    attractOptions.maxSpeed,
-                ),
-                normVec = Vector.create(
-                    !distance ? velocity : (dx / distance) * attractFactor,
-                    !distance ? velocity : (dy / distance) * attractFactor,
-                );
-
-            particle.position.subFrom(normVec);
-        }
-    };
 }

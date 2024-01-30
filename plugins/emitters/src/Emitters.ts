@@ -10,10 +10,10 @@ import {
     isNumber,
     itemFromArray,
 } from "@tsparticles/engine";
-import { Emitter } from "./Options/Classes/Emitter.js";
+import type { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import { EmitterInstance } from "./EmitterInstance.js";
+import type { EmitterInstance } from "./EmitterInstance.js";
 import type { EmitterModeOptions } from "./types.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
@@ -80,7 +80,9 @@ export class Emitters implements IContainerPlugin {
     }
 
     async addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): Promise<EmitterInstance> {
-        const emitterOptions = new Emitter();
+        const { Emitter } = await import("./Options/Classes/Emitter.js"),
+            { EmitterInstance } = await import("./EmitterInstance.js"),
+            emitterOptions = new Emitter();
 
         emitterOptions.load(options);
 

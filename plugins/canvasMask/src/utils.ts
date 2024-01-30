@@ -41,14 +41,14 @@ interface TextLineData {
  * @param override -
  * @param filter -
  */
-export function addParticlesFromCanvasPixels(
+export async function addParticlesFromCanvasPixels(
     container: Container,
     data: CanvasPixelData,
     position: ICoordinates,
     scale: number,
     override: ICanvasMaskOverride,
     filter: (pixel: IRgba) => boolean,
-): void {
+): Promise<void> {
     const { height, width } = data,
         numPixels = height * width,
         indexArray = shuffle(range(numPixels)),
@@ -94,7 +94,7 @@ export function addParticlesFromCanvasPixels(
             };
         }
 
-        container.particles.addParticle(pos, pOptions);
+        await container.particles.addParticle(pos, pOptions);
 
         selectedPixels++;
     }

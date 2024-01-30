@@ -11,7 +11,7 @@ import {
 import type { Absorber } from "./Options/Classes/Absorber.js";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import { AbsorberInstance } from "./AbsorberInstance.js";
+import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 const defaultIndex = 0;
@@ -33,21 +33,24 @@ export class Absorbers implements IContainerPlugin {
                 ? this.array[idxOrName ?? defaultIndex]
                 : this.array.find((t) => t.name === idxOrName);
 
-        container.addAbsorber = (options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance =>
-            this.addAbsorber(options, position);
+        container.addAbsorber = async (
+            options: RecursivePartial<IAbsorber>,
+            position?: ICoordinates,
+        ): Promise<AbsorberInstance> => this.addAbsorber(options, position);
     }
 
-    addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): AbsorberInstance {
-        const absorber = new AbsorberInstance(this, this.container, options, position);
+    async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
+        const { AbsorberInstance } = await import("./AbsorberInstance.js"),
+            absorber = new AbsorberInstance(this, this.container, options, position);
 
         this.array.push(absorber);
 
         return absorber;
     }
 
-    draw(context: CanvasRenderingContext2D): void {
+    async draw(context: CanvasRenderingContext2D): Promise<void> {
         for (const absorber of this.array) {
-            absorber.draw(context);
+            await absorber.draw(context);
         }
     }
 
@@ -60,7 +63,7 @@ export class Absorbers implements IContainerPlugin {
                 absorbersOptions = absorbersModeOptions ?? itemFromSingleOrMultiple(absorberOptions),
                 aPosition = this.container.interactivity.mouse.clickPosition;
 
-            this.addAbsorber(absorbersOptions, aPosition);
+            void this.addAbsorber(absorbersOptions, aPosition);
         }
     }
 
@@ -68,11 +71,15 @@ export class Absorbers implements IContainerPlugin {
         this.absorbers = this.container.actualOptions.absorbers;
         this.interactivityAbsorbers = this.container.actualOptions.interactivity.modes.absorbers;
 
-        executeOnSingleOrMultiple(this.absorbers, (absorber) => {
-            this.addAbsorber(absorber);
+        const promises = executeOnSingleOrMultiple(this.absorbers, async (absorber): Promise<void> => {
+            await this.addAbsorber(absorber);
         });
 
-        await Promise.resolve();
+        if (promises instanceof Array) {
+            await Promise.all(promises);
+        } else {
+            await promises;
+        }
     }
 
     particleUpdate(particle: Particle): void {

@@ -200,6 +200,14 @@ export class Container {
     }
 
     /**
+     * Gets the animation status
+     * @returns `true` is playing, `false` is paused
+     */
+    get animationStatus(): boolean {
+        return !this._paused && !this.pageHidden && guardCheck(this);
+    }
+
+    /**
      * The options used by the container, it's a full {@link Options} object
      * @returns the options used by the container
      */
@@ -445,14 +453,6 @@ export class Container {
     }
 
     /**
-     * Gets the animation status
-     * @returns `true` is playing, `false` is paused
-     */
-    getAnimationStatus(): boolean {
-        return !this._paused && !this.pageHidden && guardCheck(this);
-    }
-
-    /**
      * Handles click event in the container
      * @param mode - click mode to handle
      */
@@ -496,11 +496,13 @@ export class Container {
             }
         }
 
+        await this.particles.initPlugins();
+
         /* options settings */
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
-        const availablePlugins = this._engine.getAvailablePlugins(this);
+        const availablePlugins = await this._engine.getAvailablePlugins(this);
 
         for (const [id, plugin] of availablePlugins) {
             this.plugins.set(id, plugin);
@@ -540,8 +542,8 @@ export class Container {
 
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
-        this.particles.init();
-        this.particles.setDensity();
+        await this.particles.init();
+        await this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
             plugin.particlesSetup?.();
@@ -768,7 +770,7 @@ export class Container {
         }
     };
 
-    private readonly _nextFrame: (timestamp: DOMHighResTimeStamp) => Promise<void> = async (timestamp) => {
+    private readonly _nextFrame = async (timestamp: DOMHighResTimeStamp): Promise<void> => {
         try {
             // FPS limit logic - if we are too fast, just draw without updating
             if (
@@ -801,7 +803,7 @@ export class Container {
                 return;
             }
 
-            if (this.getAnimationStatus()) {
+            if (this.animationStatus) {
                 this.draw(false);
             }
         } catch (e) {

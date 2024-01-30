@@ -1,14 +1,14 @@
-import { OutMode, type OutModeAlt } from "../../../../Enums/Modes/OutMode.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IOutModes } from "../../../Interfaces/Particles/Move/IOutModes.js";
+import { OutMode } from "../../../../Enums/Modes/OutMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 
 export class OutModes implements IOutModes, IOptionLoader<IOutModes> {
-    bottom?: OutMode | keyof typeof OutMode | OutModeAlt;
-    default: OutMode | keyof typeof OutMode | OutModeAlt;
-    left?: OutMode | keyof typeof OutMode | OutModeAlt;
-    right?: OutMode | keyof typeof OutMode | OutModeAlt;
-    top?: OutMode | keyof typeof OutMode | OutModeAlt;
+    bottom?: OutMode | keyof typeof OutMode;
+    default: OutMode | keyof typeof OutMode;
+    left?: OutMode | keyof typeof OutMode;
+    right?: OutMode | keyof typeof OutMode;
+    top?: OutMode | keyof typeof OutMode;
 
     constructor() {
         this.default = OutMode.out;

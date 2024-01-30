@@ -16,7 +16,6 @@ import {
     itemFromArray,
     percentDenominator,
 } from "@tsparticles/engine";
-import { calcClosestPtOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 import type { PolygonMaskContainer } from "./types.js";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement.js";
@@ -68,7 +67,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         );
     }
 
-    draw(context: CanvasRenderingContext2D): void {
+    async draw(context: CanvasRenderingContext2D): Promise<void> {
         if (!this.paths?.length) {
             return;
         }
@@ -95,8 +94,12 @@ export class PolygonMaskInstance implements IContainerPlugin {
             }
 
             if (path2d && this.offset) {
+                const { drawPolygonMaskPath } = await import("./utils.js");
+
                 drawPolygonMaskPath(context, path2d, polygonDraw.stroke, this.offset);
             } else if (rawData) {
+                const { drawPolygonMask } = await import("./utils.js");
+
                 drawPolygonMask(context, rawData, polygonDraw.stroke);
             }
         }
@@ -120,8 +123,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     }
 
-    particleBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): boolean {
-        return this._polygonBounce(particle, delta, direction);
+    async particleBounce(particle: Particle, delta: IDelta, direction: OutModeDirection): Promise<boolean> {
+        return await this._polygonBounce(particle, delta, direction);
     }
 
     particlePosition(position?: ICoordinates): ICoordinates | undefined {
@@ -305,7 +308,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 throw new Error(`${errorPrefix} occurred during polygon mask download`);
             }
 
-            return this._parseSvgPath(await req.text(), force);
+            return await this._parseSvgPath(await req.text(), force);
         };
 
     private readonly _drawPoints: () => void = () => {
@@ -314,7 +317,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         for (const item of this.raw) {
-            this._container.particles.addParticle({
+            void this._container.particles.addParticle({
                 x: item.x,
                 y: item.y,
             });
@@ -411,7 +414,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         };
     };
 
-    private readonly _initRawData: (force?: boolean) => Promise<void> = async (force) => {
+    private readonly _initRawData = async (force?: boolean): Promise<void> => {
         const options = this._container.actualOptions.polygon;
 
         if (!options) {
@@ -436,7 +439,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 svg = `<svg ${namespaces} width="${data.size.width}" height="${data.size.height}">${path}</svg>`;
             }
 
-            this.raw = this._parseSvgPath(svg, force);
+            this.raw = await this._parseSvgPath(svg, force);
         }
 
         this._createPath2D();
@@ -446,7 +449,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         });
     };
 
-    private readonly _parseSvgPath: (xml: string, force?: boolean) => ICoordinates[] | undefined = (xml, force) => {
+    private readonly _parseSvgPath = async (xml: string, force?: boolean): Promise<ICoordinates[] | undefined> => {
         const forceDownload = force ?? false;
 
         if (this.paths !== undefined && !forceDownload) {
@@ -501,14 +504,16 @@ export class PolygonMaskInstance implements IContainerPlugin {
             y: (canvasSize.height * position.y) / percentDenominator - this.dimension.height * half,
         };
 
+        const { parsePaths } = await import("./utils.js");
+
         return parsePaths(this.paths, scale, this.offset);
     };
 
-    private readonly _polygonBounce: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean = (
-        particle,
-        _delta,
-        direction,
-    ) => {
+    private readonly _polygonBounce = async (
+        particle: Particle,
+        delta: IDelta,
+        direction: OutModeDirection,
+    ): Promise<boolean> => {
         const options = this._container.actualOptions.polygon;
 
         if (!this.raw || !options?.enable || direction !== OutModeDirection.top) {
@@ -523,15 +528,18 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
             for (let i = 0, j = this.raw.length - offset; i < this.raw.length; j = i++) {
                 const pi = this.raw[i],
-                    pj = this.raw[j];
+                    pj = this.raw[j],
+                    { calcClosestPointOnSegment } = await import("./utils.js");
 
-                closest = calcClosestPtOnSegment(pi, pj, pos);
+                closest = calcClosestPointOnSegment(pi, pj, pos);
 
                 const dist = getDistances(pos, closest);
 
                 [dx, dy] = [dist.dx, dist.dy];
 
                 if (dist.distance < radius) {
+                    const { segmentBounce } = await import("./utils.js");
+
                     segmentBounce(pi, pj, particle.velocity);
 
                     return true;

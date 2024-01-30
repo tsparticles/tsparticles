@@ -6,9 +6,9 @@ import type { Vector } from "../Utils/Vector.js";
 /**
  */
 export interface IMovePathGenerator {
-    generate: (particle: Particle, delta: IDelta) => Vector;
+    generate: (particle: Particle, delta: IDelta) => Promise<Vector>;
 
-    init: (container: Container) => void;
+    init: (container: Container) => Promise<void>;
 
     reset: (particle: Particle) => void;
 
