@@ -49,7 +49,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             return;
         }
 
-        const pathLength = particle.trailLength;
+        const pathLength = particle.trailLength + radius;
 
         particle.trail.push({
             color: context.fillStyle ?? context.strokeStyle,

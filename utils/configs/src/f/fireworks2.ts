@@ -15,6 +15,9 @@ const options: ISourceOptions = {
     },
     backgroundMask: {
         enable: true,
+        cover: {
+            color: "#000",
+        },
     },
     emitters: {
         direction: "top",

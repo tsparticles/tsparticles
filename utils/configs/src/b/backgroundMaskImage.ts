@@ -5,10 +5,7 @@ const options: ISourceOptions = {
     name: "Background Mask Image",
     particles: {
         number: {
-            value: 80,
-            density: {
-                enable: true,
-            },
+            value: 100,
         },
         color: {
             value: "#ffffff",
@@ -21,16 +18,13 @@ const options: ISourceOptions = {
         },
         size: {
             value: {
-                min: 1,
-                max: 30,
+                min: 10,
+                max: 50,
             },
-        },
-        links: {
-            enable: true,
-            distance: 150,
-            color: "#ffffff",
-            opacity: 1,
-            width: 1,
+            animation: {
+                enable: true,
+                speed: 25,
+            },
         },
         move: {
             enable: true,
@@ -65,7 +59,6 @@ const options: ISourceOptions = {
         enable: true,
         cover: {
             image: "https://particles.js.org/images/background2.jpg",
-            opacity: 1,
         },
     },
     background: {
