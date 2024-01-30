@@ -4,10 +4,5 @@
     "ts"
   ],
   "spec": "src/**/*.ts",
-  "require": [
-    "jsdom-global/register",
-    "ts-node/register",
-    "source-map-support/register"
-  ],
   "recursive": true
 }
