@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/tsparticles/tsparticles/compare/v3.1.0...v3.2.0) (2024-01-31)
+
+### Features
+
+-   added new particle external interaction ([f51ce7f](https://github.com/tsparticles/tsparticles/commit/f51ce7f104fa930fc68a257b64bbe8cf65fb9794))
+-   improving dynamic imports ([f05c2ee](https://github.com/tsparticles/tsparticles/commit/f05c2ee643978b6ed4abe8c4a54d0c3cc29727a8))
+-   improving dynamic imports ([f9f450d](https://github.com/tsparticles/tsparticles/commit/f9f450d438d0cc3e5710ec5c1977516fb94c6f21))
+-   improving dynamic imports ([c592b29](https://github.com/tsparticles/tsparticles/commit/c592b2995a3cdf6864dcc331402023373c79107d))
+
 # [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
 
 **Note:** Version bump only for package @tsparticles/shape-circle
