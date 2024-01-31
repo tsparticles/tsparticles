@@ -42,12 +42,6 @@ describe("Options tests", () => {
         expect(options.background.opacity).to.be.equal(1);
 
         /* background mask */
-        expect(options.backgroundMask.cover)
-            .to.be.an("object")
-            .to.have.property("color")
-            .to.be.an("object")
-            .to.have.property("value")
-            .to.equal("#fff");
         expect(options.backgroundMask.cover).to.be.an("object").to.have.property("opacity").to.equal(1);
         expect(options.backgroundMask.enable).to.be.false;
 

@@ -46,9 +46,9 @@ describe("Particle", async () => {
                 },
             };
 
-        describe("shape - no emitter", () => {
+        describe("shape - no emitter", async () => {
             it("should set the shape property to circle when default Particles options are used", async () => {
-                const particle = container.particles.addParticle();
+                const particle = await container.particles.addParticle();
 
                 expect(particle?.shape).to.equal("circle");
             });
@@ -58,7 +58,7 @@ describe("Particle", async () => {
                 container.options.load(squareShapeOptions);
                 await container.refresh();
 
-                const particle = container.particles.addParticle();
+                const particle = await container.particles.addParticle();
 
                 expect(particle?.shape).to.equal("square");
             });
@@ -68,7 +68,7 @@ describe("Particle", async () => {
                 container.options.load(multipleShapeTypeOptions);
                 await container.refresh();
 
-                const particle = container.particles.addParticle();
+                const particle = await container.particles.addParticle();
 
                 expect(particle?.shape).to.be.a("string");
                 expect(shapeTypes).to.include(particle?.shape);
@@ -90,7 +90,7 @@ describe("Particle", async () => {
                 await container.reset();
                 container.options.load(squareShapeOptions);
 
-                const particle = container.particles.addParticle();
+                const particle = await container.particles.addParticle();
 
                 expect(particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
                 expect(particle?.shapeClose).to.eql(squareShapeOptions.particles.shape.options.square.close);
@@ -101,7 +101,7 @@ describe("Particle", async () => {
                 await container.reset();
                 container.options.load(multipleShapeTypeOptions);
 
-                const particle = container.particles.addParticle();
+                const particle = await container.particles.addParticle();
 
                 expect(particle?.shape).to.be.a("string");
 
@@ -142,19 +142,19 @@ describe("Particle", async () => {
             await container.reset();
         });
 
-        it("should always return the position when specified", () => {
+        it("should always return the position when specified", async () => {
             const position: ICoordinates = calcExactPositionOrRandomFromSize({
                 size: container.canvas.size,
             });
 
-            const particle = container.particles.addParticle(position);
+            const particle = await container.particles.addParticle(position);
 
             expect(particle?.position.x).to.be.equal(position.x);
             expect(particle?.position.y).to.be.equal(position.y);
         });
 
-        it("should always return a position that is on the canvas when no position specified", () => {
-            const particle = container.particles.addParticle();
+        it("should always return a position that is on the canvas when no position specified", async () => {
+            const particle = await container.particles.addParticle();
 
             expect(particle?.position.x).to.be.at.least(0);
             expect(particle?.position.x).to.be.at.most(width);

@@ -7,6 +7,7 @@ import emitterImageShape from "./emitterImageShape.js";
 import emitterImages from "./emitterImages.js";
 import emitterPaths from "./emitterPaths.js";
 import emitterShapes from "./emitterShapes.js";
+import emitterSpawnColor from "./emitterSpawnColor.js";
 import emitterTextShape from "./emitterTextShape.js";
 import emitterTextStrokeShape from "./emitterTextStrokeShape.js";
 
@@ -20,6 +21,7 @@ export default {
     emitterImages,
     emitterPaths,
     emitterShapes,
+    emitterSpawnColor,
     emitterTextShape,
     emitterTextStrokeShape,
 };

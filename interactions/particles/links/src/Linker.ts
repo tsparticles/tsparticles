@@ -9,7 +9,6 @@ import {
     getLinkRandomColor,
 } from "@tsparticles/engine";
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
-import { CircleWarp } from "./CircleWarp.js";
 import { Links } from "./Options/Classes/Links.js";
 
 const squarePower = 2,
@@ -89,11 +88,19 @@ export class Linker extends ParticlesInteractorBase {
         const linkOpt1 = p1.options.links,
             optOpacity = linkOpt1.opacity,
             optDistance = p1.retina.linksDistance ?? minDistance,
-            warp = linkOpt1.warp,
-            range = warp
-                ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize)
-                : new Circle(pos1.x, pos1.y, optDistance),
-            query = container.particles.quadTree.query(range) as LinkParticle[];
+            warp = linkOpt1.warp;
+
+        let range: Circle;
+
+        if (warp) {
+            const { CircleWarp } = await import("./CircleWarp.js");
+
+            range = new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize);
+        } else {
+            range = new Circle(pos1.x, pos1.y, optDistance);
+        }
+
+        const query = container.particles.quadTree.query(range) as LinkParticle[];
 
         for (const p2 of query) {
             const linkOpt2 = p2.options.links;
@@ -133,8 +140,6 @@ export class Linker extends ParticlesInteractorBase {
                 opacity: opacityLine,
             });
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: LinkParticle): boolean {

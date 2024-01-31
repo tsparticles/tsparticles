@@ -64,10 +64,12 @@ const options: ISourceOptions = {
     backgroundMask: {
         enable: true,
         cover: {
-            value: {
-                r: 255,
-                g: 255,
-                b: 255,
+            color: {
+                value: {
+                    r: 255,
+                    g: 255,
+                    b: 255,
+                },
             },
         },
     },

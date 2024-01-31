@@ -4,7 +4,7 @@
  */
 import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
 import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
-import { Container } from "./Container.js";
+import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
@@ -42,7 +42,7 @@ interface DataFromUrlParams {
     url: SingleOrMultiple<string>;
 }
 
-type GenericInitializer<T> = (container: Container) => T;
+type GenericInitializer<T> = (container: Container) => Promise<T>;
 
 /**
  * Alias for interactivity manager initializer function
@@ -69,16 +69,16 @@ interface Initializers {
  * @param force -
  * @returns the items from the given initializer
  */
-function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
     container: Container,
     map: Map<Container, TItem[]>,
     initializers: Map<string, TInitializer>,
     force = false,
-): TItem[] {
+): Promise<TItem[]> {
     let res = map.get(container);
 
     if (!res || force) {
-        res = [...initializers.values()].map((t) => t(container));
+        res = await Promise.all([...initializers.values()].map((t) => t(container)));
 
         map.set(container, res);
     }
@@ -100,7 +100,7 @@ async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple
     const response = await fetch(url);
 
     if (response.ok) {
-        return response.json() as Promise<SingleOrMultiple<ISourceOptions>>;
+        return (await response.json()) as SingleOrMultiple<ISourceOptions>;
     }
 
     getLogger().error(`${errorPrefix} ${response.status} while retrieving config file`);
@@ -243,11 +243,7 @@ export class Engine {
      * @param interactorInitializer - the interaction manager initializer
      * @param refresh - if true the engine will refresh all the containers
      */
-    async addInteractor(
-        name: string,
-        interactorInitializer: (container: Container) => IInteractor,
-        refresh = true,
-    ): Promise<void> {
+    async addInteractor(name: string, interactorInitializer: InteractorInitializer, refresh = true): Promise<void> {
         this._initializers.interactors.set(name, interactorInitializer);
 
         await this.refresh(refresh);
@@ -258,11 +254,7 @@ export class Engine {
      * @param moverInitializer - the mover initializer
      * @param refresh - if true the engine will refresh all the containers
      */
-    async addMover(
-        name: string,
-        moverInitializer: (container: Container) => IParticleMover,
-        refresh = true,
-    ): Promise<void> {
+    async addMover(name: string, moverInitializer: MoverInitializer, refresh = true): Promise<void> {
         this._initializers.movers.set(name, moverInitializer);
 
         await this.refresh(refresh);
@@ -274,11 +266,7 @@ export class Engine {
      * @param updaterInitializer - the particle updater initializer
      * @param refresh - if true the engine will refresh all the containers
      */
-    async addParticleUpdater(
-        name: string,
-        updaterInitializer: (container: Container) => IParticleUpdater,
-        refresh = true,
-    ): Promise<void> {
+    async addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer, refresh = true): Promise<void> {
         this._initializers.updaters.set(name, updaterInitializer);
 
         await this.refresh(refresh);
@@ -395,12 +383,12 @@ export class Engine {
      * @param container - the container used to check which are the valid plugins
      * @returns a map containing all enabled plugins, with the id as a key
      */
-    getAvailablePlugins(container: Container): Map<string, IContainerPlugin> {
+    async getAvailablePlugins(container: Container): Promise<Map<string, IContainerPlugin>> {
         const res = new Map<string, IContainerPlugin>();
 
         for (const plugin of this.plugins) {
             if (plugin.needsPlugin(container.actualOptions)) {
-                res.set(plugin.id, plugin.getPlugin(container));
+                res.set(plugin.id, await plugin.getPlugin(container));
             }
         }
 
@@ -422,12 +410,12 @@ export class Engine {
      * @param force - if true reloads the interaction managers collection for the given container
      * @returns the array of interaction managers for the given container
      */
-    getInteractors(container: Container, force = false): IInteractor[] {
-        return getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
+    async getInteractors(container: Container, force = false): Promise<IInteractor[]> {
+        return await getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
     }
 
-    getMovers(container: Container, force = false): IParticleMover[] {
-        return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
+    async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
+        return await getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
     }
 
     /**
@@ -488,8 +476,8 @@ export class Engine {
      * @param force - if true reloads the updater collection for the given container
      * @returns the array of updaters for the given container
      */
-    getUpdaters(container: Container, force = false): IParticleUpdater[] {
-        return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
+    async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
+        return await getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
     }
 
     /**
@@ -578,7 +566,8 @@ export class Engine {
         }
 
         /* launch tsParticles */
-        const newItem = new Container(this, id, currentOptions);
+        const { Container } = await import("./Container.js"),
+            newItem = new Container(this, id, currentOptions);
 
         if (oldIndex >= minIndex) {
             const deleteCount = 0;
@@ -637,7 +626,7 @@ export class Engine {
             return;
         }
 
-        await Promise.allSettled(this.dom().map((t) => t.refresh()));
+        await Promise.all(this.dom().map((t) => t.refresh()));
     }
 
     /**

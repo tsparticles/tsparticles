@@ -32,6 +32,40 @@ function setTransformValue(
 }
 
 /**
+ *
+ * @param canvas -
+ * @param style -
+ * @param important -
+ */
+function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration>, important = false): void {
+    if (!style) {
+        return;
+    }
+
+    const element = canvas;
+
+    if (!element) {
+        return;
+    }
+
+    const elementStyle = element.style;
+
+    if (!elementStyle) {
+        return;
+    }
+
+    for (const key in style) {
+        const value = style[key];
+
+        if (!value) {
+            continue;
+        }
+
+        elementStyle.setProperty(key, value, important ? "important" : "");
+    }
+}
+
+/**
  * Canvas manager
  */
 export class Canvas {
@@ -53,6 +87,7 @@ export class Canvas {
     private _context: CanvasRenderingContext2D | null;
 
     private _coverColorStyle?: string;
+    private _coverImage?: { image: HTMLImageElement; opacity: number };
     private _generated;
     private _mutationObserver?: MutationObserver;
     private _originalStyle?: CSSStyleDeclaration;
@@ -142,12 +177,22 @@ export class Canvas {
         return cb(ctx);
     }
 
+    drawAsync<T>(cb: (context: CanvasRenderingContext2D) => Promise<T>): Promise<T | undefined> {
+        const ctx = this._context;
+
+        if (!ctx) {
+            return Promise.resolve(undefined);
+        }
+
+        return cb(ctx);
+    }
+
     /**
      * Draws the specified particle in the canvas
      * @param particle - the particle to draw
      * @param delta - the frame delta time values
      */
-    drawParticle(particle: Particle, delta: IDelta): void {
+    async drawParticle(particle: Particle, delta: IDelta): Promise<void> {
         if (particle.spawning || particle.destroyed) {
             return;
         }
@@ -176,7 +221,7 @@ export class Canvas {
             return;
         }
 
-        this.draw((ctx) => {
+        await this.drawAsync(async (ctx): Promise<void> => {
             const container = this.container,
                 options = container.actualOptions,
                 zIndexOptions = particle.options.zIndex,
@@ -197,7 +242,7 @@ export class Canvas {
 
             this._applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
 
-            drawParticle({
+            await drawParticle({
                 container,
                 context: ctx,
                 particle,
@@ -221,8 +266,8 @@ export class Canvas {
      * @param particle - the particle used
      * @param delta - the frame delta time values
      */
-    drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        this.draw((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
+    async drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): Promise<void> {
+        await this.drawAsync((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
     }
 
     /**
@@ -230,8 +275,8 @@ export class Canvas {
      * @param plugin - the plugin to use for drawing stuff
      * @param delta - the frame delta time values
      */
-    drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
-        this.draw((ctx) => drawPlugin(ctx, plugin, delta));
+    async drawPlugin(plugin: IContainerPlugin, delta: IDelta): Promise<void> {
+        await this.drawAsync((ctx) => drawPlugin(ctx, plugin, delta));
     }
 
     /**
@@ -248,7 +293,7 @@ export class Canvas {
         });
         this.resize();
         this._initStyle();
-        this._initCover();
+        await this._initCover();
 
         try {
             await this._initTrail();
@@ -380,7 +425,13 @@ export class Canvas {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
                 clear(ctx, this.size);
 
-                this._paintBase(this._coverColorStyle);
+                if (this._coverImage) {
+                    this._paintImage(this._coverImage.image, this._coverImage.opacity);
+                } else if (this._coverColorStyle) {
+                    this._paintBase(this._coverColorStyle);
+                } else {
+                    this._paintBase();
+                }
             } else {
                 this._paintBase();
             }
@@ -447,7 +498,7 @@ export class Canvas {
             needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
-        container.particles.setDensity();
+        await container.particles.setDensity();
 
         this._applyResizePlugins();
 
@@ -521,19 +572,45 @@ export class Canvas {
         return [fColor, sColor];
     };
 
-    private readonly _initCover: () => void = () => {
+    private readonly _initCover = async (): Promise<void> => {
         const options = this.container.actualOptions,
             cover = options.backgroundMask.cover,
-            color = cover.color,
-            coverRgb = rangeColorToRgb(color);
+            color = cover.color;
 
-        if (coverRgb) {
-            const coverColor = {
-                ...coverRgb,
-                a: cover.opacity,
-            };
+        if (color) {
+            const coverRgb = rangeColorToRgb(color);
 
-            this._coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+            if (coverRgb) {
+                const coverColor = {
+                    ...coverRgb,
+                    a: cover.opacity,
+                };
+
+                this._coverColorStyle = getStyleFromRgb(coverColor, coverColor.a);
+            }
+        } else {
+            await new Promise<void>((resolve, reject) => {
+                if (!cover.image) {
+                    return;
+                }
+
+                const img = document.createElement("img");
+
+                img.addEventListener("load", () => {
+                    this._coverImage = {
+                        image: img,
+                        opacity: cover.opacity,
+                    };
+
+                    resolve();
+                });
+
+                img.addEventListener("error", (evt) => {
+                    reject(evt.error);
+                });
+
+                img.src = cover.image;
+            });
         }
     };
 
@@ -650,14 +727,7 @@ export class Canvas {
             return;
         }
 
-        const style = element.style;
-
-        style.position = originalStyle.position;
-        style.zIndex = originalStyle.zIndex;
-        style.top = originalStyle.top;
-        style.left = originalStyle.left;
-        style.width = originalStyle.width;
-        style.height = originalStyle.height;
+        setStyle(element, originalStyle);
     };
 
     private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = (callback) => {
@@ -675,15 +745,19 @@ export class Canvas {
             return;
         }
 
-        const priority = "important",
-            style = element.style,
-            radix = 10;
+        const radix = 10;
 
-        style.setProperty("position", "fixed", priority);
-        style.setProperty("z-index", this.container.actualOptions.fullScreen.zIndex.toString(radix), priority);
-        style.setProperty("top", "0", priority);
-        style.setProperty("left", "0", priority);
-        style.setProperty("width", "100%", priority);
-        style.setProperty("height", "100%", priority);
+        setStyle(
+            element,
+            {
+                position: "fixed",
+                zIndex: this.container.actualOptions.fullScreen.zIndex.toString(radix),
+                top: "0",
+                left: "0",
+                width: "100%",
+                height: "100%",
+            },
+            true,
+        );
     };
 }

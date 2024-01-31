@@ -4,8 +4,10 @@ import {
     type Particle,
     RotateDirection,
     clamp,
+    getDistance,
     getDistances,
     getRandom,
+    getRangeValue,
 } from "@tsparticles/engine";
 import type { MoveParticle } from "./Types.js";
 
@@ -76,15 +78,15 @@ export function applyDistance(particle: MoveParticle): void {
  * @param moveDrift -
  * @param delta -
  */
-export function move(
+export async function move(
     particle: MoveParticle,
     moveOptions: Move,
     moveSpeed: number,
     maxSpeed: number,
     moveDrift: number,
     delta: IDelta,
-): void {
-    applyPath(particle, delta);
+): Promise<void> {
+    await applyPath(particle, delta);
 
     const gravityOptions = particle.gravity,
         gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity;
@@ -170,7 +172,7 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
  * @param particle -
  * @param delta -
  */
-export function applyPath(particle: Particle, delta: IDelta): void {
+export async function applyPath(particle: Particle, delta: IDelta): Promise<void> {
     const particlesOptions = particle.options,
         pathOptions = particlesOptions.move.path,
         pathEnabled = pathOptions.enable;
@@ -185,7 +187,7 @@ export function applyPath(particle: Particle, delta: IDelta): void {
         return;
     }
 
-    const path = particle.pathGenerator?.generate(particle, delta);
+    const path = await particle.pathGenerator?.generate(particle, delta);
 
     if (path) {
         particle.velocity.addTo(path);
@@ -205,4 +207,39 @@ export function applyPath(particle: Particle, delta: IDelta): void {
  */
 export function getProximitySpeedFactor(particle: Particle): number {
     return particle.slow.inRange ? particle.slow.factor : identity;
+}
+
+/**
+ * @param particle -
+ */
+export function initSpin(particle: MoveParticle): void {
+    const container = particle.container,
+        options = particle.options,
+        spinOptions = options.move.spin;
+
+    if (!spinOptions.enable) {
+        return;
+    }
+
+    const spinPos = spinOptions.position ?? { x: 50, y: 50 },
+        spinFactor = 0.01,
+        spinCenter = {
+            x: spinPos.x * spinFactor * container.canvas.size.width,
+            y: spinPos.y * spinFactor * container.canvas.size.height,
+        },
+        pos = particle.getPosition(),
+        distance = getDistance(pos, spinCenter),
+        spinAcceleration = getRangeValue(spinOptions.acceleration);
+
+    particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
+
+    const minVelocity = 0;
+
+    particle.spin = {
+        center: spinCenter,
+        direction: particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise,
+        angle: particle.velocity.angle,
+        radius: distance,
+        acceleration: particle.retina.spinAcceleration,
+    };
 }

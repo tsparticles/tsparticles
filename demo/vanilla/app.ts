@@ -106,6 +106,7 @@ app.use("/plugin-absorbers", express.static("./node_modules/@tsparticles/plugin-
 app.use("/plugin-emitters", express.static("./node_modules/@tsparticles/plugin-emitters"));
 app.use("/plugin-polygon-mask", express.static("./node_modules/@tsparticles/plugin-polygon-mask"));
 app.use("/plugin-poisson-disc", express.static("./node_modules/@tsparticles/plugin-poisson-disc"));
+app.use("/interaction-external-particle", express.static("./node_modules/@tsparticles/interaction-external-particle"));
 app.use("/interaction-external-pop", express.static("./node_modules/@tsparticles/interaction-external-pop"));
 app.use("/interaction-light", express.static("./node_modules/@tsparticles/interaction-light"));
 app.use("/interaction-particles-repulse", express.static("./node_modules/@tsparticles/interaction-particles-repulse"));

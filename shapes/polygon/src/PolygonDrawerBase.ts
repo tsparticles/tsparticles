@@ -3,42 +3,23 @@ import {
     type IShapeDrawData,
     type IShapeDrawer,
     type Particle,
-    degToRad,
     getRangeValue,
 } from "@tsparticles/engine";
 import type { IPolygonShape } from "./IPolygonShape.js";
 import type { ISide } from "./ISide.js";
 
-const piDeg = 180,
-    origin: ICoordinates = { x: 0, y: 0 },
-    defaultSides = 5,
-    sidesOffset = 2;
+const defaultSides = 5;
 
 /**
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
-    draw(data: IShapeDrawData): void {
-        const { context, particle, radius } = data,
+    async draw(data: IShapeDrawData): Promise<void> {
+        const { particle, radius } = data,
             start = this.getCenter(particle, radius),
             side = this.getSidesData(particle, radius),
-            sideCount = side.count.numerator * side.count.denominator,
-            decimalSides = side.count.numerator / side.count.denominator,
-            interiorAngleDegrees = (piDeg * (decimalSides - sidesOffset)) / decimalSides,
-            interiorAngle = Math.PI - degToRad(interiorAngleDegrees); // convert to radians
+            { drawPolygon } = await import("./Utils.js");
 
-        if (!context) {
-            return;
-        }
-
-        context.beginPath();
-        context.translate(start.x, start.y);
-        context.moveTo(origin.x, origin.y);
-
-        for (let i = 0; i < sideCount; i++) {
-            context.lineTo(side.length, origin.y);
-            context.translate(side.length, origin.y);
-            context.rotate(interiorAngle);
-        }
+        drawPolygon(data, start, side);
     }
 
     getSidesCount(particle: Particle): number {

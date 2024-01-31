@@ -1,4 +1,3 @@
-import { Collider } from "./Collider.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -6,5 +5,13 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadParticlesCollisionsInteraction(engine: Engine, refresh = true): Promise<void> {
-    await engine.addInteractor("particlesCollisions", (container) => new Collider(container), refresh);
+    await engine.addInteractor(
+        "particlesCollisions",
+        async (container) => {
+            const { Collider } = await import("./Collider.js");
+
+            return new Collider(container);
+        },
+        refresh,
+    );
 }

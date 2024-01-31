@@ -7,38 +7,20 @@ const defaultInnerRadius = 1,
     defaultWidthFactor = 10;
 
 export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
-    draw(data: IShapeDrawData<SpiralParticle>): void {
-        const { context, particle, radius } = data;
+    async draw(data: IShapeDrawData<SpiralParticle>): Promise<void> {
+        const { drawSpiral } = await import("./Utils.js");
 
-        if (
-            particle.spiralInnerRadius === undefined ||
-            particle.spiralLineSpacing === undefined ||
-            particle.spiralWidthFactor === undefined
-        ) {
-            return;
-        }
-
-        const realWidth = (radius - particle.spiralInnerRadius) / particle.spiralLineSpacing,
-            widthFactor = 10;
-
-        for (let i = 0; i < realWidth * widthFactor; i++) {
-            const angle = i / widthFactor,
-                factor = particle.spiralInnerRadius + particle.spiralLineSpacing * angle,
-                pos = {
-                    x: factor * Math.cos(angle),
-                    y: factor * Math.sin(angle),
-                };
-
-            context.lineTo(pos.x, pos.y);
-        }
+        drawSpiral(data);
     }
 
-    particleInit(container: Container, particle: SpiralParticle): void {
+    async particleInit(container: Container, particle: SpiralParticle): Promise<void> {
         const pixelRatio = container.retina.pixelRatio,
             shapeData = particle.shapeData as ISpiralData | undefined;
 
         particle.spiralInnerRadius = getRangeValue(shapeData?.innerRadius ?? defaultInnerRadius) * pixelRatio;
         particle.spiralLineSpacing = getRangeValue(shapeData?.lineSpacing ?? defaultLineSpacing) * pixelRatio;
         particle.spiralWidthFactor = getRangeValue(shapeData?.widthFactor ?? defaultWidthFactor);
+
+        await Promise.resolve();
     }
 }

@@ -109,9 +109,7 @@ const options: ISourceOptions = {
     },
     backgroundMask: {
         cover: {
-            color: {
-                value: "#fff",
-            },
+            color: "#fff",
             opacity: 1,
         },
         enable: false,

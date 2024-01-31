@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-cubic",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "tsParticles easing cubic plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.1.0"
+    "@tsparticles/engine": "^3.2.0"
   },
   "publishConfig": {
     "access": "public"

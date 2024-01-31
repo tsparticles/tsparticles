@@ -1,6 +1,5 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
 import type { IHsl, IRgb } from "./Interfaces/Colors.js";
-import { OutMode, type OutModeAlt } from "../Enums/Modes/OutMode.js";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
@@ -39,6 +38,7 @@ import type { IShapeValues } from "./Interfaces/IShapeValues.js";
 import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
 import { Interactivity } from "../Options/Classes/Interactivity/Interactivity.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
+import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
@@ -59,7 +59,7 @@ const defaultRetryCount = 0,
 interface FixOutModeParams {
     /**
      */
-    checkModes: (OutMode | keyof typeof OutMode | OutModeAlt)[];
+    checkModes: (OutMode | keyof typeof OutMode)[];
     /**
      */
     coord: number;
@@ -68,7 +68,7 @@ interface FixOutModeParams {
     maxCoord: number;
     /**
      */
-    outMode: OutMode | keyof typeof OutMode | OutModeAlt;
+    outMode: OutMode | keyof typeof OutMode;
     /**
      */
     radius: number;
@@ -379,15 +379,9 @@ export class Particle {
 
     constructor(
         engine: Engine,
-        id: number,
         readonly container: Container,
-        position?: ICoordinates,
-        overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string,
     ) {
         this._engine = engine;
-
-        this.init(id, position, overrideOptions, group);
     }
 
     destroy(override?: boolean): void {
@@ -423,15 +417,15 @@ export class Particle {
         });
     }
 
-    draw(delta: IDelta): void {
+    async draw(delta: IDelta): Promise<void> {
         const container = this.container,
             canvas = container.canvas;
 
         for (const [, plugin] of container.plugins) {
-            canvas.drawParticlePlugin(plugin, this, delta);
+            await canvas.drawParticlePlugin(plugin, this, delta);
         }
 
-        canvas.drawParticle(this, delta);
+        await canvas.drawParticle(this, delta);
     }
 
     getFillColor(): IHsl | undefined {
@@ -458,12 +452,12 @@ export class Particle {
         return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
     }
 
-    init(
+    async init(
         id: number,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
-    ): void {
+    ): Promise<void> {
         const container = this.container,
             engine = this._engine;
 
@@ -560,7 +554,7 @@ export class Particle {
             this.pathGenerator = this._engine.getPathGenerator(pathOptions.generator);
 
             if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
-                this.pathGenerator.init(container);
+                await this.pathGenerator.init(container);
             }
         }
 
@@ -607,7 +601,7 @@ export class Particle {
         }
 
         if (effectDrawer?.loadEffect) {
-            effectDrawer.loadEffect(this);
+            await effectDrawer.loadEffect(this);
         }
 
         let shapeDrawer = container.shapeDrawers.get(this.shape);
@@ -621,7 +615,7 @@ export class Particle {
         }
 
         if (shapeDrawer?.loadShape) {
-            shapeDrawer.loadShape(this);
+            await shapeDrawer.loadShape(this);
         }
 
         const sideCountFunc = shapeDrawer?.getSidesCount;
@@ -634,15 +628,15 @@ export class Particle {
         this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of particles.updaters) {
-            updater.init(this);
+            await updater.init(this);
         }
 
         for (const mover of particles.movers) {
-            mover.init?.(this);
+            await mover.init?.(this);
         }
 
-        effectDrawer?.particleInit?.(container, this);
-        shapeDrawer?.particleInit?.(container, this);
+        await effectDrawer?.particleInit?.(container, this);
+        await shapeDrawer?.particleInit?.(container, this);
 
         for (const [, plugin] of container.plugins) {
             plugin.particleCreated?.(this);
@@ -699,20 +693,20 @@ export class Particle {
             radius = this.getRadius(),
             /* check position - into the canvas */
             outModes = this.options.move.outModes,
-            fixHorizontal = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
+            fixHorizontal = (outMode: OutMode | keyof typeof OutMode): void => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceHorizontal],
+                    checkModes: [OutMode.bounce],
                     coord: pos.x,
                     maxCoord: container.canvas.size.width,
                     setCb: (value: number) => (pos.x += value),
                     radius,
                 });
             },
-            fixVertical = (outMode: OutMode | keyof typeof OutMode | OutModeAlt): void => {
+            fixVertical = (outMode: OutMode | keyof typeof OutMode): void => {
                 fixOutMode({
                     outMode,
-                    checkModes: [OutMode.bounce, OutMode.bounceVertical],
+                    checkModes: [OutMode.bounce],
                     coord: pos.y,
                     maxCoord: container.canvas.size.height,
                     setCb: (value: number) => (pos.y += value),

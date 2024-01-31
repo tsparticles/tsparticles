@@ -37,7 +37,7 @@ export class TiltUpdater implements IParticleUpdater {
         };
     }
 
-    init(particle: TiltParticle): void {
+    async init(particle: TiltParticle): Promise<void> {
         const tiltOptions = particle.options.tilt;
 
         if (!tiltOptions) {
@@ -83,6 +83,8 @@ export class TiltUpdater implements IParticleUpdater {
                 particle.tilt.velocity *= getRandom();
             }
         }
+
+        await Promise.resolve();
     }
 
     isEnabled(particle: TiltParticle): boolean {
@@ -104,11 +106,13 @@ export class TiltUpdater implements IParticleUpdater {
         }
     }
 
-    update(particle: TiltParticle, delta: IDelta): void {
+    async update(particle: TiltParticle, delta: IDelta): Promise<void> {
         if (!this.isEnabled(particle) || !particle.tilt) {
             return;
         }
 
         updateAnimation(particle, particle.tilt, false, DestroyType.none, delta);
+
+        await Promise.resolve();
     }
 }

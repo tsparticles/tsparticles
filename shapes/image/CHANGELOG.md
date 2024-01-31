@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/tsparticles/tsparticles/compare/v3.1.0...v3.2.0) (2024-01-31)
+
+### Bug Fixes
+
+-   fixed gif images ([24d92fa](https://github.com/tsparticles/tsparticles/commit/24d92fab5d2e7df3a30bc0f621c046017bdf67a3))
+
+### Features
+
+-   added new particle external interaction ([f51ce7f](https://github.com/tsparticles/tsparticles/commit/f51ce7f104fa930fc68a257b64bbe8cf65fb9794))
+-   added some dynamic imports, plugins will be loaded only if used ([6dab9e9](https://github.com/tsparticles/tsparticles/commit/6dab9e9b059739144c542cee22849327894c0340))
+-   improving dynamic imports ([f9f450d](https://github.com/tsparticles/tsparticles/commit/f9f450d438d0cc3e5710ec5c1977516fb94c6f21))
+-   improving dynamic imports ([c592b29](https://github.com/tsparticles/tsparticles/commit/c592b2995a3cdf6864dcc331402023373c79107d))
+
 # [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
 
 **Note:** Version bump only for package @tsparticles/shape-image

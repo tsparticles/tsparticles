@@ -1,10 +1,8 @@
 import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
-import { decodeGIF, getGIFLoopAmount } from "./GifUtils/Utils.js";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
 const stringStart = 0,
-    defaultLoopCount = 0,
     defaultOpacity = 1;
 
 /**
@@ -114,34 +112,6 @@ export async function loadImage(image: IImage): Promise<void> {
 
         img.src = image.source;
     });
-}
-
-/**
- * Loads the GIF image
- * @param image - the image to load
- */
-export async function loadGifImage(image: IImage): Promise<void> {
-    if (image.type !== "gif") {
-        await loadImage(image);
-
-        return;
-    }
-
-    image.loading = true;
-
-    try {
-        image.gifData = await decodeGIF(image.source);
-
-        image.gifLoopCount = getGIFLoopAmount(image.gifData) ?? defaultLoopCount;
-
-        if (!image.gifLoopCount) {
-            image.gifLoopCount = Infinity;
-        }
-    } catch {
-        image.error = true;
-    }
-
-    image.loading = false;
 }
 
 /**

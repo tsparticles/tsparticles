@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.2.0](https://github.com/tsparticles/tsparticles/compare/v3.1.0...v3.2.0) (2024-01-31)
+
+### Bug Fixes
+
+-   fixed gif images ([24d92fa](https://github.com/tsparticles/tsparticles/commit/24d92fab5d2e7df3a30bc0f621c046017bdf67a3))
+
+### Features
+
+-   added background mask image support ([0b30b1c](https://github.com/tsparticles/tsparticles/commit/0b30b1c122bc9546727fd66d1e9393c1e05b643e))
+-   added new particle external interaction ([f51ce7f](https://github.com/tsparticles/tsparticles/commit/f51ce7f104fa930fc68a257b64bbe8cf65fb9794))
+-   added some dynamic imports, plugins will be loaded only if used ([6dab9e9](https://github.com/tsparticles/tsparticles/commit/6dab9e9b059739144c542cee22849327894c0340))
+-   improving dynamic imports ([bb4bc91](https://github.com/tsparticles/tsparticles/commit/bb4bc916052cf206b6e1deacac1f99d2fb160355))
+-   improving dynamic imports ([5a89f53](https://github.com/tsparticles/tsparticles/commit/5a89f53b93e7ba81e0773f553edca586afea4cd4))
+-   improving dynamic imports ([f05c2ee](https://github.com/tsparticles/tsparticles/commit/f05c2ee643978b6ed4abe8c4a54d0c3cc29727a8))
+-   improving dynamic imports ([f9f450d](https://github.com/tsparticles/tsparticles/commit/f9f450d438d0cc3e5710ec5c1977516fb94c6f21))
+-   improving dynamic imports ([c592b29](https://github.com/tsparticles/tsparticles/commit/c592b2995a3cdf6864dcc331402023373c79107d))
+-   improving dynamic imports ([0224706](https://github.com/tsparticles/tsparticles/commit/022470681ca6325f3d8085361e1cb47e1d58639c))
+-   improving dynamic imports ([f01a44b](https://github.com/tsparticles/tsparticles/commit/f01a44b22240ece1575cc431da8ca5902268fd2f))
+-   improving dynamic imports ([7674ee3](https://github.com/tsparticles/tsparticles/commit/7674ee37c0db306afd1338ae0bcba764cc11d5f5))
+
 # [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
 
 ### Bug Fixes

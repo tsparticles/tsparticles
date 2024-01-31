@@ -75,7 +75,7 @@ export class ByteStream {
      * @returns the sub blocks as binary
      */
     readSubBlocksBin(): Uint8Array {
-        let size = 0,
+        let size = this.data[this.pos],
             len = 0;
 
         const emptySize = 0,
@@ -86,6 +86,8 @@ export class ByteStream {
         }
 
         const blockData = new Uint8Array(len);
+
+        size = this.data[this.pos++];
 
         for (let i = 0; size !== emptySize; size = this.data[this.pos++]) {
             for (let count = size; --count >= emptySize; blockData[i++] = this.data[this.pos++]) {

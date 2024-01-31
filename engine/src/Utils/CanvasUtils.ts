@@ -70,7 +70,7 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
  * Draws the particle using canvas API in the given context.
  * @param data - The function parameters.
  */
-export function drawParticle(data: IDrawParticleParams): void {
+export async function drawParticle(data: IDrawParticleParams): Promise<void> {
     const {
             container,
             context,
@@ -138,9 +138,9 @@ export function drawParticle(data: IDrawParticleParams): void {
         strokeWidth,
     };
 
-    drawShape(drawData);
-    drawShapeAfterDraw(drawData);
-    drawEffect(drawData);
+    await drawShape(drawData);
+    await drawShapeAfterDraw(drawData);
+    await drawEffect(drawData);
 
     context.globalCompositeOperation = "source-over";
 
@@ -198,7 +198,7 @@ interface DrawShapeData {
  * Draws the particle shape using the plugin's shape renderer.
  * @param data - the function parameters.
  */
-export function drawEffect(data: DrawShapeData): void {
+export async function drawEffect(data: DrawShapeData): Promise<void> {
     const { container, context, particle, radius, opacity, delta, transformData } = data;
 
     if (!particle.effect) {
@@ -211,7 +211,7 @@ export function drawEffect(data: DrawShapeData): void {
         return;
     }
 
-    drawer.draw({
+    await drawer.draw({
         context,
         particle,
         radius,
@@ -226,7 +226,7 @@ export function drawEffect(data: DrawShapeData): void {
  * Draws the particle shape using the plugin's shape renderer.
  * @param data - the function parameters.
  */
-export function drawShape(data: DrawShapeData): void {
+export async function drawShape(data: DrawShapeData): Promise<void> {
     const { container, context, particle, radius, opacity, delta, strokeWidth, transformData } = data,
         minStrokeWidth = 0;
 
@@ -242,7 +242,7 @@ export function drawShape(data: DrawShapeData): void {
 
     context.beginPath();
 
-    drawer.draw({
+    await drawer.draw({
         context,
         particle,
         radius,
@@ -269,7 +269,7 @@ export function drawShape(data: DrawShapeData): void {
  * Calls the afterDraw function of the plugin's shape renderer, this is called after drawShape.
  * @param data - the function parameters.
  */
-export function drawShapeAfterDraw(data: DrawShapeData): void {
+export async function drawShapeAfterDraw(data: DrawShapeData): Promise<void> {
     const { container, context, particle, radius, opacity, delta, transformData } = data;
 
     if (!particle.shape) {
@@ -282,7 +282,7 @@ export function drawShapeAfterDraw(data: DrawShapeData): void {
         return;
     }
 
-    drawer.afterDraw({
+    await drawer.afterDraw({
         context,
         particle,
         radius,
@@ -299,12 +299,16 @@ export function drawShapeAfterDraw(data: DrawShapeData): void {
  * @param plugin - The plugin to draw.
  * @param delta - this variable contains the delta between the current frame and the previous frame
  */
-export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
+export async function drawPlugin(
+    context: CanvasRenderingContext2D,
+    plugin: IContainerPlugin,
+    delta: IDelta,
+): Promise<void> {
     if (!plugin.draw) {
         return;
     }
 
-    plugin.draw(context, delta);
+    await plugin.draw(context, delta);
 }
 
 /**
@@ -314,17 +318,17 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
  * @param particle - The particle to draw.
  * @param delta - this variable contains the delta between the current frame and the previous frame
  */
-export function drawParticlePlugin(
+export async function drawParticlePlugin(
     context: CanvasRenderingContext2D,
     plugin: IContainerPlugin,
     particle: Particle,
     delta: IDelta,
-): void {
+): Promise<void> {
     if (!plugin.drawParticle) {
         return;
     }
 
-    plugin.drawParticle(context, particle, delta);
+    await plugin.drawParticle(context, particle, delta);
 }
 
 /**

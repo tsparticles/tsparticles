@@ -5,6 +5,6 @@ import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 export interface AbsorberContainer extends Container {
     actualOptions: AbsorberOptions;
-    addAbsorber: (options: RecursivePartial<IAbsorber>, position?: ICoordinates) => AbsorberInstance;
+    addAbsorber: (options: RecursivePartial<IAbsorber>, position?: ICoordinates) => Promise<AbsorberInstance>;
     getAbsorber: (idxOrName?: number | string) => AbsorberInstance | undefined;
 }

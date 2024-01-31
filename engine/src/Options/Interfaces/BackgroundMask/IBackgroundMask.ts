@@ -1,5 +1,6 @@
 import type { IBackgroundMaskCover } from "./IBackgroundMaskCover.js";
 import type { IColor } from "../../../Core/Interfaces/Colors.js";
+import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * The options to apply a base color to canvas to cover what's behind
@@ -21,7 +22,7 @@ export interface IBackgroundMask {
      *
      * The `cover` can also be a {@link IBackgroundMaskCover | cover object} like the one described below.
      */
-    cover: IBackgroundMaskCover | IColor | string;
+    cover: RecursivePartial<IBackgroundMaskCover> | IColor | string;
 
     /**
      * This property set the background mask mode, this mode enables the `composite` option to all elements drawn.

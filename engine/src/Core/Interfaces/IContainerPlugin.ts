@@ -9,12 +9,12 @@ import type { Particle } from "../Particle.js";
  */
 export interface IContainerPlugin {
     clickPositionValid?: (position: ICoordinates) => boolean;
-    draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
-    drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+    draw?: (context: CanvasRenderingContext2D, delta: IDelta) => Promise<void>;
+    drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => Promise<void>;
     export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;
     handleClickMode?: (mode: string) => void;
     init?: () => Promise<void>;
-    particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => boolean;
+    particleBounce?: (particle: Particle, delta: IDelta, direction: OutModeDirection) => Promise<boolean>;
     particleCreated?: (particle: Particle) => void;
     particleDestroyed?: (particle: Particle, override?: boolean) => void;
     particleFillColor?: (particle: Particle) => string | IOptionsColor | undefined;

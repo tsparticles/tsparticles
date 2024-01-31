@@ -1,5 +1,4 @@
 import { type Container, type IMovePathGenerator, Vector, getRandom, isFunction, isString } from "@tsparticles/engine";
-import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
 
@@ -30,9 +29,10 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         };
     }
 
-    generate(p: CurvesPathParticle): Vector {
+    async generate(p: CurvesPathParticle): Promise<Vector> {
         if (!p.pathGen) {
-            const options = this.options;
+            const options = this.options,
+                { CurvesPathGen } = await import("./Curves.js");
 
             p.pathGen = CurvesPathGen(
                 options.rndFunc,
@@ -60,7 +60,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         return p.curveVelocity;
     }
 
-    init(container: Container): void {
+    async init(container: Container): Promise<void> {
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
@@ -79,6 +79,8 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         options.attenHarmonics = (sourceOptions.attenHarmonics as number) ?? options.attenHarmonics;
         options.lowValue = (sourceOptions.lowValue as number) ?? options.lowValue;
         options.highValue = (sourceOptions.highValue as number) ?? options.highValue;
+
+        await Promise.resolve();
     }
 
     reset(particle: CurvesPathParticle): void {

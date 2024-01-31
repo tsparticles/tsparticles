@@ -34,7 +34,8 @@ const half = 0.5,
     minLifeCount = 0,
     defaultSpawnDelay = 0,
     defaultEmitDelay = 0,
-    defaultLifeCount = -1;
+    defaultLifeCount = -1,
+    defaultColorAnimationFactor = 1;
 
 /**
  *
@@ -84,7 +85,7 @@ export class EmitterInstance {
         engine: EmittersEngine,
         private readonly emitters: Emitters,
         private readonly container: Container,
-        options: RecursivePartial<IEmitter>,
+        options: Emitter | RecursivePartial<IEmitter>,
         position?: ICoordinates,
     ) {
         this._engine = engine;
@@ -307,12 +308,11 @@ export class EmitterInstance {
 
     private _calcPosition(): ICoordinates {
         if (this.options.domId) {
-            const container = this.container,
-                element = document.getElementById(this.options.domId);
+            const element = document.getElementById(this.options.domId);
 
             if (element) {
                 const elRect = element.getBoundingClientRect(),
-                    pxRatio = container.retina.pixelRatio;
+                    pxRatio = this.container.retina.pixelRatio;
 
                 return {
                     x: (elRect.x + elRect.width * half) * pxRatio,
@@ -398,12 +398,18 @@ export class EmitterInstance {
 
                 if (hslAnimation) {
                     const maxValues = {
-                        h: 360,
-                        s: 100,
-                        l: 100,
-                    };
+                            h: 360,
+                            s: 100,
+                            l: 100,
+                        },
+                        colorFactor = 3.6;
 
-                    this.spawnColor.h = this._setColorAnimation(hslAnimation.h, this.spawnColor.h, maxValues.h);
+                    this.spawnColor.h = this._setColorAnimation(
+                        hslAnimation.h,
+                        this.spawnColor.h,
+                        maxValues.h,
+                        colorFactor,
+                    );
                     this.spawnColor.s = this._setColorAnimation(hslAnimation.s, this.spawnColor.s, maxValues.s);
                     this.spawnColor.l = this._setColorAnimation(hslAnimation.l, this.spawnColor.l, maxValues.l);
                 }
@@ -442,7 +448,7 @@ export class EmitterInstance {
             }
 
             if (position) {
-                this.container.particles.addParticle(position, particlesOptions);
+                await this.container.particles.addParticle(position, particlesOptions);
             }
         }
     }
@@ -467,11 +473,12 @@ export class EmitterInstance {
         }
     };
 
-    private readonly _setColorAnimation: (animation: IColorAnimation, initValue: number, maxValue: number) => number = (
-        animation,
-        initValue,
-        maxValue,
-    ) => {
+    private readonly _setColorAnimation = (
+        animation: IColorAnimation,
+        initValue: number,
+        maxValue: number,
+        factor: number = defaultColorAnimationFactor,
+    ): number => {
         const container = this.container;
 
         if (!animation.enable) {
@@ -482,9 +489,8 @@ export class EmitterInstance {
             delay = getRangeValue(this.options.rate.delay),
             emitFactor = (delay * millisecondsToSeconds) / container.retina.reduceFactor,
             defaultColorSpeed = 0,
-            colorFactor = 3.6,
             colorSpeed = getRangeValue(animation.speed ?? defaultColorSpeed);
 
-        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * colorFactor) % maxValue;
+        return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * factor) % maxValue;
     };
 }
