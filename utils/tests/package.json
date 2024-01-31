@@ -2,6 +2,7 @@
     "name": "@tsparticles/tests",
     "private": true,
     "version": "3.1.0",
+    "type": "module",
     "scripts": {
         "prettify:ci": "prettier --check ./src",
         "prettify": "prettier --write ./src",
