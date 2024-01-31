@@ -167,6 +167,12 @@ app.get("/basic", function (req, res) {
     res.render("basic");
 });
 
+app.get("/bundle", function (req, res) {
+    logger.info("bundle requested");
+
+    res.render("bundle");
+});
+
 app.get("/playground", function (req, res) {
     logger.info("playground requested");
 
