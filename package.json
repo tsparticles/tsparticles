@@ -59,7 +59,7 @@
     "lerna": "^8.0.2",
     "mocha": "^10.2.0",
     "nx": "^17.3.0",
-    "nx-cloud": "^16.5.2",
+    "nx-cloud": "^18.0.0",
     "nyc": "^15.1.0",
     "prettier": "^3.2.4",
     "prettier-plugin-multiline-arrays": "^3.0.1",
