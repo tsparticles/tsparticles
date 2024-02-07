@@ -147,8 +147,8 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0(typedoc@0.25.7)
       typedoc-plugin-coverage:
-        specifier: ^2.2.0
-        version: 2.2.0(typedoc@0.25.7)
+        specifier: ^3.0.0
+        version: 3.0.0(typedoc@0.25.7)
       typedoc-plugin-keywords:
         specifier: ^1.6.0
         version: 1.6.0(typedoc@0.25.7)
@@ -11971,11 +11971,11 @@ packages:
       typescript: 5.3.3
     dev: true
 
-  /typedoc-plugin-coverage@2.2.0(typedoc@0.25.7):
-    resolution: {integrity: sha512-/hq9nwSNBz2p7+VYfljT/zFSmaxN8tlfcIp6CCAaQN6VIxXCciYFIqR+pcckRhjmfHIeSJ5uy2OpCt5F683npA==}
-    engines: {node: '>= 16'}
+  /typedoc-plugin-coverage@3.0.0(typedoc@0.25.7):
+    resolution: {integrity: sha512-At1uOrwOQWCmzEdq3PLL0ztX0I93rG1CZTkILAVmh2p4L46MhS1vHTtZFccxNOFBKeuuHV3SB/jUQyVo4jzyxA==}
+    engines: {node: '>= 18'}
     peerDependencies:
-      typedoc: ^0.22.12 || 0.23.x || 0.24.x || 0.25.x
+      typedoc: 0.25.x
     dependencies:
       typedoc: 0.25.7(typescript@5.3.3)
     dev: true
