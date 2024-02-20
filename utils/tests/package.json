@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/tests",
     "private": true,
-    "version": "3.2.1",
+    "version": "3.2.2",
     "scripts": {
         "prettify:ci": "prettier --check ./src",
         "prettify": "prettier --write ./src",
@@ -12,6 +12,6 @@
         "test": "nyc mocha"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.2.1"
+        "@tsparticles/engine": "^3.2.2"
     }
 }
