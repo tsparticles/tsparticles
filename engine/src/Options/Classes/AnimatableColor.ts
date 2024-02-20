@@ -1,4 +1,4 @@
-import { isArray, isString } from "../../Utils/Utils.js";
+import { isArray, isString } from "../../Utils/TypeUtils.js";
 import { HslAnimation } from "./HslAnimation.js";
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor.js";
 import type { IColorAnimation } from "../Interfaces/IColorAnimation.js";

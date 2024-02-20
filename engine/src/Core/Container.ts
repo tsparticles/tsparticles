@@ -763,7 +763,7 @@ export class Container {
             }
 
             if (entry.isIntersecting) {
-                this.play();
+                void this.play();
             } else {
                 this.pause();
             }
@@ -772,7 +772,6 @@ export class Container {
 
     private readonly _nextFrame = async (timestamp: DOMHighResTimeStamp): Promise<void> => {
         try {
-            // FPS limit logic - if we are too fast, just draw without updating
             if (
                 !this._smooth &&
                 this._lastFrameTime !== undefined &&
@@ -800,6 +799,7 @@ export class Container {
 
             if (!this.alive()) {
                 this.destroy();
+
                 return;
             }
 

@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/plugin-polygon-mask",
-    "version": "3.2.1",
+    "version": "3.2.2",
     "description": "tsParticles polygon mask plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -81,7 +81,7 @@
         "dist/**/pathseg.js"
     ],
     "dependencies": {
-        "@tsparticles/engine": "^3.2.1"
+        "@tsparticles/engine": "^3.2.2"
     },
     "publishConfig": {
         "access": "public",

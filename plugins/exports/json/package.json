@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/plugin-export-json",
-    "version": "3.2.1",
+    "version": "3.2.2",
     "description": "tsParticles export json plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -108,7 +108,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.2.1"
+        "@tsparticles/engine": "^3.2.2"
     },
     "publishConfig": {
         "access": "public",

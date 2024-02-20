@@ -4,7 +4,7 @@ import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBack
 import type { IColor } from "../../../Core/Interfaces/Colors.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { isString } from "../../../Utils/Utils.js";
+import { isString } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/BackgroundMask.md]]

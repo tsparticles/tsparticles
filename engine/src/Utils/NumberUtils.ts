@@ -6,8 +6,8 @@ import type {
 import { MoveDirection, type MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
 import type { RangeValue } from "../Types/RangeValue.js";
-import { Vector } from "../Core/Utils/Vector.js";
-import { isNumber } from "./Utils.js";
+import { Vector } from "../Core/Utils/Vectors.js";
+import { isNumber } from "./TypeUtils.js";
 import { percentDenominator } from "../Core/Utils/Constants.js";
 
 type EasingFunction = (value: number) => number;

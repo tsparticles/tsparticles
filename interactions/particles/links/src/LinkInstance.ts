@@ -14,7 +14,8 @@ import { drawLinkLine, drawLinkTriangle, setLinkFrequency } from "./Utils.js";
 const minOpacity = 0,
     minWidth = 0,
     minDistance = 0,
-    half = 0.5;
+    half = 0.5,
+    maxFrequency = 1;
 
 export class LinkInstance implements IContainerPlugin {
     private readonly _freqs: IParticlesFrequencies;
@@ -34,7 +35,10 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         const p1Links = links.filter(
-            (l) => options.links && this._getLinkFrequency(particle, l.destination) <= options.links.frequency,
+            (l) =>
+                options.links &&
+                (options.links.frequency >= maxFrequency ||
+                    this._getLinkFrequency(particle, l.destination) <= options.links.frequency),
         );
 
         for (const link of p1Links) {

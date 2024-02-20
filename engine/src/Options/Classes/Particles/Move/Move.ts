@@ -1,5 +1,5 @@
 import { MoveDirection, type MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
-import { isNumber, isObject } from "../../../../Utils/Utils.js";
+import { isNumber, isObject } from "../../../../Utils/TypeUtils.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";

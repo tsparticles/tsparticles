@@ -1,4 +1,4 @@
-import { Circle, type ICoordinates, type IDimension, type Range, Rectangle } from "@tsparticles/engine";
+import { type BaseRange, Circle, type ICoordinates, type IDimension, Rectangle } from "@tsparticles/engine";
 
 const double = 2;
 
@@ -29,8 +29,8 @@ export class CircleWarp extends Circle {
      * @returns true or false, checking if the given point is inside the circle
      */
     contains(point: ICoordinates): boolean {
-        const { width, height } = this.canvasSize;
-        const { x, y } = point;
+        const { width, height } = this.canvasSize,
+            { x, y } = point;
 
         return (
             super.contains(point) ||
@@ -45,7 +45,7 @@ export class CircleWarp extends Circle {
      * @param range - the range to check
      * @returns true or false, checking if the range is intersecting with the circle
      */
-    intersects(range: Range): boolean {
+    intersects(range: BaseRange): boolean {
         if (super.intersects(range)) {
             return true;
         }

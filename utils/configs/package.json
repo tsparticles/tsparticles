@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/configs",
-    "version": "3.2.1",
+    "version": "3.2.2",
     "homepage": "https://particles.js.org",
     "scripts": {
         "build": "tsparticles-cli build",
@@ -106,7 +106,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.2.1"
+        "@tsparticles/engine": "^3.2.2"
     },
     "publishConfig": {
         "access": "public",
