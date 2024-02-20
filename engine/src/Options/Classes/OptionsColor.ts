@@ -1,5 +1,5 @@
 import type { IRangeHsl, IRangeHsv, IRangeRgb, IRangeValueColor } from "../../Core/Interfaces/Colors.js";
-import { isArray, isString } from "../../Utils/Utils.js";
+import { isArray, isString } from "../../Utils/TypeUtils.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptionsColor } from "../Interfaces/IOptionsColor.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";

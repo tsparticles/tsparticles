@@ -11,6 +11,7 @@ import {
     randomInRange,
 } from "./NumberUtils.js";
 import { halfRandom, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
+import { isArray, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import { DestroyType } from "../Enums/Types/DestroyType.js";
@@ -28,7 +29,7 @@ import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { RangedAnimationValueWithRandom } from "../Options/Classes/ValueWithRandom.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { StartValueType } from "../Enums/Types/StartValueType.js";
-import { Vector } from "../Core/Utils/Vector.js";
+import { Vector } from "../Core/Utils/Vectors.js";
 
 interface RectSideBounceData {
     /**
@@ -719,61 +720,6 @@ export function getPosition(position: ICoordinatesWithMode, canvasSize: IDimensi
  */
 export function getSize(size: IDimensionWithMode, canvasSize: IDimension): IDimension {
     return getPositionOrSize(size, canvasSize) as IDimension;
-}
-
-/**
- *
- * @param arg - the object to check
- * @returns true if the argument is a boolean
- */
-export function isBoolean(arg: unknown): arg is boolean {
-    return typeof arg === "boolean";
-}
-
-/**
- *
- * @param arg - the object to check
- * @returns true if the argument is a string
- */
-export function isString(arg: unknown): arg is string {
-    return typeof arg === "string";
-}
-
-/**
- *
- * @param arg - the object to check
- * @returns true if the argument is a number
- */
-export function isNumber(arg: unknown): arg is number {
-    return typeof arg === "number";
-}
-
-/**
- *
- * @param arg - the object to check
- * @returns true if the argument is a function
- */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function isFunction(arg: unknown): arg is Function {
-    return typeof arg === "function";
-}
-
-/**
- *
- * @param arg - the object to check
- * @returns true if the argument is an object
- */
-export function isObject<T extends object>(arg: unknown): arg is T {
-    return typeof arg === "object" && arg !== null;
-}
-
-/**
- *
- * @param arg - the object to check
- * @returns true if the argument is an array
- */
-export function isArray<T>(arg: unknown): arg is T[] {
-    return Array.isArray(arg);
 }
 
 /**

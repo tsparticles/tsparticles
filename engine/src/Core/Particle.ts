@@ -1,5 +1,6 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
 import type { IHsl, IRgb } from "./Interfaces/Colors.js";
+import { Vector, Vector3d } from "./Utils/Vectors.js";
 import {
     calcExactPositionOrRandomFromSize,
     clamp,
@@ -43,8 +44,6 @@ import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { Vector } from "./Utils/Vector.js";
-import { Vector3d } from "./Utils/Vector3d.js";
 import { alterHsl } from "../Utils/CanvasUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 

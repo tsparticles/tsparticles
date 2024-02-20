@@ -9,7 +9,7 @@ import {
     randomInRange,
     setRangeValue,
 } from "./NumberUtils.js";
-import { isArray, isString, itemFromArray } from "./Utils.js";
+import { isArray, isString } from "./TypeUtils.js";
 import { millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
@@ -21,6 +21,7 @@ import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueA
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
+import { itemFromArray } from "./Utils.js";
 
 const enum RgbIndexes {
     r = 1,

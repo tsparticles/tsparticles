@@ -1,8 +1,8 @@
 import {
+    type BaseRange,
     Circle,
     type ICoordinates,
     type Particle,
-    type Range,
     Vector,
     clamp,
     getDistances,
@@ -26,7 +26,7 @@ function processAttract(
     container: AttractContainer,
     position: ICoordinates,
     attractRadius: number,
-    area: Range,
+    area: BaseRange,
     queryCb: (p: Particle) => boolean,
 ): void {
     const attractOptions = container.actualOptions.interactivity.modes.attract;

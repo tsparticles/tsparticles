@@ -15,7 +15,7 @@ import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import type { Particle } from "./Particle.js";
 import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
-import { Rectangle } from "./Utils/Rectangle.js";
+import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { errorPrefix } from "./Utils/Constants.js";
 

@@ -1,4 +1,4 @@
-import { executeOnSingleOrMultiple, isBoolean, safeMatchMedia } from "../../Utils/Utils.js";
+import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
 import {
     millisecondsToSeconds,
     mouseDownEvent,
@@ -16,6 +16,7 @@ import {
 import type { Container } from "../Container.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
+import { isBoolean } from "../../Utils/TypeUtils.js";
 
 const double = 2;
 
@@ -190,9 +191,9 @@ export class EventListeners {
             container.pageHidden = false;
 
             if (container.animationStatus) {
-                container.play(true);
+                void container.play(true);
             } else {
-                container.draw(true);
+                void container.draw(true);
             }
         }
     };

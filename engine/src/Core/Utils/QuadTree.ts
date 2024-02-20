@@ -1,10 +1,8 @@
-import { Circle } from "./Circle.js";
+import { type BaseRange, Circle, Rectangle } from "./Ranges.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
 import type { Particle } from "../Particle.js";
 import type { Point } from "./Point.js";
-import type { Range } from "./Range.js";
-import { Rectangle } from "./Rectangle.js";
 import { getDistance } from "../../Utils/NumberUtils.js";
 
 const half = 0.5,
@@ -85,11 +83,10 @@ export class QuadTree {
      * Queries the instance using a {@link Rectangle} object, with the given position and the given size
      * @param range - the range to use for querying the tree
      * @param check - the function to check if the particle can be added to the result
-     * @param found - found particles array, output parameter
      * @returns the particles inside the given range
      */
-    query(range: Range, check?: (particle: Particle) => boolean, found?: Particle[]): Particle[] {
-        const res = found ?? [];
+    query(range: BaseRange, check?: (particle: Particle) => boolean): Particle[] {
+        const res: Particle[] = [];
 
         if (!range.intersects(this.rectangle)) {
             return [];
@@ -109,7 +106,7 @@ export class QuadTree {
 
         if (this._divided) {
             for (const sub of this._subs) {
-                sub.query(range, check, res);
+                res.push(...sub.query(range, check));
             }
         }
 

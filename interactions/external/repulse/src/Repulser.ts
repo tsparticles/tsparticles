@@ -1,4 +1,5 @@
 import {
+    type BaseRange,
     Circle,
     type DivEvent,
     DivType,
@@ -8,7 +9,6 @@ import {
     type IModes,
     type Modes,
     type Particle,
-    type Range,
     Rectangle,
     type RecursivePartial,
     Vector,
@@ -246,7 +246,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     private readonly _processRepulse: (
         position: ICoordinates,
         repulseRadius: number,
-        area: Range,
+        area: BaseRange,
         divRepulse?: RepulseDiv,
     ) => void = (position, repulseRadius, area, divRepulse) => {
         const container = this.container,

@@ -1,10 +1,10 @@
 import {
+    type BaseRange,
     Circle,
     type DivEvent,
     DivType,
     type ICoordinates,
     type Particle,
-    type Range,
     Rectangle,
     type SingleOrMultiple,
     Vector,
@@ -35,7 +35,7 @@ function processBounce(
     container: BounceContainer,
     position: ICoordinates,
     radius: number,
-    area: Range,
+    area: BaseRange,
     enabledCb: (p: Particle) => boolean,
 ): void {
     const query = container.particles.quadTree.query(area, enabledCb);
@@ -66,7 +66,7 @@ function singleSelectorBounce(
     container: BounceContainer,
     selector: string,
     div: DivEvent,
-    bounceCb: (position: ICoordinates, radius: number, range: Range) => void,
+    bounceCb: (position: ICoordinates, radius: number, range: BaseRange) => void,
 ): void {
     const query = document.querySelectorAll(selector);
 

@@ -1,12 +1,9 @@
-export * from "./Core/Utils/Circle.js";
 export * from "./Core/Utils/Constants.js";
 export * from "./Core/Utils/ExternalInteractorBase.js";
 export * from "./Core/Utils/ParticlesInteractorBase.js";
 export * from "./Core/Utils/Point.js";
-export * from "./Core/Utils/Range.js";
-export * from "./Core/Utils/Rectangle.js";
-export * from "./Core/Utils/Vector.js";
-export * from "./Core/Utils/Vector3d.js";
+export * from "./Core/Utils/Ranges.js";
+export * from "./Core/Utils/Vectors.js";
 
 export * from "./Enums/Directions/MoveDirection.js";
 export * from "./Enums/Directions/RotateDirection.js";
@@ -110,3 +107,4 @@ export * from "./Utils/NumberUtils.js";
 export * from "./Utils/OptionsUtils.js";
 export * from "./Utils/RgbColorManager.js";
 export * from "./Utils/Utils.js";
+export * from "./Utils/TypeUtils.js";
