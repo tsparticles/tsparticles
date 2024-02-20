@@ -77,7 +77,7 @@
     "typedoc-plugin-mdn-links": "^3.1.14",
     "typedoc-plugin-missing-exports": "^2.2.0",
     "typescript": "^5.3.3",
-    "typescript-json-schema": "^0.62.0",
+    "typescript-json-schema": "^0.63.0",
     "webpack": "^5.90.0",
     "webpack-bundle-analyzer": "^4.10.1",
     "webpack-cli": "^5.1.4",
