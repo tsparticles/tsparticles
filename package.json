@@ -26,8 +26,8 @@
   "prettier": "@tsparticles/prettier-config",
   "devDependencies": {
     "@babel/core": "^7.23.9",
-    "@commitlint/cli": "^18.6.1",
-    "@commitlint/config-conventional": "^18.6.2",
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@nx/workspace": "^18.0.5",
     "@tsparticles/cli": "^2.2.2",
