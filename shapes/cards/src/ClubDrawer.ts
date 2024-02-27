@@ -1,9 +1,8 @@
 import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
+import { drawPath, paths } from "./Utils.js";
 
 export class ClubDrawer implements IShapeDrawer {
-    async draw(data: IShapeDrawData): Promise<void> {
-        const { drawPath, paths } = await import("./Utils.js");
-
+    draw(data: IShapeDrawData): void {
         drawPath(data, paths.club);
     }
 }

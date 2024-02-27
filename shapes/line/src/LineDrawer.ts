@@ -1,13 +1,12 @@
 import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
+import { drawLine } from "./Utils.js";
 
 const sides = 1;
 
 /**
  */
 export class LineDrawer implements IShapeDrawer {
-    async draw(data: IShapeDrawData): Promise<void> {
-        const { drawLine } = await import("./Utils.js");
-
+    draw(data: IShapeDrawData): void {
         drawLine(data);
     }
 

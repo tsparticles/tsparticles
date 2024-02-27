@@ -8,5 +8,5 @@ export interface IOutModeManager {
         direction: OutModeDirection,
         delta: IDelta,
         outMode: OutMode | keyof typeof OutMode,
-    ): Promise<void>;
+    ): void;
 }

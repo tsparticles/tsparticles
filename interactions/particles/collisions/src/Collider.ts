@@ -19,7 +19,7 @@ export class Collider extends ParticlesInteractorBase {
         // do nothing
     }
 
-    async interact(p1: Particle, delta: IDelta): Promise<void> {
+    interact(p1: Particle, delta: IDelta): void {
         if (p1.destroyed || p1.spawning) {
             return;
         }
@@ -54,7 +54,7 @@ export class Collider extends ParticlesInteractorBase {
                 continue;
             }
 
-            await resolveCollision(p1, p2, delta, container.retina.pixelRatio);
+            resolveCollision(p1, p2, delta, container.retina.pixelRatio);
         }
     }
 

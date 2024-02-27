@@ -31,61 +31,59 @@ export class EmittersSquareShape extends EmitterShapeBase {
         // nothing to do
     }
 
-    async randomPosition(): Promise<IRandomPositionData> {
-        return await new Promise<IRandomPositionData>((success) => {
-            const fill = this.fill,
-                position = this.position,
-                size = this.size;
+    randomPosition(): IRandomPositionData {
+        const fill = this.fill,
+            position = this.position,
+            size = this.size;
 
-            if (fill) {
-                return success({
-                    position: {
-                        x: randomSquareCoordinate(position.x, size.width),
-                        y: randomSquareCoordinate(position.y, size.height),
-                    },
-                });
-            } else {
-                const halfW = size.width * half,
-                    halfH = size.height * half,
-                    side = Math.floor(getRandom() * sides) as Sides,
-                    v = (getRandom() - halfRandom) * double;
+        if (fill) {
+            return {
+                position: {
+                    x: randomSquareCoordinate(position.x, size.width),
+                    y: randomSquareCoordinate(position.y, size.height),
+                },
+            };
+        } else {
+            const halfW = size.width * half,
+                halfH = size.height * half,
+                side = Math.floor(getRandom() * sides) as Sides,
+                v = (getRandom() - halfRandom) * double;
 
-                switch (side) {
-                    case Sides.TopLeft:
-                        // top-left
-                        return success({
-                            position: {
-                                x: position.x + v * halfW,
-                                y: position.y - halfH,
-                            },
-                        });
-                    case Sides.TopRight:
-                        // top-right
-                        return success({
-                            position: {
-                                x: position.x - halfW,
-                                y: position.y + v * halfH,
-                            },
-                        });
-                    case Sides.BottomRight:
-                        // bottom-right
-                        return success({
-                            position: {
-                                x: position.x + v * halfW,
-                                y: position.y + halfH,
-                            },
-                        });
-                    case Sides.BottomLeft:
-                    default:
-                        // bottom-left
-                        return success({
-                            position: {
-                                x: position.x + halfW,
-                                y: position.y + v * halfH,
-                            },
-                        });
-                }
+            switch (side) {
+                case Sides.TopLeft:
+                    // top-left
+                    return {
+                        position: {
+                            x: position.x + v * halfW,
+                            y: position.y - halfH,
+                        },
+                    };
+                case Sides.TopRight:
+                    // top-right
+                    return {
+                        position: {
+                            x: position.x - halfW,
+                            y: position.y + v * halfH,
+                        },
+                    };
+                case Sides.BottomRight:
+                    // bottom-right
+                    return {
+                        position: {
+                            x: position.x + v * halfW,
+                            y: position.y + halfH,
+                        },
+                    };
+                case Sides.BottomLeft:
+                default:
+                    // bottom-left
+                    return {
+                        position: {
+                            x: position.x + halfW,
+                            y: position.y + v * halfH,
+                        },
+                    };
             }
-        });
+        }
     }
 }

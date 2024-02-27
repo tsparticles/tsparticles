@@ -7,17 +7,17 @@ import {
 } from "@tsparticles/engine";
 import type { IPolygonShape } from "./IPolygonShape.js";
 import type { ISide } from "./ISide.js";
+import { drawPolygon } from "./Utils.js";
 
 const defaultSides = 5;
 
 /**
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
-    async draw(data: IShapeDrawData): Promise<void> {
+    draw(data: IShapeDrawData): void {
         const { particle, radius } = data,
             start = this.getCenter(particle, radius),
-            side = this.getSidesData(particle, radius),
-            { drawPolygon } = await import("./Utils.js");
+            side = this.getSidesData(particle, radius);
 
         drawPolygon(data, start, side);
     }

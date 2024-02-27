@@ -42,7 +42,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         container.retina.slowModeRadius = slow.radius * container.retina.pixelRatio;
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         // nothing to do
     }
 

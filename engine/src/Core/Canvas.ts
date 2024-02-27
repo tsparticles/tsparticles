@@ -177,11 +177,11 @@ export class Canvas {
         return cb(ctx);
     }
 
-    drawAsync<T>(cb: (context: CanvasRenderingContext2D) => Promise<T>): Promise<T | undefined> {
+    drawAsync<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
         const ctx = this._context;
 
         if (!ctx) {
-            return Promise.resolve(undefined);
+            return undefined;
         }
 
         return cb(ctx);
@@ -192,7 +192,7 @@ export class Canvas {
      * @param particle - the particle to draw
      * @param delta - the frame delta time values
      */
-    async drawParticle(particle: Particle, delta: IDelta): Promise<void> {
+    drawParticle(particle: Particle, delta: IDelta): void {
         if (particle.spawning || particle.destroyed) {
             return;
         }
@@ -221,7 +221,7 @@ export class Canvas {
             return;
         }
 
-        await this.drawAsync(async (ctx): Promise<void> => {
+        this.draw((ctx): void => {
             const container = this.container,
                 options = container.actualOptions,
                 zIndexOptions = particle.options.zIndex,
@@ -242,7 +242,7 @@ export class Canvas {
 
             this._applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
 
-            await drawParticle({
+            drawParticle({
                 container,
                 context: ctx,
                 particle,
@@ -266,8 +266,8 @@ export class Canvas {
      * @param particle - the particle used
      * @param delta - the frame delta time values
      */
-    async drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): Promise<void> {
-        await this.drawAsync((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
+    drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
+        this.draw((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
     }
 
     /**
@@ -275,8 +275,8 @@ export class Canvas {
      * @param plugin - the plugin to use for drawing stuff
      * @param delta - the frame delta time values
      */
-    async drawPlugin(plugin: IContainerPlugin, delta: IDelta): Promise<void> {
-        await this.drawAsync((ctx) => drawPlugin(ctx, plugin, delta));
+    drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
+        this.draw((ctx) => drawPlugin(ctx, plugin, delta));
     }
 
     /**
@@ -498,7 +498,7 @@ export class Canvas {
             needsRefresh = container.updateActualOptions();
 
         /* density particles enabled */
-        await container.particles.setDensity();
+        container.particles.setDensity();
 
         this._applyResizePlugins();
 

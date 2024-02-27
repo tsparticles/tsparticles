@@ -93,7 +93,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     }
 
-    async interact(delta: IDelta): Promise<void> {
+    interact(delta: IDelta): void {
         const options = this.container.actualOptions,
             events = options.interactivity.events,
             onHover = events.onHover,
@@ -112,8 +112,6 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         } else {
             divModeExecute(bubbleMode, divs, (selector, div): void => this._singleSelectorHover(delta, selector, div));
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

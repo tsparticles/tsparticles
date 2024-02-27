@@ -1,4 +1,5 @@
 import { type IDelta, type IParticleMover, type Particle, getRangeMax, getRangeValue } from "@tsparticles/engine";
+import { applyDistance, getProximitySpeedFactor, initSpin, move, spin } from "./Utils.js";
 import type { MoveParticle } from "./Types.js";
 
 const diffFactor = 2,
@@ -11,7 +12,7 @@ export class BaseMover implements IParticleMover {
     /**
      * @param particle -
      */
-    async init(particle: MoveParticle): Promise<void> {
+    init(particle: MoveParticle): void {
         const options = particle.options,
             gravityOptions = options.move.gravity;
 
@@ -21,11 +22,7 @@ export class BaseMover implements IParticleMover {
             inverse: gravityOptions.inverse,
         };
 
-        const { initSpin } = await import("./Utils.js");
-
         initSpin(particle);
-
-        await Promise.resolve();
     }
 
     /**
@@ -40,7 +37,7 @@ export class BaseMover implements IParticleMover {
      * @param particle -
      * @param delta -
      */
-    async move(particle: MoveParticle, delta: IDelta): Promise<void> {
+    move(particle: MoveParticle, delta: IDelta): void {
         const particleOptions = particle.options,
             moveOptions = particleOptions.move;
 
@@ -54,8 +51,7 @@ export class BaseMover implements IParticleMover {
         particle.retina.moveSpeed ??= getRangeValue(moveOptions.speed) * pxRatio;
         particle.retina.moveDrift ??= getRangeValue(particle.options.move.drift) * pxRatio;
 
-        const { getProximitySpeedFactor } = await import("./Utils.js"),
-            slowFactor = getProximitySpeedFactor(particle),
+        const slowFactor = getProximitySpeedFactor(particle),
             baseSpeed = particle.retina.moveSpeed * container.retina.reduceFactor,
             moveDrift = particle.retina.moveDrift,
             maxSize = getRangeMax(particleOptions.size.value) * pxRatio,
@@ -65,16 +61,10 @@ export class BaseMover implements IParticleMover {
             maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
 
         if (moveOptions.spin.enable) {
-            const { spin } = await import("./Utils.js");
-
             spin(particle, moveSpeed);
         } else {
-            const { move } = await import("./Utils.js");
-
-            await move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, delta);
+            move(particle, moveOptions, moveSpeed, maxSpeed, moveDrift, delta);
         }
-
-        const { applyDistance } = await import("./Utils.js");
 
         applyDistance(particle);
     }

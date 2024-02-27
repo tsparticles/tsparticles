@@ -6,7 +6,7 @@ const bubbleFactor = 3,
     maxAngle = Math.PI * double;
 
 export class BubbleDrawer implements IEffectDrawer {
-    async draw(data: IShapeDrawData): Promise<void> {
+    draw(data: IShapeDrawData): void {
         const { context, radius } = data;
 
         context.beginPath();
@@ -14,7 +14,5 @@ export class BubbleDrawer implements IEffectDrawer {
         context.closePath();
         context.fillStyle = "#fff9";
         context.fill();
-
-        await Promise.resolve();
     }
 }

@@ -7,6 +7,7 @@ import {
 } from "@tsparticles/engine";
 import type { IStarShape } from "./IStarShape.js";
 import type { StarParticle } from "./StarParticle.js";
+import { drawStar } from "./Utils.js";
 
 const defaultInset = 2,
     defaultSides = 5;
@@ -14,9 +15,7 @@ const defaultInset = 2,
 /**
  */
 export class StarDrawer implements IShapeDrawer<StarParticle> {
-    async draw(data: IShapeDrawData<StarParticle>): Promise<void> {
-        const { drawStar } = await import("./Utils.js");
-
+    draw(data: IShapeDrawData<StarParticle>): void {
         drawStar(data);
     }
 
@@ -26,11 +25,9 @@ export class StarDrawer implements IShapeDrawer<StarParticle> {
         return Math.round(getRangeValue(star?.sides ?? defaultSides));
     }
 
-    async particleInit(container: Container, particle: StarParticle): Promise<void> {
+    particleInit(container: Container, particle: StarParticle): void {
         const star = particle.shapeData as IStarShape | undefined;
 
         particle.starInset = getRangeValue(star?.inset ?? defaultInset);
-
-        await Promise.resolve();
     }
 }

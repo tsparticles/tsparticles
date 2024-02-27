@@ -7,8 +7,8 @@ const half = 0.5;
 export class ParallaxMover implements IParticleMover {
     /**
      */
-    async init(): Promise<void> {
-        await Promise.resolve();
+    init(): void {
+        // do nothing
     }
 
     /**
@@ -26,7 +26,7 @@ export class ParallaxMover implements IParticleMover {
     /**
      * @param particle -
      */
-    async move(particle: Particle): Promise<void> {
+    move(particle: Particle): void {
         const container = particle.container,
             options = container.actualOptions,
             parallaxOptions = options.interactivity.events.onHover.parallax;
@@ -58,7 +58,5 @@ export class ParallaxMover implements IParticleMover {
 
         offset.x += (centerDistance.x - offset.x) / parallaxSmooth; // Easing equation
         offset.y += (centerDistance.y - offset.y) / parallaxSmooth; // Easing equation
-
-        await Promise.resolve();
     }
 }

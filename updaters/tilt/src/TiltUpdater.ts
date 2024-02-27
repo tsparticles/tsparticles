@@ -37,7 +37,7 @@ export class TiltUpdater implements IParticleUpdater {
         };
     }
 
-    async init(particle: TiltParticle): Promise<void> {
+    init(particle: TiltParticle): void {
         const tiltOptions = particle.options.tilt;
 
         if (!tiltOptions) {
@@ -83,8 +83,6 @@ export class TiltUpdater implements IParticleUpdater {
                 particle.tilt.velocity *= getRandom();
             }
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: TiltParticle): boolean {

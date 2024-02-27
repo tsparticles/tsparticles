@@ -46,7 +46,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.options = deepExtend({}, defaultOptions) as IPerlinOptions;
     }
 
-    generate(particle: Particle): Promise<Vector> {
+    generate(particle: Particle): Vector {
         const pos = particle.getPosition(),
             { size } = this.options,
             point = {
@@ -55,15 +55,13 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             },
             { field } = this;
 
-        return Promise.resolve(!field?.[point.x]?.[point.y] ? Vector.origin : field[point.x][point.y].copy());
+        return !field?.[point.x]?.[point.y] ? Vector.origin : field[point.x][point.y].copy();
     }
 
-    async init(container: Container): Promise<void> {
+    init(container: Container): void {
         this.container = container;
 
         this._setup();
-
-        await Promise.resolve();
     }
 
     reset(): void {

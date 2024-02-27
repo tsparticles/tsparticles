@@ -43,7 +43,7 @@ export class RotateUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    async init(particle: RotateParticle): Promise<void> {
+    init(particle: RotateParticle): void {
         const rotateOptions = particle.options.rotate;
 
         if (!rotateOptions) {
@@ -91,8 +91,6 @@ export class RotateUpdater implements IParticleUpdater {
         }
 
         particle.rotation = particle.rotate.value;
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: RotateParticle): boolean {
@@ -118,7 +116,7 @@ export class RotateUpdater implements IParticleUpdater {
         }
     }
 
-    async update(particle: RotateParticle, delta: IDelta): Promise<void> {
+    update(particle: RotateParticle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }
@@ -130,7 +128,5 @@ export class RotateUpdater implements IParticleUpdater {
         updateAnimation(particle, particle.rotate, false, DestroyType.none, delta);
 
         particle.rotation = particle.rotate.value;
-
-        await Promise.resolve();
     }
 }

@@ -416,15 +416,15 @@ export class Particle {
         });
     }
 
-    async draw(delta: IDelta): Promise<void> {
+    draw(delta: IDelta): void {
         const container = this.container,
             canvas = container.canvas;
 
         for (const [, plugin] of container.plugins) {
-            await canvas.drawParticlePlugin(plugin, this, delta);
+            canvas.drawParticlePlugin(plugin, this, delta);
         }
 
-        await canvas.drawParticle(this, delta);
+        canvas.drawParticle(this, delta);
     }
 
     getFillColor(): IHsl | undefined {
@@ -451,12 +451,12 @@ export class Particle {
         return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
     }
 
-    async init(
+    init(
         id: number,
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
-    ): Promise<void> {
+    ): void {
         const container = this.container,
             engine = this._engine;
 
@@ -553,7 +553,7 @@ export class Particle {
             this.pathGenerator = this._engine.getPathGenerator(pathOptions.generator);
 
             if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
-                await this.pathGenerator.init(container);
+                this.pathGenerator.init(container);
             }
         }
 
@@ -600,7 +600,7 @@ export class Particle {
         }
 
         if (effectDrawer?.loadEffect) {
-            await effectDrawer.loadEffect(this);
+            effectDrawer.loadEffect(this);
         }
 
         let shapeDrawer = container.shapeDrawers.get(this.shape);
@@ -614,7 +614,7 @@ export class Particle {
         }
 
         if (shapeDrawer?.loadShape) {
-            await shapeDrawer.loadShape(this);
+            shapeDrawer.loadShape(this);
         }
 
         const sideCountFunc = shapeDrawer?.getSidesCount;
@@ -627,15 +627,15 @@ export class Particle {
         this.shadowColor = rangeColorToRgb(this.options.shadow.color);
 
         for (const updater of particles.updaters) {
-            await updater.init(this);
+            updater.init(this);
         }
 
         for (const mover of particles.movers) {
-            await mover.init?.(this);
+            mover.init?.(this);
         }
 
-        await effectDrawer?.particleInit?.(container, this);
-        await shapeDrawer?.particleInit?.(container, this);
+        effectDrawer?.particleInit?.(container, this);
+        shapeDrawer?.particleInit?.(container, this);
 
         for (const [, plugin] of container.plugins) {
             plugin.particleCreated?.(this);

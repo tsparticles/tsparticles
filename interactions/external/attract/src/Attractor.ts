@@ -10,6 +10,7 @@ import {
     millisecondsToSeconds,
     mouseMoveEvent,
 } from "@tsparticles/engine";
+import { clickAttract, hoverAttract } from "./Utils.js";
 import { Attract } from "./Options/Classes/Attract.js";
 
 const attractMode = "attract";
@@ -86,7 +87,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
@@ -95,12 +96,8 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             { enable: clickEnabled, mode: clickMode } = events.onClick;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
-            const { hoverAttract } = await import("./Utils.js");
-
             hoverAttract(this.container, (p) => this.isEnabled(p));
         } else if (clickEnabled && isInArray(attractMode, clickMode)) {
-            const { clickAttract } = await import("./Utils.js");
-
             clickAttract(this.container, (p) => this.isEnabled(p));
         }
     }

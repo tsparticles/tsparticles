@@ -9,6 +9,7 @@ import {
     getLinkRandomColor,
 } from "@tsparticles/engine";
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
+import { CircleWarp } from "./CircleWarp.js";
 import { Links } from "./Options/Classes/Links.js";
 
 const squarePower = 2,
@@ -70,7 +71,7 @@ export class Linker extends ParticlesInteractorBase {
         this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
     }
 
-    async interact(p1: LinkParticle): Promise<void> {
+    interact(p1: LinkParticle): void {
         if (!p1.options.links) {
             return;
         }
@@ -93,8 +94,6 @@ export class Linker extends ParticlesInteractorBase {
         let range: Circle;
 
         if (warp) {
-            const { CircleWarp } = await import("./CircleWarp.js");
-
             range = new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize);
         } else {
             range = new Circle(pos1.x, pos1.y, optDistance);

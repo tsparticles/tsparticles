@@ -12,7 +12,7 @@ export interface IExternalInteractor<TParticle extends Particle = Particle> exte
 
     loadModeOptions?: (options: Modes, ...sources: RecursivePartial<IModes | undefined>[]) => void;
 
-    interact(delta: IDelta): Promise<void>;
+    interact(delta: IDelta): void;
 
     isEnabled(particle?: TParticle): boolean;
 }

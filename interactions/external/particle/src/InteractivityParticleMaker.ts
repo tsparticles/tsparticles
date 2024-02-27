@@ -34,7 +34,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         // do nothing
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         const container = this.container,
             { interactivity } = container,
             options = container.actualOptions;
@@ -110,7 +110,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
                 },
             }) as RecursivePartial<ParticlesOptions>;
 
-            this._particle = await container.particles.addParticle(this._lastPosition, particleOptions);
+            this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
 
             if (interactivityParticleOptions.replaceCursor) {
                 const element = interactivity.element as HTMLElement | Window | undefined;

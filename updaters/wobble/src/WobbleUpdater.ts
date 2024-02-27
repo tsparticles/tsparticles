@@ -8,6 +8,7 @@ import {
 } from "@tsparticles/engine";
 import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } from "./Types.js";
 import { Wobble } from "./Options/Classes/Wobble.js";
+import { updateWobble } from "./Utils.js";
 
 const double = 2,
     doublePI = Math.PI * double,
@@ -33,7 +34,7 @@ export class WobbleUpdater implements IParticleUpdater {
      * Initializing the particle for wobble animation
      * @param particle - the particle to init
      */
-    async init(particle: WobbleParticle): Promise<void> {
+    init(particle: WobbleParticle): void {
         const wobbleOpt = particle.options.wobble;
 
         if (wobbleOpt?.enable) {
@@ -52,8 +53,6 @@ export class WobbleUpdater implements IParticleUpdater {
 
         particle.retina.wobbleDistance =
             getRangeValue(wobbleOpt?.distance ?? defaultDistance) * this.container.retina.pixelRatio;
-
-        await Promise.resolve();
     }
 
     /**
@@ -83,12 +82,10 @@ export class WobbleUpdater implements IParticleUpdater {
      * @param particle - the particle to update
      * @param delta - this variable contains the delta between the current frame and the previous frame
      */
-    async update(particle: WobbleParticle, delta: IDelta): Promise<void> {
+    update(particle: WobbleParticle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }
-
-        const { updateWobble } = await import("./Utils.js");
 
         updateWobble(particle, delta);
     }

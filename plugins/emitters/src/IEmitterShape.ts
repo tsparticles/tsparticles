@@ -4,7 +4,7 @@ import type { IRandomPositionData } from "./IRandomPositionData.js";
 export interface IEmitterShape {
     init(): Promise<void>;
 
-    randomPosition(): Promise<IRandomPositionData | null>;
+    randomPosition(): IRandomPositionData | null;
 
     resize(position: ICoordinates, size: IDimension): void;
 }

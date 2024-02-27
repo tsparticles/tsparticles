@@ -227,15 +227,13 @@ export class AbsorberInstance {
      * The draw method, for drawing the absorber in the canvas
      * @param context - the canvas 2d context used for drawing
      */
-    async draw(context: CanvasRenderingContext2D): Promise<void> {
+    draw(context: CanvasRenderingContext2D): void {
         context.translate(this.position.x, this.position.y);
         context.beginPath();
         context.arc(origin.x, origin.y, this.size, minAngle, maxAngle, false);
         context.closePath();
         context.fillStyle = getStyleFromRgb(this.color, this.opacity);
         context.fill();
-
-        await Promise.resolve();
     }
 
     /**

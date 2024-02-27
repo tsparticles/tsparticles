@@ -6,6 +6,7 @@ import {
     type RecursivePartial,
 } from "@tsparticles/engine";
 import type { IRollParticlesOptions, RollParticle, RollParticlesOptions } from "./Types.js";
+import { initParticle, updateRoll } from "./Utils.js";
 import { Roll } from "./Options/Classes/Roll.js";
 
 export class RollUpdater implements IParticleUpdater {
@@ -20,9 +21,7 @@ export class RollUpdater implements IParticleUpdater {
         };
     }
 
-    async init(particle: RollParticle): Promise<void> {
-        const { initParticle } = await import("./Utils.js");
-
+    init(particle: RollParticle): void {
         initParticle(particle);
     }
 
@@ -45,12 +44,10 @@ export class RollUpdater implements IParticleUpdater {
         }
     }
 
-    async update(particle: Particle, delta: IDelta): Promise<void> {
+    update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }
-
-        const { updateRoll } = await import("./Utils.js");
 
         updateRoll(particle, delta);
     }

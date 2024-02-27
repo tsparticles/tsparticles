@@ -230,7 +230,7 @@ export class EmitterInstance {
         this._shape?.resize(this.position, this.size);
     }
 
-    async update(delta: IDelta): Promise<void> {
+    update(delta: IDelta): void {
         if (this._paused) {
             return;
         }
@@ -245,7 +245,7 @@ export class EmitterInstance {
         if (!this._startParticlesAdded) {
             this._startParticlesAdded = true;
 
-            await this._emitParticles(this.options.startCount);
+            this._emitParticles(this.options.startCount);
         }
 
         if (this._duration !== undefined) {
@@ -300,7 +300,7 @@ export class EmitterInstance {
             this._currentEmitDelay += delta.value;
 
             if (this._currentEmitDelay >= this._emitDelay) {
-                await this._emit();
+                this._emit();
                 this._currentEmitDelay -= this._emitDelay;
             }
         }
@@ -377,17 +377,17 @@ export class EmitterInstance {
         });
     };
 
-    private async _emit(): Promise<void> {
+    private _emit(): void {
         if (this._paused) {
             return;
         }
 
         const quantity = getRangeValue(this.options.rate.quantity);
 
-        await this._emitParticles(quantity);
+        this._emitParticles(quantity);
     }
 
-    private async _emitParticles(quantity: number): Promise<void> {
+    private _emitParticles(quantity: number): void {
         const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
 
         for (let i = 0; i < quantity; i++) {
@@ -422,7 +422,7 @@ export class EmitterInstance {
             let position: ICoordinates | null = this.position;
 
             if (this._shape) {
-                const shapePosData = await this._shape.randomPosition();
+                const shapePosData = this._shape.randomPosition();
 
                 if (shapePosData) {
                     position = shapePosData.position;
@@ -448,7 +448,7 @@ export class EmitterInstance {
             }
 
             if (position) {
-                await this.container.particles.addParticle(position, particlesOptions);
+                this.container.particles.addParticle(position, particlesOptions);
             }
         }
     }

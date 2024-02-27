@@ -20,7 +20,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    async init(particle: StrokeParticle): Promise<void> {
+    init(particle: StrokeParticle): void {
         const container = this.container,
             options = particle.options;
 
@@ -40,8 +40,6 @@ export class StrokeColorUpdater implements IParticleUpdater {
                 container.retina.reduceFactor,
             );
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: StrokeParticle): boolean {
@@ -58,13 +56,11 @@ export class StrokeColorUpdater implements IParticleUpdater {
         );
     }
 
-    async update(particle: Particle, delta: IDelta): Promise<void> {
+    update(particle: Particle, delta: IDelta): void {
         if (!this.isEnabled(particle)) {
             return;
         }
 
         updateColor(particle.strokeColor, delta);
-
-        await Promise.resolve();
     }
 }

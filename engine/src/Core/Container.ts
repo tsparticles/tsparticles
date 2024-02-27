@@ -421,17 +421,17 @@ export class Container {
 
         let refreshTime = force;
 
-        const frame = async (timestamp: number): Promise<void> => {
+        const frame = (timestamp: number): void => {
             if (refreshTime) {
                 this._lastFrameTime = undefined;
 
                 refreshTime = false;
             }
 
-            await this._nextFrame(timestamp);
+            this._nextFrame(timestamp);
         };
 
-        this._drawAnimationFrame = requestAnimationFrame((timestamp) => void frame(timestamp));
+        this._drawAnimationFrame = requestAnimationFrame((timestamp) => frame(timestamp));
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -543,7 +543,7 @@ export class Container {
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
         await this.particles.init();
-        await this.particles.setDensity();
+        this.particles.setDensity();
 
         for (const [, plugin] of this.plugins) {
             plugin.particlesSetup?.();
@@ -770,7 +770,7 @@ export class Container {
         }
     };
 
-    private readonly _nextFrame = async (timestamp: DOMHighResTimeStamp): Promise<void> => {
+    private readonly _nextFrame = (timestamp: DOMHighResTimeStamp): void => {
         try {
             if (
                 !this._smooth &&
@@ -795,7 +795,7 @@ export class Container {
                 return;
             }
 
-            await this.particles.draw(delta);
+            this.particles.draw(delta);
 
             if (!this.alive()) {
                 this.destroy();

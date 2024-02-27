@@ -39,7 +39,7 @@ interface ITrailData extends IShapeValues {
 }
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
-    async draw(data: IShapeDrawData<TrailParticle>): Promise<void> {
+    draw(data: IShapeDrawData<TrailParticle>): void {
         const { context, radius, particle } = data,
             diameter = radius * double,
             pxRatio = particle.container.retina.pixelRatio,
@@ -145,11 +145,9 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             currentPos.x,
             currentPos.y,
         );
-
-        await Promise.resolve();
     }
 
-    async particleInit(container: Container, particle: TrailParticle): Promise<void> {
+    particleInit(container: Container, particle: TrailParticle): void {
         particle.trail = [];
 
         const effectData = particle.effectData as ITrailData | undefined;
@@ -162,7 +160,5 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         particle.trailMinWidth = effectData?.minWidth
             ? getRangeValue(effectData.minWidth) * container.retina.pixelRatio
             : undefined;
-
-        await Promise.resolve();
     }
 }

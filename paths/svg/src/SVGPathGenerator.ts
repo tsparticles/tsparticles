@@ -69,7 +69,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         this._width = 0;
     }
 
-    generate(particle: SVGPathParticle, delta: IDelta): Promise<Vector> {
+    generate(particle: SVGPathParticle, delta: IDelta): Vector {
         const container = particle.container,
             pxRatio = container.retina.pixelRatio;
 
@@ -169,10 +169,10 @@ export class SVGPathGenerator implements IMovePathGenerator {
                 particle.svgOffset.height;
         }
 
-        return Promise.resolve(Vector.origin);
+        return Vector.origin;
     }
 
-    async init(container: Container): Promise<void> {
+    init(container: Container): void {
         const options = container.actualOptions.particles.move.path.options as SVGPathOptions,
             position = options.position ?? this._offset;
 
@@ -186,36 +186,38 @@ export class SVGPathGenerator implements IMovePathGenerator {
         if (options.url && !options.path) {
             const url = options.url;
 
-            const response = await fetch(url),
-                data = await response.text();
+            void (async (): Promise<void> => {
+                const response = await fetch(url),
+                    data = await response.text();
 
-            // retrieve the svg path from the url
-            const parser = new DOMParser(),
-                doc = parser.parseFromString(data, "image/svg+xml"),
-                firstIndex = 0,
-                svg = doc.getElementsByTagName("svg")[firstIndex];
+                // retrieve the svg path from the url
+                const parser = new DOMParser(),
+                    doc = parser.parseFromString(data, "image/svg+xml"),
+                    firstIndex = 0,
+                    svg = doc.getElementsByTagName("svg")[firstIndex];
 
-            let svgPaths = svg.getElementsByTagName("path");
+                let svgPaths = svg.getElementsByTagName("path");
 
-            if (!svgPaths.length) {
-                svgPaths = doc.getElementsByTagName("path");
-            }
-
-            this._paths = [];
-
-            for (let i = 0; i < svgPaths.length; i++) {
-                const path = svgPaths.item(i);
-
-                if (path) {
-                    this._paths.push({
-                        element: path,
-                        length: path.getTotalLength(),
-                    });
+                if (!svgPaths.length) {
+                    svgPaths = doc.getElementsByTagName("path");
                 }
-            }
 
-            this._size.height = parseFloat(svg.getAttribute("height") ?? "0");
-            this._size.width = parseFloat(svg.getAttribute("width") ?? "0");
+                this._paths = [];
+
+                for (let i = 0; i < svgPaths.length; i++) {
+                    const path = svgPaths.item(i);
+
+                    if (path) {
+                        this._paths.push({
+                            element: path,
+                            length: path.getTotalLength(),
+                        });
+                    }
+                }
+
+                this._size.height = parseFloat(svg.getAttribute("height") ?? "0");
+                this._size.width = parseFloat(svg.getAttribute("width") ?? "0");
+            })();
         } else if (options.path) {
             const path = options.path;
 

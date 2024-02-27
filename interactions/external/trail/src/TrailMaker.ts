@@ -34,7 +34,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         // do nothing
     }
 
-    async interact(delta: IDelta): Promise<void> {
+    interact(delta: IDelta): void {
         const container = this.container,
             { interactivity } = container;
 
@@ -75,11 +75,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         if (canEmit) {
-            await container.particles.push(
-                trailOptions.quantity,
-                container.interactivity.mouse,
-                trailOptions.particles,
-            );
+            container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
         }
 
         this._delay -= optDelay;

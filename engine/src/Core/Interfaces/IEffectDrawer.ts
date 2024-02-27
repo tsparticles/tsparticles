@@ -13,7 +13,7 @@ export interface IEffectDrawer<TParticle extends Particle = Particle> {
      * Shape draw function
      * @param data - the data used for drawing
      */
-    draw: (data: IShapeDrawData<TParticle>) => Promise<void>;
+    draw: (data: IShapeDrawData<TParticle>) => void;
 
     /**
      * Shape init function
@@ -25,12 +25,12 @@ export interface IEffectDrawer<TParticle extends Particle = Particle> {
      * Effect load function
      * @param particle - the particle using the shape
      */
-    loadEffect?: (particle: TParticle) => Promise<void>;
+    loadEffect?: (particle: TParticle) => void;
 
     /**
      * Shape particle init function
      * @param container - the container containing the shape
      * @param particle - the particle using the shape
      */
-    particleInit?: (container: Container, particle: TParticle) => Promise<void>;
+    particleInit?: (container: Container, particle: TParticle) => void;
 }
