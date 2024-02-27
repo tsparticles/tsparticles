@@ -41,7 +41,7 @@ export class Repulser extends ParticlesInteractorBase {
         // do nothing
     }
 
-    async interact(p1: RepulseParticle): Promise<void> {
+    interact(p1: RepulseParticle): void {
         const container = this.container;
 
         if (!p1.repulse) {
@@ -85,8 +85,6 @@ export class Repulser extends ParticlesInteractorBase {
                 p2.position.addTo(velocityVec);
             }
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: RepulseParticle): boolean {

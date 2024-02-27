@@ -26,7 +26,7 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
         // do nothing
     }
 
-    async interact(p1: AttractParticle): Promise<void> {
+    interact(p1: AttractParticle): void {
         const container = this.container;
 
         if (p1.attractDistance === undefined) {
@@ -55,8 +55,6 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
             p2.velocity.x += ax * p2Factor;
             p2.velocity.y += ay * p2Factor;
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {

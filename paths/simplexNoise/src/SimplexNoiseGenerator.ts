@@ -44,7 +44,7 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         this.options = deepExtend({}, defaultOptions) as ISimplexOptions;
     }
 
-    generate(particle: Particle): Promise<Vector> {
+    generate(particle: Particle): Vector {
         const pos = particle.getPosition(),
             point = {
                 x: Math.max(Math.floor(pos.x / this.options.size), 0),
@@ -54,20 +54,18 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
             v = Vector.origin;
 
         if (!this.field?.[point.x]?.[point.y]?.[point.z]) {
-            return Promise.resolve(v);
+            return v;
         }
 
         v.setTo(this.field[point.x][point.y][point.z]);
 
-        return Promise.resolve(v);
+        return v;
     }
 
-    async init(container: Container): Promise<void> {
+    init(container: Container): void {
         this.container = container;
 
         this._setup();
-
-        await Promise.resolve();
     }
 
     reset(): void {

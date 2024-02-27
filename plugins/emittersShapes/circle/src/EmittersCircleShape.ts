@@ -17,7 +17,7 @@ export class EmittersCircleShape extends EmitterShapeBase {
         // nothing to do
     }
 
-    async randomPosition(): Promise<IRandomPositionData> {
+    randomPosition(): IRandomPositionData {
         const size = this.size,
             fill = this.fill,
             position = this.position,
@@ -43,11 +43,11 @@ export class EmittersCircleShape extends EmitterShapeBase {
             maxRadius = radius(a, b, randomTheta),
             randomRadius = fill ? maxRadius * Math.sqrt(getRandom()) : maxRadius;
 
-        return Promise.resolve({
+        return {
             position: {
                 x: position.x + randomRadius * Math.cos(randomTheta),
                 y: position.y + randomRadius * Math.sin(randomTheta),
             },
-        });
+        };
     }
 }

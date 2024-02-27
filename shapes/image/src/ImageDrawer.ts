@@ -1,7 +1,8 @@
 import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
-import type { IImage, IParticleImage, ImageParticle } from "./Utils.js";
+import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
+import { drawGif } from "./GifUtils/Utils.js";
 
 const double = 2,
     defaultAlpha = 1,
@@ -38,7 +39,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * The draw image method
      * @param data - the shape draw data
      */
-    async draw(data: IShapeDrawData<ImageParticle>): Promise<void> {
+    draw(data: IShapeDrawData<ImageParticle>): void {
         const { context, radius, particle, opacity } = data,
             image = particle.image,
             element = image?.element;
@@ -50,8 +51,6 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         context.globalAlpha = opacity;
 
         if (image.gif && image.gifData) {
-            const { drawGif } = await import("./GifUtils/Utils.js");
-
             drawGif(data);
         } else if (element) {
             const ratio = image.ratio,
@@ -88,7 +87,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         }
     }
 
-    async loadShape(particle: ImageParticle): Promise<void> {
+    loadShape(particle: ImageParticle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
@@ -106,8 +105,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
         if (!image) {
-            await this.loadImageShape(imageData);
-            await this.loadShape(particle);
+            void this.loadImageShape(imageData).then(() => {
+                this.loadShape(particle);
+            });
         }
     }
 
@@ -116,7 +116,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * @param container - the particles container
      * @param particle - the particle loading the image shape
      */
-    async particleInit(container: Container, particle: ImageParticle): Promise<void> {
+    particleInit(container: Container, particle: ImageParticle): void {
         if (particle.shape !== "image" && particle.shape !== "images") {
             return;
         }
@@ -143,51 +143,51 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
         if (image.loading) {
             setTimeout((): void => {
-                void this.particleInit(container, particle);
+                this.particleInit(container, particle);
             });
 
             return;
         }
 
-        let imageRes: IParticleImage;
+        void (async (): Promise<void> => {
+            let imageRes: IParticleImage;
 
-        if (image.svgData && color) {
-            const { replaceImageColor } = await import("./Utils.js");
+            if (image.svgData && color) {
+                imageRes = await replaceImageColor(image, imageData, color, particle);
+            } else {
+                imageRes = {
+                    color,
+                    data: image,
+                    element: image.element,
+                    gif: image.gif,
+                    gifData: image.gifData,
+                    gifLoopCount: image.gifLoopCount,
+                    loaded: true,
+                    ratio:
+                        imageData.width && imageData.height
+                            ? imageData.width / imageData.height
+                            : image.ratio ?? defaultRatio,
+                    replaceColor: replaceColor,
+                    source: imageData.src,
+                };
+            }
 
-            imageRes = await replaceImageColor(image, imageData, color, particle);
-        } else {
-            imageRes = {
-                color,
-                data: image,
-                element: image.element,
-                gif: image.gif,
-                gifData: image.gifData,
-                gifLoopCount: image.gifLoopCount,
-                loaded: true,
-                ratio:
-                    imageData.width && imageData.height
-                        ? imageData.width / imageData.height
-                        : image.ratio ?? defaultRatio,
-                replaceColor: replaceColor,
-                source: imageData.src,
-            };
-        }
+            if (!imageRes.ratio) {
+                imageRes.ratio = 1;
+            }
 
-        if (!imageRes.ratio) {
-            imageRes.ratio = 1;
-        }
+            const fill = imageData.fill ?? particle.shapeFill,
+                close = imageData.close ?? particle.shapeClose,
+                imageShape = {
+                    image: imageRes,
+                    fill,
+                    close,
+                };
 
-        const fill = imageData.fill ?? particle.shapeFill,
-            close = imageData.close ?? particle.shapeClose,
-            imageShape = {
-                image: imageRes,
-                fill,
-                close,
-            };
-
-        particle.image = imageShape.image;
-        particle.shapeFill = imageShape.fill;
-        particle.shapeClose = imageShape.close;
+            particle.image = imageShape.image;
+            particle.shapeFill = imageShape.fill;
+            particle.shapeClose = imageShape.close;
+        })();
     }
 
     /**
@@ -195,7 +195,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * @param imageShape - the image shape to load
      * @internal
      */
-    private readonly loadImageShape: (imageShape: IImageShape) => Promise<void> = async (imageShape) => {
+    private readonly loadImageShape = async (imageShape: IImageShape): Promise<void> => {
         if (!this._engine.loadImage) {
             throw new Error(`${errorPrefix} image shape not initialized`);
         }

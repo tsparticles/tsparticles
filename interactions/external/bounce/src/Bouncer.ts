@@ -9,6 +9,7 @@ import {
     isInArray,
     mouseMoveEvent,
 } from "@tsparticles/engine";
+import { divBounce, mouseBounce } from "./Utils.js";
 import { Bounce } from "./Options/Classes/Bounce.js";
 
 const bounceMode = "bounce";
@@ -34,7 +35,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
         container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,
@@ -44,12 +45,8 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(bounceMode, hoverMode)) {
-            const { mouseBounce } = await import("./Utils.js");
-
             mouseBounce(this.container, (p) => this.isEnabled(p));
         } else {
-            const { divBounce } = await import("./Utils.js");
-
             divBounce(this.container, divs, bounceMode, (p) => this.isEnabled(p));
         }
     }

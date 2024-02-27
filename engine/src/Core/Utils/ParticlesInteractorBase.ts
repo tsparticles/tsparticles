@@ -45,7 +45,7 @@ export abstract class ParticlesInteractorBase<
      * @param particle - the particle responsible for interactions
      * @param delta - this variable contains the delta between the current frame and the previous frame
      */
-    abstract interact(particle: TParticle, delta: IDelta): Promise<void>;
+    abstract interact(particle: TParticle, delta: IDelta): void;
 
     /**
      * Interaction enable check

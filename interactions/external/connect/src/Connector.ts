@@ -41,7 +41,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     /**
      * Connecting particles on hover interactivity
      */
-    async interact(): Promise<void> {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions;
 
@@ -78,8 +78,6 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
                 }
             });
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

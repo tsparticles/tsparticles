@@ -42,7 +42,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             interactivity = options.interactivity;
@@ -111,8 +111,6 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
             drawGrab(container, particle, colorLine, opacityLine, mousePos);
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {

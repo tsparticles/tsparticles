@@ -34,7 +34,7 @@ export class Pauser extends ExternalInteractorBase {
         // do nothing
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         // do nothing
     }
 

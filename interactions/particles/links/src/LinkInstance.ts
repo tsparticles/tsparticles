@@ -27,7 +27,7 @@ export class LinkInstance implements IContainerPlugin {
         };
     }
 
-    async drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): Promise<void> {
+    drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
         const { links, options } = particle;
 
         if (!links?.length) {
@@ -48,8 +48,6 @@ export class LinkInstance implements IContainerPlugin {
                 this._drawLinkLine(particle, link);
             }
         }
-
-        await Promise.resolve();
     }
 
     async init(): Promise<void> {

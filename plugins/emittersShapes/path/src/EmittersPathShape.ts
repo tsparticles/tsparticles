@@ -62,7 +62,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         // nothing to do
     }
 
-    async randomPosition(): Promise<IRandomPositionData | null> {
+    randomPosition(): IRandomPositionData | null {
         const ctx = this.checkContext,
             position = this.position,
             size = this.size,
@@ -72,7 +72,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
                 ? generateRandomPointWithinPath(ctx, path, position, size)
                 : generateRandomPointOnPathPerimeter(ctx, path, position, size);
 
-        return Promise.resolve(res ? { position: res } : null);
+        return res ? { position: res } : null;
     }
 
     resize(position: ICoordinates, size: IDimension): void {

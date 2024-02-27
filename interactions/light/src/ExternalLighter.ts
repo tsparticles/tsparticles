@@ -24,7 +24,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
         // do nothing
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             interactivity = container.interactivity;
@@ -42,8 +42,6 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
         container.canvas.draw((ctx) => {
             drawLight(container, ctx, mousePos);
         });
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: LightParticle): boolean {

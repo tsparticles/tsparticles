@@ -10,6 +10,7 @@ import {
 } from "@tsparticles/engine";
 import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
+import { drawText } from "./Utils.js";
 
 export const validTypes = ["text", "character", "char", "multiline-text"];
 
@@ -17,9 +18,7 @@ export const validTypes = ["text", "character", "char", "multiline-text"];
  * Multiline text drawer
  */
 export class TextDrawer implements IShapeDrawer<TextParticle> {
-    async draw(data: IShapeDrawData<TextParticle>): Promise<void> {
-        const { drawText } = await import("./Utils.js");
-
+    draw(data: IShapeDrawData<TextParticle>): void {
         drawText(data);
     }
 
@@ -45,7 +44,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
      * @param container - the particles container
      * @param particle - the particle loading the text shape
      */
-    async particleInit(container: Container, particle: TextParticle): Promise<void> {
+    particleInit(container: Container, particle: TextParticle): void {
         if (!particle.shape || !validTypes.includes(particle.shape)) {
             return;
         }
@@ -63,7 +62,5 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
         }
 
         particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
-
-        await Promise.resolve();
     }
 }

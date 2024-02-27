@@ -55,7 +55,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
         // do nothing
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         // do nothing
     }
 

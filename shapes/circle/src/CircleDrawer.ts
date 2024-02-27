@@ -1,6 +1,7 @@
 import { type Container, type IShapeDrawData, type IShapeDrawer, degToRad, isObject } from "@tsparticles/engine";
 import type { CircleParticle } from "./CircleParticle.js";
 import type { ICircleShapeData } from "./ICircleShapeData.js";
+import { drawCircle } from "./Utils.js";
 
 const sides = 12,
     maxAngle = 360,
@@ -9,9 +10,7 @@ const sides = 12,
 /**
  */
 export class CircleDrawer implements IShapeDrawer<CircleParticle> {
-    async draw(data: IShapeDrawData<CircleParticle>): Promise<void> {
-        const { drawCircle } = await import("./Utils.js");
-
+    draw(data: IShapeDrawData<CircleParticle>): void {
         drawCircle(data);
     }
 
@@ -19,7 +18,7 @@ export class CircleDrawer implements IShapeDrawer<CircleParticle> {
         return sides;
     }
 
-    async particleInit(container: Container, particle: CircleParticle): Promise<void> {
+    particleInit(container: Container, particle: CircleParticle): void {
         const shapeData = particle.shapeData as ICircleShapeData | undefined,
             angle = shapeData?.angle ?? {
                 max: maxAngle,
@@ -32,7 +31,5 @@ export class CircleDrawer implements IShapeDrawer<CircleParticle> {
                   max: degToRad(angle),
               }
             : { min: degToRad(angle.min), max: degToRad(angle.max) };
-
-        await Promise.resolve();
     }
 }

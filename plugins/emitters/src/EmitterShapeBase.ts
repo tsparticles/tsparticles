@@ -22,5 +22,5 @@ export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterSh
 
     abstract init(): Promise<void>;
 
-    abstract randomPosition(): Promise<IRandomPositionData | null>;
+    abstract randomPosition(): IRandomPositionData | null;
 }

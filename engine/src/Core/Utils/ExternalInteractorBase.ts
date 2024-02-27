@@ -44,7 +44,7 @@ export abstract class ExternalInteractorBase<
      * Interaction handler
      * @param delta - this variable contains the delta between the current frame and the previous frame
      */
-    abstract interact(delta: IDelta): Promise<void>;
+    abstract interact(delta: IDelta): void;
 
     /**
      * Interaction enabled check

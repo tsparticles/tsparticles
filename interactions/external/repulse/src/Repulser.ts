@@ -106,7 +106,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         container.retina.repulseModeDistance = repulse.distance * container.retina.pixelRatio;
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
@@ -126,8 +126,6 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         } else {
             divModeExecute(repulseMode, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -424,7 +422,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         container.retina.repulseModeDistance = repulse.distance * container.retina.pixelRatio;
     }
 
-    async interact(delta: IDelta): Promise<void> {
+    interact(delta: IDelta): void {
         this.doInteract(delta);
     }
 

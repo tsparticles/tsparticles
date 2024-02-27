@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/electron-demo",
-    "version": "3.2.2",
+    "version": "3.3.0",
     "description": "",
     "main": "app/index.js",
     "private": true,
@@ -14,11 +14,11 @@
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "license": "MIT",
     "dependencies": {
-        "@tsparticles/configs": "^3.2.2",
-        "@tsparticles/engine": "^3.2.2",
-        "tsparticles": "^3.2.2"
+        "@tsparticles/configs": "^3.3.0",
+        "@tsparticles/engine": "^3.3.0",
+        "tsparticles": "^3.3.0"
     },
     "devDependencies": {
-        "electron": "^28.0.0"
+        "electron": "^29.0.0"
     }
 }

@@ -15,7 +15,7 @@ export class ColorUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    async init(particle: Particle): Promise<void> {
+    init(particle: Particle): void {
         /* color */
         const hslColor = rangeColorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
 
@@ -26,8 +26,6 @@ export class ColorUpdater implements IParticleUpdater {
                 this.container.retina.reduceFactor,
             );
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {
@@ -43,9 +41,7 @@ export class ColorUpdater implements IParticleUpdater {
         );
     }
 
-    async update(particle: Particle, delta: IDelta): Promise<void> {
+    update(particle: Particle, delta: IDelta): void {
         updateColor(particle.color, delta);
-
-        await Promise.resolve();
     }
 }

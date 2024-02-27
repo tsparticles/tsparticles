@@ -29,12 +29,12 @@ const defaultOffset = 0,
  * @param splitParticlesOptions -
  * @returns the added particle if any
  */
-async function addSplitParticle(
+function addSplitParticle(
     engine: Engine,
     container: Container,
     parent: DestroyParticle,
     splitParticlesOptions?: RecursivePartial<IParticlesOptions>,
-): Promise<Particle | undefined> {
+): Particle | undefined {
     const destroyOptions = parent.options.destroy;
 
     if (!destroyOptions) {
@@ -113,7 +113,7 @@ async function addSplitParticle(
  * @param container -
  * @param particle -
  */
-export async function split(engine: Engine, container: Container, particle: DestroyParticle): Promise<void> {
+export function split(engine: Engine, container: Container, particle: DestroyParticle): void {
     const destroyOptions = particle.options.destroy;
 
     if (!destroyOptions) {
@@ -133,6 +133,6 @@ export async function split(engine: Engine, container: Container, particle: Dest
         particlesSplitOptions = itemFromSingleOrMultiple(splitOptions.particles);
 
     for (let i = 0; i < rate; i++) {
-        await addSplitParticle(engine, container, particle, particlesSplitOptions);
+        addSplitParticle(engine, container, particle, particlesSplitOptions);
     }
 }

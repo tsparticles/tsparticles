@@ -95,7 +95,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         this.pixelData = pixelData;
     }
 
-    async randomPosition(): Promise<IRandomPositionData | null> {
+    randomPosition(): IRandomPositionData | null {
         const { height, width } = this.pixelData,
             data = this.pixelData,
             position = this.position,
@@ -118,17 +118,17 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
                 continue;
             }
 
-            return Promise.resolve({
+            return {
                 position: {
                     x: pixelPos.x * scale + positionOffset.x,
                     y: pixelPos.y * scale + positionOffset.y,
                 },
                 color: { ...pixel },
                 opacity: pixel.a,
-            });
+            };
         }
 
-        return Promise.resolve(null);
+        return null;
     }
 
     resize(position: ICoordinates, size: IDimension): void {

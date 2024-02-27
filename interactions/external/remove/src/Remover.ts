@@ -41,7 +41,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
         // do nothing
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         // do nothing
     }
 

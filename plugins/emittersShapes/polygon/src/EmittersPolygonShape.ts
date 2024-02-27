@@ -26,12 +26,12 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
         // nothing to do
     }
 
-    async randomPosition(): Promise<IRandomPositionData | null> {
+    randomPosition(): IRandomPositionData | null {
         const fill = this.fill,
             polygon = this.polygon,
             res = fill ? generateRandomPointWithinPolygon(polygon) : generateRandomPointOnPolygonPerimeter(polygon);
 
-        return Promise.resolve(res ? { position: res } : null);
+        return res ? { position: res } : null;
     }
 
     resize(position: ICoordinates, size: IDimension): void {

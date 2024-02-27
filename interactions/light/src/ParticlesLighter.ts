@@ -16,7 +16,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
         // do nothing
     }
 
-    async interact(particle: LightParticle): Promise<void> {
+    interact(particle: LightParticle): void {
         const container = this.container,
             options = container.actualOptions,
             interactivity = container.interactivity;
@@ -34,8 +34,6 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
         container.canvas.draw((ctx) => {
             drawParticleShadow(container, ctx, particle, mousePos);
         });
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: LightParticle): boolean {

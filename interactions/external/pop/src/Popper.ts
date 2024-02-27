@@ -44,7 +44,7 @@ export class Popper extends ExternalInteractorBase {
         // do nothing
     }
 
-    async interact(): Promise<void> {
+    interact(): void {
         // do nothing
     }
 

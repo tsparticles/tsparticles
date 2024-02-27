@@ -10,6 +10,7 @@ import {
 } from "@tsparticles/engine";
 import type { ILifeParticlesOptions, LifeParticle, LifeParticlesOptions } from "./Types.js";
 import { Life } from "./Options/Classes/Life.js";
+import { updateLife } from "./Utils.js";
 
 const noTime = 0,
     identity = 1,
@@ -22,7 +23,7 @@ export class LifeUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    async init(particle: LifeParticle): Promise<void> {
+    init(particle: LifeParticle): void {
         const container = this.container,
             particlesOptions = particle.options,
             lifeOptions = particlesOptions.life;
@@ -58,8 +59,6 @@ export class LifeUpdater implements IParticleUpdater {
         if (particle.life) {
             particle.spawning = particle.life.delay > noTime;
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(particle: Particle): boolean {
@@ -79,12 +78,10 @@ export class LifeUpdater implements IParticleUpdater {
         }
     }
 
-    async update(particle: LifeParticle, delta: IDelta): Promise<void> {
+    update(particle: LifeParticle, delta: IDelta): void {
         if (!this.isEnabled(particle) || !particle.life) {
             return;
         }
-
-        const { updateLife } = await import("./Utils.js");
 
         updateLife(particle, delta, this.container.canvas.size);
     }

@@ -12,7 +12,7 @@ import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/I
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import { InteractionManager } from "./Utils/InteractionManager.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
-import type { Particle } from "./Particle.js";
+import { Particle } from "./Particle.js";
 import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Ranges.js";
@@ -92,24 +92,24 @@ export class Particles {
         return this._array.length;
     }
 
-    async addManualParticles(): Promise<void> {
+    addManualParticles(): void {
         const container = this._container,
             options = container.actualOptions;
 
         for (const particle of options.manualParticles) {
-            await this.addParticle(
+            this.addParticle(
                 particle.position ? getPosition(particle.position, container.canvas.size) : undefined,
                 particle.options,
             );
         }
     }
 
-    async addParticle(
+    addParticle(
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean,
-    ): Promise<Particle | undefined> {
+    ): Particle | undefined {
         const limitOptions = this._container.actualOptions.particles.number.limit,
             limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit,
             currentCount = this.count,
@@ -131,7 +131,7 @@ export class Particles {
             }
         }
 
-        return await this._pushParticle(position, overrideOptions, group, initializer);
+        return this._pushParticle(position, overrideOptions, group, initializer);
     }
 
     /**
@@ -150,7 +150,7 @@ export class Particles {
         this.updaters = [];
     }
 
-    async draw(delta: IDelta): Promise<void> {
+    draw(delta: IDelta): void {
         const container = this._container,
             canvas = container.canvas;
 
@@ -158,11 +158,11 @@ export class Particles {
         canvas.clear();
 
         /* update each particle before drawing */
-        await this.update(delta);
+        this.update(delta);
 
         /* draw polygon shape in debug mode */
         for (const [, plugin] of container.plugins) {
-            await canvas.drawPlugin(plugin, delta);
+            canvas.drawPlugin(plugin, delta);
         }
 
         /* container.canvas.draw((ctx) => {
@@ -171,7 +171,7 @@ export class Particles {
 
         /* draw each particle */
         for (const p of this._zArray) {
-            await p.draw(delta);
+            p.draw(delta);
         }
     }
 
@@ -213,7 +213,7 @@ export class Particles {
             }
         }
 
-        await this.addManualParticles();
+        this.addManualParticles();
 
         if (!handled) {
             const particlesOptions = options.particles,
@@ -227,12 +227,12 @@ export class Particles {
                     j < groupOptions.number?.value && i < particlesOptions.number.value;
                     i++, j++
                 ) {
-                    await this.addParticle(undefined, groupOptions, group);
+                    this.addParticle(undefined, groupOptions, group);
                 }
             }
 
             for (let i = this.count; i < particlesOptions.number.value; i++) {
-                await this.addParticle();
+                this.addParticle();
             }
         }
     }
@@ -249,18 +249,13 @@ export class Particles {
         await this._interactionManager.init();
 
         for (const [, pathGenerator] of container.pathGenerators) {
-            await pathGenerator.init(container);
+            pathGenerator.init(container);
         }
     }
 
-    async push(
-        nb: number,
-        mouse?: IMouseData,
-        overrideOptions?: RecursivePartial<IParticlesOptions>,
-        group?: string,
-    ): Promise<void> {
+    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
         for (let i = 0; i < nb; i++) {
-            await this.addParticle(mouse?.position, overrideOptions, group);
+            this.addParticle(mouse?.position, overrideOptions, group);
         }
     }
 
@@ -268,7 +263,7 @@ export class Particles {
         this.clear();
         await this.init();
 
-        await this.draw({ value: 0, factor: 0 });
+        this.draw({ value: 0, factor: 0 });
     }
 
     remove(particle: Particle, group?: string, override?: boolean): void {
@@ -297,16 +292,16 @@ export class Particles {
         this.removeAt(defaultIndex, quantity, group);
     }
 
-    async setDensity(): Promise<void> {
+    setDensity(): void {
         const options = this._container.actualOptions,
             groups = options.particles.groups,
             manualCount = 0;
 
         for (const group in groups) {
-            await this._applyDensity(groups[group], manualCount, group);
+            this._applyDensity(groups[group], manualCount, group);
         }
 
-        await this._applyDensity(options.particles, options.manualParticles.length);
+        this._applyDensity(options.particles, options.manualParticles.length);
     }
 
     setLastZIndex(zIndex: number): void {
@@ -318,7 +313,7 @@ export class Particles {
         this._resizeFactor = factor;
     }
 
-    async update(delta: IDelta): Promise<void> {
+    update(delta: IDelta): void {
         const container = this._container,
             particlesToDelete = new Set<Particle>();
 
@@ -329,7 +324,7 @@ export class Particles {
         }
 
         for (const [, plugin] of container.plugins) {
-            await plugin.update?.(delta);
+            plugin.update?.(delta);
         }
 
         const resizeFactor = this._resizeFactor;
@@ -356,7 +351,7 @@ export class Particles {
 
             for (const mover of this.movers) {
                 if (mover.isEnabled(particle)) {
-                    await mover.move(particle, delta);
+                    mover.move(particle, delta);
                 }
             }
 
@@ -387,16 +382,16 @@ export class Particles {
             this._addToPool(...particlesToDelete);
         }
 
-        await this._interactionManager.externalInteract(delta);
+        this._interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
         for (const particle of this._array) {
             for (const updater of this.updaters) {
-                await updater.update(particle, delta);
+                updater.update(particle, delta);
             }
 
             if (!particle.destroyed && !particle.spawning) {
-                await this._interactionManager.particlesInteract(particle, delta);
+                this._interactionManager.particlesInteract(particle, delta);
             }
         }
 
@@ -420,40 +415,38 @@ export class Particles {
         }
     };
 
-    private readonly _applyDensity: (options: IParticlesOptions, manualCount: number, group?: string) => Promise<void> =
-        async (options, manualCount, group) => {
-            const numberOptions = options.number;
+    private readonly _applyDensity = (options: IParticlesOptions, manualCount: number, group?: string): void => {
+        const numberOptions = options.number;
 
-            if (!options.number.density?.enable) {
-                if (group === undefined) {
-                    this._limit = numberOptions.limit.value;
-                } else if (numberOptions.limit) {
-                    this._groupLimits.set(group, numberOptions.limit.value);
-                }
-
-                return;
-            }
-
-            const densityFactor = this._initDensityFactor(numberOptions.density),
-                optParticlesNumber = numberOptions.value,
-                minLimit = 0,
-                optParticlesLimit =
-                    numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
-                particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
-                particlesCount = Math.min(this.count, this.filter((t) => t.group === group).length);
-
+        if (!options.number.density?.enable) {
             if (group === undefined) {
-                this._limit = numberOptions.limit.value * densityFactor;
-            } else {
-                this._groupLimits.set(group, numberOptions.limit.value * densityFactor);
+                this._limit = numberOptions.limit.value;
+            } else if (numberOptions.limit) {
+                this._groupLimits.set(group, numberOptions.limit.value);
             }
 
-            if (particlesCount < particlesNumber) {
-                await this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
-            } else if (particlesCount > particlesNumber) {
-                this.removeQuantity(particlesCount - particlesNumber, group);
-            }
-        };
+            return;
+        }
+
+        const densityFactor = this._initDensityFactor(numberOptions.density),
+            optParticlesNumber = numberOptions.value,
+            minLimit = 0,
+            optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
+            particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
+            particlesCount = Math.min(this.count, this.filter((t) => t.group === group).length);
+
+        if (group === undefined) {
+            this._limit = numberOptions.limit.value * densityFactor;
+        } else {
+            this._groupLimits.set(group, numberOptions.limit.value * densityFactor);
+        }
+
+        if (particlesCount < particlesNumber) {
+            this.push(Math.abs(particlesNumber - particlesCount), undefined, options, group);
+        } else if (particlesCount > particlesNumber) {
+            this.removeQuantity(particlesCount - particlesNumber, group);
+        }
+    };
 
     private readonly _initDensityFactor: (densityOptions: IParticlesDensity) => number = (densityOptions) => {
         const container = this._container,
@@ -469,22 +462,20 @@ export class Particles {
         return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
     };
 
-    private readonly _pushParticle: (
+    private readonly _pushParticle = (
         position?: ICoordinates,
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
         initializer?: (particle: Particle) => boolean,
-    ) => Promise<Particle | undefined> = async (position, overrideOptions, group, initializer) => {
+    ): Particle | undefined => {
         try {
             let particle = this._pool.pop();
 
             if (!particle) {
-                const { Particle } = await import("./Particle.js");
-
                 particle = new Particle(this._engine, this._container);
             }
 
-            await particle.init(this._nextId, position, overrideOptions, group);
+            particle.init(this._nextId, position, overrideOptions, group);
 
             let canAdd = true;
 

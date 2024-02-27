@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-hsv-color",
-  "version": "3.2.2",
+  "version": "3.3.0",
   "description": "tsParticles HSV color plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.2.2"
+    "@tsparticles/engine": "^3.3.0"
   },
   "publishConfig": {
     "access": "public"

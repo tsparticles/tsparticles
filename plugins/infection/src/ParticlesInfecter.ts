@@ -20,7 +20,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
         // do nothing
     }
 
-    async interact(p1: InfectableParticle, delta: IDelta): Promise<void> {
+    interact(p1: InfectableParticle, delta: IDelta): void {
         const infecter = this.container.infecter;
 
         if (!infecter) {
@@ -74,8 +74,6 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
                 infecter.updateInfectionStage(p1, infectedStage2);
             }
         }
-
-        await Promise.resolve();
     }
 
     isEnabled(): boolean {

@@ -11,6 +11,7 @@ import {
 } from "@tsparticles/engine";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
+import { drawEmoji } from "./Utils.js";
 import { validTypes } from "./Constants.js";
 
 const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"';
@@ -28,9 +29,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         }
     }
 
-    async draw(data: IShapeDrawData<EmojiParticle>): Promise<void> {
-        const { drawEmoji } = await import("./Utils.js");
-
+    draw(data: IShapeDrawData<EmojiParticle>): void {
         drawEmoji(data);
     }
 
@@ -61,7 +60,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         delete particle.emojiData;
     }
 
-    async particleInit(container: Container, particle: EmojiParticle): Promise<void> {
+    particleInit(container: Container, particle: EmojiParticle): void {
         const double = 2,
             shapeData = particle.shapeData as unknown as IEmojiShape;
 
@@ -130,7 +129,5 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         this._emojiShapeDict.set(key, emojiData);
 
         particle.emojiData = emojiData;
-
-        await Promise.resolve();
     }
 }

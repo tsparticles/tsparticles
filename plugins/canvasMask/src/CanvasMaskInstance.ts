@@ -66,7 +66,7 @@ export class CanvasMaskInstance implements IContainerPlugin {
             pixelData = getCanvasImageData(context, canvas, offset);
         }
 
-        await addParticlesFromCanvasPixels(
+        addParticlesFromCanvasPixels(
             container,
             pixelData,
             options.position,

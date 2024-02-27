@@ -1,4 +1,5 @@
 import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { drawCog, drawCogHole } from "./Utils.js";
 import type { CogParticle } from "./CogParticle.js";
 import type { ICogData } from "./ICogData.js";
 
@@ -9,19 +10,15 @@ const defaultHoleRadius = 44,
     defaultOuterTaper = 50;
 
 export class CogDrawer implements IShapeDrawer<CogParticle> {
-    async afterDraw(data: IShapeDrawData<CogParticle>): Promise<void> {
-        const { drawCogHole } = await import("./Utils.js");
-
+    afterDraw(data: IShapeDrawData<CogParticle>): void {
         drawCogHole(data);
     }
 
-    async draw(data: IShapeDrawData<CogParticle>): Promise<void> {
-        const { drawCog } = await import("./Utils.js");
-
+    draw(data: IShapeDrawData<CogParticle>): void {
         drawCog(data);
     }
 
-    async particleInit(container: Container, particle: CogParticle): Promise<void> {
+    particleInit(container: Container, particle: CogParticle): void {
         const shapeData = particle.shapeData as ICogData | undefined;
 
         particle.cogHoleRadius = getRangeValue(shapeData?.holeRadius ?? defaultHoleRadius);
@@ -29,7 +26,5 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
         particle.cogInnerTaper = getRangeValue(shapeData?.innerTaper ?? defaultInnerTaper);
         particle.cogNotches = getRangeValue(shapeData?.notches ?? defaultNotches);
         particle.cogOuterTaper = getRangeValue(shapeData?.outerTaper ?? defaultOuterTaper);
-
-        await Promise.resolve();
     }
 }

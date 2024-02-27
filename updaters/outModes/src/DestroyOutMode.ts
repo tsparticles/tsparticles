@@ -20,12 +20,12 @@ export class DestroyOutMode implements IOutModeManager {
         this.modes = [OutMode.destroy];
     }
 
-    async update(
+    update(
         particle: Particle,
         direction: OutModeDirection,
         _delta: IDelta,
         outMode: OutMode | keyof typeof OutMode,
-    ): Promise<void> {
+    ): void {
         if (!this.modes.includes(outMode)) {
             return;
         }
@@ -66,7 +66,5 @@ export class DestroyOutMode implements IOutModeManager {
         }
 
         container.particles.remove(particle, undefined, true);
-
-        await Promise.resolve();
     }
 }

@@ -187,9 +187,9 @@ export class Emitters implements IContainerPlugin {
         this.array = [];
     }
 
-    async update(delta: IDelta): Promise<void> {
+    update(delta: IDelta): void {
         for (const emitter of this.array) {
-            await emitter.update(delta);
+            emitter.update(delta);
         }
     }
 }
