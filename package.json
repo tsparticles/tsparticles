@@ -45,7 +45,7 @@
     "babel-loader": "^9.1.3",
     "browserslist": "^4.23.0",
     "canvas": "^2.11.2",
-    "chai": "^4.4.1",
+    "chai": "^5.0.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
