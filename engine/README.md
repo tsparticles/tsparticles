@@ -969,10 +969,6 @@ flowchart TD
 
 ## Sponsors
 
-### ScribbleMaps
-
-Huge thanks to [ScribbleMaps](https://www.scribblemaps.com/) for their support on this project.
-
 ### JetBrains
 
 Huge thanks to [JetBrains](https://www.jetbrains.com/?from=tsParticles) for the 2020-2022 Open Source Licenses!
