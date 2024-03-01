@@ -1,119 +1,119 @@
 {
-    "name": "@tsparticles/plugin-emitters-shape-square",
-    "version": "3.3.0",
-    "description": "tsParticles emitters shape square plugin",
-    "homepage": "https://particles.js.org",
-    "scripts": {
-        "build": "tsparticles-cli build",
-        "build:ci": "tsparticles-cli build --ci",
-        "version": "tsparticles-cli build -d && git add package.dist.json",
-        "prepack": "pnpm run build"
+  "name": "@tsparticles/plugin-emitters-shape-square",
+  "version": "3.3.0",
+  "description": "tsParticles emitters shape square plugin",
+  "homepage": "https://particles.js.org",
+  "scripts": {
+    "build": "tsparticles-cli build",
+    "build:ci": "tsparticles-cli build --ci",
+    "version": "tsparticles-cli build -d && git add package.dist.json",
+    "prepack": "pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "plugins/emittersShapes/square"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti",
+    "tsparticles-plugin"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/tsparticles/tsparticles.git",
-        "directory": "plugins/emittersShapes/square"
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
     },
-    "keywords": [
-        "front-end",
-        "frontend",
-        "tsparticles",
-        "particles.js",
-        "particlesjs",
-        "particles",
-        "particle",
-        "canvas",
-        "jsparticles",
-        "xparticles",
-        "particles-js",
-        "particles-bg",
-        "particles-bg-vue",
-        "particles-ts",
-        "particles.ts",
-        "react-particles-js",
-        "react-particles.js",
-        "react-particles",
-        "react",
-        "reactjs",
-        "vue-particles",
-        "ngx-particles",
-        "angular-particles",
-        "particleground",
-        "vue",
-        "vuejs",
-        "preact",
-        "preactjs",
-        "jquery",
-        "angularjs",
-        "angular",
-        "typescript",
-        "javascript",
-        "animation",
-        "web",
-        "html5",
-        "web-design",
-        "webdesign",
-        "css",
-        "html",
-        "css3",
-        "animated",
-        "background",
-        "confetti",
-        "canvas",
-        "fireworks",
-        "fireworks-js",
-        "confetti-js",
-        "confettijs",
-        "fireworksjs",
-        "canvas-confetti",
-        "tsparticles-plugin"
-    ],
-    "author": "Matteo Bruni <matteo.bruni@me.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/tsparticles/tsparticles/issues"
-    },
-    "funding": [
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/matteobruni"
-        },
-        {
-            "type": "github",
-            "url": "https://github.com/sponsors/tsparticles"
-        },
-        {
-            "type": "buymeacoffee",
-            "url": "https://www.buymeacoffee.com/matteobruni"
-        }
-    ],
-    "prettier": "@tsparticles/prettier-config",
-    "files": [
-        "dist"
-    ],
-    "sideEffects": false,
-    "browser": "dist/browser/index.js",
-    "main": "dist/cjs/index.js",
-    "module": "dist/esm/index.js",
-    "types": "dist/types/index.d.ts",
-    "exports": {
-        ".": {
-            "types": "./dist/types/index.d.ts",
-            "browser": "./dist/browser/index.js",
-            "import": "./dist/esm/index.js",
-            "require": "./dist/cjs/index.js",
-            "umd": "./dist/umd/index.js",
-            "default": "./dist/cjs/index.js"
-        },
-        "./package.json": "./dist/package.json"
-    },
-    "dependencies": {
-        "@tsparticles/engine": "^3.3.0",
-        "@tsparticles/plugin-emitters": "^3.3.0"
-    },
-    "publishConfig": {
-        "access": "public",
-        "directory": "dist",
-        "linkDirectory": true
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
     }
+  ],
+  "prettier": "@tsparticles/prettier-config",
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "browser": "dist/browser/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "browser": "./dist/browser/index.js",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "umd": "./dist/umd/index.js",
+      "default": "./dist/cjs/index.js"
+    },
+    "./package.json": "./dist/package.json"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^3.3.0",
+    "@tsparticles/plugin-emitters": "^3.3.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
+  }
 }

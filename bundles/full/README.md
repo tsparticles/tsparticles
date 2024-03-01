@@ -53,7 +53,7 @@ Once the scripts are loaded you can set up `tsParticles` like this:
 
 ```javascript
 (async () => {
-  await loadFull(tsParticles); // not needed if using the bundle script, required for any other installation
+  await loadFull(tsParticles);
 
   await tsParticles.load({
     id: "tsparticles",

@@ -30,7 +30,7 @@
     "@commitlint/config-conventional": "^19.0.0",
     "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@nx/workspace": "^18.0.5",
-    "@tsparticles/cli": "^2.2.2",
+    "@tsparticles/cli": "^2.2.4",
     "@tsparticles/eslint-config": "^2.1.6",
     "@tsparticles/prettier-config": "^2.1.6",
     "@tsparticles/tsconfig": "^2.1.7",

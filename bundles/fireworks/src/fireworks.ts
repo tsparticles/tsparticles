@@ -25,12 +25,17 @@ const minSplitCount = 2;
 let initialized = false;
 let initializing = false;
 
+type FireworksFunc = ((
+    idOrOptions: string | RecursivePartial<IFireworkOptions>,
+    sourceOptions?: RecursivePartial<IFireworkOptions>,
+) => Promise<FireworksInstance | undefined>) & {
+    version: string;
+};
+
 declare global {
     interface Window {
-        fireworks: ((
-            idOrOptions: string | RecursivePartial<IFireworkOptions>,
-            sourceOptions?: RecursivePartial<IFireworkOptions>,
-        ) => Promise<FireworksInstance | undefined>) & {
+        fireworks: FireworksFunc & {
+            init: () => Promise<void>;
             version: string;
         };
     }
@@ -326,6 +331,10 @@ export async function fireworks(
 
     return new FireworksInstance(container);
 }
+
+fireworks.init = async (): Promise<void> => {
+    await initPlugins();
+};
 
 fireworks.version = tsParticles.version;
 

@@ -41,6 +41,8 @@ declare global {
              */
             create: (canvas: HTMLCanvasElement, options: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
 
+            init: () => Promise<void>;
+
             /**
              * the confetti version number
              */
@@ -438,6 +440,10 @@ confetti.create = async (
             options: subOptions,
         });
     };
+};
+
+confetti.init = async (): Promise<void> => {
+    await initPlugins(tsParticles);
 };
 
 /**
