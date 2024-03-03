@@ -75,7 +75,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
 
         this.name = data.name;
 
-        this.particles = executeOnSingleOrMultiple(data.particles, (particles) => {
+        this.particles = executeOnSingleOrMultiple(data.particles, particles => {
             return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
         });
 

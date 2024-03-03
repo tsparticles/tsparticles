@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadOpacityUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "opacity",
-        async (container) => {
+        async container => {
             const { OpacityUpdater } = await import("./OpacityUpdater.js");
 
             return new OpacityUpdater(container);

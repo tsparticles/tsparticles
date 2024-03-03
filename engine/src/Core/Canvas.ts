@@ -136,7 +136,7 @@ export class Canvas {
                 this._paintImage(trailFill.image, trailFill.opacity);
             }
         } else if (options.clear) {
-            this.draw((ctx) => {
+            this.draw(ctx => {
                 clear(ctx, this.size);
             });
         }
@@ -267,7 +267,7 @@ export class Canvas {
      * @param delta - the frame delta time values
      */
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        this.draw((ctx) => drawParticlePlugin(ctx, plugin, particle, delta));
+        this.draw(ctx => drawParticlePlugin(ctx, plugin, particle, delta));
     }
 
     /**
@@ -276,15 +276,15 @@ export class Canvas {
      * @param delta - the frame delta time values
      */
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
-        this.draw((ctx) => drawPlugin(ctx, plugin, delta));
+        this.draw(ctx => drawPlugin(ctx, plugin, delta));
     }
 
     /**
      * Initializes the canvas element
      */
     async init(): Promise<void> {
-        this._safeMutationObserver((obs) => obs.disconnect());
-        this._mutationObserver = safeMutationObserver((records) => {
+        this._safeMutationObserver(obs => obs.disconnect());
+        this._mutationObserver = safeMutationObserver(records => {
             for (const record of records) {
                 if (record.type === "attributes" && record.attributeName === "style") {
                     this._repairStyle();
@@ -303,7 +303,7 @@ export class Canvas {
 
         this.initBackground();
 
-        this._safeMutationObserver((obs) => {
+        this._safeMutationObserver(obs => {
             if (!this.element) {
                 return;
             }
@@ -403,7 +403,7 @@ export class Canvas {
         this.size.width = canvas.offsetWidth;
         this._context = this.element.getContext("2d");
 
-        this._safeMutationObserver((obs) => {
+        this._safeMutationObserver(obs => {
             if (!this.element) {
                 return;
             }
@@ -421,7 +421,7 @@ export class Canvas {
     paint(): void {
         const options = this.container.actualOptions;
 
-        this.draw((ctx) => {
+        this.draw(ctx => {
             if (options.backgroundMask.enable && options.backgroundMask.cover) {
                 clear(ctx, this.size);
 
@@ -480,10 +480,10 @@ export class Canvas {
     }
 
     stop(): void {
-        this._safeMutationObserver((obs) => obs.disconnect());
+        this._safeMutationObserver(obs => obs.disconnect());
         this._mutationObserver = undefined;
 
-        this.draw((ctx) => clear(ctx, this.size));
+        this.draw(ctx => clear(ctx, this.size));
     }
 
     /**
@@ -507,7 +507,7 @@ export class Canvas {
         }
     }
 
-    private readonly _applyPostDrawUpdaters: (particle: Particle) => void = (particle) => {
+    private readonly _applyPostDrawUpdaters: (particle: Particle) => void = particle => {
         for (const updater of this._postDrawUpdaters) {
             updater.afterDraw?.(particle);
         }
@@ -552,7 +552,7 @@ export class Canvas {
         }
     };
 
-    private readonly _getPluginParticleColors: (particle: Particle) => (IHsl | undefined)[] = (particle) => {
+    private readonly _getPluginParticleColors: (particle: Particle) => (IHsl | undefined)[] = particle => {
         let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
         for (const plugin of this._colorPlugins) {
@@ -605,7 +605,7 @@ export class Canvas {
                     resolve();
                 });
 
-                img.addEventListener("error", (evt) => {
+                img.addEventListener("error", evt => {
                     reject(evt.error);
                 });
 
@@ -687,7 +687,7 @@ export class Canvas {
                     resolve();
                 });
 
-                img.addEventListener("error", (evt) => {
+                img.addEventListener("error", evt => {
                     reject(evt.error);
                 });
 
@@ -696,12 +696,12 @@ export class Canvas {
         }
     };
 
-    private readonly _paintBase: (baseColor?: string) => void = (baseColor) => {
-        this.draw((ctx) => paintBase(ctx, this.size, baseColor));
+    private readonly _paintBase: (baseColor?: string) => void = baseColor => {
+        this.draw(ctx => paintBase(ctx, this.size, baseColor));
     };
 
     private readonly _paintImage: (image: HTMLImageElement, opacity: number) => void = (image, opacity) => {
-        this.draw((ctx) => paintImage(ctx, this.size, image, opacity));
+        this.draw(ctx => paintImage(ctx, this.size, image, opacity));
     };
 
     private readonly _repairStyle: () => void = () => {
@@ -711,12 +711,12 @@ export class Canvas {
             return;
         }
 
-        this._safeMutationObserver((observer) => observer.disconnect());
+        this._safeMutationObserver(observer => observer.disconnect());
 
         this._initStyle();
         this.initBackground();
 
-        this._safeMutationObserver((observer) => observer.observe(element, { attributes: true }));
+        this._safeMutationObserver(observer => observer.observe(element, { attributes: true }));
     };
 
     private readonly _resetOriginalStyle: () => void = () => {
@@ -730,7 +730,7 @@ export class Canvas {
         setStyle(element, originalStyle);
     };
 
-    private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = (callback) => {
+    private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = callback => {
         if (!this._mutationObserver) {
             return;
         }

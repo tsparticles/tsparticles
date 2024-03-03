@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalBubbleInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalBubble",
-        async (container) => {
+        async container => {
             const { Bubbler } = await import("./Bubbler.js");
 
             return new Bubbler(container);

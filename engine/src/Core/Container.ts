@@ -195,7 +195,7 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-        this._intersectionObserver = safeIntersectionObserver((entries) => this._intersectionManager(entries));
+        this._intersectionObserver = safeIntersectionObserver(entries => this._intersectionManager(entries));
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
@@ -398,7 +398,7 @@ export class Container {
         this.destroyed = true;
 
         const mainArr = this._engine.dom(),
-            idx = mainArr.findIndex((t) => t === this),
+            idx = mainArr.findIndex(t => t === this),
             minIndex = 0;
 
         if (idx >= minIndex) {
@@ -431,7 +431,7 @@ export class Container {
             this._nextFrame(timestamp);
         };
 
-        this._drawAnimationFrame = requestAnimationFrame((timestamp) => frame(timestamp));
+        this._drawAnimationFrame = requestAnimationFrame(timestamp => frame(timestamp));
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -667,7 +667,7 @@ export class Container {
 
         this.started = true;
 
-        await new Promise<void>((resolve) => {
+        await new Promise<void>(resolve => {
             const start = async (): Promise<void> => {
                 this._eventListeners.addListeners();
 
@@ -752,7 +752,7 @@ export class Container {
         return true;
     }
 
-    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = (entries) => {
+    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
         if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }

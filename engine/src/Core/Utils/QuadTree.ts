@@ -76,7 +76,7 @@ export class QuadTree {
             this._subdivide();
         }
 
-        return this._subs.some((sub) => sub.insert(point));
+        return this._subs.some(sub => sub.insert(point));
     }
 
     /**

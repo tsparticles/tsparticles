@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalConnectInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalConnect",
-        async (container) => {
+        async container => {
             const { Connector } = await import("./Connector.js");
 
             return new Connector(container);

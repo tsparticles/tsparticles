@@ -78,7 +78,7 @@ async function getItemsFromInitializer<TItem, TInitializer extends GenericInitia
     let res = map.get(container);
 
     if (!res || force) {
-        res = await Promise.all([...initializers.values()].map((t) => t(container)));
+        res = await Promise.all([...initializers.values()].map(t => t(container)));
 
         map.set(container, res);
     }
@@ -219,7 +219,7 @@ export class Engine {
      * @param refresh - should refresh the dom after adding the effect
      */
     async addEffect(effect: SingleOrMultiple<string>, drawer: IEffectDrawer, refresh = true): Promise<void> {
-        executeOnSingleOrMultiple(effect, (type) => {
+        executeOnSingleOrMultiple(effect, type => {
             if (!this.getEffectDrawer(type)) {
                 this.effectDrawers.set(type, drawer);
             }
@@ -326,7 +326,7 @@ export class Engine {
      * @param refresh - should refresh the dom after adding the shape
      */
     async addShape(shape: SingleOrMultiple<string>, drawer: IShapeDrawer, refresh = true): Promise<void> {
-        executeOnSingleOrMultiple(shape, (type) => {
+        executeOnSingleOrMultiple(shape, type => {
             if (!this.getShapeDrawer(type)) {
                 this.shapeDrawers.set(type, drawer);
             }
@@ -433,7 +433,7 @@ export class Engine {
      * @returns the plugin if found, or undefined
      */
     getPlugin(plugin: string): IPlugin | undefined {
-        return this.plugins.find((t) => t.id === plugin);
+        return this.plugins.find(t => t.id === plugin);
     }
 
     /**
@@ -515,7 +515,7 @@ export class Engine {
 
         const currentOptions = itemFromSingleOrMultiple(options, index),
             dom = this.dom(),
-            oldIndex = dom.findIndex((v) => v.id.description === id),
+            oldIndex = dom.findIndex(v => v.id.description === id),
             minIndex = 0;
 
         if (oldIndex >= minIndex) {
@@ -626,7 +626,7 @@ export class Engine {
             return;
         }
 
-        await Promise.all(this.dom().map((t) => t.refresh()));
+        await Promise.all(this.dom().map(t => t.refresh()));
     }
 
     /**

@@ -31,7 +31,7 @@ export class Absorbers implements IContainerPlugin {
         container.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName ?? defaultIndex]
-                : this.array.find((t) => t.name === idxOrName);
+                : this.array.find(t => t.name === idxOrName);
 
         container.addAbsorber = async (
             options: RecursivePartial<IAbsorber>,

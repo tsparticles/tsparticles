@@ -16,7 +16,7 @@ export class EmittersPathShapeOptions implements IEmittersPathShapeOptions, IOpt
         }
 
         if (data.points !== undefined) {
-            this.points = data.points.map((t) => ({ x: t.x ?? defaultPosition.x, y: t.y ?? defaultPosition.y }));
+            this.points = data.points.map(t => ({ x: t.x ?? defaultPosition.x, y: t.y ?? defaultPosition.y }));
         }
     }
 }

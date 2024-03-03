@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalPushInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalPush",
-        async (container) => {
+        async container => {
             const { Pusher } = await import("./Pusher.js");
 
             return new Pusher(container);

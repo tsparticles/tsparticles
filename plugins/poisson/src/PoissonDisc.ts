@@ -257,7 +257,7 @@ export class PoissonDisc {
         const minCount = 0,
             randomActive = this.getRandom(minCount, this.active.length);
 
-        return new Promise((resolve) => {
+        return new Promise(resolve => {
             let foundNewPoint = false;
 
             for (let tries = 0; tries < this.retries; tries++) {

@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadLightInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalLight",
-        async (container) => {
+        async container => {
             const { ExternalLighter } = await import("./ExternalLighter.js");
 
             return new ExternalLighter(container);
@@ -16,7 +16,7 @@ export async function loadLightInteraction(engine: Engine, refresh = true): Prom
     );
     await engine.addInteractor(
         "particlesLight",
-        async (container) => {
+        async container => {
             const { ParticlesLighter } = await import("./ParticlesLighter.js");
 
             return new ParticlesLighter(container);

@@ -162,7 +162,7 @@ export function getLinkKey(ids: number[]): string {
  * @returns the frequency of the link
  */
 export function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
-    const key = getLinkKey(particles.map((t) => t.id));
+    const key = getLinkKey(particles.map(t => t.id));
 
     let res = dictionary.get(key);
 

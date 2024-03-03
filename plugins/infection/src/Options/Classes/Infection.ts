@@ -45,7 +45,7 @@ export class Infection implements IInfection, IOptionLoader<IInfection> {
             return;
         }
 
-        this.stages = data.stages.map((t) => {
+        this.stages = data.stages.map(t => {
             const s = new InfectionStage();
 
             s.load(t);

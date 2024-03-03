@@ -36,17 +36,17 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     async init(container: Container): Promise<void> {
         const options = container.actualOptions;
 
-        if (!validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
+        if (!validTypes.find(t => isInArray(t, options.particles.shape.type))) {
             return;
         }
 
         const promises: Promise<void>[] = [loadFont(defaultFont)],
             shapeOptions = validTypes
-                .map((t) => options.particles.shape.options[t])
-                .find((t) => !!t) as SingleOrMultiple<IEmojiShape>;
+                .map(t => options.particles.shape.options[t])
+                .find(t => !!t) as SingleOrMultiple<IEmojiShape>;
 
         if (shapeOptions) {
-            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+            executeOnSingleOrMultiple(shapeOptions, shape => {
                 if (shape.font) {
                     promises.push(loadFont(shape.font));
                 }

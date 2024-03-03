@@ -8,7 +8,7 @@ import type { LinkContainer } from "./Types.js";
 export async function loadLinksInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "particlesLinks",
-        async (container) => {
+        async container => {
             const { Linker } = await import("./Linker.js");
 
             return new Linker(container as LinkContainer);

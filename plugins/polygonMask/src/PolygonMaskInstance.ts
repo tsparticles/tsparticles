@@ -180,7 +180,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         delete this.paths;
     }
 
-    private readonly _checkInsidePolygon: (position?: ICoordinates) => boolean = (position) => {
+    private readonly _checkInsidePolygon: (position?: ICoordinates) => boolean = position => {
         const container = this._container,
             options = container.actualOptions.polygon;
 
@@ -321,7 +321,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
     };
 
-    private readonly _getEquidistantPointByIndex: (index: number) => ICoordinates | undefined = (index) => {
+    private readonly _getEquidistantPointByIndex: (index: number) => ICoordinates | undefined = index => {
         const container = this._container,
             options = container.actualOptions,
             polygonMaskOptions = options.polygon;
@@ -361,7 +361,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         };
     };
 
-    private readonly _getPointByIndex: (index: number) => ICoordinates = (index) => {
+    private readonly _getPointByIndex: (index: number) => ICoordinates = index => {
         if (!this.raw?.length) {
             throw new Error(noPolygonDataLoaded);
         }

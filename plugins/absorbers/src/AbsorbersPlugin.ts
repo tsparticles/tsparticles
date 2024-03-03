@@ -33,7 +33,7 @@ export class AbsorbersPlugin implements IPlugin {
         }
 
         if (source?.absorbers) {
-            options.absorbers = executeOnSingleOrMultiple(source.absorbers, (absorber) => {
+            options.absorbers = executeOnSingleOrMultiple(source.absorbers, absorber => {
                 const tmp = new Absorber();
 
                 tmp.load(absorber);
@@ -44,7 +44,7 @@ export class AbsorbersPlugin implements IPlugin {
 
         options.interactivity.modes.absorbers = executeOnSingleOrMultiple(
             source?.interactivity?.modes?.absorbers,
-            (absorber) => {
+            absorber => {
                 const tmp = new Absorber();
 
                 tmp.load(absorber);

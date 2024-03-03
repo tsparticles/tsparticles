@@ -190,7 +190,7 @@ export class GradientUpdater implements IParticleUpdater {
             !particle.destroyed &&
             !particle.spawning &&
             (!!particle.gradient?.angle.enable ||
-                (particle.gradient?.colors.some((c) => c.value.h.enable || c.value.s.enable || c.value.l.enable) ??
+                (particle.gradient?.colors.some(c => c.value.h.enable || c.value.s.enable || c.value.l.enable) ??
                     false))
         );
     }
@@ -210,7 +210,7 @@ export class GradientUpdater implements IParticleUpdater {
                 continue;
             }
 
-            options.gradient = executeOnSingleOrMultiple(gradientToLoad, (gradient) => {
+            options.gradient = executeOnSingleOrMultiple(gradientToLoad, gradient => {
                 const tmp = new AnimatableGradient();
 
                 tmp.load(gradient);

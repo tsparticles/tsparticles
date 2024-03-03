@@ -44,7 +44,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
         this.factor.load(data.factor);
         this.rate.load(data.rate);
 
-        this.particles = executeOnSingleOrMultiple(data.particles, (particles) => {
+        this.particles = executeOnSingleOrMultiple(data.particles, particles => {
             return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
         });
 

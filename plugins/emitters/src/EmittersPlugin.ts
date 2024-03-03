@@ -38,7 +38,7 @@ export class EmittersPlugin implements IPlugin {
         }
 
         if (source?.emitters) {
-            options.emitters = executeOnSingleOrMultiple(source.emitters, (emitter) => {
+            options.emitters = executeOnSingleOrMultiple(source.emitters, emitter => {
                 const tmp = new Emitter();
 
                 tmp.load(emitter);
@@ -56,7 +56,7 @@ export class EmittersPlugin implements IPlugin {
                         count: 1,
                         enable: true,
                     },
-                    value: interactivityEmitters.map((s) => {
+                    value: interactivityEmitters.map(s => {
                         const tmp = new Emitter();
 
                         tmp.load(s);
@@ -76,7 +76,7 @@ export class EmittersPlugin implements IPlugin {
                                 count: emitterMode.random.count ?? defaultCount,
                                 enable: emitterMode.random.enable ?? false,
                             },
-                            value: emitterMode.value.map((s) => {
+                            value: emitterMode.value.map(s => {
                                 const tmp = new Emitter();
 
                                 tmp.load(s);

@@ -146,11 +146,11 @@ function rectSideBounce(data: RectSideBounceData): IRectSideResult {
  * @returns true or false, if the selector has found something
  */
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
-    const res = executeOnSingleOrMultiple(selectors, (selector) => {
+    const res = executeOnSingleOrMultiple(selectors, selector => {
         return element.matches(selector);
     });
 
-    return isArray(res) ? res.some((t) => t) : res;
+    return isArray(res) ? res.some(t => t) : res;
 }
 
 /**
@@ -359,7 +359,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
             destDict[key] =
                 isObject(value) && Array.isArray(value)
-                    ? value.map((v) => deepExtend(destDict[key], v))
+                    ? value.map(v => deepExtend(destDict[key], v))
                     : deepExtend(destDict[key], value);
         }
     }
@@ -374,7 +374,7 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
  * @returns true if the div mode is enabled
  */
 export function isDivModeEnabled(mode: string, divs: SingleOrMultiple<DivEvent>): boolean {
-    return !!findItemFromSingleOrMultiple(divs, (t) => t.enable && isInArray(mode, t.mode));
+    return !!findItemFromSingleOrMultiple(divs, t => t.enable && isInArray(mode, t.mode));
 }
 
 /**
@@ -388,7 +388,7 @@ export function divModeExecute(
     divs: SingleOrMultiple<DivEvent>,
     callback: (id: string, div: DivEvent) => void,
 ): void {
-    executeOnSingleOrMultiple(divs, (div) => {
+    executeOnSingleOrMultiple(divs, div => {
         const divMode = div.mode,
             divEnabled = div.enable;
 
@@ -406,7 +406,7 @@ export function divModeExecute(
 export function singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
     const selectors = div.selectors;
 
-    executeOnSingleOrMultiple(selectors, (selector) => {
+    executeOnSingleOrMultiple(selectors, selector => {
         callback(selector, div);
     });
 }
@@ -422,7 +422,7 @@ export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?
         return;
     }
 
-    return findItemFromSingleOrMultiple(divs, (div) => {
+    return findItemFromSingleOrMultiple(divs, div => {
         return checkSelector(element, div.selectors);
     });
 }

@@ -47,7 +47,7 @@ export class Emitters implements IContainerPlugin {
         container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName ?? defaultIndex]
-                : this.array.find((t) => t.name === idxOrName);
+                : this.array.find(t => t.name === idxOrName);
 
         container.addEmitter = async (
             options: RecursivePartial<IEmitter>,
@@ -133,7 +133,7 @@ export class Emitters implements IContainerPlugin {
         const emittersOptions = emittersModeOptions ?? emitterOptions,
             ePosition = this.container.interactivity.mouse.clickPosition;
 
-        void executeOnSingleOrMultiple(emittersOptions, async (emitter) => {
+        void executeOnSingleOrMultiple(emittersOptions, async emitter => {
             await this.addEmitter(emitter, ePosition);
         });
     }

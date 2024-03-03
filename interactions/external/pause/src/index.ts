@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalPauseInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalPause",
-        async (container) => {
+        async container => {
             const { Pauser } = await import("./Pauser.js");
 
             return new Pauser(container);

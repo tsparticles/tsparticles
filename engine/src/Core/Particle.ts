@@ -779,11 +779,11 @@ export class Particle {
         }
 
         return !!this.container.particles.find(
-            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius(),
+            particle => getDistance(pos, particle.position) < radius + particle.getRadius(),
         );
     };
 
-    private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = (color) => {
+    private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = color => {
         if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
             return color;
         }
@@ -809,7 +809,7 @@ export class Particle {
         return color;
     };
 
-    private readonly _initPosition: (position?: ICoordinates) => void = (position) => {
+    private readonly _initPosition: (position?: ICoordinates) => void = position => {
         const container = this.container,
             zIndexValue = getRangeValue(this.options.zIndex.value),
             minZ = 0;

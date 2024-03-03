@@ -25,13 +25,13 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
     async init(container: Container): Promise<void> {
         const options = container.actualOptions;
 
-        if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
+        if (validTypes.find(t => isInArray(t, options.particles.shape.type))) {
             const shapeOptions = validTypes
-                    .map((t) => options.particles.shape.options[t])
-                    .find((t) => !!t) as SingleOrMultiple<ITextShape>,
+                    .map(t => options.particles.shape.options[t])
+                    .find(t => !!t) as SingleOrMultiple<ITextShape>,
                 promises: Promise<void>[] = [];
 
-            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+            executeOnSingleOrMultiple(shapeOptions, shape => {
                 promises.push(loadFont(shape.font, shape.weight));
             });
 

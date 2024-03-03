@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadParticlesCollisionsInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "particlesCollisions",
-        async (container) => {
+        async container => {
             const { Collider } = await import("./Collider.js");
 
             return new Collider(container);

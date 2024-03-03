@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadColorUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "color",
-        async (container) => {
+        async container => {
             const { ColorUpdater } = await import("./ColorUpdater.js");
 
             return new ColorUpdater(container);

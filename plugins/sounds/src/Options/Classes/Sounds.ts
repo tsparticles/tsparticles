@@ -33,7 +33,7 @@ export class Sounds implements ISounds, IOptionLoader<ISounds> {
         }
 
         if (data.events !== undefined) {
-            this.events = data.events.map((t) => {
+            this.events = data.events.map(t => {
                 const event = new SoundsEvent();
 
                 event.load(t);

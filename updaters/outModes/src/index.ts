@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadOutModesUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "outModes",
-        async (container) => {
+        async container => {
             const { OutOfCanvasUpdater } = await import("./OutOfCanvasUpdater.js");
 
             return new OutOfCanvasUpdater(container);

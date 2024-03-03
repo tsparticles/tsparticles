@@ -293,7 +293,7 @@ const initParticlesJS = (
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         engine
             .load({ id: tagId, url: pathConfigJson })
-            .then((container) => {
+            .then(container => {
                 if (container) {
                     callback(container);
                 }

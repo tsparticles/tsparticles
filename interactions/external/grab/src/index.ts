@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalGrabInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalGrab",
-        async (container) => {
+        async container => {
             const { Grabber } = await import("./Grabber.js");
 
             return new Grabber(container);

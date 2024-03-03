@@ -100,7 +100,7 @@ export class Infecter {
         infection.time = 0;
     }
 
-    private readonly _nextInfectionStage: (particle: InfectableParticle) => void = (particle) => {
+    private readonly _nextInfectionStage: (particle: InfectableParticle) => void = particle => {
         const infectionOptions = this._container.actualOptions.infection,
             { infection } = particle;
 

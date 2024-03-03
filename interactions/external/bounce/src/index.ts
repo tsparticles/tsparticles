@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalBounceInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalBounce",
-        async (container) => {
+        async container => {
             const { Bouncer } = await import("./Bouncer.js");
 
             return new Bouncer(container);

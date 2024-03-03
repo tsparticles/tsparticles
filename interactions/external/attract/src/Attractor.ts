@@ -96,9 +96,9 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             { enable: clickEnabled, mode: clickMode } = events.onClick;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
-            hoverAttract(this.container, (p) => this.isEnabled(p));
+            hoverAttract(this.container, p => this.isEnabled(p));
         } else if (clickEnabled && isInArray(attractMode, clickMode)) {
-            clickAttract(this.container, (p) => this.isEnabled(p));
+            clickAttract(this.container, p => this.isEnabled(p));
         }
     }
 

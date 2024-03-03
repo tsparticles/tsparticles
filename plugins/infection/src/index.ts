@@ -11,7 +11,7 @@ export async function loadInfectionPlugin(engine: Engine, refresh = true): Promi
     await engine.addPlugin(plugin, refresh);
     await engine.addInteractor(
         "particlesInfection",
-        async (container) => {
+        async container => {
             const { ParticlesInfecter } = await import("./ParticlesInfecter.js");
 
             return new ParticlesInfecter(container);

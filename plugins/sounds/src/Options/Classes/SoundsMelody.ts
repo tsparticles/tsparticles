@@ -23,7 +23,7 @@ export class SoundsMelody implements ISoundsMelody, IOptionLoader<ISoundsMelody>
         }
 
         if (data.melodies !== undefined) {
-            this.melodies = data.melodies.map((s) => {
+            this.melodies = data.melodies.map(s => {
                 const tmp = new SoundsMelody();
 
                 tmp.load(s);
@@ -33,7 +33,7 @@ export class SoundsMelody implements ISoundsMelody, IOptionLoader<ISoundsMelody>
         }
 
         if (data.notes !== undefined) {
-            this.notes = data.notes.map((s) => {
+            this.notes = data.notes.map(s => {
                 const tmp = new SoundsNote();
 
                 tmp.load(s);

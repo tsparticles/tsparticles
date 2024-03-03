@@ -97,7 +97,7 @@ export function lineStyle(
  * @param p2 -
  */
 export function drawConnection(container: ConnectContainer, p1: LinkParticle, p2: LinkParticle): void {
-    container.canvas.draw((ctx) => {
+    container.canvas.draw(ctx => {
         const ls = lineStyle(container, ctx, p1, p2);
 
         if (!ls) {

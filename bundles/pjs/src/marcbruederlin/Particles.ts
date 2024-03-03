@@ -66,7 +66,7 @@ export class Particles {
                             value: { min: 1, max: options.sizeVariations ?? sizeMinValue },
                         },
                     },
-                    responsive: options.responsive?.map((responsive) => ({
+                    responsive: options.responsive?.map(responsive => ({
                         maxWidth: responsive.breakpoint,
                         options: {
                             particles: {
@@ -92,7 +92,7 @@ export class Particles {
                     })),
                 },
             })
-            .then((container) => {
+            .then(container => {
                 particles._container = container;
             });
 

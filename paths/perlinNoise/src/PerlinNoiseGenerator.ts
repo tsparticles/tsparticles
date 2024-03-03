@@ -78,7 +78,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.noiseZ += this.options.increment;
 
         if (this.options.draw) {
-            this.container.canvas.draw((ctx) => this._drawField(ctx));
+            this.container.canvas.draw(ctx => this._drawField(ctx));
         }
     }
 
@@ -103,7 +103,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         }
     };
 
-    private readonly _drawField: (ctx: CanvasRenderingContext2D) => void = (ctx) => {
+    private readonly _drawField: (ctx: CanvasRenderingContext2D) => void = ctx => {
         const { field, options } = this;
 
         for (let x = 0; x < options.columns; x++) {

@@ -67,7 +67,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
             return;
         }
 
-        const query = container.particles.quadTree.queryCircle(mousePos, distance, (p) =>
+        const query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
             this.isEnabled(p),
         ) as LinkParticle[];
 

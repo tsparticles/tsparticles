@@ -86,7 +86,7 @@ async function initPlugins(engine: Engine): Promise<void> {
     }
 
     if (initializing) {
-        return new Promise<void>((resolve) => {
+        return new Promise<void>(resolve => {
             const timeout = 100,
                 interval = setInterval(() => {
                     if (!initialized) {

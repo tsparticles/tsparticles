@@ -31,7 +31,7 @@ export class ImagePreloaderPlugin implements IPlugin {
         const preloadOptions = options.preload;
 
         for (const item of source.preload) {
-            const existing = preloadOptions.find((t) => t.name === item.name || t.src === item.src);
+            const existing = preloadOptions.find(t => t.name === item.name || t.src === item.src);
 
             if (existing) {
                 existing.load(item);

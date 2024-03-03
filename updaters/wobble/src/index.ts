@@ -7,7 +7,7 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadWobbleUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "wobble",
-        async (container) => {
+        async container => {
             const { WobbleUpdater } = await import("./WobbleUpdater.js");
 
             return new WobbleUpdater(container);

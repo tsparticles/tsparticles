@@ -57,7 +57,7 @@ export class MotionInstance implements IContainerPlugin {
         await Promise.resolve();
     }
 
-    private readonly _handleMotionChange: (mediaQuery: MediaQueryList) => void = (mediaQuery) => {
+    private readonly _handleMotionChange: (mediaQuery: MediaQueryList) => void = mediaQuery => {
         const container = this._container,
             motion = container.actualOptions.motion;
 
