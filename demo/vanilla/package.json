@@ -46,7 +46,7 @@
         "nodemon": "^3.0.1",
         "pug": "^3.0.2",
         "stats.ts": "^1.1.0",
-        "stylus": "^0.62.0",
+        "stylus": "^0.63.0",
         "winston": "^3.11.0"
     },
     "dependencies": {
