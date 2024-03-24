@@ -1,13 +1,15 @@
 import "./style.css";
-import { type Engine, tsParticles } from "@tsparticles/engine";
-import configs from "@tsparticles/configs";
-import { loadAll } from "@tsparticles/all";
 
-(async (engine: Engine) => {
-    await loadAll(engine);
+(async () => {
+    const { loadAll } = await import("@tsparticles/all"),
+        { tsParticles } = await import("@tsparticles/engine");
 
-    await engine.load({
+    await loadAll(tsParticles);
+
+    const { default: configs } = await import("@tsparticles/configs");
+
+    await tsParticles.load({
         id: "tsparticles",
         options: configs.basic
     });
-})(tsParticles);
+})();
