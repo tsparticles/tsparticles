@@ -1,11 +1,10 @@
 import type { Engine } from "@tsparticles/engine";
+import { SquareDrawer } from "./SquareDrawer.js";
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadSquareShape(engine: Engine, refresh = true): Promise<void> {
-    const { SquareDrawer } = await import("./SquareDrawer.js");
-
-    await engine.addShape(["edge", "square"], new SquareDrawer(), refresh);
+    await engine.addShape(new SquareDrawer(), refresh);
 }

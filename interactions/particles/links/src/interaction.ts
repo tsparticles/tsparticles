@@ -1,5 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
 import type { LinkContainer } from "./Types.js";
+import { Linker } from "./Linker.js";
 
 /**
  * @param engine -
@@ -9,9 +10,7 @@ export async function loadLinksInteraction(engine: Engine, refresh = true): Prom
     await engine.addInteractor(
         "particlesLinks",
         async container => {
-            const { Linker } = await import("./Linker.js");
-
-            return new Linker(container as LinkContainer);
+            return Promise.resolve(new Linker(container as LinkContainer));
         },
         refresh,
     );

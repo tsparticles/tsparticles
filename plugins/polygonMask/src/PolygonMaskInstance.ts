@@ -16,7 +16,7 @@ import {
     itemFromArray,
     percentDenominator,
 } from "@tsparticles/engine";
-import { calcClosestPointOnSegment, drawPolygonMask, drawPolygonMaskPath, segmentBounce } from "./utils.js";
+import { calcClosestPointOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
 import type { PolygonMaskContainer } from "./types.js";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement.js";
@@ -305,7 +305,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 throw new Error(`${errorPrefix} occurred during polygon mask download`);
             }
 
-            return await this._parseSvgPath(await req.text(), force);
+            return this._parseSvgPath(await req.text(), force);
         };
 
     private readonly _drawPoints: () => void = () => {
@@ -436,7 +436,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
                 svg = `<svg ${namespaces} width="${data.size.width}" height="${data.size.height}">${path}</svg>`;
             }
 
-            this.raw = await this._parseSvgPath(svg, force);
+            this.raw = this._parseSvgPath(svg, force);
         }
 
         this._createPath2D();
@@ -446,7 +446,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         });
     };
 
-    private readonly _parseSvgPath = async (xml: string, force?: boolean): Promise<ICoordinates[] | undefined> => {
+    private readonly _parseSvgPath = (xml: string, force?: boolean): ICoordinates[] | undefined => {
         const forceDownload = force ?? false;
 
         if (this.paths !== undefined && !forceDownload) {
@@ -500,8 +500,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
             x: (canvasSize.width * position.x) / percentDenominator - this.dimension.width * half,
             y: (canvasSize.height * position.y) / percentDenominator - this.dimension.height * half,
         };
-
-        const { parsePaths } = await import("./utils.js");
 
         return parsePaths(this.paths, scale, this.offset);
     };

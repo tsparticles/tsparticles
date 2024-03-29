@@ -1,11 +1,10 @@
 import type { Engine } from "@tsparticles/engine";
+import { LineDrawer } from "./LineDrawer.js";
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadLineShape(engine: Engine, refresh = true): Promise<void> {
-    const { LineDrawer } = await import("./LineDrawer.js");
-
-    await engine.addShape("line", new LineDrawer(), refresh);
+    await engine.addShape(new LineDrawer(), refresh);
 }

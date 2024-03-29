@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { LifeUpdater } from "./LifeUpdater.js";
 
 /**
  * @param engine -
@@ -8,9 +9,7 @@ export async function loadLifeUpdater(engine: Engine, refresh = true): Promise<v
     await engine.addParticleUpdater(
         "life",
         async container => {
-            const { LifeUpdater } = await import("./LifeUpdater.js");
-
-            return new LifeUpdater(container);
+            return Promise.resolve(new LifeUpdater(container));
         },
         refresh,
     );

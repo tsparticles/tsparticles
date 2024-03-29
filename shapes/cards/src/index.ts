@@ -1,17 +1,16 @@
+import { ClubDrawer } from "./ClubDrawer.js";
+import { DiamondDrawer } from "./DiamondDrawer.js";
 import type { Engine } from "@tsparticles/engine";
+import { HeartDrawer } from "./HeartDrawer.js";
+import { SpadeDrawer } from "./SpadeDrawer.js";
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadCardsShape(engine: Engine, refresh = true): Promise<void> {
-    const { SpadeDrawer } = await import("./SpadeDrawer.js"),
-        { HeartDrawer } = await import("./HeartDrawer.js"),
-        { DiamondDrawer } = await import("./DiamondDrawer.js"),
-        { ClubDrawer } = await import("./ClubDrawer.js");
-
-    await engine.addShape(["spade", "spades"], new SpadeDrawer(), refresh);
-    await engine.addShape(["heart", "hearts"], new HeartDrawer(), refresh);
-    await engine.addShape(["diamond", "diamonds"], new DiamondDrawer(), refresh);
-    await engine.addShape(["club", "clubs"], new ClubDrawer(), refresh);
+    await engine.addShape(new SpadeDrawer(), refresh);
+    await engine.addShape(new HeartDrawer(), refresh);
+    await engine.addShape(new DiamondDrawer(), refresh);
+    await engine.addShape(new ClubDrawer(), refresh);
 }

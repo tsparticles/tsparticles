@@ -43,15 +43,16 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         const { context, radius, particle } = data,
             diameter = radius * double,
             pxRatio = particle.container.retina.pixelRatio,
-            currentPos = particle.getPosition();
+            currentPos = particle.getPosition(),
+            trail = particle.trail;
 
-        if (!particle.trail || !particle.trailLength) {
+        if (!trail || !particle.trailLength) {
             return;
         }
 
         const pathLength = particle.trailLength + radius;
 
-        particle.trail.push({
+        trail.push({
             color: context.fillStyle ?? context.strokeStyle,
             position: {
                 x: currentPos.x,
@@ -59,15 +60,15 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             },
         });
 
-        if (particle.trail.length < minTrailLength) {
+        if (trail.length < minTrailLength) {
             return;
         }
 
-        while (particle.trail.length > pathLength) {
-            particle.trail.shift();
+        while (trail.length > pathLength) {
+            trail.shift();
         }
 
-        const trailLength = Math.min(particle.trail.length, pathLength),
+        const trailLength = Math.min(trail.length, pathLength),
             offsetPos = {
                 x: currentPos.x,
                 y: currentPos.y,
@@ -77,7 +78,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
                 height: particle.container.canvas.size.height + diameter,
             };
 
-        let lastPos = particle.trail[trailLength - trailLengthOffset].position;
+        let lastPos = trail[trailLength - trailLengthOffset].position;
 
         const defaultTransform = {
             a: 1,
@@ -96,7 +97,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         );
 
         for (let i = trailLength; i > noItems; i--) {
-            const step = particle.trail[i - trailLengthOffset],
+            const step = trail[i - trailLengthOffset],
                 position = step.position;
 
             context.beginPath();

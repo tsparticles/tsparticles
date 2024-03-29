@@ -8,7 +8,7 @@ import {
 } from "@tsparticles/engine";
 import type { ISoundsOptions, SoundsOptions } from "./types.js";
 import { Sounds } from "./Options/Classes/Sounds.js";
-import type { SoundsInstance } from "./SoundsInstance.js";
+import { SoundsInstance } from "./SoundsInstance.js";
 import { unmuteWindow } from "./utils.js";
 
 const generalFirstClickHandler = (): void => {
@@ -39,10 +39,8 @@ export class SoundsPlugin implements IPlugin {
         addEventListener(touchStartEvent, generalFirstClickHandler, listenerOptions);
     }
 
-    async getPlugin(container: Container): Promise<SoundsInstance> {
-        const { SoundsInstance } = await import("./SoundsInstance.js");
-
-        return new SoundsInstance(container, this._engine);
+    getPlugin(container: Container): Promise<SoundsInstance> {
+        return Promise.resolve(new SoundsInstance(container, this._engine));
     }
 
     loadOptions(options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {

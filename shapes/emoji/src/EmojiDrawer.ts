@@ -12,11 +12,12 @@ import {
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
 import { drawEmoji } from "./Utils.js";
-import { validTypes } from "./Constants.js";
 
 const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"';
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
+    readonly validTypes = ["emoji"] as const;
+
     private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
 
     destroy(): void {
@@ -34,7 +35,8 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.actualOptions;
+        const options = container.actualOptions,
+            { validTypes } = this;
 
         if (!validTypes.find(t => isInArray(t, options.particles.shape.type))) {
             return;

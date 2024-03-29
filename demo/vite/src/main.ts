@@ -1,15 +1,16 @@
 import "./style.css";
+import { type Engine, tsParticles } from "@tsparticles/engine";
+import { loadAll } from "@tsparticles/all";
+import configs from "@tsparticles/configs";
 
-(async () => {
-    const { loadAll } = await import("@tsparticles/all"),
-        { tsParticles } = await import("@tsparticles/engine");
+(async (engine: Engine) => {
+    await loadAll(engine);
 
-    await loadAll(tsParticles);
+    const keys = Object.keys(configs),
+        randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
 
-    const { default: configs } = await import("@tsparticles/configs");
-
-    await tsParticles.load({
+    await engine.load({
         id: "tsparticles",
-        options: configs.basic
+        options: configs[randomKey]
     });
-})();
+})(tsParticles);

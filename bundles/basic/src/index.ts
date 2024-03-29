@@ -1,4 +1,10 @@
 import type { Engine } from "@tsparticles/engine";
+import { loadBaseMover } from "@tsparticles/move-base";
+import { loadCircleShape } from "@tsparticles/shape-circle";
+import { loadColorUpdater } from "@tsparticles/updater-color";
+import { loadOpacityUpdater } from "@tsparticles/updater-opacity";
+import { loadOutModesUpdater } from "@tsparticles/updater-out-modes";
+import { loadSizeUpdater } from "@tsparticles/updater-size";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles Basic package.
@@ -10,13 +16,6 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadBasic(engine: Engine, refresh = true): Promise<void> {
-    const { loadBaseMover } = await import("@tsparticles/move-base"),
-        { loadCircleShape } = await import("@tsparticles/shape-circle"),
-        { loadColorUpdater } = await import("@tsparticles/updater-color"),
-        { loadOpacityUpdater } = await import("@tsparticles/updater-opacity"),
-        { loadOutModesUpdater } = await import("@tsparticles/updater-out-modes"),
-        { loadSizeUpdater } = await import("@tsparticles/updater-size");
-
     await loadBaseMover(engine, false);
 
     await loadCircleShape(engine, false);

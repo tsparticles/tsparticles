@@ -1,3 +1,4 @@
+import { AbsorbersPlugin } from "./AbsorbersPlugin.js";
 import { type Engine } from "@tsparticles/engine";
 
 /**
@@ -5,8 +6,6 @@ import { type Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadAbsorbersPlugin(engine: Engine, refresh = true): Promise<void> {
-    const { AbsorbersPlugin } = await import("./AbsorbersPlugin.js");
-
     await engine.addPlugin(new AbsorbersPlugin(), refresh);
 }
 

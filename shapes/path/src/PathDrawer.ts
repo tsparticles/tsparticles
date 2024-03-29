@@ -4,6 +4,8 @@ import type { PathParticle } from "./PathParticle.js";
 import { drawPath } from "./Utils.js";
 
 export class PathDrawer implements IShapeDrawer<PathParticle> {
+    readonly validTypes = ["path"] as const;
+
     draw(data: IShapeDrawData<PathParticle>): void {
         const { context, particle, radius } = data;
 

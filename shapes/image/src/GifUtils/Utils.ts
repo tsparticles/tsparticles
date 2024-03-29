@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
 import type { ICoordinates, IRgb, IRgba, IShapeDrawData } from "@tsparticles/engine";
-import type { IImage, ImageParticle } from "../Utils.js";
+import { type IImage, type ImageParticle, loadImage } from "../Utils.js";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants.js";
 import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
 import { ByteStream } from "./ByteStream.js";
@@ -745,8 +745,6 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
  */
 export async function loadGifImage(image: IImage): Promise<void> {
     if (image.type !== "gif") {
-        const { loadImage } = await import("../Utils.js");
-
         await loadImage(image);
 
         return;

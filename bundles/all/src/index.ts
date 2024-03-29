@@ -1,4 +1,50 @@
 import type { Engine } from "@tsparticles/engine";
+import { initPjs } from "@tsparticles/pjs";
+import { loadArrowShape } from "@tsparticles/shape-arrow";
+import { loadBubbleEffect } from "@tsparticles/effect-bubble";
+import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
+import { loadCardsShape } from "@tsparticles/shape-cards";
+import { loadCogShape } from "@tsparticles/shape-cog";
+import { loadCurlNoisePath } from "@tsparticles/path-curl-noise";
+import { loadCurvesPath } from "@tsparticles/path-curves";
+import { loadEasingBackPlugin } from "@tsparticles/plugin-easing-back";
+import { loadEasingCircPlugin } from "@tsparticles/plugin-easing-circ";
+import { loadEasingCubicPlugin } from "@tsparticles/plugin-easing-cubic";
+import { loadEasingExpoPlugin } from "@tsparticles/plugin-easing-expo";
+import { loadEasingLinearPlugin } from "@tsparticles/plugin-easing-linear";
+import { loadEasingQuartPlugin } from "@tsparticles/plugin-easing-quart";
+import { loadEasingQuintPlugin } from "@tsparticles/plugin-easing-quint";
+import { loadEasingSinePlugin } from "@tsparticles/plugin-easing-sine";
+import { loadEmittersShapeCanvas } from "@tsparticles/plugin-emitters-shape-canvas";
+import { loadEmittersShapePath } from "@tsparticles/plugin-emitters-shape-path";
+import { loadEmittersShapePolygon } from "@tsparticles/plugin-emitters-shape-polygon";
+import { loadExportImagePlugin } from "@tsparticles/plugin-export-image";
+import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
+import { loadExportVideoPlugin } from "@tsparticles/plugin-export-video";
+import { loadExternalParticleInteraction } from "@tsparticles/interaction-external-particle";
+import { loadExternalPopInteraction } from "@tsparticles/interaction-external-pop";
+import { loadFull } from "tsparticles";
+import { loadGradientUpdater } from "@tsparticles/updater-gradient";
+import { loadHeartShape } from "@tsparticles/shape-heart";
+import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
+import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
+import { loadLightInteraction } from "@tsparticles/interaction-light";
+import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
+import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
+import { loadPathShape } from "@tsparticles/shape-path";
+import { loadPerlinNoisePath } from "@tsparticles/path-perlin-noise";
+import { loadPoissonDiscPlugin } from "@tsparticles/plugin-poisson-disc";
+import { loadPolygonMaskPlugin } from "@tsparticles/plugin-polygon-mask";
+import { loadPolygonPath } from "@tsparticles/path-polygon";
+import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
+import { loadRoundedRectShape } from "@tsparticles/shape-rounded-rect";
+import { loadSVGPath } from "@tsparticles/path-svg";
+import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
+import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
+import { loadSpiralShape } from "@tsparticles/shape-spiral";
+import { loadTrailEffect } from "@tsparticles/effect-trail";
+import { loadZigZagPath } from "@tsparticles/path-zig-zag";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles All package.
@@ -10,53 +56,6 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadAll(engine: Engine, refresh = true): Promise<void> {
-    const { initPjs } = await import("@tsparticles/pjs"),
-        { loadFull } = await import("tsparticles"),
-        { loadHsvColorPlugin } = await import("@tsparticles/plugin-hsv-color"),
-        { loadEasingBackPlugin } = await import("@tsparticles/plugin-easing-back"),
-        { loadEasingCircPlugin } = await import("@tsparticles/plugin-easing-circ"),
-        { loadEasingCubicPlugin } = await import("@tsparticles/plugin-easing-cubic"),
-        { loadEasingExpoPlugin } = await import("@tsparticles/plugin-easing-expo"),
-        { loadEasingLinearPlugin } = await import("@tsparticles/plugin-easing-linear"),
-        { loadEasingQuartPlugin } = await import("@tsparticles/plugin-easing-quart"),
-        { loadEasingQuintPlugin } = await import("@tsparticles/plugin-easing-quint"),
-        { loadEasingSinePlugin } = await import("@tsparticles/plugin-easing-sine"),
-        { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
-        { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
-        { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon"),
-        { loadCanvasMaskPlugin } = await import("@tsparticles/plugin-canvas-mask"),
-        { loadInfectionPlugin } = await import("@tsparticles/plugin-infection"),
-        { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
-        { loadPolygonMaskPlugin } = await import("@tsparticles/plugin-polygon-mask"),
-        { loadSoundsPlugin } = await import("@tsparticles/plugin-sounds"),
-        { loadExportImagePlugin } = await import("@tsparticles/plugin-export-image"),
-        { loadExportJSONPlugin } = await import("@tsparticles/plugin-export-json"),
-        { loadExportVideoPlugin } = await import("@tsparticles/plugin-export-video"),
-        { loadExternalParticleInteraction } = await import("@tsparticles/interaction-external-particle"),
-        { loadExternalPopInteraction } = await import("@tsparticles/interaction-external-pop"),
-        { loadLightInteraction } = await import("@tsparticles/interaction-light"),
-        { loadParticlesRepulseInteraction } = await import("@tsparticles/interaction-particles-repulse"),
-        { loadGradientUpdater } = await import("@tsparticles/updater-gradient"),
-        { loadOrbitUpdater } = await import("@tsparticles/updater-orbit"),
-        { loadCurvesPath } = await import("@tsparticles/path-curves"),
-        { loadCurlNoisePath } = await import("@tsparticles/path-curl-noise"),
-        { loadPerlinNoisePath } = await import("@tsparticles/path-perlin-noise"),
-        { loadPoissonDiscPlugin } = await import("@tsparticles/plugin-poisson-disc"),
-        { loadPolygonPath } = await import("@tsparticles/path-polygon"),
-        { loadSVGPath } = await import("@tsparticles/path-svg"),
-        { loadZigZagPath } = await import("@tsparticles/path-zig-zag"),
-        { loadSimplexNoisePath } = await import("@tsparticles/path-simplex-noise"),
-        { loadBubbleEffect } = await import("@tsparticles/effect-bubble"),
-        { loadArrowShape } = await import("@tsparticles/shape-arrow"),
-        { loadCardsShape } = await import("@tsparticles/shape-cards"),
-        { loadCogShape } = await import("@tsparticles/shape-cog"),
-        { loadHeartShape } = await import("@tsparticles/shape-heart"),
-        { loadPathShape } = await import("@tsparticles/shape-path"),
-        { loadRoundedPolygonShape } = await import("@tsparticles/shape-rounded-polygon"),
-        { loadRoundedRectShape } = await import("@tsparticles/shape-rounded-rect"),
-        { loadSpiralShape } = await import("@tsparticles/shape-spiral"),
-        { loadTrailEffect } = await import("@tsparticles/effect-trail");
-
     initPjs(engine);
 
     await loadFull(engine, false);

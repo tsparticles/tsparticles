@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { TwinkleUpdater } from "./TwinkleUpdater.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadTwinkleUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "twinkle",
-        async () => {
-            const { TwinkleUpdater } = await import("./TwinkleUpdater.js");
-
-            return new TwinkleUpdater();
+        () => {
+            return Promise.resolve(new TwinkleUpdater());
         },
         refresh,
     );

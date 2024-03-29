@@ -1,3 +1,4 @@
+import { CogDrawer } from "./CogDrawer.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -5,7 +6,5 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadCogShape(engine: Engine, refresh = true): Promise<void> {
-    const { CogDrawer } = await import("./CogDrawer.js");
-
-    await engine.addShape("cog", new CogDrawer(), refresh);
+    await engine.addShape(new CogDrawer(), refresh);
 }

@@ -54,4 +54,6 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
      * @param particle - the particle using the shape
      */
     particleInit?: (container: Container, particle: TParticle) => void;
+
+    readonly validTypes: readonly string[];
 }

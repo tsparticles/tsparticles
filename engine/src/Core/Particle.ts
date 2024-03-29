@@ -50,7 +50,8 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 const defaultRetryCount = 0,
     double = 2,
     half = 0.5,
-    squareExp = 2;
+    squareExp = 2,
+    randomString = "random";
 
 /**
  * @internal
@@ -481,9 +482,9 @@ export class Particle {
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
             particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
+            { reduceDuplicates } = particlesOptions,
             effectType = particlesOptions.effect.type,
-            shapeType = particlesOptions.shape.type,
-            { reduceDuplicates } = particlesOptions;
+            shapeType = particlesOptions.shape.type;
 
         this.effect = itemFromSingleOrMultiple(effectType, this.id, reduceDuplicates);
         this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
@@ -513,6 +514,18 @@ export class Particle {
                     shapeOptions.load(overrideOptions.shape);
                 }
             }
+        }
+
+        if (this.effect === randomString) {
+            const availableEffects = [...this.container.effectDrawers.keys()];
+
+            this.effect = availableEffects[Math.floor(Math.random() * availableEffects.length)];
+        }
+
+        if (this.shape === randomString) {
+            const availableShapes = [...this.container.shapeDrawers.keys()];
+
+            this.shape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
         }
 
         this.effectData = loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates);

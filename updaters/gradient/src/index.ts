@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { GradientUpdater } from "./GradientUpdater.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadGradientUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "gradient",
-        async () => {
-            const { GradientUpdater } = await import("./GradientUpdater.js");
-
-            return new GradientUpdater();
+        () => {
+            return Promise.resolve(new GradientUpdater());
         },
         refresh,
     );

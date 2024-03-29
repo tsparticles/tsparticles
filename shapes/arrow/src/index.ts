@@ -1,3 +1,4 @@
+import { ArrowDrawer } from "./ArrowDrawer.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -5,7 +6,5 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadArrowShape(engine: Engine, refresh = true): Promise<void> {
-    const { ArrowDrawer } = await import("./ArrowDrawer.js");
-
-    await engine.addShape("arrow", new ArrowDrawer(), refresh);
+    await engine.addShape(new ArrowDrawer(), refresh);
 }

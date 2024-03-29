@@ -7,10 +7,11 @@ const bubbleFactor = 3,
 
 export class BubbleDrawer implements IEffectDrawer {
     draw(data: IShapeDrawData): void {
-        const { context, radius } = data;
+        const { context, radius } = data,
+            bubbleRadius = radius / bubbleFactor;
 
         context.beginPath();
-        context.arc(radius / bubbleFactor, -radius / bubbleFactor, radius / bubbleFactor, minAngle, maxAngle, false);
+        context.arc(bubbleRadius, -bubbleRadius, bubbleRadius, minAngle, maxAngle, false);
         context.closePath();
         context.fillStyle = "#fff9";
         context.fill();
