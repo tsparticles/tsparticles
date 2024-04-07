@@ -164,7 +164,7 @@ export class EventListeners {
             themeName = mediaEvent.matches ? defaultThemes.dark : defaultThemes.light,
             theme = options.themes.find(theme => theme.name === themeName);
 
-        if (theme && theme.default.auto) {
+        if (theme?.default.auto) {
             void container.loadTheme(themeName);
         }
     };
@@ -183,7 +183,7 @@ export class EventListeners {
             return;
         }
 
-        if (document && document.hidden) {
+        if (document?.hidden) {
             container.pageHidden = true;
 
             container.pause();

@@ -239,95 +239,89 @@ export class Container {
         }
 
         const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            const pxRatio = this.retina.pixelRatio,
-                posRetina = {
-                    x: pos.x * pxRatio,
-                    y: pos.y * pxRatio,
-                },
-                particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
-
-            callback(e, particles);
-        };
-
-        const clickHandler = (e: Event): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            const mouseEvent = e as MouseEvent,
-                pos = {
-                    x: mouseEvent.offsetX || mouseEvent.clientX,
-                    y: mouseEvent.offsetY || mouseEvent.clientY,
-                },
-                radius = 1;
-
-            clickOrTouchHandler(e, pos, radius);
-        };
-
-        const touchStartHandler = (): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            touched = true;
-            touchMoved = false;
-        };
-
-        const touchMoveHandler = (): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            touchMoved = true;
-        };
-
-        const touchEndHandler = (e: Event): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            if (touched && !touchMoved) {
-                const touchEvent = e as TouchEvent;
-
-                const lengthOffset = 1;
-
-                let lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset];
-
-                if (!lastTouch) {
-                    lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - lengthOffset];
-
-                    if (!lastTouch) {
-                        return;
-                    }
+                if (!guardCheck(this)) {
+                    return;
                 }
 
-                const element = this.canvas.element,
-                    canvasRect = element ? element.getBoundingClientRect() : undefined,
-                    minCoordinate = 0,
+                const pxRatio = this.retina.pixelRatio,
+                    posRetina = {
+                        x: pos.x * pxRatio,
+                        y: pos.y * pxRatio,
+                    },
+                    particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
+
+                callback(e, particles);
+            },
+            clickHandler = (e: Event): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
+
+                const mouseEvent = e as MouseEvent,
                     pos = {
-                        x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
-                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
-                    };
+                        x: mouseEvent.offsetX || mouseEvent.clientX,
+                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                    },
+                    radius = 1;
 
-                clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
-            }
+                clickOrTouchHandler(e, pos, radius);
+            },
+            touchStartHandler = (): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
 
-            touched = false;
-            touchMoved = false;
-        };
+                touched = true;
+                touchMoved = false;
+            },
+            touchMoveHandler = (): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
 
-        const touchCancelHandler = (): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
+                touchMoved = true;
+            },
+            touchEndHandler = (e: Event): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
 
-            touched = false;
-            touchMoved = false;
-        };
+                if (touched && !touchMoved) {
+                    const touchEvent = e as TouchEvent,
+                        lengthOffset = 1;
+
+                    let lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset];
+
+                    if (!lastTouch) {
+                        lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - lengthOffset];
+
+                        if (!lastTouch) {
+                            return;
+                        }
+                    }
+
+                    const element = this.canvas.element,
+                        canvasRect = element ? element.getBoundingClientRect() : undefined,
+                        minCoordinate = 0,
+                        pos = {
+                            x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
+                            y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
+                        };
+
+                    clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
+                }
+
+                touched = false;
+                touchMoved = false;
+            },
+            touchCancelHandler = (): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
+
+                touched = false;
+                touchMoved = false;
+            };
 
         let touched = false,
             touchMoved = false;

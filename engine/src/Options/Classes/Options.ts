@@ -237,7 +237,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             }
         } else {
             const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)"),
-                clientDarkMode = mediaMatch && mediaMatch.matches,
+                clientDarkMode = mediaMatch?.matches,
                 defaultTheme = this._findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
 
             if (defaultTheme) {
