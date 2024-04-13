@@ -68,7 +68,7 @@
     "rimraf": "^5.0.5",
     "source-map-support": "^0.5.21",
     "terser-webpack-plugin": "^5.3.10",
-    "ts-json-schema-generator": "^1.5.0",
+    "ts-json-schema-generator": "^2.0.0",
     "ts-node": "^10.9.2",
     "typedoc": "^0.25.12",
     "typedoc-plugin-clarity": "^1.6.0",
