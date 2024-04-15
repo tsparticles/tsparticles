@@ -213,6 +213,52 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             decay: decayOffset - actualOptions.decay,
                             direction: -actualOptions.angle,
                         },
+                        rotate: {
+                            value: actualOptions.flat
+                                ? disableRotate
+                                : {
+                                      min: 0,
+                                      max: 360,
+                                  },
+                            direction: "random",
+                            animation: {
+                                enable: !actualOptions.flat,
+                                speed: 60,
+                            },
+                        },
+                        tilt: {
+                            direction: "random",
+                            enable: !actualOptions.flat,
+                            value: actualOptions.flat
+                                ? disableTilt
+                                : {
+                                      min: 0,
+                                      max: 360,
+                                  },
+                            animation: {
+                                enable: true,
+                                speed: 60,
+                            },
+                        },
+                        roll: {
+                            darken: {
+                                enable: true,
+                                value: 25,
+                            },
+                            enable: !actualOptions.flat,
+                            speed: {
+                                min: 15,
+                                max: 25,
+                            },
+                        },
+                        wobble: {
+                            distance: 30,
+                            enable: !actualOptions.flat,
+                            speed: {
+                                min: -15,
+                                max: 15,
+                            },
+                        },
                     },
                 });
 
