@@ -147,6 +147,7 @@
     "@tsparticles/shape-cards": "^3.3.0",
     "@tsparticles/shape-cog": "^3.3.0",
     "@tsparticles/shape-heart": "^3.3.0",
+    "@tsparticles/shape-infinity": "^3.3.0",
     "@tsparticles/shape-path": "^3.3.0",
     "@tsparticles/shape-rounded-polygon": "^3.3.0",
     "@tsparticles/shape-rounded-rect": "^3.3.0",

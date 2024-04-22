@@ -305,6 +305,9 @@ importers:
       '@tsparticles/shape-heart':
         specifier: ^3.3.0
         version: link:../../shapes/heart/dist
+      '@tsparticles/shape-infinity':
+        specifier: ^3.3.0
+        version: link:../../shapes/infinity/dist
       '@tsparticles/shape-path':
         specifier: ^3.3.0
         version: link:../../shapes/path/dist
@@ -796,6 +799,9 @@ importers:
       '@tsparticles/shape-image':
         specifier: workspace:^
         version: link:../../shapes/image/dist
+      '@tsparticles/shape-infinity':
+        specifier: workspace:^
+        version: link:../../shapes/infinity/dist
       '@tsparticles/shape-line':
         specifier: workspace:^
         version: link:../../shapes/line/dist
@@ -1471,6 +1477,13 @@ importers:
     publishDirectory: dist
 
   shapes/image:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: ^3.3.0
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  shapes/infinity:
     dependencies:
       '@tsparticles/engine':
         specifier: ^3.3.0

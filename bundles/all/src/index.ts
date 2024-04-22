@@ -28,6 +28,7 @@ import { loadGradientUpdater } from "@tsparticles/updater-gradient";
 import { loadHeartShape } from "@tsparticles/shape-heart";
 import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
+import { loadInfinityShape } from "@tsparticles/shape-infinity";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
@@ -103,6 +104,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadCardsShape(engine, false);
     await loadCogShape(engine, false);
     await loadHeartShape(engine, false);
+    await loadInfinityShape(engine, false);
     await loadPathShape(engine, false);
     await loadRoundedPolygonShape(engine, false);
     await loadRoundedRectShape(engine, false);
