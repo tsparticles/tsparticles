@@ -60,15 +60,17 @@ describe("Particles", async () => {
     it("should add particles to array of particles", async () => {
         await container.reset();
 
+        const particlesCount = 0;
+
         container.options.load({
             particles: {
                 number: {
-                    value: 0,
+                    value: particlesCount,
                 },
             },
         });
 
-        expect(container.particles.count).to.equal(0);
+        expect(container.particles.count).to.equal(particlesCount);
 
         const particle1 = await container.particles.addParticle({ x: 1, y: 1 });
         expect(container.particles.count).to.equal(1);

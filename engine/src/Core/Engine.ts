@@ -109,6 +109,9 @@ async function getDataFromUrl(
     return data.fallback;
 }
 
+const generatedTrue = "true",
+    generatedFalse = "false";
+
 /**
  * Engine class for creating the singleton on window.
  * It's a singleton class for initializing {@link Container} instances,
@@ -362,7 +365,7 @@ export class Engine {
      * @returns All the {@link Container} objects loaded
      */
     dom(): Container[] {
-        return this._domArray;
+        return this.items;
     }
 
     /**
@@ -494,7 +497,7 @@ export class Engine {
      * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
      */
     item(index: number): Container | undefined {
-        const { items } = this,
+        const items = this.items,
             item = items[index];
 
         if (!item || item.destroyed) {
@@ -520,9 +523,9 @@ export class Engine {
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
         /* elements */
-        const domContainer = this._getDomContainer(id),
+        const domContainer = this._getDomContainer(id, params.element),
             currentOptions = itemFromSingleOrMultiple(options, index),
-            { items } = this,
+            items = this.items,
             oldIndex = items.findIndex(v => v.id.description === id),
             minIndex = 0;
 
@@ -617,7 +620,7 @@ export class Engine {
      * @param callback - The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const { items } = this;
+        const items = this.items;
 
         if (!items.length) {
             throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
@@ -635,7 +638,7 @@ export class Engine {
             canvasEl = domContainer;
 
             if (!canvasEl.dataset[generatedAttribute]) {
-                canvasEl.dataset[generatedAttribute] = "false";
+                canvasEl.dataset[generatedAttribute] = generatedFalse;
             }
         } else {
             const existingCanvases = domContainer.getElementsByTagName("canvas");
@@ -646,12 +649,12 @@ export class Engine {
 
                 canvasEl = existingCanvases[firstIndex];
 
-                canvasEl.dataset[generatedAttribute] = "false";
+                canvasEl.dataset[generatedAttribute] = generatedFalse;
             } else {
                 /* create canvas element */
                 canvasEl = document.createElement("canvas");
 
-                canvasEl.dataset[generatedAttribute] = "true";
+                canvasEl.dataset[generatedAttribute] = generatedTrue;
 
                 /* append canvas */
                 domContainer.appendChild(canvasEl);
@@ -671,17 +674,19 @@ export class Engine {
         return canvasEl;
     }
 
-    private _getDomContainer(id: string): HTMLElement {
-        let domContainer = document.getElementById(id);
+    private _getDomContainer(id: string, source?: HTMLElement): HTMLElement {
+        let domContainer = source ?? document.getElementById(id);
 
-        if (!domContainer) {
-            domContainer = document.createElement("div");
-
-            domContainer.id = id;
-            domContainer.dataset[generatedAttribute] = "true";
-
-            document.body.append(domContainer);
+        if (domContainer) {
+            return domContainer;
         }
+
+        domContainer = document.createElement("div");
+
+        domContainer.id = id;
+        domContainer.dataset[generatedAttribute] = generatedTrue;
+
+        document.body.append(domContainer);
 
         return domContainer;
     }
