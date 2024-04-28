@@ -507,9 +507,10 @@ export class Engine {
         let domContainer = params.element ?? document.getElementById(id);
 
         if (!domContainer) {
-            domContainer = document.createElement("div");
+            domContainer = document.createElement("canvas");
 
             domContainer.id = id;
+            domContainer.dataset[generatedAttribute] = "true";
 
             document.body.append(domContainer);
         }
@@ -533,10 +534,12 @@ export class Engine {
 
         let canvasEl: HTMLCanvasElement;
 
-        if (domContainer.tagName.toLowerCase() === "canvas") {
-            canvasEl = domContainer as HTMLCanvasElement;
+        if (domContainer instanceof HTMLCanvasElement) {
+            canvasEl = domContainer;
 
-            canvasEl.dataset[generatedAttribute] = "false";
+            if (!canvasEl.dataset[generatedAttribute]) {
+                canvasEl.dataset[generatedAttribute] = "false";
+            }
         } else {
             const existingCanvases = domContainer.getElementsByTagName("canvas");
 
