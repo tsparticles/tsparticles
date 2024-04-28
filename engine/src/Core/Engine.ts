@@ -412,11 +412,11 @@ export class Engine {
      * @returns the array of interaction managers for the given container
      */
     async getInteractors(container: Container, force = false): Promise<IInteractor[]> {
-        return await getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
+        return getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
     }
 
     async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
-        return await getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
+        return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
     }
 
     /**
@@ -478,7 +478,7 @@ export class Engine {
      * @returns the array of updaters for the given container
      */
     async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
-        return await getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
+        return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
     }
 
     /**
