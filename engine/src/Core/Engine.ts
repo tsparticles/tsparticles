@@ -14,7 +14,6 @@ import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
-import type { IOptions } from "../Options/Interfaces/IOptions.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
@@ -90,7 +89,9 @@ async function getItemsFromInitializer<TItem, TInitializer extends GenericInitia
  * @param data -
  * @returns the options object from the jsonUrl
  */
-async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple<ISourceOptions> | undefined> {
+async function getDataFromUrl(
+    data: DataFromUrlParams,
+): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
     const url = itemFromSingleOrMultiple(data.url, data.index);
 
     if (!url) {
@@ -201,6 +202,10 @@ export class Engine {
         return res;
     }
 
+    get items(): Container[] {
+        return this._domArray;
+    }
+
     get version(): string {
         return __VERSION__;
     }
@@ -308,7 +313,7 @@ export class Engine {
      */
     async addPreset(
         preset: string,
-        options: RecursivePartial<IOptions>,
+        options: Readonly<ISourceOptions>,
         override = false,
         refresh = true,
     ): Promise<void> {
@@ -353,6 +358,7 @@ export class Engine {
 
     /**
      * All the {@link Container} objects loaded
+     * @deprecated the dom() function is deprecated, please use the items property instead
      * @returns All the {@link Container} objects loaded
      */
     dom(): Container[] {
@@ -361,22 +367,12 @@ export class Engine {
 
     /**
      * Retrieves a {@link Container} from all the objects loaded
+     * @deprecated the domItem() function is deprecated, please use the item function instead
      * @param index - The object index
      * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
      */
     domItem(index: number): Container | undefined {
-        const dom = this.dom(),
-            item = dom[index];
-
-        if (!item || item.destroyed) {
-            const deleteCount = 1;
-
-            dom.splice(index, deleteCount);
-
-            return;
-        }
-
-        return item;
+        return this.item(index);
     }
 
     /**
@@ -493,6 +489,26 @@ export class Engine {
     }
 
     /**
+     * Retrieves a {@link Container} from all the objects loaded
+     * @param index - The object index
+     * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
+     */
+    item(index: number): Container | undefined {
+        const { items } = this,
+            item = items[index];
+
+        if (!item || item.destroyed) {
+            const deleteCount = 1;
+
+            items.splice(index, deleteCount);
+
+            return;
+        }
+
+        return item;
+    }
+
+    /**
      * Loads the provided options to create a {@link Container} object.
      * @param params - The particles container params {@link ILoadParams} object
      * @returns A Promise with the {@link Container} object created
@@ -504,70 +520,25 @@ export class Engine {
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
         /* elements */
-        let domContainer = params.element ?? document.getElementById(id);
-
-        if (!domContainer) {
-            domContainer = document.createElement("canvas");
-
-            domContainer.id = id;
-            domContainer.dataset[generatedAttribute] = "true";
-
-            document.body.append(domContainer);
-        }
-
-        const currentOptions = itemFromSingleOrMultiple(options, index),
-            dom = this.dom(),
-            oldIndex = dom.findIndex(v => v.id.description === id),
+        const domContainer = this._getDomContainer(id),
+            currentOptions = itemFromSingleOrMultiple(options, index),
+            { items } = this,
+            oldIndex = items.findIndex(v => v.id.description === id),
             minIndex = 0;
 
         if (oldIndex >= minIndex) {
-            const old = this.domItem(oldIndex);
+            const old = this.item(oldIndex);
 
             if (old && !old.destroyed) {
                 old.destroy();
 
                 const deleteCount = 1;
 
-                dom.splice(oldIndex, deleteCount);
+                items.splice(oldIndex, deleteCount);
             }
         }
 
-        let canvasEl: HTMLCanvasElement;
-
-        if (domContainer instanceof HTMLCanvasElement) {
-            canvasEl = domContainer;
-
-            if (!canvasEl.dataset[generatedAttribute]) {
-                canvasEl.dataset[generatedAttribute] = "false";
-            }
-        } else {
-            const existingCanvases = domContainer.getElementsByTagName("canvas");
-
-            /* get existing canvas if present, otherwise a new one will be created */
-            if (existingCanvases.length) {
-                const firstIndex = 0;
-
-                canvasEl = existingCanvases[firstIndex];
-
-                canvasEl.dataset[generatedAttribute] = "false";
-            } else {
-                /* create canvas element */
-                canvasEl = document.createElement("canvas");
-
-                canvasEl.dataset[generatedAttribute] = "true";
-
-                /* append canvas */
-                domContainer.appendChild(canvasEl);
-            }
-        }
-
-        if (!canvasEl.style.width) {
-            canvasEl.style.width = "100%";
-        }
-
-        if (!canvasEl.style.height) {
-            canvasEl.style.height = "100%";
-        }
+        const canvasEl = this._getCanvasFromContainer(domContainer);
 
         /* launch tsParticles */
         const newItem = new Container(this, id, currentOptions);
@@ -575,9 +546,9 @@ export class Engine {
         if (oldIndex >= minIndex) {
             const deleteCount = 0;
 
-            dom.splice(oldIndex, deleteCount, newItem);
+            items.splice(oldIndex, deleteCount, newItem);
         } else {
-            dom.push(newItem);
+            items.push(newItem);
         }
 
         newItem.canvas.loadCanvas(canvasEl);
@@ -629,7 +600,7 @@ export class Engine {
             return;
         }
 
-        await Promise.all(this.dom().map(t => t.refresh()));
+        await Promise.all(this.items.map(t => t.refresh()));
     }
 
     /**
@@ -646,14 +617,72 @@ export class Engine {
      * @param callback - The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const dom = this.dom();
+        const { items } = this;
 
-        if (!dom.length) {
+        if (!items.length) {
             throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
         }
 
-        for (const domItem of dom) {
-            domItem.addClickHandler(callback);
+        for (const item of items) {
+            item.addClickHandler(callback);
         }
+    }
+
+    private _getCanvasFromContainer(domContainer: HTMLElement): HTMLCanvasElement {
+        let canvasEl: HTMLCanvasElement;
+
+        if (domContainer instanceof HTMLCanvasElement) {
+            canvasEl = domContainer;
+
+            if (!canvasEl.dataset[generatedAttribute]) {
+                canvasEl.dataset[generatedAttribute] = "false";
+            }
+        } else {
+            const existingCanvases = domContainer.getElementsByTagName("canvas");
+
+            /* get existing canvas if present, otherwise a new one will be created */
+            if (existingCanvases.length) {
+                const firstIndex = 0;
+
+                canvasEl = existingCanvases[firstIndex];
+
+                canvasEl.dataset[generatedAttribute] = "false";
+            } else {
+                /* create canvas element */
+                canvasEl = document.createElement("canvas");
+
+                canvasEl.dataset[generatedAttribute] = "true";
+
+                /* append canvas */
+                domContainer.appendChild(canvasEl);
+            }
+        }
+
+        const fullPercent = "100%";
+
+        if (!canvasEl.style.width) {
+            canvasEl.style.width = fullPercent;
+        }
+
+        if (!canvasEl.style.height) {
+            canvasEl.style.height = fullPercent;
+        }
+
+        return canvasEl;
+    }
+
+    private _getDomContainer(id: string): HTMLElement {
+        let domContainer = document.getElementById(id);
+
+        if (!domContainer) {
+            domContainer = document.createElement("div");
+
+            domContainer.id = id;
+            domContainer.dataset[generatedAttribute] = "true";
+
+            document.body.append(domContainer);
+        }
+
+        return domContainer;
     }
 }

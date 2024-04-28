@@ -6,6 +6,7 @@ import type { Engine } from "../../Core/Engine.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import { Interactivity } from "./Interactivity/Interactivity.js";
 import { ManualParticle } from "./ManualParticle.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
@@ -86,7 +87,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * This method loads the source object in the current instance
      * @param data - the source data to load into the instance
      */
-    load(data?: RecursivePartial<IOptions>): void {
+    load(data?: ISourceOptions): void {
         if (!data) {
             return;
         }
