@@ -2,7 +2,7 @@ import { describe, it } from "mocha";
 import { ICoordinates3d, errorPrefix, getRandom, tsParticles } from "@tsparticles/engine";
 import { TestWindow } from "./Fixture/Window";
 import { expect } from "chai";
-import { createCanvas } from "canvas";
+import { createCustomCanvas } from "./Fixture/CustomCanvas";
 
 describe("Particles", async () => {
     globalThis.window = TestWindow;
@@ -11,7 +11,7 @@ describe("Particles", async () => {
         options: {
             autoPlay: false,
         },
-        element: createCanvas(1920, 1080) as any,
+        element: createCustomCanvas(1920, 1080) as any,
     });
 
     if (!container) {

@@ -1,7 +1,7 @@
 import { Circle, Point, Rectangle, tsParticles } from "@tsparticles/engine";
 import { describe, it } from "mocha";
 import { expect } from "chai";
-import { createCanvas } from "canvas";
+import { createCustomCanvas } from "./Fixture/CustomCanvas";
 
 describe("QuadTree tests", () => {
     describe("Rectangle (0, 0, 50, 50) tests", () => {
@@ -80,7 +80,7 @@ describe("QuadTree tests", () => {
             options: {
                 autoPlay: false,
             },
-            element: createCanvas(200, 200) as any,
+            element: createCustomCanvas(200, 200) as any,
         });
 
         if (!container) {
