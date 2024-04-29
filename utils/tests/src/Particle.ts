@@ -63,7 +63,7 @@ describe("Particle", async () => {
                 expect(particle?.shape).to.equal("square");
             });
 
-            it("should choose a single shape from the specified array when container Particles options specifies an array os shape types", async () => {
+            it("should choose a single shape from the specified array when container Particles options specifies an array of shape types", async () => {
                 await container.reset();
                 container.options.load(multipleShapeTypeOptions);
                 await container.refresh();
