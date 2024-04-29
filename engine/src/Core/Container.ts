@@ -19,6 +19,8 @@ import { Retina } from "./Retina.js";
 import { getRangeValue } from "../Utils/NumberUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
 
+type ContainerClickHandler = (evt: Event) => void;
+
 /**
  * Checks if the container is still usable
  * @param container - the container to check
@@ -126,6 +128,7 @@ export class Container {
 
     zLayers;
 
+    private readonly _clickHandlers;
     private _currentTheme?: string;
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
@@ -174,6 +177,7 @@ export class Container {
         this._lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
+        this._clickHandlers = new Map<string, ContainerClickHandler>();
         this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
@@ -326,11 +330,15 @@ export class Container {
         let touched = false,
             touchMoved = false;
 
-        el.addEventListener("click", clickHandler);
-        el.addEventListener("touchstart", touchStartHandler);
-        el.addEventListener("touchmove", touchMoveHandler);
-        el.addEventListener("touchend", touchEndHandler);
-        el.addEventListener("touchcancel", touchCancelHandler);
+        this._clickHandlers.set("click", clickHandler);
+        this._clickHandlers.set("touchstart", touchStartHandler);
+        this._clickHandlers.set("touchmove", touchMoveHandler);
+        this._clickHandlers.set("touchend", touchEndHandler);
+        this._clickHandlers.set("touchcancel", touchCancelHandler);
+
+        for (const [key, handler] of this._clickHandlers) {
+            el.addEventListener(key, handler);
+        }
     }
 
     addLifeTime(value: number): void {
@@ -358,6 +366,18 @@ export class Container {
         return !this._duration || this._lifeTime <= this._duration;
     }
 
+    clearClickHandlers(): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
+        for (const [key, handler] of this._clickHandlers) {
+            this.interactivity.element?.removeEventListener(key, handler);
+        }
+
+        this._clickHandlers.clear();
+    }
+
     /**
      * Destroys the current container, invalidating it
      */
@@ -367,6 +387,8 @@ export class Container {
         }
 
         this.stop();
+
+        this.clearClickHandlers();
 
         this.particles.destroy();
         this.canvas.destroy();

@@ -110,7 +110,65 @@ async function getDataFromUrl(
 }
 
 const generatedTrue = "true",
-    generatedFalse = "false";
+    generatedFalse = "false",
+    getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
+        let canvasEl: HTMLCanvasElement;
+
+        if (domContainer instanceof HTMLCanvasElement) {
+            canvasEl = domContainer;
+
+            if (!canvasEl.dataset[generatedAttribute]) {
+                canvasEl.dataset[generatedAttribute] = generatedFalse;
+            }
+        } else {
+            const existingCanvases = domContainer.getElementsByTagName("canvas");
+
+            /* get existing canvas if present, otherwise a new one will be created */
+            if (existingCanvases.length) {
+                const firstIndex = 0;
+
+                canvasEl = existingCanvases[firstIndex];
+
+                canvasEl.dataset[generatedAttribute] = generatedFalse;
+            } else {
+                /* create canvas element */
+                canvasEl = document.createElement("canvas");
+
+                canvasEl.dataset[generatedAttribute] = generatedTrue;
+
+                /* append canvas */
+                domContainer.appendChild(canvasEl);
+            }
+        }
+
+        const fullPercent = "100%";
+
+        if (!canvasEl.style.width) {
+            canvasEl.style.width = fullPercent;
+        }
+
+        if (!canvasEl.style.height) {
+            canvasEl.style.height = fullPercent;
+        }
+
+        return canvasEl;
+    },
+    getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
+        let domContainer = source ?? document.getElementById(id);
+
+        if (domContainer) {
+            return domContainer;
+        }
+
+        domContainer = document.createElement("div");
+
+        domContainer.id = id;
+        domContainer.dataset[generatedAttribute] = generatedTrue;
+
+        document.body.append(domContainer);
+
+        return domContainer;
+    };
 
 /**
  * Engine class for creating the singleton on window.
@@ -497,7 +555,7 @@ export class Engine {
      * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
      */
     item(index: number): Container | undefined {
-        const items = this.items,
+        const { items } = this,
             item = items[index];
 
         if (!item || item.destroyed) {
@@ -523,31 +581,24 @@ export class Engine {
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
         /* elements */
-        const domContainer = this._getDomContainer(id, params.element),
+        const domContainer = getDomContainer(id, params.element),
             currentOptions = itemFromSingleOrMultiple(options, index),
-            items = this.items,
+            { items } = this,
             oldIndex = items.findIndex(v => v.id.description === id),
             minIndex = 0;
 
+        const canvasEl = getCanvasFromContainer(domContainer),
+            newItem = new Container(this, id, currentOptions);
+
         if (oldIndex >= minIndex) {
-            const old = this.item(oldIndex);
+            const old = this.item(oldIndex),
+                one = 1,
+                none = 0,
+                deleteCount = old ? one : none;
 
             if (old && !old.destroyed) {
                 old.destroy();
-
-                const deleteCount = 1;
-
-                items.splice(oldIndex, deleteCount);
             }
-        }
-
-        const canvasEl = this._getCanvasFromContainer(domContainer);
-
-        /* launch tsParticles */
-        const newItem = new Container(this, id, currentOptions);
-
-        if (oldIndex >= minIndex) {
-            const deleteCount = 0;
 
             items.splice(oldIndex, deleteCount, newItem);
         } else {
@@ -556,6 +607,7 @@ export class Engine {
 
         newItem.canvas.loadCanvas(canvasEl);
 
+        /* launch tsParticles */
         await newItem.start();
 
         return newItem;
@@ -567,9 +619,7 @@ export class Engine {
      * @param sourceOptions - the source options to read
      */
     loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        for (const plugin of this.plugins) {
-            plugin.loadOptions(options, sourceOptions);
-        }
+        this.plugins.forEach(plugin => plugin.loadOptions?.(options, sourceOptions));
     }
 
     /**
@@ -589,9 +639,7 @@ export class Engine {
             return;
         }
 
-        for (const updater of updaters) {
-            updater.loadOptions?.(options, ...sourceOptions);
-        }
+        updaters.forEach(updater => updater.loadOptions?.(options, ...sourceOptions));
     }
 
     /**
@@ -620,74 +668,12 @@ export class Engine {
      * @param callback - The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const items = this.items;
+        const { items } = this;
 
         if (!items.length) {
             throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
         }
 
-        for (const item of items) {
-            item.addClickHandler(callback);
-        }
-    }
-
-    private _getCanvasFromContainer(domContainer: HTMLElement): HTMLCanvasElement {
-        let canvasEl: HTMLCanvasElement;
-
-        if (domContainer instanceof HTMLCanvasElement) {
-            canvasEl = domContainer;
-
-            if (!canvasEl.dataset[generatedAttribute]) {
-                canvasEl.dataset[generatedAttribute] = generatedFalse;
-            }
-        } else {
-            const existingCanvases = domContainer.getElementsByTagName("canvas");
-
-            /* get existing canvas if present, otherwise a new one will be created */
-            if (existingCanvases.length) {
-                const firstIndex = 0;
-
-                canvasEl = existingCanvases[firstIndex];
-
-                canvasEl.dataset[generatedAttribute] = generatedFalse;
-            } else {
-                /* create canvas element */
-                canvasEl = document.createElement("canvas");
-
-                canvasEl.dataset[generatedAttribute] = generatedTrue;
-
-                /* append canvas */
-                domContainer.appendChild(canvasEl);
-            }
-        }
-
-        const fullPercent = "100%";
-
-        if (!canvasEl.style.width) {
-            canvasEl.style.width = fullPercent;
-        }
-
-        if (!canvasEl.style.height) {
-            canvasEl.style.height = fullPercent;
-        }
-
-        return canvasEl;
-    }
-
-    private _getDomContainer(id: string, source?: HTMLElement): HTMLElement {
-        let domContainer = source ?? document.getElementById(id);
-
-        if (domContainer) {
-            return domContainer;
-        }
-
-        domContainer = document.createElement("div");
-
-        domContainer.id = id;
-        domContainer.dataset[generatedAttribute] = generatedTrue;
-
-        document.body.append(domContainer);
-
-        return domContainer;
+        items.forEach(item => item.addClickHandler(callback));
     }
 }
