@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment */
 import { type Canvas, createCanvas } from "canvas";
 
 /**
@@ -8,24 +8,19 @@ import { type Canvas, createCanvas } from "canvas";
  * @returns the custom canvas
  */
 export function createCustomCanvas(width: number, height: number): Canvas {
-    const canvas = createCanvas(width, height);
+    const canvas = createCanvas(width, height),
+        augmentCanvas = canvas as any;
 
-    canvas.width = 100;
-    canvas.height = 100;
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const augmentCanvas = canvas as any;
-
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    augmentCanvas.offsetWidth = width;
+    augmentCanvas.offsetHeight = height;
     augmentCanvas.tagName = "CANVAS";
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     augmentCanvas.style = {
+        height: `${height}px`,
+        width: `${width}px`,
         setProperty(property: string, value: string | null, priority?: string): void {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
             this[property] = priority ? `${value} !important` : value;
         },
     };
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     augmentCanvas.dataset = {};
 
     return canvas;

@@ -53,8 +53,9 @@ describe("Particles", async () => {
         await container.reset();
 
         container.options.load(numParticlesOptions);
+        container.actualOptions.load(container.options);
 
-        await container.reset();
+        await container.particles.init();
 
         expect(container.particles.count).to.equal(numParticles);
     });
@@ -71,6 +72,10 @@ describe("Particles", async () => {
                 },
             },
         });
+
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         expect(container.particles.count).to.equal(particlesCount);
 
@@ -94,7 +99,9 @@ describe("Particles", async () => {
 
         container.options.load(numParticlesOptions);
 
-        await container.reset();
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         let arr = container.particles.filter(() => true);
 
@@ -120,7 +127,9 @@ describe("Particles", async () => {
 
         container.options.load(numParticlesOptions);
 
-        await container.reset();
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         let arr = container.particles.filter(() => true);
 
@@ -143,7 +152,9 @@ describe("Particles", async () => {
 
         container.options.load(enableParticleMoveOptions);
 
-        await container.reset();
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         expect(container.particles.count).to.equal(numParticles);
         container.particles.removeQuantity(3);
@@ -157,7 +168,9 @@ describe("Particles", async () => {
 
         container.options.load(numParticlesOptions);
 
-        await container.refresh();
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         let arr = container.particles.filter(() => true);
 
@@ -187,7 +200,9 @@ describe("Particles", async () => {
 
         container.options.load(numParticlesOptions);
 
-        await container.refresh();
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         expect(container.particles.count).to.equal(numParticles);
         container.particles.clear();
@@ -199,7 +214,9 @@ describe("Particles", async () => {
 
         container.options.load(enableParticleEmptyMoveOptions);
 
-        await container.refresh();
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
         container.particles.push(numParticles, { position, clicking: false, inside: false });
@@ -218,7 +235,9 @@ describe("Particles", async () => {
 
         container.options.load(enableParticleEmptyMoveOptions);
 
-        await container.refresh();
+        container.actualOptions.load(container.options);
+
+        await container.particles.init();
 
         const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
         container.particles.push(numParticles, { position, clicking: false, inside: false });

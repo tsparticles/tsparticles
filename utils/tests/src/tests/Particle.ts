@@ -4,6 +4,9 @@ import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window";
 import { createCustomCanvas } from "../Fixture/CustomCanvas";
 
+const width = 1920,
+    height = 1080;
+
 describe("Particle", async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     globalThis.window = TestWindow;
@@ -14,7 +17,7 @@ describe("Particle", async () => {
             autoPlay: false,
         },
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
-        element: createCustomCanvas(1920, 1080) as any,
+        element: createCustomCanvas(width, height) as any,
     });
 
     if (!container) {
@@ -92,6 +95,10 @@ describe("Particle", async () => {
                 await container.reset();
                 container.options.load(squareShapeOptions);
 
+                container.actualOptions.load(container.options);
+
+                await container.particles.init();
+
                 const particle = container.particles.addParticle();
 
                 expect(particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
@@ -102,6 +109,10 @@ describe("Particle", async () => {
             it("should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles", async () => {
                 await container.reset();
                 container.options.load(multipleShapeTypeOptions);
+
+                container.actualOptions.load(container.options);
+
+                await container.particles.init();
 
                 const particle = container.particles.addParticle();
 
@@ -137,26 +148,36 @@ describe("Particle", async () => {
     });
 
     describe("calcPosition", () => {
-        const width = 1920;
-        const height = 1080;
-
         beforeEach(async () => {
             await container.reset();
+
+            await container.init();
         });
 
         it("should always return the position when specified", () => {
             const position: ICoordinates = calcExactPositionOrRandomFromSize({
-                size: container.canvas.size,
-            });
+                    size: { width, height },
+                }),
+                particle = container.particles.addParticle(position);
 
-            const particle = container.particles.addParticle(position);
+            expect(particle).to.be.not.undefined;
 
-            expect(particle?.position.x).to.be.equal(position.x);
-            expect(particle?.position.y).to.be.equal(position.y);
+            if (!particle) {
+                return;
+            }
+
+            expect(particle.position.x).to.be.equal(position.x);
+            expect(particle.position.y).to.be.equal(position.y);
         });
 
         it("should always return a position that is on the canvas when no position specified", () => {
             const particle = container.particles.addParticle();
+
+            expect(particle).to.be.not.undefined;
+
+            if (!particle) {
+                return;
+            }
 
             expect(particle?.position.x).to.be.at.least(0);
             expect(particle?.position.x).to.be.at.most(width);

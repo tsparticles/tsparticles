@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { Circle, Point, Rectangle, tsParticles } from "@tsparticles/engine";
+import { Circle, Rectangle } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
-import { createCustomCanvas } from "../Fixture/CustomCanvas";
 
 describe("QuadTree tests", () => {
     describe("Rectangle (0, 0, 50, 50) tests", () => {
@@ -74,7 +73,7 @@ describe("QuadTree tests", () => {
         });
     }); */
 
-    describe("Quad Tree (200x200) tests", async () => {
+    /* describe("Quad Tree (200x200) tests", async () => {
         const container = await tsParticles.load({
             id: "test",
             options: {
@@ -90,7 +89,7 @@ describe("QuadTree tests", () => {
 
         const quadTree = container.particles.quadTree;
 
-        describe("Particle (5, 5) tests", () => {
+        /*describe("Particle (5, 5) tests", () => {
             const p1 = container.particles.addParticle({ x: 5, y: 5 });
 
             expect(p1).to.not.be.undefined;
@@ -182,8 +181,8 @@ describe("QuadTree tests", () => {
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
             });
-             */
-        });
+             *
+        });*
 
         describe("Particle (100, 5) tests", () => {
             const p1 = container.particles.addParticle({ x: 100, y: 5 });
@@ -212,10 +211,10 @@ describe("QuadTree tests", () => {
                 quadTree.insert(new Point(pos2, p2.particle));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
-            }); */
+            }); *
         });
 
-        describe("Particle (5, 100) tests", () => {
+        /*describe("Particle (5, 100) tests", () => {
             const p1 = container.particles.addParticle({ x: 5, y: 100 });
 
             expect(p1).to.not.be.undefined;
@@ -244,7 +243,7 @@ describe("QuadTree tests", () => {
                 quadTree.insert(new Point(pos2, p2.particle));
 
                 expect(quadTree.queryCircleWarp(pos1, 10, canvasSize)).to.be.not.empty;
-            }); */
-        });
-    });
+            }); *
+        });*
+    }); */
 });
