@@ -1,6 +1,5 @@
 import { type ISourceOptions, MoveDirection, OutMode, ThemeMode, tsParticles } from "@tsparticles/engine";
-import { describe, it } from "mocha";
-import { expect } from "chai";
+import { describe, expect, it } from "vitest";
 
 describe("Themes", async () => {
     const sourceOptions: ISourceOptions = {

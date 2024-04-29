@@ -1,10 +1,11 @@
-import { describe, it } from "mocha";
-import { calcExactPositionOrRandomFromSize, errorPrefix, ICoordinates, tsParticles } from "@tsparticles/engine";
-import { TestWindow } from "./Fixture/Window";
-import { expect } from "chai";
-import { createCustomCanvas } from "./Fixture/CustomCanvas";
+/* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
+import { type ICoordinates, calcExactPositionOrRandomFromSize, errorPrefix, tsParticles } from "@tsparticles/engine";
+import { afterAll, beforeEach, describe, expect, it } from "vitest";
+import { TestWindow } from "../Fixture/Window";
+import { createCustomCanvas } from "../Fixture/CustomCanvas";
 
 describe("Particle", async () => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     globalThis.window = TestWindow;
 
     const container = await tsParticles.load({
@@ -12,6 +13,7 @@ describe("Particle", async () => {
         options: {
             autoPlay: false,
         },
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
         element: createCustomCanvas(1920, 1080) as any,
     });
 
@@ -46,9 +48,9 @@ describe("Particle", async () => {
                 },
             };
 
-        describe("shape - no emitter", async () => {
-            it("should set the shape property to circle when default Particles options are used", async () => {
-                const particle = await container.particles.addParticle();
+        describe("shape - no emitter", () => {
+            it("should set the shape property to circle when default Particles options are used", () => {
+                const particle = container.particles.addParticle();
 
                 expect(particle?.shape).to.equal("circle");
             });
@@ -58,7 +60,7 @@ describe("Particle", async () => {
                 container.options.load(squareShapeOptions);
                 await container.refresh();
 
-                const particle = await container.particles.addParticle();
+                const particle = container.particles.addParticle();
 
                 expect(particle?.shape).to.equal("square");
             });
@@ -68,13 +70,13 @@ describe("Particle", async () => {
                 container.options.load(multipleShapeTypeOptions);
                 await container.refresh();
 
-                const particle = await container.particles.addParticle();
+                const particle = container.particles.addParticle();
 
                 expect(particle?.shape).to.be.a("string");
                 expect(shapeTypes).to.include(particle?.shape);
             });
 
-            after(async () => {
+            afterAll(async () => {
                 await container.reset();
             });
         });
@@ -90,7 +92,7 @@ describe("Particle", async () => {
                 await container.reset();
                 container.options.load(squareShapeOptions);
 
-                const particle = await container.particles.addParticle();
+                const particle = container.particles.addParticle();
 
                 expect(particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
                 expect(particle?.shapeClose).to.eql(squareShapeOptions.particles.shape.options.square.close);
@@ -101,7 +103,7 @@ describe("Particle", async () => {
                 await container.reset();
                 container.options.load(multipleShapeTypeOptions);
 
-                const particle = await container.particles.addParticle();
+                const particle = container.particles.addParticle();
 
                 expect(particle?.shape).to.be.a("string");
 
@@ -109,16 +111,16 @@ describe("Particle", async () => {
 
                 switch (particle?.shape) {
                     case "char":
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["char"];
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options.char;
                         break;
                     case "edge":
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["edge"];
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options.edge;
                         break;
                     case "image":
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["image"];
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options.image;
                         break;
                     case "polygon":
-                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options["polygon"];
+                        expectedShapeData = multipleShapeTypeOptions.particles.shape.options.polygon;
                         break;
                     default:
                         throw new Error(`${errorPrefix} Unexpected shape type "${particle?.shape}"`);
@@ -128,7 +130,7 @@ describe("Particle", async () => {
                 expect(particle?.shapeFill).to.eql(expectedShapeData.fill);
             });
 
-            after(async () => {
+            afterAll(async () => {
                 await container.reset();
             });
         });
@@ -142,19 +144,19 @@ describe("Particle", async () => {
             await container.reset();
         });
 
-        it("should always return the position when specified", async () => {
+        it("should always return the position when specified", () => {
             const position: ICoordinates = calcExactPositionOrRandomFromSize({
                 size: container.canvas.size,
             });
 
-            const particle = await container.particles.addParticle(position);
+            const particle = container.particles.addParticle(position);
 
             expect(particle?.position.x).to.be.equal(position.x);
             expect(particle?.position.y).to.be.equal(position.y);
         });
 
-        it("should always return a position that is on the canvas when no position specified", async () => {
-            const particle = await container.particles.addParticle();
+        it("should always return a position that is on the canvas when no position specified", () => {
+            const particle = container.particles.addParticle();
 
             expect(particle?.position.x).to.be.at.least(0);
             expect(particle?.position.x).to.be.at.most(width);
@@ -162,7 +164,7 @@ describe("Particle", async () => {
             expect(particle?.position.y).to.be.at.most(height);
         });
 
-        after(async () => {
+        afterAll(async () => {
             await container.reset();
         });
     });
