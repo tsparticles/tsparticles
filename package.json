@@ -46,7 +46,7 @@
     "canvas": "^2.11.2",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
-    "eslint": "^8.57.0",
+    "eslint": "^9.0.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsdoc": "^48.2.3",
     "eslint-plugin-prettier": "^5.1.3",
