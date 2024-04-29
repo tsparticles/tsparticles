@@ -96,12 +96,9 @@ export class Particles {
         const container = this._container,
             options = container.actualOptions;
 
-        for (const particle of options.manualParticles) {
-            this.addParticle(
-                particle.position ? getPosition(particle.position, container.canvas.size) : undefined,
-                particle.options,
-            );
-        }
+        options.manualParticles.forEach(p =>
+            this.addParticle(p.position ? getPosition(p.position, container.canvas.size) : undefined, p.options),
+        );
     }
 
     addParticle(
@@ -110,24 +107,30 @@ export class Particles {
         group?: string,
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
-        const limitOptions = this._container.actualOptions.particles.number.limit,
+        const limitMode = this._container.actualOptions.particles.number.limit.mode,
             limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit,
             currentCount = this.count,
             minLimit = 0;
 
         if (limit > minLimit) {
-            if (limitOptions.mode === LimitMode.delete) {
-                const countOffset = 1,
-                    minCount = 0,
-                    countToRemove = currentCount + countOffset - limit;
+            switch (limitMode) {
+                case LimitMode.delete: {
+                    const countOffset = 1,
+                        minCount = 0,
+                        countToRemove = currentCount + countOffset - limit;
 
-                if (countToRemove > minCount) {
-                    this.removeQuantity(countToRemove);
+                    if (countToRemove > minCount) {
+                        this.removeQuantity(countToRemove);
+                    }
+
+                    break;
                 }
-            } else if (limitOptions.mode === LimitMode.wait) {
-                if (currentCount >= limit) {
-                    return;
-                }
+                case LimitMode.wait:
+                    if (currentCount >= limit) {
+                        return;
+                    }
+
+                    break;
             }
         }
 
@@ -204,9 +207,7 @@ export class Particles {
         let handled = false;
 
         for (const [, plugin] of container.plugins) {
-            if (plugin.particlesInitialization !== undefined) {
-                handled = plugin.particlesInitialization();
-            }
+            handled = plugin.particlesInitialization?.() ?? handled;
 
             if (handled) {
                 break;
@@ -409,10 +410,8 @@ export class Particles {
         }
     }
 
-    private readonly _addToPool: (...particles: Particle[]) => void = (...particles) => {
-        for (const particle of particles) {
-            this._pool.push(particle);
-        }
+    private readonly _addToPool = (...particles: Particle[]): void => {
+        this._pool.push(...particles);
     };
 
     private readonly _applyDensity = (options: IParticlesOptions, manualCount: number, group?: string): void => {
@@ -505,11 +504,7 @@ export class Particles {
         }
     };
 
-    private readonly _removeParticle: (index: number, group?: string, override?: boolean) => boolean = (
-        index,
-        group,
-        override,
-    ) => {
+    private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {
         const particle = this._array[index];
 
         if (!particle || particle.group !== group) {
