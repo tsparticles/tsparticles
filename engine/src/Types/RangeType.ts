@@ -1,4 +1,4 @@
-export const enum RangeType {
+export enum RangeType {
     circle = "circle",
     rectangle = "rectangle",
 }

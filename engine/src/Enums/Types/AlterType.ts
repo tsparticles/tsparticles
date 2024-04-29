@@ -1,4 +1,4 @@
-export const enum AlterType {
+export enum AlterType {
     darken = "darken",
     enlighten = "enlighten",
 }

@@ -1,4 +1,4 @@
-export const enum GradientType {
+export enum GradientType {
     linear = "linear",
     radial = "radial",
     random = "random",

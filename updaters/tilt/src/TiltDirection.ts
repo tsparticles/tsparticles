@@ -1,6 +1,6 @@
 /**
  */
-export const enum TiltDirection {
+export enum TiltDirection {
     clockwise = "clockwise",
     counterClockwise = "counter-clockwise",
     random = "random",

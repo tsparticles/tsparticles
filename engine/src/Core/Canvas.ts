@@ -304,7 +304,7 @@ export class Canvas {
         this.initBackground();
 
         this._safeMutationObserver(obs => {
-            if (!this.element) {
+            if (!this.element || !(this.element instanceof Node)) {
                 return;
             }
 
@@ -404,7 +404,7 @@ export class Canvas {
         this._context = this.element.getContext("2d");
 
         this._safeMutationObserver(obs => {
-            if (!this.element) {
+            if (!this.element || !(this.element instanceof Node)) {
                 return;
             }
 
@@ -716,7 +716,13 @@ export class Canvas {
         this._initStyle();
         this.initBackground();
 
-        this._safeMutationObserver(observer => observer.observe(element, { attributes: true }));
+        this._safeMutationObserver(observer => {
+            if (!element || !(element instanceof Node)) {
+                return;
+            }
+
+            observer.observe(element, { attributes: true });
+        });
     };
 
     private readonly _resetOriginalStyle: () => void = () => {

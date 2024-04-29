@@ -1,4 +1,4 @@
-export const enum PolygonMaskInlineArrangement {
+export enum PolygonMaskInlineArrangement {
     equidistant = "equidistant",
     onePerPoint = "one-per-point",
     perPoint = "per-point",

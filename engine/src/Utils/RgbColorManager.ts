@@ -2,7 +2,7 @@ import type { IColor, IRangeColor, IRangeRgb, IRgb, IRgba, IValueColor } from ".
 import { getRangeValue, parseAlpha } from "./NumberUtils.js";
 import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
 
-const enum RgbIndexes {
+enum RgbIndexes {
     r = 1,
     g = 2,
     b = 3,

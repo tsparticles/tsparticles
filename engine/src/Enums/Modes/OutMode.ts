@@ -1,6 +1,6 @@
 /**
  */
-export const enum OutMode {
+export enum OutMode {
     bounce = "bounce",
     none = "none",
     out = "out",

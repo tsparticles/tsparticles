@@ -1,4 +1,4 @@
-export const enum DisposalMethod {
+export enum DisposalMethod {
     /**
      * unspecified &gt; replaces entire frame
      */

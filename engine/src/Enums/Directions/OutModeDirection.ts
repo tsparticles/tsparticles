@@ -1,4 +1,4 @@
-export const enum OutModeDirection {
+export enum OutModeDirection {
     bottom = "bottom",
     left = "left",
     right = "right",

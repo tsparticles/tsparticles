@@ -1,4 +1,4 @@
-export const enum SegmentType {
+export enum SegmentType {
     line = "line",
     bezier = "bezier",
     quadratic = "quadratic",

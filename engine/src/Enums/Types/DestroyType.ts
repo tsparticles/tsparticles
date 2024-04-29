@@ -1,6 +1,6 @@
 /**
  */
-export const enum DestroyType {
+export enum DestroyType {
     none = "none",
     max = "max",
     min = "min",

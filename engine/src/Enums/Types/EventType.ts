@@ -1,4 +1,4 @@
-export const enum EventType {
+export enum EventType {
     configAdded = "configAdded",
     containerInit = "containerInit",
     particlesSetup = "particlesSetup",
