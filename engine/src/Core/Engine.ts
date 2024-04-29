@@ -111,17 +111,18 @@ async function getDataFromUrl(
 
 const generatedTrue = "true",
     generatedFalse = "false",
+    canvasTag = "canvas",
     getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
         let canvasEl: HTMLCanvasElement;
 
-        if (domContainer instanceof HTMLCanvasElement) {
-            canvasEl = domContainer;
+        if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
+            canvasEl = domContainer as HTMLCanvasElement;
 
             if (!canvasEl.dataset[generatedAttribute]) {
                 canvasEl.dataset[generatedAttribute] = generatedFalse;
             }
         } else {
-            const existingCanvases = domContainer.getElementsByTagName("canvas");
+            const existingCanvases = domContainer.getElementsByTagName(canvasTag);
 
             /* get existing canvas if present, otherwise a new one will be created */
             if (existingCanvases.length) {
@@ -132,7 +133,7 @@ const generatedTrue = "true",
                 canvasEl.dataset[generatedAttribute] = generatedFalse;
             } else {
                 /* create canvas element */
-                canvasEl = document.createElement("canvas");
+                canvasEl = document.createElement(canvasTag);
 
                 canvasEl.dataset[generatedAttribute] = generatedTrue;
 
