@@ -59,9 +59,7 @@ describe("Particle", async () => {
             });
 
             it("should set the shape property to square when container Particles options specifies a shape type of square", async () => {
-                await container.reset();
-                container.options.load(squareShapeOptions);
-                await container.refresh();
+                await container.reset(squareShapeOptions);
 
                 const particle = container.particles.addParticle();
 
@@ -69,9 +67,7 @@ describe("Particle", async () => {
             });
 
             it("should choose a single shape from the specified array when container Particles options specifies an array of shape types", async () => {
-                await container.reset();
-                container.options.load(multipleShapeTypeOptions);
-                await container.refresh();
+                await container.reset(multipleShapeTypeOptions);
 
                 const particle = container.particles.addParticle();
 
@@ -92,12 +88,7 @@ describe("Particle", async () => {
             });
 
             it("should set shapeData to the square shape data configured on the container Particles", async () => {
-                await container.reset();
-                container.options.load(squareShapeOptions);
-
-                container.actualOptions.load(container.options);
-
-                await container.particles.init();
+                await container.reset(squareShapeOptions);
 
                 const particle = container.particles.addParticle();
 
@@ -107,12 +98,7 @@ describe("Particle", async () => {
             });
 
             it("should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles", async () => {
-                await container.reset();
-                container.options.load(multipleShapeTypeOptions);
-
-                container.actualOptions.load(container.options);
-
-                await container.particles.init();
+                await container.reset(multipleShapeTypeOptions);
 
                 const particle = container.particles.addParticle();
 
@@ -150,8 +136,6 @@ describe("Particle", async () => {
     describe("calcPosition", () => {
         beforeEach(async () => {
             await container.reset();
-
-            await container.init();
         });
 
         it("should always return the position when specified", () => {

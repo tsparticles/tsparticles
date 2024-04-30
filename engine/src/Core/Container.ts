@@ -533,16 +533,18 @@ export class Container {
         this.canvas.initBackground();
         this.canvas.resize();
 
-        this.zLayers = this.actualOptions.zLayers;
-        this._duration = getRangeValue(this.actualOptions.duration) * millisecondsToSeconds;
-        this._delay = getRangeValue(this.actualOptions.delay) * millisecondsToSeconds;
+        const { zLayers, duration, delay, fpsLimit, smooth } = this.actualOptions;
+
+        this.zLayers = zLayers;
+        this._duration = getRangeValue(duration) * millisecondsToSeconds;
+        this._delay = getRangeValue(delay) * millisecondsToSeconds;
         this._lifeTime = 0;
 
         const defaultFpsLimit = 120,
             minFpsLimit = 0;
 
-        this.fpsLimit = this.actualOptions.fpsLimit > minFpsLimit ? this.actualOptions.fpsLimit : defaultFpsLimit;
-        this._smooth = this.actualOptions.smooth;
+        this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
+        this._smooth = smooth;
 
         for (const [, drawer] of this.effectDrawers) {
             await drawer.init?.(this);
@@ -659,13 +661,14 @@ export class Container {
         return this.start();
     }
 
-    async reset(): Promise<void> {
+    async reset(sourceOptions?: ISourceOptions): Promise<void> {
         if (!guardCheck(this)) {
             return;
         }
 
-        this._initialSourceOptions = undefined;
-        this._options = loadContainerOptions(this._engine, this);
+        this._initialSourceOptions = sourceOptions;
+        this._sourceOptions = sourceOptions;
+        this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
         return this.refresh();

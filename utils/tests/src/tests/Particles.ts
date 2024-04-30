@@ -50,22 +50,15 @@ describe("Particles", async () => {
     };
 
     it("should create the number of particles configured in container", async () => {
-        await container.reset();
-
-        container.options.load(numParticlesOptions);
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(numParticlesOptions);
 
         expect(container.particles.count).to.equal(numParticles);
     });
 
     it("should add particles to array of particles", async () => {
-        await container.reset();
-
         const particlesCount = 0;
 
-        container.options.load({
+        await container.reset({
             particles: {
                 number: {
                     value: particlesCount,
@@ -73,21 +66,20 @@ describe("Particles", async () => {
             },
         });
 
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
-
         expect(container.particles.count).to.equal(particlesCount);
 
         const particle1 = container.particles.addParticle({ x: 1, y: 1 });
+
         expect(container.particles.count).to.equal(1);
         expect(container.particles.find(t => t === particle1)).to.be.not.undefined;
 
         const particle2 = container.particles.addParticle({ x: 2, y: 2 });
+
         expect(container.particles.count).to.equal(2);
         expect(container.particles.filter(t => t === particle1 || t === particle2).length).to.equal(2);
 
         const particle3 = container.particles.addParticle({ x: 3, y: 3 });
+
         expect(container.particles.count).to.equal(3);
         expect(container.particles.filter(t => t === particle1 || t === particle2 || t === particle3).length).to.equal(
             3,
@@ -95,13 +87,7 @@ describe("Particles", async () => {
     });
 
     it("should remove particles at specified indices", async () => {
-        await container.reset();
-
-        container.options.load(numParticlesOptions);
-
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(numParticlesOptions);
 
         let arr = container.particles.filter(() => true);
 
@@ -111,25 +97,22 @@ describe("Particles", async () => {
             particle5 = arr[4];
 
         container.particles.removeAt(1);
+
         arr = container.particles.filter(() => true);
 
         expect(arr).to.eql([particle1, particle3, particle4, particle5]);
         expect(arr).to.not.eql([particle5, particle4, particle3, particle1]);
 
         container.particles.removeAt(2);
+
         arr = container.particles.filter(() => true);
+
         expect(arr).to.eql([particle1, particle3, particle5]);
         expect(arr).to.not.eql([particle5, particle3, particle1]);
     });
 
     it("should remove specified quantity of indices, starting at the specified index", async () => {
-        await container.reset();
-
-        container.options.load(numParticlesOptions);
-
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(numParticlesOptions);
 
         let arr = container.particles.filter(() => true);
 
@@ -138,39 +121,35 @@ describe("Particles", async () => {
             particle5 = arr[4];
 
         container.particles.removeAt(1, 2);
+
         arr = container.particles.filter(() => true);
+
         expect(arr).to.eql([particle1, particle4, particle5]);
         expect(arr).to.not.eql([particle5, particle4, particle1]);
 
         container.particles.removeAt(0, 2);
+
         arr = container.particles.filter(() => true);
+
         expect(arr).to.eql([particle5]);
     });
 
     it("should remove specified number of particles", async () => {
-        await container.reset();
-
-        container.options.load(enableParticleMoveOptions);
-
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(enableParticleMoveOptions);
 
         expect(container.particles.count).to.equal(numParticles);
+
         container.particles.removeQuantity(3);
+
         expect(container.particles.count).to.equal(numParticles - 3);
+
         container.particles.removeQuantity(2);
+
         expect(container.particles.count).to.equal(numParticles - 5);
     });
 
     it("should remove specified particle", async () => {
-        await container.reset();
-
-        container.options.load(numParticlesOptions);
-
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(numParticlesOptions);
 
         let arr = container.particles.filter(() => true);
 
@@ -196,30 +175,22 @@ describe("Particles", async () => {
     });
 
     it("should remove all particles when calling clear", async () => {
-        await container.reset();
-
-        container.options.load(numParticlesOptions);
-
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(numParticlesOptions);
 
         expect(container.particles.count).to.equal(numParticles);
+
         container.particles.clear();
+
         expect(container.particles.count).to.equal(0);
     });
 
     it("should push multiple particles at the specified position", async () => {
-        await container.reset();
-
-        container.options.load(enableParticleEmptyMoveOptions);
-
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(enableParticleEmptyMoveOptions);
 
         const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
+
         container.particles.push(numParticles, { position, clicking: false, inside: false });
+
         expect(container.particles.count).to.equal(numParticles);
 
         const arr = container.particles.filter(() => true);
@@ -231,21 +202,18 @@ describe("Particles", async () => {
     });
 
     it("should move particles", async () => {
-        await container.reset();
-
-        container.options.load(enableParticleEmptyMoveOptions);
-
-        container.actualOptions.load(container.options);
-
-        await container.particles.init();
+        await container.reset(enableParticleEmptyMoveOptions);
 
         const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
+
         container.particles.push(numParticles, { position, clicking: false, inside: false });
+
         expect(container.particles.count).to.equal(5);
 
         const arr = container.particles.filter(() => true);
 
         let ts = getRandom() * 16.66667;
+
         const logP = arr[0];
 
         console.log(logP.id);
