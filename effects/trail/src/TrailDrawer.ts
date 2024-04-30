@@ -16,11 +16,18 @@ const double = 2,
     half = 0.5,
     minWidth = -1,
     defaultLength = 10,
-    defaultAlpha = 1;
+    defaultAlpha = 1,
+    origin = { x: 0, y: 0 } as ICoordinates;
 
 interface TrailStep {
     color: string | CanvasGradient | CanvasPattern;
     position: ICoordinates;
+    transformData?: {
+        a: number;
+        b: number;
+        c: number;
+        d: number;
+    };
 }
 
 type TrailParticle = Particle & {
@@ -29,6 +36,7 @@ type TrailParticle = Particle & {
     trailLength?: number;
     trailMaxWidth?: number;
     trailMinWidth?: number;
+    trailTransform?: boolean;
 };
 
 interface ITrailData extends IShapeValues {
@@ -36,11 +44,19 @@ interface ITrailData extends IShapeValues {
     length: RangeValue;
     maxWidth: RangeValue;
     minWidth: RangeValue;
+    transform: boolean;
 }
+
+const defaultTransform = {
+    a: 1,
+    b: 0,
+    c: 0,
+    d: 1,
+};
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
     draw(data: IShapeDrawData<TrailParticle>): void {
-        const { context, radius, particle } = data,
+        const { context, radius, particle, transformData } = data,
             diameter = radius * double,
             pxRatio = particle.container.retina.pixelRatio,
             currentPos = particle.getPosition(),
@@ -58,6 +74,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
                 x: currentPos.x,
                 y: currentPos.y,
             },
+            transformData: { ...data.transformData },
         });
 
         if (trail.length < minTrailLength) {
@@ -69,10 +86,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         }
 
         const trailLength = Math.min(trail.length, pathLength),
-            offsetPos = {
-                x: currentPos.x,
-                y: currentPos.y,
-            },
             canvasSize = {
                 width: particle.container.canvas.size.width + diameter,
                 height: particle.container.canvas.size.height + diameter,
@@ -80,28 +93,22 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
         let lastPos = trail[trailLength - trailLengthOffset].position;
 
-        const defaultTransform = {
-            a: 1,
-            b: 0,
-            c: 0,
-            d: 1,
-        };
-
-        context.setTransform(
-            defaultTransform.a,
-            defaultTransform.b,
-            defaultTransform.c,
-            defaultTransform.d,
-            currentPos.x,
-            currentPos.y,
-        );
-
         for (let i = trailLength; i > noItems; i--) {
             const step = trail[i - trailLengthOffset],
-                position = step.position;
+                position = step.position,
+                stepTransformData = particle.trailTransform ? step.transformData ?? defaultTransform : defaultTransform;
+
+            context.setTransform(
+                stepTransformData.a,
+                stepTransformData.b,
+                stepTransformData.c,
+                stepTransformData.d,
+                position.x,
+                position.y,
+            );
 
             context.beginPath();
-            context.moveTo(lastPos.x - offsetPos.x, lastPos.y - offsetPos.y);
+            context.moveTo(lastPos.x - position.x, lastPos.y - position.y);
 
             const warp = {
                 x: (lastPos.x + canvasSize.width) % canvasSize.width,
@@ -118,8 +125,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             }
 
             context.lineTo(
-                (Math.abs(lastPos.x - position.x) > canvasSize.width * half ? warp.x : position.x) - offsetPos.x,
-                (Math.abs(lastPos.y - position.y) > canvasSize.height * half ? warp.y : position.y) - offsetPos.y,
+                Math.abs(lastPos.x - position.x) > canvasSize.width * half ? warp.x : origin.x,
+                Math.abs(lastPos.y - position.y) > canvasSize.height * half ? warp.y : origin.y,
             );
 
             const width = Math.max((i / trailLength) * diameter, pxRatio, particle.trailMinWidth ?? minWidth),
@@ -135,8 +142,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
             lastPos = position;
         }
-
-        const { transformData } = data;
 
         context.setTransform(
             transformData.a,
@@ -161,5 +166,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         particle.trailMinWidth = effectData?.minWidth
             ? getRangeValue(effectData.minWidth) * container.retina.pixelRatio
             : undefined;
+        particle.trailTransform = effectData?.transform ?? false;
     }
 }

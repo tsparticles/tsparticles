@@ -380,8 +380,9 @@ export class Container {
 
     /**
      * Destroys the current container, invalidating it
+     * @param remove - if true, removes the container from the engine
      */
-    destroy(): void {
+    destroy(remove = true): void {
         if (!guardCheck(this)) {
             return;
         }
@@ -413,14 +414,16 @@ export class Container {
 
         this.destroyed = true;
 
-        const mainArr = this._engine.dom(),
-            idx = mainArr.findIndex(t => t === this),
-            minIndex = 0;
+        if (remove) {
+            const mainArr = this._engine.items,
+                idx = mainArr.findIndex(t => t === this),
+                minIndex = 0;
 
-        if (idx >= minIndex) {
-            const deleteCount = 1;
+            if (idx >= minIndex) {
+                const deleteCount = 1;
 
-            mainArr.splice(idx, deleteCount);
+                mainArr.splice(idx, deleteCount);
+            }
         }
 
         this._engine.dispatchEvent(EventType.containerDestroyed, { container: this });

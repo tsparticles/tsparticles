@@ -1,8 +1,8 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-    key: "wobble",
-    name: "Wobble",
+    key: "wobbleBig",
+    name: "Wobble Big",
     background: {
         color: "#000000",
     },
@@ -95,7 +95,7 @@ const options: ISourceOptions = {
             },
         },
         size: {
-            value: 3,
+            value: 30,
         },
         roll: {
             darken: {
@@ -134,7 +134,7 @@ const options: ISourceOptions = {
         },
         rate: {
             quantity: 10,
-            delay: 0.05,
+            delay: 0.2,
         },
     },
 };

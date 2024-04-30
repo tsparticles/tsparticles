@@ -100,7 +100,7 @@ export class RotateUpdater implements IParticleUpdater {
             return false;
         }
 
-        return !particle.destroyed && !particle.spawning && rotate.animation.enable && !rotate.path;
+        return !particle.destroyed && !particle.spawning && (!!rotate.value || rotate.animation.enable || rotate.path);
     }
 
     loadOptions(
@@ -120,6 +120,8 @@ export class RotateUpdater implements IParticleUpdater {
         if (!this.isEnabled(particle)) {
             return;
         }
+
+        particle.isRotating = !!particle.rotate;
 
         if (!particle.rotate) {
             return;

@@ -9,7 +9,13 @@ import type { IHsl } from "../Core/Interfaces/Colors.js";
 import type { Particle } from "../Core/Particle.js";
 import { getStyleFromRgb } from "./ColorUtils.js";
 
-const origin: ICoordinates = { x: 0, y: 0 };
+const origin: ICoordinates = { x: 0, y: 0 },
+    defaultTransform = {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 1,
+    };
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -91,12 +97,13 @@ export function drawParticle(data: IDrawParticleParams): void {
             sin: Math.sin(angle),
             cos: Math.cos(angle),
         },
-        defaultTransformFactor = 1,
+        rotating = !!angle,
+        identity = 1,
         transformData = {
-            a: rotateData.cos * (transform.a ?? defaultTransformFactor),
-            b: rotateData.sin * (transform.b ?? defaultTransformFactor),
-            c: -rotateData.sin * (transform.c ?? defaultTransformFactor),
-            d: rotateData.cos * (transform.d ?? defaultTransformFactor),
+            a: rotateData.cos * (transform.a ?? defaultTransform.a),
+            b: rotating ? rotateData.sin * (transform.b ?? identity) : transform.b ?? defaultTransform.b,
+            c: rotating ? -rotateData.sin * (transform.c ?? identity) : transform.c ?? defaultTransform.c,
+            d: rotateData.cos * (transform.d ?? defaultTransform.d),
         };
 
     context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);

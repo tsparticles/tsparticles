@@ -582,13 +582,10 @@ export class Engine {
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
         /* elements */
-        const domContainer = getDomContainer(id, params.element),
-            currentOptions = itemFromSingleOrMultiple(options, index),
+        const currentOptions = itemFromSingleOrMultiple(options, index),
             { items } = this,
             oldIndex = items.findIndex(v => v.id.description === id),
-            minIndex = 0;
-
-        const canvasEl = getCanvasFromContainer(domContainer),
+            minIndex = 0,
             newItem = new Container(this, id, currentOptions);
 
         if (oldIndex >= minIndex) {
@@ -598,13 +595,16 @@ export class Engine {
                 deleteCount = old ? one : none;
 
             if (old && !old.destroyed) {
-                old.destroy();
+                old.destroy(false);
             }
 
             items.splice(oldIndex, deleteCount, newItem);
         } else {
             items.push(newItem);
         }
+
+        const domContainer = getDomContainer(id, params.element),
+            canvasEl = getCanvasFromContainer(domContainer);
 
         newItem.canvas.loadCanvas(canvasEl);
 

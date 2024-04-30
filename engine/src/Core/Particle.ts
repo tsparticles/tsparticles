@@ -225,6 +225,8 @@ export class Particle {
 
     interactivity!: Interactivity;
 
+    isRotating!: boolean;
+
     /**
      * Last path timestamp
      */
@@ -471,6 +473,7 @@ export class Particle {
         this.lastPathTime = 0;
         this.destroyed = false;
         this.unbreakable = false;
+        this.isRotating = false;
         this.rotation = 0;
         this.misplaced = false;
         this.retina = {

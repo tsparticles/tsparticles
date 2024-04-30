@@ -139,6 +139,7 @@ const options: ISourceOptions = {
             width: 1,
         },
         rotate: {
+            enable: true,
             path: true,
         },
         move: {
