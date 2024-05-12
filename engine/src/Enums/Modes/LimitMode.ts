@@ -1,4 +1,4 @@
-export const enum LimitMode {
+export enum LimitMode {
     /**
      * When limit is reached, older particles are removed
      */

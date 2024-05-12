@@ -74,7 +74,7 @@ function singleSelectorBounce(
         return;
     }
 
-    query.forEach((item) => {
+    query.forEach(item => {
         const elem = item as HTMLElement,
             pxRatio = container.retina.pixelRatio,
             pos = {

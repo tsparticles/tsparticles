@@ -130,7 +130,6 @@ const options: ISourceOptions = {
         tilt: {
             direction: "random",
             enable: true,
-            move: true,
             value: {
                 min: 0,
                 max: 360,

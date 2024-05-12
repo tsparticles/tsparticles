@@ -8,6 +8,8 @@ const defaultInnerRadius = 1,
     defaultWidthFactor = 10;
 
 export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
+    readonly validTypes = ["spiral"] as const;
+
     draw(data: IShapeDrawData<SpiralParticle>): void {
         drawSpiral(data);
     }

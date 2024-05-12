@@ -12,7 +12,7 @@ import { getRangeValue, parseAlpha } from "./NumberUtils.js";
 import { hslToRgb, hslaToRgba } from "./ColorUtils.js";
 import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
 
-const enum HslIndexes {
+enum HslIndexes {
     h = 1,
     s = 2,
     l = 3,

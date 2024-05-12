@@ -1,3 +1,4 @@
+import { DestroyUpdater } from "./DestroyUpdater.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadDestroyUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "destroy",
-        async (container) => {
-            const { DestroyUpdater } = await import("./DestroyUpdater.js");
-
-            return new DestroyUpdater(engine, container);
+        container => {
+            return Promise.resolve(new DestroyUpdater(engine, container));
         },
         refresh,
     );

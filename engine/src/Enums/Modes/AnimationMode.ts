@@ -1,4 +1,4 @@
-export const enum AnimationMode {
+export enum AnimationMode {
     auto = "auto",
     increase = "increase",
     decrease = "decrease",

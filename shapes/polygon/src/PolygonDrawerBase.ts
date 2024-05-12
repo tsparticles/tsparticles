@@ -14,6 +14,8 @@ const defaultSides = 5;
 /**
  */
 export abstract class PolygonDrawerBase implements IShapeDrawer {
+    abstract readonly validTypes: readonly string[];
+
     draw(data: IShapeDrawData): void {
         const { particle, radius } = data,
             start = this.getCenter(particle, radius),

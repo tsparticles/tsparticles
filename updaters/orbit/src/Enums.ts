@@ -1,4 +1,4 @@
-export const enum OrbitType {
+export enum OrbitType {
     front = "front",
     back = "back",
 }

@@ -19,18 +19,31 @@ import {
 } from "@tsparticles/engine";
 import { FireworkOptions } from "./FireworkOptions.js";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
+import { loadBasic } from "@tsparticles/basic";
+import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
+import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
+import { loadEmittersShapeSquare } from "@tsparticles/plugin-emitters-shape-square";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadRotateUpdater } from "@tsparticles/updater-rotate";
+import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
+import { loadTrailEffect } from "@tsparticles/effect-trail";
 
 const minSplitCount = 2;
 
 let initialized = false;
 let initializing = false;
 
+type FireworksFunc = ((
+    idOrOptions: string | RecursivePartial<IFireworkOptions>,
+    sourceOptions?: RecursivePartial<IFireworkOptions>,
+) => Promise<FireworksInstance | undefined>) & {
+    version: string;
+};
+
 declare global {
     interface Window {
-        fireworks: ((
-            idOrOptions: string | RecursivePartial<IFireworkOptions>,
-            sourceOptions?: RecursivePartial<IFireworkOptions>,
-        ) => Promise<FireworksInstance | undefined>) & {
+        fireworks: FireworksFunc & {
+            init: () => Promise<void>;
             version: string;
         };
     }
@@ -70,7 +83,7 @@ async function initPlugins(): Promise<void> {
     }
 
     if (initializing) {
-        return new Promise<void>((resolve) => {
+        return new Promise<void>(resolve => {
             const timeout = 100,
                 interval = setInterval(() => {
                     if (!initialized) {
@@ -84,15 +97,6 @@ async function initPlugins(): Promise<void> {
     }
 
     initializing = true;
-
-    const { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-        { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
-        { loadSoundsPlugin } = await import("@tsparticles/plugin-sounds"),
-        { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
-        { loadDestroyUpdater } = await import("@tsparticles/updater-destroy"),
-        { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-        { loadTrailEffect } = await import("@tsparticles/effect-trail"),
-        { loadBasic } = await import("@tsparticles/basic");
 
     await loadEmittersPlugin(tsParticles, false);
     await loadEmittersShapeSquare(tsParticles, false);
@@ -326,6 +330,10 @@ export async function fireworks(
 
     return new FireworksInstance(container);
 }
+
+fireworks.init = async (): Promise<void> => {
+    await initPlugins();
+};
 
 fireworks.version = tsParticles.version;
 

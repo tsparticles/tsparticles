@@ -161,7 +161,7 @@ export class SoundsInstance implements IContainerPlugin {
                 continue;
             }
 
-            const promises = executeOnSingleOrMultiple(event.audio, async (audio) => {
+            const promises = executeOnSingleOrMultiple(event.audio, async audio => {
                 const response = await fetch(audio.source);
 
                 if (!response.ok) {
@@ -324,7 +324,7 @@ export class SoundsInstance implements IContainerPlugin {
         await this._updateVolume();
     }
 
-    private readonly _addBuffer: (audioCtx: AudioContext) => AudioBufferSourceNode = (audioCtx) => {
+    private readonly _addBuffer: (audioCtx: AudioContext) => AudioBufferSourceNode = audioCtx => {
         const buffer = audioCtx.createBufferSource();
 
         this._audioSources.push(buffer);
@@ -332,7 +332,7 @@ export class SoundsInstance implements IContainerPlugin {
         return buffer;
     };
 
-    private readonly _addOscillator: (audioCtx: AudioContext) => OscillatorNode = (audioCtx) => {
+    private readonly _addOscillator: (audioCtx: AudioContext) => OscillatorNode = audioCtx => {
         const oscillator = audioCtx.createOscillator();
 
         this._audioSources.push(oscillator);
@@ -368,7 +368,7 @@ export class SoundsInstance implements IContainerPlugin {
                     }
 
                     if (!this._container || !!this._container.muted || this._container.destroyed) {
-                        executeOnSingleOrMultiple(event.event, (item) => {
+                        executeOnSingleOrMultiple(event.event, item => {
                             this._engine.removeEventListener(item, cb);
                         });
 
@@ -388,7 +388,7 @@ export class SoundsInstance implements IContainerPlugin {
 
                         if (melody.melodies.length) {
                             await Promise.allSettled(
-                                melody.melodies.map((m) => this._playNote(m.notes, defaultNoteIndex, melody.loop)),
+                                melody.melodies.map(m => this._playNote(m.notes, defaultNoteIndex, melody.loop)),
                             );
                         } else {
                             await this._playNote(melody.notes, defaultNoteIndex, melody.loop);
@@ -401,7 +401,7 @@ export class SoundsInstance implements IContainerPlugin {
                 })();
             };
 
-            executeOnSingleOrMultiple(event.event, (item) => {
+            executeOnSingleOrMultiple(event.event, item => {
                 this._engine.addEventListener(item, cb);
             });
         }
@@ -426,7 +426,7 @@ export class SoundsInstance implements IContainerPlugin {
         this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
     };
 
-    private readonly _playBuffer: (audio: SoundsAudio) => void = (audio) => {
+    private readonly _playBuffer: (audio: SoundsAudio) => void = audio => {
         const audioBuffer = this._audioMap.get(audio.source);
 
         if (!audioBuffer) {
@@ -466,7 +466,7 @@ export class SoundsInstance implements IContainerPlugin {
 
         oscillator.start();
 
-        return new Promise<void>((resolve) => {
+        return new Promise<void>(resolve => {
             setTimeout(() => {
                 this._removeAudioSource(oscillator);
 
@@ -564,7 +564,7 @@ export class SoundsInstance implements IContainerPlugin {
         }
     };
 
-    private readonly _removeAudioSource: (source: AudioScheduledSourceNode) => void = (source) => {
+    private readonly _removeAudioSource: (source: AudioScheduledSourceNode) => void = source => {
         source.stop();
         source.disconnect();
 

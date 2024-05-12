@@ -4,6 +4,7 @@ import shapeArrow from "./shapeArrow.js";
 import shapeCog from "./shapeCog.js";
 import shapeEmoji from "./shapeEmoji.js";
 import shapeHeart from "./shapeHeart.js";
+import shapeInfinity from "./shapeInfinity.js";
 import shapeMultilineText from "./shapeMultilineText.js";
 import shapeOptions from "./shapeOptions.js";
 import shapePath from "./shapePath.js";
@@ -31,6 +32,7 @@ export default {
     shapeCog,
     shapeEmoji,
     shapeHeart,
+    shapeInfinity,
     shapeMultilineText,
     shapeOptions,
     shapePath,

@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { StrokeColorUpdater } from "./StrokeColorUpdater.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadStrokeColorUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "strokeColor",
-        async (container) => {
-            const { StrokeColorUpdater } = await import("./StrokeColorUpdater.js");
-
-            return new StrokeColorUpdater(container);
+        container => {
+            return Promise.resolve(new StrokeColorUpdater(container));
         },
         refresh,
     );

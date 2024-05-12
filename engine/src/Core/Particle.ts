@@ -50,7 +50,8 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 const defaultRetryCount = 0,
     double = 2,
     half = 0.5,
-    squareExp = 2;
+    squareExp = 2,
+    randomString = "random";
 
 /**
  * @internal
@@ -223,6 +224,8 @@ export class Particle {
     initialVelocity!: Vector;
 
     interactivity!: Interactivity;
+
+    isRotating!: boolean;
 
     /**
      * Last path timestamp
@@ -470,6 +473,7 @@ export class Particle {
         this.lastPathTime = 0;
         this.destroyed = false;
         this.unbreakable = false;
+        this.isRotating = false;
         this.rotation = 0;
         this.misplaced = false;
         this.retina = {
@@ -481,9 +485,9 @@ export class Particle {
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
             particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
+            { reduceDuplicates } = particlesOptions,
             effectType = particlesOptions.effect.type,
-            shapeType = particlesOptions.shape.type,
-            { reduceDuplicates } = particlesOptions;
+            shapeType = particlesOptions.shape.type;
 
         this.effect = itemFromSingleOrMultiple(effectType, this.id, reduceDuplicates);
         this.shape = itemFromSingleOrMultiple(shapeType, this.id, reduceDuplicates);
@@ -513,6 +517,18 @@ export class Particle {
                     shapeOptions.load(overrideOptions.shape);
                 }
             }
+        }
+
+        if (this.effect === randomString) {
+            const availableEffects = [...this.container.effectDrawers.keys()];
+
+            this.effect = availableEffects[Math.floor(Math.random() * availableEffects.length)];
+        }
+
+        if (this.shape === randomString) {
+            const availableShapes = [...this.container.shapeDrawers.keys()];
+
+            this.shape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
         }
 
         this.effectData = loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates);
@@ -779,11 +795,11 @@ export class Particle {
         }
 
         return !!this.container.particles.find(
-            (particle) => getDistance(pos, particle.position) < radius + particle.getRadius(),
+            particle => getDistance(pos, particle.position) < radius + particle.getRadius(),
         );
     };
 
-    private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = (color) => {
+    private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = color => {
         if (!color || !this.roll || (!this.backColor && !this.roll.alter)) {
             return color;
         }
@@ -809,7 +825,7 @@ export class Particle {
         return color;
     };
 
-    private readonly _initPosition: (position?: ICoordinates) => void = (position) => {
+    private readonly _initPosition: (position?: ICoordinates) => void = position => {
         const container = this.container,
             zIndexValue = getRangeValue(this.options.zIndex.value),
             minZ = 0;

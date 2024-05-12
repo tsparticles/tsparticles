@@ -1,4 +1,4 @@
-export const enum GIFDataHeaders {
+export enum GIFDataHeaders {
     /**
      * extension introducer
      */

@@ -10,7 +10,7 @@ import {
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import type { Emitters } from "./Emitters.js";
+import { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
@@ -26,10 +26,8 @@ export class EmittersPlugin implements IPlugin {
         this.id = "emitters";
     }
 
-    async getPlugin(container: EmitterContainer): Promise<Emitters> {
-        const { Emitters } = await import("./Emitters.js");
-
-        return new Emitters(this._engine, container);
+    getPlugin(container: EmitterContainer): Promise<Emitters> {
+        return Promise.resolve(new Emitters(this._engine, container));
     }
 
     loadOptions(options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
@@ -38,7 +36,7 @@ export class EmittersPlugin implements IPlugin {
         }
 
         if (source?.emitters) {
-            options.emitters = executeOnSingleOrMultiple(source.emitters, (emitter) => {
+            options.emitters = executeOnSingleOrMultiple(source.emitters, emitter => {
                 const tmp = new Emitter();
 
                 tmp.load(emitter);
@@ -56,7 +54,7 @@ export class EmittersPlugin implements IPlugin {
                         count: 1,
                         enable: true,
                     },
-                    value: interactivityEmitters.map((s) => {
+                    value: interactivityEmitters.map(s => {
                         const tmp = new Emitter();
 
                         tmp.load(s);
@@ -76,7 +74,7 @@ export class EmittersPlugin implements IPlugin {
                                 count: emitterMode.random.count ?? defaultCount,
                                 enable: emitterMode.random.enable ?? false,
                             },
-                            value: emitterMode.value.map((s) => {
+                            value: emitterMode.value.map(s => {
                                 const tmp = new Emitter();
 
                                 tmp.load(s);

@@ -1,6 +1,6 @@
 /**
  */
-export const enum ProcessBubbleType {
+export enum ProcessBubbleType {
     color = "color",
     opacity = "opacity",
     size = "size",

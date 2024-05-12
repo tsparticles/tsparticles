@@ -1,3 +1,4 @@
+import { Attractor } from "./Attractor.js";
 import type { Engine } from "@tsparticles/engine";
 
 /**
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalAttractInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalAttract",
-        async (container) => {
-            const { Attractor } = await import("./Attractor.js");
-
-            return new Attractor(engine, container);
+        container => {
+            return Promise.resolve(new Attractor(engine, container));
         },
         refresh,
     );

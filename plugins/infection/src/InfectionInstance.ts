@@ -38,7 +38,7 @@ export class InfectionInstance implements IContainerPlugin {
         }
 
         for (let i = 0; i < options.infection.infections; i++) {
-            const notInfected = this._container.particles.filter((p) => {
+            const notInfected = this._container.particles.filter(p => {
                 const infP = p as InfectableParticle;
 
                 if (!infP.infection) {

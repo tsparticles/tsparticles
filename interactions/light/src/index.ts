@@ -1,4 +1,6 @@
 import type { Engine } from "@tsparticles/engine";
+import { ExternalLighter } from "./ExternalLighter.js";
+import { ParticlesLighter } from "./ParticlesLighter.js";
 
 /**
  * @param engine -
@@ -7,19 +9,15 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadLightInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalLight",
-        async (container) => {
-            const { ExternalLighter } = await import("./ExternalLighter.js");
-
-            return new ExternalLighter(container);
+        container => {
+            return Promise.resolve(new ExternalLighter(container));
         },
         refresh,
     );
     await engine.addInteractor(
         "particlesLight",
-        async (container) => {
-            const { ParticlesLighter } = await import("./ParticlesLighter.js");
-
-            return new ParticlesLighter(container);
+        container => {
+            return Promise.resolve(new ParticlesLighter(container));
         },
         refresh,
     );

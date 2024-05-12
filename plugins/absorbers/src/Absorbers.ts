@@ -11,7 +11,7 @@ import {
 import type { Absorber } from "./Options/Classes/Absorber.js";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import type { AbsorberInstance } from "./AbsorberInstance.js";
+import { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 const defaultIndex = 0;
@@ -31,7 +31,7 @@ export class Absorbers implements IContainerPlugin {
         container.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName ?? defaultIndex]
-                : this.array.find((t) => t.name === idxOrName);
+                : this.array.find(t => t.name === idxOrName);
 
         container.addAbsorber = async (
             options: RecursivePartial<IAbsorber>,
@@ -40,12 +40,11 @@ export class Absorbers implements IContainerPlugin {
     }
 
     async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
-        const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-            absorber = new AbsorberInstance(this, this.container, options, position);
+        const absorber = new AbsorberInstance(this, this.container, options, position);
 
         this.array.push(absorber);
 
-        return absorber;
+        return Promise.resolve(absorber);
     }
 
     draw(context: CanvasRenderingContext2D): void {

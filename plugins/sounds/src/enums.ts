@@ -1,9 +1,9 @@
-export const enum SoundsEventType {
+export enum SoundsEventType {
     mute = "soundsMuted",
     unmute = "soundsUnmuted",
 }
 
-export const enum ImageDisplay {
+export enum ImageDisplay {
     Block = "block",
     None = "none",
 }

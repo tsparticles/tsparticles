@@ -1,4 +1,5 @@
 import random from "./random.js";
+import randomShapes from "./randomShapes.js";
 import reactBubbles from "./reactBubbles.js";
 import reactDefaults from "./reactDefaults.js";
 import reactMultipleImages from "./reactMultipleImages.js";
@@ -20,6 +21,7 @@ import ring from "./ring.js";
 
 export default {
     random,
+    randomShapes,
     reactBubbles,
     reactDefaults,
     reactMultipleImages,

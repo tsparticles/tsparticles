@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { ParallaxMover } from "./ParallaxMover.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadParallaxMover(engine: Engine, refresh = true): Promise<void> {
     await engine.addMover(
         "parallax",
-        async () => {
-            const { ParallaxMover } = await import("./ParallaxMover.js");
-
-            return new ParallaxMover();
+        () => {
+            return Promise.resolve(new ParallaxMover());
         },
         refresh,
     );

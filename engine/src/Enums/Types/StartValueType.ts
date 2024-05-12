@@ -1,6 +1,6 @@
 /**
  */
-export const enum StartValueType {
+export enum StartValueType {
     max = "max",
     min = "min",
     random = "random",

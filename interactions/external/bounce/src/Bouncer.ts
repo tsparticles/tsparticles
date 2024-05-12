@@ -45,9 +45,9 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(bounceMode, hoverMode)) {
-            mouseBounce(this.container, (p) => this.isEnabled(p));
+            mouseBounce(this.container, p => this.isEnabled(p));
         } else {
-            divBounce(this.container, divs, bounceMode, (p) => this.isEnabled(p));
+            divBounce(this.container, divs, bounceMode, p => this.isEnabled(p));
         }
     }
 

@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { OrbitUpdater } from "./OrbitUpdater.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadOrbitUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "orbit",
-        async (container) => {
-            const { OrbitUpdater } = await import("./OrbitUpdater.js");
-
-            return new OrbitUpdater(container);
+        container => {
+            return Promise.resolve(new OrbitUpdater(container));
         },
         refresh,
     );

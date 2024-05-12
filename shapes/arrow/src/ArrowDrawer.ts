@@ -8,6 +8,8 @@ const defaultHeightFactor = 0.5,
     defaultBodyHeightFactor = 0.5;
 
 export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
+    readonly validTypes = ["arrow"] as const;
+
     draw(data: IShapeDrawData<ArrowParticle>): void {
         drawArrow(data);
     }

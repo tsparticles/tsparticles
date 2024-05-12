@@ -60,7 +60,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
             }
 
             const distance = Math.abs(connectModeRadius),
-                query = container.particles.quadTree.queryCircle(mousePos, distance, (p) => this.isEnabled(p));
+                query = container.particles.quadTree.queryCircle(mousePos, distance, p => this.isEnabled(p));
 
             query.forEach((p1, i) => {
                 const pos1 = p1.getPosition(),

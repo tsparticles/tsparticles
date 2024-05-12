@@ -20,7 +20,7 @@ export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRep
             return;
         }
 
-        this.divs = executeOnSingleOrMultiple(data.divs, (div) => {
+        this.divs = executeOnSingleOrMultiple(data.divs, div => {
             const tmp = new RepulseDiv();
 
             tmp.load(div);

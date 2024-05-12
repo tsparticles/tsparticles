@@ -124,7 +124,7 @@ export class EventListeners {
      * Mouse/Touch click/tap event implementation
      * @param e - the click event arguments
      */
-    private readonly _doMouseTouchClick: (e: Event) => void = (e) => {
+    private readonly _doMouseTouchClick: (e: Event) => void = e => {
         const container = this.container,
             options = container.actualOptions;
 
@@ -141,7 +141,7 @@ export class EventListeners {
 
             const onClick = options.interactivity.events.onClick;
 
-            executeOnSingleOrMultiple(onClick.mode, (mode) => this.container.handleClickMode(mode));
+            executeOnSingleOrMultiple(onClick.mode, mode => this.container.handleClickMode(mode));
         }
 
         if (e.type === "touchend") {
@@ -162,9 +162,9 @@ export class EventListeners {
             options = container.options,
             defaultThemes = options.defaultThemes,
             themeName = mediaEvent.matches ? defaultThemes.dark : defaultThemes.light,
-            theme = options.themes.find((theme) => theme.name === themeName);
+            theme = options.themes.find(theme => theme.name === themeName);
 
-        if (theme && theme.default.auto) {
+        if (theme?.default.auto) {
             void container.loadTheme(themeName);
         }
     };
@@ -183,7 +183,7 @@ export class EventListeners {
             return;
         }
 
-        if (document && document.hidden) {
+        if (document?.hidden) {
             container.pageHidden = true;
 
             container.pause();
@@ -268,7 +268,7 @@ export class EventListeners {
      * Initializing event listeners
      * @param add -
      */
-    private readonly _manageListeners: (add: boolean) => void = (add) => {
+    private readonly _manageListeners: (add: boolean) => void = add => {
         const handlers = this._handlers,
             container = this.container,
             options = container.actualOptions,
@@ -296,7 +296,7 @@ export class EventListeners {
         }
     };
 
-    private readonly _manageMediaMatch: (add: boolean) => void = (add) => {
+    private readonly _manageMediaMatch: (add: boolean) => void = add => {
         const handlers = this._handlers,
             mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
 
@@ -321,7 +321,7 @@ export class EventListeners {
         }
     };
 
-    private readonly _manageResize: (add: boolean) => void = (add) => {
+    private readonly _manageResize: (add: boolean) => void = add => {
         const handlers = this._handlers,
             container = this.container,
             options = container.actualOptions;
@@ -348,7 +348,7 @@ export class EventListeners {
             delete this._resizeObserver;
         } else if (!this._resizeObserver && add && canvasEl) {
             this._resizeObserver = new ResizeObserver((entries: ResizeObserverEntry[]): void => {
-                const entry = entries.find((e) => e.target === canvasEl);
+                const entry = entries.find(e => e.target === canvasEl);
 
                 if (!entry) {
                     return;
@@ -382,7 +382,7 @@ export class EventListeners {
      * Mouse/Touch click/tap event
      * @param e - the click event arguments
      */
-    private readonly _mouseTouchClick: (e: Event) => void = (e) => {
+    private readonly _mouseTouchClick: (e: Event) => void = e => {
         const container = this.container,
             options = container.actualOptions,
             { mouse } = container.interactivity;
@@ -442,7 +442,7 @@ export class EventListeners {
      * Mouse/Touch move event
      * @param e - the event arguments
      */
-    private readonly _mouseTouchMove: (e: Event) => void = (e) => {
+    private readonly _mouseTouchMove: (e: Event) => void = e => {
         const container = this.container,
             options = container.actualOptions,
             interactivity = container.interactivity,
@@ -523,7 +523,7 @@ export class EventListeners {
         interactivity.status = mouseMoveEvent;
     };
 
-    private readonly _touchEnd: (e: Event) => void = (e) => {
+    private readonly _touchEnd: (e: Event) => void = e => {
         const evt = e as TouchEvent,
             touches = Array.from(evt.changedTouches);
 
@@ -534,7 +534,7 @@ export class EventListeners {
         this._mouseTouchFinish();
     };
 
-    private readonly _touchEndClick: (e: Event) => void = (e) => {
+    private readonly _touchEndClick: (e: Event) => void = e => {
         const evt = e as TouchEvent,
             touches = Array.from(evt.changedTouches);
 
@@ -545,7 +545,7 @@ export class EventListeners {
         this._mouseTouchClick(e);
     };
 
-    private readonly _touchStart: (e: Event) => void = (e) => {
+    private readonly _touchStart: (e: Event) => void = e => {
         const evt = e as TouchEvent,
             touches = Array.from(evt.changedTouches);
 

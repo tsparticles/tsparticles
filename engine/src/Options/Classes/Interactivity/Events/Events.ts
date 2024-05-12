@@ -34,7 +34,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         const onDiv = data.onDiv;
 
         if (onDiv !== undefined) {
-            this.onDiv = executeOnSingleOrMultiple(onDiv, (t) => {
+            this.onDiv = executeOnSingleOrMultiple(onDiv, t => {
                 const tmp = new DivEvent();
 
                 tmp.load(t);

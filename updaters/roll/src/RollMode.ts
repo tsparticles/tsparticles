@@ -1,4 +1,4 @@
-export const enum RollMode {
+export enum RollMode {
     both = "both",
     horizontal = "horizontal",
     vertical = "vertical",

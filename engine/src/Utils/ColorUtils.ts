@@ -23,7 +23,7 @@ import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
 import { itemFromArray } from "./Utils.js";
 
-const enum RgbIndexes {
+enum RgbIndexes {
     r = 1,
     g = 2,
     b = 3,

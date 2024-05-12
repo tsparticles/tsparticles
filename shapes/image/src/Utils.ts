@@ -168,7 +168,7 @@ export function replaceImageColor(
             source: imageData.src,
         };
 
-    return new Promise<IParticleImage>((resolve) => {
+    return new Promise<IParticleImage>(resolve => {
         const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg
             domUrl = URL || window.URL || window.webkitURL || window,
             url = domUrl.createObjectURL(svg),

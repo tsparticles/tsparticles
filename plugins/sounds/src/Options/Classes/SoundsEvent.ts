@@ -39,7 +39,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
 
         if (data.audio !== undefined) {
             if (isArray(data.audio)) {
-                this.audio = data.audio.map((s) => {
+                this.audio = data.audio.map(s => {
                     const tmp = new SoundsAudio();
 
                     tmp.load(s);
@@ -54,7 +54,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
         }
 
         if (data.notes !== undefined) {
-            this.notes = data.notes.map((t) => {
+            this.notes = data.notes.map(t => {
                 const tmp = new SoundsNote();
 
                 tmp.load(t);
@@ -64,7 +64,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
         }
 
         if (data.melodies !== undefined) {
-            this.melodies = data.melodies.map((t) => {
+            this.melodies = data.melodies.map(t => {
                 const tmp = new SoundsMelody();
 
                 tmp.load(t);

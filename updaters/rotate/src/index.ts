@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { RotateUpdater } from "./RotateUpdater.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadRotateUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "rotate",
-        async (container) => {
-            const { RotateUpdater } = await import("./RotateUpdater.js");
-
-            return new RotateUpdater(container);
+        container => {
+            return Promise.resolve(new RotateUpdater(container));
         },
         refresh,
     );

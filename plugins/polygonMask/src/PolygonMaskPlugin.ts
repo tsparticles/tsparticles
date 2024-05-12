@@ -1,7 +1,7 @@
 import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IPolygonMaskOptions, PolygonMaskOptions } from "./types.js";
 import { PolygonMask } from "./Options/Classes/PolygonMask.js";
-import type { PolygonMaskInstance } from "./PolygonMaskInstance.js";
+import { PolygonMaskInstance } from "./PolygonMaskInstance.js";
 import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 
 /**
@@ -17,10 +17,8 @@ export class PolygonMaskPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    async getPlugin(container: Container): Promise<PolygonMaskInstance> {
-        const { PolygonMaskInstance } = await import("./PolygonMaskInstance.js");
-
-        return new PolygonMaskInstance(container, this._engine);
+    getPlugin(container: Container): Promise<PolygonMaskInstance> {
+        return Promise.resolve(new PolygonMaskInstance(container, this._engine));
     }
 
     loadOptions(options: PolygonMaskOptions, source?: RecursivePartial<IPolygonMaskOptions>): void {

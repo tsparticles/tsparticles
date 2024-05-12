@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { Grabber } from "./Grabber.js";
 
 /**
  * @param engine - The engine to load the interaction for.
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalGrabInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalGrab",
-        async (container) => {
-            const { Grabber } = await import("./Grabber.js");
-
-            return new Grabber(container);
+        container => {
+            return Promise.resolve(new Grabber(container));
         },
         refresh,
     );

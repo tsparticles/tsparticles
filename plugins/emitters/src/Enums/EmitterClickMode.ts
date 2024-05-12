@@ -1,5 +1,5 @@
 /**
  */
-export const enum EmitterClickMode {
+export enum EmitterClickMode {
     emitter = "emitter",
 }

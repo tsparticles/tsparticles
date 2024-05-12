@@ -150,7 +150,7 @@ export function getCanvasImageData(
 
     return {
         pixels,
-        width: Math.min(...pixels.map((row) => row.length)),
+        width: Math.min(...pixels.map(row => row.length)),
         height: pixels.length,
     };
 }

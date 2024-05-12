@@ -10,10 +10,10 @@ import {
     isNumber,
     itemFromArray,
 } from "@tsparticles/engine";
-import type { Emitter } from "./Options/Classes/Emitter.js";
+import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import type { EmitterInstance } from "./EmitterInstance.js";
+import { EmitterInstance } from "./EmitterInstance.js";
 import type { EmitterModeOptions } from "./types.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
@@ -47,7 +47,7 @@ export class Emitters implements IContainerPlugin {
         container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName ?? defaultIndex]
-                : this.array.find((t) => t.name === idxOrName);
+                : this.array.find(t => t.name === idxOrName);
 
         container.addEmitter = async (
             options: RecursivePartial<IEmitter>,
@@ -80,9 +80,7 @@ export class Emitters implements IContainerPlugin {
     }
 
     async addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): Promise<EmitterInstance> {
-        const { Emitter } = await import("./Options/Classes/Emitter.js"),
-            { EmitterInstance } = await import("./EmitterInstance.js"),
-            emitterOptions = new Emitter();
+        const emitterOptions = new Emitter();
 
         emitterOptions.load(options);
 
@@ -133,7 +131,7 @@ export class Emitters implements IContainerPlugin {
         const emittersOptions = emittersModeOptions ?? emitterOptions,
             ePosition = this.container.interactivity.mouse.clickPosition;
 
-        void executeOnSingleOrMultiple(emittersOptions, async (emitter) => {
+        void executeOnSingleOrMultiple(emittersOptions, async emitter => {
             await this.addEmitter(emitter, ePosition);
         });
     }

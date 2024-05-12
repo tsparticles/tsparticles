@@ -1,3 +1,4 @@
+import { EmittersCanvasShapeGenerator } from "./EmittersCanvasShapeGenerator.js";
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
 import type { Engine } from "@tsparticles/engine";
 
@@ -7,8 +8,7 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadEmittersShapeCanvas(engine: Engine, refresh = true): Promise<void> {
-    const emittersEngine = engine as EmittersEngine,
-        { EmittersCanvasShapeGenerator } = await import("./EmittersCanvasShapeGenerator.js");
+    const emittersEngine = engine as EmittersEngine;
 
     emittersEngine.addEmitterShapeGenerator?.("canvas", new EmittersCanvasShapeGenerator());
 

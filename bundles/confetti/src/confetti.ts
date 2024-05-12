@@ -8,9 +8,23 @@ import {
     millisecondsToSeconds,
     tsParticles,
 } from "@tsparticles/engine";
+import { type EmitterContainer, loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { ConfettiOptions } from "./ConfettiOptions.js";
-import type { EmitterContainer } from "@tsparticles/plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
+import { loadBasic } from "@tsparticles/basic";
+import { loadCardsShape } from "@tsparticles/shape-cards";
+import { loadEmojiShape } from "@tsparticles/shape-emoji";
+import { loadHeartShape } from "@tsparticles/shape-heart";
+import { loadImageShape } from "@tsparticles/shape-image";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+import { loadPolygonShape } from "@tsparticles/shape-polygon";
+import { loadRollUpdater } from "@tsparticles/updater-roll";
+import { loadRotateUpdater } from "@tsparticles/updater-rotate";
+import { loadSquareShape } from "@tsparticles/shape-square";
+import { loadStarShape } from "@tsparticles/shape-star";
+import { loadTiltUpdater } from "@tsparticles/updater-tilt";
+import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
 const defaultGravity = 9.81,
     sizeFactor = 5,
@@ -40,6 +54,8 @@ declare global {
              * @returns the confetti function
              */
             create: (canvas: HTMLCanvasElement, options: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
+
+            init: () => Promise<void>;
 
             /**
              * the confetti version number
@@ -84,7 +100,7 @@ async function initPlugins(engine: Engine): Promise<void> {
     }
 
     if (initializing) {
-        return new Promise<void>((resolve) => {
+        return new Promise<void>(resolve => {
             const timeout = 100,
                 interval = setInterval(() => {
                     if (!initialized) {
@@ -98,22 +114,6 @@ async function initPlugins(engine: Engine): Promise<void> {
     }
 
     initializing = true;
-
-    const { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-        { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
-        { loadCardsShape } = await import("@tsparticles/shape-cards"),
-        { loadHeartShape } = await import("@tsparticles/shape-heart"),
-        { loadImageShape } = await import("@tsparticles/shape-image"),
-        { loadPolygonShape } = await import("@tsparticles/shape-polygon"),
-        { loadSquareShape } = await import("@tsparticles/shape-square"),
-        { loadStarShape } = await import("@tsparticles/shape-star"),
-        { loadEmojiShape } = await import("@tsparticles/shape-emoji"),
-        { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
-        { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-        { loadRollUpdater } = await import("@tsparticles/updater-roll"),
-        { loadTiltUpdater } = await import("@tsparticles/updater-tilt"),
-        { loadWobbleUpdater } = await import("@tsparticles/updater-wobble"),
-        { loadBasic } = await import("@tsparticles/basic");
 
     await loadEmittersPlugin(engine, false);
     await loadMotionPlugin(engine, false);
@@ -212,6 +212,52 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             speed: actualOptions.startVelocity * speedFactor,
                             decay: decayOffset - actualOptions.decay,
                             direction: -actualOptions.angle,
+                        },
+                        rotate: {
+                            value: actualOptions.flat
+                                ? disableRotate
+                                : {
+                                      min: 0,
+                                      max: 360,
+                                  },
+                            direction: "random",
+                            animation: {
+                                enable: !actualOptions.flat,
+                                speed: 60,
+                            },
+                        },
+                        tilt: {
+                            direction: "random",
+                            enable: !actualOptions.flat,
+                            value: actualOptions.flat
+                                ? disableTilt
+                                : {
+                                      min: 0,
+                                      max: 360,
+                                  },
+                            animation: {
+                                enable: true,
+                                speed: 60,
+                            },
+                        },
+                        roll: {
+                            darken: {
+                                enable: true,
+                                value: 25,
+                            },
+                            enable: !actualOptions.flat,
+                            speed: {
+                                min: 15,
+                                max: 25,
+                            },
+                        },
+                        wobble: {
+                            distance: 30,
+                            enable: !actualOptions.flat,
+                            speed: {
+                                min: -15,
+                                max: 15,
+                            },
                         },
                     },
                 });
@@ -438,6 +484,10 @@ confetti.create = async (
             options: subOptions,
         });
     };
+};
+
+confetti.init = async (): Promise<void> => {
+    await initPlugins(tsParticles);
 };
 
 /**

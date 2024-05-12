@@ -12,26 +12,27 @@ import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
 import { drawText } from "./Utils.js";
 
-export const validTypes = ["text", "character", "char", "multiline-text"];
-
 /**
  * Multiline text drawer
  */
 export class TextDrawer implements IShapeDrawer<TextParticle> {
+    readonly validTypes = ["text", "character", "char", "multiline-text"] as const;
+
     draw(data: IShapeDrawData<TextParticle>): void {
         drawText(data);
     }
 
     async init(container: Container): Promise<void> {
-        const options = container.actualOptions;
+        const options = container.actualOptions,
+            { validTypes } = this;
 
-        if (validTypes.find((t) => isInArray(t, options.particles.shape.type))) {
+        if (validTypes.find(t => isInArray(t, options.particles.shape.type))) {
             const shapeOptions = validTypes
-                    .map((t) => options.particles.shape.options[t])
-                    .find((t) => !!t) as SingleOrMultiple<ITextShape>,
+                    .map(t => options.particles.shape.options[t])
+                    .find(t => !!t) as SingleOrMultiple<ITextShape>,
                 promises: Promise<void>[] = [];
 
-            executeOnSingleOrMultiple(shapeOptions, (shape) => {
+            executeOnSingleOrMultiple(shapeOptions, shape => {
                 promises.push(loadFont(shape.font, shape.weight));
             });
 
@@ -45,7 +46,7 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
      * @param particle - the particle loading the text shape
      */
     particleInit(container: Container, particle: TextParticle): void {
-        if (!particle.shape || !validTypes.includes(particle.shape)) {
+        if (!particle.shape || !(this.validTypes as unknown as string[]).includes(particle.shape)) {
             return;
         }
 

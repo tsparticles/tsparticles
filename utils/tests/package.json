@@ -1,17 +1,20 @@
 {
     "name": "@tsparticles/tests",
     "private": true,
-    "version": "3.3.0",
+    "version": "3.4.0",
     "scripts": {
         "prettify:ci": "prettier --check ./src",
         "prettify": "prettier --write ./src",
-        "lint:ci": "echo eslint --no-eslintrc --config .eslintrc.js --ext .js,.jsx,.ts,.tsx src",
-        "lint": "echo eslint --no-eslintrc --config .eslintrc.js --ext .js,.jsx,.ts,.tsx --fix src",
+        "lint:ci": "eslint --ext .js,.jsx,.ts,.tsx src",
+        "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix src",
         "build": "pnpm run lint && pnpm run prettify && pnpm test",
-        "build:ci": "pnpm run lint:ci && pnpm run prettify:ci && pnpm test",
-        "test": "nyc mocha"
+        "build:ui": "pnpm run lint && pnpm run prettify && pnpm test:ui",
+        "build:ci": "pnpm run lint:ci && pnpm run prettify:ci && pnpm run test:ci",
+        "test": "vitest run",
+        "test:ui": "vitest watch --ui",
+        "test:ci": "vitest run"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.3.0"
+        "@tsparticles/engine": "^3.4.0"
     }
 }

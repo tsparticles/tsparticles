@@ -6,6 +6,7 @@ import type { Engine } from "../../Core/Engine.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import { Interactivity } from "./Interactivity/Interactivity.js";
 import { ManualParticle } from "./ManualParticle.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
@@ -86,13 +87,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * This method loads the source object in the current instance
      * @param data - the source data to load into the instance
      */
-    load(data?: RecursivePartial<IOptions>): void {
+    load(data?: ISourceOptions): void {
         if (!data) {
             return;
         }
 
         if (data.preset !== undefined) {
-            executeOnSingleOrMultiple(data.preset, (preset) => this._importPreset(preset));
+            executeOnSingleOrMultiple(data.preset, preset => this._importPreset(preset));
         }
 
         if (data.autoPlay !== undefined) {
@@ -157,7 +158,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity.load(data.interactivity);
 
         if (data.manualParticles) {
-            this.manualParticles = data.manualParticles.map((t) => {
+            this.manualParticles = data.manualParticles.map(t => {
                 const tmp = new ManualParticle();
 
                 tmp.load(t);
@@ -198,7 +199,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
-                const existingTheme = this.themes.find((t) => t.name === theme.name);
+                const existingTheme = this.themes.find(t => t.name === theme.name);
 
                 if (!existingTheme) {
                     const optTheme = new Theme();
@@ -219,7 +220,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
         this.load(defaultOptions);
 
-        const responsiveOptions = this.responsive.find((t) =>
+        const responsiveOptions = this.responsive.find(t =>
             t.mode === ResponsiveMode.screen && screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width,
         );
 
@@ -230,14 +231,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     setTheme(name?: string): void {
         if (name) {
-            const chosenTheme = this.themes.find((theme) => theme.name === name);
+            const chosenTheme = this.themes.find(theme => theme.name === name);
 
             if (chosenTheme) {
                 this.load(chosenTheme.options);
             }
         } else {
             const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)"),
-                clientDarkMode = mediaMatch && mediaMatch.matches,
+                clientDarkMode = mediaMatch?.matches,
                 defaultTheme = this._findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
 
             if (defaultTheme) {
@@ -246,14 +247,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
     }
 
-    private readonly _findDefaultTheme: (mode: ThemeMode) => Theme | undefined = (mode) => {
+    private readonly _findDefaultTheme: (mode: ThemeMode) => Theme | undefined = mode => {
         return (
-            this.themes.find((theme) => theme.default.value && theme.default.mode === mode) ??
-            this.themes.find((theme) => theme.default.value && theme.default.mode === ThemeMode.any)
+            this.themes.find(theme => theme.default.value && theme.default.mode === mode) ??
+            this.themes.find(theme => theme.default.value && theme.default.mode === ThemeMode.any)
         );
     };
 
-    private readonly _importPreset: (preset: string) => void = (preset) => {
+    private readonly _importPreset: (preset: string) => void = preset => {
         this.load(this._engine.getPreset(preset));
     };
 }

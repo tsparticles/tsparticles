@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { SizeUpdater } from "./SizeUpdater.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadSizeUpdater(engine: Engine, refresh = true): Promise<void> {
     await engine.addParticleUpdater(
         "size",
-        async () => {
-            const { SizeUpdater } = await import("./SizeUpdater.js");
-
-            return new SizeUpdater();
+        () => {
+            return Promise.resolve(new SizeUpdater());
         },
         refresh,
     );

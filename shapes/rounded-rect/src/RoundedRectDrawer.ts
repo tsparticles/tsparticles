@@ -9,6 +9,8 @@ const fixFactorSquare = 2,
     defaultRadius = 5;
 
 export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
+    readonly validTypes = ["rounded-rect"] as const;
+
     draw(data: IShapeDrawData<RoundedParticle>): void {
         const { context, particle, radius } = data,
             fixedRadius = radius / fixFactor,

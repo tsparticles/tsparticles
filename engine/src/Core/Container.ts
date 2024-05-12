@@ -19,6 +19,8 @@ import { Retina } from "./Retina.js";
 import { getRangeValue } from "../Utils/NumberUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
 
+type ContainerClickHandler = (evt: Event) => void;
+
 /**
  * Checks if the container is still usable
  * @param container - the container to check
@@ -126,6 +128,7 @@ export class Container {
 
     zLayers;
 
+    private readonly _clickHandlers;
     private _currentTheme?: string;
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
@@ -174,6 +177,7 @@ export class Container {
         this._lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
+        this._clickHandlers = new Map<string, ContainerClickHandler>();
         this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
@@ -195,7 +199,7 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-        this._intersectionObserver = safeIntersectionObserver((entries) => this._intersectionManager(entries));
+        this._intersectionObserver = safeIntersectionObserver(entries => this._intersectionManager(entries));
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
@@ -239,104 +243,102 @@ export class Container {
         }
 
         const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            const pxRatio = this.retina.pixelRatio,
-                posRetina = {
-                    x: pos.x * pxRatio,
-                    y: pos.y * pxRatio,
-                },
-                particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
-
-            callback(e, particles);
-        };
-
-        const clickHandler = (e: Event): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            const mouseEvent = e as MouseEvent,
-                pos = {
-                    x: mouseEvent.offsetX || mouseEvent.clientX,
-                    y: mouseEvent.offsetY || mouseEvent.clientY,
-                },
-                radius = 1;
-
-            clickOrTouchHandler(e, pos, radius);
-        };
-
-        const touchStartHandler = (): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            touched = true;
-            touchMoved = false;
-        };
-
-        const touchMoveHandler = (): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            touchMoved = true;
-        };
-
-        const touchEndHandler = (e: Event): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
-
-            if (touched && !touchMoved) {
-                const touchEvent = e as TouchEvent;
-
-                const lengthOffset = 1;
-
-                let lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset];
-
-                if (!lastTouch) {
-                    lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - lengthOffset];
-
-                    if (!lastTouch) {
-                        return;
-                    }
+                if (!guardCheck(this)) {
+                    return;
                 }
 
-                const element = this.canvas.element,
-                    canvasRect = element ? element.getBoundingClientRect() : undefined,
-                    minCoordinate = 0,
+                const pxRatio = this.retina.pixelRatio,
+                    posRetina = {
+                        x: pos.x * pxRatio,
+                        y: pos.y * pxRatio,
+                    },
+                    particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
+
+                callback(e, particles);
+            },
+            clickHandler = (e: Event): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
+
+                const mouseEvent = e as MouseEvent,
                     pos = {
-                        x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
-                        y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
-                    };
+                        x: mouseEvent.offsetX || mouseEvent.clientX,
+                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                    },
+                    radius = 1;
 
-                clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
-            }
+                clickOrTouchHandler(e, pos, radius);
+            },
+            touchStartHandler = (): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
 
-            touched = false;
-            touchMoved = false;
-        };
+                touched = true;
+                touchMoved = false;
+            },
+            touchMoveHandler = (): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
 
-        const touchCancelHandler = (): void => {
-            if (!guardCheck(this)) {
-                return;
-            }
+                touchMoved = true;
+            },
+            touchEndHandler = (e: Event): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
 
-            touched = false;
-            touchMoved = false;
-        };
+                if (touched && !touchMoved) {
+                    const touchEvent = e as TouchEvent,
+                        lengthOffset = 1;
+
+                    let lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset];
+
+                    if (!lastTouch) {
+                        lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - lengthOffset];
+
+                        if (!lastTouch) {
+                            return;
+                        }
+                    }
+
+                    const element = this.canvas.element,
+                        canvasRect = element ? element.getBoundingClientRect() : undefined,
+                        minCoordinate = 0,
+                        pos = {
+                            x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
+                            y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
+                        };
+
+                    clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
+                }
+
+                touched = false;
+                touchMoved = false;
+            },
+            touchCancelHandler = (): void => {
+                if (!guardCheck(this)) {
+                    return;
+                }
+
+                touched = false;
+                touchMoved = false;
+            };
 
         let touched = false,
             touchMoved = false;
 
-        el.addEventListener("click", clickHandler);
-        el.addEventListener("touchstart", touchStartHandler);
-        el.addEventListener("touchmove", touchMoveHandler);
-        el.addEventListener("touchend", touchEndHandler);
-        el.addEventListener("touchcancel", touchCancelHandler);
+        this._clickHandlers.set("click", clickHandler);
+        this._clickHandlers.set("touchstart", touchStartHandler);
+        this._clickHandlers.set("touchmove", touchMoveHandler);
+        this._clickHandlers.set("touchend", touchEndHandler);
+        this._clickHandlers.set("touchcancel", touchCancelHandler);
+
+        for (const [key, handler] of this._clickHandlers) {
+            el.addEventListener(key, handler);
+        }
     }
 
     addLifeTime(value: number): void {
@@ -364,15 +366,30 @@ export class Container {
         return !this._duration || this._lifeTime <= this._duration;
     }
 
+    clearClickHandlers(): void {
+        if (!guardCheck(this)) {
+            return;
+        }
+
+        for (const [key, handler] of this._clickHandlers) {
+            this.interactivity.element?.removeEventListener(key, handler);
+        }
+
+        this._clickHandlers.clear();
+    }
+
     /**
      * Destroys the current container, invalidating it
+     * @param remove - if true, removes the container from the engine
      */
-    destroy(): void {
+    destroy(remove = true): void {
         if (!guardCheck(this)) {
             return;
         }
 
         this.stop();
+
+        this.clearClickHandlers();
 
         this.particles.destroy();
         this.canvas.destroy();
@@ -397,14 +414,16 @@ export class Container {
 
         this.destroyed = true;
 
-        const mainArr = this._engine.dom(),
-            idx = mainArr.findIndex((t) => t === this),
-            minIndex = 0;
+        if (remove) {
+            const mainArr = this._engine.items,
+                idx = mainArr.findIndex(t => t === this),
+                minIndex = 0;
 
-        if (idx >= minIndex) {
-            const deleteCount = 1;
+            if (idx >= minIndex) {
+                const deleteCount = 1;
 
-            mainArr.splice(idx, deleteCount);
+                mainArr.splice(idx, deleteCount);
+            }
         }
 
         this._engine.dispatchEvent(EventType.containerDestroyed, { container: this });
@@ -431,7 +450,7 @@ export class Container {
             this._nextFrame(timestamp);
         };
 
-        this._drawAnimationFrame = requestAnimationFrame((timestamp) => frame(timestamp));
+        this._drawAnimationFrame = requestAnimationFrame(timestamp => frame(timestamp));
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -517,16 +536,18 @@ export class Container {
         this.canvas.initBackground();
         this.canvas.resize();
 
-        this.zLayers = this.actualOptions.zLayers;
-        this._duration = getRangeValue(this.actualOptions.duration) * millisecondsToSeconds;
-        this._delay = getRangeValue(this.actualOptions.delay) * millisecondsToSeconds;
+        const { zLayers, duration, delay, fpsLimit, smooth } = this.actualOptions;
+
+        this.zLayers = zLayers;
+        this._duration = getRangeValue(duration) * millisecondsToSeconds;
+        this._delay = getRangeValue(delay) * millisecondsToSeconds;
         this._lifeTime = 0;
 
         const defaultFpsLimit = 120,
             minFpsLimit = 0;
 
-        this.fpsLimit = this.actualOptions.fpsLimit > minFpsLimit ? this.actualOptions.fpsLimit : defaultFpsLimit;
-        this._smooth = this.actualOptions.smooth;
+        this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
+        this._smooth = smooth;
 
         for (const [, drawer] of this.effectDrawers) {
             await drawer.init?.(this);
@@ -643,13 +664,14 @@ export class Container {
         return this.start();
     }
 
-    async reset(): Promise<void> {
+    async reset(sourceOptions?: ISourceOptions): Promise<void> {
         if (!guardCheck(this)) {
             return;
         }
 
-        this._initialSourceOptions = undefined;
-        this._options = loadContainerOptions(this._engine, this);
+        this._initialSourceOptions = sourceOptions;
+        this._sourceOptions = sourceOptions;
+        this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
         return this.refresh();
@@ -667,7 +689,7 @@ export class Container {
 
         this.started = true;
 
-        await new Promise<void>((resolve) => {
+        await new Promise<void>(resolve => {
             const start = async (): Promise<void> => {
                 this._eventListeners.addListeners();
 
@@ -752,7 +774,7 @@ export class Container {
         return true;
     }
 
-    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = (entries) => {
+    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
         if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
             return;
         }

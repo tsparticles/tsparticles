@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { TrailMaker } from "./TrailMaker.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalTrailInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalTrail",
-        async (container) => {
-            const { TrailMaker } = await import("./TrailMaker.js");
-
-            return new TrailMaker(container);
+        container => {
+            return Promise.resolve(new TrailMaker(container));
         },
         refresh,
     );

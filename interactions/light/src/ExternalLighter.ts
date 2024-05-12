@@ -39,7 +39,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
             return;
         }
 
-        container.canvas.draw((ctx) => {
+        container.canvas.draw(ctx => {
             drawLight(container, ctx, mousePos);
         });
     }

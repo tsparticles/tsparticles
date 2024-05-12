@@ -10,7 +10,7 @@ import {
 import { Absorber } from "./Options/Classes/Absorber.js";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import type { Absorbers } from "./Absorbers.js";
+import { Absorbers } from "./Absorbers.js";
 
 /**
  */
@@ -22,9 +22,7 @@ export class AbsorbersPlugin implements IPlugin {
     }
 
     async getPlugin(container: AbsorberContainer): Promise<Absorbers> {
-        const { Absorbers } = await import("./Absorbers.js");
-
-        return new Absorbers(container);
+        return Promise.resolve(new Absorbers(container));
     }
 
     loadOptions(options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {
@@ -33,7 +31,7 @@ export class AbsorbersPlugin implements IPlugin {
         }
 
         if (source?.absorbers) {
-            options.absorbers = executeOnSingleOrMultiple(source.absorbers, (absorber) => {
+            options.absorbers = executeOnSingleOrMultiple(source.absorbers, absorber => {
                 const tmp = new Absorber();
 
                 tmp.load(absorber);
@@ -44,7 +42,7 @@ export class AbsorbersPlugin implements IPlugin {
 
         options.interactivity.modes.absorbers = executeOnSingleOrMultiple(
             source?.interactivity?.modes?.absorbers,
-            (absorber) => {
+            absorber => {
                 const tmp = new Absorber();
 
                 tmp.load(absorber);

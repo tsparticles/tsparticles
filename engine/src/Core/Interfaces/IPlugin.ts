@@ -1,8 +1,7 @@
 import type { Container } from "../Container.js";
 import type { IContainerPlugin } from "./IContainerPlugin.js";
-import type { IOptions } from "../../Options/Interfaces/IOptions.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import type { Options } from "../../Options/Classes/Options.js";
-import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 /**
  * [[include:Plugins.md]]
@@ -12,7 +11,7 @@ export interface IPlugin {
 
     getPlugin(container: Container): Promise<IContainerPlugin>;
 
-    loadOptions(options: Options, source?: RecursivePartial<IOptions>): void;
+    loadOptions(options: Options, source?: ISourceOptions): void;
 
-    needsPlugin(options?: RecursivePartial<IOptions>): boolean;
+    needsPlugin(options?: ISourceOptions): boolean;
 }

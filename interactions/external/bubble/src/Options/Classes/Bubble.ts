@@ -20,7 +20,7 @@ export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble
             return;
         }
 
-        this.divs = executeOnSingleOrMultiple(data.divs, (div) => {
+        this.divs = executeOnSingleOrMultiple(data.divs, div => {
             const tmp = new BubbleDiv();
 
             tmp.load(div);

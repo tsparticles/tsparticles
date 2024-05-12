@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/demo",
     "private": true,
-    "version": "3.3.0",
+    "version": "3.4.0",
     "description": "> TODO: description",
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "homepage": "https://particles.js.org",
@@ -46,7 +46,7 @@
         "nodemon": "^3.0.1",
         "pug": "^3.0.2",
         "stats.ts": "^1.1.0",
-        "stylus": "^0.62.0",
+        "stylus": "^0.63.0",
         "winston": "^3.11.0"
     },
     "dependencies": {
@@ -120,6 +120,7 @@
         "@tsparticles/shape-emoji": "workspace:^",
         "@tsparticles/shape-heart": "workspace:^",
         "@tsparticles/shape-image": "workspace:^",
+        "@tsparticles/shape-infinity": "workspace:^",
         "@tsparticles/shape-line": "workspace:^",
         "@tsparticles/shape-path": "workspace:^",
         "@tsparticles/shape-polygon": "workspace:^",

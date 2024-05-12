@@ -48,7 +48,7 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
         if (data.color !== undefined) {
             const sourceColor = isArray(this.color) ? undefined : this.color;
 
-            this.color = executeOnSingleOrMultiple(data.color, (color) => {
+            this.color = executeOnSingleOrMultiple(data.color, color => {
                 return OptionsColor.create(sourceColor, color);
             });
         }

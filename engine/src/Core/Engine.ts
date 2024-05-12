@@ -4,7 +4,7 @@
  */
 import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
 import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
-import type { Container } from "./Container.js";
+import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
@@ -14,7 +14,6 @@ import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
-import type { IOptions } from "../Options/Interfaces/IOptions.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
@@ -78,7 +77,7 @@ async function getItemsFromInitializer<TItem, TInitializer extends GenericInitia
     let res = map.get(container);
 
     if (!res || force) {
-        res = await Promise.all([...initializers.values()].map((t) => t(container)));
+        res = await Promise.all([...initializers.values()].map(t => t(container)));
 
         map.set(container, res);
     }
@@ -90,7 +89,9 @@ async function getItemsFromInitializer<TItem, TInitializer extends GenericInitia
  * @param data -
  * @returns the options object from the jsonUrl
  */
-async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple<ISourceOptions> | undefined> {
+async function getDataFromUrl(
+    data: DataFromUrlParams,
+): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
     const url = itemFromSingleOrMultiple(data.url, data.index);
 
     if (!url) {
@@ -107,6 +108,68 @@ async function getDataFromUrl(data: DataFromUrlParams): Promise<SingleOrMultiple
 
     return data.fallback;
 }
+
+const generatedTrue = "true",
+    generatedFalse = "false",
+    canvasTag = "canvas",
+    getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
+        let canvasEl: HTMLCanvasElement;
+
+        if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
+            canvasEl = domContainer as HTMLCanvasElement;
+
+            if (!canvasEl.dataset[generatedAttribute]) {
+                canvasEl.dataset[generatedAttribute] = generatedFalse;
+            }
+        } else {
+            const existingCanvases = domContainer.getElementsByTagName(canvasTag);
+
+            /* get existing canvas if present, otherwise a new one will be created */
+            if (existingCanvases.length) {
+                const firstIndex = 0;
+
+                canvasEl = existingCanvases[firstIndex];
+
+                canvasEl.dataset[generatedAttribute] = generatedFalse;
+            } else {
+                /* create canvas element */
+                canvasEl = document.createElement(canvasTag);
+
+                canvasEl.dataset[generatedAttribute] = generatedTrue;
+
+                /* append canvas */
+                domContainer.appendChild(canvasEl);
+            }
+        }
+
+        const fullPercent = "100%";
+
+        if (!canvasEl.style.width) {
+            canvasEl.style.width = fullPercent;
+        }
+
+        if (!canvasEl.style.height) {
+            canvasEl.style.height = fullPercent;
+        }
+
+        return canvasEl;
+    },
+    getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
+        let domContainer = source ?? document.getElementById(id);
+
+        if (domContainer) {
+            return domContainer;
+        }
+
+        domContainer = document.createElement("div");
+
+        domContainer.id = id;
+        domContainer.dataset[generatedAttribute] = generatedTrue;
+
+        document.body.append(domContainer);
+
+        return domContainer;
+    };
 
 /**
  * Engine class for creating the singleton on window.
@@ -201,6 +264,10 @@ export class Engine {
         return res;
     }
 
+    get items(): Container[] {
+        return this._domArray;
+    }
+
     get version(): string {
         return __VERSION__;
     }
@@ -219,7 +286,7 @@ export class Engine {
      * @param refresh - should refresh the dom after adding the effect
      */
     async addEffect(effect: SingleOrMultiple<string>, drawer: IEffectDrawer, refresh = true): Promise<void> {
-        executeOnSingleOrMultiple(effect, (type) => {
+        executeOnSingleOrMultiple(effect, type => {
             if (!this.getEffectDrawer(type)) {
                 this.effectDrawers.set(type, drawer);
             }
@@ -308,7 +375,7 @@ export class Engine {
      */
     async addPreset(
         preset: string,
-        options: RecursivePartial<IOptions>,
+        options: Readonly<ISourceOptions>,
         override = false,
         refresh = true,
     ): Promise<void> {
@@ -321,16 +388,17 @@ export class Engine {
 
     /**
      * addShape adds shape to tsParticles, it will be available to all future instances created
-     * @param shape - the shape name
      * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
      * @param refresh - should refresh the dom after adding the shape
      */
-    async addShape(shape: SingleOrMultiple<string>, drawer: IShapeDrawer, refresh = true): Promise<void> {
-        executeOnSingleOrMultiple(shape, (type) => {
-            if (!this.getShapeDrawer(type)) {
-                this.shapeDrawers.set(type, drawer);
+    async addShape(drawer: IShapeDrawer, refresh = true): Promise<void> {
+        for (const validType of drawer.validTypes) {
+            if (this.getShapeDrawer(validType)) {
+                continue;
             }
-        });
+
+            this.shapeDrawers.set(validType, drawer);
+        }
 
         await this.refresh(refresh);
     }
@@ -352,30 +420,21 @@ export class Engine {
 
     /**
      * All the {@link Container} objects loaded
+     * @deprecated the dom() function is deprecated, please use the items property instead
      * @returns All the {@link Container} objects loaded
      */
     dom(): Container[] {
-        return this._domArray;
+        return this.items;
     }
 
     /**
      * Retrieves a {@link Container} from all the objects loaded
+     * @deprecated the domItem() function is deprecated, please use the item function instead
      * @param index - The object index
      * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
      */
     domItem(index: number): Container | undefined {
-        const dom = this.dom(),
-            item = dom[index];
-
-        if (!item || item.destroyed) {
-            const deleteCount = 1;
-
-            dom.splice(index, deleteCount);
-
-            return;
-        }
-
-        return item;
+        return this.item(index);
     }
 
     /**
@@ -411,11 +470,11 @@ export class Engine {
      * @returns the array of interaction managers for the given container
      */
     async getInteractors(container: Container, force = false): Promise<IInteractor[]> {
-        return await getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
+        return getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
     }
 
     async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
-        return await getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
+        return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
     }
 
     /**
@@ -433,7 +492,7 @@ export class Engine {
      * @returns the plugin if found, or undefined
      */
     getPlugin(plugin: string): IPlugin | undefined {
-        return this.plugins.find((t) => t.id === plugin);
+        return this.plugins.find(t => t.id === plugin);
     }
 
     /**
@@ -477,7 +536,7 @@ export class Engine {
      * @returns the array of updaters for the given container
      */
     async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
-        return await getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
+        return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
     }
 
     /**
@@ -492,6 +551,26 @@ export class Engine {
     }
 
     /**
+     * Retrieves a {@link Container} from all the objects loaded
+     * @param index - The object index
+     * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
+     */
+    item(index: number): Container | undefined {
+        const { items } = this,
+            item = items[index];
+
+        if (!item || item.destroyed) {
+            const deleteCount = 1;
+
+            items.splice(index, deleteCount);
+
+            return;
+        }
+
+        return item;
+    }
+
+    /**
      * Loads the provided options to create a {@link Container} object.
      * @param params - The particles container params {@link ILoadParams} object
      * @returns A Promise with the {@link Container} object created
@@ -503,82 +582,33 @@ export class Engine {
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
         /* elements */
-        let domContainer = params.element ?? document.getElementById(id);
-
-        if (!domContainer) {
-            domContainer = document.createElement("div");
-
-            domContainer.id = id;
-
-            document.body.append(domContainer);
-        }
-
         const currentOptions = itemFromSingleOrMultiple(options, index),
-            dom = this.dom(),
-            oldIndex = dom.findIndex((v) => v.id.description === id),
-            minIndex = 0;
-
-        if (oldIndex >= minIndex) {
-            const old = this.domItem(oldIndex);
-
-            if (old && !old.destroyed) {
-                old.destroy();
-
-                const deleteCount = 1;
-
-                dom.splice(oldIndex, deleteCount);
-            }
-        }
-
-        let canvasEl: HTMLCanvasElement;
-
-        if (domContainer.tagName.toLowerCase() === "canvas") {
-            canvasEl = domContainer as HTMLCanvasElement;
-
-            canvasEl.dataset[generatedAttribute] = "false";
-        } else {
-            const existingCanvases = domContainer.getElementsByTagName("canvas");
-
-            /* get existing canvas if present, otherwise a new one will be created */
-            if (existingCanvases.length) {
-                const firstIndex = 0;
-
-                canvasEl = existingCanvases[firstIndex];
-
-                canvasEl.dataset[generatedAttribute] = "false";
-            } else {
-                /* create canvas element */
-                canvasEl = document.createElement("canvas");
-
-                canvasEl.dataset[generatedAttribute] = "true";
-
-                /* append canvas */
-                domContainer.appendChild(canvasEl);
-            }
-        }
-
-        if (!canvasEl.style.width) {
-            canvasEl.style.width = "100%";
-        }
-
-        if (!canvasEl.style.height) {
-            canvasEl.style.height = "100%";
-        }
-
-        /* launch tsParticles */
-        const { Container } = await import("./Container.js"),
+            { items } = this,
+            oldIndex = items.findIndex(v => v.id.description === id),
+            minIndex = 0,
             newItem = new Container(this, id, currentOptions);
 
         if (oldIndex >= minIndex) {
-            const deleteCount = 0;
+            const old = this.item(oldIndex),
+                one = 1,
+                none = 0,
+                deleteCount = old ? one : none;
 
-            dom.splice(oldIndex, deleteCount, newItem);
+            if (old && !old.destroyed) {
+                old.destroy(false);
+            }
+
+            items.splice(oldIndex, deleteCount, newItem);
         } else {
-            dom.push(newItem);
+            items.push(newItem);
         }
+
+        const domContainer = getDomContainer(id, params.element),
+            canvasEl = getCanvasFromContainer(domContainer);
 
         newItem.canvas.loadCanvas(canvasEl);
 
+        /* launch tsParticles */
         await newItem.start();
 
         return newItem;
@@ -590,9 +620,7 @@ export class Engine {
      * @param sourceOptions - the source options to read
      */
     loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        for (const plugin of this.plugins) {
-            plugin.loadOptions(options, sourceOptions);
-        }
+        this.plugins.forEach(plugin => plugin.loadOptions?.(options, sourceOptions));
     }
 
     /**
@@ -612,9 +640,7 @@ export class Engine {
             return;
         }
 
-        for (const updater of updaters) {
-            updater.loadOptions?.(options, ...sourceOptions);
-        }
+        updaters.forEach(updater => updater.loadOptions?.(options, ...sourceOptions));
     }
 
     /**
@@ -626,7 +652,7 @@ export class Engine {
             return;
         }
 
-        await Promise.all(this.dom().map((t) => t.refresh()));
+        await Promise.all(this.items.map(t => t.refresh()));
     }
 
     /**
@@ -643,14 +669,12 @@ export class Engine {
      * @param callback - The function called after the click event is fired
      */
     setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const dom = this.dom();
+        const { items } = this;
 
-        if (!dom.length) {
+        if (!items.length) {
             throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
         }
 
-        for (const domItem of dom) {
-            domItem.addClickHandler(callback);
-        }
+        items.forEach(item => item.addClickHandler(callback));
     }
 }

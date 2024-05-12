@@ -10,6 +10,8 @@ const defaultHoleRadius = 44,
     defaultOuterTaper = 50;
 
 export class CogDrawer implements IShapeDrawer<CogParticle> {
+    readonly validTypes = ["cog"] as const;
+
     afterDraw(data: IShapeDrawData<CogParticle>): void {
         drawCogHole(data);
     }

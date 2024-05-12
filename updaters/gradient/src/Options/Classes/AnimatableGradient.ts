@@ -22,7 +22,7 @@ export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IA
         this.angle.load(data.angle);
 
         if (data.colors !== undefined) {
-            this.colors = data.colors.map((s) => {
+            this.colors = data.colors.map(s => {
                 const tmp = new AnimatableGradientColor();
 
                 tmp.load(s);

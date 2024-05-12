@@ -1,4 +1,4 @@
-export const enum PolygonMaskMoveType {
+export enum PolygonMaskMoveType {
     path = "path",
     radius = "radius",
 }

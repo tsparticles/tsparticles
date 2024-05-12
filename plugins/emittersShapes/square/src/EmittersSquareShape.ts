@@ -5,7 +5,7 @@ const half = 0.5,
     sides = 4,
     double = 2;
 
-const enum Sides {
+enum Sides {
     TopLeft = 0,
     TopRight = 1,
     BottomRight = 2,

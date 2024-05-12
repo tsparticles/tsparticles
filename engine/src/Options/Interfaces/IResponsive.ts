@@ -1,5 +1,4 @@
-import type { IOptions } from "./IOptions.js";
-import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import type { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
 
 export interface IResponsive {
@@ -16,5 +15,5 @@ export interface IResponsive {
     /**
      * Options to override.
      */
-    options: RecursivePartial<IOptions>;
+    options: ISourceOptions;
 }

@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { SimplexNoiseGenerator } from "./SimplexNoiseGenerator.js";
 
 export const simplexNoisePathName = "simplexNoise";
 
@@ -7,7 +8,5 @@ export const simplexNoisePathName = "simplexNoise";
  * @param refresh -
  */
 export async function loadSimplexNoisePath(engine: Engine, refresh = true): Promise<void> {
-    const { SimplexNoiseGenerator } = await import("./SimplexNoiseGenerator.js");
-
     await engine.addPathGenerator(simplexNoisePathName, new SimplexNoiseGenerator(), refresh);
 }

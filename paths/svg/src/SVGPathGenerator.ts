@@ -14,7 +14,7 @@ import {
     randomInRange,
 } from "@tsparticles/engine";
 
-const enum SVGPathDirection {
+enum SVGPathDirection {
     normal,
     reverse,
 }

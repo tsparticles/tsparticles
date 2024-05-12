@@ -9,6 +9,8 @@ const sidesCenterFactor = 3.5,
 /**
  */
 export class PolygonDrawer extends PolygonDrawerBase {
+    readonly validTypes = ["polygon"] as const;
+
     getCenter(particle: Particle, radius: number): ICoordinates {
         return {
             x: -radius / (particle.sides / sidesCenterFactor),

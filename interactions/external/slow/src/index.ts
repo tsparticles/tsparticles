@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { Slower } from "./Slower.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalSlowInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalSlow",
-        async (container) => {
-            const { Slower } = await import("./Slower.js");
-
-            return new Slower(container);
+        container => {
+            return Promise.resolve(new Slower(container));
         },
         refresh,
     );

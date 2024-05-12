@@ -1,0 +1,108 @@
+{
+  "name": "@tsparticles/shape-infinity",
+  "version": "3.4.0",
+  "description": "tsParticles infinity shape",
+  "homepage": "https://particles.js.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsparticles/tsparticles.git",
+    "directory": "shapes/infinity"
+  },
+  "keywords": [
+    "front-end",
+    "frontend",
+    "tsparticles",
+    "particles.js",
+    "particlesjs",
+    "particles",
+    "particle",
+    "canvas",
+    "jsparticles",
+    "xparticles",
+    "particles-js",
+    "particles-bg",
+    "particles-bg-vue",
+    "particles-ts",
+    "particles.ts",
+    "react-particles-js",
+    "react-particles.js",
+    "react-particles",
+    "react",
+    "reactjs",
+    "vue-particles",
+    "ngx-particles",
+    "angular-particles",
+    "particleground",
+    "vue",
+    "vuejs",
+    "preact",
+    "preactjs",
+    "jquery",
+    "angularjs",
+    "angular",
+    "typescript",
+    "javascript",
+    "animation",
+    "web",
+    "html5",
+    "web-design",
+    "webdesign",
+    "css",
+    "html",
+    "css3",
+    "animated",
+    "background",
+    "confetti",
+    "canvas",
+    "fireworks",
+    "fireworks-js",
+    "confetti-js",
+    "confettijs",
+    "fireworksjs",
+    "canvas-confetti",
+    "tsparticles-shape"
+  ],
+  "author": "Matteo Bruni <matteo.bruni@me.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsparticles/tsparticles/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
+  "sideEffects": false,
+  "jsdelivr": "tsparticles.shape.infinity.min.js",
+  "unpkg": "tsparticles.shape.infinity.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "dependencies": {
+    "@tsparticles/engine": "^3.4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -1,6 +1,5 @@
-import type { IOptions } from "../IOptions.js";
+import type { ISourceOptions } from "../../../Types/ISourceOptions.js";
 import type { IThemeDefault } from "./IThemeDefault.js";
-import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * The options to configure themes that can be easily switched
@@ -20,5 +19,5 @@ export interface ITheme {
     /**
      * All options the theme will override
      */
-    options?: RecursivePartial<IOptions>;
+    options?: ISourceOptions;
 }

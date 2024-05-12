@@ -111,8 +111,8 @@ export class Linker extends ParticlesInteractorBase {
                 p2.spawning ||
                 p2.destroyed ||
                 !p2.links ||
-                p1.links.some((t) => t.destination === p2) ||
-                p2.links.some((t) => t.destination === p1)
+                p1.links.some(t => t.destination === p2) ||
+                p2.links.some(t => t.destination === p1)
             ) {
                 continue;
             }
@@ -162,7 +162,7 @@ export class Linker extends ParticlesInteractorBase {
         // do nothing
     }
 
-    private readonly _setColor: (p1: LinkParticle) => void = (p1) => {
+    private readonly _setColor: (p1: LinkParticle) => void = p1 => {
         if (!p1.options.links) {
             return;
         }

@@ -33,17 +33,17 @@ function getVideoSupportedMimeTypes(): string[] {
     const isSupported = (type: string): boolean => MediaRecorder.isTypeSupported(type),
         supported: string[] = [];
 
-    videoTypes.forEach((type) => {
+    videoTypes.forEach(type => {
         const mimeType = `video/${type}`;
 
-        codecs.forEach((codec) =>
+        codecs.forEach(codec =>
             [
                 `${mimeType};codecs=${codec}`,
                 `${mimeType};codecs=${codec.toUpperCase()}`,
                 // /!\ false positive /!\
                 // `${mimeType};codecs:${codec}`,
                 // `${mimeType};codecs:${codec.toUpperCase()}`
-            ].forEach((variation) => {
+            ].forEach(variation => {
                 if (isSupported(variation)) {
                     supported.push(variation);
                 }
@@ -86,14 +86,14 @@ export class ExportVideoInstance implements IContainerPlugin {
         return res;
     }
 
-    private readonly _exportVideo: (data: IExportVideoData) => Promise<Blob | undefined> = async (data) => {
+    private readonly _exportVideo: (data: IExportVideoData) => Promise<Blob | undefined> = async data => {
         const element = this._container.canvas.element;
 
         if (!element) {
             return;
         }
 
-        return new Promise<Blob | undefined>((resolve) => {
+        return new Promise<Blob | undefined>(resolve => {
             const stream = element.captureStream(data.fps ?? this._container.actualOptions.fpsLimit),
                 firstIndex = 0,
                 mimeType = data.mimeType ?? this._supportedTypes[firstIndex],

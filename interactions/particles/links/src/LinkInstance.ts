@@ -35,7 +35,7 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         const p1Links = links.filter(
-            (l) =>
+            l =>
                 options.links &&
                 (options.links.frequency >= maxFrequency ||
                     this._getLinkFrequency(particle, l.destination) <= options.links.frequency),
@@ -91,7 +91,7 @@ export class LinkInstance implements IContainerPlugin {
 
         let opacity = link.opacity;
 
-        container.canvas.draw((ctx) => {
+        container.canvas.draw(ctx => {
             let colorLine: IRgb | undefined;
 
             /*
@@ -170,7 +170,7 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        container.canvas.draw((ctx) => {
+        container.canvas.draw(ctx => {
             const pos1 = p1.getPosition(),
                 pos2 = p2.getPosition(),
                 pos3 = p3.getPosition(),
@@ -223,14 +223,14 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        const vertices = p2.links?.filter((t) => {
+        const vertices = p2.links?.filter(t => {
             const linkFreq = this._getLinkFrequency(p2, t.destination),
                 minCount = 0;
 
             return (
                 p2.options.links &&
                 linkFreq <= p2.options.links.frequency &&
-                p1Links.findIndex((l) => l.destination === t.destination) >= minCount
+                p1Links.findIndex(l => l.destination === t.destination) >= minCount
             );
         });
 

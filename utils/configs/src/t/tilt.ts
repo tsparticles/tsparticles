@@ -57,13 +57,9 @@ const options: ISourceOptions = {
                 sync: true,
             },
         },
-        rotate: {
-            value: { min: 0, max: 360 },
-        },
         tilt: {
             direction: "random",
             enable: true,
-            move: true,
             value: {
                 min: 0,
                 max: 360,

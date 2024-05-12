@@ -24,7 +24,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
         }
 
         if (data.groups !== undefined) {
-            this.groups = data.groups.map((t) => t);
+            this.groups = data.groups.map(t => t);
         }
 
         if (!this.groups.length) {

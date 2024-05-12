@@ -1,4 +1,29 @@
 import type { Engine } from "@tsparticles/engine";
+import { loadBasic } from "@tsparticles/basic";
+import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
+import { loadEmojiShape } from "@tsparticles/shape-emoji";
+import { loadExternalAttractInteraction } from "@tsparticles/interaction-external-attract";
+import { loadExternalBounceInteraction } from "@tsparticles/interaction-external-bounce";
+import { loadExternalBubbleInteraction } from "@tsparticles/interaction-external-bubble";
+import { loadExternalConnectInteraction } from "@tsparticles/interaction-external-connect";
+import { loadExternalGrabInteraction } from "@tsparticles/interaction-external-grab";
+import { loadExternalPauseInteraction } from "@tsparticles/interaction-external-pause";
+import { loadExternalPushInteraction } from "@tsparticles/interaction-external-push";
+import { loadExternalRemoveInteraction } from "@tsparticles/interaction-external-remove";
+import { loadExternalRepulseInteraction } from "@tsparticles/interaction-external-repulse";
+import { loadExternalSlowInteraction } from "@tsparticles/interaction-external-slow";
+import { loadImageShape } from "@tsparticles/shape-image";
+import { loadLifeUpdater } from "@tsparticles/updater-life";
+import { loadLineShape } from "@tsparticles/shape-line";
+import { loadParallaxMover } from "@tsparticles/move-parallax";
+import { loadParticlesAttractInteraction } from "@tsparticles/interaction-particles-attract";
+import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
+import { loadParticlesLinksInteraction } from "@tsparticles/interaction-particles-links";
+import { loadPolygonShape } from "@tsparticles/shape-polygon";
+import { loadRotateUpdater } from "@tsparticles/updater-rotate";
+import { loadSquareShape } from "@tsparticles/shape-square";
+import { loadStarShape } from "@tsparticles/shape-star";
+import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
 
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles Slim package.
@@ -10,32 +35,6 @@ import type { Engine } from "@tsparticles/engine";
  * @param refresh -
  */
 export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
-    const { loadParallaxMover } = await import("@tsparticles/move-parallax"),
-        { loadExternalAttractInteraction } = await import("@tsparticles/interaction-external-attract"),
-        { loadExternalBounceInteraction } = await import("@tsparticles/interaction-external-bounce"),
-        { loadExternalBubbleInteraction } = await import("@tsparticles/interaction-external-bubble"),
-        { loadExternalConnectInteraction } = await import("@tsparticles/interaction-external-connect"),
-        { loadExternalGrabInteraction } = await import("@tsparticles/interaction-external-grab"),
-        { loadExternalPauseInteraction } = await import("@tsparticles/interaction-external-pause"),
-        { loadExternalPushInteraction } = await import("@tsparticles/interaction-external-push"),
-        { loadExternalRemoveInteraction } = await import("@tsparticles/interaction-external-remove"),
-        { loadExternalRepulseInteraction } = await import("@tsparticles/interaction-external-repulse"),
-        { loadExternalSlowInteraction } = await import("@tsparticles/interaction-external-slow"),
-        { loadParticlesAttractInteraction } = await import("@tsparticles/interaction-particles-attract"),
-        { loadParticlesCollisionsInteraction } = await import("@tsparticles/interaction-particles-collisions"),
-        { loadParticlesLinksInteraction } = await import("@tsparticles/interaction-particles-links"),
-        { loadEasingQuadPlugin } = await import("@tsparticles/plugin-easing-quad"),
-        { loadEmojiShape } = await import("@tsparticles/shape-emoji"),
-        { loadImageShape } = await import("@tsparticles/shape-image"),
-        { loadLineShape } = await import("@tsparticles/shape-line"),
-        { loadPolygonShape } = await import("@tsparticles/shape-polygon"),
-        { loadSquareShape } = await import("@tsparticles/shape-square"),
-        { loadStarShape } = await import("@tsparticles/shape-star"),
-        { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-        { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
-        { loadStrokeColorUpdater } = await import("@tsparticles/updater-stroke-color"),
-        { loadBasic } = await import("@tsparticles/basic");
-
     await loadParallaxMover(engine, false);
 
     await loadExternalAttractInteraction(engine, false);

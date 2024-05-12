@@ -1,49 +1,25 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers,no-console,@typescript-eslint/no-unused-expressions */
 import {
-    type ICoordinates,
-    type Particle,
     MoveDirection,
     OutModeDirection,
     Vector,
-    tsParticles,
-    getRandom,
-    Container,
-    getDistances,
-    clamp,
-    isInArray,
-    mix,
+    areBoundsInside,
     arrayRandomIndex,
+    calculateBounds,
+    clamp,
+    getDistance,
+    getParticleBaseVelocity,
+    getRandom,
+    isInArray,
+    isPointInside,
     itemFromArray,
+    mix,
     randomInRange,
     setRangeValue,
-    getDistance,
-    calculateBounds,
-    areBoundsInside,
-    isPointInside,
-    getParticleBaseVelocity,
+    tsParticles,
 } from "@tsparticles/engine";
-import { describe, it } from "mocha";
-import { expect } from "chai";
-
-async function buildParticleWithDirection(
-    container: Container,
-    direction: MoveDirection,
-): Promise<Particle | undefined> {
-    const options = { move: { direction } };
-
-    return container.particles.addParticle(undefined, options);
-}
-
-function segmentBounce(start: ICoordinates, stop: ICoordinates, velocity: Vector): void {
-    const { dx, dy } = getDistances(start, stop);
-    const wallAngle = Math.atan2(dy, dx) + Math.PI / 2;
-    const wallNormalX = Math.sin(wallAngle);
-    const wallNormalY = -Math.cos(wallAngle);
-
-    const d = 2 * (velocity.x * wallNormalX + velocity.y * wallNormalY);
-
-    velocity.x -= d * wallNormalX;
-    velocity.y -= d * wallNormalY;
-}
+import { buildParticleWithDirection, segmentBounce } from "../Fixture/Utils";
+import { describe, expect, it } from "vitest";
 
 describe("Utils", () => {
     describe("clamp", () => {
@@ -589,8 +565,8 @@ describe("Utils", () => {
             throw new Error("Container not found");
         }
 
-        it("should return the proper base velocity, when it's moving top", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.top);
+        it("should return the proper base velocity, when it's moving top", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.top);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -599,8 +575,8 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 2);
         });
 
-        it("should return the proper base velocity, when it's moving top-right", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.topRight);
+        it("should return the proper base velocity, when it's moving top-right", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.topRight);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -609,8 +585,8 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(particle.direction).angle).to.eql(-Math.PI / 4);
         });
 
-        it("should return the proper base velocity, when it's moving right", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.right);
+        it("should return the proper base velocity, when it's moving right", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.right);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -619,8 +595,8 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(particle.direction).angle).to.eql(0);
         });
 
-        it("should return the proper base velocity, when it's moving bottom-right", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.bottomRight);
+        it("should return the proper base velocity, when it's moving bottom-right", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.bottomRight);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -629,8 +605,8 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 4);
         });
 
-        it("should return the proper base velocity, when it's moving bottom", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.bottom);
+        it("should return the proper base velocity, when it's moving bottom", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.bottom);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -639,8 +615,8 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI / 2);
         });
 
-        it("should return the proper base velocity, when it's moving bottom-left", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.bottomLeft);
+        it("should return the proper base velocity, when it's moving bottom-left", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.bottomLeft);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -649,8 +625,8 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(particle.direction).angle).to.eql((3 * Math.PI) / 4);
         });
 
-        it("should return the proper base velocity, when it's moving left", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.left);
+        it("should return the proper base velocity, when it's moving left", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.left);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -659,8 +635,8 @@ describe("Utils", () => {
             expect(getParticleBaseVelocity(particle.direction).angle).to.eql(Math.PI);
         });
 
-        it("should return the proper base velocity, when it's moving top-left", async () => {
-            const particle = await buildParticleWithDirection(container, MoveDirection.topLeft);
+        it("should return the proper base velocity, when it's moving top-left", () => {
+            const particle = buildParticleWithDirection(container, MoveDirection.topLeft);
 
             if (!particle) {
                 throw new Error("Particle not found");
@@ -672,12 +648,12 @@ describe("Utils", () => {
 
     describe("segmentBounce", () => {
         const start = {
-                x: 29, //Math.floor(getRandom() * 100),
-                y: 82, //Math.floor(getRandom() * 100)
+                x: 29, // Math.floor(getRandom() * 100),
+                y: 82, // Math.floor(getRandom() * 100)
             },
             stop = {
-                x: 53, //Math.floor(getRandom() * 100),
-                y: 82, //Math.floor(getRandom() * 100)
+                x: 53, // Math.floor(getRandom() * 100),
+                y: 82, // Math.floor(getRandom() * 100)
             },
             velocity = Vector.origin; // angle = 238.91568442036498 * Math.PI / 180;//getRandom() * Math.PI * 2;
 
@@ -693,5 +669,9 @@ describe("Utils", () => {
 
         console.log("res. speed", velocity.length);
         console.log("res. angle", ((velocity.angle * 180) / Math.PI) % 360);
+
+        it("should bounce the particle off the segment", () => {
+            expect(velocity.length).to.be.not.undefined.and.not.null;
+        });
     });
 });

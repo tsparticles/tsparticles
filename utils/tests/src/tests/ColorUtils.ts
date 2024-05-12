@@ -1,19 +1,19 @@
+/* eslint-disable @typescript-eslint/no-magic-numbers,no-console,@typescript-eslint/no-unused-expressions */
 import {
-    colorToRgb,
-    stringToAlpha,
     type IColor,
     type IHsl,
     type IHsla,
     type IRgb,
-    stringToRgb,
+    colorToRgb,
+    getRandomRgbColor,
+    getStyleFromHsl,
+    getStyleFromRgb,
     hslToRgb,
     hslaToRgba,
-    getRandomRgbColor,
-    getStyleFromRgb,
-    getStyleFromHsl,
+    stringToAlpha,
+    stringToRgb,
 } from "@tsparticles/engine";
-import { describe, it } from "mocha";
-import { expect } from "chai";
+import { describe, expect, it } from "vitest";
 
 describe("ColorUtils", () => {
     const red: IRgb = {

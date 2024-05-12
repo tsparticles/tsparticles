@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import { Popper } from "./Popper.js";
 
 /**
  * @param engine -
@@ -7,10 +8,8 @@ import type { Engine } from "@tsparticles/engine";
 export async function loadExternalPopInteraction(engine: Engine, refresh = true): Promise<void> {
     await engine.addInteractor(
         "externalPop",
-        async (container) => {
-            const { Popper } = await import("./Popper.js");
-
-            return new Popper(container);
+        container => {
+            return Promise.resolve(new Popper(container));
         },
         refresh,
     );
