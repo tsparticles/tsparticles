@@ -8,9 +8,11 @@
         "lint:ci": "eslint --ext .js,.jsx,.ts,.tsx src",
         "lint": "eslint --ext .js,.jsx,.ts,.tsx --fix src",
         "build": "pnpm run lint && pnpm run prettify && pnpm test",
+        "build:ui":  "pnpm run lint && pnpm run prettify && pnpm test:ui",
         "build:ci": "pnpm run lint:ci && pnpm run prettify:ci && pnpm run test:ci",
-        "test": "vitest --ui",
-        "test:ci": "vitest"
+        "test": "vitest run",
+        "test:ui": "vitest watch --ui",
+        "test:ci": "vitest run"
     },
     "dependencies": {
         "@tsparticles/engine": "^3.3.0"
