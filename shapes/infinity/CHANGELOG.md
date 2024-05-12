@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/tsparticles/tsparticles/compare/v3.3.0...v3.4.0) (2024-05-12)
+
+### Features
+
+-   added infinity shape ([935368b](https://github.com/tsparticles/tsparticles/commit/935368b88ad77495b3b17477ab7093e130623844))
+
 # [3.3.0](https://github.com/tsparticles/tsparticles/compare/v3.2.2...v3.3.0) (2024-02-27)
 
 ### Bug Fixes

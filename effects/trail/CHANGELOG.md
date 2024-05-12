@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/tsparticles/tsparticles/compare/v3.3.0...v3.4.0) (2024-05-12)
+
+### Bug Fixes
+
+-   improved trail effect and tilt ([2892549](https://github.com/tsparticles/tsparticles/commit/2892549d3f1cde8192e641c9221afc551afd5d06))
+
+### Features
+
+-   changed bundles loading method, no more preloading plugins ([13b00a0](https://github.com/tsparticles/tsparticles/commit/13b00a03b327fd547014a99f8cbc8ced228f31c8))
+
 # [3.3.0](https://github.com/tsparticles/tsparticles/compare/v3.2.2...v3.3.0) (2024-02-27)
 
 ### Bug Fixes
