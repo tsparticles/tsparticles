@@ -58,7 +58,7 @@
     "lerna": "^8.1.2",
     "madge": "^7.0.0",
     "nx": "^19.0.2",
-    "nx-cloud": "^18.0.1",
+    "nx-cloud": "^19.0.0",
     "prettier": "^3.2.5",
     "prettier-plugin-multiline-arrays": "^3.0.4",
     "rimraf": "^5.0.7",
