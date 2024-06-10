@@ -19,6 +19,6 @@
         "tsparticles": "^3.4.0"
     },
     "devDependencies": {
-        "electron": "^30.0.0"
+        "electron": "^31.0.0"
     }
 }
