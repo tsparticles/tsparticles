@@ -575,8 +575,8 @@ importers:
         version: 3.4.0
     devDependencies:
       electron:
-        specifier: ^30.0.0
-        version: 30.0.0
+        specifier: ^31.0.0
+        version: 31.0.0
 
   demo/vanilla:
     dependencies:
@@ -3529,9 +3529,6 @@ packages:
   '@types/node@16.18.38':
     resolution: {integrity: sha512-6sfo1qTulpVbkxECP+AVrHV9OoJqhzCsfTNp5NIG+enM4HyM3HvZCO798WShIXBN0+QtDIcutJCjsVYnQP5rIQ==}
 
-  '@types/node@20.11.30':
-    resolution: {integrity: sha512-dHM6ZxwlmuZaRmUPfv1p+KrdD1Dci04FbdEm/9wEMouFqxYoFl5aMkt0VMAUtYRQDyYvD41WJLukhq/ha3YuTw==}
-
   '@types/node@20.12.12':
     resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
 
@@ -4829,8 +4826,8 @@ packages:
   electron-to-chromium@1.4.682:
     resolution: {integrity: sha512-oCglfs8yYKs9RQjJFOHonSnhikPK3y+0SvSYc/YpYJV//6rqc0/hbwd0c7vgK4vrl6y2gJAwjkhkSGWK+z4KRA==}
 
-  electron@30.0.0:
-    resolution: {integrity: sha512-GRwKphq/TUhSlb44OwSckXKl50f5OR/pm9MvF3rBLyqcxwfu7L11xejrZ0hDea1eKyCkzGd4B+cIqaQiDguPEA==}
+  electron@31.0.0:
+    resolution: {integrity: sha512-yJMhwu5NVqor7h5mt65uKtBsjSAD7NiRwNCigK8xAlJMaP0X2FKipEzQocOzusy7E0dny4gkTgOTATy+ucDtjw==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -9354,7 +9351,7 @@ snapshots:
   '@commitlint/is-ignored@19.2.2':
     dependencies:
       '@commitlint/types': 19.0.3
-      semver: 7.6.0
+      semver: 7.6.2
 
   '@commitlint/lint@19.2.2':
     dependencies:
@@ -9834,7 +9831,7 @@ snapshots:
 
   '@npmcli/fs@3.1.0':
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   '@npmcli/git@5.0.3':
     dependencies:
@@ -9844,7 +9841,7 @@ snapshots:
       proc-log: 3.0.0
       promise-inflight: 1.0.1
       promise-retry: 2.0.1
-      semver: 7.6.0
+      semver: 7.6.2
       which: 4.0.0
     transitivePeerDependencies:
       - bluebird
@@ -10883,10 +10880,6 @@ snapshots:
 
   '@types/node@16.18.38': {}
 
-  '@types/node@20.11.30':
-    dependencies:
-      undici-types: 5.26.5
-
   '@types/node@20.12.12':
     dependencies:
       undici-types: 5.26.5
@@ -11017,7 +11010,7 @@ snapshots:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.6.0
+      semver: 7.6.2
       tsutils: 3.21.0(typescript@3.9.10)
     optionalDependencies:
       typescript: 3.9.10
@@ -11031,7 +11024,7 @@ snapshots:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.6.0
+      semver: 7.6.2
       tsutils: 3.21.0(typescript@4.9.5)
     optionalDependencies:
       typescript: 4.9.5
@@ -11045,7 +11038,7 @@ snapshots:
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.6.0
+      semver: 7.6.2
       tsutils: 3.21.0(typescript@5.4.5)
     optionalDependencies:
       typescript: 5.4.5
@@ -11060,7 +11053,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.6.0
+      semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.4.5)
     optionalDependencies:
       typescript: 5.4.5
@@ -11075,7 +11068,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.4
-      semver: 7.6.0
+      semver: 7.6.2
       ts-api-utils: 1.3.0(typescript@5.4.5)
     optionalDependencies:
       typescript: 5.4.5
@@ -11091,7 +11084,7 @@ snapshots:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.4.5)
       eslint: 8.57.0
-      semver: 7.6.0
+      semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -11644,7 +11637,7 @@ snapshots:
 
   builtins@5.0.1:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   byte-size@8.1.1: {}
 
@@ -12353,10 +12346,10 @@ snapshots:
 
   electron-to-chromium@1.4.682: {}
 
-  electron@30.0.0:
+  electron@31.0.0:
     dependencies:
       '@electron/get': 2.0.2
-      '@types/node': 20.11.30
+      '@types/node': 20.12.12
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -13185,7 +13178,7 @@ snapshots:
       es6-error: 4.1.1
       matcher: 3.0.0
       roarr: 2.15.4
-      semver: 7.6.0
+      semver: 7.6.2
       serialize-error: 7.0.1
     optional: true
 
@@ -14417,7 +14410,7 @@ snapshots:
       make-fetch-happen: 13.0.0
       nopt: 7.2.0
       proc-log: 3.0.0
-      semver: 7.6.0
+      semver: 7.6.2
       tar: 6.2.1
       which: 4.0.0
     transitivePeerDependencies:
@@ -14480,21 +14473,21 @@ snapshots:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@5.0.0:
     dependencies:
       hosted-git-info: 6.1.1
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@6.0.0:
     dependencies:
       hosted-git-info: 7.0.1
       is-core-module: 2.13.1
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-license: 3.0.4
 
   normalize-path@3.0.0: {}
@@ -14511,7 +14504,7 @@ snapshots:
 
   npm-install-checks@6.1.1:
     dependencies:
-      semver: 7.6.0
+      semver: 7.6.2
 
   npm-normalize-package-bin@1.0.1: {}
 
@@ -14521,14 +14514,14 @@ snapshots:
     dependencies:
       hosted-git-info: 6.1.1
       proc-log: 3.0.0
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-name: 5.0.0
 
   npm-package-arg@11.0.1:
     dependencies:
       hosted-git-info: 7.0.1
       proc-log: 3.0.0
-      semver: 7.6.0
+      semver: 7.6.2
       validate-npm-package-name: 5.0.0
 
   npm-package-arg@8.1.1:
@@ -14553,7 +14546,7 @@ snapshots:
       npm-install-checks: 6.1.1
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 11.0.1
-      semver: 7.6.0
+      semver: 7.6.2
 
   npm-registry-fetch@14.0.5:
     dependencies:
