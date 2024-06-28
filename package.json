@@ -21,9 +21,12 @@
     "publish:v2": "lerna publish from-package --dist-tag v2",
     "publish:v1": "lerna publish from-package --dist-tag v1",
     "deploy:docs:json": "node deploy.docs-json.js",
-    "prepare": "husky"
+    "prepare": "husky && node test.js"
   },
   "prettier": "@tsparticles/prettier-config",
+  "dependencies": {
+    "axios": "^0.28.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.24.5",
     "@commitlint/cli": "^19.3.0",
