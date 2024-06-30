@@ -1,3 +1,4 @@
+import { animate, cancelAnimation, getRangeValue } from "../Utils/NumberUtils.js";
 import { errorPrefix, millisecondsToSeconds } from "./Utils/Constants.js";
 import { getLogger, safeIntersectionObserver } from "../Utils/Utils.js";
 import { Canvas } from "./Canvas.js";
@@ -16,7 +17,6 @@ import { Options } from "../Options/Classes/Options.js";
 import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
-import { getRangeValue } from "../Utils/NumberUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
 
 type ContainerClickHandler = (evt: Event) => void;
@@ -450,7 +450,7 @@ export class Container {
             this._nextFrame(timestamp);
         };
 
-        this._drawAnimationFrame = requestAnimationFrame(timestamp => frame(timestamp));
+        this._drawAnimationFrame = animate(timestamp => frame(timestamp));
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -596,7 +596,7 @@ export class Container {
         }
 
         if (this._drawAnimationFrame !== undefined) {
-            cancelAnimationFrame(this._drawAnimationFrame);
+            cancelAnimation(this._drawAnimationFrame);
 
             delete this._drawAnimationFrame;
         }

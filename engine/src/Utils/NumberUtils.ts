@@ -10,9 +10,18 @@ import { Vector } from "../Core/Utils/Vectors.js";
 import { isNumber } from "./TypeUtils.js";
 import { percentDenominator } from "../Core/Utils/Constants.js";
 
+interface AnimationLoop {
+    cancel: (handle: number) => void;
+    nextFrame: (callback: FrameRequestCallback) => number;
+}
+
 type EasingFunction = (value: number) => number;
 
 let _random = Math.random;
+const _animationLoop: AnimationLoop = {
+    nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
+    cancel: (idx: number): void => cancelAnimationFrame(idx),
+};
 
 const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
     double = 2,
@@ -55,6 +64,36 @@ export function getRandom(): number {
         max = 1;
 
     return clamp(_random(), min, max - Number.EPSILON);
+}
+
+/**
+ * Replaces the library animation functions with custom ones.
+ * @param nextFrame - A function that will be called with a callback to be executed in the next frame.
+ * @param cancel - A function that will be called with the handle of the frame to be canceled.
+ */
+export function setAnimationFunctions(
+    nextFrame: (callback: FrameRequestCallback) => number,
+    cancel: (handle: number) => void,
+): void {
+    _animationLoop.nextFrame = (callback: FrameRequestCallback): number => nextFrame(callback);
+    _animationLoop.cancel = (handle: number): void => cancel(handle);
+}
+
+/**
+ * Calls the next frame with the given callback.
+ * @param fn - The callback to be executed in the next frame.
+ * @returns the handle of the frame.
+ */
+export function animate(fn: FrameRequestCallback): number {
+    return _animationLoop.nextFrame(fn);
+}
+
+/**
+ * Cancels the frame with the given handle.
+ * @param handle - The handle of the frame to be canceled.
+ */
+export function cancelAnimation(handle: number): void {
+    _animationLoop.cancel(handle);
 }
 
 /**
