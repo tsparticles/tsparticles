@@ -19,11 +19,10 @@ type EasingFunction = (value: number) => number;
 
 let _random = Math.random;
 const _animationLoop: AnimationLoop = {
-    nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
-    cancel: (idx: number): void => cancelAnimationFrame(idx),
-};
-
-const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
+        nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
+        cancel: (idx: number): void => cancelAnimationFrame(idx),
+    },
+    easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
     double = 2,
     doublePI = Math.PI * double;
 
@@ -32,11 +31,11 @@ const easings = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
  * @param easing -
  */
 export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
-    if (easings.get(name)) {
+    if (easingFunctions.get(name)) {
         return;
     }
 
-    easings.set(name, easing);
+    easingFunctions.set(name, easing);
 }
 
 /**
@@ -44,7 +43,7 @@ export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFuncti
  * @returns the easing function
  */
 export function getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
-    return easings.get(name) ?? ((value: number): number => value);
+    return easingFunctions.get(name) ?? ((value: number): number => value);
 }
 
 /**
