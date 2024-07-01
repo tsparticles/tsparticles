@@ -92,7 +92,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "workspace:^"
+        "@tsparticles/engine": "workspace:^3.5.0"
     },
     "publishConfig": {
         "access": "public",

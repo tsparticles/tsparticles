@@ -107,19 +107,19 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "workspace:^",
-        "@tsparticles/interaction-external-trail": "workspace:^",
-        "@tsparticles/plugin-absorbers": "workspace:^",
-        "@tsparticles/plugin-emitters": "workspace:^",
-        "@tsparticles/plugin-emitters-shape-circle": "workspace:^",
-        "@tsparticles/plugin-emitters-shape-square": "workspace:^",
-        "@tsparticles/shape-text": "workspace:^",
-        "@tsparticles/slim": "workspace:^",
-        "@tsparticles/updater-destroy": "workspace:^",
-        "@tsparticles/updater-roll": "workspace:^",
-        "@tsparticles/updater-tilt": "workspace:^",
-        "@tsparticles/updater-twinkle": "workspace:^",
-        "@tsparticles/updater-wobble": "workspace:^"
+        "@tsparticles/engine": "workspace:^3.5.0",
+        "@tsparticles/interaction-external-trail": "workspace:^3.5.0",
+        "@tsparticles/plugin-absorbers": "workspace:^3.5.0",
+        "@tsparticles/plugin-emitters": "workspace:^3.5.0",
+        "@tsparticles/plugin-emitters-shape-circle": "workspace:^3.5.0",
+        "@tsparticles/plugin-emitters-shape-square": "workspace:^3.5.0",
+        "@tsparticles/shape-text": "workspace:^3.5.0",
+        "@tsparticles/slim": "workspace:^3.5.0",
+        "@tsparticles/updater-destroy": "workspace:^3.5.0",
+        "@tsparticles/updater-roll": "workspace:^3.5.0",
+        "@tsparticles/updater-tilt": "workspace:^3.5.0",
+        "@tsparticles/updater-twinkle": "workspace:^3.5.0",
+        "@tsparticles/updater-wobble": "workspace:^3.5.0"
     },
     "publishConfig": {
         "access": "public",

@@ -107,15 +107,15 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/basic": "workspace:^",
-        "@tsparticles/effect-trail": "workspace:^",
-        "@tsparticles/engine": "workspace:^",
-        "@tsparticles/plugin-emitters": "workspace:^",
-        "@tsparticles/plugin-emitters-shape-square": "workspace:^",
-        "@tsparticles/plugin-sounds": "workspace:^",
-        "@tsparticles/updater-destroy": "workspace:^",
-        "@tsparticles/updater-life": "workspace:^",
-        "@tsparticles/updater-rotate": "workspace:^"
+        "@tsparticles/basic": "workspace:^3.5.0",
+        "@tsparticles/effect-trail": "workspace:^3.5.0",
+        "@tsparticles/engine": "workspace:^3.5.0",
+        "@tsparticles/plugin-emitters": "workspace:^3.5.0",
+        "@tsparticles/plugin-emitters-shape-square": "workspace:^3.5.0",
+        "@tsparticles/plugin-sounds": "workspace:^3.5.0",
+        "@tsparticles/updater-destroy": "workspace:^3.5.0",
+        "@tsparticles/updater-life": "workspace:^3.5.0",
+        "@tsparticles/updater-rotate": "workspace:^3.5.0"
     },
     "publishConfig": {
         "access": "public",
