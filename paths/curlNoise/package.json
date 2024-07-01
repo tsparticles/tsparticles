@@ -95,8 +95,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.4.0",
-    "@tsparticles/simplex-noise": "^3.4.0"
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/simplex-noise": "workspace:^"
   },
   "publishConfig": {
     "access": "public",

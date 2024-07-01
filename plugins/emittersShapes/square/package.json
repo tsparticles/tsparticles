@@ -108,8 +108,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.4.0",
-    "@tsparticles/plugin-emitters": "^3.4.0"
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/plugin-emitters": "workspace:^"
   },
   "publishConfig": {
     "access": "public",

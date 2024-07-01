@@ -39,17 +39,17 @@
         "sass": "^1.69.5"
     },
     "dependencies": {
-        "@tsparticles/configs": "^3.4.0",
-        "@tsparticles/engine": "^3.4.0",
-        "@tsparticles/interaction-light": "^3.4.0",
-        "@tsparticles/interaction-particles-repulse": "^3.4.0",
-        "@tsparticles/path-curves": "^3.4.0",
-        "@tsparticles/path-perlin-noise": "^3.4.0",
-        "@tsparticles/path-polygon": "^3.4.0",
-        "@tsparticles/path-simplex-noise": "^3.4.0",
-        "@tsparticles/plugin-infection": "^3.4.0",
-        "@tsparticles/updater-gradient": "^3.4.0",
-        "@tsparticles/updater-orbit": "^3.4.0",
+        "@tsparticles/configs": "workspace:^",
+        "@tsparticles/engine": "workspace:^",
+        "@tsparticles/interaction-light": "workspace:^",
+        "@tsparticles/interaction-particles-repulse": "workspace:^",
+        "@tsparticles/path-curves": "workspace:^",
+        "@tsparticles/path-perlin-noise": "workspace:^",
+        "@tsparticles/path-polygon": "workspace:^",
+        "@tsparticles/path-simplex-noise": "workspace:^",
+        "@tsparticles/plugin-infection": "workspace:^",
+        "@tsparticles/updater-gradient": "workspace:^",
+        "@tsparticles/updater-orbit": "workspace:^",
         "tsparticles": "^3.4.0"
     }
 }

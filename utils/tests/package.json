@@ -15,7 +15,7 @@
     "test:ci": "vitest run"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.4.0"
+    "@tsparticles/engine": "workspace:^"
   },
   "devDependencies": {
     "vitest": "^1.6.0"

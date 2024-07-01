@@ -107,13 +107,13 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.4.0",
-    "@tsparticles/move-base": "^3.4.0",
-    "@tsparticles/shape-circle": "^3.4.0",
-    "@tsparticles/updater-color": "^3.4.0",
-    "@tsparticles/updater-opacity": "^3.4.0",
-    "@tsparticles/updater-out-modes": "^3.4.0",
-    "@tsparticles/updater-size": "^3.4.0"
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/move-base": "workspace:^",
+    "@tsparticles/shape-circle": "workspace:^",
+    "@tsparticles/updater-color": "workspace:^",
+    "@tsparticles/updater-opacity": "workspace:^",
+    "@tsparticles/updater-out-modes": "workspace:^",
+    "@tsparticles/updater-size": "workspace:^"
   },
   "publishConfig": {
     "access": "public",

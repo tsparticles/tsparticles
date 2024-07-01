@@ -97,6 +97,6 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.4.0"
+    "@tsparticles/engine": "workspace:^"
   }
 }

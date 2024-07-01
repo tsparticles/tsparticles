@@ -109,8 +109,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.4.0",
-    "@tsparticles/perlin-noise": "^3.4.0"
+    "@tsparticles/engine": "workspace:^",
+    "@tsparticles/perlin-noise": "workspace:^"
   },
   "publishConfig": {
     "access": "public",

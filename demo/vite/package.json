@@ -9,9 +9,9 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@tsparticles/all": "^3.4.0",
-        "@tsparticles/configs": "^3.4.0",
-        "@tsparticles/engine": "^3.4.0"
+        "@tsparticles/all": "workspace:^",
+        "@tsparticles/configs": "workspace:^",
+        "@tsparticles/engine": "workspace:^"
     },
     "devDependencies": {
         "typescript": "^5.3.3",
