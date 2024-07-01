@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/tsparticles/tsparticles/compare/v3.4.0...v3.5.0) (2024-07-01)
+
+### Features
+
+-   added customization for animation loop, fixes [#5355](https://github.com/tsparticles/tsparticles/issues/5355) ([76d9dfd](https://github.com/tsparticles/tsparticles/commit/76d9dfd56b51c05a82d60bce13157f020df547c9))
+
 # [3.4.0](https://github.com/tsparticles/tsparticles/compare/v3.3.0...v3.4.0) (2024-05-12)
 
 ### Bug Fixes

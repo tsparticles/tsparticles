@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/demo-new",
     "private": true,
-    "version": "3.4.0",
+    "version": "3.5.0",
     "description": "tsParticles Demo Website",
     "main": "index.html",
     "scripts": {
