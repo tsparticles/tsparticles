@@ -383,3 +383,4 @@ demo/vanilla/public/stylesheets/*.css
 docs.json
 
 .nx/cache
+.nx/workspace-data

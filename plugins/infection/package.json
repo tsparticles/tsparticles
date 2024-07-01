@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/plugin-infection",
-    "version": "3.4.0",
+    "version": "3.5.0",
     "description": "tsParticles infection plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -108,7 +108,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "^3.4.0"
+        "@tsparticles/engine": "workspace:^3.5.0"
     },
     "publishConfig": {
         "access": "public",
