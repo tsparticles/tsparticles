@@ -16,7 +16,7 @@
     "dependencies": {
         "@tsparticles/configs": "workspace:^",
         "@tsparticles/engine": "workspace:^",
-        "tsparticles": "^3.4.0"
+        "tsparticles": "workspace:^"
     },
     "devDependencies": {
         "electron": "^31.1.0"

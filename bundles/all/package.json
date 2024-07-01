@@ -154,7 +154,7 @@
     "@tsparticles/shape-spiral": "workspace:^",
     "@tsparticles/updater-gradient": "workspace:^",
     "@tsparticles/updater-orbit": "workspace:^",
-    "tsparticles": "^3.4.0"
+    "tsparticles": "workspace:^"
   },
   "publishConfig": {
     "access": "public",
