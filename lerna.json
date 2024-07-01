@@ -1,23 +1,4 @@
 {
-    "packages": [
-        "bundles/*",
-        "demo/*",
-        "effects/*",
-        "engine",
-        "interactions/*",
-        "interactions/external/*",
-        "interactions/particles/*",
-        "move/*",
-        "paths/*",
-        "plugins/*",
-        "plugins/easings/*",
-        "plugins/emittersShapes/*",
-        "plugins/exports/*",
-        "shapes/*",
-        "updaters/*",
-        "utils/*",
-        "websites/*"
-    ],
     "version": "3.4.0",
     "npmClient": "pnpm",
     "conventionalCommits": true,
