@@ -99,22 +99,22 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^",
-    "@tsparticles/engine": "^",
-    "@tsparticles/plugin-emitters": "^",
-    "@tsparticles/plugin-motion": "^",
-    "@tsparticles/shape-cards": "^",
-    "@tsparticles/shape-emoji": "^",
-    "@tsparticles/shape-heart": "^",
-    "@tsparticles/shape-image": "^",
-    "@tsparticles/shape-polygon": "^",
-    "@tsparticles/shape-square": "^",
-    "@tsparticles/shape-star": "^",
-    "@tsparticles/updater-life": "^",
-    "@tsparticles/updater-roll": "^",
-    "@tsparticles/updater-rotate": "^",
-    "@tsparticles/updater-tilt": "^",
-    "@tsparticles/updater-wobble": "^"
+    "@tsparticles/basic": "^3.5.0",
+    "@tsparticles/engine": "^3.5.0",
+    "@tsparticles/plugin-emitters": "^3.5.0",
+    "@tsparticles/plugin-motion": "^3.5.0",
+    "@tsparticles/shape-cards": "^3.5.0",
+    "@tsparticles/shape-emoji": "^3.5.0",
+    "@tsparticles/shape-heart": "^3.5.0",
+    "@tsparticles/shape-image": "^3.5.0",
+    "@tsparticles/shape-polygon": "^3.5.0",
+    "@tsparticles/shape-square": "^3.5.0",
+    "@tsparticles/shape-star": "^3.5.0",
+    "@tsparticles/updater-life": "^3.5.0",
+    "@tsparticles/updater-roll": "^3.5.0",
+    "@tsparticles/updater-rotate": "^3.5.0",
+    "@tsparticles/updater-tilt": "^3.5.0",
+    "@tsparticles/updater-wobble": "^3.5.0"
   },
   "publishConfig": {
     "access": "public"

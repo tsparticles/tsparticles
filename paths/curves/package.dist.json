@@ -104,6 +104,6 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^"
+    "@tsparticles/engine": "^3.5.0"
   }
 }
