@@ -100,8 +100,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^",
-    "@tsparticles/plugin-emitters": "^"
+    "@tsparticles/engine": "^3.5.0",
+    "@tsparticles/plugin-emitters": "^3.5.0"
   },
   "publishConfig": {
     "access": "public"

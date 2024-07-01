@@ -99,13 +99,13 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^",
-    "@tsparticles/move-base": "^",
-    "@tsparticles/shape-circle": "^",
-    "@tsparticles/updater-color": "^",
-    "@tsparticles/updater-opacity": "^",
-    "@tsparticles/updater-out-modes": "^",
-    "@tsparticles/updater-size": "^"
+    "@tsparticles/engine": "^3.5.0",
+    "@tsparticles/move-base": "^3.5.0",
+    "@tsparticles/shape-circle": "^3.5.0",
+    "@tsparticles/updater-color": "^3.5.0",
+    "@tsparticles/updater-opacity": "^3.5.0",
+    "@tsparticles/updater-out-modes": "^3.5.0",
+    "@tsparticles/updater-size": "^3.5.0"
   },
   "publishConfig": {
     "access": "public"
