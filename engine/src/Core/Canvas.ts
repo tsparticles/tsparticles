@@ -37,7 +37,7 @@ function setTransformValue(
  * @param style -
  * @param important -
  */
-function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration>, important = false): void {
+function setStyle(canvas: HTMLCanvasElement, style?: Record<string, string | null>, important = false): void {
     if (!style) {
         return;
     }
@@ -56,10 +56,6 @@ function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration
 
     for (const key in style) {
         const value = style[key];
-
-        if (!value) {
-            continue;
-        }
 
         elementStyle.setProperty(key, value, important ? "important" : "");
     }
@@ -90,7 +86,7 @@ export class Canvas {
     private _coverImage?: { image: HTMLImageElement; opacity: number };
     private _generated;
     private _mutationObserver?: MutationObserver;
-    private _originalStyle?: CSSStyleDeclaration;
+    private _originalStyle?: Record<string, string | null>;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
@@ -398,7 +394,7 @@ export class Canvas {
                 : this._generated;
         this.element = canvas;
         this.element.ariaHidden = "true";
-        this._originalStyle = deepExtend({}, this.element.style) as CSSStyleDeclaration;
+        this._originalStyle = deepExtend({}, this.element.style) as Record<string, string | null>;
         this.size.height = canvas.offsetHeight;
         this.size.width = canvas.offsetWidth;
         this._context = this.element.getContext("2d");
@@ -623,7 +619,7 @@ export class Canvas {
         }
 
         if (this._fullScreen) {
-            this._originalStyle = deepExtend({}, element.style) as CSSStyleDeclaration;
+            this._originalStyle = deepExtend({}, element.style) as Record<string, string | null>;
 
             this._setFullScreenStyle();
         } else {
@@ -751,13 +747,15 @@ export class Canvas {
             return;
         }
 
-        const radix = 10;
+        const radix = 10,
+            zIndex = this.container.actualOptions.fullScreen.zIndex.toString(radix);
 
         setStyle(
             element,
             {
                 position: "fixed",
-                zIndex: this.container.actualOptions.fullScreen.zIndex.toString(radix),
+                "z-index": zIndex,
+                zIndex: zIndex,
                 top: "0",
                 left: "0",
                 width: "100%",
