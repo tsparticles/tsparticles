@@ -57,7 +57,7 @@
     "jsdom-global": "^3.0.2",
     "lerna": "^8.1.5",
     "madge": "^8.0.0",
-    "nx": "19.6.2",
+    "nx": "19.6.4",
     "nx-cloud": "^19.0.0",
     "prettier": "^3.3.2",
     "prettier-plugin-multiline-arrays": "^3.0.6",
