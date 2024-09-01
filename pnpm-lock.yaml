@@ -52,7 +52,7 @@ importers:
         version: 7.14.1(eslint@8.57.0)(typescript@5.5.2)
       '@vitest/coverage-v8':
         specifier: ^1.6.0
-        version: 1.6.0(vitest@1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0))
+        version: 1.6.0(vitest@1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0))
       '@vitest/ui':
         specifier: ^1.6.0
         version: 1.6.0(vitest@1.6.0)
@@ -93,11 +93,11 @@ importers:
         specifier: ^9.0.11
         version: 9.0.11
       jsdom:
-        specifier: ^24.1.0
-        version: 24.1.0(canvas@2.11.2(encoding@0.1.13))
+        specifier: ^25.0.0
+        version: 25.0.0(canvas@2.11.2(encoding@0.1.13))
       jsdom-global:
         specifier: ^3.0.2
-        version: 3.0.2(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))
+        version: 3.0.2(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))
       lerna:
         specifier: ^8.1.5
         version: 8.1.5(encoding@0.1.13)
@@ -160,7 +160,7 @@ importers:
         version: 0.65.1
       vitest:
         specifier: ^1.6.0
-        version: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+        version: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
       webpack:
         specifier: ^5.92.1
         version: 5.92.1(webpack-cli@5.1.4)
@@ -1663,7 +1663,7 @@ importers:
     devDependencies:
       vitest:
         specifier: ^1.6.0
-        version: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+        version: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
 
 packages:
 
@@ -5584,10 +5584,6 @@ packages:
     resolution: {integrity: sha512-FtwrG/euBzaEjYeRqOgly7G0qviiXoJWnvEH2Z1plBdXgbyjv34pHTSb9zoeHMyDy33+DWy5Wt9Wo+TURtOYSQ==}
     engines: {node: '>= 0.8'}
 
-  http-proxy-agent@7.0.0:
-    resolution: {integrity: sha512-+ZT+iBxVUQ1asugqnD6oWoRiS25AkjNfG085dKJGtGxkdwLQrMKU5wJr2bOOFAXzKcTuqq+7fZlTMgG3SRfIYQ==}
-    engines: {node: '>= 14'}
-
   http-proxy-agent@7.0.2:
     resolution: {integrity: sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig==}
     engines: {node: '>= 14'}
@@ -5599,10 +5595,6 @@ packages:
   https-proxy-agent@5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
-
-  https-proxy-agent@7.0.2:
-    resolution: {integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==}
-    engines: {node: '>= 14'}
 
   https-proxy-agent@7.0.5:
     resolution: {integrity: sha512-1e4Wqeblerz+tMKPIq2EMGiiWW1dIjZOksyHWSUm1rmuvw/how9hBHZ38lAGj5ID4Ik6EdkOw7NmWPy6LAwalw==}
@@ -5988,8 +5980,8 @@ packages:
     peerDependencies:
       jsdom: '>=10.0.0'
 
-  jsdom@24.1.0:
-    resolution: {integrity: sha512-6gpM7pRXCwIOKxX47cgOyvyQDN/Eh0f1MeKySBV2xGdKtqJBLj8P25eY3EVCWo2mglDDzozR2r2MW4T+JiNUZA==}
+  jsdom@25.0.0:
+    resolution: {integrity: sha512-OhoFVT59T7aEq75TVw9xxEfkXgacpqAhQaYgP9y/fDqWQCMB/b1H66RfmPm/MaeaAIU9nDwMOVTlPN51+ao6CQ==}
     engines: {node: '>=18'}
     peerDependencies:
       canvas: ^2.11.2
@@ -6689,8 +6681,8 @@ packages:
     resolution: {integrity: sha512-AqZtDUWOMKs1G/8lwylVjrdYgqA4d9nu8hc+0gzRxlDb1I10+FHBGMXs6aiQHFdCUUlqH99MUMuLfzWDNDtfxw==}
     deprecated: This package is no longer supported.
 
-  nwsapi@2.2.10:
-    resolution: {integrity: sha512-QK0sRs7MKv0tKe1+5uZIQk/C8XGza4DAnztJG8iD+TpJIORARrCxczA738awHrZoHeTjSSoHqao2teO0dC/gFQ==}
+  nwsapi@2.2.12:
+    resolution: {integrity: sha512-qXDmcVlZV4XRtKFzddidpfVP4oMSGhga+xdMc25mv8kaLUHtgzCDhUxkrN8exkGdTlLNaXj7CV3GtON7zuGZ+w==}
 
   nx-cloud@19.0.0:
     resolution: {integrity: sha512-Aq1vQD8yBIdb5jLVpzsqmu8yDmMvRVdjaM30Pp1hghhlSvorGBlpTwY+TccZJv/hBtVO+SpXK8SnnegRZMrxdw==}
@@ -8582,8 +8574,8 @@ packages:
       utf-8-validate:
         optional: true
 
-  ws@8.17.1:
-    resolution: {integrity: sha512-6XQFvXTkbfUOZOKKILFG1PDK2NDQs4azKQl26T0YS5CxqWLgXajbPZ+h4gZekJyRqFU8pvnbAbbs/3TgRPy+GQ==}
+  ws@8.18.0:
+    resolution: {integrity: sha512-8VbfWfHLbbwu3+N6OKsOMpBdT4kXPDDB9cJk2bJ6mh9ucxdlnNvH1e+roYkKmN9Nxw2yjz7VzeO9oOz2zJ04Pw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -10025,8 +10017,8 @@ snapshots:
   '@npmcli/agent@2.2.0':
     dependencies:
       agent-base: 7.1.0
-      http-proxy-agent: 7.0.0
-      https-proxy-agent: 7.0.2
+      http-proxy-agent: 7.0.2
+      https-proxy-agent: 7.0.5
       lru-cache: 10.2.2
       socks-proxy-agent: 8.0.2
     transitivePeerDependencies:
@@ -11029,7 +11021,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitest/coverage-v8@1.6.0(vitest@1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0))':
+  '@vitest/coverage-v8@1.6.0(vitest@1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0))':
     dependencies:
       '@ampproject/remapping': 2.2.1
       '@bcoe/v8-coverage': 0.2.3
@@ -11044,7 +11036,7 @@ snapshots:
       std-env: 3.7.0
       strip-literal: 2.1.0
       test-exclude: 6.0.0
-      vitest: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+      vitest: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -11079,7 +11071,7 @@ snapshots:
       pathe: 1.1.2
       picocolors: 1.0.0
       sirv: 2.0.4
-      vitest: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+      vitest: 1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
 
   '@vitest/utils@1.6.0':
     dependencies:
@@ -13343,13 +13335,6 @@ snapshots:
       statuses: 2.0.1
       toidentifier: 1.0.1
 
-  http-proxy-agent@7.0.0:
-    dependencies:
-      agent-base: 7.1.0
-      debug: 4.3.6
-    transitivePeerDependencies:
-      - supports-color
-
   http-proxy-agent@7.0.2:
     dependencies:
       agent-base: 7.1.0
@@ -13365,13 +13350,6 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.6
-    transitivePeerDependencies:
-      - supports-color
-
-  https-proxy-agent@7.0.2:
-    dependencies:
-      agent-base: 7.1.0
       debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
@@ -13719,11 +13697,11 @@ snapshots:
 
   jsdoc-type-pratt-parser@4.0.0: {}
 
-  jsdom-global@3.0.2(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13))):
+  jsdom-global@3.0.2(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13))):
     dependencies:
-      jsdom: 24.1.0(canvas@2.11.2(encoding@0.1.13))
+      jsdom: 25.0.0(canvas@2.11.2(encoding@0.1.13))
 
-  jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)):
+  jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)):
     dependencies:
       cssstyle: 4.0.1
       data-urls: 5.0.0
@@ -13733,7 +13711,7 @@ snapshots:
       http-proxy-agent: 7.0.2
       https-proxy-agent: 7.0.5
       is-potential-custom-element-name: 1.0.1
-      nwsapi: 2.2.10
+      nwsapi: 2.2.12
       parse5: 7.1.2
       rrweb-cssom: 0.7.1
       saxes: 6.0.0
@@ -13744,7 +13722,7 @@ snapshots:
       whatwg-encoding: 3.1.1
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.0.0
-      ws: 8.17.1
+      ws: 8.18.0
       xml-name-validator: 5.0.0
     optionalDependencies:
       canvas: 2.11.2(encoding@0.1.13)
@@ -14601,7 +14579,7 @@ snapshots:
       gauge: 3.0.2
       set-blocking: 2.0.0
 
-  nwsapi@2.2.10: {}
+  nwsapi@2.2.12: {}
 
   nx-cloud@19.0.0:
     dependencies:
@@ -16491,7 +16469,7 @@ snapshots:
       stylus: 0.63.0
       terser: 5.26.0
 
-  vitest@1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@24.1.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0):
+  vitest@1.6.0(@types/node@20.14.9)(@vitest/ui@1.6.0)(jsdom@25.0.0(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0):
     dependencies:
       '@vitest/expect': 1.6.0
       '@vitest/runner': 1.6.0
@@ -16516,7 +16494,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.14.9
       '@vitest/ui': 1.6.0(vitest@1.6.0)
-      jsdom: 24.1.0(canvas@2.11.2(encoding@0.1.13))
+      jsdom: 25.0.0(canvas@2.11.2(encoding@0.1.13))
     transitivePeerDependencies:
       - less
       - lightningcss
@@ -16748,7 +16726,7 @@ snapshots:
 
   ws@7.5.9: {}
 
-  ws@8.17.1: {}
+  ws@8.18.0: {}
 
   xml-name-validator@5.0.0: {}
 
