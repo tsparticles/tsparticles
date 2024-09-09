@@ -34,8 +34,6 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
     }
 
     init(particle: Particle): void {
-        this.updaters = [];
-
         const outModes = particle.options.move.outModes;
 
         if (checkOutMode(outModes, OutMode.bounce)) {
