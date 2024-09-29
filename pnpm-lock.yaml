@@ -915,8 +915,8 @@ importers:
         specifier: ^7.1.4
         version: 7.1.4(express@4.19.2)
       helmet:
-        specifier: ^7.0.0
-        version: 7.0.0
+        specifier: ^8.0.0
+        version: 8.0.0
       jquery:
         specifier: ^3.7.1
         version: 3.7.1
@@ -5542,9 +5542,9 @@ packages:
     resolution: {integrity: sha512-0hJU9SCPvmMzIBdZFqNPXWa6dqh7WdH0cII9y+CyS8rG3nL48Bclra9HmKhVVUHyPWNH5Y7xDwAB7bfgSjkUMQ==}
     engines: {node: '>= 0.4'}
 
-  helmet@7.0.0:
-    resolution: {integrity: sha512-MsIgYmdBh460ZZ8cJC81q4XJknjG567wzEmv46WOBblDb6TUd3z8/GhgmsM9pn8g2B80tAJ4m5/d3Bi1KrSUBQ==}
-    engines: {node: '>=16.0.0'}
+  helmet@8.0.0:
+    resolution: {integrity: sha512-VyusHLEIIO5mjQPUI1wpOAEu+wl6Q0998jzTxqUYGE45xCIcAxy3MsbEK/yyJUJ3ADeMoB6MornPH6GMWAf+Pw==}
+    engines: {node: '>=18.0.0'}
 
   hosted-git-info@2.8.9:
     resolution: {integrity: sha512-mxIDAb9Lsm6DoOJ7xH+5+X4y1LU/4Hi50L9C5sIswK3JzULS4bwk1FvjdBgvYR4bzT4tuUQiC15FE2f5HbLvYw==}
@@ -7453,9 +7453,11 @@ packages:
 
   run-time-assertions@1.0.0:
     resolution: {integrity: sha512-2MgjLxjJbgrXIAEROObGvz9me4A5Mj0vYIGrJ/9NERO6MrtY3OqJZz2iqfezTcXOWT/zJfdAasVmSLpnwHJIZw==}
+    deprecated: Use @augment-vir/assert instead.
 
   run-time-assertions@1.5.1:
     resolution: {integrity: sha512-yyAFU3+ZGw+zjMu0s7uOSGqKIRDLaCnl80VIKdtwuu4ejxcWHCRj2mxL6elVNtI7fytHwk4e40e3IrdNkXihlw==}
+    deprecated: Use @augment-vir/assert instead.
 
   rxjs@7.8.1:
     resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
@@ -13280,7 +13282,7 @@ snapshots:
     dependencies:
       function-bind: 1.1.2
 
-  helmet@7.0.0: {}
+  helmet@8.0.0: {}
 
   hosted-git-info@2.8.9: {}
 
