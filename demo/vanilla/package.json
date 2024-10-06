@@ -27,7 +27,7 @@
         "@datalust/winston-seq": "^2.0.0",
         "@fortawesome/fontawesome-free": "^6.4.2",
         "@types/connect-livereload": "^0.6.3",
-        "@types/express": "^4.17.21",
+        "@types/express": "^5.0.0",
         "@types/livereload": "^0.9.5",
         "@types/node": "^20.8.10",
         "@types/stylus": "^0.48.41",
