@@ -350,7 +350,7 @@ export class Canvas {
     initPlugins(): void {
         this._resizePlugins = [];
 
-        for (const [, plugin] of this.container.plugins) {
+        for (const plugin of this.container.plugins.values()) {
             if (plugin.resize) {
                 this._resizePlugins.push(plugin);
             }

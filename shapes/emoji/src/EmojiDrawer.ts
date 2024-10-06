@@ -22,9 +22,9 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
 
     destroy(): void {
-        for (const [key, emojiData] of this._emojiShapeDict) {
-            if (emojiData instanceof ImageBitmap) {
-                emojiData?.close();
+        for (const [key, data] of this._emojiShapeDict) {
+            if (data instanceof ImageBitmap) {
+                data?.close();
             }
 
             this._emojiShapeDict.delete(key);
@@ -38,13 +38,13 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
             return;
         }
 
-        const emojiData = this._emojiShapeDict.get(key);
+        const image = this._emojiShapeDict.get(key);
 
-        if (!emojiData) {
+        if (!image) {
             return;
         }
 
-        drawEmoji(data, emojiData);
+        drawEmoji(data, image);
     }
 
     async init(container: Container): Promise<void> {
@@ -72,7 +72,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     }
 
     particleDestroy(particle: EmojiParticle): void {
-        delete particle.emojiDataKey;
+        particle.emojiDataKey = undefined;
     }
 
     particleInit(_container: Container, particle: EmojiParticle): void {
@@ -118,7 +118,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
             fullSize = maxSize + padding,
             canvasSize = fullSize * double;
 
-        let emojiData: ImageBitmap | HTMLCanvasElement;
+        let image: ImageBitmap | HTMLCanvasElement;
 
         if (typeof OffscreenCanvas !== "undefined") {
             const canvas = new OffscreenCanvas(canvasSize, canvasSize),
@@ -134,7 +134,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
             context.fillText(value, fullSize, fullSize);
 
-            emojiData = canvas.transferToImageBitmap();
+            image = canvas.transferToImageBitmap();
         } else {
             const canvas = document.createElement("canvas");
 
@@ -153,10 +153,10 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
             context.fillText(value, fullSize, fullSize);
 
-            emojiData = canvas;
+            image = canvas;
         }
 
-        this._emojiShapeDict.set(key, emojiData);
+        this._emojiShapeDict.set(key, image);
 
         particle.emojiDataKey = key;
     }
