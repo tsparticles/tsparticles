@@ -13,7 +13,8 @@ import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
 import { drawEmoji } from "./Utils.js";
 
-const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"';
+const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"',
+    noPadding = 0;
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     readonly validTypes = ["emoji"] as const;
@@ -24,14 +25,26 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         for (const [key, emojiData] of this._emojiShapeDict) {
             if (emojiData instanceof ImageBitmap) {
                 emojiData?.close();
-
-                this._emojiShapeDict.delete(key);
             }
+
+            this._emojiShapeDict.delete(key);
         }
     }
 
     draw(data: IShapeDrawData<EmojiParticle>): void {
-        drawEmoji(data);
+        const key = data.particle.emojiDataKey;
+
+        if (!key) {
+            return;
+        }
+
+        const emojiData = this._emojiShapeDict.get(key);
+
+        if (!emojiData) {
+            return;
+        }
+
+        drawEmoji(data, emojiData);
     }
 
     async init(container: Container): Promise<void> {
@@ -59,10 +72,10 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     }
 
     particleDestroy(particle: EmojiParticle): void {
-        delete particle.emojiData;
+        delete particle.emojiDataKey;
     }
 
-    particleInit(container: Container, particle: EmojiParticle): void {
+    particleInit(_container: Container, particle: EmojiParticle): void {
         const double = 2,
             shapeData = particle.shapeData as unknown as IEmojiShape;
 
@@ -70,27 +83,42 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
             return;
         }
 
-        const emoji = itemFromSingleOrMultiple(shapeData.value, particle.randomIndexData),
-            font = shapeData.font ?? defaultFont;
+        const emoji = itemFromSingleOrMultiple(shapeData.value, particle.randomIndexData);
 
         if (!emoji) {
             return;
         }
 
-        const key = `${emoji}_${font}`,
-            existingData = this._emojiShapeDict.get(key);
+        const emojiOptions =
+                typeof emoji === "string"
+                    ? {
+                          font: shapeData.font ?? defaultFont,
+                          padding: shapeData.padding ?? noPadding,
+                          value: emoji,
+                      }
+                    : {
+                          font: defaultFont,
+                          padding: noPadding,
+                          ...shapeData,
+                          ...emoji,
+                      },
+            font = emojiOptions.font,
+            value = emojiOptions.value;
 
-        if (existingData) {
-            particle.emojiData = existingData;
+        const key = `${value}_${font}`;
+
+        if (this._emojiShapeDict.has(key)) {
+            particle.emojiDataKey = key;
 
             return;
         }
 
-        const canvasSize = getRangeMax(particle.size.value) * double;
+        const padding = emojiOptions.padding * double,
+            maxSize = getRangeMax(particle.size.value),
+            fullSize = maxSize + padding,
+            canvasSize = fullSize * double;
 
         let emojiData: ImageBitmap | HTMLCanvasElement;
-
-        const maxSize = getRangeMax(particle.size.value);
 
         if (typeof OffscreenCanvas !== "undefined") {
             const canvas = new OffscreenCanvas(canvasSize, canvasSize),
@@ -104,7 +132,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
             context.textBaseline = "middle";
             context.textAlign = "center";
 
-            context.fillText(emoji, maxSize, maxSize);
+            context.fillText(value, fullSize, fullSize);
 
             emojiData = canvas.transferToImageBitmap();
         } else {
@@ -123,13 +151,13 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
             context.textBaseline = "middle";
             context.textAlign = "center";
 
-            context.fillText(emoji, maxSize, maxSize);
+            context.fillText(value, fullSize, fullSize);
 
             emojiData = canvas;
         }
 
         this._emojiShapeDict.set(key, emojiData);
 
-        particle.emojiData = emojiData;
+        particle.emojiDataKey = key;
     }
 }

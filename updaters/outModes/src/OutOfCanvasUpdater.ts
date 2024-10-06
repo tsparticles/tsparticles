@@ -24,26 +24,26 @@ const checkOutMode = (outModes: OutModes, outMode: OutMode | keyof typeof OutMod
 };
 
 export class OutOfCanvasUpdater implements IParticleUpdater {
-    updaters: IOutModeManager[];
+    updaters: Map<OutMode, IOutModeManager>;
 
     private readonly container;
 
     constructor(container: Container) {
         this.container = container;
-        this.updaters = [];
+        this.updaters = new Map();
     }
 
     init(particle: Particle): void {
         const outModes = particle.options.move.outModes;
 
-        if (checkOutMode(outModes, OutMode.bounce)) {
-            this.updaters.push(new BounceOutMode(this.container));
-        } else if (checkOutMode(outModes, OutMode.out)) {
-            this.updaters.push(new OutOutMode(this.container));
-        } else if (checkOutMode(outModes, OutMode.destroy)) {
-            this.updaters.push(new DestroyOutMode(this.container));
-        } else if (checkOutMode(outModes, OutMode.none)) {
-            this.updaters.push(new NoneOutMode(this.container));
+        if (!this.updaters.has(OutMode.bounce) && checkOutMode(outModes, OutMode.bounce)) {
+            this.updaters.set(OutMode.bounce, new BounceOutMode(this.container));
+        } else if (!this.updaters.has(OutMode.out) && checkOutMode(outModes, OutMode.out)) {
+            this.updaters.set(OutMode.out, new OutOutMode(this.container));
+        } else if (!this.updaters.has(OutMode.destroy) && checkOutMode(outModes, OutMode.destroy)) {
+            this.updaters.set(OutMode.destroy, new DestroyOutMode(this.container));
+        } else if (!this.updaters.has(OutMode.none) && checkOutMode(outModes, OutMode.none)) {
+            this.updaters.set(OutMode.none, new NoneOutMode(this.container));
         }
     }
 
@@ -66,7 +66,7 @@ export class OutOfCanvasUpdater implements IParticleUpdater {
         outMode: OutMode | keyof typeof OutMode,
         direction: OutModeDirection,
     ): void => {
-        for (const updater of this.updaters) {
+        for (const [, updater] of this.updaters) {
             updater.update(particle, direction, delta, outMode);
         }
     };
