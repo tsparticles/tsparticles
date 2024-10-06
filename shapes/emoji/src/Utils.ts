@@ -4,17 +4,19 @@ import type { IShapeDrawData } from "@tsparticles/engine";
 /**
  *
  * @param data -
+ * @param emojiData -
  */
-export function drawEmoji(data: IShapeDrawData<EmojiParticle>): void {
-    const { context, particle, radius, opacity } = data,
-        emojiData = particle.emojiData,
-        double = 2,
-        diameter = radius * double,
+export function drawEmoji(data: IShapeDrawData<EmojiParticle>, emojiData: ImageBitmap | HTMLCanvasElement): void {
+    const { context, opacity } = data,
+        half = 0.5,
         previousAlpha = context.globalAlpha;
 
     if (!emojiData) {
         return;
     }
+
+    const diameter = emojiData.width,
+        radius = diameter * half;
 
     context.globalAlpha = opacity;
 
