@@ -168,7 +168,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
                     ratio:
                         imageData.width && imageData.height
                             ? imageData.width / imageData.height
-                            : image.ratio ?? defaultRatio,
+                            : (image.ratio ?? defaultRatio),
                     replaceColor: replaceColor,
                     source: imageData.src,
                 };

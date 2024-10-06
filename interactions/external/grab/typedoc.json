@@ -1,5 +1,5 @@
 {
-    "includes": "./markdown",
+    "projectDocuments": ["../markdown/**/*.md"],
     "entryPoints": ["./src/"],
     "entryPointStrategy": "expand",
     "name": "tsParticles Grab External Interaction",
