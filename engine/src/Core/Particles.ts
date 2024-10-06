@@ -281,7 +281,8 @@ export class Particles {
         let deleted = 0;
 
         for (let i = index; deleted < quantity && i < this.count; i++) {
-            if (this._removeParticle(i--, group, override)) {
+            if (this._removeParticle(i, group, override)) {
+                i--;
                 deleted++;
             }
         }

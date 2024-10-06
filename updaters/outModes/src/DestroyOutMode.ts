@@ -65,6 +65,6 @@ export class DestroyOutMode implements IOutModeManager {
             }
         }
 
-        container.particles.remove(particle, undefined, true);
+        container.particles.remove(particle, particle.group, true);
     }
 }
