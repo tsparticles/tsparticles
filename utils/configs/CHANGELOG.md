@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.5.0...v3.6.0) (2024-10-07)
+
+### Bug Fixes
+
+-   fixed issue with out modes ([85ba20f](https://github.com/tsparticles/tsparticles/commit/85ba20f4004eed3ceb84bcf5333025c8fec5d81f))
+-   fixed issue with removing particles when group is active, fixes [#5352](https://github.com/tsparticles/tsparticles/issues/5352) ([af57352](https://github.com/tsparticles/tsparticles/commit/af57352b3c8e5646fa2c8e784b78698c7e2c9186))
+
+### Features
+
+-   added padding options to emoji shape, fixes [#5402](https://github.com/tsparticles/tsparticles/issues/5402) ([2a2638f](https://github.com/tsparticles/tsparticles/commit/2a2638f575cb142311927997a8ebffb25d3049ea))
+
 # [3.5.0](https://github.com/tsparticles/tsparticles/compare/v3.4.0...v3.5.0) (2024-07-01)
 
 **Note:** Version bump only for package @tsparticles/configs

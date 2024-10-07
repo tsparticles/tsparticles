@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.5.0...v3.6.0) (2024-10-07)
+
+### Bug Fixes
+
+-   fixed issue with out modes ([85ba20f](https://github.com/tsparticles/tsparticles/commit/85ba20f4004eed3ceb84bcf5333025c8fec5d81f))
+
 # [3.5.0](https://github.com/tsparticles/tsparticles/compare/v3.4.0...v3.5.0) (2024-07-01)
 
 **Note:** Version bump only for package @tsparticles/updater-destroy
