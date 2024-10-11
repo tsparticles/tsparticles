@@ -363,7 +363,7 @@ export async function fireworks(
         options = idOrOptions;
     }
 
-    return await getFireworksInstance(id, options);
+    return getFireworksInstance(id, options);
 }
 
 fireworks.create = async (
@@ -372,7 +372,7 @@ fireworks.create = async (
 ): Promise<FireworksInstance | undefined> => {
     const id = canvas.id ?? "fireworks";
 
-    return await getFireworksInstance(id, options, canvas);
+    return getFireworksInstance(id, options, canvas);
 };
 
 fireworks.init = async (): Promise<void> => {
