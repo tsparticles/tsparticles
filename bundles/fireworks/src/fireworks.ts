@@ -334,7 +334,7 @@ async function getFireworksInstance(
     options.load(sourceOptions);
 
     const particlesOptions = getOptions(options, canvas),
-        container = await tsParticles.load({ id, options: particlesOptions });
+        container = await tsParticles.load({ id, element: canvas, options: particlesOptions });
 
     if (!container) {
         return;
