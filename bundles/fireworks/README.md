@@ -68,10 +68,24 @@ fireworks();
 })();
 ```
 
+** Custom Canvas **
+
+```javascript
+fireworks.create(document.getElementById("custom-id"));
+```
+
 ** Fireworks Options **
 
 ```javascript
 fireworks({
+  colors: ["#ffffff", "#ff0000"],
+});
+```
+
+** Custom Canvas with Options **
+
+```javascript
+fireworks.create(document.getElementById("custom-id"), {
   colors: ["#ffffff", "#ff0000"],
 });
 ```

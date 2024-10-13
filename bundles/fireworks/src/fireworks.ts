@@ -349,7 +349,7 @@ async function getFireworksInstance(
  * @returns the loaded instance
  */
 export async function fireworks(
-    idOrOptions: string | RecursivePartial<IFireworkOptions>,
+    idOrOptions?: string | RecursivePartial<IFireworkOptions>,
     sourceOptions?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> {
     let id: string;
@@ -360,7 +360,7 @@ export async function fireworks(
         options = sourceOptions ?? {};
     } else {
         id = "fireworks";
-        options = idOrOptions;
+        options = idOrOptions ?? {};
     }
 
     return getFireworksInstance(id, options);
@@ -368,11 +368,11 @@ export async function fireworks(
 
 fireworks.create = async (
     canvas: HTMLCanvasElement,
-    options: RecursivePartial<IFireworkOptions>,
+    options?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> => {
     const id = canvas.id ?? "fireworks";
 
-    return getFireworksInstance(id, options, canvas);
+    return getFireworksInstance(id, options ?? {}, canvas);
 };
 
 fireworks.init = async (): Promise<void> => {
