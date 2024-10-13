@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0-beta.1](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.0...v3.6.0-beta.1) (2024-10-13)
+
+### Bug Fixes
+
+-   fixed fireworks new method, was missing a thing ([3e693e7](https://github.com/tsparticles/tsparticles/commit/3e693e7c8e733392b1ab9e3ffa53cf169876b967))
+-   fixed fireworks new method, was missing a thing, updated docs too ([28333fa](https://github.com/tsparticles/tsparticles/commit/28333faeac507334071279bee9706730f57adc1e))
+
+### Features
+
+-   added .create function to fireworks library, like confetti, to use a custom canvas ([d4e072e](https://github.com/tsparticles/tsparticles/commit/d4e072efdeaebc585d8248d59620534f56b222ad))
+
 # [3.6.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v3.5.0...v3.6.0-beta.0) (2024-10-07)
 
 ### Bug Fixes
