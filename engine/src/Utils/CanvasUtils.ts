@@ -101,8 +101,8 @@ export function drawParticle(data: IDrawParticleParams): void {
         identity = 1,
         transformData = {
             a: rotateData.cos * (transform.a ?? defaultTransform.a),
-            b: rotating ? rotateData.sin * (transform.b ?? identity) : transform.b ?? defaultTransform.b,
-            c: rotating ? -rotateData.sin * (transform.c ?? identity) : transform.c ?? defaultTransform.c,
+            b: rotating ? rotateData.sin * (transform.b ?? identity) : (transform.b ?? defaultTransform.b),
+            c: rotating ? -rotateData.sin * (transform.c ?? identity) : (transform.c ?? defaultTransform.c),
             d: rotateData.cos * (transform.d ?? defaultTransform.d),
         };
 

@@ -96,7 +96,9 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         for (let i = trailLength; i > noItems; i--) {
             const step = trail[i - trailLengthOffset],
                 position = step.position,
-                stepTransformData = particle.trailTransform ? step.transformData ?? defaultTransform : defaultTransform;
+                stepTransformData = particle.trailTransform
+                    ? (step.transformData ?? defaultTransform)
+                    : defaultTransform;
 
             context.setTransform(
                 stepTransformData.a,

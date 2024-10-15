@@ -47,7 +47,7 @@ export function addColorManager(manager: IColorManager): void {
  * @returns the converted color from string to {@link IRgba} interfaec
  */
 function stringToRgba(input: string): IRgba | undefined {
-    for (const [, manager] of colorManagers) {
+    for (const manager of colorManagers.values()) {
         if (input.startsWith(manager.stringPrefix)) {
             return manager.parseString(input);
         }
@@ -100,7 +100,7 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
         });
     }
 
-    for (const [, manager] of colorManagers) {
+    for (const manager of colorManagers.values()) {
         const res = manager.handleRangeColor(color);
 
         if (res) {
@@ -133,7 +133,7 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
         });
     }
 
-    for (const [, manager] of colorManagers) {
+    for (const manager of colorManagers.values()) {
         const res = manager.handleColor(color);
 
         if (res) {

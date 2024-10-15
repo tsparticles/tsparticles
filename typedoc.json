@@ -1,7 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "gaID": "UA-161253125-1",
-  "includes": "./markdown",
+  "projectDocuments": ["../markdown/**/*.md"],
   "entryPoints": [
     "engine",
     "bundles/confetti",
