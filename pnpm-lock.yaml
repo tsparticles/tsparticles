@@ -160,7 +160,7 @@ importers:
         version: 0.65.1
       vitest:
         specifier: ^2.1.2
-        version: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+        version: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
       webpack:
         specifier: ^5.95.0
         version: 5.95.0(webpack-cli@5.1.4)
@@ -939,8 +939,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0
       stylus:
-        specifier: ^0.63.0
-        version: 0.63.0
+        specifier: ^0.64.0
+        version: 0.64.0
       winston:
         specifier: ^3.11.0
         version: 3.11.0
@@ -1011,7 +1011,7 @@ importers:
         version: 5.3.3
       vite:
         specifier: ^5.1.4
-        version: 5.1.7(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+        version: 5.1.7(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
 
   effects/bubble:
     dependencies:
@@ -1663,7 +1663,7 @@ importers:
     devDependencies:
       vitest:
         specifier: ^2.1.2
-        version: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+        version: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
 
 packages:
 
@@ -4013,6 +4013,7 @@ packages:
 
   boolean@3.2.0:
     resolution: {integrity: sha512-d0II/GO9uf9lfUHH2BQsjxzRJZBdsjgsBiW4BvhWk/3qoKwQFjIDVN19PfX8F2D/r9PCMTtLWjYVCFrpeYUzsw==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
 
   bootstrap@5.3.2:
     resolution: {integrity: sha512-D32nmNWiQHo94BKHLmOrdjlL05q1c8oxbtBphQFb9Z5to6eGRDCm0QgeaZ4zFBHzfg2++rqa2JkqCcxDy0sH0g==}
@@ -7393,8 +7394,8 @@ packages:
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  sax@1.3.0:
-    resolution: {integrity: sha512-0s+oAmw9zLl1V1cS9BtZN7JAd0cW5e0QH4W3LWEK6a4LaLEA2OTpGYWDY+6XasBLtz6wkm3u1xRw95mRuJ59WA==}
+  sax@1.4.1:
+    resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
   saxes@6.0.0:
     resolution: {integrity: sha512-xAg7SOnEhrm5zI3puOOKyy1OMcMlIJZYNJY7xLBwSze0UjhPLnWfj2GF2EpT0jmzaJKIWKHLsaSSajf35bcYnA==}
@@ -7720,8 +7721,9 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  stylus@0.63.0:
-    resolution: {integrity: sha512-OMlgrTCPzE/ibtRMoeLVhOY0RcNuNWh0rhAVqeKnk/QwcuUKQbnqhZ1kg2vzD8VU/6h3FoPTq4RJPHgLBvX6Bw==}
+  stylus@0.64.0:
+    resolution: {integrity: sha512-ZIdT8eUv8tegmqy1tTIdJv9We2DumkNZFdCF5mz/Kpq3OcTaxSuCAYZge6HKK2CmNC02G1eJig2RV7XTw5hQrA==}
+    engines: {node: '>=16'}
     hasBin: true
 
   sumchecker@3.0.1:
@@ -10933,7 +10935,7 @@ snapshots:
       std-env: 3.7.0
       test-exclude: 7.0.1
       tinyrainbow: 1.2.0
-      vitest: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+      vitest: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -10944,13 +10946,13 @@ snapshots:
       chai: 5.1.1
       tinyrainbow: 1.2.0
 
-  '@vitest/mocker@2.1.2(@vitest/spy@2.1.2)(vite@5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0))':
+  '@vitest/mocker@2.1.2(@vitest/spy@2.1.2)(vite@5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0))':
     dependencies:
       '@vitest/spy': 2.1.2
       estree-walker: 3.0.3
       magic-string: 0.30.11
     optionalDependencies:
-      vite: 5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+      vite: 5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
 
   '@vitest/pretty-format@2.1.2':
     dependencies:
@@ -10980,7 +10982,7 @@ snapshots:
       sirv: 2.0.4
       tinyglobby: 0.2.9
       tinyrainbow: 1.2.0
-      vitest: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+      vitest: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
 
   '@vitest/utils@2.1.2':
     dependencies:
@@ -12432,7 +12434,7 @@ snapshots:
       '@es-joy/jsdoccomment': 0.43.1
       are-docs-informative: 0.0.2
       comment-parser: 1.4.1
-      debug: 4.3.4
+      debug: 4.3.6
       escape-string-regexp: 4.0.0
       eslint: 8.57.1
       esquery: 1.5.0
@@ -13919,7 +13921,7 @@ snapshots:
       chalk: 4.1.2
       commander: 7.2.0
       commondir: 1.0.1
-      debug: 4.3.4
+      debug: 4.3.6
       dependency-tree: 9.0.0
       detective-amd: 4.2.0
       detective-cjs: 4.1.0
@@ -14753,7 +14755,7 @@ snapshots:
   path-scurry@1.10.2:
     dependencies:
       lru-cache: 10.2.2
-      minipass: 7.0.4
+      minipass: 7.1.2
 
   path-scurry@1.11.1:
     dependencies:
@@ -15266,7 +15268,7 @@ snapshots:
 
   rimraf@5.0.7:
     dependencies:
-      glob: 10.3.12
+      glob: 10.4.5
 
   rimraf@6.0.1:
     dependencies:
@@ -15364,7 +15366,7 @@ snapshots:
       immutable: 4.3.0
       source-map-js: 1.0.2
 
-  sax@1.3.0: {}
+  sax@1.4.1: {}
 
   saxes@6.0.0:
     dependencies:
@@ -15728,12 +15730,12 @@ snapshots:
     dependencies:
       commander: 12.1.0
 
-  stylus@0.63.0:
+  stylus@0.64.0:
     dependencies:
       '@adobe/css-tools': 4.3.3
-      debug: 4.3.4
-      glob: 7.2.3
-      sax: 1.3.0
+      debug: 4.3.6
+      glob: 10.4.5
+      sax: 1.4.1
       source-map: 0.7.4
     transitivePeerDependencies:
       - supports-color
@@ -16241,12 +16243,12 @@ snapshots:
       '@types/unist': 3.0.3
       vfile-message: 4.0.2
 
-  vite-node@2.1.2(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0):
+  vite-node@2.1.2(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0):
     dependencies:
       cac: 6.7.14
       debug: 4.3.6
       pathe: 1.1.2
-      vite: 5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+      vite: 5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16257,7 +16259,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite@5.1.7(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0):
+  vite@5.1.7(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0):
     dependencies:
       esbuild: 0.19.12
       postcss: 8.4.38
@@ -16266,10 +16268,10 @@ snapshots:
       '@types/node': 22.7.5
       fsevents: 2.3.3
       sass: 1.69.5
-      stylus: 0.63.0
+      stylus: 0.64.0
       terser: 5.26.0
 
-  vite@5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0):
+  vite@5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
@@ -16278,13 +16280,13 @@ snapshots:
       '@types/node': 22.7.5
       fsevents: 2.3.3
       sass: 1.69.5
-      stylus: 0.63.0
+      stylus: 0.64.0
       terser: 5.26.0
 
-  vitest@2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0):
+  vitest@2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0):
     dependencies:
       '@vitest/expect': 2.1.2
-      '@vitest/mocker': 2.1.2(@vitest/spy@2.1.2)(vite@5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0))
+      '@vitest/mocker': 2.1.2(@vitest/spy@2.1.2)(vite@5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0))
       '@vitest/pretty-format': 2.1.2
       '@vitest/runner': 2.1.2
       '@vitest/snapshot': 2.1.2
@@ -16299,8 +16301,8 @@ snapshots:
       tinyexec: 0.3.0
       tinypool: 1.0.1
       tinyrainbow: 1.2.0
-      vite: 5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
-      vite-node: 2.1.2(@types/node@22.7.5)(sass@1.69.5)(stylus@0.63.0)(terser@5.26.0)
+      vite: 5.2.10(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
+      vite-node: 2.1.2(@types/node@22.7.5)(sass@1.69.5)(stylus@0.64.0)(terser@5.26.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 22.7.5
