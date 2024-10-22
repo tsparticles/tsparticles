@@ -23,9 +23,57 @@ describe("ColorUtils", () => {
     };
 
     describe("colorToRgb", () => {
-        it("string value", () => {
+        it("string value 1", () => {
             const color: IColor = {
                 value: "#ff0000",
+            };
+
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+
+        it("string value 2", () => {
+            const color: IColor = {
+                value: "rgb(255, 0, 0)",
+            };
+
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+
+        it("string value 3", () => {
+            const color: IColor = {
+                value: "rgba(255, 0, 0, 1)",
+            };
+
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+
+        it("string value 4", () => {
+            const color: IColor = {
+                value: "rgb(255 0 0)",
+            };
+
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+
+        it("string value 5", () => {
+            const color: IColor = {
+                value: "rgba(255 0 0 1)",
+            };
+
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+
+        it("string value 6", () => {
+            const color: IColor = {
+                value: "hsla(0, 100%, 50%, 1)",
+            };
+
+            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+        });
+
+        it("string value 7", () => {
+            const color: IColor = {
+                value: "hsla(0 100% 50% 1)",
             };
 
             expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
