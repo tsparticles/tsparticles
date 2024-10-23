@@ -1,0 +1,15 @@
+{
+  "projectDocuments": ["../markdown/**/*.md"],
+  "entryPoints": [
+    "./src/"
+  ],
+  "entryPointStrategy": "expand",
+  "name": "tsParticles OKLCH Color Plugin",
+  "includeVersion": true,
+  "hideGenerator": true,
+  "out": "./docs",
+  "validation": {
+    "invalidLink": true,
+    "notDocumented": true
+  }
+}

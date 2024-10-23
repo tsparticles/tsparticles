@@ -132,6 +132,7 @@
     "@tsparticles/plugin-hsv-color": "^3.6.0-beta.1",
     "@tsparticles/plugin-infection": "^3.6.0-beta.1",
     "@tsparticles/plugin-motion": "^3.6.0-beta.1",
+    "@tsparticles/plugin-oklch-color": "^3.6.0-beta.1",
     "@tsparticles/plugin-poisson-disc": "^3.6.0-beta.1",
     "@tsparticles/plugin-polygon-mask": "^3.6.0-beta.1",
     "@tsparticles/plugin-sounds": "^3.6.0-beta.1",

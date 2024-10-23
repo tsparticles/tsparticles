@@ -93,6 +93,7 @@
 
     window.addEventListener("load", async function () {
         await loadHsvColorPlugin();
+        await loadOklchColorPlugin();
 
         await loadFull(tsParticles);
 

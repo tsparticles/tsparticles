@@ -42,6 +42,7 @@
     "plugins/hsvColor",
     "plugins/infection",
     "plugins/motion",
+    "plugins/oklchColor",
     "plugins/polygonMask",
     "plugins/sounds",
     "plugins/easings/back",

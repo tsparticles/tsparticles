@@ -275,6 +275,9 @@ importers:
       '@tsparticles/plugin-motion':
         specifier: workspace:^3.6.0-beta.1
         version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-oklch-color':
+        specifier: workspace:^3.6.0-beta.1
+        version: link:../../plugins/oklchColor/dist
       '@tsparticles/plugin-poisson-disc':
         specifier: workspace:^3.6.0-beta.1
         version: link:../../plugins/poisson/dist
@@ -760,6 +763,9 @@ importers:
       '@tsparticles/plugin-motion':
         specifier: workspace:^3.6.0-beta.1
         version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-oklch-color':
+        specifier: workspace:^3.6.0-beta.1
+        version: link:../../plugins/oklchColor/dist
       '@tsparticles/plugin-poisson-disc':
         specifier: workspace:^3.6.0-beta.1
         version: link:../../plugins/poisson/dist
@@ -1398,6 +1404,13 @@ importers:
     publishDirectory: dist
 
   plugins/motion:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:^3.6.0-beta.1
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  plugins/oklchColor:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:^3.6.0-beta.1
