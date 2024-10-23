@@ -140,6 +140,7 @@ app.use("/plugin-export-image", express.static("./node_modules/@tsparticles/plug
 app.use("/plugin-export-json", express.static("./node_modules/@tsparticles/plugin-export-json"));
 app.use("/plugin-export-video", express.static("./node_modules/@tsparticles/plugin-export-video"));
 app.use("/plugin-hsv-color", express.static("./node_modules/@tsparticles/plugin-hsv-color"));
+app.use("/plugin-oklch-color", express.static("./node_modules/@tsparticles/plugin-oklch-color"));
 app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/@tsparticles/plugin-motion"));
 app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sounds"));

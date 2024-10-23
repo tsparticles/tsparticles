@@ -31,6 +31,7 @@ import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 import { loadInfinityShape } from "@tsparticles/shape-infinity";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+import { loadOklchColorPlugin } from "@tsparticles/plugin-oklch-color";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
 import { loadPathShape } from "@tsparticles/shape-path";
@@ -62,6 +63,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadFull(engine, false);
 
     await loadHsvColorPlugin();
+    await loadOklchColorPlugin();
     await loadEasingBackPlugin();
     await loadEasingCircPlugin();
     await loadEasingCubicPlugin();
@@ -74,8 +76,6 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadEmittersShapeCanvas(engine, false);
     await loadEmittersShapePath(engine, false);
     await loadEmittersShapePolygon(engine, false);
-
-    await loadHsvColorPlugin();
 
     await loadCanvasMaskPlugin(engine, false);
     await loadInfectionPlugin(engine, false);

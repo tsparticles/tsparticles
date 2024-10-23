@@ -1,8 +1,8 @@
 import { type ISourceOptions, MoveDirection } from "@tsparticles/engine";
 
 const emitterRate = {
-        delay: 0.1,
-        quantity: 2,
+        delay: 0.2,
+        quantity: 1,
     },
     options: ISourceOptions = {
         key: "shapeEmoji",

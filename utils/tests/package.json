@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/tests",
     "private": true,
-    "version": "3.5.0",
+    "version": "3.6.0-beta.1",
     "scripts": {
         "prettify:ci": "prettier --check ./src",
         "prettify": "prettier --write ./src",
@@ -15,9 +15,9 @@
         "test:ci": "vitest run"
     },
     "dependencies": {
-        "@tsparticles/engine": "workspace:^3.5.0"
+        "@tsparticles/engine": "workspace:^3.6.0-beta.1"
     },
     "devDependencies": {
-        "vitest": "^1.6.0"
+        "vitest": "^2.1.2"
     }
 }

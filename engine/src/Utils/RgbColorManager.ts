@@ -47,7 +47,8 @@ export class RgbColorManager implements IColorManager {
             return;
         }
 
-        const regex = /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*(,\s*([\d.%]+)\s*)?\)/i,
+        const regex =
+                /rgba?\(\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i,
             result = regex.exec(input),
             radix = 10,
             minLength = 4,

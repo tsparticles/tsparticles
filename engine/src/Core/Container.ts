@@ -394,11 +394,11 @@ export class Container {
         this.particles.destroy();
         this.canvas.destroy();
 
-        for (const [, effectDrawer] of this.effectDrawers) {
+        for (const effectDrawer of this.effectDrawers.values()) {
             effectDrawer.destroy?.(this);
         }
 
-        for (const [, shapeDrawer] of this.shapeDrawers) {
+        for (const shapeDrawer of this.shapeDrawers.values()) {
             shapeDrawer.destroy?.(this);
         }
 
@@ -454,7 +454,7 @@ export class Container {
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
-        for (const [, plugin] of this.plugins) {
+        for (const plugin of this.plugins.values()) {
             if (!plugin.export) {
                 continue;
             }
@@ -482,7 +482,7 @@ export class Container {
 
         this.particles.handleClickMode(mode);
 
-        for (const [, plugin] of this.plugins) {
+        for (const plugin of this.plugins.values()) {
             plugin.handleClickMode?.(mode);
         }
     }
@@ -549,15 +549,15 @@ export class Container {
         this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
         this._smooth = smooth;
 
-        for (const [, drawer] of this.effectDrawers) {
+        for (const drawer of this.effectDrawers.values()) {
             await drawer.init?.(this);
         }
 
-        for (const [, drawer] of this.shapeDrawers) {
+        for (const drawer of this.shapeDrawers.values()) {
             await drawer.init?.(this);
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const plugin of this.plugins.values()) {
             await plugin.init?.();
         }
 
@@ -566,7 +566,7 @@ export class Container {
         await this.particles.init();
         this.particles.setDensity();
 
-        for (const [, plugin] of this.plugins) {
+        for (const plugin of this.plugins.values()) {
             plugin.particlesSetup?.();
         }
 
@@ -605,7 +605,7 @@ export class Container {
             return;
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const plugin of this.plugins.values()) {
             plugin.pause?.();
         }
 
@@ -637,7 +637,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const [, plugin] of this.plugins) {
+            for (const plugin of this.plugins.values()) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -697,7 +697,7 @@ export class Container {
                     this._intersectionObserver.observe(this.interactivity.element);
                 }
 
-                for (const [, plugin] of this.plugins) {
+                for (const plugin of this.plugins.values()) {
                     await plugin.start?.();
                 }
 
@@ -737,7 +737,7 @@ export class Container {
             this._intersectionObserver.unobserve(this.interactivity.element);
         }
 
-        for (const [, plugin] of this.plugins) {
+        for (const plugin of this.plugins.values()) {
             plugin.stop?.();
         }
 

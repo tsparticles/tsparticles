@@ -109,9 +109,9 @@ You can mark them as obsolete old methods, but they **must** work too. **Depreca
 
 # Community
 
-Feel free to join the Slack community to talk about the project. It's easier to share ideas if we can talk directly.
+Feel free to join the Discord community to talk about the project. It's easier to share ideas if we can talk directly.
 
-[![Slack](https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.auto?width=94&height=38)](https://join.slack.com/t/tsparticles/shared_invite/enQtOTcxNTQxNjQ4NzkxLWE2MTZhZWExMWRmOWI5MTMxNjczOGE1Yjk0MjViYjdkYTUzODM3OTc5MGQ5MjFlODc4MzE0N2Q1OWQxZDc1YzI)
+[![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme)
 
 ---
 
