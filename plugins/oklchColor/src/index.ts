@@ -1,4 +1,5 @@
-import { LchColorManager, OklchColorManager } from "./OklchColorManager.js";
+import { LchColorManager } from "./LchColorManager";
+import { OklchColorManager } from "./OklchColorManager.js";
 import { addColorManager } from "@tsparticles/engine";
 
 /**
