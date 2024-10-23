@@ -1,4 +1,4 @@
-import { OklchColorManager } from "./OklchColorManager.js";
+import { LchColorManager, OklchColorManager } from "./OklchColorManager.js";
 import { addColorManager } from "@tsparticles/engine";
 
 /**
@@ -7,6 +7,7 @@ import { addColorManager } from "@tsparticles/engine";
  */
 export function loadOklchColorPlugin(): Promise<void> {
     addColorManager(new OklchColorManager());
+    addColorManager(new LchColorManager());
 
     return Promise.resolve();
 }

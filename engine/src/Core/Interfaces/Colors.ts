@@ -200,10 +200,52 @@ export interface IOklch {
 }
 
 /**
+ * LCH Color
+ * [[include:Color.md]]
+ */
+export interface ILch {
+    /**
+     * Chroma
+     */
+    c: number;
+
+    /**
+     * Hue
+     */
+    h: number;
+
+    /**
+     * Lightness
+     */
+    l: number;
+}
+
+/**
  * Range OKLCH Color
  * [[include:Color.md]]
  */
 export interface IRangeOklch {
+    /**
+     * Chroma
+     */
+    c: RangeValue;
+
+    /**
+     * Hue
+     */
+    h: RangeValue;
+
+    /**
+     * Lightness
+     */
+    l: RangeValue;
+}
+
+/**
+ * Range LCH Color
+ * [[include:Color.md]]
+ */
+export interface IRangeLch {
     /**
      * Chroma
      */
@@ -227,6 +269,12 @@ export interface IRangeOklch {
 export interface IOklcha extends IOklch, IAlphaColor {}
 
 /**
+ * LCHA Color
+ * [[include:Color.md]]
+ */
+export interface ILcha extends ILch, IAlphaColor {}
+
+/**
  * Mixed Value Color
  * [[include:Color.md]]
  */
@@ -240,6 +288,11 @@ export interface IValueColor {
      * Hsv value
      */
     hsv?: IHsv;
+
+    /**
+     * Lch Value
+     */
+    lch?: ILch;
 
     /**
      * Oklch Value
@@ -266,6 +319,11 @@ export interface IRangeValueColor {
      * Hsv value
      */
     hsv?: IRangeHsv;
+
+    /**
+     * Lch Value
+     */
+    lch?: IRangeLch;
 
     /**
      * Oklch Value
