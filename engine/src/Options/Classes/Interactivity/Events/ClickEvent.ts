@@ -4,35 +4,34 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
- * [[include:Options/Interactivity/Click.md]]
+ * Class representing a click event with its settings, allowing for different trigger modes.
  */
 export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     /**
-     * The click event handler enabling setting
+     * Flag to enable or disable the click event handler.
      */
-    enable;
+    enable: boolean;
 
     /**
-     * Click modes used by the event
+     * Modes in which the click event is triggered.
      */
     mode: SingleOrMultiple<string>;
 
+    /**
+     * Constructs a new ClickEvent instance with default settings.
+     */
     constructor() {
-        this.enable = false;
-        this.mode = [];
+        this.enable = false; // Default value for enable is false
+        this.mode = ['click']; // Default mode is 'click'
     }
 
+    /**
+     * Loads configuration data into the click event settings.
+     * @param data - Optional configuration data for the click event.
+     */
     load(data?: RecursivePartial<IClickEvent>): void {
-        if (!data) {
+        if (data === undefined) {
             return;
         }
 
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
-
-        if (data.mode !== undefined) {
-            this.mode = data.mode;
-        }
-    }
-}
+        // Load enable flag if provide
