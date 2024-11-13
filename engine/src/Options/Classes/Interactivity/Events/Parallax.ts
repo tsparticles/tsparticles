@@ -1,6 +1,7 @@
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IParallax } from "../../../Interfaces/Interactivity/Events/IParallax.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  */
@@ -16,7 +17,7 @@ export class Parallax implements IParallax, IOptionLoader<IParallax> {
     }
 
     load(data?: RecursivePartial<IParallax>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

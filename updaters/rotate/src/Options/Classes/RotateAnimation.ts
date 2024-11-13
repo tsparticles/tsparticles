@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { IRotateAnimation } from "../Interfaces/IRotateAnimation.js";
 
 /**
@@ -17,7 +17,7 @@ export class RotateAnimation implements IRotateAnimation, IOptionLoader<IRotateA
     }
 
     load(data?: RecursivePartial<IRotateAnimation>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

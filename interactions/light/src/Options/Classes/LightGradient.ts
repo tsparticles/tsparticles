@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ILightGradient } from "../Interfaces/ILightGradient.js";
 
 export class LightGradient implements ILightGradient, IOptionLoader<ILightGradient> {
@@ -14,7 +14,7 @@ export class LightGradient implements ILightGradient, IOptionLoader<ILightGradie
     }
 
     load(data?: RecursivePartial<ILightGradient>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

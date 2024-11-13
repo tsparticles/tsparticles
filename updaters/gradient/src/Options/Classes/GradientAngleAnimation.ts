@@ -3,6 +3,7 @@ import {
     type IOptionLoader,
     type RangeValue,
     type RecursivePartial,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 
@@ -24,7 +25,7 @@ export class GradientAngleAnimation implements IAnimation, IOptionLoader<IAnimat
     }
 
     load(data?: RecursivePartial<IAnimation>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

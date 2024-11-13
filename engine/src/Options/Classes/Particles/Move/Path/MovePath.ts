@@ -4,6 +4,7 @@ import type { PathOptions } from "../../../../../Types/PathOptions.js";
 import type { RecursivePartial } from "../../../../../Types/RecursivePartial.js";
 import { ValueWithRandom } from "../../../ValueWithRandom.js";
 import { deepExtend } from "../../../../../Utils/Utils.js";
+import { isNull } from "../../../../../Utils/TypeUtils.js";
 
 /**
  */
@@ -22,7 +23,7 @@ export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
     }
 
     load(data?: RecursivePartial<IMovePath>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

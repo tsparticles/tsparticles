@@ -3,6 +3,7 @@ import type { IDivEvent } from "../../../Interfaces/Interactivity/Events/IDivEve
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Interactivity/Div.md]]
@@ -30,7 +31,7 @@ export class DivEvent implements IDivEvent, IOptionLoader<IDivEvent> {
     }
 
     load(data?: RecursivePartial<IDivEvent>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

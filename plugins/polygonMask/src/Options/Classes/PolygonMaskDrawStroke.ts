@@ -1,4 +1,11 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial, isString, stringToAlpha } from "@tsparticles/engine";
+import {
+    type IOptionLoader,
+    OptionsColor,
+    type RecursivePartial,
+    isNull,
+    isString,
+    stringToAlpha,
+} from "@tsparticles/engine";
 import type { IPolygonMaskDrawStroke } from "../Interfaces/IPolygonMaskDrawStroke.js";
 
 /**
@@ -15,7 +22,7 @@ export class PolygonMaskDrawStroke implements IPolygonMaskDrawStroke, IOptionLoa
     }
 
     load(data?: RecursivePartial<IPolygonMaskDrawStroke>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

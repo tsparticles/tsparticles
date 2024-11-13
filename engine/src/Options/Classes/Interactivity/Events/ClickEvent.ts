@@ -2,6 +2,7 @@ import type { IClickEvent } from "../../../Interfaces/Interactivity/Events/IClic
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Interactivity/Click.md]]
@@ -23,7 +24,7 @@ export class ClickEvent implements IClickEvent, IOptionLoader<IClickEvent> {
     }
 
     load(data?: RecursivePartial<IClickEvent>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

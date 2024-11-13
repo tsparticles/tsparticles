@@ -4,6 +4,7 @@ import {
     type SingleOrMultiple,
     isArray,
     isFunction,
+    isNull,
     isString,
 } from "@tsparticles/engine";
 import type { FilterFunction } from "../../types.js";
@@ -29,7 +30,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
     }
 
     load(data?: RecursivePartial<ISoundsEvent>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

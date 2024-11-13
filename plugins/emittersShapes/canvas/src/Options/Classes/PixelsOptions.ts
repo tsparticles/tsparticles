@@ -1,5 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
-
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IPixelsOptions } from "../Interfaces/IPixelsOptions.js";
 
 export class PixelsOptions implements IPixelsOptions, IOptionLoader<IPixelsOptions> {
@@ -10,7 +9,7 @@ export class PixelsOptions implements IPixelsOptions, IOptionLoader<IPixelsOptio
     }
 
     load(data?: RecursivePartial<IPixelsOptions> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

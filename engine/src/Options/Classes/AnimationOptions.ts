@@ -4,6 +4,7 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { StartValueType } from "../../Enums/Types/StartValueType.js";
+import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
@@ -69,7 +70,7 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
     load(data?: RecursivePartial<IRangedAnimation>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

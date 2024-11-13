@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { GrabLinks } from "./GrabLinks.js";
 import type { IGrab } from "../Interfaces/IGrab.js";
 
@@ -14,7 +14,7 @@ export class Grab implements IGrab, IOptionLoader<IGrab> {
     }
 
     load(data?: RecursivePartial<IGrab>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

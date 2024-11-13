@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { IWobbleSpeed } from "../Interfaces/IWobbleSpeed.js";
 
 export class WobbleSpeed implements IWobbleSpeed, IOptionLoader<IWobbleSpeed> {
@@ -11,7 +11,7 @@ export class WobbleSpeed implements IWobbleSpeed, IOptionLoader<IWobbleSpeed> {
     }
 
     load(data?: RecursivePartial<IWobbleSpeed>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

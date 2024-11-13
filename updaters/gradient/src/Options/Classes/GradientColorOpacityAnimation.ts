@@ -3,6 +3,7 @@ import {
     type RangeValue,
     type RecursivePartial,
     StartValueType,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient.js";
@@ -29,7 +30,7 @@ export class GradientColorOpacityAnimation
     }
 
     load(data?: RecursivePartial<IGradientColorOpacityAnimation>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

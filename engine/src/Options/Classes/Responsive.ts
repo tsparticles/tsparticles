@@ -4,6 +4,7 @@ import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
 import { deepExtend } from "../../Utils/Utils.js";
+import { isNull } from "../../Utils/TypeUtils.js";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;
@@ -17,15 +18,15 @@ export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     }
 
     load(data?: RecursivePartial<IResponsive>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 
-        if (data.maxWidth !== undefined) {
+        if (!isNull(data.maxWidth)) {
             this.maxWidth = data.maxWidth;
         }
 
-        if (data.mode !== undefined) {
+        if (!isNull(data.mode)) {
             // not enforcing an error here as this should largely be an opt-in setting
             if (data.mode === ResponsiveMode.screen) {
                 this.mode = ResponsiveMode.screen;
@@ -34,7 +35,7 @@ export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
             }
         }
 
-        if (data.options !== undefined) {
+        if (!isNull(data.options)) {
             this.options = deepExtend({}, data.options) as ISourceOptions;
         }
     }

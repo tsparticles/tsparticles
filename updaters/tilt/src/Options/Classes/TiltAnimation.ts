@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { ITiltAnimation } from "../Interfaces/ITiltAnimation.js";
 
 /**
@@ -17,7 +17,7 @@ export class TiltAnimation implements ITiltAnimation, IOptionLoader<ITiltAnimati
     }
 
     load(data?: RecursivePartial<ITiltAnimation>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

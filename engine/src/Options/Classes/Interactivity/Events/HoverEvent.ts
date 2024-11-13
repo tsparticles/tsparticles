@@ -3,6 +3,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { Parallax } from "./Parallax.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Interactivity/Hover.md]]
@@ -19,7 +20,7 @@ export class HoverEvent implements IHoverEvent, IOptionLoader<IHoverEvent> {
     }
 
     load(data?: RecursivePartial<IHoverEvent>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

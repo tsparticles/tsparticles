@@ -6,10 +6,10 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { ParticlesBounce } from "../Bounce/ParticlesBounce.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 /**
- 
  * [[include:Collisions.md]]
  */
 export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
@@ -30,7 +30,7 @@ export class Collisions implements ICollisions, IOptionLoader<ICollisions> {
     }
 
     load(data?: RecursivePartial<ICollisions>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

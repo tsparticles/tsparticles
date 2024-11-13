@@ -11,7 +11,7 @@ import {
     getRangeValue,
     parseAlpha,
 } from "@tsparticles/engine";
-import { lchToRgb, lchaToRgba } from "./utils";
+import { lchToRgb, lchaToRgba } from "./utils.js";
 
 export class LchColorManager implements IColorManager {
     readonly key;

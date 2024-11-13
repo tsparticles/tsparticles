@@ -1,4 +1,5 @@
 import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
+import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask.js";
 import type { Container } from "../../Core/Container.js";
@@ -16,7 +17,6 @@ import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { Theme } from "./Theme/Theme.js";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
-import { isBoolean } from "../../Utils/TypeUtils.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/NumberUtils.js";
 
@@ -88,7 +88,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
      * @param data - the source data to load into the instance
      */
     load(data?: ISourceOptions): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial, SingleOrMultiple } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, type SingleOrMultiple, isNull } from "@tsparticles/engine";
 import type { ISoundsNote } from "../Interfaces/ISoundsNote.js";
 
 export class SoundsNote implements ISoundsNote, IOptionLoader<ISoundsNote> {
@@ -11,7 +11,7 @@ export class SoundsNote implements ISoundsNote, IOptionLoader<ISoundsNote> {
     }
 
     load(data?: RecursivePartial<ISoundsNote>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,4 +1,10 @@
-import type { IDimension, IOptionLoader, RecursivePartial, SingleOrMultiple } from "@tsparticles/engine";
+import {
+    type IDimension,
+    type IOptionLoader,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    isNull,
+} from "@tsparticles/engine";
 import type { IPolygonMaskLocalSvg } from "../Interfaces/IPolygonMaskLocalSvg.js";
 
 /**
@@ -16,7 +22,7 @@ export class PolygonMaskLocalSvg implements IPolygonMaskLocalSvg, IOptionLoader<
     }
 
     load(data?: RecursivePartial<IPolygonMaskLocalSvg>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

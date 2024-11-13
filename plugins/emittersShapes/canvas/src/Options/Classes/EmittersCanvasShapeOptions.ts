@@ -1,4 +1,4 @@
-import type { IOptionLoader, IRgba, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type IRgba, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IEmittersCanvasShapeOptions } from "../Interfaces/IEmittersCanvasShapeOptions.js";
 import { PixelsOptions } from "./PixelsOptions.js";
 import { TextOptions } from "./TextOptions.js";
@@ -25,7 +25,7 @@ export class EmittersCanvasShapeOptions
     }
 
     load(data?: RecursivePartial<IEmittersCanvasShapeOptions> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

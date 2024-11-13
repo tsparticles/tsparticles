@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull } from "@tsparticles/engine";
 import type { ILifeDelay } from "../Interfaces/ILifeDelay.js";
 
 export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoader<ILifeDelay> {
@@ -10,7 +10,7 @@ export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoa
     }
 
     load(data?: RecursivePartial<ILifeDelay>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

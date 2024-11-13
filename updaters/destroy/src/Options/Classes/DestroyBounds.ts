@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { IDestroyBounds } from "../Interfaces/IDestroyBounds.js";
 
 export class DestroyBounds implements IDestroyBounds, IOptionLoader<IDestroyBounds> {
@@ -8,7 +8,7 @@ export class DestroyBounds implements IDestroyBounds, IOptionLoader<IDestroyBoun
     top?: RangeValue;
 
     load(data?: RecursivePartial<IDestroyBounds>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

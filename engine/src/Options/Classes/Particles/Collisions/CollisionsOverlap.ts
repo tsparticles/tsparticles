@@ -1,6 +1,7 @@
 import type { ICollisionsOverlap } from "../../../Interfaces/Particles/Collisions/ICollisionsOverlap.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 export class CollisionsOverlap implements ICollisionsOverlap, IOptionLoader<ICollisionsOverlap> {
     enable: boolean;
@@ -12,7 +13,7 @@ export class CollisionsOverlap implements ICollisionsOverlap, IOptionLoader<ICol
     }
 
     load(data?: RecursivePartial<ICollisionsOverlap>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,10 +1,10 @@
+import { isNull, isString } from "../../../Utils/TypeUtils.js";
 import { BackgroundMaskCover } from "./BackgroundMaskCover.js";
 import type { IBackgroundMask } from "../../Interfaces/BackgroundMask/IBackgroundMask.js";
 import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover.js";
 import type { IColor } from "../../../Core/Interfaces/Colors.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { isString } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/BackgroundMask.md]]
@@ -33,7 +33,7 @@ export class BackgroundMask implements IBackgroundMask, IOptionLoader<IBackgroun
     }
 
     load(data?: RecursivePartial<IBackgroundMask>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

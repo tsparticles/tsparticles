@@ -4,6 +4,7 @@ import type { IExternalInteractor } from "../../../../Core/Interfaces/IExternalI
 import type { IModes } from "../../../Interfaces/Interactivity/Modes/IModes.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Interactivity/Modes.md]]
@@ -20,7 +21,7 @@ export class Modes implements IModes, IOptionLoader<IModes> {
     }
 
     load(data?: RecursivePartial<IModes>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

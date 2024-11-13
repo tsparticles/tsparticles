@@ -2,6 +2,7 @@ import type { IBackground } from "../../Interfaces/Background/IBackground.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import { OptionsColor } from "../OptionsColor.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Background.md]]
@@ -25,7 +26,7 @@ export class Background implements IBackground, IOptionLoader<IBackground> {
     }
 
     load(data?: RecursivePartial<IBackground>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

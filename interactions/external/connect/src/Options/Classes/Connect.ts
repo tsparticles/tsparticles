@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { ConnectLinks } from "./ConnectLinks.js";
 import type { IConnect } from "../Interfaces/IConnect.js";
 
@@ -16,7 +16,7 @@ export class Connect implements IConnect, IOptionLoader<IConnect> {
     }
 
     load(data?: RecursivePartial<IConnect>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

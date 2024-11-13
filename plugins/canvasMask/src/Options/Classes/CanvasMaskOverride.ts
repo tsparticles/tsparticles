@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "../Interfaces/ICanvasMaskOverride.js";
 
 export class CanvasMaskOverride implements ICanvasMaskOverride, IOptionLoader<ICanvasMaskOverride> {
@@ -11,7 +11,7 @@ export class CanvasMaskOverride implements ICanvasMaskOverride, IOptionLoader<IC
     }
 
     load(data?: RecursivePartial<ICanvasMaskOverride>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

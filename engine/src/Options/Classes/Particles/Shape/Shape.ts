@@ -5,6 +5,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import type { ShapeData } from "../../../../Types/ShapeData.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 import { deepExtend } from "../../../../Utils/Utils.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Shape.md]]
@@ -23,7 +24,7 @@ export class Shape implements IShape, IOptionLoader<IShape> {
     }
 
     load(data?: RecursivePartial<IShape>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ILinks } from "../Interfaces/ILinks.js";
 import { LinksShadow } from "./LinksShadow.js";
 import { LinksTriangle } from "./LinksTriangle.js";
@@ -36,7 +36,7 @@ export class Links implements ILinks, IOptionLoader<ILinks> {
     }
 
     load(data?: RecursivePartial<ILinks>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

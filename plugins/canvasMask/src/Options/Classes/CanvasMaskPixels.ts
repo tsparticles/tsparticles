@@ -1,4 +1,11 @@
-import { type IOptionLoader, type IRgba, type RecursivePartial, isFunction, isString } from "@tsparticles/engine";
+import {
+    type IOptionLoader,
+    type IRgba,
+    type RecursivePartial,
+    isFunction,
+    isNull,
+    isString,
+} from "@tsparticles/engine";
 import type { ICanvasMaskPixels } from "../Interfaces/ICanvasMaskPixels.js";
 
 const minAlpha = 0;
@@ -13,7 +20,7 @@ export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanva
     }
 
     load(data?: RecursivePartial<ICanvasMaskPixels> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

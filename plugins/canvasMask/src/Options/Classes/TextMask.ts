@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { FontTextMask } from "./FontTextMask.js";
 import type { ITextMask } from "../Interfaces/ITextMask.js";
 import { TextMaskLine } from "./TextMaskLine.js";
@@ -17,7 +17,7 @@ export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
     }
 
     load(data?: RecursivePartial<ITextMask>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

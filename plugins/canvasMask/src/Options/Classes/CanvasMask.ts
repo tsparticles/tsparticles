@@ -1,4 +1,4 @@
-import type { ICoordinates, IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type ICoordinates, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { CanvasMaskOverride } from "./CanvasMaskOverride.js";
 import { CanvasMaskPixels } from "./CanvasMaskPixels.js";
 import type { ICanvasMask } from "../Interfaces/ICanvasMask.js";
@@ -31,7 +31,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
     }
 
     load(data?: RecursivePartial<ICanvasMask>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

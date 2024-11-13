@@ -11,7 +11,7 @@ import {
     getRangeValue,
     parseAlpha,
 } from "@tsparticles/engine";
-import { oklchToRgb, oklchaToRgba } from "./utils";
+import { oklchToRgb, oklchaToRgba } from "./utils.js";
 
 export class OklchColorManager implements IColorManager {
     readonly key;

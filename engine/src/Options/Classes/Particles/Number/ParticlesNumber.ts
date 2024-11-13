@@ -3,6 +3,7 @@ import type { IParticlesNumber } from "../../../Interfaces/Particles/Number/IPar
 import { ParticlesDensity } from "./ParticlesDensity.js";
 import { ParticlesNumberLimit } from "./ParticlesNumberLimit.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Number.md]]
@@ -19,7 +20,7 @@ export class ParticlesNumber implements IParticlesNumber, IOptionLoader<IParticl
     }
 
     load(data?: RecursivePartial<IParticlesNumber>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

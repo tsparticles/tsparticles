@@ -19,6 +19,7 @@ import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { Size } from "./Size/Size.js";
 import { Stroke } from "./Stroke.js";
 import { ZIndex } from "./ZIndex/ZIndex.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles.md]]
@@ -67,7 +68,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
 
     load(data?: RecursivePartial<IParticlesOptions>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

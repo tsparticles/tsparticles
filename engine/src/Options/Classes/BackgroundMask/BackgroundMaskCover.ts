@@ -2,6 +2,7 @@ import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBack
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import { OptionsColor } from "../OptionsColor.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  */
@@ -15,7 +16,7 @@ export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<
     }
 
     load(data?: RecursivePartial<IBackgroundMaskCover> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

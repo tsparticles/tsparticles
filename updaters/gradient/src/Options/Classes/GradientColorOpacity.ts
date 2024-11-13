@@ -4,6 +4,7 @@ import {
     type IOptionLoader,
     type RangeValue,
     type RecursivePartial,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import { GradientColorOpacityAnimation } from "./GradientColorOpacityAnimation.js";
@@ -25,7 +26,7 @@ export class GradientColorOpacity
     }
 
     load(data?: RecursivePartial<IGradientColorOpacity & IAnimatable<IAnimation>>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -9,6 +9,7 @@ import {
     type SingleOrMultiple,
     deepExtend,
     executeOnSingleOrMultiple,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import { EmitterLife } from "./EmitterLife.js";
@@ -45,7 +46,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
     }
 
     load(data?: RecursivePartial<IEmitter>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

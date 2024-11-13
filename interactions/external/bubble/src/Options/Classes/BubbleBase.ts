@@ -5,6 +5,7 @@ import {
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
     isArray,
+    isNull,
 } from "@tsparticles/engine";
 import type { IBubbleBase } from "../Interfaces/IBubbleBase.js";
 
@@ -25,7 +26,7 @@ export abstract class BubbleBase implements IBubbleBase, IOptionLoader<IBubbleBa
     }
 
     load(data?: RecursivePartial<IBubbleBase>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

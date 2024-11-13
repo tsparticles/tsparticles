@@ -18,6 +18,7 @@
         "@tsparticles/engine": "workspace:^3.6.0-beta.1"
     },
     "devDependencies": {
+        "skia-canvas": "^1.0.2",
         "vitest": "^2.1.2"
     }
 }

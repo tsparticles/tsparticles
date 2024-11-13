@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IPolygonMaskMove } from "../Interfaces/IPolygonMaskMove.js";
 import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 
@@ -14,7 +14,7 @@ export class PolygonMaskMove implements IPolygonMaskMove, IOptionLoader<IPolygon
     }
 
     load(data?: RecursivePartial<IPolygonMaskMove>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

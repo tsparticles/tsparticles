@@ -3,6 +3,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { ISizeAnimation } from "../../../Interfaces/Particles/Size/ISizeAnimation.js";
 import { RangedAnimationOptions } from "../../AnimationOptions.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  */
@@ -19,7 +20,7 @@ export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimat
     load(data?: RecursivePartial<ISizeAnimation>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

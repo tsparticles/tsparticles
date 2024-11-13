@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IPreload } from "../Interfaces/IPreload.js";
 
 export class Preload implements IPreload, IOptionLoader<IPreload> {
@@ -15,7 +15,7 @@ export class Preload implements IPreload, IOptionLoader<IPreload> {
     }
 
     load(data?: RecursivePartial<IPreload>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

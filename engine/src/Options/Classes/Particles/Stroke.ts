@@ -3,6 +3,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IStroke } from "../../Interfaces/Particles/IStroke.js";
 import type { RangeValue } from "../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../../Utils/NumberUtils.js";
 
 /**
@@ -18,7 +19,7 @@ export class Stroke implements IStroke, IOptionLoader<IStroke> {
     }
 
     load(data?: RecursivePartial<IStroke>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

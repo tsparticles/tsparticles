@@ -3,6 +3,7 @@ import {
     OptionsColor,
     type RangeValue,
     type RecursivePartial,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { IRoll } from "../Interfaces/IRoll.js";
@@ -26,7 +27,7 @@ export class Roll implements IRoll, IOptionLoader<IRoll> {
     }
 
     load(data?: RecursivePartial<IRoll>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -2,6 +2,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IThemeDefault } from "../../Interfaces/Theme/IThemeDefault.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { ThemeMode } from "../../../Enums/Modes/ThemeMode.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 
 export class ThemeDefault implements IThemeDefault, IOptionLoader<IThemeDefault> {
     auto;
@@ -15,7 +16,7 @@ export class ThemeDefault implements IThemeDefault, IOptionLoader<IThemeDefault>
     }
 
     load(data?: RecursivePartial<IThemeDefault>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -2,6 +2,7 @@ import type { IMoveTrail } from "../../../Interfaces/Particles/Move/IMoveTrail.j
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { MoveTrailFill } from "./MoveTrailFill.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  */
@@ -17,7 +18,7 @@ export class MoveTrail implements IMoveTrail, IOptionLoader<IMoveTrail> {
     }
 
     load(data?: RecursivePartial<IMoveTrail>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

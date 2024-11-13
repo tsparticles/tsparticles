@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IBounce } from "../Interfaces/IBounce.js";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {
@@ -9,7 +9,7 @@ export class Bounce implements IBounce, IOptionLoader<IBounce> {
     }
 
     load(data?: RecursivePartial<IBounce>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -3,6 +3,7 @@ import {
     type RangeValue,
     type RecursivePartial,
     ValueWithRandom,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { IParticlesRepulse } from "../Interfaces/IParticlesRepulse.js";
@@ -28,7 +29,7 @@ export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepul
     load(data?: RecursivePartial<IParticlesRepulse>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

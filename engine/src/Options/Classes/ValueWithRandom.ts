@@ -7,6 +7,7 @@ import type {
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { isNull } from "../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../Utils/NumberUtils.js";
 
 export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWithRandom> {
@@ -17,11 +18,11 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
     }
 
     load(data?: RecursivePartial<IValueWithRandom>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 
-        if (data.value !== undefined) {
+        if (!isNull(data.value)) {
             this.value = setRangeValue(data.value);
         }
     }

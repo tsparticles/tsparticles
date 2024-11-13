@@ -1,4 +1,4 @@
-import type { ICoordinates, IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type ICoordinates, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IEmittersPathShapeOptions } from "../Interfaces/IEmittersPathShapeOptions.js";
 
 const defaultPosition: ICoordinates = { x: 50, y: 50 };
@@ -11,7 +11,7 @@ export class EmittersPathShapeOptions implements IEmittersPathShapeOptions, IOpt
     }
 
     load(data?: RecursivePartial<IEmittersPathShapeOptions> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

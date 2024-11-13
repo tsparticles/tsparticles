@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ITextFontOptions } from "../Interfaces/ITextFontOptions.js";
 
 export class TextFontOptions implements ITextFontOptions, IOptionLoader<ITextFontOptions> {
@@ -17,7 +17,7 @@ export class TextFontOptions implements ITextFontOptions, IOptionLoader<ITextFon
     }
 
     load(data?: RecursivePartial<ITextFontOptions> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

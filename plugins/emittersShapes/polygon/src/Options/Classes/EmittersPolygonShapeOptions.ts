@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IEmittersPolygonShapeOptions } from "../Interfaces/IEmittersPolygonShapeOptions.js";
 
 export class EmittersPolygonShapeOptions
@@ -13,7 +13,7 @@ export class EmittersPolygonShapeOptions
     }
 
     load(data?: RecursivePartial<IEmittersPolygonShapeOptions> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

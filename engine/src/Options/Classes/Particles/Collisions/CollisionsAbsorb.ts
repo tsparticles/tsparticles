@@ -1,6 +1,7 @@
 import type { ICollisionsAbsorb } from "../../../Interfaces/Particles/Collisions/ICollisionsAbsorb.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<ICollisionsAbsorb> {
     speed;
@@ -10,7 +11,7 @@ export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<IColli
     }
 
     load(data?: RecursivePartial<ICollisionsAbsorb>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 
