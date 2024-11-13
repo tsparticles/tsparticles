@@ -25,7 +25,7 @@ export class AnimationOptions implements IAnimation, IOptionLoader<IAnimation> {
     }
 
     load(data?: RecursivePartial<IAnimation>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -7,6 +7,7 @@ import {
     type SingleOrMultiple,
     deepExtend,
     isArray,
+    isNull,
     percentDenominator,
 } from "@tsparticles/engine";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
@@ -159,7 +160,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
      * @param data -
      */
     load(data?: RecursivePartial<IConfettiOptions>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

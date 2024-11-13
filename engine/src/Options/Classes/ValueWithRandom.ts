@@ -40,7 +40,7 @@ export class AnimationValueWithRandom extends ValueWithRandom implements IOption
     load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

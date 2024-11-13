@@ -4,6 +4,7 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     isArray,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
@@ -46,7 +47,7 @@ export class FireworkOptions implements IFireworkOptions, IOptionLoader<IFirewor
     }
 
     load(data?: RecursivePartial<IFireworkOptions>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 
