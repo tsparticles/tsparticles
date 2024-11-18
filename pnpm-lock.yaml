@@ -22,7 +22,7 @@ importers:
         version: 19.8.4(@swc/core@1.9.2)
       '@tsparticles/cli':
         specifier: ^2.3.3
-        version: 2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@5.1.4)
+        version: 2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       '@tsparticles/eslint-config':
         specifier: ^2.3.0
         version: 2.3.0(@types/eslint@8.56.6)
@@ -52,13 +52,13 @@ importers:
         version: 7.18.0(eslint@8.57.1)(typescript@5.5.2)
       '@vitest/coverage-v8':
         specifier: ^2.1.2
-        version: 2.1.2(vitest@2.1.2)
+        version: 2.1.2(vitest@2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(lightningcss@1.28.1)(sass@1.69.5)(stylus@0.64.0)(terser@5.36.0))
       '@vitest/ui':
         specifier: ^2.1.2
         version: 2.1.2(vitest@2.1.2)
       babel-loader:
         specifier: ^9.2.1
-        version: 9.2.1(@babel/core@7.25.8)(webpack@5.95.0)
+        version: 9.2.1(@babel/core@7.25.8)(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
       browserslist:
         specifier: ^4.24.0
         version: 4.24.0
@@ -121,7 +121,7 @@ importers:
         version: 0.5.21
       terser-webpack-plugin:
         specifier: ^5.3.10
-        version: 5.3.10(@swc/core@1.9.2)(webpack@5.95.0)
+        version: 5.3.10(@swc/core@1.9.2)(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
       ts-json-schema-generator:
         specifier: ^2.3.0
         version: 2.3.0
@@ -11023,7 +11023,7 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@tsparticles/cli@2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@5.1.4)':
+  '@tsparticles/cli@2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))':
     dependencies:
       '@tsparticles/eslint-config': 2.3.0(@types/eslint@8.56.6)
       '@tsparticles/prettier-config': 2.1.6
@@ -11099,11 +11099,11 @@ snapshots:
       '@tsparticles/eslint-config': 2.3.0(@types/eslint@8.56.6)
       '@tsparticles/prettier-config': 2.1.6
       '@types/node': 20.14.9
-      '@types/webpack-bundle-analyzer': 4.7.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      '@types/webpack-bundle-analyzer': 4.7.0(@swc/core@1.9.2)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))
       '@types/webpack-env': 1.18.5
       '@typescript-eslint/eslint-plugin': 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.5.2))(eslint@8.57.1)(typescript@5.5.2)
       '@typescript-eslint/parser': 7.18.0(eslint@8.57.1)(typescript@5.5.2)
-      babel-loader: 9.2.1(@babel/core@7.25.8)(webpack@5.95.0)
+      babel-loader: 9.2.1(@babel/core@7.25.8)(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
       browserslist: 4.24.0
       copyfiles: 2.4.1
       eslint: 8.57.1
@@ -11114,7 +11114,7 @@ snapshots:
       prettier: 3.3.3
       prettier-plugin-multiline-arrays: 3.0.6(prettier@3.3.3)
       rimraf: 5.0.7
-      terser-webpack-plugin: 5.3.10(@swc/core@1.9.2)(webpack@5.95.0)
+      terser-webpack-plugin: 5.3.10(@swc/core@1.9.2)(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
       typescript: 5.5.2
       webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
       webpack-bundle-analyzer: 4.10.2
@@ -11268,7 +11268,7 @@ snapshots:
 
   '@types/unist@3.0.3': {}
 
-  '@types/webpack-bundle-analyzer@4.7.0(@swc/core@1.9.2)(webpack-cli@5.1.4)':
+  '@types/webpack-bundle-analyzer@4.7.0(@swc/core@1.9.2)(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))':
     dependencies:
       '@types/node': 22.7.5
       tapable: 2.2.1
@@ -11478,7 +11478,7 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitest/coverage-v8@2.1.2(vitest@2.1.2)':
+  '@vitest/coverage-v8@2.1.2(vitest@2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(lightningcss@1.28.1)(sass@1.69.5)(stylus@0.64.0)(terser@5.36.0))':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -11655,17 +11655,17 @@ snapshots:
       '@webassemblyjs/ast': 1.12.1
       '@xtuc/long': 4.2.2
 
-  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.95.0)':
+  '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))':
     dependencies:
       webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
-  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.95.0)':
+  '@webpack-cli/info@2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))':
     dependencies:
       webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
-  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack@5.95.0)':
+  '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))':
     dependencies:
       webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
@@ -11904,7 +11904,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  babel-loader@9.2.1(@babel/core@7.25.8)(webpack@5.95.0):
+  babel-loader@9.2.1(@babel/core@7.25.8)(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)):
     dependencies:
       '@babel/core': 7.25.8
       find-cache-dir: 4.0.0
@@ -16518,7 +16518,7 @@ snapshots:
 
   temp-dir@1.0.0: {}
 
-  terser-webpack-plugin@5.3.10(@swc/core@1.9.2)(webpack@5.95.0):
+  terser-webpack-plugin@5.3.10(@swc/core@1.9.2)(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.20
       jest-worker: 27.5.1
@@ -17095,9 +17095,9 @@ snapshots:
   webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0):
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
-      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4)(webpack@5.95.0)
-      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4)(webpack@5.95.0)
-      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4)(webpack@5.95.0)
+      '@webpack-cli/configtest': 2.1.1(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
+      '@webpack-cli/info': 2.0.2(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
+      '@webpack-cli/serve': 2.0.5(webpack-cli@5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0))(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
       colorette: 2.0.20
       commander: 10.0.1
       cross-spawn: 7.0.3
@@ -17140,7 +17140,7 @@ snapshots:
       neo-async: 2.6.2
       schema-utils: 3.3.0
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.10(@swc/core@1.9.2)(webpack@5.95.0)
+      terser-webpack-plugin: 5.3.10(@swc/core@1.9.2)(webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4))
       watchpack: 2.4.1
       webpack-sources: 3.2.3
     optionalDependencies:
