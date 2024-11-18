@@ -29,7 +29,7 @@
         "@types/connect-livereload": "^0.6.3",
         "@types/express": "^5.0.0",
         "@types/livereload": "^0.9.5",
-        "@types/node": "^20.8.10",
+        "@types/node": "^22.0.0",
         "@types/stylus": "^0.48.41",
         "ace-builds": "^1.31.1",
         "bootstrap": "^5.3.2",
