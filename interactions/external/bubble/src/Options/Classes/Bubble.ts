@@ -3,6 +3,7 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
+    isNull,
 } from "@tsparticles/engine";
 import { BubbleBase } from "./BubbleBase.js";
 import { BubbleDiv } from "./BubbleDiv.js";
@@ -16,7 +17,7 @@ export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble
     load(data?: RecursivePartial<IBubble>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any,@typescript-eslint/no-unsafe-member-access,@typescript-eslint/no-unsafe-assignment */
-import { type Canvas, createCanvas } from "canvas";
+import { Canvas } from "skia-canvas";
 
 /**
  *
@@ -8,7 +8,7 @@ import { type Canvas, createCanvas } from "canvas";
  * @returns the custom canvas
  */
 export function createCustomCanvas(width: number, height: number): Canvas {
-    const canvas = createCanvas(width, height),
+    const canvas = new Canvas(width, height),
         augmentCanvas = canvas as any;
 
     augmentCanvas.offsetWidth = width;

@@ -2,6 +2,7 @@ import type { IMoveGravity } from "../../../Interfaces/Particles/Move/IMoveGravi
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
@@ -18,7 +19,7 @@ export class MoveGravity implements IMoveGravity, IOptionLoader<IMoveGravity> {
     }
 
     load(data?: RecursivePartial<IMoveGravity>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

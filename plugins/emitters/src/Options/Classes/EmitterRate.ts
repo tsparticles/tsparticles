@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { IEmitterRate } from "../Interfaces/IEmitterRate.js";
 
 /**
@@ -13,7 +13,7 @@ export class EmitterRate implements IEmitterRate, IOptionLoader<IEmitterRate> {
     }
 
     load(data?: RecursivePartial<IEmitterRate>): void {
-        if (data === undefined) {
+        if (isNull(data)) {
             return;
         }
 

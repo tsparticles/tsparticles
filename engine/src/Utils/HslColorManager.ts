@@ -57,7 +57,7 @@ export class HslColorManager implements IColorManager {
             return;
         }
 
-        const regex = /hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*(,\s*([\d.%]+)\s*)?\)/i,
+        const regex = /hsla?\(\s*(\d+)\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i,
             result = regex.exec(input),
             minLength = 4,
             defaultAlpha = 1,

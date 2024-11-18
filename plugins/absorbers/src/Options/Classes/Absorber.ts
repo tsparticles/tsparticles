@@ -3,6 +3,7 @@ import {
     type IRangedCoordinates,
     OptionsColor,
     type RecursivePartial,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import { AbsorberSize } from "./AbsorberSize.js";
@@ -32,7 +33,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     }
 
     load(data?: RecursivePartial<IAbsorber>): void {
-        if (data === undefined) {
+        if (isNull(data)) {
             return;
         }
 

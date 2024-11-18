@@ -5,6 +5,7 @@ import {
     OptionsColor,
     type RangeValue,
     type RecursivePartial,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { IOrbit } from "../Interfaces/IOrbit.js";
@@ -31,7 +32,7 @@ export class Orbit implements IOrbit, IOptionLoader<IOrbit>, IAnimatable<Animati
     }
 
     load(data?: RecursivePartial<IOrbit>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

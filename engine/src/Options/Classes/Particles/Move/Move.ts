@@ -1,5 +1,5 @@
 import { MoveDirection, type MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
-import { isNumber, isObject } from "../../../../Utils/TypeUtils.js";
+import { isNull, isNumber, isObject } from "../../../../Utils/TypeUtils.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
@@ -62,7 +62,7 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     load(data?: RecursivePartial<IMove>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

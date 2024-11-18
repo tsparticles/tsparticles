@@ -1,5 +1,5 @@
 import type { IRangeHsl, IRangeHsv, IRangeRgb, IRangeValueColor } from "../../Core/Interfaces/Colors.js";
-import { isArray, isString } from "../../Utils/TypeUtils.js";
+import { isArray, isNull, isString } from "../../Utils/TypeUtils.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptionsColor } from "../Interfaces/IOptionsColor.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
@@ -35,10 +35,12 @@ export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor>
     }
 
     load(data?: RecursivePartial<IOptionsColor>): void {
-        if (data?.value === undefined) {
+        if (isNull(data)) {
             return;
         }
 
-        this.value = data.value;
+        if (!isNull(data.value)) {
+            this.value = data.value;
+        }
     }
 }

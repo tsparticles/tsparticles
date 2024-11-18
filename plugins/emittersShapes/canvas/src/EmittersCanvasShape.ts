@@ -1,5 +1,13 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, type IRgba, getRandom, isFunction, isString } from "@tsparticles/engine";
+import {
+    type ICoordinates,
+    type IDimension,
+    type IRgba,
+    getRandom,
+    isFunction,
+    isNull,
+    isString,
+} from "@tsparticles/engine";
 import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
@@ -67,7 +75,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         } else if (text) {
             const data = getTextData(text, offset, this.fill);
 
-            if (!data) {
+            if (isNull(data)) {
                 return;
             }
 

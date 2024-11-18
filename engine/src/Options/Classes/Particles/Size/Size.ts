@@ -3,6 +3,7 @@ import type { ISize } from "../../../Interfaces/Particles/Size/ISize.js";
 import { RangedAnimationValueWithRandom } from "../../ValueWithRandom.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { SizeAnimation } from "./SizeAnimation.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Size.md]]
@@ -19,7 +20,7 @@ export class Size extends RangedAnimationValueWithRandom implements ISize, IOpti
     load(data?: RecursivePartial<ISize>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

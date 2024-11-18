@@ -7,6 +7,7 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 import { executeOnSingleOrMultiple } from "../../../../Utils/Utils.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Interactivity/Events.md]]
@@ -25,7 +26,7 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
     }
 
     load(data?: RecursivePartial<IEvents>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

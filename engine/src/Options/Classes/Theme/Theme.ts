@@ -4,6 +4,7 @@ import type { ITheme } from "../../Interfaces/Theme/ITheme.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 import { ThemeDefault } from "./ThemeDefault.js";
 import { deepExtend } from "../../../Utils/Utils.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
     readonly default;
@@ -16,7 +17,7 @@ export class Theme implements ITheme, IOptionLoader<ITheme> {
     }
 
     load(data?: RecursivePartial<ITheme>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

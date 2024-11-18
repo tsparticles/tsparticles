@@ -2,6 +2,7 @@ import { ColorAnimation } from "./ColorAnimation.js";
 import type { IHslAnimation } from "../Interfaces/IHslAnimation.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { isNull } from "../../Utils/TypeUtils.js";
 
 export class HslAnimation implements IHslAnimation, IOptionLoader<IHslAnimation> {
     h;
@@ -15,7 +16,7 @@ export class HslAnimation implements IHslAnimation, IOptionLoader<IHslAnimation>
     }
 
     load(data?: RecursivePartial<IHslAnimation>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

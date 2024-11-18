@@ -5,8 +5,8 @@ import {
     getImageData,
     getTextData,
 } from "./utils.js";
+import { type IContainerPlugin, isNull } from "@tsparticles/engine";
 import type { CanvasMaskContainer } from "./types.js";
-import type { IContainerPlugin } from "@tsparticles/engine";
 
 export class CanvasMaskInstance implements IContainerPlugin {
     private readonly _container;
@@ -44,7 +44,7 @@ export class CanvasMaskInstance implements IContainerPlugin {
 
             const data = getTextData(textOptions, offset);
 
-            if (!data) {
+            if (isNull(data)) {
                 return;
             }
 

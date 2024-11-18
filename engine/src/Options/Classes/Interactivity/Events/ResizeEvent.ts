@@ -1,6 +1,7 @@
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IResizeEvent } from "../../../Interfaces/Interactivity/Events/IResizeEvent.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 export class ResizeEvent implements IResizeEvent, IOptionLoader<IResizeEvent> {
     delay;
@@ -12,7 +13,7 @@ export class ResizeEvent implements IResizeEvent, IOptionLoader<IResizeEvent> {
     }
 
     load(data?: RecursivePartial<IResizeEvent>): void {
-        if (data === undefined) {
+        if (isNull(data)) {
             return;
         }
 

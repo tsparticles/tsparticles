@@ -3,6 +3,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IShadow } from "../../Interfaces/Particles/IShadow.js";
 import { OptionsColor } from "../OptionsColor.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Shadow.md]]
@@ -26,7 +27,7 @@ export class Shadow implements IShadow, IOptionLoader<IShadow> {
     }
 
     load(data?: RecursivePartial<IShadow>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

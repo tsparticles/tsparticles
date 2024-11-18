@@ -4,6 +4,7 @@ import type { ISpin } from "../../../Interfaces/Particles/Move/ISpin.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { deepExtend } from "../../../../Utils/Utils.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 export class Spin implements ISpin, IOptionLoader<ISpin> {
@@ -17,7 +18,7 @@ export class Spin implements ISpin, IOptionLoader<ISpin> {
     }
 
     load(data?: RecursivePartial<ISpin>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

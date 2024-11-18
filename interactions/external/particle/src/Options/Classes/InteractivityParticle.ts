@@ -1,4 +1,10 @@
-import { type IOptionLoader, type IParticlesOptions, type RecursivePartial, deepExtend } from "@tsparticles/engine";
+import {
+    type IOptionLoader,
+    type IParticlesOptions,
+    type RecursivePartial,
+    deepExtend,
+    isNull,
+} from "@tsparticles/engine";
 import type { IInteractivityParticle } from "../Interfaces/IInteractivityParticle.js";
 
 /**
@@ -16,7 +22,7 @@ export class InteractivityParticle implements IInteractivityParticle, IOptionLoa
     }
 
     load(data?: RecursivePartial<IInteractivityParticle>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

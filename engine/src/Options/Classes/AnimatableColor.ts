@@ -1,4 +1,4 @@
-import { isArray, isString } from "../../Utils/TypeUtils.js";
+import { isArray, isNull, isString } from "../../Utils/TypeUtils.js";
 import { HslAnimation } from "./HslAnimation.js";
 import type { IAnimatableColor } from "../Interfaces/IAnimatableColor.js";
 import type { IColorAnimation } from "../Interfaces/IColorAnimation.js";
@@ -42,7 +42,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
     load(data?: RecursivePartial<IAnimatableColor>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

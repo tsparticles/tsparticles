@@ -2,6 +2,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IParticlesNumberLimit } from "../../../Interfaces/Particles/Number/IParticlesNumberLimit.js";
 import { LimitMode } from "../../../../Enums/Modes/LimitMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 export class ParticlesNumberLimit implements IParticlesNumberLimit, IOptionLoader<IParticlesNumberLimit> {
     mode: LimitMode | keyof typeof LimitMode;
@@ -13,7 +14,7 @@ export class ParticlesNumberLimit implements IParticlesNumberLimit, IOptionLoade
     }
 
     load(data?: RecursivePartial<IParticlesNumberLimit>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

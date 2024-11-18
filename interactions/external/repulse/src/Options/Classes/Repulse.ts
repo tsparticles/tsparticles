@@ -3,6 +3,7 @@ import {
     type RecursivePartial,
     type SingleOrMultiple,
     executeOnSingleOrMultiple,
+    isNull,
 } from "@tsparticles/engine";
 import type { IRepulse } from "../Interfaces/IRepulse.js";
 import { RepulseBase } from "./RepulseBase.js";
@@ -16,7 +17,7 @@ export class Repulse extends RepulseBase implements IRepulse, IOptionLoader<IRep
     load(data?: RecursivePartial<IRepulse>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

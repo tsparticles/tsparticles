@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IMotionReduce } from "../Interfaces/IMotionReduce.js";
 
 /**
@@ -20,7 +20,7 @@ export class MotionReduce implements IMotionReduce, IOptionLoader<IMotionReduce>
     }
 
     load(data?: RecursivePartial<IMotionReduce>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

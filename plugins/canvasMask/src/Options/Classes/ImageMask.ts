@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IImageMask } from "../Interfaces/IImageMask.js";
 
 export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
@@ -9,7 +9,7 @@ export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
     }
 
     load(data?: RecursivePartial<IImageMask>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

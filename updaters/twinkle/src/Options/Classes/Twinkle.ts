@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ITwinkle } from "../Interfaces/ITwinkle.js";
 import { TwinkleValues } from "./TwinkleValues.js";
 
@@ -15,7 +15,7 @@ export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
     }
 
     load(data?: RecursivePartial<ITwinkle>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

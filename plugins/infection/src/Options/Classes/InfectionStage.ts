@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IInfectionStage } from "../Interfaces/IInfectionStage.js";
 
 /**
@@ -18,7 +18,7 @@ export class InfectionStage implements IInfectionStage, IOptionLoader<IInfection
     }
 
     load(data?: RecursivePartial<IInfectionStage>): void {
-        if (data === undefined) {
+        if (isNull(data)) {
             return;
         }
 

@@ -3,6 +3,7 @@ import type { IOpacityAnimation } from "../../../Interfaces/Particles/Opacity/IO
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { RangedAnimationOptions } from "../../AnimationOptions.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  */
@@ -21,7 +22,7 @@ export class OpacityAnimation
     load(data?: RecursivePartial<IOpacityAnimation>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

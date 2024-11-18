@@ -6,6 +6,7 @@ import {
     type RecursivePartial,
     RotateDirection,
     type RotateDirectionAlt,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import { GradientAngleAnimation } from "./GradientAngleAnimation.js";
@@ -25,7 +26,7 @@ export class GradientAngle
     }
 
     load(data?: RecursivePartial<IGradientAngle & IAnimatable<IAnimation>>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

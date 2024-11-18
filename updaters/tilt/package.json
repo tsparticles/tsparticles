@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/updater-tilt",
-    "version": "3.5.0",
+    "version": "3.6.0",
     "description": "tsParticles particles tilt updater",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -95,7 +95,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "workspace:^3.5.0"
+        "@tsparticles/engine": "workspace:^3.6.0"
     },
     "publishConfig": {
         "access": "public",

@@ -3,6 +3,7 @@ import {
     type IOptionLoader,
     type RecursivePartial,
     deepExtend,
+    isNull,
     isString,
 } from "@tsparticles/engine";
 import type { IPolygonMask } from "../Interfaces/IPolygonMask.js";
@@ -36,7 +37,7 @@ export class PolygonMask implements IPolygonMask, IOptionLoader<IPolygonMask> {
     }
 
     load(data?: RecursivePartial<IPolygonMask>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

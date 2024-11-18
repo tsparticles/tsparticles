@@ -2,6 +2,7 @@ import type { IMoveCenter } from "../../../Interfaces/Particles/Move/IMoveCenter
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { PixelMode } from "../../../../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 export class MoveCenter implements IMoveCenter, IOptionLoader<IMoveCenter> {
     mode: PixelMode | keyof typeof PixelMode;
@@ -17,7 +18,7 @@ export class MoveCenter implements IMoveCenter, IOptionLoader<IMoveCenter> {
     }
 
     load(data?: RecursivePartial<IMoveCenter>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

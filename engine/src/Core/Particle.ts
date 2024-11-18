@@ -401,7 +401,7 @@ export class Particle {
 
         shapeDrawer?.particleDestroy?.(this);
 
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             plugin.particleDestroyed?.(this, override);
         }
 
@@ -423,7 +423,7 @@ export class Particle {
         const container = this.container,
             canvas = container.canvas;
 
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -653,7 +653,7 @@ export class Particle {
         effectDrawer?.particleInit?.(container, this);
         shapeDrawer?.particleInit?.(container, this);
 
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             plugin.particleCreated?.(this);
         }
     }
@@ -690,7 +690,7 @@ export class Particle {
         zIndex: number,
         tryCount?: number,
     ) => Vector3d = (container, position, zIndex, tryCount = defaultRetryCount) => {
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             const pluginPos =
                 plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
 

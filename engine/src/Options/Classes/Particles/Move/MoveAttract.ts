@@ -3,6 +3,7 @@ import type { IMoveAttract } from "../../../Interfaces/Particles/Move/IMoveAttra
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../../../Utils/NumberUtils.js";
 
 /**
@@ -22,7 +23,7 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     }
 
     load(data?: RecursivePartial<IMoveAttract>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

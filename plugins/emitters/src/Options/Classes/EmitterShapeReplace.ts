@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IEmitterShapeReplace } from "../Interfaces/IEmitterShapeReplace.js";
 
 export class EmitterShapeReplace implements IEmitterShapeReplace, IOptionLoader<IEmitterShapeReplace> {
@@ -11,7 +11,7 @@ export class EmitterShapeReplace implements IEmitterShapeReplace, IOptionLoader<
     }
 
     load(data?: RecursivePartial<IEmitterShapeReplace> | undefined): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

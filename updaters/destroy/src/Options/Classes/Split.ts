@@ -7,6 +7,7 @@ import {
     type SingleOrMultiple,
     deepExtend,
     executeOnSingleOrMultiple,
+    isNull,
 } from "@tsparticles/engine";
 import type { ISplit } from "../Interfaces/ISplit.js";
 import { SplitFactor } from "./SplitFactor.js";
@@ -29,7 +30,7 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
     }
 
     load(data?: RecursivePartial<ISplit>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IPoisson } from "../Interfaces/IPoisson.js";
 
 /**
@@ -20,7 +20,7 @@ export class Poisson implements IPoisson, IOptionLoader<IPoisson> {
     }
 
     load(data?: RecursivePartial<IPoisson>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

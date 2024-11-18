@@ -6,6 +6,7 @@ import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import { InteractivityDetect } from "../../../Enums/InteractivityDetect.js";
 import { Modes } from "./Modes/Modes.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Interactivity.md]]
@@ -25,7 +26,7 @@ export class Interactivity implements IInteractivity, IOptionLoader<IInteractivi
     }
 
     load(data?: RecursivePartial<IInteractivity>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

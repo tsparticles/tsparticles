@@ -1,7 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "gaID": "UA-161253125-1",
-  "includes": "./markdown",
+  "projectDocuments": ["../markdown/**/*.md"],
   "entryPoints": [
     "engine",
     "bundles/confetti",
@@ -43,6 +42,7 @@
     "plugins/hsvColor",
     "plugins/infection",
     "plugins/motion",
+    "plugins/oklchColor",
     "plugins/polygonMask",
     "plugins/sounds",
     "plugins/easings/back",

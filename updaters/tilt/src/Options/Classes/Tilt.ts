@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull } from "@tsparticles/engine";
 import { TiltDirection, type TiltDirectionAlt } from "../../TiltDirection.js";
 import type { ITilt } from "../Interfaces/ITilt.js";
 import { TiltAnimation } from "./TiltAnimation.js";
@@ -22,7 +22,7 @@ export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt>
     load(data?: RecursivePartial<ITilt>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

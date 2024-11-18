@@ -32,7 +32,7 @@ export class BounceOutMode implements IOutModeManager {
         const container = this.container;
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             if (plugin.particleBounce !== undefined) {
                 handled = plugin.particleBounce(particle, delta, direction);
             }

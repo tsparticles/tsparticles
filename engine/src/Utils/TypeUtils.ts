@@ -52,3 +52,12 @@ export function isObject<T extends object>(arg: unknown): arg is T {
 export function isArray<T>(arg: unknown): arg is T[] {
     return Array.isArray(arg);
 }
+
+/**
+ *
+ * @param arg - the object to check
+ * @returns true if the argument is null or undefined
+ */
+export function isNull(arg: unknown): arg is null | undefined {
+    return arg === null || arg === undefined;
+}

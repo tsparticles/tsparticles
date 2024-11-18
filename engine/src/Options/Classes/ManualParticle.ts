@@ -5,6 +5,7 @@ import type { IParticlesOptions } from "../Interfaces/Particles/IParticlesOption
 import { PixelMode } from "../../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { deepExtend } from "../../Utils/Utils.js";
+import { isNull } from "../../Utils/TypeUtils.js";
 
 const defaultPosition = 50;
 
@@ -13,7 +14,7 @@ export class ManualParticle implements IManualParticle, IOptionLoader<IManualPar
     position?: ICoordinatesWithMode;
 
     load(data?: RecursivePartial<IManualParticle>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

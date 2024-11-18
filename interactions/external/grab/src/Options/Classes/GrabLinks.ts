@@ -1,4 +1,4 @@
-import { type IOptionLoader, OptionsColor, type RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IGrabLinks } from "../Interfaces/IGrabLinks.js";
 
 /**
@@ -16,7 +16,7 @@ export class GrabLinks implements IGrabLinks, IOptionLoader<IGrabLinks> {
     }
 
     load(data?: RecursivePartial<IGrabLinks>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

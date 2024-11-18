@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ILife } from "../Interfaces/ILife.js";
 import { LifeDelay } from "./LifeDelay.js";
 import { LifeDuration } from "./LifeDuration.js";
@@ -15,7 +15,7 @@ export class Life implements ILife, IOptionLoader<ILife> {
     }
 
     load(data?: RecursivePartial<ILife>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

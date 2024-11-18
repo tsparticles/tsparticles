@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ILight } from "../Interfaces/ILight.js";
 import { LightArea } from "./LightArea.js";
 import { LightShadow } from "./LightShadow.js";
@@ -13,7 +13,7 @@ export class Light implements ILight, IOptionLoader<ILight> {
     }
 
     load(data?: RecursivePartial<ILight>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

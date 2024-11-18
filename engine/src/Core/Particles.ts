@@ -108,7 +108,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined {
         const limitMode = this._container.actualOptions.particles.number.limit.mode,
-            limit = group === undefined ? this._limit : this._groupLimits.get(group) ?? this._limit,
+            limit = group === undefined ? this._limit : (this._groupLimits.get(group) ?? this._limit),
             currentCount = this.count,
             minLimit = 0;
 
@@ -164,7 +164,7 @@ export class Particles {
         this.update(delta);
 
         /* draw polygon shape in debug mode */
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             canvas.drawPlugin(plugin, delta);
         }
 
@@ -206,7 +206,7 @@ export class Particles {
 
         let handled = false;
 
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             handled = plugin.particlesInitialization?.() ?? handled;
 
             if (handled) {
@@ -249,7 +249,7 @@ export class Particles {
         this.updaters = await this._engine.getUpdaters(container, true);
         await this._interactionManager.init();
 
-        for (const [, pathGenerator] of container.pathGenerators) {
+        for (const pathGenerator of container.pathGenerators.values()) {
             pathGenerator.init(container);
         }
     }
@@ -281,7 +281,8 @@ export class Particles {
         let deleted = 0;
 
         for (let i = index; deleted < quantity && i < this.count; i++) {
-            if (this._removeParticle(i--, group, override)) {
+            if (this._removeParticle(i, group, override)) {
+                i--;
                 deleted++;
             }
         }
@@ -320,11 +321,11 @@ export class Particles {
 
         this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
 
-        for (const [, pathGenerator] of container.pathGenerators) {
+        for (const pathGenerator of container.pathGenerators.values()) {
             pathGenerator.update();
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             plugin.update?.(delta);
         }
 
@@ -342,7 +343,7 @@ export class Particles {
 
             this._interactionManager.reset(particle);
 
-            for (const [, plugin] of this._container.plugins) {
+            for (const plugin of this._container.plugins.values()) {
                 if (particle.destroyed) {
                     break;
                 }

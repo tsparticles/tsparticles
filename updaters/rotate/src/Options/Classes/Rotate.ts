@@ -4,6 +4,7 @@ import {
     RotateDirection,
     type RotateDirectionAlt,
     ValueWithRandom,
+    isNull,
 } from "@tsparticles/engine";
 import type { IRotate } from "../Interfaces/IRotate.js";
 import { RotateAnimation } from "./RotateAnimation.js";
@@ -25,7 +26,7 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
     }
 
     load(data?: RecursivePartial<IRotate>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

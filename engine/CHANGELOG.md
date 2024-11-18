@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.1...v3.6.0) (2024-11-18)
+
+### Bug Fixes
+
+-   fixed color syntaxes, fixes [#5409](https://github.com/tsparticles/tsparticles/issues/5409) ([f3c976f](https://github.com/tsparticles/tsparticles/commit/f3c976f451c5bc6a37338cba0cc1ce80c4e9b137))
+
+### Features
+
+-   added isNull function, more secure checks ([891e2a2](https://github.com/tsparticles/tsparticles/commit/891e2a25fb64b7f89ce0c75dbe49bd0b28d9a72d))
+-   first try of oklch color, fixes [#5409](https://github.com/tsparticles/tsparticles/issues/5409) ([5822e72](https://github.com/tsparticles/tsparticles/commit/5822e72cdf0a74de6b4bdaa90f3f4a8527dc4d6b))
+-   fixed oklch color, added lch color too, fixes [#5409](https://github.com/tsparticles/tsparticles/issues/5409) ([d604691](https://github.com/tsparticles/tsparticles/commit/d604691d3bb175e8c615fe1523e73487a036d7ae))
+
+# [3.6.0-beta.1](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.0...v3.6.0-beta.1) (2024-10-13)
+
+**Note:** Version bump only for package @tsparticles/engine
+
+# [3.6.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v3.5.0...v3.6.0-beta.0) (2024-10-07)
+
+### Bug Fixes
+
+-   fixed issue with removing particles when group is active, fixes [#5352](https://github.com/tsparticles/tsparticles/issues/5352) ([af57352](https://github.com/tsparticles/tsparticles/commit/af57352b3c8e5646fa2c8e784b78698c7e2c9186))
+
+# [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.5.0...v3.6.0) (2024-10-07)
+
+### Bug Fixes
+
+-   fixed issue with removing particles when group is active, fixes [#5352](https://github.com/tsparticles/tsparticles/issues/5352) ([af57352](https://github.com/tsparticles/tsparticles/commit/af57352b3c8e5646fa2c8e784b78698c7e2c9186))
+
 # [3.5.0](https://github.com/tsparticles/tsparticles/compare/v3.4.0...v3.5.0) (2024-07-01)
 
 ### Features

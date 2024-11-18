@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ISlow } from "../Interfaces/ISlow.js";
 
 /**
@@ -13,7 +13,7 @@ export class Slow implements ISlow, IOptionLoader<ISlow> {
     }
 
     load(data?: RecursivePartial<ISlow>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

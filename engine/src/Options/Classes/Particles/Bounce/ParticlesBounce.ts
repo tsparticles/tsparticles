@@ -2,6 +2,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IParticlesBounce } from "../../../Interfaces/Particles/Bounce/IParticlesBounce.js";
 import { ParticlesBounceFactor } from "./ParticlesBounceFactor.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 export class ParticlesBounce implements IParticlesBounce, IOptionLoader<IParticlesBounce> {
     readonly horizontal;
@@ -13,7 +14,7 @@ export class ParticlesBounce implements IParticlesBounce, IOptionLoader<IParticl
     }
 
     load(data?: RecursivePartial<IParticlesBounce>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

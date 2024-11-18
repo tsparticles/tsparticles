@@ -1,4 +1,4 @@
-import { AnimatableColor, type IOptionLoader, type RecursivePartial, isNumber } from "@tsparticles/engine";
+import { AnimatableColor, type IOptionLoader, type RecursivePartial, isNull, isNumber } from "@tsparticles/engine";
 import { GradientColorOpacity } from "./GradientColorOpacity.js";
 import type { IAnimatableGradientColor } from "../Interfaces/IOptionsGradient.js";
 
@@ -13,7 +13,7 @@ export class AnimatableGradientColor implements IAnimatableGradientColor, IOptio
     }
 
     load(data?: RecursivePartial<IAnimatableGradientColor>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,4 +1,10 @@
-import { type IOptionLoader, type IParticlesOptions, type RecursivePartial, deepExtend } from "@tsparticles/engine";
+import {
+    type IOptionLoader,
+    type IParticlesOptions,
+    type RecursivePartial,
+    deepExtend,
+    isNull,
+} from "@tsparticles/engine";
 import type { ITrail } from "../Interfaces/ITrail.js";
 
 /**
@@ -16,7 +22,7 @@ export class Trail implements ITrail, IOptionLoader<ITrail> {
     }
 
     load(data?: RecursivePartial<ITrail>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

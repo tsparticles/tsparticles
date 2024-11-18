@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { IPush } from "../Interfaces/IPush.js";
 
 /**
@@ -15,7 +15,7 @@ export class Push implements IPush, IOptionLoader<IPush> {
     }
 
     load(data?: RecursivePartial<IPush>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,4 +1,4 @@
-import { type IValueWithRandom, type RecursivePartial, ValueWithRandom } from "@tsparticles/engine";
+import { type IValueWithRandom, type RecursivePartial, ValueWithRandom, isNull } from "@tsparticles/engine";
 
 /**
  */
@@ -10,7 +10,7 @@ export class OrbitRotation extends ValueWithRandom {
     }
 
     load(data?: RecursivePartial<IValueWithRandom>): void {
-        if (data === undefined) {
+        if (isNull(data)) {
             return;
         }
 

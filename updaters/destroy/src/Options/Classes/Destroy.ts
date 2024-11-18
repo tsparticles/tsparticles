@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import { DestroyBounds } from "./DestroyBounds.js";
 import { DestroyMode } from "../../Enums/DestroyMode.js";
 import type { IDestroy } from "../Interfaces/IDestroy.js";
@@ -16,7 +16,7 @@ export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
     }
 
     load(data?: RecursivePartial<IDestroy>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

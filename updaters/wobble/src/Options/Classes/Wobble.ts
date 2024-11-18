@@ -3,6 +3,7 @@ import {
     type IRangeValue,
     type RangeValue,
     type RecursivePartial,
+    isNull,
     isNumber,
     setRangeValue,
 } from "@tsparticles/engine";
@@ -22,7 +23,7 @@ export class Wobble implements IWobble, IOptionLoader<IWobble> {
     }
 
     load(data?: RecursivePartial<IWobble>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

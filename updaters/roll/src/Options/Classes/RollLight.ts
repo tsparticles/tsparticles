@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, setRangeValue } from "@tsparticles/engine";
+import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
 import type { IRollLight } from "../Interfaces/IRollLight.js";
 
 export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
@@ -11,7 +11,7 @@ export class RollLight implements IRollLight, IOptionLoader<IRollLight> {
     }
 
     load(data?: RecursivePartial<IRollLight>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

@@ -1,4 +1,4 @@
-import type { IOptionLoader, RecursivePartial } from "@tsparticles/engine";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ISoundsIcon } from "../Interfaces/ISoundsIcon.js";
 
 export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {
@@ -15,7 +15,7 @@ export class SoundsIcon implements ISoundsIcon, IOptionLoader<ISoundsIcon> {
     }
 
     load(data?: RecursivePartial<ISoundsIcon>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

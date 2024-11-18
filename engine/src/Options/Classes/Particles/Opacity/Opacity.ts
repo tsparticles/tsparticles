@@ -3,6 +3,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { OpacityAnimation } from "./OpacityAnimation.js";
 import { RangedAnimationValueWithRandom } from "../../ValueWithRandom.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  * [[include:Options/Particles/Opacity.md]]
@@ -17,7 +18,7 @@ export class Opacity extends RangedAnimationValueWithRandom implements IOpacity,
     }
 
     load(data?: RecursivePartial<IOpacity>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

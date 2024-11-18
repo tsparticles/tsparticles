@@ -397,7 +397,7 @@ export class EventListeners {
             return;
         }
 
-        for (const [, plugin] of container.plugins) {
+        for (const plugin of container.plugins.values()) {
             if (!plugin.clickPositionValid) {
                 continue;
             }

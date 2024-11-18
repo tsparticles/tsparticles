@@ -3,6 +3,7 @@ import {
     OptionsColor,
     type RangeValue,
     type RecursivePartial,
+    isNull,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { ITwinkleValues } from "../Interfaces/ITwinkleValues.js";
@@ -22,7 +23,7 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
     }
 
     load(data?: RecursivePartial<ITwinkleValues>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

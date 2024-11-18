@@ -2,6 +2,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { IZIndex } from "../../../Interfaces/Particles/ZIndex/IZIndex.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { ValueWithRandom } from "../../ValueWithRandom.js";
+import { isNull } from "../../../../Utils/TypeUtils.js";
 
 /**
  */
@@ -20,7 +21,7 @@ export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZ
     load(data?: RecursivePartial<IZIndex>): void {
         super.load(data);
 
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 

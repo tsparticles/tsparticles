@@ -1,4 +1,4 @@
-import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial } from "@tsparticles/engine";
+import { EasingType, type EasingTypeAlt, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IRepulseBase } from "../Interfaces/IRepulseBase.js";
 
 /**
@@ -21,7 +21,7 @@ export abstract class RepulseBase implements IRepulseBase, IOptionLoader<IRepuls
     }
 
     load(data?: RecursivePartial<IRepulseBase>): void {
-        if (!data) {
+        if (isNull(data)) {
             return;
         }
 
