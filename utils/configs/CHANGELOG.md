@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.1...v3.6.0) (2024-11-18)
+
+### Bug Fixes
+
+-   fixed color syntaxes, fixes [#5409](https://github.com/tsparticles/tsparticles/issues/5409) ([f3c976f](https://github.com/tsparticles/tsparticles/commit/f3c976f451c5bc6a37338cba0cc1ce80c4e9b137))
+
+### Features
+
+-   fixed oklch color, added lch color too, fixes [#5409](https://github.com/tsparticles/tsparticles/issues/5409) ([d604691](https://github.com/tsparticles/tsparticles/commit/d604691d3bb175e8c615fe1523e73487a036d7ae))
+
 # [3.6.0-beta.1](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.0...v3.6.0-beta.1) (2024-10-13)
 
 **Note:** Version bump only for package @tsparticles/configs
