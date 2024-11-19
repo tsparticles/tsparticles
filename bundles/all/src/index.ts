@@ -31,6 +31,7 @@ import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 import { loadInfinityShape } from "@tsparticles/shape-infinity";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+import { loadNamedColorPlugin } from "@tsparticles/plugin-named-color";
 import { loadOklchColorPlugin } from "@tsparticles/plugin-oklch-color";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
@@ -63,6 +64,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadFull(engine, false);
 
     await loadHsvColorPlugin();
+    await loadNamedColorPlugin();
     await loadOklchColorPlugin();
     await loadEasingBackPlugin();
     await loadEasingCircPlugin();

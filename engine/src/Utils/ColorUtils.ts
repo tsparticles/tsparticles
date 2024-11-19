@@ -23,13 +23,6 @@ import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
 import { itemFromArray } from "./Utils.js";
 
-enum RgbIndexes {
-    r = 1,
-    g = 2,
-    b = 3,
-    a = 4,
-}
-
 const randomColorValue = "random",
     midColorValue = "mid",
     colorManagers = new Map<string, IColorManager>();
@@ -47,33 +40,15 @@ export function addColorManager(manager: IColorManager): void {
  * @returns the converted color from string to {@link IRgba} interfaec
  */
 function stringToRgba(input: string): IRgba | undefined {
+    if (!input) {
+        return;
+    }
+
     for (const manager of colorManagers.values()) {
         if (input.startsWith(manager.stringPrefix)) {
             return manager.parseString(input);
         }
     }
-
-    const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
-        hexFixed = input.replace(shorthandRegex, (_, r: string, g: string, b: string, a: string) => {
-            return r + r + g + g + b + b + (a !== undefined ? a + a : "");
-        }),
-        regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i,
-        result = regex.exec(hexFixed),
-        radix = 16,
-        defaultAlpha = 1,
-        alphaFactor = 0xff;
-
-    return result
-        ? {
-              a:
-                  result[RgbIndexes.a] !== undefined
-                      ? parseInt(result[RgbIndexes.a], radix) / alphaFactor
-                      : defaultAlpha,
-              b: parseInt(result[RgbIndexes.b], radix),
-              g: parseInt(result[RgbIndexes.g], radix),
-              r: parseInt(result[RgbIndexes.r], radix),
-          }
-        : undefined;
 }
 
 /**

@@ -265,16 +265,19 @@ importers:
         version: link:../../plugins/exports/video/dist
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:^3.6.0
-        version: link:../../plugins/hsvColor/dist
+        version: link:../../plugins/colors/hsvColor/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:^3.6.0
         version: link:../../plugins/infection/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:^3.6.0
         version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-named-color':
+        specifier: workspace:^3.6.0
+        version: link:../../plugins/colors/namedColor/dist
       '@tsparticles/plugin-oklch-color':
         specifier: workspace:^3.6.0
-        version: link:../../plugins/oklchColor/dist
+        version: link:../../plugins/colors/oklchColor/dist
       '@tsparticles/plugin-poisson-disc':
         specifier: workspace:^3.6.0
         version: link:../../plugins/poisson/dist
@@ -753,16 +756,19 @@ importers:
         version: link:../../plugins/exports/video/dist
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:^3.6.0
-        version: link:../../plugins/hsvColor/dist
+        version: link:../../plugins/colors/hsvColor/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:^3.6.0
         version: link:../../plugins/infection/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:^3.6.0
         version: link:../../plugins/motion/dist
+      '@tsparticles/plugin-named-color':
+        specifier: workspace:^3.6.0
+        version: link:../../plugins/colors/namedColor/dist
       '@tsparticles/plugin-oklch-color':
         specifier: workspace:^3.6.0
-        version: link:../../plugins/oklchColor/dist
+        version: link:../../plugins/colors/oklchColor/dist
       '@tsparticles/plugin-poisson-disc':
         specifier: workspace:^3.6.0
         version: link:../../plugins/poisson/dist
@@ -1245,6 +1251,27 @@ importers:
         version: link:../../engine/dist
     publishDirectory: dist
 
+  plugins/colors/hsvColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:^3.6.0
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/colors/namedColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:^3.6.0
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/colors/oklchColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:^3.6.0
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   plugins/easings/back:
     dependencies:
       '@tsparticles/engine':
@@ -1386,13 +1413,6 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/hsvColor:
-    dependencies:
-      '@tsparticles/engine':
-        specifier: workspace:^3.6.0
-        version: link:../../engine/dist
-    publishDirectory: dist
-
   plugins/infection:
     dependencies:
       '@tsparticles/engine':
@@ -1401,13 +1421,6 @@ importers:
     publishDirectory: dist
 
   plugins/motion:
-    dependencies:
-      '@tsparticles/engine':
-        specifier: workspace:^3.6.0
-        version: link:../../engine/dist
-    publishDirectory: dist
-
-  plugins/oklchColor:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:^3.6.0

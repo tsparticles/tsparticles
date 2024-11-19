@@ -9,6 +9,7 @@ packages:
   - 'move/*'
   - 'paths/*'
   - 'plugins/*'
+  - 'plugins/colors/*'
   - 'plugins/easings/*'
   - 'plugins/emittersShapes/*'
   - 'plugins/exports/*'

@@ -32,6 +32,7 @@
 - [@tsparticles/plugin-hsv-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/hsvColor)
 - [@tsparticles/plugin-infection](https://github.com/tsparticles/tsparticles/tree/main/plugins/infection)
 - [@tsparticles/plugin-motion](https://github.com/tsparticles/tsparticles/tree/main/plugins/motion)
+- [@tsparticles/plugin-named-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/namedColor)
 - [@tsparticles/plugin-polygon-mask](https://github.com/tsparticles/tsparticles/tree/main/plugins/polygonMask)
 - [@tsparticles/plugin-sounds](https://github.com/tsparticles/tsparticles/tree/main/plugins/sounds)
 - [@tsparticles/shape-arrow](https://github.com/tsparticles/tsparticles/tree/main/shapes/arrow)

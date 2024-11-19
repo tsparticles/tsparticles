@@ -103,7 +103,7 @@
     "@tsparticles/move-base": "^3.6.0",
     "@tsparticles/shape-circle": "^3.6.0",
     "@tsparticles/updater-color": "^3.6.0",
-    "@tsparticles/updater-opacity": "^3.6.0",
+    "@tsparticles/updater-opacity": "^3.6.0-beta.1",
     "@tsparticles/updater-out-modes": "^3.6.0",
     "@tsparticles/updater-size": "^3.6.0"
   },

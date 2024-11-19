@@ -110,6 +110,7 @@
         "@tsparticles/plugin-hsv-color": "workspace:^3.6.0",
         "@tsparticles/plugin-infection": "workspace:^3.6.0",
         "@tsparticles/plugin-motion": "workspace:^3.6.0",
+        "@tsparticles/plugin-named-color": "workspace:^3.6.0",
         "@tsparticles/plugin-oklch-color": "workspace:^3.6.0",
         "@tsparticles/plugin-poisson-disc": "workspace:^3.6.0",
         "@tsparticles/plugin-polygon-mask": "workspace:^3.6.0",
