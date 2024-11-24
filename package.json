@@ -2,7 +2,7 @@
   "private": true,
   "name": "@tsparticles/workspace",
   "description": "tsParticles monorepository",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "slimbuild": "pnpm run prettify:readme && lerna run build",
     "slimbuild:ci": "pnpm run prettify:readme && lerna run build:ci",
