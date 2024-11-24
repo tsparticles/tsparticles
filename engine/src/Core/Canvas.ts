@@ -404,13 +404,18 @@ export class Canvas {
         this.element = canvas;
         this.element.ariaHidden = "true";
         this._originalStyle = deepExtend({}, this.element.style) as Record<string, string | null>;
-        this._standardSize.height = canvas.offsetHeight;
-        this._standardSize.width = canvas.offsetWidth;
+
+        const standardSize = this._standardSize;
+
+        standardSize.height = canvas.offsetHeight;
+        standardSize.width = canvas.offsetWidth;
 
         const pxRatio = this.container.retina.pixelRatio;
 
-        this.size.height = this._standardSize.height * pxRatio;
-        this.size.width = this._standardSize.width * pxRatio;
+        const retinaSize = this.size;
+
+        retinaSize.height = standardSize.height * pxRatio;
+        retinaSize.width = standardSize.width * pxRatio;
 
         this._context = this.element.getContext("2d");
 
@@ -459,29 +464,31 @@ export class Canvas {
         }
 
         const container = this.container,
-            size = container.canvas._standardSize,
+            currentSize = container.canvas._standardSize,
             newSize = {
                 width: this.element.offsetWidth,
                 height: this.element.offsetHeight,
             };
 
-        if (newSize.height === size.height && newSize.width === size.width) {
+        if (newSize.height === currentSize.height && newSize.width === currentSize.width) {
             return false;
         }
 
-        const oldSize = { ...size },
+        const oldSize = { ...currentSize },
             pxRatio = container.retina.pixelRatio;
 
-        this._standardSize.height = newSize.height;
-        this._standardSize.width = newSize.width;
+        currentSize.height = newSize.height;
+        currentSize.width = newSize.width;
 
-        this.element.width = this.size.width = this._standardSize.width * pxRatio;
-        this.element.height = this.size.height = this._standardSize.height * pxRatio;
+        const retinaSize = this.size;
+
+        this.element.width = retinaSize.width = currentSize.width * pxRatio;
+        this.element.height = retinaSize.height = currentSize.height * pxRatio;
 
         if (this.container.started) {
             container.particles.setResizeFactor({
-                width: size.width / oldSize.width,
-                height: size.height / oldSize.height,
+                width: currentSize.width / oldSize.width,
+                height: currentSize.height / oldSize.height,
             });
         }
 
