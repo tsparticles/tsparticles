@@ -20,32 +20,28 @@ export class HexColorManager implements IColorManager {
     }
 
     handleColor(color: IColor): IRgb | undefined {
-        const hexColor = color.value;
-
-        if (typeof hexColor !== "string") {
-            return;
-        }
-
-        return this.parseString(hexColor);
+        return this._parseString(color.value);
     }
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
-        const hexColor = color.value;
+        return this._parseString(color.value);
+    }
 
+    parseString(input: string): IRgba | undefined {
+        return this._parseString(input);
+    }
+
+    private _parseString(hexColor: unknown): IRgba | undefined {
         if (typeof hexColor !== "string") {
             return;
         }
 
-        return this.parseString(hexColor);
-    }
-
-    parseString(input: string): IRgba | undefined {
-        if (!input?.startsWith(this.stringPrefix)) {
+        if (!hexColor?.startsWith(this.stringPrefix)) {
             return;
         }
 
         const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
-            hexFixed = input.replace(shorthandRegex, (_, r: string, g: string, b: string, a: string) => {
+            hexFixed = hexColor.replace(shorthandRegex, (_, r: string, g: string, b: string, a: string) => {
                 return r + r + g + g + b + b + (a !== undefined ? a + a : "");
             }),
             regex = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})?$/i,

@@ -26,7 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 
 ```javascript
 (async () => {
-  await loadHsvColorPlugin();
+  await loadNamedColorPlugin();
 
   await tsParticles.load({
     id: "tsparticles",
@@ -55,7 +55,7 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
-const { loadHsvColorPlugin } = require("@tsparticles/plugin-named-color");
+const { loadNamedColorPlugin } = require("@tsparticles/plugin-named-color");
 
 (async () => {
   await loadNamedColorPlugin();
@@ -66,7 +66,7 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
-import { loadHsvColorPlugin } from "@tsparticles/plugin-named-color";
+import { loadNamedColorPlugin } from "@tsparticles/plugin-named-color";
 
 (async () => {
   await loadNamedColorPlugin();

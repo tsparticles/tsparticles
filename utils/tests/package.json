@@ -15,7 +15,7 @@
         "test:ci": "vitest run"
     },
     "dependencies": {
-        "@tsparticles/engine": "workspace:^3.6.0"
+        "@tsparticles/engine": "workspace:3.6.0"
     },
     "devDependencies": {
         "skia-canvas": "^1.0.2",

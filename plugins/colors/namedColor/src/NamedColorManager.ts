@@ -161,18 +161,22 @@ export class NamedColorManager implements IColorManager {
     }
 
     handleColor(color: IColor): IRgb | undefined {
-        const namedColor = color.value as string;
-
-        return namedColors.get(namedColor.toLowerCase());
+        return this._parseString(color.value);
     }
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
-        const namedColor = color.value as string;
-
-        return namedColors.get(namedColor.toLowerCase());
+        return this._parseString(color.value);
     }
 
     parseString(input: string): IRgba | undefined {
+        return this._parseString(input);
+    }
+
+    private _parseString(input: unknown): IRgba | undefined {
+        if (!input || typeof input !== "string") {
+            return undefined;
+        }
+
         const rgbColor = namedColors.get(input.toLowerCase());
 
         if (!rgbColor) {
