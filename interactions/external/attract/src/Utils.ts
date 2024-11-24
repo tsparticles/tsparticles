@@ -1,12 +1,12 @@
 import {
     type BaseRange,
     Circle,
+    type Engine,
     type ICoordinates,
     type Particle,
     Vector,
     clamp,
     getDistances,
-    getEasing,
 } from "@tsparticles/engine";
 import type { AttractContainer } from "./Types.js";
 
@@ -16,6 +16,7 @@ const minFactor = 1,
 
 /**
  *
+ * @param engine -
  * @param container -
  * @param position -
  * @param attractRadius -
@@ -23,6 +24,7 @@ const minFactor = 1,
  * @param queryCb -
  */
 function processAttract(
+    engine: Engine,
     container: AttractContainer,
     position: ICoordinates,
     attractRadius: number,
@@ -41,7 +43,7 @@ function processAttract(
         const { dx, dy, distance } = getDistances(particle.position, position),
             velocity = attractOptions.speed * attractOptions.factor,
             attractFactor = clamp(
-                getEasing(attractOptions.easing)(identity - distance / attractRadius) * velocity,
+                engine.getEasing(attractOptions.easing)(identity - distance / attractRadius) * velocity,
                 minFactor,
                 attractOptions.maxSpeed,
             ),
@@ -56,10 +58,15 @@ function processAttract(
 
 /**
  *
+ * @param engine -
  * @param container -
  * @param enabledCb -
  */
-export function clickAttract(container: AttractContainer, enabledCb: (particle: Particle) => boolean): void {
+export function clickAttract(
+    engine: Engine,
+    container: AttractContainer,
+    enabledCb: (particle: Particle) => boolean,
+): void {
     if (!container.attract) {
         container.attract = { particles: [] };
     }
@@ -87,6 +94,7 @@ export function clickAttract(container: AttractContainer, enabledCb: (particle: 
         }
 
         processAttract(
+            engine,
             container,
             mousePos,
             attractRadius,
@@ -100,10 +108,15 @@ export function clickAttract(container: AttractContainer, enabledCb: (particle: 
 
 /**
  *
+ * @param engine -
  * @param container -
  * @param enabledCb -
  */
-export function hoverAttract(container: AttractContainer, enabledCb: (particle: Particle) => boolean): void {
+export function hoverAttract(
+    engine: Engine,
+    container: AttractContainer,
+    enabledCb: (particle: Particle) => boolean,
+): void {
     const mousePos = container.interactivity.mouse.position,
         attractRadius = container.retina.attractModeDistance;
 
@@ -112,6 +125,7 @@ export function hoverAttract(container: AttractContainer, enabledCb: (particle: 
     }
 
     processAttract(
+        engine,
         container,
         mousePos,
         attractRadius,

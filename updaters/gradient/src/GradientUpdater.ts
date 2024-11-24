@@ -1,5 +1,6 @@
 import {
     AnimationStatus,
+    type Engine,
     GradientType,
     type ICoordinates,
     type IDelta,
@@ -30,6 +31,12 @@ const double = 2,
     doublePI = Math.PI * double;
 
 export class GradientUpdater implements IParticleUpdater {
+    private readonly _engine;
+
+    constructor(engine: Engine) {
+        this._engine = engine;
+    }
+
     getColorStyles(
         particle: GradientParticle,
         context: CanvasRenderingContext2D,
@@ -117,7 +124,7 @@ export class GradientUpdater implements IParticleUpdater {
         const reduceDuplicates = particle.options.reduceDuplicates;
 
         for (const grColor of gradient.colors) {
-            const grHslColor = rangeColorToHsl(grColor.value, particle.id, reduceDuplicates);
+            const grHslColor = rangeColorToHsl(this._engine, grColor.value, particle.id, reduceDuplicates);
 
             if (!grHslColor) {
                 continue;

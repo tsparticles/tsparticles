@@ -1,4 +1,4 @@
-import type { Engine } from "@tsparticles/engine";
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { initPjs } from "@tsparticles/pjs";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
 import { loadBubbleEffect } from "@tsparticles/effect-bubble";
@@ -31,6 +31,7 @@ import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 import { loadInfinityShape } from "@tsparticles/shape-infinity";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
+import { loadNamedColorPlugin } from "@tsparticles/plugin-named-color";
 import { loadOklchColorPlugin } from "@tsparticles/plugin-oklch-color";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
@@ -48,6 +49,8 @@ import { loadSpiralShape } from "@tsparticles/shape-spiral";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
 import { loadZigZagPath } from "@tsparticles/path-zig-zag";
 
+declare const __VERSION__: string;
+
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles All package.
  * This function must be called to make tsParticles All work.
@@ -58,20 +61,23 @@ import { loadZigZagPath } from "@tsparticles/path-zig-zag";
  * @param refresh -
  */
 export async function loadAll(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     initPjs(engine);
 
     await loadFull(engine, false);
 
-    await loadHsvColorPlugin();
-    await loadOklchColorPlugin();
-    await loadEasingBackPlugin();
-    await loadEasingCircPlugin();
-    await loadEasingCubicPlugin();
-    await loadEasingExpoPlugin();
-    await loadEasingLinearPlugin();
-    await loadEasingQuartPlugin();
-    await loadEasingQuintPlugin();
-    await loadEasingSinePlugin();
+    await loadHsvColorPlugin(engine, false);
+    await loadNamedColorPlugin(engine, false);
+    await loadOklchColorPlugin(engine, false);
+    await loadEasingBackPlugin(engine, false);
+    await loadEasingCircPlugin(engine, false);
+    await loadEasingCubicPlugin(engine, false);
+    await loadEasingExpoPlugin(engine, false);
+    await loadEasingLinearPlugin(engine, false);
+    await loadEasingQuartPlugin(engine, false);
+    await loadEasingQuintPlugin(engine, false);
+    await loadEasingSinePlugin(engine, false);
 
     await loadEmittersShapeCanvas(engine, false);
     await loadEmittersShapePath(engine, false);

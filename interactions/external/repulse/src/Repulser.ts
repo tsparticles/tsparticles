@@ -16,7 +16,6 @@ import {
     divMode,
     divModeExecute,
     getDistances,
-    getEasing,
     isDivModeEnabled,
     isInArray,
     millisecondsToSeconds,
@@ -256,7 +255,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         }
 
         const { easing, speed, factor, maxSpeed } = repulseOptions,
-            easingFunc = getEasing(easing),
+            easingFunc = this._engine.getEasing(easing),
             velocity = (divRepulse?.speed ?? speed) * factor;
 
         for (const particle of query) {

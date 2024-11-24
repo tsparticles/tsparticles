@@ -1,4 +1,5 @@
 import {
+    type Engine,
     type IDelta,
     type IParticleTransformValues,
     type IParticleUpdater,
@@ -10,6 +11,12 @@ import { initParticle, updateRoll } from "./Utils.js";
 import { Roll } from "./Options/Classes/Roll.js";
 
 export class RollUpdater implements IParticleUpdater {
+    private readonly _engine;
+
+    constructor(engine: Engine) {
+        this._engine = engine;
+    }
+
     getTransformValues(particle: Particle): IParticleTransformValues {
         const roll = particle.roll?.enable && particle.roll,
             rollHorizontal = roll && roll.horizontal,
@@ -22,7 +29,7 @@ export class RollUpdater implements IParticleUpdater {
     }
 
     init(particle: RollParticle): void {
-        initParticle(particle);
+        initParticle(this._engine, particle);
     }
 
     isEnabled(particle: RollParticle): boolean {

@@ -3,6 +3,7 @@ import {
     type Engine,
     type ISourceOptions,
     type RecursivePartial,
+    assertValidVersion,
     isSsr,
     isString,
     millisecondsToSeconds,
@@ -25,6 +26,8 @@ import { loadSquareShape } from "@tsparticles/shape-square";
 import { loadStarShape } from "@tsparticles/shape-star";
 import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
+
+declare const __VERSION__: string;
 
 const defaultGravity = 9.81,
     sizeFactor = 5,
@@ -114,6 +117,8 @@ async function initPlugins(engine: Engine): Promise<void> {
     }
 
     initializing = true;
+
+    assertValidVersion(engine, __VERSION__);
 
     await loadEmittersPlugin(engine, false);
     await loadMotionPlugin(engine, false);
@@ -493,7 +498,7 @@ confetti.init = async (): Promise<void> => {
 /**
  *
  */
-confetti.version = tsParticles.version;
+confetti.version = __VERSION__;
 
 if (!isSsr()) {
     window.confetti = confetti;

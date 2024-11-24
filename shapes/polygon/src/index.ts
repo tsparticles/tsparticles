@@ -1,12 +1,16 @@
-import type { Engine } from "@tsparticles/engine";
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { PolygonDrawer } from "./PolygonDrawer.js";
 import { TriangleDrawer } from "./TriangleDrawer.js";
+
+declare const __VERSION__: string;
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadGenericPolygonShape(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addShape(new PolygonDrawer(), refresh);
 }
 
@@ -15,6 +19,8 @@ export async function loadGenericPolygonShape(engine: Engine, refresh = true): P
  * @param refresh -
  */
 export async function loadTriangleShape(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addShape(new TriangleDrawer(), refresh);
 }
 
@@ -23,6 +29,8 @@ export async function loadTriangleShape(engine: Engine, refresh = true): Promise
  * @param refresh -
  */
 export async function loadPolygonShape(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await loadGenericPolygonShape(engine, refresh);
     await loadTriangleShape(engine, refresh);
 }

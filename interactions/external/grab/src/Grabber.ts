@@ -1,4 +1,5 @@
 import {
+    type Engine,
     ExternalInteractorBase,
     type IModes,
     type Modes,
@@ -22,9 +23,12 @@ const grabMode = "grab",
  * Particle grab manager
  */
 export class Grabber extends ExternalInteractorBase<GrabContainer> {
-    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-    constructor(container: GrabContainer) {
+    private readonly _engine;
+
+    constructor(container: GrabContainer, engine: Engine) {
         super(container);
+
+        this._engine = engine;
     }
 
     clear(): void {
@@ -97,6 +101,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
                 const linksOptions = interactivity.modes.grab.links;
 
                 container.particles.grabLineColor = getLinkRandomColor(
+                    this._engine,
                     optColor,
                     linksOptions.blink,
                     linksOptions.consent,

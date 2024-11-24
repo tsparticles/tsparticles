@@ -1,4 +1,5 @@
 import {
+    type Engine,
     type IDelta,
     type IParticleUpdater,
     type RecursivePartial,
@@ -22,7 +23,13 @@ const double = 2,
     defaultRotation = 0;
 
 export class OrbitUpdater implements IParticleUpdater {
-    constructor(private readonly container: OrbitContainer) {}
+    private readonly _container;
+    private readonly _engine;
+
+    constructor(container: OrbitContainer, engine: Engine) {
+        this._engine = engine;
+        this._container = container;
+    }
 
     afterDraw(particle: OrbitParticle): void {
         const orbitOptions = particle.options.orbit;
@@ -41,7 +48,7 @@ export class OrbitUpdater implements IParticleUpdater {
     }
 
     drawOrbit(particle: OrbitParticle, type: OrbitType): void {
-        const container = this.container;
+        const container = this._container;
 
         let start: number, end: number;
 
@@ -76,7 +83,7 @@ export class OrbitUpdater implements IParticleUpdater {
 
     init(particle: OrbitParticle): void {
         /* orbit */
-        const container = this.container,
+        const container = this._container,
             particlesOptions = particle.options,
             orbitOptions = particlesOptions.orbit;
 
@@ -85,7 +92,7 @@ export class OrbitUpdater implements IParticleUpdater {
         }
 
         particle.orbitRotation = getRangeValue(orbitOptions.rotation.value);
-        particle.orbitColor = rangeColorToHsl(orbitOptions.color);
+        particle.orbitColor = rangeColorToHsl(this._engine, orbitOptions.color);
         particle.retina.orbitRadius =
             orbitOptions.radius !== undefined
                 ? getRangeValue(orbitOptions.radius) * container.retina.pixelRatio

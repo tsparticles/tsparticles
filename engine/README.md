@@ -898,6 +898,12 @@ flowchart TD
     subgraph all-plugins [Plugins]
       plugin-canvas-mask[Canvas Mask]
 
+      subgraph all-plugins-colors [Colors]
+        plugin-hsv-color[HSV Color]
+        plugin-named-color[Named Color]
+        plugin-oklch-color[Oklch Color]
+      end
+
       subgraph all-plugins-easings [Easings]
         plugin-easing-back[Back]
         plugin-easing-circ[Circ]
@@ -921,7 +927,6 @@ flowchart TD
         plugin-export-video[Video]
       end
 
-      plugin-hsv-color[HSV Color]
       plugin-infection[Infection]
       plugin-motion[Motion]
       plugin-poisson-disc[Poisson Disc]

@@ -38,7 +38,8 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
 
     let drawn = false;
 
-    const { begin, end, maxDistance, context, canvasSize, width, backgroundMask, colorLine, opacity, links } = params;
+    const { begin, end, engine, maxDistance, context, canvasSize, width, backgroundMask, colorLine, opacity, links } =
+        params;
 
     if (getDistance(begin, end) <= maxDistance) {
         drawLine(context, begin, end);
@@ -115,7 +116,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
     const { shadow } = links;
 
     if (shadow.enable) {
-        const shadowColor = rangeColorToRgb(shadow.color);
+        const shadowColor = rangeColorToRgb(engine, shadow.color);
 
         if (shadowColor) {
             context.shadowBlur = shadow.blur;

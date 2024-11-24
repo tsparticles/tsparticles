@@ -1,6 +1,7 @@
 import type {
     BackgroundMask,
     Container,
+    Engine,
     ICoordinates,
     IDimension,
     IParticlesOptions,
@@ -35,6 +36,7 @@ export interface LinkLineDrawParams {
     colorLine: IRgb;
     context: CanvasRenderingContext2D;
     end: ICoordinates;
+    engine: Engine;
     links: Links;
     maxDistance: number;
     opacity: number;

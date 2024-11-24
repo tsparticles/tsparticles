@@ -1,4 +1,3 @@
-import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import type {
     IPositionFromSizeParams,
     IRangedPositionFromSizeParams,
@@ -15,36 +14,13 @@ interface AnimationLoop {
     nextFrame: (callback: FrameRequestCallback) => number;
 }
 
-type EasingFunction = (value: number) => number;
-
 let _random = Math.random;
 const _animationLoop: AnimationLoop = {
         nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
         cancel: (idx: number): void => cancelAnimationFrame(idx),
     },
-    easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
     double = 2,
     doublePI = Math.PI * double;
-
-/**
- * @param name -
- * @param easing -
- */
-export function addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
-    if (easingFunctions.get(name)) {
-        return;
-    }
-
-    easingFunctions.set(name, easing);
-}
-
-/**
- * @param name -
- * @returns the easing function
- */
-export function getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
-    return easingFunctions.get(name) ?? ((value: number): number => value);
-}
 
 /**
  * Replaces the library random function with a custom one.

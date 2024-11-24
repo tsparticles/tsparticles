@@ -11,6 +11,6 @@ import configs from "@tsparticles/configs";
 
     await engine.load({
         id: "tsparticles",
-        options: configs[randomKey]
+        options: configs[randomKey],
     });
 })(tsParticles);

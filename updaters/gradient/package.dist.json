@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-gradient",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "tsParticles particles gradient updater",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -101,7 +101,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^3.6.0"
+    "@tsparticles/engine": "3.7.0"
   },
   "publishConfig": {
     "access": "public"

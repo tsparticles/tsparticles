@@ -1,4 +1,4 @@
-import type { Engine } from "@tsparticles/engine";
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { loadBasic } from "@tsparticles/basic";
 import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
 import { loadEmojiShape } from "@tsparticles/shape-emoji";
@@ -25,6 +25,8 @@ import { loadSquareShape } from "@tsparticles/shape-square";
 import { loadStarShape } from "@tsparticles/shape-star";
 import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
 
+declare const __VERSION__: string;
+
 /**
  * Loads the slime bundle with all plugins needed for running the tsParticles Slim package.
  * This function must be called to make tsParticles Slim work.
@@ -35,6 +37,8 @@ import { loadStrokeColorUpdater } from "@tsparticles/updater-stroke-color";
  * @param refresh -
  */
 export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await loadParallaxMover(engine, false);
 
     await loadExternalAttractInteraction(engine, false);
@@ -52,7 +56,7 @@ export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
     await loadParticlesCollisionsInteraction(engine, false);
     await loadParticlesLinksInteraction(engine, false);
 
-    await loadEasingQuadPlugin();
+    await loadEasingQuadPlugin(engine, false);
 
     await loadEmojiShape(engine, false);
     await loadImageShape(engine, false);

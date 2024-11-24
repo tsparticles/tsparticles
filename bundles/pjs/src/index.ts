@@ -1,10 +1,12 @@
 /**
  * [[include:pjsMigration.md]]
  */
-import { type Container, type Engine } from "@tsparticles/engine";
+import { type Container, type Engine, assertValidVersion } from "@tsparticles/engine";
 import type { IParticlesJS } from "./VincentGarreau/IParticlesJS.js";
 import { Particles } from "./marcbruederlin/Particles.js";
 import { initParticlesJS } from "./VincentGarreau/particles.js";
+
+declare const __VERSION__: string;
 
 declare global {
     interface Window {
@@ -54,6 +56,8 @@ const initPjs = (
      */
     particlesJS: IParticlesJS;
 } => {
+    assertValidVersion(engine, __VERSION__);
+
     const { particlesJS, pJSDom } = initParticlesJS(engine);
 
     window.particlesJS = particlesJS;

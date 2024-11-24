@@ -1,17 +1,37 @@
-import { EasingType, addEasing } from "@tsparticles/engine";
+import { EasingType, type Engine, assertValidVersion } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 /**
+ * @param engine -
+ * @param refresh -
  */
-export async function loadEasingLinearPlugin(): Promise<void> {
-    addEasing(EasingType.easeInLinear, value => {
-        return value;
-    });
-    addEasing(EasingType.easeOutLinear, value => {
-        return value;
-    });
-    addEasing(EasingType.easeInOutLinear, value => {
-        return value;
-    });
+export async function loadEasingLinearPlugin(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
 
-    await Promise.resolve();
+    await engine.addEasing(
+        EasingType.easeInLinear,
+        value => {
+            return value;
+        },
+        false,
+    );
+
+    await engine.addEasing(
+        EasingType.easeOutLinear,
+        value => {
+            return value;
+        },
+        false,
+    );
+
+    await engine.addEasing(
+        EasingType.easeInOutLinear,
+        value => {
+            return value;
+        },
+        false,
+    );
+
+    await engine.refresh(refresh);
 }

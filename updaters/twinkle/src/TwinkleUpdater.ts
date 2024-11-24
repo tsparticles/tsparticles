@@ -1,4 +1,5 @@
 import {
+    type Engine,
     type IParticleColorStyle,
     type IParticleUpdater,
     type Particle,
@@ -12,6 +13,12 @@ import type { ITwinkleParticlesOptions, TwinkeParticle, TwinkleParticlesOptions 
 import { Twinkle } from "./Options/Classes/Twinkle.js";
 
 export class TwinkleUpdater implements IParticleUpdater {
+    private readonly _engine;
+
+    constructor(engine: Engine) {
+        this._engine = engine;
+    }
+
     getColorStyles(
         particle: Particle,
         context: CanvasRenderingContext2D,
@@ -31,7 +38,7 @@ export class TwinkleUpdater implements IParticleUpdater {
             zOffset = 1,
             zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
             twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
-            twinkleRgb = rangeColorToHsl(twinkle.color),
+            twinkleRgb = rangeColorToHsl(this._engine, twinkle.color),
             twinkleStyle = twinkleRgb ? getStyleFromHsl(twinkleRgb, twinklingOpacity) : undefined,
             res: IParticleColorStyle = {},
             needsTwinkle = twinkling && twinkleStyle;

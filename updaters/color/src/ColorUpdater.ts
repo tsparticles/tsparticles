@@ -1,5 +1,6 @@
 import {
     type Container,
+    type Engine,
     type IDelta,
     type IParticleUpdater,
     type Particle,
@@ -9,21 +10,28 @@ import {
 } from "@tsparticles/engine";
 
 export class ColorUpdater implements IParticleUpdater {
-    private readonly container;
+    private readonly _container;
+    private readonly _engine;
 
-    constructor(container: Container) {
-        this.container = container;
+    constructor(container: Container, engine: Engine) {
+        this._container = container;
+        this._engine = engine;
     }
 
     init(particle: Particle): void {
         /* color */
-        const hslColor = rangeColorToHsl(particle.options.color, particle.id, particle.options.reduceDuplicates);
+        const hslColor = rangeColorToHsl(
+            this._engine,
+            particle.options.color,
+            particle.id,
+            particle.options.reduceDuplicates,
+        );
 
         if (hslColor) {
             particle.color = getHslAnimationFromHsl(
                 hslColor,
                 particle.options.color.animation,
-                this.container.retina.reduceFactor,
+                this._container.retina.reduceFactor,
             );
         }
     }

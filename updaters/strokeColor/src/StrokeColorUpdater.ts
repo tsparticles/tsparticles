@@ -1,5 +1,6 @@
 import {
     type Container,
+    type Engine,
     type IDelta,
     type IParticleUpdater,
     type Particle,
@@ -14,14 +15,16 @@ import type { StrokeParticle } from "./Types.js";
 const defaultOpacity = 1;
 
 export class StrokeColorUpdater implements IParticleUpdater {
-    private readonly container;
+    private readonly _container;
+    private readonly _engine;
 
-    constructor(container: Container) {
-        this.container = container;
+    constructor(container: Container, engine: Engine) {
+        this._container = container;
+        this._engine = engine;
     }
 
     init(particle: StrokeParticle): void {
-        const container = this.container,
+        const container = this._container,
             options = particle.options;
 
         /* strokeColor */
@@ -31,7 +34,7 @@ export class StrokeColorUpdater implements IParticleUpdater {
         particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
         particle.strokeAnimation = stroke.color?.animation;
 
-        const strokeHslColor = rangeColorToHsl(stroke.color) ?? particle.getFillColor();
+        const strokeHslColor = rangeColorToHsl(this._engine, stroke.color) ?? particle.getFillColor();
 
         if (strokeHslColor) {
             particle.strokeColor = getHslAnimationFromHsl(

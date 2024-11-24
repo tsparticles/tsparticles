@@ -2,6 +2,7 @@ import {
     type Container,
     type CustomEventArgs,
     DestroyType,
+    type Engine,
     EventType,
     type ISourceOptions,
     MoveDirection,
@@ -9,6 +10,7 @@ import {
     type Particle,
     type RecursivePartial,
     StartValueType,
+    assertValidVersion,
     getRangeMax,
     getRangeMin,
     isNumber,
@@ -27,6 +29,8 @@ import { loadLifeUpdater } from "@tsparticles/updater-life";
 import { loadRotateUpdater } from "@tsparticles/updater-rotate";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
+
+declare const __VERSION__: string;
 
 const minSplitCount = 2;
 
@@ -80,8 +84,9 @@ class FireworksInstance {
 }
 
 /**
+ * @param engine - the engine to use for loading all plugins
  */
-async function initPlugins(): Promise<void> {
+async function initPlugins(engine: Engine): Promise<void> {
     if (initialized) {
         return;
     }
@@ -102,14 +107,16 @@ async function initPlugins(): Promise<void> {
 
     initializing = true;
 
-    await loadEmittersPlugin(tsParticles, false);
-    await loadEmittersShapeSquare(tsParticles, false);
-    await loadSoundsPlugin(tsParticles, false);
-    await loadRotateUpdater(tsParticles, false);
-    await loadDestroyUpdater(tsParticles, false);
-    await loadLifeUpdater(tsParticles, false);
-    await loadTrailEffect(tsParticles, false);
-    await loadBasic(tsParticles, false);
+    assertValidVersion(engine, __VERSION__);
+
+    await loadEmittersPlugin(engine, false);
+    await loadEmittersShapeSquare(engine, false);
+    await loadSoundsPlugin(engine, false);
+    await loadRotateUpdater(engine, false);
+    await loadDestroyUpdater(engine, false);
+    await loadLifeUpdater(engine, false);
+    await loadTrailEffect(engine, false);
+    await loadBasic(engine, false);
 
     initializing = false;
     initialized = true;
@@ -327,7 +334,7 @@ async function getFireworksInstance(
     sourceOptions: RecursivePartial<IFireworkOptions>,
     canvas?: HTMLCanvasElement,
 ): Promise<FireworksInstance | undefined> {
-    await initPlugins();
+    await initPlugins(tsParticles);
 
     const options = new FireworkOptions();
 
@@ -376,10 +383,10 @@ fireworks.create = async (
 };
 
 fireworks.init = async (): Promise<void> => {
-    await initPlugins();
+    await initPlugins(tsParticles);
 };
 
-fireworks.version = tsParticles.version;
+fireworks.version = __VERSION__;
 
 if (!isSsr()) {
     window.fireworks = fireworks;

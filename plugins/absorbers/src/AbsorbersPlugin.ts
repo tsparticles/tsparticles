@@ -1,5 +1,6 @@
 import type { AbsorberOptions, IAbsorberOptions } from "./types.js";
 import {
+    type Engine,
     type IOptions,
     type IPlugin,
     type RecursivePartial,
@@ -17,12 +18,15 @@ import { Absorbers } from "./Absorbers.js";
 export class AbsorbersPlugin implements IPlugin {
     readonly id;
 
-    constructor() {
+    private readonly _engine;
+
+    constructor(engine: Engine) {
         this.id = "absorbers";
+        this._engine = engine;
     }
 
     async getPlugin(container: AbsorberContainer): Promise<Absorbers> {
-        return Promise.resolve(new Absorbers(container));
+        return Promise.resolve(new Absorbers(container, this._engine));
     }
 
     loadOptions(options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {

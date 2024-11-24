@@ -1,4 +1,5 @@
 import {
+    type Engine,
     type IContainerPlugin,
     type ICoordinates,
     type Particle,
@@ -23,7 +24,12 @@ export class Absorbers implements IContainerPlugin {
     array: AbsorberInstance[];
     interactivityAbsorbers: SingleOrMultiple<Absorber>;
 
-    constructor(private readonly container: AbsorberContainer) {
+    private readonly _container;
+    private readonly _engine;
+
+    constructor(container: AbsorberContainer, engine: Engine) {
+        this._container = container;
+        this._engine = engine;
         this.array = [];
         this.absorbers = [];
         this.interactivityAbsorbers = [];
@@ -40,7 +46,7 @@ export class Absorbers implements IContainerPlugin {
     }
 
     async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
-        const absorber = new AbsorberInstance(this, this.container, options, position);
+        const absorber = new AbsorberInstance(this, this._container, this._engine, options, position);
 
         this.array.push(absorber);
 
@@ -60,15 +66,15 @@ export class Absorbers implements IContainerPlugin {
         if (mode === (AbsorberClickMode.absorber as string)) {
             const absorbersModeOptions = itemFromSingleOrMultiple(modeAbsorbers),
                 absorbersOptions = absorbersModeOptions ?? itemFromSingleOrMultiple(absorberOptions),
-                aPosition = this.container.interactivity.mouse.clickPosition;
+                aPosition = this._container.interactivity.mouse.clickPosition;
 
             void this.addAbsorber(absorbersOptions, aPosition);
         }
     }
 
     async init(): Promise<void> {
-        this.absorbers = this.container.actualOptions.absorbers;
-        this.interactivityAbsorbers = this.container.actualOptions.interactivity.modes.absorbers;
+        this.absorbers = this._container.actualOptions.absorbers;
+        this.interactivityAbsorbers = this._container.actualOptions.interactivity.modes.absorbers;
 
         const promises = executeOnSingleOrMultiple(this.absorbers, async (absorber): Promise<void> => {
             await this.addAbsorber(absorber);

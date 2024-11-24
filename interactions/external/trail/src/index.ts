@@ -1,11 +1,15 @@
-import type { Engine } from "@tsparticles/engine";
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { TrailMaker } from "./TrailMaker.js";
+
+declare const __VERSION__: string;
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadExternalTrailInteraction(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addInteractor(
         "externalTrail",
         container => {

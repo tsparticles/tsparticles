@@ -1,4 +1,5 @@
 import {
+    type Engine,
     type IContainerPlugin,
     type IRgb,
     getDistance,
@@ -18,9 +19,13 @@ const minOpacity = 0,
     maxFrequency = 1;
 
 export class LinkInstance implements IContainerPlugin {
+    private readonly _container;
+    private readonly _engine;
     private readonly _freqs: IParticlesFrequencies;
 
-    constructor(private readonly container: LinkContainer) {
+    constructor(container: LinkContainer, engine: Engine) {
+        this._container = container;
+        this._engine = engine;
         this._freqs = {
             links: new Map<string, number>(),
             triangles: new Map<string, number>(),
@@ -64,7 +69,7 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        const ratio = this.container.retina.pixelRatio,
+        const ratio = this._container.retina.pixelRatio,
             { retina } = particle,
             { distance, width } = particle.options.links;
 
@@ -83,7 +88,7 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        const container = this.container,
+        const container = this._container,
             options = container.actualOptions,
             p2 = link.destination,
             pos1 = p1.getPosition(),
@@ -106,7 +111,7 @@ export class LinkInstance implements IContainerPlugin {
 
             if (twinkle?.enable) {
                 const twinkleFreq = twinkle.frequency,
-                    twinkleRgb = rangeColorToRgb(twinkle.color),
+                    twinkleRgb = rangeColorToRgb(this._engine, twinkle.color),
                     twinkling = getRandom() < twinkleFreq;
 
                 if (twinkling && twinkleRgb) {
@@ -137,6 +142,7 @@ export class LinkInstance implements IContainerPlugin {
                 width,
                 begin: pos1,
                 end: pos2,
+                engine: this._engine,
                 maxDistance,
                 canvasSize: container.canvas.size,
                 links: p1LinksOptions,
@@ -160,7 +166,7 @@ export class LinkInstance implements IContainerPlugin {
             return;
         }
 
-        const container = this.container,
+        const container = this._container,
             options = container.actualOptions,
             p2 = link1.destination,
             p3 = link2.destination,
@@ -184,7 +190,7 @@ export class LinkInstance implements IContainerPlugin {
                 return;
             }
 
-            let colorTriangle = rangeColorToRgb(triangleOptions.color);
+            let colorTriangle = rangeColorToRgb(this._engine, triangleOptions.color);
 
             if (!colorTriangle) {
                 const linkColor =

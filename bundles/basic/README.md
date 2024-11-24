@@ -10,6 +10,9 @@
 
 - [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
 - [@tsparticles/move-base](https://github.com/tsparticles/tsparticles/tree/main/move/base)
+- [@tsparticles/plugin-hex-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/hexColor)
+- [@tsparticles/plugin-hsl-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/hslColor)
+- [@tsparticles/plugin-rgb-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/rgbColor)
 - [@tsparticles/shape-circle](https://github.com/tsparticles/tsparticles/tree/main/shapes/circle)
 - [@tsparticles/updater-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
 - [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)

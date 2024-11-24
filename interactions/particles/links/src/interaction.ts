@@ -10,7 +10,7 @@ export async function loadLinksInteraction(engine: Engine, refresh = true): Prom
     await engine.addInteractor(
         "particlesLinks",
         async container => {
-            return Promise.resolve(new Linker(container as LinkContainer));
+            return Promise.resolve(new Linker(container as LinkContainer, engine));
         },
         refresh,
     );

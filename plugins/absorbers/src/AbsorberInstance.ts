@@ -1,5 +1,6 @@
 import {
     type Container,
+    type Engine,
     type ICoordinates,
     type IRgb,
     type Particle,
@@ -94,6 +95,10 @@ export class AbsorberInstance {
      */
     size;
 
+    private readonly _absorbers;
+    private readonly _container;
+    private readonly _engine;
+
     /**
      * Sets if the absorber can be moved with mouse drag&drop
      * @internal
@@ -116,15 +121,21 @@ export class AbsorberInstance {
      * The absorber constructor, initializes the absorber based on the given options and position
      * @param absorbers - the Absorbers collection manager that will contain this absorber
      * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
+     * @param engine - the Engine instance that will be used for calculating the Absorber interactions
      * @param options - the Absorber source options
      * @param position - the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
      */
     constructor(
-        private readonly absorbers: Absorbers,
-        private readonly container: Container,
+        absorbers: Absorbers,
+        container: Container,
+        engine: Engine,
         options: RecursivePartial<IAbsorber>,
         position?: ICoordinates,
     ) {
+        this._absorbers = absorbers;
+        this._container = container;
+        this._engine = engine;
+
         this.initialPosition = position ? Vector.create(position.x, position.y) : undefined;
 
         if (options instanceof Absorber) {
@@ -147,7 +158,7 @@ export class AbsorberInstance {
             mass: limit.mass,
         };
 
-        this.color = rangeColorToRgb(this.options.color) ?? {
+        this.color = rangeColorToRgb(this._engine, this.options.color) ?? {
             b: 0,
             g: 0,
             r: 0,
@@ -161,7 +172,7 @@ export class AbsorberInstance {
      * @param particle - the particle to attract to the absorber
      */
     attract(particle: OrbitingParticle): void {
-        const container = this.container,
+        const container = this._container,
             options = this.options;
 
         if (options.draggable) {
@@ -243,7 +254,7 @@ export class AbsorberInstance {
         const initialPosition = this.initialPosition;
 
         this.position =
-            initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
+            initialPosition && isPointInside(initialPosition, this._container.canvas.size, Vector.origin)
                 ? initialPosition
                 : this._calcPosition();
     }
@@ -255,7 +266,7 @@ export class AbsorberInstance {
      */
     private readonly _calcPosition: () => Vector = () => {
         const exactPosition = calcPositionOrRandomFromSizeRanged({
-            size: this.container.canvas.size,
+            size: this._container.canvas.size,
             position: this.options.position,
         });
 
@@ -273,7 +284,7 @@ export class AbsorberInstance {
             return;
         }
 
-        const container = this.container,
+        const container = this._container,
             canvasSize = container.canvas.size;
 
         if (particle.needsNewPosition) {

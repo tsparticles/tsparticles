@@ -6,7 +6,7 @@ import { LinksPlugin } from "./LinksPlugin.js";
  * @param refresh -
  */
 export async function loadLinksPlugin(engine: Engine, refresh = true): Promise<void> {
-    const plugin = new LinksPlugin();
+    const plugin = new LinksPlugin(engine);
 
     await engine.addPlugin(plugin, refresh);
 }

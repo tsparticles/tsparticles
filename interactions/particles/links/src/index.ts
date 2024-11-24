@@ -1,12 +1,16 @@
-import type { Engine } from "@tsparticles/engine";
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { loadLinksInteraction } from "./interaction.js";
 import { loadLinksPlugin } from "./plugin.js";
+
+declare const __VERSION__: string;
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadParticlesLinksInteraction(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await loadLinksInteraction(engine, refresh);
     await loadLinksPlugin(engine, refresh);
 }

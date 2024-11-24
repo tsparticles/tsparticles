@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/perlin-noise",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "tsParticles perlin noise library",
   "homepage": "https://particles.js.org",
   "repository": {
