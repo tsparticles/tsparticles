@@ -93,7 +93,6 @@ export class Canvas {
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
     private readonly _standardSize: IDimension;
-    private _elementSize?: IDimension;
     private _trailFill?: ITrailFillData;
 
     /**
@@ -424,8 +423,6 @@ export class Canvas {
         canvas.height = retinaSize.height = standardSize.height * pxRatio;
         canvas.width = retinaSize.width = standardSize.width * pxRatio;
 
-        this._updateElementSize();
-
         this._context = this.element.getContext("2d");
 
         this._safeMutationObserver(obs => {
@@ -478,30 +475,30 @@ export class Canvas {
                 width: this.element.offsetWidth,
                 height: this.element.offsetHeight,
             },
-            elementSize = this._elementSize;
+            pxRatio = container.retina.pixelRatio,
+            retinaSize = {
+                width: newSize.width * pxRatio,
+                height: newSize.height * pxRatio,
+            };
 
         if (
             newSize.height === currentSize.height &&
             newSize.width === currentSize.width &&
-            elementSize &&
-            elementSize.height === this.element.height &&
-            elementSize.width === this.element.width
+            retinaSize.height === this.element.height &&
+            retinaSize.width === this.element.width
         ) {
             return false;
         }
 
-        const oldSize = { ...currentSize },
-            pxRatio = container.retina.pixelRatio;
+        const oldSize = { ...currentSize };
 
         currentSize.height = newSize.height;
         currentSize.width = newSize.width;
 
-        const retinaSize = this.size;
+        const canvasSize = this.size;
 
-        this.element.width = retinaSize.width = currentSize.width * pxRatio;
-        this.element.height = retinaSize.height = currentSize.height * pxRatio;
-
-        this._updateElementSize();
+        this.element.width = canvasSize.width = retinaSize.width;
+        this.element.height = canvasSize.height = retinaSize.height;
 
         if (this.container.started) {
             container.particles.setResizeFactor({
@@ -801,16 +798,5 @@ export class Canvas {
             },
             true,
         );
-    };
-
-    private readonly _updateElementSize: () => void = () => {
-        if (!this.element) {
-            return;
-        }
-
-        this._elementSize = {
-            height: this.element.width,
-            width: this.element.height,
-        };
     };
 }
