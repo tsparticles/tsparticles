@@ -1,4 +1,11 @@
-import { type IColor, type IColorManager, type IRangeColor, type IRgb, type IRgba } from "@tsparticles/engine";
+import {
+    type IColor,
+    type IColorManager,
+    type IRangeColor,
+    type IRgb,
+    type IRgba,
+    getLogger,
+} from "@tsparticles/engine";
 
 const namedColors = new Map<string, IRgb>([
     ["aliceblue", { r: 240, g: 248, b: 255 }],
@@ -180,6 +187,8 @@ export class NamedColorManager implements IColorManager {
         const rgbColor = namedColors.get(input.toLowerCase());
 
         if (!rgbColor) {
+            getLogger().error("Color not found", input);
+
             return undefined;
         }
 
