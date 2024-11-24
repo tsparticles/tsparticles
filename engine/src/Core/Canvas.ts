@@ -90,6 +90,7 @@ export class Canvas {
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
+    private readonly _standardSize: IDimension;
     private _trailFill?: ITrailFillData;
 
     /**
@@ -97,9 +98,17 @@ export class Canvas {
      * @param container - the parent container
      */
     constructor(private readonly container: Container) {
-        this.size = {
+        this._standardSize = {
             height: 0,
             width: 0,
+        };
+
+        const pxRatio = container.retina.pixelRatio,
+            stdSize = this._standardSize;
+
+        this.size = {
+            height: stdSize.height * pxRatio,
+            width: stdSize.width * pxRatio,
         };
 
         this._context = null;
@@ -395,8 +404,14 @@ export class Canvas {
         this.element = canvas;
         this.element.ariaHidden = "true";
         this._originalStyle = deepExtend({}, this.element.style) as Record<string, string | null>;
-        this.size.height = canvas.offsetHeight;
-        this.size.width = canvas.offsetWidth;
+        this._standardSize.height = canvas.offsetHeight;
+        this._standardSize.width = canvas.offsetWidth;
+
+        const pxRatio = this.container.retina.pixelRatio;
+
+        this.size.height = this._standardSize.height * pxRatio;
+        this.size.width = this._standardSize.width * pxRatio;
+
         this._context = this.element.getContext("2d");
 
         this._safeMutationObserver(obs => {
@@ -444,26 +459,24 @@ export class Canvas {
         }
 
         const container = this.container,
-            pxRatio = container.retina.pixelRatio,
-            size = container.canvas.size,
+            size = container.canvas._standardSize,
             newSize = {
-                width: this.element.offsetWidth * pxRatio,
-                height: this.element.offsetHeight * pxRatio,
+                width: this.element.offsetWidth,
+                height: this.element.offsetHeight,
             };
 
-        if (
-            newSize.height === size.height &&
-            newSize.width === size.width &&
-            newSize.height === this.element.height &&
-            newSize.width === this.element.width
-        ) {
+        if (newSize.height === size.height && newSize.width === size.width) {
             return false;
         }
 
-        const oldSize = { ...size };
+        const oldSize = { ...size },
+            pxRatio = container.retina.pixelRatio;
 
-        this.element.width = size.width = this.element.offsetWidth * pxRatio;
-        this.element.height = size.height = this.element.offsetHeight * pxRatio;
+        this._standardSize.height = newSize.height;
+        this._standardSize.width = newSize.width;
+
+        this.element.width = this.size.width = this._standardSize.width * pxRatio;
+        this.element.height = this.size.height = this._standardSize.height * pxRatio;
 
         if (this.container.started) {
             container.particles.setResizeFactor({
