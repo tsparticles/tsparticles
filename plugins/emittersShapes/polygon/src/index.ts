@@ -1,6 +1,8 @@
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
 import { EmittersPolygonShapeGenerator } from "./EmittersPolygonShapeGenerator.js";
-import type { Engine } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 /**
  *
@@ -9,6 +11,8 @@ import type { Engine } from "@tsparticles/engine";
  */
 export async function loadEmittersShapePolygon(engine: Engine, refresh = true): Promise<void> {
     const emittersEngine = engine as EmittersEngine;
+
+    assertValidVersion(emittersEngine, __VERSION__);
 
     emittersEngine.addEmitterShapeGenerator?.("polygon", new EmittersPolygonShapeGenerator());
 

@@ -15,7 +15,11 @@
         "test:ci": "vitest run"
     },
     "dependencies": {
-        "@tsparticles/engine": "workspace:3.6.0"
+        "@tsparticles/engine": "workspace:3.6.0",
+        "@tsparticles/plugin-hex-color": "workspace:3.6.0",
+        "@tsparticles/plugin-hsl-color": "workspace:3.6.0",
+        "@tsparticles/plugin-hsv-color": "workspace:3.6.0",
+        "@tsparticles/plugin-rgb-color": "workspace:3.6.0"
     },
     "devDependencies": {
         "skia-canvas": "^1.0.2",

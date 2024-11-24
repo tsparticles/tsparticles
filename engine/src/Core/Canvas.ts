@@ -2,6 +2,7 @@ import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintIm
 import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
+import type { Engine } from "./Engine";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
@@ -84,6 +85,7 @@ export class Canvas {
 
     private _coverColorStyle?: string;
     private _coverImage?: { image: HTMLImageElement; opacity: number };
+    private readonly _engine;
     private _generated;
     private _mutationObserver?: MutationObserver;
     private _originalStyle?: Record<string, string | null>;
@@ -96,8 +98,13 @@ export class Canvas {
     /**
      * Constructor of canvas manager
      * @param container - the parent container
+     * @param engine - the engine managing the whole library
      */
-    constructor(private readonly container: Container) {
+    constructor(
+        private readonly container: Container,
+        engine: Engine,
+    ) {
+        this._engine = engine;
         this._standardSize = {
             height: 0,
             width: 0,
@@ -340,7 +347,7 @@ export class Canvas {
         }
 
         if (background.color) {
-            const color = rangeColorToRgb(background.color);
+            const color = rangeColorToRgb(this._engine, background.color);
 
             elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
         } else {
@@ -573,11 +580,11 @@ export class Canvas {
 
         for (const plugin of this._colorPlugins) {
             if (!fColor && plugin.particleFillColor) {
-                fColor = rangeColorToHsl(plugin.particleFillColor(particle));
+                fColor = rangeColorToHsl(this._engine, plugin.particleFillColor(particle));
             }
 
             if (!sColor && plugin.particleStrokeColor) {
-                sColor = rangeColorToHsl(plugin.particleStrokeColor(particle));
+                sColor = rangeColorToHsl(this._engine, plugin.particleStrokeColor(particle));
             }
 
             if (fColor && sColor) {
@@ -594,7 +601,7 @@ export class Canvas {
             color = cover.color;
 
         if (color) {
-            const coverRgb = rangeColorToRgb(color);
+            const coverRgb = rangeColorToRgb(this._engine, color);
 
             if (coverRgb) {
                 const coverColor = {
@@ -674,7 +681,7 @@ export class Canvas {
             opacity = factorNumerator / trail.length;
 
         if (trailFill.color) {
-            const fillColor = rangeColorToRgb(trailFill.color);
+            const fillColor = rangeColorToRgb(this._engine, trailFill.color);
 
             if (!fillColor) {
                 return;

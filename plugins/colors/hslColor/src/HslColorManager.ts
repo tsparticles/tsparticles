@@ -1,16 +1,18 @@
-import type {
-    IColor,
-    IHsl,
-    IRangeColor,
-    IRangeHsl,
-    IRangeValueColor,
-    IRgb,
-    IRgba,
-    IValueColor,
-} from "../Core/Interfaces/Colors.js";
-import { getRangeValue, parseAlpha } from "./NumberUtils.js";
-import { hslToRgb, hslaToRgba } from "./ColorUtils.js";
-import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import {
+    type IColor,
+    type IColorManager,
+    type IHsl,
+    type IRangeColor,
+    type IRangeHsl,
+    type IRangeValueColor,
+    type IRgb,
+    type IRgba,
+    type IValueColor,
+    getRangeValue,
+    hslToRgb,
+    hslaToRgba,
+    parseAlpha,
+} from "@tsparticles/engine";
 
 enum HslIndexes {
     h = 1,

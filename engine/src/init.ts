@@ -1,22 +1,10 @@
 import { Engine } from "./Core/Engine.js";
-import { HexColorManager } from "./Utils/HexColorManager.js";
-import { HslColorManager } from "./Utils/HslColorManager.js";
-import { RgbColorManager } from "./Utils/RgbColorManager.js";
-import { addColorManager } from "./Utils/ColorUtils.js";
 
 /**
  *
  * @returns the initialized engine object
  */
 export function init(): Engine {
-    const rgbColorManager = new RgbColorManager(),
-        hslColorManager = new HslColorManager(),
-        hexColorManager = new HexColorManager();
-
-    addColorManager(hexColorManager);
-    addColorManager(rgbColorManager);
-    addColorManager(hslColorManager);
-
     /**
      * The exposed tsParticles instance
      */

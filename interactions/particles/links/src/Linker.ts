@@ -1,5 +1,6 @@
 import {
     Circle,
+    type Engine,
     type ICoordinates,
     type IDimension,
     type IRgb,
@@ -54,12 +55,14 @@ function getLinkDistance(
 }
 
 export class Linker extends ParticlesInteractorBase {
-    linkContainer: LinkContainer;
+    private readonly _engine;
+    private readonly _linkContainer: LinkContainer;
 
-    constructor(container: LinkContainer) {
+    constructor(container: LinkContainer, engine: Engine) {
         super(container);
 
-        this.linkContainer = container;
+        this._linkContainer = container;
+        this._engine = engine;
     }
 
     clear(): void {
@@ -67,8 +70,8 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     init(): void {
-        this.linkContainer.particles.linksColor = undefined;
-        this.linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
+        this._linkContainer.particles.linksColor = undefined;
+        this._linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
     }
 
     interact(p1: LinkParticle): void {
@@ -167,7 +170,7 @@ export class Linker extends ParticlesInteractorBase {
             return;
         }
 
-        const container = this.linkContainer,
+        const container = this._linkContainer,
             linksOptions = p1.options.links;
 
         let linkColor =
@@ -181,7 +184,7 @@ export class Linker extends ParticlesInteractorBase {
 
         const optColor = linksOptions.color;
 
-        linkColor = getLinkRandomColor(optColor, linksOptions.blink, linksOptions.consent);
+        linkColor = getLinkRandomColor(this._engine, optColor, linksOptions.blink, linksOptions.consent);
 
         if (linksOptions.id === undefined) {
             container.particles.linksColor = linkColor;

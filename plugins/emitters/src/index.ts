@@ -2,12 +2,17 @@ import type { EmittersEngine } from "./EmittersEngine.js";
 import { EmittersPlugin } from "./EmittersPlugin.js";
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
 import { ShapeManager } from "./ShapeManager.js";
+import { assertValidVersion } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 /**
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
  * @param refresh -
  */
 export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     if (!engine.emitterShapeManager) {
         engine.emitterShapeManager = new ShapeManager(engine);
     }

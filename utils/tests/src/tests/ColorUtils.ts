@@ -12,10 +12,20 @@ import {
     hslaToRgba,
     stringToAlpha,
     stringToRgb,
+    tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
+import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
+import { loadHslColorPlugin } from "@tsparticles/plugin-hsl-color";
+import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
+import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
 
-describe("ColorUtils", () => {
+describe("ColorUtils", async () => {
+    await loadHexColorPlugin(tsParticles);
+    await loadHslColorPlugin(tsParticles);
+    await loadHsvColorPlugin(tsParticles);
+    await loadRgbColorPlugin(tsParticles);
+
     const red: IRgb = {
         b: 0,
         g: 0,
@@ -28,7 +38,7 @@ describe("ColorUtils", () => {
                 value: "#ff0000",
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("string value 2", () => {
@@ -36,7 +46,7 @@ describe("ColorUtils", () => {
                 value: "rgb(255, 0, 0)",
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("string value 3", () => {
@@ -44,7 +54,7 @@ describe("ColorUtils", () => {
                 value: "rgba(255, 0, 0, 1)",
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("string value 4", () => {
@@ -52,7 +62,7 @@ describe("ColorUtils", () => {
                 value: "rgb(255 0 0)",
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("string value 5", () => {
@@ -60,7 +70,7 @@ describe("ColorUtils", () => {
                 value: "rgba(255 0 0 1)",
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("string value 6", () => {
@@ -68,7 +78,7 @@ describe("ColorUtils", () => {
                 value: "hsla(0, 100%, 50%, 1)",
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("string value 7", () => {
@@ -76,7 +86,7 @@ describe("ColorUtils", () => {
                 value: "hsla(0 100% 50% 1)",
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("array string value", () => {
@@ -84,7 +94,7 @@ describe("ColorUtils", () => {
                 value: ["#ff0000", "#00ff00", "#0000ff"],
             };
 
-            expect(colorToRgb(color)).to.satisfy((rgb: IRgb) => {
+            expect(colorToRgb(tsParticles, color)).to.satisfy((rgb: IRgb) => {
                 return rgb.r === 255 || rgb.g === 255 || rgb.b === 255;
             }).and.not.be.undefined.and.not.be.null;
         });
@@ -100,7 +110,7 @@ describe("ColorUtils", () => {
                 },
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("IValueColor w/ hsl value", () => {
@@ -114,7 +124,7 @@ describe("ColorUtils", () => {
                 },
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("rgb value", () => {
@@ -126,7 +136,7 @@ describe("ColorUtils", () => {
                 },
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("hsl value", () => {
@@ -138,7 +148,7 @@ describe("ColorUtils", () => {
                 },
             };
 
-            expect(colorToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("invalid string value", () => {
@@ -146,19 +156,19 @@ describe("ColorUtils", () => {
                 value: "hello world",
             };
 
-            expect(colorToRgb(color)).to.be.undefined;
+            expect(colorToRgb(tsParticles, color)).to.be.undefined;
         });
 
         it("input undefined", () => {
             const color = undefined;
 
-            expect(colorToRgb(color)).to.be.undefined;
+            expect(colorToRgb(tsParticles, color)).to.be.undefined;
         });
 
         it("random value", () => {
             const color = "random";
 
-            expect(colorToRgb(color)).not.be.undefined.and.not.be.null;
+            expect(colorToRgb(tsParticles, color)).not.be.undefined.and.not.be.null;
         });
     });
 
@@ -166,19 +176,19 @@ describe("ColorUtils", () => {
         it("from hex with alpha string to alpha value", () => {
             const value = "#ff0000ff";
 
-            expect(stringToAlpha(value)).to.equal(1).and.be.not.undefined;
+            expect(stringToAlpha(tsParticles, value)).to.equal(1).and.be.not.undefined;
         });
 
         it("from hex without alpha string to alpha value", () => {
             const value = "#ff0000";
 
-            expect(stringToAlpha(value)).to.equal(1).and.be.not.undefined;
+            expect(stringToAlpha(tsParticles, value)).to.equal(1).and.be.not.undefined;
         });
 
         it("invalid string value", () => {
             const value = "hello world";
 
-            expect(stringToAlpha(value)).to.be.undefined;
+            expect(stringToAlpha(tsParticles, value)).to.be.undefined;
         });
     });
 
@@ -186,13 +196,13 @@ describe("ColorUtils", () => {
         it("from hex string to rgb value", () => {
             const color = "#ff0000";
 
-            expect(stringToRgb(color)).to.include(red).and.not.be.undefined.and.not.be.null;
+            expect(stringToRgb(tsParticles, color)).to.include(red).and.not.be.undefined.and.not.be.null;
         });
 
         it("invalid string value", () => {
             const value = "hello world";
 
-            expect(stringToRgb(value)).to.be.undefined;
+            expect(stringToRgb(tsParticles, value)).to.be.undefined;
         });
     });
 

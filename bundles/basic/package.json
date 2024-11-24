@@ -109,6 +109,9 @@
   "dependencies": {
     "@tsparticles/engine": "workspace:3.6.0",
     "@tsparticles/move-base": "workspace:3.6.0",
+    "@tsparticles/plugin-hex-color": "workspace:3.6.0",
+    "@tsparticles/plugin-hsl-color": "workspace:3.6.0",
+    "@tsparticles/plugin-rgb-color": "workspace:3.6.0",
     "@tsparticles/shape-circle": "workspace:3.6.0",
     "@tsparticles/updater-color": "workspace:3.6.0",
     "@tsparticles/updater-opacity": "workspace:3.6.0",

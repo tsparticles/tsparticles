@@ -1,11 +1,15 @@
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { Connector } from "./Connector.js";
-import type { Engine } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadExternalConnectInteraction(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addInteractor(
         "externalConnect",
         container => {

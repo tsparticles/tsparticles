@@ -1,4 +1,4 @@
-import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type Engine, type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IPolygonMaskDraw } from "../Interfaces/IPolygonMaskDraw.js";
 import { PolygonMaskDrawStroke } from "./PolygonMaskDrawStroke.js";
 
@@ -8,9 +8,9 @@ export class PolygonMaskDraw implements IPolygonMaskDraw, IOptionLoader<IPolygon
     enable;
     stroke;
 
-    constructor() {
+    constructor(engine: Engine) {
         this.enable = false;
-        this.stroke = new PolygonMaskDrawStroke();
+        this.stroke = new PolygonMaskDrawStroke(engine);
     }
 
     load(data?: RecursivePartial<IPolygonMaskDraw>): void {

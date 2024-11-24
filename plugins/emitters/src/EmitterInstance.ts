@@ -119,7 +119,7 @@ export class EmitterInstance {
         particlesOptions.move.direction ??= this.options.direction;
 
         if (this.options.spawnColor) {
-            this.spawnColor = rangeColorToHsl(this.options.spawnColor);
+            this.spawnColor = rangeColorToHsl(this._engine, this.options.spawnColor);
         }
 
         this._paused = !this.options.autoPlay;

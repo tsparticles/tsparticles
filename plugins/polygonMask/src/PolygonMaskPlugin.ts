@@ -29,7 +29,7 @@ export class PolygonMaskPlugin implements IPlugin {
         let polygonOptions = options.polygon;
 
         if (polygonOptions?.load === undefined) {
-            options.polygon = polygonOptions = new PolygonMask();
+            options.polygon = polygonOptions = new PolygonMask(this._engine);
         }
 
         polygonOptions.load(source?.polygon);

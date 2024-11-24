@@ -333,6 +333,15 @@ importers:
       '@tsparticles/move-base':
         specifier: workspace:3.6.0
         version: link:../../move/base/dist
+      '@tsparticles/plugin-hex-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/hexColor/dist
+      '@tsparticles/plugin-hsl-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/hslColor/dist
+      '@tsparticles/plugin-rgb-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/rgbColor/dist
       '@tsparticles/shape-circle':
         specifier: workspace:3.6.0
         version: link:../../shapes/circle/dist
@@ -754,6 +763,12 @@ importers:
       '@tsparticles/plugin-export-video':
         specifier: workspace:3.6.0
         version: link:../../plugins/exports/video/dist
+      '@tsparticles/plugin-hex-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/hexColor/dist
+      '@tsparticles/plugin-hsl-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/hslColor/dist
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:3.6.0
         version: link:../../plugins/colors/hsvColor/dist
@@ -775,6 +790,9 @@ importers:
       '@tsparticles/plugin-polygon-mask':
         specifier: workspace:3.6.0
         version: link:../../plugins/polygonMask/dist
+      '@tsparticles/plugin-rgb-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/rgbColor/dist
       '@tsparticles/plugin-sounds':
         specifier: workspace:3.6.0
         version: link:../../plugins/sounds/dist
@@ -1251,6 +1269,20 @@ importers:
         version: link:../../engine/dist
     publishDirectory: dist
 
+  plugins/colors/hexColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.6.0
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/colors/hslColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.6.0
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   plugins/colors/hsvColor:
     dependencies:
       '@tsparticles/engine':
@@ -1266,6 +1298,13 @@ importers:
     publishDirectory: dist
 
   plugins/colors/oklchColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.6.0
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/colors/rgbColor:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.6.0
@@ -1683,6 +1722,18 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:3.6.0
         version: link:../../engine/dist
+      '@tsparticles/plugin-hex-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/hexColor/dist
+      '@tsparticles/plugin-hsl-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/hslColor/dist
+      '@tsparticles/plugin-hsv-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/hsvColor/dist
+      '@tsparticles/plugin-rgb-color':
+        specifier: workspace:3.6.0
+        version: link:../../plugins/colors/rgbColor/dist
     devDependencies:
       skia-canvas:
         specifier: ^1.0.2

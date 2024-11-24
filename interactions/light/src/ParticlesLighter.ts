@@ -1,11 +1,14 @@
+import { type Engine, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types.js";
-import { ParticlesInteractorBase, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
-    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-    constructor(container: LightContainer) {
+    private readonly _engine;
+
+    constructor(container: LightContainer, engine: Engine) {
         super(container);
+
+        this._engine = engine;
     }
 
     clear(): void {
@@ -51,7 +54,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
         if (res && interactivity.modes.light) {
             const shadowOptions = interactivity.modes.light.shadow;
 
-            particle.lightShadow = rangeColorToRgb(shadowOptions.color);
+            particle.lightShadow = rangeColorToRgb(this._engine, shadowOptions.color);
         }
 
         return res;

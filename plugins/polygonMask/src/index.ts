@@ -1,12 +1,16 @@
 import "./pathseg.js";
-import type { Engine } from "@tsparticles/engine";
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { PolygonMaskPlugin } from "./PolygonMaskPlugin.js";
+
+declare const __VERSION__: string;
 
 /**
  * @param engine - The engine to add the plugin to
  * @param refresh -
  */
 export async function loadPolygonMaskPlugin(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addPlugin(new PolygonMaskPlugin(engine), refresh);
 }
 

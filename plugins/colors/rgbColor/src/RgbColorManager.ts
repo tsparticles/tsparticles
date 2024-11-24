@@ -1,6 +1,14 @@
-import type { IColor, IRangeColor, IRangeRgb, IRgb, IRgba, IValueColor } from "../Core/Interfaces/Colors.js";
-import { getRangeValue, parseAlpha } from "./NumberUtils.js";
-import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import {
+    type IColor,
+    type IColorManager,
+    type IRangeColor,
+    type IRangeRgb,
+    type IRgb,
+    type IRgba,
+    type IValueColor,
+    getRangeValue,
+    parseAlpha,
+} from "@tsparticles/engine";
 
 enum RgbIndexes {
     r = 1,

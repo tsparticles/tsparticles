@@ -1,5 +1,7 @@
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { CurvesPathGenerator } from "./CurvesPathGenerator.js";
-import type { Engine } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 export const curvesPathName = "curvesPathGenerator";
 
@@ -8,5 +10,7 @@ export const curvesPathName = "curvesPathGenerator";
  * @param refresh -
  */
 export async function loadCurvesPath(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addPathGenerator(curvesPathName, new CurvesPathGenerator(), refresh);
 }

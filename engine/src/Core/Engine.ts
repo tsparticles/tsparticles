@@ -2,13 +2,16 @@
  * Engine class for creating the singleton on window.
  * It's a singleton class for initializing {@link Container} instances
  */
+import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType";
 import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
 import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
+import type { EasingFunction } from "../Types/EasingFunction";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import { EventType } from "../Enums/Types/EventType.js";
+import type { IColorManager } from "./Interfaces/IColorManager";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
@@ -177,6 +180,10 @@ const generatedTrue = "true",
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
+    readonly colorManagers;
+
+    readonly easingFunctions;
+
     /**
      * The drawers (additional effects) array
      */
@@ -240,6 +247,8 @@ export class Engine {
         this._initialized = false;
 
         this.plugins = [];
+        this.colorManagers = new Map<string, IColorManager>();
+        this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
         this._initializers = {
             interactors: new Map<string, InteractorInitializer>(),
             movers: new Map<string, MoverInitializer>(),
@@ -272,11 +281,36 @@ export class Engine {
         return __VERSION__;
     }
 
+    /**
+     * @param manager -
+     * @param refresh -
+     */
+    async addColorManager(manager: IColorManager, refresh = true): Promise<void> {
+        this.colorManagers.set(manager.key, manager);
+
+        await this.refresh(refresh);
+    }
+
     addConfig(config: ISourceOptions): void {
         const key = config.key ?? config.name ?? "default";
 
         this._configs.set(key, config);
         this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
+    }
+
+    /**
+     * @param name -
+     * @param easing -
+     * @param refresh -
+     */
+    async addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction, refresh = true): Promise<void> {
+        if (this.getEasing(name)) {
+            return;
+        }
+
+        this.easingFunctions.set(name, easing);
+
+        await this.refresh(refresh);
     }
 
     /**
@@ -452,6 +486,14 @@ export class Engine {
         }
 
         return res;
+    }
+
+    /**
+     * @param name -
+     * @returns the easing function
+     */
+    getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
+        return this.easingFunctions.get(name) ?? ((value: number): number => value);
     }
 
     /**

@@ -1,5 +1,7 @@
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { CurlNoiseGenerator } from "./CurlNoiseGenerator.js";
-import type { Engine } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 export const curlNoisePathName = "curlNoise";
 
@@ -8,5 +10,7 @@ export const curlNoisePathName = "curlNoise";
  * @param refresh -
  */
 export async function loadCurlNoisePath(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addPathGenerator(curlNoisePathName, new CurlNoiseGenerator(), refresh);
 }

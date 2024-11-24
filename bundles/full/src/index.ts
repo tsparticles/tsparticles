@@ -1,4 +1,4 @@
-import type { Engine } from "@tsparticles/engine";
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { loadAbsorbersPlugin } from "@tsparticles/plugin-absorbers";
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
@@ -12,6 +12,8 @@ import { loadTiltUpdater } from "@tsparticles/updater-tilt";
 import { loadTwinkleUpdater } from "@tsparticles/updater-twinkle";
 import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
+declare const __VERSION__: string;
+
 /**
  * Loads the full bundle with all plugins needed for running the tsParticles package.
  * This function must be called to make tsParticles work.
@@ -22,6 +24,8 @@ import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
  * @param refresh -
  */
 export async function loadFull(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await loadDestroyUpdater(engine, false);
     await loadRollUpdater(engine, false);
     await loadTiltUpdater(engine, false);

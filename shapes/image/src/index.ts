@@ -1,10 +1,12 @@
 import { type IImage, downloadSvgImage, loadImage } from "./Utils.js";
+import { assertValidVersion, errorPrefix } from "@tsparticles/engine";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import { ImageDrawer } from "./ImageDrawer.js";
 import type { ImageEngine } from "./types.js";
 import { ImagePreloaderPlugin } from "./ImagePreloader.js";
-import { errorPrefix } from "@tsparticles/engine";
 import { loadGifImage } from "./GifUtils/Utils.js";
+
+declare const __VERSION__: string;
 
 const extLength = 3;
 
@@ -65,6 +67,8 @@ function addLoadImageToEngine(engine: ImageEngine): void {
  * @param refresh -
  */
 export async function loadImageShape(engine: ImageEngine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     addLoadImageToEngine(engine);
 
     const preloader = new ImagePreloaderPlugin(engine);

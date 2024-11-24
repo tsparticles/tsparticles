@@ -3,6 +3,7 @@ import {
     Circle,
     type DivEvent,
     DivType,
+    type Engine,
     ExternalInteractorBase,
     type IDelta,
     type IModes,
@@ -47,8 +48,12 @@ const bubbleMode = "bubble",
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     handleClickMode: (mode: string) => void;
 
-    constructor(container: BubbleContainer) {
+    private readonly _engine;
+
+    constructor(container: BubbleContainer, engine: Engine) {
         super(container);
+
+        this._engine = engine;
 
         if (!container.bubble) {
             container.bubble = {};
@@ -290,7 +295,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
             const bubbleColor = itemFromSingleOrMultiple(modeColor);
 
-            particle.bubble.finalColor = rangeColorToHsl(bubbleColor);
+            particle.bubble.finalColor = rangeColorToHsl(this._engine, bubbleColor);
         }
 
         if (!particle.bubble.finalColor) {

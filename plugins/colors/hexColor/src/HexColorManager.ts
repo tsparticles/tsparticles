@@ -1,5 +1,4 @@
-import type { IColor, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
-import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
+import type { IColor, IColorManager, IRangeColor, IRgb, IRgba } from "@tsparticles/engine";
 
 /**
  * Indexes for accessing color components from regex capture groups.

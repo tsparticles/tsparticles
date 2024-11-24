@@ -181,7 +181,7 @@ export class Container {
         this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
-        this.canvas = new Canvas(this);
+        this.canvas = new Canvas(this, this._engine);
         this.particles = new Particles(this._engine, this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
         this.interactivity = {

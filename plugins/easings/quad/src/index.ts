@@ -1,13 +1,23 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
-import { EasingType, addEasing } from "@tsparticles/engine";
+import { EasingType, type Engine, assertValidVersion } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 /**
+ * @param engine -
+ * @param refresh -
  */
-export async function loadEasingQuadPlugin(): Promise<void> {
-    addEasing(EasingType.easeInQuad, value => value ** 2);
-    addEasing(EasingType.easeOutQuad, value => 1 - (1 - value) ** 2);
-    addEasing(EasingType.easeInOutQuad, value => (value < 0.5 ? 2 * value ** 2 : 1 - (-2 * value + 2) ** 2 / 2));
+export async function loadEasingQuadPlugin(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
 
-    await Promise.resolve();
+    await engine.addEasing(EasingType.easeInQuad, value => value ** 2, false);
+    await engine.addEasing(EasingType.easeOutQuad, value => 1 - (1 - value) ** 2, false);
+    await engine.addEasing(
+        EasingType.easeInOutQuad,
+        value => (value < 0.5 ? 2 * value ** 2 : 1 - (-2 * value + 2) ** 2 / 2),
+        false,
+    );
+
+    await engine.refresh(refresh);
 }

@@ -1,4 +1,5 @@
 import {
+    type Engine,
     ExternalInteractorBase,
     type IModes,
     type Modes,
@@ -11,9 +12,12 @@ import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
 
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
-    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-    constructor(container: LightContainer) {
+    private readonly _engine;
+
+    constructor(container: LightContainer, engine: Engine) {
         super(container);
+
+        this._engine = engine;
     }
 
     clear(): void {
@@ -60,8 +64,8 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
             const lightGradient = interactivity.modes.light.area.gradient;
 
             container.canvas.mouseLight = {
-                start: rangeColorToRgb(lightGradient.start),
-                stop: rangeColorToRgb(lightGradient.stop),
+                start: rangeColorToRgb(this._engine, lightGradient.start),
+                stop: rangeColorToRgb(this._engine, lightGradient.stop),
             };
         }
 

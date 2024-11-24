@@ -12,9 +12,9 @@ import {
 import { isArray, isString } from "./TypeUtils.js";
 import { millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import type { Engine } from "../Core/Engine";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
-import type { IColorManager } from "../Core/Interfaces/IColorManager.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
 import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
@@ -24,27 +24,20 @@ import type { Particle } from "../Core/Particle.js";
 import { itemFromArray } from "./Utils.js";
 
 const randomColorValue = "random",
-    midColorValue = "mid",
-    colorManagers = new Map<string, IColorManager>();
-
-/**
- * @param manager -
- */
-export function addColorManager(manager: IColorManager): void {
-    colorManagers.set(manager.key, manager);
-}
+    midColorValue = "mid";
 
 /**
  * Converts a string to a RGBA color.
+ * @param engine - The engine managing the current parameters.
  * @param input - A string that represents a color.
  * @returns the converted color from string to {@link IRgba} interfaec
  */
-function stringToRgba(input: string): IRgba | undefined {
+function stringToRgba(engine: Engine, input: string): IRgba | undefined {
     if (!input) {
         return;
     }
 
-    for (const manager of colorManagers.values()) {
+    for (const manager of engine.colorManagers.values()) {
         if (input.startsWith(manager.stringPrefix)) {
             return manager.parseString(input);
         }
@@ -53,12 +46,18 @@ function stringToRgba(input: string): IRgba | undefined {
 
 /**
  * Gets the particles color
+ * @param engine - the engine managing the current parameters
  * @param input - the input color to convert in {@link IRgb} object
  * @param index - the array index, if needed
  * @param useIndex - set to false for ignoring the index parameter
  * @returns returns a RGB color in the given range
  */
-export function rangeColorToRgb(input?: string | IRangeColor, index?: number, useIndex = true): IRgb | undefined {
+export function rangeColorToRgb(
+    engine: Engine,
+    input?: string | IRangeColor,
+    index?: number,
+    useIndex = true,
+): IRgb | undefined {
     if (!input) {
         return;
     }
@@ -66,16 +65,16 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
     const color = isString(input) ? { value: input } : input;
 
     if (isString(color.value)) {
-        return colorToRgb(color.value, index, useIndex);
+        return colorToRgb(engine, color.value, index, useIndex);
     }
 
     if (isArray(color.value)) {
-        return rangeColorToRgb({
+        return rangeColorToRgb(engine, {
             value: itemFromArray(color.value, index, useIndex),
         });
     }
 
-    for (const manager of colorManagers.values()) {
+    for (const manager of engine.colorManagers.values()) {
         const res = manager.handleRangeColor(color);
 
         if (res) {
@@ -86,12 +85,13 @@ export function rangeColorToRgb(input?: string | IRangeColor, index?: number, us
 
 /**
  * Gets the particles color
+ * @param engine - the engine managing the current parameters
  * @param input - the input color to convert in {@link IRgb} object
  * @param index - the array index, if needed
  * @param useIndex - set to false to ignore the index parameter
  * @returns returns an RGB color taken from a {@link IColor} object
  */
-export function colorToRgb(input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
+export function colorToRgb(engine: Engine, input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
     if (!input) {
         return;
     }
@@ -99,16 +99,16 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
     const color = isString(input) ? { value: input } : input;
 
     if (isString(color.value)) {
-        return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(color.value);
+        return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(engine, color.value);
     }
 
     if (isArray(color.value)) {
-        return colorToRgb({
+        return colorToRgb(engine, {
             value: itemFromArray(color.value, index, useIndex),
         });
     }
 
-    for (const manager of colorManagers.values()) {
+    for (const manager of engine.colorManagers.values()) {
         const res = manager.handleColor(color);
 
         if (res) {
@@ -119,30 +119,38 @@ export function colorToRgb(input?: string | IColor, index?: number, useIndex = t
 
 /**
  * Gets the particles color
+ * @param engine - the engine managing the current parameters
  * @param color - the input color to convert in {@link IHsl} object
  * @param index - the array index, if needed
  * @param useIndex - set to false to ignore the index parameter
  * @returns the {@link IHsl} object
  */
-export function colorToHsl(color: string | IColor | undefined, index?: number, useIndex = true): IHsl | undefined {
-    const rgb = colorToRgb(color, index, useIndex);
+export function colorToHsl(
+    engine: Engine,
+    color: string | IColor | undefined,
+    index?: number,
+    useIndex = true,
+): IHsl | undefined {
+    const rgb = colorToRgb(engine, color, index, useIndex);
 
     return rgb ? rgbToHsl(rgb) : undefined;
 }
 
 /**
  * Gets the particles color
+ * @param engine - the engine managing the current parameters
  * @param color - the input color to convert in {@link IHsl} object
  * @param index - the array index, if needed
  * @param useIndex - set to false to ignore the index parameter
  * @returns the {@link IHsl} object
  */
 export function rangeColorToHsl(
+    engine: Engine,
     color: string | IRangeColor | undefined,
     index?: number,
     useIndex = true,
 ): IHsl | undefined {
-    const rgb = rangeColorToRgb(color, index, useIndex);
+    const rgb = rangeColorToRgb(engine, color, index, useIndex);
 
     return rgb ? rgbToHsl(rgb) : undefined;
 }
@@ -201,20 +209,22 @@ export function rgbToHsl(color: IRgb): IHsl {
 
 /**
  * Gets alpha value from string color
+ * @param engine - the engine managing the current parameters
  * @param input - the input color to convert in alpha value
  * @returns the alpha value
  */
-export function stringToAlpha(input: string): number | undefined {
-    return stringToRgba(input)?.a;
+export function stringToAlpha(engine: Engine, input: string): number | undefined {
+    return stringToRgba(engine, input)?.a;
 }
 
 /**
  * Converts hexadecimal string (HTML color code) in a {@link IRgb} object
+ * @param engine - the engine managing the current parameters
  * @param input - the hexadecimal string (#f70 or #ff7700)
  * @returns the {@link IRgb} object
  */
-export function stringToRgb(input: string): IRgb | undefined {
-    return stringToRgba(input);
+export function stringToRgb(engine: Engine, input: string): IRgb | undefined {
+    return stringToRgba(engine, input);
 }
 
 /**
@@ -402,12 +412,14 @@ export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | I
 }
 
 /**
+ * @param engine -
  * @param optColor -
  * @param blink -
  * @param consent -
  * @returns returns a link random color, if needed
  */
 export function getLinkRandomColor(
+    engine: Engine,
     optColor: string | IOptionsColor,
     blink: boolean,
     consent: boolean,
@@ -416,7 +428,7 @@ export function getLinkRandomColor(
 
     if (color === randomColorValue) {
         if (consent) {
-            return rangeColorToRgb({
+            return rangeColorToRgb(engine, {
                 value: color,
             });
         }
@@ -429,7 +441,7 @@ export function getLinkRandomColor(
     } else if (color === midColorValue) {
         return midColorValue;
     } else {
-        return rangeColorToRgb({
+        return rangeColorToRgb(engine, {
             value: color,
         });
     }

@@ -1,13 +1,19 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
-import { EasingType, addEasing } from "@tsparticles/engine";
+import { EasingType, type Engine, assertValidVersion } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 /**
+ * @param engine -
+ * @param refresh -
  */
-export async function loadEasingSinePlugin(): Promise<void> {
-    addEasing(EasingType.easeInSine, value => 1 - Math.cos((value * Math.PI) / 2));
-    addEasing(EasingType.easeOutSine, value => Math.sin((value * Math.PI) / 2));
-    addEasing(EasingType.easeInOutSine, value => -(Math.cos(Math.PI * value) - 1) / 2);
+export async function loadEasingSinePlugin(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
 
-    await Promise.resolve();
+    await engine.addEasing(EasingType.easeInSine, value => 1 - Math.cos((value * Math.PI) / 2), false);
+    await engine.addEasing(EasingType.easeOutSine, value => Math.sin((value * Math.PI) / 2), false);
+    await engine.addEasing(EasingType.easeInOutSine, value => -(Math.cos(Math.PI * value) - 1) / 2, false);
+
+    await engine.refresh(refresh);
 }

@@ -1,15 +1,19 @@
+import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { Bubbler } from "./Bubbler.js";
-import type { Engine } from "@tsparticles/engine";
+
+declare const __VERSION__: string;
 
 /**
  * @param engine -
  * @param refresh -
  */
 export async function loadExternalBubbleInteraction(engine: Engine, refresh = true): Promise<void> {
+    assertValidVersion(engine, __VERSION__);
+
     await engine.addInteractor(
         "externalBubble",
         container => {
-            return Promise.resolve(new Bubbler(container));
+            return Promise.resolve(new Bubbler(container, engine));
         },
         refresh,
     );

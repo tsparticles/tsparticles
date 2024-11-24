@@ -640,7 +640,7 @@ export class Particle {
         }
 
         this.spawning = false;
-        this.shadowColor = rangeColorToRgb(this.options.shadow.color);
+        this.shadowColor = rangeColorToRgb(this._engine, this.options.shadow.color);
 
         for (const updater of particles.updaters) {
             updater.init(this);
