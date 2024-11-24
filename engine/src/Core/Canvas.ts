@@ -93,6 +93,7 @@ export class Canvas {
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
     private readonly _standardSize: IDimension;
+    private _elementSize?: IDimension;
     private _trailFill?: ITrailFillData;
 
     /**
@@ -417,12 +418,13 @@ export class Canvas {
         standardSize.height = canvas.offsetHeight;
         standardSize.width = canvas.offsetWidth;
 
-        const pxRatio = this.container.retina.pixelRatio;
+        const pxRatio = this.container.retina.pixelRatio,
+            retinaSize = this.size;
 
-        const retinaSize = this.size;
+        canvas.height = retinaSize.height = standardSize.height * pxRatio;
+        canvas.width = retinaSize.width = standardSize.width * pxRatio;
 
-        retinaSize.height = standardSize.height * pxRatio;
-        retinaSize.width = standardSize.width * pxRatio;
+        this._updateElementSize();
 
         this._context = this.element.getContext("2d");
 
@@ -475,9 +477,16 @@ export class Canvas {
             newSize = {
                 width: this.element.offsetWidth,
                 height: this.element.offsetHeight,
-            };
+            },
+            elementSize = this._elementSize;
 
-        if (newSize.height === currentSize.height && newSize.width === currentSize.width) {
+        if (
+            newSize.height === currentSize.height &&
+            newSize.width === currentSize.width &&
+            elementSize &&
+            elementSize.height === this.element.height &&
+            elementSize.width === this.element.width
+        ) {
             return false;
         }
 
@@ -491,6 +500,8 @@ export class Canvas {
 
         this.element.width = retinaSize.width = currentSize.width * pxRatio;
         this.element.height = retinaSize.height = currentSize.height * pxRatio;
+
+        this._updateElementSize();
 
         if (this.container.started) {
             container.particles.setResizeFactor({
@@ -790,5 +801,16 @@ export class Canvas {
             },
             true,
         );
+    };
+
+    private readonly _updateElementSize: () => void = () => {
+        if (!this.element) {
+            return;
+        }
+
+        this._elementSize = {
+            height: this.element.width,
+            width: this.element.height,
+        };
     };
 }
