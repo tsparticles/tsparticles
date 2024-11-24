@@ -49,7 +49,7 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsdoc": "^50.3.1",
     "eslint-plugin-prettier": "^5.2.1",
-    "eslint-plugin-tsdoc": "^0.3.0",
+    "eslint-plugin-tsdoc": "^0.4.0",
     "gh-pages": "^6.2.0",
     "husky": "^9.1.6",
     "jsdom": "^25.0.1",
