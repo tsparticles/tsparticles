@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.1](https://github.com/tsparticles/tsparticles/compare/v3.7.0...v3.7.1) (2024-11-24)
+
+### Bug Fixes
+
+-   fix resize issues introduced in 3.7.0 with the new size variable ([41b507f](https://github.com/tsparticles/tsparticles/commit/41b507f6fc638a4ce77614621d9300ed7099ebce))
+-   fixed resize issue in canvas ([e7c816c](https://github.com/tsparticles/tsparticles/commit/e7c816ced7d99c0cb84c79675a0771cd4b833705))
+
 # [3.7.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0...v3.7.0) (2024-11-24)
 
 ### Bug Fixes
