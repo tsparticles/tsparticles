@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/demo-new",
     "private": true,
-    "version": "3.7.1",
+    "version": "3.7.2",
     "description": "tsParticles Demo Website",
     "main": "index.html",
     "scripts": {
@@ -39,7 +39,7 @@
         "sass": "^1.69.5"
     },
     "dependencies": {
-        "@tsparticles/configs": "workspace:3.7.1",
+        "@tsparticles/configs": "workspace:3.7.2",
         "@tsparticles/engine": "workspace:3.7.1",
         "@tsparticles/interaction-light": "workspace:3.7.1",
         "@tsparticles/interaction-particles-repulse": "workspace:3.7.1",

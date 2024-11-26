@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/demo",
     "private": true,
-    "version": "3.7.1",
+    "version": "3.7.2",
     "description": "> TODO: description",
     "author": "Matteo Bruni <matteo.bruni@me.com>",
     "homepage": "https://particles.js.org",
@@ -53,7 +53,7 @@
         "@tsparticles/all": "workspace:3.7.1",
         "@tsparticles/basic": "workspace:3.7.1",
         "@tsparticles/confetti": "workspace:3.7.1",
-        "@tsparticles/configs": "workspace:3.7.1",
+        "@tsparticles/configs": "workspace:3.7.2",
         "@tsparticles/effect-bubble": "workspace:3.7.1",
         "@tsparticles/effect-trail": "workspace:3.7.1",
         "@tsparticles/engine": "workspace:3.7.1",
