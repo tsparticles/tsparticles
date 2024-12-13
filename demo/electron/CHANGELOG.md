@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.7.3](https://github.com/tsparticles/tsparticles/compare/v3.7.2...v3.7.3) (2024-12-13)
+
+**Note:** Version bump only for package @tsparticles/electron-demo
+
 ## [3.7.2](https://github.com/tsparticles/tsparticles/compare/v3.7.1...v3.7.2) (2024-11-26)
 
 **Note:** Version bump only for package @tsparticles/electron-demo

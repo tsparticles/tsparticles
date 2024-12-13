@@ -576,7 +576,7 @@ importers:
   demo/electron:
     dependencies:
       "@tsparticles/configs":
-        specifier: workspace:3.7.2
+        specifier: workspace:3.7.3
         version: link:../../utils/configs/dist
       "@tsparticles/engine":
         specifier: workspace:3.7.1
@@ -601,7 +601,7 @@ importers:
         specifier: workspace:3.7.1
         version: link:../../bundles/confetti/dist
       "@tsparticles/configs":
-        specifier: workspace:3.7.2
+        specifier: workspace:3.7.3
         version: link:../../utils/configs/dist
       "@tsparticles/effect-bubble":
         specifier: workspace:3.7.1
@@ -974,7 +974,7 @@ importers:
   demo/vanilla_new:
     dependencies:
       "@tsparticles/configs":
-        specifier: workspace:3.7.2
+        specifier: workspace:3.7.3
         version: link:../../utils/configs/dist
       "@tsparticles/engine":
         specifier: workspace:3.7.1
@@ -1026,7 +1026,7 @@ importers:
         specifier: workspace:3.7.1
         version: link:../../bundles/all/dist
       "@tsparticles/configs":
-        specifier: workspace:3.7.2
+        specifier: workspace:3.7.3
         version: link:../../utils/configs/dist
       "@tsparticles/engine":
         specifier: workspace:3.7.1
