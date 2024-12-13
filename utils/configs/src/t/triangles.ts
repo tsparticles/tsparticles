@@ -17,14 +17,14 @@ const options: ISourceOptions = {
                     sides: 3,
                     particles: {
                         color: {
-                            value: "f00",
+                            value: "#f00",
                         },
                     },
                 },
                 triangle: {
                     particles: {
                         color: {
-                            value: "0f0",
+                            value: "#0f0",
                         },
                     },
                 },
