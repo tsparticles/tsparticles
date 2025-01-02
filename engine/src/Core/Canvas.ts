@@ -1,5 +1,5 @@
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
-import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils.js";
+import { cloneStyle, getLogger, safeMutationObserver } from "../Utils/Utils.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine";
@@ -38,7 +38,7 @@ function setTransformValue(
  * @param style -
  * @param important -
  */
-function setStyle(canvas: HTMLCanvasElement, style?: Record<string, string | null>, important = false): void {
+function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration>, important = false): void {
     if (!style) {
         return;
     }
@@ -58,7 +58,11 @@ function setStyle(canvas: HTMLCanvasElement, style?: Record<string, string | nul
     for (const key in style) {
         const value = style[key];
 
-        elementStyle.setProperty(key, value, important ? "important" : "");
+        if (!value) {
+            elementStyle.removeProperty(key);
+        } else {
+            elementStyle.setProperty(key, value, important ? "important" : "");
+        }
     }
 }
 
@@ -88,7 +92,7 @@ export class Canvas {
     private readonly _engine;
     private _generated;
     private _mutationObserver?: MutationObserver;
-    private _originalStyle?: Record<string, string | null>;
+    private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
@@ -410,7 +414,7 @@ export class Canvas {
                 : this._generated;
         this.element = canvas;
         this.element.ariaHidden = "true";
-        this._originalStyle = deepExtend({}, this.element.style) as Record<string, string | null>;
+        this._originalStyle = cloneStyle(this.element.style);
 
         const standardSize = this._standardSize;
 
@@ -654,7 +658,7 @@ export class Canvas {
         }
 
         if (this._fullScreen) {
-            this._originalStyle = deepExtend({}, element.style) as Record<string, string | null>;
+            this._originalStyle = cloneStyle(element.style);
 
             this._setFullScreenStyle();
         } else {
@@ -789,7 +793,6 @@ export class Canvas {
             element,
             {
                 position: "fixed",
-                "z-index": zIndex,
                 zIndex: zIndex,
                 top: "0",
                 left: "0",

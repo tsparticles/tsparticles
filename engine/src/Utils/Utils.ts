@@ -858,3 +858,22 @@ export function assertValidVersion(engine: Engine, pluginVersion: string): void 
         `The tsParticles version is different from the loaded plugins version. Engine version: ${engine.version}. Plugins version: ${pluginVersion}`,
     );
 }
+
+/**
+ * a function to clone a style object
+ * @param style - the style to clone
+ * @returns the cloned style
+ */
+export function cloneStyle(style: CSSStyleDeclaration): CSSStyleDeclaration {
+    const clonedStyle = {} as CSSStyleDeclaration;
+
+    for (const key in style) {
+        if (!Object.prototype.hasOwnProperty.call(style, key)) {
+            continue;
+        }
+
+        clonedStyle[key] = style[key];
+    }
+
+    return clonedStyle;
+}
