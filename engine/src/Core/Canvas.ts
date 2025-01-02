@@ -56,13 +56,17 @@ function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration
     }
 
     for (const key in style) {
+        if (!key || !Object.prototype.hasOwnProperty.call(style, key)) {
+            continue;
+        }
+
         const value = style[key];
 
         if (!value) {
-            elementStyle.removeProperty(key);
-        } else {
-            elementStyle.setProperty(key, value, important ? "important" : "");
+            continue;
         }
+
+        elementStyle.setProperty(key, value, important ? "important" : "");
     }
 }
 
@@ -666,7 +670,7 @@ export class Canvas {
         }
 
         for (const key in options.style) {
-            if (!key || !options.style) {
+            if (!key || !options.style || !Object.prototype.hasOwnProperty.call(options.style, key)) {
                 continue;
             }
 
