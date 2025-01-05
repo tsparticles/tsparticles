@@ -20,6 +20,13 @@ export function createCustomCanvas(width: number, height: number): Canvas {
         setProperty(property: string, value: string | null, priority?: string): void {
             this[property] = priority ? `${value} !important` : value;
         },
+        removeProperty(property: string): string {
+            const value = this[property];
+
+            delete this[property];
+
+            return value as string;
+        },
     };
     augmentCanvas.dataset = {};
 
