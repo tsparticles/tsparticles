@@ -227,9 +227,8 @@ export class EventListeners {
     ) => {
         const handlers = this._handlers,
             container = this.container,
-            options = container.actualOptions;
-
-        const interactivityEl = container.interactivity.element;
+            options = container.actualOptions,
+            interactivityEl = container.interactivity.element;
 
         /* detect mouse pos - on hover / click event */
         if (!interactivityEl) {

@@ -1,5 +1,5 @@
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
-import { cloneStyle, getLogger, safeMutationObserver } from "../Utils/Utils.js";
+import { cloneStyle, getFullScreenStyle, getLogger, safeMutationObserver } from "../Utils/Utils.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine";
@@ -38,7 +38,7 @@ function setTransformValue(
  * @param style -
  * @param important -
  */
-function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration>, important = false): void {
+function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, important = false): void {
     if (!style) {
         return;
     }
@@ -55,18 +55,32 @@ function setStyle(canvas: HTMLCanvasElement, style?: Partial<CSSStyleDeclaration
         return;
     }
 
-    for (const key in style) {
-        if (!key || !Object.prototype.hasOwnProperty.call(style, key)) {
+    const keys = new Set<string>();
+
+    for (const key in elementStyle) {
+        if (!Object.prototype.hasOwnProperty.call(elementStyle, key)) {
             continue;
         }
 
-        const value = style[key];
+        keys.add(elementStyle[key]);
+    }
+
+    for (const key in style) {
+        if (!Object.prototype.hasOwnProperty.call(style, key)) {
+            continue;
+        }
+
+        keys.add(style[key]);
+    }
+
+    for (const key of keys) {
+        const value = style.getPropertyValue(key);
 
         if (!value) {
-            continue;
+            elementStyle.removeProperty(key);
+        } else {
+            elementStyle.setProperty(key, value, important ? "important" : "");
         }
-
-        elementStyle.setProperty(key, value, important ? "important" : "");
     }
 }
 
@@ -172,6 +186,8 @@ export class Canvas {
             const element = this.element;
 
             element?.remove();
+
+            this.element = undefined;
         } else {
             this._resetOriginalStyle();
         }
@@ -433,6 +449,11 @@ export class Canvas {
 
         this._context = this.element.getContext("2d");
 
+        this._safeMutationObserver(obs => obs.disconnect());
+
+        this.container.retina.init();
+        this.initBackground();
+
         this._safeMutationObserver(obs => {
             if (!this.element || !(this.element instanceof Node)) {
                 return;
@@ -440,9 +461,6 @@ export class Canvas {
 
             obs.observe(this.element, { attributes: true });
         });
-
-        this.container.retina.init();
-        this.initBackground();
     }
 
     /**
@@ -662,8 +680,6 @@ export class Canvas {
         }
 
         if (this._fullScreen) {
-            this._originalStyle = cloneStyle(element.style);
-
             this._setFullScreenStyle();
         } else {
             this._resetOriginalStyle();
@@ -768,11 +784,11 @@ export class Canvas {
         const element = this.element,
             originalStyle = this._originalStyle;
 
-        if (!(element && originalStyle)) {
+        if (!element || !originalStyle) {
             return;
         }
 
-        setStyle(element, originalStyle);
+        setStyle(element, originalStyle, true);
     };
 
     private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = callback => {
@@ -790,20 +806,6 @@ export class Canvas {
             return;
         }
 
-        const radix = 10,
-            zIndex = this.container.actualOptions.fullScreen.zIndex.toString(radix);
-
-        setStyle(
-            element,
-            {
-                position: "fixed",
-                zIndex: zIndex,
-                top: "0",
-                left: "0",
-                width: "100%",
-                height: "100%",
-            },
-            true,
-        );
+        setStyle(element, getFullScreenStyle(this.container.actualOptions.fullScreen.zIndex), true);
     };
 }
