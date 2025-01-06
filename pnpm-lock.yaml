@@ -22,7 +22,7 @@ importers:
         version: 19.8.4(@swc/core@1.9.2)
       '@tsparticles/cli':
         specifier: ^2.3.3
-        version: 2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@5.1.4)
+        version: 2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@6.0.0)
       '@tsparticles/eslint-config':
         specifier: ^2.3.0
         version: 2.3.0(@types/eslint@8.56.6)
@@ -102,8 +102,8 @@ importers:
         specifier: ^8.0.0
         version: 8.0.0(typescript@5.5.2)
       nx:
-        specifier: 19.8.13
-        version: 19.8.13(@swc/core@1.9.2)
+        specifier: 19.8.14
+        version: 19.8.14(@swc/core@1.9.2)
       nx-cloud:
         specifier: ^19.1.0
         version: 19.1.0
@@ -160,13 +160,13 @@ importers:
         version: 2.1.2(@types/node@22.7.5)(@vitest/ui@2.1.2)(jsdom@25.0.1(canvas@2.11.2(encoding@0.1.13)))(lightningcss@1.28.1)(sass@1.69.5)(stylus@0.64.0)(terser@5.36.0)
       webpack:
         specifier: ^5.95.0
-        version: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+        version: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
       webpack-bundle-analyzer:
         specifier: ^4.10.2
         version: 4.10.2
       webpack-cli:
-        specifier: ^5.1.4
-        version: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
+        specifier: ^6.0.0
+        version: 6.0.0(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
       yargs:
         specifier: ^17.7.2
         version: 17.7.2
@@ -2551,6 +2551,10 @@ packages:
     resolution: {integrity: sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw==}
     engines: {node: '>=10.0.0'}
 
+  '@discoveryjs/json-ext@0.6.3':
+    resolution: {integrity: sha512-4B4OijXeVNOPZlYA2oEwWOTkzyltLao+xbotHQeqN++Rv27Y6s818+n2Qkp8q+Fxhn0t/5lA5X1Mxktud8eayQ==}
+    engines: {node: '>=14.17.0'}
+
   '@electron/get@2.0.2':
     resolution: {integrity: sha512-eFZVFoRXb3GFGd7Ak7W4+6jBl9wBtiZ4AaYOse97ej6mKj5tkyO0dUnUChs1IhJZtx1BENo4/p4WUTXpi6vT+g==}
     engines: {node: '>=12'}
@@ -3044,8 +3048,8 @@ packages:
   '@nrwl/nx-cloud@19.1.0':
     resolution: {integrity: sha512-krngXVPfX0Zf6+zJDtcI59/Pt3JfcMPMZ9C/+/x6rvz4WGgyv1s0MI4crEUM0Lx5ZpS4QI0WNDCFVQSfGEBXUg==}
 
-  '@nrwl/tao@19.8.13':
-    resolution: {integrity: sha512-IhVvo6GMyR1AjDETZxEL29ox75ARiXx8ao5tBxZKgQgGM1vpkkkYQkKJEP6jFYPBKYA7rEYnSkXi1tBrhwBbGQ==}
+  '@nrwl/tao@19.8.14':
+    resolution: {integrity: sha512-zBeYzzwg43T/Z8ZtLblv0fcKuqJULttqYDekSLILThXp3UOMSerEvruhUgwddCY1jUssfLscz8vacMKISv5X4w==}
     hasBin: true
 
   '@nrwl/tao@19.8.4':
@@ -3065,8 +3069,8 @@ packages:
     peerDependencies:
       nx: '>= 17 <= 20'
 
-  '@nx/nx-darwin-arm64@19.8.13':
-    resolution: {integrity: sha512-3kfEkIxqug7q3vsGvqtR4Nz5TYF2T02BXtuD0ML9xbGDfbksNrRp2c0xjPbnyvJtOdgmtx0wcguwUrm+S3uiHw==}
+  '@nx/nx-darwin-arm64@19.8.14':
+    resolution: {integrity: sha512-bZUFf23gAzuwVw71dR8rngye5aCR8Z/ouIo+KayjqB0LWWoi3WzO73s4S69ljftYt4n6z9wvD+Trbb1BKm2fPg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -3077,8 +3081,8 @@ packages:
     cpu: [arm64]
     os: [darwin]
 
-  '@nx/nx-darwin-x64@19.8.13':
-    resolution: {integrity: sha512-BXiegV6ZV/9ma31R1Kgh8CBglr3C96aBcssOSX6w91bUO08XfirLLMPQ8BpRc9AF/IGt3Y1gYRLOdHcibi36QQ==}
+  '@nx/nx-darwin-x64@19.8.14':
+    resolution: {integrity: sha512-UXXVea8icFG/3rFwpbLYsD6O4wlyJ1STQfOdhGK1Hyuga70AUUdrjVm7HzigAQP/Sb2Nzd7155YXHzfpRPDFYA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
@@ -3089,8 +3093,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@nx/nx-freebsd-x64@19.8.13':
-    resolution: {integrity: sha512-UUfMQyn59pl0gHV8iqn+dYPPlM0jC5SzTN0wsK83h5fzvi87iAAgnDlf9uwElj4Sjadg+gqAWi2foT9nxX+Tfg==}
+  '@nx/nx-freebsd-x64@19.8.14':
+    resolution: {integrity: sha512-TK2xuXn+BI6hxGaRK1HRUPWeF/nOtezKSqM+6rbippfCzjES/crmp9l5nbI764MMthtUmykCyWvhEfkDca6kbA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [freebsd]
@@ -3101,8 +3105,8 @@ packages:
     cpu: [x64]
     os: [freebsd]
 
-  '@nx/nx-linux-arm-gnueabihf@19.8.13':
-    resolution: {integrity: sha512-vXae2CHBInpWXdLrI/4HFQXoilOvUiQr7/b859V4tf6Zgg9GRIraxvTMR5TBH7xv9cPzEK9845gx46BQTiik/A==}
+  '@nx/nx-linux-arm-gnueabihf@19.8.14':
+    resolution: {integrity: sha512-33rptyRraqaeQ2Kq6pcZKQqgnYY/7zcGH8fHXgKK7XzKk+7QuPViq+jMEUZP5E3UzZPkIYhsfmZcZqhNRvepJQ==}
     engines: {node: '>= 10'}
     cpu: [arm]
     os: [linux]
@@ -3113,8 +3117,8 @@ packages:
     cpu: [arm]
     os: [linux]
 
-  '@nx/nx-linux-arm64-gnu@19.8.13':
-    resolution: {integrity: sha512-c86YY7oe/8jo1eOKe0x6zvLn9yERL+Pc2WnkGfvcIb48NGNfUbxuzgPss6ywCg4zNN1LCenmVvU0/NFV9b/YwQ==}
+  '@nx/nx-linux-arm64-gnu@19.8.14':
+    resolution: {integrity: sha512-2E70qMKOhh7Fp4JGcRbRLvFKq0+ANVdAgSzH47plxOLygIeVAfIXRSuQbCI0EUFa5Sy6hImLaoRSB2GdgKihAw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -3125,8 +3129,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@nx/nx-linux-arm64-musl@19.8.13':
-    resolution: {integrity: sha512-VQSY5nhtUc6bfTAl1jYPuB0CdwppSee84wxT1QtXxmPzg/6QCat7ulesZOES6UQzXVSsIKInJH4KKWQ0mFwM+A==}
+  '@nx/nx-linux-arm64-musl@19.8.14':
+    resolution: {integrity: sha512-ltty/PDWqkYgu/6Ye65d7v5nh3D6e0n3SacoKRs2Vtfz5oHYRUkSKizKIhEVfRNuHn3d9j8ve1fdcCN4SDPUBQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -3137,8 +3141,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@nx/nx-linux-x64-gnu@19.8.13':
-    resolution: {integrity: sha512-w8F7yGuUOA+VDIf5K05e4tIExKEIuhPNS/qTea+iagdWnnnmqEm+EJpiXrf9L6TSMUxu2GgDI03DVuBck7oUgw==}
+  '@nx/nx-linux-x64-gnu@19.8.14':
+    resolution: {integrity: sha512-JzE3BuO9RCBVdgai18CCze6KUzG0AozE0TtYFxRokfSC05NU3nUhd/o62UsOl7s6Bqt/9nwrW7JC8pNDiCi9OQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -3149,8 +3153,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@nx/nx-linux-x64-musl@19.8.13':
-    resolution: {integrity: sha512-PcZXN2acZ/KJLAnmVt1++qucOVamXXl4/tjVVhXD6X5mCRtyGBcO+JL7/pcaIRGuut50yEY/QHxWVA+n7Ii2Yg==}
+  '@nx/nx-linux-x64-musl@19.8.14':
+    resolution: {integrity: sha512-2rPvDOQLb7Wd6YiU88FMBiLtYco0dVXF99IJBRGAWv+WTI7MNr47OyK2ze+JOsbYY1d8aOGUvckUvCCZvZKEfg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -3161,8 +3165,8 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@nx/nx-win32-arm64-msvc@19.8.13':
-    resolution: {integrity: sha512-WAtlfBggfW0MTbsaBhTyfnm1Iap+auAKpEusiFoSIhXp5Xqnvs+Zfdz8Ep3Ilc0BKIhyfyaWABJaU7QhRjYGKg==}
+  '@nx/nx-win32-arm64-msvc@19.8.14':
+    resolution: {integrity: sha512-JxW+YPS+EjhUsLw9C6wtk9pQTG3psyFwxhab8y/dgk2s4AOTLyIm0XxgcCJVvB6i4uv+s1g0QXRwp6+q3IR6hg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
@@ -3173,8 +3177,8 @@ packages:
     cpu: [arm64]
     os: [win32]
 
-  '@nx/nx-win32-x64-msvc@19.8.13':
-    resolution: {integrity: sha512-CLWmTRUYl7EtIu22d9Y9qpMdPOVPdh4BFmYpCa5Q+E0pk9Edd+EcQYMR0pgz8KDgbOBmRFGCr7CETVOAeTKzCw==}
+  '@nx/nx-win32-x64-msvc@19.8.14':
+    resolution: {integrity: sha512-RxiPlBWPcGSf9TzIIy62iKRdRhokXMDUsPub9DL2VdVyTMXPZQR25aY/PJeasJN1EQU74hg097LK2wSHi+vzOQ==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -3944,6 +3948,13 @@ packages:
       webpack: 5.x.x
       webpack-cli: 5.x.x
 
+  '@webpack-cli/configtest@3.0.0':
+    resolution: {integrity: sha512-3byRXqOvwm/zGM0OhSbq15aJeX5ZUSe0RS7gfzH9wtX9UX6foShghZKxNOq+oJ59s5dsZrvBk4WHLfSnaBJJWw==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      webpack: 5.x.x
+      webpack-cli: 5.x.x
+
   '@webpack-cli/info@2.0.2':
     resolution: {integrity: sha512-zLHQdI/Qs1UyT5UBdWNqsARasIA+AaF8t+4u2aS2nEpBQh2mWIVb8qAklq0eUENnC5mOItrIB4LiS9xMtph18A==}
     engines: {node: '>=14.15.0'}
@@ -3951,9 +3962,27 @@ packages:
       webpack: 5.x.x
       webpack-cli: 5.x.x
 
+  '@webpack-cli/info@3.0.0':
+    resolution: {integrity: sha512-HIuVImc5NGeL3NKz5i0GkqfSJ1XsNH4YlpTb1O+TXYUdzTL6ZAZFL9zoVKXxcmSW+HBKkmkUsLWwlyLcFTrArw==}
+    engines: {node: '>=18.12.0'}
+    peerDependencies:
+      webpack: 5.x.x
+      webpack-cli: 5.x.x
+
   '@webpack-cli/serve@2.0.5':
     resolution: {integrity: sha512-lqaoKnRYBdo1UgDX8uF24AfGMifWK19TxPmM5FHc2vAGxrJ/qtyUyFBWoY1tISZdelsQ5fBcOusifo5o5wSJxQ==}
     engines: {node: '>=14.15.0'}
+    peerDependencies:
+      webpack: 5.x.x
+      webpack-cli: 5.x.x
+      webpack-dev-server: '*'
+    peerDependenciesMeta:
+      webpack-dev-server:
+        optional: true
+
+  '@webpack-cli/serve@3.0.0':
+    resolution: {integrity: sha512-oX0XqXHb0IgD2jfzxM5sOGuwFTrLpOpfyPT0t4QIXHS69eRRliyuKzbavXgDnOENIs9BxbNnAaDFhTpAEPEChQ==}
+    engines: {node: '>=18.12.0'}
     peerDependencies:
       webpack: 5.x.x
       webpack-cli: 5.x.x
@@ -5107,6 +5136,11 @@ packages:
 
   envinfo@7.13.0:
     resolution: {integrity: sha512-cvcaMr7KqXVh4nyzGTVqTum+gAiL265x5jUWQIDLq//zOGbW+gSW/C+OWLleY/rs9Qole6AZLMXPbtIFQbqu+Q==}
+    engines: {node: '>=4'}
+    hasBin: true
+
+  envinfo@7.14.0:
+    resolution: {integrity: sha512-CO40UI41xDQzhLB1hWyqUKgFhs250pNcGbyGKe1l/e4FSaI/+YE4IMG76GDt0In67WLPACIITC+sOi08x4wIvg==}
     engines: {node: '>=4'}
     hasBin: true
 
@@ -6997,8 +7031,8 @@ packages:
     resolution: {integrity: sha512-f24vd5/57/MFSXNMfkerdDiK0EvScGOKO71iOWgJNgI1xVweDRmOA/EfjnPMRd5m+pnoPs/4A7DzuwSW0jZVyw==}
     hasBin: true
 
-  nx@19.8.13:
-    resolution: {integrity: sha512-qAoL/Qpc+1l/5UshAXyB8m27yCY0Tzol/udJhc1kD7Dt6yg8Ngxgi1ZtTmJn6yaLDOsW+oteatQPMtqsk8Lkdg==}
+  nx@19.8.14:
+    resolution: {integrity: sha512-yprBOWV16eQntz5h5SShYHMVeN50fUb6yHfzsqNiFneCJeyVjyJ585m+2TuVbE11vT1amU0xCjHcSGfJBBnm8g==}
     hasBin: true
     peerDependencies:
       '@swc-node/register': ^1.8.0
@@ -8825,9 +8859,27 @@ packages:
       webpack-dev-server:
         optional: true
 
+  webpack-cli@6.0.0:
+    resolution: {integrity: sha512-4MxiCcVjpl5h88mdrzz+ZQRHiT0JmwImP6Ss3xz0LkPYFR61qxuVx7/IPnwhUyRvXen4v/aLXlJONYmfhgVG7A==}
+    engines: {node: '>=18.12.0'}
+    hasBin: true
+    peerDependencies:
+      webpack: ^5.82.0
+      webpack-bundle-analyzer: '*'
+      webpack-dev-server: '*'
+    peerDependenciesMeta:
+      webpack-bundle-analyzer:
+        optional: true
+      webpack-dev-server:
+        optional: true
+
   webpack-merge@5.9.0:
     resolution: {integrity: sha512-6NbRQw4+Sy50vYNTw7EyOn41OZItPiXB8GNv3INSoe3PSFaHJEz3SHTrYVaRm2LilNGnFUzh0FAwqPEmU/CwDg==}
     engines: {node: '>=10.0.0'}
+
+  webpack-merge@6.0.1:
+    resolution: {integrity: sha512-hXXvrjtx2PLYx4qruKl+kyRSLc52V+cCvMxRjmKwoA+CBbbF5GfIBtR6kCvl0fYGqTUPKB+1ktVmTHqMOzgCBg==}
+    engines: {node: '>=18.0.0'}
 
   webpack-sources@3.2.3:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
@@ -10033,6 +10085,8 @@ snapshots:
 
   '@discoveryjs/json-ext@0.5.7': {}
 
+  '@discoveryjs/json-ext@0.6.3': {}
+
   '@electron/get@2.0.2':
     dependencies:
       debug: 4.3.6
@@ -10311,7 +10365,7 @@ snapshots:
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
       '@npmcli/run-script': 8.1.0
-      '@nx/devkit': 19.3.2(nx@19.8.13(@swc/core@1.9.2))
+      '@nx/devkit': 19.3.2(nx@19.8.14(@swc/core@1.9.2))
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 19.0.11(encoding@0.1.13)
       aproba: 2.0.0
@@ -10350,7 +10404,7 @@ snapshots:
       npm-package-arg: 11.0.2
       npm-packlist: 8.0.2
       npm-registry-fetch: 17.1.0
-      nx: 19.8.13(@swc/core@1.9.2)
+      nx: 19.8.14(@swc/core@1.9.2)
       p-map: 4.0.0
       p-map-series: 2.1.0
       p-queue: 6.6.2
@@ -10585,9 +10639,9 @@ snapshots:
       - bluebird
       - supports-color
 
-  '@nrwl/devkit@19.3.2(nx@19.8.13(@swc/core@1.9.2))':
+  '@nrwl/devkit@19.3.2(nx@19.8.14(@swc/core@1.9.2))':
     dependencies:
-      '@nx/devkit': 19.3.2(nx@19.8.13(@swc/core@1.9.2))
+      '@nx/devkit': 19.3.2(nx@19.8.14(@swc/core@1.9.2))
     transitivePeerDependencies:
       - nx
 
@@ -10603,9 +10657,9 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@nrwl/tao@19.8.13(@swc/core@1.9.2)':
+  '@nrwl/tao@19.8.14(@swc/core@1.9.2)':
     dependencies:
-      nx: 19.8.13(@swc/core@1.9.2)
+      nx: 19.8.14(@swc/core@1.9.2)
       tslib: 2.6.2
     transitivePeerDependencies:
       - '@swc-node/register'
@@ -10629,14 +10683,14 @@ snapshots:
       - '@swc/core'
       - debug
 
-  '@nx/devkit@19.3.2(nx@19.8.13(@swc/core@1.9.2))':
+  '@nx/devkit@19.3.2(nx@19.8.14(@swc/core@1.9.2))':
     dependencies:
-      '@nrwl/devkit': 19.3.2(nx@19.8.13(@swc/core@1.9.2))
+      '@nrwl/devkit': 19.3.2(nx@19.8.14(@swc/core@1.9.2))
       ejs: 3.1.9
       enquirer: 2.3.6
       ignore: 5.3.1
       minimatch: 9.0.3
-      nx: 19.8.13(@swc/core@1.9.2)
+      nx: 19.8.14(@swc/core@1.9.2)
       semver: 7.6.3
       tmp: 0.2.1
       tslib: 2.6.2
@@ -10655,61 +10709,61 @@ snapshots:
       tslib: 2.6.2
       yargs-parser: 21.1.1
 
-  '@nx/nx-darwin-arm64@19.8.13':
+  '@nx/nx-darwin-arm64@19.8.14':
     optional: true
 
   '@nx/nx-darwin-arm64@19.8.4':
     optional: true
 
-  '@nx/nx-darwin-x64@19.8.13':
+  '@nx/nx-darwin-x64@19.8.14':
     optional: true
 
   '@nx/nx-darwin-x64@19.8.4':
     optional: true
 
-  '@nx/nx-freebsd-x64@19.8.13':
+  '@nx/nx-freebsd-x64@19.8.14':
     optional: true
 
   '@nx/nx-freebsd-x64@19.8.4':
     optional: true
 
-  '@nx/nx-linux-arm-gnueabihf@19.8.13':
+  '@nx/nx-linux-arm-gnueabihf@19.8.14':
     optional: true
 
   '@nx/nx-linux-arm-gnueabihf@19.8.4':
     optional: true
 
-  '@nx/nx-linux-arm64-gnu@19.8.13':
+  '@nx/nx-linux-arm64-gnu@19.8.14':
     optional: true
 
   '@nx/nx-linux-arm64-gnu@19.8.4':
     optional: true
 
-  '@nx/nx-linux-arm64-musl@19.8.13':
+  '@nx/nx-linux-arm64-musl@19.8.14':
     optional: true
 
   '@nx/nx-linux-arm64-musl@19.8.4':
     optional: true
 
-  '@nx/nx-linux-x64-gnu@19.8.13':
+  '@nx/nx-linux-x64-gnu@19.8.14':
     optional: true
 
   '@nx/nx-linux-x64-gnu@19.8.4':
     optional: true
 
-  '@nx/nx-linux-x64-musl@19.8.13':
+  '@nx/nx-linux-x64-musl@19.8.14':
     optional: true
 
   '@nx/nx-linux-x64-musl@19.8.4':
     optional: true
 
-  '@nx/nx-win32-arm64-msvc@19.8.13':
+  '@nx/nx-win32-arm64-msvc@19.8.14':
     optional: true
 
   '@nx/nx-win32-arm64-msvc@19.8.4':
     optional: true
 
-  '@nx/nx-win32-x64-msvc@19.8.13':
+  '@nx/nx-win32-x64-msvc@19.8.14':
     optional: true
 
   '@nx/nx-win32-x64-msvc@19.8.4':
@@ -11071,7 +11125,7 @@ snapshots:
 
   '@tsconfig/node16@1.0.4': {}
 
-  '@tsparticles/cli@2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@5.1.4)':
+  '@tsparticles/cli@2.3.3(@swc/core@1.9.2)(@types/eslint@8.56.6)(webpack-cli@6.0.0)':
     dependencies:
       '@tsparticles/eslint-config': 2.3.0(@types/eslint@8.56.6)
       '@tsparticles/prettier-config': 2.1.6
@@ -11095,7 +11149,7 @@ snapshots:
       prompts: 2.4.2
       rimraf: 5.0.7
       typescript: 5.5.2
-      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
     transitivePeerDependencies:
       - '@swc/core'
       - '@types/eslint'
@@ -11709,18 +11763,33 @@ snapshots:
 
   '@webpack-cli/configtest@2.1.1(webpack-cli@5.1.4)(webpack@5.95.0)':
     dependencies:
-      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
+
+  '@webpack-cli/configtest@3.0.0(webpack-cli@6.0.0)(webpack@5.95.0)':
+    dependencies:
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
+      webpack-cli: 6.0.0(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
   '@webpack-cli/info@2.0.2(webpack-cli@5.1.4)(webpack@5.95.0)':
     dependencies:
-      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
+
+  '@webpack-cli/info@3.0.0(webpack-cli@6.0.0)(webpack@5.95.0)':
+    dependencies:
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
+      webpack-cli: 6.0.0(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
   '@webpack-cli/serve@2.0.5(webpack-cli@5.1.4)(webpack@5.95.0)':
     dependencies:
-      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
+
+  '@webpack-cli/serve@3.0.0(webpack-cli@6.0.0)(webpack@5.95.0)':
+    dependencies:
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
+      webpack-cli: 6.0.0(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
 
   '@xtuc/ieee754@1.2.0': {}
 
@@ -11961,7 +12030,7 @@ snapshots:
       '@babel/core': 7.25.8
       find-cache-dir: 4.0.0
       schema-utils: 4.2.0
-      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
 
   babel-plugin-polyfill-corejs2@0.4.10(@babel/core@7.25.8):
     dependencies:
@@ -12858,6 +12927,8 @@ snapshots:
   envinfo@7.10.0: {}
 
   envinfo@7.13.0: {}
+
+  envinfo@7.14.0: {}
 
   err-code@2.0.3: {}
 
@@ -14327,7 +14398,7 @@ snapshots:
       '@npmcli/arborist': 7.5.4
       '@npmcli/package-json': 5.2.0
       '@npmcli/run-script': 8.1.0
-      '@nx/devkit': 19.3.2(nx@19.8.13(@swc/core@1.9.2))
+      '@nx/devkit': 19.3.2(nx@19.8.14(@swc/core@1.9.2))
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 19.0.11(encoding@0.1.13)
       aproba: 2.0.0
@@ -14372,7 +14443,7 @@ snapshots:
       npm-package-arg: 11.0.2
       npm-packlist: 8.0.2
       npm-registry-fetch: 17.1.0
-      nx: 19.8.13(@swc/core@1.9.2)
+      nx: 19.8.14(@swc/core@1.9.2)
       p-map: 4.0.0
       p-map-series: 2.1.0
       p-pipe: 3.1.0
@@ -15143,10 +15214,10 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  nx@19.8.13(@swc/core@1.9.2):
+  nx@19.8.14(@swc/core@1.9.2):
     dependencies:
       '@napi-rs/wasm-runtime': 0.2.4
-      '@nrwl/tao': 19.8.13(@swc/core@1.9.2)
+      '@nrwl/tao': 19.8.14(@swc/core@1.9.2)
       '@yarnpkg/lockfile': 1.1.0
       '@yarnpkg/parsers': 3.0.0-rc.46
       '@zkochan/js-yaml': 0.0.7
@@ -15180,16 +15251,16 @@ snapshots:
       yargs: 17.7.2
       yargs-parser: 21.1.1
     optionalDependencies:
-      '@nx/nx-darwin-arm64': 19.8.13
-      '@nx/nx-darwin-x64': 19.8.13
-      '@nx/nx-freebsd-x64': 19.8.13
-      '@nx/nx-linux-arm-gnueabihf': 19.8.13
-      '@nx/nx-linux-arm64-gnu': 19.8.13
-      '@nx/nx-linux-arm64-musl': 19.8.13
-      '@nx/nx-linux-x64-gnu': 19.8.13
-      '@nx/nx-linux-x64-musl': 19.8.13
-      '@nx/nx-win32-arm64-msvc': 19.8.13
-      '@nx/nx-win32-x64-msvc': 19.8.13
+      '@nx/nx-darwin-arm64': 19.8.14
+      '@nx/nx-darwin-x64': 19.8.14
+      '@nx/nx-freebsd-x64': 19.8.14
+      '@nx/nx-linux-arm-gnueabihf': 19.8.14
+      '@nx/nx-linux-arm64-gnu': 19.8.14
+      '@nx/nx-linux-arm64-musl': 19.8.14
+      '@nx/nx-linux-x64-gnu': 19.8.14
+      '@nx/nx-linux-x64-musl': 19.8.14
+      '@nx/nx-win32-arm64-msvc': 19.8.14
+      '@nx/nx-win32-x64-msvc': 19.8.14
       '@swc/core': 1.9.2
     transitivePeerDependencies:
       - debug
@@ -16597,7 +16668,7 @@ snapshots:
       schema-utils: 3.3.0
       serialize-javascript: 6.0.1
       terser: 5.26.0
-      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
     optionalDependencies:
       '@swc/core': 1.9.2
 
@@ -17190,14 +17261,39 @@ snapshots:
       import-local: 3.1.0
       interpret: 3.1.1
       rechoir: 0.8.0
-      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
       webpack-merge: 5.9.0
+    optionalDependencies:
+      webpack-bundle-analyzer: 4.10.2
+
+  webpack-cli@6.0.0(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0):
+    dependencies:
+      '@discoveryjs/json-ext': 0.6.3
+      '@webpack-cli/configtest': 3.0.0(webpack-cli@6.0.0)(webpack@5.95.0)
+      '@webpack-cli/info': 3.0.0(webpack-cli@6.0.0)(webpack@5.95.0)
+      '@webpack-cli/serve': 3.0.0(webpack-cli@6.0.0)(webpack@5.95.0)
+      colorette: 2.0.20
+      commander: 12.1.0
+      cross-spawn: 7.0.3
+      envinfo: 7.14.0
+      fastest-levenshtein: 1.0.16
+      import-local: 3.1.0
+      interpret: 3.1.1
+      rechoir: 0.8.0
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
+      webpack-merge: 6.0.1
     optionalDependencies:
       webpack-bundle-analyzer: 4.10.2
 
   webpack-merge@5.9.0:
     dependencies:
       clone-deep: 4.0.1
+      wildcard: 2.0.1
+
+  webpack-merge@6.0.1:
+    dependencies:
+      clone-deep: 4.0.1
+      flat: 5.0.2
       wildcard: 2.0.1
 
   webpack-sources@3.2.3: {}
@@ -17229,6 +17325,38 @@ snapshots:
       webpack-sources: 3.2.3
     optionalDependencies:
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
+    transitivePeerDependencies:
+      - '@swc/core'
+      - esbuild
+      - uglify-js
+
+  webpack@5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0):
+    dependencies:
+      '@types/estree': 1.0.5
+      '@webassemblyjs/ast': 1.12.1
+      '@webassemblyjs/wasm-edit': 1.12.1
+      '@webassemblyjs/wasm-parser': 1.12.1
+      acorn: 8.12.1
+      acorn-import-attributes: 1.9.5(acorn@8.12.1)
+      browserslist: 4.24.0
+      chrome-trace-event: 1.0.3
+      enhanced-resolve: 5.17.1
+      es-module-lexer: 1.5.4
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      glob-to-regexp: 0.4.1
+      graceful-fs: 4.2.11
+      json-parse-even-better-errors: 2.3.1
+      loader-runner: 4.3.0
+      mime-types: 2.1.35
+      neo-async: 2.6.2
+      schema-utils: 3.3.0
+      tapable: 2.2.1
+      terser-webpack-plugin: 5.3.10(@swc/core@1.9.2)(webpack@5.95.0)
+      watchpack: 2.4.1
+      webpack-sources: 3.2.3
+    optionalDependencies:
+      webpack-cli: 6.0.0(webpack-bundle-analyzer@4.10.2)(webpack@5.95.0)
     transitivePeerDependencies:
       - '@swc/core'
       - esbuild

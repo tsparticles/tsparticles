@@ -2,8 +2,7 @@ import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
 import { RangeType } from "../../Types/RangeType.js";
 import { getDistance } from "../../Utils/NumberUtils.js";
-
-const squareExp = 2;
+import { squareExp } from "./Constants";
 
 /**
  */

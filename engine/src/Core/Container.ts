@@ -1,5 +1,16 @@
 import { animate, cancelAnimation, getRangeValue } from "../Utils/NumberUtils.js";
-import { errorPrefix, millisecondsToSeconds } from "./Utils/Constants.js";
+import {
+    clickRadius,
+    defaultFps,
+    defaultFpsLimit,
+    errorPrefix,
+    millisecondsToSeconds,
+    minCoordinate,
+    minFpsLimit,
+    removeDeleteCount,
+    removeMinIndex,
+    touchEndLengthOffset,
+} from "./Utils/Constants.js";
 import { getLogger, safeIntersectionObserver } from "../Utils/Utils.js";
 import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
@@ -29,8 +40,6 @@ type ContainerClickHandler = (evt: Event) => void;
 function guardCheck(container: Container): boolean {
     return container && !container.destroyed;
 }
-
-const defaultFps = 60;
 
 /**
  * @param value -
@@ -265,10 +274,9 @@ export class Container {
                     pos = {
                         x: mouseEvent.offsetX || mouseEvent.clientX,
                         y: mouseEvent.offsetY || mouseEvent.clientY,
-                    },
-                    radius = 1;
+                    };
 
-                clickOrTouchHandler(e, pos, radius);
+                clickOrTouchHandler(e, pos, clickRadius);
             },
             touchStartHandler = (): void => {
                 if (!guardCheck(this)) {
@@ -291,13 +299,12 @@ export class Container {
                 }
 
                 if (touched && !touchMoved) {
-                    const touchEvent = e as TouchEvent,
-                        lengthOffset = 1;
+                    const touchEvent = e as TouchEvent;
 
-                    let lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset];
+                    let lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
 
                     if (!lastTouch) {
-                        lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - lengthOffset];
+                        lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - touchEndLengthOffset];
 
                         if (!lastTouch) {
                             return;
@@ -306,7 +313,6 @@ export class Container {
 
                     const element = this.canvas.element,
                         canvasRect = element ? element.getBoundingClientRect() : undefined,
-                        minCoordinate = 0,
                         pos = {
                             x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
                             y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
@@ -416,13 +422,10 @@ export class Container {
 
         if (remove) {
             const mainArr = this._engine.items,
-                idx = mainArr.findIndex(t => t === this),
-                minIndex = 0;
+                idx = mainArr.findIndex(t => t === this);
 
-            if (idx >= minIndex) {
-                const deleteCount = 1;
-
-                mainArr.splice(idx, deleteCount);
+            if (idx >= removeMinIndex) {
+                mainArr.splice(idx, removeDeleteCount);
             }
         }
 
@@ -542,10 +545,6 @@ export class Container {
         this._duration = getRangeValue(duration) * millisecondsToSeconds;
         this._delay = getRangeValue(delay) * millisecondsToSeconds;
         this._lifeTime = 0;
-
-        const defaultFpsLimit = 120,
-            minFpsLimit = 0;
-
         this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
         this._smooth = smooth;
 

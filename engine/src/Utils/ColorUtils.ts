@@ -9,8 +9,35 @@ import {
     randomInRange,
     setRangeValue,
 } from "./NumberUtils.js";
+import {
+    decayOffset,
+    defaultLoops,
+    defaultOpacity,
+    defaultRgbMin,
+    defaultTime,
+    defaultVelocity,
+    double,
+    hMax,
+    hMin,
+    hPhase,
+    half,
+    identity,
+    lMax,
+    lMin,
+    midColorValue,
+    millisecondsToSeconds,
+    percentDenominator,
+    phaseNumerator,
+    randomColorValue,
+    rgbFactor,
+    rgbMax,
+    sMax,
+    sMin,
+    sNormalizedOffset,
+    sextuple,
+    triple,
+} from "../Core/Utils/Constants.js";
 import { isArray, isString } from "./TypeUtils.js";
-import { millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { Engine } from "../Core/Engine";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
@@ -22,9 +49,6 @@ import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnima
 import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
 import { itemFromArray } from "./Utils.js";
-
-const randomColorValue = "random",
-    midColorValue = "mid";
 
 /**
  * Converts a string to a RGBA color.
@@ -161,16 +185,7 @@ export function rangeColorToHsl(
  * @returns hsl color
  */
 export function rgbToHsl(color: IRgb): IHsl {
-    const rgbMax = 255,
-        hMax = 360,
-        sMax = 100,
-        lMax = 100,
-        hMin = 0,
-        sMin = 0,
-        hPhase = 60,
-        half = 0.5,
-        double = 2,
-        r1 = color.r / rgbMax,
+    const r1 = color.r / rgbMax,
         g1 = color.g / rgbMax,
         b1 = color.b / rgbMax,
         max = Math.max(r1, g1, b1),
@@ -234,20 +249,13 @@ export function stringToRgb(engine: Engine, input: string): IRgb | undefined {
  */
 export function hslToRgb(hsl: IHsl): IRgb {
     // Ensure that h, s, and l are in the valid range
-    const hMax = 360,
-        sMax = 100,
-        lMax = 100,
-        sMin = 0,
-        lMin = 0,
-        h = ((hsl.h % hMax) + hMax) % hMax,
+    const h = ((hsl.h % hMax) + hMax) % hMax,
         s = Math.max(sMin, Math.min(sMax, hsl.s)),
         l = Math.max(lMin, Math.min(lMax, hsl.l)),
         // Convert h, s, and l to the range [0, 1]
         hNormalized = h / hMax,
         sNormalized = s / sMax,
-        lNormalized = l / lMax,
-        rgbFactor = 255,
-        triple = 3;
+        lNormalized = l / lMax;
 
     if (s === sMin) {
         // If saturation is 0, the color is grayscale
@@ -255,12 +263,9 @@ export function hslToRgb(hsl: IHsl): IRgb {
         return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
     }
 
-    const half = 0.5,
-        double = 2,
-        channel = (temp1: number, temp2: number, temp3: number): number => {
+    const channel = (temp1: number, temp2: number, temp3: number): number => {
             const temp3Min = 0,
-                temp3Max = 1,
-                sextuple = 6;
+                temp3Max = 1;
 
             if (temp3 < temp3Min) {
                 temp3++;
@@ -286,13 +291,11 @@ export function hslToRgb(hsl: IHsl): IRgb {
 
             return temp1;
         },
-        sNormalizedOffset = 1,
         temp1 =
             lNormalized < half
                 ? lNormalized * (sNormalizedOffset + sNormalized)
                 : lNormalized + sNormalized - lNormalized * sNormalized,
         temp2 = double * lNormalized - temp1,
-        phaseNumerator = 1,
         phaseThird = phaseNumerator / triple,
         red = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized + phaseThird)),
         green = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized)),
@@ -323,14 +326,13 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  * @returns the random ({@link IRgb}) color
  */
 export function getRandomRgbColor(min?: number): IRgb {
-    const defaultMin = 0,
-        fixedMin = min ?? defaultMin,
-        rgbMax = 256;
+    const fixedMin = min ?? defaultRgbMin,
+        fixedMax = rgbMax + identity;
 
     return {
-        b: Math.floor(randomInRange(setRangeValue(fixedMin, rgbMax))),
-        g: Math.floor(randomInRange(setRangeValue(fixedMin, rgbMax))),
-        r: Math.floor(randomInRange(setRangeValue(fixedMin, rgbMax))),
+        b: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
+        g: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
+        r: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
     };
 }
 
@@ -341,8 +343,6 @@ export function getRandomRgbColor(min?: number): IRgb {
  * @returns the CSS style string
  */
 export function getStyleFromRgb(color: IRgb, opacity?: number): string {
-    const defaultOpacity = 1;
-
     return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? defaultOpacity})`;
 }
 
@@ -353,8 +353,6 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
  * @returns the CSS style string
  */
 export function getStyleFromHsl(color: IHsl, opacity?: number): string {
-    const defaultOpacity = 1;
-
     return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? defaultOpacity})`;
 }
 
@@ -509,11 +507,6 @@ function setColorAnimation(
 ): void {
     colorValue.enable = colorAnimation.enable;
 
-    const defaultVelocity = 0,
-        decayOffset = 1,
-        defaultLoops = 0,
-        defaultTime = 0;
-
     if (colorValue.enable) {
         colorValue.velocity = (getRangeValue(colorAnimation.speed) / percentDenominator) * reduceFactor;
         colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay);
@@ -628,13 +621,12 @@ export function updateColor(color: IParticleHslAnimation | undefined, delta: IDe
         return;
     }
 
-    const { h, s, l } = color;
-
-    const ranges = {
-        h: { min: 0, max: 360 },
-        s: { min: 0, max: 100 },
-        l: { min: 0, max: 100 },
-    };
+    const { h, s, l } = color,
+        ranges = {
+            h: { min: 0, max: 360 },
+            s: { min: 0, max: 100 },
+            l: { min: 0, max: 100 },
+        };
 
     if (h) {
         updateColorValue(h, ranges.h, false, delta);

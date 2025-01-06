@@ -1,5 +1,14 @@
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
-import { deepExtend, getLogger, safeMutationObserver } from "../Utils/Utils.js";
+import { cloneStyle, getFullScreenStyle, getLogger, safeMutationObserver } from "../Utils/Utils.js";
+import {
+    defaultOpacity,
+    defaultTransformValue,
+    generatedAttribute,
+    inverseFactorNumerator,
+    minimumLength,
+    minimumSize,
+    zIndexFactorOffset,
+} from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine";
@@ -12,7 +21,6 @@ import type { IParticleTransformValues } from "./Interfaces/IParticleTransformVa
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { ITrailFillData } from "./Interfaces/ITrailFillData.js";
 import type { Particle } from "./Particle.js";
-import { generatedAttribute } from "./Utils/Constants.js";
 
 /**
  * @param factor -
@@ -24,11 +32,10 @@ function setTransformValue(
     newFactor: IParticleTransformValues,
     key: keyof IParticleTransformValues,
 ): void {
-    const newValue = newFactor[key],
-        defaultValue = 1;
+    const newValue = newFactor[key];
 
     if (newValue !== undefined) {
-        factor[key] = (factor[key] ?? defaultValue) * newValue;
+        factor[key] = (factor[key] ?? defaultTransformValue) * newValue;
     }
 }
 
@@ -38,7 +45,7 @@ function setTransformValue(
  * @param style -
  * @param important -
  */
-function setStyle(canvas: HTMLCanvasElement, style?: Record<string, string | null>, important = false): void {
+function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, important = false): void {
     if (!style) {
         return;
     }
@@ -55,10 +62,32 @@ function setStyle(canvas: HTMLCanvasElement, style?: Record<string, string | nul
         return;
     }
 
-    for (const key in style) {
-        const value = style[key];
+    const keys = new Set<string>();
 
-        elementStyle.setProperty(key, value, important ? "important" : "");
+    for (const key in elementStyle) {
+        if (!Object.prototype.hasOwnProperty.call(elementStyle, key)) {
+            continue;
+        }
+
+        keys.add(elementStyle[key]);
+    }
+
+    for (const key in style) {
+        if (!Object.prototype.hasOwnProperty.call(style, key)) {
+            continue;
+        }
+
+        keys.add(style[key]);
+    }
+
+    for (const key of keys) {
+        const value = style.getPropertyValue(key);
+
+        if (!value) {
+            elementStyle.removeProperty(key);
+        } else {
+            elementStyle.setProperty(key, value, important ? "important" : "");
+        }
     }
 }
 
@@ -88,7 +117,7 @@ export class Canvas {
     private readonly _engine;
     private _generated;
     private _mutationObserver?: MutationObserver;
-    private _originalStyle?: Record<string, string | null>;
+    private _originalStyle?: CSSStyleDeclaration;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
@@ -136,8 +165,7 @@ export class Canvas {
     clear(): void {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
-            trailFill = this._trailFill,
-            minimumLength = 0;
+            trailFill = this._trailFill;
 
         if (options.backgroundMask.enable) {
             this.paint();
@@ -164,6 +192,8 @@ export class Canvas {
             const element = this.element;
 
             element?.remove();
+
+            this.element = undefined;
         } else {
             this._resetOriginalStyle();
         }
@@ -209,8 +239,7 @@ export class Canvas {
             return;
         }
 
-        const radius = particle.getRadius(),
-            minimumSize = 0;
+        const radius = particle.getRadius();
 
         if (radius <= minimumSize) {
             return;
@@ -237,10 +266,8 @@ export class Canvas {
             const container = this.container,
                 options = container.actualOptions,
                 zIndexOptions = particle.options.zIndex,
-                zIndexFactorOffset = 1,
                 zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
                 zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
-                defaultOpacity = 1,
                 opacity = particle.bubble.opacity ?? particle.opacity?.value ?? defaultOpacity,
                 strokeOpacity = particle.strokeOpacity ?? opacity,
                 zOpacity = opacity * zOpacityFactor,
@@ -410,7 +437,7 @@ export class Canvas {
                 : this._generated;
         this.element = canvas;
         this.element.ariaHidden = "true";
-        this._originalStyle = deepExtend({}, this.element.style) as Record<string, string | null>;
+        this._originalStyle = cloneStyle(this.element.style);
 
         const standardSize = this._standardSize;
 
@@ -425,6 +452,11 @@ export class Canvas {
 
         this._context = this.element.getContext("2d");
 
+        this._safeMutationObserver(obs => obs.disconnect());
+
+        this.container.retina.init();
+        this.initBackground();
+
         this._safeMutationObserver(obs => {
             if (!this.element || !(this.element instanceof Node)) {
                 return;
@@ -432,9 +464,6 @@ export class Canvas {
 
             obs.observe(this.element, { attributes: true });
         });
-
-        this.container.retina.init();
-        this.initBackground();
     }
 
     /**
@@ -654,15 +683,13 @@ export class Canvas {
         }
 
         if (this._fullScreen) {
-            this._originalStyle = deepExtend({}, element.style) as Record<string, string | null>;
-
             this._setFullScreenStyle();
         } else {
             this._resetOriginalStyle();
         }
 
         for (const key in options.style) {
-            if (!key || !options.style) {
+            if (!key || !options.style || !Object.prototype.hasOwnProperty.call(options.style, key)) {
                 continue;
             }
 
@@ -685,8 +712,7 @@ export class Canvas {
             return;
         }
 
-        const factorNumerator = 1,
-            opacity = factorNumerator / trail.length;
+        const opacity = inverseFactorNumerator / trail.length;
 
         if (trailFill.color) {
             const fillColor = rangeColorToRgb(this._engine, trailFill.color);
@@ -760,11 +786,11 @@ export class Canvas {
         const element = this.element,
             originalStyle = this._originalStyle;
 
-        if (!(element && originalStyle)) {
+        if (!element || !originalStyle) {
             return;
         }
 
-        setStyle(element, originalStyle);
+        setStyle(element, originalStyle, true);
     };
 
     private readonly _safeMutationObserver: (callback: (observer: MutationObserver) => void) => void = callback => {
@@ -782,21 +808,6 @@ export class Canvas {
             return;
         }
 
-        const radix = 10,
-            zIndex = this.container.actualOptions.fullScreen.zIndex.toString(radix);
-
-        setStyle(
-            element,
-            {
-                position: "fixed",
-                "z-index": zIndex,
-                zIndex: zIndex,
-                top: "0",
-                left: "0",
-                width: "100%",
-                height: "100%",
-            },
-            true,
-        );
+        setStyle(element, getFullScreenStyle(this.container.actualOptions.fullScreen.zIndex), true);
     };
 }

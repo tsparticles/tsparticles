@@ -1,14 +1,6 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
-import { errorPrefix } from "./Constants.js";
+import { errorPrefix, inverseFactorNumerator, none, origin, squareExp } from "./Constants.js";
 import { isNumber } from "../../Utils/TypeUtils.js";
-
-const origin = {
-        x: 0,
-        y: 0,
-        z: 0,
-    },
-    squareExp = 2,
-    inverseFactorNumerator = 1.0;
 
 /**
  */
@@ -207,10 +199,9 @@ export class Vector3d implements ICoordinates3d {
      * Normalizes the current vector, modifying it
      */
     normalize(): void {
-        const length = this.length,
-            noLength = 0;
+        const length = this.length;
 
-        if (length != noLength) {
+        if (length != none) {
             this.multTo(inverseFactorNumerator / length);
         }
     }

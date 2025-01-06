@@ -1,10 +1,8 @@
+import { defaultRatio, defaultReduceFactor } from "./Utils/Constants";
 import type { Container } from "./Container.js";
 import type { Particle } from "./Particle.js";
 import { getRangeValue } from "../Utils/NumberUtils.js";
 import { isSsr } from "../Utils/Utils.js";
-
-const defaultRatio = 1,
-    defaultReduceFactor = 1;
 
 /**
  */

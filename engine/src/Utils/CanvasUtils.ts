@@ -1,3 +1,4 @@
+import { defaultAngle, defaultTransform, identity, lFactor, minStrokeWidth, origin } from "../Core/Utils/Constants";
 import { AlterType } from "../Enums/Types/AlterType.js";
 import type { Container } from "../Core/Container.js";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
@@ -8,14 +9,6 @@ import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams
 import type { IHsl } from "../Core/Interfaces/Colors.js";
 import type { Particle } from "../Core/Particle.js";
 import { getStyleFromRgb } from "./ColorUtils.js";
-
-const origin: ICoordinates = { x: 0, y: 0 },
-    defaultTransform = {
-        a: 1,
-        b: 0,
-        c: 0,
-        d: 1,
-    };
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -91,14 +84,12 @@ export function drawParticle(data: IDrawParticleParams): void {
             transform,
         } = data,
         pos = particle.getPosition(),
-        defaultAngle = 0,
         angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : defaultAngle),
         rotateData = {
             sin: Math.sin(angle),
             cos: Math.cos(angle),
         },
         rotating = !!angle,
-        identity = 1,
         transformData = {
             a: rotateData.cos * (transform.a ?? defaultTransform.a),
             b: rotating ? rotateData.sin * (transform.b ?? identity) : (transform.b ?? defaultTransform.b),
@@ -125,8 +116,7 @@ export function drawParticle(data: IDrawParticleParams): void {
         context.fillStyle = colorStyles.fill;
     }
 
-    const minStrokeWidth = 0,
-        strokeWidth = particle.strokeWidth ?? minStrokeWidth;
+    const strokeWidth = particle.strokeWidth ?? minStrokeWidth;
 
     context.lineWidth = strokeWidth;
 
@@ -234,8 +224,7 @@ export function drawEffect(data: DrawShapeData): void {
  * @param data - the function parameters.
  */
 export function drawShape(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta, strokeWidth, transformData } = data,
-        minStrokeWidth = 0;
+    const { container, context, particle, radius, opacity, delta, strokeWidth, transformData } = data;
 
     if (!particle.shape) {
         return;
@@ -342,8 +331,6 @@ export function drawParticlePlugin(
  * @returns the altered {@link IHsl} color
  */
 export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
-    const lFactor = 1;
-
     return {
         h: color.h,
         s: color.s,

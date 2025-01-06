@@ -14,13 +14,28 @@ import {
     setRangeValue,
 } from "../Utils/NumberUtils.js";
 import {
+    decayOffset,
+    defaultRadius,
+    defaultRetryCount,
+    double,
+    errorPrefix,
+    half,
+    millisecondsToSeconds,
+    minRetries,
+    minZ,
+    none,
+    randomColorValue,
+    rollFactor,
+    squareExp,
+    tryCountIncrement,
+} from "./Utils/Constants.js";
+import {
     deepExtend,
     getPosition,
     initParticleNumericAnimationValue,
     isInArray,
     itemFromSingleOrMultiple,
 } from "../Utils/Utils.js";
-import { errorPrefix, millisecondsToSeconds } from "./Utils/Constants.js";
 import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
@@ -46,12 +61,6 @@ import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { alterHsl } from "../Utils/CanvasUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
-
-const defaultRetryCount = 0,
-    double = 2,
-    half = 0.5,
-    squareExp = 2,
-    randomString = "random";
 
 /**
  * @internal
@@ -519,13 +528,13 @@ export class Particle {
             }
         }
 
-        if (this.effect === randomString) {
+        if (this.effect === randomColorValue) {
             const availableEffects = [...this.container.effectDrawers.keys()];
 
             this.effect = availableEffects[Math.floor(Math.random() * availableEffects.length)];
         }
 
-        if (this.shape === randomString) {
+        if (this.shape === randomColorValue) {
             const availableShapes = [...this.container.shapeDrawers.keys()];
 
             this.shape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
@@ -592,9 +601,6 @@ export class Particle {
         /* animation - velocity for speed */
         this.initialVelocity = this._calculateVelocity();
         this.velocity = this.initialVelocity.copy();
-
-        const decayOffset = 1;
-
         this.moveDecay = decayOffset - getRangeValue(this.options.move.decay);
 
         const particles = container.particles;
@@ -735,9 +741,7 @@ export class Particle {
         fixVertical(outModes.bottom ?? outModes.default);
 
         if (this._checkOverlap(pos, tryCount)) {
-            const increment = 1;
-
-            return this._calcPosition(container, undefined, zIndex, tryCount + increment);
+            return this._calcPosition(container, undefined, zIndex, tryCount + tryCountIncrement);
         }
 
         return pos;
@@ -787,8 +791,7 @@ export class Particle {
             return false;
         }
 
-        const retries = overlapOptions.retries,
-            minRetries = 0;
+        const retries = overlapOptions.retries;
 
         if (retries >= minRetries && tryCount > retries) {
             throw new Error(`${errorPrefix} particle is overlapping and can't be placed`);
@@ -804,9 +807,7 @@ export class Particle {
             return color;
         }
 
-        const rollFactor = 1,
-            none = 0,
-            backFactor = this.roll.horizontal && this.roll.vertical ? double * rollFactor : rollFactor,
+        const backFactor = this.roll.horizontal && this.roll.vertical ? double * rollFactor : rollFactor,
             backSum = this.roll.horizontal ? Math.PI * half : none,
             rolled = Math.floor(((this.roll.angle ?? none) + backSum) / (Math.PI / backFactor)) % double;
 
@@ -827,14 +828,12 @@ export class Particle {
 
     private readonly _initPosition: (position?: ICoordinates) => void = position => {
         const container = this.container,
-            zIndexValue = getRangeValue(this.options.zIndex.value),
-            minZ = 0;
+            zIndexValue = getRangeValue(this.options.zIndex.value);
 
         this.position = this._calcPosition(container, position, clamp(zIndexValue, minZ, container.zLayers));
         this.initialPosition = this.position.copy();
 
-        const canvasSize = container.canvas.size,
-            defaultRadius = 0;
+        const canvasSize = container.canvas.size;
 
         this.moveCenter = {
             ...getPosition(this.options.move.center, canvasSize),

@@ -10,8 +10,8 @@ import {
     getRangeValue,
     randomInRange,
 } from "./NumberUtils.js";
-import { halfRandom, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
-import { isArray, isObject } from "./TypeUtils.js";
+import { half, millisecondsToSeconds, minVelocity, percentDenominator } from "../Core/Utils/Constants.js";
+import { isArray, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import { DestroyType } from "../Enums/Types/DestroyType.js";
@@ -110,15 +110,36 @@ export function getLogger(): ILogger {
 }
 
 /**
+ *
+ * @param fn - the function to memoize
+ * @returns the memoized function
+ */
+function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result): (...args: Args) => Result {
+    const cache = new Map<string, Result>();
+
+    return (...args: Args): Result => {
+        const key = JSON.stringify(args); // Serialize arguments as the cache key
+
+        if (cache.has(key)) {
+            return cache.get(key)!; // Return cached result if available
+        }
+
+        const result = fn(...args); // Compute the result
+
+        cache.set(key, result); // Store result in cache
+
+        return result;
+    };
+}
+
+/**
  * Calculates the bounce on a rectangle side
  * @param data - the rectangle side bounce values
  * @returns the rectangle side bounce values
  */
 function rectSideBounce(data: RectSideBounceData): IRectSideResult {
     const res: IRectSideResult = { bounced: false },
-        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data,
-        half = 0.5,
-        minVelocity = 0;
+        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
 
     if (
         pOtherSide.min < rectOtherSide.min ||
@@ -630,7 +651,7 @@ export function initParticleNumericAnimationValue(
                 break;
 
             case AnimationMode.random:
-                res.status = getRandom() >= halfRandom ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                 break;
         }
@@ -661,7 +682,7 @@ export function initParticleNumericAnimationValue(
                 res.value = randomInRange(res);
 
                 if (autoStatus) {
-                    res.status = getRandom() >= halfRandom ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                    res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
                 }
 
                 break;
@@ -858,3 +879,71 @@ export function assertValidVersion(engine: Engine, pluginVersion: string): void 
         `The tsParticles version is different from the loaded plugins version. Engine version: ${engine.version}. Plugins version: ${pluginVersion}`,
     );
 }
+
+/**
+ * a function to clone a style object
+ * @param style - the style to clone
+ * @returns the cloned style
+ */
+export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclaration {
+    const clonedStyle: CSSStyleDeclaration = document.createElement("div").style;
+
+    if (!style) {
+        return clonedStyle;
+    }
+
+    for (const key in style) {
+        const styleKey = style[key];
+
+        if (!Object.prototype.hasOwnProperty.call(style, key) || isNull(styleKey)) {
+            continue;
+        }
+
+        const styleValue = style.getPropertyValue?.(styleKey);
+
+        if (!styleValue) {
+            continue;
+        }
+
+        const stylePriority = style.getPropertyPriority?.(styleKey);
+
+        if (!stylePriority) {
+            clonedStyle.setProperty?.(styleKey, styleValue);
+        } else {
+            clonedStyle.setProperty?.(styleKey, styleValue, stylePriority);
+        }
+    }
+
+    return clonedStyle;
+}
+
+/**
+ *
+ * @param zIndex - the z-index value
+ * @returns the full screen style
+ */
+function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
+    const fullScreenStyle = document.createElement("div").style,
+        radix = 10,
+        style: Record<string, string> = {
+            width: "100%",
+            height: "100%",
+            margin: "0",
+            padding: "0",
+            borderWidth: "0",
+            position: "fixed",
+            zIndex: zIndex.toString(radix),
+            top: "0",
+            left: "0",
+        };
+
+    for (const key in style) {
+        const value = style[key];
+
+        fullScreenStyle.setProperty(key, value);
+    }
+
+    return fullScreenStyle;
+}
+
+export const getFullScreenStyle = memoize(computeFullScreenStyle);
