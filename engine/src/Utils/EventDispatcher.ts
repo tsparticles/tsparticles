@@ -1,3 +1,4 @@
+import { deleteCount, minIndex } from "../Core/Utils/Constants";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 
@@ -50,14 +51,11 @@ export class EventDispatcher {
         }
 
         const length = arr.length,
-            idx = arr.indexOf(listener),
-            minIndex = 0;
+            idx = arr.indexOf(listener);
 
         if (idx < minIndex) {
             return;
         }
-
-        const deleteCount = 1;
 
         if (length === deleteCount) {
             this._listeners.delete(type);

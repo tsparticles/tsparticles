@@ -10,7 +10,7 @@ import {
     getRangeValue,
     randomInRange,
 } from "./NumberUtils.js";
-import { halfRandom, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
+import { half, millisecondsToSeconds, minVelocity, percentDenominator } from "../Core/Utils/Constants.js";
 import { isArray, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
@@ -139,9 +139,7 @@ function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result):
  */
 function rectSideBounce(data: RectSideBounceData): IRectSideResult {
     const res: IRectSideResult = { bounced: false },
-        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data,
-        half = 0.5,
-        minVelocity = 0;
+        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
 
     if (
         pOtherSide.min < rectOtherSide.min ||
@@ -653,7 +651,7 @@ export function initParticleNumericAnimationValue(
                 break;
 
             case AnimationMode.random:
-                res.status = getRandom() >= halfRandom ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                 break;
         }
@@ -684,7 +682,7 @@ export function initParticleNumericAnimationValue(
                 res.value = randomInRange(res);
 
                 if (autoStatus) {
-                    res.status = getRandom() >= halfRandom ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                    res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
                 }
 
                 break;

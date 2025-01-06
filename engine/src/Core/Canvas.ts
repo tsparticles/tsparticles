@@ -1,5 +1,14 @@
 import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
 import { cloneStyle, getFullScreenStyle, getLogger, safeMutationObserver } from "../Utils/Utils.js";
+import {
+    defaultOpacity,
+    defaultTransformValue,
+    generatedAttribute,
+    inverseFactorNumerator,
+    minimumLength,
+    minimumSize,
+    zIndexFactorOffset,
+} from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine";
@@ -12,7 +21,6 @@ import type { IParticleTransformValues } from "./Interfaces/IParticleTransformVa
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { ITrailFillData } from "./Interfaces/ITrailFillData.js";
 import type { Particle } from "./Particle.js";
-import { generatedAttribute } from "./Utils/Constants.js";
 
 /**
  * @param factor -
@@ -24,11 +32,10 @@ function setTransformValue(
     newFactor: IParticleTransformValues,
     key: keyof IParticleTransformValues,
 ): void {
-    const newValue = newFactor[key],
-        defaultValue = 1;
+    const newValue = newFactor[key];
 
     if (newValue !== undefined) {
-        factor[key] = (factor[key] ?? defaultValue) * newValue;
+        factor[key] = (factor[key] ?? defaultTransformValue) * newValue;
     }
 }
 
@@ -158,8 +165,7 @@ export class Canvas {
     clear(): void {
         const options = this.container.actualOptions,
             trail = options.particles.move.trail,
-            trailFill = this._trailFill,
-            minimumLength = 0;
+            trailFill = this._trailFill;
 
         if (options.backgroundMask.enable) {
             this.paint();
@@ -233,8 +239,7 @@ export class Canvas {
             return;
         }
 
-        const radius = particle.getRadius(),
-            minimumSize = 0;
+        const radius = particle.getRadius();
 
         if (radius <= minimumSize) {
             return;
@@ -261,10 +266,8 @@ export class Canvas {
             const container = this.container,
                 options = container.actualOptions,
                 zIndexOptions = particle.options.zIndex,
-                zIndexFactorOffset = 1,
                 zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
                 zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
-                defaultOpacity = 1,
                 opacity = particle.bubble.opacity ?? particle.opacity?.value ?? defaultOpacity,
                 strokeOpacity = particle.strokeOpacity ?? opacity,
                 zOpacity = opacity * zOpacityFactor,
@@ -709,8 +712,7 @@ export class Canvas {
             return;
         }
 
-        const factorNumerator = 1,
-            opacity = factorNumerator / trail.length;
+        const opacity = inverseFactorNumerator / trail.length;
 
         if (trailFill.color) {
             const fillColor = rangeColorToRgb(this._engine, trailFill.color);

@@ -3,7 +3,19 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType";
-import { errorPrefix, generatedAttribute } from "./Utils/Constants.js";
+import {
+    canvasFirstIndex,
+    canvasTag,
+    errorPrefix,
+    generatedAttribute,
+    generatedFalse,
+    generatedTrue,
+    loadMinIndex,
+    loadRandomFactor,
+    none,
+    one,
+    removeDeleteCount,
+} from "./Utils/Constants.js";
 import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
@@ -112,10 +124,7 @@ async function getDataFromUrl(
     return data.fallback;
 }
 
-const generatedTrue = "true",
-    generatedFalse = "false",
-    canvasTag = "canvas",
-    getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
+const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
         let canvasEl: HTMLCanvasElement;
 
         if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
@@ -129,9 +138,7 @@ const generatedTrue = "true",
 
             /* get existing canvas if present, otherwise a new one will be created */
             if (existingCanvases.length) {
-                const firstIndex = 0;
-
-                canvasEl = existingCanvases[firstIndex];
+                canvasEl = existingCanvases[canvasFirstIndex];
 
                 canvasEl.dataset[generatedAttribute] = generatedFalse;
             } else {
@@ -602,9 +609,7 @@ export class Engine {
             item = items[index];
 
         if (!item || item.destroyed) {
-            const deleteCount = 1;
-
-            items.splice(index, deleteCount);
+            items.splice(index, removeDeleteCount);
 
             return;
         }
@@ -618,8 +623,7 @@ export class Engine {
      * @returns A Promise with the {@link Container} object created
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
-        const randomFactor = 10000,
-            id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * randomFactor)}`,
+        const id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor)}`,
             { index, url } = params,
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
 
@@ -627,13 +631,10 @@ export class Engine {
         const currentOptions = itemFromSingleOrMultiple(options, index),
             { items } = this,
             oldIndex = items.findIndex(v => v.id.description === id),
-            minIndex = 0,
             newItem = new Container(this, id, currentOptions);
 
-        if (oldIndex >= minIndex) {
+        if (oldIndex >= loadMinIndex) {
             const old = this.item(oldIndex),
-                one = 1,
-                none = 0,
                 deleteCount = old ? one : none;
 
             if (old && !old.destroyed) {

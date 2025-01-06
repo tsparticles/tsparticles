@@ -1,3 +1,19 @@
+import {
+    countOffset,
+    defaultDensityFactor,
+    defaultRemoveQuantity,
+    deleteCount,
+    errorPrefix,
+    lengthOffset,
+    manualCount,
+    minCount,
+    minIndex,
+    minLimit,
+    posOffset,
+    qTreeCapacity,
+    sizeFactor,
+    squareExp,
+} from "./Utils/Constants.js";
 import { getLogger, getPosition } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
@@ -17,16 +33,9 @@ import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { errorPrefix } from "./Utils/Constants.js";
-
-const qTreeCapacity = 4,
-    squareExp = 2,
-    defaultRemoveQuantity = 1;
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
-    const { height, width } = canvasSize,
-        posOffset = -0.25,
-        sizeFactor = 1.5;
+    const { height, width } = canvasSize;
 
     return new Rectangle(posOffset * width, posOffset * height, sizeFactor * width, sizeFactor * height);
 };
@@ -109,15 +118,12 @@ export class Particles {
     ): Particle | undefined {
         const limitMode = this._container.actualOptions.particles.number.limit.mode,
             limit = group === undefined ? this._limit : (this._groupLimits.get(group) ?? this._limit),
-            currentCount = this.count,
-            minLimit = 0;
+            currentCount = this.count;
 
         if (limit > minLimit) {
             switch (limitMode) {
                 case LimitMode.delete: {
-                    const countOffset = 1,
-                        minCount = 0,
-                        countToRemove = currentCount + countOffset - limit;
+                    const countToRemove = currentCount + countOffset - limit;
 
                     if (countToRemove > minCount) {
                         this.removeQuantity(countToRemove);
@@ -272,8 +278,6 @@ export class Particles {
     }
 
     removeAt(index: number, quantity = defaultRemoveQuantity, group?: string, override?: boolean): void {
-        const minIndex = 0;
-
         if (index < minIndex || index > this.count) {
             return;
         }
@@ -289,15 +293,12 @@ export class Particles {
     }
 
     removeQuantity(quantity: number, group?: string): void {
-        const defaultIndex = 0;
-
-        this.removeAt(defaultIndex, quantity, group);
+        this.removeAt(minIndex, quantity, group);
     }
 
     setDensity(): void {
         const options = this._container.actualOptions,
-            groups = options.particles.groups,
-            manualCount = 0;
+            groups = options.particles.groups;
 
         for (const group in groups) {
             this._applyDensity(groups[group], manualCount, group);
@@ -404,8 +405,6 @@ export class Particles {
 
             zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-            const lengthOffset = 1;
-
             this._lastZIndex = zArray[zArray.length - lengthOffset].position.z;
             this._needsSort = false;
         }
@@ -430,7 +429,6 @@ export class Particles {
 
         const densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
-            minLimit = 0,
             optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
             particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
             particlesCount = Math.min(this.count, this.filter(t => t.group === group).length);
@@ -449,11 +447,10 @@ export class Particles {
     };
 
     private readonly _initDensityFactor: (densityOptions: IParticlesDensity) => number = densityOptions => {
-        const container = this._container,
-            defaultFactor = 1;
+        const container = this._container;
 
         if (!container.canvas.element || !densityOptions.enable) {
-            return defaultFactor;
+            return defaultDensityFactor;
         }
 
         const canvas = container.canvas.element,
@@ -512,8 +509,7 @@ export class Particles {
             return false;
         }
 
-        const zIdx = this._zArray.indexOf(particle),
-            deleteCount = 1;
+        const zIdx = this._zArray.indexOf(particle);
 
         this._array.splice(index, deleteCount);
         this._zArray.splice(zIdx, deleteCount);

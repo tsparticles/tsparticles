@@ -3,11 +3,11 @@ import type {
     IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams.js";
 import { MoveDirection, type MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
+import { double, doublePI, empty, half, percentDenominator, quarter, threeQuarter } from "../Core/Utils/Constants.js";
 import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
 import type { RangeValue } from "../Types/RangeValue.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 import { isNumber } from "./TypeUtils.js";
-import { percentDenominator } from "../Core/Utils/Constants.js";
 
 interface AnimationLoop {
     cancel: (handle: number) => void;
@@ -15,12 +15,11 @@ interface AnimationLoop {
 }
 
 let _random = Math.random;
+
 const _animationLoop: AnimationLoop = {
-        nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
-        cancel: (idx: number): void => cancelAnimationFrame(idx),
-    },
-    double = 2,
-    doublePI = Math.PI * double;
+    nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
+    cancel: (idx: number): void => cancelAnimationFrame(idx),
+};
 
 /**
  * Replaces the library random function with a custom one.
@@ -204,11 +203,6 @@ export function getParticleDirectionAngle(
         return degToRad(direction);
     }
 
-    const empty = 0,
-        half = 0.5,
-        quarter = 0.25,
-        threeQuarter = half + quarter;
-
     switch (direction) {
         case MoveDirection.top:
             return -Math.PI * half;
@@ -257,8 +251,6 @@ export function getParticleBaseVelocity(direction: number): Vector {
  * @returns the velocity after collision
  */
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
-    const double = 2;
-
     return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * double * m2) / (m1 + m2), v1.y);
 }
 
