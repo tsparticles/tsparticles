@@ -16,7 +16,7 @@ import {
     getRangeMin,
     getRangeValue,
     getStyleFromHsl,
-    halfRandom,
+    half,
     itemFromSingleOrMultiple,
     millisecondsToSeconds,
     percentDenominator,
@@ -108,7 +108,7 @@ export class GradientUpdater implements IParticleUpdater {
         let rotateDirection = gradient.angle.direction;
 
         if (rotateDirection === RotateDirection.random) {
-            rotateDirection = getRandom() > halfRandom ? RotateDirection.counterClockwise : RotateDirection.clockwise;
+            rotateDirection = getRandom() > half ? RotateDirection.counterClockwise : RotateDirection.clockwise;
         }
 
         switch (rotateDirection) {
@@ -182,7 +182,7 @@ export class GradientUpdater implements IParticleUpdater {
                     default:
                         addOpacity.value = randomInRange(addOpacity);
                         addOpacity.status =
-                            getRandom() >= halfRandom ? AnimationStatus.increasing : AnimationStatus.decreasing;
+                            getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
                         break;
                 }

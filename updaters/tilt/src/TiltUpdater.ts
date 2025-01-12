@@ -9,7 +9,7 @@ import {
     degToRad,
     getRandom,
     getRangeValue,
-    halfRandom,
+    half,
     updateAnimation,
 } from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
@@ -47,8 +47,8 @@ export class TiltUpdater implements IParticleUpdater {
         particle.tilt = {
             enable: tiltOptions.enable,
             value: degToRad(getRangeValue(tiltOptions.value)),
-            sinDirection: getRandom() >= halfRandom ? identity : -identity,
-            cosDirection: getRandom() >= halfRandom ? identity : -identity,
+            sinDirection: getRandom() >= half ? identity : -identity,
+            cosDirection: getRandom() >= half ? identity : -identity,
             min: 0,
             max: doublePI,
         };

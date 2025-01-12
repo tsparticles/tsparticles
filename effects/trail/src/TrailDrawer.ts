@@ -6,18 +6,18 @@ import {
     type IShapeValues,
     type Particle,
     type RangeValue,
+    defaultAlpha,
+    double,
     getRangeValue,
+    half,
+    none,
+    originPoint,
 } from "@tsparticles/engine";
 
-const double = 2,
-    minTrailLength = 2,
+const minTrailLength = 2,
     trailLengthOffset = 1,
-    noItems = 0,
-    half = 0.5,
     minWidth = -1,
-    defaultLength = 10,
-    defaultAlpha = 1,
-    origin = { x: 0, y: 0 } as ICoordinates;
+    defaultLength = 10;
 
 interface TrailStep {
     color: string | CanvasGradient | CanvasPattern;
@@ -93,7 +93,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
         let lastPos = trail[trailLength - trailLengthOffset].position;
 
-        for (let i = trailLength; i > noItems; i--) {
+        for (let i = trailLength; i > none; i--) {
             const step = trail[i - trailLengthOffset],
                 position = step.position,
                 stepTransformData = particle.trailTransform
@@ -127,8 +127,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
             }
 
             context.lineTo(
-                Math.abs(lastPos.x - position.x) > canvasSize.width * half ? warp.x : origin.x,
-                Math.abs(lastPos.y - position.y) > canvasSize.height * half ? warp.y : origin.y,
+                Math.abs(lastPos.x - position.x) > canvasSize.width * half ? warp.x : originPoint.x,
+                Math.abs(lastPos.y - position.y) > canvasSize.height * half ? warp.y : originPoint.y,
             );
 
             const width = Math.max((i / trailLength) * diameter, pxRatio, particle.trailMinWidth ?? minWidth),

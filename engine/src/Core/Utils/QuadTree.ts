@@ -1,5 +1,5 @@
 import { type BaseRange, Circle, Rectangle } from "./Ranges.js";
-import { double, half, subdivideCount } from "./Constants";
+import { double, half, subdivideCount } from "./Constants.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
 import type { Particle } from "../Particle.js";

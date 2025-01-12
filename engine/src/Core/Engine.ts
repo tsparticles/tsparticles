@@ -2,7 +2,7 @@
  * Engine class for creating the singleton on window.
  * It's a singleton class for initializing {@link Container} instances
  */
-import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType";
+import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import {
     canvasFirstIndex,
     canvasTag,
@@ -20,10 +20,10 @@ import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "
 import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
-import type { EasingFunction } from "../Types/EasingFunction";
+import type { EasingFunction } from "../Types/EasingFunction.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import { EventType } from "../Enums/Types/EventType.js";
-import type { IColorManager } from "./Interfaces/IColorManager";
+import type { IColorManager } from "./Interfaces/IColorManager.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";

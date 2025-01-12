@@ -12,7 +12,7 @@ import {
     tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
-import { TestWindow } from "../Fixture/Window";
+import { TestWindow } from "../Fixture/Window.js";
 
 describe("Options tests", () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

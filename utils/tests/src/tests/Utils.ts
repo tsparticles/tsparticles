@@ -18,7 +18,7 @@ import {
     setRangeValue,
     tsParticles,
 } from "@tsparticles/engine";
-import { buildParticleWithDirection, segmentBounce } from "../Fixture/Utils";
+import { buildParticleWithDirection, segmentBounce } from "../Fixture/Utils.js";
 import { describe, expect, it } from "vitest";
 
 describe("Utils", () => {

@@ -39,7 +39,7 @@ import {
 } from "../Core/Utils/Constants.js";
 import { isArray, isString } from "./TypeUtils.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
-import type { Engine } from "../Core/Engine";
+import type { Engine } from "../Core/Engine.js";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
 import type { IColorAnimation } from "../Options/Interfaces/IColorAnimation.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";

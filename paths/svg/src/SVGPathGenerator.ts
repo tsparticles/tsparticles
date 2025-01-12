@@ -10,7 +10,7 @@ import {
     Vector,
     getPosition,
     getRandom,
-    halfRandom,
+    half,
     randomInRange,
 } from "@tsparticles/engine";
 
@@ -20,7 +20,6 @@ enum SVGPathDirection {
 }
 
 const defaultSpeed = 1,
-    half = 0.5,
     minStep = 0,
     minIndex = 0,
     minWidth = 0,
@@ -74,7 +73,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
             pxRatio = container.retina.pixelRatio;
 
         if (particle.svgDirection === undefined) {
-            particle.svgDirection = getRandom() > halfRandom ? SVGPathDirection.normal : SVGPathDirection.reverse;
+            particle.svgDirection = getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
         }
 
         if (particle.svgPathIndex === undefined) {

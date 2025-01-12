@@ -16,7 +16,7 @@ import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import { DestroyType } from "../Enums/Types/DestroyType.js";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
-import type { Engine } from "../Core/Engine";
+import type { Engine } from "../Core/Engine.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
@@ -876,7 +876,7 @@ export function assertValidVersion(engine: Engine, pluginVersion: string): void 
     }
 
     throw new Error(
-        `The tsParticles version is different from the loaded plugins version. Engine version: ${engine.version}. Plugins version: ${pluginVersion}`,
+        `The tsParticles version is different from the loaded plugins version. Engine version: ${engine.version}. Plugin version: ${pluginVersion}`,
     );
 }
 

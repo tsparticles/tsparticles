@@ -1,4 +1,11 @@
-import { defaultAngle, defaultTransform, identity, lFactor, minStrokeWidth, origin } from "../Core/Utils/Constants";
+import {
+    defaultAngle,
+    defaultTransform,
+    identity,
+    lFactor,
+    minStrokeWidth,
+    originPoint,
+} from "../Core/Utils/Constants.js";
 import { AlterType } from "../Enums/Types/AlterType.js";
 import type { Container } from "../Core/Container.js";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
@@ -31,7 +38,7 @@ export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates,
  */
 export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
     context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
-    context.fillRect(origin.x, origin.y, dimension.width, dimension.height);
+    context.fillRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
 }
 
 /**
@@ -52,7 +59,7 @@ export function paintImage(
     }
 
     context.globalAlpha = opacity;
-    context.drawImage(image, origin.x, origin.y, dimension.width, dimension.height);
+    context.drawImage(image, originPoint.x, originPoint.y, dimension.width, dimension.height);
     context.globalAlpha = 1;
 }
 
@@ -62,7 +69,7 @@ export function paintImage(
  * @param dimension - The dimension of the canvas.
  */
 export function clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
-    context.clearRect(origin.x, origin.y, dimension.width, dimension.height);
+    context.clearRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
 }
 
 /**

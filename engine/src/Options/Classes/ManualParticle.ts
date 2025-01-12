@@ -6,7 +6,7 @@ import { PixelMode } from "../../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { deepExtend } from "../../Utils/Utils.js";
 import { isNull } from "../../Utils/TypeUtils.js";
-import { manualDefaultPosition } from "../../Core/Utils/Constants";
+import { manualDefaultPosition } from "../../Core/Utils/Constants.js";
 
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {
     options?: RecursivePartial<IParticlesOptions>;

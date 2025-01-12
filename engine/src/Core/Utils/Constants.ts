@@ -1,4 +1,4 @@
-import type { ICoordinates3d } from "../Interfaces/ICoordinates";
+import type { ICoordinates3d } from "../Interfaces/ICoordinates.js";
 
 /**
  * Project's constants
@@ -19,7 +19,7 @@ export const generatedAttribute = "generated",
     percentDenominator = 100,
     half = 0.5,
     millisecondsToSeconds = 1000,
-    origin: ICoordinates3d = {
+    originPoint: ICoordinates3d = {
         x: 0,
         y: 0,
         z: 0,
@@ -35,6 +35,7 @@ export const generatedAttribute = "generated",
     double = 2,
     doublePI = Math.PI * double,
     defaultFps = 60,
+    defaultAlpha = 1,
     generatedTrue = "true",
     generatedFalse = "false",
     canvasTag = "canvas",

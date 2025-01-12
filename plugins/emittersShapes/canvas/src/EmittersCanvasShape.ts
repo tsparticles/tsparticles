@@ -9,7 +9,7 @@ import {
     isString,
 } from "@tsparticles/engine";
 import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
-import type { CanvasPixelData } from "./types";
+import type { CanvasPixelData } from "./types.js";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
 const maxRetries = 100,
