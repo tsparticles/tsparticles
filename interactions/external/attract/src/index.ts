@@ -1,5 +1,5 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
 import { Attractor } from "./Attractor.js";
+import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -8,7 +8,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadExternalAttractInteraction(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await engine.addInteractor(
         "externalAttract",

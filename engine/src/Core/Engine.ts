@@ -444,6 +444,19 @@ export class Engine {
         await this.refresh(refresh);
     }
 
+    /**
+     * @param pluginVersion - the plugin version to check against
+     */
+    checkVersion(pluginVersion: string): void {
+        if (this.version === pluginVersion) {
+            return;
+        }
+
+        throw new Error(
+            `The tsParticles version is different from the loaded plugins version. Engine version: ${this.version}. Plugin version: ${pluginVersion}`,
+        );
+    }
+
     clearPlugins(container: Container): void {
         this.updaters.delete(container);
         this.movers.delete(container);

@@ -10,7 +10,6 @@ import {
     type Particle,
     type RecursivePartial,
     StartValueType,
-    assertValidVersion,
     getRangeMax,
     getRangeMin,
     isNumber,
@@ -107,7 +106,7 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     initializing = true;
 
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await loadEmittersPlugin(engine, false);
     await loadEmittersShapeSquare(engine, false);

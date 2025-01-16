@@ -1,7 +1,7 @@
 /**
  * [[include:pjsMigration.md]]
  */
-import { type Container, type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Container, type Engine } from "@tsparticles/engine";
 import type { IParticlesJS } from "./VincentGarreau/IParticlesJS.js";
 import { Particles } from "./marcbruederlin/Particles.js";
 import { initParticlesJS } from "./VincentGarreau/particles.js";
@@ -56,7 +56,7 @@ const initPjs = (
      */
     particlesJS: IParticlesJS;
 } => {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     const { particlesJS, pJSDom } = initParticlesJS(engine);
 

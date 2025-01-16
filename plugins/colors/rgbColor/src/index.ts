@@ -1,4 +1,4 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import { RgbColorManager } from "./RgbColorManager.js";
 
 declare const __VERSION__: string;
@@ -10,7 +10,7 @@ declare const __VERSION__: string;
  * @returns A promise that resolves when the plugin is loaded
  */
 export async function loadRgbColorPlugin(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await engine.addColorManager(new RgbColorManager(), refresh);
 }

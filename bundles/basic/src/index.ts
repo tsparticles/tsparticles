@@ -1,4 +1,4 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import { loadBaseMover } from "@tsparticles/move-base";
 import { loadCircleShape } from "@tsparticles/shape-circle";
 import { loadColorUpdater } from "@tsparticles/updater-color";
@@ -21,7 +21,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadBasic(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await loadHexColorPlugin(engine, false);
     await loadHslColorPlugin(engine, false);

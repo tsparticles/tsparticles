@@ -1,4 +1,4 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import { initPjs } from "@tsparticles/pjs";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
 import { loadBubbleEffect } from "@tsparticles/effect-bubble";
@@ -61,7 +61,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadAll(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     initPjs(engine);
 
