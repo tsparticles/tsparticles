@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/tsparticles/tsparticles/compare/v3.7.3...v3.8.0) (2025-01-23)
+
+### Bug Fixes
+
+-   fixed style reparation and full screen toggle issues ([3e4a03a](https://github.com/tsparticles/tsparticles/commit/3e4a03a0c6662873088787502e9c1ee98c8473ca))
+
 ## [3.7.3](https://github.com/tsparticles/tsparticles/compare/v3.7.2...v3.7.3) (2024-12-13)
 
 **Note:** Version bump only for package @tsparticles/demo

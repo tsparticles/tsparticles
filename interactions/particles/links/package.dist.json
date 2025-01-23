@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-links",
-  "version": "3.7.1",
+  "version": "3.8.0",
   "description": "tsParticles links particles interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,7 +87,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "3.7.1"
+    "@tsparticles/engine": "3.8.0"
   },
   "publishConfig": {
     "access": "public"

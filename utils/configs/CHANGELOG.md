@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.8.0](https://github.com/tsparticles/tsparticles/compare/v3.7.3...v3.8.0) (2025-01-23)
+
+### Bug Fixes
+
+-   fixed clone style, closes [#5443](https://github.com/tsparticles/tsparticles/issues/5443) ([2127236](https://github.com/tsparticles/tsparticles/commit/21272366d002d78ba801ff17262f46b474381e1d))
+-   fixed imports and constants ([caaf603](https://github.com/tsparticles/tsparticles/commit/caaf603932fb64de5c34bc075e0bbf2fb7821818))
+-   fixed style reparation and full screen toggle issues ([3e4a03a](https://github.com/tsparticles/tsparticles/commit/3e4a03a0c6662873088787502e9c1ee98c8473ca))
+
 ## [3.7.3](https://github.com/tsparticles/tsparticles/compare/v3.7.2...v3.7.3) (2024-12-13)
 
 ### Bug Fixes
