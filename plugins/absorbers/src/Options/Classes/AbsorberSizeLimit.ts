@@ -2,8 +2,8 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { IAbsorberSizeLimit } from "../Interfaces/IAbsorberSizeLimit.js";
 
 export class AbsorberSizeLimit implements IAbsorberSizeLimit, IOptionLoader<IAbsorberSizeLimit> {
-    mass: number;
-    radius: number;
+    mass;
+    radius;
 
     constructor() {
         this.radius = 0;

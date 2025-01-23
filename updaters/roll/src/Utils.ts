@@ -4,7 +4,7 @@ import {
     type IDelta,
     getRandom,
     getRangeValue,
-    halfRandom,
+    half,
     rangeColorToHsl,
 } from "@tsparticles/engine";
 import { RollMode } from "./RollMode.js";
@@ -44,7 +44,7 @@ export function initParticle(engine: Engine, particle: RollParticle): void {
     if (rollOpt.backColor) {
         particle.backColor = rangeColorToHsl(engine, rollOpt.backColor);
     } else if (rollOpt.darken.enable && rollOpt.enlighten.enable) {
-        const alterType = getRandom() >= halfRandom ? AlterType.darken : AlterType.enlighten;
+        const alterType = getRandom() >= half ? AlterType.darken : AlterType.enlighten;
 
         particle.roll.alter = {
             type: alterType,

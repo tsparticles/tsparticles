@@ -1,9 +1,6 @@
-import type { IEffectDrawer, IShapeDrawData } from "@tsparticles/engine";
+import { type IEffectDrawer, type IShapeDrawData, defaultAngle, doublePI } from "@tsparticles/engine";
 
-const bubbleFactor = 3,
-    minAngle = 0,
-    double = 2,
-    maxAngle = Math.PI * double;
+const bubbleFactor = 3;
 
 export class BubbleDrawer implements IEffectDrawer {
     draw(data: IShapeDrawData): void {
@@ -11,7 +8,7 @@ export class BubbleDrawer implements IEffectDrawer {
             bubbleRadius = radius / bubbleFactor;
 
         context.beginPath();
-        context.arc(bubbleRadius, -bubbleRadius, bubbleRadius, minAngle, maxAngle, false);
+        context.arc(bubbleRadius, -bubbleRadius, bubbleRadius, defaultAngle, doublePI, false);
         context.closePath();
         context.fillStyle = "#fff9";
         context.fill();

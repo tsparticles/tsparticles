@@ -1,8 +1,8 @@
 /* eslint-disable */
 import { type ICoordinates3d, errorPrefix, getRandom, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
-import { TestWindow } from "../Fixture/Window";
-import { createCustomCanvas } from "../Fixture/CustomCanvas";
+import { TestWindow } from "../Fixture/Window.js";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
 describe("Particles", async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment

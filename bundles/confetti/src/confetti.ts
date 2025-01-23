@@ -3,7 +3,6 @@ import {
     type Engine,
     type ISourceOptions,
     type RecursivePartial,
-    assertValidVersion,
     isSsr,
     isString,
     millisecondsToSeconds,
@@ -118,7 +117,7 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     initializing = true;
 
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await loadEmittersPlugin(engine, false);
     await loadMotionPlugin(engine, false);

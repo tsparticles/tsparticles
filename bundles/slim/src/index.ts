@@ -1,4 +1,4 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import { loadBasic } from "@tsparticles/basic";
 import { loadEasingQuadPlugin } from "@tsparticles/plugin-easing-quad";
 import { loadEmojiShape } from "@tsparticles/shape-emoji";
@@ -37,7 +37,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadSlim(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await loadParallaxMover(engine, false);
 

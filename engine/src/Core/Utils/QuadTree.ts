@@ -1,13 +1,10 @@
 import { type BaseRange, Circle, Rectangle } from "./Ranges.js";
+import { double, half, subdivideCount } from "./Constants.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
 import type { Particle } from "../Particle.js";
 import type { Point } from "./Point.js";
 import { getDistance } from "../../Utils/NumberUtils.js";
-
-const half = 0.5,
-    double = 2,
-    subdivideCount = 4;
 
 /**
  */

@@ -33,7 +33,7 @@ const options: ISourceOptions = {
                                 },
                             },
                             color: {
-                                value: "ff0",
+                                value: "#ff0",
                             },
                         },
                     },
@@ -47,7 +47,7 @@ const options: ISourceOptions = {
                                 value: 8,
                             },
                             color: {
-                                value: "0f0",
+                                value: "#0f0",
                             },
                         },
                     },
@@ -64,7 +64,7 @@ const options: ISourceOptions = {
                                 },
                             },
                             color: {
-                                value: "f00",
+                                value: "#f00",
                             },
                         },
                     },

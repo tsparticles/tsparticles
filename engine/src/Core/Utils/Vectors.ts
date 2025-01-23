@@ -1,14 +1,6 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
-import { errorPrefix } from "./Constants.js";
+import { errorPrefix, inverseFactorNumerator, none, originPoint, squareExp } from "./Constants.js";
 import { isNumber } from "../../Utils/TypeUtils.js";
-
-const origin = {
-        x: 0,
-        y: 0,
-        z: 0,
-    },
-    squareExp = 2,
-    inverseFactorNumerator = 1.0;
 
 /**
  */
@@ -42,11 +34,11 @@ export class Vector3d implements ICoordinates3d {
 
             const coords3d = xOrCoords as ICoordinates3d;
 
-            this.z = coords3d.z ? coords3d.z : origin.z;
+            this.z = coords3d.z ? coords3d.z : originPoint.z;
         } else if (xOrCoords !== undefined && y !== undefined) {
             this.x = xOrCoords;
             this.y = y;
-            this.z = z ?? origin.z;
+            this.z = z ?? originPoint.z;
         } else {
             throw new Error(`${errorPrefix} Vector3d not initialized correctly`);
         }
@@ -57,7 +49,7 @@ export class Vector3d implements ICoordinates3d {
      * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector3d {
-        return Vector3d.create(origin.x, origin.y, origin.z);
+        return Vector3d.create(originPoint.x, originPoint.y, originPoint.z);
     }
 
     /**
@@ -207,10 +199,9 @@ export class Vector3d implements ICoordinates3d {
      * Normalizes the current vector, modifying it
      */
     normalize(): void {
-        const length = this.length,
-            noLength = 0;
+        const length = this.length;
 
-        if (length != noLength) {
+        if (length != none) {
             this.multTo(inverseFactorNumerator / length);
         }
     }
@@ -224,7 +215,7 @@ export class Vector3d implements ICoordinates3d {
         return Vector3d.create(
             this.x * Math.cos(angle) - this.y * Math.sin(angle),
             this.x * Math.sin(angle) + this.y * Math.cos(angle),
-            origin.z,
+            originPoint.z,
         );
     }
 
@@ -238,7 +229,7 @@ export class Vector3d implements ICoordinates3d {
 
         const v3d = c as ICoordinates3d;
 
-        this.z = v3d.z ? v3d.z : origin.z;
+        this.z = v3d.z ? v3d.z : originPoint.z;
     }
 
     /**
@@ -282,7 +273,7 @@ export class Vector extends Vector3d {
      * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates, y?: number) {
-        super(xOrCoords, y, origin.z);
+        super(xOrCoords, y, originPoint.z);
     }
 
     /**
@@ -290,7 +281,7 @@ export class Vector extends Vector3d {
      * @returns a new vector, with coordinates in the origin point
      */
     static get origin(): Vector {
-        return Vector.create(origin.x, origin.y);
+        return Vector.create(originPoint.x, originPoint.y);
     }
 
     /**

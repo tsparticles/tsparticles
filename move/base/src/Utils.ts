@@ -12,11 +12,13 @@ import {
 import type { MoveParticle } from "./Types.js";
 
 const half = 0.5,
+    double = 2,
     minVelocity = 0,
     identity = 1,
     moveSpeedFactor = 60,
     minSpinRadius = 0,
-    spinFactor = 0.01;
+    spinFactor = 0.01,
+    doublePI = Math.PI * double;
 
 /**
  * @param particle -
@@ -145,10 +147,11 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
         return;
     }
 
-    const updateFunc = {
-        x: particle.spin.direction === RotateDirection.clockwise ? Math.cos : Math.sin,
-        y: particle.spin.direction === RotateDirection.clockwise ? Math.sin : Math.cos,
-    };
+    const spinClockwise = particle.spin.direction === RotateDirection.clockwise,
+        updateFunc = {
+            x: spinClockwise ? Math.cos : Math.sin,
+            y: spinClockwise ? Math.sin : Math.cos,
+        };
 
     particle.position.x = particle.spin.center.x + particle.spin.radius * updateFunc.x(particle.spin.angle);
     particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
@@ -233,12 +236,10 @@ export function initSpin(particle: MoveParticle): void {
 
     particle.retina.spinAcceleration = spinAcceleration * container.retina.pixelRatio;
 
-    const minVelocity = 0;
-
     particle.spin = {
         center: spinCenter,
         direction: particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise,
-        angle: particle.velocity.angle,
+        angle: getRandom() * doublePI,
         radius: distance,
         acceleration: particle.retina.spinAcceleration,
     };

@@ -1,6 +1,8 @@
-import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
 import {
+    double,
+    lengthOffset,
     millisecondsToSeconds,
+    minCoordinate,
     mouseDownEvent,
     mouseLeaveEvent,
     mouseMoveEvent,
@@ -8,17 +10,17 @@ import {
     mouseUpEvent,
     resizeEvent,
     touchCancelEvent,
+    touchDelay,
     touchEndEvent,
     touchMoveEvent,
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants.js";
+import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
 import type { Container } from "../Container.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
 import { isBoolean } from "../../Utils/TypeUtils.js";
-
-const double = 2;
 
 /**
  * Manage the given event listeners
@@ -145,8 +147,6 @@ export class EventListeners {
         }
 
         if (e.type === "touchend") {
-            const touchDelay = 500;
-
             setTimeout(() => this._mouseTouchFinish(), touchDelay);
         }
     };
@@ -227,9 +227,8 @@ export class EventListeners {
     ) => {
         const handlers = this._handlers,
             container = this.container,
-            options = container.actualOptions;
-
-        const interactivityEl = container.interactivity.element;
+            options = container.actualOptions,
+            interactivityEl = container.interactivity.element;
 
         /* detect mouse pos - on hover / click event */
         if (!interactivityEl) {
@@ -500,14 +499,12 @@ export class EventListeners {
 
             if (canvasEl) {
                 const touchEvent = e as TouchEvent,
-                    lengthOffset = 1,
                     lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset],
-                    canvasRect = canvasEl.getBoundingClientRect(),
-                    defaultCoordinate = 0;
+                    canvasRect = canvasEl.getBoundingClientRect();
 
                 pos = {
-                    x: lastTouch.clientX - (canvasRect.left ?? defaultCoordinate),
-                    y: lastTouch.clientY - (canvasRect.top ?? defaultCoordinate),
+                    x: lastTouch.clientX - (canvasRect.left ?? minCoordinate),
+                    y: lastTouch.clientY - (canvasRect.top ?? minCoordinate),
                 };
             }
         }

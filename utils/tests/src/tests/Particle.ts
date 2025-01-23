@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
 import { type ICoordinates, calcExactPositionOrRandomFromSize, errorPrefix, tsParticles } from "@tsparticles/engine";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
-import { TestWindow } from "../Fixture/Window";
-import { createCustomCanvas } from "../Fixture/CustomCanvas";
+import { TestWindow } from "../Fixture/Window.js";
+import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
 const width = 1920,
     height = 1080;

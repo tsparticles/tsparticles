@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
-import { EasingType, type Engine, assertValidVersion } from "@tsparticles/engine";
+import { EasingType, type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -9,7 +9,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadEasingExpoPlugin(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await engine.addEasing(EasingType.easeInExpo, value => (!value ? 0 : 2 ** (10 * value - 10)), false);
     await engine.addEasing(EasingType.easeOutExpo, value => (value === 1 ? 1 : 1 - Math.pow(2, -10 * value)), false);

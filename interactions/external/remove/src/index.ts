@@ -1,4 +1,4 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import { Remover } from "./Remover.js";
 
 declare const __VERSION__: string;
@@ -8,7 +8,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadExternalRemoveInteraction(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await engine.addInteractor(
         "externalRemove",

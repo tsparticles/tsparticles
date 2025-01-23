@@ -15,6 +15,7 @@ import {
     getRangeValue,
     getStyleFromRgb,
     isPointInside,
+    originPoint,
     percentDenominator,
     rangeColorToRgb,
 } from "@tsparticles/engine";
@@ -28,10 +29,6 @@ const squareExp = 2,
     minOrbitLength = 0,
     minRadius = 0,
     minMass = 0,
-    origin: ICoordinates = {
-        x: 0,
-        y: 0,
-    },
     minAngle = 0,
     double = 2,
     maxAngle = Math.PI * double,
@@ -241,7 +238,7 @@ export class AbsorberInstance {
     draw(context: CanvasRenderingContext2D): void {
         context.translate(this.position.x, this.position.y);
         context.beginPath();
-        context.arc(origin.x, origin.y, this.size, minAngle, maxAngle, false);
+        context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);
         context.closePath();
         context.fillStyle = getStyleFromRgb(this.color, this.opacity);
         context.fill();

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 
-import { EasingType, type Engine, assertValidVersion } from "@tsparticles/engine";
+import { EasingType, type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
@@ -9,7 +9,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadEasingCubicPlugin(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await engine.addEasing(EasingType.easeInCubic, value => value ** 3, false);
     await engine.addEasing(EasingType.easeOutCubic, value => 1 - (1 - value) ** 3, false);

@@ -55,7 +55,7 @@ const options: ISourceOptions = {
             light: {
                 area: {
                     gradient: {
-                        start: "3b5e98",
+                        start: "#3b5e98",
                         stop: "#17163e",
                     },
                 },

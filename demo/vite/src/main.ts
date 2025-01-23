@@ -7,10 +7,11 @@ import configs from "@tsparticles/configs";
     await loadAll(engine);
 
     const keys = Object.keys(configs),
-        randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs;
+        randomKey = keys[Math.floor(Math.random() * keys.length)] as keyof typeof configs,
+        options = configs[randomKey];
 
     await engine.load({
         id: "tsparticles",
-        options: configs[randomKey],
+        options,
     });
 })(tsParticles);

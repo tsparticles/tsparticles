@@ -1,4 +1,4 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import { LchColorManager } from "./LchColorManager.js";
 import { OklchColorManager } from "./OklchColorManager.js";
 
@@ -11,7 +11,7 @@ declare const __VERSION__: string;
  * @returns A promise that resolves when the plugin is loaded
  */
 export async function loadOklchColorPlugin(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await engine.addColorManager(new OklchColorManager(), refresh);
     await engine.addColorManager(new LchColorManager(), refresh);

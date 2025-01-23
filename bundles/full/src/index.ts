@@ -1,4 +1,4 @@
-import { type Engine, assertValidVersion } from "@tsparticles/engine";
+import { type Engine } from "@tsparticles/engine";
 import { loadAbsorbersPlugin } from "@tsparticles/plugin-absorbers";
 import { loadDestroyUpdater } from "@tsparticles/updater-destroy";
 import { loadEmittersPlugin } from "@tsparticles/plugin-emitters";
@@ -24,7 +24,7 @@ declare const __VERSION__: string;
  * @param refresh -
  */
 export async function loadFull(engine: Engine, refresh = true): Promise<void> {
-    assertValidVersion(engine, __VERSION__);
+    engine.checkVersion(__VERSION__);
 
     await loadDestroyUpdater(engine, false);
     await loadRollUpdater(engine, false);
