@@ -1,6 +1,6 @@
-var end = Date.now() + (15 * 1000);
+const end = Date.now() + (15 * 1000),
+    colors = ['#bb0000', '#ffffff'];
 
-var colors = ['#bb0000', '#ffffff'];
 
 (function frame() {
   confetti({
