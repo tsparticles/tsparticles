@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/plugin-poisson-disc",
-    "version": "3.8.0",
+    "version": "3.8.1",
     "description": "tsParticles poisson disc plugin",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -78,7 +78,7 @@
     "types": "dist/types/index.d.ts",
     "prettier": "@tsparticles/prettier-config",
     "dependencies": {
-        "@tsparticles/engine": "workspace:3.8.0"
+        "@tsparticles/engine": "workspace:3.8.1"
     },
     "publishConfig": {
         "access": "public",

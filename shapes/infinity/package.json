@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/shape-infinity",
-    "version": "3.8.0",
+    "version": "3.8.1",
     "description": "tsParticles infinity shape",
     "homepage": "https://particles.js.org",
     "scripts": {
@@ -108,7 +108,7 @@
         "./package.json": "./dist/package.json"
     },
     "dependencies": {
-        "@tsparticles/engine": "workspace:3.8.0"
+        "@tsparticles/engine": "workspace:3.8.1"
     },
     "publishConfig": {
         "access": "public",
