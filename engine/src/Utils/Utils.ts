@@ -918,6 +918,7 @@ function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
             borderWidth: "0",
             position: "fixed",
             zIndex: zIndex.toString(radix),
+            "z-index": zIndex.toString(radix),
             top: "0",
             left: "0",
         };
