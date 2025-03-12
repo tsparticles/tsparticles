@@ -57,8 +57,8 @@ importers:
         specifier: ^2.1.2
         version: 2.1.2(vitest@2.1.2)
       babel-loader:
-        specifier: ^9.2.1
-        version: 9.2.1(@babel/core@7.25.8)(webpack@5.95.0)
+        specifier: ^10.0.0
+        version: 10.0.0(@babel/core@7.25.8)(webpack@5.95.0)
       browserslist:
         specifier: ^4.24.0
         version: 4.24.0
@@ -4383,6 +4383,13 @@ packages:
 
   axios@1.7.4:
     resolution: {integrity: sha512-DukmaFRnY6AzAALSH4J2M3k6PkaC+MfaAGdEERRWcC9q3/TWQwLpHR8ZRLKTdQ3aBDL64EdluRDjJqKw+BPZEw==}
+
+  babel-loader@10.0.0:
+    resolution: {integrity: sha512-z8jt+EdS61AMw22nSfoNJAZ0vrtmhPRVi6ghL3rCeRZI8cdNYFiV5xeV3HbE7rlZZNmGH8BVccwWt8/ED0QOHA==}
+    engines: {node: ^18.20.0 || ^20.10.0 || >=22.0.0}
+    peerDependencies:
+      '@babel/core': ^7.12.0
+      webpack: '>=5.61.0'
 
   babel-loader@9.2.1:
     resolution: {integrity: sha512-fqe8naHt46e0yIdkjUZYqddSXfej3AHajX+CSO5X7oy0EmPc6o5Xh+RClNoHjnieWz9AW4kZxW9yyFMhVB1QLA==}
@@ -12236,6 +12243,12 @@ snapshots:
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
+
+  babel-loader@10.0.0(@babel/core@7.25.8)(webpack@5.95.0):
+    dependencies:
+      '@babel/core': 7.25.8
+      find-up: 5.0.0
+      webpack: 5.95.0(@swc/core@1.9.2)(webpack-cli@6.0.0)
 
   babel-loader@9.2.1(@babel/core@7.25.8)(webpack@5.95.0):
     dependencies:

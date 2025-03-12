@@ -41,7 +41,7 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitest/ui": "^2.1.2",
     "@vitest/coverage-v8": "^2.1.2",
-    "babel-loader": "^9.2.1",
+    "babel-loader": "^10.0.0",
     "browserslist": "^4.24.0",
     "copyfiles": "^2.4.1",
     "cross-env": "^7.0.3",
