@@ -33,8 +33,8 @@ jobs:
       #  uses: nrwl/nx-set-shas@v3
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - uses: pnpm/action-setup@v4.0.0
+          node-version: '22'
+      - uses: pnpm/action-setup@v4.1.0
         name: Install pnpm
         id: pnpm-install
         with:
@@ -90,8 +90,8 @@ jobs:
       #  uses: nrwl/nx-set-shas@v3
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - uses: pnpm/action-setup@v4.0.0
+          node-version: '22'
+      - uses: pnpm/action-setup@v4.1.0
         name: Install pnpm
         id: pnpm-install
         with:

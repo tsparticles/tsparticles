@@ -236,11 +236,9 @@ export class EventListeners {
         }
 
         const html = interactivityEl as HTMLElement,
-            canvasEl = container.canvas.element;
+            canvas = container.canvas;
 
-        if (canvasEl) {
-            canvasEl.style.pointerEvents = html === canvasEl ? "initial" : "none";
-        }
+        canvas.setPointerEvents(html === canvas.element ? "initial" : "none");
 
         if (!(options.interactivity.events.onHover.enable || options.interactivity.events.onClick.enable)) {
             return;
@@ -273,6 +271,7 @@ export class EventListeners {
             options = container.actualOptions,
             detectType = options.interactivity.detectsOn,
             canvasEl = container.canvas.element;
+
         let mouseLeaveTmpEvent = mouseLeaveEvent;
 
         /* events target element */

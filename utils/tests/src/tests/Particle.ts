@@ -11,13 +11,16 @@ describe("Particle", async () => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     globalThis.window = TestWindow;
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+    const canvas = createCustomCanvas(width, height) as any;
+
     const container = await tsParticles.load({
-        id: "test",
+        id: "test-particle",
         options: {
             autoPlay: false,
         },
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
-        element: createCustomCanvas(width, height) as any,
+        element: canvas,
     });
 
     if (!container) {

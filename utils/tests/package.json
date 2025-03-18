@@ -11,6 +11,7 @@
         "build:ui": "pnpm run lint && pnpm run prettify && pnpm test:ui",
         "build:ci": "pnpm run lint:ci && pnpm run prettify:ci && pnpm run test:ci",
         "test": "vitest run",
+        "test:particle": "vitest run src/tests/Particle.ts",
         "test:ui": "vitest watch --ui",
         "test:ci": "vitest run"
     },
@@ -20,9 +21,5 @@
         "@tsparticles/plugin-hsl-color": "workspace:3.8.1",
         "@tsparticles/plugin-hsv-color": "workspace:3.8.1",
         "@tsparticles/plugin-rgb-color": "workspace:3.8.1"
-    },
-    "devDependencies": {
-        "skia-canvas": "^1.0.2",
-        "vitest": "^2.1.2"
     }
 }

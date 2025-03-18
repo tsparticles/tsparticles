@@ -1,10 +1,13 @@
 import {
     ExternalInteractorBase,
     type IModes,
+    type IParticlesOptions,
     type Modes,
     type RecursivePartial,
+    deepExtend,
     getRangeValue,
     itemFromArray,
+    itemFromSingleOrMultiple,
 } from "@tsparticles/engine";
 import type { IPushMode, PushContainer, PushMode } from "./Types.js";
 import { Push } from "./Options/Classes/Push.js";
@@ -41,9 +44,11 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
             }
 
             const group = itemFromArray([undefined, ...pushOptions.groups]),
-                groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined;
+                groupOptions = group !== undefined ? container.actualOptions.particles.groups[group] : undefined,
+                particlesOptions = itemFromSingleOrMultiple(pushOptions.particles),
+                overrideOptions = deepExtend(groupOptions, particlesOptions) as RecursivePartial<IParticlesOptions>;
 
-            void container.particles.push(quantity, container.interactivity.mouse, groupOptions, group);
+            void container.particles.push(quantity, container.interactivity.mouse, overrideOptions, group);
         };
     }
 

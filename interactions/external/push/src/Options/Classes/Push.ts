@@ -1,4 +1,14 @@
-import { type IOptionLoader, type RangeValue, type RecursivePartial, isNull, setRangeValue } from "@tsparticles/engine";
+import {
+    type IOptionLoader,
+    type IParticlesOptions,
+    type RangeValue,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    deepExtend,
+    executeOnSingleOrMultiple,
+    isNull,
+    setRangeValue,
+} from "@tsparticles/engine";
 import type { IPush } from "../Interfaces/IPush.js";
 
 /**
@@ -6,6 +16,7 @@ import type { IPush } from "../Interfaces/IPush.js";
 export class Push implements IPush, IOptionLoader<IPush> {
     default;
     groups: string[];
+    particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
     quantity: RangeValue;
 
     constructor() {
@@ -36,5 +47,9 @@ export class Push implements IPush, IOptionLoader<IPush> {
         if (quantity !== undefined) {
             this.quantity = setRangeValue(quantity);
         }
+
+        this.particles = executeOnSingleOrMultiple(data.particles, particles => {
+            return deepExtend({}, particles) as RecursivePartial<IParticlesOptions>;
+        });
     }
 }

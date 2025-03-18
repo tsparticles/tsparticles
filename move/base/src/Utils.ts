@@ -78,6 +78,7 @@ export function applyDistance(particle: MoveParticle): void {
  * @param moveSpeed -
  * @param maxSpeed -
  * @param moveDrift -
+ * @param reduceFactor -
  * @param delta -
  */
 export function move(
@@ -86,6 +87,7 @@ export function move(
     moveSpeed: number,
     maxSpeed: number,
     moveDrift: number,
+    reduceFactor: number,
     delta: IDelta,
 ): void {
     applyPath(particle, delta);
@@ -94,15 +96,16 @@ export function move(
         gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity;
 
     if (moveDrift && moveSpeed) {
-        particle.velocity.x += (moveDrift * delta.factor) / (moveSpeedFactor * moveSpeed);
+        particle.velocity.x += (moveDrift * delta.factor * reduceFactor) / (moveSpeedFactor * moveSpeed);
     }
 
     if (gravityOptions?.enable && moveSpeed) {
         particle.velocity.y +=
-            (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (moveSpeedFactor * moveSpeed);
+            (gravityFactor * (gravityOptions.acceleration * delta.factor * reduceFactor)) /
+            (moveSpeedFactor * moveSpeed);
     }
 
-    const decay = particle.moveDecay;
+    const decay = particle.moveDecay * reduceFactor;
 
     particle.velocity.multTo(decay);
 
@@ -139,8 +142,9 @@ export function move(
 /**
  * @param particle -
  * @param moveSpeed -
+ * @param reduceFactor -
  */
-export function spin(particle: MoveParticle, moveSpeed: number): void {
+export function spin(particle: MoveParticle, moveSpeed: number, reduceFactor: number): void {
     const container = particle.container;
 
     if (!particle.spin) {
@@ -153,9 +157,11 @@ export function spin(particle: MoveParticle, moveSpeed: number): void {
             y: spinClockwise ? Math.sin : Math.cos,
         };
 
-    particle.position.x = particle.spin.center.x + particle.spin.radius * updateFunc.x(particle.spin.angle);
-    particle.position.y = particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle);
-    particle.spin.radius += particle.spin.acceleration;
+    particle.position.x =
+        particle.spin.center.x + particle.spin.radius * updateFunc.x(particle.spin.angle) * reduceFactor;
+    particle.position.y =
+        particle.spin.center.y + particle.spin.radius * updateFunc.y(particle.spin.angle) * reduceFactor;
+    particle.spin.radius += particle.spin.acceleration * reduceFactor;
 
     const maxCanvasSize = Math.max(container.canvas.size.width, container.canvas.size.height),
         halfMaxSize = maxCanvasSize * half;
