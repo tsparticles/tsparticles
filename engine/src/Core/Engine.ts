@@ -638,10 +638,9 @@ export class Engine {
     async load(params: ILoadParams): Promise<Container | undefined> {
         const id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor)}`,
             { index, url } = params,
-            options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options;
-
-        /* elements */
-        const currentOptions = itemFromSingleOrMultiple(options, index),
+            options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
+            /* elements */
+            currentOptions = itemFromSingleOrMultiple(options, index),
             { items } = this,
             oldIndex = items.findIndex(v => v.id.description === id),
             newItem = new Container(this, id, currentOptions);

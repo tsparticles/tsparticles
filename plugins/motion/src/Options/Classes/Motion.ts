@@ -18,7 +18,7 @@ export class Motion implements IMotion, IOptionLoader<IMotion> {
     reduce;
 
     constructor() {
-        this.disable = false;
+        this.disable = true;
         this.reduce = new MotionReduce();
     }
 

@@ -118,6 +118,7 @@ export class Canvas {
     private _generated;
     private _mutationObserver?: MutationObserver;
     private _originalStyle?: CSSStyleDeclaration;
+    private _pointerEvents: string;
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
@@ -153,6 +154,7 @@ export class Canvas {
         this._postDrawUpdaters = [];
         this._resizePlugins = [];
         this._colorPlugins = [];
+        this._pointerEvents = "none";
     }
 
     private get _fullScreen(): boolean {
@@ -539,6 +541,17 @@ export class Canvas {
         return true;
     }
 
+    setPointerEvents(type: string): void {
+        const element = this.element;
+
+        if (!element) {
+            return;
+        }
+
+        this._pointerEvents = type;
+        this._repairStyle();
+    }
+
     stop(): void {
         this._safeMutationObserver(obs => obs.disconnect());
         this._mutationObserver = undefined;
@@ -769,9 +782,13 @@ export class Canvas {
         }
 
         this._safeMutationObserver(observer => observer.disconnect());
-
         this._initStyle();
         this.initBackground();
+
+        const pointerEvents = this._pointerEvents;
+
+        element.style.pointerEvents = pointerEvents;
+        element.setAttribute("pointer-events", pointerEvents);
 
         this._safeMutationObserver(observer => {
             if (!element || !(element instanceof Node)) {

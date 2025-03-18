@@ -628,6 +628,7 @@ export class Container {
 
         if (this._firstStart && !this.actualOptions.autoPlay) {
             this._firstStart = false;
+
             return;
         }
 
