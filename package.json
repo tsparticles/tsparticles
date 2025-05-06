@@ -69,7 +69,7 @@
     "typedoc": "^0.26.8",
     "typedoc-plugin-clarity": "^1.6.0",
     "typedoc-plugin-carbon-ads": "^1.6.0",
-    "typedoc-plugin-coverage": "^3.3.0",
+    "typedoc-plugin-coverage": "^4.0.0",
     "typedoc-plugin-keywords": "^1.6.0",
     "typedoc-plugin-mdn-links": "^5.0.0",
     "typedoc-plugin-missing-exports": "^3.0.0",
