@@ -1,7 +1,7 @@
 # Full Screen
 
--   [`enable`](#enable)
--   [`zIndex`](#Z-Index)
+- [`enable`](#enable)
+- [`zIndex`](#Z-Index)
 
 ## Enable
 
