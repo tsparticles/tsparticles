@@ -2,7 +2,7 @@ import { type Engine, type IContainerPlugin, safeMatchMedia } from "@tsparticles
 import type { MotionContainer } from "./types.js";
 
 const defaultFactor = 1,
-    defaultReduce = 0,
+    defaultReduce = 1,
     identity = 1;
 
 export class MotionInstance implements IContainerPlugin {
