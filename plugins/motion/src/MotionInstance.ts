@@ -72,7 +72,7 @@ export class MotionInstance implements IContainerPlugin {
                 container.retina.reduceFactor = motion.reduce.value ? identity / motion.reduce.factor : defaultFactor;
             }
         } else {
-            container.retina.reduceFactor = 1;
+            container.retina.reduceFactor = defaultReduce;
         }
     };
 }

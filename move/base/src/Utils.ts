@@ -96,16 +96,15 @@ export function move(
         gravityFactor = gravityOptions?.enable && gravityOptions.inverse ? -identity : identity;
 
     if (moveDrift && moveSpeed) {
-        particle.velocity.x += (moveDrift * delta.factor * reduceFactor) / (moveSpeedFactor * moveSpeed);
+        particle.velocity.x += (moveDrift * delta.factor) / (moveSpeedFactor * moveSpeed);
     }
 
     if (gravityOptions?.enable && moveSpeed) {
         particle.velocity.y +=
-            (gravityFactor * (gravityOptions.acceleration * delta.factor * reduceFactor)) /
-            (moveSpeedFactor * moveSpeed);
+            (gravityFactor * (gravityOptions.acceleration * delta.factor)) / (moveSpeedFactor * moveSpeed);
     }
 
-    const decay = particle.moveDecay * reduceFactor;
+    const decay = particle.moveDecay;
 
     particle.velocity.multTo(decay);
 
@@ -128,14 +127,15 @@ export function move(
         zVelocityFactor = (identity - particle.zIndexFactor) ** zIndexOptions.velocityRate;
 
     velocity.multTo(zVelocityFactor);
+    velocity.multTo(reduceFactor);
 
     const { position } = particle;
 
     position.addTo(velocity);
 
     if (moveOptions.vibrate) {
-        position.x += Math.sin(position.x * Math.cos(position.y));
-        position.y += Math.cos(position.y * Math.sin(position.x));
+        position.x += Math.sin(position.x * Math.cos(position.y)) * reduceFactor;
+        position.y += Math.cos(position.y * Math.sin(position.x)) * reduceFactor;
     }
 }
 
