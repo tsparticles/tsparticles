@@ -3,6 +3,7 @@ import type { MotionContainer } from "./types.js";
 
 const defaultFactor = 1,
     defaultReduce = 1,
+    disableReduce = 0,
     identity = 1;
 
 export class MotionInstance implements IContainerPlugin {
@@ -67,7 +68,7 @@ export class MotionInstance implements IContainerPlugin {
 
         if (mediaQuery.matches) {
             if (motion.disable) {
-                container.retina.reduceFactor = defaultReduce;
+                container.retina.reduceFactor = disableReduce;
             } else {
                 container.retina.reduceFactor = motion.reduce.value ? identity / motion.reduce.factor : defaultFactor;
             }

@@ -13,16 +13,17 @@ const defaultDistance = 0,
  */
 export function updateWobble(particle: WobbleParticle, delta: IDelta): void {
     const { wobble: wobbleOptions } = particle.options,
-        { wobble } = particle;
+        { container, wobble } = particle;
 
     if (!wobbleOptions?.enable || !wobble) {
         return;
     }
 
-    const angleSpeed = wobble.angleSpeed * delta.factor,
-        moveSpeed = wobble.moveSpeed * delta.factor,
+    const reduceFactor = container.retina.reduceFactor,
+        angleSpeed = wobble.angleSpeed * delta.factor * reduceFactor,
+        moveSpeed = wobble.moveSpeed * delta.factor * reduceFactor,
         distance =
-            (moveSpeed * ((particle.retina.wobbleDistance ?? defaultDistance) * delta.factor)) /
+            (moveSpeed * (particle.retina.wobbleDistance ?? defaultDistance)) /
             (millisecondsToSeconds / distanceFactor),
         max = doublePI,
         { position } = particle;
