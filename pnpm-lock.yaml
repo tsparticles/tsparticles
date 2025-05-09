@@ -203,6 +203,9 @@ importers:
       '@tsparticles/path-curves':
         specifier: workspace:3.8.1
         version: link:../../paths/curves/dist
+      '@tsparticles/path-fractal-noise':
+        specifier: workspace:3.8.1
+        version: link:../../paths/fractalNoise/dist
       '@tsparticles/path-perlin-noise':
         specifier: workspace:3.8.1
         version: link:../../paths/perlinNoise/dist
@@ -619,6 +622,9 @@ importers:
       '@tsparticles/fireworks':
         specifier: workspace:3.8.1
         version: link:../../bundles/fireworks/dist
+      '@tsparticles/fractal-noise':
+        specifier: workspace:3.8.1
+        version: link:../../utils/fractalNoise/dist
       '@tsparticles/interaction-external-attract':
         specifier: workspace:3.8.1
         version: link:../../interactions/external/attract/dist
@@ -685,6 +691,9 @@ importers:
       '@tsparticles/path-curves':
         specifier: workspace:3.8.1
         version: link:../../paths/curves/dist
+      '@tsparticles/path-fractal-noise':
+        specifier: workspace:3.8.1
+        version: link:../../paths/fractalNoise/dist
       '@tsparticles/path-perlin-noise':
         specifier: workspace:3.8.1
         version: link:../../paths/perlinNoise/dist
@@ -856,6 +865,9 @@ importers:
       '@tsparticles/slim':
         specifier: workspace:3.8.1
         version: link:../../bundles/slim/dist
+      '@tsparticles/smooth-value-noise':
+        specifier: workspace:3.8.1
+        version: link:../../utils/smoothValueNoise/dist
       '@tsparticles/updater-color':
         specifier: workspace:3.8.1
         version: link:../../updaters/color/dist
@@ -1215,6 +1227,16 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:3.8.1
         version: link:../../engine/dist
+    publishDirectory: dist
+
+  paths/fractalNoise:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.8.1
+        version: link:../../engine/dist
+      '@tsparticles/fractal-noise':
+        specifier: workspace:3.8.1
+        version: link:../../utils/fractalNoise/dist
     publishDirectory: dist
 
   paths/perlinNoise:
@@ -1714,10 +1736,20 @@ importers:
         version: link:../../engine/dist
     publishDirectory: dist
 
+  utils/fractalNoise:
+    dependencies:
+      '@tsparticles/smooth-value-noise':
+        specifier: workspace:3.8.1
+        version: link:../smoothValueNoise/dist
+    publishDirectory: dist
+
   utils/perlinNoise:
     publishDirectory: dist
 
   utils/simplexNoise:
+    publishDirectory: dist
+
+  utils/smoothValueNoise:
     publishDirectory: dist
 
   utils/tests:

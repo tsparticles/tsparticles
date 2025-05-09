@@ -108,6 +108,7 @@
     "@tsparticles/interaction-particles-repulse": "3.8.1",
     "@tsparticles/path-curl-noise": "3.8.1",
     "@tsparticles/path-curves": "3.8.1",
+    "@tsparticles/path-fractal-noise": "3.8.1",
     "@tsparticles/path-perlin-noise": "3.8.1",
     "@tsparticles/path-polygon": "3.8.1",
     "@tsparticles/path-simplex-noise": "3.8.1",

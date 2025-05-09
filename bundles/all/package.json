@@ -116,6 +116,7 @@
     "@tsparticles/interaction-particles-repulse": "workspace:3.8.1",
     "@tsparticles/path-curl-noise": "workspace:3.8.1",
     "@tsparticles/path-curves": "workspace:3.8.1",
+    "@tsparticles/path-fractal-noise": "workspace:3.8.1",
     "@tsparticles/path-perlin-noise": "workspace:3.8.1",
     "@tsparticles/path-polygon": "workspace:3.8.1",
     "@tsparticles/path-simplex-noise": "workspace:3.8.1",

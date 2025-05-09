@@ -23,6 +23,7 @@ import { loadExportJSONPlugin } from "@tsparticles/plugin-export-json";
 import { loadExportVideoPlugin } from "@tsparticles/plugin-export-video";
 import { loadExternalParticleInteraction } from "@tsparticles/interaction-external-particle";
 import { loadExternalPopInteraction } from "@tsparticles/interaction-external-pop";
+import { loadFractalNoisePath } from "@tsparticles/path-fractal-noise";
 import { loadFull } from "tsparticles";
 import { loadGradientUpdater } from "@tsparticles/updater-gradient";
 import { loadHeartShape } from "@tsparticles/shape-heart";
@@ -99,6 +100,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadOrbitUpdater(engine, false);
     await loadCurvesPath(engine, false);
     await loadCurlNoisePath(engine, false);
+    await loadFractalNoisePath(engine, false);
     await loadPerlinNoisePath(engine, false);
     await loadPoissonDiscPlugin(engine, false);
     await loadPolygonPath(engine, false);
