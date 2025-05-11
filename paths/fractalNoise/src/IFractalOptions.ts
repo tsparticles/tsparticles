@@ -7,6 +7,7 @@ export interface IFractalOptions {
     layers: number;
     offset: IOffsetValues;
     rows: number;
+    seed?: number;
     size: number;
     width: number;
 }

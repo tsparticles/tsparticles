@@ -56,4 +56,8 @@ export class FractalNoise {
 
         return total / maxValue;
     }
+
+    seed(seed: number): void {
+        this._smoothValueNoise.seed(seed);
+    }
 }

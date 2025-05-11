@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-
-import { type Container, type IMovePathGenerator, type Particle, Vector, deepExtend } from "@tsparticles/engine";
+import {
+    type Container,
+    type IMovePathGenerator,
+    type Particle,
+    Vector,
+    deepExtend,
+    getRandom,
+} from "@tsparticles/engine";
 import { FractalNoise } from "@tsparticles/fractal-noise";
 import type { IFractalOptions } from "./IFractalOptions.js";
 import type { IOffsetValues } from "./IOffsetValues.js";
@@ -128,6 +134,10 @@ export class FractalNoiseGenerator implements IMovePathGenerator {
         this.options.offset.x = offset?.x ?? defaultOptions.offset.x;
         this.options.offset.y = offset?.y ?? defaultOptions.offset.y;
         this.options.offset.z = offset?.z ?? defaultOptions.offset.z;
+
+        this.options.seed = sourceOptions.seed as number | undefined;
+
+        this._fractal.seed(this.options.seed ?? getRandom());
 
         this.options.columns = Math.floor(this.options.width / this.options.size) + 1;
         this.options.rows = Math.floor(this.options.height / this.options.size) + 1;
