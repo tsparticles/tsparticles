@@ -3,25 +3,45 @@
 import { Grad } from "./Grad.js";
 
 export class PerlinNoise {
-    private readonly _grad3;
+    private readonly _grad4;
     private readonly _gradP: Grad[];
     private readonly _p;
     private readonly _perm: number[];
 
     constructor() {
-        this._grad3 = [
-            new Grad(1, 1, 0),
-            new Grad(-1, 1, 0),
-            new Grad(1, -1, 0),
-            new Grad(-1, -1, 0),
-            new Grad(1, 0, 1),
-            new Grad(-1, 0, 1),
-            new Grad(1, 0, -1),
-            new Grad(-1, 0, -1),
-            new Grad(0, 1, 1),
-            new Grad(0, -1, 1),
-            new Grad(0, 1, -1),
-            new Grad(0, -1, -1),
+        this._grad4 = [
+            new Grad(0, 1, 1, 1),
+            new Grad(0, 1, 1, -1),
+            new Grad(0, 1, -1, 1),
+            new Grad(0, 1, -1, -1),
+            new Grad(0, -1, 1, 1),
+            new Grad(0, -1, 1, -1),
+            new Grad(0, -1, -1, 1),
+            new Grad(0, -1, -1, -1),
+            new Grad(1, 0, 1, 1),
+            new Grad(1, 0, 1, -1),
+            new Grad(1, 0, -1, 1),
+            new Grad(1, 0, -1, -1),
+            new Grad(-1, 0, 1, 1),
+            new Grad(-1, 0, 1, -1),
+            new Grad(-1, 0, -1, 1),
+            new Grad(-1, 0, -1, -1),
+            new Grad(1, 1, 0, 1),
+            new Grad(1, 1, 0, -1),
+            new Grad(1, -1, 0, 1),
+            new Grad(1, -1, 0, -1),
+            new Grad(-1, 1, 0, 1),
+            new Grad(-1, 1, 0, -1),
+            new Grad(-1, -1, 0, 1),
+            new Grad(-1, -1, 0, -1),
+            new Grad(1, 1, 1, 0),
+            new Grad(1, 1, -1, 0),
+            new Grad(1, -1, 1, 0),
+            new Grad(1, -1, -1, 0),
+            new Grad(-1, 1, 1, 0),
+            new Grad(-1, 1, -1, 0),
+            new Grad(-1, -1, 1, 0),
+            new Grad(-1, -1, -1, 0),
         ];
         this._p = [
             151,
@@ -293,21 +313,20 @@ export class PerlinNoise {
             Y = Math.floor(y);
 
         // Get relative xy coordinates of point within that cell
-        x = x - X;
-        y = y - Y;
+        x -= X;
+        y -= Y;
 
         // Wrap the integer cells at 255 (smaller integer period can be introduced here)
-        X = X & 255;
-        Y = Y & 255;
+        X &= 255;
+        Y &= 255;
 
         // Calculate noise contributions from each of the four corners
         const n00 = _gradP[X + _perm[Y]].dot2(x, y),
             n01 = _gradP[X + _perm[Y + 1]].dot2(x, y - 1),
             n10 = _gradP[X + 1 + _perm[Y]].dot2(x - 1, y),
-            n11 = _gradP[X + 1 + _perm[Y + 1]].dot2(x - 1, y - 1);
-
-        // Compute the fade curve value for x
-        const u = this._fade(x);
+            n11 = _gradP[X + 1 + _perm[Y + 1]].dot2(x - 1, y - 1),
+            // Compute the fade curve value for x
+            u = this._fade(x);
 
         // Interpolate the four results
         return this._lerp(this._lerp(n00, n10, u), this._lerp(n01, n11, u), this._fade(y));
@@ -325,6 +344,7 @@ export class PerlinNoise {
         x = x - X;
         y = y - Y;
         z = z - Z;
+
         // Wrap the integer cells at 255 (smaller integer period can be introduced here)
         X = X & 255;
         Y = Y & 255;
@@ -352,8 +372,72 @@ export class PerlinNoise {
         );
     }
 
+    noise4d(x: number, y: number, z: number, w: number): number {
+        const { _gradP: gradP, _perm: perm } = this;
+
+        // Find unit grid cell containing point
+        let X = Math.floor(x),
+            Y = Math.floor(y),
+            Z = Math.floor(z),
+            W = Math.floor(w);
+
+        // Get relative coordinates within cell
+        x -= X;
+        y -= Y;
+        z -= Z;
+        w -= W;
+
+        // Wrap at 255
+        X &= 255;
+        Y &= 255;
+        Z &= 255;
+        W &= 255;
+
+        const u = this._fade(x),
+            v = this._fade(y),
+            s = this._fade(z),
+            t = this._fade(w),
+            // Helper to get gradient index
+            gi = (i: number, j: number, k: number, l: number): Grad =>
+                gradP[X + i + perm[Y + j + perm[Z + k + perm[W + l]]]],
+            // Contributions from 16 corners of 4D hypercube
+            n0000 = gi(0, 0, 0, 0).dot4(x, y, z, w),
+            n0001 = gi(0, 0, 0, 1).dot4(x, y, z, w - 1),
+            n0010 = gi(0, 0, 1, 0).dot4(x, y, z - 1, w),
+            n0011 = gi(0, 0, 1, 1).dot4(x, y, z - 1, w - 1),
+            n0100 = gi(0, 1, 0, 0).dot4(x, y - 1, z, w),
+            n0101 = gi(0, 1, 0, 1).dot4(x, y - 1, z, w - 1),
+            n0110 = gi(0, 1, 1, 0).dot4(x, y - 1, z - 1, w),
+            n0111 = gi(0, 1, 1, 1).dot4(x, y - 1, z - 1, w - 1),
+            n1000 = gi(1, 0, 0, 0).dot4(x - 1, y, z, w),
+            n1001 = gi(1, 0, 0, 1).dot4(x - 1, y, z, w - 1),
+            n1010 = gi(1, 0, 1, 0).dot4(x - 1, y, z - 1, w),
+            n1011 = gi(1, 0, 1, 1).dot4(x - 1, y, z - 1, w - 1),
+            n1100 = gi(1, 1, 0, 0).dot4(x - 1, y - 1, z, w),
+            n1101 = gi(1, 1, 0, 1).dot4(x - 1, y - 1, z, w - 1),
+            n1110 = gi(1, 1, 1, 0).dot4(x - 1, y - 1, z - 1, w),
+            n1111 = gi(1, 1, 1, 1).dot4(x - 1, y - 1, z - 1, w - 1),
+            // Trilinear interpolation
+            x00 = this._lerp(n0000, n1000, u),
+            x01 = this._lerp(n0001, n1001, u),
+            x10 = this._lerp(n0010, n1010, u),
+            x11 = this._lerp(n0011, n1011, u),
+            y00 = this._lerp(x00, x10, s),
+            y01 = this._lerp(x01, x11, s),
+            x20 = this._lerp(n0100, n1100, u),
+            x21 = this._lerp(n0101, n1101, u),
+            x30 = this._lerp(n0110, n1110, u),
+            x31 = this._lerp(n0111, n1111, u),
+            y10 = this._lerp(x20, x30, s),
+            y11 = this._lerp(x21, x31, s),
+            z0 = this._lerp(y00, y10, v),
+            z1 = this._lerp(y01, y11, v);
+
+        return this._lerp(z0, z1, t);
+    }
+
     seed(inputSeed: number): void {
-        const { _grad3: grad3, _gradP: gradP, _perm: perm, _p: p } = this;
+        const { _grad4: grad4, _gradP: gradP, _perm: perm, _p: p } = this;
 
         let seed = inputSeed;
 
@@ -368,12 +452,14 @@ export class PerlinNoise {
             seed |= seed << 8;
         }
 
+        const grad4Length = grad4.length;
+
         for (let i = 0; i < 256; i++) {
             const v = i & 1 ? p[i] ^ (seed & 255) : p[i] ^ ((seed >> 8) & 255);
 
             perm[i] = perm[i + 256] = v;
 
-            gradP[i] = gradP[i + 256] = grad3[v % 12];
+            gradP[i] = gradP[i + 256] = grad4[v % grad4Length];
         }
     }
 

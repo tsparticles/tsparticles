@@ -6,6 +6,7 @@ export interface IPerlinOptions {
     factor: IFactorValues;
     height: number;
     increment: number;
+    layers: number;
     offset: IOffsetValues;
     rows: number;
     seed?: number;
