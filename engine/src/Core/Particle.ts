@@ -531,13 +531,13 @@ export class Particle {
         if (this.effect === randomColorValue) {
             const availableEffects = [...this.container.effectDrawers.keys()];
 
-            this.effect = availableEffects[Math.floor(Math.random() * availableEffects.length)];
+            this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
         }
 
         if (this.shape === randomColorValue) {
             const availableShapes = [...this.container.shapeDrawers.keys()];
 
-            this.shape = availableShapes[Math.floor(Math.random() * availableShapes.length)];
+            this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
         }
 
         this.effectData = loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates);
