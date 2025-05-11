@@ -7,7 +7,7 @@ import { PoissonDisc } from "./PoissonDisc.js";
  */
 export class PoissonInstance implements IContainerPlugin {
     poissonDisc?: PoissonDisc;
-    redrawTimeout?: number;
+    redrawTimeout?: number | NodeJS.Timeout;
 
     private readonly _container: PoissonContainer;
     private _currentIndex: number;
@@ -48,7 +48,7 @@ export class PoissonInstance implements IContainerPlugin {
 
         const timeout = 250;
 
-        this.redrawTimeout = window.setTimeout(() => {
+        this.redrawTimeout = setTimeout(() => {
             void (async (): Promise<void> => {
                 await this._initData();
 

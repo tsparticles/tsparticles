@@ -39,7 +39,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     offset?: ICoordinates;
     paths?: ISvgPath[];
     raw?: ICoordinates[];
-    redrawTimeout?: number;
+    redrawTimeout?: number | NodeJS.Timeout;
 
     private readonly _container;
     private readonly _engine;
@@ -166,7 +166,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
         const timeout = 250;
 
-        this.redrawTimeout = window.setTimeout(() => {
+        this.redrawTimeout = setTimeout(() => {
             void (async (): Promise<void> => {
                 await this._initRawData(true);
 
