@@ -18,8 +18,8 @@ export class OklchColorManager implements IColorManager {
     readonly stringPrefix;
 
     constructor() {
-        this.key = "color"; // Generic key for both OKLCH and LCH
-        this.stringPrefix = "oklch"; // Default to OKLCH
+        this.key = "oklch";
+        this.stringPrefix = "oklch";
     }
 
     handleColor(color: IColor): IRgb | undefined {
