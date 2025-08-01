@@ -1,8 +1,8 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-    key: "noisePlanes",
-    name: "Noise Planes",
+    key: "noisePlanesFractal",
+    name: "Noise Planes Fractal",
     background: {
         color: "#000",
     },
@@ -48,7 +48,7 @@ const options: ISourceOptions = {
                     draw: false,
                     increment: 0.004,
                 },
-                generator: "simplexNoise",
+                generator: "fractalNoise",
             },
             enable: true,
             speed: 6,

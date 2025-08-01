@@ -1,8 +1,8 @@
 # Background Mask
 
--   [`composite`](#composite)
--   [`cover`](#cover)
--   [`enable`](#enable)
+- [`composite`](#composite)
+- [`cover`](#cover)
+- [`enable`](#enable)
 
 ## Composite
 
@@ -18,8 +18,8 @@ in `particles.color` options.
 
 The `cover` can also be a {@link IBackgroundMaskCover | cover object} like the one described below.
 
--   [`color`](#color)
--   [`opacity`](#opacity)
+- [`color`](#color)
+- [`opacity`](#opacity)
 
 ### Color
 

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/tsparticles/tsparticles/compare/v3.8.1...v3.9.0) (2025-08-01)
+
+**Note:** Version bump only for package @tsparticles/vite-demo
+
 ## [3.8.1](https://github.com/tsparticles/tsparticles/compare/v3.8.0...v3.8.1) (2025-01-31)
 
 **Note:** Version bump only for package @tsparticles/vite-demo
@@ -23,13 +27,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed resize issue in canvas ([e7c816c](https://github.com/tsparticles/tsparticles/commit/e7c816ced7d99c0cb84c79675a0771cd4b833705))
+- fixed resize issue in canvas ([e7c816c](https://github.com/tsparticles/tsparticles/commit/e7c816ced7d99c0cb84c79675a0771cd4b833705))
 
 # [3.7.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0...v3.7.0) (2024-11-24)
 
 ### Bug Fixes
 
--   fixed issue in Firefox that caused the canvas to expand each frame ([628a05d](https://github.com/tsparticles/tsparticles/commit/628a05d59786240e5f9a796262847b6f8a27681e))
+- fixed issue in Firefox that caused the canvas to expand each frame ([628a05d](https://github.com/tsparticles/tsparticles/commit/628a05d59786240e5f9a796262847b6f8a27681e))
 
 # [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.1...v3.6.0) (2024-11-18)
 

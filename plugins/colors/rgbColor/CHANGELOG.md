@@ -3,11 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/tsparticles/tsparticles/compare/v3.8.1...v3.9.0) (2025-08-01)
+
+**Note:** Version bump only for package @tsparticles/plugin-rgb-color
+
 ## [3.8.1](https://github.com/tsparticles/tsparticles/compare/v3.8.0...v3.8.1) (2025-01-31)
 
 ### Bug Fixes
 
--   fixed z-index style when fullScreen is active, closes [#5458](https://github.com/tsparticles/tsparticles/issues/5458) ([5e94ca4](https://github.com/tsparticles/tsparticles/commit/5e94ca41565c388bed275cd7d70d894d32ba506e))
+- fixed z-index style when fullScreen is active, closes [#5458](https://github.com/tsparticles/tsparticles/issues/5458) ([5e94ca4](https://github.com/tsparticles/tsparticles/commit/5e94ca41565c388bed275cd7d70d894d32ba506e))
 
 # [3.8.0](https://github.com/tsparticles/tsparticles/compare/v3.7.3...v3.8.0) (2025-01-23)
 
@@ -17,7 +21,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed resize issue in canvas ([e7c816c](https://github.com/tsparticles/tsparticles/commit/e7c816ced7d99c0cb84c79675a0771cd4b833705))
+- fixed resize issue in canvas ([e7c816c](https://github.com/tsparticles/tsparticles/commit/e7c816ced7d99c0cb84c79675a0771cd4b833705))
 
 # [3.7.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0...v3.7.0) (2024-11-24)
 

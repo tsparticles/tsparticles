@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/tsparticles/tsparticles/compare/v3.8.1...v3.9.0) (2025-08-01)
+
+**Note:** Version bump only for package @tsparticles/electron-demo
+
 ## [3.8.1](https://github.com/tsparticles/tsparticles/compare/v3.8.0...v3.8.1) (2025-01-31)
 
 **Note:** Version bump only for package @tsparticles/electron-demo
@@ -47,7 +51,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added customization for animation loop, fixes [#5355](https://github.com/tsparticles/tsparticles/issues/5355) ([76d9dfd](https://github.com/tsparticles/tsparticles/commit/76d9dfd56b51c05a82d60bce13157f020df547c9))
+- added customization for animation loop, fixes [#5355](https://github.com/tsparticles/tsparticles/issues/5355) ([76d9dfd](https://github.com/tsparticles/tsparticles/commit/76d9dfd56b51c05a82d60bce13157f020df547c9))
 
 # [3.4.0](https://github.com/tsparticles/tsparticles/compare/v3.3.0...v3.4.0) (2024-05-12)
 
@@ -117,7 +121,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/tsparticles/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
+- fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/tsparticles/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
 
 ## [2.11.1](https://github.com/tsparticles/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
@@ -135,7 +139,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/tsparticles/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+- adding new path plugin, using svg paths as a source ([72316ec](https://github.com/tsparticles/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
 
 ## [2.9.3](https://github.com/tsparticles/tsparticles/compare/electron-particles-demo@2.9.2...electron-particles-demo@2.9.3) (2023-02-12)
 

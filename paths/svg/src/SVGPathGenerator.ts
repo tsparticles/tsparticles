@@ -77,7 +77,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         }
 
         if (particle.svgPathIndex === undefined) {
-            particle.svgPathIndex = Math.floor(Math.random() * this._paths.length);
+            particle.svgPathIndex = Math.floor(getRandom() * this._paths.length);
         }
 
         if (particle.svgSpeed === undefined) {

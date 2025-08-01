@@ -18,8 +18,8 @@ export class LchColorManager implements IColorManager {
     readonly stringPrefix;
 
     constructor() {
-        this.key = "color"; // Generic key for both LCH and LCH
-        this.stringPrefix = "lch"; // Default to LCH
+        this.key = "lch";
+        this.stringPrefix = "lch";
     }
 
     handleColor(color: IColor): IRgb | undefined {

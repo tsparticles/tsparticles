@@ -3,11 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/tsparticles/tsparticles/compare/v3.8.1...v3.9.0) (2025-08-01)
+
+**Note:** Version bump only for package @tsparticles/interaction-light
+
 ## [3.8.1](https://github.com/tsparticles/tsparticles/compare/v3.8.0...v3.8.1) (2025-01-31)
 
 ### Bug Fixes
 
--   fixed z-index style when fullScreen is active, closes [#5458](https://github.com/tsparticles/tsparticles/issues/5458) ([5e94ca4](https://github.com/tsparticles/tsparticles/commit/5e94ca41565c388bed275cd7d70d894d32ba506e))
+- fixed z-index style when fullScreen is active, closes [#5458](https://github.com/tsparticles/tsparticles/issues/5458) ([5e94ca4](https://github.com/tsparticles/tsparticles/commit/5e94ca41565c388bed275cd7d70d894d32ba506e))
 
 # [3.8.0](https://github.com/tsparticles/tsparticles/compare/v3.7.3...v3.8.0) (2025-01-23)
 
@@ -17,23 +21,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed resize issue in canvas ([e7c816c](https://github.com/tsparticles/tsparticles/commit/e7c816ced7d99c0cb84c79675a0771cd4b833705))
+- fixed resize issue in canvas ([e7c816c](https://github.com/tsparticles/tsparticles/commit/e7c816ced7d99c0cb84c79675a0771cd4b833705))
 
 # [3.7.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0...v3.7.0) (2024-11-24)
 
 ### Features
 
--   added new named color plugin, and hex color in the engine ([c4db774](https://github.com/tsparticles/tsparticles/commit/c4db7745f54fe808e20af2bdf4c0469c1aa40755))
+- added new named color plugin, and hex color in the engine ([c4db774](https://github.com/tsparticles/tsparticles/commit/c4db7745f54fe808e20af2bdf4c0469c1aa40755))
 
 # [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.1...v3.6.0) (2024-11-18)
 
 ### Bug Fixes
 
--   fixed color syntaxes, fixes [#5409](https://github.com/tsparticles/tsparticles/issues/5409) ([f3c976f](https://github.com/tsparticles/tsparticles/commit/f3c976f451c5bc6a37338cba0cc1ce80c4e9b137))
+- fixed color syntaxes, fixes [#5409](https://github.com/tsparticles/tsparticles/issues/5409) ([f3c976f](https://github.com/tsparticles/tsparticles/commit/f3c976f451c5bc6a37338cba0cc1ce80c4e9b137))
 
 ### Features
 
--   added isNull function, more secure checks ([891e2a2](https://github.com/tsparticles/tsparticles/commit/891e2a25fb64b7f89ce0c75dbe49bd0b28d9a72d))
+- added isNull function, more secure checks ([891e2a2](https://github.com/tsparticles/tsparticles/commit/891e2a25fb64b7f89ce0c75dbe49bd0b28d9a72d))
 
 # [3.6.0-beta.1](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.0...v3.6.0-beta.1) (2024-10-13)
 
@@ -43,13 +47,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed issue with out modes ([85ba20f](https://github.com/tsparticles/tsparticles/commit/85ba20f4004eed3ceb84bcf5333025c8fec5d81f))
+- fixed issue with out modes ([85ba20f](https://github.com/tsparticles/tsparticles/commit/85ba20f4004eed3ceb84bcf5333025c8fec5d81f))
 
 # [3.6.0](https://github.com/tsparticles/tsparticles/compare/v3.5.0...v3.6.0) (2024-10-07)
 
 ### Bug Fixes
 
--   fixed issue with out modes ([85ba20f](https://github.com/tsparticles/tsparticles/commit/85ba20f4004eed3ceb84bcf5333025c8fec5d81f))
+- fixed issue with out modes ([85ba20f](https://github.com/tsparticles/tsparticles/commit/85ba20f4004eed3ceb84bcf5333025c8fec5d81f))
 
 # [3.5.0](https://github.com/tsparticles/tsparticles/compare/v3.4.0...v3.5.0) (2024-07-01)
 
@@ -59,19 +63,19 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   changed bundles loading method, no more preloading plugins ([13b00a0](https://github.com/tsparticles/tsparticles/commit/13b00a03b327fd547014a99f8cbc8ced228f31c8))
+- changed bundles loading method, no more preloading plugins ([13b00a0](https://github.com/tsparticles/tsparticles/commit/13b00a03b327fd547014a99f8cbc8ced228f31c8))
 
 # [3.3.0](https://github.com/tsparticles/tsparticles/compare/v3.2.2...v3.3.0) (2024-02-27)
 
 ### Bug Fixes
 
--   fixed issues in Chrome with async rAF function, reduced async methods for vite builds ([2600f6f](https://github.com/tsparticles/tsparticles/commit/2600f6f69917895ab80f9a55b1f5168d587adac6))
+- fixed issues in Chrome with async rAF function, reduced async methods for vite builds ([2600f6f](https://github.com/tsparticles/tsparticles/commit/2600f6f69917895ab80f9a55b1f5168d587adac6))
 
 ## [3.2.2](https://github.com/tsparticles/tsparticles/compare/v3.2.1...v3.2.2) (2024-02-20)
 
 ### Bug Fixes
 
--   fixed circular deps detection and other issues with dynamic imports ([b6ed5d3](https://github.com/tsparticles/tsparticles/commit/b6ed5d3eaa41e0ad50c55807e1ec6439eeacd0c1))
+- fixed circular deps detection and other issues with dynamic imports ([b6ed5d3](https://github.com/tsparticles/tsparticles/commit/b6ed5d3eaa41e0ad50c55807e1ec6439eeacd0c1))
 
 ## [3.2.1](https://github.com/tsparticles/tsparticles/compare/v3.2.0...v3.2.1) (2024-01-31)
 
@@ -81,8 +85,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added new particle external interaction ([f51ce7f](https://github.com/tsparticles/tsparticles/commit/f51ce7f104fa930fc68a257b64bbe8cf65fb9794))
--   improving dynamic imports ([7674ee3](https://github.com/tsparticles/tsparticles/commit/7674ee37c0db306afd1338ae0bcba764cc11d5f5))
+- added new particle external interaction ([f51ce7f](https://github.com/tsparticles/tsparticles/commit/f51ce7f104fa930fc68a257b64bbe8cf65fb9794))
+- improving dynamic imports ([7674ee3](https://github.com/tsparticles/tsparticles/commit/7674ee37c0db306afd1338ae0bcba764cc11d5f5))
 
 # [3.1.0](https://github.com/tsparticles/tsparticles/compare/v3.0.3...v3.1.0) (2024-01-13)
 
@@ -92,7 +96,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   used element id when present and fixed emoji memory management ([1990bbc](https://github.com/tsparticles/tsparticles/commit/1990bbcd9079366db7ec3dedf4477ba43d2c47cf))
+- used element id when present and fixed emoji memory management ([1990bbc](https://github.com/tsparticles/tsparticles/commit/1990bbcd9079366db7ec3dedf4477ba43d2c47cf))
 
 ## [3.0.2](https://github.com/tsparticles/tsparticles/compare/v3.0.1...v3.0.2) (2023-12-06)
 
@@ -106,7 +110,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added fade to trail effect ([17750ea](https://github.com/tsparticles/tsparticles/commit/17750eacdf86de208b2e723decc2ffb65521474b))
+- added fade to trail effect ([17750ea](https://github.com/tsparticles/tsparticles/commit/17750eacdf86de208b2e723decc2ffb65521474b))
 
 # [3.0.0-beta.5](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2023-12-03)
 
@@ -116,7 +120,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added flat options to tsparticles-confetti options ([dff6c75](https://github.com/tsparticles/tsparticles/commit/dff6c7590c5a844e34547513637c8ad0f13a3d66))
+- added flat options to tsparticles-confetti options ([dff6c75](https://github.com/tsparticles/tsparticles/commit/dff6c7590c5a844e34547513637c8ad0f13a3d66))
 
 # [3.0.0-beta.3](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2023-09-20)
 
@@ -130,7 +134,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   supporting the npm exports option correctly ([bdfaca8](https://github.com/tsparticles/tsparticles/commit/bdfaca8077b8a3a4b1f482cc2ae5766914dcfaf7))
+- supporting the npm exports option correctly ([bdfaca8](https://github.com/tsparticles/tsparticles/commit/bdfaca8077b8a3a4b1f482cc2ae5766914dcfaf7))
 
 # [3.0.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v2.12.0...v3.0.0-beta.0) (2023-08-24)
 
@@ -140,7 +144,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed light interaction, particle shadow wasn't calculated correctly ([da86a37](https://github.com/tsparticles/tsparticles/commit/da86a379faea661db8d161b28c30b36e5bd3580b))
+- fixed light interaction, particle shadow wasn't calculated correctly ([da86a37](https://github.com/tsparticles/tsparticles/commit/da86a379faea661db8d161b28c30b36e5bd3580b))
 
 ## [2.11.1](https://github.com/tsparticles/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
@@ -150,8 +154,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/tsparticles/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
--   added tree shaking ([86806a6](https://github.com/tsparticles/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
+- added refresh flag for loading plugins, this will prevent multiple refresh of the instance ([9d999d6](https://github.com/tsparticles/tsparticles/commit/9d999d6fa2f0c0a45a551aab45b467a8f3b682c5))
+- added tree shaking ([86806a6](https://github.com/tsparticles/tsparticles/commit/86806a6054d89b050567599daab20da3b643b788))
 
 ## [2.10.1](https://github.com/tsparticles/tsparticles/compare/v2.10.0...v2.10.1) (2023-06-04)
 
@@ -161,41 +165,41 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/tsparticles/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
--   **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
--   **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/tsparticles/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
--   **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/tsparticles/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
--   **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/tsparticles/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
--   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/tsparticles/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
--   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/tsparticles/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
--   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/tsparticles/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
--   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/tsparticles/issues/4622) ([1019fa4](https://github.com/tsparticles/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
--   fixed editor for v2.2 ([ae41163](https://github.com/tsparticles/tsparticles/commit/ae41163473095aba0083478a47c70d1cc44bf250))
--   fixed flashing issue with background mask, closes [#3514](https://github.com/tsparticles/tsparticles/issues/3514) ([6f74bf1](https://github.com/tsparticles/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
--   fixed frozen frames (more than 1 seconds), this will fix the issue with pause on blur ([5a933c1](https://github.com/tsparticles/tsparticles/commit/5a933c130d85593e9d0772bb9eb2b7a61f643712))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
--   fixes build scripts, closes [#3909](https://github.com/tsparticles/tsparticles/issues/3909), closes [#3911](https://github.com/tsparticles/tsparticles/issues/3911) ([d2c3fb3](https://github.com/tsparticles/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
--   moved some specific code to the relative project, removing it from the generic engine ([09fe635](https://github.com/tsparticles/tsparticles/commit/09fe63568adc244d11b7eff009626b905d5b05e4))
--   removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/tsparticles/tsparticles/issues/3094) ([1415875](https://github.com/tsparticles/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
--   updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/tsparticles/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
+- added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/tsparticles/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
+- **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/tsparticles/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+- **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/tsparticles/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
+- **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/tsparticles/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
+- **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/tsparticles/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+- **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/tsparticles/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+- **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/tsparticles/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+- fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/tsparticles/issues/4622) ([1019fa4](https://github.com/tsparticles/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+- fixed editor for v2.2 ([ae41163](https://github.com/tsparticles/tsparticles/commit/ae41163473095aba0083478a47c70d1cc44bf250))
+- fixed flashing issue with background mask, closes [#3514](https://github.com/tsparticles/tsparticles/issues/3514) ([6f74bf1](https://github.com/tsparticles/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+- fixed frozen frames (more than 1 seconds), this will fix the issue with pause on blur ([5a933c1](https://github.com/tsparticles/tsparticles/commit/5a933c130d85593e9d0772bb9eb2b7a61f643712))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- fixes build scripts, closes [#3909](https://github.com/tsparticles/tsparticles/issues/3909), closes [#3911](https://github.com/tsparticles/tsparticles/issues/3911) ([d2c3fb3](https://github.com/tsparticles/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+- moved some specific code to the relative project, removing it from the generic engine ([09fe635](https://github.com/tsparticles/tsparticles/commit/09fe63568adc244d11b7eff009626b905d5b05e4))
+- removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/tsparticles/tsparticles/issues/3094) ([1415875](https://github.com/tsparticles/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+- updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/tsparticles/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
 
 ### Features
 
--   added new methods to particle class ([5743453](https://github.com/tsparticles/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
--   added range colors to all color fields ([1b6f32a](https://github.com/tsparticles/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
--   added version to engine ([9406873](https://github.com/tsparticles/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
--   adding new path plugin, using svg paths as a source ([72316ec](https://github.com/tsparticles/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
--   changed load interactivity options to load mode options and moved to external interactors only ([697a155](https://github.com/tsparticles/tsparticles/commit/697a155856c81ad2d4793404f9fc9e34ff78ed68))
--   improved move path generators ([9b67377](https://github.com/tsparticles/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
--   interactivity options overrides in particles options, closes [#4120](https://github.com/tsparticles/tsparticles/issues/4120) ([309afb5](https://github.com/tsparticles/tsparticles/commit/309afb5749e40373648bf9173800334da4dbf965))
--   moved more code out from engine to specific plugins ([14d4887](https://github.com/tsparticles/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
--   moved more code out from engine to specific plugins ([bdd916b](https://github.com/tsparticles/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
--   moved more code out from engine to specific plugins ([b504a14](https://github.com/tsparticles/tsparticles/commit/b504a147d6664faccf4fbc990d32c5dc07ef3945))
--   moved more code out from engine to specific plugins, added new method to interactors ([c3aab68](https://github.com/tsparticles/tsparticles/commit/c3aab68c6ce3317ece3f76e6cd8745db8a7dd6d7))
--   removed all canvas context save/restore calls ([208722f](https://github.com/tsparticles/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- added new methods to particle class ([5743453](https://github.com/tsparticles/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+- added range colors to all color fields ([1b6f32a](https://github.com/tsparticles/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+- added version to engine ([9406873](https://github.com/tsparticles/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+- adding new path plugin, using svg paths as a source ([72316ec](https://github.com/tsparticles/tsparticles/commit/72316ec38ee3556ad2db0af4e84a14529ddb1b9b))
+- changed load interactivity options to load mode options and moved to external interactors only ([697a155](https://github.com/tsparticles/tsparticles/commit/697a155856c81ad2d4793404f9fc9e34ff78ed68))
+- improved move path generators ([9b67377](https://github.com/tsparticles/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+- interactivity options overrides in particles options, closes [#4120](https://github.com/tsparticles/tsparticles/issues/4120) ([309afb5](https://github.com/tsparticles/tsparticles/commit/309afb5749e40373648bf9173800334da4dbf965))
+- moved more code out from engine to specific plugins ([14d4887](https://github.com/tsparticles/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+- moved more code out from engine to specific plugins ([bdd916b](https://github.com/tsparticles/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
+- moved more code out from engine to specific plugins ([b504a14](https://github.com/tsparticles/tsparticles/commit/b504a147d6664faccf4fbc990d32c5dc07ef3945))
+- moved more code out from engine to specific plugins, added new method to interactors ([c3aab68](https://github.com/tsparticles/tsparticles/commit/c3aab68c6ce3317ece3f76e6cd8745db8a7dd6d7))
+- removed all canvas context save/restore calls ([208722f](https://github.com/tsparticles/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.9.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.9.2...tsparticles-interaction-light@2.9.3) (2023-02-12)
 
@@ -213,7 +217,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   added version to engine ([9406873](https://github.com/tsparticles/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
+- added version to engine ([9406873](https://github.com/tsparticles/tsparticles/commit/9406873c6551b59e64edbe3a0e4fe59ef2cde4c6))
 
 # [2.8.0](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.7.1...tsparticles-interaction-light@2.8.0) (2023-01-18)
 
@@ -251,7 +255,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   removed all canvas context save/restore calls ([208722f](https://github.com/tsparticles/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
+- removed all canvas context save/restore calls ([208722f](https://github.com/tsparticles/tsparticles/commit/208722f0a521246165b7cdc529dfbfbd7a3cf7eb))
 
 ## [2.3.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.3.2...tsparticles-interaction-light@2.3.3) (2022-09-30)
 
@@ -281,23 +285,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/tsparticles/issues/4622) ([1019fa4](https://github.com/tsparticles/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
+- fixed double mouse events on mobile using pointer events, closes [#4622](https://github.com/tsparticles/tsparticles/issues/4622) ([1019fa4](https://github.com/tsparticles/tsparticles/commit/1019fa431f8a43cbd45d6adeb5adf94433e6e04b))
 
 ## [2.2.1](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.2.0...tsparticles-interaction-light@2.2.1) (2022-08-12)
 
 ### Bug Fixes
 
--   fixed editor for v2.2 ([ae41163](https://github.com/tsparticles/tsparticles/commit/ae41163473095aba0083478a47c70d1cc44bf250))
+- fixed editor for v2.2 ([ae41163](https://github.com/tsparticles/tsparticles/commit/ae41163473095aba0083478a47c70d1cc44bf250))
 
 # [2.2.0](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.1.4...tsparticles-interaction-light@2.2.0) (2022-08-11)
 
 ### Features
 
--   changed load interactivity options to load mode options and moved to external interactors only ([697a155](https://github.com/tsparticles/tsparticles/commit/697a155856c81ad2d4793404f9fc9e34ff78ed68))
--   moved more code out from engine to specific plugins ([14d4887](https://github.com/tsparticles/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
--   moved more code out from engine to specific plugins ([bdd916b](https://github.com/tsparticles/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
--   moved more code out from engine to specific plugins ([b504a14](https://github.com/tsparticles/tsparticles/commit/b504a147d6664faccf4fbc990d32c5dc07ef3945))
--   moved more code out from engine to specific plugins, added new method to interactors ([c3aab68](https://github.com/tsparticles/tsparticles/commit/c3aab68c6ce3317ece3f76e6cd8745db8a7dd6d7))
+- changed load interactivity options to load mode options and moved to external interactors only ([697a155](https://github.com/tsparticles/tsparticles/commit/697a155856c81ad2d4793404f9fc9e34ff78ed68))
+- moved more code out from engine to specific plugins ([14d4887](https://github.com/tsparticles/tsparticles/commit/14d488756b759b7650e02886ed862f821a6e8ed1))
+- moved more code out from engine to specific plugins ([bdd916b](https://github.com/tsparticles/tsparticles/commit/bdd916b157de7edd96e6401a2366f4e60416ab72))
+- moved more code out from engine to specific plugins ([b504a14](https://github.com/tsparticles/tsparticles/commit/b504a147d6664faccf4fbc990d32c5dc07ef3945))
+- moved more code out from engine to specific plugins, added new method to interactors ([c3aab68](https://github.com/tsparticles/tsparticles/commit/c3aab68c6ce3317ece3f76e6cd8745db8a7dd6d7))
 
 ## [2.1.4](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.1.3...tsparticles-interaction-light@2.1.4) (2022-07-28)
 
@@ -319,20 +323,20 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/tsparticles/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
--   **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/tsparticles/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
--   moved some specific code to the relative project, removing it from the generic engine ([09fe635](https://github.com/tsparticles/tsparticles/commit/09fe63568adc244d11b7eff009626b905d5b05e4))
+- **deps:** update dependency gh-pages to v4 ([cf6e957](https://github.com/tsparticles/tsparticles/commit/cf6e9577132afcec26410f7321fcf5ffcfb05930))
+- **deps:** update react monorepo to v18.1.0 ([6b45793](https://github.com/tsparticles/tsparticles/commit/6b457937c41d7681a2135dfcb6ff220e578f22bb))
+- moved some specific code to the relative project, removing it from the generic engine ([09fe635](https://github.com/tsparticles/tsparticles/commit/09fe63568adc244d11b7eff009626b905d5b05e4))
 
 ### Features
 
--   added range colors to all color fields ([1b6f32a](https://github.com/tsparticles/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
--   interactivity options overrides in particles options, closes [#4120](https://github.com/tsparticles/tsparticles/issues/4120) ([309afb5](https://github.com/tsparticles/tsparticles/commit/309afb5749e40373648bf9173800334da4dbf965))
+- added range colors to all color fields ([1b6f32a](https://github.com/tsparticles/tsparticles/commit/1b6f32ad50beb3dc4813187a6e1d03f3013f3ca9))
+- interactivity options overrides in particles options, closes [#4120](https://github.com/tsparticles/tsparticles/issues/4120) ([309afb5](https://github.com/tsparticles/tsparticles/commit/309afb5749e40373648bf9173800334da4dbf965))
 
 ## [2.0.6](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.0.5...tsparticles-interaction-light@2.0.6) (2022-04-16)
 
 ### Bug Fixes
 
--   fixes build scripts, closes [#3909](https://github.com/tsparticles/tsparticles/issues/3909), closes [#3911](https://github.com/tsparticles/tsparticles/issues/3911) ([d2c3fb3](https://github.com/tsparticles/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
+- fixes build scripts, closes [#3909](https://github.com/tsparticles/tsparticles/issues/3909), closes [#3911](https://github.com/tsparticles/tsparticles/issues/3911) ([d2c3fb3](https://github.com/tsparticles/tsparticles/commit/d2c3fb33ff9c9d529f2609f89c63cb6e1e61ecda))
 
 ## [2.0.5](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.0.4...tsparticles-interaction-light@2.0.5) (2022-04-14)
 
@@ -342,13 +346,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/tsparticles/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- **deps:** update react monorepo to v18 ([3f6aa46](https://github.com/tsparticles/tsparticles/commit/3f6aa46e399d0092ae13ba494db86256c0d05c40))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.42.1...tsparticles-interaction-light@2.0.3) (2022-03-11)
 
@@ -360,7 +364,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/tsparticles/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
+- updated all plugins to use new build system, improves imports compatibility ([0d75d97](https://github.com/tsparticles/tsparticles/commit/0d75d97c02c8a8f55e1697e4e7f0fdcf4c24ae4a))
 
 ## [1.42.4](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.42.3...tsparticles-interaction-light@1.42.4) (2022-03-20)
 
@@ -374,24 +378,24 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.2](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.41.4...tsparticles-interaction-light@2.0.2) (2022-02-21)
 
 ### Bug Fixes
 
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   fixed flashing issue with background mask, closes [#3514](https://github.com/tsparticles/tsparticles/issues/3514) ([6f74bf1](https://github.com/tsparticles/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- fixed flashing issue with background mask, closes [#3514](https://github.com/tsparticles/tsparticles/issues/3514) ([6f74bf1](https://github.com/tsparticles/tsparticles/commit/6f74bf1ab62587c7f2352bfe6f72ea29bb0a31fc))
 
 ## [1.42.1](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.42.0...tsparticles-interaction-light@1.42.1) (2022-03-09)
 
@@ -427,12 +431,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
--   fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- fixed some components init functions, they must be async ([0541dfa](https://github.com/tsparticles/tsparticles/commit/0541dfa82fb04264e2cd01ffd25e458b72847fdb))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.5](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.39.2...tsparticles-interaction-light@2.0.0-beta.5) (2022-01-30)
 
@@ -448,12 +452,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
+- **deps:** update dependency @ionic/angular to v6 ([b20503f](https://github.com/tsparticles/tsparticles/commit/b20503ff2a29f6c8617f42c764c8a868fc334c5f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/tsparticles/tsparticles/issues/3094) ([1415875](https://github.com/tsparticles/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- removed all browser flags in package.json, a lot of issues with it. closes [#3094](https://github.com/tsparticles/tsparticles/issues/3094) ([1415875](https://github.com/tsparticles/tsparticles/commit/14158755ec80ace4e0c520cef407b2d7f4078568))
 
 ## [1.40.1](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.40.0...tsparticles-interaction-light@1.40.1) (2022-02-06)
 
@@ -493,13 +497,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.2](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.35.4...tsparticles-interaction-light@2.0.0-beta.2) (2021-10-06)
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.37.5](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.37.4...tsparticles-interaction-light@1.37.5) (2021-11-28)
 
@@ -521,7 +525,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/tsparticles/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
+- added browserslist to fix some issues with older browsers ([24d8f52](https://github.com/tsparticles/tsparticles/commit/24d8f520ee6934bd967d63612c828705e1dc09e2))
 
 # [2.0.0-beta.1](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@2.0.0-beta.0...tsparticles-interaction-light@2.0.0-beta.1) (2021-10-06)
 
@@ -541,7 +545,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.35.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.35.2...tsparticles-interaction-light@1.35.3) (2021-10-03)
 
@@ -567,18 +571,18 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
--   **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+- **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
 
 ### Features
 
--   improved move path generators ([9b67377](https://github.com/tsparticles/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
+- improved move path generators ([9b67377](https://github.com/tsparticles/tsparticles/commit/9b67377f9208a005b122e312ad4ad3c95a50deb7))
 
 ## [1.33.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.33.2...tsparticles-interaction-light@1.33.3) (2021-08-10)
 
 ### Features
 
--   added new methods to particle class ([5743453](https://github.com/tsparticles/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
+- added new methods to particle class ([5743453](https://github.com/tsparticles/tsparticles/commit/5743453906001569f262888aa54539ad4e1463ac))
 
 ## [1.33.2](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.33.1...tsparticles-interaction-light@1.33.2) (2021-07-31)
 
@@ -588,7 +592,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed frozen frames (more than 1 seconds), this will fix the issue with pause on blur ([5a933c1](https://github.com/tsparticles/tsparticles/commit/5a933c130d85593e9d0772bb9eb2b7a61f643712))
+- fixed frozen frames (more than 1 seconds), this will fix the issue with pause on blur ([5a933c1](https://github.com/tsparticles/tsparticles/commit/5a933c130d85593e9d0772bb9eb2b7a61f643712))
 
 # [1.33.0](https://github.com/tsparticles/tsparticles/compare/tsparticles-interaction-light@1.32.0...tsparticles-interaction-light@1.33.0) (2021-07-29)
 

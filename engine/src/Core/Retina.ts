@@ -24,7 +24,7 @@ export class Retina {
         const container = this.container,
             options = container.actualOptions;
 
-        this.pixelRatio = !options.detectRetina || isSsr() ? defaultRatio : window.devicePixelRatio;
+        this.pixelRatio = !options.detectRetina || isSsr() ? defaultRatio : devicePixelRatio;
         this.reduceFactor = defaultReduceFactor;
 
         const ratio = this.pixelRatio,

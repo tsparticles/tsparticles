@@ -5,7 +5,6 @@ import {
     deleteCount,
     errorPrefix,
     lengthOffset,
-    manualCount,
     minCount,
     minIndex,
     minLimit,
@@ -298,13 +297,14 @@ export class Particles {
 
     setDensity(): void {
         const options = this._container.actualOptions,
-            groups = options.particles.groups;
+            groups = options.particles.groups,
+            manualCount = options.manualParticles.length;
 
         for (const group in groups) {
             this._applyDensity(groups[group], manualCount, group);
         }
 
-        this._applyDensity(options.particles, options.manualParticles.length);
+        this._applyDensity(options.particles, manualCount);
     }
 
     setLastZIndex(zIndex: number): void {
@@ -414,14 +414,19 @@ export class Particles {
         this._pool.push(...particles);
     };
 
-    private readonly _applyDensity = (options: IParticlesOptions, manualCount: number, group?: string): void => {
+    private readonly _applyDensity = (
+        options: IParticlesOptions,
+        manualCount: number,
+        group?: string,
+        groupOptions?: IParticlesOptions,
+    ): void => {
         const numberOptions = options.number;
 
         if (!options.number.density?.enable) {
             if (group === undefined) {
                 this._limit = numberOptions.limit.value;
-            } else if (numberOptions.limit) {
-                this._groupLimits.set(group, numberOptions.limit.value);
+            } else if (groupOptions?.number.limit?.value ?? numberOptions.limit.value) {
+                this._groupLimits.set(group, groupOptions?.number.limit?.value ?? numberOptions.limit.value);
             }
 
             return;

@@ -1,7 +1,9 @@
-import type { IOffsetValues } from "./IOffsetValues.js";
+import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 
 export interface ISimplexOptions {
     columns: number;
+    draw: boolean;
+    factor: IFactorValues;
     height: number;
     increment: number;
     layers: number;

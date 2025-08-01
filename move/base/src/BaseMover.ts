@@ -53,13 +53,13 @@ export class BaseMover implements IParticleMover {
 
         const slowFactor = getProximitySpeedFactor(particle),
             reduceFactor = container.retina.reduceFactor,
-            baseSpeed = particle.retina.moveSpeed * reduceFactor,
-            moveDrift = particle.retina.moveDrift * reduceFactor,
+            baseSpeed = particle.retina.moveSpeed,
+            moveDrift = particle.retina.moveDrift,
             maxSize = getRangeMax(particleOptions.size.value) * pxRatio,
             sizeFactor = moveOptions.size ? particle.getRadius() / maxSize : defaultSizeFactor,
             deltaFactor = delta.factor || defaultDeltaFactor,
             moveSpeed = (baseSpeed * sizeFactor * slowFactor * deltaFactor) / diffFactor,
-            maxSpeed = (particle.retina.maxSpeed ?? container.retina.maxSpeed) * reduceFactor;
+            maxSpeed = particle.retina.maxSpeed ?? container.retina.maxSpeed;
 
         if (moveOptions.spin.enable) {
             spin(particle, moveSpeed, reduceFactor);

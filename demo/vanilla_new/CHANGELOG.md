@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/tsparticles/tsparticles/compare/v3.8.1...v3.9.0) (2025-08-01)
+
+**Note:** Version bump only for package @tsparticles/demo-new
+
 ## [3.8.1](https://github.com/tsparticles/tsparticles/compare/v3.8.0...v3.8.1) (2025-01-31)
 
 **Note:** Version bump only for package @tsparticles/demo-new
@@ -115,7 +119,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/tsparticles/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
+- fixed issue with some plugins that were drawn before the canvas clear ([4cff7e6](https://github.com/tsparticles/tsparticles/commit/4cff7e6817b12d3a3bcaa033eab9f9099afb53ea))
 
 ## [2.11.1](https://github.com/tsparticles/tsparticles/compare/v2.11.0...v2.11.1) (2023-07-24)
 
@@ -133,31 +137,31 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
--   **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
--   **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/tsparticles/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
--   **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/tsparticles/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
--   **deps:** update dependency minify to v10 ([eb16db3](https://github.com/tsparticles/tsparticles/commit/eb16db3e709b42517ee1ae524feaa473a9ff7590))
--   **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/tsparticles/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
--   **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/tsparticles/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
--   **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/tsparticles/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
--   **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/tsparticles/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
--   **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/tsparticles/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
--   fixed issue with size and opacity range ([84e9c16](https://github.com/tsparticles/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
--   improved images loading ([2690f4a](https://github.com/tsparticles/tsparticles/commit/2690f4a33eeb5950af13ded2cd3be18ecae66984))
--   upgrade fs-extra from 10.0.0 to 10.0.1 ([35e46c6](https://github.com/tsparticles/tsparticles/commit/35e46c6dc0f3a35a582ef62dd94cca9b7fbc9bd3))
--   upgrade minify from 8.0.3 to 8.0.4 ([f91828c](https://github.com/tsparticles/tsparticles/commit/f91828c8321505d8861bbf154794eb4e8f061d72))
--   upgrade sass from 1.38.0 to 1.49.9 ([ff3f4fa](https://github.com/tsparticles/tsparticles/commit/ff3f4fadb6e3858985b810c14983258a8d8f16a3))
--   upgrade sass from 1.52.3 to 1.53.0 ([fb2ec98](https://github.com/tsparticles/tsparticles/commit/fb2ec98631e18673b008cd14e6b7c4cb4e40d94c))
+- **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+- **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/tsparticles/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+- **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/tsparticles/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
+- **deps:** update dependency minify to v10 ([eb16db3](https://github.com/tsparticles/tsparticles/commit/eb16db3e709b42517ee1ae524feaa473a9ff7590))
+- **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/tsparticles/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/tsparticles/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+- **deps:** update dependency rimraf to v4.4.1 ([370d1ca](https://github.com/tsparticles/tsparticles/commit/370d1ca4d3bb0ea8bfe5fb3e0f5e1d74f45f4de6))
+- **deps:** update dependency rimraf to v5 ([c29cbc4](https://github.com/tsparticles/tsparticles/commit/c29cbc43ed0d3522b718e7236a48eae9b91cde43))
+- **deps:** update dependency rimraf to v5.0.1 ([6627473](https://github.com/tsparticles/tsparticles/commit/66274734c70b5759c59f7e949c8fcb2c8529bdf2))
+- fixed issue with size and opacity range ([84e9c16](https://github.com/tsparticles/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
+- improved images loading ([2690f4a](https://github.com/tsparticles/tsparticles/commit/2690f4a33eeb5950af13ded2cd3be18ecae66984))
+- upgrade fs-extra from 10.0.0 to 10.0.1 ([35e46c6](https://github.com/tsparticles/tsparticles/commit/35e46c6dc0f3a35a582ef62dd94cca9b7fbc9bd3))
+- upgrade minify from 8.0.3 to 8.0.4 ([f91828c](https://github.com/tsparticles/tsparticles/commit/f91828c8321505d8861bbf154794eb4e8f061d72))
+- upgrade sass from 1.38.0 to 1.49.9 ([ff3f4fa](https://github.com/tsparticles/tsparticles/commit/ff3f4fadb6e3858985b810c14983258a8d8f16a3))
+- upgrade sass from 1.52.3 to 1.53.0 ([fb2ec98](https://github.com/tsparticles/tsparticles/commit/fb2ec98631e18673b008cd14e6b7c4cb4e40d94c))
 
 ### Features
 
--   added localization support to wordpress plugin, fixes [#4807](https://github.com/tsparticles/tsparticles/issues/4807) ([8a93b8a](https://github.com/tsparticles/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
--   bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/tsparticles/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))
--   changed particles move distance to an horizontal/vertical object, single number still valid ([a0b16ed](https://github.com/tsparticles/tsparticles/commit/a0b16ed6df01371d8f00f29047efc04aad10bdbe))
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/tsparticles/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+- added localization support to wordpress plugin, fixes [#4807](https://github.com/tsparticles/tsparticles/issues/4807) ([8a93b8a](https://github.com/tsparticles/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+- bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/tsparticles/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))
+- changed particles move distance to an horizontal/vertical object, single number still valid ([a0b16ed](https://github.com/tsparticles/tsparticles/commit/a0b16ed6df01371d8f00f29047efc04aad10bdbe))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/tsparticles/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 ## [2.9.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@2.9.2...tsparticles-demo-new@2.9.3) (2023-02-12)
 
@@ -191,11 +195,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/tsparticles/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
+- **deps:** update dependency fs-extra to v11 ([e82352a](https://github.com/tsparticles/tsparticles/commit/e82352a685960603a58fb222f91d157ee65967de))
 
 ### Features
 
--   added localization support to wordpress plugin, fixes [#4807](https://github.com/tsparticles/tsparticles/issues/4807) ([8a93b8a](https://github.com/tsparticles/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
+- added localization support to wordpress plugin, fixes [#4807](https://github.com/tsparticles/tsparticles/issues/4807) ([8a93b8a](https://github.com/tsparticles/tsparticles/commit/8a93b8a3d6a1327903c745d7a3b04cb41e5249c8))
 
 ## [2.5.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@2.5.2...tsparticles-demo-new@2.5.3) (2022-11-07)
 
@@ -257,13 +261,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/tsparticles/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
+- **deps:** update capacitor monorepo to v4 ([a63d3a0](https://github.com/tsparticles/tsparticles/commit/a63d3a005ff47dd38ca7924b29267f4796ffebdb))
 
 ## [2.1.4](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@2.1.3...tsparticles-demo-new@2.1.4) (2022-07-28)
 
 ### Bug Fixes
 
--   upgrade sass from 1.52.3 to 1.53.0 ([fb2ec98](https://github.com/tsparticles/tsparticles/commit/fb2ec98631e18673b008cd14e6b7c4cb4e40d94c))
+- upgrade sass from 1.52.3 to 1.53.0 ([fb2ec98](https://github.com/tsparticles/tsparticles/commit/fb2ec98631e18673b008cd14e6b7c4cb4e40d94c))
 
 ## [2.1.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@2.1.2...tsparticles-demo-new@2.1.3) (2022-07-01)
 
@@ -281,7 +285,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/tsparticles/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
+- **deps:** update dependency minify to v9 ([a12fb3e](https://github.com/tsparticles/tsparticles/commit/a12fb3e6f2a94677b4be32ebc69a17b085d2f3d2))
 
 ## [2.0.6](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@2.0.5...tsparticles-demo-new@2.0.6) (2022-04-16)
 
@@ -295,11 +299,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.27.1...tsparticles-demo-new@2.0.3) (2022-03-11)
 
@@ -307,24 +311,24 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [2.0.2](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.26.4...tsparticles-demo-new@2.0.2) (2022-02-21)
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   upgrade fs-extra from 10.0.0 to 10.0.1 ([35e46c6](https://github.com/tsparticles/tsparticles/commit/35e46c6dc0f3a35a582ef62dd94cca9b7fbc9bd3))
--   upgrade minify from 8.0.3 to 8.0.4 ([f91828c](https://github.com/tsparticles/tsparticles/commit/f91828c8321505d8861bbf154794eb4e8f061d72))
--   upgrade sass from 1.38.0 to 1.49.9 ([ff3f4fa](https://github.com/tsparticles/tsparticles/commit/ff3f4fadb6e3858985b810c14983258a8d8f16a3))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- upgrade fs-extra from 10.0.0 to 10.0.1 ([35e46c6](https://github.com/tsparticles/tsparticles/commit/35e46c6dc0f3a35a582ef62dd94cca9b7fbc9bd3))
+- upgrade minify from 8.0.3 to 8.0.4 ([f91828c](https://github.com/tsparticles/tsparticles/commit/f91828c8321505d8861bbf154794eb4e8f061d72))
+- upgrade sass from 1.38.0 to 1.49.9 ([ff3f4fa](https://github.com/tsparticles/tsparticles/commit/ff3f4fadb6e3858985b810c14983258a8d8f16a3))
 
 ## [1.27.4](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.27.3...tsparticles-demo-new@1.27.4) (2022-03-20)
 
@@ -372,11 +376,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.5](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.24.2...tsparticles-demo-new@2.0.0-beta.5) (2022-01-30)
 
@@ -384,8 +388,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
--   **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/tsparticles/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([e2ffbec](https://github.com/tsparticles/tsparticles/commit/e2ffbec6b4c83a847450c1edc8b8f114f45c0eff))
 
 # [1.26.0](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.25.2...tsparticles-demo-new@1.26.0) (2022-02-10)
 
@@ -407,8 +411,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
--   updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/tsparticles/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- updated fpsLimit default value to 120 build: updated all presets to have a fpsLimit of 120 ([d1eff05](https://github.com/tsparticles/tsparticles/commit/d1eff050224c4d65727c0abc3f100d70d3807eb8))
 
 # [2.0.0-beta.4](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@2.0.0-beta.3...tsparticles-demo-new@2.0.0-beta.4) (2021-12-07)
 
@@ -436,21 +440,21 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.2](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.20.4...tsparticles-demo-new@2.0.0-beta.2) (2021-10-06)
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 # [2.0.0-beta.1](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@2.0.0-beta.0...tsparticles-demo-new@2.0.0-beta.1) (2021-10-06)
 
@@ -490,11 +494,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
+- **deps:** update dependency minify to v8 ([3b7d7d0](https://github.com/tsparticles/tsparticles/commit/3b7d7d0fd7d71d014d0f6aa87453beba4f048d0f))
 
 ### Features
 
--   splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
+- splitting engine from slim and full bundles (v2) ([268b78c](https://github.com/tsparticles/tsparticles/commit/268b78c12d6c54069893d27643cfe7a30f3be777))
 
 ## [1.20.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.20.2...tsparticles-demo-new@1.20.3) (2021-10-03)
 
@@ -520,9 +524,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
--   **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
--   **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
--   fixed issue with size and opacity range ([84e9c16](https://github.com/tsparticles/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
+- **deps:** pin dependencies ([23be870](https://github.com/tsparticles/tsparticles/commit/23be8708d698e1e37a18f2ed292cbccffb0f1e47))
+- **deps:** update all ([d9f0ff2](https://github.com/tsparticles/tsparticles/commit/d9f0ff2f8c4ac269aaad5077492746e3da8fb422))
+- fixed issue with size and opacity range ([84e9c16](https://github.com/tsparticles/tsparticles/commit/84e9c16ce0e0ea194cb82bdd1c62839809ee621b))
 
 ## [1.18.3](https://github.com/tsparticles/tsparticles/compare/tsparticles-demo-new@1.18.2...tsparticles-demo-new@1.18.3) (2021-08-10)
 
@@ -540,4 +544,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
--   bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/tsparticles/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))
+- bubble color can now be mixed with the original one to have a smoother effect ([df11d66](https://github.com/tsparticles/tsparticles/commit/df11d66ee94fb9594805a5dfb7d4c776a93c4532))

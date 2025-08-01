@@ -1,11 +1,11 @@
 # Background
 
--   [`color`](#color)
--   [`opacity`](#opacity)
--   [`image`](#image)
--   [`position`](#position)
--   [`repeat`](#repeat)
--   [`size`](#size)
+- [`color`](#color)
+- [`opacity`](#opacity)
+- [`image`](#image)
+- [`position`](#position)
+- [`repeat`](#repeat)
+- [`size`](#size)
 
 ## Color
 

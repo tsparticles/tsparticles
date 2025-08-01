@@ -101,9 +101,10 @@ export class EmitterInstance {
             this.options.load(options);
         }
 
-        this._spawnDelay =
-            (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
-            this.container.retina.reduceFactor;
+        this._spawnDelay = container.retina.reduceFactor
+            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+              container.retina.reduceFactor
+            : Infinity;
         this.position = this._initialPosition ?? this._calcPosition();
         this.name = this.options.name;
 
@@ -197,7 +198,6 @@ export class EmitterInstance {
 
         if (
             !(
-                this.container.retina.reduceFactor &&
                 (this._lifeCount > minLifeCount || this._immortal || !this.options.life.count) &&
                 (this._firstSpawn || this._currentSpawnDelay >= (this._spawnDelay ?? defaultSpawnDelay))
             )
@@ -205,10 +205,14 @@ export class EmitterInstance {
             return;
         }
 
+        const container = this.container;
+
         if (this._emitDelay === undefined) {
             const delay = getRangeValue(this.options.rate.delay);
 
-            this._emitDelay = (delay * millisecondsToSeconds) / this.container.retina.reduceFactor;
+            this._emitDelay = container.retina.reduceFactor
+                ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
+                : Infinity;
         }
 
         if (this._lifeCount > minLifeCount || this._immortal) {
@@ -217,15 +221,16 @@ export class EmitterInstance {
     }
 
     resize(): void {
-        const initialPosition = this._initialPosition;
+        const initialPosition = this._initialPosition,
+            container = this.container;
 
         this.position =
-            initialPosition && isPointInside(initialPosition, this.container.canvas.size, Vector.origin)
+            initialPosition && isPointInside(initialPosition, container.canvas.size, Vector.origin)
                 ? initialPosition
                 : this._calcPosition();
 
         this._size = this._calcSize();
-        this.size = getSize(this._size, this.container.canvas.size);
+        this.size = getSize(this._size, container.canvas.size);
 
         this._shape?.resize(this.position, this.size);
     }
@@ -234,6 +239,8 @@ export class EmitterInstance {
         if (this._paused) {
             return;
         }
+
+        const container = this.container;
 
         if (this._firstSpawn) {
             this._firstSpawn = false;
@@ -267,9 +274,10 @@ export class EmitterInstance {
 
                     this._shape?.resize(this.position, this.size);
 
-                    this._spawnDelay =
-                        (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
-                        this.container.retina.reduceFactor;
+                    this._spawnDelay = container.retina.reduceFactor
+                        ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+                          container.retina.reduceFactor
+                        : Infinity;
                 } else {
                     this._destroy();
                 }
@@ -307,12 +315,14 @@ export class EmitterInstance {
     }
 
     private _calcPosition(): ICoordinates {
+        const container = this.container;
+
         if (this.options.domId) {
             const element = document.getElementById(this.options.domId);
 
             if (element) {
                 const elRect = element.getBoundingClientRect(),
-                    pxRatio = this.container.retina.pixelRatio;
+                    pxRatio = container.retina.pixelRatio;
 
                 return {
                     x: (elRect.x + elRect.width * half) * pxRatio,
@@ -322,7 +332,7 @@ export class EmitterInstance {
         }
 
         return calcPositionOrRandomFromSizeRanged({
-            size: this.container.canvas.size,
+            size: container.canvas.size,
             position: this.options.position,
         });
     }
@@ -388,9 +398,10 @@ export class EmitterInstance {
     }
 
     private _emitParticles(quantity: number): void {
-        const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions);
+        const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions),
+            reduceFactor = this.container.retina.reduceFactor;
 
-        for (let i = 0; i < quantity; i++) {
+        for (let i = 0; i < quantity * reduceFactor; i++) {
             const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;
 
             if (this.spawnColor) {
@@ -463,12 +474,7 @@ export class EmitterInstance {
             minDuration = 0,
             minLifeCount = 0;
 
-        if (
-            this.container.retina.reduceFactor &&
-            (this._lifeCount > minLifeCount || this._immortal) &&
-            duration !== undefined &&
-            duration > minDuration
-        ) {
+        if ((this._lifeCount > minLifeCount || this._immortal) && duration !== undefined && duration > minDuration) {
             this._duration = duration * millisecondsToSeconds;
         }
     };
@@ -487,7 +493,9 @@ export class EmitterInstance {
 
         const colorOffset = randomInRange(animation.offset),
             delay = getRangeValue(this.options.rate.delay),
-            emitFactor = (delay * millisecondsToSeconds) / container.retina.reduceFactor,
+            emitFactor = container.retina.reduceFactor
+                ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
+                : Infinity,
             defaultColorSpeed = 0,
             colorSpeed = getRangeValue(animation.speed ?? defaultColorSpeed);
 

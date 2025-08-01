@@ -8,11 +8,12 @@ import {
     deepExtend,
     getRandom,
 } from "@tsparticles/engine";
-import type { IOffsetValues } from "./IOffsetValues.js";
+import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { ISimplexOptions } from "./ISimplexOptions.js";
 import { SimplexNoise } from "@tsparticles/simplex-noise";
 
 const defaultOptions: ISimplexOptions = {
+    draw: false,
     size: 20,
     increment: 0.004,
     columns: 0,
@@ -20,6 +21,10 @@ const defaultOptions: ISimplexOptions = {
     layers: 0,
     width: 0,
     height: 0,
+    factor: {
+        angle: 0.02,
+        length: 0.01,
+    },
     offset: {
         x: 40000,
         y: 40000,
@@ -46,20 +51,16 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
 
     generate(particle: Particle): Vector {
         const pos = particle.getPosition(),
+            { size } = this.options,
             point = {
-                x: Math.max(Math.floor(pos.x / this.options.size), 0),
-                y: Math.max(Math.floor(pos.y / this.options.size), 0),
-                z: Math.max(Math.floor(pos.z / this.options.size), 0),
+                x: Math.max(Math.floor(pos.x / size), 0),
+                y: Math.max(Math.floor(pos.y / size), 0),
+                z: Math.max(Math.floor(pos.z / size), 0),
             },
-            v = Vector.origin;
+            v = Vector.origin,
+            { field } = this;
 
-        if (!this.field?.[point.x]?.[point.y]?.[point.z]) {
-            return v;
-        }
-
-        v.setTo(this.field[point.x][point.y][point.z]);
-
-        return v;
+        return field?.[point.x]?.[point.y]?.[point.z] ? field[point.x][point.y][point.z].copy() : v;
     }
 
     init(container: Container): void {
@@ -80,36 +81,71 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
         this._calculateField();
 
         this.noiseW += this.options.increment;
+
+        if (this.options.draw) {
+            this.container.canvas.draw(ctx => this._drawField(ctx));
+        }
     }
 
     private _calculateField(): void {
-        const options = this.options;
+        const { options, field, _simplex: noiseGen, noiseW } = this,
+            lengthFactor = options.factor.length,
+            angleFactor = options.factor.angle;
 
         for (let x = 0; x < options.columns; x++) {
             for (let y = 0; y < options.rows; y++) {
                 for (let z = 0; z < options.layers; z++) {
-                    this.field[x][y][z].angle = this._simplex.noise(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
-                    this.field[x][y][z].length = this._simplex.noise(
-                        x / 100 + options.offset.x,
-                        y / 100 + options.offset.y,
-                        z / 100 + options.offset.z,
-                        this.noiseW,
+                    const cell = field[x][y][z];
+
+                    cell.length = noiseGen.noise(
+                        x * lengthFactor + options.offset.x,
+                        y * lengthFactor + options.offset.y,
+                        z * lengthFactor + options.offset.z,
+                        noiseW,
                     );
+                    cell.angle =
+                        noiseGen.noise(x * angleFactor, y * angleFactor, z * angleFactor, noiseW) * Math.PI * 2;
                 }
             }
         }
     }
 
+    private _drawField(ctx: CanvasRenderingContext2D): void {
+        const { field, options } = this;
+
+        for (let x = 0; x < options.columns; x++) {
+            const column = field[x];
+
+            for (let y = 0; y < options.rows; y++) {
+                const cell = column[y][0], // draw only the first layer
+                    { angle, length } = cell;
+
+                // ctx.save();
+                ctx.setTransform(1, 0, 0, 1, x * this.options.size, y * this.options.size);
+                ctx.rotate(angle);
+                ctx.strokeStyle = "white";
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.lineTo(0, this.options.size * length);
+                ctx.stroke();
+                ctx.setTransform(1, 0, 0, 1, 0, 0);
+                // ctx.restore();
+            }
+        }
+    }
+
     private _initField(): void {
-        this.field = new Array<Vector[][]>(this.options.columns);
+        const { columns, rows, layers } = this.options;
 
-        for (let x = 0; x < this.options.columns; x++) {
-            this.field[x] = new Array<Vector[]>(this.options.rows);
+        this.field = new Array<Vector[][]>(columns);
 
-            for (let y = 0; y < this.options.rows; y++) {
-                this.field[x][y] = new Array<Vector>(this.options.layers);
+        for (let x = 0; x < columns; x++) {
+            this.field[x] = new Array<Vector[]>(rows);
 
-                for (let z = 0; z < this.options.layers; z++) {
+            for (let y = 0; y < rows; y++) {
+                this.field[x][y] = new Array<Vector>(layers);
+
+                for (let z = 0; z < layers; z++) {
                     this.field[x][y][z] = Vector.origin;
                 }
             }
@@ -123,27 +159,35 @@ export class SimplexNoiseGenerator implements IMovePathGenerator {
             return;
         }
 
-        const sourceOptions = container.actualOptions.particles.move.path.options;
+        const sourceOptions = container.actualOptions.particles.move.path.options,
+            { options } = this;
 
-        this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
-        this.options.increment =
+        options.width = container.canvas.size.width;
+        options.height = container.canvas.size.height;
+
+        options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
+        options.increment =
             (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
-        this.options.width = container.canvas.size.width;
-        this.options.height = container.canvas.size.height;
+        options.draw = !!sourceOptions.draw;
 
         const offset = sourceOptions.offset as IOffsetValues | undefined;
 
-        this.options.offset.x = offset?.x ?? defaultOptions.offset.x;
-        this.options.offset.y = offset?.y ?? defaultOptions.offset.y;
-        this.options.offset.z = offset?.z ?? defaultOptions.offset.z;
+        options.offset.x = offset?.x ?? defaultOptions.offset.x;
+        options.offset.y = offset?.y ?? defaultOptions.offset.y;
+        options.offset.z = offset?.z ?? defaultOptions.offset.z;
 
-        this.options.seed = (sourceOptions.seed as number | undefined) ?? defaultOptions.seed;
+        const factor = sourceOptions.factor as IFactorValues | undefined;
 
-        this._simplex.seed(this.options.seed ?? getRandom());
+        options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
+        options.factor.length = factor?.length ?? defaultOptions.factor.length;
 
-        this.options.columns = Math.floor(this.options.width / this.options.size) + 1;
-        this.options.rows = Math.floor(this.options.height / this.options.size) + 1;
-        this.options.layers = Math.floor(container.zLayers / this.options.size) + 1;
+        options.seed = sourceOptions.seed as number | undefined;
+
+        this._simplex.seed(options.seed ?? getRandom());
+
+        options.columns = Math.floor(options.width / options.size) + 1;
+        options.rows = Math.floor(options.height / options.size) + 1;
+        options.layers = Math.floor(container.zLayers / options.size) + 1;
 
         this._initField();
     }

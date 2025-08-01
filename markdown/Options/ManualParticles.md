@@ -1,7 +1,7 @@
 # Manual Particles
 
--   [options](#options)
--   [position](#position)
+- [options](#options)
+- [position](#position)
 
 ## Options
 
