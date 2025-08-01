@@ -73,7 +73,7 @@
     "typedoc-plugin-keywords": "^1.6.0",
     "typedoc-plugin-mdn-links": "^5.0.6",
     "typedoc-plugin-missing-exports": "^4.0.0",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.2",
     "typescript-json-schema": "^0.65.1",
     "vitest": "^3.2.4",
     "webpack": "^5.101.0",
