@@ -12,7 +12,7 @@ importers:
         version: 7.28.0
       "@commitlint/cli":
         specifier: ^19.8.1
-        version: 19.8.1(@types/node@24.1.0)(typescript@5.8.3)
+        version: 19.8.1(@types/node@24.1.0)(typescript@5.9.2)
       "@commitlint/config-conventional":
         specifier: ^19.8.1
         version: 19.8.1
@@ -45,10 +45,10 @@ importers:
         version: 1.18.8
       "@typescript-eslint/eslint-plugin":
         specifier: ^7.18.0
-        version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
+        version: 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1)(typescript@5.9.2)
       "@typescript-eslint/parser":
         specifier: ^7.18.0
-        version: 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+        version: 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       "@vitest/coverage-v8":
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4)
@@ -102,7 +102,7 @@ importers:
         version: 8.2.3(@swc/core@1.9.2)(encoding@0.1.13)
       madge:
         specifier: ^8.0.0
-        version: 8.0.0(typescript@5.8.3)
+        version: 8.0.0(typescript@5.9.2)
       nx:
         specifier: 19.8.14
         version: 19.8.14(@swc/core@1.9.2)
@@ -129,31 +129,31 @@ importers:
         version: 2.4.0
       ts-node:
         specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.9.2)(@types/node@24.1.0)(typescript@5.8.3)
+        version: 10.9.2(@swc/core@1.9.2)(@types/node@24.1.0)(typescript@5.9.2)
       typedoc:
-        specifier: ^0.28.8
-        version: 0.28.8(typescript@5.8.3)
+        specifier: ^0.28.9
+        version: 0.28.9(typescript@5.9.2)
       typedoc-plugin-carbon-ads:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.28.8(typescript@5.8.3))
+        version: 1.6.0(typedoc@0.28.9(typescript@5.9.2))
       typedoc-plugin-clarity:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.28.8(typescript@5.8.3))
+        version: 1.6.0(typedoc@0.28.9(typescript@5.9.2))
       typedoc-plugin-coverage:
         specifier: ^4.0.1
-        version: 4.0.1(typedoc@0.28.8(typescript@5.8.3))
+        version: 4.0.1(typedoc@0.28.9(typescript@5.9.2))
       typedoc-plugin-keywords:
         specifier: ^1.6.0
-        version: 1.6.0(typedoc@0.28.8(typescript@5.8.3))
+        version: 1.6.0(typedoc@0.28.9(typescript@5.9.2))
       typedoc-plugin-mdn-links:
-        specifier: ^5.0.6
-        version: 5.0.6(typedoc@0.28.8(typescript@5.8.3))
+        specifier: ^5.0.7
+        version: 5.0.7(typedoc@0.28.9(typescript@5.9.2))
       typedoc-plugin-missing-exports:
         specifier: ^4.0.0
-        version: 4.0.0(typedoc@0.28.8(typescript@5.8.3))
+        version: 4.0.0(typedoc@0.28.9(typescript@5.9.2))
       typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
+        specifier: ^5.9.2
+        version: 5.9.2
       typescript-json-schema:
         specifier: ^0.65.1
         version: 0.65.1(@swc/core@1.9.2)
@@ -176,419 +176,419 @@ importers:
   bundles/all:
     dependencies:
       "@tsparticles/effect-bubble":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../effects/bubble/dist
       "@tsparticles/effect-trail":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../effects/trail/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/interaction-external-particle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/particle/dist
       "@tsparticles/interaction-external-pop":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/pop/dist
       "@tsparticles/interaction-light":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/light/dist
       "@tsparticles/interaction-particles-repulse":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/repulse/dist
       "@tsparticles/path-curl-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/curlNoise/dist
       "@tsparticles/path-curves":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/curves/dist
       "@tsparticles/path-fractal-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/fractalNoise/dist
       "@tsparticles/path-perlin-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/perlinNoise/dist
       "@tsparticles/path-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/polygon/dist
       "@tsparticles/path-simplex-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/simplexNoise/dist
       "@tsparticles/path-svg":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/svg/dist
       "@tsparticles/path-zig-zag":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/zigzag/dist
       "@tsparticles/pjs":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../pjs/dist
       "@tsparticles/plugin-canvas-mask":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/canvasMask/dist
       "@tsparticles/plugin-easing-back":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/back/dist
       "@tsparticles/plugin-easing-circ":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/circ/dist
       "@tsparticles/plugin-easing-cubic":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/cubic/dist
       "@tsparticles/plugin-easing-expo":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/expo/dist
       "@tsparticles/plugin-easing-linear":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/linear/dist
       "@tsparticles/plugin-easing-quart":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/quart/dist
       "@tsparticles/plugin-easing-quint":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/quint/dist
       "@tsparticles/plugin-easing-sine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/sine/dist
       "@tsparticles/plugin-emitters-shape-canvas":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/canvas/dist
       "@tsparticles/plugin-emitters-shape-path":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/path/dist
       "@tsparticles/plugin-emitters-shape-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/polygon/dist
       "@tsparticles/plugin-export-image":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/exports/image/dist
       "@tsparticles/plugin-export-json":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/exports/json/dist
       "@tsparticles/plugin-export-video":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/exports/video/dist
       "@tsparticles/plugin-hsv-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hsvColor/dist
       "@tsparticles/plugin-infection":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/infection/dist
       "@tsparticles/plugin-motion":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/motion/dist
       "@tsparticles/plugin-named-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/namedColor/dist
       "@tsparticles/plugin-oklch-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/oklchColor/dist
       "@tsparticles/plugin-poisson-disc":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/poisson/dist
       "@tsparticles/plugin-polygon-mask":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/polygonMask/dist
       "@tsparticles/plugin-sounds":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/sounds/dist
       "@tsparticles/shape-arrow":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/arrow/dist
       "@tsparticles/shape-cards":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/cards/dist
       "@tsparticles/shape-cog":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/cog/dist
       "@tsparticles/shape-heart":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/heart/dist
       "@tsparticles/shape-infinity":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/infinity/dist
       "@tsparticles/shape-path":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/path/dist
       "@tsparticles/shape-rounded-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/rounded-polygon/dist
       "@tsparticles/shape-rounded-rect":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/rounded-rect/dist
       "@tsparticles/shape-spiral":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/spiral/dist
       "@tsparticles/updater-gradient":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/gradient/dist
       "@tsparticles/updater-orbit":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/orbit/dist
       tsparticles:
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../full/dist
     publishDirectory: dist
 
   bundles/basic:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/move-base":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../move/base/dist
       "@tsparticles/plugin-hex-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hexColor/dist
       "@tsparticles/plugin-hsl-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hslColor/dist
       "@tsparticles/plugin-rgb-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/rgbColor/dist
       "@tsparticles/shape-circle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/circle/dist
       "@tsparticles/updater-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/color/dist
       "@tsparticles/updater-opacity":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/opacity/dist
       "@tsparticles/updater-out-modes":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/outModes/dist
       "@tsparticles/updater-size":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/size/dist
     publishDirectory: dist
 
   bundles/confetti:
     dependencies:
       "@tsparticles/basic":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../basic/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-motion":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/motion/dist
       "@tsparticles/shape-cards":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/cards/dist
       "@tsparticles/shape-emoji":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/emoji/dist
       "@tsparticles/shape-heart":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/heart/dist
       "@tsparticles/shape-image":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/image/dist
       "@tsparticles/shape-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/polygon/dist
       "@tsparticles/shape-square":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/square/dist
       "@tsparticles/shape-star":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/star/dist
       "@tsparticles/updater-life":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/life/dist
       "@tsparticles/updater-roll":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/roll/dist
       "@tsparticles/updater-rotate":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/rotate/dist
       "@tsparticles/updater-tilt":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/tilt/dist
       "@tsparticles/updater-wobble":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/wobble/dist
     publishDirectory: dist
 
   bundles/fireworks:
     dependencies:
       "@tsparticles/basic":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../basic/dist
       "@tsparticles/effect-trail":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../effects/trail/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-emitters-shape-square":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/square/dist
       "@tsparticles/plugin-sounds":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/sounds/dist
       "@tsparticles/updater-destroy":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/destroy/dist
       "@tsparticles/updater-life":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/life/dist
       "@tsparticles/updater-rotate":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/rotate/dist
     publishDirectory: dist
 
   bundles/full:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/interaction-external-trail":
-        specifier: workspace:3.8.1
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/trail/dist
       "@tsparticles/plugin-absorbers":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/absorbers/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-emitters-shape-circle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/circle/dist
       "@tsparticles/plugin-emitters-shape-square":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/square/dist
       "@tsparticles/shape-text":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/text/dist
       "@tsparticles/slim":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../slim/dist
       "@tsparticles/updater-destroy":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/destroy/dist
       "@tsparticles/updater-roll":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/roll/dist
       "@tsparticles/updater-tilt":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/tilt/dist
       "@tsparticles/updater-twinkle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/twinkle/dist
       "@tsparticles/updater-wobble":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/wobble/dist
     publishDirectory: dist
 
   bundles/pjs:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   bundles/slim:
     dependencies:
       "@tsparticles/basic":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../basic/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/interaction-external-attract":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/attract/dist
       "@tsparticles/interaction-external-bounce":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/bounce/dist
       "@tsparticles/interaction-external-bubble":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/bubble/dist
       "@tsparticles/interaction-external-connect":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/connect/dist
       "@tsparticles/interaction-external-grab":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/grab/dist
       "@tsparticles/interaction-external-pause":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/pause/dist
       "@tsparticles/interaction-external-push":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/push/dist
       "@tsparticles/interaction-external-remove":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/remove/dist
       "@tsparticles/interaction-external-repulse":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/repulse/dist
       "@tsparticles/interaction-external-slow":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/slow/dist
       "@tsparticles/interaction-particles-attract":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/attract/dist
       "@tsparticles/interaction-particles-collisions":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/collisions/dist
       "@tsparticles/interaction-particles-links":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/links/dist
       "@tsparticles/move-parallax":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../move/parallax/dist
       "@tsparticles/plugin-easing-quad":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/quad/dist
       "@tsparticles/shape-emoji":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/emoji/dist
       "@tsparticles/shape-image":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/image/dist
       "@tsparticles/shape-line":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/line/dist
       "@tsparticles/shape-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/polygon/dist
       "@tsparticles/shape-square":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/square/dist
       "@tsparticles/shape-star":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/star/dist
       "@tsparticles/updater-life":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/life/dist
       "@tsparticles/updater-rotate":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/rotate/dist
       "@tsparticles/updater-stroke-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/strokeColor/dist
     publishDirectory: dist
 
   demo/electron:
     dependencies:
       "@tsparticles/configs":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/configs/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       tsparticles:
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/full/dist
     devDependencies:
       electron:
@@ -598,319 +598,319 @@ importers:
   demo/vanilla:
     dependencies:
       "@tsparticles/all":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/all/dist
       "@tsparticles/basic":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/basic/dist
       "@tsparticles/confetti":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/confetti/dist
       "@tsparticles/configs":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/configs/dist
       "@tsparticles/effect-bubble":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../effects/bubble/dist
       "@tsparticles/effect-trail":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../effects/trail/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/fireworks":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/fireworks/dist
       "@tsparticles/fractal-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/fractalNoise/dist
       "@tsparticles/interaction-external-attract":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/attract/dist
       "@tsparticles/interaction-external-bounce":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/bounce/dist
       "@tsparticles/interaction-external-bubble":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/bubble/dist
       "@tsparticles/interaction-external-connect":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/connect/dist
       "@tsparticles/interaction-external-grab":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/grab/dist
       "@tsparticles/interaction-external-particle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/particle/dist
       "@tsparticles/interaction-external-pause":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/pause/dist
       "@tsparticles/interaction-external-pop":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/pop/dist
       "@tsparticles/interaction-external-push":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/push/dist
       "@tsparticles/interaction-external-remove":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/remove/dist
       "@tsparticles/interaction-external-repulse":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/repulse/dist
       "@tsparticles/interaction-external-slow":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/slow/dist
       "@tsparticles/interaction-external-trail":
-        specifier: workspace:3.8.1
+        specifier: workspace:3.9.1
         version: link:../../interactions/external/trail/dist
       "@tsparticles/interaction-light":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/light/dist
       "@tsparticles/interaction-particles-attract":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/attract/dist
       "@tsparticles/interaction-particles-collisions":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/collisions/dist
       "@tsparticles/interaction-particles-links":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/links/dist
       "@tsparticles/interaction-particles-repulse":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/repulse/dist
       "@tsparticles/move-base":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../move/base/dist
       "@tsparticles/move-parallax":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../move/parallax/dist
       "@tsparticles/path-curl-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/curlNoise/dist
       "@tsparticles/path-curves":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/curves/dist
       "@tsparticles/path-fractal-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/fractalNoise/dist
       "@tsparticles/path-perlin-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/perlinNoise/dist
       "@tsparticles/path-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/polygon/dist
       "@tsparticles/path-simplex-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/simplexNoise/dist
       "@tsparticles/path-svg":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/svg/dist
       "@tsparticles/path-zig-zag":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/zigzag/dist
       "@tsparticles/perlin-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/perlinNoise/dist
       "@tsparticles/pjs":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/pjs/dist
       "@tsparticles/plugin-absorbers":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/absorbers/dist
       "@tsparticles/plugin-canvas-mask":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/canvasMask/dist
       "@tsparticles/plugin-easing-back":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/back/dist
       "@tsparticles/plugin-easing-circ":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/circ/dist
       "@tsparticles/plugin-easing-cubic":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/cubic/dist
       "@tsparticles/plugin-easing-expo":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/expo/dist
       "@tsparticles/plugin-easing-linear":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/linear/dist
       "@tsparticles/plugin-easing-quad":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/quad/dist
       "@tsparticles/plugin-easing-quart":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/quart/dist
       "@tsparticles/plugin-easing-quint":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/quint/dist
       "@tsparticles/plugin-easing-sine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/easings/sine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-emitters-shape-canvas":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/canvas/dist
       "@tsparticles/plugin-emitters-shape-circle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/circle/dist
       "@tsparticles/plugin-emitters-shape-path":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/path/dist
       "@tsparticles/plugin-emitters-shape-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/polygon/dist
       "@tsparticles/plugin-emitters-shape-square":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/emittersShapes/square/dist
       "@tsparticles/plugin-export-image":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/exports/image/dist
       "@tsparticles/plugin-export-json":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/exports/json/dist
       "@tsparticles/plugin-export-video":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/exports/video/dist
       "@tsparticles/plugin-hex-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hexColor/dist
       "@tsparticles/plugin-hsl-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hslColor/dist
       "@tsparticles/plugin-hsv-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hsvColor/dist
       "@tsparticles/plugin-infection":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/infection/dist
       "@tsparticles/plugin-motion":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/motion/dist
       "@tsparticles/plugin-named-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/namedColor/dist
       "@tsparticles/plugin-oklch-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/oklchColor/dist
       "@tsparticles/plugin-poisson-disc":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/poisson/dist
       "@tsparticles/plugin-polygon-mask":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/polygonMask/dist
       "@tsparticles/plugin-rgb-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/rgbColor/dist
       "@tsparticles/plugin-sounds":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/sounds/dist
       "@tsparticles/shape-arrow":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/arrow/dist
       "@tsparticles/shape-cards":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/cards/dist
       "@tsparticles/shape-circle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/circle/dist
       "@tsparticles/shape-cog":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/cog/dist
       "@tsparticles/shape-emoji":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/emoji/dist
       "@tsparticles/shape-heart":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/heart/dist
       "@tsparticles/shape-image":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/image/dist
       "@tsparticles/shape-infinity":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/infinity/dist
       "@tsparticles/shape-line":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/line/dist
       "@tsparticles/shape-path":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/path/dist
       "@tsparticles/shape-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/polygon/dist
       "@tsparticles/shape-rounded-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/rounded-polygon/dist
       "@tsparticles/shape-rounded-rect":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/rounded-rect/dist
       "@tsparticles/shape-spiral":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/spiral/dist
       "@tsparticles/shape-square":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/square/dist
       "@tsparticles/shape-star":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/star/dist
       "@tsparticles/shape-text":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../shapes/text/dist
       "@tsparticles/simplex-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/simplexNoise/dist
       "@tsparticles/slim":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/slim/dist
       "@tsparticles/smooth-value-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/smoothValueNoise/dist
       "@tsparticles/updater-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/color/dist
       "@tsparticles/updater-destroy":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/destroy/dist
       "@tsparticles/updater-gradient":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/gradient/dist
       "@tsparticles/updater-life":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/life/dist
       "@tsparticles/updater-opacity":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/opacity/dist
       "@tsparticles/updater-orbit":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/orbit/dist
       "@tsparticles/updater-out-modes":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/outModes/dist
       "@tsparticles/updater-roll":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/roll/dist
       "@tsparticles/updater-rotate":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/rotate/dist
       "@tsparticles/updater-size":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/size/dist
       "@tsparticles/updater-stroke-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/strokeColor/dist
       "@tsparticles/updater-tilt":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/tilt/dist
       "@tsparticles/updater-twinkle":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/twinkle/dist
       "@tsparticles/updater-wobble":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/wobble/dist
       tsparticles:
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/full/dist
     devDependencies:
       "@datalust/winston-seq":
@@ -989,40 +989,40 @@ importers:
   demo/vanilla_new:
     dependencies:
       "@tsparticles/configs":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/configs/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/interaction-light":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/light/dist
       "@tsparticles/interaction-particles-repulse":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../interactions/particles/repulse/dist
       "@tsparticles/path-curves":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/curves/dist
       "@tsparticles/path-perlin-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/perlinNoise/dist
       "@tsparticles/path-polygon":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/polygon/dist
       "@tsparticles/path-simplex-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../paths/simplexNoise/dist
       "@tsparticles/plugin-infection":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/infection/dist
       "@tsparticles/updater-gradient":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/gradient/dist
       "@tsparticles/updater-orbit":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../updaters/orbit/dist
       tsparticles:
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/full/dist
     devDependencies:
       fs-extra:
@@ -1038,13 +1038,13 @@ importers:
   demo/vite:
     dependencies:
       "@tsparticles/all":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../bundles/all/dist
       "@tsparticles/configs":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/configs/dist
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     devDependencies:
       typescript:
@@ -1057,14 +1057,14 @@ importers:
   effects/bubble:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   effects/trail:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
@@ -1074,671 +1074,671 @@ importers:
   interactions/external/attract:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/bounce:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/bubble:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/connect:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/grab:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/particle:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/pause:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/pop:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/push:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/remove:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/repulse:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/slow:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/external/trail:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/light:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   interactions/particles/attract:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/collisions:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/links:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   interactions/particles/repulse:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   move/base:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   move/parallax:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/curlNoise:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/simplex-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/simplexNoise/dist
     publishDirectory: dist
 
   paths/curves:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/fractalNoise:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/fractal-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/fractalNoise/dist
     publishDirectory: dist
 
   paths/perlinNoise:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/perlin-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/perlinNoise/dist
     publishDirectory: dist
 
   paths/polygon:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/simplexNoise:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/simplex-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../utils/simplexNoise/dist
     publishDirectory: dist
 
   paths/svg:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   paths/zigzag:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/absorbers:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/canvasMask:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/colors/hexColor:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/hslColor:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/hsvColor:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/namedColor:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/oklchColor:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/colors/rgbColor:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/back:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/circ:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/cubic:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/expo:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/linear:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quad:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quart:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/quint:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/easings/sine:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/emitters:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/emittersShapes/canvas:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../emitters/dist
     publishDirectory: dist
 
   plugins/emittersShapes/circle:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../emitters/dist
     publishDirectory: dist
 
   plugins/emittersShapes/path:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../emitters/dist
     publishDirectory: dist
 
   plugins/emittersShapes/polygon:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../emitters/dist
     publishDirectory: dist
 
   plugins/emittersShapes/square:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../emitters/dist
     publishDirectory: dist
 
   plugins/exports/image:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/json:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/exports/video:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
   plugins/infection:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/motion:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/poisson:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/polygonMask:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   plugins/sounds:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/arrow:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cards:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/circle:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/cog:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/emoji:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/heart:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/image:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/infinity:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/line:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/path:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/polygon:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-polygon:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/rounded-rect:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/spiral:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/square:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/star:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   shapes/text:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/color:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/destroy:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/gradient:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/life:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/opacity:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/orbit:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/outModes:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/roll:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/rotate:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/size:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/strokeColor:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/tilt:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/twinkle:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   updaters/wobble:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/configs:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
     publishDirectory: dist
 
   utils/fractalNoise:
     dependencies:
       "@tsparticles/smooth-value-noise":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../smoothValueNoise/dist
     publishDirectory: dist
 
@@ -1754,19 +1754,19 @@ importers:
   utils/tests:
     dependencies:
       "@tsparticles/engine":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../engine/dist
       "@tsparticles/plugin-hex-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hexColor/dist
       "@tsparticles/plugin-hsl-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hslColor/dist
       "@tsparticles/plugin-hsv-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/hsvColor/dist
       "@tsparticles/plugin-rgb-color":
-        specifier: workspace:3.9.0
+        specifier: workspace:3.9.1
         version: link:../../plugins/colors/rgbColor/dist
 
 packages:
@@ -2958,9 +2958,9 @@ packages:
       { integrity: sha512-m5cPn3e2+FDCOgi1mz0RexTUvvQibBebOUlUlW0+YrMjDTPkiJ6VTKukA1GRsvRw+12KyJndNjj0O4AgTxm2Pg== }
     engines: { node: ">=6" }
 
-  "@gerrit0/mini-shiki@3.8.1":
+  "@gerrit0/mini-shiki@3.9.1":
     resolution:
-      { integrity: sha512-HVZW+8pxoOExr5ZMPK15U79jQAZTO/S6i5byQyyZGjtNj+qaYd82cizTncwFzTQgiLo8uUBym6vh+/1tfJklTw== }
+      { integrity: sha512-quvtbDhNf528BkMHQQd8xGJMpmA5taDZuex/JDF8ETEjS2iypXzr1hnEUVh+lTUyffFJ0JCxysUsiuUoEGIz/Q== }
 
   "@humanwhocodes/config-array@0.13.0":
     resolution:
@@ -3543,21 +3543,21 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  "@shikijs/engine-oniguruma@3.8.1":
+  "@shikijs/engine-oniguruma@3.9.1":
     resolution:
-      { integrity: sha512-KGQJZHlNY7c656qPFEQpIoqOuC4LrxjyNndRdzk5WKB/Ie87+NJCF1xo9KkOUxwxylk7rT6nhlZyTGTC4fCe1g== }
+      { integrity: sha512-WPlL/xqviwS3te4unSGGGfflKsuHLMI6tPdNYvgz/IygcBT6UiwDFSzjBKyebwi5GGSlXsjjdoJLIBnAplmEZw== }
 
-  "@shikijs/langs@3.8.1":
+  "@shikijs/langs@3.9.1":
     resolution:
-      { integrity: sha512-TjOFg2Wp1w07oKnXjs0AUMb4kJvujML+fJ1C5cmEj45lhjbUXtziT1x2bPQb9Db6kmPhkG5NI2tgYW1/DzhUuQ== }
+      { integrity: sha512-Vyy2Yv9PP3Veh3VSsIvNncOR+O93wFsNYgN2B6cCCJlS7H9SKFYc55edsqernsg8WT/zam1cfB6llJsQWLnVhA== }
 
-  "@shikijs/themes@3.8.1":
+  "@shikijs/themes@3.9.1":
     resolution:
-      { integrity: sha512-Vu3t3BBLifc0GB0UPg2Pox1naTemrrvyZv2lkiSw3QayVV60me1ujFQwPZGgUTmwXl1yhCPW8Lieesm0CYruLQ== }
+      { integrity: sha512-zAykkGECNICCMXpKeVvq04yqwaSuAIvrf8MjsU5bzskfg4XreU+O0B5wdNCYRixoB9snd3YlZ373WV5E/g5T9A== }
 
-  "@shikijs/types@3.8.1":
+  "@shikijs/types@3.9.1":
     resolution:
-      { integrity: sha512-5C39Q8/8r1I26suLh+5TPk1DTrbY/kn3IdWA5HdizR0FhlhD05zx5nKCqhzSfDHH3p4S0ZefxWd77DLV+8FhGg== }
+      { integrity: sha512-rqM3T7a0iM1oPKz9iaH/cVgNX9Vz1HERcUcXJ94/fulgVdwqfnhXzGxO4bLrAnh/o5CPLy3IcYedogfV+Ns0Qg== }
 
   "@shikijs/vscode-textmate@10.0.2":
     resolution:
@@ -9926,9 +9926,9 @@ packages:
     peerDependencies:
       typedoc: ^0.25.4
 
-  typedoc-plugin-mdn-links@5.0.6:
+  typedoc-plugin-mdn-links@5.0.7:
     resolution:
-      { integrity: sha512-HMT80FBtXmsxM26RXjoEARWf6g5cRJwcWJ6GiaMNxXu9VlZHxoin15MpxSZVlw3BrG0YILeAieRTJbrnrJXyvw== }
+      { integrity: sha512-F4hSmW4wGn562EuF8UQWmutQfWlvSoP+14QJ6UQcNViGrBCQ9NLqze5LuhYc0DLxuQnWIzUnCShpuy2Zo5LtfQ== }
     peerDependencies:
       typedoc: 0.27.x || 0.28.x
 
@@ -9938,13 +9938,13 @@ packages:
     peerDependencies:
       typedoc: ^0.28.1
 
-  typedoc@0.28.8:
+  typedoc@0.28.9:
     resolution:
-      { integrity: sha512-16GfLopc8icHfdvqZDqdGBoS2AieIRP2rpf9mU+MgN+gGLyEQvAO0QgOa6NJ5QNmQi0LFrDY9in4F2fUNKgJKA== }
+      { integrity: sha512-aw45vwtwOl3QkUAmWCnLV9QW1xY+FSX2zzlit4MAfE99wX+Jij4ycnpbAWgBXsRrxmfs9LaYktg/eX5Bpthd3g== }
     engines: { node: ">= 18", pnpm: ">= 10" }
     hasBin: true
     peerDependencies:
-      typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x
+      typescript: 5.0.x || 5.1.x || 5.2.x || 5.3.x || 5.4.x || 5.5.x || 5.6.x || 5.7.x || 5.8.x || 5.9.x
 
   typescript-json-schema@0.65.1:
     resolution:
@@ -9975,9 +9975,9 @@ packages:
     engines: { node: ">=14.17" }
     hasBin: true
 
-  typescript@5.8.3:
+  typescript@5.9.2:
     resolution:
-      { integrity: sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ== }
+      { integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A== }
     engines: { node: ">=14.17" }
     hasBin: true
 
@@ -11358,11 +11358,11 @@ snapshots:
 
   "@colors/colors@1.6.0": {}
 
-  "@commitlint/cli@19.8.1(@types/node@24.1.0)(typescript@5.8.3)":
+  "@commitlint/cli@19.8.1(@types/node@24.1.0)(typescript@5.9.2)":
     dependencies:
       "@commitlint/format": 19.8.1
       "@commitlint/lint": 19.8.1
-      "@commitlint/load": 19.8.1(@types/node@24.1.0)(typescript@5.8.3)
+      "@commitlint/load": 19.8.1(@types/node@24.1.0)(typescript@5.9.2)
       "@commitlint/read": 19.8.1
       "@commitlint/types": 19.8.1
       tinyexec: 1.0.1
@@ -11409,15 +11409,15 @@ snapshots:
       "@commitlint/rules": 19.8.1
       "@commitlint/types": 19.8.1
 
-  "@commitlint/load@19.8.1(@types/node@24.1.0)(typescript@5.8.3)":
+  "@commitlint/load@19.8.1(@types/node@24.1.0)(typescript@5.9.2)":
     dependencies:
       "@commitlint/config-validator": 19.8.1
       "@commitlint/execute-rule": 19.8.1
       "@commitlint/resolve-extends": 19.8.1
       "@commitlint/types": 19.8.1
       chalk: 5.3.0
-      cosmiconfig: 9.0.0(typescript@5.8.3)
-      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.1.0)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3)
+      cosmiconfig: 9.0.0(typescript@5.9.2)
+      cosmiconfig-typescript-loader: 6.1.0(@types/node@24.1.0)(cosmiconfig@9.0.0(typescript@5.9.2))(typescript@5.9.2)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -11676,12 +11676,12 @@ snapshots:
 
   "@fortawesome/fontawesome-free@6.4.2": {}
 
-  "@gerrit0/mini-shiki@3.8.1":
+  "@gerrit0/mini-shiki@3.9.1":
     dependencies:
-      "@shikijs/engine-oniguruma": 3.8.1
-      "@shikijs/langs": 3.8.1
-      "@shikijs/themes": 3.8.1
-      "@shikijs/types": 3.8.1
+      "@shikijs/engine-oniguruma": 3.9.1
+      "@shikijs/langs": 3.9.1
+      "@shikijs/themes": 3.9.1
+      "@shikijs/types": 3.9.1
       "@shikijs/vscode-textmate": 10.0.2
 
   "@humanwhocodes/config-array@0.13.0":
@@ -11754,7 +11754,7 @@ snapshots:
       "@jridgewell/resolve-uri": 3.1.1
       "@jridgewell/sourcemap-codec": 1.4.15
 
-  "@lerna/create@8.2.3(@swc/core@1.9.2)(encoding@0.1.13)(typescript@5.8.3)":
+  "@lerna/create@8.2.3(@swc/core@1.9.2)(encoding@0.1.13)(typescript@5.9.2)":
     dependencies:
       "@npmcli/arborist": 7.5.4
       "@npmcli/package-json": 5.2.0
@@ -11772,7 +11772,7 @@ snapshots:
       console-control-strings: 1.1.0
       conventional-changelog-core: 5.0.1
       conventional-recommended-bump: 7.0.1
-      cosmiconfig: 9.0.0(typescript@5.8.3)
+      cosmiconfig: 9.0.0(typescript@5.9.2)
       dedent: 1.5.3
       execa: 5.0.0
       fs-extra: 11.2.0
@@ -12282,20 +12282,20 @@ snapshots:
   "@rollup/rollup-win32-x64-msvc@4.32.0":
     optional: true
 
-  "@shikijs/engine-oniguruma@3.8.1":
+  "@shikijs/engine-oniguruma@3.9.1":
     dependencies:
-      "@shikijs/types": 3.8.1
+      "@shikijs/types": 3.9.1
       "@shikijs/vscode-textmate": 10.0.2
 
-  "@shikijs/langs@3.8.1":
+  "@shikijs/langs@3.9.1":
     dependencies:
-      "@shikijs/types": 3.8.1
+      "@shikijs/types": 3.9.1
 
-  "@shikijs/themes@3.8.1":
+  "@shikijs/themes@3.9.1":
     dependencies:
-      "@shikijs/types": 3.8.1
+      "@shikijs/types": 3.9.1
 
-  "@shikijs/types@3.8.1":
+  "@shikijs/types@3.9.1":
     dependencies:
       "@shikijs/vscode-textmate": 10.0.2
       "@types/hast": 3.0.4
@@ -12357,31 +12357,31 @@ snapshots:
       estraverse: 5.3.0
       picomatch: 4.0.2
 
-  "@stylistic/eslint-plugin-plus@1.7.0(eslint@8.57.1)(typescript@5.8.3)":
+  "@stylistic/eslint-plugin-plus@1.7.0(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
       "@types/eslint": 8.56.6
-      "@typescript-eslint/utils": 6.21.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/utils": 6.21.0(eslint@8.57.1)(typescript@5.9.2)
       eslint: 8.57.1
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  "@stylistic/eslint-plugin-ts@1.7.0(eslint@8.57.1)(typescript@5.8.3)":
+  "@stylistic/eslint-plugin-ts@1.7.0(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
       "@stylistic/eslint-plugin-js": 1.7.0(eslint@8.57.1)
       "@types/eslint": 8.56.6
-      "@typescript-eslint/utils": 6.21.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/utils": 6.21.0(eslint@8.57.1)(typescript@5.9.2)
       eslint: 8.57.1
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  "@stylistic/eslint-plugin@1.7.0(eslint@8.57.1)(typescript@5.8.3)":
+  "@stylistic/eslint-plugin@1.7.0(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
       "@stylistic/eslint-plugin-js": 1.7.0(eslint@8.57.1)
       "@stylistic/eslint-plugin-jsx": 1.7.0(eslint@8.57.1)
-      "@stylistic/eslint-plugin-plus": 1.7.0(eslint@8.57.1)(typescript@5.8.3)
-      "@stylistic/eslint-plugin-ts": 1.7.0(eslint@8.57.1)(typescript@5.8.3)
+      "@stylistic/eslint-plugin-plus": 1.7.0(eslint@8.57.1)(typescript@5.9.2)
+      "@stylistic/eslint-plugin-ts": 1.7.0(eslint@8.57.1)(typescript@5.9.2)
       "@types/eslint": 8.56.6
       eslint: 8.57.1
     transitivePeerDependencies:
@@ -12473,8 +12473,8 @@ snapshots:
       "@tsparticles/prettier-config": 2.1.6
       "@tsparticles/tsconfig": 2.3.0
       "@tsparticles/webpack-plugin": 2.3.0(@swc/core@1.9.2)(@types/eslint@8.56.6)
-      "@typescript-eslint/eslint-plugin": 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
-      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/eslint-plugin": 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1)(typescript@5.9.2)
+      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       commander: 12.0.0
       eslint: 8.57.1
       eslint-config-prettier: 9.1.0(eslint@8.57.1)
@@ -12484,13 +12484,13 @@ snapshots:
       fs-extra: 11.2.0
       klaw: 4.1.0
       lookpath: 1.2.2
-      madge: 6.1.0(typescript@5.8.3)
+      madge: 6.1.0(typescript@5.9.2)
       path-scurry: 1.10.1
       prettier: 3.6.2
       prettier-plugin-multiline-arrays: 3.0.6(prettier@3.6.2)
       prompts: 2.4.2
       rimraf: 5.0.7
-      typescript: 5.8.3
+      typescript: 5.9.2
       webpack: 5.101.0(@swc/core@1.9.2)(webpack-cli@6.0.1)
     transitivePeerDependencies:
       - "@swc/core"
@@ -12508,18 +12508,18 @@ snapshots:
 
   "@tsparticles/eslint-config@2.3.0(@types/eslint@8.56.6)":
     dependencies:
-      "@stylistic/eslint-plugin": 1.7.0(eslint@8.57.1)(typescript@5.8.3)
+      "@stylistic/eslint-plugin": 1.7.0(eslint@8.57.1)(typescript@5.9.2)
       "@tsparticles/prettier-config": 2.1.6
-      "@typescript-eslint/eslint-plugin": 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
-      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/eslint-plugin": 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1)(typescript@5.9.2)
+      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       eslint: 8.57.1
       eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1)
       eslint-plugin-jsdoc: 48.5.0(eslint@8.57.1)
       eslint-plugin-prettier: 5.4.0(@types/eslint@8.56.6)(eslint-config-prettier@9.1.0(eslint@8.57.1))(eslint@8.57.1)(prettier@3.6.2)
       eslint-plugin-tsdoc: 0.2.17
       prettier: 3.6.2
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - "@types/eslint"
       - eslint-import-resolver-typescript
@@ -12533,33 +12533,33 @@ snapshots:
 
   "@tsparticles/tsconfig@2.3.0":
     dependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
 
   "@tsparticles/webpack-plugin@2.3.0(@swc/core@1.9.2)(@types/eslint@8.56.6)":
     dependencies:
       "@babel/core": 7.28.0
       "@babel/preset-env": 7.24.3(@babel/core@7.28.0)
-      "@stylistic/eslint-plugin": 1.7.0(eslint@8.57.1)(typescript@5.8.3)
+      "@stylistic/eslint-plugin": 1.7.0(eslint@8.57.1)(typescript@5.9.2)
       "@tsparticles/eslint-config": 2.3.0(@types/eslint@8.56.6)
       "@tsparticles/prettier-config": 2.1.6
       "@types/node": 20.14.9
       "@types/webpack-bundle-analyzer": 4.7.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
       "@types/webpack-env": 1.18.8
-      "@typescript-eslint/eslint-plugin": 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)
-      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/eslint-plugin": 7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1)(typescript@5.9.2)
+      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       babel-loader: 9.2.1(@babel/core@7.28.0)(webpack@5.101.0)
       browserslist: 4.25.1
       copyfiles: 2.4.1
       eslint: 8.57.1
       eslint-config-prettier: 9.1.0(eslint@8.57.1)
-      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)
+      eslint-plugin-import: 2.29.1(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1)
       eslint-plugin-jsdoc: 48.5.0(eslint@8.57.1)
       eslint-plugin-tsdoc: 0.2.17
       prettier: 3.6.2
       prettier-plugin-multiline-arrays: 3.0.6(prettier@3.6.2)
       rimraf: 5.0.7
       terser-webpack-plugin: 5.3.14(@swc/core@1.9.2)(webpack@5.101.0)
-      typescript: 5.8.3
+      typescript: 5.9.2
       webpack: 5.101.0(@swc/core@1.9.2)(webpack-cli@5.1.4)
       webpack-bundle-analyzer: 4.10.2
       webpack-cli: 5.1.4(webpack-bundle-analyzer@4.10.2)(webpack@5.101.0)
@@ -12757,34 +12757,34 @@ snapshots:
       "@types/node": 22.15.14
     optional: true
 
-  "@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1)(typescript@5.8.3)":
+  "@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
       "@eslint-community/regexpp": 4.10.0
-      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       "@typescript-eslint/scope-manager": 7.18.0
-      "@typescript-eslint/type-utils": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
-      "@typescript-eslint/utils": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/type-utils": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
+      "@typescript-eslint/utils": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       "@typescript-eslint/visitor-keys": 7.18.0
       eslint: 8.57.1
       graphemer: 1.4.0
       ignore: 5.3.1
       natural-compare: 1.4.0
-      ts-api-utils: 1.3.0(typescript@5.8.3)
+      ts-api-utils: 1.3.0(typescript@5.9.2)
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
-  "@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3)":
+  "@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
       "@typescript-eslint/scope-manager": 7.18.0
       "@typescript-eslint/types": 7.18.0
-      "@typescript-eslint/typescript-estree": 7.18.0(typescript@5.8.3)
+      "@typescript-eslint/typescript-estree": 7.18.0(typescript@5.9.2)
       "@typescript-eslint/visitor-keys": 7.18.0
       debug: 4.3.6
       eslint: 8.57.1
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
@@ -12798,15 +12798,15 @@ snapshots:
       "@typescript-eslint/types": 7.18.0
       "@typescript-eslint/visitor-keys": 7.18.0
 
-  "@typescript-eslint/type-utils@7.18.0(eslint@8.57.1)(typescript@5.8.3)":
+  "@typescript-eslint/type-utils@7.18.0(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
-      "@typescript-eslint/typescript-estree": 7.18.0(typescript@5.8.3)
-      "@typescript-eslint/utils": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/typescript-estree": 7.18.0(typescript@5.9.2)
+      "@typescript-eslint/utils": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       debug: 4.3.7
       eslint: 8.57.1
-      ts-api-utils: 1.3.0(typescript@5.8.3)
+      ts-api-utils: 1.3.0(typescript@5.9.2)
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
@@ -12848,7 +12848,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  "@typescript-eslint/typescript-estree@6.21.0(typescript@5.8.3)":
+  "@typescript-eslint/typescript-estree@6.21.0(typescript@5.9.2)":
     dependencies:
       "@typescript-eslint/types": 6.21.0
       "@typescript-eslint/visitor-keys": 6.21.0
@@ -12857,13 +12857,13 @@ snapshots:
       is-glob: 4.0.3
       minimatch: 9.0.3
       semver: 7.6.3
-      ts-api-utils: 1.3.0(typescript@5.8.3)
+      ts-api-utils: 1.3.0(typescript@5.9.2)
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
-  "@typescript-eslint/typescript-estree@7.14.1(typescript@5.8.3)":
+  "@typescript-eslint/typescript-estree@7.14.1(typescript@5.9.2)":
     dependencies:
       "@typescript-eslint/types": 7.14.1
       "@typescript-eslint/visitor-keys": 7.14.1
@@ -12872,13 +12872,13 @@ snapshots:
       is-glob: 4.0.3
       minimatch: 9.0.5
       semver: 7.6.3
-      ts-api-utils: 1.3.0(typescript@5.8.3)
+      ts-api-utils: 1.3.0(typescript@5.9.2)
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
-  "@typescript-eslint/typescript-estree@7.18.0(typescript@5.8.3)":
+  "@typescript-eslint/typescript-estree@7.18.0(typescript@5.9.2)":
     dependencies:
       "@typescript-eslint/types": 7.18.0
       "@typescript-eslint/visitor-keys": 7.18.0
@@ -12887,32 +12887,32 @@ snapshots:
       is-glob: 4.0.3
       minimatch: 9.0.5
       semver: 7.6.3
-      ts-api-utils: 1.3.0(typescript@5.8.3)
+      ts-api-utils: 1.3.0(typescript@5.9.2)
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
-  "@typescript-eslint/utils@6.21.0(eslint@8.57.1)(typescript@5.8.3)":
+  "@typescript-eslint/utils@6.21.0(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
       "@eslint-community/eslint-utils": 4.4.0(eslint@8.57.1)
       "@types/json-schema": 7.0.15
       "@types/semver": 7.5.8
       "@typescript-eslint/scope-manager": 6.21.0
       "@typescript-eslint/types": 6.21.0
-      "@typescript-eslint/typescript-estree": 6.21.0(typescript@5.8.3)
+      "@typescript-eslint/typescript-estree": 6.21.0(typescript@5.9.2)
       eslint: 8.57.1
       semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
       - typescript
 
-  "@typescript-eslint/utils@7.18.0(eslint@8.57.1)(typescript@5.8.3)":
+  "@typescript-eslint/utils@7.18.0(eslint@8.57.1)(typescript@5.9.2)":
     dependencies:
       "@eslint-community/eslint-utils": 4.4.0(eslint@8.57.1)
       "@typescript-eslint/scope-manager": 7.18.0
       "@typescript-eslint/types": 7.18.0
-      "@typescript-eslint/typescript-estree": 7.18.0(typescript@5.8.3)
+      "@typescript-eslint/typescript-estree": 7.18.0(typescript@5.9.2)
       eslint: 8.57.1
     transitivePeerDependencies:
       - supports-color
@@ -13844,21 +13844,21 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@6.1.0(@types/node@24.1.0)(cosmiconfig@9.0.0(typescript@5.8.3))(typescript@5.8.3):
+  cosmiconfig-typescript-loader@6.1.0(@types/node@24.1.0)(cosmiconfig@9.0.0(typescript@5.9.2))(typescript@5.9.2):
     dependencies:
       "@types/node": 24.1.0
-      cosmiconfig: 9.0.0(typescript@5.8.3)
+      cosmiconfig: 9.0.0(typescript@5.9.2)
       jiti: 2.4.2
-      typescript: 5.8.3
+      typescript: 5.9.2
 
-  cosmiconfig@9.0.0(typescript@5.8.3):
+  cosmiconfig@9.0.0(typescript@5.9.2):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.0
       js-yaml: 4.1.0
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
 
   create-require@1.1.1: {}
 
@@ -13980,7 +13980,7 @@ snapshots:
       commander: 12.0.0
       filing-cabinet: 5.0.2
       precinct: 12.1.2
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
@@ -14122,12 +14122,12 @@ snapshots:
 
   detective-stylus@5.0.0: {}
 
-  detective-typescript@13.0.0(typescript@5.8.3):
+  detective-typescript@13.0.0(typescript@5.9.2):
     dependencies:
-      "@typescript-eslint/typescript-estree": 7.14.1(typescript@5.8.3)
+      "@typescript-eslint/typescript-estree": 7.14.1(typescript@5.9.2)
       ast-module-types: 6.0.0
       node-source-walk: 7.0.0
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
@@ -14149,15 +14149,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  detective-vue2@2.0.3(typescript@5.8.3):
+  detective-vue2@2.0.3(typescript@5.9.2):
     dependencies:
       "@vue/compiler-sfc": 3.4.35
       detective-es6: 5.0.0
       detective-sass: 6.0.0
       detective-scss: 5.0.0
       detective-stylus: 5.0.0
-      detective-typescript: 13.0.0(typescript@5.8.3)
-      typescript: 5.8.3
+      detective-typescript: 13.0.0(typescript@5.9.2)
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
@@ -14402,17 +14402,17 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.8.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@8.57.1):
+  eslint-module-utils@2.8.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint@8.57.1):
     dependencies:
       debug: 3.2.7(supports-color@5.5.0)
     optionalDependencies:
-      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint@8.57.1):
+  eslint-plugin-import@2.29.1(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint@8.57.1):
     dependencies:
       array-includes: 3.1.7
       array.prototype.findlastindex: 1.2.3
@@ -14422,7 +14422,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 8.57.1
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint@8.57.1)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@7.18.0(eslint@8.57.1)(typescript@5.9.2))(eslint-import-resolver-node@0.3.9)(eslint@8.57.1)
       hasown: 2.0.0
       is-core-module: 2.13.1
       is-glob: 4.0.3
@@ -14433,7 +14433,7 @@ snapshots:
       semver: 6.3.1
       tsconfig-paths: 3.15.0
     optionalDependencies:
-      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.8.3)
+      "@typescript-eslint/parser": 7.18.0(eslint@8.57.1)(typescript@5.9.2)
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
       - eslint-import-resolver-webpack
@@ -14768,7 +14768,7 @@ snapshots:
       sass-lookup: 6.0.1
       stylus-lookup: 6.0.0
       tsconfig-paths: 4.2.0
-      typescript: 5.8.3
+      typescript: 5.9.2
 
   fill-range@7.0.1:
     dependencies:
@@ -15672,7 +15672,7 @@ snapshots:
 
   lerna@8.2.3(@swc/core@1.9.2)(encoding@0.1.13):
     dependencies:
-      "@lerna/create": 8.2.3(@swc/core@1.9.2)(encoding@0.1.13)(typescript@5.8.3)
+      "@lerna/create": 8.2.3(@swc/core@1.9.2)(encoding@0.1.13)(typescript@5.9.2)
       "@npmcli/arborist": 7.5.4
       "@npmcli/package-json": 5.2.0
       "@npmcli/run-script": 8.1.0
@@ -15690,7 +15690,7 @@ snapshots:
       conventional-changelog-angular: 7.0.0
       conventional-changelog-core: 5.0.1
       conventional-recommended-bump: 7.0.1
-      cosmiconfig: 9.0.0(typescript@5.8.3)
+      cosmiconfig: 9.0.0(typescript@5.9.2)
       dedent: 1.5.3
       envinfo: 7.13.0
       execa: 5.0.0
@@ -15742,7 +15742,7 @@ snapshots:
       temp-dir: 1.0.0
       through: 2.3.8
       tinyglobby: 0.2.12
-      typescript: 5.8.3
+      typescript: 5.9.2
       upath: 2.0.1
       uuid: 10.0.0
       validate-npm-package-license: 3.0.4
@@ -15952,7 +15952,7 @@ snapshots:
 
   luxon@3.5.0: {}
 
-  madge@6.1.0(typescript@5.8.3):
+  madge@6.1.0(typescript@5.9.2):
     dependencies:
       chalk: 4.1.2
       commander: 7.2.0
@@ -15977,11 +15977,11 @@ snapshots:
       ts-graphviz: 1.8.1
       walkdir: 0.4.1
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
-  madge@8.0.0(typescript@5.8.3):
+  madge@8.0.0(typescript@5.9.2):
     dependencies:
       chalk: 4.1.2
       commander: 7.2.0
@@ -15996,7 +15996,7 @@ snapshots:
       ts-graphviz: 2.1.2
       walkdir: 0.4.1
     optionalDependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
@@ -16915,12 +16915,12 @@ snapshots:
       detective-sass: 6.0.0
       detective-scss: 5.0.0
       detective-stylus: 5.0.0
-      detective-typescript: 13.0.0(typescript@5.8.3)
-      detective-vue2: 2.0.3(typescript@5.8.3)
+      detective-typescript: 13.0.0(typescript@5.9.2)
+      detective-vue2: 2.0.3(typescript@5.9.2)
       module-definition: 6.0.0
       node-source-walk: 7.0.0
       postcss: 8.5.1
-      typescript: 5.8.3
+      typescript: 5.9.2
     transitivePeerDependencies:
       - supports-color
 
@@ -17990,9 +17990,9 @@ snapshots:
 
   try-to-catch@3.0.1: {}
 
-  ts-api-utils@1.3.0(typescript@5.8.3):
+  ts-api-utils@1.3.0(typescript@5.9.2):
     dependencies:
-      typescript: 5.8.3
+      typescript: 5.9.2
 
   ts-graphviz@1.8.1: {}
 
@@ -18012,7 +18012,7 @@ snapshots:
       normalize-path: 3.0.0
       safe-stable-stringify: 2.5.0
       tslib: 2.8.1
-      typescript: 5.8.3
+      typescript: 5.9.2
 
   ts-node@10.9.2(@swc/core@1.9.2)(@types/node@18.19.45)(typescript@5.5.4):
     dependencies:
@@ -18034,7 +18034,7 @@ snapshots:
     optionalDependencies:
       "@swc/core": 1.9.2
 
-  ts-node@10.9.2(@swc/core@1.9.2)(@types/node@24.1.0)(typescript@5.8.3):
+  ts-node@10.9.2(@swc/core@1.9.2)(@types/node@24.1.0)(typescript@5.9.2):
     dependencies:
       "@cspotcode/source-map-support": 0.8.1
       "@tsconfig/node10": 1.0.9
@@ -18048,7 +18048,7 @@ snapshots:
       create-require: 1.1.1
       diff: 4.0.2
       make-error: 1.3.6
-      typescript: 5.8.3
+      typescript: 5.9.2
       v8-compile-cache-lib: 3.0.1
       yn: 3.1.1
     optionalDependencies:
@@ -18162,40 +18162,40 @@ snapshots:
 
   typedarray@0.0.6: {}
 
-  typedoc-plugin-carbon-ads@1.6.0(typedoc@0.28.8(typescript@5.8.3)):
+  typedoc-plugin-carbon-ads@1.6.0(typedoc@0.28.9(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.8(typescript@5.8.3)
-      typescript: 5.8.3
+      typedoc: 0.28.9(typescript@5.9.2)
+      typescript: 5.9.2
 
-  typedoc-plugin-clarity@1.6.0(typedoc@0.28.8(typescript@5.8.3)):
+  typedoc-plugin-clarity@1.6.0(typedoc@0.28.9(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.8(typescript@5.8.3)
-      typescript: 5.8.3
+      typedoc: 0.28.9(typescript@5.9.2)
+      typescript: 5.9.2
 
-  typedoc-plugin-coverage@4.0.1(typedoc@0.28.8(typescript@5.8.3)):
+  typedoc-plugin-coverage@4.0.1(typedoc@0.28.9(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.8(typescript@5.8.3)
+      typedoc: 0.28.9(typescript@5.9.2)
 
-  typedoc-plugin-keywords@1.6.0(typedoc@0.28.8(typescript@5.8.3)):
+  typedoc-plugin-keywords@1.6.0(typedoc@0.28.9(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.8(typescript@5.8.3)
-      typescript: 5.8.3
+      typedoc: 0.28.9(typescript@5.9.2)
+      typescript: 5.9.2
 
-  typedoc-plugin-mdn-links@5.0.6(typedoc@0.28.8(typescript@5.8.3)):
+  typedoc-plugin-mdn-links@5.0.7(typedoc@0.28.9(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.8(typescript@5.8.3)
+      typedoc: 0.28.9(typescript@5.9.2)
 
-  typedoc-plugin-missing-exports@4.0.0(typedoc@0.28.8(typescript@5.8.3)):
+  typedoc-plugin-missing-exports@4.0.0(typedoc@0.28.9(typescript@5.9.2)):
     dependencies:
-      typedoc: 0.28.8(typescript@5.8.3)
+      typedoc: 0.28.9(typescript@5.9.2)
 
-  typedoc@0.28.8(typescript@5.8.3):
+  typedoc@0.28.9(typescript@5.9.2):
     dependencies:
-      "@gerrit0/mini-shiki": 3.8.1
+      "@gerrit0/mini-shiki": 3.9.1
       lunr: 2.3.9
       markdown-it: 14.1.0
       minimatch: 9.0.5
-      typescript: 5.8.3
+      typescript: 5.9.2
       yaml: 2.8.0
 
   typescript-json-schema@0.65.1(@swc/core@1.9.2):
@@ -18220,7 +18220,7 @@ snapshots:
 
   typescript@5.5.4: {}
 
-  typescript@5.8.3: {}
+  typescript@5.9.2: {}
 
   uc.micro@2.1.0: {}
 

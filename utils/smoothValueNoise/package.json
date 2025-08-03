@@ -1,6 +1,6 @@
 {
     "name": "@tsparticles/smooth-value-noise",
-    "version": "3.9.0",
+    "version": "3.9.1",
     "description": "tsParticles smooth value noise path",
     "homepage": "https://particles.js.org",
     "scripts": {
