@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters",
-  "version": "3.9.0",
+  "version": "3.9.1",
   "description": "tsParticles emitters plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -86,7 +86,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "3.9.0"
+    "@tsparticles/engine": "3.9.1"
   },
   "publishConfig": {
     "access": "public"
