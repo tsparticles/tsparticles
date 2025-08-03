@@ -108,7 +108,7 @@
     },
     "dependencies": {
         "@tsparticles/engine": "workspace:3.9.0",
-        "@tsparticles/interaction-external-trail": "workspace:3.8.1",
+        "@tsparticles/interaction-external-trail": "workspace:3.9.0",
         "@tsparticles/plugin-absorbers": "workspace:3.9.0",
         "@tsparticles/plugin-emitters": "workspace:3.9.0",
         "@tsparticles/plugin-emitters-shape-circle": "workspace:3.9.0",

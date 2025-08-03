@@ -100,7 +100,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "3.9.0",
-    "@tsparticles/interaction-external-trail": "3.8.1",
+    "@tsparticles/interaction-external-trail": "3.9.0",
     "@tsparticles/plugin-absorbers": "3.9.0",
     "@tsparticles/plugin-emitters": "3.9.0",
     "@tsparticles/plugin-emitters-shape-circle": "3.9.0",

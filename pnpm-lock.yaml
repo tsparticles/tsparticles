@@ -454,7 +454,7 @@ importers:
         specifier: workspace:3.9.0
         version: link:../../engine/dist
       '@tsparticles/interaction-external-trail':
-        specifier: workspace:3.8.1
+        specifier: workspace:3.9.0
         version: link:../../interactions/external/trail/dist
       '@tsparticles/plugin-absorbers':
         specifier: workspace:3.9.0
@@ -662,7 +662,7 @@ importers:
         specifier: workspace:3.9.0
         version: link:../../interactions/external/slow/dist
       '@tsparticles/interaction-external-trail':
-        specifier: workspace:3.8.1
+        specifier: workspace:3.9.0
         version: link:../../interactions/external/trail/dist
       '@tsparticles/interaction-light':
         specifier: workspace:3.9.0

@@ -71,7 +71,7 @@
         "@tsparticles/interaction-external-remove": "workspace:3.9.0",
         "@tsparticles/interaction-external-repulse": "workspace:3.9.0",
         "@tsparticles/interaction-external-slow": "workspace:3.9.0",
-        "@tsparticles/interaction-external-trail": "workspace:3.8.1",
+        "@tsparticles/interaction-external-trail": "workspace:3.9.0",
         "@tsparticles/interaction-light": "workspace:3.9.0",
         "@tsparticles/interaction-particles-attract": "workspace:3.9.0",
         "@tsparticles/interaction-particles-collisions": "workspace:3.9.0",
