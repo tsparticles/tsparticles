@@ -20,4 +20,4 @@ export async function loadExternalTrailInteraction(engine: Engine, refresh = tru
 }
 
 export * from "./Options/Classes/Trail.js";
-export * from "./Options/Interfaces/ITrail.js";
+export type * from "./Options/Interfaces/ITrail.js";

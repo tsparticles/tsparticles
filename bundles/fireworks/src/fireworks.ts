@@ -376,7 +376,7 @@ fireworks.create = async (
     canvas: HTMLCanvasElement,
     options?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> => {
-    const id = canvas.id ?? "fireworks";
+    const id = canvas.id || "fireworks";
 
     return getFireworksInstance(id, options ?? {}, canvas);
 };

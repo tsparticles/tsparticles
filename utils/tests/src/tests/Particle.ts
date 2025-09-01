@@ -19,7 +19,7 @@ describe("Particle", async () => {
         options: {
             autoPlay: false,
         },
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         element: canvas,
     });
 
@@ -123,11 +123,11 @@ describe("Particle", async () => {
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options.polygon;
                         break;
                     default:
-                        throw new Error(`${errorPrefix} Unexpected shape type "${particle?.shape}"`);
+                        throw new Error(`${errorPrefix} Unexpected shape type "${particle?.shape ?? ""}"`);
                 }
 
-                expect(particle?.shapeClose).to.eql(expectedShapeData.close);
-                expect(particle?.shapeFill).to.eql(expectedShapeData.fill);
+                expect(particle.shapeClose).to.eql(expectedShapeData.close);
+                expect(particle.shapeFill).to.eql(expectedShapeData.fill);
             });
 
             afterAll(async () => {
@@ -166,10 +166,10 @@ describe("Particle", async () => {
                 return;
             }
 
-            expect(particle?.position.x).to.be.at.least(0);
-            expect(particle?.position.x).to.be.at.most(width);
-            expect(particle?.position.y).to.be.at.least(0);
-            expect(particle?.position.y).to.be.at.most(height);
+            expect(particle.position.x).to.be.at.least(0);
+            expect(particle.position.x).to.be.at.most(width);
+            expect(particle.position.y).to.be.at.least(0);
+            expect(particle.position.y).to.be.at.most(height);
         });
 
         afterAll(async () => {

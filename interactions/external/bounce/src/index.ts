@@ -20,4 +20,4 @@ export async function loadExternalBounceInteraction(engine: Engine, refresh = tr
 }
 
 export * from "./Options/Classes/Bounce.js";
-export * from "./Options/Interfaces/IBounce.js";
+export type * from "./Options/Interfaces/IBounce.js";

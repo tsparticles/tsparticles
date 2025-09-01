@@ -44,9 +44,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
         }
 
         if (data.image) {
-            if (!this.image) {
-                this.image = new ImageMask();
-            }
+            this.image ??= new ImageMask();
 
             this.image.load(data.image);
         }
@@ -71,9 +69,7 @@ export class CanvasMask implements ICanvasMask, IOptionLoader<ICanvasMask> {
         }
 
         if (data.text) {
-            if (!this.text) {
-                this.text = new TextMask();
-            }
+            this.text ??= new TextMask();
 
             this.text.load(data.text);
         }

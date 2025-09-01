@@ -22,6 +22,6 @@ export async function loadExternalRepulseInteraction(engine: Engine, refresh = t
 export * from "./Options/Classes/RepulseBase.js";
 export * from "./Options/Classes/RepulseDiv.js";
 export * from "./Options/Classes/Repulse.js";
-export * from "./Options/Interfaces/IRepulseBase.js";
-export * from "./Options/Interfaces/IRepulseDiv.js";
-export * from "./Options/Interfaces/IRepulse.js";
+export type * from "./Options/Interfaces/IRepulseBase.js";
+export type * from "./Options/Interfaces/IRepulseDiv.js";
+export type * from "./Options/Interfaces/IRepulse.js";

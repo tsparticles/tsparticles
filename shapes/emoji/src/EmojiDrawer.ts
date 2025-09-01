@@ -14,7 +14,8 @@ import type { IEmojiShape } from "./IEmojiShape.js";
 import { drawEmoji } from "./Utils.js";
 
 const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"',
-    noPadding = 0;
+    noPadding = 0,
+    firstItem = 0;
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     readonly validTypes = ["emoji"] as const;
@@ -24,7 +25,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     destroy(): void {
         for (const [key, data] of this._emojiShapeDict) {
             if (data instanceof ImageBitmap) {
-                data?.close();
+                data.close();
             }
 
             this._emojiShapeDict.delete(key);
@@ -56,17 +57,15 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         }
 
         const promises: Promise<void>[] = [loadFont(defaultFont)],
-            shapeOptions = validTypes
-                .map(t => options.particles.shape.options[t])
-                .find(t => !!t) as SingleOrMultiple<IEmojiShape>;
+            shapeOptions = validTypes.map(t => options.particles.shape.options[t])[
+                firstItem
+            ] as SingleOrMultiple<IEmojiShape>;
 
-        if (shapeOptions) {
-            executeOnSingleOrMultiple(shapeOptions, shape => {
-                if (shape.font) {
-                    promises.push(loadFont(shape.font));
-                }
-            });
-        }
+        executeOnSingleOrMultiple(shapeOptions, shape => {
+            if (shape.font) {
+                promises.push(loadFont(shape.font));
+            }
+        });
 
         await Promise.all(promises);
     }
@@ -79,7 +78,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
         const double = 2,
             shapeData = particle.shapeData as unknown as IEmojiShape;
 
-        if (!shapeData?.value) {
+        if (!shapeData.value) {
             return;
         }
 
@@ -128,7 +127,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
                 return;
             }
 
-            context.font = `400 ${maxSize * double}px ${font}`;
+            context.font = `400 ${(maxSize * double).toString()}px ${font}`;
             context.textBaseline = "middle";
             context.textAlign = "center";
 
@@ -147,7 +146,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
                 return;
             }
 
-            context.font = `400 ${maxSize * double}px ${font}`;
+            context.font = `400 ${(maxSize * double).toString()}px ${font}`;
             context.textBaseline = "middle";
             context.textAlign = "center";
 

@@ -95,9 +95,7 @@ export class Repulser extends ParticlesInteractorBase {
         options: RepulseParticlesOptions,
         ...sources: (RecursivePartial<IRepulseParticlesOptions> | undefined)[]
     ): void {
-        if (!options.repulse) {
-            options.repulse = new ParticlesRepulse();
-        }
+        options.repulse ??= new ParticlesRepulse();
 
         for (const source of sources) {
             options.repulse.load(source?.repulse);

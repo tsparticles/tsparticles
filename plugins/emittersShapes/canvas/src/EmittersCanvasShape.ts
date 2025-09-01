@@ -28,18 +28,16 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
 
         let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
 
-        if (filter !== undefined) {
-            if (isString(filter)) {
-                if (Object.hasOwn(window, filter)) {
-                    const wndFilter = (window as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
+        if (isString(filter)) {
+            if (Object.hasOwn(window, filter)) {
+                const wndFilter = (window as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
 
-                    if (isFunction(wndFilter)) {
-                        filterFunc = wndFilter;
-                    }
+                if (isFunction(wndFilter)) {
+                    filterFunc = wndFilter;
                 }
-            } else {
-                filterFunc = filter;
             }
+        } else {
+            filterFunc = filter;
         }
 
         this.filter = filterFunc;
@@ -72,14 +70,6 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
             }
 
             pixelData = await getImageData(url, offset);
-        } else if (text) {
-            const data = getTextData(text, offset, this.fill);
-
-            if (isNull(data)) {
-                return;
-            }
-
-            pixelData = data;
         } else if (element ?? selector) {
             const canvas = element ?? (selector && document.querySelector<HTMLCanvasElement>(selector));
 
@@ -94,10 +84,14 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
             }
 
             pixelData = getCanvasImageData(context, canvas, offset);
-        }
+        } else {
+            const data = getTextData(text, offset, this.fill);
 
-        if (!pixelData) {
-            return;
+            if (isNull(data)) {
+                return;
+            }
+
+            pixelData = data;
         }
 
         this.pixelData = pixelData;

@@ -119,7 +119,7 @@ async function getDataFromUrl(
         return (await response.json()) as SingleOrMultiple<ISourceOptions>;
     }
 
-    getLogger().error(`${errorPrefix} ${response.status} while retrieving config file`);
+    getLogger().error(`${errorPrefix} ${response.status.toString()} while retrieving config file`);
 
     return data.fallback;
 }
@@ -130,9 +130,7 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
         if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
             canvasEl = domContainer as HTMLCanvasElement;
 
-            if (!canvasEl.dataset[generatedAttribute]) {
-                canvasEl.dataset[generatedAttribute] = generatedFalse;
-            }
+            canvasEl.dataset[generatedAttribute] ??= generatedFalse;
         } else {
             const existingCanvases = domContainer.getElementsByTagName(canvasTag);
 
@@ -311,7 +309,7 @@ export class Engine {
      * @param refresh -
      */
     async addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction, refresh = true): Promise<void> {
-        if (this.getEasing(name)) {
+        if (this.easingFunctions.get(name)) {
             return;
         }
 
@@ -621,7 +619,7 @@ export class Engine {
         const { items } = this,
             item = items[index];
 
-        if (!item || item.destroyed) {
+        if (item.destroyed) {
             items.splice(index, removeDeleteCount);
 
             return;
@@ -636,7 +634,10 @@ export class Engine {
      * @returns A Promise with the {@link Container} object created
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
-        const id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor)}`,
+        const id =
+                params.id ??
+                params.element?.id ??
+                `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
             { index, url } = params,
             options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
             /* elements */
@@ -675,7 +676,9 @@ export class Engine {
      * @param sourceOptions - the source options to read
      */
     loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        this.plugins.forEach(plugin => plugin.loadOptions?.(options, sourceOptions));
+        this.plugins.forEach(plugin => {
+            plugin.loadOptions(options, sourceOptions);
+        });
     }
 
     /**
@@ -730,6 +733,8 @@ export class Engine {
             throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
         }
 
-        items.forEach(item => item.addClickHandler(callback));
+        items.forEach(item => {
+            item.addClickHandler(callback);
+        });
     }
 }

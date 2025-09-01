@@ -21,5 +21,5 @@ export async function loadExternalConnectInteraction(engine: Engine, refresh = t
 
 export * from "./Options/Classes/Connect.js";
 export * from "./Options/Classes/ConnectLinks.js";
-export * from "./Options/Interfaces/IConnect.js";
-export * from "./Options/Interfaces/IConnectLinks.js";
+export type * from "./Options/Interfaces/IConnect.js";
+export type * from "./Options/Interfaces/IConnectLinks.js";

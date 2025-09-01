@@ -10,7 +10,7 @@ export class EmitterShapeReplace implements IEmitterShapeReplace, IOptionLoader<
         this.opacity = false;
     }
 
-    load(data?: RecursivePartial<IEmitterShapeReplace> | undefined): void {
+    load(data?: RecursivePartial<IEmitterShapeReplace>): void {
         if (isNull(data)) {
             return;
         }

@@ -96,9 +96,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
         options: Modes & ConnectMode,
         ...sources: RecursivePartial<(IModes & IConnectMode) | undefined>[]
     ): void {
-        if (!options.connect) {
-            options.connect = new Connect();
-        }
+        options.connect ??= new Connect();
 
         for (const source of sources) {
             options.connect.load(source?.connect);

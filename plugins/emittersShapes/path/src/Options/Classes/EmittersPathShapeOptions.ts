@@ -10,7 +10,7 @@ export class EmittersPathShapeOptions implements IEmittersPathShapeOptions, IOpt
         this.points = [];
     }
 
-    load(data?: RecursivePartial<IEmittersPathShapeOptions> | undefined): void {
+    load(data?: RecursivePartial<IEmittersPathShapeOptions>): void {
         if (isNull(data)) {
             return;
         }
