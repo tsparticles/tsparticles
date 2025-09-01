@@ -41,7 +41,7 @@
     "helmet": "^8.0.0",
     "jquery": "^3.7.1",
     "jsoneditor": "^10.0.0",
-    "livereload": "^0.9.3",
+    "livereload": "^0.10.0",
     "lodash": "^4.17.21",
     "nodemon": "^3.0.1",
     "pug": "^3.0.2",
