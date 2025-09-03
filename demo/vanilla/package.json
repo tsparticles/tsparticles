@@ -35,7 +35,7 @@
     "bootstrap": "^5.3.2",
     "concurrently": "^9.0.0",
     "connect-livereload": "^0.6.1",
-    "dotenv": "^16.3.1",
+    "dotenv": "^17.0.0",
     "express": "^4.18.2",
     "express-rate-limit": "^7.1.4",
     "helmet": "^8.0.0",
