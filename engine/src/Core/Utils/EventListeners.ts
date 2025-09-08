@@ -80,6 +80,7 @@ export class EventListeners {
     private _resizeObserver?: ResizeObserver;
     private _resizeTimeout?: NodeJS.Timeout;
     private readonly _touches: Map<number, number>;
+    private readonly _mediaMatch?: MediaQueryList;
 
     /**
      * Events listener constructor
@@ -87,8 +88,9 @@ export class EventListeners {
      */
     constructor(private readonly container: Container) {
         this._canPush = true;
-
+        
         this._touches = new Map<number, number>();
+        this._mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
         this._handlers = {
             mouseDown: (): void => this._mouseDown(),
             mouseLeave: (): void => this._mouseTouchFinish(),
@@ -296,7 +298,7 @@ export class EventListeners {
 
     private readonly _manageMediaMatch: (add: boolean) => void = add => {
         const handlers = this._handlers,
-            mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
+            mediaMatch = this._mediaMatch;
 
         if (!mediaMatch) {
             return;
