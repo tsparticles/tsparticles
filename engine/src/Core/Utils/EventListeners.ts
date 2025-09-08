@@ -88,7 +88,7 @@ export class EventListeners {
      */
     constructor(private readonly container: Container) {
         this._canPush = true;
-        
+
         this._touches = new Map<number, number>();
         this._mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
         this._handlers = {
