@@ -77,6 +77,7 @@ export class EventListeners {
     private _canPush: boolean;
 
     private readonly _handlers: EventListenersHandlers;
+    private _mediaMatch?: MediaQueryList;
     private _resizeObserver?: ResizeObserver;
     private _resizeTimeout?: NodeJS.Timeout;
     private readonly _touches: Map<number, number>;
@@ -295,27 +296,32 @@ export class EventListeners {
     };
 
     private readonly _manageMediaMatch: (add: boolean) => void = add => {
-        const handlers = this._handlers,
-            mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
-
-        if (!mediaMatch) {
-            return;
-        }
-
-        if (mediaMatch.addEventListener !== undefined) {
-            manageListener(mediaMatch, "change", handlers.themeChange, add);
-
-            return;
-        }
-
-        if (mediaMatch.addListener === undefined) {
-            return;
-        }
+        const handlers = this._handlers;
 
         if (add) {
-            mediaMatch.addListener(handlers.oldThemeChange);
-        } else {
-            mediaMatch.removeListener(handlers.oldThemeChange);
+            // Only create MediaQueryList when adding listeners
+            if (!this._mediaMatch) {
+                this._mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
+            }
+        }
+
+        if (!this._mediaMatch) {
+            return;
+        }
+
+        if (this._mediaMatch.addEventListener !== undefined) {
+            manageListener(this._mediaMatch, "change", handlers.themeChange, add);
+        } else if (this._mediaMatch.addListener !== undefined) {
+            if (add) {
+                this._mediaMatch.addListener(handlers.oldThemeChange);
+            } else {
+                this._mediaMatch.removeListener(handlers.oldThemeChange);
+            }
+        }
+
+        // Clear reference when removing listeners
+        if (!add) {
+            this._mediaMatch = undefined;
         }
     };
 
