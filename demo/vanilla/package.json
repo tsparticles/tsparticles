@@ -36,7 +36,7 @@
     "concurrently": "^9.0.0",
     "connect-livereload": "^0.6.1",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
+    "express": "^5.0.0",
     "express-rate-limit": "^7.1.4",
     "helmet": "^8.0.0",
     "jquery": "^3.7.1",
