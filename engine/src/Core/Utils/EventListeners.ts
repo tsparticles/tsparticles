@@ -76,6 +76,7 @@ export class EventListeners {
     private _canPush: boolean;
 
     private readonly _handlers: EventListenersHandlers;
+    private _mediaMatch?: MediaQueryList;
     private _resizeObserver?: ResizeObserver;
     private _resizeTimeout?: NodeJS.Timeout;
     private readonly _touches: Map<number, number>;
@@ -320,14 +321,33 @@ export class EventListeners {
     };
 
     private readonly _manageMediaMatch: (add: boolean) => void = add => {
-        const handlers = this._handlers,
-            mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
+        const handlers = this._handlers;
 
-        if (!mediaMatch) {
+        if (add) {
+            // Only create MediaQueryList when adding listeners
+            if (!this._mediaMatch) {
+                this._mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
+            }
+        }
+
+        if (!this._mediaMatch) {
             return;
         }
 
-        manageListener(mediaMatch, "change", handlers.themeChange, add);
+        if (this._mediaMatch.addEventListener !== undefined) {
+            manageListener(this._mediaMatch, "change", handlers.themeChange, add);
+        } else if (this._mediaMatch.addListener !== undefined) {
+            if (add) {
+                this._mediaMatch.addListener(handlers.oldThemeChange);
+            } else {
+                this._mediaMatch.removeListener(handlers.oldThemeChange);
+            }
+        }
+
+        // Clear reference when removing listeners
+        if (!add) {
+            this._mediaMatch = undefined;
+        }
     };
 
     private readonly _manageResize: (add: boolean) => void = add => {
