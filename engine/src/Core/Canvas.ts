@@ -50,34 +50,28 @@ function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, import
         return;
     }
 
-    const element = canvas;
+    const element = canvas,
+        elementStyle = element.style,
+        keys = new Set<string>();
 
-    if (!element) {
-        return;
-    }
+    for (let i = 0; i < elementStyle.length; i++) {
+        const key = elementStyle.item(i);
 
-    const elementStyle = element.style;
-
-    if (!elementStyle) {
-        return;
-    }
-
-    const keys = new Set<string>();
-
-    for (const key in elementStyle) {
-        if (!Object.prototype.hasOwnProperty.call(elementStyle, key)) {
+        if (!key) {
             continue;
         }
 
-        keys.add(elementStyle[key]);
+        keys.add(key);
     }
 
-    for (const key in style) {
-        if (!Object.prototype.hasOwnProperty.call(style, key)) {
+    for (let i = 0; i < style.length; i++) {
+        const key = style.item(i);
+
+        if (!key) {
             continue;
         }
 
-        keys.add(style[key]);
+        keys.add(key);
     }
 
     for (const key of keys) {
@@ -252,13 +246,8 @@ export class Canvas {
 
         let [fColor, sColor] = this._getPluginParticleColors(particle);
 
-        if (!fColor) {
-            fColor = pfColor;
-        }
-
-        if (!sColor) {
-            sColor = psColor;
-        }
+        fColor ??= pfColor;
+        sColor ??= psColor;
 
         if (!fColor && !sColor) {
             return;
@@ -308,7 +297,9 @@ export class Canvas {
      * @param delta - the frame delta time values
      */
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
-        this.draw(ctx => drawParticlePlugin(ctx, plugin, particle, delta));
+        this.draw(ctx => {
+            drawParticlePlugin(ctx, plugin, particle, delta);
+        });
     }
 
     /**
@@ -317,14 +308,18 @@ export class Canvas {
      * @param delta - the frame delta time values
      */
     drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
-        this.draw(ctx => drawPlugin(ctx, plugin, delta));
+        this.draw(ctx => {
+            drawPlugin(ctx, plugin, delta);
+        });
     }
 
     /**
      * Initializes the canvas element
      */
     async init(): Promise<void> {
-        this._safeMutationObserver(obs => obs.disconnect());
+        this._safeMutationObserver(obs => {
+            obs.disconnect();
+        });
         this._mutationObserver = safeMutationObserver(records => {
             for (const record of records) {
                 if (record.type === "attributes" && record.attributeName === "style") {
@@ -369,20 +364,10 @@ export class Canvas {
             return;
         }
 
-        const elementStyle = element.style;
+        const elementStyle = element.style,
+            color = rangeColorToRgb(this._engine, background.color);
 
-        if (!elementStyle) {
-            return;
-        }
-
-        if (background.color) {
-            const color = rangeColorToRgb(this._engine, background.color);
-
-            elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
-        } else {
-            elementStyle.backgroundColor = "";
-        }
-
+        elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
         elementStyle.backgroundImage = background.image || "";
         elementStyle.backgroundPosition = background.position || "";
         elementStyle.backgroundRepeat = background.repeat || "";
@@ -434,9 +419,7 @@ export class Canvas {
         }
 
         this._generated =
-            canvas.dataset && generatedAttribute in canvas.dataset
-                ? canvas.dataset[generatedAttribute] === "true"
-                : this._generated;
+            generatedAttribute in canvas.dataset ? canvas.dataset[generatedAttribute] === "true" : this._generated;
         this.element = canvas;
         this.element.ariaHidden = "true";
         this._originalStyle = cloneStyle(this.element.style);
@@ -454,7 +437,9 @@ export class Canvas {
 
         this._context = this.element.getContext("2d");
 
-        this._safeMutationObserver(obs => obs.disconnect());
+        this._safeMutationObserver(obs => {
+            obs.disconnect();
+        });
 
         this.container.retina.init();
         this.initBackground();
@@ -475,7 +460,7 @@ export class Canvas {
         const options = this.container.actualOptions;
 
         this.draw(ctx => {
-            if (options.backgroundMask.enable && options.backgroundMask.cover) {
+            if (options.backgroundMask.enable) {
                 clear(ctx, this.size);
 
                 if (this._coverImage) {
@@ -553,10 +538,14 @@ export class Canvas {
     }
 
     stop(): void {
-        this._safeMutationObserver(obs => obs.disconnect());
+        this._safeMutationObserver(obs => {
+            obs.disconnect();
+        });
         this._mutationObserver = undefined;
 
-        this.draw(ctx => clear(ctx, this.size));
+        this.draw(ctx => {
+            clear(ctx, this.size);
+        });
     }
 
     /**
@@ -679,7 +668,9 @@ export class Canvas {
                 });
 
                 img.addEventListener("error", evt => {
-                    reject(evt.error);
+                    getLogger().error(evt);
+
+                    reject(new Error("Error loading image"));
                 });
 
                 img.src = cover.image;
@@ -702,7 +693,7 @@ export class Canvas {
         }
 
         for (const key in options.style) {
-            if (!key || !options.style || !Object.prototype.hasOwnProperty.call(options.style, key)) {
+            if (!key || !Object.prototype.hasOwnProperty.call(options.style, key)) {
                 continue;
             }
 
@@ -758,7 +749,9 @@ export class Canvas {
                 });
 
                 img.addEventListener("error", evt => {
-                    reject(evt.error);
+                    getLogger().error(evt);
+
+                    reject(new Error("Error loading image"));
                 });
 
                 img.src = trailFill.image;
@@ -767,11 +760,15 @@ export class Canvas {
     };
 
     private readonly _paintBase: (baseColor?: string) => void = baseColor => {
-        this.draw(ctx => paintBase(ctx, this.size, baseColor));
+        this.draw(ctx => {
+            paintBase(ctx, this.size, baseColor);
+        });
     };
 
     private readonly _paintImage: (image: HTMLImageElement, opacity: number) => void = (image, opacity) => {
-        this.draw(ctx => paintImage(ctx, this.size, image, opacity));
+        this.draw(ctx => {
+            paintImage(ctx, this.size, image, opacity);
+        });
     };
 
     private readonly _repairStyle: () => void = () => {
@@ -781,7 +778,9 @@ export class Canvas {
             return;
         }
 
-        this._safeMutationObserver(observer => observer.disconnect());
+        this._safeMutationObserver(observer => {
+            observer.disconnect();
+        });
         this._initStyle();
         this.initBackground();
 
@@ -791,7 +790,7 @@ export class Canvas {
         element.setAttribute("pointer-events", pointerEvents);
 
         this._safeMutationObserver(observer => {
-            if (!element || !(element instanceof Node)) {
+            if (!(element instanceof Node)) {
                 return;
             }
 

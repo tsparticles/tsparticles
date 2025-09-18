@@ -2,7 +2,6 @@ import {
     double,
     lengthOffset,
     millisecondsToSeconds,
-    minCoordinate,
     mouseDownEvent,
     mouseLeaveEvent,
     mouseMoveEvent,
@@ -91,18 +90,42 @@ export class EventListeners {
 
         this._touches = new Map<number, number>();
         this._handlers = {
-            mouseDown: (): void => this._mouseDown(),
-            mouseLeave: (): void => this._mouseTouchFinish(),
-            mouseMove: (e): void => this._mouseTouchMove(e),
-            mouseUp: (e): void => this._mouseTouchClick(e),
-            touchStart: (e): void => this._touchStart(e),
-            touchMove: (e): void => this._mouseTouchMove(e),
-            touchEnd: (e): void => this._touchEnd(e),
-            touchCancel: (e: Event): void => this._touchEnd(e),
-            touchEndClick: (e): void => this._touchEndClick(e),
-            visibilityChange: (): void => this._handleVisibilityChange(),
-            themeChange: (e): void => this._handleThemeChange(e),
-            oldThemeChange: (e): void => this._handleThemeChange(e),
+            mouseDown: (): void => {
+                this._mouseDown();
+            },
+            mouseLeave: (): void => {
+                this._mouseTouchFinish();
+            },
+            mouseMove: (e): void => {
+                this._mouseTouchMove(e);
+            },
+            mouseUp: (e): void => {
+                this._mouseTouchClick(e);
+            },
+            touchStart: (e): void => {
+                this._touchStart(e);
+            },
+            touchMove: (e): void => {
+                this._mouseTouchMove(e);
+            },
+            touchEnd: (e): void => {
+                this._touchEnd(e);
+            },
+            touchCancel: (e: Event): void => {
+                this._touchEnd(e);
+            },
+            touchEndClick: (e): void => {
+                this._touchEndClick(e);
+            },
+            visibilityChange: (): void => {
+                this._handleVisibilityChange();
+            },
+            themeChange: (e): void => {
+                this._handleThemeChange(e);
+            },
+            oldThemeChange: (e): void => {
+                this._handleThemeChange(e);
+            },
             resize: (): void => {
                 this._handleWindowResize();
             },
@@ -144,11 +167,15 @@ export class EventListeners {
 
             const onClick = options.interactivity.events.onClick;
 
-            executeOnSingleOrMultiple(onClick.mode, mode => this.container.handleClickMode(mode));
+            executeOnSingleOrMultiple(onClick.mode, mode => {
+                this.container.handleClickMode(mode);
+            });
         }
 
         if (e.type === "touchend") {
-            setTimeout(() => this._mouseTouchFinish(), touchDelay);
+            setTimeout(() => {
+                this._mouseTouchFinish();
+            }, touchDelay);
         }
     };
 
@@ -184,7 +211,7 @@ export class EventListeners {
             return;
         }
 
-        if (document?.hidden) {
+        if (document.hidden) {
             container.pageHidden = true;
 
             container.pause();
@@ -192,9 +219,9 @@ export class EventListeners {
             container.pageHidden = false;
 
             if (container.animationStatus) {
-                void container.play(true);
+                container.play(true);
             } else {
-                void container.draw(true);
+                container.draw(true);
             }
         }
     };
@@ -213,7 +240,7 @@ export class EventListeners {
         const handleResize = async (): Promise<void> => {
             const canvas = this.container.canvas;
 
-            await canvas?.windowResize();
+            await canvas.windowResize();
         };
 
         this._resizeTimeout = setTimeout(
@@ -290,9 +317,7 @@ export class EventListeners {
         this._manageResize(add);
         this._manageInteractivityListeners(mouseLeaveTmpEvent, add);
 
-        if (document) {
-            manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
-        }
+        manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
     };
 
     private readonly _manageMediaMatch: (add: boolean) => void = add => {
@@ -330,7 +355,7 @@ export class EventListeners {
             container = this.container,
             options = container.actualOptions;
 
-        if (!options.interactivity.events.resize) {
+        if (!options.interactivity.events.resize.enable) {
             return;
         }
 
@@ -370,13 +395,8 @@ export class EventListeners {
      * @internal
      */
     private readonly _mouseDown: () => void = () => {
-        const { interactivity } = this.container;
-
-        if (!interactivity) {
-            return;
-        }
-
-        const { mouse } = interactivity;
+        const { interactivity } = this.container,
+            { mouse } = interactivity;
 
         mouse.clicking = true;
         mouse.downPosition = mouse.position;
@@ -424,13 +444,8 @@ export class EventListeners {
      * Mouse/Touch event finish
      */
     private readonly _mouseTouchFinish: () => void = () => {
-        const interactivity = this.container.interactivity;
-
-        if (!interactivity) {
-            return;
-        }
-
-        const mouse = interactivity.mouse;
+        const { interactivity } = this.container,
+            { mouse } = interactivity;
 
         delete mouse.position;
         delete mouse.clickPosition;
@@ -452,7 +467,7 @@ export class EventListeners {
             interactivity = container.interactivity,
             canvasEl = container.canvas.element;
 
-        if (!interactivity?.element) {
+        if (!interactivity.element) {
             return;
         }
 
@@ -478,7 +493,7 @@ export class EventListeners {
                 const source = mouseEvent.target as HTMLElement,
                     target = mouseEvent.currentTarget as HTMLElement;
 
-                if (source && target && canvasEl) {
+                if (canvasEl) {
                     const sourceRect = source.getBoundingClientRect(),
                         targetRect = target.getBoundingClientRect(),
                         canvasRect = canvasEl.getBoundingClientRect();
@@ -489,14 +504,14 @@ export class EventListeners {
                     };
                 } else {
                     pos = {
-                        x: mouseEvent.offsetX ?? mouseEvent.clientX,
-                        y: mouseEvent.offsetY ?? mouseEvent.clientY,
+                        x: mouseEvent.offsetX,
+                        y: mouseEvent.offsetY,
                     };
                 }
             } else if (mouseEvent.target === canvasEl) {
                 pos = {
-                    x: mouseEvent.offsetX ?? mouseEvent.clientX,
-                    y: mouseEvent.offsetY ?? mouseEvent.clientY,
+                    x: mouseEvent.offsetX,
+                    y: mouseEvent.offsetY,
                 };
             }
         } else {
@@ -508,8 +523,8 @@ export class EventListeners {
                     canvasRect = canvasEl.getBoundingClientRect();
 
                 pos = {
-                    x: lastTouch.clientX - (canvasRect.left ?? minCoordinate),
-                    y: lastTouch.clientY - (canvasRect.top ?? minCoordinate),
+                    x: lastTouch.clientX - canvasRect.left,
+                    y: lastTouch.clientY - canvasRect.top,
                 };
             }
         }

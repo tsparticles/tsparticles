@@ -169,9 +169,8 @@ export function replaceImageColor(
         };
 
     return new Promise<IParticleImage>(resolve => {
-        const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg
-            domUrl = URL || window.URL || window.webkitURL || window,
-            url = domUrl.createObjectURL(svg),
+        const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg,
+            url = URL.createObjectURL(svg),
             img = new Image();
 
         img.addEventListener("load", () => {
@@ -180,11 +179,11 @@ export function replaceImageColor(
 
             resolve(imageRes);
 
-            domUrl.revokeObjectURL(url);
+            URL.revokeObjectURL(url);
         });
 
         const errorHandler = async (): Promise<void> => {
-            domUrl.revokeObjectURL(url);
+            URL.revokeObjectURL(url);
 
             const img2 = {
                 ...image,

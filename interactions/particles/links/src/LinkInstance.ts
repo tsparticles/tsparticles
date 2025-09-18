@@ -107,7 +107,7 @@ export class LinkInstance implements IContainerPlugin {
              *  mid: in consent mode: sample particles color and get a mid level color
              *                        from those two for the connecting line color
              */
-            const twinkle = (p1.options.twinkle as ITwinkle)?.lines;
+            const twinkle = (p1.options.twinkle as ITwinkle | undefined)?.lines;
 
             if (twinkle?.enable) {
                 const twinkleFreq = twinkle.frequency,

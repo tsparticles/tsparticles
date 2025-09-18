@@ -213,10 +213,6 @@ export class GradientUpdater implements IParticleUpdater {
 
             const gradientToLoad = source.gradient;
 
-            if (!gradientToLoad) {
-                continue;
-            }
-
             options.gradient = executeOnSingleOrMultiple(gradientToLoad, gradient => {
                 const tmp = new AnimatableGradient();
 

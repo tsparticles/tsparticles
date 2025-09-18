@@ -1,3 +1,4 @@
+/* eslint-disable */
 export interface SVGElementInstance extends EventTarget {
     readonly correspondingElement: SVGElement;
     readonly correspondingUseElement: SVGUseElement;

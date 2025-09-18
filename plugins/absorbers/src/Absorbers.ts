@@ -60,15 +60,13 @@ export class Absorbers implements IContainerPlugin {
     }
 
     handleClickMode(mode: string): void {
-        const absorberOptions = this.absorbers,
-            modeAbsorbers = this.interactivityAbsorbers;
+        const modeAbsorbers = this.interactivityAbsorbers;
 
         if (mode === (AbsorberClickMode.absorber as string)) {
             const absorbersModeOptions = itemFromSingleOrMultiple(modeAbsorbers),
-                absorbersOptions = absorbersModeOptions ?? itemFromSingleOrMultiple(absorberOptions),
                 aPosition = this._container.interactivity.mouse.clickPosition;
 
-            void this.addAbsorber(absorbersOptions, aPosition);
+            void this.addAbsorber(absorbersModeOptions, aPosition);
         }
     }
 

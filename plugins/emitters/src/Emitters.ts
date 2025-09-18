@@ -94,8 +94,7 @@ export class Emitters implements IContainerPlugin {
     }
 
     handleClickMode(mode: string): void {
-        const emitterOptions = this.emitters,
-            modeEmitters = this.interactivityEmitters;
+        const modeEmitters = this.interactivityEmitters;
 
         if (mode !== (EmitterClickMode.emitter as string)) {
             return;
@@ -103,7 +102,7 @@ export class Emitters implements IContainerPlugin {
 
         let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
 
-        if (modeEmitters && isArray(modeEmitters.value)) {
+        if (isArray(modeEmitters.value)) {
             const minLength = 0;
 
             if (modeEmitters.value.length > minLength && modeEmitters.random.enable) {
@@ -125,10 +124,10 @@ export class Emitters implements IContainerPlugin {
                 emittersModeOptions = modeEmitters.value;
             }
         } else {
-            emittersModeOptions = modeEmitters?.value;
+            emittersModeOptions = modeEmitters.value;
         }
 
-        const emittersOptions = emittersModeOptions ?? emitterOptions,
+        const emittersOptions = emittersModeOptions,
             ePosition = this.container.interactivity.mouse.clickPosition;
 
         void executeOnSingleOrMultiple(emittersOptions, async emitter => {
@@ -139,10 +138,6 @@ export class Emitters implements IContainerPlugin {
     async init(): Promise<void> {
         this.emitters = this.container.actualOptions.emitters;
         this.interactivityEmitters = this.container.actualOptions.interactivity.modes.emitters;
-
-        if (!this.emitters) {
-            return;
-        }
 
         if (isArray(this.emitters)) {
             for (const emitterOptions of this.emitters) {

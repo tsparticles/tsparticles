@@ -230,7 +230,7 @@ export class Particles {
 
                 for (
                     let i = this.count, j = 0;
-                    j < groupOptions.number?.value && i < particlesOptions.number.value;
+                    j < groupOptions.number.value && i < particlesOptions.number.value;
                     i++, j++
                 ) {
                     this.addParticle(undefined, groupOptions, group);
@@ -422,11 +422,11 @@ export class Particles {
     ): void => {
         const numberOptions = options.number;
 
-        if (!options.number.density?.enable) {
+        if (!options.number.density.enable) {
             if (group === undefined) {
                 this._limit = numberOptions.limit.value;
-            } else if (groupOptions?.number.limit?.value ?? numberOptions.limit.value) {
-                this._groupLimits.set(group, groupOptions?.number.limit?.value ?? numberOptions.limit.value);
+            } else if (groupOptions?.number.limit.value ?? numberOptions.limit.value) {
+                this._groupLimits.set(group, groupOptions?.number.limit.value ?? numberOptions.limit.value);
             }
 
             return;
@@ -471,11 +471,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined => {
         try {
-            let particle = this._pool.pop();
-
-            if (!particle) {
-                particle = new Particle(this._engine, this._container);
-            }
+            const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
 
             particle.init(this._nextId, position, overrideOptions, group);
 
@@ -510,7 +506,7 @@ export class Particles {
     private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {
         const particle = this._array[index];
 
-        if (!particle || particle.group !== group) {
+        if (particle.group !== group) {
             return false;
         }
 

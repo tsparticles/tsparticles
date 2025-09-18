@@ -13,7 +13,7 @@ export class EmitterShape implements IEmitterShape, IOptionLoader<IEmitterShape>
         this.type = "square";
     }
 
-    load(data?: RecursivePartial<IEmitterShape> | undefined): void {
+    load(data?: RecursivePartial<IEmitterShape>): void {
         if (isNull(data)) {
             return;
         }

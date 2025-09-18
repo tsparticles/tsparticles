@@ -101,5 +101,6 @@
       "default": "./cjs/index.js"
     },
     "./package.json": "./package.json"
-  }
+  },
+  "type": "module"
 }

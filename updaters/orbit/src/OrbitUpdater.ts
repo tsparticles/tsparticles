@@ -115,9 +115,7 @@ export class OrbitUpdater implements IParticleUpdater {
         options: OrbitParticlesOptions,
         ...sources: (RecursivePartial<IOrbitParticlesOptions> | undefined)[]
     ): void {
-        if (!options.orbit) {
-            options.orbit = new Orbit();
-        }
+        options.orbit ??= new Orbit();
 
         for (const source of sources) {
             options.orbit.load(source?.orbit);
@@ -129,10 +127,7 @@ export class OrbitUpdater implements IParticleUpdater {
             return;
         }
 
-        if (particle.orbitRotation === undefined) {
-            particle.orbitRotation = defaultRotation;
-        }
-
+        particle.orbitRotation ??= defaultRotation;
         particle.orbitRotation += (particle.orbitAnimationSpeed ?? defaultOrbitSpeed / doublePI) * delta.factor;
     }
 }
