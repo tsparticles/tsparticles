@@ -204,7 +204,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                         move: {
                             angle: {
                                 value: actualOptions.spread,
-                                offset: 0,
+                                offset: actualOptions.angle,
                             },
                             drift: {
                                 min: -actualOptions.drift,
@@ -215,7 +215,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             },
                             speed: actualOptions.startVelocity * speedFactor,
                             decay: decayOffset - actualOptions.decay,
-                            direction: -actualOptions.angle,
+                            direction: "none",
                         },
                         rotate: {
                             value: actualOptions.flat
@@ -310,7 +310,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             move: {
                 angle: {
                     value: actualOptions.spread,
-                    offset: 0,
+                    offset: actualOptions.angle,
                 },
                 drift: {
                     min: -actualOptions.drift,
@@ -323,7 +323,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 },
                 speed: actualOptions.startVelocity * speedFactor,
                 decay: decayOffset - actualOptions.decay,
-                direction: -actualOptions.angle,
+                direction: "none",
                 random: true,
                 straight: false,
                 outModes: {
