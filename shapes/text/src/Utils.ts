@@ -19,28 +19,18 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
 
     const textData = character.value;
 
-    if (textData === undefined) {
-        return;
-    }
-
-    if (particle.text === undefined) {
-        particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
-    }
+    particle.text ??= itemFromSingleOrMultiple(textData, particle.randomIndexData);
 
     const text = particle.text,
-        style = character.style ?? "",
-        weight = character.weight ?? "400",
+        style = character.style,
+        weight = character.weight,
         size = Math.round(radius) * double,
-        font = character.font ?? "Verdana",
+        font = character.font,
         fill = particle.shapeFill;
 
-    const lines = text?.split("\n");
+    const lines = text.split("\n");
 
-    if (!lines) {
-        return;
-    }
-
-    context.font = `${style} ${weight} ${size}px "${font}"`;
+    context.font = `${style} ${weight} ${size.toString()}px "${font}"`;
 
     context.globalAlpha = opacity;
 

@@ -31,7 +31,7 @@ export class PoissonInstance implements IContainerPlugin {
             return;
         }
 
-        return position ?? this.poissonDisc?.points[this._currentIndex++]?.position;
+        return position ?? this.poissonDisc.points[this._currentIndex++]?.position;
     }
 
     resize(): void {

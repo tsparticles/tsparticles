@@ -1,4 +1,4 @@
-import { loadFull } from ".";
+import { loadFull } from "./index.js";
 
 export { loadFull };
 

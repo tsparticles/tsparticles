@@ -5,9 +5,7 @@ type BounceParticle = Particle & {
 };
 
 const fixBounceSpeed = (p: BounceParticle): void => {
-    if (p.collisionMaxSpeed === undefined) {
-        p.collisionMaxSpeed = getRangeValue(p.options.collisions.maxSpeed);
-    }
+    p.collisionMaxSpeed ??= getRangeValue(p.options.collisions.maxSpeed);
 
     if (p.velocity.length > p.collisionMaxSpeed) {
         p.velocity.length = p.collisionMaxSpeed;

@@ -17,7 +17,7 @@ export async function loadEasingExpoPlugin(engine: Engine, refresh = true): Prom
         EasingType.easeInOutExpo,
         value => {
             if (value === 1) {
-                return !value ? 0 : 1;
+                return 1;
             } else if (!value) {
                 return 0;
             } else {

@@ -41,7 +41,7 @@ export class Wobble implements IWobble, IOptionLoader<IWobble> {
             } else {
                 const rangeSpeed = data.speed as IRangeValue;
 
-                if (rangeSpeed.min !== undefined) {
+                if (Object.hasOwn(rangeSpeed, "min")) {
                     this.speed.load({ angle: rangeSpeed });
                 } else {
                     this.speed.load(data.speed as IWobbleSpeed);

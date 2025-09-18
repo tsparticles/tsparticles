@@ -12,7 +12,6 @@ import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
-import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 /**
  */
@@ -65,46 +64,32 @@ export class EmittersPlugin implements IPlugin {
             } else {
                 const emitterMode = interactivityEmitters as IEmitterModeOptions;
 
-                if (emitterMode.value !== undefined) {
-                    const defaultCount = 1;
-
-                    if (isArray(emitterMode.value)) {
-                        options.interactivity.modes.emitters = {
-                            random: {
-                                count: emitterMode.random.count ?? defaultCount,
-                                enable: emitterMode.random.enable ?? false,
-                            },
-                            value: emitterMode.value.map(s => {
-                                const tmp = new Emitter();
-
-                                tmp.load(s);
-
-                                return tmp;
-                            }),
-                        };
-                    } else {
-                        const tmp = new Emitter();
-
-                        tmp.load(emitterMode.value);
-
-                        options.interactivity.modes.emitters = {
-                            random: {
-                                count: emitterMode.random.count ?? defaultCount,
-                                enable: emitterMode.random.enable ?? false,
-                            },
-                            value: tmp,
-                        };
-                    }
-                } else {
-                    const emitterOptions = (options.interactivity.modes.emitters = {
+                if (isArray(emitterMode.value)) {
+                    options.interactivity.modes.emitters = {
                         random: {
-                            count: 1,
-                            enable: false,
+                            count: emitterMode.random.count,
+                            enable: emitterMode.random.enable,
                         },
-                        value: new Emitter(),
-                    });
+                        value: emitterMode.value.map(s => {
+                            const tmp = new Emitter();
 
-                    emitterOptions.value.load(interactivityEmitters as IEmitter);
+                            tmp.load(s);
+
+                            return tmp;
+                        }),
+                    };
+                } else {
+                    const tmp = new Emitter();
+
+                    tmp.load(emitterMode.value);
+
+                    options.interactivity.modes.emitters = {
+                        random: {
+                            count: emitterMode.random.count,
+                            enable: emitterMode.random.enable,
+                        },
+                        value: tmp,
+                    };
                 }
             }
         }

@@ -24,9 +24,7 @@ export class ImagePreloaderPlugin implements IPlugin {
             return;
         }
 
-        if (!options.preload) {
-            options.preload = [];
-        }
+        options.preload ??= [];
 
         const preloadOptions = options.preload;
 

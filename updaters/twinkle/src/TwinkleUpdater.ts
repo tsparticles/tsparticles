@@ -26,7 +26,7 @@ export class TwinkleUpdater implements IParticleUpdater {
         opacity: number,
     ): IParticleColorStyle {
         const pOptions = particle.options,
-            twinkleOptions = pOptions.twinkle as Twinkle;
+            twinkleOptions = pOptions.twinkle as Twinkle | undefined;
 
         if (!twinkleOptions) {
             return {};
@@ -49,13 +49,13 @@ export class TwinkleUpdater implements IParticleUpdater {
         return res;
     }
 
-    async init(): Promise<void> {
-        await Promise.resolve();
+    init(): void {
+        // nothing to do
     }
 
     isEnabled(particle: TwinkeParticle): boolean {
         const pOptions = particle.options,
-            twinkleOptions = pOptions.twinkle!;
+            twinkleOptions = pOptions.twinkle;
 
         if (!twinkleOptions) {
             return false;
@@ -68,16 +68,14 @@ export class TwinkleUpdater implements IParticleUpdater {
         options: TwinkleParticlesOptions,
         ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
     ): void {
-        if (!options.twinkle) {
-            options.twinkle = new Twinkle();
-        }
+        options.twinkle ??= new Twinkle();
 
         for (const source of sources) {
             options.twinkle.load(source?.twinkle);
         }
     }
 
-    async update(): Promise<void> {
-        await Promise.resolve();
+    update(): void {
+        // nothing to do
     }
 }

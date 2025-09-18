@@ -309,10 +309,8 @@ export class AbsorberInstance {
                 particle.absorberOrbit.length = minSize * (offset + (getRandom() * randomFactor - randomOffset));
             }
 
-            if (particle.absorberOrbitDirection === undefined) {
-                particle.absorberOrbitDirection =
-                    particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise;
-            }
+            particle.absorberOrbitDirection ??=
+                particle.velocity.x >= minVelocity ? RotateDirection.clockwise : RotateDirection.counterClockwise;
 
             const orbitRadius = particle.absorberOrbit.length,
                 orbitAngle = particle.absorberOrbit.angle,

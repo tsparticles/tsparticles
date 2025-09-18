@@ -13,5 +13,5 @@ export async function loadAbsorbersPlugin(engine: Engine, refresh = true): Promi
     await engine.addPlugin(new AbsorbersPlugin(engine), refresh);
 }
 
-export * from "./AbsorberContainer.js";
+export type * from "./AbsorberContainer.js";
 export * from "./Enums/AbsorberClickMode.js";

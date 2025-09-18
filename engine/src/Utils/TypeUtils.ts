@@ -30,8 +30,7 @@ export function isNumber(arg: unknown): arg is number {
  * @param arg - the object to check
  * @returns true if the argument is a function
  */
-// eslint-disable-next-line @typescript-eslint/ban-types
-export function isFunction(arg: unknown): arg is Function {
+export function isFunction(arg: unknown): arg is (...args: unknown[]) => unknown {
     return typeof arg === "function";
 }
 
@@ -40,7 +39,7 @@ export function isFunction(arg: unknown): arg is Function {
  * @param arg - the object to check
  * @returns true if the argument is an object
  */
-export function isObject<T extends object>(arg: unknown): arg is T {
+export function isObject(arg: unknown): arg is object {
     return typeof arg === "object" && arg !== null;
 }
 

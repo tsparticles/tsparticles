@@ -10,7 +10,7 @@ export class TextLinesOptions implements ITextLinesOptions, IOptionLoader<ITextL
         this.spacing = 0;
     }
 
-    load(data?: RecursivePartial<ITextLinesOptions> | undefined): void {
+    load(data?: RecursivePartial<ITextLinesOptions>): void {
         if (isNull(data)) {
             return;
         }

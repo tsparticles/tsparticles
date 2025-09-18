@@ -48,7 +48,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
                 particlesOptions = itemFromSingleOrMultiple(pushOptions.particles),
                 overrideOptions = deepExtend(groupOptions, particlesOptions) as RecursivePartial<IParticlesOptions>;
 
-            void container.particles.push(quantity, container.interactivity.mouse, overrideOptions, group);
+            container.particles.push(quantity, container.interactivity.mouse, overrideOptions, group);
         };
     }
 
@@ -69,9 +69,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
     }
 
     loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {
-        if (!options.push) {
-            options.push = new Push();
-        }
+        options.push ??= new Push();
 
         for (const source of sources) {
             options.push.load(source?.push);

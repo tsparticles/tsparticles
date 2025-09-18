@@ -10,7 +10,7 @@ export class TextMaskLine implements ITextMaskLine, IOptionLoader<ITextMaskLine>
         this.spacing = 10;
     }
 
-    load(data?: RecursivePartial<ITextMaskLine> | undefined): void {
+    load(data?: RecursivePartial<ITextMaskLine>): void {
         if (isNull(data)) {
             return;
         }

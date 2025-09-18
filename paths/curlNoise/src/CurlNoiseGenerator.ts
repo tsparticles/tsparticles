@@ -49,10 +49,10 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
     init(container: Container): void {
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
-        this.options.seed = sourceOptions?.seed as number | undefined;
+        this.options.seed = sourceOptions.seed as number | undefined;
         this.options.speed =
-            ((sourceOptions?.speed as number | undefined) ?? defaultOptions.speed) * container.retina.pixelRatio;
-        this.options.step = (sourceOptions?.step as number | undefined) ?? defaultOptions.step;
+            ((sourceOptions.speed as number | undefined) ?? defaultOptions.speed) * container.retina.pixelRatio;
+        this.options.step = (sourceOptions.step as number | undefined) ?? defaultOptions.step;
 
         this._simplex.seed(this.options.seed ?? getRandom());
     }

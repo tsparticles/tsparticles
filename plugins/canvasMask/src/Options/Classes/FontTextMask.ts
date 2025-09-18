@@ -13,7 +13,7 @@ export class FontTextMask implements IFontTextMask, IOptionLoader<IFontTextMask>
         this.size = 100;
     }
 
-    load(data?: RecursivePartial<IFontTextMask> | undefined): void {
+    load(data?: RecursivePartial<IFontTextMask>): void {
         if (isNull(data)) {
             return;
         }

@@ -68,9 +68,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
         options: Modes & BounceMode,
         ...sources: RecursivePartial<(IModes & IBounceMode) | undefined>[]
     ): void {
-        if (!options.bounce) {
-            options.bounce = new Bounce();
-        }
+        options.bounce ??= new Bounce();
 
         for (const source of sources) {
             options.bounce.load(source?.bounce);

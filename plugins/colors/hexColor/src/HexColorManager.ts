@@ -47,21 +47,18 @@ export class HexColorManager implements IColorManager {
             return;
         }
 
-        if (!hexColor?.startsWith(this.stringPrefix)) {
+        if (!hexColor.startsWith(this.stringPrefix)) {
             return;
         }
 
-        const hexFixed = hexColor.replace(shorthandHexRegex, (_, r: string, g: string, b: string, a: string) => {
+        const hexFixed = hexColor.replace(shorthandHexRegex, (_, r: string, g: string, b: string, a?: string) => {
                 return r + r + g + g + b + b + (a !== undefined ? a + a : "");
             }),
             result = hexRegex.exec(hexFixed);
 
         return result
             ? {
-                  a:
-                      result[RgbIndexes.a] !== undefined
-                          ? parseInt(result[RgbIndexes.a], hexRadix) / alphaFactor
-                          : defaultAlpha,
+                  a: result[RgbIndexes.a] ? parseInt(result[RgbIndexes.a], hexRadix) / alphaFactor : defaultAlpha,
                   b: parseInt(result[RgbIndexes.b], hexRadix),
                   g: parseInt(result[RgbIndexes.g], hexRadix),
                   r: parseInt(result[RgbIndexes.r], hexRadix),

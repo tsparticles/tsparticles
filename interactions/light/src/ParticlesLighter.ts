@@ -41,7 +41,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
 
     isEnabled(particle: LightParticle): boolean {
         const container = this.container,
-            interactivity = particle.interactivity ?? container.actualOptions.interactivity,
+            interactivity = particle.interactivity,
             mouse = container.interactivity.mouse,
             events = interactivity.events;
 

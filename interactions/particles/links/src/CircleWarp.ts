@@ -57,11 +57,11 @@ export class CircleWarp extends Circle {
                 y: range.position.y - this.canvasSize.height,
             };
 
-        if (circle.radius !== undefined) {
+        if (Object.hasOwn(circle, "radius")) {
             const biggerCircle = new Circle(newPos.x, newPos.y, circle.radius * double);
 
             return super.intersects(biggerCircle);
-        } else if (rect.size !== undefined) {
+        } else if (Object.hasOwn(rect, "size")) {
             const rectSW = new Rectangle(newPos.x, newPos.y, rect.size.width * double, rect.size.height * double);
 
             return super.intersects(rectSW);

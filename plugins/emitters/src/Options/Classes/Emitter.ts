@@ -55,9 +55,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         if (data.size !== undefined) {
-            if (!this.size) {
-                this.size = new EmitterSize();
-            }
+            this.size ??= new EmitterSize();
 
             this.size.load(data.size);
         }
@@ -96,9 +94,7 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
         }
 
         if (data.spawnColor !== undefined) {
-            if (this.spawnColor === undefined) {
-                this.spawnColor = new AnimatableColor();
-            }
+            this.spawnColor ??= new AnimatableColor();
 
             this.spawnColor.load(data.spawnColor);
         }

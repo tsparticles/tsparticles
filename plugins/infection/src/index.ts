@@ -23,5 +23,5 @@ export async function loadInfectionPlugin(engine: Engine, refresh = true): Promi
     );
 }
 
-export * from "./Options/Interfaces/IInfection.js";
-export * from "./Options/Interfaces/IInfectionStage.js";
+export type * from "./Options/Interfaces/IInfection.js";
+export type * from "./Options/Interfaces/IInfectionStage.js";

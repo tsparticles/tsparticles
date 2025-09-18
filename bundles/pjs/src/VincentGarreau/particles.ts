@@ -290,6 +290,7 @@ const initParticlesJS = (
      * @param pathConfigJson - the json path to use in the GET request
      * @param callback - called after the {@link Container} is loaded and it will be passed as a parameter
      */
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     particlesJS.load = (tagId: string, pathConfigJson: string, callback: (container?: Container) => void): void => {
         engine
             .load({ id: tagId, url: pathConfigJson })
@@ -308,6 +309,7 @@ const initParticlesJS = (
      * @deprecated this method is obsolete, please use the new tsParticles.setOnClickHandler
      * @param callback - the function called after the click event is fired
      */
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     particlesJS.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
         engine.setOnClickHandler(callback);
     };
@@ -318,6 +320,7 @@ const initParticlesJS = (
      */
     const pJSDom = engine.dom();
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     return { particlesJS, pJSDom };
 };
 

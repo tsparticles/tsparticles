@@ -105,5 +105,6 @@
   },
   "dependencies": {
     "@tsparticles/engine": "3.9.1"
-  }
+  },
+  "type": "module"
 }

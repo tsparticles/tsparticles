@@ -18,10 +18,6 @@ export function drawPolygon(data: IShapeDrawData, start: ICoordinates, side: ISi
         interiorAngleDegrees = (piDeg * (decimalSides - sidesOffset)) / decimalSides,
         interiorAngle = Math.PI - degToRad(interiorAngleDegrees); // convert to radians
 
-    if (!context) {
-        return;
-    }
-
     context.beginPath();
     context.translate(start.x, start.y);
     context.moveTo(origin.x, origin.y);

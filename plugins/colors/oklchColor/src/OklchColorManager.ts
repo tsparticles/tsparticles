@@ -26,22 +26,26 @@ export class OklchColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             oklchColor = colorValue.oklch ?? (color.value as IOklch);
 
-        if (oklchColor.l !== undefined && oklchColor.c !== undefined && oklchColor.h !== undefined) {
-            return oklchToRgb(oklchColor);
+        if (!Object.hasOwn(oklchColor, "l") && !Object.hasOwn(oklchColor, "c") && !Object.hasOwn(oklchColor, "h")) {
+            return;
         }
+
+        return oklchToRgb(oklchColor);
     }
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
         const colorValue = color.value as IRangeValueColor,
             oklchColor = colorValue.oklch ?? (color.value as IRangeOklch);
 
-        if (oklchColor.l !== undefined && oklchColor.c !== undefined && oklchColor.h !== undefined) {
-            return oklchToRgb({
-                l: getRangeValue(oklchColor.l),
-                c: getRangeValue(oklchColor.c),
-                h: getRangeValue(oklchColor.h),
-            });
+        if (!Object.hasOwn(oklchColor, "l") && !Object.hasOwn(oklchColor, "c") && !Object.hasOwn(oklchColor, "h")) {
+            return;
         }
+
+        return oklchToRgb({
+            l: getRangeValue(oklchColor.l),
+            c: getRangeValue(oklchColor.c),
+            h: getRangeValue(oklchColor.h),
+        });
     }
 
     parseString(input: string): IRgba | undefined {

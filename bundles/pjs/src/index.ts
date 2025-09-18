@@ -58,10 +58,14 @@ const initPjs = (
 } => {
     engine.checkVersion(__VERSION__);
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     const { particlesJS, pJSDom } = initParticlesJS(engine);
 
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     window.particlesJS = particlesJS;
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     window.pJSDom = pJSDom;
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     window.Particles = Particles;
 
     return { particlesJS, pJSDom, Particles };

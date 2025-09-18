@@ -343,7 +343,7 @@ export function getRandomRgbColor(min?: number): IRgb {
  * @returns the CSS style string
  */
 export function getStyleFromRgb(color: IRgb, opacity?: number): string {
-    return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? defaultOpacity})`;
+    return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -353,7 +353,7 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
  * @returns the CSS style string
  */
 export function getStyleFromHsl(color: IHsl, opacity?: number): string {
-    return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? defaultOpacity})`;
+    return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -367,11 +367,11 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
     let rgb1 = color1 as IRgb,
         rgb2 = color2 as IRgb;
 
-    if (rgb1.r === undefined) {
+    if (!Object.hasOwn(rgb1, "r")) {
         rgb1 = hslToRgb(color1 as IHsl);
     }
 
-    if (rgb2.r === undefined) {
+    if (!Object.hasOwn(rgb2, "r")) {
         rgb2 = hslToRgb(color2 as IHsl);
     }
 
@@ -548,16 +548,13 @@ export function updateColorValue(
         velocityFactor = 3.6;
 
     if (
-        !data ||
         !data.enable ||
         ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
     ) {
         return;
     }
 
-    if (!data.time) {
-        data.time = 0;
-    }
+    data.time ??= 0;
 
     if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
         data.time += delta.value;
@@ -577,10 +574,7 @@ export function updateColorValue(
         data.value += velocity;
 
         if (data.value > max) {
-            if (!data.loops) {
-                data.loops = 0;
-            }
-
+            data.loops ??= 0;
             data.loops++;
 
             if (decrease) {
@@ -595,10 +589,7 @@ export function updateColorValue(
         const minValue = 0;
 
         if (data.value < minValue) {
-            if (!data.loops) {
-                data.loops = 0;
-            }
-
+            data.loops ??= 0;
             data.loops++;
 
             data.status = AnimationStatus.increasing;
@@ -628,15 +619,7 @@ export function updateColor(color: IParticleHslAnimation | undefined, delta: IDe
             l: { min: 0, max: 100 },
         };
 
-    if (h) {
-        updateColorValue(h, ranges.h, false, delta);
-    }
-
-    if (s) {
-        updateColorValue(s, ranges.s, true, delta);
-    }
-
-    if (l) {
-        updateColorValue(l, ranges.l, true, delta);
-    }
+    updateColorValue(h, ranges.h, false, delta);
+    updateColorValue(s, ranges.s, true, delta);
+    updateColorValue(l, ranges.l, true, delta);
 }

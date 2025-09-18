@@ -110,11 +110,11 @@ export function divBounce(
     bounceMode: string,
     enabledCb: (p: Particle) => boolean,
 ): void {
-    divModeExecute(bounceMode, divs, (selector, div): void =>
-        singleSelectorBounce(container, selector, div, (pos, radius, area): void =>
-            processBounce(container, pos, radius, area, enabledCb),
-        ),
-    );
+    divModeExecute(bounceMode, divs, (selector, div): void => {
+        singleSelectorBounce(container, selector, div, (pos, radius, area): void => {
+            processBounce(container, pos, radius, area, enabledCb);
+        });
+    });
 }
 
 /**

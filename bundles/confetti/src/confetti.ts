@@ -161,7 +161,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
         if (container && !container.destroyed) {
             const alias = container as EmitterContainer;
 
-            if (alias.addEmitter) {
+            if (Object.hasOwn(alias, "addEmitter")) {
                 await alias.addEmitter({
                     startCount: actualOptions.count,
                     position: actualOptions.position,
@@ -457,10 +457,6 @@ confetti.create = async (
     canvas: HTMLCanvasElement,
     options: RecursivePartial<IConfettiOptions>,
 ): Promise<ConfettiFunc> => {
-    if (!canvas) {
-        return confetti;
-    }
-
     await initPlugins(tsParticles);
 
     const id = canvas.getAttribute("id") ?? "confetti";

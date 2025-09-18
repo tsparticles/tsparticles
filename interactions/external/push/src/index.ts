@@ -20,4 +20,4 @@ export async function loadExternalPushInteraction(engine: Engine, refresh = true
 }
 
 export * from "./Options/Classes/Push.js";
-export * from "./Options/Interfaces/IPush.js";
+export type * from "./Options/Interfaces/IPush.js";

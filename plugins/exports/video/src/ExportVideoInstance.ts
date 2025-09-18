@@ -36,7 +36,7 @@ function getVideoSupportedMimeTypes(): string[] {
     videoTypes.forEach(type => {
         const mimeType = `video/${type}`;
 
-        codecs.forEach(codec =>
+        codecs.forEach(codec => {
             [
                 `${mimeType};codecs=${codec}`,
                 `${mimeType};codecs=${codec.toUpperCase()}`,
@@ -47,8 +47,8 @@ function getVideoSupportedMimeTypes(): string[] {
                 if (isSupported(variation)) {
                     supported.push(variation);
                 }
-            }),
-        );
+            });
+        });
 
         if (isSupported(mimeType)) {
             supported.push(mimeType);

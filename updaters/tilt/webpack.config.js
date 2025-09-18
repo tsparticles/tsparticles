@@ -1,4 +1,12 @@
-const { loadParticlesUpdater } = require("@tsparticles/webpack-plugin");
-const version = require("./package.json").version;
+import { loadParticlesUpdater } from "@tsparticles/webpack-plugin";
+import { fileURLToPath } from "url";
+import fs from "fs-extra";
+import path from "path";
 
-module.exports = loadParticlesUpdater({ moduleName: "tilt", updaterName: "Tilt", version, dir: __dirname });
+const __filename = fileURLToPath(import.meta.url),
+    __dirname = path.dirname(__filename),
+    rootPkgPath = path.join(__dirname, "package.json"),
+    pkg = await fs.readJson(rootPkgPath),
+    version = pkg.version;
+
+export default loadParticlesUpdater({ moduleName: "tilt", updaterName: "Tilt", version, dir: __dirname });

@@ -67,17 +67,12 @@ export function clickAttract(
     container: AttractContainer,
     enabledCb: (particle: Particle) => boolean,
 ): void {
-    if (!container.attract) {
-        container.attract = { particles: [] };
-    }
+    container.attract ??= { particles: [] };
 
     const { attract } = container;
 
     if (!attract.finish) {
-        if (!attract.count) {
-            attract.count = 0;
-        }
-
+        attract.count ??= 0;
         attract.count++;
 
         if (attract.count === container.particles.count) {

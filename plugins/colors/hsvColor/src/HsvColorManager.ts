@@ -251,22 +251,26 @@ export class HsvColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             hsvColor = colorValue.hsv ?? (color.value as IHsv);
 
-        if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
-            return hsvToRgb(hsvColor);
+        if (!Object.hasOwn(hsvColor, "h") && !Object.hasOwn(hsvColor, "v")) {
+            return;
         }
+
+        return hsvToRgb(hsvColor);
     }
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
         const colorValue = color.value as IRangeValueColor,
             hsvColor = colorValue.hsv ?? (color.value as IRangeHsv);
 
-        if (hsvColor.h !== undefined && hsvColor.v !== undefined) {
-            return hsvToRgb({
-                h: getRangeValue(hsvColor.h),
-                s: getRangeValue(hsvColor.s),
-                v: getRangeValue(hsvColor.v),
-            });
+        if (!Object.hasOwn(hsvColor, "h") && !Object.hasOwn(hsvColor, "v")) {
+            return;
         }
+
+        return hsvToRgb({
+            h: getRangeValue(hsvColor.h),
+            s: getRangeValue(hsvColor.s),
+            v: getRangeValue(hsvColor.v),
+        });
     }
 
     parseString(input: string): IRgba | undefined {

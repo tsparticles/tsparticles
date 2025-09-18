@@ -106,5 +106,6 @@
   "dependencies": {
     "@tsparticles/engine": "3.9.1",
     "@tsparticles/simplex-noise": "3.9.1"
-  }
+  },
+  "type": "module"
 }

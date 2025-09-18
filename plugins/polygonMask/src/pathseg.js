@@ -1,3 +1,4 @@
+/* eslint-disable */
 // SVGPathSeg API polyfill
 //
 // This is a drop-in replacement for the SVGPathSeg and SVGPathSegList APIs that were removed from
@@ -1200,7 +1201,7 @@
             };
 
             // When a path segment changes the list needs to be synchronized back to the path element.
-            window.SVGPathSegList.prototype.segmentChanged = function (/*pathSeg*/) {
+            window.SVGPathSegList.prototype.segmentChanged = function (/* pathSeg */) {
                 this._writeListToPath();
             };
 
@@ -1303,7 +1304,7 @@
 
             // This closely follows SVGPathParser::parsePath from Source/core/svg/SVGPathParser.cpp.
             window.SVGPathSegList.prototype._parsePath = function (string) {
-                if (!string || !string.length) return [];
+                if (!string?.length) return [];
 
                 const owningPathSegList = this;
 

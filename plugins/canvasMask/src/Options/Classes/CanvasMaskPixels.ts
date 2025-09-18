@@ -19,7 +19,7 @@ export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanva
         this.offset = 4;
     }
 
-    load(data?: RecursivePartial<ICanvasMaskPixels> | undefined): void {
+    load(data?: RecursivePartial<ICanvasMaskPixels>): void {
         if (isNull(data)) {
             return;
         }

@@ -44,16 +44,13 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         }
 
         const firstIndex = 0,
-            firstPathData = pathData[firstIndex];
-
-        if (firstPathData) {
-            const coords = {
+            firstPathData = pathData[firstIndex],
+            coords = {
                 x: offset.x + (firstPathData.x * size.width) / percentDenominator,
                 y: offset.y + (firstPathData.y * size.height) / percentDenominator,
             };
 
-            path.lineTo(coords.x, coords.y);
-        }
+        path.lineTo(coords.x, coords.y);
 
         this.path = path;
     }
@@ -99,16 +96,13 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         }
 
         const firstIndex = 0,
-            firstPathData = pathData[firstIndex];
-
-        if (firstPathData) {
-            const coords = {
+            firstPathData = pathData[firstIndex],
+            coords = {
                 x: offset.x + (firstPathData.x * size.width) / percentDenominator,
                 y: offset.y + (firstPathData.y * size.height) / percentDenominator,
             };
 
-            path.lineTo(coords.x, coords.y);
-        }
+        path.lineTo(coords.x, coords.y);
 
         this.path = path;
     }

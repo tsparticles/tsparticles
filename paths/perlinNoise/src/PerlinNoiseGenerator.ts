@@ -59,7 +59,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             v = Vector.origin,
             { field } = this;
 
-        return field?.[point.x]?.[point.y]?.[point.z] ? field[point.x][point.y][point.z].copy() : v;
+        return field[point.x][point.y][point.z] ? field[point.x][point.y][point.z].copy() : v;
     }
 
     init(container: Container): void {
@@ -82,7 +82,9 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         this.noiseW += this.options.increment;
 
         if (this.options.draw) {
-            this.container.canvas.draw(ctx => this._drawField(ctx));
+            this.container.canvas.draw(ctx => {
+                this._drawField(ctx);
+            });
         }
     }
 
@@ -194,6 +196,8 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
 
         this._resetField();
 
-        addEventListener("resize", () => this._resetField());
+        addEventListener("resize", () => {
+            this._resetField();
+        });
     }
 }

@@ -12,25 +12,20 @@ declare const __VERSION__: string;
 export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    if (!engine.emitterShapeManager) {
-        engine.emitterShapeManager = new ShapeManager(engine);
-    }
-
-    if (!engine.addEmitterShapeGenerator) {
-        engine.addEmitterShapeGenerator = (name: string, generator: IEmitterShapeGenerator): void => {
-            engine.emitterShapeManager?.addShapeGenerator(name, generator);
-        };
-    }
+    engine.emitterShapeManager ??= new ShapeManager(engine);
+    engine.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
+        engine.emitterShapeManager?.addShapeGenerator(name, generator);
+    };
 
     const plugin = new EmittersPlugin(engine);
 
     await engine.addPlugin(plugin, refresh);
 }
 
-export * from "./EmitterContainer.js";
+export type * from "./EmitterContainer.js";
 export * from "./EmitterShapeBase.js";
-export * from "./EmittersEngine.js";
-export * from "./IEmitterShape.js";
-export * from "./IEmitterShapeGenerator.js";
+export type * from "./EmittersEngine.js";
+export type * from "./IEmitterShape.js";
+export type * from "./IEmitterShapeGenerator.js";
 export * from "./Enums/EmitterClickMode.js";
-export * from "./IRandomPositionData.js";
+export type * from "./IRandomPositionData.js";

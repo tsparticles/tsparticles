@@ -1,6 +1,6 @@
 const path = require('path');
 
-module.exports = {
+export default {
     entry: './client/client.js',
     output: {
         path: path.resolve(__dirname, 'client', 'dist'),

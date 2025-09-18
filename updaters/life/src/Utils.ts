@@ -45,10 +45,6 @@ export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: ID
         return;
     }
 
-    if (particle.spawning) {
-        return;
-    }
-
     if (justSpawned) {
         life.time = noTime;
     } else {

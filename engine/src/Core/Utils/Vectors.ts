@@ -28,14 +28,14 @@ export class Vector3d implements ICoordinates3d {
      * @internal
      */
     protected constructor(xOrCoords: number | ICoordinates3d | ICoordinates, y?: number, z?: number) {
-        if (!isNumber(xOrCoords) && xOrCoords) {
+        if (!isNumber(xOrCoords)) {
             this.x = xOrCoords.x;
             this.y = xOrCoords.y;
 
             const coords3d = xOrCoords as ICoordinates3d;
 
             this.z = coords3d.z ? coords3d.z : originPoint.z;
-        } else if (xOrCoords !== undefined && y !== undefined) {
+        } else if (y !== undefined) {
             this.x = xOrCoords;
             this.y = y;
             this.z = z ?? originPoint.z;

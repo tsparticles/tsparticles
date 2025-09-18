@@ -107,9 +107,7 @@ export class RotateUpdater implements IParticleUpdater {
         options: RotateParticlesOptions,
         ...sources: (RecursivePartial<IRotateParticlesOptions> | undefined)[]
     ): void {
-        if (!options.rotate) {
-            options.rotate = new Rotate();
-        }
+        options.rotate ??= new Rotate();
 
         for (const source of sources) {
             options.rotate.load(source?.rotate);

@@ -36,22 +36,26 @@ export class HslColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             hslColor = colorValue.hsl ?? (color.value as IHsl);
 
-        if (hslColor.h !== undefined && hslColor.s !== undefined && hslColor.l !== undefined) {
-            return hslToRgb(hslColor);
+        if (!Object.hasOwn(hslColor, "h") && !Object.hasOwn(hslColor, "s") && !Object.hasOwn(hslColor, "l")) {
+            return;
         }
+
+        return hslToRgb(hslColor);
     }
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
         const colorValue = color.value as IRangeValueColor,
             hslColor = colorValue.hsl ?? (color.value as IRangeHsl);
 
-        if (hslColor.h !== undefined && hslColor.l !== undefined) {
-            return hslToRgb({
-                h: getRangeValue(hslColor.h),
-                l: getRangeValue(hslColor.l),
-                s: getRangeValue(hslColor.s),
-            });
+        if (!Object.hasOwn(hslColor, "h") && !Object.hasOwn(hslColor, "s") && !Object.hasOwn(hslColor, "l")) {
+            return;
         }
+
+        return hslToRgb({
+            h: getRangeValue(hslColor.h),
+            l: getRangeValue(hslColor.l),
+            s: getRangeValue(hslColor.s),
+        });
     }
 
     parseString(input: string): IRgba | undefined {

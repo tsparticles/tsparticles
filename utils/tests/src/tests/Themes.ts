@@ -98,9 +98,10 @@ describe("Themes", async () => {
     it("Set theme", async () => {
         await container.loadTheme();
 
-        const theme = container.options.themes.find(t => t.default);
+        const firstItem = 0,
+            theme = container.options.themes[firstItem];
 
-        expect(container.actualOptions.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
+        expect(container.actualOptions.particles.color.value).to.be.equal(theme.options?.particles?.color?.value);
     });
 
     it("Set dark theme", async () => {
@@ -115,7 +116,7 @@ describe("Themes", async () => {
             return;
         }
 
-        expect(container.actualOptions.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
+        expect(container.actualOptions.particles.color.value).to.be.equal(theme.options.particles?.color?.value);
     });
 
     it("Set light theme", async () => {
@@ -130,6 +131,6 @@ describe("Themes", async () => {
             return;
         }
 
-        expect(container.actualOptions.particles.color.value).to.be.equal(theme?.options?.particles?.color?.value);
+        expect(container.actualOptions.particles.color.value).to.be.equal(theme.options.particles?.color?.value);
     });
 });

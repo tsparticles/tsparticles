@@ -149,9 +149,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         options: Modes & ParticleMode,
         ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
     ): void {
-        if (!options.particle) {
-            options.particle = new InteractivityParticle();
-        }
+        options.particle ??= new InteractivityParticle();
 
         for (const source of sources) {
             options.particle.load(source?.particle);

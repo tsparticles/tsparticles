@@ -8,7 +8,7 @@ export class PixelsOptions implements IPixelsOptions, IOptionLoader<IPixelsOptio
         this.offset = 4;
     }
 
-    load(data?: RecursivePartial<IPixelsOptions> | undefined): void {
+    load(data?: RecursivePartial<IPixelsOptions>): void {
         if (isNull(data)) {
             return;
         }

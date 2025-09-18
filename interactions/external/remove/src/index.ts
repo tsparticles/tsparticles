@@ -20,4 +20,4 @@ export async function loadExternalRemoveInteraction(engine: Engine, refresh = tr
 }
 
 export * from "./Options/Classes/Remove.js";
-export * from "./Options/Interfaces/IRemove.js";
+export type * from "./Options/Interfaces/IRemove.js";

@@ -16,7 +16,7 @@ export class TextOptions implements ITextOptions, IOptionLoader<ITextOptions> {
         this.text = "";
     }
 
-    load(data?: RecursivePartial<ITextOptions> | undefined): void {
+    load(data?: RecursivePartial<ITextOptions>): void {
         if (isNull(data)) {
             return;
         }

@@ -18,6 +18,6 @@ export async function loadParticlesLinksInteraction(engine: Engine, refresh = tr
 export * from "./Options/Classes/Links.js";
 export * from "./Options/Classes/LinksShadow.js";
 export * from "./Options/Classes/LinksTriangle.js";
-export * from "./Options/Interfaces/ILinks.js";
-export * from "./Options/Interfaces/ILinksShadow.js";
-export * from "./Options/Interfaces/ILinksTriangle.js";
+export type * from "./Options/Interfaces/ILinks.js";
+export type * from "./Options/Interfaces/ILinksShadow.js";
+export type * from "./Options/Interfaces/ILinksTriangle.js";

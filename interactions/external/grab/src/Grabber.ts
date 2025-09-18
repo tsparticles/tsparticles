@@ -127,9 +127,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     }
 
     loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {
-        if (!options.grab) {
-            options.grab = new Grab();
-        }
+        options.grab ??= new Grab();
 
         for (const source of sources) {
             options.grab.load(source?.grab);

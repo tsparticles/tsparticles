@@ -9,13 +9,8 @@ import type { IShapeDrawData } from "@tsparticles/engine";
 export function drawEmoji(data: IShapeDrawData<EmojiParticle>, image: ImageBitmap | HTMLCanvasElement): void {
     const { context, opacity } = data,
         half = 0.5,
-        previousAlpha = context.globalAlpha;
-
-    if (!image) {
-        return;
-    }
-
-    const diameter = image.width,
+        previousAlpha = context.globalAlpha,
+        diameter = image.width,
         radius = diameter * half;
 
     context.globalAlpha = opacity;

@@ -16,7 +16,7 @@ export class TextFontOptions implements ITextFontOptions, IOptionLoader<ITextFon
         this.weight = "";
     }
 
-    load(data?: RecursivePartial<ITextFontOptions> | undefined): void {
+    load(data?: RecursivePartial<ITextFontOptions>): void {
         if (isNull(data)) {
             return;
         }

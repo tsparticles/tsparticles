@@ -72,32 +72,15 @@ export class SVGPathGenerator implements IMovePathGenerator {
         const container = particle.container,
             pxRatio = container.retina.pixelRatio;
 
-        if (particle.svgDirection === undefined) {
-            particle.svgDirection = getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
-        }
-
-        if (particle.svgPathIndex === undefined) {
-            particle.svgPathIndex = Math.floor(getRandom() * this._paths.length);
-        }
-
-        if (particle.svgSpeed === undefined) {
-            particle.svgSpeed = particle.velocity.mult((particle.retina.moveSpeed ?? defaultSpeed) * half).length;
-        }
-
-        if (particle.svgStep === undefined) {
-            particle.svgStep = randomInRange({ min: 0, max: this._paths[particle.svgPathIndex].length }) * pxRatio;
-        }
-
-        if (particle.svgOffset === undefined) {
-            particle.svgOffset = {
-                width: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
-                height: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
-            };
-        }
-
-        if (particle.svgInitialPosition === undefined) {
-            particle.svgInitialPosition = { ...particle.position };
-        }
+        particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
+        particle.svgPathIndex ??= Math.floor(getRandom() * this._paths.length);
+        particle.svgSpeed ??= particle.velocity.mult((particle.retina.moveSpeed ?? defaultSpeed) * half).length;
+        particle.svgStep ??= randomInRange({ min: 0, max: this._paths[particle.svgPathIndex].length }) * pxRatio;
+        particle.svgOffset ??= {
+            width: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
+            height: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
+        };
+        particle.svgInitialPosition ??= particle.position.copy();
 
         particle.velocity.x = 0;
         particle.velocity.y = 0;
@@ -110,63 +93,59 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
         let path = this._paths[particle.svgPathIndex];
 
-        if (path) {
-            const pathLength = path.length,
-                indexOffset = 1;
+        const pathLength = path.length,
+            indexOffset = 1;
 
-            if (particle.svgStep >= pathLength) {
-                particle.svgPathIndex = particle.svgPathIndex + indexOffset;
+        if (particle.svgStep >= pathLength) {
+            particle.svgPathIndex = particle.svgPathIndex + indexOffset;
 
-                if (particle.svgPathIndex >= this._paths.length) {
-                    if (this._reverse) {
-                        particle.svgPathIndex = this._paths.length - indexOffset;
+            if (particle.svgPathIndex >= this._paths.length) {
+                if (this._reverse) {
+                    particle.svgPathIndex = this._paths.length - indexOffset;
 
-                        particle.svgDirection = SVGPathDirection.reverse;
-                    } else {
-                        particle.svgPathIndex = 0;
+                    particle.svgDirection = SVGPathDirection.reverse;
+                } else {
+                    particle.svgPathIndex = 0;
 
-                        particle.svgStep = 0;
-                    }
-                }
-            } else if (particle.svgStep <= minStep) {
-                particle.svgPathIndex = particle.svgPathIndex - indexOffset;
-
-                if (particle.svgPathIndex < minIndex) {
-                    if (this._reverse) {
-                        particle.svgPathIndex = 0;
-
-                        particle.svgDirection = SVGPathDirection.normal;
-                    } else {
-                        particle.svgPathIndex = this._paths.length - indexOffset;
-
-                        path = this._paths[particle.svgPathIndex];
-
-                        particle.svgStep = path.length;
-                    }
+                    particle.svgStep = 0;
                 }
             }
+        } else if (particle.svgStep <= minStep) {
+            particle.svgPathIndex = particle.svgPathIndex - indexOffset;
 
-            path = this._paths[particle.svgPathIndex];
+            if (particle.svgPathIndex < minIndex) {
+                if (this._reverse) {
+                    particle.svgPathIndex = 0;
+
+                    particle.svgDirection = SVGPathDirection.normal;
+                } else {
+                    particle.svgPathIndex = this._paths.length - indexOffset;
+
+                    path = this._paths[particle.svgPathIndex];
+
+                    particle.svgStep = path.length;
+                }
+            }
         }
 
-        if (path) {
-            const pathElement = path.element,
-                pos = pathElement.getPointAtLength(particle.svgStep),
-                canvasSize = particle.container.canvas.size,
-                offset = getPosition(this._offset, canvasSize),
-                scale = this._scale * pxRatio;
+        path = this._paths[particle.svgPathIndex];
 
-            particle.position.x =
-                (pos.x - this._size.width * half) * scale +
-                particle.svgInitialPosition.x +
-                offset.x +
-                particle.svgOffset.width;
-            particle.position.y =
-                (pos.y - this._size.height * half) * scale +
-                particle.svgInitialPosition.y +
-                offset.y +
-                particle.svgOffset.height;
-        }
+        const pathElement = path.element,
+            pos = pathElement.getPointAtLength(particle.svgStep),
+            canvasSize = particle.container.canvas.size,
+            offset = getPosition(this._offset, canvasSize),
+            scale = this._scale * pxRatio;
+
+        particle.position.x =
+            (pos.x - this._size.width * half) * scale +
+            particle.svgInitialPosition.x +
+            offset.x +
+            particle.svgOffset.width;
+        particle.position.y =
+            (pos.y - this._size.height * half) * scale +
+            particle.svgInitialPosition.y +
+            offset.y +
+            particle.svgOffset.height;
 
         return Vector.origin;
     }

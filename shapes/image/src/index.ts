@@ -24,9 +24,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
             throw new Error(`${errorPrefix} no image source provided`);
         }
 
-        if (!engine.images) {
-            engine.images = [];
-        }
+        engine.images ??= [];
 
         if (engine.images.find((t: IImage) => t.name === data.name || t.source === data.src)) {
             return;
@@ -34,7 +32,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
         try {
             const image: IImage = {
-                gif: data.gif ?? false,
+                gif: data.gif,
                 name: data.name ?? data.src,
                 source: data.src,
                 type: data.src.substring(data.src.length - extLength),

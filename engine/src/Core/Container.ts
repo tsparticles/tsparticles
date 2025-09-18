@@ -38,7 +38,7 @@ type ContainerClickHandler = (evt: Event) => void;
  * @returns true if the container is still usable
  */
 function guardCheck(container: Container): boolean {
-    return container && !container.destroyed;
+    return !container.destroyed;
 }
 
 /**
@@ -208,7 +208,9 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-        this._intersectionObserver = safeIntersectionObserver(entries => this._intersectionManager(entries));
+        this._intersectionObserver = safeIntersectionObserver(entries => {
+            this._intersectionManager(entries);
+        });
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
@@ -299,19 +301,9 @@ export class Container {
                 }
 
                 if (touched && !touchMoved) {
-                    const touchEvent = e as TouchEvent;
-
-                    let lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
-
-                    if (!lastTouch) {
-                        lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - touchEndLengthOffset];
-
-                        if (!lastTouch) {
-                            return;
-                        }
-                    }
-
-                    const element = this.canvas.element,
+                    const touchEvent = e as TouchEvent,
+                        lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset],
+                        element = this.canvas.element,
                         canvasRect = element ? element.getBoundingClientRect() : undefined,
                         pos = {
                             x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
@@ -453,7 +445,9 @@ export class Container {
             this._nextFrame(timestamp);
         };
 
-        this._drawAnimationFrame = animate(timestamp => frame(timestamp));
+        this._drawAnimationFrame = animate(timestamp => {
+            frame(timestamp);
+        });
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -785,7 +779,7 @@ export class Container {
             }
 
             if (entry.isIntersecting) {
-                void this.play();
+                this.play();
             } else {
                 this.pause();
             }

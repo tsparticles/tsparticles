@@ -34,11 +34,11 @@ export function absorb(p1: Particle, p2: Particle, delta: IDelta, pixelRatio: nu
     const r1 = p1.getRadius(),
         r2 = p2.getRadius();
 
-    if (r1 === undefined && r2 !== undefined) {
+    if (!r1 && r2) {
         p1.destroy();
-    } else if (r1 !== undefined && r2 === undefined) {
+    } else if (r1 && !r2) {
         p2.destroy();
-    } else if (r1 !== undefined && r2 !== undefined) {
+    } else if (r1 && r2) {
         if (r1 >= r2) {
             updateAbsorb(p1, r1, p2, r2, delta, pixelRatio);
         } else {

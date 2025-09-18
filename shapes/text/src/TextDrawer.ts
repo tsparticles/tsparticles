@@ -12,6 +12,8 @@ import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
 import { drawText } from "./Utils.js";
 
+const firstItem = 0;
+
 /**
  * Multiline text drawer
  */
@@ -27,9 +29,9 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
             { validTypes } = this;
 
         if (validTypes.find(t => isInArray(t, options.particles.shape.type))) {
-            const shapeOptions = validTypes
-                    .map(t => options.particles.shape.options[t])
-                    .find(t => !!t) as SingleOrMultiple<ITextShape>,
+            const shapeOptions = validTypes.map(t => options.particles.shape.options[t])[
+                    firstItem
+                ] as SingleOrMultiple<ITextShape>,
                 promises: Promise<void>[] = [];
 
             executeOnSingleOrMultiple(shapeOptions, shape => {
@@ -57,10 +59,6 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
         }
 
         const textData = character.value;
-
-        if (textData === undefined) {
-            return;
-        }
 
         particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
     }

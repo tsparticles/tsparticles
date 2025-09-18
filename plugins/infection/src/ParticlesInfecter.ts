@@ -68,8 +68,8 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
             } else if (infP2.infection.stage < p1.infection.stage) {
                 infecter.updateInfectionStage(infP2, infectedStage1);
             } else if (infP2.infection.stage > p1.infection.stage) {
-                const infectionStage2 = infectionOptions.stages[infP2.infection.stage];
-                const infectedStage2 = infectionStage2?.infectedStage ?? infP2.infection.stage;
+                const infectionStage2 = infectionOptions.stages[infP2.infection.stage],
+                    infectedStage2 = infectionStage2.infectedStage ?? infP2.infection.stage;
 
                 infecter.updateInfectionStage(p1, infectedStage2);
             }
@@ -77,7 +77,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
     }
 
     isEnabled(): boolean {
-        return this.container.actualOptions?.infection?.enable ?? false;
+        return this.container.actualOptions.infection?.enable ?? false;
     }
 
     reset(): void {

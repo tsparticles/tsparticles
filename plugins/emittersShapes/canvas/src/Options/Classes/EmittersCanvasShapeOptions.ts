@@ -24,7 +24,7 @@ export class EmittersCanvasShapeOptions
         this.text = new TextOptions();
     }
 
-    load(data?: RecursivePartial<IEmittersCanvasShapeOptions> | undefined): void {
+    load(data?: RecursivePartial<IEmittersCanvasShapeOptions>): void {
         if (isNull(data)) {
             return;
         }

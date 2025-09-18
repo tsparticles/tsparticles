@@ -13,9 +13,7 @@ const double = 2,
 export function drawCircle(data: IShapeDrawData<CircleParticle>): void {
     const { context, particle, radius } = data;
 
-    if (!particle.circleRange) {
-        particle.circleRange = { min: minAngle, max: doublePI };
-    }
+    particle.circleRange ??= { min: minAngle, max: doublePI };
 
     const circleRange = particle.circleRange;
 
