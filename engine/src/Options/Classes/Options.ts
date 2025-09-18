@@ -1,4 +1,4 @@
-import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
+import { deepExtend, executeOnSingleOrMultiple, isSsr, safeMatchMedia } from "../../Utils/Utils.js";
 import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
 import { BackgroundMask } from "./BackgroundMask/BackgroundMask.js";
@@ -222,9 +222,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
         this.load(defaultOptions);
 
-        const responsiveOptions = this.responsive.find(t =>
-            t.mode === ResponsiveMode.screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width,
-        );
+        const responsiveOptions = this.responsive.find(t => {
+            if (t.mode === ResponsiveMode.screen) {
+                return !isSsr() && typeof screen !== "undefined" && t.maxWidth > screen.availWidth;
+            } else {
+                return t.maxWidth * pxRatio > width;
+            }
+        });
 
         this.load(responsiveOptions?.options);
 
