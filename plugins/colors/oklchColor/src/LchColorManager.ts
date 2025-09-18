@@ -26,22 +26,26 @@ export class LchColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             lchColor = colorValue.lch ?? (color.value as ILch);
 
-        if (lchColor.l !== undefined && lchColor.c !== undefined && lchColor.h !== undefined) {
-            return lchToRgb(lchColor); // Handle LCH conversion
+        if (!Object.hasOwn(lchColor, "l") && !Object.hasOwn(lchColor, "c") && !Object.hasOwn(lchColor, "h")) {
+            return;
         }
+
+        return lchToRgb(lchColor); // Handle LCH conversion
     }
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
         const colorValue = color.value as IRangeValueColor,
             lchColor = colorValue.lch ?? (color.value as IRangeOklch); // Support for LCH
 
-        if (lchColor.l !== undefined && lchColor.c !== undefined && lchColor.h !== undefined) {
-            return lchToRgb({
-                l: getRangeValue(lchColor.l),
-                c: getRangeValue(lchColor.c),
-                h: getRangeValue(lchColor.h),
-            });
+        if (!Object.hasOwn(lchColor, "l") && !Object.hasOwn(lchColor, "c") && !Object.hasOwn(lchColor, "h")) {
+            return;
         }
+
+        return lchToRgb({
+            l: getRangeValue(lchColor.l),
+            c: getRangeValue(lchColor.c),
+            h: getRangeValue(lchColor.h),
+        });
     }
 
     parseString(input: string): IRgba | undefined {

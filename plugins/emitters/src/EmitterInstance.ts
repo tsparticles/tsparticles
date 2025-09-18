@@ -113,9 +113,8 @@ export class EmitterInstance {
         this._firstSpawn = !this.options.life.wait;
         this._startParticlesAdded = false;
 
-        let particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticlesOptions>;
+        const particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticlesOptions>;
 
-        particlesOptions ??= {};
         particlesOptions.move ??= {};
         particlesOptions.move.direction ??= this.options.direction;
 
@@ -470,7 +469,7 @@ export class EmitterInstance {
         }
 
         const duration =
-                this.options.life?.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+                this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
             minDuration = 0,
             minLifeCount = 0;
 
@@ -496,8 +495,7 @@ export class EmitterInstance {
             emitFactor = container.retina.reduceFactor
                 ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
                 : Infinity,
-            defaultColorSpeed = 0,
-            colorSpeed = getRangeValue(animation.speed ?? defaultColorSpeed);
+            colorSpeed = getRangeValue(animation.speed);
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * factor) % maxValue;
     };

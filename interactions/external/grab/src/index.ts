@@ -21,5 +21,5 @@ export async function loadExternalGrabInteraction(engine: Engine, refresh = true
 
 export * from "./Options/Classes/Grab.js";
 export * from "./Options/Classes/GrabLinks.js";
-export * from "./Options/Interfaces/IGrab.js";
-export * from "./Options/Interfaces/IGrabLinks.js";
+export type * from "./Options/Interfaces/IGrab.js";
+export type * from "./Options/Interfaces/IGrabLinks.js";

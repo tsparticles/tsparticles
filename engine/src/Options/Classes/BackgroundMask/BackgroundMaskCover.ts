@@ -15,7 +15,7 @@ export class BackgroundMaskCover implements IBackgroundMaskCover, IOptionLoader<
         this.opacity = 1;
     }
 
-    load(data?: RecursivePartial<IBackgroundMaskCover> | undefined): void {
+    load(data?: RecursivePartial<IBackgroundMaskCover>): void {
         if (isNull(data)) {
             return;
         }

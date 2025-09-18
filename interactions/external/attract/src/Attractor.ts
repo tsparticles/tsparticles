@@ -28,9 +28,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
         this._engine = engine;
 
-        if (!container.attract) {
-            container.attract = { particles: [] };
-        }
+        container.attract ??= { particles: [] };
 
         this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions,
@@ -40,9 +38,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
                 return;
             }
 
-            if (!container.attract) {
-                container.attract = { particles: [] };
-            }
+            container.attract ??= { particles: [] };
 
             container.attract.clicking = true;
             container.attract.count = 0;
@@ -63,9 +59,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
                     return;
                 }
 
-                if (!container.attract) {
-                    container.attract = { particles: [] };
-                }
+                container.attract ??= { particles: [] };
 
                 container.attract.clicking = false;
             }, attract.duration * millisecondsToSeconds);
@@ -122,9 +116,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         options: Modes & AttractMode,
         ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
     ): void {
-        if (!options.attract) {
-            options.attract = new Attract();
-        }
+        options.attract ??= new Attract();
 
         for (const source of sources) {
             options.attract.load(source?.attract);

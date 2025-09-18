@@ -12,7 +12,7 @@ export class EmittersPolygonShapeOptions
         this.sides = 5;
     }
 
-    load(data?: RecursivePartial<IEmittersPolygonShapeOptions> | undefined): void {
+    load(data?: RecursivePartial<IEmittersPolygonShapeOptions>): void {
         if (isNull(data)) {
             return;
         }

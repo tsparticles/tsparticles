@@ -59,16 +59,22 @@ interface RectSideBounceData {
 }
 
 interface ILogger {
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     debug(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     error(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     info(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     log(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     verbose(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 
+    // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
     warning(this: void, message?: unknown, ...optionalParams: unknown[]): void;
 }
 
@@ -92,12 +98,12 @@ const _logger: ILogger = {
  * @param logger - A logger object responsible for logging messages.
  */
 export function setLogger(logger: ILogger): void {
-    _logger.debug = logger.debug || _logger.debug;
-    _logger.error = logger.error || _logger.error;
-    _logger.info = logger.info || _logger.info;
-    _logger.log = logger.log || _logger.log;
-    _logger.verbose = logger.verbose || _logger.verbose;
-    _logger.warning = logger.warning || _logger.warning;
+    _logger.debug = logger.debug;
+    _logger.error = logger.error;
+    _logger.info = logger.info;
+    _logger.log = logger.log;
+    _logger.verbose = logger.verbose;
+    _logger.warning = logger.warning;
 }
 
 /**
@@ -120,7 +126,7 @@ function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result):
         const key = JSON.stringify(args); // Serialize arguments as the cache key
 
         if (cache.has(key)) {
-            return cache.get(key)!; // Return cached result if available
+            return cache.get(key) as Result; // Return cached result if available
         }
 
         const result = fn(...args); // Compute the result
@@ -179,7 +185,7 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
  * @returns true if the environment is server side
  */
 export function isSsr(): boolean {
-    return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
+    return typeof window === "undefined" || typeof window.document === "undefined" || !window.document;
 }
 
 /**
@@ -234,9 +240,7 @@ export function safeMutationObserver(callback: (records: MutationRecord[]) => vo
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    const invalidIndex = -1;
-
-    return value === array || (isArray(array) && array.indexOf(value) > invalidIndex);
+    return value === array || (isArray(array) && array.includes(value));
 }
 
 /**
@@ -257,7 +261,7 @@ export async function loadFont(font?: string, weight?: string): Promise<void> {
  * @param array - the array to get the index from
  * @returns a random array index
  */
-export function arrayRandomIndex<T>(array: T[]): number {
+export function arrayRandomIndex(array: unknown[]): number {
     return Math.floor(getRandom() * array.length);
 }
 
@@ -793,7 +797,6 @@ export function updateAnimation(
 
     if (
         particle.destroyed ||
-        !data ||
         !data.enable ||
         ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
     ) {
@@ -805,9 +808,7 @@ export function updateAnimation(
         maxValue = data.max,
         decay = data.decay ?? minDecay;
 
-    if (!data.time) {
-        data.time = 0;
-    }
+    data.time ??= 0;
 
     if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
         data.time += delta.value;
@@ -826,10 +827,7 @@ export function updateAnimation(
                     data.value -= maxValue;
                 }
 
-                if (!data.loops) {
-                    data.loops = minLoops;
-                }
-
+                data.loops ??= minLoops;
                 data.loops++;
             } else {
                 data.value += velocity;
@@ -844,10 +842,7 @@ export function updateAnimation(
                     data.value += maxValue;
                 }
 
-                if (!data.loops) {
-                    data.loops = minLoops;
-                }
-
+                data.loops ??= minLoops;
                 data.loops++;
             } else {
                 data.value -= velocity;
@@ -860,9 +855,7 @@ export function updateAnimation(
 
     checkDestroy(particle, destroyType, data.value, minValue, maxValue);
 
-    if (!particle.destroyed) {
-        data.value = clamp(data.value, minValue, maxValue);
-    }
+    data.value = clamp(data.value, minValue, maxValue);
 }
 
 /**
@@ -872,10 +865,6 @@ export function updateAnimation(
  */
 export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclaration {
     const clonedStyle: CSSStyleDeclaration = document.createElement("div").style;
-
-    if (!style) {
-        return clonedStyle;
-    }
 
     for (const key in style) {
         const styleKey = style[key];
@@ -893,9 +882,9 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
         const stylePriority = style.getPropertyPriority?.(styleKey);
 
         if (!stylePriority) {
-            clonedStyle.setProperty?.(styleKey, styleValue);
+            clonedStyle.setProperty(styleKey, styleValue);
         } else {
-            clonedStyle.setProperty?.(styleKey, styleValue, stylePriority);
+            clonedStyle.setProperty(styleKey, styleValue, stylePriority);
         }
     }
 

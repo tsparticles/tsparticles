@@ -122,7 +122,9 @@ describe("Utils", () => {
             const weight1 = Math.floor(getRandom() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(Math.floor(comp1));
+            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1.toString()}`).to.be.equal(
+                Math.floor(comp1),
+            );
         });
 
         it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {

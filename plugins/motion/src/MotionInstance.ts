@@ -49,11 +49,7 @@ export class MotionInstance implements IContainerPlugin {
             })();
         };
 
-        if (mediaQuery.addEventListener !== undefined) {
-            mediaQuery.addEventListener("change", handleChange);
-        } else if (mediaQuery.addListener !== undefined) {
-            mediaQuery.addListener(handleChange);
-        }
+        mediaQuery.addEventListener("change", handleChange);
 
         await Promise.resolve();
     }

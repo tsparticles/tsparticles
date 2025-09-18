@@ -20,4 +20,4 @@ export async function loadExternalAttractInteraction(engine: Engine, refresh = t
 }
 
 export * from "./Options/Classes/Attract.js";
-export * from "./Options/Interfaces/IAttract.js";
+export type * from "./Options/Interfaces/IAttract.js";

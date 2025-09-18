@@ -8,6 +8,6 @@ if (!isSsr()) {
 }
 
 export * from "./exports.js";
-export * from "./export-types.js";
+export type * from "./export-types.js";
 
 export { tsParticles };

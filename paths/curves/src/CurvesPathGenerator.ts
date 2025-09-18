@@ -74,11 +74,11 @@ export class CurvesPathGenerator implements IMovePathGenerator {
                     | undefined) ?? this.options.rndFunc;
         }
 
-        options.period = (sourceOptions.period as number) ?? options.period;
-        options.nbHarmonics = (sourceOptions.nbHarmonics as number) ?? options.nbHarmonics;
-        options.attenHarmonics = (sourceOptions.attenHarmonics as number) ?? options.attenHarmonics;
-        options.lowValue = (sourceOptions.lowValue as number) ?? options.lowValue;
-        options.highValue = (sourceOptions.highValue as number) ?? options.highValue;
+        options.period = (sourceOptions.period as number | undefined) ?? options.period;
+        options.nbHarmonics = (sourceOptions.nbHarmonics as number | undefined) ?? options.nbHarmonics;
+        options.attenHarmonics = (sourceOptions.attenHarmonics as number | undefined) ?? options.attenHarmonics;
+        options.lowValue = (sourceOptions.lowValue as number | undefined) ?? options.lowValue;
+        options.highValue = (sourceOptions.highValue as number | undefined) ?? options.highValue;
     }
 
     reset(particle: CurvesPathParticle): void {

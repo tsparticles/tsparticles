@@ -84,7 +84,8 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                return reject(new Error(`${errorPrefix} Could not get canvas context`));
+                reject(new Error(`${errorPrefix} Could not get canvas context`));
+                return;
             }
 
             context.drawImage(
@@ -124,7 +125,7 @@ export function getTextData(textOptions: TextOptions, offset: number, fill: bool
     }
 
     const lines = text.split(linesOptions.separator),
-        fontSize = isNumber(font.size) ? `${font.size}px` : font.size,
+        fontSize = isNumber(font.size) ? `${font.size.toString()}px` : font.size,
         linesData: TextLineData[] = [];
 
     let maxWidth = 0,

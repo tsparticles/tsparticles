@@ -46,7 +46,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
             return;
         }
 
-        const colorAnimation = data.animation as IColorAnimation;
+        const colorAnimation = data.animation as RecursivePartial<IColorAnimation | undefined>;
 
         if (colorAnimation !== undefined) {
             if (colorAnimation.enable !== undefined) {
