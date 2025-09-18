@@ -32,22 +32,26 @@ export class RgbColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             rgbColor = colorValue.rgb ?? (color.value as IRgb);
 
-        if (rgbColor.r !== undefined) {
-            return rgbColor;
+        if (!Object.hasOwn(rgbColor, "r")) {
+            return;
         }
+
+        return rgbColor;
     }
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
         const colorValue = color.value as IValueColor,
             rgbColor = colorValue.rgb ?? (color.value as IRangeRgb);
 
-        if (rgbColor.r !== undefined) {
-            return {
-                r: getRangeValue(rgbColor.r),
-                g: getRangeValue(rgbColor.g),
-                b: getRangeValue(rgbColor.b),
-            };
+        if (!Object.hasOwn(rgbColor, "r")) {
+            return;
         }
+
+        return {
+            r: getRangeValue(rgbColor.r),
+            g: getRangeValue(rgbColor.g),
+            b: getRangeValue(rgbColor.b),
+        };
     }
 
     parseString(input: string): IRgba | undefined {

@@ -1,4 +1,4 @@
-import { loadSlim } from ".";
+import { loadSlim } from "./index.js";
 
 export { loadSlim };
 

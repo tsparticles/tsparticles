@@ -168,6 +168,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
             this.angle = data.angle;
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         const count = data.count ?? data.particleCount;
 
         if (count !== undefined) {
@@ -202,6 +203,7 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
             this.ticks = data.ticks;
         }
 
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
         const origin = data.origin;
 
         if (origin && !data.position) {

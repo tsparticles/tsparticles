@@ -15,7 +15,6 @@ import {
 } from "../Utils/NumberUtils.js";
 import {
     decayOffset,
-    defaultRadius,
     defaultRetryCount,
     double,
     errorPrefix,
@@ -57,7 +56,6 @@ import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import { PixelMode } from "../Enums/Modes/PixelMode.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { alterHsl } from "../Utils/CanvasUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
@@ -103,10 +101,6 @@ function loadEffectData(
 ): IShapeValues | undefined {
     const effectData = effectOptions.options[effect];
 
-    if (!effectData) {
-        return;
-    }
-
     return deepExtend(
         {
             close: effectOptions.close,
@@ -131,10 +125,6 @@ function loadShapeData(
     reduceDuplicates: boolean,
 ): IShapeValues | undefined {
     const shapeData = shapeOptions.options[shape];
-
-    if (!shapeData) {
-        return;
-    }
 
     return deepExtend(
         {
@@ -653,7 +643,7 @@ export class Particle {
         }
 
         for (const mover of particles.movers) {
-            mover.init?.(this);
+            mover.init(this);
         }
 
         effectDrawer?.particleInit?.(container, this);
@@ -809,7 +799,7 @@ export class Particle {
 
         const backFactor = this.roll.horizontal && this.roll.vertical ? double * rollFactor : rollFactor,
             backSum = this.roll.horizontal ? Math.PI * half : none,
-            rolled = Math.floor(((this.roll.angle ?? none) + backSum) / (Math.PI / backFactor)) % double;
+            rolled = Math.floor((this.roll.angle + backSum) / (Math.PI / backFactor)) % double;
 
         if (!rolled) {
             return color;
@@ -837,8 +827,8 @@ export class Particle {
 
         this.moveCenter = {
             ...getPosition(this.options.move.center, canvasSize),
-            radius: this.options.move.center.radius ?? defaultRadius,
-            mode: this.options.move.center.mode ?? PixelMode.percent,
+            radius: this.options.move.center.radius,
+            mode: this.options.move.center.mode,
         };
 
         this.direction = getParticleDirectionAngle(this.options.move.direction, this.position, this.moveCenter);

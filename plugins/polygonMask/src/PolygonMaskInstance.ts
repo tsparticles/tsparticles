@@ -90,10 +90,6 @@ export class PolygonMaskInstance implements IContainerPlugin {
         for (const path of this.paths) {
             const path2d = path.path2d;
 
-            if (!context) {
-                continue;
-            }
-
             if (path2d && this.offset) {
                 drawPolygonMaskPath(this._engine, context, path2d, polygonDraw.stroke, this.offset);
             } else if (rawData) {
@@ -132,7 +128,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             return;
         }
 
-        return deepExtend({}, position ? position : this._randomPoint()) as ICoordinates;
+        return deepExtend({}, position ?? this._randomPoint()) as ICoordinates;
     }
 
     particlesInitialization(): boolean {
@@ -219,7 +215,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         if (options.type === PolygonMaskType.inside) {
             return inside;
         } else {
-            return options.type === PolygonMaskType.outside ? !inside : false;
+            return !inside;
         }
     };
 
@@ -232,7 +228,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
         }
 
         for (const path of this.paths) {
-            const pathData = path.element?.getAttribute("d");
+            const pathData = path.element.getAttribute("d");
 
             if (pathData) {
                 const path2d = new Path2D(pathData),
@@ -240,13 +236,9 @@ export class PolygonMaskInstance implements IContainerPlugin {
                     finalPath = new Path2D(),
                     transform = matrix.scale(this._scale);
 
-                if (finalPath.addPath) {
-                    finalPath.addPath(path2d, transform);
+                finalPath.addPath(path2d, transform);
 
-                    path.path2d = finalPath;
-                } else {
-                    delete path.path2d;
-                }
+                path.path2d = finalPath;
             } else {
                 delete path.path2d;
             }
@@ -433,7 +425,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
                 const namespaces = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
 
-                svg = `<svg ${namespaces} width="${data.size.width}" height="${data.size.height}">${path}</svg>`;
+                svg = `<svg ${namespaces} width="${data.size.width.toString()}" height="${data.size.height.toString()}">${path}</svg>`;
             }
 
             this.raw = this._parseSvgPath(svg, force);
@@ -554,7 +546,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
                 return true;
             }
-        } else if (options.type === PolygonMaskType.inline && particle.initialPosition) {
+        } else if (options.type === PolygonMaskType.inline) {
             const dist = getDistance(particle.initialPosition, particle.getPosition()),
                 { velocity } = particle;
 

@@ -8,7 +8,6 @@ import { type Canvas, createCanvas } from "canvas";
  * @returns the custom canvas
  */
 export function createCustomCanvas(width: number, height: number): Canvas {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call
     const canvas = createCanvas(width, height),
         augmentCanvas = canvas as any;
 
@@ -19,15 +18,15 @@ export function createCustomCanvas(width: number, height: number): Canvas {
         augmentCanvas.style[qualifiedName] = value;
     };
     augmentCanvas.style = {
-        height: `${height}px`,
-        width: `${width}px`,
+        height: `${height.toString()}px`,
+        width: `${width.toString()}px`,
         setProperty(property: string, value: string | null, priority?: string): void {
-            this[property] = priority ? `${value} !important` : value;
+            this[property] = priority ? `${value?.toString() ?? ""} !important` : value;
         },
         removeProperty(property: string): string {
             const value = this[property];
 
-            delete this[property];
+            this[property] = undefined;
 
             return value as string;
         },

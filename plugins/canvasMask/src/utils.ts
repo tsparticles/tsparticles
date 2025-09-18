@@ -176,7 +176,8 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                return reject(new Error(`${errorPrefix} Could not get canvas context`));
+                reject(new Error(`${errorPrefix} Could not get canvas context`));
+                return;
             }
 
             context.drawImage(
@@ -215,14 +216,14 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     }
 
     const lines = text.split(linesOptions.separator),
-        fontSize = isNumber(font.size) ? `${font.size}px` : font.size,
+        fontSize = isNumber(font.size) ? `${font.size.toString()}px` : font.size,
         linesData: TextLineData[] = [];
 
     let maxWidth = 0,
         totalHeight = 0;
 
     for (const line of lines) {
-        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight ?? ""} ${fontSize} ${font.family}`;
+        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
 
         const measure = context.measureText(line),
             lineData = {
@@ -244,7 +245,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     let currentHeight = 0;
 
     for (const line of linesData) {
-        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight ?? ""} ${fontSize} ${font.family}`;
+        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
         context.fillStyle = color;
         context.fillText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
 

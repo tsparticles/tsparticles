@@ -29,9 +29,7 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
     interact(p1: AttractParticle): void {
         const container = this.container;
 
-        if (p1.attractDistance === undefined) {
-            p1.attractDistance = getRangeValue(p1.options.move.attract.distance) * container.retina.pixelRatio;
-        }
+        p1.attractDistance ??= getRangeValue(p1.options.move.attract.distance) * container.retina.pixelRatio;
 
         const distance = p1.attractDistance,
             pos1 = p1.getPosition(),

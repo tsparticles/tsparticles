@@ -18,7 +18,9 @@ let _random = Math.random;
 
 const _animationLoop: AnimationLoop = {
     nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
-    cancel: (idx: number): void => cancelAnimationFrame(idx),
+    cancel: (idx: number): void => {
+        cancelAnimationFrame(idx);
+    },
 };
 
 /**
@@ -50,7 +52,9 @@ export function setAnimationFunctions(
     cancel: (handle: number) => void,
 ): void {
     _animationLoop.nextFrame = (callback: FrameRequestCallback): number => nextFrame(callback);
-    _animationLoop.cancel = (handle: number): void => cancel(handle);
+    _animationLoop.cancel = (handle: number): void => {
+        cancel(handle);
+    };
 }
 
 /**

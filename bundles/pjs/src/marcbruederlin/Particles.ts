@@ -32,7 +32,7 @@ export class Particles {
             throw new Error("No selector provided");
         }
 
-        const el = document.querySelector(selector)!;
+        const el = document.querySelector(selector);
 
         if (!el) {
             throw new Error("No element found for selector");

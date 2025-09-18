@@ -50,7 +50,7 @@ export class FractalNoiseGenerator implements IMovePathGenerator {
             },
             v = Vector.origin;
 
-        if (!this.field?.[point.x]?.[point.y]?.[point.z]) {
+        if (!this.field[point.x][point.y][point.z]) {
             return v;
         }
 
@@ -151,6 +151,8 @@ export class FractalNoiseGenerator implements IMovePathGenerator {
 
         this._resetField();
 
-        addEventListener("resize", () => this._resetField());
+        addEventListener("resize", () => {
+            this._resetField();
+        });
     }
 }

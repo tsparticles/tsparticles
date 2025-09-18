@@ -222,7 +222,7 @@ async function parseImageBlock(
             return { r, g, b, a: 255 };
         }
 
-        return { r, g, b, a: avgAlpha ? ~~((r + g + b) / 3) : 0 };
+        return { r, g, b, a: avgAlpha ? Math.trunc((r + g + b) / 3) : 0 };
     };
 
     const image = ((): ImageData | null => {
@@ -330,12 +330,11 @@ async function parseImageBlock(
         let code = 0,
             size = minCodeSize + 1,
             pos = 0,
-            pixelPos = -4,
-            exit = false;
+            pixelPos = -4;
 
         const dic = [[0]];
 
-        while (!exit) {
+        for (;;) {
             const last = code;
 
             code = readBits(pos, size);
@@ -351,7 +350,6 @@ async function parseImageBlock(
             } else {
                 // ~ clear code +1 = end of information code
                 if (code === clearCode + 1) {
-                    exit = true;
                     break;
                 }
 
@@ -364,7 +362,9 @@ async function parseImageBlock(
                 for (const item of dic[code]) {
                     const { r, g, b, a } = getColor(item);
 
-                    image.data.set([r, g, b, a], (pixelPos += 4));
+                    image.data.set([r, g, b, a], pixelPos);
+
+                    pixelPos += 4;
                 }
 
                 if (dic.length >= 1 << size && size < 0xc) {
@@ -451,7 +451,7 @@ export async function decodeGIF(
     progressCallback?: GIFProgressCallbackFunction,
     avgAlpha?: boolean,
 ): Promise<GIF> {
-    if (!avgAlpha) avgAlpha = false;
+    avgAlpha ??= false;
 
     const res = await fetch(gifURL);
 
@@ -611,7 +611,7 @@ export async function decodeGIF(
         return gif;
     } catch (error) {
         if (error instanceof EvalError) {
-            throw new Error(`error while parsing frame ${frameIndex} "${error.message}"`);
+            throw new Error(`error while parsing frame ${frameIndex.toString()} "${error.message}"`);
         }
 
         throw error;
@@ -642,18 +642,14 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
 
     offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
 
-    if (particle.gifLoopCount === undefined) {
-        particle.gifLoopCount = image.gifLoopCount ?? defaultLoopCount;
-    }
+    particle.gifLoopCount ??= image.gifLoopCount ?? defaultLoopCount;
 
     let frameIndex = particle.gifFrame ?? defaultFrame;
 
     const pos = { x: -image.gifData.width * half, y: -image.gifData.height * half },
         frame = image.gifData.frames[frameIndex];
 
-    if (particle.gifTime === undefined) {
-        particle.gifTime = initialTime;
-    }
+    particle.gifTime ??= initialTime;
 
     if (!frame.bitmap) {
         return;
@@ -755,7 +751,7 @@ export async function loadGifImage(image: IImage): Promise<void> {
     try {
         image.gifData = await decodeGIF(image.source);
 
-        image.gifLoopCount = getGIFLoopAmount(image.gifData) ?? defaultLoopCount;
+        image.gifLoopCount = getGIFLoopAmount(image.gifData);
 
         if (!image.gifLoopCount) {
             image.gifLoopCount = Infinity;
