@@ -215,7 +215,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                             },
                             speed: actualOptions.startVelocity * speedFactor,
                             decay: decayOffset - actualOptions.decay,
-                            direction: -actualOptions.angle,
+                            direction: actualOptions.angle,
                         },
                         rotate: {
                             value: actualOptions.flat
@@ -323,7 +323,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 },
                 speed: actualOptions.startVelocity * speedFactor,
                 decay: decayOffset - actualOptions.decay,
-                direction: -actualOptions.angle,
+                direction: actualOptions.angle,
                 random: true,
                 straight: false,
                 outModes: {
