@@ -918,8 +918,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(encoding@0.1.13)(winston@3.11.0)
       '@fortawesome/fontawesome-free':
-        specifier: ^6.4.2
-        version: 6.4.2
+        specifier: ^7.0.0
+        version: 7.1.0
       '@types/connect-livereload':
         specifier: ^0.6.3
         version: 0.6.3
@@ -2857,8 +2857,8 @@ packages:
     resolution: {integrity: sha512-Z5kJ+wU3oA7MMIqVR9tyZRtjYPr4OC004Q4Rw7pgOKUOKkJfZ3O24nz3WYfGRpMDNmcOi3TwQOmgm7B7Tpii0w==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@fortawesome/fontawesome-free@6.4.2':
-    resolution: {integrity: sha512-m5cPn3e2+FDCOgi1mz0RexTUvvQibBebOUlUlW0+YrMjDTPkiJ6VTKukA1GRsvRw+12KyJndNjj0O4AgTxm2Pg==}
+  '@fortawesome/fontawesome-free@7.1.0':
+    resolution: {integrity: sha512-+WxNld5ZCJHvPQCr/GnzCTVREyStrAJjisUPtUxG5ngDA8TMlPnKp6dddlTpai4+1GNmltAeuk1hJEkBohwZYA==}
     engines: {node: '>=6'}
 
   '@gerrit0/mini-shiki@3.12.0':
@@ -10039,7 +10039,7 @@ snapshots:
       '@eslint/core': 0.15.2
       levn: 0.4.1
 
-  '@fortawesome/fontawesome-free@6.4.2': {}
+  '@fortawesome/fontawesome-free@7.1.0': {}
 
   '@gerrit0/mini-shiki@3.12.0':
     dependencies:
