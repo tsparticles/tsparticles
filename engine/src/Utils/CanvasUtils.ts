@@ -203,7 +203,7 @@ interface DrawShapeData {
  * @param data - the function parameters.
  */
 export function drawEffect(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta, transformData } = data;
+    const { container, context, particle, radius, opacity, strokeWidth, delta, transformData } = data;
 
     if (!particle.effect) {
         return;
@@ -222,6 +222,8 @@ export function drawEffect(data: DrawShapeData): void {
         opacity,
         delta,
         pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
         transformData: { ...transformData },
     });
 }
@@ -252,6 +254,8 @@ export function drawShape(data: DrawShapeData): void {
         opacity,
         delta,
         pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
         transformData: { ...transformData },
     });
 
@@ -273,7 +277,7 @@ export function drawShape(data: DrawShapeData): void {
  * @param data - the function parameters.
  */
 export function drawShapeAfterDraw(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta, transformData } = data;
+    const { container, context, particle, radius, opacity, strokeWidth, delta, transformData } = data;
 
     if (!particle.shape) {
         return;
@@ -292,6 +296,8 @@ export function drawShapeAfterDraw(data: DrawShapeData): void {
         opacity,
         delta,
         pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
         transformData: { ...transformData },
     });
 }
