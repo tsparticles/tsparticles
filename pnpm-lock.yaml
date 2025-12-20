@@ -111,8 +111,8 @@ importers:
         specifier: ^3.7.4
         version: 3.7.4
       prettier-plugin-multiline-arrays:
-        specifier: 4.1.1
-        version: 4.1.1(prettier@3.7.4)
+        specifier: 4.1.3
+        version: 4.1.3(prettier@3.7.4)
       rimraf:
         specifier: ^6.1.2
         version: 6.1.2
@@ -1791,20 +1791,12 @@ packages:
   '@asamuzakjp/nwsapi@2.3.9':
     resolution: {integrity: sha512-n8GuYSrI9bF7FFZ/SjhwevlHc8xaVlb/7HmHelnc/PZXBD2ZR49NnN9sMMuDdEGPeeRQ5d0hqlSlEpgCX3Wl0Q==}
 
-  '@augment-vir/assert@31.17.1':
-    resolution: {integrity: sha512-iIb/+JE66sE8CyerlWjNXCh1cWo92f/g5sYCXwKPaosNFawe9vJvOB2sJJspf34xQAkRfWBogAGa2zy89Jbplg==}
-    engines: {node: '>=22'}
-
   '@augment-vir/assert@31.54.4':
     resolution: {integrity: sha512-nUZZ2hYAFrBVWxcL0fSEY1jdKrXztwm2hswC5bGkGZz7vfhnYMiag19CApkSWjRB3RlZnlrjElWNjYOoy7gFYw==}
     engines: {node: '>=22'}
 
   '@augment-vir/common@31.54.4':
     resolution: {integrity: sha512-+vRgNyZpZvbwoXe6boJA/etOKcZbPo1JgHzKMIpW/yXqym/6MLB5eVSOMYWympcj7oCE8Nz6ScqXEEKxsMKYzw==}
-    engines: {node: '>=22'}
-
-  '@augment-vir/core@31.17.1':
-    resolution: {integrity: sha512-pN5gSudi1N6G5zLktWf6pAQnbwlBQoOTDwQV63t0WDX96NpA7PJ7vela/U0qc2duTHwJAOq62wEHmUhlnAjc9A==}
     engines: {node: '>=22'}
 
   '@augment-vir/core@31.54.4':
@@ -2456,10 +2448,6 @@ packages:
     resolution: {integrity: sha512-+2jseaj02d0uKWEfrYDVoAqJ89u33jd/KYItE/kbAsH21HlULm9ZN//S0C7+MUKsGStM0JnclByvvdyk5YmxjA==}
     peerDependencies:
       winston: ^3.0.0
-
-  '@date-vir/duration@7.3.1':
-    resolution: {integrity: sha512-MRXg2dz021QdOYx4TRcDFJ1PhiNIr8HsZ73uFot5+yMbE0oMdqEDpetzm3PAYvSrYrC3L/qxr8+cnh6FUr+cRw==}
-    engines: {node: '>=22'}
 
   '@date-vir/duration@8.1.0':
     resolution: {integrity: sha512-PwvII5Lo3dzZKpTIYHvPnrKQg6UlOY6V/z/ahPiSGt1HeAMlC96PPfuPZ9ZmzcrKQuAZgO9NzX67sXWRI3T62Q==}
@@ -3698,9 +3686,6 @@ packages:
   '@types/livereload@0.9.5':
     resolution: {integrity: sha512-2RXcRKdivPmn67pwjytvHoRv46AeXaLYVUWA0zkel1XSAOH5i71G0KfUdE5u3g80T155gR3Fo3ilVaqparLsVA==}
 
-  '@types/luxon@3.4.2':
-    resolution: {integrity: sha512-TifLZlFudklWlMBfhubvgqTXRzLDI5pCbGa4P8a3wPyUQSW+1xQ5eDsreP9DWHX3tjq1ke96uYG/nwundroWcA==}
-
   '@types/luxon@3.7.1':
     resolution: {integrity: sha512-H3iskjFIAn5SlJU7OuxUmTEpebK6TKB8rxZShDslBMZJ5u9S//KM1sbdAisiSrqwLQncVjnpi2OK2J51h+4lsg==}
 
@@ -4141,10 +4126,6 @@ packages:
   ansi-styles@5.2.0:
     resolution: {integrity: sha512-Cxwpt2SfTzTtXcfOlzGEee8O+c+MmUgGrNiBcXnuWxuFJHe6a5Hz7qwhwe5OgaSYI0IJvkLqWX1ASG+cJOkEiA==}
     engines: {node: '>=10'}
-
-  ansi-styles@6.2.1:
-    resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
-    engines: {node: '>=12'}
 
   ansi-styles@6.2.3:
     resolution: {integrity: sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==}
@@ -5311,10 +5292,6 @@ packages:
   expand-template@2.0.3:
     resolution: {integrity: sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==}
     engines: {node: '>=6'}
-
-  expect-type@1.2.1:
-    resolution: {integrity: sha512-/kP8CAwxzLVEeFrMm4kMmy4CCDlpipyA7MYLVrdJIkV0fYF0UaigQHRsxHiuY/GEea+bh4KSv3TIlgr+2UL6bw==}
-    engines: {node: '>=12.0.0'}
 
   expect-type@1.3.0:
     resolution: {integrity: sha512-knvyeauYhqjOYvQ66MznSMs83wmHrCycNEN6Ao+2AeYEfxUIkuiVxdEa1qlGEPK+We3n0THiDciYSsCcgW/DoA==}
@@ -6538,10 +6515,6 @@ packages:
   lunr@2.3.9:
     resolution: {integrity: sha512-zTU3DaZaF3Rt9rhN3uBMGQD3dD2/vFQqnvZCDv4dl5iOzq2IZQqTxu90r4E5J+nP70J3ilqVCrbho2eWaeW8Ow==}
 
-  luxon@3.5.0:
-    resolution: {integrity: sha512-rh+Zjr6DNfUYR3bPwJEnuwDdqMbxZW7LOQfUN4B54+Cl+0o5zaU9RJ6bcidfDtC1cWCZXQ+nvX8bf6bAji37QQ==}
-    engines: {node: '>=12'}
-
   luxon@3.7.2:
     resolution: {integrity: sha512-vtEhXh/gNjI9Yg1u4jX/0YVPMvxzHuGgCm6tC5kZyb08yjGWGnqAjGJvcXbqQR2P3MyMEFnRbpcdFS6PBcLqew==}
     engines: {node: '>=12'}
@@ -7334,6 +7307,12 @@ packages:
 
   prettier-plugin-multiline-arrays@4.1.1:
     resolution: {integrity: sha512-fISpetMzBxTcrImHt9hBFbG12EapoLDiQIe2jaPdQQCAyEYvgbfixdYeisE/bxYQvNZA4N0dtDoOQ5zkp9hJCA==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      prettier: '>=3.0.0 <4.0.0'
+
+  prettier-plugin-multiline-arrays@4.1.3:
+    resolution: {integrity: sha512-V1U2EtLCvaoid1lDPReN4Gxw888dGmedJsz61Wfw36z/oG4NIcm3i13gdiUAKRvFKbf+iPsYO1a076tlksD/Tw==}
     engines: {node: '>=20'}
     peerDependencies:
       prettier: '>=3.0.0 <4.0.0'
@@ -8341,10 +8320,6 @@ packages:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
 
-  type-fest@4.41.0:
-    resolution: {integrity: sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==}
-    engines: {node: '>=16'}
-
   type-fest@5.3.1:
     resolution: {integrity: sha512-VCn+LMHbd4t6sF3wfU/+HKT63C9OoyrSIf4b+vtWHpt2U7/4InZG467YDNMFMR70DdHjAdpPWmw2lzRdg0Xqqg==}
     engines: {node: '>=20'}
@@ -8942,14 +8917,6 @@ snapshots:
 
   '@asamuzakjp/nwsapi@2.3.9': {}
 
-  '@augment-vir/assert@31.17.1':
-    dependencies:
-      '@augment-vir/core': 31.17.1
-      '@date-vir/duration': 7.3.1
-      deep-eql: 5.0.2
-      expect-type: 1.2.1
-      type-fest: 4.41.0
-
   '@augment-vir/assert@31.54.4':
     dependencies:
       '@augment-vir/core': 31.54.4
@@ -8968,13 +8935,6 @@ snapshots:
       json5: 2.2.3
       type-fest: 5.3.1
       typed-event-target: 4.1.0
-
-  '@augment-vir/core@31.17.1':
-    dependencies:
-      '@date-vir/duration': 7.3.1
-      browser-or-node: 3.0.0
-      json5: 2.2.3
-      type-fest: 4.41.0
 
   '@augment-vir/core@31.54.4':
     dependencies:
@@ -9828,12 +9788,6 @@ snapshots:
       winston-transport: 4.5.0
     transitivePeerDependencies:
       - encoding
-
-  '@date-vir/duration@7.3.1':
-    dependencies:
-      '@types/luxon': 3.4.2
-      luxon: 3.5.0
-      type-fest: 4.41.0
 
   '@date-vir/duration@8.1.0':
     dependencies:
@@ -11123,8 +11077,6 @@ snapshots:
     dependencies:
       '@types/ws': 8.5.4
 
-  '@types/luxon@3.4.2': {}
-
   '@types/luxon@3.7.1': {}
 
   '@types/mime@1.3.2': {}
@@ -11660,8 +11612,6 @@ snapshots:
       color-convert: 2.0.1
 
   ansi-styles@5.2.0: {}
-
-  ansi-styles@6.2.1: {}
 
   ansi-styles@6.2.3: {}
 
@@ -12982,8 +12932,6 @@ snapshots:
       strip-final-newline: 2.0.0
 
   expand-template@2.0.3: {}
-
-  expect-type@1.2.1: {}
 
   expect-type@1.3.0: {}
 
@@ -14345,8 +14293,6 @@ snapshots:
 
   lunr@2.3.9: {}
 
-  luxon@3.5.0: {}
-
   luxon@3.7.2: {}
 
   madge@8.0.0(typescript@5.9.3):
@@ -15311,6 +15257,12 @@ snapshots:
       prettier: 3.7.4
       proxy-vir: 2.0.1
 
+  prettier-plugin-multiline-arrays@4.1.3(prettier@3.7.4):
+    dependencies:
+      '@augment-vir/common': 31.54.4
+      prettier: 3.7.4
+      proxy-vir: 2.0.1
+
   prettier@3.7.4: {}
 
   pretty-format@30.2.0:
@@ -15366,7 +15318,7 @@ snapshots:
 
   proxy-vir@2.0.1:
     dependencies:
-      '@augment-vir/assert': 31.17.1
+      '@augment-vir/assert': 31.54.4
       '@augment-vir/common': 31.54.4
 
   pstree.remy@1.1.8: {}
@@ -16451,8 +16403,6 @@ snapshots:
 
   type-fest@0.8.1: {}
 
-  type-fest@4.41.0: {}
-
   type-fest@5.3.1:
     dependencies:
       tagged-tag: 1.0.0
@@ -16951,13 +16901,13 @@ snapshots:
 
   wrap-ansi@8.1.0:
     dependencies:
-      ansi-styles: 6.2.1
+      ansi-styles: 6.2.3
       string-width: 5.1.2
       strip-ansi: 7.1.0
 
   wrap-ansi@9.0.0:
     dependencies:
-      ansi-styles: 6.2.1
+      ansi-styles: 6.2.3
       string-width: 7.2.0
       strip-ansi: 7.1.0
 
