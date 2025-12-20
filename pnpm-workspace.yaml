@@ -21,3 +21,4 @@ packages:
 onlyBuiltDependencies:
   - canvas
   - esbuild
+  - nx

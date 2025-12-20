@@ -88,14 +88,9 @@ export function clickAttract(
             return;
         }
 
-        processAttract(
-            engine,
-            container,
-            mousePos,
-            attractRadius,
-            new Circle(mousePos.x, mousePos.y, attractRadius),
-            (p: Particle) => enabledCb(p),
-        );
+        processAttract(engine, container, mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius), (
+            p: Particle,
+        ) => enabledCb(p));
     } else if (attract.clicking === false) {
         attract.particles = [];
     }
@@ -119,12 +114,7 @@ export function hoverAttract(
         return;
     }
 
-    processAttract(
-        engine,
-        container,
-        mousePos,
-        attractRadius,
-        new Circle(mousePos.x, mousePos.y, attractRadius),
-        (p: Particle) => enabledCb(p),
-    );
+    processAttract(engine, container, mousePos, attractRadius, new Circle(mousePos.x, mousePos.y, attractRadius), (
+        p: Particle,
+    ) => enabledCb(p));
 }

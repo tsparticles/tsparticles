@@ -105,8 +105,7 @@ export class Particles {
             options = container.actualOptions;
 
         options.manualParticles.forEach(p =>
-            this.addParticle(p.position ? getPosition(p.position, container.canvas.size) : undefined, p.options),
-        );
+            this.addParticle(p.position ? getPosition(p.position, container.canvas.size) : undefined, p.options));
     }
 
     addParticle(
