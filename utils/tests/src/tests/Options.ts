@@ -138,13 +138,6 @@ describe("Options tests", () => {
         // expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
         // expect(options.particles.rotate.value).to.be.equal(0);
 
-        /* particles shadow */
-        expect(options.particles.shadow.blur).to.equal(0);
-        expect(options.particles.shadow.color).to.be.an("object").to.have.property("value").to.equal("#000");
-        expect(options.particles.shadow.enable).to.be.false;
-        expect(options.particles.shadow.offset.x).to.equal(0);
-        expect(options.particles.shadow.offset.y).to.equal(0);
-
         /* particles shape */
         expect(options.particles.shape.type).to.equal("circle");
 

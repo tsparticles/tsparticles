@@ -66,7 +66,6 @@ export * from "./Options/Classes/Particles/Collisions/CollisionsAbsorb.js";
 export * from "./Options/Classes/Particles/Collisions/CollisionsOverlap.js";
 
 export * from "./Options/Classes/Particles/ParticlesOptions.js";
-export * from "./Options/Classes/Particles/Shadow.js";
 export * from "./Options/Classes/Particles/Stroke.js";
 
 export * from "./Options/Classes/Particles/Move/MoveAttract.js";

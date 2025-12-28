@@ -4,7 +4,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles Trail Shape",
+  "name": "tsParticles Trail Effect",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

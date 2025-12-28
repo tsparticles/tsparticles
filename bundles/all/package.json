@@ -108,6 +108,7 @@
   },
   "dependencies": {
     "@tsparticles/effect-bubble": "workspace:3.9.1",
+    "@tsparticles/effect-shadow": "workspace:3.9.1",
     "@tsparticles/effect-trail": "workspace:3.9.1",
     "@tsparticles/engine": "workspace:3.9.1",
     "@tsparticles/interaction-external-particle": "workspace:3.9.1",

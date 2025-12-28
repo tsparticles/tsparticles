@@ -9,7 +9,6 @@ import type { IMove } from "./Move/IMove.js";
 import type { IOpacity } from "./Opacity/IOpacity.js";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce.js";
 import type { IParticlesNumber } from "./Number/IParticlesNumber.js";
-import type { IShadow } from "./IShadow.js";
 import type { IShape } from "./Shape/IShape.js";
 import type { ISize } from "./Size/ISize.js";
 import type { IStroke } from "./IStroke.js";
@@ -73,11 +72,6 @@ export interface IParticlesOptions {
      * Particles options for reducing the randomization of duplicate particles, the index will be used for choosing the array values
      */
     reduceDuplicates: boolean;
-
-    /**
-     * Particles shadow options
-     */
-    shadow: IShadow;
 
     /**
      * Particles shape options

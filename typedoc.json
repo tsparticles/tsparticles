@@ -84,7 +84,9 @@
     "updaters/tilt",
     "updaters/twinkle",
     "updaters/wobble",
-    "effects/bubble"
+    "effects/bubble",
+    "effects/shadow",
+    "effects/trail"
   ],
   "entryPointStrategy": "packages",
   "name": "tsParticles",

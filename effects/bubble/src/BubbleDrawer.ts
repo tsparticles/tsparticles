@@ -3,7 +3,7 @@ import { type IEffectDrawer, type IShapeDrawData, defaultAngle, doublePI } from 
 const bubbleFactor = 3;
 
 export class BubbleDrawer implements IEffectDrawer {
-    draw(data: IShapeDrawData): void {
+    drawAfter(data: IShapeDrawData): void {
         const { context, radius } = data,
             bubbleRadius = radius / bubbleFactor;
 

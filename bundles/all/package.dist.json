@@ -100,6 +100,7 @@
   },
   "dependencies": {
     "@tsparticles/effect-bubble": "3.9.1",
+    "@tsparticles/effect-shadow": "3.9.1",
     "@tsparticles/effect-trail": "3.9.1",
     "@tsparticles/engine": "3.9.1",
     "@tsparticles/interaction-external-particle": "3.9.1",

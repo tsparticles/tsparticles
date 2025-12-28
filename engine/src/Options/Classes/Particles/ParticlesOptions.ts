@@ -13,7 +13,6 @@ import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import { ParticlesNumber } from "./Number/ParticlesNumber.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { Shadow } from "./Shadow.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { Size } from "./Size/Size.js";
@@ -37,7 +36,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     readonly number;
     readonly opacity;
     reduceDuplicates;
-    readonly shadow;
     readonly shape;
     readonly size;
     stroke: SingleOrMultiple<Stroke>;
@@ -60,7 +58,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
-        this.shadow = new Shadow();
         this.shape = new Shape();
         this.size = new Size();
         this.stroke = new Stroke();
@@ -98,7 +95,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.opacity.load(data.opacity);
         this.shape.load(data.shape);
         this.size.load(data.size);
-        this.shadow.load(data.shadow);
         this.zIndex.load(data.zIndex);
         this.collisions.load(data.collisions);
 
