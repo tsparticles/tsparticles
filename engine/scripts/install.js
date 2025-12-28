@@ -1,6 +1,11 @@
-const path = require("path");
-const particlesJsFoundError = "particles.js-found";
-const reactParticlesJsFoundError = "react-particles-js-found";
+const path = require("path"),
+    particlesJsFoundError = "particles.js-found",
+    reactParticlesJsFoundError = "react-particles-js-found",
+    reactParticlesFoundError = "react-particles-found",
+    reactTsParticlesFoundError = "react-tsparticles-found",
+    angularParticlesFoundError = "ng-particles-found",
+    vue2ParticlesFoundError = "vue2-particles-found",
+    vue3ParticlesFoundError = "vue3-particles-found";
 
 try {
     console.log("Thank you for installing tsParticles.");
@@ -55,20 +60,62 @@ try {
         throw new Error(reactParticlesJsFoundError);
     }
 
+    if (dependencies["react-tsparticles"]) {
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "The package react-tsparticles has been deprecated and is not supported anymore."
+        );
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/react package.");
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "This error will be fixed once react-tsparticles is removed from the package.json file."
+        );
+
+        throw new Error(reactTsParticlesFoundError);
+    }
+
+    if (dependencies["react-particles"]) {
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "The package react-particles has been deprecated and is not supported anymore."
+        );
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/react package.");
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "This error will be fixed once react-particles is removed from the package.json file."
+        );
+
+        throw new Error(reactParticlesFoundError);
+    }
+
     if (dependencies["react"] || dependencies["next"]) {
-        if (!dependencies["react-particles"]) {
+        if (!dependencies["@tsparticles/react"]) {
             console.warn(
                 "\x1b[43m\x1b[30m%s\x1b[0m",
                 "Found React installed. Please download react-particles to use tsParticles with a component ready to use and easier to configure."
             );
             console.log(
-                "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/react/README.md"
+                "You can read more about the component here: https://github.com/tsparticles/react/#readme"
             );
         }
     }
 
+    if (dependencies["ng-particles"]) {
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "The package ng-particles has been deprecated and is not supported anymore."
+        );
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/angular package.");
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "This error will be fixed once ng-particles is removed from the package.json file."
+        );
+
+        throw new Error(angularParticlesFoundError);
+    }
+
     if (dependencies["@angular/core"]) {
-        if (!dependencies["ng-particles"]) {
+        if (!dependencies["@tsparticles/angular"]) {
             console.warn(
                 "\x1b[43m\x1b[30m%s\x1b[0m",
                 "Found Angular installed. Please download ng-particles to use tsParticles with a component ready to use and easier to configure."
@@ -77,30 +124,57 @@ try {
         }
     }
 
-    if (dependencies["vue"] || dependencies["nuxt"]) {
-        const vueVersion = dependencies["vue"];
-        const nuxtVersion = dependencies["nuxt"];
+    if (dependencies["vue3-particles"]) {
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "The package vue3-particles has been deprecated and is not supported anymore."
+        );
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/vue3 package.");
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "This error will be fixed once vue3-particles is removed from the package.json file."
+        );
 
-        const vueMajor = (vueVersion || nuxtVersion).split(".")[0];
+        throw new Error(vue3ParticlesFoundError);
+    }
+
+    if (dependencies["vue2-particles"]) {
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "The package vue2-particles has been deprecated and is not supported anymore."
+        );
+        console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/vue2 package.");
+        console.error(
+            "\x1b[31m%s\x1b[0m",
+            "This error will be fixed once vue2-particles is removed from the package.json file."
+        );
+
+        throw new Error(vue2ParticlesFoundError);
+    }
+
+    if (dependencies["vue"] || dependencies["nuxt"]) {
+        const vueVersion = dependencies["vue"],
+            nuxtVersion = dependencies["nuxt"],
+            vueMajor = (vueVersion || nuxtVersion).split(".")[0];
 
         if (vueMajor > 2) {
-            if (!dependencies["vue3-particles"]) {
+            if (!dependencies["@tsparticles/vue3"]) {
                 console.warn(
                     "\x1b[43m\x1b[30m%s\x1b[0m",
-                    "Found Vue 3.x installed. Please Download vue3-particles to use tsParticles with a component ready to use and easier to configure."
+                    "Found Vue 3.x installed. Please Download @tsparticles/vue3 to use tsParticles with a component ready to use and easier to configure."
                 );
                 console.log(
-                    "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/vue3/README.md"
+                    "You can read more about the component here: https://github.com/tsparticles/vue3/#readme"
                 );
             }
         } else {
-            if (!dependencies["vue2-particles"]) {
+            if (!dependencies["@tsparticles/vue2"]) {
                 console.warn(
                     "\x1b[43m\x1b[30m%s\x1b[0m",
-                    "Found Vue 2.x installed. Please Download vue2-particles to use tsParticles with a component ready to use and easier to configure."
+                    "Found Vue 2.x installed. Please Download @tsparticles/vue2 to use tsParticles with a component ready to use and easier to configure."
                 );
                 console.log(
-                    "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/vue/README.md"
+                    "You can read more about the component here: https://github.com/tsparticles/vue2/#readme"
                 );
             }
         }
@@ -154,7 +228,14 @@ try {
         }
     }
 } catch (error) {
-    if (error.message === reactParticlesJsFoundError || error.message === particlesJsFoundError) {
+    if (error.message === reactParticlesJsFoundError ||
+        error.message === particlesJsFoundError ||
+        error.message === reactParticlesFoundError ||
+        error.message === reactTsParticlesFoundError ||
+        error.message === angularParticlesFoundError ||
+        error.message === vue2ParticlesFoundError ||
+        error.message === vue3ParticlesFoundError
+    ) {
         throw error;
     }
 
