@@ -1,5 +1,4 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
-import type { IHsl, IRgb } from "./Interfaces/Colors.js";
 import { Vector, Vector3d } from "./Utils/Vectors.js";
 import {
     calcExactPositionOrRandomFromSize,
@@ -15,6 +14,7 @@ import {
 } from "../Utils/NumberUtils.js";
 import {
     decayOffset,
+    defaultAngle,
     defaultRetryCount,
     double,
     errorPrefix,
@@ -35,13 +35,13 @@ import {
     isInArray,
     itemFromSingleOrMultiple,
 } from "../Utils/Utils.js";
-import { getHslFromAnimation, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
+import type { IHsl } from "./Interfaces/Colors.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
@@ -58,6 +58,7 @@ import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { alterHsl } from "../Utils/CanvasUtils.js";
+import { getHslFromAnimation } from "../Utils/ColorUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 /**
@@ -301,11 +302,6 @@ export class Particle {
     rotation!: number;
 
     /**
-     * Gets particle shadow color
-     */
-    shadowColor?: IRgb;
-
-    /**
      * Gets particle shape type
      */
     shape!: string;
@@ -429,6 +425,10 @@ export class Particle {
         canvas.drawParticle(this, delta);
     }
 
+    getAngle(): number {
+        return this.rotation + (this.pathRotation ? this.velocity.angle : defaultAngle);
+    }
+
     getFillColor(): IHsl | undefined {
         return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.color));
     }
@@ -484,7 +484,7 @@ export class Particle {
         const pxRatio = container.retina.pixelRatio,
             mainOptions = container.actualOptions,
             particlesOptions = loadParticlesOptions(this._engine, container, mainOptions.particles),
-            { reduceDuplicates } = particlesOptions,
+            reduceDuplicates = particlesOptions.reduceDuplicates,
             effectType = particlesOptions.effect.type,
             shapeType = particlesOptions.shape.type;
 
@@ -636,7 +636,6 @@ export class Particle {
         }
 
         this.spawning = false;
-        this.shadowColor = rangeColorToRgb(this._engine, this.options.shadow.color);
 
         for (const updater of particles.updaters) {
             updater.init(this);

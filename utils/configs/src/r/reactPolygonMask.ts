@@ -32,13 +32,6 @@ const options: ISourceOptions = {
             distance: 30,
             enable: true,
             opacity: 0.4,
-            shadow: {
-                blur: 5,
-                color: {
-                    value: "lime",
-                },
-                enable: false,
-            },
             width: 1,
         },
         move: {

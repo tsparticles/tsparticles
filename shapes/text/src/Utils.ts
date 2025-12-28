@@ -10,7 +10,7 @@ const double = 2,
  * @param data -
  */
 export function drawText(data: IShapeDrawData<TextParticle>): void {
-    const { context, particle, radius, opacity } = data,
+    const { context, particle, fill, stroke, radius, opacity } = data,
         character = particle.shapeData as ITextShape | undefined;
 
     if (!character) {
@@ -25,8 +25,7 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
         style = character.style,
         weight = character.weight,
         size = Math.round(radius) * double,
-        font = character.font,
-        fill = particle.shapeFill;
+        font = character.font;
 
     const lines = text.split("\n");
 
@@ -35,20 +34,20 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
     context.globalAlpha = opacity;
 
     for (let i = 0; i < lines.length; i++) {
-        drawLine(context, lines[i], radius, opacity, i, fill);
+        drawLine(context, lines[i], radius, opacity, i, fill, stroke);
     }
 
     context.globalAlpha = 1;
 }
 
 /**
- *
  * @param context -
  * @param line -
  * @param radius -
  * @param opacity -
  * @param index -
  * @param fill -
+ * @param stroke -
  */
 function drawLine(
     context: CanvasRenderingContext2D,
@@ -57,6 +56,7 @@ function drawLine(
     opacity: number,
     index: number,
     fill: boolean,
+    stroke: boolean,
 ): void {
     const offsetX = line.length * radius * half,
         pos = {
@@ -67,7 +67,9 @@ function drawLine(
 
     if (fill) {
         context.fillText(line, pos.x, pos.y + diameter * index);
-    } else {
+    }
+
+    if (stroke) {
         context.strokeText(line, pos.x, pos.y + diameter * index);
     }
 }

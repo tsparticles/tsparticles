@@ -17,5 +17,8 @@ packages:
   - updaters/*
   - utils/*
   - websites/*
+
 onlyBuiltDependencies:
   - canvas
+  - esbuild
+  - nx

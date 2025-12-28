@@ -1,19 +1,23 @@
+import { SeqTransport } from "@datalust/winston-seq";
 import cluster from "node:cluster";
-import express from "express";
 //import helmet from "helmet";
-import stylus from "stylus";
-import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
+import { dirname } from 'path';
+import dotenv from "dotenv";
+import express from "express";
+import { fileURLToPath } from 'url';
+import livereload from "livereload";
 import path from "path";
 import os from "os";
-import winston from "winston";
-import { SeqTransport } from "@datalust/winston-seq";
-import dotenv from "dotenv";
 //import rateLimit from "express-rate-limit";
+import stylus from "stylus";
+import winston from "winston";
 
-const app = express(), numCpus = os.cpus().length;
+const fileName = fileURLToPath(import.meta.url),
+    dirName = dirname(fileName),
+    app = express(), numCpus = os.cpus().length;
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") });
+dotenv.config({ path: path.join(dirName, "..", ".env") });
 
 let seqTransport = undefined;
 
@@ -152,6 +156,7 @@ app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-
 app.use("/plugin-motion", express.static("./node_modules/@tsparticles/plugin-motion"));
 app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sounds"));
 app.use("/effect-bubble", express.static("./node_modules/@tsparticles/effect-bubble"));
+app.use("/effect-shadow", express.static("./node_modules/@tsparticles/effect-shadow"));
 app.use("/effect-trail", express.static("./node_modules/@tsparticles/effect-trail"));
 app.use("/shape-arrow", express.static("./node_modules/@tsparticles/shape-arrow"));
 app.use("/shape-cards", express.static("./node_modules/@tsparticles/shape-cards"));

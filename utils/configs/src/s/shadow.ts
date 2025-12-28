@@ -14,13 +14,18 @@ const options: ISourceOptions = {
         color: {
             value: "#ffffff",
         },
-        shadow: {
-            enable: true,
-            color: "#000000",
-            blur: 5,
-            offset: {
-                x: 3,
-                y: 3,
+        effect: {
+            type: "shadow",
+            options: {
+                shadow: {
+                    enable: true,
+                    color: "#000000",
+                    blur: 5,
+                    offset: {
+                        x: 3,
+                        y: 3,
+                    },
+                },
             },
         },
         shape: {

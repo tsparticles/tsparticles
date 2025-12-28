@@ -12,6 +12,12 @@ export interface IShapeDrawer<TParticle extends Particle = Particle> {
     afterDraw?: (data: IShapeDrawData<TParticle>) => void;
 
     /**
+     * Shape before draw effect function
+     * @param data - the data used for drawing
+     */
+    beforeDraw?: (data: IShapeDrawData<TParticle>) => void;
+
+    /**
      * Shape destroy function
      * @param container - the container initializing the shape
      */

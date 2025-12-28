@@ -44,6 +44,7 @@ import { loadPolygonPath } from "@tsparticles/path-polygon";
 import { loadRoundedPolygonShape } from "@tsparticles/shape-rounded-polygon";
 import { loadRoundedRectShape } from "@tsparticles/shape-rounded-rect";
 import { loadSVGPath } from "@tsparticles/path-svg";
+import { loadShadowEffect } from "@tsparticles/effect-shadow";
 import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadSpiralShape } from "@tsparticles/shape-spiral";
@@ -116,6 +117,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadPathShape(engine, false);
     await loadRoundedPolygonShape(engine, false);
     await loadRoundedRectShape(engine, false);
+    await loadShadowEffect(engine, false);
     await loadSpiralShape(engine, false);
     await loadTrailEffect(engine, false);
 

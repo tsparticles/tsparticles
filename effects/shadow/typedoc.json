@@ -4,7 +4,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles Bubble Effect",
+  "name": "tsParticles Shadow Effect",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

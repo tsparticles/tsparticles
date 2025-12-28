@@ -55,7 +55,7 @@ const defaultTransform = {
 };
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
-    draw(data: IShapeDrawData<TrailParticle>): void {
+    drawAfter(data: IShapeDrawData<TrailParticle>): void {
         const { context, radius, particle, transformData } = data,
             diameter = radius * double,
             pxRatio = particle.container.retina.pixelRatio,

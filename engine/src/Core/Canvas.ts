@@ -282,7 +282,6 @@ export class Canvas {
                 composite: options.backgroundMask.composite,
                 radius: radius * zIndexFactor ** zIndexOptions.sizeRate,
                 opacity: zOpacity,
-                shadow: particle.options.shadow,
                 transform,
             });
 
@@ -465,10 +464,8 @@ export class Canvas {
 
                 if (this._coverImage) {
                     this._paintImage(this._coverImage.image, this._coverImage.opacity);
-                } else if (this._coverColorStyle) {
-                    this._paintBase(this._coverColorStyle);
                 } else {
-                    this._paintBase();
+                    this._paintBase(this._coverColorStyle);
                 }
             } else {
                 this._paintBase();

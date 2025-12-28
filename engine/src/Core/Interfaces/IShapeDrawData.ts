@@ -13,6 +13,11 @@ export interface IShapeDrawData<TParticle extends Particle = Particle> {
     delta: IDelta;
 
     /**
+     * the particle fill status
+     */
+    fill: boolean;
+
+    /**
      * the particle opacity
      */
     opacity: number;
@@ -31,6 +36,11 @@ export interface IShapeDrawData<TParticle extends Particle = Particle> {
      * the particle radius
      */
     radius: number;
+
+    /**
+     * the particle stroke status
+     */
+    stroke: boolean;
 
     /**
      * the transform data of the particle

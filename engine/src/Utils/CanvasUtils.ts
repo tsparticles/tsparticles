@@ -1,11 +1,4 @@
-import {
-    defaultAngle,
-    defaultTransform,
-    identity,
-    lFactor,
-    minStrokeWidth,
-    originPoint,
-} from "../Core/Utils/Constants.js";
+import { defaultTransform, identity, lFactor, minStrokeWidth, originPoint } from "../Core/Utils/Constants.js";
 import { AlterType } from "../Enums/Types/AlterType.js";
 import type { Container } from "../Core/Container.js";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
@@ -15,7 +8,6 @@ import type { IDimension } from "../Core/Interfaces/IDimension.js";
 import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams.js";
 import type { IHsl } from "../Core/Interfaces/Colors.js";
 import type { Particle } from "../Core/Particle.js";
-import { getStyleFromRgb } from "./ColorUtils.js";
 
 /**
  * Draws a line between two points using canvas API in the given context.
@@ -77,21 +69,10 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
  * @param data - The function parameters.
  */
 export function drawParticle(data: IDrawParticleParams): void {
-    const {
-            container,
-            context,
-            particle,
-            delta,
-            colorStyles,
-            backgroundMask,
-            composite,
-            radius,
-            opacity,
-            shadow,
-            transform,
-        } = data,
+    const { container, context, particle, delta, colorStyles, backgroundMask, composite, radius, opacity, transform } =
+            data,
         pos = particle.getPosition(),
-        angle = particle.rotation + (particle.pathRotation ? particle.velocity.angle : defaultAngle),
+        angle = particle.getAngle(),
         rotateData = {
             sin: Math.sin(angle),
             cos: Math.cos(angle),
@@ -108,15 +89,6 @@ export function drawParticle(data: IDrawParticleParams): void {
 
     if (backgroundMask) {
         context.globalCompositeOperation = composite;
-    }
-
-    const shadowColor = particle.shadowColor;
-
-    if (shadow.enable && shadowColor) {
-        context.shadowBlur = shadow.blur;
-        context.shadowColor = getStyleFromRgb(shadowColor);
-        context.shadowOffsetX = shadow.offset.x;
-        context.shadowOffsetY = shadow.offset.y;
     }
 
     if (colorStyles.fill) {
@@ -142,9 +114,11 @@ export function drawParticle(data: IDrawParticleParams): void {
         strokeWidth,
     };
 
+    drawBeforeEffect(drawData);
+    drawShapeBeforeDraw(drawData);
     drawShape(drawData);
     drawShapeAfterDraw(drawData);
-    drawEffect(drawData);
+    drawAfterEffect(drawData);
 
     context.globalCompositeOperation = "source-over";
 
@@ -199,11 +173,43 @@ interface DrawShapeData {
 }
 
 /**
- * Draws the particle shape using the plugin's shape renderer.
+ * Draws the particle effect using the plugin's shape renderer.
  * @param data - the function parameters.
  */
-export function drawEffect(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta, transformData } = data;
+export function drawAfterEffect(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, strokeWidth, delta, transformData } = data;
+
+    if (!particle.effect) {
+        return;
+    }
+
+    const drawer = container.effectDrawers.get(particle.effect),
+        // eslint-disable-next-line @typescript-eslint/no-deprecated
+        drawFunc = drawer?.drawAfter ?? drawer?.draw;
+
+    if (!drawFunc) {
+        return;
+    }
+
+    drawFunc({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
+        transformData: { ...transformData },
+    });
+}
+
+/**
+ * Draws the particle effect using the plugin's shape renderer.
+ * @param data - the function parameters.
+ */
+export function drawBeforeEffect(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, strokeWidth, delta, transformData } = data;
 
     if (!particle.effect) {
         return;
@@ -211,17 +217,19 @@ export function drawEffect(data: DrawShapeData): void {
 
     const drawer = container.effectDrawers.get(particle.effect);
 
-    if (!drawer) {
+    if (!drawer?.drawBefore) {
         return;
     }
 
-    drawer.draw({
+    drawer.drawBefore({
         context,
         particle,
         radius,
         opacity,
         delta,
         pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
         transformData: { ...transformData },
     });
 }
@@ -252,6 +260,8 @@ export function drawShape(data: DrawShapeData): void {
         opacity,
         delta,
         pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
         transformData: { ...transformData },
     });
 
@@ -273,7 +283,7 @@ export function drawShape(data: DrawShapeData): void {
  * @param data - the function parameters.
  */
 export function drawShapeAfterDraw(data: DrawShapeData): void {
-    const { container, context, particle, radius, opacity, delta, transformData } = data;
+    const { container, context, particle, radius, opacity, strokeWidth, delta, transformData } = data;
 
     if (!particle.shape) {
         return;
@@ -292,6 +302,38 @@ export function drawShapeAfterDraw(data: DrawShapeData): void {
         opacity,
         delta,
         pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
+        transformData: { ...transformData },
+    });
+}
+
+/**
+ * Calls the beforeDraw function of the plugin's shape renderer, this is called before drawShape.'
+ * @param data - the function parameters.
+ */
+export function drawShapeBeforeDraw(data: DrawShapeData): void {
+    const { container, context, particle, radius, opacity, strokeWidth, delta, transformData } = data;
+
+    if (!particle.shape) {
+        return;
+    }
+
+    const drawer = container.shapeDrawers.get(particle.shape);
+
+    if (!drawer?.beforeDraw) {
+        return;
+    }
+
+    drawer.beforeDraw({
+        context,
+        particle,
+        radius,
+        opacity,
+        delta,
+        pixelRatio: container.retina.pixelRatio,
+        fill: particle.shapeFill,
+        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
         transformData: { ...transformData },
     });
 }

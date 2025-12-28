@@ -73,9 +73,10 @@ interface EventListenersHandlers {
  * Particles container event listeners manager
  */
 export class EventListeners {
-    private _canPush: boolean;
+    private _canPush = true;
 
     private readonly _handlers: EventListenersHandlers;
+    private readonly _matchMedia;
     private _resizeObserver?: ResizeObserver;
     private _resizeTimeout?: NodeJS.Timeout;
     private readonly _touches: Map<number, number>;
@@ -85,8 +86,7 @@ export class EventListeners {
      * @param container - the calling container
      */
     constructor(private readonly container: Container) {
-        this._canPush = true;
-
+        this._matchMedia = safeMatchMedia("(prefers-color-scheme: dark)");
         this._touches = new Map<number, number>();
         this._handlers = {
             mouseDown: (): void => {
@@ -162,7 +162,7 @@ export class EventListeners {
             }
 
             mouseInteractivity.clickPosition = { ...mousePos };
-            mouseInteractivity.clickTime = new Date().getTime();
+            mouseInteractivity.clickTime = Date.now();
 
             const onClick = options.interactivity.events.onClick;
 
@@ -320,14 +320,13 @@ export class EventListeners {
     };
 
     private readonly _manageMediaMatch: (add: boolean) => void = add => {
-        const handlers = this._handlers,
-            mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)");
+        const handlers = this._handlers;
 
-        if (!mediaMatch) {
+        if (!this._matchMedia) {
             return;
         }
 
-        manageListener(mediaMatch, "change", handlers.themeChange, add);
+        manageListener(this._matchMedia, "change", handlers.themeChange, add);
     };
 
     private readonly _manageResize: (add: boolean) => void = add => {

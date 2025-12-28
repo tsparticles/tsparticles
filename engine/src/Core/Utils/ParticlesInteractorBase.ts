@@ -10,8 +10,7 @@ import type { Particle } from "../Particle.js";
 export abstract class ParticlesInteractorBase<
     TContainer extends Container = Container,
     TParticle extends Particle = Particle,
-> implements IParticlesInteractor<TParticle>
-{
+> implements IParticlesInteractor<TParticle> {
     /**
      * Particles interactions type
      */

@@ -30,13 +30,6 @@ const options: ISourceOptions = {
             distance: 150,
             enable: true,
             opacity: 0.6,
-            shadow: {
-                blur: 5,
-                color: {
-                    value: "lime",
-                },
-                enable: false,
-            },
             width: 1,
         },
         move: {
@@ -66,17 +59,6 @@ const options: ISourceOptions = {
         },
         size: {
             value: 3,
-        },
-        shadow: {
-            blur: 0,
-            color: {
-                value: "#000000",
-            },
-            enable: false,
-            offset: {
-                x: 0,
-                y: 0,
-            },
         },
         stroke: {
             color: {

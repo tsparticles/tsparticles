@@ -1,5 +1,3 @@
-import type { Engine } from "./Core/Engine.js";
-
 export type * from "./Core/Interfaces/Colors.js";
 export type * from "./Core/Interfaces/IBounds.js";
 export type * from "./Core/Interfaces/IBubbleParticleData.js";
@@ -76,7 +74,6 @@ export type * from "./Options/Interfaces/Particles/Collisions/ICollisionsOverlap
 export type * from "./Options/Interfaces/Particles/Effect/IEffect.js";
 
 export type * from "./Options/Interfaces/Particles/IParticlesOptions.js";
-export type * from "./Options/Interfaces/Particles/IShadow.js";
 export type * from "./Options/Interfaces/Particles/IStroke.js";
 
 export type * from "./Options/Interfaces/Particles/Move/IMoveAttract.js";
@@ -125,5 +122,5 @@ export type { Container } from "./Core/Container.js";
 export type { Particle } from "./Core/Particle.js";
 export type { Particles } from "./Core/Particles.js";
 export type { Retina } from "./Core/Retina.js";
-export type { Engine, Engine as Main };
+export type { Engine } from "./Core/Engine.js";
 export type { IParticlesNumberLimit } from "./Options/Interfaces/Particles/Number/IParticlesNumberLimit.js";
