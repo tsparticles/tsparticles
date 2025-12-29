@@ -14,7 +14,7 @@
         "@tsparticles/engine": "workspace:3.9.1"
     },
     "devDependencies": {
-        "typescript": "^5.3.3",
-        "vite": "^6.0.0"
+        "typescript": "^5.9.3",
+        "vite": "^7.3.0"
     }
 }

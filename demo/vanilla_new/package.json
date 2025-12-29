@@ -34,9 +34,9 @@
   },
   "homepage": "https://particles.js.org",
   "devDependencies": {
-    "fs-extra": "^11.1.1",
+    "fs-extra": "^11.3.3",
     "minify": "^14.0.0",
-    "sass": "^1.69.5"
+    "sass": "^1.97.1"
   },
   "dependencies": {
     "@tsparticles/configs": "workspace:3.9.1",
