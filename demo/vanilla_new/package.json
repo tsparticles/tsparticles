@@ -35,7 +35,7 @@
   "homepage": "https://particles.js.org",
   "devDependencies": {
     "fs-extra": "^11.1.1",
-    "minify": "^13.0.0",
+    "minify": "^14.0.0",
     "sass": "^1.69.5"
   },
   "dependencies": {
