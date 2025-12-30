@@ -811,7 +811,7 @@ export class Container {
                 return;
             }
 
-            this.particles.draw(delta);
+            this.canvas.drawParticles(delta);
 
             if (!this.alive()) {
                 this.destroy();

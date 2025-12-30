@@ -158,27 +158,10 @@ export class Particles {
         this.updaters = [];
     }
 
-    draw(delta: IDelta): void {
-        const container = this._container,
-            canvas = container.canvas;
-
-        /* clear canvas */
-        canvas.clear();
-
-        /* update each particle before drawing */
-        this.update(delta);
-
-        /* draw polygon shape in debug mode */
-        for (const plugin of container.plugins.values()) {
-            canvas.drawPlugin(plugin, delta);
+    drawParticles(delta: IDelta): void {
+        for (const particle of this._zArray) {
+            particle.draw(delta);
         }
-
-        /* container.canvas.draw((ctx) => {
-            this.quadTree.draw(ctx);
-        }); */
-
-        /* draw each particle */
-        this._container.canvas.drawParticles(this._zArray, delta);
     }
 
     filter(condition: (particle: Particle) => boolean): Particle[] {
@@ -267,7 +250,7 @@ export class Particles {
         this.clear();
         await this.init();
 
-        this.draw({ value: 0, factor: 0 });
+        this._container.canvas.drawParticles({ value: 0, factor: 0 });
     }
 
     remove(particle: Particle, group?: string, override?: boolean): void {

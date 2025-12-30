@@ -1,4 +1,12 @@
-import { clear, drawParticle, drawParticlePlugin, drawPlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
+import {
+    clear,
+    clearDrawPlugin,
+    drawParticle,
+    drawParticlePlugin,
+    drawPlugin,
+    paintBase,
+    paintImage,
+} from "../Utils/CanvasUtils.js";
 import { cloneStyle, getFullScreenStyle, getLogger, safeMutationObserver } from "../Utils/Utils.js";
 import {
     defaultOpacity,
@@ -77,10 +85,10 @@ function setStyle(canvas: HTMLCanvasElement, style?: CSSStyleDeclaration, import
     for (const key of keys) {
         const value = style.getPropertyValue(key);
 
-        if (!value) {
-            elementStyle.removeProperty(key);
-        } else {
+        if (value) {
             elementStyle.setProperty(key, value, important ? "important" : "");
+        } else {
+            elementStyle.removeProperty(key);
         }
     }
 }
@@ -179,6 +187,17 @@ export class Canvas {
     }
 
     /**
+     * Clears the context after drawing stuff using the given plugin
+     * @param plugin - the plugin to use for clearing the context
+     * @param delta - the frame delta time values
+     */
+    clearDrawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
+        this.draw(ctx => {
+            clearDrawPlugin(ctx, plugin, delta);
+        });
+    }
+
+    /**
      * Destroying object actions
      */
     destroy(): void {
@@ -201,7 +220,7 @@ export class Canvas {
     }
 
     /**
-     * Generic draw method, for drawing stuff on the canvas context
+     * Generic draw method for drawing stuff on the canvas context
      * @param cb -
      * @returns the result of the callback
      */
@@ -210,16 +229,6 @@ export class Canvas {
 
         if (!ctx) {
             return;
-        }
-
-        return cb(ctx);
-    }
-
-    drawAsync<T>(cb: (context: CanvasRenderingContext2D) => T): T | undefined {
-        const ctx = this._context;
-
-        if (!ctx) {
-            return undefined;
         }
 
         return cb(ctx);
@@ -298,23 +307,36 @@ export class Canvas {
         });
     }
 
-    drawParticles(particles: Particle[], delta: IDelta): void {
-        const container = this.container;
+    drawParticles(delta: IDelta): void {
+        const { actualOptions, particles, plugins } = this.container;
+
+        this.clear();
+
+        /* update each particle before drawing */
+        particles.update(delta);
+
+        for (const plugin of plugins.values()) {
+            this.drawPlugin(plugin, delta);
+        }
+
+        /* container.canvas.draw((ctx) => {
+            this.quadTree.draw(ctx);
+        }); */
 
         this.draw(ctx => {
             const previousComposite = ctx.globalCompositeOperation,
-                backgroundMask = container.options.backgroundMask;
+                backgroundMask = actualOptions.backgroundMask;
 
-            ctx.globalCompositeOperation = backgroundMask.enable
-                ? backgroundMask.composite
-                : ctx.globalCompositeOperation;
+            ctx.globalCompositeOperation = backgroundMask.enable ? backgroundMask.composite : previousComposite;
 
-            for (const particle of particles) {
-                particle.draw(delta);
-            }
+            particles.drawParticles(delta);
 
             ctx.globalCompositeOperation = previousComposite;
         });
+
+        for (const plugin of plugins.values()) {
+            this.clearDrawPlugin(plugin, delta);
+        }
     }
 
     /**
@@ -425,8 +447,8 @@ export class Canvas {
     }
 
     /**
-     * Loads the canvas html element
-     * @param canvas - the canvas html element
+     * Loads the canvas HTML element
+     * @param canvas - the canvas HTML element
      */
     loadCanvas(canvas: HTMLCanvasElement): void {
         if (this._generated && this.element) {
