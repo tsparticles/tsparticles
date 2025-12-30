@@ -23,11 +23,6 @@ const options: ISourceOptions = {
                     value: 0.75,
                 },
             },
-            trail: {
-                enable: true,
-                fill: { color: "#031927" },
-                length: 1000,
-            },
         },
         shape: {
             type: "circle",
@@ -65,6 +60,11 @@ const options: ISourceOptions = {
             quantity: 10,
         },
         startCount: 1000,
+    },
+    trail: {
+        enable: true,
+        fill: { color: "#031927" },
+        length: 1000,
     },
 };
 

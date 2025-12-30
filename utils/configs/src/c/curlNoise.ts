@@ -36,17 +36,17 @@ const options: ISourceOptions = {
             },
             enable: true,
             speed: 3,
-            trail: {
-                fill: {
-                    color: "#000",
-                },
-                enable: true,
-                length: 1000,
-            },
         },
     },
     background: {
         color: "#000000",
+    },
+    trail: {
+        fill: {
+            color: "#000",
+        },
+        enable: true,
+        length: 1000,
     },
 };
 

@@ -5,7 +5,6 @@ import type { IMoveAttract } from "./IMoveAttract.js";
 import type { IMoveCenter } from "./IMoveCenter.js";
 import type { IMoveGravity } from "./IMoveGravity.js";
 import type { IMovePath } from "./Path/IMovePath.js";
-import type { IMoveTrail } from "./IMoveTrail.js";
 import type { IOutModes } from "./IOutModes.js";
 import type { ISpin } from "./ISpin.js";
 import type { OutMode } from "../../../../Enums/Modes/OutMode.js";
@@ -94,11 +93,6 @@ export interface IMove {
      * Sets if the particles direction will be randomized or not, if `true` the value won't be randomized.
      */
     straight: boolean;
-
-    /**
-     * The particles trail options.
-     */
-    trail: IMoveTrail;
 
     /**
      * Sets if the particles will vibrate or not.

@@ -45,11 +45,6 @@ const options: ISourceOptions = {
                 right: "destroy",
                 top: "none",
             },
-            trail: {
-                enable: true,
-                fill: { color: "#000000" },
-                length: 10,
-            },
         },
     },
     interactivity: {
@@ -139,6 +134,11 @@ const options: ISourceOptions = {
                 decay: 0.1,
             },
         },
+    },
+    trail: {
+        enable: true,
+        fill: { color: "#000000" },
+        length: 10,
     },
 };
 

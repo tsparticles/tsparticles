@@ -8,6 +8,7 @@ import type { IManualParticle } from "./IManualParticle.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
 import type { IResponsive } from "./IResponsive.js";
 import type { ITheme } from "./Theme/ITheme.js";
+import type { ITrail } from "./Trail/ITrail.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -130,6 +131,11 @@ export interface IOptions {
      * User-defined themes that can be retrieved by the particles {@link Container}
      */
     themes: ITheme[];
+
+    /**
+     * Trail options, not the effect, it creates a trail effect redrawing a semi-transparent layer on the canvas
+     */
+    trail: ITrail;
 
     /**
      * The maximum layers used in the z-axis

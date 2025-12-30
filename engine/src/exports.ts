@@ -76,7 +76,6 @@ export * from "./Options/Classes/Particles/Move/MoveGravity.js";
 export * from "./Options/Classes/Particles/Move/OutModes.js";
 export * from "./Options/Classes/Particles/Move/Path/MovePath.js";
 export * from "./Options/Classes/Particles/Move/Spin.js";
-export * from "./Options/Classes/Particles/Move/MoveTrail.js";
 
 export * from "./Options/Classes/Particles/Number/ParticlesNumber.js";
 export * from "./Options/Classes/Particles/Number/ParticlesNumberLimit.js";
@@ -96,6 +95,9 @@ export * from "./Options/Classes/Responsive.js";
 
 export * from "./Options/Classes/Theme/Theme.js";
 export * from "./Options/Classes/Theme/ThemeDefault.js";
+
+export * from "./Options/Classes/Trail/Trail.js";
+export * from "./Options/Classes/Trail/TrailFill.js";
 
 export * from "./Options/Classes/ValueWithRandom.js";
 

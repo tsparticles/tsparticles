@@ -54,11 +54,6 @@ const options: ISourceOptions = {
                 },
                 generator: "perlinNoise",
             },
-            trail: {
-                enable: true,
-                fill: { color: "#000000" },
-                length: 20,
-            },
         },
     },
     interactivity: {
@@ -95,6 +90,11 @@ const options: ISourceOptions = {
                 quantity: 2,
             },
         },
+    },
+    trail: {
+        enable: true,
+        fill: { color: "#000000" },
+        length: 20,
     },
 };
 

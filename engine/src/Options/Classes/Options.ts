@@ -17,6 +17,7 @@ import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { Theme } from "./Theme/Theme.js";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
+import { Trail } from "./Trail/Trail.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/NumberUtils.js";
 
@@ -53,6 +54,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
     readonly themes: Theme[];
+    readonly trail;
     zLayers;
 
     private readonly _container;
@@ -80,6 +82,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.smooth = false;
         this.style = {};
         this.themes = [];
+        this.trail = new Trail();
         this.zLayers = 100;
     }
 
@@ -186,6 +189,8 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 }
             }
         }
+
+        this.trail.load(data.trail);
 
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {

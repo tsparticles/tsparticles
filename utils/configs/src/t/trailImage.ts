@@ -70,11 +70,6 @@ const options: ISourceOptions = {
                 },
                 generator: "perlinNoise",
             },
-            trail: {
-                enable: true,
-                fill: { image: "https://particles.js.org/images/background3.jpg" },
-                length: 20,
-            },
         },
     },
     interactivity: {
@@ -111,6 +106,11 @@ const options: ISourceOptions = {
                 quantity: 2,
             },
         },
+    },
+    trail: {
+        enable: true,
+        fill: { image: "https://particles.js.org/images/background3.jpg" },
+        length: 20,
     },
 };
 

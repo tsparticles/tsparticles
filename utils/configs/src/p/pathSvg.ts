@@ -26,13 +26,6 @@ const options: ISourceOptions = {
                 },
                 generator: "svgPathGenerator",
             },
-            trail: {
-                enable: true,
-                length: 10,
-                fill: {
-                    color: "#000000",
-                },
-            },
         },
         number: {
             value: 80,
@@ -49,6 +42,13 @@ const options: ISourceOptions = {
     },
     background: {
         color: "#000000",
+    },
+    trail: {
+        enable: true,
+        length: 10,
+        fill: {
+            color: "#000000",
+        },
     },
 };
 

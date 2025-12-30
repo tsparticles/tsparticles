@@ -12,11 +12,6 @@ const options: ISourceOptions = {
         },
         move: {
             enable: true,
-            trail: {
-                enable: true,
-                fill: { color: "#fff" },
-                length: 20,
-            },
             outModes: "destroy",
         },
         shape: {
@@ -87,6 +82,11 @@ const options: ISourceOptions = {
             },
         },
     ],
+    trail: {
+        enable: true,
+        fill: { color: "#fff" },
+        length: 20,
+    },
 };
 
 export default options;

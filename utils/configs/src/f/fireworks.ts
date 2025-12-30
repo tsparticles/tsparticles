@@ -158,11 +158,6 @@ const options: ISourceOptions = {
                 default: "destroy",
                 top: "none",
             },
-            trail: {
-                fill: { color: "#000" },
-                enable: true,
-                length: 10,
-            },
         },
     },
     sounds: {
@@ -179,6 +174,11 @@ const options: ISourceOptions = {
             },
         ],
         volume: 50,
+    },
+    trail: {
+        fill: { color: "#000" },
+        enable: true,
+        length: 10,
     },
 };
 

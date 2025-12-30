@@ -84,7 +84,6 @@ export type * from "./Options/Interfaces/Particles/Move/IMoveGravity.js";
 export type * from "./Options/Interfaces/Particles/Move/Path/IMovePath.js";
 export type * from "./Options/Interfaces/Particles/Move/IOutModes.js";
 export type * from "./Options/Interfaces/Particles/Move/ISpin.js";
-export type * from "./Options/Interfaces/Particles/Move/IMoveTrail.js";
 
 export type * from "./Options/Interfaces/Particles/Number/IParticlesDensity.js";
 export type * from "./Options/Interfaces/Particles/Number/IParticlesNumber.js";
@@ -102,6 +101,9 @@ export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 
 export type * from "./Options/Interfaces/Theme/ITheme.js";
 export type * from "./Options/Interfaces/Theme/IThemeDefault.js";
+
+export type * from "./Options/Interfaces/Trail/ITrail.js";
+export type * from "./Options/Interfaces/Trail/ITrailFill.js";
 
 export type * from "./Types/CustomEventArgs.js";
 export type * from "./Types/CustomEventListener.js";

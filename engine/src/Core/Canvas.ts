@@ -168,7 +168,7 @@ export class Canvas {
      */
     clear(): void {
         const options = this.container.actualOptions,
-            trail = options.particles.move.trail,
+            trail = options.trail,
             trailFill = this._trailFill;
 
         if (options.backgroundMask.enable) {
@@ -179,10 +179,8 @@ export class Canvas {
             } else if (trailFill.image) {
                 this._paintImage(trailFill.image, trailFill.opacity);
             }
-        } else if (options.clear) {
-            this.draw(ctx => {
-                clear(ctx, this.size);
-            });
+        } else {
+            this._clear();
         }
     }
 
@@ -497,9 +495,7 @@ export class Canvas {
         const options = this.container.actualOptions;
 
         if (options.backgroundMask.enable) {
-            this.draw(ctx => {
-                clear(ctx, this.size);
-            });
+            this._clear();
 
             if (this._coverImage) {
                 this._paintImage(this._coverImage.image, this._coverImage.opacity);
@@ -649,6 +645,16 @@ export class Canvas {
         }
     };
 
+    private readonly _clear = (): void => {
+        if (!this.container.actualOptions.clear) {
+            return;
+        }
+
+        this.draw(ctx => {
+            clear(ctx, this.size);
+        });
+    };
+
     private readonly _getPluginParticleColors: (particle: Particle) => (IHsl | undefined)[] = particle => {
         let fColor: IHsl | undefined, sColor: IHsl | undefined;
 
@@ -744,7 +750,7 @@ export class Canvas {
 
     private readonly _initTrail: () => Promise<void> = async () => {
         const options = this.container.actualOptions,
-            trail = options.particles.move.trail,
+            trail = options.trail,
             trailFill = trail.fill;
 
         if (!trail.enable) {

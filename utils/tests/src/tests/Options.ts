@@ -113,9 +113,6 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fill.color).to.be.undefined;
-        expect(options.particles.move.trail.enable).to.be.false;
-        expect(options.particles.move.trail.length).to.equal(10);
 
         /* particles number */
         expect(options.particles.number.density.width).to.equal(1920);
@@ -497,9 +494,6 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fill.color).to.be.undefined;
-        expect(options.particles.move.trail.enable).to.be.false;
-        expect(options.particles.move.trail.length).to.equal(10);
 
         /* particles number */
         expect(options.particles.number.density.width).to.equal(1920);
