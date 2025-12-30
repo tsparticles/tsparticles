@@ -1,6 +1,7 @@
 import { type Engine } from "@tsparticles/engine";
 import { initPjs } from "@tsparticles/pjs";
 import { loadArrowShape } from "@tsparticles/shape-arrow";
+import { loadBackgroundMaskPlugin } from "@tsparticles/plugin-background-mask";
 import { loadBubbleEffect } from "@tsparticles/effect-bubble";
 import { loadCanvasMaskPlugin } from "@tsparticles/plugin-canvas-mask";
 import { loadCardsShape } from "@tsparticles/shape-cards";
@@ -49,6 +50,7 @@ import { loadSimplexNoisePath } from "@tsparticles/path-simplex-noise";
 import { loadSoundsPlugin } from "@tsparticles/plugin-sounds";
 import { loadSpiralShape } from "@tsparticles/shape-spiral";
 import { loadTrailEffect } from "@tsparticles/effect-trail";
+import { loadTrailPlugin } from "@tsparticles/plugin-trail";
 import { loadZigZagPath } from "@tsparticles/path-zig-zag";
 
 declare const __VERSION__: string;
@@ -85,30 +87,42 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadEmittersShapePath(engine, false);
     await loadEmittersShapePolygon(engine, false);
 
+    await loadBackgroundMaskPlugin(engine, false);
     await loadCanvasMaskPlugin(engine, false);
     await loadInfectionPlugin(engine, false);
     await loadMotionPlugin(engine, false);
+    await loadPoissonDiscPlugin(engine, false);
     await loadPolygonMaskPlugin(engine, false);
     await loadSoundsPlugin(engine, false);
+    await loadTrailPlugin(engine, false);
+
     await loadExportImagePlugin(engine, false);
     await loadExportJSONPlugin(engine, false);
     await loadExportVideoPlugin(engine, false);
+
     await loadExternalParticleInteraction(engine, false);
     await loadExternalPopInteraction(engine, false);
+
     await loadLightInteraction(engine, false);
+
     await loadParticlesRepulseInteraction(engine, false);
+
     await loadGradientUpdater(engine, false);
     await loadOrbitUpdater(engine, false);
-    await loadCurvesPath(engine, false);
+
     await loadCurlNoisePath(engine, false);
+    await loadCurvesPath(engine, false);
     await loadFractalNoisePath(engine, false);
     await loadPerlinNoisePath(engine, false);
-    await loadPoissonDiscPlugin(engine, false);
     await loadPolygonPath(engine, false);
     await loadSVGPath(engine, false);
     await loadZigZagPath(engine, false);
     await loadSimplexNoisePath(engine, false);
+
     await loadBubbleEffect(engine, false);
+    await loadShadowEffect(engine, false);
+    await loadTrailEffect(engine, false);
+
     await loadArrowShape(engine, false);
     await loadCardsShape(engine, false);
     await loadCogShape(engine, false);
@@ -117,9 +131,7 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadPathShape(engine, false);
     await loadRoundedPolygonShape(engine, false);
     await loadRoundedRectShape(engine, false);
-    await loadShadowEffect(engine, false);
     await loadSpiralShape(engine, false);
-    await loadTrailEffect(engine, false);
 
     await engine.refresh(refresh);
 }

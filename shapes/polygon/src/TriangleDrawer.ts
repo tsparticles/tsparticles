@@ -11,18 +11,18 @@ const yFactor = 1.66,
 export class TriangleDrawer extends PolygonDrawerBase {
     readonly validTypes = ["triangle"] as const;
 
-    getCenter(particle: Particle, radius: number): ICoordinates {
+    getCenter(_particle: Particle, radius: number): ICoordinates {
         return {
             x: -radius,
             y: radius / yFactor,
         };
     }
 
-    getSidesCount(): number {
+    override getSidesCount(): number {
         return sides;
     }
 
-    getSidesData(particle: Particle, radius: number): ISide {
+    getSidesData(_particle: Particle, radius: number): ISide {
         const diameter = radius * double;
 
         return {

@@ -302,8 +302,13 @@ export class Container {
 
                 if (touched && !touchMoved) {
                     const touchEvent = e as TouchEvent,
-                        lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset],
-                        element = this.canvas.element,
+                        lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
+
+                    if (!lastTouch) {
+                        return;
+                    }
+
+                    const element = this.canvas.element,
                         canvasRect = element ? element.getBoundingClientRect() : undefined,
                         pos = {
                             x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
@@ -466,6 +471,8 @@ export class Container {
         }
 
         getLogger().error(`${errorPrefix} - Export plugin with type ${type} not found`);
+
+        return undefined;
     }
 
     /**
@@ -526,7 +533,7 @@ export class Container {
 
         /* init canvas + particles */
         this.retina.init();
-        await this.canvas.init();
+        this.canvas.init();
 
         this.updateActualOptions();
 

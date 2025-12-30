@@ -1,8 +1,6 @@
-import { type IOptionLoader } from "../../Interfaces/IOptionLoader.js";
-import { type ITrail } from "../../Interfaces/Trail/ITrail.js";
-import { type RecursivePartial } from "../../../Types/RecursivePartial.js";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import { type ITrail } from "../Interfaces/ITrail.js";
 import { TrailFill } from "./TrailFill.js";
-import { isNull } from "../../../Utils/TypeUtils.js";
 
 /**
  */

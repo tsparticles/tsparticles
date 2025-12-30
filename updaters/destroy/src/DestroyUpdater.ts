@@ -79,7 +79,7 @@ export class DestroyUpdater implements IParticleUpdater {
 
         const destroyOptions = particle.options.destroy;
 
-        if (destroyOptions && destroyOptions.mode === DestroyMode.split) {
+        if (destroyOptions?.mode === DestroyMode.split) {
             split(this.engine, this.container, particle);
         }
     }

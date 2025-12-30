@@ -1,8 +1,5 @@
-import type { IBackgroundMaskCover } from "../../Interfaces/BackgroundMask/IBackgroundMaskCover.js";
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
-import { OptionsColor } from "../OptionsColor.js";
-import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { isNull } from "../../../Utils/TypeUtils.js";
+import { type IOptionLoader, OptionsColor, type RecursivePartial, isNull } from "@tsparticles/engine";
+import type { IBackgroundMaskCover } from "../Interfaces/IBackgroundMaskCover.js";
 
 /**
  */

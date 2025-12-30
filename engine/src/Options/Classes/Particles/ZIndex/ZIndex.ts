@@ -18,7 +18,7 @@ export class ZIndex extends ValueWithRandom implements IZIndex, IOptionLoader<IZ
         this.velocityRate = 1;
     }
 
-    load(data?: RecursivePartial<IZIndex>): void {
+    override load(data?: RecursivePartial<IZIndex>): void {
         super.load(data);
 
         if (isNull(data)) {

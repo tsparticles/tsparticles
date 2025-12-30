@@ -59,9 +59,9 @@ export class HexColorManager implements IColorManager {
         return result
             ? {
                   a: result[RgbIndexes.a] ? parseInt(result[RgbIndexes.a], hexRadix) / alphaFactor : defaultAlpha,
-                  b: parseInt(result[RgbIndexes.b], hexRadix),
-                  g: parseInt(result[RgbIndexes.g], hexRadix),
-                  r: parseInt(result[RgbIndexes.r], hexRadix),
+                  b: parseInt(result[RgbIndexes.b] ?? "0", hexRadix),
+                  g: parseInt(result[RgbIndexes.g] ?? "0", hexRadix),
+                  r: parseInt(result[RgbIndexes.r] ?? "0", hexRadix),
               }
             : undefined;
     }

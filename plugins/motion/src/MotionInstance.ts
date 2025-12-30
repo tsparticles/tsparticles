@@ -1,4 +1,4 @@
-import { type Engine, type IContainerPlugin, safeMatchMedia } from "@tsparticles/engine";
+import { type IContainerPlugin, safeMatchMedia } from "@tsparticles/engine";
 import type { MotionContainer } from "./types.js";
 
 const defaultFactor = 1,
@@ -8,11 +8,9 @@ const defaultFactor = 1,
 
 export class MotionInstance implements IContainerPlugin {
     private readonly _container;
-    private readonly _engine;
 
-    constructor(container: MotionContainer, engine: Engine) {
+    constructor(container: MotionContainer) {
         this._container = container;
-        this._engine = engine;
     }
 
     async init(): Promise<void> {

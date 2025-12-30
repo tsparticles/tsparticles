@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import {
     type Container,
     type IMovePathGenerator,
@@ -50,11 +52,11 @@ export class FractalNoiseGenerator implements IMovePathGenerator {
             },
             v = Vector.origin;
 
-        if (!this.field[point.x][point.y][point.z]) {
+        if (!this.field[point.x]![point.y]![point.z]) {
             return v;
         }
 
-        v.setTo(this.field[point.x][point.y][point.z]);
+        v.setTo(this.field[point.x]![point.y]![point.z]!);
 
         return v;
     }
@@ -85,9 +87,9 @@ export class FractalNoiseGenerator implements IMovePathGenerator {
         for (let x = 0; x < options.columns; x++) {
             for (let y = 0; y < options.rows; y++) {
                 for (let z = 0; z < options.layers; z++) {
-                    this.field[x][y][z].angle =
+                    this.field[x]![y]![z]!.angle =
                         this._fractal.noise4d(x / 50, y / 50, z / 50, this.noiseW) * Math.PI * 2;
-                    this.field[x][y][z].length = this._fractal.noise4d(
+                    this.field[x]![y]![z]!.length = this._fractal.noise4d(
                         x / 100 + options.offset.x,
                         y / 100 + options.offset.y,
                         z / 100 + options.offset.z,
@@ -105,10 +107,10 @@ export class FractalNoiseGenerator implements IMovePathGenerator {
             this.field[x] = new Array<Vector[]>(this.options.rows);
 
             for (let y = 0; y < this.options.rows; y++) {
-                this.field[x][y] = new Array<Vector>(this.options.layers);
+                this.field[x]![y] = new Array<Vector>(this.options.layers);
 
                 for (let z = 0; z < this.options.layers; z++) {
-                    this.field[x][y][z] = Vector.origin;
+                    this.field[x]![y]![z] = Vector.origin;
                 }
             }
         }
@@ -123,19 +125,22 @@ export class FractalNoiseGenerator implements IMovePathGenerator {
 
         const sourceOptions = container.actualOptions.particles.move.path.options;
 
-        this.options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
+        this.options.size =
+            (sourceOptions["size"] as number) > 0 ? (sourceOptions["size"] as number) : defaultOptions.size;
         this.options.increment =
-            (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
+            (sourceOptions["increment"] as number) > 0
+                ? (sourceOptions["increment"] as number)
+                : defaultOptions.increment;
         this.options.width = container.canvas.size.width;
         this.options.height = container.canvas.size.height;
 
-        const offset = sourceOptions.offset as IOffsetValues | undefined;
+        const offset = sourceOptions["offset"] as IOffsetValues | undefined;
 
         this.options.offset.x = offset?.x ?? defaultOptions.offset.x;
         this.options.offset.y = offset?.y ?? defaultOptions.offset.y;
         this.options.offset.z = offset?.z ?? defaultOptions.offset.z;
 
-        this.options.seed = sourceOptions.seed as number | undefined;
+        this.options.seed = sourceOptions["seed"] as number | undefined;
 
         this._fractal.seed(this.options.seed ?? getRandom());
 

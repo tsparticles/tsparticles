@@ -18,7 +18,7 @@ export class ColorAnimation extends AnimationOptions implements IColorAnimation,
         this.sync = true;
     }
 
-    load(data?: RecursivePartial<IColorAnimation>): void {
+    override load(data?: RecursivePartial<IColorAnimation>): void {
         super.load(data);
 
         if (isNull(data)) {

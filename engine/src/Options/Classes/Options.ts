@@ -1,7 +1,6 @@
 import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
 import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask.js";
 import type { Container } from "../../Core/Container.js";
 import type { Engine } from "../../Core/Engine.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
@@ -17,7 +16,6 @@ import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { Theme } from "./Theme/Theme.js";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
-import { Trail } from "./Trail/Trail.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/NumberUtils.js";
 
@@ -34,7 +32,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     autoPlay;
     readonly background;
-    readonly backgroundMask;
     clear: boolean;
     defaultThemes: DefaultThemes;
     delay: RangeValue;
@@ -54,7 +51,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
     readonly themes: Theme[];
-    readonly trail;
     zLayers;
 
     private readonly _container;
@@ -65,7 +61,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this._container = container;
         this.autoPlay = true;
         this.background = new Background();
-        this.backgroundMask = new BackgroundMask();
         this.clear = true;
         this.defaultThemes = {};
         this.delay = 0;
@@ -82,7 +77,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.smooth = false;
         this.style = {};
         this.themes = [];
-        this.trail = new Trail();
         this.zLayers = 100;
     }
 
@@ -159,7 +153,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.fullScreen.load(fullScreen);
         }
 
-        this.backgroundMask.load(data.backgroundMask);
         this.interactivity.load(data.interactivity);
 
         if (data.manualParticles) {
@@ -189,8 +182,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 }
             }
         }
-
-        this.trail.load(data.trail);
 
         if (data.responsive !== undefined) {
             for (const responsive of data.responsive) {

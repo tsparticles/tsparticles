@@ -23,7 +23,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         super(container);
     }
 
-    clear(particle: Particle, delta: IDelta, force?: boolean): void {
+    clear(particle: Particle, _delta: IDelta, force?: boolean): void {
         if (particle.slow.inRange && !force) {
             return;
         }

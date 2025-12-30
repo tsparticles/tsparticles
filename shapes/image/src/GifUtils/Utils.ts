@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import type { ICoordinates, IRgb, IRgba, IShapeDrawData } from "@tsparticles/engine";
 import { type IImage, type ImageParticle, loadImage } from "../Utils.js";
@@ -31,9 +32,9 @@ function parseColorTable(byteStream: ByteStream, count: number): IRgb[] {
 
     for (let i = 0; i < count; i++) {
         colors.push({
-            r: byteStream.data[byteStream.pos],
-            g: byteStream.data[byteStream.pos + 1],
-            b: byteStream.data[byteStream.pos + 2],
+            r: byteStream.data[byteStream.pos]!,
+            g: byteStream.data[byteStream.pos + 1]!,
+            b: byteStream.data[byteStream.pos + 2]!,
         });
 
         byteStream.pos += 3;
@@ -59,7 +60,7 @@ function parseExtensionBlock(
     switch (byteStream.nextByte() as GIFDataHeaders) {
         case GIFDataHeaders.GraphicsControlExtension: {
             // ~ parse graphics control extension data - applies to the next frame in the byte stream
-            const frame = gif.frames[getFrameIndex(false)];
+            const frame = gif.frames[getFrameIndex(false)]!;
 
             // ~ block size (1B) - static 4 - byte size of the block up to (but excluding) the Block Terminator
             byteStream.pos++;
@@ -125,7 +126,7 @@ function parseExtensionBlock(
             // ~ block size (1B) - static 12 - byte size of the block up to (but excluding) the plain text data blocks
             byteStream.pos++;
 
-            gif.frames[getFrameIndex(false)].plainTextData = {
+            gif.frames[getFrameIndex(false)]!.plainTextData = {
                 // ~ text grid left position (2B) - position of the left edge of text grid (in pixels) within the GIF (from the left edge)
                 left: byteStream.nextTwoBytes(),
                 // ~ text grid top position (2B) - position of the top edge of text grid (in pixels) within the GIF (from the top edge)
@@ -178,7 +179,7 @@ async function parseImageBlock(
     progressCallback?: GIFProgressCallbackFunction,
 ): Promise<void> {
     // ~ parse frame image - image descriptor
-    const frame = gif.frames[getFrameIndex(true)];
+    const frame = gif.frames[getFrameIndex(true)]!;
 
     // ~ image left position (2B) - position of the left edge of the frame (in pixels) within the GIF (from the left edge)
     frame.left = byteStream.nextTwoBytes();
@@ -216,7 +217,7 @@ async function parseImageBlock(
      * @returns RGBA color value
      */
     const getColor = (index: number): IRgba => {
-        const { r, g, b } = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index];
+        const { r, g, b } = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index]!;
 
         if (index !== getTransparencyIndex(null)) {
             return { r, g, b, a: 255 };
@@ -254,7 +255,7 @@ async function parseImageBlock(
         const bytePos = pos >>> 3,
             bitPos = pos & 7;
         return (
-            ((imageData[bytePos] + (imageData[bytePos + 1] << 8) + (imageData[bytePos + 2] << 16)) &
+            ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
                 (((1 << len) - 1) << bitPos)) >>>
             bitPos
         );
@@ -262,7 +263,7 @@ async function parseImageBlock(
 
     if (interlacedFlag) {
         for (let code = 0, size = minCodeSize + 1, pos = 0, dic = [[0]], pass = 0; pass < 4; pass++) {
-            if (InterlaceOffsets[pass] < frame.height) {
+            if (InterlaceOffsets[pass]! < frame.height) {
                 let pixelPos = 0,
                     lineIndex = 0,
                     exit = false;
@@ -282,18 +283,18 @@ async function parseImageBlock(
                         }
                     } else {
                         if (code >= dic.length) {
-                            dic.push(dic[last].concat(dic[last][0]));
+                            dic.push(dic[last]!.concat(dic[last]![0]!));
                         } else if (last !== clearCode) {
-                            dic.push(dic[last].concat(dic[code][0]));
+                            dic.push(dic[last]!.concat(dic[code]![0]!));
                         }
 
-                        for (const item of dic[code]) {
+                        for (const item of dic[code]!) {
                             const { r, g, b, a } = getColor(item);
 
                             image.data.set(
                                 [r, g, b, a],
-                                InterlaceOffsets[pass] * frame.width +
-                                    InterlaceSteps[pass] * lineIndex +
+                                InterlaceOffsets[pass]! * frame.width +
+                                    InterlaceSteps[pass]! * lineIndex +
                                     (pixelPos % (frame.width * 4)),
                             );
 
@@ -308,7 +309,7 @@ async function parseImageBlock(
                     if (pixelPos === frame.width * 4 * (lineIndex + 1)) {
                         lineIndex++;
 
-                        if (InterlaceOffsets[pass] + InterlaceSteps[pass] * lineIndex >= frame.height) {
+                        if (InterlaceOffsets[pass]! + InterlaceSteps[pass]! * lineIndex >= frame.height) {
                             exit = true;
                         }
                     }
@@ -354,12 +355,12 @@ async function parseImageBlock(
                 }
 
                 if (code >= dic.length) {
-                    dic.push(dic[last].concat(dic[last][0]));
+                    dic.push(dic[last]!.concat(dic[last]![0]!));
                 } else if (last !== clearCode) {
-                    dic.push(dic[last].concat(dic[code][0]));
+                    dic.push(dic[last]!.concat(dic[code]![0]!));
                 }
 
-                for (const item of dic[code]) {
+                for (const item of dic[code]!) {
                     const { r, g, b, a } = getColor(item);
 
                     image.data.set([r, g, b, a], pixelPos);
@@ -433,7 +434,7 @@ export function getGIFLoopAmount(gif: GIF): number {
             continue;
         }
 
-        return extension.data[1] + (extension.data[2] << 8);
+        return extension.data[1]! + (extension.data[2]! << 8);
     }
 
     return NaN;
@@ -534,7 +535,7 @@ export async function decodeGIF(
         throw new Error("GIF frame size is to large");
     }
 
-    const { r, g, b } = gif.globalColorTable[backgroundColorIndex];
+    const { r, g, b } = gif.globalColorTable[backgroundColorIndex]!;
 
     backgroundImage.data.set(globalColorTableFlag ? [r, g, b, 255] : [0, 0, 0, 0]);
 
@@ -647,7 +648,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
     let frameIndex = particle.gifFrame ?? defaultFrame;
 
     const pos = { x: -image.gifData.width * half, y: -image.gifData.height * half },
-        frame = image.gifData.frames[frameIndex];
+        frame = image.gifData.frames[frameIndex]!;
 
     particle.gifTime ??= initialTime;
 
@@ -685,7 +686,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
 
             if (!image.gifData.globalColorTable.length) {
                 offscreenContext.putImageData(
-                    image.gifData.frames[firstIndex].image,
+                    image.gifData.frames[firstIndex]!.image,
                     pos.x + frame.left,
                     pos.y + frame.top,
                 );

@@ -60,8 +60,8 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     init(container: Container): void {
         const options = container.actualOptions.particles.move.path.options;
 
-        this.options.waveLength = (options.waveLength as RangeValue | undefined) ?? this.options.waveLength;
-        this.options.waveHeight = (options.waveHeight as RangeValue | undefined) ?? this.options.waveHeight;
+        this.options.waveLength = (options["waveLength"] as RangeValue | undefined) ?? this.options.waveLength;
+        this.options.waveHeight = (options["waveHeight"] as RangeValue | undefined) ?? this.options.waveHeight;
     }
 
     reset(): void {

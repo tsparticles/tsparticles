@@ -20,7 +20,6 @@ import {
     rangeColorToRgb,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
-import type { Absorbers } from "./Absorbers.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 import type { IAbsorberSizeLimit } from "./Options/Interfaces/IAbsorberSizeLimit.js";
 
@@ -92,7 +91,6 @@ export class AbsorberInstance {
      */
     size;
 
-    private readonly _absorbers;
     private readonly _container;
     private readonly _engine;
 
@@ -116,20 +114,12 @@ export class AbsorberInstance {
 
     /**
      * The absorber constructor, initializes the absorber based on the given options and position
-     * @param absorbers - the Absorbers collection manager that will contain this absorber
      * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
      * @param engine - the Engine instance that will be used for calculating the Absorber interactions
      * @param options - the Absorber source options
      * @param position - the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
      */
-    constructor(
-        absorbers: Absorbers,
-        container: Container,
-        engine: Engine,
-        options: RecursivePartial<IAbsorber>,
-        position?: ICoordinates,
-    ) {
-        this._absorbers = absorbers;
+    constructor(container: Container, engine: Engine, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
         this._container = container;
         this._engine = engine;
 

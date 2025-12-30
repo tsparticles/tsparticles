@@ -113,8 +113,19 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
                     x: nextIndex % width,
                     y: Math.floor(nextIndex / width),
                 },
-                pixel = data.pixels[pixelPos.y][pixelPos.x],
-                shouldCreateParticle = this.filter(pixel);
+                row = data.pixels[pixelPos.y];
+
+            if (!row) {
+                continue;
+            }
+
+            const pixel = row[pixelPos.x];
+
+            if (!pixel) {
+                continue;
+            }
+
+            const shouldCreateParticle = this.filter(pixel);
 
             if (!shouldCreateParticle) {
                 continue;
@@ -133,7 +144,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         return null;
     }
 
-    resize(position: ICoordinates, size: IDimension): void {
+    override resize(position: ICoordinates, size: IDimension): void {
         super.resize(position, size);
     }
 }

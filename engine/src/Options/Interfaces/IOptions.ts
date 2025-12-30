@@ -1,14 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Container } from "../../Core/Container.js";
 import type { IBackground } from "./Background/IBackground.js";
-import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
 import type { IInteractivity } from "./Interactivity/IInteractivity.js";
 import type { IManualParticle } from "./IManualParticle.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
 import type { IResponsive } from "./IResponsive.js";
 import type { ITheme } from "./Theme/ITheme.js";
-import type { ITrail } from "./Trail/ITrail.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -32,11 +30,6 @@ export interface IOptions {
      * Background options, these background options will be used to the canvas element, they are all CSS properties
      */
     background: IBackground;
-
-    /**
-     * Background Mask options, what's behind the canvas will become hidden and particles will uncover it
-     */
-    backgroundMask: IBackgroundMask;
 
     /**
      * Clears the canvas on every frame if enabled
@@ -131,11 +124,6 @@ export interface IOptions {
      * User-defined themes that can be retrieved by the particles {@link Container}
      */
     themes: ITheme[];
-
-    /**
-     * Trail options, not the effect, it creates a trail effect redrawing a semi-transparent layer on the canvas
-     */
-    trail: ITrail;
 
     /**
      * The maximum layers used in the z-axis

@@ -44,11 +44,16 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         }
 
         const firstIndex = 0,
-            firstPathData = pathData[firstIndex],
-            coords = {
-                x: offset.x + (firstPathData.x * size.width) / percentDenominator,
-                y: offset.y + (firstPathData.y * size.height) / percentDenominator,
-            };
+            firstPathData = pathData[firstIndex];
+
+        if (!firstPathData) {
+            throw new Error(`${errorPrefix} No path data available`);
+        }
+
+        const coords = {
+            x: offset.x + (firstPathData.x * size.width) / percentDenominator,
+            y: offset.y + (firstPathData.y * size.height) / percentDenominator,
+        };
 
         path.lineTo(coords.x, coords.y);
 
@@ -72,7 +77,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         return res ? { position: res } : null;
     }
 
-    resize(position: ICoordinates, size: IDimension): void {
+    override resize(position: ICoordinates, size: IDimension): void {
         super.resize(position, size);
 
         const pathData = this.points,
@@ -96,11 +101,16 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         }
 
         const firstIndex = 0,
-            firstPathData = pathData[firstIndex],
-            coords = {
-                x: offset.x + (firstPathData.x * size.width) / percentDenominator,
-                y: offset.y + (firstPathData.y * size.height) / percentDenominator,
-            };
+            firstPathData = pathData[firstIndex];
+
+        if (!firstPathData) {
+            throw new Error(`${errorPrefix} No path data available`);
+        }
+
+        const coords = {
+            x: offset.x + (firstPathData.x * size.width) / percentDenominator,
+            y: offset.y + (firstPathData.y * size.height) / percentDenominator,
+        };
 
         path.lineTo(coords.x, coords.y);
 

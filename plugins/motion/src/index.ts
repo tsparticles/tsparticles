@@ -10,5 +10,5 @@ declare const __VERSION__: string;
 export async function loadMotionPlugin(engine: Engine, refresh = true): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    await engine.addPlugin(new MotionPlugin(engine), refresh);
+    await engine.addPlugin(new MotionPlugin(), refresh);
 }

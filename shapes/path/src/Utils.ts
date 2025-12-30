@@ -8,8 +8,17 @@ import { SegmentType } from "./SegmentType.js";
  */
 export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IPathData): void {
     const firstIndex = 0,
-        firstSegment = path.segments[firstIndex],
-        firstValue = firstSegment.values[firstIndex];
+        firstSegment = path.segments[firstIndex];
+
+    if (!firstSegment) {
+        return;
+    }
+
+    const firstValue = firstSegment.values[firstIndex];
+
+    if (!firstValue) {
+        return;
+    }
 
     ctx.moveTo(firstValue.x * radius, firstValue.y * radius);
 
@@ -19,50 +28,68 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
             index3 = 2,
             index4 = 3;
 
+        if (!value) {
+            continue;
+        }
+
+        const segmentValue2 = segment.values[index2],
+            segmentValue3 = segment.values[index3],
+            segmentValue4 = segment.values[index4];
+
         switch (segment.type) {
             case SegmentType.line:
                 ctx.lineTo(value.x * radius, value.y * radius);
                 break;
 
             case SegmentType.bezier:
+                if (!segmentValue2 || !segmentValue3 || !segmentValue4) {
+                    break;
+                }
+
                 ctx.bezierCurveTo(
-                    segment.values[index2].x * radius,
-                    segment.values[index2].y * radius,
-                    segment.values[index3].x * radius,
-                    segment.values[index3].y * radius,
-                    segment.values[index4].x * radius,
-                    segment.values[index4].y * radius,
+                    segmentValue2.x * radius,
+                    segmentValue2.y * radius,
+                    segmentValue3.x * radius,
+                    segmentValue3.y * radius,
+                    segmentValue4.x * radius,
+                    segmentValue4.y * radius,
                 );
                 break;
 
             case SegmentType.quadratic:
+                if (!segmentValue2 || !segmentValue3) {
+                    break;
+                }
+
                 ctx.quadraticCurveTo(
-                    segment.values[index2].x * radius,
-                    segment.values[index2].y * radius,
-                    segment.values[index3].x * radius,
-                    segment.values[index3].y * radius,
+                    segmentValue2.x * radius,
+                    segmentValue2.y * radius,
+                    segmentValue3.x * radius,
+                    segmentValue3.y * radius,
                 );
                 break;
 
             case SegmentType.arc:
-                ctx.arc(
-                    value.x * radius,
-                    value.y * radius,
-                    segment.values[index2].x * radius,
-                    segment.values[index3].x,
-                    segment.values[index3].y,
-                );
+                if (!segmentValue2 || !segmentValue3) {
+                    break;
+                }
+
+                ctx.arc(value.x * radius, value.y * radius, segmentValue2.x * radius, segmentValue3.x, segmentValue3.y);
                 break;
 
             case SegmentType.ellipse:
+                if (!segmentValue2 || !segmentValue3 || !segmentValue4) {
+                    break;
+                }
+
                 ctx.ellipse(
                     value.x * radius,
                     value.y * radius,
-                    segment.values[index2].x * radius,
-                    segment.values[index2].y * radius,
-                    segment.values[index3].x,
-                    segment.values[index4].x,
-                    segment.values[index4].y,
+                    segmentValue2.x * radius,
+                    segmentValue2.y * radius,
+                    segmentValue3.x,
+                    segmentValue4.x,
+                    segmentValue4.y,
                 );
         }
     }
@@ -75,34 +102,55 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
         minLength = 0;
 
     for (let i = path.segments.length - lengthOffset; i >= minLength; i--) {
-        const segment = path.segments[i],
-            value = segment.values[firstIndex],
+        const segment = path.segments[i];
+
+        if (!segment) {
+            continue;
+        }
+
+        const value = segment.values[firstIndex],
             index2 = 1,
-            index3 = 2;
+            index3 = 2,
+            segmentValue2 = segment.values[index2],
+            segmentValue3 = segment.values[index3];
 
         switch (segment.type) {
             case SegmentType.line:
+                if (!value) {
+                    break;
+                }
+
                 ctx.lineTo(value.x * -radius, value.y * radius);
+
                 break;
 
             case SegmentType.bezier:
+                if (!value || !segmentValue2 || !segmentValue3) {
+                    break;
+                }
+
                 ctx.bezierCurveTo(
-                    -segment.values[index3].x * radius,
-                    segment.values[index3].y * radius,
-                    -segment.values[index2].x * radius,
-                    segment.values[index2].y * radius,
+                    -segmentValue3.x * radius,
+                    segmentValue3.y * radius,
+                    -segmentValue2.x * radius,
+                    segmentValue2.y * radius,
                     value.x * radius,
                     value.y * radius,
                 );
                 break;
 
             case SegmentType.quadratic:
+                if (!segmentValue2 || !segmentValue3) {
+                    break;
+                }
+
                 ctx.quadraticCurveTo(
-                    -segment.values[index2].x * radius,
-                    segment.values[index2].y * radius,
-                    -segment.values[index3].x * radius,
-                    segment.values[index3].y * radius,
+                    -segmentValue2.x * radius,
+                    segmentValue2.y * radius,
+                    -segmentValue3.x * radius,
+                    segmentValue3.y * radius,
                 );
+
                 break;
 
             case SegmentType.arc:

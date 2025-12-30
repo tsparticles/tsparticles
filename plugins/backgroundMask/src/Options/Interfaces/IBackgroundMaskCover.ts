@@ -1,4 +1,4 @@
-import type { IOptionsColor } from "../IOptionsColor.js";
+import type { IOptionsColor } from "@tsparticles/engine";
 
 /**
  * The background cover customization

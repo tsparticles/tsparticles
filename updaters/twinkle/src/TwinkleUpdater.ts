@@ -21,12 +21,12 @@ export class TwinkleUpdater implements IParticleUpdater {
 
     getColorStyles(
         particle: Particle,
-        context: CanvasRenderingContext2D,
-        radius: number,
+        _context: CanvasRenderingContext2D,
+        _radius: number,
         opacity: number,
     ): IParticleColorStyle {
         const pOptions = particle.options,
-            twinkleOptions = pOptions.twinkle as Twinkle | undefined;
+            twinkleOptions = pOptions["twinkle"] as Twinkle | undefined;
 
         if (!twinkleOptions) {
             return {};

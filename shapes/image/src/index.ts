@@ -69,7 +69,7 @@ export async function loadImageShape(engine: ImageEngine, refresh = true): Promi
 
     addLoadImageToEngine(engine);
 
-    const preloader = new ImagePreloaderPlugin(engine);
+    const preloader = new ImagePreloaderPlugin();
 
     await engine.addPlugin(preloader, refresh);
     await engine.addShape(new ImageDrawer(engine), refresh);

@@ -41,6 +41,7 @@ import { EventType } from "../Enums/Types/EventType.js";
 import type { IBubbleParticleData } from "./Interfaces/IBubbleParticleData.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IHsl } from "./Interfaces/Colors.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
@@ -49,6 +50,7 @@ import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js"
 import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { IShapeValues } from "./Interfaces/IShapeValues.js";
 import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
 import { Interactivity } from "../Options/Classes/Interactivity/Interactivity.js";
@@ -187,7 +189,7 @@ export class Particle {
     /**
      * Gets particle effect type
      */
-    effect!: string;
+    effect?: string;
 
     /**
      * Checks if the particle effect needs a closed path
@@ -304,7 +306,7 @@ export class Particle {
     /**
      * Gets particle shape type
      */
-    shape!: string;
+    shape?: string;
 
     /**
      * Checks if the particle shape needs a closed path
@@ -392,7 +394,7 @@ export class Particle {
 
         const container = this.container,
             pathGenerator = this.pathGenerator,
-            shapeDrawer = container.shapeDrawers.get(this.shape);
+            shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
 
         shapeDrawer?.particleDestroy?.(this);
 
@@ -530,8 +532,10 @@ export class Particle {
             this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
         }
 
-        this.effectData = loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates);
-        this.shapeData = loadShapeData(this.shape, shapeOptions, this.id, reduceDuplicates);
+        this.effectData = this.effect
+            ? loadEffectData(this.effect, effectOptions, this.id, reduceDuplicates)
+            : undefined;
+        this.shapeData = this.shape ? loadShapeData(this.shape, shapeOptions, this.id, reduceDuplicates) : undefined;
 
         particlesOptions.load(overrideOptions);
 
@@ -601,13 +605,17 @@ export class Particle {
         this.zIndexFactor = this.position.z / container.zLayers;
         this.sides = 24;
 
-        let effectDrawer = container.effectDrawers.get(this.effect);
+        let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
 
-        if (!effectDrawer) {
-            effectDrawer = this._engine.getEffectDrawer(this.effect);
+        if (this.effect) {
+            effectDrawer = container.effectDrawers.get(this.effect);
 
-            if (effectDrawer) {
-                container.effectDrawers.set(this.effect, effectDrawer);
+            if (!effectDrawer) {
+                effectDrawer = this._engine.getEffectDrawer(this.effect);
+
+                if (effectDrawer) {
+                    container.effectDrawers.set(this.effect, effectDrawer);
+                }
             }
         }
 
@@ -615,13 +623,15 @@ export class Particle {
             effectDrawer.loadEffect(this);
         }
 
-        let shapeDrawer = container.shapeDrawers.get(this.shape);
+        if (this.shape) {
+            shapeDrawer = container.shapeDrawers.get(this.shape);
 
-        if (!shapeDrawer) {
-            shapeDrawer = this._engine.getShapeDrawer(this.shape);
+            if (!shapeDrawer) {
+                shapeDrawer = this._engine.getShapeDrawer(this.shape);
 
-            if (shapeDrawer) {
-                container.shapeDrawers.set(this.shape, shapeDrawer);
+                if (shapeDrawer) {
+                    container.shapeDrawers.set(this.shape, shapeDrawer);
+                }
             }
         }
 

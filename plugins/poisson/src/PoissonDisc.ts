@@ -95,10 +95,17 @@ export class PoissonDisc {
                     y: Math.floor(inputPoint.y / this.cellSize),
                 },
             },
-            pointIndex = this.points.length;
+            pointIndex = this.points.length,
+            row = this.grid[point.gridPosition.y];
+
+        if (!row) {
+            return;
+        }
 
         this.points.push(point);
-        this.grid[point.gridPosition.y][point.gridPosition.x] = pointIndex;
+
+        row[point.gridPosition.x] = pointIndex;
+
         this.active.push(pointIndex);
     }
 
@@ -119,8 +126,14 @@ export class PoissonDisc {
         for (let y = 0; y <= this.rows; y++) {
             this.grid[y] = [];
 
+            const row = this.grid[y];
+
+            if (!row) {
+                continue;
+            }
+
             for (let x = 0; x <= this.cols; x++) {
-                this.grid[y][x] = -1;
+                row[x] = -1;
             }
         }
     }
@@ -208,8 +221,20 @@ export class PoissonDisc {
             newPoint.y > minCoordinate &&
             newPoint.y < this.size.height
         ) {
+            const row = this.grid[newGridCoords.y];
+
+            if (!row) {
+                return;
+            }
+
+            const point = row[newGridCoords.x];
+
+            if (point === undefined) {
+                return;
+            }
+
             /* It is inside the screen area */
-            if (this.grid[newGridCoords.y][newGridCoords.x] < gridMinValue) {
+            if (point < gridMinValue) {
                 /* There is not a point at this grid reference - get the neighbours */
                 for (let i = -1; i <= maxNeighbourIndex; i++) {
                     for (let j = -1; j <= maxNeighbourIndex; j++) {
@@ -227,11 +252,16 @@ export class PoissonDisc {
                             (neighbourGrid.x !== newGridCoords.x || neighbourGrid.y !== newGridCoords.y)
                         ) {
                             /* Neighbour is within the grid and not the centre point */
-                            if (this.grid[neighbourGrid.y][neighbourGrid.x] >= gridMinValue) {
+                            if (point >= gridMinValue) {
                                 /* It has a point in it - check how far away it is */
-                                const neighbourIndex = this.grid[neighbourGrid.y][neighbourGrid.x],
-                                    neighbour = this.points[neighbourIndex],
-                                    dist = getDistance(newPoint, neighbour.position);
+                                const neighbourIndex = point,
+                                    neighbour = this.points[neighbourIndex];
+
+                                if (!neighbour) {
+                                    continue;
+                                }
+
+                                const dist = getDistance(newPoint, neighbour.position);
 
                                 /* Invalid, to close to a neighbour point */
                                 if (dist < this.radius) {
@@ -261,7 +291,19 @@ export class PoissonDisc {
             let foundNewPoint = false;
 
             for (let tries = 0; tries < this.retries; tries++) {
-                const newPoint = this._getNewPoint(this.points[this.active[randomActive]], tries);
+                const randomActivePointIndex = this.active[randomActive];
+
+                if (randomActivePointIndex === undefined) {
+                    continue;
+                }
+
+                const point = this.points[randomActivePointIndex];
+
+                if (!point) {
+                    continue;
+                }
+
+                const newPoint = this._getNewPoint(point, tries);
 
                 if (newPoint) {
                     /* Valid, add this point */

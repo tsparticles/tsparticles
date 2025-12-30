@@ -34,8 +34,6 @@ export * from "./Options/Classes/AnimatableColor.js";
 export * from "./Options/Classes/AnimationOptions.js";
 
 export * from "./Options/Classes/Background/Background.js";
-export * from "./Options/Classes/BackgroundMask/BackgroundMask.js";
-export * from "./Options/Classes/BackgroundMask/BackgroundMaskCover.js";
 
 export * from "./Options/Classes/ColorAnimation.js";
 
@@ -95,9 +93,6 @@ export * from "./Options/Classes/Responsive.js";
 
 export * from "./Options/Classes/Theme/Theme.js";
 export * from "./Options/Classes/Theme/ThemeDefault.js";
-
-export * from "./Options/Classes/Trail/Trail.js";
-export * from "./Options/Classes/Trail/TrailFill.js";
 
 export * from "./Options/Classes/ValueWithRandom.js";
 

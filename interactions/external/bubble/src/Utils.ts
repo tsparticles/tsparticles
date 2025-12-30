@@ -22,4 +22,6 @@ export function calculateBubbleValue(
 
         return clamp(value, modeValue, particleValue);
     }
+
+    return undefined;
 }

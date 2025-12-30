@@ -69,9 +69,9 @@ export class LchColorManager implements IColorManager {
         return result
             ? lchaToRgba({
                   a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-                  c: parseFloat(result[indexes.c]),
-                  h: parseFloat(result[indexes.h]),
-                  l: parseFloat(result[indexes.l]),
+                  c: parseFloat(result[indexes.c] ?? "0"),
+                  h: parseFloat(result[indexes.h] ?? "0"),
+                  l: parseFloat(result[indexes.l] ?? "0"),
               })
             : undefined; // LCH parsing without alpha
     }

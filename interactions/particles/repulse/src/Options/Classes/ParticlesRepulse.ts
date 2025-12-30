@@ -26,7 +26,7 @@ export class ParticlesRepulse extends ValueWithRandom implements IParticlesRepul
         this.speed = 1;
     }
 
-    load(data?: RecursivePartial<IParticlesRepulse>): void {
+    override load(data?: RecursivePartial<IParticlesRepulse>): void {
         super.load(data);
 
         if (isNull(data)) {

@@ -13,7 +13,7 @@ export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoade
         this.selectors = [];
     }
 
-    load(data?: RecursivePartial<IRepulseDiv>): void {
+    override load(data?: RecursivePartial<IRepulseDiv>): void {
         super.load(data);
 
         if (isNull(data)) {

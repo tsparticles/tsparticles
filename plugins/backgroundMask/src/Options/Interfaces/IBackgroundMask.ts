@@ -1,6 +1,5 @@
+import type { IColor, RecursivePartial } from "@tsparticles/engine";
 import type { IBackgroundMaskCover } from "./IBackgroundMaskCover.js";
-import type { IColor } from "../../../Core/Interfaces/Colors.js";
-import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
 
 /**
  * The options to apply a base color to canvas to cover what's behind

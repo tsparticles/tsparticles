@@ -12,7 +12,7 @@ declare const __VERSION__: string;
 export async function loadEmittersPlugin(engine: EmittersEngine, refresh = true): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.emitterShapeManager ??= new ShapeManager(engine);
+    engine.emitterShapeManager ??= new ShapeManager();
     engine.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
         engine.emitterShapeManager?.addShapeGenerator(name, generator);
     };

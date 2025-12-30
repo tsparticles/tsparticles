@@ -30,6 +30,10 @@ export class StrokeColorUpdater implements IParticleUpdater {
         /* strokeColor */
         const stroke = itemFromSingleOrMultiple(options.stroke, particle.id, options.reduceDuplicates);
 
+        if (!stroke) {
+            return;
+        }
+
         particle.strokeWidth = getRangeValue(stroke.width) * container.retina.pixelRatio;
         particle.strokeOpacity = getRangeValue(stroke.opacity ?? defaultOpacity);
         particle.strokeAnimation = stroke.color?.animation;

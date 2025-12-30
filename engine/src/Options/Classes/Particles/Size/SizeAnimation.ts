@@ -17,7 +17,7 @@ export class SizeAnimation extends RangedAnimationOptions implements ISizeAnimat
         this.speed = 5;
     }
 
-    load(data?: RecursivePartial<ISizeAnimation>): void {
+    override load(data?: RecursivePartial<ISizeAnimation>): void {
         super.load(data);
 
         if (isNull(data)) {

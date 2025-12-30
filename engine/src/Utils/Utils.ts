@@ -272,7 +272,7 @@ export function arrayRandomIndex(array: unknown[]): number {
  * @param useIndex - if true, the index will be used instead of a random index
  * @returns the item found
  */
-export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
+export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T | undefined {
     return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
 }
 
@@ -595,7 +595,11 @@ export function executeOnSingleOrMultiple<T, U = void>(
  * @param useIndex -
  * @returns the selected item
  */
-export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
+export function itemFromSingleOrMultiple<T>(
+    obj: SingleOrMultiple<T>,
+    index?: number,
+    useIndex?: boolean,
+): T | undefined {
     return isArray(obj) ? itemFromArray(obj, index, useIndex) : obj;
 }
 
@@ -914,6 +918,10 @@ function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
 
     for (const key in style) {
         const value = style[key];
+
+        if (value === undefined) {
+            continue;
+        }
 
         fullScreenStyle.setProperty(key, value);
     }

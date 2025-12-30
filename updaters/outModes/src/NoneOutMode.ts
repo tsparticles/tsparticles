@@ -21,7 +21,7 @@ export class NoneOutMode implements IOutModeManager {
     update(
         particle: Particle,
         direction: OutModeDirection,
-        delta: IDelta,
+        _delta: IDelta,
         outMode: OutMode | keyof typeof OutMode,
     ): void {
         if (!this.modes.includes(outMode)) {

@@ -9,7 +9,7 @@ import {
     isNumber,
     itemFromSingleOrMultiple,
 } from "@tsparticles/engine";
-import type { Absorber } from "./Options/Classes/Absorber.js";
+import { Absorber } from "./Options/Classes/Absorber.js";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
 import { AbsorberInstance } from "./AbsorberInstance.js";
@@ -46,7 +46,7 @@ export class Absorbers implements IContainerPlugin {
     }
 
     async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
-        const absorber = new AbsorberInstance(this, this._container, this._engine, options, position);
+        const absorber = new AbsorberInstance(this._container, this._engine, options, position);
 
         this.array.push(absorber);
 
@@ -63,7 +63,7 @@ export class Absorbers implements IContainerPlugin {
         const modeAbsorbers = this.interactivityAbsorbers;
 
         if (mode === (AbsorberClickMode.absorber as string)) {
-            const absorbersModeOptions = itemFromSingleOrMultiple(modeAbsorbers),
+            const absorbersModeOptions = itemFromSingleOrMultiple(modeAbsorbers) ?? new Absorber(),
                 aPosition = this._container.interactivity.mouse.clickPosition;
 
             void this.addAbsorber(absorbersModeOptions, aPosition);

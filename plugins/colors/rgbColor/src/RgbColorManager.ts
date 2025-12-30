@@ -69,9 +69,9 @@ export class RgbColorManager implements IColorManager {
         return result
             ? {
                   a: result.length > minLength ? parseAlpha(result[RgbIndexes.a]) : defaultAlpha,
-                  b: parseInt(result[RgbIndexes.b], radix),
-                  g: parseInt(result[RgbIndexes.g], radix),
-                  r: parseInt(result[RgbIndexes.r], radix),
+                  b: parseInt(result[RgbIndexes.b] ?? "0", radix),
+                  g: parseInt(result[RgbIndexes.g] ?? "0", radix),
+                  r: parseInt(result[RgbIndexes.r] ?? "0", radix),
               }
             : undefined;
     }

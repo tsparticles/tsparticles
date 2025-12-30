@@ -27,7 +27,7 @@ export class StarDrawer implements IShapeDrawer<StarParticle> {
         return Math.round(getRangeValue(star?.sides ?? defaultSides));
     }
 
-    particleInit(container: Container, particle: StarParticle): void {
+    particleInit(_container: Container, particle: StarParticle): void {
         const star = particle.shapeData as IStarShape | undefined;
 
         particle.starInset = getRangeValue(star?.inset ?? defaultInset);

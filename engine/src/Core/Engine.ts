@@ -132,11 +132,12 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
 
             canvasEl.dataset[generatedAttribute] ??= generatedFalse;
         } else {
-            const existingCanvases = domContainer.getElementsByTagName(canvasTag);
+            const existingCanvases = domContainer.getElementsByTagName(canvasTag),
+                foundCanvas = existingCanvases[canvasFirstIndex];
 
             /* get existing canvas if present, otherwise a new one will be created */
-            if (existingCanvases.length) {
-                canvasEl = existingCanvases[canvasFirstIndex];
+            if (foundCanvas) {
+                canvasEl = foundCanvas;
 
                 canvasEl.dataset[generatedAttribute] = generatedFalse;
             } else {
@@ -619,7 +620,7 @@ export class Engine {
         const { items } = this,
             item = items[index];
 
-        if (item.destroyed) {
+        if (item?.destroyed) {
             items.splice(index, removeDeleteCount);
 
             return;

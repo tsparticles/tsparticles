@@ -37,7 +37,7 @@ export class AnimationValueWithRandom extends ValueWithRandom implements IOption
         this.animation = new AnimationOptions();
     }
 
-    load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
+    override load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
         super.load(data);
 
         if (isNull(data)) {
@@ -56,7 +56,7 @@ export class RangedAnimationValueWithRandom
     extends AnimationValueWithRandom
     implements IOptionLoader<IRangedAnimationValueWithRandom>
 {
-    readonly animation: RangedAnimationOptions;
+    override readonly animation: RangedAnimationOptions;
 
     constructor() {
         super();
@@ -64,7 +64,7 @@ export class RangedAnimationValueWithRandom
         this.animation = new RangedAnimationOptions();
     }
 
-    load(data?: RecursivePartial<IRangedAnimationValueWithRandom>): void {
+    override load(data?: RecursivePartial<IRangedAnimationValueWithRandom>): void {
         super.load(data);
     }
 }

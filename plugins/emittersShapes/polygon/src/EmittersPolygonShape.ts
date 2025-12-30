@@ -34,7 +34,7 @@ export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeO
         return res ? { position: res } : null;
     }
 
-    resize(position: ICoordinates, size: IDimension): void {
+    override resize(position: ICoordinates, size: IDimension): void {
         super.resize(position, size);
 
         this.polygon = generateRandomPolygon(position, this.sides, size.width * half, this.angle);

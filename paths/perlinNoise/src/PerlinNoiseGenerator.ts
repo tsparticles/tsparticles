@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import {
     type Container,
@@ -59,7 +60,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             v = Vector.origin,
             { field } = this;
 
-        return field[point.x][point.y][point.z] ? field[point.x][point.y][point.z].copy() : v;
+        return field[point.x]![point.y]![point.z] ? field[point.x]![point.y]![point.z]!.copy() : v;
     }
 
     init(container: Container): void {
@@ -96,7 +97,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         for (let x = 0; x < options.columns; x++) {
             for (let y = 0; y < options.rows; y++) {
                 for (let z = 0; z < options.layers; z++) {
-                    const cell = field[x][y][z];
+                    const cell = field[x]![y]![z]!;
 
                     cell.length = noiseGen.noise4d(
                         x * lengthFactor + options.offset.x,
@@ -117,7 +118,7 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             const column = field[x];
 
             for (let y = 0; y < options.rows; y++) {
-                const cell = column[y][0], // only 2D
+                const cell = column![y]![0]!, // only 2D
                     { angle, length } = cell;
 
                 // ctx.save();
@@ -142,10 +143,10 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
             this.field[x] = new Array<Vector[]>(rows);
 
             for (let y = 0; y < rows; y++) {
-                this.field[x][y] = new Array<Vector>(layers);
+                this.field[x]![y] = new Array<Vector>(layers);
 
                 for (let z = 0; z < layers; z++) {
-                    this.field[x][y][z] = Vector.origin;
+                    this.field[x]![y]![z] = Vector.origin;
                 }
             }
         }
@@ -164,23 +165,25 @@ export class PerlinNoiseGenerator implements IMovePathGenerator {
         options.width = container.canvas.size.width;
         options.height = container.canvas.size.height;
 
-        options.size = (sourceOptions.size as number) > 0 ? (sourceOptions.size as number) : defaultOptions.size;
+        options.size = (sourceOptions["size"] as number) > 0 ? (sourceOptions["size"] as number) : defaultOptions.size;
         options.increment =
-            (sourceOptions.increment as number) > 0 ? (sourceOptions.increment as number) : defaultOptions.increment;
-        options.draw = !!sourceOptions.draw;
+            (sourceOptions["increment"] as number) > 0
+                ? (sourceOptions["increment"] as number)
+                : defaultOptions.increment;
+        options.draw = !!sourceOptions["draw"];
 
-        const offset = sourceOptions.offset as IOffsetValues | undefined;
+        const offset = sourceOptions["offset"] as IOffsetValues | undefined;
 
         options.offset.x = offset?.x ?? defaultOptions.offset.x;
         options.offset.y = offset?.y ?? defaultOptions.offset.y;
         options.offset.z = offset?.z ?? defaultOptions.offset.z;
 
-        const factor = sourceOptions.factor as IFactorValues | undefined;
+        const factor = sourceOptions["factor"] as IFactorValues | undefined;
 
         options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
         options.factor.length = factor?.length ?? defaultOptions.factor.length;
 
-        options.seed = sourceOptions.seed as number | undefined;
+        options.seed = sourceOptions["seed"] as number | undefined;
 
         this.noiseGen.seed(options.seed ?? getRandom());
 

@@ -70,9 +70,9 @@ export class OklchColorManager implements IColorManager {
         return result
             ? oklchaToRgba({
                   a: result[indexes.a] ? parseAlpha(result[indexes.a]) : defaultAlpha,
-                  c: parseFloat(result[indexes.c]), // Chroma
-                  h: parseFloat(result[indexes.h]), // Hue
-                  l: parseFloat(result[indexes.l]), // Lightness
+                  c: parseFloat(result[indexes.c] ?? "0"), // Chroma
+                  h: parseFloat(result[indexes.h] ?? "0"), // Hue
+                  l: parseFloat(result[indexes.l] ?? "0"), // Lightness
               })
             : undefined; // LCH parsing without alpha
     }

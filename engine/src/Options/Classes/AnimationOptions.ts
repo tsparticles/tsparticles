@@ -67,7 +67,7 @@ export class RangedAnimationOptions extends AnimationOptions implements IOptionL
         this.startValue = StartValueType.random;
     }
 
-    load(data?: RecursivePartial<IRangedAnimation>): void {
+    override load(data?: RecursivePartial<IRangedAnimation>): void {
         super.load(data);
 
         if (isNull(data)) {

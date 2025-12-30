@@ -35,6 +35,10 @@ export function roundedPath(context: CanvasRenderingContext2D, path: ICoordinate
     let p1 = path[index1],
         p2 = path[index2];
 
+    if (!p1 || !p2) {
+        return;
+    }
+
     const len = path.length;
 
     context.moveTo((p1.x + p2.x) * half, (p1.y + p2.y) * half);
@@ -42,6 +46,10 @@ export function roundedPath(context: CanvasRenderingContext2D, path: ICoordinate
     for (let i = 1; i <= len; i++) {
         p1 = p2;
         p2 = path[(i + increment) % len];
+
+        if (!p1 || !p2) {
+            continue;
+        }
 
         context.arcTo(p1.x, p1.y, (p1.x + p2.x) * half, (p1.y + p2.y) * half, radius);
     }

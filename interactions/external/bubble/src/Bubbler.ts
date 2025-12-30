@@ -68,7 +68,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         };
     }
 
-    clear(particle: Particle, delta: IDelta, force?: boolean): void {
+    clear(particle: Particle, _delta: IDelta, force?: boolean): void {
         if (particle.bubble.inRange && !force) {
             return;
         }

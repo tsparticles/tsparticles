@@ -28,7 +28,7 @@ export class CircleWarp extends Circle {
      * @param point - the point to check
      * @returns true or false, checking if the given point is inside the circle
      */
-    contains(point: ICoordinates): boolean {
+    override contains(point: ICoordinates): boolean {
         const { width, height } = this.canvasSize,
             { x, y } = point;
 
@@ -45,7 +45,7 @@ export class CircleWarp extends Circle {
      * @param range - the range to check
      * @returns true or false, checking if the range is intersecting with the circle
      */
-    intersects(range: BaseRange): boolean {
+    override intersects(range: BaseRange): boolean {
         if (super.intersects(range)) {
             return true;
         }

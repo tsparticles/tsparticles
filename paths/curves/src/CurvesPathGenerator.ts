@@ -64,21 +64,21 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
-        if (isFunction(sourceOptions.rndFunc)) {
-            options.rndFunc = sourceOptions.rndFunc as () => number;
-        } else if (isString(sourceOptions.rndFunc)) {
+        if (isFunction(sourceOptions["rndFunc"])) {
+            options.rndFunc = sourceOptions["rndFunc"] as () => number;
+        } else if (isString(sourceOptions["rndFunc"])) {
             options.rndFunc =
-                ((window as unknown as Record<string, unknown>)[sourceOptions.rndFunc] as
+                ((window as unknown as Record<string, unknown>)[sourceOptions["rndFunc"]] as
                     | (() => number)
                     | null
                     | undefined) ?? this.options.rndFunc;
         }
 
-        options.period = (sourceOptions.period as number | undefined) ?? options.period;
-        options.nbHarmonics = (sourceOptions.nbHarmonics as number | undefined) ?? options.nbHarmonics;
-        options.attenHarmonics = (sourceOptions.attenHarmonics as number | undefined) ?? options.attenHarmonics;
-        options.lowValue = (sourceOptions.lowValue as number | undefined) ?? options.lowValue;
-        options.highValue = (sourceOptions.highValue as number | undefined) ?? options.highValue;
+        options.period = (sourceOptions["period"] as number | undefined) ?? options.period;
+        options.nbHarmonics = (sourceOptions["nbHarmonics"] as number | undefined) ?? options.nbHarmonics;
+        options.attenHarmonics = (sourceOptions["attenHarmonics"] as number | undefined) ?? options.attenHarmonics;
+        options.lowValue = (sourceOptions["lowValue"] as number | undefined) ?? options.lowValue;
+        options.highValue = (sourceOptions["highValue"] as number | undefined) ?? options.highValue;
     }
 
     reset(particle: CurvesPathParticle): void {

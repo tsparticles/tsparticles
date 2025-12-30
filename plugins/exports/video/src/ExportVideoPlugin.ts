@@ -1,4 +1,4 @@
-import type { Container, Engine, IPlugin } from "@tsparticles/engine";
+import type { Container, IPlugin } from "@tsparticles/engine";
 import { ExportVideoInstance } from "./ExportVideoInstance.js";
 
 /**
@@ -6,16 +6,12 @@ import { ExportVideoInstance } from "./ExportVideoInstance.js";
 export class ExportVideoPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
-
-    constructor(engine: Engine) {
+    constructor() {
         this.id = "export-video";
-
-        this._engine = engine;
     }
 
     getPlugin(container: Container): Promise<ExportVideoInstance> {
-        return Promise.resolve(new ExportVideoInstance(container, this._engine));
+        return Promise.resolve(new ExportVideoInstance(container));
     }
 
     loadOptions(): void {

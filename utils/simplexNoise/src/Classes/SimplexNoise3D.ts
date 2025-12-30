@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import type { Contribution3D } from "../Contributions.js";
 import { shuffleSeed } from "../utils.js";
 
@@ -506,10 +508,11 @@ export class SimplexNoise3D {
                 const px = xsb + c.xsb,
                     py = ysb + c.ysb,
                     pz = zsb + c.zsb,
-                    indexPartA = _perm[px & 0xff],
-                    indexPartB = _perm[(indexPartA + py) & 0xff],
-                    index = _perm3D[(indexPartB + pz) & 0xff],
-                    valuePart = _gradients3D[index] * dx + _gradients3D[index + 1] * dy + _gradients3D[index + 2] * dz;
+                    indexPartA = _perm[px & 0xff]!,
+                    indexPartB = _perm[(indexPartA + py) & 0xff]!,
+                    index = _perm3D[(indexPartB + pz) & 0xff]!,
+                    valuePart =
+                        _gradients3D[index]! * dx + _gradients3D[index + 1]! * dy + _gradients3D[index + 2]! * dz;
 
                 value += attn * attn * attn * attn * valuePart;
             }
@@ -522,13 +525,13 @@ export class SimplexNoise3D {
             contributions: Contribution3D[] = [];
 
         for (let i = 0; i < _p3D.length; i += 9) {
-            const baseSet = _base3D[_p3D[i]];
+            const baseSet = _base3D[_p3D[i]!]!;
 
             let previous: Contribution3D | null = null,
                 current: Contribution3D | null = null;
 
             for (let k = 0; k < baseSet.length; k += 4) {
-                current = this._contribution3D(baseSet[k], baseSet[k + 1], baseSet[k + 2], baseSet[k + 3]);
+                current = this._contribution3D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!, baseSet[k + 3]!);
 
                 if (previous === null) {
                     contributions[i / 9] = current;
@@ -540,15 +543,15 @@ export class SimplexNoise3D {
             }
 
             if (current) {
-                current.next = this._contribution3D(_p3D[i + 1], _p3D[i + 2], _p3D[i + 3], _p3D[i + 4]);
-                current.next.next = this._contribution3D(_p3D[i + 5], _p3D[i + 6], _p3D[i + 7], _p3D[i + 8]);
+                current.next = this._contribution3D(_p3D[i + 1]!, _p3D[i + 2]!, _p3D[i + 3]!, _p3D[i + 4]!);
+                current.next.next = this._contribution3D(_p3D[i + 5]!, _p3D[i + 6]!, _p3D[i + 7]!, _p3D[i + 8]!);
             }
         }
 
         this._lookup = [];
 
         for (let i = 0; i < _lookupPairs3D.length; i += 2) {
-            this._lookup[_lookupPairs3D[i]] = contributions[_lookupPairs3D[i + 1]];
+            this._lookup[_lookupPairs3D[i]!] = contributions[_lookupPairs3D[i + 1]!]!;
         }
 
         this._perm = new Uint8Array(256);
@@ -570,15 +573,15 @@ export class SimplexNoise3D {
 
             const r = new Uint32Array(1);
 
-            r[0] = (seed[0] + 31) % (i + 1);
+            r[0] = (seed[0]! + 31) % (i + 1);
 
             if (r[0] < 0) {
                 r[0] += i + 1;
             }
 
-            this._perm[i] = source[r[0]];
-            this._perm3D[i] = (this._perm[i] % 24) * 3;
-            source[r[0]] = source[i];
+            this._perm[i] = source[r[0]]!;
+            this._perm3D[i] = (this._perm[i]! % 24) * 3;
+            source[r[0]] = source[i]!;
         }
     }
 

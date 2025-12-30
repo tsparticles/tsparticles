@@ -379,9 +379,19 @@ export class SoundsInstance implements IContainerPlugin {
                     const defaultNoteIndex = 0;
 
                     if (event.audio) {
-                        this._playBuffer(itemFromSingleOrMultiple(event.audio));
+                        const audio = itemFromSingleOrMultiple(event.audio);
+
+                        if (!audio) {
+                            return;
+                        }
+
+                        this._playBuffer(audio);
                     } else if (event.melodies) {
                         const melody = itemFromArray(event.melodies);
+
+                        if (!melody) {
+                            return;
+                        }
 
                         if (melody.melodies.length) {
                             await Promise.allSettled(
@@ -392,6 +402,10 @@ export class SoundsInstance implements IContainerPlugin {
                         }
                     } else if (event.notes) {
                         const note = itemFromArray(event.notes);
+
+                        if (!note) {
+                            return;
+                        }
 
                         await this._playNote([note], defaultNoteIndex, false);
                     }
@@ -506,8 +520,13 @@ export class SoundsInstance implements IContainerPlugin {
             return;
         }
 
-        const note = notes[noteIdx],
-            value = note.value,
+        const note = notes[noteIdx];
+
+        if (!note) {
+            return;
+        }
+
+        const value = note.value,
             promises = executeOnSingleOrMultiple(value, async (_, idx) => {
                 return this._playNoteValue(notes, noteIdx, idx);
             });
@@ -530,8 +549,17 @@ export class SoundsInstance implements IContainerPlugin {
         noteIdx,
         valueIdx,
     ) => {
-        const note = notes[noteIdx],
-            value = itemFromSingleOrMultiple(note.value, valueIdx, true);
+        const note = notes[noteIdx];
+
+        if (!note) {
+            return;
+        }
+
+        const value = itemFromSingleOrMultiple(note.value, valueIdx, true);
+
+        if (!value) {
+            return;
+        }
 
         try {
             const freq = getNoteFrequency(value);

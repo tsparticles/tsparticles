@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import {
     type Container,
     type ICoordinates,
@@ -75,7 +77,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
         particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
         particle.svgPathIndex ??= Math.floor(getRandom() * this._paths.length);
         particle.svgSpeed ??= particle.velocity.mult((particle.retina.moveSpeed ?? defaultSpeed) * half).length;
-        particle.svgStep ??= randomInRange({ min: 0, max: this._paths[particle.svgPathIndex].length }) * pxRatio;
+        particle.svgStep ??= randomInRange({ min: 0, max: this._paths[particle.svgPathIndex]!.length }) * pxRatio;
         particle.svgOffset ??= {
             width: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
             height: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
@@ -91,7 +93,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
             particle.svgStep -= particle.svgSpeed * delta.factor;
         }
 
-        let path = this._paths[particle.svgPathIndex];
+        let path = this._paths[particle.svgPathIndex]!;
 
         const pathLength = path.length,
             indexOffset = 1;
@@ -121,14 +123,14 @@ export class SVGPathGenerator implements IMovePathGenerator {
                 } else {
                     particle.svgPathIndex = this._paths.length - indexOffset;
 
-                    path = this._paths[particle.svgPathIndex];
+                    path = this._paths[particle.svgPathIndex]!;
 
                     particle.svgStep = path.length;
                 }
             }
         }
 
-        path = this._paths[particle.svgPathIndex];
+        path = this._paths[particle.svgPathIndex]!;
 
         const pathElement = path.element,
             pos = pathElement.getPointAtLength(particle.svgStep),
@@ -172,7 +174,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
                 const parser = new DOMParser(),
                     doc = parser.parseFromString(data, "image/svg+xml"),
                     firstIndex = 0,
-                    svg = doc.getElementsByTagName("svg")[firstIndex];
+                    svg = doc.getElementsByTagName("svg")[firstIndex]!;
 
                 let svgPaths = svg.getElementsByTagName("path");
 

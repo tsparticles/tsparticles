@@ -45,6 +45,10 @@ export function drawPolygonMask(
     const firstIndex = 0,
         firstItem = rawData[firstIndex];
 
+    if (!firstItem) {
+        return;
+    }
+
     context.beginPath();
     context.moveTo(firstItem.x, firstItem.y);
 

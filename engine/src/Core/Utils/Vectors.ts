@@ -280,7 +280,7 @@ export class Vector extends Vector3d {
      * A new vector, with coordinates in the origin point
      * @returns a new vector, with coordinates in the origin point
      */
-    static get origin(): Vector {
+    static override get origin(): Vector {
         return Vector.create(originPoint.x, originPoint.y);
     }
 
@@ -289,7 +289,7 @@ export class Vector extends Vector3d {
      * @param source - the vector to clone
      * @returns a new vector instance, created from the given one
      */
-    static clone(source: Vector): Vector {
+    static override clone(source: Vector): Vector {
         return Vector.create(source.x, source.y);
     }
 
@@ -299,7 +299,7 @@ export class Vector extends Vector3d {
      * @param y - Y coordinate
      * @returns the new vector created
      */
-    static create(x: number | ICoordinates, y?: number): Vector {
+    static override create(x: number | ICoordinates, y?: number): Vector {
         return new Vector(x, y);
     }
 }

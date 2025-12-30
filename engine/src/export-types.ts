@@ -34,12 +34,8 @@ export type * from "./Core/Interfaces/IShapeDrawData.js";
 export type * from "./Core/Interfaces/IShapeDrawer.js";
 export type * from "./Core/Interfaces/IShapeValues.js";
 export type * from "./Core/Interfaces/ISlowParticleData.js";
-export type * from "./Core/Interfaces/ITrailFillData.js";
 
 export type * from "./Options/Interfaces/Background/IBackground.js";
-
-export type * from "./Options/Interfaces/BackgroundMask/IBackgroundMask.js";
-export type * from "./Options/Interfaces/BackgroundMask/IBackgroundMaskCover.js";
 
 export type * from "./Options/Interfaces/FullScreen/IFullScreen.js";
 
@@ -101,9 +97,6 @@ export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 
 export type * from "./Options/Interfaces/Theme/ITheme.js";
 export type * from "./Options/Interfaces/Theme/IThemeDefault.js";
-
-export type * from "./Options/Interfaces/Trail/ITrail.js";
-export type * from "./Options/Interfaces/Trail/ITrailFill.js";
 
 export type * from "./Types/CustomEventArgs.js";
 export type * from "./Types/CustomEventListener.js";

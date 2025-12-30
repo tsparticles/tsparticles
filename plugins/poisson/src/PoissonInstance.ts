@@ -1,4 +1,4 @@
-import { type Engine, type IContainerPlugin, type ICoordinates, getRangeMax } from "@tsparticles/engine";
+import { type IContainerPlugin, type ICoordinates, getRangeMax } from "@tsparticles/engine";
 import type { PoissonContainer } from "./types.js";
 import { PoissonDisc } from "./PoissonDisc.js";
 
@@ -11,11 +11,9 @@ export class PoissonInstance implements IContainerPlugin {
 
     private readonly _container: PoissonContainer;
     private _currentIndex: number;
-    private readonly _engine: Engine;
 
-    constructor(container: PoissonContainer, engine: Engine) {
+    constructor(container: PoissonContainer) {
         this._container = container;
-        this._engine = engine;
         this._currentIndex = 0;
     }
 

@@ -209,6 +209,10 @@ export class Particles {
             for (const group in groups) {
                 const groupOptions = groups[group];
 
+                if (!groupOptions) {
+                    continue;
+                }
+
                 for (
                     let i = this.count, j = 0;
                     j < groupOptions.number.value && i < particlesOptions.number.value;
@@ -282,7 +286,13 @@ export class Particles {
             manualCount = options.manualParticles.length;
 
         for (const group in groups) {
-            this._applyDensity(groups[group], manualCount, group);
+            const groupData = groups[group];
+
+            if (!groupData) {
+                continue;
+            }
+
+            this._applyDensity(groupData, manualCount, group);
         }
 
         this._applyDensity(options.particles, manualCount);
@@ -386,7 +396,13 @@ export class Particles {
 
             zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-            this._lastZIndex = zArray[zArray.length - lengthOffset].position.z;
+            const lastItem = zArray[zArray.length - lengthOffset];
+
+            if (!lastItem) {
+                return;
+            }
+
+            this._lastZIndex = lastItem.position.z;
             this._needsSort = false;
         }
     }
@@ -482,10 +498,16 @@ export class Particles {
         } catch (e: unknown) {
             getLogger().warning(`${errorPrefix} adding particle: ${e as string}`);
         }
+
+        return undefined;
     };
 
     private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {
         const particle = this._array[index];
+
+        if (!particle) {
+            return false;
+        }
 
         if (particle.group !== group) {
             return false;

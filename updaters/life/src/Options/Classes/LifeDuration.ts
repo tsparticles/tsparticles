@@ -9,7 +9,7 @@ export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOpt
         this.sync = false;
     }
 
-    load(data?: RecursivePartial<ILifeDuration>): void {
+    override load(data?: RecursivePartial<ILifeDuration>): void {
         if (isNull(data)) {
             return;
         }

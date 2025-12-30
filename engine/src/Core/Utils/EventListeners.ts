@@ -501,6 +501,10 @@ export class EventListeners {
                     lastTouch = touchEvent.touches[touchEvent.touches.length - lengthOffset],
                     canvasRect = canvasEl.getBoundingClientRect();
 
+                if (!lastTouch) {
+                    return;
+                }
+
                 pos = {
                     x: lastTouch.clientX - canvasRect.left,
                     y: lastTouch.clientY - canvasRect.top,

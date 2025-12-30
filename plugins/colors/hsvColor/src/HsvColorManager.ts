@@ -293,9 +293,9 @@ export class HsvColorManager implements IColorManager {
         return result
             ? hsvaToRgba({
                   a: result.length > fullLength ? parseAlpha(result[indexes.a]) : defaultAlpha,
-                  h: parseInt(result[indexes.h], radix),
-                  s: parseInt(result[indexes.s], radix),
-                  v: parseInt(result[indexes.v], radix),
+                  h: parseInt(result[indexes.h] ?? "0", radix),
+                  s: parseInt(result[indexes.s] ?? "0", radix),
+                  v: parseInt(result[indexes.v] ?? "0", radix),
               })
             : undefined;
     }

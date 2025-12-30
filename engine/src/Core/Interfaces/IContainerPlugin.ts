@@ -8,6 +8,8 @@ import type { Particle } from "../Particle.js";
 /**
  */
 export interface IContainerPlugin {
+    canvasClear?: () => boolean;
+    canvasPaint?: () => boolean;
     clearDraw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     clickPositionValid?: (position: ICoordinates) => boolean;
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;

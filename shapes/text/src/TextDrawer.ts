@@ -44,10 +44,10 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
 
     /**
      * Loads the text shape to the given particle
-     * @param container - the particles container
+     * @param _container - the particles container
      * @param particle - the particle loading the text shape
      */
-    particleInit(container: Container, particle: TextParticle): void {
+    particleInit(_container: Container, particle: TextParticle): void {
         if (!particle.shape || !(this.validTypes as unknown as string[]).includes(particle.shape)) {
             return;
         }

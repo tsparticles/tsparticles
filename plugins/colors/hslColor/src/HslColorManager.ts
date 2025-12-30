@@ -72,9 +72,9 @@ export class HslColorManager implements IColorManager {
         return result
             ? hslaToRgba({
                   a: result.length > minLength ? parseAlpha(result[HslIndexes.a]) : defaultAlpha,
-                  h: parseInt(result[HslIndexes.h], radix),
-                  l: parseInt(result[HslIndexes.l], radix),
-                  s: parseInt(result[HslIndexes.s], radix),
+                  h: parseInt(result[HslIndexes.h] ?? "0", radix),
+                  l: parseInt(result[HslIndexes.l] ?? "0", radix),
+                  s: parseInt(result[HslIndexes.s] ?? "0", radix),
               })
             : undefined;
     }

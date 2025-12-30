@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { type Container, type ICoordinates, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
@@ -33,7 +34,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         p.hexStep++;
 
-        const direction = this.dirsList[p.hexDirection];
+        const direction = this.dirsList[p.hexDirection]!;
 
         return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
     }
@@ -41,9 +42,9 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     init(container: Container): void {
         const options = container.actualOptions.particles.move.path.options;
 
-        this.options.sides = (options.sides as number) > 0 ? (options.sides as number) : 6;
-        this.options.angle = (options.angle as number | undefined) ?? 30;
-        this.options.turnSteps = (options.turnSteps as number) >= 0 ? (options.turnSteps as number) : 20;
+        this.options.sides = (options["sides"] as number) > 0 ? (options["sides"] as number) : 6;
+        this.options.angle = (options["angle"] as number | undefined) ?? 30;
+        this.options.turnSteps = (options["turnSteps"] as number) >= 0 ? (options["turnSteps"] as number) : 20;
 
         this._createDirs();
     }

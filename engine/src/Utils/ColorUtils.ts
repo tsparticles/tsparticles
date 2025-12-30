@@ -66,6 +66,8 @@ function stringToRgba(engine: Engine, input: string): IRgba | undefined {
             return manager.parseString(input);
         }
     }
+
+    return undefined;
 }
 
 /**
@@ -93,8 +95,14 @@ export function rangeColorToRgb(
     }
 
     if (isArray(color.value)) {
+        const value = itemFromArray(color.value, index, useIndex);
+
+        if (!value) {
+            return;
+        }
+
         return rangeColorToRgb(engine, {
-            value: itemFromArray(color.value, index, useIndex),
+            value,
         });
     }
 
@@ -105,6 +113,8 @@ export function rangeColorToRgb(
             return res;
         }
     }
+
+    return undefined;
 }
 
 /**
@@ -127,8 +137,14 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
     }
 
     if (isArray(color.value)) {
+        const value = itemFromArray(color.value, index, useIndex);
+
+        if (!value) {
+            return;
+        }
+
         return colorToRgb(engine, {
-            value: itemFromArray(color.value, index, useIndex),
+            value,
         });
     }
 
@@ -139,6 +155,8 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
             return res;
         }
     }
+
+    return undefined;
 }
 
 /**
@@ -407,6 +425,8 @@ export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | I
     } else {
         return linkColor as IRgb;
     }
+
+    return undefined;
 }
 
 /**

@@ -54,7 +54,7 @@ export class ShadowDrawer implements IEffectDrawer {
         context.shadowOffsetY = shadowOffset?.y ?? defaultShadowOffsetValue;
     }
 
-    particleInit(container: Container, particle: ShadowParticle): void {
+    particleInit(_container: Container, particle: ShadowParticle): void {
         const effectData = particle.effectData as IShadowData | undefined;
 
         if (!effectData?.enable) {

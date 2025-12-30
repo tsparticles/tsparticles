@@ -118,7 +118,14 @@ export class Emitters implements IContainerPlugin {
                     }
 
                     usedIndexes.push(idx);
-                    emittersModeOptions.push(itemFromArray(modeEmitters.value, idx));
+
+                    const selectedOptions = itemFromArray(modeEmitters.value, idx);
+
+                    if (!selectedOptions) {
+                        continue;
+                    }
+
+                    emittersModeOptions.push(selectedOptions);
                 }
             } else {
                 emittersModeOptions = modeEmitters.value;

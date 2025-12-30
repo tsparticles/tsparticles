@@ -6,7 +6,9 @@ const origin: ICoordinates = {
         x: 0,
         y: 0,
     },
-    minWidth = 0;
+    minWidth = 0,
+    defaultRgbValue = 0,
+    defaultAlphaValue = 1;
 
 /**
  * @param ctx -
@@ -36,9 +38,7 @@ export function getCanvasImageData(
                 y: Math.floor(idx / size.width),
             };
 
-        if (!pixels[pos.y]) {
-            pixels[pos.y] = [];
-        }
+        pixels[pos.y] ??= [];
 
         const indexesOffset = {
                 r: 0,
@@ -46,13 +46,18 @@ export function getCanvasImageData(
                 b: 2,
                 a: 3,
             },
-            alphaFactor = 255;
+            alphaFactor = 255,
+            row = pixels[pos.y];
 
-        pixels[pos.y][pos.x] = {
-            r: imageData[i + indexesOffset.r],
-            g: imageData[i + indexesOffset.g],
-            b: imageData[i + indexesOffset.b],
-            a: imageData[i + indexesOffset.a] / alphaFactor,
+        if (!row) {
+            continue;
+        }
+
+        row[pos.x] = {
+            r: imageData[i + indexesOffset.r] ?? defaultRgbValue,
+            g: imageData[i + indexesOffset.g] ?? defaultRgbValue,
+            b: imageData[i + indexesOffset.b] ?? defaultRgbValue,
+            a: (imageData[i + indexesOffset.a] ?? defaultAlphaValue) / alphaFactor,
         };
     }
 
