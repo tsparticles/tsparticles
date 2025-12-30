@@ -69,8 +69,7 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
  * @param data - The function parameters.
  */
 export function drawParticle(data: IDrawParticleParams): void {
-    const { container, context, particle, delta, colorStyles, backgroundMask, composite, radius, opacity, transform } =
-            data,
+    const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data,
         pos = particle.getPosition(),
         angle = particle.getAngle(),
         rotateData = {
@@ -86,10 +85,6 @@ export function drawParticle(data: IDrawParticleParams): void {
         };
 
     context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
-
-    if (backgroundMask) {
-        context.globalCompositeOperation = composite;
-    }
 
     if (colorStyles.fill) {
         context.fillStyle = colorStyles.fill;
@@ -119,8 +114,6 @@ export function drawParticle(data: IDrawParticleParams): void {
     drawShape(drawData);
     drawShapeAfterDraw(drawData);
     drawAfterEffect(drawData);
-
-    context.globalCompositeOperation = "source-over";
 
     context.resetTransform();
 }
@@ -184,8 +177,7 @@ export function drawAfterEffect(data: DrawShapeData): void {
     }
 
     const drawer = container.effectDrawers.get(particle.effect),
-        // eslint-disable-next-line @typescript-eslint/no-deprecated
-        drawFunc = drawer?.drawAfter ?? drawer?.draw;
+        drawFunc = drawer?.drawAfter;
 
     if (!drawFunc) {
         return;

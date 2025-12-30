@@ -178,9 +178,7 @@ export class Particles {
         }); */
 
         /* draw each particle */
-        for (const p of this._zArray) {
-            p.draw(delta);
-        }
+        this._container.canvas.drawParticles(this._zArray, delta);
     }
 
     filter(condition: (particle: Particle) => boolean): Particle[] {

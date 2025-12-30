@@ -6,17 +6,9 @@ import type { Particle } from "../Particle.js";
 
 export interface IDrawParticleParams {
     /**
-     * If enabled, the composite value will be used for blending the particle in the canvas
-     */
-    backgroundMask: boolean;
-    /**
      * The color styles value
      */
     colorStyles: IParticleColorStyle;
-    /**
-     * The composite value to use for blending the particle in the canvas
-     */
-    composite: GlobalCompositeOperation;
     /**
      * The container of the particle
      */

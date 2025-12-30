@@ -253,40 +253,37 @@ export class Canvas {
             return;
         }
 
-        this.draw((ctx): void => {
-            const container = this.container,
-                options = container.actualOptions,
-                zIndexOptions = particle.options.zIndex,
-                zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
-                zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
-                opacity = particle.bubble.opacity ?? particle.opacity?.value ?? defaultOpacity,
-                strokeOpacity = particle.strokeOpacity ?? opacity,
-                zOpacity = opacity * zOpacityFactor,
-                zStrokeOpacity = strokeOpacity * zOpacityFactor,
-                transform: IParticleTransformValues = {},
-                colorStyles: IParticleColorStyle = {
-                    fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
-                };
+        const container = this.container,
+            zIndexOptions = particle.options.zIndex,
+            zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
+            zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
+            opacity = particle.bubble.opacity ?? particle.opacity?.value ?? defaultOpacity,
+            strokeOpacity = particle.strokeOpacity ?? opacity,
+            zOpacity = opacity * zOpacityFactor,
+            zStrokeOpacity = strokeOpacity * zOpacityFactor,
+            transform: IParticleTransformValues = {},
+            colorStyles: IParticleColorStyle = {
+                fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
+            };
 
-            colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
+        colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
 
-            this._applyPreDrawUpdaters(ctx, particle, radius, zOpacity, colorStyles, transform);
+        this.draw((context): void => {
+            this._applyPreDrawUpdaters(context, particle, radius, zOpacity, colorStyles, transform);
 
             drawParticle({
                 container,
-                context: ctx,
+                context,
                 particle,
                 delta,
                 colorStyles,
-                backgroundMask: options.backgroundMask.enable,
-                composite: options.backgroundMask.composite,
                 radius: radius * zIndexFactor ** zIndexOptions.sizeRate,
                 opacity: zOpacity,
                 transform,
             });
-
-            this._applyPostDrawUpdaters(particle);
         });
+
+        this._applyPostDrawUpdaters(particle);
     }
 
     /**
@@ -298,6 +295,25 @@ export class Canvas {
     drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
         this.draw(ctx => {
             drawParticlePlugin(ctx, plugin, particle, delta);
+        });
+    }
+
+    drawParticles(particles: Particle[], delta: IDelta): void {
+        const container = this.container;
+
+        this.draw(ctx => {
+            const previousComposite = ctx.globalCompositeOperation,
+                backgroundMask = container.options.backgroundMask;
+
+            ctx.globalCompositeOperation = backgroundMask.enable
+                ? backgroundMask.composite
+                : ctx.globalCompositeOperation;
+
+            for (const particle of particles) {
+                particle.draw(delta);
+            }
+
+            ctx.globalCompositeOperation = previousComposite;
         });
     }
 
@@ -458,19 +474,19 @@ export class Canvas {
     paint(): void {
         const options = this.container.actualOptions;
 
-        this.draw(ctx => {
-            if (options.backgroundMask.enable) {
+        if (options.backgroundMask.enable) {
+            this.draw(ctx => {
                 clear(ctx, this.size);
+            });
 
-                if (this._coverImage) {
-                    this._paintImage(this._coverImage.image, this._coverImage.opacity);
-                } else {
-                    this._paintBase(this._coverColorStyle);
-                }
+            if (this._coverImage) {
+                this._paintImage(this._coverImage.image, this._coverImage.opacity);
             } else {
-                this._paintBase();
+                this._paintBase(this._coverColorStyle);
             }
-        });
+        } else {
+            this._paintBase();
+        }
     }
 
     /**
