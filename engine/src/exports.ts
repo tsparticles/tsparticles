@@ -10,7 +10,6 @@ export * from "./Enums/Directions/RotateDirection.js";
 export * from "./Enums/Directions/OutModeDirection.js";
 
 export * from "./Enums/Modes/AnimationMode.js";
-export * from "./Enums/Modes/CollisionMode.js";
 export * from "./Enums/Modes/LimitMode.js";
 export * from "./Enums/Modes/OutMode.js";
 export * from "./Enums/Modes/PixelMode.js";
@@ -58,10 +57,6 @@ export * from "./Options/Classes/OptionsColor.js";
 
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounce.js";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounceFactor.js";
-
-export * from "./Options/Classes/Particles/Collisions/Collisions.js";
-export * from "./Options/Classes/Particles/Collisions/CollisionsAbsorb.js";
-export * from "./Options/Classes/Particles/Collisions/CollisionsOverlap.js";
 
 export * from "./Options/Classes/Particles/ParticlesOptions.js";
 export * from "./Options/Classes/Particles/Stroke.js";

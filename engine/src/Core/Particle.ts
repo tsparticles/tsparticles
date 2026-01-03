@@ -4,7 +4,6 @@ import {
     calcExactPositionOrRandomFromSize,
     clamp,
     degToRad,
-    getDistance,
     getParticleBaseVelocity,
     getParticleDirectionAngle,
     getRandom,
@@ -17,10 +16,8 @@ import {
     defaultAngle,
     defaultRetryCount,
     double,
-    errorPrefix,
     half,
     millisecondsToSeconds,
-    minRetries,
     minZ,
     none,
     randomColorValue,
@@ -695,9 +692,10 @@ export class Particle {
         zIndex: number,
         tryCount?: number,
     ) => Vector3d = (container, position, zIndex, tryCount = defaultRetryCount) => {
-        for (const plugin of container.plugins.values()) {
-            const pluginPos =
-                plugin.particlePosition !== undefined ? plugin.particlePosition(position, this) : undefined;
+        const plugins = container.plugins.values();
+
+        for (const plugin of plugins) {
+            const pluginPos = plugin.particlePosition?.(position, this);
 
             if (pluginPos) {
                 return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
@@ -739,7 +737,17 @@ export class Particle {
         fixVertical(outModes.top ?? outModes.default);
         fixVertical(outModes.bottom ?? outModes.default);
 
-        if (this._checkOverlap(pos, tryCount)) {
+        let isValidPosition: boolean | undefined = true;
+
+        for (const plugin of plugins) {
+            isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount);
+
+            if (isValidPosition === false) {
+                break;
+            }
+        }
+
+        if (!isValidPosition) {
             return this._calcPosition(container, undefined, zIndex, tryCount + tryCountIncrement);
         }
 
@@ -771,34 +779,6 @@ export class Particle {
         }
 
         return res;
-    };
-
-    private readonly _checkOverlap: (pos: ICoordinates, tryCount?: number) => boolean = (
-        pos,
-        tryCount = defaultRetryCount,
-    ) => {
-        const collisionsOptions = this.options.collisions,
-            radius = this.getRadius();
-
-        if (!collisionsOptions.enable) {
-            return false;
-        }
-
-        const overlapOptions = collisionsOptions.overlap;
-
-        if (overlapOptions.enable) {
-            return false;
-        }
-
-        const retries = overlapOptions.retries;
-
-        if (retries >= minRetries && tryCount > retries) {
-            throw new Error(`${errorPrefix} particle is overlapping and can't be placed`);
-        }
-
-        return !!this.container.particles.find(
-            particle => getDistance(pos, particle.position) < radius + particle.getRadius(),
-        );
     };
 
     private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = color => {

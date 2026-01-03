@@ -54,14 +54,12 @@ function getLinkDistance(
     return Math.sqrt(warpDistances.x ** squarePower + warpDistances.y ** squarePower);
 }
 
-export class Linker extends ParticlesInteractorBase {
+export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle> {
     private readonly _engine;
-    private readonly _linkContainer: LinkContainer;
 
     constructor(container: LinkContainer, engine: Engine) {
         super(container);
 
-        this._linkContainer = container;
         this._engine = engine;
     }
 
@@ -70,8 +68,8 @@ export class Linker extends ParticlesInteractorBase {
     }
 
     init(): void {
-        this._linkContainer.particles.linksColor = undefined;
-        this._linkContainer.particles.linksColors = new Map<string, IRgb | string | undefined>();
+        this.container.particles.linksColor = undefined;
+        this.container.particles.linksColors = new Map<string, IRgb | string | undefined>();
     }
 
     interact(p1: LinkParticle): void {
@@ -168,7 +166,7 @@ export class Linker extends ParticlesInteractorBase {
             return;
         }
 
-        const container = this._linkContainer,
+        const container = this.container,
             linksOptions = p1.options.links;
 
         let linkColor =

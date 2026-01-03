@@ -2,7 +2,6 @@
  * [[include:Options/Particles.md]]
  */
 import type { IAnimatableColor } from "../IAnimatableColor.js";
-import type { ICollisions } from "./Collisions/ICollisions.js";
 import type { IEffect } from "./Effect/IEffect.js";
 import type { IInteractivity } from "../Interactivity/IInteractivity.js";
 import type { IMove } from "./Move/IMove.js";
@@ -27,11 +26,6 @@ export interface IParticlesOptions {
      * Options for customizing the behavior when a particle bounces
      */
     bounce: IParticlesBounce;
-
-    /**
-     * Particles collisions options
-     */
-    collisions: ICollisions;
 
     /**
      * Particles color options

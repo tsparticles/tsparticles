@@ -63,10 +63,6 @@ export type * from "./Options/Interfaces/Interactivity/IInteractivity.js";
 
 export type * from "./Options/Interfaces/Particles/Bounce/IParticlesBounce.js";
 
-export type * from "./Options/Interfaces/Particles/Collisions/ICollisions.js";
-export type * from "./Options/Interfaces/Particles/Collisions/ICollisionsAbsorb.js";
-export type * from "./Options/Interfaces/Particles/Collisions/ICollisionsOverlap.js";
-
 export type * from "./Options/Interfaces/Particles/Effect/IEffect.js";
 
 export type * from "./Options/Interfaces/Particles/IParticlesOptions.js";

@@ -1,13 +1,15 @@
-import { CollisionMode } from "../../../../Enums/Modes/CollisionMode.js";
+import {
+    type IOptionLoader,
+    ParticlesBounce,
+    type RangeValue,
+    type RecursivePartial,
+    isNull,
+    setRangeValue,
+} from "@tsparticles/engine";
+import { CollisionMode } from "../../CollisionMode.js";
 import { CollisionsAbsorb } from "./CollisionsAbsorb.js";
 import { CollisionsOverlap } from "./CollisionsOverlap.js";
-import type { ICollisions } from "../../../Interfaces/Particles/Collisions/ICollisions.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
-import { ParticlesBounce } from "../Bounce/ParticlesBounce.js";
-import type { RangeValue } from "../../../../Types/RangeValue.js";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
-import { setRangeValue } from "../../../../Utils/NumberUtils.js";
+import type { ICollisions } from "../Interfaces/ICollisions.js";
 
 /**
  * [[include:Collisions.md]]

@@ -1,7 +1,5 @@
-import type { ICollisionsAbsorb } from "../../../Interfaces/Particles/Collisions/ICollisionsAbsorb.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import type { ICollisionsAbsorb } from "../Interfaces/ICollisionsAbsorb.js";
 
 export class CollisionsAbsorb implements ICollisionsAbsorb, IOptionLoader<ICollisionsAbsorb> {
     speed;
