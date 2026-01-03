@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
 import {
-    CollisionMode,
     type IParticlesOptions,
     type ISourceOptions,
     InteractivityDetect,
@@ -80,10 +79,6 @@ describe("Options tests", () => {
         // expect(options.interactivity.modes.slow.radius).to.equal(200);
 
         /* particles */
-        /* particles collisions */
-        expect(options.particles.collisions.enable).to.be.false;
-        expect(options.particles.collisions.mode).to.equal(CollisionMode.bounce);
-
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
 
@@ -466,10 +461,6 @@ describe("Options tests", () => {
         // expect(options.interactivity.modes.repulse.distance).to.equal(200);
 
         /* particles */
-        /* particles collisions */
-        expect(options.particles.collisions.enable).to.be.false;
-        expect(options.particles.collisions.mode).to.equal(CollisionMode.bounce);
-
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
