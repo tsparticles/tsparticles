@@ -23,11 +23,13 @@ const shorthandHexRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
  */
 export class HexColorManager implements IColorManager {
     readonly key;
-    readonly stringPrefix;
 
     constructor() {
         this.key = "hex";
-        this.stringPrefix = "#";
+    }
+
+    accepts(input: string): boolean {
+        return input.startsWith("#");
     }
 
     handleColor(color: IColor): IRgb | undefined {
@@ -43,11 +45,7 @@ export class HexColorManager implements IColorManager {
     }
 
     private _parseString(hexColor: unknown): IRgba | undefined {
-        if (typeof hexColor !== "string") {
-            return;
-        }
-
-        if (!hexColor.startsWith(this.stringPrefix)) {
+        if (typeof hexColor !== "string" || !this.accepts(hexColor)) {
             return;
         }
 

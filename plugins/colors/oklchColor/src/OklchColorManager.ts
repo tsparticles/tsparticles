@@ -13,13 +13,18 @@ import {
 } from "@tsparticles/engine";
 import { oklchToRgb, oklchaToRgba } from "./utils.js";
 
+const oklchRegex =
+    /oklch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
+
 export class OklchColorManager implements IColorManager {
     readonly key;
-    readonly stringPrefix;
 
     constructor() {
         this.key = "oklch";
-        this.stringPrefix = "oklch";
+    }
+
+    accepts(input: string): boolean {
+        return input.startsWith("oklch");
     }
 
     handleColor(color: IColor): IRgb | undefined {
@@ -49,16 +54,11 @@ export class OklchColorManager implements IColorManager {
     }
 
     parseString(input: string): IRgba | undefined {
-        const isOklch = input.startsWith("oklch");
-
-        if (!isOklch) {
+        if (!this.accepts(input)) {
             return;
         }
 
-        // Adjust regex for both LCH and OKLCH
-        const regex =
-                /oklch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i,
-            result = regex.exec(input),
+        const result = oklchRegex.exec(input),
             indexes = {
                 l: 1, // Lightness
                 c: 3, // Chroma
@@ -74,6 +74,6 @@ export class OklchColorManager implements IColorManager {
                   h: parseFloat(result[indexes.h] ?? "0"), // Hue
                   l: parseFloat(result[indexes.l] ?? "0"), // Lightness
               })
-            : undefined; // LCH parsing without alpha
+            : undefined; // OKLCH parsing without alpha
     }
 }

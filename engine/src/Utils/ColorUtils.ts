@@ -62,7 +62,7 @@ function stringToRgba(engine: Engine, input: string): IRgba | undefined {
     }
 
     for (const manager of engine.colorManagers.values()) {
-        if (input.startsWith(manager.stringPrefix)) {
+        if (manager.accepts(input)) {
             return manager.parseString(input);
         }
     }

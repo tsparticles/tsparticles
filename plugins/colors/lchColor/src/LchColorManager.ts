@@ -3,7 +3,7 @@ import {
     type IColorManager,
     type ILch,
     type IRangeColor,
-    type IRangeOklch,
+    type IRangeLch,
     type IRangeValueColor,
     type IRgb,
     type IRgba,
@@ -13,13 +13,17 @@ import {
 } from "@tsparticles/engine";
 import { lchToRgb, lchaToRgba } from "./utils.js";
 
+const lchRegex = /lch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
+
 export class LchColorManager implements IColorManager {
     readonly key;
-    readonly stringPrefix;
 
     constructor() {
         this.key = "lch";
-        this.stringPrefix = "lch";
+    }
+
+    accepts(input: string): boolean {
+        return input.startsWith("lch");
     }
 
     handleColor(color: IColor): IRgb | undefined {
@@ -35,7 +39,7 @@ export class LchColorManager implements IColorManager {
 
     handleRangeColor(color: IRangeColor): IRgb | undefined {
         const colorValue = color.value as IRangeValueColor,
-            lchColor = colorValue.lch ?? (color.value as IRangeOklch); // Support for LCH
+            lchColor = colorValue.lch ?? (color.value as IRangeLch); // Support for LCH
 
         if (!Object.hasOwn(lchColor, "l") && !Object.hasOwn(lchColor, "c") && !Object.hasOwn(lchColor, "h")) {
             return;
@@ -49,15 +53,11 @@ export class LchColorManager implements IColorManager {
     }
 
     parseString(input: string): IRgba | undefined {
-        const isLch = input.startsWith("lch");
-
-        if (!isLch) {
+        if (!this.accepts(input)) {
             return;
         }
 
-        // Adjust regex for both LCH and OKLCH
-        const regex = /lch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i,
-            result = regex.exec(input),
+        const result = lchRegex.exec(input),
             indexes = {
                 l: 1, // Lightness
                 c: 3, // Chroma

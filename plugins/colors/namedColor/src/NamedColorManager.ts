@@ -160,11 +160,13 @@ const namedColors = new Map<string, IRgb>([
 
 export class NamedColorManager implements IColorManager {
     readonly key;
-    readonly stringPrefix;
 
     constructor() {
         this.key = "named";
-        this.stringPrefix = "";
+    }
+
+    accepts(input: string): boolean {
+        return namedColors.has(input.toLowerCase());
     }
 
     handleColor(color: IColor): IRgb | undefined {

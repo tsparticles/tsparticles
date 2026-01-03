@@ -1,5 +1,4 @@
 import { type Engine } from "@tsparticles/engine";
-import { LchColorManager } from "./LchColorManager.js";
 import { OklchColorManager } from "./OklchColorManager.js";
 
 declare const __VERSION__: string;
@@ -14,5 +13,4 @@ export async function loadOklchColorPlugin(engine: Engine, refresh = true): Prom
     engine.checkVersion(__VERSION__);
 
     await engine.addColorManager(new OklchColorManager(), refresh);
-    await engine.addColorManager(new LchColorManager(), refresh);
 }

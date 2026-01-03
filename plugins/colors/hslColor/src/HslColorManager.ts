@@ -21,15 +21,19 @@ enum HslIndexes {
     a = 5,
 }
 
+const hslRegex = /hsla?\(\s*(\d+)\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i;
+
 /**
  */
 export class HslColorManager implements IColorManager {
     readonly key;
-    readonly stringPrefix;
 
     constructor() {
         this.key = "hsl";
-        this.stringPrefix = "hsl";
+    }
+
+    accepts(input: string): boolean {
+        return input.startsWith("hsl");
     }
 
     handleColor(color: IColor): IRgb | undefined {
@@ -59,12 +63,11 @@ export class HslColorManager implements IColorManager {
     }
 
     parseString(input: string): IRgba | undefined {
-        if (!input.startsWith("hsl")) {
+        if (!this.accepts(input)) {
             return;
         }
 
-        const regex = /hsla?\(\s*(\d+)\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i,
-            result = regex.exec(input),
+        const result = hslRegex.exec(input),
             minLength = 4,
             defaultAlpha = 1,
             radix = 10;

@@ -278,15 +278,27 @@ importers:
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:3.9.1
         version: link:../../plugins/colors/hsvColor/dist
+      '@tsparticles/plugin-hwb-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/hwbColor/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:3.9.1
         version: link:../../plugins/infection/dist
+      '@tsparticles/plugin-lab-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/labColor/dist
+      '@tsparticles/plugin-lch-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/lchColor/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:3.9.1
         version: link:../../plugins/motion/dist
       '@tsparticles/plugin-named-color':
         specifier: workspace:3.9.1
         version: link:../../plugins/colors/namedColor/dist
+      '@tsparticles/plugin-oklab-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/oklabColor/dist
       '@tsparticles/plugin-oklch-color':
         specifier: workspace:3.9.1
         version: link:../../plugins/colors/oklchColor/dist
@@ -799,15 +811,27 @@ importers:
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:3.9.1
         version: link:../../plugins/colors/hsvColor/dist
+      '@tsparticles/plugin-hwb-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/hwbColor/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:3.9.1
         version: link:../../plugins/infection/dist
+      '@tsparticles/plugin-lab-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/labColor/dist
+      '@tsparticles/plugin-lch-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/lchColor/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:3.9.1
         version: link:../../plugins/motion/dist
       '@tsparticles/plugin-named-color':
         specifier: workspace:3.9.1
         version: link:../../plugins/colors/namedColor/dist
+      '@tsparticles/plugin-oklab-color':
+        specifier: workspace:3.9.1
+        version: link:../../plugins/colors/oklabColor/dist
       '@tsparticles/plugin-oklch-color':
         specifier: workspace:3.9.1
         version: link:../../plugins/colors/oklchColor/dist
@@ -1347,7 +1371,35 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
+  plugins/colors/hwbColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.9.1
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/colors/labColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.9.1
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/colors/lchColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.9.1
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   plugins/colors/namedColor:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.9.1
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/colors/oklabColor:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1

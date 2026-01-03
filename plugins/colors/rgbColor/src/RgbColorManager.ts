@@ -17,15 +17,20 @@ enum RgbIndexes {
     a = 5,
 }
 
+const rgbRegex =
+    /rgba?\(\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i;
+
 /**
  */
 export class RgbColorManager implements IColorManager {
     readonly key;
-    readonly stringPrefix;
 
     constructor() {
         this.key = "rgb";
-        this.stringPrefix = "rgb";
+    }
+
+    accepts(input: string): boolean {
+        return input.startsWith("rgb");
     }
 
     handleColor(color: IColor): IRgb | undefined {
@@ -55,13 +60,11 @@ export class RgbColorManager implements IColorManager {
     }
 
     parseString(input: string): IRgba | undefined {
-        if (!input.startsWith(this.stringPrefix)) {
+        if (!this.accepts(input)) {
             return;
         }
 
-        const regex =
-                /rgba?\(\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*[\s,]\s*(\d{1,3})\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i,
-            result = regex.exec(input),
+        const result = rgbRegex.exec(input),
             radix = 10,
             minLength = 4,
             defaultAlpha = 1;

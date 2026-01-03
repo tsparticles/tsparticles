@@ -1,4 +1,14 @@
-import type { IRangeHsl, IRangeHsv, IRangeRgb, IRangeValueColor } from "../../Core/Interfaces/Colors.js";
+import type {
+    IRangeHsl,
+    IRangeHsv,
+    IRangeHwb,
+    IRangeLab,
+    IRangeLch,
+    IRangeOklab,
+    IRangeOklch,
+    IRangeRgb,
+    IRangeValueColor,
+} from "../../Core/Interfaces/Colors.js";
 import { isArray, isNull, isString } from "../../Utils/TypeUtils.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptionsColor } from "../Interfaces/IOptionsColor.js";
@@ -9,7 +19,18 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
  * [[include:Color.md]]
  */
 export class OptionsColor implements IOptionsColor, IOptionLoader<IOptionsColor> {
-    value: SingleOrMultiple<SingleOrMultiple<string> | IRangeValueColor | IRangeRgb | IRangeHsl | IRangeHsv>;
+    value: SingleOrMultiple<
+        | SingleOrMultiple<string>
+        | IRangeValueColor
+        | IRangeRgb
+        | IRangeHsl
+        | IRangeHsv
+        | IRangeHwb
+        | IRangeLab
+        | IRangeLch
+        | IRangeOklab
+        | IRangeOklch
+    >;
 
     constructor() {
         this.value = "";

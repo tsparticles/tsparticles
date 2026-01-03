@@ -29,11 +29,15 @@ import { loadFull } from "tsparticles";
 import { loadGradientUpdater } from "@tsparticles/updater-gradient";
 import { loadHeartShape } from "@tsparticles/shape-heart";
 import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
+import { loadHwbColorPlugin } from "@tsparticles/plugin-hwb-color";
 import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 import { loadInfinityShape } from "@tsparticles/shape-infinity";
+import { loadLabColorPlugin } from "@tsparticles/plugin-lab-color";
+import { loadLchColorPlugin } from "@tsparticles/plugin-lch-color";
 import { loadLightInteraction } from "@tsparticles/interaction-light";
 import { loadMotionPlugin } from "@tsparticles/plugin-motion";
 import { loadNamedColorPlugin } from "@tsparticles/plugin-named-color";
+import { loadOklabColorPlugin } from "@tsparticles/plugin-oklab-color";
 import { loadOklchColorPlugin } from "@tsparticles/plugin-oklch-color";
 import { loadOrbitUpdater } from "@tsparticles/updater-orbit";
 import { loadParticlesRepulseInteraction } from "@tsparticles/interaction-particles-repulse";
@@ -72,8 +76,13 @@ export async function loadAll(engine: Engine, refresh = true): Promise<void> {
     await loadFull(engine, false);
 
     await loadHsvColorPlugin(engine, false);
-    await loadNamedColorPlugin(engine, false);
+    await loadHwbColorPlugin(engine, false);
+    await loadLabColorPlugin(engine, false);
+    await loadLchColorPlugin(engine, false);
+    await loadOklabColorPlugin(engine, false);
     await loadOklchColorPlugin(engine, false);
+    await loadNamedColorPlugin(engine, false);
+
     await loadEasingBackPlugin(engine, false);
     await loadEasingCircPlugin(engine, false);
     await loadEasingCubicPlugin(engine, false);

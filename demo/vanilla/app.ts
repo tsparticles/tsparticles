@@ -150,7 +150,11 @@ app.use("/plugin-export-video", express.static("./node_modules/@tsparticles/plug
 app.use("/plugin-hex-color", express.static("./node_modules/@tsparticles/plugin-hex-color"));
 app.use("/plugin-hsl-color", express.static("./node_modules/@tsparticles/plugin-hsl-color"));
 app.use("/plugin-hsv-color", express.static("./node_modules/@tsparticles/plugin-hsv-color"));
+app.use("/plugin-hwb-color", express.static("./node_modules/@tsparticles/plugin-hwb-color"));
+app.use("/plugin-lab-color", express.static("./node_modules/@tsparticles/plugin-lab-color"));
+app.use("/plugin-lch-color", express.static("./node_modules/@tsparticles/plugin-lch-color"));
 app.use("/plugin-named-color", express.static("./node_modules/@tsparticles/plugin-named-color"));
+app.use("/plugin-oklab-color", express.static("./node_modules/@tsparticles/plugin-oklab-color"));
 app.use("/plugin-oklch-color", express.static("./node_modules/@tsparticles/plugin-oklch-color"));
 app.use("/plugin-rgb-color", express.static("./node_modules/@tsparticles/plugin-rgb-color"));
 app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-infection"));
