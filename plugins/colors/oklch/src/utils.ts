@@ -91,7 +91,7 @@ export function oklchaToRgba(oklcha: IOklcha): IRgba {
  */
 export function getStyleFromOklch(color: IOklch, opacity?: number): string {
     const { l, c, h } = color,
-        alpha = opacity !== undefined ? `, ${opacity.toString()}` : "";
+        alpha = opacity !== undefined ? ` / ${opacity.toString()}` : "";
 
-    return `oklch(${l.toString()}%, ${c.toString()}%, ${h.toString()}°${alpha})`;
+    return `oklch(${l.toString()}% ${c.toString()}% ${h.toString()}°${alpha})`;
 }

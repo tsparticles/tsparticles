@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/plugin-rgb-color",
+  "name": "@tsparticles/plugin-hsl-color",
   "version": "3.9.1",
-  "description": "tsParticles RGB color plugin",
+  "description": "tsParticles HSL color plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "plugins/colors/rgbColor"
+    "directory": "plugins/colors/hsl"
   },
   "keywords": [
     "front-end",

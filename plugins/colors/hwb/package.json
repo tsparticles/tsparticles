@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/plugin-lch-color",
+  "name": "@tsparticles/plugin-hwb-color",
   "version": "3.9.1",
-  "description": "tsParticles LCH color plugin",
+  "description": "tsParticles HWB color plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "plugins/colors/lchColor"
+    "directory": "plugins/colors/hwb"
   },
   "keywords": [
     "front-end",

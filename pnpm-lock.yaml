@@ -277,31 +277,31 @@ importers:
         version: link:../../plugins/exports/video/dist
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hsvColor/dist
+        version: link:../../plugins/colors/hsv/dist
       '@tsparticles/plugin-hwb-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hwbColor/dist
+        version: link:../../plugins/colors/hwb/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:3.9.1
         version: link:../../plugins/infection/dist
       '@tsparticles/plugin-lab-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/labColor/dist
+        version: link:../../plugins/colors/lab/dist
       '@tsparticles/plugin-lch-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/lchColor/dist
+        version: link:../../plugins/colors/lch/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:3.9.1
         version: link:../../plugins/motion/dist
       '@tsparticles/plugin-named-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/namedColor/dist
+        version: link:../../plugins/colors/named/dist
       '@tsparticles/plugin-oklab-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/oklabColor/dist
+        version: link:../../plugins/colors/oklab/dist
       '@tsparticles/plugin-oklch-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/oklchColor/dist
+        version: link:../../plugins/colors/oklch/dist
       '@tsparticles/plugin-poisson-disc':
         specifier: workspace:3.9.1
         version: link:../../plugins/poisson/dist
@@ -362,13 +362,13 @@ importers:
         version: link:../../move/base/dist
       '@tsparticles/plugin-hex-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hexColor/dist
+        version: link:../../plugins/colors/hex/dist
       '@tsparticles/plugin-hsl-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hslColor/dist
+        version: link:../../plugins/colors/hsl/dist
       '@tsparticles/plugin-rgb-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/rgbColor/dist
+        version: link:../../plugins/colors/rgb/dist
       '@tsparticles/shape-circle':
         specifier: workspace:3.9.1
         version: link:../../shapes/circle/dist
@@ -804,37 +804,37 @@ importers:
         version: link:../../plugins/exports/video/dist
       '@tsparticles/plugin-hex-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hexColor/dist
+        version: link:../../plugins/colors/hex/dist
       '@tsparticles/plugin-hsl-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hslColor/dist
+        version: link:../../plugins/colors/hsl/dist
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hsvColor/dist
+        version: link:../../plugins/colors/hsv/dist
       '@tsparticles/plugin-hwb-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hwbColor/dist
+        version: link:../../plugins/colors/hwb/dist
       '@tsparticles/plugin-infection':
         specifier: workspace:3.9.1
         version: link:../../plugins/infection/dist
       '@tsparticles/plugin-lab-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/labColor/dist
+        version: link:../../plugins/colors/lab/dist
       '@tsparticles/plugin-lch-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/lchColor/dist
+        version: link:../../plugins/colors/lch/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:3.9.1
         version: link:../../plugins/motion/dist
       '@tsparticles/plugin-named-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/namedColor/dist
+        version: link:../../plugins/colors/named/dist
       '@tsparticles/plugin-oklab-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/oklabColor/dist
+        version: link:../../plugins/colors/oklab/dist
       '@tsparticles/plugin-oklch-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/oklchColor/dist
+        version: link:../../plugins/colors/oklch/dist
       '@tsparticles/plugin-poisson-disc':
         specifier: workspace:3.9.1
         version: link:../../plugins/poisson/dist
@@ -843,7 +843,7 @@ importers:
         version: link:../../plugins/polygonMask/dist
       '@tsparticles/plugin-rgb-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/rgbColor/dist
+        version: link:../../plugins/colors/rgb/dist
       '@tsparticles/plugin-sounds':
         specifier: workspace:3.9.1
         version: link:../../plugins/sounds/dist
@@ -1350,70 +1350,70 @@ importers:
         version: link:../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/hexColor:
+  plugins/colors/hex:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/hslColor:
+  plugins/colors/hsl:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/hsvColor:
+  plugins/colors/hsv:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/hwbColor:
+  plugins/colors/hwb:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/labColor:
+  plugins/colors/lab:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/lchColor:
+  plugins/colors/lch:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/namedColor:
+  plugins/colors/named:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/oklabColor:
+  plugins/colors/oklab:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/oklchColor:
+  plugins/colors/oklch:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../../engine/dist
     publishDirectory: dist
 
-  plugins/colors/rgbColor:
+  plugins/colors/rgb:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
@@ -1850,16 +1850,16 @@ importers:
         version: link:../../engine/dist
       '@tsparticles/plugin-hex-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hexColor/dist
+        version: link:../../plugins/colors/hex/dist
       '@tsparticles/plugin-hsl-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hslColor/dist
+        version: link:../../plugins/colors/hsl/dist
       '@tsparticles/plugin-hsv-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/hsvColor/dist
+        version: link:../../plugins/colors/hsv/dist
       '@tsparticles/plugin-rgb-color':
         specifier: workspace:3.9.1
-        version: link:../../plugins/colors/rgbColor/dist
+        version: link:../../plugins/colors/rgb/dist
 
 packages:
 

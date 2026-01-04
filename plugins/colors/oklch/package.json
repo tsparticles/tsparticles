@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/plugin-named-color",
+  "name": "@tsparticles/plugin-oklch-color",
   "version": "3.9.1",
-  "description": "tsParticles named color plugin",
+  "description": "tsParticles OKLCH color plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "plugins/colors/namedColor"
+    "directory": "plugins/colors/oklch"
   },
   "keywords": [
     "front-end",

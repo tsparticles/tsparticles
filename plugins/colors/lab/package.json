@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/plugin-hex-color",
+  "name": "@tsparticles/plugin-lab-color",
   "version": "3.9.1",
-  "description": "tsParticles hex color plugin",
+  "description": "tsParticles LAB color plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "plugins/colors/hexColor"
+    "directory": "plugins/colors/lab"
   },
   "keywords": [
     "front-end",
