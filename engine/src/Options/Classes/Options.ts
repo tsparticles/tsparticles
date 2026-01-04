@@ -39,6 +39,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     duration: RangeValue;
     fpsLimit;
     readonly fullScreen;
+    hdr;
     readonly interactivity;
     key?: string;
     manualParticles: ManualParticle[];
@@ -68,6 +69,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = true;
         this.duration = 0;
         this.fpsLimit = 120;
+        this.hdr = false;
         this.interactivity = new Interactivity(engine, container);
         this.manualParticles = [];
         this.particles = loadParticlesOptions(this._engine, this._container);
@@ -129,6 +131,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         if (fpsLimit !== undefined) {
             this.fpsLimit = fpsLimit;
+        }
+
+        if (data.hdr !== undefined) {
+            this.hdr = data.hdr;
         }
 
         if (data.pauseOnBlur !== undefined) {
@@ -199,14 +205,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             for (const theme of data.themes) {
                 const existingTheme = this.themes.find(t => t.name === theme.name);
 
-                if (!existingTheme) {
+                if (existingTheme) {
+                    existingTheme.load(theme);
+                } else {
                     const optTheme = new Theme();
 
                     optTheme.load(theme);
 
                     this.themes.push(optTheme);
-                } else {
-                    existingTheme.load(theme);
                 }
             }
         }

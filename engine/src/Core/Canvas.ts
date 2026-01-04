@@ -7,7 +7,7 @@ import {
     paintBase,
     paintImage,
 } from "../Utils/CanvasUtils.js";
-import { cloneStyle, getFullScreenStyle, safeMutationObserver } from "../Utils/Utils.js";
+import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
 import {
     defaultOpacity,
     defaultTransformValue,
@@ -440,6 +440,8 @@ export class Canvas {
             this.element.remove();
         }
 
+        const container = this.container;
+
         this._generated =
             generatedAttribute in canvas.dataset ? canvas.dataset[generatedAttribute] === "true" : this._generated;
         this.element = canvas;
@@ -457,13 +459,20 @@ export class Canvas {
         canvas.height = retinaSize.height = standardSize.height * pxRatio;
         canvas.width = retinaSize.width = standardSize.width * pxRatio;
 
-        this._context = this.element.getContext("2d");
+        const canSupportHdrQuery = safeMatchMedia("(color-gamut: p3)");
+
+        this._context = this.element.getContext("2d", {
+            alpha: true,
+            colorSpace: canSupportHdrQuery?.matches && container.hdr ? "display-p3" : "srgb",
+            desynchronized: true,
+            willReadFrequently: false,
+        });
 
         this._safeMutationObserver(obs => {
             obs.disconnect();
         });
 
-        this.container.retina.init();
+        container.retina.init();
         this.initBackground();
 
         this._safeMutationObserver(obs => {

@@ -102,6 +102,11 @@ export class Container {
      */
     fpsLimit;
 
+    /**
+     * The container hdr support flag
+     */
+    hdr;
+
     readonly id;
 
     interactivity: IContainerInteractivity;
@@ -175,6 +180,7 @@ export class Container {
         this._engine = engine;
         this.id = Symbol(id);
         this.fpsLimit = 120;
+        this.hdr = false;
         this._smooth = false;
         this._delay = 0;
         this._duration = 0;
@@ -540,8 +546,9 @@ export class Container {
         this.canvas.initBackground();
         this.canvas.resize();
 
-        const { zLayers, duration, delay, fpsLimit, smooth } = this.actualOptions;
+        const { delay, duration, fpsLimit, hdr, smooth, zLayers } = this.actualOptions;
 
+        this.hdr = hdr;
         this.zLayers = zLayers;
         this._duration = getRangeValue(duration) * millisecondsToSeconds;
         this._delay = getRangeValue(delay) * millisecondsToSeconds;

@@ -62,6 +62,11 @@ export interface IOptions {
     fullScreen: RecursivePartial<IFullScreen> | boolean;
 
     /**
+     * Enables or disables the HDR mode, if enabled the particles will be rendered in a higher color precision
+     */
+    hdr: boolean;
+
+    /**
      * The particles interaction options
      */
     interactivity: IInteractivity;
