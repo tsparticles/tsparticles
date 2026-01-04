@@ -28,10 +28,12 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import { InteractionManager } from "./Utils/InteractionManager.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
+import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
     const { height, width } = canvasSize;
@@ -292,7 +294,9 @@ export class Particles {
                 continue;
             }
 
-            this._applyDensity(groupData, manualCount, group);
+            const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
+
+            this._applyDensity(groupDataOptions, manualCount, group);
         }
 
         this._applyDensity(options.particles, manualCount);
@@ -412,14 +416,14 @@ export class Particles {
     };
 
     private readonly _applyDensity = (
-        options: IParticlesOptions,
+        options: ParticlesOptions,
         manualCount: number,
         group?: string,
-        groupOptions?: IParticlesOptions,
+        groupOptions?: ParticlesOptions,
     ): void => {
         const numberOptions = options.number;
 
-        if (!options.number.density.enable) {
+        if (!numberOptions.density.enable) {
             if (group === undefined) {
                 this._limit = numberOptions.limit.value;
             } else if (groupOptions?.number.limit.value ?? numberOptions.limit.value) {
