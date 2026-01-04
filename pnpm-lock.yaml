@@ -709,6 +709,9 @@ importers:
       '@tsparticles/move-parallax':
         specifier: workspace:3.9.1
         version: link:../../move/parallax/dist
+      '@tsparticles/noise-field':
+        specifier: workspace:3.9.1
+        version: link:../../utils/noiseField/dist
       '@tsparticles/path-curl-noise':
         specifier: workspace:3.9.1
         version: link:../../paths/curlNoise/dist
@@ -1286,6 +1289,9 @@ importers:
       '@tsparticles/fractal-noise':
         specifier: workspace:3.9.1
         version: link:../../utils/fractalNoise/dist
+      '@tsparticles/noise-field':
+        specifier: workspace:3.9.1
+        version: link:../../utils/noiseField/dist
     publishDirectory: dist
 
   paths/perlinNoise:
@@ -1293,6 +1299,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../engine/dist
+      '@tsparticles/noise-field':
+        specifier: workspace:3.9.1
+        version: link:../../utils/noiseField/dist
       '@tsparticles/perlin-noise':
         specifier: workspace:3.9.1
         version: link:../../utils/perlinNoise/dist
@@ -1310,6 +1319,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:3.9.1
         version: link:../../engine/dist
+      '@tsparticles/noise-field':
+        specifier: workspace:3.9.1
+        version: link:../../utils/noiseField/dist
       '@tsparticles/simplex-noise':
         specifier: workspace:3.9.1
         version: link:../../utils/simplexNoise/dist
@@ -1832,6 +1844,13 @@ importers:
       '@tsparticles/smooth-value-noise':
         specifier: workspace:3.9.1
         version: link:../smoothValueNoise/dist
+    publishDirectory: dist
+
+  utils/noiseField:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:3.9.1
+        version: link:../../engine/dist
     publishDirectory: dist
 
   utils/perlinNoise:

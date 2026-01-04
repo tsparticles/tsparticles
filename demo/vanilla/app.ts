@@ -62,6 +62,7 @@ app.use("/tsparticles-smooth-value-noise", express.static("./node_modules/@tspar
 app.use("/tsparticles-perlin-noise", express.static("./node_modules/@tsparticles/perlin-noise"));
 app.use("/tsparticles-simplex-noise", express.static("./node_modules/@tsparticles/simplex-noise"));
 app.use("/tsparticles-fractal-noise", express.static("./node_modules/@tsparticles/fractal-noise"));
+app.use("/tsparticles-noise-field", express.static("./node_modules/@tsparticles/noise-field"));
 app.use("/tsparticles-all", express.static("./node_modules/@tsparticles/all"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
 app.use("/tsparticles-engine", express.static("./node_modules/@tsparticles/engine"));

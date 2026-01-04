@@ -105,7 +105,8 @@
   },
   "dependencies": {
     "@tsparticles/engine": "3.9.1",
-    "@tsparticles/perlin-noise": "3.9.1"
+    "@tsparticles/perlin-noise": "3.9.1",
+    "@tsparticles/noise-field": "3.9.1"
   },
   "type": "module"
 }

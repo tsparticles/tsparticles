@@ -44,7 +44,7 @@ const options: ISourceOptions = {
             path: {
                 enable: true,
                 options: {
-                    size: 32,
+                    size: 64,
                     draw: false,
                     increment: 0.004,
                 },

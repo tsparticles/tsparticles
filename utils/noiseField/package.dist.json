@@ -1,18 +1,12 @@
 {
-  "name": "@tsparticles/path-simplex-noise",
+  "name": "@tsparticles/noise-field",
   "version": "3.9.1",
-  "description": "tsParticles simplex noise path",
+  "description": "tsParticles noise field library",
   "homepage": "https://particles.js.org",
-  "scripts": {
-    "build": "tsparticles-cli build",
-    "build:ci": "tsparticles-cli build --ci",
-    "version": "tsparticles-cli build -d && git add package.dist.json",
-    "prepack": "pnpm run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "paths/simplexNoise"
+    "directory": "utils/noiseField"
   },
   "keywords": [
     "front-end",
@@ -66,43 +60,50 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin",
-    "tsparticles-path"
+    "tsparticles-plugin"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
-  "prettier": "@tsparticles/prettier-config",
-  "files": [
-    "dist"
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
   ],
   "sideEffects": false,
-  "browser": "dist/browser/index.js",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "jsdelivr": "tsparticles.noise.field.min.js",
+  "unpkg": "tsparticles.noise.field.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "dependencies": {
+    "@tsparticles/engine": "3.9.1"
+  },
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "browser": "./dist/browser/index.js",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "umd": "./dist/umd/index.js",
-      "default": "./dist/cjs/index.js"
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
     },
-    "./package.json": "./dist/package.json"
-  },
-  "dependencies": {
-    "@tsparticles/engine": "workspace:3.9.1",
-    "@tsparticles/simplex-noise": "workspace:3.9.1",
-    "@tsparticles/noise-field": "workspace:3.9.1"
-  },
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist",
-    "linkDirectory": true
+    "./package.json": "./package.json"
   },
   "type": "module"
 }

@@ -1,7 +1,7 @@
 {
-  "name": "@tsparticles/path-simplex-noise",
+  "name": "@tsparticles/noise-field",
   "version": "3.9.1",
-  "description": "tsParticles simplex noise path",
+  "description": "tsParticles noise field library",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -12,7 +12,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "paths/simplexNoise"
+    "directory": "paths/noiseField"
   },
   "keywords": [
     "front-end",
@@ -66,14 +66,27 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-plugin",
-    "tsparticles-path"
+    "tsparticles-plugin"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/matteobruni"
+    },
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/tsparticles"
+    },
+    {
+      "type": "buymeacoffee",
+      "url": "https://www.buymeacoffee.com/matteobruni"
+    }
+  ],
   "prettier": "@tsparticles/prettier-config",
   "files": [
     "dist"
@@ -95,9 +108,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:3.9.1",
-    "@tsparticles/simplex-noise": "workspace:3.9.1",
-    "@tsparticles/noise-field": "workspace:3.9.1"
+    "@tsparticles/engine": "workspace:3.9.1"
   },
   "publishConfig": {
     "access": "public",

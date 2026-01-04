@@ -40,7 +40,7 @@ const options: ISourceOptions = {
             value: 1,
         },
         size: {
-            value: 1,
+            value: 10,
         },
         links: {
             enable: false,
@@ -51,7 +51,7 @@ const options: ISourceOptions = {
         },
         move: {
             enable: true,
-            speed: 1,
+            speed: 2,
             direction: "none",
             random: false,
             straight: false,
@@ -64,7 +64,7 @@ const options: ISourceOptions = {
                     value: 0.1,
                 },
                 options: {
-                    size: 5,
+                    size: 64,
                     draw: false,
                     increment: 0.001,
                 },

@@ -1,6 +1,6 @@
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 
-export interface ISimplexOptions {
+export interface INoiseFieldOptions {
     columns: number;
     draw: boolean;
     factor: IFactorValues;

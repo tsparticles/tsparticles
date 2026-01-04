@@ -80,6 +80,7 @@
     "@tsparticles/interaction-particles-repulse": "workspace:3.9.1",
     "@tsparticles/move-base": "workspace:3.9.1",
     "@tsparticles/move-parallax": "workspace:3.9.1",
+    "@tsparticles/noise-field": "workspace:3.9.1",
     "@tsparticles/path-curl-noise": "workspace:3.9.1",
     "@tsparticles/path-curves": "workspace:3.9.1",
     "@tsparticles/path-fractal-noise": "workspace:3.9.1",

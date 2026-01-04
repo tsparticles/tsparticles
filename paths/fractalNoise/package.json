@@ -110,7 +110,8 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:3.9.1",
-    "@tsparticles/fractal-noise": "workspace:3.9.1"
+    "@tsparticles/fractal-noise": "workspace:3.9.1",
+    "@tsparticles/noise-field": "workspace:3.9.1"
   },
   "publishConfig": {
     "access": "public",
