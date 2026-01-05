@@ -3,7 +3,6 @@ import {
     type ICoordinates,
     Vector,
     getDistances,
-    getHdrStyleFromRgb,
     getStyleFromRgb,
     rangeColorToRgb,
 } from "@tsparticles/engine";
@@ -60,7 +59,7 @@ export function drawPolygonMask(
     }
 
     context.closePath();
-    context.strokeStyle = hdr ? getHdrStyleFromRgb(color) : getStyleFromRgb(color);
+    context.strokeStyle = getStyleFromRgb(color, hdr);
     context.lineWidth = stroke.width;
     context.stroke();
 }
@@ -103,7 +102,7 @@ export function drawPolygonMaskPath(
         return;
     }
 
-    context.strokeStyle = hdr ? getHdrStyleFromRgb(color, stroke.opacity) : getStyleFromRgb(color, stroke.opacity);
+    context.strokeStyle = getStyleFromRgb(color, hdr, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
     context.resetTransform();

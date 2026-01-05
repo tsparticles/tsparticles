@@ -3,7 +3,6 @@ import {
     drawLine,
     getDistance,
     getDistances,
-    getHdrStyleFromRgb,
     getRandom,
     getStyleFromRgb,
     rangeColorToRgb,
@@ -106,7 +105,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
     }
 
     context.lineWidth = width;
-    context.strokeStyle = hdr ? getHdrStyleFromRgb(colorLine, opacity) : getStyleFromRgb(colorLine, opacity);
+    context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
 
     const { shadow } = links;
 
@@ -115,7 +114,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
 
         if (shadowColor) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = hdr ? getHdrStyleFromRgb(shadowColor) : getStyleFromRgb(shadowColor);
+            context.shadowColor = getStyleFromRgb(shadowColor, hdr);
         }
     }
 
@@ -133,9 +132,7 @@ export function drawLinkTriangle(params: LinkTriangleDrawParams): void {
 
     drawTriangle(context, pos1, pos2, pos3);
 
-    context.fillStyle = hdr
-        ? getHdrStyleFromRgb(colorTriangle, opacityTriangle)
-        : getStyleFromRgb(colorTriangle, opacityTriangle);
+    context.fillStyle = getStyleFromRgb(colorTriangle, hdr, opacityTriangle);
 
     context.fill();
 }

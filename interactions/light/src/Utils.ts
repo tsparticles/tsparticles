@@ -1,4 +1,4 @@
-import { type ICoordinates, getHdrStyleFromRgb, getStyleFromRgb } from "@tsparticles/engine";
+import { type ICoordinates, getStyleFromRgb } from "@tsparticles/engine";
 import type { LightContainer, LightParticle } from "./Types.js";
 
 const gradientPos = {
@@ -45,13 +45,8 @@ export function drawLight(container: LightContainer, context: CanvasRenderingCon
         return;
     }
 
-    if (container.hdr) {
-        gradientAmbientLight.addColorStop(gradientPos.min, getHdrStyleFromRgb(gradientRgb.start));
-        gradientAmbientLight.addColorStop(gradientPos.max, getHdrStyleFromRgb(gradientRgb.stop));
-    } else {
-        gradientAmbientLight.addColorStop(gradientPos.min, getStyleFromRgb(gradientRgb.start));
-        gradientAmbientLight.addColorStop(gradientPos.max, getStyleFromRgb(gradientRgb.stop));
-    }
+    gradientAmbientLight.addColorStop(gradientPos.min, getStyleFromRgb(gradientRgb.start, container.hdr));
+    gradientAmbientLight.addColorStop(gradientPos.max, getStyleFromRgb(gradientRgb.stop, container.hdr));
 
     context.fillStyle = gradientAmbientLight;
     context.fill();
@@ -112,7 +107,7 @@ export function drawParticleShadow(
         });
     }
 
-    const shadowColor = container.hdr ? getHdrStyleFromRgb(shadowRgb) : getStyleFromRgb(shadowRgb),
+    const shadowColor = getStyleFromRgb(shadowRgb, container.hdr),
         lastOffset = 1,
         firstPos = 0,
         last = points.length - lastOffset;

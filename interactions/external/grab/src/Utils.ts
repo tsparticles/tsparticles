@@ -1,5 +1,5 @@
 import type { GrabContainer, LinkParticle } from "./Types.js";
-import { type ICoordinates, type IRgb, drawLine, getHdrStyleFromRgb, getStyleFromRgb } from "@tsparticles/engine";
+import { type ICoordinates, type IRgb, drawLine, getStyleFromRgb } from "@tsparticles/engine";
 
 const defaultWidth = 0;
 
@@ -24,7 +24,7 @@ export function drawGrabLine(
 ): void {
     drawLine(context, begin, end);
 
-    context.strokeStyle = hdr ? getHdrStyleFromRgb(colorLine, opacity) : getStyleFromRgb(colorLine, opacity);
+    context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
     context.lineWidth = width;
     context.stroke();
 }

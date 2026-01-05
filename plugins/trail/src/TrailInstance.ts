@@ -2,7 +2,6 @@ import {
     type Engine,
     type IContainerPlugin,
     type IRgb,
-    getHdrStyleFromRgb,
     getLogger,
     getStyleFromRgb,
     rangeColorToRgb,
@@ -42,11 +41,7 @@ export class TrailInstance implements IContainerPlugin {
         const canvas = container.canvas;
 
         if (trailFill.color) {
-            canvas.paintBase(
-                container.hdr
-                    ? getHdrStyleFromRgb(trailFill.color, trailFill.opacity)
-                    : getStyleFromRgb(trailFill.color, trailFill.opacity),
-            );
+            canvas.paintBase(getStyleFromRgb(trailFill.color, container.hdr, trailFill.opacity));
 
             handled = true;
         } else if (trailFill.image) {

@@ -9,7 +9,6 @@ import {
     type IShapeValues,
     OptionsColor,
     type Particle,
-    getHdrStyleFromRgb,
     getStyleFromRgb,
     rangeColorToRgb,
 } from "@tsparticles/engine";
@@ -51,7 +50,7 @@ export class ShadowDrawer implements IEffectDrawer {
         }
 
         context.shadowBlur = shadowParticle.shadowBlur ?? defaultShadowBlur;
-        context.shadowColor = container.hdr ? getHdrStyleFromRgb(shadowColor) : getStyleFromRgb(shadowColor);
+        context.shadowColor = getStyleFromRgb(shadowColor, container.hdr);
         context.shadowOffsetX = shadowOffset?.x ?? defaultShadowOffsetValue;
         context.shadowOffsetY = shadowOffset?.y ?? defaultShadowOffsetValue;
     }

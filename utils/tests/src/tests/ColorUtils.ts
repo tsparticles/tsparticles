@@ -327,7 +327,7 @@ describe("ColorUtils", async () => {
 
     describe("getStyleFromColor", () => {
         it("IRgb to rgba string", () => {
-            expect(getStyleFromRgb(red)).to.equal("rgba(255, 0, 0, 1)");
+            expect(getStyleFromRgb(red, false)).to.equal("rgba(255, 0, 0, 1)");
         });
 
         it("IHsl to hsla string", () => {
@@ -337,7 +337,7 @@ describe("ColorUtils", async () => {
                 s: 100,
             };
 
-            expect(getStyleFromHsl(color)).to.equal("hsla(0, 100%, 50%, 1)");
+            expect(getStyleFromHsl(color, false)).to.equal("hsla(0, 100%, 50%, 1)");
         });
 
         // it("IHsv to hsla string", () => {

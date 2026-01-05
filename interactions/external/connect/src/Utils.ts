@@ -5,8 +5,6 @@ import {
     clamp,
     colorMix,
     drawLine,
-    getHdrStyleFromHsl,
-    getHdrStyleFromRgb,
     getStyleFromHsl,
     getStyleFromRgb,
 } from "@tsparticles/engine";
@@ -43,15 +41,9 @@ export function gradient(
         midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
         grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-    if (container.hdr) {
-        grad.addColorStop(gradientMin, getHdrStyleFromHsl(color1, opacity));
-        grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getHdrStyleFromRgb(midRgb, opacity));
-        grad.addColorStop(gradientMax, getHdrStyleFromHsl(color2, opacity));
-    } else {
-        grad.addColorStop(gradientMin, getStyleFromHsl(color1, opacity));
-        grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getStyleFromRgb(midRgb, opacity));
-        grad.addColorStop(gradientMax, getStyleFromHsl(color2, opacity));
-    }
+    grad.addColorStop(gradientMin, getStyleFromHsl(color1, container.hdr, opacity));
+    grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getStyleFromRgb(midRgb, container.hdr, opacity));
+    grad.addColorStop(gradientMax, getStyleFromHsl(color2, container.hdr, opacity));
 
     return grad;
 }

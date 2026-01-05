@@ -15,14 +15,7 @@ import {
     minimumSize,
     zIndexFactorOffset,
 } from "./Utils/Constants.js";
-import {
-    getHdrStyleFromHsl,
-    getHdrStyleFromRgb,
-    getStyleFromHsl,
-    getStyleFromRgb,
-    rangeColorToHsl,
-    rangeColorToRgb,
-} from "../Utils/ColorUtils.js";
+import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
@@ -282,7 +275,7 @@ export class Canvas {
                     return;
                 }
 
-                return container.hdr ? getHdrStyleFromHsl(fColor, zOpacity) : getStyleFromHsl(fColor, zOpacity);
+                return getStyleFromHsl(fColor, container.hdr, zOpacity);
             },
             colorStyles: IParticleColorStyle = {
                 fill: getFillStyle(),
@@ -292,9 +285,7 @@ export class Canvas {
                     return colorStyles.fill;
                 }
 
-                return container.hdr
-                    ? getHdrStyleFromHsl(sColor, zStrokeOpacity)
-                    : getStyleFromHsl(sColor, zStrokeOpacity);
+                return getStyleFromHsl(sColor, container.hdr, zStrokeOpacity);
             };
 
         colorStyles.stroke = getStrokestyle();
@@ -414,9 +405,7 @@ export class Canvas {
             color = rangeColorToRgb(this._engine, background.color);
 
         if (color) {
-            elementStyle.backgroundColor = container.hdr
-                ? getHdrStyleFromRgb(color, background.opacity)
-                : getStyleFromRgb(color, background.opacity);
+            elementStyle.backgroundColor = getStyleFromRgb(color, container.hdr, background.opacity);
         } else {
             elementStyle.backgroundColor = "";
         }

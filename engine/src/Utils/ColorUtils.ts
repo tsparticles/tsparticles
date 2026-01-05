@@ -357,11 +357,12 @@ export function getRandomRgbColor(min?: number): IRgb {
 /**
  * Gets a CSS style string from a {@link IRgb} object and opacity value
  * @param color - the {@link IRgb} input color
+ * @param hdr - whether the color is in HDR mode or not
  * @param opacity - the opacity value
  * @returns the CSS style string
  */
-export function getStyleFromRgb(color: IRgb, opacity?: number): string {
-    return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
+export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): string {
+    return hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity);
 }
 
 /**
@@ -370,20 +371,31 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
  * @param opacity - the opacity value
  * @returns the CSS style string
  */
-export function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
+function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
     const rgbFactor = 255;
 
     return `color(display-p3 ${(color.r / rgbFactor).toString()} ${(color.g / rgbFactor).toString()} ${(color.b / rgbFactor).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
- * Gets a CSS style string from a {@link IHsl} object and opacity value
- * @param color - the {@link IHsl} input color
+ * Gets a CSS style string from a {@link IRgb} object and opacity value
+ * @param color - the {@link IRgb} input color
  * @param opacity - the opacity value
  * @returns the CSS style string
  */
-export function getStyleFromHsl(color: IHsl, opacity?: number): string {
-    return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
+function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
+    return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
+}
+
+/**
+ * Gets a CSS style string from a {@link IHsl} object and opacity value
+ * @param color - the {@link IHsl} input color
+ * @param hdr - whether the color is in HDR mode or not
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
+    return hdr ? getHdrStyleFromHsl(color, opacity) : getSdrStyleFromHsl(color, opacity);
 }
 
 /**
@@ -392,9 +404,19 @@ export function getStyleFromHsl(color: IHsl, opacity?: number): string {
  * @param opacity - the opacity value
  * @returns the CSS style string
  */
-export function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
+function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
     return getHdrStyleFromRgb(hslToRgb(color), opacity);
     // return `color(display-p3 from hsl(${color.h.toString()} ${color.s.toString()}% ${color.l.toString()}%) r g b / ${(opacity ?? defaultOpacity).toString()})`;
+}
+
+/**
+ * Gets a CSS style string from a {@link IHsl} object and opacity value
+ * @param color - the {@link IHsl} input color
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
+    return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**

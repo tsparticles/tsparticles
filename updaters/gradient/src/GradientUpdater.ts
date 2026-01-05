@@ -10,7 +10,6 @@ import {
     RotateDirection,
     StartValueType,
     executeOnSingleOrMultiple,
-    getHdrStyleFromHsl,
     getHslAnimationFromHsl,
     getRandom,
     getRangeMax,
@@ -71,12 +70,7 @@ export class GradientUpdater implements IParticleUpdater {
                 l: value.l.value,
             };
 
-            fillGradient.addColorStop(
-                stop,
-                container.hdr
-                    ? getHdrStyleFromHsl(hsl, cOpacity?.value ?? opacity)
-                    : getStyleFromHsl(hsl, cOpacity?.value ?? opacity),
-            );
+            fillGradient.addColorStop(stop, getStyleFromHsl(hsl, container.hdr, cOpacity?.value ?? opacity));
         }
 
         return { fill: fillGradient };

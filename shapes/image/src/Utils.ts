@@ -1,11 +1,4 @@
-import {
-    type IHsl,
-    type Particle,
-    errorPrefix,
-    getHdrStyleFromHsl,
-    getLogger,
-    getStyleFromHsl,
-} from "@tsparticles/engine";
+import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
@@ -78,7 +71,7 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number, hdr =
         return "";
     }
 
-    const colorStyle = hdr ? getHdrStyleFromHsl(color, opacity) : getStyleFromHsl(color, opacity);
+    const colorStyle = getStyleFromHsl(color, hdr, opacity);
 
     /* set color to svg element */
     if (svgData.includes("fill")) {

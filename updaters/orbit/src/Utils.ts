@@ -1,4 +1,4 @@
-import { type IHsl, type Particle, degToRad, getHdrStyleFromHsl, getStyleFromHsl } from "@tsparticles/engine";
+import { type IHsl, type Particle, degToRad, getStyleFromHsl } from "@tsparticles/engine";
 
 const minWidth = 0,
     half = 0.5,
@@ -35,9 +35,7 @@ export function drawEllipse(
         { container } = particle;
 
     if (fillColorValue) {
-        context.strokeStyle = container.hdr
-            ? getHdrStyleFromHsl(fillColorValue, opacity)
-            : getStyleFromHsl(fillColorValue, opacity);
+        context.strokeStyle = getStyleFromHsl(fillColorValue, container.hdr, opacity);
     }
 
     context.lineWidth = width;

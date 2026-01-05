@@ -1,11 +1,4 @@
-import {
-    type Engine,
-    type IContainerPlugin,
-    getHdrStyleFromRgb,
-    getLogger,
-    getStyleFromRgb,
-    rangeColorToRgb,
-} from "@tsparticles/engine";
+import { type Engine, type IContainerPlugin, getLogger, getStyleFromRgb, rangeColorToRgb } from "@tsparticles/engine";
 import type { BackgroundMaskContainer } from "./types.js";
 
 export class BackgroundMaskInstance implements IContainerPlugin {
@@ -83,9 +76,7 @@ export class BackgroundMaskInstance implements IContainerPlugin {
                     a: cover.opacity,
                 };
 
-                this._coverColorStyle = this._container.hdr
-                    ? getHdrStyleFromRgb(coverColor, coverColor.a)
-                    : getStyleFromRgb(coverColor, coverColor.a);
+                this._coverColorStyle = getStyleFromRgb(coverColor, this._container.hdr, coverColor.a);
             }
         } else {
             await new Promise<void>((resolve, reject) => {

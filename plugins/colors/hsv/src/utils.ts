@@ -71,11 +71,12 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
 /**
  * Gets a CSS style string from a {@link IHsv} object and opacity value
  * @param color - the {@link IHsv} input color
+ * @param hdr - indicates if the color is in HDR space
  * @param opacity - the opacity value
  * @returns the CSS style string
  */
-export function getStyleFromHsv(color: IHsv, opacity?: number): string {
-    return getStyleFromHsl(hsvToHsl(color), opacity);
+export function getStyleFromHsv(color: IHsv, hdr: boolean, opacity?: number): string {
+    return getStyleFromHsl(hsvToHsl(color), hdr, opacity);
 }
 
 /**

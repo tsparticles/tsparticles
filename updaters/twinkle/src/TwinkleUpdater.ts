@@ -4,7 +4,6 @@ import {
     type IParticleUpdater,
     type Particle,
     type RecursivePartial,
-    getHdrStyleFromHsl,
     getRandom,
     getRangeValue,
     getStyleFromHsl,
@@ -46,9 +45,7 @@ export class TwinkleUpdater implements IParticleUpdater {
                     return undefined;
                 }
 
-                return container.hdr
-                    ? getHdrStyleFromHsl(twinkleRgb, twinklingOpacity)
-                    : getStyleFromHsl(twinkleRgb, twinklingOpacity);
+                return getStyleFromHsl(twinkleRgb, container.hdr, twinklingOpacity);
             },
             twinkleStyle = getTwinkleStyle(),
             res: IParticleColorStyle = {},
