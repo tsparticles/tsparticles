@@ -1,7 +1,7 @@
 import { EventType, type ISourceOptions, type Particle } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-    key: "fireworks-mask",
+    key: "fireworksMask",
     name: "Fireworks Background Mask",
     fullScreen: {
         enable: true,
