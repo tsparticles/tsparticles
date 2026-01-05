@@ -56,7 +56,7 @@ const options: ISourceOptions = {
                 image: {
                     height: 32,
                     replaceColor: true,
-                    src: "https://particles.js.org/images/sars-cov-2.png",
+                    src: "https://particles.js.org/images/hdr/sars-cov-2.png",
                     width: 32,
                 },
             },

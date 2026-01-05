@@ -8,7 +8,7 @@ const options: ISourceOptions = {
     },
     background: {
         color: "#ffffff",
-        image: "url('https://particles.js.org/images/background3.jpg')",
+        image: "url('https://particles.js.org/images/hdr/background3.jpg')",
         position: "50% 50%",
         repeat: "no-repeat",
         size: "cover",

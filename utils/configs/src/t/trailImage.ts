@@ -5,7 +5,7 @@ const options: ISourceOptions = {
     name: "Trails Image",
     background: {
         color: "#ffffff",
-        image: "url('https://particles.js.org/images/background3.jpg')",
+        image: "url('https://particles.js.org/images/hdr/background3.jpg')",
         position: "50% 50%",
         repeat: "no-repeat",
         size: "cover",
@@ -109,7 +109,7 @@ const options: ISourceOptions = {
     },
     trail: {
         enable: true,
-        fill: { image: "https://particles.js.org/images/background3.jpg" },
+        fill: { image: "https://particles.js.org/images/hdr/background3.jpg" },
         length: 20,
     },
 };

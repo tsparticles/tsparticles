@@ -29,7 +29,7 @@ const options: ISourceOptions = {
             type: "image",
             options: {
                 image: {
-                    src: "https://particles.js.org/images/arrow.png",
+                    src: "https://particles.js.org/images/hdr/arrow.png",
                     width: 512,
                     height: 512,
                     replaceColor: true,

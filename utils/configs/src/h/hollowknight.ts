@@ -107,7 +107,7 @@ const options: ISourceOptions = {
         },
         scale: 2,
         type: "inline",
-        url: "https://particles.js.org/images/hollowknight.svg",
+        url: "https://particles.js.org/images/hdr/hollowknight.svg",
     },
     background: {
         color: "#000000",

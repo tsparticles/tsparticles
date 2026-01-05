@@ -46,7 +46,7 @@ const options: ISourceOptions = {
                     {
                         height: 20,
                         replaceColor: true,
-                        src: "https://particles.js.org/images/fruits/cherry.png",
+                        src: "https://particles.js.org/images/hdr/fruits/cherry.png",
                         width: 23,
                         fill: true,
                         close: true,
@@ -54,7 +54,7 @@ const options: ISourceOptions = {
                     {
                         height: 20,
                         replaceColor: true,
-                        src: "https://particles.js.org/images/fruits/grapes.png",
+                        src: "https://particles.js.org/images/hdr/fruits/grapes.png",
                         width: 20,
                         fill: true,
                         close: true,
@@ -62,7 +62,7 @@ const options: ISourceOptions = {
                     {
                         height: 20,
                         replaceColor: true,
-                        src: "https://particles.js.org/images/fruits/lemon.png",
+                        src: "https://particles.js.org/images/hdr/fruits/lemon.png",
                         width: 20,
                         fill: true,
                         close: true,

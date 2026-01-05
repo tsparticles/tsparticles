@@ -93,7 +93,7 @@ const options: ISourceOptions = {
                 type: "images",
                 options: {
                     images: {
-                        src: "https://particles.js.org/images/cyan_amongus.png",
+                        src: "https://particles.js.org/images/hdr/cyan_amongus.png",
                         width: 500,
                         height: 634,
                     },

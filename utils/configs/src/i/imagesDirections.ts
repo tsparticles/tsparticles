@@ -58,7 +58,7 @@ const options: ISourceOptions = {
             options: {
                 image: [
                     {
-                        src: "https://particles.js.org/images/fruits/apple.png",
+                        src: "https://particles.js.org/images/hdr/fruits/apple.png",
                         width: 32,
                         height: 32,
                         particles: {
@@ -68,7 +68,7 @@ const options: ISourceOptions = {
                         },
                     },
                     {
-                        src: "https://particles.js.org/images/fruits/avocado.png",
+                        src: "https://particles.js.org/images/hdr/fruits/avocado.png",
                         width: 32,
                         height: 32,
                         particles: {

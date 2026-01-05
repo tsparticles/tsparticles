@@ -27,12 +27,12 @@ const options: ISourceOptions = {
                 image: [
                     {
                         height: 128,
-                        src: "https://particles.js.org/images/plane_alt.png",
+                        src: "https://particles.js.org/images/hdr/plane_alt.png",
                         width: 128,
                     },
                     {
                         height: 128,
-                        src: "https://particles.js.org/images/plane_alt.png",
+                        src: "https://particles.js.org/images/hdr/plane_alt.png",
                         width: 128,
                         particles: {
                             rotate: {

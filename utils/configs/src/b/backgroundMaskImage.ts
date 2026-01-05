@@ -58,12 +58,12 @@ const options: ISourceOptions = {
     backgroundMask: {
         enable: true,
         cover: {
-            image: "https://particles.js.org/images/background2.jpg",
+            image: "https://particles.js.org/images/hdr/background2.jpg",
         },
     },
     background: {
         color: "#ffffff",
-        image: "url('https://particles.js.org/images/background3.jpg')",
+        image: "url('https://particles.js.org/images/hdr/background3.jpg')",
         position: "50% 50%",
         repeat: "no-repeat",
         size: "cover",

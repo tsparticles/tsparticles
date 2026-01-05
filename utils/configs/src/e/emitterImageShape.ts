@@ -102,7 +102,7 @@ const minFilterValue = 30,
                         offset: 4,
                     },
                     image: {
-                        src: "https://particles.js.org/images/amongus_cyan.png",
+                        src: "https://particles.js.org/images/hdr/amongus_cyan.png",
                     },
                 },
                 true,

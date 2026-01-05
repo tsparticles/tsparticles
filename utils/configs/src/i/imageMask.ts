@@ -57,7 +57,7 @@ const minFilterValue = 30,
                         : pixel.a > minFilterAlpha,
             },
             image: {
-                src: "https://particles.js.org/images/amongus_cyan.png",
+                src: "https://particles.js.org/images/hdr/amongus_cyan.png",
             },
         },
         background: {
