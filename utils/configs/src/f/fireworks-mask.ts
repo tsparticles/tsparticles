@@ -1,13 +1,23 @@
 import { EventType, type ISourceOptions, type Particle } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-    key: "fireworks",
-    name: "Fireworks",
+    key: "fireworks-mask",
+    name: "Fireworks Background Mask",
     fullScreen: {
         enable: true,
     },
     background: {
-        color: "#000",
+        color: "#ffffff",
+        image: "url('https://particles.js.org/images/hdr/background3.jpg')",
+        position: "50% 50%",
+        repeat: "no-repeat",
+        size: "cover",
+    },
+    backgroundMask: {
+        enable: true,
+        cover: {
+            color: "#000",
+        },
     },
     emitters: {
         direction: "top",
@@ -30,6 +40,9 @@ const options: ISourceOptions = {
         },
     },
     particles: {
+        color: {
+            value: "#fff",
+        },
         number: {
             value: 0,
         },
@@ -51,44 +64,7 @@ const options: ISourceOptions = {
                         width: 0,
                     },
                     color: {
-                        value: [
-                            "#FF0000",
-                            "#FF2A00",
-                            "#FF5500",
-                            "#FF8000",
-                            "#FFAA00",
-                            "#FFD400",
-                            "#FFFF00",
-                            "#D4FF00",
-                            "#AAFF00",
-                            "#80FF00",
-                            "#55FF00",
-                            "#2AFF00",
-                            "#00FF00",
-                            "#00FF2A",
-                            "#00FF55",
-                            "#00FF80",
-                            "#00FFAA",
-                            "#00FFD4",
-                            "#00FFFF",
-                            "#00D4FF",
-                            "#00AAFF",
-                            "#0080FF",
-                            "#0055FF",
-                            "#002AFF",
-                            "#0000FF",
-                            "#2A00FF",
-                            "#5500FF",
-                            "#8000FF",
-                            "#AA00FF",
-                            "#D400FF",
-                            "#FF00FF",
-                            "#FF00D4",
-                            "#FF00AA",
-                            "#FF0080",
-                            "#FF0055",
-                            "#FF002A",
-                        ],
+                        value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
                     },
                     number: {
                         value: 0,
@@ -112,6 +88,17 @@ const options: ISourceOptions = {
                             sync: false,
                             startValue: "max",
                             destroy: "min",
+                        },
+                    },
+                    effect: {
+                        type: "trail",
+                        options: {
+                            trail: {
+                                length: {
+                                    min: 5,
+                                    max: 10,
+                                },
+                            },
                         },
                     },
                     shape: {
@@ -153,31 +140,24 @@ const options: ISourceOptions = {
         life: {
             count: 1,
         },
+        effect: {
+            type: "trail",
+            options: {
+                trail: {
+                    length: {
+                        min: 10,
+                        max: 30,
+                    },
+                    minWidth: 1,
+                    maxWidth: 1,
+                },
+            },
+        },
         shape: {
-            type: "line",
+            type: "circle",
         },
         size: {
-            value: {
-                min: 0.1,
-                max: 50,
-            },
-            animation: {
-                enable: true,
-                sync: true,
-                speed: 90,
-                startValue: "max",
-                destroy: "min",
-            },
-        },
-        stroke: {
-            color: {
-                value: "#ffffff",
-            },
-            width: 1,
-        },
-        rotate: {
-            enable: true,
-            path: true,
+            value: 1,
         },
         move: {
             enable: true,
@@ -211,11 +191,6 @@ const options: ISourceOptions = {
             },
         ],
         volume: 50,
-    },
-    trail: {
-        fill: { color: "#000" },
-        enable: true,
-        length: 10,
     },
 };
 

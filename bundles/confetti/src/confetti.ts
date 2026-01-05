@@ -378,7 +378,6 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
                 },
             },
         },
-        detectRetina: true,
         motion: {
             disable: actualOptions.disableForReducedMotion,
         },
