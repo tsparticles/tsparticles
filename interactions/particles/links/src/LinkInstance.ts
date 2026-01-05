@@ -146,6 +146,7 @@ export class LinkInstance implements IContainerPlugin {
                 links: p1LinksOptions,
                 colorLine,
                 opacity,
+                hdr: container.hdr,
             });
         });
     };
@@ -208,6 +209,7 @@ export class LinkInstance implements IContainerPlugin {
                 pos3,
                 colorTriangle,
                 opacityTriangle,
+                hdr: container.hdr,
             });
         });
     };

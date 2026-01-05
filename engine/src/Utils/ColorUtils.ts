@@ -365,6 +365,18 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
 }
 
 /**
+ * Gets a CSS style string from a {@link IRgb} object and opacity value
+ * @param color - the {@link IRgb} input color
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+export function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
+    const rgbFactor = 255;
+
+    return `color(display-p3 ${(color.r / rgbFactor).toString()} ${(color.g / rgbFactor).toString()} ${(color.b / rgbFactor).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+}
+
+/**
  * Gets a CSS style string from a {@link IHsl} object and opacity value
  * @param color - the {@link IHsl} input color
  * @param opacity - the opacity value
@@ -372,6 +384,17 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
  */
 export function getStyleFromHsl(color: IHsl, opacity?: number): string {
     return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
+}
+
+/**
+ * Gets a CSS style string from a {@link IHsl} object and opacity value
+ * @param color - the {@link IHsl} input color
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+export function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
+    return getHdrStyleFromRgb(hslToRgb(color), opacity);
+    // return `color(display-p3 from hsl(${color.h.toString()} ${color.s.toString()}% ${color.l.toString()}%) r g b / ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**

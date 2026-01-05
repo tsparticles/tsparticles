@@ -3,6 +3,7 @@ import {
     type ICoordinates,
     Vector,
     getDistances,
+    getHdrStyleFromRgb,
     getStyleFromRgb,
     rangeColorToRgb,
 } from "@tsparticles/engine";
@@ -29,12 +30,14 @@ const squareExp = 2,
  * @param context -
  * @param rawData -
  * @param stroke -
+ * @param hdr -
  */
 export function drawPolygonMask(
     engine: Engine,
     context: CanvasRenderingContext2D,
     rawData: ICoordinates[],
     stroke: IPolygonMaskDrawStroke,
+    hdr = false,
 ): void {
     const color = rangeColorToRgb(engine, stroke.color);
 
@@ -57,7 +60,7 @@ export function drawPolygonMask(
     }
 
     context.closePath();
-    context.strokeStyle = getStyleFromRgb(color);
+    context.strokeStyle = hdr ? getHdrStyleFromRgb(color) : getStyleFromRgb(color);
     context.lineWidth = stroke.width;
     context.stroke();
 }
@@ -68,6 +71,7 @@ export function drawPolygonMask(
  * @param path -
  * @param stroke -
  * @param position -
+ * @param hdr -
  */
 export function drawPolygonMaskPath(
     engine: Engine,
@@ -75,6 +79,7 @@ export function drawPolygonMaskPath(
     path: Path2D,
     stroke: IPolygonMaskDrawStroke,
     position: ICoordinates,
+    hdr = false,
 ): void {
     const defaultTransform = {
         a: 1,
@@ -98,7 +103,7 @@ export function drawPolygonMaskPath(
         return;
     }
 
-    context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
+    context.strokeStyle = hdr ? getHdrStyleFromRgb(color, stroke.opacity) : getStyleFromRgb(color, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
     context.resetTransform();

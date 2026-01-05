@@ -1,4 +1,11 @@
-import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
+import {
+    type IHsl,
+    type Particle,
+    errorPrefix,
+    getHdrStyleFromHsl,
+    getLogger,
+    getStyleFromHsl,
+} from "@tsparticles/engine";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
@@ -61,16 +68,17 @@ const currentColorRegex =
  * @param imageShape - the image used for replacing SVG data
  * @param color - the replace color value
  * @param opacity - the color opacity
+ * @param hdr -
  * @returns the new SVG data
  */
-function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
+function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number, hdr = false): string {
     const { svgData } = imageShape;
 
     if (!svgData) {
         return "";
     }
 
-    const colorStyle = getStyleFromHsl(color, opacity);
+    const colorStyle = hdr ? getHdrStyleFromHsl(color, opacity) : getStyleFromHsl(color, opacity);
 
     /* set color to svg element */
     if (svgData.includes("fill")) {
@@ -146,6 +154,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
  * @param imageData - the image shape data
  * @param color - the replacement color
  * @param particle - the particle where the replaced data is going to be used
+ * @param hdr -
  * @returns the image with the color replaced
  */
 export function replaceImageColor(
@@ -153,8 +162,9 @@ export function replaceImageColor(
     imageData: IImageShape,
     color: IHsl,
     particle: Particle,
+    hdr = false,
 ): Promise<IParticleImage> {
-    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity),
+    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr),
         imageRes: IParticleImage = {
             color,
             gif: imageData.gif,

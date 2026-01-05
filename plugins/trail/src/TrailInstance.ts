@@ -2,6 +2,7 @@ import {
     type Engine,
     type IContainerPlugin,
     type IRgb,
+    getHdrStyleFromRgb,
     getLogger,
     getStyleFromRgb,
     rangeColorToRgb,
@@ -28,7 +29,8 @@ export class TrailInstance implements IContainerPlugin {
     }
 
     canvasClear(): boolean {
-        const trail = this._container.actualOptions.trail,
+        const container = this._container,
+            trail = container.actualOptions.trail,
             trailFill = this._trailFill;
 
         if (!trail?.enable || !trailFill || trail.length <= minimumLength) {
@@ -37,10 +39,14 @@ export class TrailInstance implements IContainerPlugin {
 
         let handled = false;
 
-        const canvas = this._container.canvas;
+        const canvas = container.canvas;
 
         if (trailFill.color) {
-            canvas.paintBase(getStyleFromRgb(trailFill.color, trailFill.opacity));
+            canvas.paintBase(
+                container.hdr
+                    ? getHdrStyleFromRgb(trailFill.color, trailFill.opacity)
+                    : getStyleFromRgb(trailFill.color, trailFill.opacity),
+            );
 
             handled = true;
         } else if (trailFill.image) {

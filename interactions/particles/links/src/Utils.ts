@@ -3,6 +3,7 @@ import {
     drawLine,
     getDistance,
     getDistances,
+    getHdrStyleFromRgb,
     getRandom,
     getStyleFromRgb,
     rangeColorToRgb,
@@ -38,7 +39,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
 
     let drawn = false;
 
-    const { begin, end, engine, maxDistance, context, canvasSize, width, colorLine, opacity, links } = params;
+    const { begin, end, engine, maxDistance, context, canvasSize, width, colorLine, opacity, links, hdr } = params;
 
     if (getDistance(begin, end) <= maxDistance) {
         drawLine(context, begin, end);
@@ -105,7 +106,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
     }
 
     context.lineWidth = width;
-    context.strokeStyle = getStyleFromRgb(colorLine, opacity);
+    context.strokeStyle = hdr ? getHdrStyleFromRgb(colorLine, opacity) : getStyleFromRgb(colorLine, opacity);
 
     const { shadow } = links;
 
@@ -114,7 +115,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
 
         if (shadowColor) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = getStyleFromRgb(shadowColor);
+            context.shadowColor = hdr ? getHdrStyleFromRgb(shadowColor) : getStyleFromRgb(shadowColor);
         }
     }
 
@@ -125,14 +126,16 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
  * @param params -
  */
 export function drawLinkTriangle(params: LinkTriangleDrawParams): void {
-    const { context, pos1, pos2, pos3, colorTriangle, opacityTriangle } = params;
+    const { context, hdr, pos1, pos2, pos3, colorTriangle, opacityTriangle } = params;
 
     // this.ctx.lineCap = "round"; /* performance issue */
     /* path */
 
     drawTriangle(context, pos1, pos2, pos3);
 
-    context.fillStyle = getStyleFromRgb(colorTriangle, opacityTriangle);
+    context.fillStyle = hdr
+        ? getHdrStyleFromRgb(colorTriangle, opacityTriangle)
+        : getStyleFromRgb(colorTriangle, opacityTriangle);
 
     context.fill();
 }

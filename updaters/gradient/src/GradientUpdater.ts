@@ -10,6 +10,7 @@ import {
     RotateDirection,
     StartValueType,
     executeOnSingleOrMultiple,
+    getHdrStyleFromHsl,
     getHslAnimationFromHsl,
     getRandom,
     getRangeMax,
@@ -49,7 +50,8 @@ export class GradientUpdater implements IParticleUpdater {
             return {};
         }
 
-        const gradientAngle = gradient.angle.value,
+        const { container } = particle,
+            gradientAngle = gradient.angle.value,
             origin: ICoordinates = { x: 0, y: 0 },
             minRadius = 0,
             fillGradient =
@@ -63,16 +65,17 @@ export class GradientUpdater implements IParticleUpdater {
                       );
 
         for (const { stop, value, opacity: cOpacity } of gradient.colors) {
+            const hsl = {
+                h: value.h.value,
+                s: value.s.value,
+                l: value.l.value,
+            };
+
             fillGradient.addColorStop(
                 stop,
-                getStyleFromHsl(
-                    {
-                        h: value.h.value,
-                        s: value.s.value,
-                        l: value.l.value,
-                    },
-                    cOpacity?.value ?? opacity,
-                ),
+                container.hdr
+                    ? getHdrStyleFromHsl(hsl, cOpacity?.value ?? opacity)
+                    : getStyleFromHsl(hsl, cOpacity?.value ?? opacity),
             );
         }
 

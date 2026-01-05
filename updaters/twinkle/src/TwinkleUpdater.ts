@@ -4,6 +4,7 @@ import {
     type IParticleUpdater,
     type Particle,
     type RecursivePartial,
+    getHdrStyleFromHsl,
     getRandom,
     getRangeValue,
     getStyleFromHsl,
@@ -26,6 +27,7 @@ export class TwinkleUpdater implements IParticleUpdater {
         opacity: number,
     ): IParticleColorStyle {
         const pOptions = particle.options,
+            { container } = particle,
             twinkleOptions = pOptions["twinkle"] as Twinkle | undefined;
 
         if (!twinkleOptions) {
@@ -39,7 +41,16 @@ export class TwinkleUpdater implements IParticleUpdater {
             zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
             twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
             twinkleRgb = rangeColorToHsl(this._engine, twinkle.color),
-            twinkleStyle = twinkleRgb ? getStyleFromHsl(twinkleRgb, twinklingOpacity) : undefined,
+            getTwinkleStyle = (): string | undefined => {
+                if (!twinkleRgb) {
+                    return undefined;
+                }
+
+                return container.hdr
+                    ? getHdrStyleFromHsl(twinkleRgb, twinklingOpacity)
+                    : getStyleFromHsl(twinkleRgb, twinklingOpacity);
+            },
+            twinkleStyle = getTwinkleStyle(),
             res: IParticleColorStyle = {},
             needsTwinkle = twinkling && twinkleStyle;
 

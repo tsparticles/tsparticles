@@ -5,6 +5,8 @@ import {
     clamp,
     colorMix,
     drawLine,
+    getHdrStyleFromHsl,
+    getHdrStyleFromRgb,
     getStyleFromHsl,
     getStyleFromRgb,
 } from "@tsparticles/engine";
@@ -35,14 +37,21 @@ export function gradient(
         return;
     }
 
-    const sourcePos = p1.getPosition(),
+    const { container } = p1,
+        sourcePos = p1.getPosition(),
         destPos = p2.getPosition(),
         midRgb = colorMix(color1, color2, p1.getRadius(), p2.getRadius()),
         grad = context.createLinearGradient(sourcePos.x, sourcePos.y, destPos.x, destPos.y);
 
-    grad.addColorStop(gradientMin, getStyleFromHsl(color1, opacity));
-    grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getStyleFromRgb(midRgb, opacity));
-    grad.addColorStop(gradientMax, getStyleFromHsl(color2, opacity));
+    if (container.hdr) {
+        grad.addColorStop(gradientMin, getHdrStyleFromHsl(color1, opacity));
+        grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getHdrStyleFromRgb(midRgb, opacity));
+        grad.addColorStop(gradientMax, getHdrStyleFromHsl(color2, opacity));
+    } else {
+        grad.addColorStop(gradientMin, getStyleFromHsl(color1, opacity));
+        grad.addColorStop(clamp(gradStop, gradientMin, gradientMax), getStyleFromRgb(midRgb, opacity));
+        grad.addColorStop(gradientMax, getStyleFromHsl(color2, opacity));
+    }
 
     return grad;
 }

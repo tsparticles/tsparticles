@@ -11,6 +11,7 @@ import {
     calcPositionOrRandomFromSizeRanged,
     getDistance,
     getDistances,
+    getHdrStyleFromRgb,
     getRandom,
     getRangeValue,
     getStyleFromRgb,
@@ -230,7 +231,9 @@ export class AbsorberInstance {
         context.beginPath();
         context.arc(originPoint.x, originPoint.y, this.size, minAngle, maxAngle, false);
         context.closePath();
-        context.fillStyle = getStyleFromRgb(this.color, this.opacity);
+        context.fillStyle = this._container.hdr
+            ? getHdrStyleFromRgb(this.color, this.opacity)
+            : getStyleFromRgb(this.color, this.opacity);
         context.fill();
     }
 

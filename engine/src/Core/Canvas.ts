@@ -15,7 +15,14 @@ import {
     minimumSize,
     zIndexFactorOffset,
 } from "./Utils/Constants.js";
-import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
+import {
+    getHdrStyleFromHsl,
+    getHdrStyleFromRgb,
+    getStyleFromHsl,
+    getStyleFromRgb,
+    rangeColorToHsl,
+    rangeColorToRgb,
+} from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
@@ -270,11 +277,27 @@ export class Canvas {
             zOpacity = opacity * zOpacityFactor,
             zStrokeOpacity = strokeOpacity * zOpacityFactor,
             transform: IParticleTransformValues = {},
+            getFillStyle = (): string | undefined => {
+                if (!fColor) {
+                    return;
+                }
+
+                return container.hdr ? getHdrStyleFromHsl(fColor, zOpacity) : getStyleFromHsl(fColor, zOpacity);
+            },
             colorStyles: IParticleColorStyle = {
-                fill: fColor ? getStyleFromHsl(fColor, zOpacity) : undefined,
+                fill: getFillStyle(),
+            },
+            getStrokestyle = (): string | CanvasGradient | CanvasPattern | undefined => {
+                if (!sColor) {
+                    return colorStyles.fill;
+                }
+
+                return container.hdr
+                    ? getHdrStyleFromHsl(sColor, zStrokeOpacity)
+                    : getStyleFromHsl(sColor, zStrokeOpacity);
             };
 
-        colorStyles.stroke = sColor ? getStyleFromHsl(sColor, zStrokeOpacity) : colorStyles.fill;
+        colorStyles.stroke = getStrokestyle();
 
         this.draw((context): void => {
             this._applyPreDrawUpdaters(context, particle, radius, zOpacity, colorStyles, transform);
@@ -378,7 +401,8 @@ export class Canvas {
      * Initializes the canvas background
      */
     initBackground(): void {
-        const options = this.container.actualOptions,
+        const { container } = this,
+            options = container.actualOptions,
             background = options.background,
             element = this.element;
 
@@ -389,7 +413,14 @@ export class Canvas {
         const elementStyle = element.style,
             color = rangeColorToRgb(this._engine, background.color);
 
-        elementStyle.backgroundColor = color ? getStyleFromRgb(color, background.opacity) : "";
+        if (color) {
+            elementStyle.backgroundColor = container.hdr
+                ? getHdrStyleFromRgb(color, background.opacity)
+                : getStyleFromRgb(color, background.opacity);
+        } else {
+            elementStyle.backgroundColor = "";
+        }
+
         elementStyle.backgroundImage = background.image || "";
         elementStyle.backgroundPosition = background.position || "";
         elementStyle.backgroundRepeat = background.repeat || "";

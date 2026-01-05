@@ -35,6 +35,7 @@ export interface LinkLineDrawParams {
     context: CanvasRenderingContext2D;
     end: ICoordinates;
     engine: Engine;
+    hdr: boolean;
     links: Links;
     maxDistance: number;
     opacity: number;
@@ -44,6 +45,7 @@ export interface LinkLineDrawParams {
 export interface LinkTriangleDrawParams {
     colorTriangle: IRgb;
     context: CanvasRenderingContext2D;
+    hdr: boolean;
     opacityTriangle: number;
     pos1: ICoordinates;
     pos2: ICoordinates;
