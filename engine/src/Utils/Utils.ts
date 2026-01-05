@@ -10,7 +10,7 @@ import {
     getRangeValue,
     randomInRange,
 } from "./NumberUtils.js";
-import { half, millisecondsToSeconds, minVelocity, percentDenominator } from "../Core/Utils/Constants.js";
+import { half, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { isArray, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
@@ -21,8 +21,6 @@ import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
 import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
-import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
-import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
 import type { Particle } from "../Core/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
@@ -31,32 +29,7 @@ import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { StartValueType } from "../Enums/Types/StartValueType.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 
-interface RectSideBounceData {
-    /**
-     * bounce factor
-     */
-    factor: number;
-    /**
-     * particle bounce other side
-     */
-    pOtherSide: IRangeValue;
-    /**
-     * particle bounce side
-     */
-    pSide: IRangeValue;
-    /**
-     * rectangle bounce other side
-     */
-    rectOtherSide: IRangeValue;
-    /**
-     * rectangle bounce side
-     */
-    rectSide: IRangeValue;
-    /**
-     * particle velocity
-     */
-    velocity: number;
-}
+const minRadius = 0;
 
 interface ILogger {
     // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
@@ -135,35 +108,6 @@ function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result):
 
         return result;
     };
-}
-
-/**
- * Calculates the bounce on a rectangle side
- * @param data - the rectangle side bounce values
- * @returns the rectangle side bounce values
- */
-function rectSideBounce(data: RectSideBounceData): IRectSideResult {
-    const res: IRectSideResult = { bounced: false },
-        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
-
-    if (
-        pOtherSide.min < rectOtherSide.min ||
-        pOtherSide.min > rectOtherSide.max ||
-        pOtherSide.max < rectOtherSide.min ||
-        pOtherSide.max > rectOtherSide.max
-    ) {
-        return res;
-    }
-
-    if (
-        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) * half && velocity > minVelocity) ||
-        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) * half && velocity < minVelocity)
-    ) {
-        res.velocity = velocity * -factor;
-        res.bounced = true;
-    }
-
-    return res;
 }
 
 /**
@@ -292,8 +236,6 @@ export function isPointInside(
     radius?: number,
     direction?: OutModeDirection,
 ): boolean {
-    const minRadius = 0;
-
     return areBoundsInside(calculateBounds(point, radius ?? minRadius), size, offset, direction);
 }
 
@@ -503,79 +445,6 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 }
 
 /**
- * Executes the bounce between a particle and div bounds
- * @param particle - the particle to bounce
- * @param divBounds - the div bounds to bounce
- */
-export function rectBounce(particle: Particle, divBounds: IBounds): void {
-    const pPos = particle.getPosition(),
-        size = particle.getRadius(),
-        bounds = calculateBounds(pPos, size),
-        bounceOptions = particle.options.bounce,
-        resH = rectSideBounce({
-            pSide: {
-                min: bounds.left,
-                max: bounds.right,
-            },
-            pOtherSide: {
-                min: bounds.top,
-                max: bounds.bottom,
-            },
-            rectSide: {
-                min: divBounds.left,
-                max: divBounds.right,
-            },
-            rectOtherSide: {
-                min: divBounds.top,
-                max: divBounds.bottom,
-            },
-            velocity: particle.velocity.x,
-            factor: getRangeValue(bounceOptions.horizontal.value),
-        });
-
-    if (resH.bounced) {
-        if (resH.velocity !== undefined) {
-            particle.velocity.x = resH.velocity;
-        }
-
-        if (resH.position !== undefined) {
-            particle.position.x = resH.position;
-        }
-    }
-
-    const resV = rectSideBounce({
-        pSide: {
-            min: bounds.top,
-            max: bounds.bottom,
-        },
-        pOtherSide: {
-            min: bounds.left,
-            max: bounds.right,
-        },
-        rectSide: {
-            min: divBounds.top,
-            max: divBounds.bottom,
-        },
-        rectOtherSide: {
-            min: divBounds.left,
-            max: divBounds.right,
-        },
-        velocity: particle.velocity.y,
-        factor: getRangeValue(bounceOptions.vertical.value),
-    });
-
-    if (resV.bounced) {
-        if (resV.velocity !== undefined) {
-            particle.velocity.y = resV.velocity;
-        }
-
-        if (resV.position !== undefined) {
-            particle.position.y = resV.position;
-        }
-    }
-}
-
-/**
  * @param obj -
  * @param callback -
  * @returns the transformed SingleOrMultiple data
@@ -770,11 +639,13 @@ function checkDestroy(
             if (value >= maxValue) {
                 particle.destroy();
             }
+
             break;
         case DestroyType.min:
             if (value <= minValue) {
                 particle.destroy();
             }
+
             break;
     }
 }

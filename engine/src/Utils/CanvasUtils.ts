@@ -90,7 +90,7 @@ export function drawParticle(data: IDrawParticleParams): void {
             sin: Math.sin(angle),
             cos: Math.cos(angle),
         },
-        rotating = !!angle,
+        rotating = particle.isRotating,
         transformData = {
             a: rotateData.cos * (transform.a ?? defaultTransform.a),
             b: rotating ? rotateData.sin * (transform.b ?? identity) : (transform.b ?? defaultTransform.b),

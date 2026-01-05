@@ -330,6 +330,9 @@ export class Particle {
      */
     size!: IParticleNumericValueAnimation;
 
+    /**
+     * Gets particle slow options
+     */
     slow!: ISlowParticleData;
 
     /**

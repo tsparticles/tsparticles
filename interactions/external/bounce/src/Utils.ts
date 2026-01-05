@@ -3,7 +3,9 @@ import {
     Circle,
     type DivEvent,
     DivType,
+    type IBounds,
     type ICoordinates,
+    type IRangeValue,
     type Particle,
     Rectangle,
     type SingleOrMultiple,
@@ -12,16 +14,45 @@ import {
     circleBounce,
     circleBounceDataFromParticle,
     divModeExecute,
-    rectBounce,
+    getRangeValue,
 } from "@tsparticles/engine";
 import type { BounceContainer } from "./Types.js";
+import type { IRectSideResult } from "./IRectSideResult.js";
 
 const squareExp = 2,
     half = 0.5,
     halfPI = Math.PI * half,
     double = 2,
     toleranceFactor = 10,
-    minRadius = 0;
+    minRadius = 0,
+    minVelocity = 0;
+
+interface RectSideBounceData {
+    /**
+     * bounce factor
+     */
+    factor: number;
+    /**
+     * particle bounce other side
+     */
+    pOtherSide: IRangeValue;
+    /**
+     * particle bounce side
+     */
+    pSide: IRangeValue;
+    /**
+     * rectangle bounce other side
+     */
+    rectOtherSide: IRangeValue;
+    /**
+     * rectangle bounce side
+     */
+    rectSide: IRangeValue;
+    /**
+     * particle velocity
+     */
+    velocity: number;
+}
 
 /**
  *
@@ -133,4 +164,106 @@ export function mouseBounce(container: BounceContainer, enabledCb: (p: Particle)
     }
 
     processBounce(container, mousePos, radius, new Circle(mousePos.x, mousePos.y, radius + tolerance), enabledCb);
+}
+
+/**
+ * Calculates the bounce on a rectangle side
+ * @param data - the rectangle side bounce values
+ * @returns the rectangle side bounce values
+ */
+function rectSideBounce(data: RectSideBounceData): IRectSideResult {
+    const res: IRectSideResult = { bounced: false },
+        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
+
+    if (
+        pOtherSide.min < rectOtherSide.min ||
+        pOtherSide.min > rectOtherSide.max ||
+        pOtherSide.max < rectOtherSide.min ||
+        pOtherSide.max > rectOtherSide.max
+    ) {
+        return res;
+    }
+
+    if (
+        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) * half && velocity > minVelocity) ||
+        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) * half && velocity < minVelocity)
+    ) {
+        res.velocity = velocity * -factor;
+        res.bounced = true;
+    }
+
+    return res;
+}
+
+/**
+ * Executes the bounce between a particle and div bounds
+ * @param particle - the particle to bounce
+ * @param divBounds - the div bounds to bounce
+ */
+export function rectBounce(particle: Particle, divBounds: IBounds): void {
+    const pPos = particle.getPosition(),
+        size = particle.getRadius(),
+        bounds = calculateBounds(pPos, size),
+        bounceOptions = particle.options.bounce,
+        resH = rectSideBounce({
+            pSide: {
+                min: bounds.left,
+                max: bounds.right,
+            },
+            pOtherSide: {
+                min: bounds.top,
+                max: bounds.bottom,
+            },
+            rectSide: {
+                min: divBounds.left,
+                max: divBounds.right,
+            },
+            rectOtherSide: {
+                min: divBounds.top,
+                max: divBounds.bottom,
+            },
+            velocity: particle.velocity.x,
+            factor: getRangeValue(bounceOptions.horizontal.value),
+        });
+
+    if (resH.bounced) {
+        if (resH.velocity !== undefined) {
+            particle.velocity.x = resH.velocity;
+        }
+
+        if (resH.position !== undefined) {
+            particle.position.x = resH.position;
+        }
+    }
+
+    const resV = rectSideBounce({
+        pSide: {
+            min: bounds.top,
+            max: bounds.bottom,
+        },
+        pOtherSide: {
+            min: bounds.left,
+            max: bounds.right,
+        },
+        rectSide: {
+            min: divBounds.top,
+            max: divBounds.bottom,
+        },
+        rectOtherSide: {
+            min: divBounds.left,
+            max: divBounds.right,
+        },
+        velocity: particle.velocity.y,
+        factor: getRangeValue(bounceOptions.vertical.value),
+    });
+
+    if (resV.bounced) {
+        if (resV.velocity !== undefined) {
+            particle.velocity.y = resV.velocity;
+        }
+
+        if (resV.position !== undefined) {
+            particle.position.y = resV.position;
+        }
+    }
 }

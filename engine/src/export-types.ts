@@ -29,7 +29,6 @@ export type * from "./Core/Interfaces/IParticlesInteractor.js";
 export type * from "./Core/Interfaces/IPlugin.js";
 export type * from "./Core/Interfaces/IPositionFromSizeParams.js";
 export type * from "./Core/Interfaces/IRangeValue.js";
-export type * from "./Core/Interfaces/IRectSideResult.js";
 export type * from "./Core/Interfaces/IShapeDrawData.js";
 export type * from "./Core/Interfaces/IShapeDrawer.js";
 export type * from "./Core/Interfaces/IShapeValues.js";

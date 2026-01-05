@@ -1,6 +1,6 @@
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
-import { RangeType } from "../../Types/RangeType.js";
+import { RangeType } from "../../Enums/RangeType.js";
 import { getDistance } from "../../Utils/NumberUtils.js";
 import { squareExp } from "./Constants.js";
 
