@@ -1,5 +1,5 @@
 import type { CanvasPixelData, TextLineData } from "./types.js";
-import { type ICoordinates, type IDimension, type IRgba, errorPrefix, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, type IRgba, isNumber } from "@tsparticles/engine";
 import type { TextOptions } from "./Options/Classes/TextOptions.js";
 
 const origin: ICoordinates = {
@@ -89,7 +89,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                reject(new Error(`${errorPrefix} Could not get canvas context`));
+                reject(new Error("Could not get canvas context"));
                 return;
             }
 

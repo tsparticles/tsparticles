@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
-import { type ICoordinates, calcExactPositionOrRandomFromSize, errorPrefix, tsParticles } from "@tsparticles/engine";
+import { type ICoordinates, calcExactPositionOrRandomFromSize, tsParticles } from "@tsparticles/engine";
 import { afterAll, beforeEach, describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -24,7 +24,7 @@ describe("Particle", async () => {
     });
 
     if (!container) {
-        throw new Error(`${errorPrefix} test container not initialized`);
+        throw new Error("test container not initialized");
     }
 
     describe("constructor/initialization", () => {
@@ -123,7 +123,7 @@ describe("Particle", async () => {
                         expectedShapeData = multipleShapeTypeOptions.particles.shape.options.polygon;
                         break;
                     default:
-                        throw new Error(`${errorPrefix} Unexpected shape type "${particle?.shape ?? ""}"`);
+                        throw new Error(`Unexpected shape type "${particle?.shape ?? ""}"`);
                 }
 
                 expect(particle.shapeClose).to.eql(expectedShapeData.close);

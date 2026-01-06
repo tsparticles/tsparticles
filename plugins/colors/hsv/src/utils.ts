@@ -5,13 +5,12 @@ import {
     type IHsva,
     type IRgb,
     type IRgba,
+    double,
     getStyleFromHsl,
+    half,
     percentDenominator,
+    rgbMax,
 } from "@tsparticles/engine";
-
-const rgbFactor = 255,
-    double = 2,
-    half = 0.5;
 
 /**
  * Converts a RGB ({@link IRgb}) object in a {@link IHsv} object
@@ -20,9 +19,9 @@ const rgbFactor = 255,
  */
 export function rgbToHsv(rgb: IRgb): IHsv {
     const rgbPercent = {
-            r: rgb.r / rgbFactor,
-            g: rgb.g / rgbFactor,
-            b: rgb.b / rgbFactor,
+            r: rgb.r / rgbMax,
+            g: rgb.g / rgbMax,
+            b: rgb.b / rgbMax,
         },
         xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b),
         xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b),
@@ -211,9 +210,9 @@ export function hsvToRgb(hsv: IHsv): IRgb {
     if (tempRgb) {
         const m = hsvPercent.v - c;
 
-        result.r = Math.floor((tempRgb.r + m) * rgbFactor);
-        result.g = Math.floor((tempRgb.g + m) * rgbFactor);
-        result.b = Math.floor((tempRgb.b + m) * rgbFactor);
+        result.r = Math.floor((tempRgb.r + m) * rgbMax);
+        result.g = Math.floor((tempRgb.g + m) * rgbMax);
+        result.b = Math.floor((tempRgb.b + m) * rgbMax);
     }
 
     return result;

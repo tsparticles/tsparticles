@@ -6,7 +6,6 @@ import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import {
     canvasFirstIndex,
     canvasTag,
-    errorPrefix,
     generatedAttribute,
     generatedFalse,
     generatedTrue,
@@ -16,7 +15,7 @@ import {
     one,
     removeDeleteCount,
 } from "./Utils/Constants.js";
-import { executeOnSingleOrMultiple, getLogger, itemFromSingleOrMultiple } from "../Utils/Utils.js";
+import { executeOnSingleOrMultiple, itemFromSingleOrMultiple } from "../Utils/Utils.js";
 import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -40,6 +39,7 @@ import type { Particle } from "./Particle.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
+import { getLogger } from "../Utils/LogUtils.js";
 import { getRandom } from "../Utils/NumberUtils.js";
 
 declare const __VERSION__: string;
@@ -119,7 +119,7 @@ async function getDataFromUrl(
         return (await response.json()) as SingleOrMultiple<ISourceOptions>;
     }
 
-    getLogger().error(`${errorPrefix} ${response.status.toString()} while retrieving config file`);
+    getLogger().error(`${response.status.toString()} while retrieving config file`);
 
     return data.fallback;
 }
@@ -731,7 +731,7 @@ export class Engine {
         const { items } = this;
 
         if (!items.length) {
-            throw new Error(`${errorPrefix} can only set click handlers after calling tsParticles.load()`);
+            throw new Error("Click handlers can only be set after calling tsParticles.load()");
         }
 
         items.forEach(item => {

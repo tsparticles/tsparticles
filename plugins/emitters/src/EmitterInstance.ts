@@ -15,11 +15,15 @@ import {
     deepExtend,
     getRangeValue,
     getSize,
+    hMax,
+    half,
     isPointInside,
     itemFromSingleOrMultiple,
+    lMax,
     millisecondsToSeconds,
     randomInRange,
     rangeColorToHsl,
+    sMax,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterSize } from "./Options/Classes/EmitterSize.js";
@@ -29,8 +33,7 @@ import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
 
-const half = 0.5,
-    defaultLifeDelay = 0,
+const defaultLifeDelay = 0,
     minLifeCount = 0,
     defaultSpawnDelay = 0,
     defaultEmitDelay = 0,
@@ -408,9 +411,9 @@ export class EmitterInstance {
 
                 if (hslAnimation) {
                     const maxValues = {
-                            h: 360,
-                            s: 100,
-                            l: 100,
+                            h: hMax,
+                            s: sMax,
+                            l: lMax,
                         },
                         colorFactor = 3.6;
 

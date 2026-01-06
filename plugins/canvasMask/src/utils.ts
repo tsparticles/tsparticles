@@ -5,7 +5,6 @@ import {
     type IParticlesOptions,
     type IRgba,
     type RecursivePartial,
-    errorPrefix,
     getRandom,
     isNumber,
     percentDenominator,
@@ -192,7 +191,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                reject(new Error(`${errorPrefix} Could not get canvas context`));
+                reject(new Error("Could not get canvas context"));
                 return;
             }
 

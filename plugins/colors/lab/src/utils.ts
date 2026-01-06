@@ -1,4 +1,4 @@
-import { type ILab, type ILaba, type IRgb, type IRgba, clamp } from "@tsparticles/engine";
+import { type ILab, type ILaba, type IRgb, type IRgba, clamp, inverseFactorNumerator } from "@tsparticles/engine";
 
 // RGB
 const RGB = {
@@ -43,7 +43,6 @@ const RGB = {
         SCALE: 1.055,
         OFFSET: 0.055,
     } as const,
-    inverseNumerator = 1,
     minSrgbValue = 0,
     maxSrgbValue = 1;
 
@@ -78,7 +77,7 @@ export function labToRgb(lab: ILab): IRgb {
         toSrgb = (x: number): number =>
             x <= SRGB.LINEAR_THRESHOLD
                 ? SRGB.LINEAR_SCALE * x
-                : SRGB.SCALE * Math.pow(x, inverseNumerator / SRGB.GAMMA) - SRGB.OFFSET,
+                : SRGB.SCALE * Math.pow(x, inverseFactorNumerator / SRGB.GAMMA) - SRGB.OFFSET,
         toSrgbFixed: (num: number) => number = num =>
             Math.round(clamp(toSrgb(num), minSrgbValue, maxSrgbValue) * RGB.MAX);
 

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { type ICoordinates3d, errorPrefix, getLogger, getRandom, tsParticles } from "@tsparticles/engine";
+import { type ICoordinates3d, getLogger, getRandom, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
@@ -17,7 +17,7 @@ describe("Particles", async () => {
     });
 
     if (!container) {
-        throw new Error(`${errorPrefix} test container not initialized`);
+        throw new Error(`Error test container not initialized`);
     }
 
     // Common options used when initializing Particles with a set number of particles

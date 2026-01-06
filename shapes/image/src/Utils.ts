@@ -1,4 +1,4 @@
-import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
+import { type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticles/engine";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
@@ -106,7 +106,7 @@ export async function loadImage(image: IImage): Promise<void> {
             image.error = true;
             image.loading = false;
 
-            getLogger().error(`${errorPrefix} loading image: ${image.source}`);
+            getLogger().error(`Error loading image: ${image.source}`);
 
             resolve();
         });
@@ -131,7 +131,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     const response = await fetch(image.source);
 
     if (!response.ok) {
-        getLogger().error(`${errorPrefix} Image not found`);
+        getLogger().error("Image not found");
 
         image.error = true;
     } else {

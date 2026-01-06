@@ -5,12 +5,12 @@ import {
     type IRgba,
     clamp,
     degToRad,
+    inverseFactorNumerator,
     percentDenominator,
+    rgbMax,
 } from "@tsparticles/engine";
 
-const rgbFactor = 255,
-    inverseNumerator = 1,
-    OKLAB_LMS = {
+const OKLAB_LMS = {
         l: { L: 1, a: 0.3963377774, b: 0.2158037573 },
         m: { L: 1, a: -0.1055613458, b: -0.0638541728 },
         s: { L: 1, a: -0.0894841775, b: -1.291485548 },
@@ -60,9 +60,9 @@ export function oklchToRgb(oklch: IOklch): IRgb {
         toSrgb = (x: number): number =>
             x <= SRGB.LINEAR_THRESHOLD
                 ? SRGB.LINEAR_SCALE * x
-                : SRGB.SCALE * Math.pow(x, inverseNumerator / SRGB.GAMMA) - SRGB.OFFSET,
+                : SRGB.SCALE * Math.pow(x, inverseFactorNumerator / SRGB.GAMMA) - SRGB.OFFSET,
         toSrgbFixed: (num: number) => number = num =>
-            Math.round(clamp(toSrgb(num), minSrgbValue, maxSrgbValue) * rgbFactor);
+            Math.round(clamp(toSrgb(num), minSrgbValue, maxSrgbValue) * rgbMax);
 
     return {
         r: toSrgbFixed(rLinear),

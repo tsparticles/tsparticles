@@ -1,5 +1,5 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, errorPrefix, percentDenominator } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, percentDenominator } from "@tsparticles/engine";
 import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 
@@ -16,7 +16,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         const ctx = document.createElement("canvas").getContext("2d");
 
         if (!ctx) {
-            throw new Error(`${errorPrefix} No 2d context available`);
+            throw new Error(`No 2d context available`);
         }
 
         this.checkContext = ctx;
@@ -47,7 +47,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
             firstPathData = pathData[firstIndex];
 
         if (!firstPathData) {
-            throw new Error(`${errorPrefix} No path data available`);
+            throw new Error(`No path data available`);
         }
 
         const coords = {
@@ -104,7 +104,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
             firstPathData = pathData[firstIndex];
 
         if (!firstPathData) {
-            throw new Error(`${errorPrefix} No path data available`);
+            throw new Error(`No path data available`);
         }
 
         const coords = {

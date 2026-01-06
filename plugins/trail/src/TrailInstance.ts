@@ -4,12 +4,12 @@ import {
     type IRgb,
     getLogger,
     getStyleFromRgb,
+    inverseFactorNumerator,
     rangeColorToRgb,
 } from "@tsparticles/engine";
 import type { TrailContainer } from "./types.js";
 
-const minimumLength = 0,
-    inverseFactorNumerator = 1;
+const minimumLength = 0;
 
 interface ITrailFillData {
     color?: IRgb;

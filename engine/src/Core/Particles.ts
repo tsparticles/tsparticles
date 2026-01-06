@@ -3,7 +3,6 @@ import {
     defaultDensityFactor,
     defaultRemoveQuantity,
     deleteCount,
-    errorPrefix,
     lengthOffset,
     minCount,
     minIndex,
@@ -13,7 +12,6 @@ import {
     sizeFactor,
     squareExp,
 } from "./Utils/Constants.js";
-import { getLogger, getPosition } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
@@ -33,6 +31,8 @@ import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import { getLogger } from "../Utils/LogUtils.js";
+import { getPosition } from "../Utils/Utils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
@@ -500,7 +500,7 @@ export class Particles {
 
             return particle;
         } catch (e: unknown) {
-            getLogger().warning(`${errorPrefix} adding particle: ${e as string}`);
+            getLogger().warning(`error adding particle: ${e as string}`);
         }
 
         return undefined;

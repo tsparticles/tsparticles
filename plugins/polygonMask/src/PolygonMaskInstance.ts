@@ -7,7 +7,6 @@ import {
     OutModeDirection,
     type Particle,
     deepExtend,
-    errorPrefix,
     getDistance,
     getDistances,
     getRandom,
@@ -22,8 +21,8 @@ import type { PolygonMaskContainer } from "./types.js";
 import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangement.js";
 import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 
-const noPolygonDataLoaded = `${errorPrefix} No polygon data loaded.`,
-    noPolygonFound = `${errorPrefix} No polygon found, you need to specify SVG url in config.`,
+const noPolygonDataLoaded = `No polygon data loaded.`,
+    noPolygonFound = `No polygon found, you need to specify SVG url in config.`,
     origin: ICoordinates = {
         x: 0,
         y: 0,
@@ -310,7 +309,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
             const req = await fetch(url);
 
             if (!req.ok) {
-                throw new Error(`${errorPrefix} occurred during polygon mask download`);
+                throw new Error(`Error occurred during polygon mask download`);
             }
 
             return this._parseSvgPath(await req.text(), force);

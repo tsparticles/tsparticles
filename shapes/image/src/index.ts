@@ -3,7 +3,6 @@ import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import { ImageDrawer } from "./ImageDrawer.js";
 import type { ImageEngine } from "./types.js";
 import { ImagePreloaderPlugin } from "./ImagePreloader.js";
-import { errorPrefix } from "@tsparticles/engine";
 import { loadGifImage } from "./GifUtils/Utils.js";
 
 declare const __VERSION__: string;
@@ -21,7 +20,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
     engine.loadImage = async (data: IPreload): Promise<void> => {
         if (!data.name && !data.src) {
-            throw new Error(`${errorPrefix} no image source provided`);
+            throw new Error("No image source provided");
         }
 
         engine.images ??= [];
@@ -54,7 +53,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
 
             await imageFunc(image);
         } catch {
-            throw new Error(`${errorPrefix} ${data.name ?? data.src} not found`);
+            throw new Error(`${data.name ?? data.src} not found`);
         }
     };
 }

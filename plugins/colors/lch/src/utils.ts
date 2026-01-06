@@ -1,4 +1,12 @@
-import { type ILch, type ILcha, type IRgb, type IRgba, clamp, degToRad } from "@tsparticles/engine";
+import {
+    type ILch,
+    type ILcha,
+    type IRgb,
+    type IRgba,
+    clamp,
+    degToRad,
+    inverseFactorNumerator,
+} from "@tsparticles/engine";
 
 // RGB
 const RGB = {
@@ -43,7 +51,6 @@ const RGB = {
         SCALE: 1.055,
         OFFSET: 0.055,
     } as const,
-    inverseNumerator = 1,
     minSrgbValue = 0,
     maxSrgbValue = 1;
 
@@ -80,7 +87,7 @@ export function lchToRgb(lch: ILch): IRgb {
         toSrgb = (x: number): number =>
             x <= SRGB.LINEAR_THRESHOLD
                 ? SRGB.LINEAR_SCALE * x
-                : SRGB.SCALE * Math.pow(x, inverseNumerator / SRGB.GAMMA) - SRGB.OFFSET,
+                : SRGB.SCALE * Math.pow(x, inverseFactorNumerator / SRGB.GAMMA) - SRGB.OFFSET,
         toSrgbFixed: (num: number) => number = num =>
             Math.round(clamp(toSrgb(num), minSrgbValue, maxSrgbValue) * RGB.MAX);
 

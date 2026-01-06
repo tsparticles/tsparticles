@@ -29,7 +29,6 @@ import {
     percentDenominator,
     phaseNumerator,
     randomColorValue,
-    rgbFactor,
     rgbMax,
     sMax,
     sMin,
@@ -277,7 +276,8 @@ export function hslToRgb(hsl: IHsl): IRgb {
 
     if (s === sMin) {
         // If saturation is 0, the color is grayscale
-        const grayscaleValue = Math.round(lNormalized * rgbFactor);
+        const grayscaleValue = Math.round(lNormalized * rgbMax);
+
         return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
     }
 
@@ -315,9 +315,9 @@ export function hslToRgb(hsl: IHsl): IRgb {
                 : lNormalized + sNormalized - lNormalized * sNormalized,
         temp2 = double * lNormalized - temp1,
         phaseThird = phaseNumerator / triple,
-        red = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized + phaseThird)),
-        green = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized)),
-        blue = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized - phaseThird));
+        red = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized + phaseThird)),
+        green = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized)),
+        blue = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized - phaseThird));
 
     return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
@@ -372,9 +372,7 @@ export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): st
  * @returns the CSS style string
  */
 function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
-    const rgbFactor = 255;
-
-    return `color(display-p3 ${(color.r / rgbFactor).toString()} ${(color.g / rgbFactor).toString()} ${(color.b / rgbFactor).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+    return `color(display-p3 ${(color.r / rgbMax).toString()} ${(color.g / rgbMax).toString()} ${(color.b / rgbMax).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -679,9 +677,9 @@ export function updateColor(color: IParticleHslAnimation | undefined, delta: IDe
 
     const { h, s, l } = color,
         ranges = {
-            h: { min: 0, max: 360 },
-            s: { min: 0, max: 100 },
-            l: { min: 0, max: 100 },
+            h: { min: hMin, max: hMax },
+            s: { min: sMin, max: sMax },
+            l: { min: lMin, max: lMax },
         };
 
     updateColorValue(h, ranges.h, false, delta);

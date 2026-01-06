@@ -1,10 +1,4 @@
-import {
-    type Container,
-    type IContainerPlugin,
-    type ICoordinates,
-    errorPrefix,
-    getDistance,
-} from "@tsparticles/engine";
+import { type Container, type IContainerPlugin, type ICoordinates, getDistance } from "@tsparticles/engine";
 import type { CollisionParticle } from "./Types.js";
 
 const minRetries = 0;
@@ -38,7 +32,7 @@ export class OverlapPluginInstance implements IContainerPlugin {
             const retries = overlapOptions.retries;
 
             if (retries >= minRetries && tryCount > retries) {
-                throw new Error(`${errorPrefix} particle is overlapping and can't be placed`);
+                throw new Error(`Particle is overlapping and can't be placed`);
             }
 
             return !!this._container.particles.find(p => getDistance(pos, p.position) < radius + p.getRadius());

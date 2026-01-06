@@ -3,7 +3,6 @@ import {
     clickRadius,
     defaultFps,
     defaultFpsLimit,
-    errorPrefix,
     millisecondsToSeconds,
     minCoordinate,
     minFpsLimit,
@@ -11,7 +10,6 @@ import {
     removeMinIndex,
     touchEndLengthOffset,
 } from "./Utils/Constants.js";
-import { getLogger, safeIntersectionObserver } from "../Utils/Utils.js";
 import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
@@ -28,7 +26,9 @@ import { Options } from "../Options/Classes/Options.js";
 import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
+import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
+import { safeIntersectionObserver } from "../Utils/Utils.js";
 
 type ContainerClickHandler = (evt: Event) => void;
 
@@ -476,7 +476,7 @@ export class Container {
             return res.blob;
         }
 
-        getLogger().error(`${errorPrefix} - Export plugin with type ${type} not found`);
+        getLogger().error(`Export plugin with type ${type} not found`);
 
         return undefined;
     }
@@ -837,7 +837,7 @@ export class Container {
                 this.draw(false);
             }
         } catch (e) {
-            getLogger().error(`${errorPrefix} in animation loop`, e);
+            getLogger().error("error in animation loop", e);
         }
     };
 }

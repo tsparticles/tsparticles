@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer } from "@tsparticles/engine";
 import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
@@ -193,7 +193,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      */
     private readonly loadImageShape = async (imageShape: IImageShape): Promise<void> => {
         if (!this._engine.loadImage) {
-            throw new Error(`${errorPrefix} image shape not initialized`);
+            throw new Error(`Image shape not initialized`);
         }
 
         await this._engine.loadImage({
