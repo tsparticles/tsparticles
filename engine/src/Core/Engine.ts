@@ -40,7 +40,7 @@ import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOpt
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { getRandom } from "../Utils/NumberUtils.js";
+import { getRandom } from "../Utils/MathUtils.js";
 
 declare const __VERSION__: string;
 

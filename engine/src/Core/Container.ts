@@ -1,4 +1,4 @@
-import { animate, cancelAnimation, getRangeValue } from "../Utils/NumberUtils.js";
+import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
 import {
     clickRadius,
     defaultFps,

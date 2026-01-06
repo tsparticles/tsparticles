@@ -1,14 +1,14 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
 import {
     clamp,
-    getRandom,
+    getRandom, getRandomInRange,
     getRangeMax,
     getRangeMin,
     getRangeValue,
     mix,
-    randomInRange,
+    randomInRangeValue,
     setRangeValue,
-} from "./NumberUtils.js";
+} from "./MathUtils.js";
 import {
     decayOffset,
     defaultLoops,
@@ -218,10 +218,13 @@ export function rgbToHsl(color: IRgb): IHsl {
         // Calculate S:
         res.s = res.l < half ? (max - min) / (max + min) : (max - min) / (double - max - min);
         // Calculate H:
-        res.h =
-            r1 === max
-                ? (g1 - b1) / (max - min)
-                : (res.h = g1 === max ? double + (b1 - r1) / (max - min) : double * double + (r1 - g1) / (max - min));
+        if (r1 === max) {
+            res.h = (g1 - b1) / (max - min);
+        } else if (g1 === max) {
+            res.h = double + (b1 - r1) / (max - min);
+        } else {
+            res.h = double * double + (r1 - g1) / (max - min);
+        }
     }
 
     res.l *= lMax;
@@ -345,12 +348,13 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  */
 export function getRandomRgbColor(min?: number): IRgb {
     const fixedMin = min ?? defaultRgbMin,
-        fixedMax = rgbMax + identity;
+        fixedMax = rgbMax + identity,
+        getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
 
     return {
-        b: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
-        g: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
-        r: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
+        b: getRgbInRangeValue(),
+        g: getRgbInRangeValue(),
+        r: getRgbInRangeValue(),
     };
 }
 
@@ -404,7 +408,6 @@ export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): st
  */
 function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
     return getHdrStyleFromRgb(hslToRgb(color), opacity);
-    // return `color(display-p3 from hsl(${color.h.toString()} ${color.s.toString()}% ${color.l.toString()}%) r g b / ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -515,10 +518,10 @@ export function getLinkRandomColor(
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
     return animation !== undefined
         ? {
-              h: animation.h.value,
-              s: animation.s.value,
-              l: animation.l.value,
-          }
+            h: animation.h.value,
+            s: animation.s.value,
+            l: animation.l.value,
+        }
         : undefined;
 }
 
@@ -627,7 +630,7 @@ export function updateColorValue(
         return;
     }
 
-    const offset = data.offset ? randomInRange(data.offset) : minOffset,
+    const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
         velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
         decay = data.decay ?? identity,
         max = getRangeMax(range),

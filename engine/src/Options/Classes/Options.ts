@@ -17,7 +17,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { Theme } from "./Theme/Theme.js";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
-import { setRangeValue } from "../../Utils/NumberUtils.js";
+import { setRangeValue } from "../../Utils/MathUtils.js";
 
 interface DefaultThemes {
     dark?: string;

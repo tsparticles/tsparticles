@@ -1,7 +1,7 @@
 import { defaultRatio, defaultReduceFactor } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
 import type { Particle } from "./Particle.js";
-import { getRangeValue } from "../Utils/NumberUtils.js";
+import { getRangeValue } from "../Utils/MathUtils.js";
 
 /**
  */

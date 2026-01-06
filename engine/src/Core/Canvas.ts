@@ -511,9 +511,11 @@ export class Canvas {
         let handled = false;
 
         for (const plugin of this.container.plugins.values()) {
-            if (!handled && plugin.canvasPaint) {
-                handled = plugin.canvasPaint();
+            if (handled) {
+                break;
             }
+
+            handled = plugin.canvasPaint?.() ?? false;
         }
 
         if (handled) {

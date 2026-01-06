@@ -8,9 +8,9 @@ import {
     getParticleDirectionAngle,
     getRandom,
     getRangeValue,
-    randomInRange,
+    randomInRangeValue,
     setRangeValue,
-} from "../Utils/NumberUtils.js";
+} from "../Utils/MathUtils.js";
 import {
     decayOffset,
     defaultAngle,
@@ -774,7 +774,7 @@ export class Particle {
             };
 
         if (!moveOptions.straight) {
-            res.angle += randomInRange(setRangeValue(range.left, range.right));
+            res.angle += randomInRangeValue(setRangeValue(range.left, range.right));
         }
 
         if (moveOptions.random && typeof moveOptions.speed === "number") {

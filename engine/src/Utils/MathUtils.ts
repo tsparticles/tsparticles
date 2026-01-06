@@ -9,6 +9,9 @@ import type { RangeValue } from "../Types/RangeValue.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 import { isNumber } from "./TypeUtils.js";
 
+const piDeg = 180,
+    degToRadFactor = Math.PI / piDeg;
+
 interface AnimationLoop {
     cancel: (handle: number) => void;
     nextFrame: (callback: FrameRequestCallback) => number;
@@ -40,6 +43,16 @@ export function getRandom(): number {
         max = 1;
 
     return clamp(_random(), min, max - Number.EPSILON);
+}
+
+/**
+ * Returns a random number between the given range using the library random function.
+ * @param min - The minimum value of the range.
+ * @param max - The maximum value of the range.
+ * @returns a random number between the given range
+ */
+export function getRandomInRange(min: number, max: number): number {
+    return getRandom() * (max - min) + min;
 }
 
 /**
@@ -100,16 +113,17 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
  * @param r -
  * @returns the random value in the given range
  */
-export function randomInRange(r: RangeValue): number {
+export function randomInRangeValue(r: RangeValue): number {
     const max = getRangeMax(r),
         minOffset = 0;
+
     let min = getRangeMin(r);
 
     if (max === min) {
         min = minOffset;
     }
 
-    return getRandom() * (max - min) + min;
+    return getRandomInRange(min, max);
 }
 
 /**
@@ -117,7 +131,7 @@ export function randomInRange(r: RangeValue): number {
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
 export function getRangeValue(value: RangeValue): number {
-    return isNumber(value) ? value : randomInRange(value);
+    return isNumber(value) ? value : randomInRangeValue(value);
 }
 
 /**
@@ -187,9 +201,7 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
  * @returns the radians value of the given degrees
  */
 export function degToRad(degrees: number): number {
-    const PIDeg = 180;
-
-    return (degrees * Math.PI) / PIDeg;
+    return degrees * degToRadFactor;
 }
 
 /**

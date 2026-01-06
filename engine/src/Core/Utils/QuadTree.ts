@@ -4,7 +4,7 @@ import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import type { IDimension } from "../Interfaces/IDimension.js";
 import type { Particle } from "../Particle.js";
 import type { Point } from "./Point.js";
-import { getDistance } from "../../Utils/NumberUtils.js";
+import { getDistance } from "../../Utils/MathUtils.js";
 
 /**
  */

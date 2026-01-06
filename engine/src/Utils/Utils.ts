@@ -8,8 +8,8 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
-    randomInRange,
-} from "./NumberUtils.js";
+    randomInRangeValue,
+} from "./MathUtils.js";
 import { half, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { isArray, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
@@ -498,7 +498,7 @@ export function initParticleNumericAnimationValue(
 
             case StartValueType.random:
             default:
-                res.value = randomInRange(res);
+                res.value = randomInRangeValue(res);
 
                 if (autoStatus) {
                     res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;

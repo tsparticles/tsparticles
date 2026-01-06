@@ -12,7 +12,7 @@ import { OutModes } from "./OutModes.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { Spin } from "./Spin.js";
-import { setRangeValue } from "../../../../Utils/NumberUtils.js";
+import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 /**
  * [[include:Options/Particles/Move.md]]
