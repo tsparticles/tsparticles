@@ -13,7 +13,6 @@ import {
     getRangeMax,
     getRangeMin,
     isNumber,
-    isSsr,
     isString,
     setRangeValue,
     tsParticles,
@@ -44,16 +43,14 @@ type FireworksFunc = ((
 };
 
 declare global {
-    interface Window {
-        fireworks: FireworksFunc & {
-            create: (
-                canvas: HTMLCanvasElement,
-                options: RecursivePartial<IFireworkOptions>,
-            ) => Promise<FireworksInstance | undefined>;
-            init: () => Promise<void>;
-            version: string;
-        };
-    }
+    var fireworks: FireworksFunc & {
+        create: (
+            canvas: HTMLCanvasElement,
+            options: RecursivePartial<IFireworkOptions>,
+        ) => Promise<FireworksInstance | undefined>;
+        init: () => Promise<void>;
+        version: string;
+    };
 }
 
 const explodeSoundCheck = (args: CustomEventArgs): boolean => {
@@ -387,6 +384,4 @@ fireworks.init = async (): Promise<void> => {
 
 fireworks.version = __VERSION__;
 
-if (!isSsr()) {
-    window.fireworks = fireworks;
-}
+globalThis.fireworks = fireworks;

@@ -3,31 +3,29 @@
  */
 import { type Container, type Engine } from "@tsparticles/engine";
 import type { IParticlesJS } from "./VincentGarreau/IParticlesJS.js";
-import { Particles } from "./marcbruederlin/Particles.js";
+import { MBParticles } from "./marcbruederlin/Particles.js";
 import { initParticlesJS } from "./VincentGarreau/particles.js";
 
 declare const __VERSION__: string;
 
 declare global {
-    interface Window {
-        /**
-         * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
-         * The particles.js compatibility object
-         */
-        Particles: typeof Particles;
+    /**
+     * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
+     * The particles.js compatibility object
+     */
+    var Particles: typeof MBParticles;
 
-        /**
-         * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
-         * The particles.js compatibility dom array
-         */
-        pJSDom: Container[];
+    /**
+     * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
+     * The particles.js compatibility dom array
+     */
+    var pJSDom: Container[];
 
-        /**
-         * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
-         * The particles.js compatibility instance
-         */
-        particlesJS: IParticlesJS;
-    }
+    /**
+     * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
+     * The particles.js compatibility instance
+     */
+    var particlesJS: IParticlesJS;
 }
 
 /**
@@ -42,7 +40,7 @@ const initPjs = (
      * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
      * The particles.js compatibility object
      */
-    Particles: typeof Particles;
+    Particles: typeof MBParticles;
 
     /**
      * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
@@ -62,13 +60,13 @@ const initPjs = (
     const { particlesJS, pJSDom } = initParticlesJS(engine);
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated
-    window.particlesJS = particlesJS;
+    globalThis.particlesJS = particlesJS;
     // eslint-disable-next-line @typescript-eslint/no-deprecated
-    window.pJSDom = pJSDom;
+    globalThis.pJSDom = pJSDom;
     // eslint-disable-next-line @typescript-eslint/no-deprecated
-    window.Particles = Particles;
+    globalThis.Particles = Particles;
 
-    return { particlesJS, pJSDom, Particles };
+    return { particlesJS, pJSDom, Particles: MBParticles };
 };
 
 export { initPjs };

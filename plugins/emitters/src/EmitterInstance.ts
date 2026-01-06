@@ -24,6 +24,7 @@ import {
     randomInRange,
     rangeColorToHsl,
     sMax,
+    safeDocument,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterSize } from "./Options/Classes/EmitterSize.js";
@@ -133,7 +134,7 @@ export class EmitterInstance {
         this._immortal = this._lifeCount <= minLifeCount;
 
         if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
+            const element = safeDocument().getElementById(this.options.domId);
 
             if (element) {
                 this._mutationObserver = new MutationObserver(() => {
@@ -320,7 +321,7 @@ export class EmitterInstance {
         const container = this.container;
 
         if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
+            const element = safeDocument().getElementById(this.options.domId);
 
             if (element) {
                 const elRect = element.getBoundingClientRect(),
@@ -343,7 +344,7 @@ export class EmitterInstance {
         const container = this.container;
 
         if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
+            const element = safeDocument().getElementById(this.options.domId);
 
             if (element) {
                 const elRect = element.getBoundingClientRect();

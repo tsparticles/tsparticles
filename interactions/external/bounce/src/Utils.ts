@@ -15,6 +15,7 @@ import {
     circleBounceDataFromParticle,
     divModeExecute,
     getRangeValue,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { BounceContainer } from "./Types.js";
 import type { IRectSideResult } from "./IRectSideResult.js";
@@ -99,7 +100,7 @@ function singleSelectorBounce(
     div: DivEvent,
     bounceCb: (position: ICoordinates, radius: number, range: BaseRange) => void,
 ): void {
-    const query = document.querySelectorAll(selector);
+    const query = safeDocument().querySelectorAll(selector);
 
     if (!query.length) {
         return;

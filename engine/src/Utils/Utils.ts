@@ -69,18 +69,17 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
 }
 
 /**
- * Checks if the script is executed server side
- * @returns true if the environment is server side
- */
-export function isSsr(): boolean {
-    return typeof window === "undefined" || typeof window.document === "undefined" || !window.document;
-}
-
-/**
  * @returns true if the environment supports matchMedia feature
  */
 export function hasMatchMedia(): boolean {
-    return !isSsr() && typeof matchMedia !== "undefined";
+    return typeof matchMedia !== "undefined";
+}
+
+/**
+ * @returns the document object
+ */
+export function safeDocument(): Document {
+    return globalThis.document;
 }
 
 /**
@@ -102,7 +101,7 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 export function safeIntersectionObserver(
     callback: (records: IntersectionObserverEntry[]) => void,
 ): IntersectionObserver | undefined {
-    if (isSsr() || typeof IntersectionObserver === "undefined") {
+    if (typeof IntersectionObserver === "undefined") {
         return;
     }
 
@@ -114,7 +113,7 @@ export function safeIntersectionObserver(
  * @returns the mutation observer, if supported
  */
 export function safeMutationObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {
-    if (isSsr() || typeof MutationObserver === "undefined") {
+    if (typeof MutationObserver === "undefined") {
         return;
     }
 
@@ -138,7 +137,7 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
  */
 export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
-        await document.fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
+        await safeDocument().fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
     } catch {
         // ignores any error
     }
@@ -683,7 +682,7 @@ export function updateAnimation(
  * @returns the cloned style
  */
 export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclaration {
-    const clonedStyle: CSSStyleDeclaration = document.createElement("div").style;
+    const clonedStyle: CSSStyleDeclaration = safeDocument().createElement("div").style;
 
     for (const key in style) {
         const styleKey = style[key];
@@ -716,7 +715,7 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
  * @returns the full screen style
  */
 function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
-    const fullScreenStyle = document.createElement("div").style,
+    const fullScreenStyle = safeDocument().createElement("div").style,
         radix = 10,
         style: Record<string, string> = {
             width: "100%",

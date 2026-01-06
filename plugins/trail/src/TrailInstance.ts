@@ -6,6 +6,7 @@ import {
     getStyleFromRgb,
     inverseFactorNumerator,
     rangeColorToRgb,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { TrailContainer } from "./types.js";
 
@@ -91,7 +92,7 @@ export class TrailInstance implements IContainerPlugin {
                     return;
                 }
 
-                const img = document.createElement("img");
+                const img = safeDocument().createElement("img");
 
                 img.addEventListener("load", () => {
                     this._trailFill = {

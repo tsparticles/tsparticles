@@ -1,4 +1,11 @@
-import { type Engine, type IContainerPlugin, getLogger, getStyleFromRgb, rangeColorToRgb } from "@tsparticles/engine";
+import {
+    type Engine,
+    type IContainerPlugin,
+    getLogger,
+    getStyleFromRgb,
+    rangeColorToRgb,
+    safeDocument,
+} from "@tsparticles/engine";
 import type { BackgroundMaskContainer } from "./types.js";
 
 export class BackgroundMaskInstance implements IContainerPlugin {
@@ -84,7 +91,7 @@ export class BackgroundMaskInstance implements IContainerPlugin {
                     return;
                 }
 
-                const img = document.createElement("img");
+                const img = safeDocument().createElement("img");
 
                 img.addEventListener("load", () => {
                     this._coverImage = {

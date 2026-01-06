@@ -326,7 +326,5 @@ declare var SVGPathElement: {
 };
 
 declare global {
-    interface Window {
-        SVGPathSeg: SVGPathSeg;
-    }
+    var SVGPathSeg: SVGPathSeg;
 }

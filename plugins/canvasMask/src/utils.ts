@@ -8,6 +8,7 @@ import {
     getRandom,
     isNumber,
     percentDenominator,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
 import type { TextMask } from "./Options/Classes/TextMask.js";
@@ -183,7 +184,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     const p = new Promise<CanvasPixelData>((resolve, reject) => {
         image.onerror = reject;
         image.onload = (): void => {
-            const canvas = document.createElement("canvas");
+            const canvas = safeDocument().createElement("canvas");
 
             canvas.width = image.width;
             canvas.height = image.height;
@@ -222,7 +223,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
  * @returns the canvas pixel data
  */
 export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
-    const canvas = document.createElement("canvas"),
+    const canvas = safeDocument().createElement("canvas"),
         context = canvas.getContext("2d"),
         { font, text, lines: linesOptions, color } = textOptions;
 

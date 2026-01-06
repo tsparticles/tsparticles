@@ -7,6 +7,7 @@ import {
     isFunction,
     isNull,
     isString,
+    safeDocument,
 } from "@tsparticles/engine";
 import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types.js";
@@ -71,7 +72,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
 
             pixelData = await getImageData(url, offset);
         } else if (element ?? selector) {
-            const canvas = element ?? (selector && document.querySelector<HTMLCanvasElement>(selector));
+            const canvas = element ?? (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
 
             if (!canvas) {
                 return;

@@ -14,6 +14,7 @@ import {
     isString,
     itemFromArray,
     percentDenominator,
+    safeDocument,
 } from "@tsparticles/engine";
 import { calcClosestPointOnSegment, drawPolygonMask, drawPolygonMaskPath, parsePaths, segmentBounce } from "./utils.js";
 import type { ISvgPath } from "./Interfaces/ISvgPath.js";
@@ -243,7 +244,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
 
             if (pathData) {
                 const path2d = new Path2D(pathData),
-                    matrix = document.createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix(),
+                    matrix = safeDocument().createElementNS("http://www.w3.org/2000/svg", "svg").createSVGMatrix(),
                     finalPath = new Path2D(),
                     transform = matrix.scale(this._scale);
 

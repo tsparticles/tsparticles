@@ -3,7 +3,6 @@ import {
     type Engine,
     type ISourceOptions,
     type RecursivePartial,
-    isSsr,
     isString,
     millisecondsToSeconds,
     tsParticles,
@@ -44,27 +43,22 @@ declare global {
     /**
      *
      */
-    interface Window {
+    var confetti: ConfettiFunc & {
         /**
          *
+         * @param canvas -
+         * @param options -
+         * @returns the confetti function
          */
-        confetti: ConfettiFunc & {
-            /**
-             *
-             * @param canvas -
-             * @param options -
-             * @returns the confetti function
-             */
-            create: (canvas: HTMLCanvasElement, options: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
+        create: (canvas: HTMLCanvasElement, options: RecursivePartial<IConfettiOptions>) => Promise<ConfettiFunc>;
 
-            init: () => Promise<void>;
+        init: () => Promise<void>;
 
-            /**
-             * the confetti version number
-             */
-            version: string;
-        };
-    }
+        /**
+         * the confetti version number
+         */
+        version: string;
+    };
 }
 
 let initialized = false;
@@ -494,6 +488,4 @@ confetti.init = async (): Promise<void> => {
  */
 confetti.version = __VERSION__;
 
-if (!isSsr()) {
-    window.confetti = confetti;
-}
+globalThis.confetti = confetti;

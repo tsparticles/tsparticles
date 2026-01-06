@@ -1,5 +1,5 @@
 import type { CanvasPixelData, TextLineData } from "./types.js";
-import { type ICoordinates, type IDimension, type IRgba, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, type IRgba, isNumber, safeDocument } from "@tsparticles/engine";
 import type { TextOptions } from "./Options/Classes/TextOptions.js";
 
 const origin: ICoordinates = {
@@ -81,7 +81,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     const p = new Promise<CanvasPixelData>((resolve, reject) => {
         image.onerror = reject;
         image.onload = (): void => {
-            const canvas = document.createElement("canvas");
+            const canvas = safeDocument().createElement("canvas");
 
             canvas.width = image.width;
             canvas.height = image.height;
@@ -121,7 +121,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
  * @returns the canvas pixel data
  */
 export function getTextData(textOptions: TextOptions, offset: number, fill: boolean): CanvasPixelData | undefined {
-    const canvas = document.createElement("canvas"),
+    const canvas = safeDocument().createElement("canvas"),
         context = canvas.getContext("2d"),
         { font, text, lines: linesOptions, color } = textOptions;
 

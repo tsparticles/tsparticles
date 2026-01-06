@@ -5,7 +5,7 @@ import {
     getImageData,
     getTextData,
 } from "./utils.js";
-import { type IContainerPlugin, isNull } from "@tsparticles/engine";
+import { type IContainerPlugin, isNull, safeDocument } from "@tsparticles/engine";
 import type { CanvasMaskContainer } from "./types.js";
 
 export class CanvasMaskInstance implements IContainerPlugin {
@@ -51,7 +51,8 @@ export class CanvasMaskInstance implements IContainerPlugin {
             pixelData = data;
         } else if (options.element ?? options.selector) {
             const canvas =
-                options.element ?? (options.selector && document.querySelector<HTMLCanvasElement>(options.selector));
+                options.element ??
+                (options.selector && safeDocument().querySelector<HTMLCanvasElement>(options.selector));
 
             if (!canvas) {
                 return;

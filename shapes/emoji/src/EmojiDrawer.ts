@@ -8,6 +8,7 @@ import {
     isInArray,
     itemFromSingleOrMultiple,
     loadFont,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
@@ -135,7 +136,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
             image = canvas.transferToImageBitmap();
         } else {
-            const canvas = document.createElement("canvas");
+            const canvas = safeDocument().createElement("canvas");
 
             canvas.width = canvasSize;
             canvas.height = canvasSize;

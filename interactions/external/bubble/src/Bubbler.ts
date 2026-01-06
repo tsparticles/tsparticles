@@ -24,6 +24,7 @@ import {
     mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
+    safeDocument,
 } from "@tsparticles/engine";
 import { Bubble } from "./Options/Classes/Bubble.js";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv.js";
@@ -423,7 +424,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         div,
     ) => {
         const container = this.container,
-            selectors = document.querySelectorAll(selector),
+            selectors = safeDocument().querySelectorAll(selector),
             bubble = container.actualOptions.interactivity.modes.bubble;
 
         if (!bubble || !selectors.length) {

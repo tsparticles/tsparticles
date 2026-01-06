@@ -2,7 +2,7 @@ import { init } from "./init.js";
 
 const tsParticles = init();
 
-window.tsParticles = tsParticles;
+globalThis.tsParticles = tsParticles;
 
 export * from "./exports.js";
 

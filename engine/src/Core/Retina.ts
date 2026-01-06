@@ -2,7 +2,6 @@ import { defaultRatio, defaultReduceFactor } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
 import type { Particle } from "./Particle.js";
 import { getRangeValue } from "../Utils/NumberUtils.js";
-import { isSsr } from "../Utils/Utils.js";
 
 /**
  */
@@ -24,7 +23,7 @@ export class Retina {
         const container = this.container,
             options = container.actualOptions;
 
-        this.pixelRatio = !options.detectRetina || isSsr() ? defaultRatio : devicePixelRatio;
+        this.pixelRatio = options.detectRetina ? devicePixelRatio : defaultRatio;
         this.reduceFactor = defaultReduceFactor;
 
         const ratio = this.pixelRatio,

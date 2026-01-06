@@ -11,6 +11,7 @@ import {
     itemFromSingleOrMultiple,
     mouseDownEvent,
     percentDenominator,
+    safeDocument,
     touchStartEvent,
 } from "@tsparticles/engine";
 import { ImageDisplay, SoundsEventType } from "./enums.js";
@@ -28,7 +29,7 @@ const zIndexOffset = 1,
  * @returns the image element
  */
 function initImage(data: InitImageData): HTMLImageElement {
-    const img = document.createElement("img"),
+    const img = safeDocument().createElement("img"),
         { clickCb, container, display, iconOptions, margin, options, pos, rightOffsets } = data,
         { width, path, style, svg } = iconOptions,
         defaultAccumulator = 0;
@@ -49,7 +50,7 @@ function initImage(data: InitImageData): HTMLImageElement {
 
     img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
 
-    const parent = container.canvas.element?.parentNode ?? document.body;
+    const parent = container.canvas.element?.parentNode ?? safeDocument().body;
 
     parent.append(img);
 

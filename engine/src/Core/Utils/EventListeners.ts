@@ -15,7 +15,7 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants.js";
-import { executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
+import { executeOnSingleOrMultiple, safeDocument, safeMatchMedia } from "../../Utils/Utils.js";
 import type { Container } from "../Container.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
@@ -30,7 +30,7 @@ import { isBoolean } from "../../Utils/TypeUtils.js";
  * @param options - event listener options object
  */
 function manageListener(
-    element: HTMLElement | Node | Window | MediaQueryList,
+    element: HTMLElement | Node | Window | MediaQueryList | typeof globalThis,
     event: string,
     handler: EventListenerOrEventListenerObject,
     add: boolean,
@@ -210,7 +210,7 @@ export class EventListeners {
             return;
         }
 
-        if (document.hidden) {
+        if (safeDocument().hidden) {
             container.pageHidden = true;
 
             container.pause();
@@ -275,13 +275,13 @@ export class EventListeners {
         manageListener(interactivityEl, touchStartEvent, handlers.touchStart, add);
         manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
 
-        if (!options.interactivity.events.onClick.enable) {
-            /* el on touchend */
-            manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
-        } else {
+        if (options.interactivity.events.onClick.enable) {
             manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
             manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
             manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
+        } else {
+            /* el on touchend */
+            manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
         }
 
         manageListener(interactivityEl, mouseLeaveTmpEvent, handlers.mouseLeave, add);
@@ -339,7 +339,7 @@ export class EventListeners {
         }
 
         if (typeof ResizeObserver === "undefined") {
-            manageListener(window, resizeEvent, handlers.resize, add);
+            manageListener(globalThis, resizeEvent, handlers.resize, add);
 
             return;
         }

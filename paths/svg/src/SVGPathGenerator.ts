@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
 import {
     type Container,
     type ICoordinates,
@@ -14,6 +13,7 @@ import {
     getRandom,
     half,
     randomInRange,
+    safeDocument,
 } from "@tsparticles/engine";
 
 enum SVGPathDirection {
@@ -204,7 +204,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
             this._paths = [];
 
             for (const item of path.data) {
-                const element = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                const element = safeDocument().createElementNS("http://www.w3.org/2000/svg", "path");
 
                 element.setAttribute("d", item);
 

@@ -1,5 +1,5 @@
 /**
- * Engine class for creating the singleton on window.
+ * Engine class for creating the singleton on globalThis.
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
@@ -15,7 +15,7 @@ import {
     one,
     removeDeleteCount,
 } from "./Utils/Constants.js";
-import { executeOnSingleOrMultiple, itemFromSingleOrMultiple } from "../Utils/Utils.js";
+import { executeOnSingleOrMultiple, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
 import { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -45,9 +45,7 @@ import { getRandom } from "../Utils/NumberUtils.js";
 declare const __VERSION__: string;
 
 declare global {
-    interface Window {
-        tsParticles: Engine;
-    }
+    var tsParticles: Engine;
 }
 
 interface DataFromUrlParams {
@@ -142,7 +140,7 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
                 canvasEl.dataset[generatedAttribute] = generatedFalse;
             } else {
                 /* create canvas element */
-                canvasEl = document.createElement(canvasTag);
+                canvasEl = safeDocument().createElement(canvasTag);
 
                 canvasEl.dataset[generatedAttribute] = generatedTrue;
 
@@ -164,24 +162,24 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
         return canvasEl;
     },
     getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
-        let domContainer = source ?? document.getElementById(id);
+        let domContainer = source ?? safeDocument().getElementById(id);
 
         if (domContainer) {
             return domContainer;
         }
 
-        domContainer = document.createElement("div");
+        domContainer = safeDocument().createElement("div");
 
         domContainer.id = id;
         domContainer.dataset[generatedAttribute] = generatedTrue;
 
-        document.body.append(domContainer);
+        safeDocument().body.append(domContainer);
 
         return domContainer;
     };
 
 /**
- * Engine class for creating the singleton on window.
+ * Engine class for creating the singleton on globalThis.
  * It's a singleton class for initializing {@link Container} instances,
  * and for Plugins class responsible for every external feature
  */

@@ -20,6 +20,7 @@ import {
     isInArray,
     millisecondsToSeconds,
     mouseMoveEvent,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types.js";
 import { Repulse } from "./Options/Classes/Repulse.js";
@@ -275,7 +276,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        const query = document.querySelectorAll(selector);
+        const query = safeDocument().querySelectorAll(selector);
 
         if (!query.length) {
             return;
@@ -577,7 +578,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        const query = document.querySelectorAll(selector);
+        const query = safeDocument().querySelectorAll(selector);
 
         if (!query.length) {
             return;
