@@ -147,10 +147,10 @@
             sidebar.setAttribute("hidden", "");
         }
 
-        tsParticles.domItem(0).refresh();
+        tsParticles.item(0).refresh();
     };
 
-    window.addEventListener("load", async () => {
+    document.addEventListener("DOMContentLoaded", async () => {
         await initParticles(tsParticles);
 
         for (const presetId in tsParticles.configs) {

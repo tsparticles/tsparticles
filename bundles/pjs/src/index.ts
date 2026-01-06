@@ -64,7 +64,7 @@ const initPjs = (
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     globalThis.pJSDom = pJSDom;
     // eslint-disable-next-line @typescript-eslint/no-deprecated
-    globalThis.Particles = Particles;
+    globalThis.Particles = MBParticles;
 
     return { particlesJS, pJSDom, Particles: MBParticles };
 };
