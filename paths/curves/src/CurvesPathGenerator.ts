@@ -68,7 +68,7 @@ export class CurvesPathGenerator implements IMovePathGenerator {
             options.rndFunc = sourceOptions["rndFunc"] as () => number;
         } else if (isString(sourceOptions["rndFunc"])) {
             options.rndFunc =
-                ((window as unknown as Record<string, unknown>)[sourceOptions["rndFunc"]] as
+                ((globalThis as Record<string, unknown>)[sourceOptions["rndFunc"]] as
                     | (() => number)
                     | null
                     | undefined) ?? this.options.rndFunc;

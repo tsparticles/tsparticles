@@ -76,7 +76,7 @@ export class SoundsEvent implements ISoundsEvent, IOptionLoader<ISoundsEvent> {
 
         if (data.filter) {
             if (isString(data.filter)) {
-                const filterFunc = (window as unknown as Record<string, unknown>)[data.filter];
+                const filterFunc = (globalThis as Record<string, unknown>)[data.filter];
 
                 if (isFunction(filterFunc)) {
                     this.filter = filterFunc as FilterFunction;
