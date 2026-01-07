@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { Grad } from "./Grad.js";
 
@@ -321,10 +322,10 @@ export class PerlinNoise {
         Y &= 255;
 
         // Calculate noise contributions from each of the four corners
-        const n00 = _gradP[X + _perm[Y]].dot2(x, y),
-            n01 = _gradP[X + _perm[Y + 1]].dot2(x, y - 1),
-            n10 = _gradP[X + 1 + _perm[Y]].dot2(x - 1, y),
-            n11 = _gradP[X + 1 + _perm[Y + 1]].dot2(x - 1, y - 1),
+        const n00 = _gradP[X + _perm[Y]!]!.dot2(x, y),
+            n01 = _gradP[X + _perm[Y + 1]!]!.dot2(x, y - 1),
+            n10 = _gradP[X + 1 + _perm[Y]!]!.dot2(x - 1, y),
+            n11 = _gradP[X + 1 + _perm[Y + 1]!]!.dot2(x - 1, y - 1),
             // Compute the fade curve value for x
             u = this._fade(x);
 
@@ -351,14 +352,14 @@ export class PerlinNoise {
         Z = Z & 255;
 
         // Calculate noise contributions from each of the eight corners
-        const n000 = gradP[X + perm[Y + perm[Z]]].dot3(x, y, z),
-            n001 = gradP[X + perm[Y + perm[Z + 1]]].dot3(x, y, z - 1),
-            n010 = gradP[X + perm[Y + 1 + perm[Z]]].dot3(x, y - 1, z),
-            n011 = gradP[X + perm[Y + 1 + perm[Z + 1]]].dot3(x, y - 1, z - 1),
-            n100 = gradP[X + 1 + perm[Y + perm[Z]]].dot3(x - 1, y, z),
-            n101 = gradP[X + 1 + perm[Y + perm[Z + 1]]].dot3(x - 1, y, z - 1),
-            n110 = gradP[X + 1 + perm[Y + 1 + perm[Z]]].dot3(x - 1, y - 1, z),
-            n111 = gradP[X + 1 + perm[Y + 1 + perm[Z + 1]]].dot3(x - 1, y - 1, z - 1),
+        const n000 = gradP[X + perm[Y + perm[Z]!]!]!.dot3(x, y, z),
+            n001 = gradP[X + perm[Y + perm[Z + 1]!]!]!.dot3(x, y, z - 1),
+            n010 = gradP[X + perm[Y + 1 + perm[Z]!]!]!.dot3(x, y - 1, z),
+            n011 = gradP[X + perm[Y + 1 + perm[Z + 1]!]!]!.dot3(x, y - 1, z - 1),
+            n100 = gradP[X + 1 + perm[Y + perm[Z]!]!]!.dot3(x - 1, y, z),
+            n101 = gradP[X + 1 + perm[Y + perm[Z + 1]!]!]!.dot3(x - 1, y, z - 1),
+            n110 = gradP[X + 1 + perm[Y + 1 + perm[Z]!]!]!.dot3(x - 1, y - 1, z),
+            n111 = gradP[X + 1 + perm[Y + 1 + perm[Z + 1]!]!]!.dot3(x - 1, y - 1, z - 1),
             // Compute the fade curve value for x, y, z
             u = this._fade(x),
             v = this._fade(y),
@@ -399,7 +400,7 @@ export class PerlinNoise {
             t = this._fade(w),
             // Helper to get gradient index
             gi = (i: number, j: number, k: number, l: number): Grad =>
-                gradP[X + i + perm[Y + j + perm[Z + k + perm[W + l]]]],
+                gradP[X + i + perm[Y + j + perm[Z + k + perm[W + l]!]!]!]!,
             // Contributions from 16 corners of 4D hypercube
             n0000 = gi(0, 0, 0, 0).dot4(x, y, z, w),
             n0001 = gi(0, 0, 0, 1).dot4(x, y, z, w - 1),
@@ -455,11 +456,11 @@ export class PerlinNoise {
         const grad4Length = grad4.length;
 
         for (let i = 0; i < 256; i++) {
-            const v = i & 1 ? p[i] ^ (seed & 255) : p[i] ^ ((seed >> 8) & 255);
+            const v = i & 1 ? p[i]! ^ (seed & 255) : p[i]! ^ ((seed >> 8) & 255);
 
             perm[i] = perm[i + 256] = v;
 
-            gradP[i] = gradP[i + 256] = grad4[v % grad4Length];
+            gradP[i] = gradP[i + 256] = grad4[v % grad4Length]!;
         }
     }
 

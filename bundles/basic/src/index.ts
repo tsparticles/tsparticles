@@ -1,13 +1,4 @@
 import { type Engine } from "@tsparticles/engine";
-import { loadBaseMover } from "@tsparticles/move-base";
-import { loadCircleShape } from "@tsparticles/shape-circle";
-import { loadColorUpdater } from "@tsparticles/updater-color";
-import { loadHexColorPlugin } from "@tsparticles/plugin-hex-color";
-import { loadHslColorPlugin } from "@tsparticles/plugin-hsl-color";
-import { loadOpacityUpdater } from "@tsparticles/updater-opacity";
-import { loadOutModesUpdater } from "@tsparticles/updater-out-modes";
-import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
-import { loadSizeUpdater } from "@tsparticles/updater-size";
 
 declare const __VERSION__: string;
 
@@ -18,23 +9,32 @@ declare const __VERSION__: string;
  * If this function is not called, the \@tsparticles/basic package/dependency can be safely removed.
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
- * @param refresh -
  */
-export async function loadBasic(engine: Engine, refresh = true): Promise<void> {
+export function loadBasic(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await loadHexColorPlugin(engine, false);
-    await loadHslColorPlugin(engine, false);
-    await loadRgbColorPlugin(engine, false);
+    engine.register(async e => {
+        const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color"),
+            { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color"),
+            { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color"),
+            { loadBaseMover } = await import("@tsparticles/move-base"),
+            { loadCircleShape } = await import("@tsparticles/shape-circle"),
+            { loadColorUpdater } = await import("@tsparticles/updater-color"),
+            { loadOpacityUpdater } = await import("@tsparticles/updater-opacity"),
+            { loadOutModesUpdater } = await import("@tsparticles/updater-out-modes"),
+            { loadSizeUpdater } = await import("@tsparticles/updater-size");
 
-    await loadBaseMover(engine, false);
+        loadHexColorPlugin(e);
+        loadHslColorPlugin(e);
+        loadRgbColorPlugin(e);
 
-    await loadCircleShape(engine, false);
+        loadBaseMover(e);
 
-    await loadColorUpdater(engine, false);
-    await loadOpacityUpdater(engine, false);
-    await loadOutModesUpdater(engine, false);
-    await loadSizeUpdater(engine, false);
+        loadCircleShape(e);
 
-    await engine.refresh(refresh);
+        loadColorUpdater(e);
+        loadOpacityUpdater(e);
+        loadOutModesUpdater(e);
+        loadSizeUpdater(e);
+    });
 }

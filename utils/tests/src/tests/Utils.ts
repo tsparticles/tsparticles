@@ -14,7 +14,7 @@ import {
     isPointInside,
     itemFromArray,
     mix,
-    randomInRange,
+    randomInRangeValue,
     setRangeValue,
     tsParticles,
 } from "@tsparticles/engine";
@@ -122,7 +122,9 @@ describe("Utils", () => {
             const weight1 = Math.floor(getRandom() * (size - 1) + 1);
             const weight2 = 0;
 
-            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1}`).to.be.equal(Math.floor(comp1));
+            expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1.toString()}`).to.be.equal(
+                Math.floor(comp1),
+            );
         });
 
         it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
@@ -206,7 +208,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in positive reals", () => {
             const min = 1;
             const max = 10;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -214,7 +216,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in negative reals", () => {
             const min = -10;
             const max = -1;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -222,7 +224,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
             const min = -10;
             const max = 10;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -230,7 +232,7 @@ describe("Utils", () => {
         it("should set min as 0 when max equals to min", () => {
             const min = 10;
             const max = 10;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(0, max);
         });

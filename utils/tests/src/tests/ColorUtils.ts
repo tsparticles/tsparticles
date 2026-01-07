@@ -21,10 +21,14 @@ import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
 
 describe("ColorUtils", async () => {
-    await loadHexColorPlugin(tsParticles);
-    await loadHslColorPlugin(tsParticles);
-    await loadHsvColorPlugin(tsParticles);
-    await loadRgbColorPlugin(tsParticles);
+    tsParticles.register(engine => {
+        loadHexColorPlugin(engine);
+        loadHslColorPlugin(engine);
+        loadHsvColorPlugin(engine);
+        loadRgbColorPlugin(engine);
+    });
+
+    await tsParticles.init();
 
     const red: IRgb = {
         b: 0,
@@ -327,7 +331,7 @@ describe("ColorUtils", async () => {
 
     describe("getStyleFromColor", () => {
         it("IRgb to rgba string", () => {
-            expect(getStyleFromRgb(red)).to.equal("rgba(255, 0, 0, 1)");
+            expect(getStyleFromRgb(red, false)).to.equal("rgba(255, 0, 0, 1)");
         });
 
         it("IHsl to hsla string", () => {
@@ -337,7 +341,7 @@ describe("ColorUtils", async () => {
                 s: 100,
             };
 
-            expect(getStyleFromHsl(color)).to.equal("hsla(0, 100%, 50%, 1)");
+            expect(getStyleFromHsl(color, false)).to.equal("hsla(0, 100%, 50%, 1)");
         });
 
         // it("IHsv to hsla string", () => {

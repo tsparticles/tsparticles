@@ -32,7 +32,7 @@ export class LinkInstance implements IContainerPlugin {
         };
     }
 
-    drawParticle(context: CanvasRenderingContext2D, particle: LinkParticle): void {
+    drawParticle(_context: CanvasRenderingContext2D, particle: LinkParticle): void {
         const { links, options } = particle;
 
         if (!links?.length) {
@@ -89,7 +89,6 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         const container = this._container,
-            options = container.actualOptions,
             p2 = link.destination,
             pos1 = p1.getPosition(),
             pos2 = p2.getPosition();
@@ -107,7 +106,7 @@ export class LinkInstance implements IContainerPlugin {
              *  mid: in consent mode: sample particles color and get a mid level color
              *                        from those two for the connecting line color
              */
-            const twinkle = (p1.options.twinkle as ITwinkle)?.lines;
+            const twinkle = (p1.options["twinkle"] as ITwinkle | undefined)?.lines;
 
             if (twinkle?.enable) {
                 const twinkleFreq = twinkle.frequency,
@@ -134,8 +133,7 @@ export class LinkInstance implements IContainerPlugin {
             }
 
             const width = p1.retina.linksWidth ?? minWidth,
-                maxDistance = p1.retina.linksDistance ?? minDistance,
-                { backgroundMask } = options;
+                maxDistance = p1.retina.linksDistance ?? minDistance;
 
             drawLinkLine({
                 context: ctx,
@@ -146,9 +144,9 @@ export class LinkInstance implements IContainerPlugin {
                 maxDistance,
                 canvasSize: container.canvas.size,
                 links: p1LinksOptions,
-                backgroundMask: backgroundMask,
                 colorLine,
                 opacity,
+                hdr: container.hdr,
             });
         });
     };
@@ -167,7 +165,6 @@ export class LinkInstance implements IContainerPlugin {
         }
 
         const container = this._container,
-            options = container.actualOptions,
             p2 = link1.destination,
             p3 = link2.destination,
             opacityTriangle = triangleOptions.opacity ?? (link1.opacity + link2.opacity) * half;
@@ -210,9 +207,9 @@ export class LinkInstance implements IContainerPlugin {
                 pos1,
                 pos2,
                 pos3,
-                backgroundMask: options.backgroundMask,
                 colorTriangle,
                 opacityTriangle,
+                hdr: container.hdr,
             });
         });
     };

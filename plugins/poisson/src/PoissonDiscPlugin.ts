@@ -1,4 +1,4 @@
-import { type Container, type Engine, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
+import { type Container, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
 import type { IPoissonOptions, PoissonOptions } from "./types.js";
 import { Poisson } from "./Options/Classes/Poisson.js";
 import { PoissonInstance } from "./PoissonInstance.js";
@@ -8,16 +8,12 @@ import { PoissonInstance } from "./PoissonInstance.js";
 export class PoissonDiscPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
-
-    constructor(engine: Engine) {
+    constructor() {
         this.id = "poisson";
-
-        this._engine = engine;
     }
 
     getPlugin(container: Container): Promise<PoissonInstance> {
-        return Promise.resolve(new PoissonInstance(container, this._engine));
+        return Promise.resolve(new PoissonInstance(container));
     }
 
     loadOptions(options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {

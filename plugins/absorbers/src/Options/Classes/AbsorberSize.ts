@@ -13,7 +13,7 @@ export class AbsorberSize extends ValueWithRandom implements IAbsorberSize, IOpt
         this.limit = new AbsorberSizeLimit();
     }
 
-    load(data?: RecursivePartial<IAbsorberSize>): void {
+    override load(data?: RecursivePartial<IAbsorberSize>): void {
         if (isNull(data)) {
             return;
         }

@@ -20,18 +20,18 @@ export class CircleDrawer implements IShapeDrawer<CircleParticle> {
         return sides;
     }
 
-    particleInit(container: Container, particle: CircleParticle): void {
+    particleInit(_container: Container, particle: CircleParticle): void {
         const shapeData = particle.shapeData as ICircleShapeData | undefined,
             angle = shapeData?.angle ?? {
                 max: maxAngle,
                 min: minAngle,
             };
 
-        particle.circleRange = !isObject(angle)
-            ? {
+        particle.circleRange = isObject(angle)
+            ? { min: degToRad(angle.min), max: degToRad(angle.max) }
+            : {
                   min: minAngle,
                   max: degToRad(angle),
-              }
-            : { min: degToRad(angle.min), max: degToRad(angle.max) };
+              };
     }
 }

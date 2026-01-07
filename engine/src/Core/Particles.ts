@@ -3,7 +3,6 @@ import {
     defaultDensityFactor,
     defaultRemoveQuantity,
     deleteCount,
-    errorPrefix,
     lengthOffset,
     minCount,
     minIndex,
@@ -13,7 +12,6 @@ import {
     sizeFactor,
     squareExp,
 } from "./Utils/Constants.js";
-import { getLogger, getPosition } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
@@ -28,10 +26,14 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import { InteractionManager } from "./Utils/InteractionManager.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
+import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import { Point } from "./Utils/Point.js";
 import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import { getLogger } from "../Utils/LogUtils.js";
+import { getPosition } from "../Utils/Utils.js";
+import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
     const { height, width } = canvasSize;
@@ -158,28 +160,9 @@ export class Particles {
         this.updaters = [];
     }
 
-    draw(delta: IDelta): void {
-        const container = this._container,
-            canvas = container.canvas;
-
-        /* clear canvas */
-        canvas.clear();
-
-        /* update each particle before drawing */
-        this.update(delta);
-
-        /* draw polygon shape in debug mode */
-        for (const plugin of container.plugins.values()) {
-            canvas.drawPlugin(plugin, delta);
-        }
-
-        /* container.canvas.draw((ctx) => {
-            this.quadTree.draw(ctx);
-        }); */
-
-        /* draw each particle */
-        for (const p of this._zArray) {
-            p.draw(delta);
+    drawParticles(delta: IDelta): void {
+        for (const particle of this._zArray) {
+            particle.draw(delta);
         }
     }
 
@@ -228,9 +211,13 @@ export class Particles {
             for (const group in groups) {
                 const groupOptions = groups[group];
 
+                if (!groupOptions) {
+                    continue;
+                }
+
                 for (
                     let i = this.count, j = 0;
-                    j < groupOptions.number?.value && i < particlesOptions.number.value;
+                    j < groupOptions.number.value && i < particlesOptions.number.value;
                     i++, j++
                 ) {
                     this.addParticle(undefined, groupOptions, group);
@@ -269,7 +256,7 @@ export class Particles {
         this.clear();
         await this.init();
 
-        this.draw({ value: 0, factor: 0 });
+        this._container.canvas.drawParticles({ value: 0, factor: 0 });
     }
 
     remove(particle: Particle, group?: string, override?: boolean): void {
@@ -301,7 +288,15 @@ export class Particles {
             manualCount = options.manualParticles.length;
 
         for (const group in groups) {
-            this._applyDensity(groups[group], manualCount, group);
+            const groupData = groups[group];
+
+            if (!groupData) {
+                continue;
+            }
+
+            const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
+
+            this._applyDensity(groupDataOptions, manualCount, group);
         }
 
         this._applyDensity(options.particles, manualCount);
@@ -405,7 +400,13 @@ export class Particles {
 
             zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-            this._lastZIndex = zArray[zArray.length - lengthOffset].position.z;
+            const lastItem = zArray[zArray.length - lengthOffset];
+
+            if (!lastItem) {
+                return;
+            }
+
+            this._lastZIndex = lastItem.position.z;
             this._needsSort = false;
         }
     }
@@ -415,18 +416,18 @@ export class Particles {
     };
 
     private readonly _applyDensity = (
-        options: IParticlesOptions,
+        options: ParticlesOptions,
         manualCount: number,
         group?: string,
-        groupOptions?: IParticlesOptions,
+        groupOptions?: ParticlesOptions,
     ): void => {
         const numberOptions = options.number;
 
-        if (!options.number.density?.enable) {
+        if (!numberOptions.density.enable) {
             if (group === undefined) {
                 this._limit = numberOptions.limit.value;
-            } else if (groupOptions?.number.limit?.value ?? numberOptions.limit.value) {
-                this._groupLimits.set(group, groupOptions?.number.limit?.value ?? numberOptions.limit.value);
+            } else if (groupOptions?.number.limit.value ?? numberOptions.limit.value) {
+                this._groupLimits.set(group, groupOptions?.number.limit.value ?? numberOptions.limit.value);
             }
 
             return;
@@ -471,11 +472,7 @@ export class Particles {
         initializer?: (particle: Particle) => boolean,
     ): Particle | undefined => {
         try {
-            let particle = this._pool.pop();
-
-            if (!particle) {
-                particle = new Particle(this._engine, this._container);
-            }
+            const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
 
             particle.init(this._nextId, position, overrideOptions, group);
 
@@ -503,14 +500,20 @@ export class Particles {
 
             return particle;
         } catch (e: unknown) {
-            getLogger().warning(`${errorPrefix} adding particle: ${e as string}`);
+            getLogger().warning(`error adding particle: ${e as string}`);
         }
+
+        return undefined;
     };
 
     private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {
         const particle = this._array[index];
 
-        if (!particle || particle.group !== group) {
+        if (!particle) {
+            return false;
+        }
+
+        if (particle.group !== group) {
             return false;
         }
 

@@ -20,6 +20,7 @@ import {
     isInArray,
     millisecondsToSeconds,
     mouseMoveEvent,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { IRepulseMode, RepulseContainer, RepulseMode } from "./Types.js";
 import { Repulse } from "./Options/Classes/Repulse.js";
@@ -48,9 +49,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
         this._engine = engine;
 
-        if (!container.repulse) {
-            container.repulse = { particles: [] };
-        }
+        container.repulse ??= { particles: [] };
 
         this.handleClickMode = (mode): void => {
             const options = this.container.actualOptions,
@@ -60,9 +59,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
                 return;
             }
 
-            if (!container.repulse) {
-                container.repulse = { particles: [] };
-            }
+            container.repulse ??= { particles: [] };
 
             const repulse = container.repulse;
 
@@ -123,7 +120,9 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         } else if (clickEnabled && isInArray(repulseMode, clickMode)) {
             this._clickRepulse();
         } else {
-            divModeExecute(repulseMode, divs, (selector, div): void => this._singleSelectorRepulse(selector, div));
+            divModeExecute(repulseMode, divs, (selector, div): void => {
+                this._singleSelectorRepulse(selector, div);
+            });
         }
     }
 
@@ -151,9 +150,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         options: Modes & RepulseMode,
         ...sources: RecursivePartial<(IModes & IRepulseMode) | undefined>[]
     ): void {
-        if (!options.repulse) {
-            options.repulse = new Repulse();
-        }
+        options.repulse ??= new Repulse();
 
         for (const source of sources) {
             options.repulse.load(source?.repulse);
@@ -175,10 +172,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         const repulse = container.repulse ?? { particles: [] };
 
         if (!repulse.finish) {
-            if (!repulse.count) {
-                repulse.count = 0;
-            }
-
+            repulse.count ??= 0;
             repulse.count++;
 
             if (repulse.count === container.particles.count) {
@@ -282,7 +276,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        const query = document.querySelectorAll(selector);
+        const query = safeDocument().querySelectorAll(selector);
 
         if (!query.length) {
             return;
@@ -584,7 +578,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             return;
         }
 
-        const query = document.querySelectorAll(selector);
+        const query = safeDocument().querySelectorAll(selector);
 
         if (!query.length) {
             return;

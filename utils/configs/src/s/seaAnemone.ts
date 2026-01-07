@@ -22,11 +22,6 @@ const options: ISourceOptions = {
                 generator: "curvesPathGenerator",
             },
             speed: 1,
-            trail: {
-                fill: { color: "#000" },
-                length: 30,
-                enable: true,
-            },
         },
         number: {
             density: {
@@ -78,6 +73,11 @@ const options: ISourceOptions = {
             x: 50,
             y: 50,
         },
+    },
+    trail: {
+        fill: { color: "#000" },
+        length: 30,
+        enable: true,
     },
 };
 

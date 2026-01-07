@@ -17,5 +17,10 @@ packages:
   - updaters/*
   - utils/*
   - websites/*
+
 onlyBuiltDependencies:
+  - '@parcel/watcher'
   - canvas
+  - electron
+  - esbuild
+  - nx

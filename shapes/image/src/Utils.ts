@@ -1,4 +1,4 @@
-import { type IHsl, type Particle, errorPrefix, getLogger, getStyleFromHsl } from "@tsparticles/engine";
+import { type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticles/engine";
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
@@ -61,16 +61,17 @@ const currentColorRegex =
  * @param imageShape - the image used for replacing SVG data
  * @param color - the replace color value
  * @param opacity - the color opacity
+ * @param hdr -
  * @returns the new SVG data
  */
-function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number): string {
+function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number, hdr = false): string {
     const { svgData } = imageShape;
 
     if (!svgData) {
         return "";
     }
 
-    const colorStyle = getStyleFromHsl(color, opacity);
+    const colorStyle = getStyleFromHsl(color, hdr, opacity);
 
     /* set color to svg element */
     if (svgData.includes("fill")) {
@@ -105,7 +106,7 @@ export async function loadImage(image: IImage): Promise<void> {
             image.error = true;
             image.loading = false;
 
-            getLogger().error(`${errorPrefix} loading image: ${image.source}`);
+            getLogger().error(`Error loading image: ${image.source}`);
 
             resolve();
         });
@@ -130,7 +131,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
     const response = await fetch(image.source);
 
     if (!response.ok) {
-        getLogger().error(`${errorPrefix} Image not found`);
+        getLogger().error("Image not found");
 
         image.error = true;
     } else {
@@ -146,6 +147,7 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
  * @param imageData - the image shape data
  * @param color - the replacement color
  * @param particle - the particle where the replaced data is going to be used
+ * @param hdr -
  * @returns the image with the color replaced
  */
 export function replaceImageColor(
@@ -153,8 +155,9 @@ export function replaceImageColor(
     imageData: IImageShape,
     color: IHsl,
     particle: Particle,
+    hdr = false,
 ): Promise<IParticleImage> {
-    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity),
+    const svgColoredData = replaceColorSvg(image, color, particle.opacity?.value ?? defaultOpacity, hdr),
         imageRes: IParticleImage = {
             color,
             gif: imageData.gif,
@@ -169,9 +172,8 @@ export function replaceImageColor(
         };
 
     return new Promise<IParticleImage>(resolve => {
-        const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg
-            domUrl = URL || window.URL || window.webkitURL || window,
-            url = domUrl.createObjectURL(svg),
+        const svg = new Blob([svgColoredData], { type: "image/svg+xml" }), // prepare to create img with colored svg,
+            url = URL.createObjectURL(svg),
             img = new Image();
 
         img.addEventListener("load", () => {
@@ -180,11 +182,11 @@ export function replaceImageColor(
 
             resolve(imageRes);
 
-            domUrl.revokeObjectURL(url);
+            URL.revokeObjectURL(url);
         });
 
         const errorHandler = async (): Promise<void> => {
-            domUrl.revokeObjectURL(url);
+            URL.revokeObjectURL(url);
 
             const img2 = {
                 ...image,

@@ -67,7 +67,7 @@ export class Infecter {
         if (infection.stage !== undefined && infection.time !== undefined) {
             const infectionStage = stages[infection.stage];
 
-            if (infectionStage.duration !== undefined && infectionStage.duration >= minDuration) {
+            if (infectionStage?.duration !== undefined && infectionStage.duration >= minDuration) {
                 if (infection.time > infectionStage.duration * millisecondsToSeconds) {
                     this._nextInfectionStage(particle);
                 } else {

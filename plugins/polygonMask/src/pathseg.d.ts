@@ -1,3 +1,4 @@
+/* eslint-disable */
 export interface SVGElementInstance extends EventTarget {
     readonly correspondingElement: SVGElement;
     readonly correspondingUseElement: SVGUseElement;
@@ -325,7 +326,5 @@ declare var SVGPathElement: {
 };
 
 declare global {
-    interface Window {
-        SVGPathSeg: SVGPathSeg;
-    }
+    var SVGPathSeg: SVGPathSeg;
 }

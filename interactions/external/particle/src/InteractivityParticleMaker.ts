@@ -8,6 +8,7 @@ import {
     type RecursivePartial,
     deepExtend,
     isInArray,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { IParticleMode, InteractivityParticleContainer, ParticleMode } from "./Types.js";
 import { InteractivityParticle } from "./Options/Classes/InteractivityParticle.js";
@@ -82,7 +83,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
                     if (element) {
                         if (element instanceof Window) {
-                            document.body.style.cursor = "";
+                            safeDocument().body.style.cursor = "";
                         } else {
                             element.style.cursor = "";
                         }
@@ -117,7 +118,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
                 if (element) {
                     if (element instanceof Window) {
-                        document.body.style.cursor = "none";
+                        safeDocument().body.style.cursor = "none";
                     } else {
                         element.style.cursor = "none";
                     }
@@ -149,9 +150,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         options: Modes & ParticleMode,
         ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
     ): void {
-        if (!options.particle) {
-            options.particle = new InteractivityParticle();
-        }
+        options.particle ??= new InteractivityParticle();
 
         for (const source of sources) {
             options.particle.load(source?.particle);

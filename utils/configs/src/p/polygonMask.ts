@@ -117,7 +117,7 @@ const options: ISourceOptions = {
         },
         scale: 0.5,
         type: "inline",
-        url: "https://particles.js.org/images/smalldeer.svg",
+        url: "https://particles.js.org/images/hdr/smalldeer.svg",
     },
     background: {
         color: "#000000",

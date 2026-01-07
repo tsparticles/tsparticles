@@ -5,7 +5,7 @@ const options: ISourceOptions = {
     name: "Trails Image",
     background: {
         color: "#ffffff",
-        image: "url('https://particles.js.org/images/background3.jpg')",
+        image: "url('https://particles.js.org/images/hdr/background3.jpg')",
         position: "50% 50%",
         repeat: "no-repeat",
         size: "cover",
@@ -40,7 +40,7 @@ const options: ISourceOptions = {
             value: 1,
         },
         size: {
-            value: 1,
+            value: 10,
         },
         links: {
             enable: false,
@@ -51,7 +51,7 @@ const options: ISourceOptions = {
         },
         move: {
             enable: true,
-            speed: 1,
+            speed: 2,
             direction: "none",
             random: false,
             straight: false,
@@ -64,16 +64,11 @@ const options: ISourceOptions = {
                     value: 0.1,
                 },
                 options: {
-                    size: 5,
+                    size: 64,
                     draw: false,
                     increment: 0.001,
                 },
                 generator: "perlinNoise",
-            },
-            trail: {
-                enable: true,
-                fill: { image: "https://particles.js.org/images/background3.jpg" },
-                length: 20,
             },
         },
     },
@@ -111,6 +106,11 @@ const options: ISourceOptions = {
                 quantity: 2,
             },
         },
+    },
+    trail: {
+        enable: true,
+        fill: { image: "https://particles.js.org/images/hdr/background3.jpg" },
+        length: 20,
     },
 };
 

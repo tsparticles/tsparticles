@@ -19,13 +19,6 @@ const options: ISourceOptions = {
                 },
                 generator: "zigZagPathGenerator",
             },
-            trail: {
-                enable: true,
-                length: 20,
-                fill: {
-                    color: "#000000",
-                },
-            },
         },
         number: {
             value: 80,
@@ -42,6 +35,13 @@ const options: ISourceOptions = {
     },
     background: {
         color: "#000000",
+    },
+    trail: {
+        enable: true,
+        length: 20,
+        fill: {
+            color: "#000000",
+        },
     },
 };
 

@@ -11,6 +11,7 @@ const defaultWidth = 0;
  * @param end - The second position of the line.
  * @param colorLine - The color of the line.
  * @param opacity - The opacity of the line.
+ * @param hdr - Whether the line should be drawn in HDR mode or not.
  */
 export function drawGrabLine(
     context: CanvasRenderingContext2D,
@@ -19,10 +20,11 @@ export function drawGrabLine(
     end: ICoordinates,
     colorLine: IRgb,
     opacity: number,
+    hdr = false,
 ): void {
     drawLine(context, begin, end);
 
-    context.strokeStyle = getStyleFromRgb(colorLine, opacity);
+    context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
     context.lineWidth = width;
     context.stroke();
 }
@@ -44,6 +46,14 @@ export function drawGrab(
     container.canvas.draw(ctx => {
         const beginPos = particle.getPosition();
 
-        drawGrabLine(ctx, particle.retina.linksWidth ?? defaultWidth, beginPos, mousePos, lineColor, opacity);
+        drawGrabLine(
+            ctx,
+            particle.retina.linksWidth ?? defaultWidth,
+            beginPos,
+            mousePos,
+            lineColor,
+            opacity,
+            container.hdr,
+        );
     });
 }

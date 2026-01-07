@@ -1,19 +1,23 @@
+import { SeqTransport } from "@datalust/winston-seq";
 import cluster from "node:cluster";
-import express from "express";
 //import helmet from "helmet";
-import stylus from "stylus";
-import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
+import { dirname } from 'path';
+import dotenv from "dotenv";
+import express from "express";
+import { fileURLToPath } from 'url';
+import livereload from "livereload";
 import path from "path";
 import os from "os";
-import winston from "winston";
-import { SeqTransport } from "@datalust/winston-seq";
-import dotenv from "dotenv";
 //import rateLimit from "express-rate-limit";
+import stylus from "stylus";
+import winston from "winston";
 
-const app = express(), numCpus = os.cpus().length;
+const fileName = fileURLToPath(import.meta.url),
+    dirName = dirname(fileName),
+    app = express(), numCpus = os.cpus().length;
 
-dotenv.config({ path: path.join(__dirname, "..", ".env") });
+dotenv.config({ path: path.join(dirName, "..", ".env") });
 
 let seqTransport = undefined;
 
@@ -58,6 +62,7 @@ app.use("/tsparticles-smooth-value-noise", express.static("./node_modules/@tspar
 app.use("/tsparticles-perlin-noise", express.static("./node_modules/@tsparticles/perlin-noise"));
 app.use("/tsparticles-simplex-noise", express.static("./node_modules/@tsparticles/simplex-noise"));
 app.use("/tsparticles-fractal-noise", express.static("./node_modules/@tsparticles/fractal-noise"));
+app.use("/tsparticles-noise-field", express.static("./node_modules/@tsparticles/noise-field"));
 app.use("/tsparticles-all", express.static("./node_modules/@tsparticles/all"));
 app.use("/tsparticles-basic", express.static("./node_modules/@tsparticles/basic"));
 app.use("/tsparticles-engine", express.static("./node_modules/@tsparticles/engine"));
@@ -124,6 +129,7 @@ app.use("/path-polygon", express.static("./node_modules/@tsparticles/path-polygo
 app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-simplex-noise"));
 app.use("/path-svg", express.static("./node_modules/@tsparticles/path-svg"));
 app.use("/path-zig-zag", express.static("./node_modules/@tsparticles/path-zig-zag"));
+app.use("/plugin-background-mask", express.static("./node_modules/@tsparticles/plugin-background-mask"));
 app.use("/plugin-canvas-mask", express.static("./node_modules/@tsparticles/plugin-canvas-mask"));
 app.use("/plugin-easing-back", express.static("./node_modules/@tsparticles/plugin-easing-back"));
 app.use("/plugin-easing-circ", express.static("./node_modules/@tsparticles/plugin-easing-circ"));
@@ -145,13 +151,19 @@ app.use("/plugin-export-video", express.static("./node_modules/@tsparticles/plug
 app.use("/plugin-hex-color", express.static("./node_modules/@tsparticles/plugin-hex-color"));
 app.use("/plugin-hsl-color", express.static("./node_modules/@tsparticles/plugin-hsl-color"));
 app.use("/plugin-hsv-color", express.static("./node_modules/@tsparticles/plugin-hsv-color"));
+app.use("/plugin-hwb-color", express.static("./node_modules/@tsparticles/plugin-hwb-color"));
+app.use("/plugin-lab-color", express.static("./node_modules/@tsparticles/plugin-lab-color"));
+app.use("/plugin-lch-color", express.static("./node_modules/@tsparticles/plugin-lch-color"));
 app.use("/plugin-named-color", express.static("./node_modules/@tsparticles/plugin-named-color"));
+app.use("/plugin-oklab-color", express.static("./node_modules/@tsparticles/plugin-oklab-color"));
 app.use("/plugin-oklch-color", express.static("./node_modules/@tsparticles/plugin-oklch-color"));
 app.use("/plugin-rgb-color", express.static("./node_modules/@tsparticles/plugin-rgb-color"));
 app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/@tsparticles/plugin-motion"));
 app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sounds"));
+app.use("/plugin-trail", express.static("./node_modules/@tsparticles/plugin-trail"));
 app.use("/effect-bubble", express.static("./node_modules/@tsparticles/effect-bubble"));
+app.use("/effect-shadow", express.static("./node_modules/@tsparticles/effect-shadow"));
 app.use("/effect-trail", express.static("./node_modules/@tsparticles/effect-trail"));
 app.use("/shape-arrow", express.static("./node_modules/@tsparticles/shape-arrow"));
 app.use("/shape-cards", express.static("./node_modules/@tsparticles/shape-cards"));

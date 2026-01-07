@@ -9,7 +9,7 @@ import { isNull } from "../../../../Utils/TypeUtils.js";
  * [[include:Options/Particles/Opacity.md]]
  */
 export class Opacity extends RangedAnimationValueWithRandom implements IOpacity, IOptionLoader<IOpacity> {
-    readonly animation;
+    override readonly animation;
 
     constructor() {
         super();
@@ -17,7 +17,7 @@ export class Opacity extends RangedAnimationValueWithRandom implements IOpacity,
         this.value = 1;
     }
 
-    load(data?: RecursivePartial<IOpacity>): void {
+    override load(data?: RecursivePartial<IOpacity>): void {
         if (isNull(data)) {
             return;
         }

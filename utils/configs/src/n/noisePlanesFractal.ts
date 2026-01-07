@@ -44,7 +44,7 @@ const options: ISourceOptions = {
             path: {
                 enable: true,
                 options: {
-                    size: 32,
+                    size: 64,
                     draw: false,
                     increment: 0.004,
                 },
@@ -70,7 +70,7 @@ const options: ISourceOptions = {
             options: {
                 image: {
                     height: 128,
-                    src: "https://particles.js.org/images/plane_alt.png",
+                    src: "https://particles.js.org/images/hdr/plane_alt.png",
                     width: 128,
                 },
             },

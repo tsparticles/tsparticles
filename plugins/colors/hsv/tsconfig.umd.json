@@ -1,0 +1,6 @@
+{
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.umd.json"],
+    "compilerOptions": {
+        "outDir": "./dist/umd"
+    }
+}

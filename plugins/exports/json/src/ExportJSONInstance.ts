@@ -1,14 +1,12 @@
-import type { Container, Engine, ExportResult, IContainerPlugin } from "@tsparticles/engine";
+import type { Container, ExportResult, IContainerPlugin } from "@tsparticles/engine";
 
 const indent = 2;
 
 export class ExportJSONInstance implements IContainerPlugin {
     private readonly _container: Container;
-    private readonly _engine: Engine;
 
-    constructor(container: Container, engine: Engine) {
+    constructor(container: Container) {
         this._container = container;
-        this._engine = engine;
     }
 
     async export(type: string): Promise<ExportResult> {

@@ -21,12 +21,13 @@ export class TwinkleUpdater implements IParticleUpdater {
 
     getColorStyles(
         particle: Particle,
-        context: CanvasRenderingContext2D,
-        radius: number,
+        _context: CanvasRenderingContext2D,
+        _radius: number,
         opacity: number,
     ): IParticleColorStyle {
         const pOptions = particle.options,
-            twinkleOptions = pOptions.twinkle as Twinkle;
+            { container } = particle,
+            twinkleOptions = pOptions["twinkle"] as Twinkle | undefined;
 
         if (!twinkleOptions) {
             return {};
@@ -39,7 +40,14 @@ export class TwinkleUpdater implements IParticleUpdater {
             zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
             twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
             twinkleRgb = rangeColorToHsl(this._engine, twinkle.color),
-            twinkleStyle = twinkleRgb ? getStyleFromHsl(twinkleRgb, twinklingOpacity) : undefined,
+            getTwinkleStyle = (): string | undefined => {
+                if (!twinkleRgb) {
+                    return undefined;
+                }
+
+                return getStyleFromHsl(twinkleRgb, container.hdr, twinklingOpacity);
+            },
+            twinkleStyle = getTwinkleStyle(),
             res: IParticleColorStyle = {},
             needsTwinkle = twinkling && twinkleStyle;
 
@@ -49,13 +57,13 @@ export class TwinkleUpdater implements IParticleUpdater {
         return res;
     }
 
-    async init(): Promise<void> {
-        await Promise.resolve();
+    init(): void {
+        // nothing to do
     }
 
     isEnabled(particle: TwinkeParticle): boolean {
         const pOptions = particle.options,
-            twinkleOptions = pOptions.twinkle!;
+            twinkleOptions = pOptions.twinkle;
 
         if (!twinkleOptions) {
             return false;
@@ -68,16 +76,14 @@ export class TwinkleUpdater implements IParticleUpdater {
         options: TwinkleParticlesOptions,
         ...sources: (RecursivePartial<ITwinkleParticlesOptions> | undefined)[]
     ): void {
-        if (!options.twinkle) {
-            options.twinkle = new Twinkle();
-        }
+        options.twinkle ??= new Twinkle();
 
         for (const source of sources) {
             options.twinkle.load(source?.twinkle);
         }
     }
 
-    async update(): Promise<void> {
-        await Promise.resolve();
+    update(): void {
+        // nothing to do
     }
 }

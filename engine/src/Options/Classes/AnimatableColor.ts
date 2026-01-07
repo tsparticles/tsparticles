@@ -20,7 +20,7 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
         this.animation = new HslAnimation();
     }
 
-    static create(
+    static override create(
         source?: AnimatableColor,
         data?: SingleOrMultiple<string> | RecursivePartial<IAnimatableColor>,
     ): AnimatableColor {
@@ -39,20 +39,20 @@ export class AnimatableColor extends OptionsColor implements IAnimatableColor, I
         return color;
     }
 
-    load(data?: RecursivePartial<IAnimatableColor>): void {
+    override load(data?: RecursivePartial<IAnimatableColor>): void {
         super.load(data);
 
         if (isNull(data)) {
             return;
         }
 
-        const colorAnimation = data.animation as IColorAnimation;
+        const colorAnimation = data.animation as RecursivePartial<IColorAnimation | undefined>;
 
         if (colorAnimation !== undefined) {
-            if (colorAnimation.enable !== undefined) {
-                this.animation.h.load(colorAnimation);
-            } else {
+            if (colorAnimation.enable === undefined) {
                 this.animation.load(data.animation as IHslAnimation);
+            } else {
+                this.animation.h.load(colorAnimation);
             }
         }
     }

@@ -19,15 +19,15 @@ export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanva
         this.offset = 4;
     }
 
-    load(data?: RecursivePartial<ICanvasMaskPixels> | undefined): void {
+    load(data?: RecursivePartial<ICanvasMaskPixels>): void {
         if (isNull(data)) {
             return;
         }
 
         if (data.filter !== undefined) {
             if (isString(data.filter)) {
-                if (Object.hasOwn(window, data.filter)) {
-                    const filter = (window as unknown as Record<string, (pixel: IRgba) => boolean>)[data.filter];
+                if (Object.hasOwn(globalThis, data.filter)) {
+                    const filter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[data.filter];
 
                     if (isFunction(filter)) {
                         this.filter = filter;

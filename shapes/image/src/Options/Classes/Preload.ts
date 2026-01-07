@@ -4,8 +4,8 @@ import type { IPreload } from "../Interfaces/IPreload.js";
 export class Preload implements IPreload, IOptionLoader<IPreload> {
     gif: boolean;
     height?: number;
-    name?: string | undefined;
-    replaceColor?: boolean | undefined;
+    name?: string;
+    replaceColor?: boolean;
     src: string;
     width?: number;
 

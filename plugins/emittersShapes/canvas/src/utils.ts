@@ -1,12 +1,14 @@
 import type { CanvasPixelData, TextLineData } from "./types.js";
-import { type ICoordinates, type IDimension, type IRgba, errorPrefix, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, type IRgba, isNumber, safeDocument } from "@tsparticles/engine";
 import type { TextOptions } from "./Options/Classes/TextOptions.js";
 
 const origin: ICoordinates = {
         x: 0,
         y: 0,
     },
-    minWidth = 0;
+    minWidth = 0,
+    defaultRgbValue = 0,
+    defaultAlphaValue = 1;
 
 /**
  * @param ctx -
@@ -36,9 +38,7 @@ export function getCanvasImageData(
                 y: Math.floor(idx / size.width),
             };
 
-        if (!pixels[pos.y]) {
-            pixels[pos.y] = [];
-        }
+        pixels[pos.y] ??= [];
 
         const indexesOffset = {
                 r: 0,
@@ -46,13 +46,18 @@ export function getCanvasImageData(
                 b: 2,
                 a: 3,
             },
-            alphaFactor = 255;
+            alphaFactor = 255,
+            row = pixels[pos.y];
 
-        pixels[pos.y][pos.x] = {
-            r: imageData[i + indexesOffset.r],
-            g: imageData[i + indexesOffset.g],
-            b: imageData[i + indexesOffset.b],
-            a: imageData[i + indexesOffset.a] / alphaFactor,
+        if (!row) {
+            continue;
+        }
+
+        row[pos.x] = {
+            r: imageData[i + indexesOffset.r] ?? defaultRgbValue,
+            g: imageData[i + indexesOffset.g] ?? defaultRgbValue,
+            b: imageData[i + indexesOffset.b] ?? defaultRgbValue,
+            a: (imageData[i + indexesOffset.a] ?? defaultAlphaValue) / alphaFactor,
         };
     }
 
@@ -76,7 +81,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     const p = new Promise<CanvasPixelData>((resolve, reject) => {
         image.onerror = reject;
         image.onload = (): void => {
-            const canvas = document.createElement("canvas");
+            const canvas = safeDocument().createElement("canvas");
 
             canvas.width = image.width;
             canvas.height = image.height;
@@ -84,7 +89,8 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                return reject(new Error(`${errorPrefix} Could not get canvas context`));
+                reject(new Error("Could not get canvas context"));
+                return;
             }
 
             context.drawImage(
@@ -115,7 +121,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
  * @returns the canvas pixel data
  */
 export function getTextData(textOptions: TextOptions, offset: number, fill: boolean): CanvasPixelData | undefined {
-    const canvas = document.createElement("canvas"),
+    const canvas = safeDocument().createElement("canvas"),
         context = canvas.getContext("2d"),
         { font, text, lines: linesOptions, color } = textOptions;
 
@@ -124,7 +130,7 @@ export function getTextData(textOptions: TextOptions, offset: number, fill: bool
     }
 
     const lines = text.split(linesOptions.separator),
-        fontSize = isNumber(font.size) ? `${font.size}px` : font.size,
+        fontSize = isNumber(font.size) ? `${font.size.toString()}px` : font.size,
         linesData: TextLineData[] = [];
 
     let maxWidth = 0,

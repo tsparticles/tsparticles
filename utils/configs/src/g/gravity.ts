@@ -49,11 +49,6 @@ const options: ISourceOptions = {
                 default: "bounce",
                 top: "none",
             },
-            trail: {
-                enable: true,
-                fill: { color: "#000000" },
-                length: 10,
-            },
         },
     },
     background: {
@@ -113,6 +108,11 @@ const options: ISourceOptions = {
                 speed: { min: 5, max: 15 },
             },
         },
+    },
+    trail: {
+        enable: true,
+        fill: { color: "#000000" },
+        length: 10,
     },
 };
 export default options;

@@ -1,12 +1,12 @@
 import type { Engine } from "@tsparticles/engine";
-import { LinksPlugin } from "./LinksPlugin.js";
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadLinksPlugin(engine: Engine, refresh = true): Promise<void> {
-    const plugin = new LinksPlugin(engine);
+export function loadLinksPlugin(engine: Engine): void {
+    engine.register(async e => {
+        const { LinksPlugin } = await import("./LinksPlugin.js");
 
-    await engine.addPlugin(plugin, refresh);
+        e.addPlugin(new LinksPlugin(e));
+    });
 }

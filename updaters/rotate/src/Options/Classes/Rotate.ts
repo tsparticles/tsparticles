@@ -25,7 +25,7 @@ export class Rotate extends ValueWithRandom implements IRotate, IOptionLoader<IR
         this.value = 0;
     }
 
-    load(data?: RecursivePartial<IRotate>): void {
+    override load(data?: RecursivePartial<IRotate>): void {
         if (isNull(data)) {
             return;
         }

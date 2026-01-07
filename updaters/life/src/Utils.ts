@@ -3,7 +3,7 @@ import {
     type IDimension,
     getRangeValue,
     millisecondsToSeconds,
-    randomInRange,
+    randomInRangeValue,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { LifeParticle } from "./Types.js";
@@ -14,10 +14,9 @@ const noTime = 0,
     minCanvasSize = 0;
 
 /**
- *
- * @param particle
- * @param delta
- * @param canvasSize
+ * @param particle -
+ * @param delta -
+ * @param canvasSize -
  */
 export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: IDimension): void {
     if (!particle.life) {
@@ -42,10 +41,6 @@ export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: ID
     }
 
     if (life.duration === infiniteValue) {
-        return;
-    }
-
-    if (particle.spawning) {
         return;
     }
 
@@ -74,8 +69,8 @@ export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: ID
     const widthRange = setRangeValue(minCanvasSize, canvasSize.width),
         heightRange = setRangeValue(minCanvasSize, canvasSize.width);
 
-    particle.position.x = randomInRange(widthRange);
-    particle.position.y = randomInRange(heightRange);
+    particle.position.x = randomInRangeValue(widthRange);
+    particle.position.y = randomInRangeValue(heightRange);
     particle.spawning = true;
     life.delayTime = noTime;
     life.time = noTime;

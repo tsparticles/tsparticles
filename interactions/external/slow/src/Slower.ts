@@ -23,7 +23,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         super(container);
     }
 
-    clear(particle: Particle, delta: IDelta, force?: boolean): void {
+    clear(particle: Particle, _delta: IDelta, force?: boolean): void {
         if (particle.slow.inRange && !force) {
             return;
         }
@@ -55,9 +55,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     }
 
     loadModeOptions(options: Modes & SlowMode, ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]): void {
-        if (!options.slow) {
-            options.slow = new Slow();
-        }
+        options.slow ??= new Slow();
 
         for (const source of sources) {
             options.slow.load(source?.slow);

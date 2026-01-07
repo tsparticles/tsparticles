@@ -1,9 +1,8 @@
-import { animate, cancelAnimation, getRangeValue } from "../Utils/NumberUtils.js";
+import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
 import {
     clickRadius,
     defaultFps,
     defaultFpsLimit,
-    errorPrefix,
     millisecondsToSeconds,
     minCoordinate,
     minFpsLimit,
@@ -11,7 +10,6 @@ import {
     removeMinIndex,
     touchEndLengthOffset,
 } from "./Utils/Constants.js";
-import { getLogger, safeIntersectionObserver } from "../Utils/Utils.js";
 import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
@@ -28,7 +26,9 @@ import { Options } from "../Options/Classes/Options.js";
 import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
+import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
+import { safeIntersectionObserver } from "../Utils/Utils.js";
 
 type ContainerClickHandler = (evt: Event) => void;
 
@@ -38,7 +38,7 @@ type ContainerClickHandler = (evt: Event) => void;
  * @returns true if the container is still usable
  */
 function guardCheck(container: Container): boolean {
-    return container && !container.destroyed;
+    return !container.destroyed;
 }
 
 /**
@@ -101,6 +101,11 @@ export class Container {
      * The container fps limit, coming from options
      */
     fpsLimit;
+
+    /**
+     * The container hdr support flag
+     */
+    hdr;
 
     readonly id;
 
@@ -175,6 +180,7 @@ export class Container {
         this._engine = engine;
         this.id = Symbol(id);
         this.fpsLimit = 120;
+        this.hdr = false;
         this._smooth = false;
         this._delay = 0;
         this._duration = 0;
@@ -208,7 +214,9 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-        this._intersectionObserver = safeIntersectionObserver(entries => this._intersectionManager(entries));
+        this._intersectionObserver = safeIntersectionObserver(entries => {
+            this._intersectionManager(entries);
+        });
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
@@ -299,16 +307,11 @@ export class Container {
                 }
 
                 if (touched && !touchMoved) {
-                    const touchEvent = e as TouchEvent;
-
-                    let lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
+                    const touchEvent = e as TouchEvent,
+                        lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
 
                     if (!lastTouch) {
-                        lastTouch = touchEvent.changedTouches[touchEvent.changedTouches.length - touchEndLengthOffset];
-
-                        if (!lastTouch) {
-                            return;
-                        }
+                        return;
                     }
 
                     const element = this.canvas.element,
@@ -453,7 +456,9 @@ export class Container {
             this._nextFrame(timestamp);
         };
 
-        this._drawAnimationFrame = animate(timestamp => frame(timestamp));
+        this._drawAnimationFrame = animate(timestamp => {
+            frame(timestamp);
+        });
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
@@ -471,7 +476,9 @@ export class Container {
             return res.blob;
         }
 
-        getLogger().error(`${errorPrefix} - Export plugin with type ${type} not found`);
+        getLogger().error(`Export plugin with type ${type} not found`);
+
+        return undefined;
     }
 
     /**
@@ -532,15 +539,16 @@ export class Container {
 
         /* init canvas + particles */
         this.retina.init();
-        await this.canvas.init();
+        this.canvas.init();
 
         this.updateActualOptions();
 
         this.canvas.initBackground();
         this.canvas.resize();
 
-        const { zLayers, duration, delay, fpsLimit, smooth } = this.actualOptions;
+        const { delay, duration, fpsLimit, hdr, smooth, zLayers } = this.actualOptions;
 
+        this.hdr = hdr;
         this.zLayers = zLayers;
         this._duration = getRangeValue(duration) * millisecondsToSeconds;
         this._delay = getRangeValue(delay) * millisecondsToSeconds;
@@ -785,7 +793,7 @@ export class Container {
             }
 
             if (entry.isIntersecting) {
-                void this.play();
+                this.play();
             } else {
                 this.pause();
             }
@@ -817,7 +825,7 @@ export class Container {
                 return;
             }
 
-            this.particles.draw(delta);
+            this.canvas.drawParticles(delta);
 
             if (!this.alive()) {
                 this.destroy();
@@ -829,7 +837,7 @@ export class Container {
                 this.draw(false);
             }
         } catch (e) {
-            getLogger().error(`${errorPrefix} in animation loop`, e);
+            getLogger().error("error in animation loop", e);
         }
     };
 }

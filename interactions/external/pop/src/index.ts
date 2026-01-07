@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { Popper } from "./Popper.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalPopInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalPopInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalPop",
-        container => {
-            return Promise.resolve(new Popper(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalPop", async container => {
+            const { Popper } = await import("./Popper.js");
+
+            return new Popper(container);
+        });
+    });
 }

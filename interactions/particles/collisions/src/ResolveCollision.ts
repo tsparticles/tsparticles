@@ -1,4 +1,6 @@
-import { CollisionMode, type IDelta, type Particle } from "@tsparticles/engine";
+import { CollisionMode } from "./CollisionMode.js";
+import { type CollisionParticle } from "./Types.js";
+import { type IDelta } from "@tsparticles/engine";
 import { absorb } from "./Absorb.js";
 import { bounce } from "./Bounce.js";
 import { destroy } from "./Destroy.js";
@@ -9,7 +11,16 @@ import { destroy } from "./Destroy.js";
  * @param delta -
  * @param pixelRatio -
  */
-export function resolveCollision(p1: Particle, p2: Particle, delta: IDelta, pixelRatio: number): void {
+export function resolveCollision(
+    p1: CollisionParticle,
+    p2: CollisionParticle,
+    delta: IDelta,
+    pixelRatio: number,
+): void {
+    if (!p1.options.collisions || !p2.options.collisions) {
+        return;
+    }
+
     switch (p1.options.collisions.mode) {
         case CollisionMode.absorb: {
             absorb(p1, p2, delta, pixelRatio);

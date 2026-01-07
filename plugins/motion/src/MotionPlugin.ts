@@ -1,4 +1,4 @@
-import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { Container, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IMotionOptions, MotionOptions } from "./types.js";
 import { Motion } from "./Options/Classes/Motion.js";
 import { MotionInstance } from "./MotionInstance.js";
@@ -8,16 +8,12 @@ import { MotionInstance } from "./MotionInstance.js";
 export class MotionPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
-
-    constructor(engine: Engine) {
+    constructor() {
         this.id = "motion";
-
-        this._engine = engine;
     }
 
     getPlugin(container: Container): Promise<MotionInstance> {
-        return Promise.resolve(new MotionInstance(container, this._engine));
+        return Promise.resolve(new MotionInstance(container));
     }
 
     loadOptions(options: MotionOptions, source?: RecursivePartial<IMotionOptions>): void {
@@ -25,7 +21,7 @@ export class MotionPlugin implements IPlugin {
             return;
         }
 
-        let motionOptions = options.motion!;
+        let motionOptions = options.motion;
 
         if (!motionOptions?.load) {
             options.motion = motionOptions = new Motion();

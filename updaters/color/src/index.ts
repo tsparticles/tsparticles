@@ -1,20 +1,18 @@
-import { ColorUpdater } from "./ColorUpdater.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadColorUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadColorUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "color",
-        container => {
-            return Promise.resolve(new ColorUpdater(container, engine));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("color", async container => {
+            const { ColorUpdater } = await import("./ColorUpdater.js");
+
+            return new ColorUpdater(e, container);
+        });
+    });
 }

@@ -1,10 +1,4 @@
-import {
-    type Container,
-    type Engine,
-    type ExportResult,
-    type IContainerPlugin,
-    millisecondsToSeconds,
-} from "@tsparticles/engine";
+import { type Container, type ExportResult, type IContainerPlugin, millisecondsToSeconds } from "@tsparticles/engine";
 import type { IExportVideoData } from "./IExportVideoData.js";
 
 const videoTypes = ["webm", "ogg", "mp4", "x-matroska"],
@@ -36,7 +30,7 @@ function getVideoSupportedMimeTypes(): string[] {
     videoTypes.forEach(type => {
         const mimeType = `video/${type}`;
 
-        codecs.forEach(codec =>
+        codecs.forEach(codec => {
             [
                 `${mimeType};codecs=${codec}`,
                 `${mimeType};codecs=${codec.toUpperCase()}`,
@@ -47,8 +41,8 @@ function getVideoSupportedMimeTypes(): string[] {
                 if (isSupported(variation)) {
                     supported.push(variation);
                 }
-            }),
-        );
+            });
+        });
 
         if (isSupported(mimeType)) {
             supported.push(mimeType);
@@ -60,12 +54,10 @@ function getVideoSupportedMimeTypes(): string[] {
 
 export class ExportVideoInstance implements IContainerPlugin {
     private readonly _container: Container;
-    private readonly _engine: Engine;
     private readonly _supportedTypes: string[] = [];
 
-    constructor(container: Container, engine: Engine) {
+    constructor(container: Container) {
         this._container = container;
-        this._engine = engine;
 
         this._supportedTypes = getVideoSupportedMimeTypes();
     }

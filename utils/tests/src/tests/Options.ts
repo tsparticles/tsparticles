@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
 import {
-    CollisionMode,
     type IParticlesOptions,
     type ISourceOptions,
     InteractivityDetect,
@@ -42,10 +41,6 @@ describe("Options tests", () => {
         expect(options.background.size).to.be.equal("");
         expect(options.background.opacity).to.be.equal(1);
 
-        /* background mask */
-        expect(options.backgroundMask.cover).to.be.an("object").to.have.property("opacity").to.equal(1);
-        expect(options.backgroundMask.enable).to.be.false;
-
         /* detect retina */
         expect(options.detectRetina).to.be.true;
 
@@ -84,10 +79,6 @@ describe("Options tests", () => {
         // expect(options.interactivity.modes.slow.radius).to.equal(200);
 
         /* particles */
-        /* particles collisions */
-        expect(options.particles.collisions.enable).to.be.false;
-        expect(options.particles.collisions.mode).to.equal(CollisionMode.bounce);
-
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
 
@@ -113,9 +104,6 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fill.color).to.be.undefined;
-        expect(options.particles.move.trail.enable).to.be.false;
-        expect(options.particles.move.trail.length).to.equal(10);
 
         /* particles number */
         expect(options.particles.number.density.width).to.equal(1920);
@@ -137,13 +125,6 @@ describe("Options tests", () => {
         // expect(options.particles.rotate.animation.sync).to.be.false;
         // expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
         // expect(options.particles.rotate.value).to.be.equal(0);
-
-        /* particles shadow */
-        expect(options.particles.shadow.blur).to.equal(0);
-        expect(options.particles.shadow.color).to.be.an("object").to.have.property("value").to.equal("#000");
-        expect(options.particles.shadow.enable).to.be.false;
-        expect(options.particles.shadow.offset.x).to.equal(0);
-        expect(options.particles.shadow.offset.y).to.equal(0);
 
         /* particles shape */
         expect(options.particles.shape.type).to.equal("circle");
@@ -480,10 +461,6 @@ describe("Options tests", () => {
         // expect(options.interactivity.modes.repulse.distance).to.equal(200);
 
         /* particles */
-        /* particles collisions */
-        expect(options.particles.collisions.enable).to.be.false;
-        expect(options.particles.collisions.mode).to.equal(CollisionMode.bounce);
-
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
@@ -504,9 +481,6 @@ describe("Options tests", () => {
         expect(options.particles.move.random).to.be.false;
         expect(options.particles.move.speed).to.equal(2);
         expect(options.particles.move.straight).to.be.false;
-        expect(options.particles.move.trail.fill.color).to.be.undefined;
-        expect(options.particles.move.trail.enable).to.be.false;
-        expect(options.particles.move.trail.length).to.equal(10);
 
         /* particles number */
         expect(options.particles.number.density.width).to.equal(1920);

@@ -40,15 +40,15 @@ const options: ISourceOptions = {
                 },
                 enable: true,
             },
-            trail: {
-                enable: true,
-                fill: { color: "#000" },
-                length: 30,
-            },
         },
     },
     background: {
         color: "#000000",
+    },
+    trail: {
+        enable: true,
+        fill: { color: "#000" },
+        length: 30,
     },
 };
 export default options;

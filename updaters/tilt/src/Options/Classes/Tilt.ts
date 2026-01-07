@@ -19,7 +19,7 @@ export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt>
         this.value = 0;
     }
 
-    load(data?: RecursivePartial<ITilt>): void {
+    override load(data?: RecursivePartial<ITilt>): void {
         super.load(data);
 
         if (isNull(data)) {

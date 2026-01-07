@@ -1,7 +1,6 @@
 import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
 import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
-import { BackgroundMask } from "./BackgroundMask/BackgroundMask.js";
 import type { Container } from "../../Core/Container.js";
 import type { Engine } from "../../Core/Engine.js";
 import { FullScreen } from "./FullScreen/FullScreen.js";
@@ -18,7 +17,7 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { Theme } from "./Theme/Theme.js";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
-import { setRangeValue } from "../../Utils/NumberUtils.js";
+import { setRangeValue } from "../../Utils/MathUtils.js";
 
 interface DefaultThemes {
     dark?: string;
@@ -33,7 +32,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
     autoPlay;
     readonly background;
-    readonly backgroundMask;
     clear: boolean;
     defaultThemes: DefaultThemes;
     delay: RangeValue;
@@ -41,6 +39,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     duration: RangeValue;
     fpsLimit;
     readonly fullScreen;
+    hdr;
     readonly interactivity;
     key?: string;
     manualParticles: ManualParticle[];
@@ -63,7 +62,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this._container = container;
         this.autoPlay = true;
         this.background = new Background();
-        this.backgroundMask = new BackgroundMask();
         this.clear = true;
         this.defaultThemes = {};
         this.delay = 0;
@@ -71,6 +69,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.detectRetina = true;
         this.duration = 0;
         this.fpsLimit = 120;
+        this.hdr = true;
         this.interactivity = new Interactivity(engine, container);
         this.manualParticles = [];
         this.particles = loadParticlesOptions(this._engine, this._container);
@@ -93,7 +92,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         if (data.preset !== undefined) {
-            executeOnSingleOrMultiple(data.preset, preset => this._importPreset(preset));
+            executeOnSingleOrMultiple(data.preset, preset => {
+                this._importPreset(preset);
+            });
         }
 
         if (data.autoPlay !== undefined) {
@@ -132,6 +133,10 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.fpsLimit = fpsLimit;
         }
 
+        if (data.hdr !== undefined) {
+            this.hdr = data.hdr;
+        }
+
         if (data.pauseOnBlur !== undefined) {
             this.pauseOnBlur = data.pauseOnBlur;
         }
@@ -154,7 +159,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.fullScreen.load(fullScreen);
         }
 
-        this.backgroundMask.load(data.backgroundMask);
         this.interactivity.load(data.interactivity);
 
         if (data.manualParticles) {
@@ -201,14 +205,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             for (const theme of data.themes) {
                 const existingTheme = this.themes.find(t => t.name === theme.name);
 
-                if (!existingTheme) {
+                if (existingTheme) {
+                    existingTheme.load(theme);
+                } else {
                     const optTheme = new Theme();
 
                     optTheme.load(theme);
 
                     this.themes.push(optTheme);
-                } else {
-                    existingTheme.load(theme);
                 }
             }
         }
@@ -221,7 +225,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.load(defaultOptions);
 
         const responsiveOptions = this.responsive.find(t =>
-            t.mode === ResponsiveMode.screen && screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width,
+            t.mode === ResponsiveMode.screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width,
         );
 
         this.load(responsiveOptions?.options);

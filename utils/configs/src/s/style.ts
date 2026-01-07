@@ -32,13 +32,6 @@ const options: ISourceOptions = {
             enable: true,
             speed: 6,
             direction: "none",
-            trail: {
-                enable: true,
-                length: 50,
-                fill: {
-                    color: "#000",
-                },
-            },
             path: {
                 enable: true,
                 delay: {
@@ -79,6 +72,13 @@ const options: ISourceOptions = {
     },
     style: {
         filter: "blur(50px)",
+    },
+    trail: {
+        enable: true,
+        length: 50,
+        fill: {
+            color: "#000",
+        },
     },
 };
 export default options;

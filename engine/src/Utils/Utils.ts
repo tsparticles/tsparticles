@@ -8,9 +8,9 @@ import {
     getRangeMax,
     getRangeMin,
     getRangeValue,
-    randomInRange,
-} from "./NumberUtils.js";
-import { half, millisecondsToSeconds, minVelocity, percentDenominator } from "../Core/Utils/Constants.js";
+    randomInRangeValue,
+} from "./MathUtils.js";
+import { half, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
 import { isArray, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
@@ -21,8 +21,6 @@ import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
 import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
-import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
-import type { IRectSideResult } from "../Core/Interfaces/IRectSideResult.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
 import type { Particle } from "../Core/Particle.js";
 import { PixelMode } from "../Enums/Modes/PixelMode.js";
@@ -31,82 +29,7 @@ import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { StartValueType } from "../Enums/Types/StartValueType.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 
-interface RectSideBounceData {
-    /**
-     * bounce factor
-     */
-    factor: number;
-    /**
-     * particle bounce other side
-     */
-    pOtherSide: IRangeValue;
-    /**
-     * particle bounce side
-     */
-    pSide: IRangeValue;
-    /**
-     * rectangle bounce other side
-     */
-    rectOtherSide: IRangeValue;
-    /**
-     * rectangle bounce side
-     */
-    rectSide: IRangeValue;
-    /**
-     * particle velocity
-     */
-    velocity: number;
-}
-
-interface ILogger {
-    debug(this: void, message?: unknown, ...optionalParams: unknown[]): void;
-
-    error(this: void, message?: unknown, ...optionalParams: unknown[]): void;
-
-    info(this: void, message?: unknown, ...optionalParams: unknown[]): void;
-
-    log(this: void, message?: unknown, ...optionalParams: unknown[]): void;
-
-    verbose(this: void, message?: unknown, ...optionalParams: unknown[]): void;
-
-    warning(this: void, message?: unknown, ...optionalParams: unknown[]): void;
-}
-
-const _logger: ILogger = {
-    // eslint-disable-next-line no-console
-    debug: console.debug,
-    // eslint-disable-next-line no-console
-    error: console.error,
-    // eslint-disable-next-line no-console
-    info: console.info,
-    // eslint-disable-next-line no-console
-    log: console.log,
-    // eslint-disable-next-line no-console
-    verbose: console.log,
-    // eslint-disable-next-line no-console
-    warning: console.warn,
-};
-
-/**
- * Replaces the library log functions with a custom one.
- * @param logger - A logger object responsible for logging messages.
- */
-export function setLogger(logger: ILogger): void {
-    _logger.debug = logger.debug || _logger.debug;
-    _logger.error = logger.error || _logger.error;
-    _logger.info = logger.info || _logger.info;
-    _logger.log = logger.log || _logger.log;
-    _logger.verbose = logger.verbose || _logger.verbose;
-    _logger.warning = logger.warning || _logger.warning;
-}
-
-/**
- * Returns the logger object.
- * @returns the logger
- */
-export function getLogger(): ILogger {
-    return _logger;
-}
+const minRadius = 0;
 
 /**
  *
@@ -120,7 +43,7 @@ function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result):
         const key = JSON.stringify(args); // Serialize arguments as the cache key
 
         if (cache.has(key)) {
-            return cache.get(key)!; // Return cached result if available
+            return cache.get(key) as Result; // Return cached result if available
         }
 
         const result = fn(...args); // Compute the result
@@ -129,35 +52,6 @@ function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result):
 
         return result;
     };
-}
-
-/**
- * Calculates the bounce on a rectangle side
- * @param data - the rectangle side bounce values
- * @returns the rectangle side bounce values
- */
-function rectSideBounce(data: RectSideBounceData): IRectSideResult {
-    const res: IRectSideResult = { bounced: false },
-        { pSide, pOtherSide, rectSide, rectOtherSide, velocity, factor } = data;
-
-    if (
-        pOtherSide.min < rectOtherSide.min ||
-        pOtherSide.min > rectOtherSide.max ||
-        pOtherSide.max < rectOtherSide.min ||
-        pOtherSide.max > rectOtherSide.max
-    ) {
-        return res;
-    }
-
-    if (
-        (pSide.max >= rectSide.min && pSide.max <= (rectSide.max + rectSide.min) * half && velocity > minVelocity) ||
-        (pSide.min <= rectSide.max && pSide.min > (rectSide.max + rectSide.min) * half && velocity < minVelocity)
-    ) {
-        res.velocity = velocity * -factor;
-        res.bounced = true;
-    }
-
-    return res;
 }
 
 /**
@@ -175,18 +69,17 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
 }
 
 /**
- * Checks if the script is executed server side
- * @returns true if the environment is server side
- */
-export function isSsr(): boolean {
-    return typeof window === "undefined" || !window || typeof window.document === "undefined" || !window.document;
-}
-
-/**
  * @returns true if the environment supports matchMedia feature
  */
 export function hasMatchMedia(): boolean {
-    return !isSsr() && typeof matchMedia !== "undefined";
+    return typeof matchMedia !== "undefined";
+}
+
+/**
+ * @returns the document object
+ */
+export function safeDocument(): Document {
+    return globalThis.document;
 }
 
 /**
@@ -208,7 +101,7 @@ export function safeMatchMedia(query: string): MediaQueryList | undefined {
 export function safeIntersectionObserver(
     callback: (records: IntersectionObserverEntry[]) => void,
 ): IntersectionObserver | undefined {
-    if (isSsr() || typeof IntersectionObserver === "undefined") {
+    if (typeof IntersectionObserver === "undefined") {
         return;
     }
 
@@ -220,7 +113,7 @@ export function safeIntersectionObserver(
  * @returns the mutation observer, if supported
  */
 export function safeMutationObserver(callback: (records: MutationRecord[]) => void): MutationObserver | undefined {
-    if (isSsr() || typeof MutationObserver === "undefined") {
+    if (typeof MutationObserver === "undefined") {
         return;
     }
 
@@ -234,9 +127,7 @@ export function safeMutationObserver(callback: (records: MutationRecord[]) => vo
  * @returns true if the value is equal to the destination, if same type, or is in the provided array
  */
 export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
-    const invalidIndex = -1;
-
-    return value === array || (isArray(array) && array.indexOf(value) > invalidIndex);
+    return value === array || (isArray(array) && array.includes(value));
 }
 
 /**
@@ -246,7 +137,7 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
  */
 export async function loadFont(font?: string, weight?: string): Promise<void> {
     try {
-        await document.fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
+        await safeDocument().fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
     } catch {
         // ignores any error
     }
@@ -257,7 +148,7 @@ export async function loadFont(font?: string, weight?: string): Promise<void> {
  * @param array - the array to get the index from
  * @returns a random array index
  */
-export function arrayRandomIndex<T>(array: T[]): number {
+export function arrayRandomIndex(array: unknown[]): number {
     return Math.floor(getRandom() * array.length);
 }
 
@@ -268,7 +159,7 @@ export function arrayRandomIndex<T>(array: T[]): number {
  * @param useIndex - if true, the index will be used instead of a random index
  * @returns the item found
  */
-export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T {
+export function itemFromArray<T>(array: T[], index?: number, useIndex = true): T | undefined {
     return array[index !== undefined && useIndex ? index % array.length : arrayRandomIndex(array)];
 }
 
@@ -288,8 +179,6 @@ export function isPointInside(
     radius?: number,
     direction?: OutModeDirection,
 ): boolean {
-    const minRadius = 0;
-
     return areBoundsInside(calculateBounds(point, radius ?? minRadius), size, offset, direction);
 }
 
@@ -499,79 +388,6 @@ export function circleBounce(p1: ICircleBouncer, p2: ICircleBouncer): void {
 }
 
 /**
- * Executes the bounce between a particle and div bounds
- * @param particle - the particle to bounce
- * @param divBounds - the div bounds to bounce
- */
-export function rectBounce(particle: Particle, divBounds: IBounds): void {
-    const pPos = particle.getPosition(),
-        size = particle.getRadius(),
-        bounds = calculateBounds(pPos, size),
-        bounceOptions = particle.options.bounce,
-        resH = rectSideBounce({
-            pSide: {
-                min: bounds.left,
-                max: bounds.right,
-            },
-            pOtherSide: {
-                min: bounds.top,
-                max: bounds.bottom,
-            },
-            rectSide: {
-                min: divBounds.left,
-                max: divBounds.right,
-            },
-            rectOtherSide: {
-                min: divBounds.top,
-                max: divBounds.bottom,
-            },
-            velocity: particle.velocity.x,
-            factor: getRangeValue(bounceOptions.horizontal.value),
-        });
-
-    if (resH.bounced) {
-        if (resH.velocity !== undefined) {
-            particle.velocity.x = resH.velocity;
-        }
-
-        if (resH.position !== undefined) {
-            particle.position.x = resH.position;
-        }
-    }
-
-    const resV = rectSideBounce({
-        pSide: {
-            min: bounds.top,
-            max: bounds.bottom,
-        },
-        pOtherSide: {
-            min: bounds.left,
-            max: bounds.right,
-        },
-        rectSide: {
-            min: divBounds.top,
-            max: divBounds.bottom,
-        },
-        rectOtherSide: {
-            min: divBounds.left,
-            max: divBounds.right,
-        },
-        velocity: particle.velocity.y,
-        factor: getRangeValue(bounceOptions.vertical.value),
-    });
-
-    if (resV.bounced) {
-        if (resV.velocity !== undefined) {
-            particle.velocity.y = resV.velocity;
-        }
-
-        if (resV.position !== undefined) {
-            particle.position.y = resV.position;
-        }
-    }
-}
-
-/**
  * @param obj -
  * @param callback -
  * @returns the transformed SingleOrMultiple data
@@ -591,7 +407,11 @@ export function executeOnSingleOrMultiple<T, U = void>(
  * @param useIndex -
  * @returns the selected item
  */
-export function itemFromSingleOrMultiple<T>(obj: SingleOrMultiple<T>, index?: number, useIndex?: boolean): T {
+export function itemFromSingleOrMultiple<T>(
+    obj: SingleOrMultiple<T>,
+    index?: number,
+    useIndex?: boolean,
+): T | undefined {
     return isArray(obj) ? itemFromArray(obj, index, useIndex) : obj;
 }
 
@@ -678,7 +498,7 @@ export function initParticleNumericAnimationValue(
 
             case StartValueType.random:
             default:
-                res.value = randomInRange(res);
+                res.value = randomInRangeValue(res);
 
                 if (autoStatus) {
                     res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
@@ -762,11 +582,13 @@ function checkDestroy(
             if (value >= maxValue) {
                 particle.destroy();
             }
+
             break;
         case DestroyType.min:
             if (value <= minValue) {
                 particle.destroy();
             }
+
             break;
     }
 }
@@ -793,7 +615,6 @@ export function updateAnimation(
 
     if (
         particle.destroyed ||
-        !data ||
         !data.enable ||
         ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
     ) {
@@ -805,9 +626,7 @@ export function updateAnimation(
         maxValue = data.max,
         decay = data.decay ?? minDecay;
 
-    if (!data.time) {
-        data.time = 0;
-    }
+    data.time ??= 0;
 
     if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
         data.time += delta.value;
@@ -826,10 +645,7 @@ export function updateAnimation(
                     data.value -= maxValue;
                 }
 
-                if (!data.loops) {
-                    data.loops = minLoops;
-                }
-
+                data.loops ??= minLoops;
                 data.loops++;
             } else {
                 data.value += velocity;
@@ -844,10 +660,7 @@ export function updateAnimation(
                     data.value += maxValue;
                 }
 
-                if (!data.loops) {
-                    data.loops = minLoops;
-                }
-
+                data.loops ??= minLoops;
                 data.loops++;
             } else {
                 data.value -= velocity;
@@ -860,9 +673,7 @@ export function updateAnimation(
 
     checkDestroy(particle, destroyType, data.value, minValue, maxValue);
 
-    if (!particle.destroyed) {
-        data.value = clamp(data.value, minValue, maxValue);
-    }
+    data.value = clamp(data.value, minValue, maxValue);
 }
 
 /**
@@ -871,11 +682,7 @@ export function updateAnimation(
  * @returns the cloned style
  */
 export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclaration {
-    const clonedStyle: CSSStyleDeclaration = document.createElement("div").style;
-
-    if (!style) {
-        return clonedStyle;
-    }
+    const clonedStyle: CSSStyleDeclaration = safeDocument().createElement("div").style;
 
     for (const key in style) {
         const styleKey = style[key];
@@ -893,9 +700,9 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
         const stylePriority = style.getPropertyPriority?.(styleKey);
 
         if (!stylePriority) {
-            clonedStyle.setProperty?.(styleKey, styleValue);
+            clonedStyle.setProperty(styleKey, styleValue);
         } else {
-            clonedStyle.setProperty?.(styleKey, styleValue, stylePriority);
+            clonedStyle.setProperty(styleKey, styleValue, stylePriority);
         }
     }
 
@@ -908,7 +715,7 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
  * @returns the full screen style
  */
 function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
-    const fullScreenStyle = document.createElement("div").style,
+    const fullScreenStyle = safeDocument().createElement("div").style,
         radix = 10,
         style: Record<string, string> = {
             width: "100%",
@@ -925,6 +732,10 @@ function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
 
     for (const key in style) {
         const value = style[key];
+
+        if (value === undefined) {
+            continue;
+        }
 
         fullScreenStyle.setProperty(key, value);
     }

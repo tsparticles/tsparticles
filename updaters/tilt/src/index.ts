@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { TiltUpdater } from "./TiltUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine - The engine to load the updater for
- * @param refresh -
  */
-export async function loadTiltUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadTiltUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "tilt",
-        container => {
-            return Promise.resolve(new TiltUpdater(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("tilt", async container => {
+            const { TiltUpdater } = await import("./TiltUpdater.js");
+
+            return new TiltUpdater(container);
+        });
+    });
 }

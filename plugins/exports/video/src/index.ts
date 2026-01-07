@@ -1,14 +1,16 @@
 import { type Engine } from "@tsparticles/engine";
-import { ExportVideoPlugin } from "./ExportVideoPlugin.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExportVideoPlugin(engine: Engine, refresh = true): Promise<void> {
+export function loadExportVideoPlugin(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addPlugin(new ExportVideoPlugin(engine), refresh);
+    engine.register(async e => {
+        const { ExportVideoPlugin } = await import("./ExportVideoPlugin.js");
+
+        e.addPlugin(new ExportVideoPlugin());
+    });
 }

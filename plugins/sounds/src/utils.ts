@@ -42,14 +42,14 @@ export function getNoteFrequency(note: string): number | undefined {
         return;
     }
 
-    const noteKey = result[groupKey] || result[defaultMatchKey],
+    const noteKey = result[groupKey] ?? result[defaultMatchKey],
         noteItem = notes.get(noteKey);
 
     if (!noteItem) {
         return;
     }
 
-    return noteItem[parseInt(result[innerGroupKey] || "0")];
+    return noteItem[parseInt(result[innerGroupKey] ?? "0")];
 }
 
 let muted = true;

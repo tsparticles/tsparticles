@@ -9,7 +9,7 @@ export class OrbitRotation extends ValueWithRandom {
         this.value = 45;
     }
 
-    load(data?: RecursivePartial<IValueWithRandom>): void {
+    override load(data?: RecursivePartial<IValueWithRandom>): void {
         if (isNull(data)) {
             return;
         }

@@ -45,8 +45,8 @@ export function drawLight(container: LightContainer, context: CanvasRenderingCon
         return;
     }
 
-    gradientAmbientLight.addColorStop(gradientPos.min, getStyleFromRgb(gradientRgb.start));
-    gradientAmbientLight.addColorStop(gradientPos.max, getStyleFromRgb(gradientRgb.stop));
+    gradientAmbientLight.addColorStop(gradientPos.min, getStyleFromRgb(gradientRgb.start, container.hdr));
+    gradientAmbientLight.addColorStop(gradientPos.max, getStyleFromRgb(gradientRgb.stop, container.hdr));
 
     context.fillStyle = gradientAmbientLight;
     context.fill();
@@ -107,7 +107,7 @@ export function drawParticleShadow(
         });
     }
 
-    const shadowColor = getStyleFromRgb(shadowRgb),
+    const shadowColor = getStyleFromRgb(shadowRgb, container.hdr),
         lastOffset = 1,
         firstPos = 0,
         last = points.length - lastOffset;
@@ -115,11 +115,18 @@ export function drawParticleShadow(
     for (let i = last, n = 0; i >= firstPos; n = i--) {
         context.beginPath();
 
-        context.moveTo(points[i].start.x, points[i].start.y);
+        const iPoint = points[i],
+            nPoint = points[n];
 
-        context.lineTo(points[n].start.x, points[n].start.y);
-        context.lineTo(points[n].end.x, points[n].end.y);
-        context.lineTo(points[i].end.x, points[i].end.y);
+        if (!iPoint || !nPoint) {
+            continue;
+        }
+
+        context.moveTo(iPoint.start.x, iPoint.start.y);
+
+        context.lineTo(nPoint.start.x, nPoint.start.y);
+        context.lineTo(nPoint.end.x, nPoint.end.y);
+        context.lineTo(iPoint.end.x, iPoint.end.y);
 
         context.fillStyle = shadowColor;
 

@@ -5,10 +5,10 @@ import {
     type IParticlesOptions,
     type IRgba,
     type RecursivePartial,
-    errorPrefix,
     getRandom,
     isNumber,
     percentDenominator,
+    safeDocument,
 } from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
 import type { TextMask } from "./Options/Classes/TextMask.js";
@@ -18,7 +18,9 @@ const half = 0.5,
         x: 0,
         y: 0,
     },
-    defaultWidth = 0;
+    defaultWidth = 0,
+    defaultRgb = 0,
+    defaultAlpha = 1;
 
 export interface CanvasPixelData {
     height: number;
@@ -69,8 +71,19 @@ export function addParticlesFromCanvasPixels(
                 x: nextIndex % width,
                 y: Math.floor(nextIndex / width),
             },
-            pixel = data.pixels[pixelPos.y][pixelPos.x],
-            shouldCreateParticle = filter(pixel);
+            row = data.pixels[pixelPos.y];
+
+        if (!row) {
+            continue;
+        }
+
+        const pixel = row[pixelPos.x];
+
+        if (!pixel) {
+            continue;
+        }
+
+        const shouldCreateParticle = filter(pixel);
 
         if (!shouldCreateParticle) {
             continue;
@@ -128,9 +141,7 @@ export function getCanvasImageData(
                 y: Math.floor(idx / size.width),
             };
 
-        if (!pixels[pos.y]) {
-            pixels[pos.y] = [];
-        }
+        pixels[pos.y] ??= [];
 
         const indexesOffset = {
                 r: 0,
@@ -138,13 +149,18 @@ export function getCanvasImageData(
                 b: 2,
                 a: 3,
             },
-            alphaFactor = 255;
+            alphaFactor = 255,
+            row = pixels[pos.y];
 
-        pixels[pos.y][pos.x] = {
-            r: imageData[i + indexesOffset.r],
-            g: imageData[i + indexesOffset.g],
-            b: imageData[i + indexesOffset.b],
-            a: imageData[i + indexesOffset.a] / alphaFactor,
+        if (!row) {
+            continue;
+        }
+
+        row[pos.x] = {
+            r: imageData[i + indexesOffset.r] ?? defaultRgb,
+            g: imageData[i + indexesOffset.g] ?? defaultRgb,
+            b: imageData[i + indexesOffset.b] ?? defaultRgb,
+            a: (imageData[i + indexesOffset.a] ?? defaultAlpha) / alphaFactor,
         };
     }
 
@@ -168,7 +184,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
     const p = new Promise<CanvasPixelData>((resolve, reject) => {
         image.onerror = reject;
         image.onload = (): void => {
-            const canvas = document.createElement("canvas");
+            const canvas = safeDocument().createElement("canvas");
 
             canvas.width = image.width;
             canvas.height = image.height;
@@ -176,7 +192,8 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
             const context = canvas.getContext("2d");
 
             if (!context) {
-                return reject(new Error(`${errorPrefix} Could not get canvas context`));
+                reject(new Error("Could not get canvas context"));
+                return;
             }
 
             context.drawImage(
@@ -206,7 +223,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
  * @returns the canvas pixel data
  */
 export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
-    const canvas = document.createElement("canvas"),
+    const canvas = safeDocument().createElement("canvas"),
         context = canvas.getContext("2d"),
         { font, text, lines: linesOptions, color } = textOptions;
 
@@ -215,14 +232,14 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     }
 
     const lines = text.split(linesOptions.separator),
-        fontSize = isNumber(font.size) ? `${font.size}px` : font.size,
+        fontSize = isNumber(font.size) ? `${font.size.toString()}px` : font.size,
         linesData: TextLineData[] = [];
 
     let maxWidth = 0,
         totalHeight = 0;
 
     for (const line of lines) {
-        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight ?? ""} ${fontSize} ${font.family}`;
+        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
 
         const measure = context.measureText(line),
             lineData = {
@@ -244,7 +261,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     let currentHeight = 0;
 
     for (const line of linesData) {
-        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight ?? ""} ${fontSize} ${font.family}`;
+        context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
         context.fillStyle = color;
         context.fillText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
 
@@ -263,9 +280,20 @@ function shuffle<T>(array: T[]): T[] {
         minIndex = 0;
 
     for (let currentIndex = array.length - lengthOffset; currentIndex >= minIndex; currentIndex--) {
-        const randomIndex = Math.floor(getRandom() * currentIndex);
+        const randomIndex = Math.floor(getRandom() * currentIndex),
+            currentItem = array[currentIndex],
+            randomItem = array[randomIndex];
 
-        [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+        if (randomItem === currentItem) {
+            continue;
+        }
+
+        if (randomItem === undefined || currentItem === undefined) {
+            continue;
+        }
+
+        array[currentIndex] = randomItem;
+        array[randomIndex] = currentItem;
     }
 
     return array;

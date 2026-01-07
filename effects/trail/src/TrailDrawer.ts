@@ -55,7 +55,7 @@ const defaultTransform = {
 };
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
-    draw(data: IShapeDrawData<TrailParticle>): void {
+    drawAfter(data: IShapeDrawData<TrailParticle>): void {
         const { context, radius, particle, transformData } = data,
             diameter = radius * double,
             pxRatio = particle.container.retina.pixelRatio,
@@ -69,7 +69,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
         const pathLength = particle.trailLength + radius;
 
         trail.push({
-            color: context.fillStyle ?? context.strokeStyle,
+            color: context.fillStyle || context.strokeStyle,
             position: {
                 x: currentPos.x,
                 y: currentPos.y,
@@ -91,11 +91,22 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
                 height: particle.container.canvas.size.height + diameter,
             };
 
-        let lastPos = trail[trailLength - trailLengthOffset].position;
+        const trailPos = trail[trailLength - trailLengthOffset];
+
+        if (!trailPos) {
+            return;
+        }
+
+        let lastPos = trailPos.position;
 
         for (let i = trailLength; i > none; i--) {
-            const step = trail[i - trailLengthOffset],
-                position = step.position,
+            const step = trail[i - trailLengthOffset];
+
+            if (!step) {
+                continue;
+            }
+
+            const position = step.position,
                 stepTransformData = particle.trailTransform
                     ? (step.transformData ?? defaultTransform)
                     : defaultTransform;

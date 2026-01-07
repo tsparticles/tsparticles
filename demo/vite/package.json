@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/vite-demo",
     "private": true,
-    "version": "3.9.1",
+    "version": "4.0.0-alpha.0",
     "type": "module",
     "scripts": {
         "dev": "vite",
@@ -9,12 +9,12 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@tsparticles/all": "workspace:3.9.1",
-        "@tsparticles/configs": "workspace:3.9.1",
-        "@tsparticles/engine": "workspace:3.9.1"
+        "@tsparticles/all": "workspace:4.0.0-alpha.0",
+        "@tsparticles/configs": "workspace:4.0.0-alpha.0",
+        "@tsparticles/engine": "workspace:4.0.0-alpha.0"
     },
     "devDependencies": {
-        "typescript": "^5.3.3",
-        "vite": "^6.0.0"
+        "typescript": "^5.9.3",
+        "vite": "^7.3.0"
     }
 }

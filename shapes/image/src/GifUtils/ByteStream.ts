@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 export class ByteStream {
     /**
      * this streams raw data
@@ -32,7 +34,7 @@ export class ByteStream {
      * @returns the next byte
      */
     nextByte(): number {
-        return this.data[this.pos++];
+        return this.data[this.pos++]!;
     }
 
     /**
@@ -46,7 +48,7 @@ export class ByteStream {
 
         this.pos += increment;
 
-        return this.data[this.pos - increment] + (this.data[this.pos - previous] << shift);
+        return this.data[this.pos - increment]! + (this.data[this.pos - previous]! << shift);
     }
 
     /**
@@ -56,13 +58,14 @@ export class ByteStream {
     readSubBlocks(): string {
         let blockString = "",
             size = 0;
+
         const minCount = 0,
             emptySize = 0;
 
         do {
-            size = this.data[this.pos++];
+            size = this.data[this.pos++]!;
 
-            for (let count = size; --count >= minCount; blockString += String.fromCharCode(this.data[this.pos++])) {
+            for (let count = size; --count >= minCount; blockString += String.fromCharCode(this.data[this.pos++]!)) {
                 // do nothing
             }
         } while (size !== emptySize);
@@ -75,22 +78,22 @@ export class ByteStream {
      * @returns the sub blocks as binary
      */
     readSubBlocksBin(): Uint8Array {
-        let size = this.data[this.pos],
+        let size = this.data[this.pos]!,
             len = 0;
 
         const emptySize = 0,
             increment = 1;
 
-        for (let offset = 0; size !== emptySize; offset += size + increment, size = this.data[this.pos + offset]) {
+        for (let offset = 0; size !== emptySize; offset += size + increment, size = this.data[this.pos + offset]!) {
             len += size;
         }
 
         const blockData = new Uint8Array(len);
 
-        size = this.data[this.pos++];
+        size = this.data[this.pos++]!;
 
-        for (let i = 0; size !== emptySize; size = this.data[this.pos++]) {
-            for (let count = size; --count >= emptySize; blockData[i++] = this.data[this.pos++]) {
+        for (let i = 0; size !== emptySize; size = this.data[this.pos++]!) {
+            for (let count = size; --count >= emptySize; blockData[i++] = this.data[this.pos++]!) {
                 // do nothing
             }
         }
@@ -105,7 +108,7 @@ export class ByteStream {
         for (
             const increment = 1, noData = 0;
             this.data[this.pos] !== noData;
-            this.pos += this.data[this.pos] + increment
+            this.pos += this.data[this.pos]! + increment
         ) {
             // do nothing
         }

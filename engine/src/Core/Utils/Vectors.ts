@@ -1,6 +1,5 @@
 import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js";
-import { errorPrefix, inverseFactorNumerator, none, originPoint, squareExp } from "./Constants.js";
-import { isNumber } from "../../Utils/TypeUtils.js";
+import { inverseFactorNumerator, none, originPoint, squareExp } from "./Constants.js";
 
 /**
  */
@@ -22,26 +21,15 @@ export class Vector3d implements ICoordinates3d {
 
     /**
      * Vector3d constructor, creating an instance with the given coordinates
-     * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
+     * @param x - X coordinate
      * @param y - Y coordinate
      * @param z - Z coordinate
      * @internal
      */
-    protected constructor(xOrCoords: number | ICoordinates3d | ICoordinates, y?: number, z?: number) {
-        if (!isNumber(xOrCoords) && xOrCoords) {
-            this.x = xOrCoords.x;
-            this.y = xOrCoords.y;
-
-            const coords3d = xOrCoords as ICoordinates3d;
-
-            this.z = coords3d.z ? coords3d.z : originPoint.z;
-        } else if (xOrCoords !== undefined && y !== undefined) {
-            this.x = xOrCoords;
-            this.y = y;
-            this.z = z ?? originPoint.z;
-        } else {
-            throw new Error(`${errorPrefix} Vector3d not initialized correctly`);
-        }
+    protected constructor(x = originPoint.x, y = originPoint.y, z = originPoint.z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     /**
@@ -100,8 +88,12 @@ export class Vector3d implements ICoordinates3d {
      * @param z - Z coordinate
      * @returns the new vector created
      */
-    static create(x: number | ICoordinates3d, y?: number, z?: number): Vector3d {
-        return new Vector3d(x, y, z);
+    static create(x: number | ICoordinates | ICoordinates3d, y?: number, z?: number): Vector3d {
+        if (typeof x === "number") {
+            return new Vector3d(x, y ?? originPoint.y, z ?? originPoint.z);
+        }
+
+        return new Vector3d(x.x, x.y, Object.hasOwn(x, "z") ? (x as ICoordinates3d).z : originPoint.z);
     }
 
     /**
@@ -268,19 +260,19 @@ export class Vector3d implements ICoordinates3d {
 export class Vector extends Vector3d {
     /**
      * Vector constructor, creating an instance with the given coordinates
-     * @param xOrCoords - X coordinate or the whole {@link ICoordinates} object
+     * @param x - X coordinate
      * @param y - Y coordinate
      * @internal
      */
-    protected constructor(xOrCoords: number | ICoordinates, y?: number) {
-        super(xOrCoords, y, originPoint.z);
+    protected constructor(x = originPoint.x, y = originPoint.y) {
+        super(x, y, originPoint.z);
     }
 
     /**
      * A new vector, with coordinates in the origin point
      * @returns a new vector, with coordinates in the origin point
      */
-    static get origin(): Vector {
+    static override get origin(): Vector {
         return Vector.create(originPoint.x, originPoint.y);
     }
 
@@ -289,7 +281,7 @@ export class Vector extends Vector3d {
      * @param source - the vector to clone
      * @returns a new vector instance, created from the given one
      */
-    static clone(source: Vector): Vector {
+    static override clone(source: Vector): Vector {
         return Vector.create(source.x, source.y);
     }
 
@@ -299,7 +291,11 @@ export class Vector extends Vector3d {
      * @param y - Y coordinate
      * @returns the new vector created
      */
-    static create(x: number | ICoordinates, y?: number): Vector {
-        return new Vector(x, y);
+    static override create(x: number | ICoordinates, y?: number): Vector {
+        if (typeof x === "number") {
+            return new Vector(x, y ?? originPoint.y);
+        }
+
+        return new Vector(x.x, x.y);
     }
 }

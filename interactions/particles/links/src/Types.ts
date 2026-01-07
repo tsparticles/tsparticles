@@ -1,5 +1,4 @@
 import type {
-    BackgroundMask,
     Container,
     Engine,
     ICoordinates,
@@ -30,13 +29,13 @@ export type LinkParticle = Particle & {
 };
 
 export interface LinkLineDrawParams {
-    backgroundMask: BackgroundMask;
     begin: ICoordinates;
     canvasSize: IDimension;
     colorLine: IRgb;
     context: CanvasRenderingContext2D;
     end: ICoordinates;
     engine: Engine;
+    hdr: boolean;
     links: Links;
     maxDistance: number;
     opacity: number;
@@ -44,9 +43,9 @@ export interface LinkLineDrawParams {
 }
 
 export interface LinkTriangleDrawParams {
-    backgroundMask: BackgroundMask;
     colorTriangle: IRgb;
     context: CanvasRenderingContext2D;
+    hdr: boolean;
     opacityTriangle: number;
     pos1: ICoordinates;
     pos2: ICoordinates;

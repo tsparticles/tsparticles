@@ -1,13 +1,10 @@
-import { init } from "./init.js";
-import { isSsr } from "./Utils/Utils.js";
+import { initEngine } from "./initEngine.js";
 
-const tsParticles = init();
+const tsParticles = initEngine();
 
-if (!isSsr()) {
-    window.tsParticles = tsParticles;
-}
+globalThis.tsParticles = tsParticles;
 
 export * from "./exports.js";
-export * from "./export-types.js";
+export type * from "./export-types.js";
 
 export { tsParticles };

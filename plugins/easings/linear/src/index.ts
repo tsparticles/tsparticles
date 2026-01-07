@@ -4,34 +4,13 @@ declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadEasingLinearPlugin(engine: Engine, refresh = true): Promise<void> {
+export function loadEasingLinearPlugin(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addEasing(
-        EasingType.easeInLinear,
-        value => {
-            return value;
-        },
-        false,
-    );
-
-    await engine.addEasing(
-        EasingType.easeOutLinear,
-        value => {
-            return value;
-        },
-        false,
-    );
-
-    await engine.addEasing(
-        EasingType.easeInOutLinear,
-        value => {
-            return value;
-        },
-        false,
-    );
-
-    await engine.refresh(refresh);
+    engine.register(e => {
+        e.addEasing(EasingType.easeInLinear, value => value);
+        e.addEasing(EasingType.easeOutLinear, value => value);
+        e.addEasing(EasingType.easeInOutLinear, value => value);
+    });
 }

@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { GradientUpdater } from "./GradientUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadGradientUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadGradientUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "gradient",
-        () => {
-            return Promise.resolve(new GradientUpdater(engine));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("gradient", async () => {
+            const { GradientUpdater } = await import("./GradientUpdater.js");
+
+            return new GradientUpdater(e);
+        });
+    });
 }

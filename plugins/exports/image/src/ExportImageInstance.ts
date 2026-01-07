@@ -1,13 +1,11 @@
-import type { Container, Engine, ExportResult, IContainerPlugin } from "@tsparticles/engine";
+import type { Container, ExportResult, IContainerPlugin } from "@tsparticles/engine";
 import type { IExportImageData } from "./IExportImageData.js";
 
 export class ExportImageInstance implements IContainerPlugin {
     private readonly _container: Container;
-    private readonly _engine: Engine;
 
-    constructor(container: Container, engine: Engine) {
+    constructor(container: Container) {
         this._container = container;
-        this._engine = engine;
     }
 
     async export(type: string, data: Record<string, unknown>): Promise<ExportResult> {

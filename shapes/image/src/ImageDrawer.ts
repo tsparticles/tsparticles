@@ -1,4 +1,4 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, errorPrefix } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer } from "@tsparticles/engine";
 import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
@@ -30,9 +30,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      * @param image - the image to add to the container collection
      */
     addImage(image: IImage): void {
-        if (!this._engine.images) {
-            this._engine.images = [];
-        }
+        this._engine.images ??= [];
 
         this._engine.images.push(image);
     }
@@ -94,9 +92,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             return;
         }
 
-        if (!this._engine.images) {
-            this._engine.images = [];
-        }
+        this._engine.images ??= [];
 
         const imageData = particle.shapeData as IImageShape | undefined;
 
@@ -123,9 +119,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             return;
         }
 
-        if (!this._engine.images) {
-            this._engine.images = [];
-        }
+        this._engine.images ??= [];
 
         const images = this._engine.images,
             imageData = particle.shapeData as IImageShape | undefined;
@@ -141,7 +135,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             return;
         }
 
-        const replaceColor = imageData.replaceColor ?? image.replaceColor;
+        const replaceColor = imageData.replaceColor;
 
         if (image.loading) {
             setTimeout((): void => {
@@ -155,7 +149,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
             let imageRes: IParticleImage;
 
             if (image.svgData && color) {
-                imageRes = await replaceImageColor(image, imageData, color, particle);
+                imageRes = await replaceImageColor(image, imageData, color, particle, container.hdr);
             } else {
                 imageRes = {
                     color,
@@ -199,13 +193,13 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
      */
     private readonly loadImageShape = async (imageShape: IImageShape): Promise<void> => {
         if (!this._engine.loadImage) {
-            throw new Error(`${errorPrefix} image shape not initialized`);
+            throw new Error(`Image shape not initialized`);
         }
 
         await this._engine.loadImage({
             gif: imageShape.gif,
             name: imageShape.name,
-            replaceColor: imageShape.replaceColor ?? false,
+            replaceColor: imageShape.replaceColor,
             src: imageShape.src,
         });
     };

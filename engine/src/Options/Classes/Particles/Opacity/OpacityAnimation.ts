@@ -19,7 +19,7 @@ export class OpacityAnimation
         this.speed = 2;
     }
 
-    load(data?: RecursivePartial<IOpacityAnimation>): void {
+    override load(data?: RecursivePartial<IOpacityAnimation>): void {
         super.load(data);
 
         if (isNull(data)) {

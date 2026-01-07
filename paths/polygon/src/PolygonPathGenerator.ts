@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { type Container, type ICoordinates, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
@@ -20,17 +21,9 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     generate(p: PolygonPathParticle): Vector {
         const { sides } = this.options;
 
-        if (p.hexStep === undefined) {
-            p.hexStep = 0;
-        }
-
-        if (p.hexDirection === undefined) {
-            p.hexDirection = sides === 6 ? ((getRandom() * 3) | 0) * 2 : (getRandom() * sides) | 0;
-        }
-
-        if (p.hexSpeed === undefined) {
-            p.hexSpeed = p.velocity.length;
-        }
+        p.hexStep ??= 0;
+        p.hexDirection ??= sides === 6 ? ((getRandom() * 3) | 0) * 2 : (getRandom() * sides) | 0;
+        p.hexSpeed ??= p.velocity.length;
 
         if (p.hexStep % this.options.turnSteps === 0) {
             p.hexDirection = getRandom() > 0.5 ? (p.hexDirection + 1) % sides : (p.hexDirection + sides - 1) % sides;
@@ -41,7 +34,7 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
         p.hexStep++;
 
-        const direction = this.dirsList[p.hexDirection];
+        const direction = this.dirsList[p.hexDirection]!;
 
         return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
     }
@@ -49,9 +42,9 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     init(container: Container): void {
         const options = container.actualOptions.particles.move.path.options;
 
-        this.options.sides = (options.sides as number) > 0 ? (options.sides as number) : 6;
-        this.options.angle = (options.angle as number) ?? 30;
-        this.options.turnSteps = (options.turnSteps as number) >= 0 ? (options.turnSteps as number) : 20;
+        this.options.sides = (options["sides"] as number) > 0 ? (options["sides"] as number) : 6;
+        this.options.angle = (options["angle"] as number | undefined) ?? 30;
+        this.options.turnSteps = (options["turnSteps"] as number) >= 0 ? (options["turnSteps"] as number) : 20;
 
         this._createDirs();
     }

@@ -32,13 +32,6 @@ const options: ISourceOptions = {
             distance: 30,
             enable: true,
             opacity: 0.4,
-            shadow: {
-                blur: 5,
-                color: {
-                    value: "lime",
-                },
-                enable: false,
-            },
             width: 1,
         },
         move: {
@@ -86,7 +79,7 @@ const options: ISourceOptions = {
         },
         scale: 0.5,
         type: "inline",
-        url: "https://particles.js.org/images/smalldeer.svg",
+        url: "https://particles.js.org/images/hdr/smalldeer.svg",
     },
     pauseOnBlur: true,
     background: {

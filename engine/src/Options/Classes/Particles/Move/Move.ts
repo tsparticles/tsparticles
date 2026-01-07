@@ -8,12 +8,11 @@ import { MoveAttract } from "./MoveAttract.js";
 import { MoveCenter } from "./MoveCenter.js";
 import { MoveGravity } from "./MoveGravity.js";
 import { MovePath } from "./Path/MovePath.js";
-import { MoveTrail } from "./MoveTrail.js";
 import { OutModes } from "./OutModes.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { Spin } from "./Spin.js";
-import { setRangeValue } from "../../../../Utils/NumberUtils.js";
+import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 /**
  * [[include:Options/Particles/Move.md]]
@@ -35,7 +34,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
     speed: RangeValue;
     readonly spin;
     straight;
-    readonly trail;
     vibrate;
     warp;
 
@@ -56,7 +54,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
         this.speed = 2;
         this.spin = new Spin();
         this.straight = false;
-        this.trail = new MoveTrail();
         this.vibrate = false;
         this.warp = false;
     }
@@ -129,8 +126,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
         if (data.straight !== undefined) {
             this.straight = data.straight;
         }
-
-        this.trail.load(data.trail);
 
         if (data.vibrate !== undefined) {
             this.vibrate = data.vibrate;

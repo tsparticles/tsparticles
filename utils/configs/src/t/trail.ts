@@ -36,7 +36,7 @@ const options: ISourceOptions = {
             value: 1,
         },
         size: {
-            value: 3,
+            value: 5,
         },
         move: {
             enable: true,
@@ -48,16 +48,11 @@ const options: ISourceOptions = {
                     value: 0.1,
                 },
                 options: {
-                    size: 20,
+                    size: 64,
                     draw: false,
                     increment: 0.001,
                 },
                 generator: "perlinNoise",
-            },
-            trail: {
-                enable: true,
-                fill: { color: "#000000" },
-                length: 20,
             },
         },
     },
@@ -95,6 +90,11 @@ const options: ISourceOptions = {
                 quantity: 2,
             },
         },
+    },
+    trail: {
+        enable: true,
+        fill: { color: "#000000" },
+        length: 20,
     },
 };
 

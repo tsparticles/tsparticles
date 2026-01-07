@@ -9,7 +9,7 @@ export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoa
         this.sync = false;
     }
 
-    load(data?: RecursivePartial<ILifeDelay>): void {
+    override load(data?: RecursivePartial<ILifeDelay>): void {
         if (isNull(data)) {
             return;
         }

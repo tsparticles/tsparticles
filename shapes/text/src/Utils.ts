@@ -10,7 +10,7 @@ const double = 2,
  * @param data -
  */
 export function drawText(data: IShapeDrawData<TextParticle>): void {
-    const { context, particle, radius, opacity } = data,
+    const { context, particle, fill, stroke, radius, opacity } = data,
         character = particle.shapeData as ITextShape | undefined;
 
     if (!character) {
@@ -19,54 +19,50 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
 
     const textData = character.value;
 
-    if (textData === undefined) {
-        return;
-    }
-
-    if (particle.text === undefined) {
-        particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
-    }
+    particle.text ??= itemFromSingleOrMultiple(textData, particle.randomIndexData);
 
     const text = particle.text,
-        style = character.style ?? "",
-        weight = character.weight ?? "400",
+        style = character.style,
+        weight = character.weight,
         size = Math.round(radius) * double,
-        font = character.font ?? "Verdana",
-        fill = particle.shapeFill;
+        font = character.font;
 
-    const lines = text?.split("\n");
+    const lines = text?.split("\n") ?? [];
 
-    if (!lines) {
-        return;
-    }
-
-    context.font = `${style} ${weight} ${size}px "${font}"`;
+    context.font = `${style} ${weight} ${size.toString()}px "${font}"`;
 
     context.globalAlpha = opacity;
 
     for (let i = 0; i < lines.length; i++) {
-        drawLine(context, lines[i], radius, opacity, i, fill);
+        const currentLine = lines[i];
+
+        if (!currentLine) {
+            continue;
+        }
+
+        drawLine(context, currentLine, radius, opacity, i, fill, stroke);
     }
 
     context.globalAlpha = 1;
 }
 
 /**
- *
  * @param context -
  * @param line -
  * @param radius -
- * @param opacity -
+ * @param _opacity -
  * @param index -
  * @param fill -
+ * @param stroke -
  */
 function drawLine(
     context: CanvasRenderingContext2D,
     line: string,
     radius: number,
-    opacity: number,
+    _opacity: number,
     index: number,
     fill: boolean,
+    stroke: boolean,
 ): void {
     const offsetX = line.length * radius * half,
         pos = {
@@ -77,7 +73,9 @@ function drawLine(
 
     if (fill) {
         context.fillText(line, pos.x, pos.y + diameter * index);
-    } else {
+    }
+
+    if (stroke) {
         context.strokeText(line, pos.x, pos.y + diameter * index);
     }
 }

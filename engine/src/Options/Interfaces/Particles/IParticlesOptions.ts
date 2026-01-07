@@ -2,14 +2,12 @@
  * [[include:Options/Particles.md]]
  */
 import type { IAnimatableColor } from "../IAnimatableColor.js";
-import type { ICollisions } from "./Collisions/ICollisions.js";
 import type { IEffect } from "./Effect/IEffect.js";
 import type { IInteractivity } from "../Interactivity/IInteractivity.js";
 import type { IMove } from "./Move/IMove.js";
 import type { IOpacity } from "./Opacity/IOpacity.js";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce.js";
 import type { IParticlesNumber } from "./Number/IParticlesNumber.js";
-import type { IShadow } from "./IShadow.js";
 import type { IShape } from "./Shape/IShape.js";
 import type { ISize } from "./Size/ISize.js";
 import type { IStroke } from "./IStroke.js";
@@ -28,11 +26,6 @@ export interface IParticlesOptions {
      * Options for customizing the behavior when a particle bounces
      */
     bounce: IParticlesBounce;
-
-    /**
-     * Particles collisions options
-     */
-    collisions: ICollisions;
 
     /**
      * Particles color options
@@ -73,11 +66,6 @@ export interface IParticlesOptions {
      * Particles options for reducing the randomization of duplicate particles, the index will be used for choosing the array values
      */
     reduceDuplicates: boolean;
-
-    /**
-     * Particles shadow options
-     */
-    shadow: IShadow;
 
     /**
      * Particles shape options

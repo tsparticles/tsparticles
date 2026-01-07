@@ -1,5 +1,4 @@
 import { type Engine } from "@tsparticles/engine";
-import { ZigZagPathGenerator } from "./ZigZagPathGenerator.js";
 
 declare const __VERSION__: string;
 
@@ -7,10 +6,13 @@ export const zigZagPathName = "zigZagPathGenerator";
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadZigZagPath(engine: Engine, refresh = true): Promise<void> {
+export function loadZigZagPath(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addPathGenerator(zigZagPathName, new ZigZagPathGenerator(), refresh);
+    engine.register(async e => {
+        const { ZigZagPathGenerator } = await import("./ZigZagPathGenerator.js");
+
+        e.addPathGenerator(zigZagPathName, new ZigZagPathGenerator());
+    });
 }

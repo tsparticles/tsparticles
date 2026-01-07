@@ -1,6 +1,6 @@
 import type { ICoordinates, IRangedCoordinates } from "./ICoordinates.js";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { calcPositionFromSize, calcPositionOrRandomFromSize } from "../../Utils/NumberUtils.js";
+import { calcPositionFromSize, calcPositionOrRandomFromSize } from "../../Utils/MathUtils.js";
 import type { IDimension } from "./IDimension.js";
 
 /**

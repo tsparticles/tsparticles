@@ -1,7 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { Container } from "../../Core/Container.js";
 import type { IBackground } from "./Background/IBackground.js";
-import type { IBackgroundMask } from "./BackgroundMask/IBackgroundMask.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
 import type { IInteractivity } from "./Interactivity/IInteractivity.js";
 import type { IManualParticle } from "./IManualParticle.js";
@@ -33,11 +32,6 @@ export interface IOptions {
     background: IBackground;
 
     /**
-     * Background Mask options, what's behind the canvas will become hidden and particles will uncover it
-     */
-    backgroundMask: IBackgroundMask;
-
-    /**
      * Clears the canvas on every frame if enabled
      */
     clear: boolean;
@@ -66,6 +60,11 @@ export interface IOptions {
      * Sets the animated background mode for particles canvas bringing it to the back
      */
     fullScreen: RecursivePartial<IFullScreen> | boolean;
+
+    /**
+     * Enables or disables the HDR mode, if enabled the particles will be rendered in a higher color precision
+     */
+    hdr: boolean;
 
     /**
      * The particles interaction options

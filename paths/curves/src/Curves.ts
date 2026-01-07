@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
 
 import { getRandom } from "@tsparticles/engine";
 
@@ -33,8 +34,8 @@ export function CurvesPathGen(
     for (let kh = 1; kh <= nbHarmonics; ++kh) {
         arP0[kh] = randomFunc();
         arP1[kh] = randomFunc();
-        amplitudes[kh] = kh === 1 ? 1 : amplitudes[kh - 1] * attenHarmonics;
-        globAmplitude += amplitudes[kh];
+        amplitudes[kh] = kh === 1 ? 1 : amplitudes[kh - 1]! * attenHarmonics;
+        globAmplitude += amplitudes[kh]!;
         increments[kh] = kh / period;
         phases[kh] = randomFunc();
     } // for kh
@@ -49,16 +50,16 @@ export function CurvesPathGen(
             signal = 0;
 
         for (let kh = nbHarmonics; kh >= 1; --kh) {
-            pf = phases[kh] += increments[kh];
+            pf = phases[kh]! += increments[kh]!;
 
-            if (phases[kh] >= 1) {
-                pf = phases[kh] -= 1;
-                arP0[kh] = arP1[kh];
+            if (phases[kh]! >= 1) {
+                pf = phases[kh]! -= 1;
+                arP0[kh] = arP1[kh]!;
                 arP1[kh] = randomFunc();
             } // if full period reached
 
             pfl = pf ** 2 * (3 - 2 * pf); // always 0..1, but smoother
-            signal += (arP0[kh] * (1 - pfl) + arP1[kh] * pfl) * amplitudes[kh];
+            signal += (arP0[kh]! * (1 - pfl) + arP1[kh]! * pfl) * amplitudes[kh]!;
         } // for kh
 
         return signal + lowValue;

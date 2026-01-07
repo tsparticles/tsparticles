@@ -7,6 +7,7 @@ import {
     isFunction,
     isNull,
     isString,
+    safeDocument,
 } from "@tsparticles/engine";
 import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types.js";
@@ -28,18 +29,16 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
 
         let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
 
-        if (filter !== undefined) {
-            if (isString(filter)) {
-                if (Object.hasOwn(window, filter)) {
-                    const wndFilter = (window as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
+        if (isString(filter)) {
+            if (Object.hasOwn(globalThis, filter)) {
+                const wndFilter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
 
-                    if (isFunction(wndFilter)) {
-                        filterFunc = wndFilter;
-                    }
+                if (isFunction(wndFilter)) {
+                    filterFunc = wndFilter;
                 }
-            } else {
-                filterFunc = filter;
             }
+        } else {
+            filterFunc = filter;
         }
 
         this.filter = filterFunc;
@@ -72,16 +71,8 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
             }
 
             pixelData = await getImageData(url, offset);
-        } else if (text) {
-            const data = getTextData(text, offset, this.fill);
-
-            if (isNull(data)) {
-                return;
-            }
-
-            pixelData = data;
         } else if (element ?? selector) {
-            const canvas = element ?? (selector && document.querySelector<HTMLCanvasElement>(selector));
+            const canvas = element ?? (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
 
             if (!canvas) {
                 return;
@@ -94,10 +85,14 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
             }
 
             pixelData = getCanvasImageData(context, canvas, offset);
-        }
+        } else {
+            const data = getTextData(text, offset, this.fill);
 
-        if (!pixelData) {
-            return;
+            if (isNull(data)) {
+                return;
+            }
+
+            pixelData = data;
         }
 
         this.pixelData = pixelData;
@@ -119,8 +114,19 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
                     x: nextIndex % width,
                     y: Math.floor(nextIndex / width),
                 },
-                pixel = data.pixels[pixelPos.y][pixelPos.x],
-                shouldCreateParticle = this.filter(pixel);
+                row = data.pixels[pixelPos.y];
+
+            if (!row) {
+                continue;
+            }
+
+            const pixel = row[pixelPos.x];
+
+            if (!pixel) {
+                continue;
+            }
+
+            const shouldCreateParticle = this.filter(pixel);
 
             if (!shouldCreateParticle) {
                 continue;
@@ -139,7 +145,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         return null;
     }
 
-    resize(position: ICoordinates, size: IDimension): void {
+    override resize(position: ICoordinates, size: IDimension): void {
         super.resize(position, size);
     }
 }

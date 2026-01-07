@@ -24,6 +24,7 @@ import {
     mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
+    safeDocument,
 } from "@tsparticles/engine";
 import { Bubble } from "./Options/Classes/Bubble.js";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv.js";
@@ -50,29 +51,25 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     private readonly _engine;
 
-    constructor(container: BubbleContainer, engine: Engine) {
+    constructor(engine: Engine, container: BubbleContainer) {
         super(container);
 
         this._engine = engine;
 
-        if (!container.bubble) {
-            container.bubble = {};
-        }
+        container.bubble ??= {};
 
         this.handleClickMode = (mode): void => {
             if (mode !== bubbleMode) {
                 return;
             }
 
-            if (!container.bubble) {
-                container.bubble = {};
-            }
+            container.bubble ??= {};
 
             container.bubble.clicking = true;
         };
     }
 
-    clear(particle: Particle, delta: IDelta, force?: boolean): void {
+    clear(particle: Particle, _delta: IDelta, force?: boolean): void {
         if (particle.bubble.inRange && !force) {
             return;
         }
@@ -115,7 +112,9 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         } else if (clickEnabled && isInArray(bubbleMode, clickMode)) {
             this._clickBubble();
         } else {
-            divModeExecute(bubbleMode, divs, (selector, div): void => this._singleSelectorHover(delta, selector, div));
+            divModeExecute(bubbleMode, divs, (selector, div): void => {
+                this._singleSelectorHover(delta, selector, div);
+            });
         }
     }
 
@@ -138,9 +137,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         options: Modes & BubbleMode,
         ...sources: RecursivePartial<(IModes & IBubbleMode) | undefined>[]
     ): void {
-        if (!options.bubble) {
-            options.bubble = new Bubble();
-        }
+        options.bubble ??= new Bubble();
 
         for (const source of sources) {
             options.bubble.load(source?.bubble);
@@ -161,9 +158,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             return;
         }
 
-        if (!container.bubble) {
-            container.bubble = {};
-        }
+        container.bubble ??= {};
 
         const distance = container.retina.bubbleModeDistance;
 
@@ -384,9 +379,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             return;
         }
 
-        if (!container.bubble) {
-            container.bubble = {};
-        }
+        container.bubble ??= {};
 
         if (container.bubble.durationEnd) {
             if (pObjBubble) {
@@ -431,7 +424,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         div,
     ) => {
         const container = this.container,
-            selectors = document.querySelectorAll(selector),
+            selectors = safeDocument().querySelectorAll(selector),
             bubble = container.actualOptions.interactivity.modes.bubble;
 
         if (!bubble || !selectors.length) {

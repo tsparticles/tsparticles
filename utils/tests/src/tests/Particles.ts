@@ -1,11 +1,10 @@
 /* eslint-disable */
-import { type ICoordinates3d, errorPrefix, getLogger, getRandom, tsParticles } from "@tsparticles/engine";
+import { type ICoordinates3d, getLogger, getRandom, tsParticles } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 import { createCustomCanvas } from "../Fixture/CustomCanvas.js";
 
 describe("Particles", async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     globalThis.window = TestWindow;
 
     const container = await tsParticles.load({
@@ -13,12 +12,12 @@ describe("Particles", async () => {
         options: {
             autoPlay: false,
         },
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
+
         element: createCustomCanvas(1920, 1080) as any,
     });
 
     if (!container) {
-        throw new Error(`${errorPrefix} test container not initialized`);
+        throw new Error(`Error test container not initialized`);
     }
 
     // Common options used when initializing Particles with a set number of particles

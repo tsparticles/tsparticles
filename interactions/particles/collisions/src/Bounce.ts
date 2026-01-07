@@ -1,13 +1,16 @@
-import { type Particle, circleBounce, circleBounceDataFromParticle, getRangeValue } from "@tsparticles/engine";
+import { circleBounce, circleBounceDataFromParticle, getRangeValue } from "@tsparticles/engine";
+import { type CollisionParticle } from "./Types.js";
 
-type BounceParticle = Particle & {
+type BounceParticle = CollisionParticle & {
     collisionMaxSpeed?: number;
 };
 
 const fixBounceSpeed = (p: BounceParticle): void => {
-    if (p.collisionMaxSpeed === undefined) {
-        p.collisionMaxSpeed = getRangeValue(p.options.collisions.maxSpeed);
+    if (!p.options.collisions) {
+        return;
     }
+
+    p.collisionMaxSpeed ??= getRangeValue(p.options.collisions.maxSpeed);
 
     if (p.velocity.length > p.collisionMaxSpeed) {
         p.velocity.length = p.collisionMaxSpeed;

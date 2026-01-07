@@ -31,11 +31,6 @@ const options: ISourceOptions = {
                 },
             },
             speed: 3,
-            trail: {
-                fill: { color: "#000" },
-                length: 20,
-                enable: true,
-            },
         },
         number: {
             density: {
@@ -70,6 +65,11 @@ const options: ISourceOptions = {
             x: 50,
             y: 50,
         },
+    },
+    trail: {
+        fill: { color: "#000" },
+        length: 20,
+        enable: true,
     },
 };
 

@@ -1,4 +1,4 @@
-import { type IParticleMover, type Particle, isSsr } from "@tsparticles/engine";
+import { type IParticleMover, type Particle } from "@tsparticles/engine";
 
 const half = 0.5;
 
@@ -16,11 +16,7 @@ export class ParallaxMover implements IParticleMover {
      * @returns check if mover is enabled
      */
     isEnabled(particle: Particle): boolean {
-        return (
-            !isSsr() &&
-            !particle.destroyed &&
-            particle.container.actualOptions.interactivity.events.onHover.parallax.enable
-        );
+        return !particle.destroyed && particle.container.actualOptions.interactivity.events.onHover.parallax.enable;
     }
 
     /**
@@ -31,7 +27,7 @@ export class ParallaxMover implements IParticleMover {
             options = container.actualOptions,
             parallaxOptions = options.interactivity.events.onHover.parallax;
 
-        if (isSsr() || !parallaxOptions.enable) {
+        if (!parallaxOptions.enable) {
             return;
         }
 

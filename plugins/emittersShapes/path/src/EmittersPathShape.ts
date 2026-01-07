@@ -1,5 +1,5 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, errorPrefix, percentDenominator } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, percentDenominator, safeDocument } from "@tsparticles/engine";
 import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 
@@ -13,10 +13,10 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
     constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersPathShapeOptions) {
         super(position, size, fill, options);
 
-        const ctx = document.createElement("canvas").getContext("2d");
+        const ctx = safeDocument().createElement("canvas").getContext("2d");
 
         if (!ctx) {
-            throw new Error(`${errorPrefix} No 2d context available`);
+            throw new Error(`No 2d context available`);
         }
 
         this.checkContext = ctx;
@@ -46,14 +46,16 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         const firstIndex = 0,
             firstPathData = pathData[firstIndex];
 
-        if (firstPathData) {
-            const coords = {
-                x: offset.x + (firstPathData.x * size.width) / percentDenominator,
-                y: offset.y + (firstPathData.y * size.height) / percentDenominator,
-            };
-
-            path.lineTo(coords.x, coords.y);
+        if (!firstPathData) {
+            throw new Error(`No path data available`);
         }
+
+        const coords = {
+            x: offset.x + (firstPathData.x * size.width) / percentDenominator,
+            y: offset.y + (firstPathData.y * size.height) / percentDenominator,
+        };
+
+        path.lineTo(coords.x, coords.y);
 
         this.path = path;
     }
@@ -75,7 +77,7 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         return res ? { position: res } : null;
     }
 
-    resize(position: ICoordinates, size: IDimension): void {
+    override resize(position: ICoordinates, size: IDimension): void {
         super.resize(position, size);
 
         const pathData = this.points,
@@ -101,14 +103,16 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
         const firstIndex = 0,
             firstPathData = pathData[firstIndex];
 
-        if (firstPathData) {
-            const coords = {
-                x: offset.x + (firstPathData.x * size.width) / percentDenominator,
-                y: offset.y + (firstPathData.y * size.height) / percentDenominator,
-            };
-
-            path.lineTo(coords.x, coords.y);
+        if (!firstPathData) {
+            throw new Error(`No path data available`);
         }
+
+        const coords = {
+            x: offset.x + (firstPathData.x * size.width) / percentDenominator,
+            y: offset.y + (firstPathData.y * size.height) / percentDenominator,
+        };
+
+        path.lineTo(coords.x, coords.y);
 
         this.path = path;
     }

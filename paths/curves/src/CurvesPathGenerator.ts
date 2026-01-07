@@ -1,10 +1,15 @@
-import { type Container, type IMovePathGenerator, Vector, getRandom, isFunction, isString } from "@tsparticles/engine";
+import {
+    type Container,
+    type IMovePathGenerator,
+    Vector,
+    doublePI,
+    getRandom,
+    isFunction,
+    isString,
+} from "@tsparticles/engine";
 import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
-
-const double = 2,
-    doublePI = Math.PI * double;
 
 /**
  * @returns a random velocity
@@ -64,21 +69,21 @@ export class CurvesPathGenerator implements IMovePathGenerator {
         const sourceOptions = container.actualOptions.particles.move.path.options,
             { options } = this;
 
-        if (isFunction(sourceOptions.rndFunc)) {
-            options.rndFunc = sourceOptions.rndFunc as () => number;
-        } else if (isString(sourceOptions.rndFunc)) {
+        if (isFunction(sourceOptions["rndFunc"])) {
+            options.rndFunc = sourceOptions["rndFunc"] as () => number;
+        } else if (isString(sourceOptions["rndFunc"])) {
             options.rndFunc =
-                ((window as unknown as Record<string, unknown>)[sourceOptions.rndFunc] as
+                ((globalThis as Record<string, unknown>)[sourceOptions["rndFunc"]] as
                     | (() => number)
                     | null
                     | undefined) ?? this.options.rndFunc;
         }
 
-        options.period = (sourceOptions.period as number) ?? options.period;
-        options.nbHarmonics = (sourceOptions.nbHarmonics as number) ?? options.nbHarmonics;
-        options.attenHarmonics = (sourceOptions.attenHarmonics as number) ?? options.attenHarmonics;
-        options.lowValue = (sourceOptions.lowValue as number) ?? options.lowValue;
-        options.highValue = (sourceOptions.highValue as number) ?? options.highValue;
+        options.period = (sourceOptions["period"] as number | undefined) ?? options.period;
+        options.nbHarmonics = (sourceOptions["nbHarmonics"] as number | undefined) ?? options.nbHarmonics;
+        options.attenHarmonics = (sourceOptions["attenHarmonics"] as number | undefined) ?? options.attenHarmonics;
+        options.lowValue = (sourceOptions["lowValue"] as number | undefined) ?? options.lowValue;
+        options.highValue = (sourceOptions["highValue"] as number | undefined) ?? options.highValue;
     }
 
     reset(particle: CurvesPathParticle): void {

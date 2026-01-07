@@ -15,11 +15,16 @@ import {
     deepExtend,
     getRangeValue,
     getSize,
+    hMax,
+    half,
     isPointInside,
     itemFromSingleOrMultiple,
+    lMax,
     millisecondsToSeconds,
-    randomInRange,
+    randomInRangeValue,
     rangeColorToHsl,
+    sMax,
+    safeDocument,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterSize } from "./Options/Classes/EmitterSize.js";
@@ -29,8 +34,7 @@ import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
 
-const half = 0.5,
-    defaultLifeDelay = 0,
+const defaultLifeDelay = 0,
     minLifeCount = 0,
     defaultSpawnDelay = 0,
     defaultEmitDelay = 0,
@@ -113,9 +117,8 @@ export class EmitterInstance {
         this._firstSpawn = !this.options.life.wait;
         this._startParticlesAdded = false;
 
-        let particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticlesOptions>;
+        const particlesOptions = deepExtend({}, this.options.particles) as RecursivePartial<IParticlesOptions>;
 
-        particlesOptions ??= {};
         particlesOptions.move ??= {};
         particlesOptions.move.direction ??= this.options.direction;
 
@@ -131,7 +134,7 @@ export class EmitterInstance {
         this._immortal = this._lifeCount <= minLifeCount;
 
         if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
+            const element = safeDocument().getElementById(this.options.domId);
 
             if (element) {
                 this._mutationObserver = new MutationObserver(() => {
@@ -318,7 +321,7 @@ export class EmitterInstance {
         const container = this.container;
 
         if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
+            const element = safeDocument().getElementById(this.options.domId);
 
             if (element) {
                 const elRect = element.getBoundingClientRect(),
@@ -341,7 +344,7 @@ export class EmitterInstance {
         const container = this.container;
 
         if (this.options.domId) {
-            const element = document.getElementById(this.options.domId);
+            const element = safeDocument().getElementById(this.options.domId);
 
             if (element) {
                 const elRect = element.getBoundingClientRect();
@@ -409,9 +412,9 @@ export class EmitterInstance {
 
                 if (hslAnimation) {
                     const maxValues = {
-                            h: 360,
-                            s: 100,
-                            l: 100,
+                            h: hMax,
+                            s: sMax,
+                            l: lMax,
                         },
                         colorFactor = 3.6;
 
@@ -470,7 +473,7 @@ export class EmitterInstance {
         }
 
         const duration =
-                this.options.life?.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+                this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
             minDuration = 0,
             minLifeCount = 0;
 
@@ -491,13 +494,12 @@ export class EmitterInstance {
             return initValue;
         }
 
-        const colorOffset = randomInRange(animation.offset),
+        const colorOffset = randomInRangeValue(animation.offset),
             delay = getRangeValue(this.options.rate.delay),
             emitFactor = container.retina.reduceFactor
                 ? (delay * millisecondsToSeconds) / container.retina.reduceFactor
                 : Infinity,
-            defaultColorSpeed = 0,
-            colorSpeed = getRangeValue(animation.speed ?? defaultColorSpeed);
+            colorSpeed = getRangeValue(animation.speed);
 
         return (initValue + (colorSpeed * container.fpsLimit) / emitFactor + colorOffset * factor) % maxValue;
     };

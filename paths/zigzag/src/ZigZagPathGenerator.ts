@@ -39,13 +39,11 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     }
 
     generate(particle: ZigZagParticle, delta: IDelta): Vector {
-        if (particle.zigzag === undefined) {
-            particle.zigzag = {
-                counter: getRandom(),
-                waveHeight: getRangeValue(this.options.waveHeight),
-                waveLength: getRangeValue(this.options.waveLength),
-            };
-        }
+        particle.zigzag ??= {
+            counter: getRandom(),
+            waveHeight: getRangeValue(this.options.waveHeight),
+            waveLength: getRangeValue(this.options.waveLength),
+        };
 
         const angularFrequency = (angularFrequencyFactor / particle.zigzag.waveLength) * delta.factor;
 
@@ -62,8 +60,8 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     init(container: Container): void {
         const options = container.actualOptions.particles.move.path.options;
 
-        this.options.waveLength = (options.waveLength as RangeValue) ?? this.options.waveLength;
-        this.options.waveHeight = (options.waveHeight as RangeValue) ?? this.options.waveHeight;
+        this.options.waveLength = (options["waveLength"] as RangeValue | undefined) ?? this.options.waveLength;
+        this.options.waveHeight = (options["waveHeight"] as RangeValue | undefined) ?? this.options.waveHeight;
     }
 
     reset(): void {

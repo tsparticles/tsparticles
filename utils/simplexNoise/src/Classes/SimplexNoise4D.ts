@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import type { Contribution4D } from "../Contributions.js";
 import { shuffleSeed } from "../utils.js";
 
@@ -2852,15 +2854,15 @@ export class SimplexNoise4D {
                     py = ysb + c.ysb,
                     pz = zsb + c.zsb,
                     pw = wsb + c.wsb,
-                    indexPartA = _perm[px & 0xff],
-                    indexPartB = _perm[(indexPartA + py) & 0xff],
-                    indexPartC = _perm[(indexPartB + pz) & 0xff],
-                    index = _perm4D[(indexPartC + pw) & 0xff],
+                    indexPartA = _perm[px & 0xff]!,
+                    indexPartB = _perm[(indexPartA + py) & 0xff]!,
+                    indexPartC = _perm[(indexPartB + pz) & 0xff]!,
+                    index = _perm4D[(indexPartC + pw) & 0xff]!,
                     valuePart =
-                        _gradients4D[index] * dx +
-                        _gradients4D[index + 1] * dy +
-                        _gradients4D[index + 2] * dz +
-                        _gradients4D[index + 3] * dw;
+                        _gradients4D[index]! * dx +
+                        _gradients4D[index + 1]! * dy +
+                        _gradients4D[index + 2]! * dz +
+                        _gradients4D[index + 3]! * dw;
 
                 value += attn * attn * attn * attn * valuePart;
             }
@@ -2873,18 +2875,18 @@ export class SimplexNoise4D {
 
         const contributions: Contribution4D[] = [];
         for (let i = 0; i < _p4D.length; i += 16) {
-            const baseSet = _base4D[_p4D[i]];
+            const baseSet = _base4D[_p4D[i]!]!;
 
             let previous: Contribution4D | null = null,
                 current: Contribution4D | null = null;
 
             for (let k = 0; k < baseSet.length; k += 5) {
                 current = this._contribution4D(
-                    baseSet[k],
-                    baseSet[k + 1],
-                    baseSet[k + 2],
-                    baseSet[k + 3],
-                    baseSet[k + 4],
+                    baseSet[k]!,
+                    baseSet[k + 1]!,
+                    baseSet[k + 2]!,
+                    baseSet[k + 3]!,
+                    baseSet[k + 4]!,
                 );
 
                 if (previous === null) {
@@ -2897,20 +2899,26 @@ export class SimplexNoise4D {
             }
 
             if (current) {
-                current.next = this._contribution4D(_p4D[i + 1], _p4D[i + 2], _p4D[i + 3], _p4D[i + 4], _p4D[i + 5]);
+                current.next = this._contribution4D(
+                    _p4D[i + 1]!,
+                    _p4D[i + 2]!,
+                    _p4D[i + 3]!,
+                    _p4D[i + 4]!,
+                    _p4D[i + 5]!,
+                );
                 current.next.next = this._contribution4D(
-                    _p4D[i + 6],
-                    _p4D[i + 7],
-                    _p4D[i + 8],
-                    _p4D[i + 9],
-                    _p4D[i + 10],
+                    _p4D[i + 6]!,
+                    _p4D[i + 7]!,
+                    _p4D[i + 8]!,
+                    _p4D[i + 9]!,
+                    _p4D[i + 10]!,
                 );
                 current.next.next.next = this._contribution4D(
-                    _p4D[i + 11],
-                    _p4D[i + 12],
-                    _p4D[i + 13],
-                    _p4D[i + 14],
-                    _p4D[i + 15],
+                    _p4D[i + 11]!,
+                    _p4D[i + 12]!,
+                    _p4D[i + 13]!,
+                    _p4D[i + 14]!,
+                    _p4D[i + 15]!,
                 );
             }
         }
@@ -2918,7 +2926,7 @@ export class SimplexNoise4D {
         this._lookup = [];
 
         for (let i = 0; i < _lookupPairs4D.length; i += 2) {
-            this._lookup[_lookupPairs4D[i]] = contributions[_lookupPairs4D[i + 1]];
+            this._lookup[_lookupPairs4D[i]!] = contributions[_lookupPairs4D[i + 1]!]!;
         }
 
         this._perm = new Uint8Array(256);
@@ -2939,15 +2947,15 @@ export class SimplexNoise4D {
 
             const r = new Uint32Array(1);
 
-            r[0] = (seed[0] + 31) % (i + 1);
+            r[0] = (seed[0]! + 31) % (i + 1);
 
             if (r[0] < 0) {
                 r[0] += i + 1;
             }
 
-            this._perm[i] = source[r[0]];
-            this._perm4D[i] = this._perm[i] & 0xfc;
-            source[r[0]] = source[i];
+            this._perm[i] = source[r[0]]!;
+            this._perm4D[i] = this._perm[i]! & 0xfc;
+            source[r[0]] = source[i]!;
         }
     }
 

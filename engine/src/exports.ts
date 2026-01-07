@@ -10,7 +10,6 @@ export * from "./Enums/Directions/RotateDirection.js";
 export * from "./Enums/Directions/OutModeDirection.js";
 
 export * from "./Enums/Modes/AnimationMode.js";
-export * from "./Enums/Modes/CollisionMode.js";
 export * from "./Enums/Modes/LimitMode.js";
 export * from "./Enums/Modes/OutMode.js";
 export * from "./Enums/Modes/PixelMode.js";
@@ -34,8 +33,6 @@ export * from "./Options/Classes/AnimatableColor.js";
 export * from "./Options/Classes/AnimationOptions.js";
 
 export * from "./Options/Classes/Background/Background.js";
-export * from "./Options/Classes/BackgroundMask/BackgroundMask.js";
-export * from "./Options/Classes/BackgroundMask/BackgroundMaskCover.js";
 
 export * from "./Options/Classes/ColorAnimation.js";
 
@@ -61,12 +58,7 @@ export * from "./Options/Classes/OptionsColor.js";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounce.js";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounceFactor.js";
 
-export * from "./Options/Classes/Particles/Collisions/Collisions.js";
-export * from "./Options/Classes/Particles/Collisions/CollisionsAbsorb.js";
-export * from "./Options/Classes/Particles/Collisions/CollisionsOverlap.js";
-
 export * from "./Options/Classes/Particles/ParticlesOptions.js";
-export * from "./Options/Classes/Particles/Shadow.js";
 export * from "./Options/Classes/Particles/Stroke.js";
 
 export * from "./Options/Classes/Particles/Move/MoveAttract.js";
@@ -77,7 +69,6 @@ export * from "./Options/Classes/Particles/Move/MoveGravity.js";
 export * from "./Options/Classes/Particles/Move/OutModes.js";
 export * from "./Options/Classes/Particles/Move/Path/MovePath.js";
 export * from "./Options/Classes/Particles/Move/Spin.js";
-export * from "./Options/Classes/Particles/Move/MoveTrail.js";
 
 export * from "./Options/Classes/Particles/Number/ParticlesNumber.js";
 export * from "./Options/Classes/Particles/Number/ParticlesNumberLimit.js";
@@ -102,7 +93,8 @@ export * from "./Options/Classes/ValueWithRandom.js";
 
 export * from "./Utils/CanvasUtils.js";
 export * from "./Utils/ColorUtils.js";
-export * from "./Utils/NumberUtils.js";
+export * from "./Utils/LogUtils.js";
+export * from "./Utils/MathUtils.js";
 export * from "./Utils/OptionsUtils.js";
 export * from "./Utils/Utils.js";
 export * from "./Utils/TypeUtils.js";

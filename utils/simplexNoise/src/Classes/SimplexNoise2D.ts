@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 import type { Contribution2D } from "../Contributions.js";
 import { shuffleSeed } from "../utils.js";
 
@@ -124,9 +126,9 @@ export class SimplexNoise2D {
             if (attn > 0) {
                 const px = xsb + c.xsb,
                     py = ysb + c.ysb,
-                    indexPartA = _perm[px & 0xff],
-                    index = _perm2D[(indexPartA + py) & 0xff],
-                    valuePart = _gradients2D[index] * dx + _gradients2D[index + 1] * dy;
+                    indexPartA = _perm[px & 0xff]!,
+                    index = _perm2D[(indexPartA + py) & 0xff]!,
+                    valuePart = _gradients2D[index]! * dx + _gradients2D[index + 1]! * dy;
 
                 value += attn * attn * attn * attn * valuePart;
             }
@@ -141,13 +143,13 @@ export class SimplexNoise2D {
         const contributions: Contribution2D[] = [];
 
         for (let i = 0; i < _p2D.length; i += 4) {
-            const baseSet = _base2D[_p2D[i]];
+            const baseSet = _base2D[_p2D[i]!]!;
 
             let previous: Contribution2D | null = null,
                 current: Contribution2D | null = null;
 
             for (let k = 0; k < baseSet.length; k += 3) {
-                current = this._contribution2D(baseSet[k], baseSet[k + 1], baseSet[k + 2]);
+                current = this._contribution2D(baseSet[k]!, baseSet[k + 1]!, baseSet[k + 2]!);
 
                 if (previous === null) {
                     contributions[i / 4] = current;
@@ -159,14 +161,14 @@ export class SimplexNoise2D {
             }
 
             if (current) {
-                current.next = this._contribution2D(_p2D[i + 1], _p2D[i + 2], _p2D[i + 3]);
+                current.next = this._contribution2D(_p2D[i + 1]!, _p2D[i + 2]!, _p2D[i + 3]!);
             }
         }
 
         this._lookup = [];
 
         for (let i = 0; i < _lookupPairs2D.length; i += 2) {
-            this._lookup[_lookupPairs2D[i]] = contributions[_lookupPairs2D[i + 1]];
+            this._lookup[_lookupPairs2D[i]!] = contributions[_lookupPairs2D[i + 1]!]!;
         }
 
         this._perm = new Uint8Array(256);
@@ -188,15 +190,15 @@ export class SimplexNoise2D {
 
             const r = new Uint32Array(1);
 
-            r[0] = (seed[0] + 31) % (i + 1);
+            r[0] = (seed[0]! + 31) % (i + 1);
 
             if (r[0] < 0) {
                 r[0] += i + 1;
             }
 
-            this._perm[i] = source[r[0]];
-            this._perm2D[i] = this._perm[i] & 0x0e;
-            source[r[0]] = source[i];
+            this._perm[i] = source[r[0]]!;
+            this._perm2D[i] = this._perm[i]! & 0x0e;
+            source[r[0]] = source[i]!;
         }
     }
 

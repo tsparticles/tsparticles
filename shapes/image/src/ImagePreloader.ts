@@ -1,16 +1,12 @@
-import type { Engine, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { IPreloadOptions, PreloadOptions } from "./types.js";
 import { Preload } from "./Options/Classes/Preload.js";
 
 export class ImagePreloaderPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
-
-    constructor(engine: Engine) {
+    constructor() {
         this.id = "imagePreloader";
-
-        this._engine = engine;
     }
 
     async getPlugin(): Promise<IContainerPlugin> {
@@ -24,9 +20,7 @@ export class ImagePreloaderPlugin implements IPlugin {
             return;
         }
 
-        if (!options.preload) {
-            options.preload = [];
-        }
+        options.preload ??= [];
 
         const preloadOptions = options.preload;
 

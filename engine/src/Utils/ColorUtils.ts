@@ -2,13 +2,14 @@ import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Inte
 import {
     clamp,
     getRandom,
+    getRandomInRange,
     getRangeMax,
     getRangeMin,
     getRangeValue,
     mix,
-    randomInRange,
+    randomInRangeValue,
     setRangeValue,
-} from "./NumberUtils.js";
+} from "./MathUtils.js";
 import {
     decayOffset,
     defaultLoops,
@@ -29,7 +30,6 @@ import {
     percentDenominator,
     phaseNumerator,
     randomColorValue,
-    rgbFactor,
     rgbMax,
     sMax,
     sMin,
@@ -62,10 +62,12 @@ function stringToRgba(engine: Engine, input: string): IRgba | undefined {
     }
 
     for (const manager of engine.colorManagers.values()) {
-        if (input.startsWith(manager.stringPrefix)) {
+        if (manager.accepts(input)) {
             return manager.parseString(input);
         }
     }
+
+    return undefined;
 }
 
 /**
@@ -93,8 +95,14 @@ export function rangeColorToRgb(
     }
 
     if (isArray(color.value)) {
+        const value = itemFromArray(color.value, index, useIndex);
+
+        if (!value) {
+            return;
+        }
+
         return rangeColorToRgb(engine, {
-            value: itemFromArray(color.value, index, useIndex),
+            value,
         });
     }
 
@@ -105,6 +113,8 @@ export function rangeColorToRgb(
             return res;
         }
     }
+
+    return undefined;
 }
 
 /**
@@ -127,8 +137,14 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
     }
 
     if (isArray(color.value)) {
+        const value = itemFromArray(color.value, index, useIndex);
+
+        if (!value) {
+            return;
+        }
+
         return colorToRgb(engine, {
-            value: itemFromArray(color.value, index, useIndex),
+            value,
         });
     }
 
@@ -139,6 +155,8 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
             return res;
         }
     }
+
+    return undefined;
 }
 
 /**
@@ -201,10 +219,13 @@ export function rgbToHsl(color: IRgb): IHsl {
         // Calculate S:
         res.s = res.l < half ? (max - min) / (max + min) : (max - min) / (double - max - min);
         // Calculate H:
-        res.h =
-            r1 === max
-                ? (g1 - b1) / (max - min)
-                : (res.h = g1 === max ? double + (b1 - r1) / (max - min) : double * double + (r1 - g1) / (max - min));
+        if (r1 === max) {
+            res.h = (g1 - b1) / (max - min);
+        } else if (g1 === max) {
+            res.h = double + (b1 - r1) / (max - min);
+        } else {
+            res.h = double * double + (r1 - g1) / (max - min);
+        }
     }
 
     res.l *= lMax;
@@ -259,7 +280,8 @@ export function hslToRgb(hsl: IHsl): IRgb {
 
     if (s === sMin) {
         // If saturation is 0, the color is grayscale
-        const grayscaleValue = Math.round(lNormalized * rgbFactor);
+        const grayscaleValue = Math.round(lNormalized * rgbMax);
+
         return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
     }
 
@@ -297,9 +319,9 @@ export function hslToRgb(hsl: IHsl): IRgb {
                 : lNormalized + sNormalized - lNormalized * sNormalized,
         temp2 = double * lNormalized - temp1,
         phaseThird = phaseNumerator / triple,
-        red = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized + phaseThird)),
-        green = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized)),
-        blue = Math.min(rgbFactor, rgbFactor * channel(temp2, temp1, hNormalized - phaseThird));
+        red = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized + phaseThird)),
+        green = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized)),
+        blue = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized - phaseThird));
 
     return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
@@ -327,13 +349,25 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  */
 export function getRandomRgbColor(min?: number): IRgb {
     const fixedMin = min ?? defaultRgbMin,
-        fixedMax = rgbMax + identity;
+        fixedMax = rgbMax + identity,
+        getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
 
     return {
-        b: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
-        g: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
-        r: Math.floor(randomInRange(setRangeValue(fixedMin, fixedMax))),
+        b: getRgbInRangeValue(),
+        g: getRgbInRangeValue(),
+        r: getRgbInRangeValue(),
     };
+}
+
+/**
+ * Gets a CSS style string from a {@link IRgb} object and opacity value
+ * @param color - the {@link IRgb} input color
+ * @param hdr - whether the color is in HDR mode or not
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): string {
+    return hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity);
 }
 
 /**
@@ -342,8 +376,29 @@ export function getRandomRgbColor(min?: number): IRgb {
  * @param opacity - the opacity value
  * @returns the CSS style string
  */
-export function getStyleFromRgb(color: IRgb, opacity?: number): string {
-    return `rgba(${color.r}, ${color.g}, ${color.b}, ${opacity ?? defaultOpacity})`;
+function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
+    return `color(display-p3 ${(color.r / rgbMax).toString()} ${(color.g / rgbMax).toString()} ${(color.b / rgbMax).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+}
+
+/**
+ * Gets a CSS style string from a {@link IRgb} object and opacity value
+ * @param color - the {@link IRgb} input color
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
+    return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
+}
+
+/**
+ * Gets a CSS style string from a {@link IHsl} object and opacity value
+ * @param color - the {@link IHsl} input color
+ * @param hdr - whether the color is in HDR mode or not
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
+    return hdr ? getHdrStyleFromHsl(color, opacity) : getSdrStyleFromHsl(color, opacity);
 }
 
 /**
@@ -352,8 +407,18 @@ export function getStyleFromRgb(color: IRgb, opacity?: number): string {
  * @param opacity - the opacity value
  * @returns the CSS style string
  */
-export function getStyleFromHsl(color: IHsl, opacity?: number): string {
-    return `hsla(${color.h}, ${color.s}%, ${color.l}%, ${opacity ?? defaultOpacity})`;
+function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
+    return getHdrStyleFromRgb(hslToRgb(color), opacity);
+}
+
+/**
+ * Gets a CSS style string from a {@link IHsl} object and opacity value
+ * @param color - the {@link IHsl} input color
+ * @param opacity - the opacity value
+ * @returns the CSS style string
+ */
+function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
+    return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -367,11 +432,11 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
     let rgb1 = color1 as IRgb,
         rgb2 = color2 as IRgb;
 
-    if (rgb1.r === undefined) {
+    if (!Object.hasOwn(rgb1, "r")) {
         rgb1 = hslToRgb(color1 as IHsl);
     }
 
-    if (rgb2.r === undefined) {
+    if (!Object.hasOwn(rgb2, "r")) {
         rgb2 = hslToRgb(color2 as IHsl);
     }
 
@@ -407,6 +472,8 @@ export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | I
     } else {
         return linkColor as IRgb;
     }
+
+    return undefined;
 }
 
 /**
@@ -548,16 +615,13 @@ export function updateColorValue(
         velocityFactor = 3.6;
 
     if (
-        !data ||
         !data.enable ||
         ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
     ) {
         return;
     }
 
-    if (!data.time) {
-        data.time = 0;
-    }
+    data.time ??= 0;
 
     if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
         data.time += delta.value;
@@ -567,7 +631,7 @@ export function updateColorValue(
         return;
     }
 
-    const offset = data.offset ? randomInRange(data.offset) : minOffset,
+    const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
         velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
         decay = data.decay ?? identity,
         max = getRangeMax(range),
@@ -577,10 +641,7 @@ export function updateColorValue(
         data.value += velocity;
 
         if (data.value > max) {
-            if (!data.loops) {
-                data.loops = 0;
-            }
-
+            data.loops ??= 0;
             data.loops++;
 
             if (decrease) {
@@ -595,10 +656,7 @@ export function updateColorValue(
         const minValue = 0;
 
         if (data.value < minValue) {
-            if (!data.loops) {
-                data.loops = 0;
-            }
-
+            data.loops ??= 0;
             data.loops++;
 
             data.status = AnimationStatus.increasing;
@@ -623,20 +681,12 @@ export function updateColor(color: IParticleHslAnimation | undefined, delta: IDe
 
     const { h, s, l } = color,
         ranges = {
-            h: { min: 0, max: 360 },
-            s: { min: 0, max: 100 },
-            l: { min: 0, max: 100 },
+            h: { min: hMin, max: hMax },
+            s: { min: sMin, max: sMax },
+            l: { min: lMin, max: lMax },
         };
 
-    if (h) {
-        updateColorValue(h, ranges.h, false, delta);
-    }
-
-    if (s) {
-        updateColorValue(s, ranges.s, true, delta);
-    }
-
-    if (l) {
-        updateColorValue(l, ranges.l, true, delta);
-    }
+    updateColorValue(h, ranges.h, false, delta);
+    updateColorValue(s, ranges.s, true, delta);
+    updateColorValue(l, ranges.l, true, delta);
 }

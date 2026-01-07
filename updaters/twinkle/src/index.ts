@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { TwinkleUpdater } from "./TwinkleUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadTwinkleUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadTwinkleUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "twinkle",
-        () => {
-            return Promise.resolve(new TwinkleUpdater(engine));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("twinkle", async () => {
+            const { TwinkleUpdater } = await import("./TwinkleUpdater.js");
+
+            return new TwinkleUpdater(e);
+        });
+    });
 }

@@ -1,6 +1,5 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
 import { AnimatableColor } from "../AnimatableColor.js";
-import { Collisions } from "./Collisions/Collisions.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import type { Engine } from "../../../Core/Engine.js";
@@ -13,7 +12,6 @@ import { ParticlesBounce } from "./Bounce/ParticlesBounce.js";
 import type { ParticlesGroups } from "../../../Types/ParticlesGroups.js";
 import { ParticlesNumber } from "./Number/ParticlesNumber.js";
 import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { Shadow } from "./Shadow.js";
 import { Shape } from "./Shape/Shape.js";
 import type { SingleOrMultiple } from "../../../Types/SingleOrMultiple.js";
 import { Size } from "./Size/Size.js";
@@ -28,7 +26,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     [name: string]: unknown;
 
     readonly bounce;
-    readonly collisions;
     color;
     readonly effect;
     readonly groups: ParticlesGroups;
@@ -37,7 +34,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     readonly number;
     readonly opacity;
     reduceDuplicates;
-    readonly shadow;
     readonly shape;
     readonly size;
     stroke: SingleOrMultiple<Stroke>;
@@ -51,7 +47,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this._container = container;
 
         this.bounce = new ParticlesBounce();
-        this.collisions = new Collisions();
         this.color = new AnimatableColor();
         this.color.value = "#fff";
         this.effect = new Effect();
@@ -60,7 +55,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.number = new ParticlesNumber();
         this.opacity = new Opacity();
         this.reduceDuplicates = false;
-        this.shadow = new Shadow();
         this.shape = new Shape();
         this.size = new Size();
         this.stroke = new Stroke();
@@ -98,9 +92,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.opacity.load(data.opacity);
         this.shape.load(data.shape);
         this.size.load(data.size);
-        this.shadow.load(data.shadow);
         this.zIndex.load(data.zIndex);
-        this.collisions.load(data.collisions);
 
         if (data.interactivity !== undefined) {
             this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;

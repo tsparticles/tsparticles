@@ -29,12 +29,14 @@ const squareExp = 2,
  * @param context -
  * @param rawData -
  * @param stroke -
+ * @param hdr -
  */
 export function drawPolygonMask(
     engine: Engine,
     context: CanvasRenderingContext2D,
     rawData: ICoordinates[],
     stroke: IPolygonMaskDrawStroke,
+    hdr = false,
 ): void {
     const color = rangeColorToRgb(engine, stroke.color);
 
@@ -45,6 +47,10 @@ export function drawPolygonMask(
     const firstIndex = 0,
         firstItem = rawData[firstIndex];
 
+    if (!firstItem) {
+        return;
+    }
+
     context.beginPath();
     context.moveTo(firstItem.x, firstItem.y);
 
@@ -53,7 +59,7 @@ export function drawPolygonMask(
     }
 
     context.closePath();
-    context.strokeStyle = getStyleFromRgb(color);
+    context.strokeStyle = getStyleFromRgb(color, hdr);
     context.lineWidth = stroke.width;
     context.stroke();
 }
@@ -64,6 +70,7 @@ export function drawPolygonMask(
  * @param path -
  * @param stroke -
  * @param position -
+ * @param hdr -
  */
 export function drawPolygonMaskPath(
     engine: Engine,
@@ -71,6 +78,7 @@ export function drawPolygonMaskPath(
     path: Path2D,
     stroke: IPolygonMaskDrawStroke,
     position: ICoordinates,
+    hdr = false,
 ): void {
     const defaultTransform = {
         a: 1,
@@ -94,7 +102,7 @@ export function drawPolygonMaskPath(
         return;
     }
 
-    context.strokeStyle = getStyleFromRgb(color, stroke.opacity);
+    context.strokeStyle = getStyleFromRgb(color, hdr, stroke.opacity);
     context.lineWidth = stroke.width;
     context.stroke(path);
     context.resetTransform();
@@ -120,7 +128,7 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
 
         for (let i = 0; i < len; i++) {
             const segment: SVGPathSeg | undefined = segments?.getItem(i),
-                svgPathSeg = window.SVGPathSeg;
+                svgPathSeg = globalThis.SVGPathSeg;
 
             switch (segment?.pathSegType) {
                 //

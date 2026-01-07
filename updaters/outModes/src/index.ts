@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { OutOfCanvasUpdater } from "./OutOfCanvasUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine - The engine instance loading this plugin
- * @param refresh -
  */
-export async function loadOutModesUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadOutModesUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "outModes",
-        container => {
-            return Promise.resolve(new OutOfCanvasUpdater(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("outModes", async container => {
+            const { OutOfCanvasUpdater } = await import("./OutOfCanvasUpdater.js");
+
+            return new OutOfCanvasUpdater(container);
+        });
+    });
 }

@@ -10,10 +10,16 @@ export interface IEffectDrawer<TParticle extends Particle = Particle> {
     destroy?: (container: Container) => void;
 
     /**
-     * Shape draw function
+     * Shape draw after function
      * @param data - the data used for drawing
      */
-    draw: (data: IShapeDrawData<TParticle>) => void;
+    drawAfter?: (data: IShapeDrawData<TParticle>) => void;
+
+    /**
+     * Shape draw before function
+     * @param data - the data used for drawing
+     */
+    drawBefore?: (data: IShapeDrawData<TParticle>) => void;
 
     /**
      * Shape init function

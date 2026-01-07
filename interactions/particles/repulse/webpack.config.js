@@ -1,7 +1,15 @@
-const { loadParticlesInteractionParticles } = require("@tsparticles/webpack-plugin");
-const version = require("./package.json").version;
+import { loadParticlesInteractionParticles } from "@tsparticles/webpack-plugin";
+import { fileURLToPath } from "url";
+import fs from "fs-extra";
+import path from "path";
 
-module.exports = loadParticlesInteractionParticles({
+const __filename = fileURLToPath(import.meta.url),
+    __dirname = path.dirname(__filename),
+    rootPkgPath = path.join(__dirname, "package.json"),
+    pkg = await fs.readJson(rootPkgPath),
+    version = pkg.version;
+
+export default loadParticlesInteractionParticles({
     moduleName: "repulse",
     pluginName: "Repulse",
     version,

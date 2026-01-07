@@ -38,8 +38,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
 
     let drawn = false;
 
-    const { begin, end, engine, maxDistance, context, canvasSize, width, backgroundMask, colorLine, opacity, links } =
-        params;
+    const { begin, end, engine, maxDistance, context, canvasSize, width, colorLine, opacity, links, hdr } = params;
 
     if (getDistance(begin, end) <= maxDistance) {
         drawLine(context, begin, end);
@@ -106,12 +105,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
     }
 
     context.lineWidth = width;
-
-    if (backgroundMask.enable) {
-        context.globalCompositeOperation = backgroundMask.composite;
-    }
-
-    context.strokeStyle = getStyleFromRgb(colorLine, opacity);
+    context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
 
     const { shadow } = links;
 
@@ -120,7 +114,7 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
 
         if (shadowColor) {
             context.shadowBlur = shadow.blur;
-            context.shadowColor = getStyleFromRgb(shadowColor);
+            context.shadowColor = getStyleFromRgb(shadowColor, hdr);
         }
     }
 
@@ -131,18 +125,14 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
  * @param params -
  */
 export function drawLinkTriangle(params: LinkTriangleDrawParams): void {
-    const { context, pos1, pos2, pos3, backgroundMask, colorTriangle, opacityTriangle } = params;
+    const { context, hdr, pos1, pos2, pos3, colorTriangle, opacityTriangle } = params;
 
     // this.ctx.lineCap = "round"; /* performance issue */
     /* path */
 
     drawTriangle(context, pos1, pos2, pos3);
 
-    if (backgroundMask.enable) {
-        context.globalCompositeOperation = backgroundMask.composite;
-    }
-
-    context.fillStyle = getStyleFromRgb(colorTriangle, opacityTriangle);
+    context.fillStyle = getStyleFromRgb(colorTriangle, hdr, opacityTriangle);
 
     context.fill();
 }

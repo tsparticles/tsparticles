@@ -34,9 +34,7 @@ export class DestroyUpdater implements IParticleUpdater {
 
         const destroyBoundsOptions = destroyOptions.bounds;
 
-        if (!particle.destroyBounds) {
-            particle.destroyBounds = {};
-        }
+        particle.destroyBounds ??= {};
 
         const { bottom, left, right, top } = destroyBoundsOptions,
             { destroyBounds } = particle,
@@ -67,9 +65,7 @@ export class DestroyUpdater implements IParticleUpdater {
         options: DestroyParticlesOptions,
         ...sources: (RecursivePartial<IDestroyParticlesOptions> | undefined)[]
     ): void {
-        if (!options.destroy) {
-            options.destroy = new Destroy();
-        }
+        options.destroy ??= new Destroy();
 
         for (const source of sources) {
             options.destroy.load(source?.destroy);
@@ -83,7 +79,7 @@ export class DestroyUpdater implements IParticleUpdater {
 
         const destroyOptions = particle.options.destroy;
 
-        if (destroyOptions && destroyOptions.mode === DestroyMode.split) {
+        if (destroyOptions?.mode === DestroyMode.split) {
             split(this.engine, this.container, particle);
         }
     }

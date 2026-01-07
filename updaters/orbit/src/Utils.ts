@@ -31,10 +31,11 @@ export function drawEllipse(
         return;
     }
 
-    const pos = particle.getPosition();
+    const pos = particle.getPosition(),
+        { container } = particle;
 
     if (fillColorValue) {
-        context.strokeStyle = getStyleFromHsl(fillColorValue, opacity);
+        context.strokeStyle = getStyleFromHsl(fillColorValue, container.hdr, opacity);
     }
 
     context.lineWidth = width;

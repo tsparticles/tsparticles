@@ -95,22 +95,18 @@ export class TiltUpdater implements IParticleUpdater {
         options: TiltParticlesOptions,
         ...sources: (RecursivePartial<ITiltParticlesOptions> | undefined)[]
     ): void {
-        if (!options.tilt) {
-            options.tilt = new Tilt();
-        }
+        options.tilt ??= new Tilt();
 
         for (const source of sources) {
             options.tilt.load(source?.tilt);
         }
     }
 
-    async update(particle: TiltParticle, delta: IDelta): Promise<void> {
+    update(particle: TiltParticle, delta: IDelta): void {
         if (!this.isEnabled(particle) || !particle.tilt) {
             return;
         }
 
         updateAnimation(particle, particle.tilt, false, DestroyType.none, delta);
-
-        await Promise.resolve();
     }
 }

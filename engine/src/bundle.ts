@@ -1,8 +1,8 @@
-import { init } from "./init.js";
+import { initEngine } from "./initEngine.js";
 
-const tsParticles = init();
+const tsParticles = initEngine();
 
-window.tsParticles = tsParticles;
+globalThis.tsParticles = tsParticles;
 
 export * from "./exports.js";
 

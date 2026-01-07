@@ -1,23 +1,21 @@
 import { type Engine } from "@tsparticles/engine";
-import { TrailMaker } from "./TrailMaker.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalTrailInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalTrailInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalTrail",
-        container => {
-            return Promise.resolve(new TrailMaker(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalTrail", async container => {
+            const { TrailMaker } = await import("./TrailMaker.js");
+
+            return new TrailMaker(container);
+        });
+    });
 }
 
 export * from "./Options/Classes/Trail.js";
-export * from "./Options/Interfaces/ITrail.js";
+export type * from "./Options/Interfaces/ITrail.js";

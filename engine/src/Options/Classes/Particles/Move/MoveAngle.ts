@@ -3,7 +3,7 @@ import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RangeValue } from "../../../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
-import { setRangeValue } from "../../../../Utils/NumberUtils.js";
+import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 /**
  */

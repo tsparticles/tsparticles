@@ -1,4 +1,10 @@
-import { type Container, type RecursivePartial, type SingleOrMultiple, tsParticles } from "@tsparticles/engine";
+import {
+    type Container,
+    type RecursivePartial,
+    type SingleOrMultiple,
+    safeDocument,
+    tsParticles,
+} from "@tsparticles/engine";
 
 interface ResponsiveOptions {
     breakpoint: number;
@@ -21,18 +27,18 @@ const linksMinDistance = 120,
     particlesMinCount = 100,
     sizeMinValue = 3;
 
-export class Particles {
+export class MBParticles {
     private _container?: Container;
 
-    static init(options: RecursivePartial<ParticlesOptions>): Particles {
-        const particles = new Particles(),
+    static init(options: RecursivePartial<ParticlesOptions>): MBParticles {
+        const particles = new MBParticles(),
             selector = options.selector;
 
         if (!selector) {
             throw new Error("No selector provided");
         }
 
-        const el = document.querySelector(selector)!;
+        const el = safeDocument().querySelector(selector);
 
         if (!el) {
             throw new Error("No element found for selector");
