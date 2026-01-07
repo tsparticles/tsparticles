@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.0](https://github.com/tsparticles/tsparticles/compare/v3.9.1...v4.0.0-alpha.0) (2026-01-07)
+
+### Features
+
+- added new falling confetti to demo configs ([a43767b](https://github.com/tsparticles/tsparticles/commit/a43767b71f9a4213080f35d31fe70a8f0b420f52))
+- improved fireworks demo configs ([71473ec](https://github.com/tsparticles/tsparticles/commit/71473ecb48e454613d01598709dac303ae017ef9))
+- improved hdr management, improved also big particles config ([92af429](https://github.com/tsparticles/tsparticles/commit/92af429a2c18976267579cc732492dbb7cb3f67a))
+- using p3 (hdr) images in configs (except gifs) ([3989373](https://github.com/tsparticles/tsparticles/commit/39893734cb9fa86e0631a2516ec50e66a43012f6))
+
 ## [3.9.1](https://github.com/tsparticles/tsparticles/compare/v3.9.0...v3.9.1) (2025-08-03)
 
 **Note:** Version bump only for package @tsparticles/configs

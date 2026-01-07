@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-light",
-  "version": "3.9.1",
+  "version": "4.0.0-alpha.0",
   "description": "tsParticles Light interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -101,7 +101,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "3.9.1"
+    "@tsparticles/engine": "4.0.0-alpha.0"
   },
   "publishConfig": {
     "access": "public"

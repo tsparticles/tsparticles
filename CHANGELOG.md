@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.0](https://github.com/tsparticles/tsparticles/compare/v3.9.1...v4.0.0-alpha.0) (2026-01-07)
+
+### Bug Fixes
+
+- fix 5524 ([4459f09](https://github.com/tsparticles/tsparticles/commit/4459f09de1393d2f478612e3ff1089cb10f6e76a))
+- fixed issue [#5539](https://github.com/tsparticles/tsparticles/issues/5539), now shapes know when a fill function or a stroke function is needed ([cb616d3](https://github.com/tsparticles/tsparticles/commit/cb616d3d489ba65304d1f1b657d556807674567a))
+- fixed issue with groups and density calculation ([eb2e20a](https://github.com/tsparticles/tsparticles/commit/eb2e20a28ae1a87d02cfbcffd3454a11f73ef2c4))
+- fixed issue with the refactoring ([dd1fa73](https://github.com/tsparticles/tsparticles/commit/dd1fa7392ad3146f2ad9277da4dcf632ae0d8c6e))
+- fixed rotation movement when angle was 0 ([6d02bfb](https://github.com/tsparticles/tsparticles/commit/6d02bfb69b03c111d21af7d1727338ba46272829))
+
+### Features
+
+- added hdr feature full implementation, colors are now hdr ready ([aee509f](https://github.com/tsparticles/tsparticles/commit/aee509fec97eed1a84c6809f73ce6a42ad19da6a))
+- added hdr option, with fallback if not supported by the screen ([f42dc31](https://github.com/tsparticles/tsparticles/commit/f42dc31b8ba4e82eb04a465ebcf2bf77f041a5e0))
+- added new falling confetti to demo configs ([a43767b](https://github.com/tsparticles/tsparticles/commit/a43767b71f9a4213080f35d31fe70a8f0b420f52))
+- improved fireworks demo configs ([71473ec](https://github.com/tsparticles/tsparticles/commit/71473ecb48e454613d01598709dac303ae017ef9))
+- improved hdr management, improved also big particles config ([92af429](https://github.com/tsparticles/tsparticles/commit/92af429a2c18976267579cc732492dbb7cb3f67a))
+- using p3 (hdr) images in configs (except gifs) ([3989373](https://github.com/tsparticles/tsparticles/commit/39893734cb9fa86e0631a2516ec50e66a43012f6))
+
 ## [3.9.1](https://github.com/tsparticles/tsparticles/compare/v3.9.0...v3.9.1) (2025-08-03)
 
 **Note:** Version bump only for package @tsparticles/workspace
