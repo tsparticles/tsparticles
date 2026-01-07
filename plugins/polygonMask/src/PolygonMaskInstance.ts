@@ -1,3 +1,4 @@
+import "./pathseg.js";
 import {
     type Engine,
     type IContainerPlugin,

@@ -1,19 +1,17 @@
-import { EmittersCircleShapeGenerator } from "./EmittersCircleShapeGenerator.js";
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadEmittersShapeCircle(engine: Engine, refresh = true): Promise<void> {
-    const emittersEngine = engine as EmittersEngine;
+export function loadEmittersShapeCircle(engine: Engine): void {
+    engine.checkVersion(__VERSION__);
 
-    emittersEngine.checkVersion(__VERSION__);
+    engine.register(async (emittersEngine: EmittersEngine) => {
+        const { EmittersCircleShapeGenerator } = await import("./EmittersCircleShapeGenerator.js");
 
-    emittersEngine.addEmitterShapeGenerator?.("circle", new EmittersCircleShapeGenerator());
-
-    await emittersEngine.refresh(refresh);
+        emittersEngine.addEmitterShapeGenerator?.("circle", new EmittersCircleShapeGenerator());
+    });
 }

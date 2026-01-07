@@ -13,7 +13,7 @@ export class ColorUpdater implements IParticleUpdater {
     private readonly _container;
     private readonly _engine;
 
-    constructor(container: Container, engine: Engine) {
+    constructor(engine: Engine, container: Container) {
         this._container = container;
         this._engine = engine;
     }

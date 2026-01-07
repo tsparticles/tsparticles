@@ -1,14 +1,16 @@
 import { type Engine } from "@tsparticles/engine";
-import { ShadowDrawer } from "./ShadowDrawer.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadShadowEffect(engine: Engine, refresh = true): Promise<void> {
+export function loadShadowEffect(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addEffect("shadow", new ShadowDrawer(engine), refresh);
+    engine.register(async e => {
+        const { ShadowDrawer } = await import("./ShadowDrawer.js");
+
+        e.addEffect("shadow", new ShadowDrawer(e));
+    });
 }

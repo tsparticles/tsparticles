@@ -1,7 +1,8 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
 import {
     clamp,
-    getRandom, getRandomInRange,
+    getRandom,
+    getRandomInRange,
     getRangeMax,
     getRangeMin,
     getRangeValue,
@@ -518,10 +519,10 @@ export function getLinkRandomColor(
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
     return animation !== undefined
         ? {
-            h: animation.h.value,
-            s: animation.s.value,
-            l: animation.l.value,
-        }
+              h: animation.h.value,
+              s: animation.s.value,
+              l: animation.l.value,
+          }
         : undefined;
 }
 

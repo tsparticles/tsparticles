@@ -21,10 +21,14 @@ import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
 
 describe("ColorUtils", async () => {
-    await loadHexColorPlugin(tsParticles);
-    await loadHslColorPlugin(tsParticles);
-    await loadHsvColorPlugin(tsParticles);
-    await loadRgbColorPlugin(tsParticles);
+    tsParticles.register(engine => {
+        loadHexColorPlugin(engine);
+        loadHslColorPlugin(engine);
+        loadHsvColorPlugin(engine);
+        loadRgbColorPlugin(engine);
+    });
+
+    await tsParticles.init();
 
     const red: IRgb = {
         b: 0,

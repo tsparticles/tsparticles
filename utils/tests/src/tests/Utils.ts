@@ -14,7 +14,7 @@ import {
     isPointInside,
     itemFromArray,
     mix,
-    randomInRange,
+    randomInRangeValue,
     setRangeValue,
     tsParticles,
 } from "@tsparticles/engine";
@@ -208,7 +208,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in positive reals", () => {
             const min = 1;
             const max = 10;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -216,7 +216,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range in negative reals", () => {
             const min = -10;
             const max = -1;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -224,7 +224,7 @@ describe("Utils", () => {
         it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
             const min = -10;
             const max = 10;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(min, max);
         });
@@ -232,7 +232,7 @@ describe("Utils", () => {
         it("should set min as 0 when max equals to min", () => {
             const min = 10;
             const max = 10;
-            const randomNumber = randomInRange(setRangeValue(min, max));
+            const randomNumber = randomInRangeValue(setRangeValue(min, max));
 
             expect(randomNumber).to.be.within(0, max);
         });

@@ -1,14 +1,16 @@
-import { BubbleDrawer } from "./BubbleDrawer.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadBubbleEffect(engine: Engine, refresh = true): Promise<void> {
+export function loadBubbleEffect(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addEffect("bubble", new BubbleDrawer(), refresh);
+    engine.register(async e => {
+        const { BubbleDrawer } = await import("./BubbleDrawer.js");
+
+        e.addEffect("bubble", new BubbleDrawer());
+    });
 }

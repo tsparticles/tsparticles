@@ -15,8 +15,8 @@ import {
     one,
     removeDeleteCount,
 } from "./Utils/Constants.js";
-import { executeOnSingleOrMultiple, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
-import { Container } from "./Container.js";
+import { itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
 import type { EasingFunction } from "../Types/EasingFunction.js";
@@ -73,6 +73,16 @@ interface Initializers {
     movers: Map<string, MoverInitializer>;
     updaters: Map<string, UpdaterInitializer>;
 }
+
+type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
+type SyncLoadPluginFunction = (engine: Engine) => void;
+type AsyncLoadPluginNoEngine = () => Promise<void>;
+type SyncLoadPluginNoEngine = () => void;
+type LoadPluginFunction =
+    | AsyncLoadPluginFunction
+    | SyncLoadPluginFunction
+    | AsyncLoadPluginNoEngine
+    | SyncLoadPluginNoEngine;
 
 /**
  * @param container -
@@ -241,6 +251,8 @@ export class Engine {
 
     private readonly _initializers: Initializers;
 
+    private readonly _loadPromises: Set<LoadPluginFunction>;
+
     /**
      * Engine constructor, initializes plugins, loader and the containers array
      */
@@ -249,7 +261,7 @@ export class Engine {
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
         this._initialized = false;
-
+        this._loadPromises = new Set<LoadPluginFunction>();
         this.plugins = [];
         this.colorManagers = new Map<string, IColorManager>();
         this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
@@ -287,12 +299,9 @@ export class Engine {
 
     /**
      * @param manager -
-     * @param refresh -
      */
-    async addColorManager(manager: IColorManager, refresh = true): Promise<void> {
+    addColorManager(manager: IColorManager): void {
         this.colorManagers.set(manager.key, manager);
-
-        await this.refresh(refresh);
     }
 
     addConfig(config: ISourceOptions): void {
@@ -305,32 +314,26 @@ export class Engine {
     /**
      * @param name -
      * @param easing -
-     * @param refresh -
      */
-    async addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction, refresh = true): Promise<void> {
+    addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
         if (this.easingFunctions.get(name)) {
             return;
         }
 
         this.easingFunctions.set(name, easing);
-
-        await this.refresh(refresh);
     }
 
     /**
      * addEffect adds effect to tsParticles, it will be available to all future instances created
      * @param effect - the effect name
      * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
-     * @param refresh - should refresh the dom after adding the effect
      */
-    async addEffect(effect: SingleOrMultiple<string>, drawer: IEffectDrawer, refresh = true): Promise<void> {
-        executeOnSingleOrMultiple(effect, type => {
-            if (!this.getEffectDrawer(type)) {
-                this.effectDrawers.set(type, drawer);
-            }
-        });
+    addEffect(effect: string, drawer: IEffectDrawer): void {
+        if (this.getEffectDrawer(effect)) {
+            return;
+        }
 
-        await this.refresh(refresh);
+        this.effectDrawers.set(effect, drawer);
     }
 
     /**
@@ -346,62 +349,51 @@ export class Engine {
      * Adds an interaction manager to the current collection
      * @param name - the interaction manager name
      * @param interactorInitializer - the interaction manager initializer
-     * @param refresh - if true the engine will refresh all the containers
      */
-    async addInteractor(name: string, interactorInitializer: InteractorInitializer, refresh = true): Promise<void> {
+    addInteractor(name: string, interactorInitializer: InteractorInitializer): void {
         this._initializers.interactors.set(name, interactorInitializer);
-
-        await this.refresh(refresh);
     }
 
     /**
      * @param name - the mover name
      * @param moverInitializer - the mover initializer
-     * @param refresh - if true the engine will refresh all the containers
      */
-    async addMover(name: string, moverInitializer: MoverInitializer, refresh = true): Promise<void> {
+    addMover(name: string, moverInitializer: MoverInitializer): void {
         this._initializers.movers.set(name, moverInitializer);
-
-        await this.refresh(refresh);
     }
 
     /**
      * Adds a particle updater to the collection
      * @param name - the particle updater name used as a key
      * @param updaterInitializer - the particle updater initializer
-     * @param refresh - if true the engine will refresh all the containers
      */
-    async addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer, refresh = true): Promise<void> {
+    addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
         this._initializers.updaters.set(name, updaterInitializer);
-
-        await this.refresh(refresh);
     }
 
     /**
      * addPathGenerator adds a named path generator to tsParticles, this can be called by options
      * @param name - the path generator name
      * @param generator - the path generator object
-     * @param refresh - should refresh the dom after adding the path generator
      */
-    async addPathGenerator(name: string, generator: IMovePathGenerator, refresh = true): Promise<void> {
-        if (!this.getPathGenerator(name)) {
-            this.pathGenerators.set(name, generator);
+    addPathGenerator(name: string, generator: IMovePathGenerator): void {
+        if (this.getPathGenerator(name)) {
+            return;
         }
 
-        await this.refresh(refresh);
+        this.pathGenerators.set(name, generator);
     }
 
     /**
      * addPlugin adds plugin to tsParticles, if an instance needs it, it will be loaded
      * @param plugin - the plugin implementation of {@link IPlugin}
-     * @param refresh - should refresh the dom after adding the plugin
      */
-    async addPlugin(plugin: IPlugin, refresh = true): Promise<void> {
-        if (!this.getPlugin(plugin.id)) {
-            this.plugins.push(plugin);
+    addPlugin(plugin: IPlugin): void {
+        if (this.getPlugin(plugin.id)) {
+            return;
         }
 
-        await this.refresh(refresh);
+        this.plugins.push(plugin);
     }
 
     /**
@@ -409,27 +401,20 @@ export class Engine {
      * @param preset - the preset name
      * @param options - the options to add to the preset
      * @param override - if true, the preset will override any existing with the same name
-     * @param refresh - should refresh the dom after adding the preset
      */
-    async addPreset(
-        preset: string,
-        options: Readonly<ISourceOptions>,
-        override = false,
-        refresh = true,
-    ): Promise<void> {
-        if (override || !this.getPreset(preset)) {
-            this.presets.set(preset, options);
+    addPreset(preset: string, options: Readonly<ISourceOptions>, override = false): void {
+        if (!(override || !this.getPreset(preset))) {
+            return;
         }
 
-        await this.refresh(refresh);
+        this.presets.set(preset, options);
     }
 
     /**
      * addShape adds shape to tsParticles, it will be available to all future instances created
      * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
-     * @param refresh - should refresh the dom after adding the shape
      */
-    async addShape(drawer: IShapeDrawer, refresh = true): Promise<void> {
+    addShape(drawer: IShapeDrawer): void {
         for (const validType of drawer.validTypes) {
             if (this.getShapeDrawer(validType)) {
                 continue;
@@ -437,8 +422,6 @@ export class Engine {
 
             this.shapeDrawers.set(validType, drawer);
         }
-
-        await this.refresh(refresh);
     }
 
     /**
@@ -601,10 +584,16 @@ export class Engine {
     /**
      * init method, used by imports
      */
-    init(): void {
+    async init(): Promise<void> {
         if (this._initialized) {
             return;
         }
+
+        for (const loadPromise of this._loadPromises) {
+            await loadPromise(this);
+        }
+
+        this._loadPromises.clear();
 
         this._initialized = true;
     }
@@ -633,7 +622,10 @@ export class Engine {
      * @returns A Promise with the {@link Container} object created
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
-        const id =
+        await this.init();
+
+        const { Container } = await import("./Container.js"),
+            id =
                 params.id ??
                 params.element?.id ??
                 `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
@@ -710,6 +702,16 @@ export class Engine {
         }
 
         await Promise.all(this.items.map(t => t.refresh()));
+    }
+
+    register(...loadPromises: LoadPluginFunction[]): void {
+        if (this._initialized) {
+            throw new Error(`Register plugins can only be done before calling tsParticles.load()`);
+        }
+
+        for (const loadPromise of loadPromises) {
+            this._loadPromises.add(loadPromise);
+        }
     }
 
     /**

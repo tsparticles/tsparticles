@@ -7,23 +7,9 @@ import {
     millisecondsToSeconds,
     tsParticles,
 } from "@tsparticles/engine";
-import { type EmitterContainer, loadEmittersPlugin } from "@tsparticles/plugin-emitters";
 import { ConfettiOptions } from "./ConfettiOptions.js";
+import type { EmitterContainer } from "@tsparticles/plugin-emitters";
 import type { IConfettiOptions } from "./IConfettiOptions.js";
-import { loadBasic } from "@tsparticles/basic";
-import { loadCardsShape } from "@tsparticles/shape-cards";
-import { loadEmojiShape } from "@tsparticles/shape-emoji";
-import { loadHeartShape } from "@tsparticles/shape-heart";
-import { loadImageShape } from "@tsparticles/shape-image";
-import { loadLifeUpdater } from "@tsparticles/updater-life";
-import { loadMotionPlugin } from "@tsparticles/plugin-motion";
-import { loadPolygonShape } from "@tsparticles/shape-polygon";
-import { loadRollUpdater } from "@tsparticles/updater-roll";
-import { loadRotateUpdater } from "@tsparticles/updater-rotate";
-import { loadSquareShape } from "@tsparticles/shape-square";
-import { loadStarShape } from "@tsparticles/shape-star";
-import { loadTiltUpdater } from "@tsparticles/updater-tilt";
-import { loadWobbleUpdater } from "@tsparticles/updater-wobble";
 
 declare const __VERSION__: string;
 
@@ -113,21 +99,39 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     engine.checkVersion(__VERSION__);
 
-    await loadEmittersPlugin(engine, false);
-    await loadMotionPlugin(engine, false);
-    await loadCardsShape(engine, false);
-    await loadHeartShape(engine, false);
-    await loadImageShape(engine, false);
-    await loadPolygonShape(engine, false);
-    await loadSquareShape(engine, false);
-    await loadStarShape(engine, false);
-    await loadEmojiShape(engine, false);
-    await loadRotateUpdater(engine, false);
-    await loadLifeUpdater(engine, false);
-    await loadRollUpdater(engine, false);
-    await loadTiltUpdater(engine, false);
-    await loadWobbleUpdater(engine, false);
-    await loadBasic(engine);
+    engine.register(async e => {
+        const { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
+            { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
+            { loadCardsShape } = await import("@tsparticles/shape-cards"),
+            { loadHeartShape } = await import("@tsparticles/shape-heart"),
+            { loadImageShape } = await import("@tsparticles/shape-image"),
+            { loadPolygonShape } = await import("@tsparticles/shape-polygon"),
+            { loadSquareShape } = await import("@tsparticles/shape-square"),
+            { loadStarShape } = await import("@tsparticles/shape-star"),
+            { loadEmojiShape } = await import("@tsparticles/shape-emoji"),
+            { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
+            { loadLifeUpdater } = await import("@tsparticles/updater-life"),
+            { loadRollUpdater } = await import("@tsparticles/updater-roll"),
+            { loadTiltUpdater } = await import("@tsparticles/updater-tilt"),
+            { loadWobbleUpdater } = await import("@tsparticles/updater-wobble"),
+            { loadBasic } = await import("@tsparticles/basic");
+
+        loadEmittersPlugin(e);
+        loadMotionPlugin(e);
+        loadCardsShape(e);
+        loadHeartShape(e);
+        loadImageShape(e);
+        loadPolygonShape(e);
+        loadSquareShape(e);
+        loadStarShape(e);
+        loadEmojiShape(e);
+        loadRotateUpdater(e);
+        loadLifeUpdater(e);
+        loadRollUpdater(e);
+        loadTiltUpdater(e);
+        loadWobbleUpdater(e);
+        loadBasic(e);
+    });
 
     initializing = false;
     initialized = true;

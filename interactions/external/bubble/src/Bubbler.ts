@@ -51,7 +51,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     private readonly _engine;
 
-    constructor(container: BubbleContainer, engine: Engine) {
+    constructor(engine: Engine, container: BubbleContainer) {
         super(container);
 
         this._engine = engine;

@@ -1,22 +1,20 @@
 import { type Engine } from "@tsparticles/engine";
-import { Pusher } from "./Pusher.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine - The engine to use for the interaction
- * @param refresh -
  */
-export async function loadExternalPushInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalPushInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalPush",
-        container => {
-            return Promise.resolve(new Pusher(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalPush", async container => {
+            const { Pusher } = await import("./Pusher.js");
+
+            return new Pusher(container);
+        });
+    });
 }
 
 export * from "./Options/Classes/Push.js";

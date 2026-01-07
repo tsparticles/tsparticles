@@ -42,7 +42,7 @@ export function drawPath(data: IShapeDrawData, path: IPath): void {
     }
 }
 
-const n = 1.0 / 2;
+const n = 0.5;
 
 export const paths: ICardsPath = {
     heart: {

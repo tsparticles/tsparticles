@@ -1,4 +1,3 @@
-import { EmittersCanvasShapeGenerator } from "./EmittersCanvasShapeGenerator.js";
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
 import { type Engine } from "@tsparticles/engine";
 
@@ -7,14 +6,13 @@ declare const __VERSION__: string;
 /**
  *
  * @param engine -
- * @param refresh -
  */
-export async function loadEmittersShapeCanvas(engine: Engine, refresh = true): Promise<void> {
-    const emittersEngine = engine as EmittersEngine;
+export function loadEmittersShapeCanvas(engine: Engine): void {
+    engine.checkVersion(__VERSION__);
 
-    emittersEngine.checkVersion(__VERSION__);
+    engine.register(async (emittersEngine: EmittersEngine) => {
+        const { EmittersCanvasShapeGenerator } = await import("./EmittersCanvasShapeGenerator.js");
 
-    emittersEngine.addEmitterShapeGenerator?.("canvas", new EmittersCanvasShapeGenerator());
-
-    await emittersEngine.refresh(refresh);
+        emittersEngine.addEmitterShapeGenerator?.("canvas", new EmittersCanvasShapeGenerator());
+    });
 }

@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { OrbitUpdater } from "./OrbitUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadOrbitUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadOrbitUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "orbit",
-        container => {
-            return Promise.resolve(new OrbitUpdater(container, engine));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("orbit", async container => {
+            const { OrbitUpdater } = await import("./OrbitUpdater.js");
+
+            return new OrbitUpdater(e, container);
+        });
+    });
 }

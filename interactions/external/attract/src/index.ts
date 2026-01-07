@@ -1,22 +1,20 @@
-import { Attractor } from "./Attractor.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalAttractInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalAttractInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalAttract",
-        container => {
-            return Promise.resolve(new Attractor(engine, container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalAttract", async container => {
+            const { Attractor } = await import("./Attractor.js");
+
+            return new Attractor(e, container);
+        });
+    });
 }
 
 export * from "./Options/Classes/Attract.js";

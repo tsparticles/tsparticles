@@ -1,14 +1,16 @@
 import { type Engine } from "@tsparticles/engine";
-import { ExportImagePlugin } from "./ExportImagePlugin.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExportImagePlugin(engine: Engine, refresh = true): Promise<void> {
+export function loadExportImagePlugin(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addPlugin(new ExportImagePlugin(), refresh);
+    engine.register(async e => {
+        const { ExportImagePlugin } = await import("./ExportImagePlugin.js");
+
+        e.addPlugin(new ExportImagePlugin());
+    });
 }

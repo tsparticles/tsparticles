@@ -1,14 +1,16 @@
 import { type Engine } from "@tsparticles/engine";
-import { SpiralDrawer } from "./SpiralDrawer.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadSpiralShape(engine: Engine, refresh = true): Promise<void> {
+export function loadSpiralShape(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addShape(new SpiralDrawer(), refresh);
+    engine.register(async e => {
+        const { SpiralDrawer } = await import("./SpiralDrawer.js");
+
+        e.addShape(new SpiralDrawer());
+    });
 }

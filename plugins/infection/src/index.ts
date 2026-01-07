@@ -1,26 +1,23 @@
 import { type Engine } from "@tsparticles/engine";
-import { InfectionPlugin } from "./InfectionPlugin.js";
-import { ParticlesInfecter } from "./ParticlesInfecter.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadInfectionPlugin(engine: Engine, refresh = true): Promise<void> {
+export function loadInfectionPlugin(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    const plugin = new InfectionPlugin();
+    engine.register(async e => {
+        const { InfectionPlugin } = await import("./InfectionPlugin.js");
 
-    await engine.addPlugin(plugin, refresh);
-    await engine.addInteractor(
-        "particlesInfection",
-        container => {
-            return Promise.resolve(new ParticlesInfecter(container));
-        },
-        refresh,
-    );
+        e.addPlugin(new InfectionPlugin());
+        e.addInteractor("particlesInfection", async container => {
+            const { ParticlesInfecter } = await import("./ParticlesInfecter.js");
+
+            return new ParticlesInfecter(container);
+        });
+    });
 }
 
 export type * from "./Options/Interfaces/IInfection.js";

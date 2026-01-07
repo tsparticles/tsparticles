@@ -21,7 +21,7 @@ import {
     itemFromSingleOrMultiple,
     lMax,
     millisecondsToSeconds,
-    randomInRange,
+    randomInRangeValue,
     rangeColorToHsl,
     sMax,
     safeDocument,
@@ -494,7 +494,7 @@ export class EmitterInstance {
             return initValue;
         }
 
-        const colorOffset = randomInRange(animation.offset),
+        const colorOffset = randomInRangeValue(animation.offset),
             delay = getRangeValue(this.options.rate.delay),
             emitFactor = container.retina.reduceFactor
                 ? (delay * millisecondsToSeconds) / container.retina.reduceFactor

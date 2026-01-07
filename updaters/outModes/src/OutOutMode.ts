@@ -10,7 +10,7 @@ import {
     getDistances,
     getRandom,
     isPointInside,
-    randomInRange,
+    randomInRangeValue,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
@@ -59,13 +59,13 @@ export class OutOutMode implements IOutModeManager {
                 }
 
                 particle.position.x = Math.floor(
-                    randomInRange({
+                    randomInRangeValue({
                         min: 0,
                         max: container.canvas.size.width,
                     }),
                 );
                 particle.position.y = Math.floor(
-                    randomInRange({
+                    randomInRangeValue({
                         min: 0,
                         max: container.canvas.size.height,
                     }),
@@ -95,14 +95,14 @@ export class OutOutMode implements IOutModeManager {
                     case ParticleOutType.outside: {
                         particle.position.x =
                             Math.floor(
-                                randomInRange({
+                                randomInRangeValue({
                                     min: -particle.moveCenter.radius,
                                     max: particle.moveCenter.radius,
                                 }),
                             ) + particle.moveCenter.x;
                         particle.position.y =
                             Math.floor(
-                                randomInRange({
+                                randomInRangeValue({
                                     min: -particle.moveCenter.radius,
                                     max: particle.moveCenter.radius,
                                 }),

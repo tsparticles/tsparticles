@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { RollUpdater } from "./RollUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine - The engine instance
- * @param refresh -
  */
-export async function loadRollUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadRollUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "roll",
-        () => {
-            return Promise.resolve(new RollUpdater(engine));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("roll", async () => {
+            const { RollUpdater } = await import("./RollUpdater.js");
+
+            return new RollUpdater(e);
+        });
+    });
 }

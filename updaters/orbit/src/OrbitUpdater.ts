@@ -3,7 +3,10 @@ import {
     type IDelta,
     type IParticleUpdater,
     type RecursivePartial,
+    defaultOpacity,
+    doublePI,
     getRangeValue,
+    half,
     rangeColorToHsl,
 } from "@tsparticles/engine";
 import type { IOrbitParticlesOptions, OrbitContainer, OrbitParticle, OrbitParticlesOptions } from "./Types.js";
@@ -11,14 +14,10 @@ import { Orbit } from "./Options/Classes/Orbit.js";
 import { OrbitType } from "./Enums.js";
 import { drawEllipse } from "./Utils.js";
 
-const double = 2,
-    half = 0.5,
-    doublePI = Math.PI * double,
-    defaultOrbitSpeed = 0,
+const defaultOrbitSpeed = 0,
     halfPI = Math.PI * half,
     piAndAHalf = Math.PI + halfPI,
     startAngle = 0,
-    defaultOpacity = 1,
     defaultWidth = 1,
     defaultRotation = 0;
 
@@ -26,7 +25,7 @@ export class OrbitUpdater implements IParticleUpdater {
     private readonly _container;
     private readonly _engine;
 
-    constructor(container: OrbitContainer, engine: Engine) {
+    constructor(engine: Engine, container: OrbitContainer) {
         this._engine = engine;
         this._container = container;
     }

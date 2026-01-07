@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { WobbleUpdater } from "./WobbleUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadWobbleUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadWobbleUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "wobble",
-        container => {
-            return Promise.resolve(new WobbleUpdater(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("wobble", async container => {
+            const { WobbleUpdater } = await import("./WobbleUpdater.js");
+
+            return new WobbleUpdater(container);
+        });
+    });
 }

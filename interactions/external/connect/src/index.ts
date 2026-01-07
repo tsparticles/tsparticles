@@ -1,22 +1,20 @@
-import { Connector } from "./Connector.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalConnectInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalConnectInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalConnect",
-        container => {
-            return Promise.resolve(new Connector(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalConnect", async container => {
+            const { Connector } = await import("./Connector.js");
+
+            return new Connector(container);
+        });
+    });
 }
 
 export * from "./Options/Classes/Connect.js";

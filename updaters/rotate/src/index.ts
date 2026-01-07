@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { RotateUpdater } from "./RotateUpdater.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadRotateUpdater(engine: Engine, refresh = true): Promise<void> {
+export function loadRotateUpdater(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addParticleUpdater(
-        "rotate",
-        container => {
-            return Promise.resolve(new RotateUpdater(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addParticleUpdater("rotate", async container => {
+            const { RotateUpdater } = await import("./RotateUpdater.js");
+
+            return new RotateUpdater(container);
+        });
+    });
 }

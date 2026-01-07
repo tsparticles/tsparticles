@@ -1,10 +1,15 @@
-import { type Container, type IMovePathGenerator, Vector, getRandom, isFunction, isString } from "@tsparticles/engine";
+import {
+    type Container,
+    type IMovePathGenerator,
+    Vector,
+    doublePI,
+    getRandom,
+    isFunction,
+    isString,
+} from "@tsparticles/engine";
 import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
-
-const double = 2,
-    doublePI = Math.PI * double;
 
 /**
  * @returns a random velocity

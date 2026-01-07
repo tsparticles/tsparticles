@@ -12,7 +12,7 @@ import {
     getPosition,
     getRandom,
     half,
-    randomInRange,
+    randomInRangeValue,
     safeDocument,
 } from "@tsparticles/engine";
 
@@ -77,10 +77,10 @@ export class SVGPathGenerator implements IMovePathGenerator {
         particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
         particle.svgPathIndex ??= Math.floor(getRandom() * this._paths.length);
         particle.svgSpeed ??= particle.velocity.mult((particle.retina.moveSpeed ?? defaultSpeed) * half).length;
-        particle.svgStep ??= randomInRange({ min: 0, max: this._paths[particle.svgPathIndex]!.length }) * pxRatio;
+        particle.svgStep ??= randomInRangeValue({ min: 0, max: this._paths[particle.svgPathIndex]!.length }) * pxRatio;
         particle.svgOffset ??= {
-            width: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
-            height: randomInRange({ min: -this._width * half, max: this._width * half }) * pxRatio,
+            width: randomInRangeValue({ min: -this._width * half, max: this._width * half }) * pxRatio,
+            height: randomInRangeValue({ min: -this._width * half, max: this._width * half }) * pxRatio,
         };
         particle.svgInitialPosition ??= particle.position.copy();
 
@@ -195,8 +195,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
                     }
                 }
 
-                this._size.height = parseFloat(svg.getAttribute("height") ?? "0");
-                this._size.width = parseFloat(svg.getAttribute("width") ?? "0");
+                this._size.height = Number.parseFloat(svg.getAttribute("height") ?? "0");
+                this._size.width = Number.parseFloat(svg.getAttribute("width") ?? "0");
             })();
         } else if (options.path) {
             const path = options.path;

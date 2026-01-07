@@ -9,6 +9,7 @@ import {
     type RecursivePartial,
     RotateDirection,
     StartValueType,
+    doublePI,
     executeOnSingleOrMultiple,
     getHslAnimationFromHsl,
     getRandom,
@@ -20,15 +21,12 @@ import {
     itemFromSingleOrMultiple,
     millisecondsToSeconds,
     percentDenominator,
-    randomInRange,
+    randomInRangeValue,
     rangeColorToHsl,
 } from "@tsparticles/engine";
 import type { GradientParticle, GradientParticlesOptions, IGradientParticlesOptions } from "./Types.js";
 import { AnimatableGradient } from "./Options/Classes/AnimatableGradient.js";
 import { updateGradient } from "./Utils.js";
-
-const double = 2,
-    doublePI = Math.PI * double;
 
 export class GradientUpdater implements IParticleUpdater {
     private readonly _engine;
@@ -177,7 +175,7 @@ export class GradientUpdater implements IParticleUpdater {
 
                     case StartValueType.random:
                     default:
-                        addOpacity.value = randomInRange(addOpacity);
+                        addOpacity.value = randomInRangeValue(addOpacity);
                         addOpacity.status =
                             getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 

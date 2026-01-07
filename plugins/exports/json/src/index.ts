@@ -1,14 +1,16 @@
 import { type Engine } from "@tsparticles/engine";
-import { ExportJSONPlugin } from "./ExportJSONPlugin.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExportJSONPlugin(engine: Engine, refresh = true): Promise<void> {
+export function loadExportJSONPlugin(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addPlugin(new ExportJSONPlugin(), refresh);
+    engine.register(async e => {
+        const { ExportJSONPlugin } = await import("./ExportJSONPlugin.js");
+
+        e.addPlugin(new ExportJSONPlugin());
+    });
 }

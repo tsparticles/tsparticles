@@ -1,20 +1,18 @@
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
-import { EmittersPathShapeGenerator } from "./EmittersPathShapeGenerator.js";
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  *
  * @param engine -
- * @param refresh -
  */
-export async function loadEmittersShapePath(engine: Engine, refresh = true): Promise<void> {
-    const emittersEngine = engine as EmittersEngine;
+export function loadEmittersShapePath(engine: Engine): void {
+    engine.checkVersion(__VERSION__);
 
-    emittersEngine.checkVersion(__VERSION__);
+    engine.register(async (emittersEngine: EmittersEngine) => {
+        const { EmittersPathShapeGenerator } = await import("./EmittersPathShapeGenerator.js");
 
-    emittersEngine.addEmitterShapeGenerator?.("path", new EmittersPathShapeGenerator());
-
-    await emittersEngine.refresh(refresh);
+        emittersEngine.addEmitterShapeGenerator?.("path", new EmittersPathShapeGenerator());
+    });
 }

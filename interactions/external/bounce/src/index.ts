@@ -1,22 +1,20 @@
-import { Bouncer } from "./Bouncer.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalBounceInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalBounceInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalBounce",
-        container => {
-            return Promise.resolve(new Bouncer(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalBounce", async container => {
+            const { Bouncer } = await import("./Bouncer.js");
+
+            return new Bouncer(container);
+        });
+    });
 }
 
 export * from "./Options/Classes/Bounce.js";

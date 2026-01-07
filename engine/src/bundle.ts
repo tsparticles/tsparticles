@@ -1,6 +1,6 @@
-import { init } from "./init.js";
+import { initEngine } from "./initEngine.js";
 
-const tsParticles = init();
+const tsParticles = initEngine();
 
 globalThis.tsParticles = tsParticles;
 

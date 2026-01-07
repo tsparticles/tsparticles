@@ -1,4 +1,3 @@
-import { CurvesPathGenerator } from "./CurvesPathGenerator.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
@@ -7,10 +6,13 @@ export const curvesPathName = "curvesPathGenerator";
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadCurvesPath(engine: Engine, refresh = true): Promise<void> {
+export function loadCurvesPath(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addPathGenerator(curvesPathName, new CurvesPathGenerator(), refresh);
+    engine.register(async e => {
+        const { CurvesPathGenerator } = await import("./CurvesPathGenerator.js");
+
+        e.addPathGenerator(curvesPathName, new CurvesPathGenerator());
+    });
 }

@@ -1,20 +1,18 @@
 import { type Engine } from "@tsparticles/engine";
-import { InteractivityParticleMaker } from "./InteractivityParticleMaker.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalParticleInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalParticleInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalParticle",
-        container => {
-            return Promise.resolve(new InteractivityParticleMaker(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalParticle", async container => {
+            const { InteractivityParticleMaker } = await import("./InteractivityParticleMaker.js");
+
+            return new InteractivityParticleMaker(container);
+        });
+    });
 }

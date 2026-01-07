@@ -1,22 +1,20 @@
-import { Bubbler } from "./Bubbler.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalBubbleInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalBubbleInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalBubble",
-        container => {
-            return Promise.resolve(new Bubbler(container, engine));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalBubble", async container => {
+            const { Bubbler } = await import("./Bubbler.js");
+
+            return new Bubbler(e, container);
+        });
+    });
 }
 
 export * from "./Options/Classes/BubbleBase.js";

@@ -1,22 +1,20 @@
 import { type Engine } from "@tsparticles/engine";
-import { Slower } from "./Slower.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalSlowInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalSlowInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalSlow",
-        container => {
-            return Promise.resolve(new Slower(container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalSlow", async container => {
+            const { Slower } = await import("./Slower.js");
+
+            return new Slower(container);
+        });
+    });
 }
 
 export * from "./Options/Classes/Slow.js";

@@ -9,7 +9,7 @@ import {
     isNumber,
     itemFromSingleOrMultiple,
     loadParticlesOptions,
-    randomInRange,
+    randomInRangeValue,
     setRangeValue,
 } from "@tsparticles/engine";
 import type { DestroyParticle } from "./Types.js";
@@ -86,8 +86,8 @@ function addSplitParticle(
 
     const offset = splitOptions.sizeOffset ? setRangeValue(-parent.size.value, parent.size.value) : defaultOffset,
         position = {
-            x: parent.position.x + randomInRange(offset),
-            y: parent.position.y + randomInRange(offset),
+            x: parent.position.x + randomInRangeValue(offset),
+            y: parent.position.y + randomInRangeValue(offset),
         };
 
     return container.particles.addParticle(position, options, parent.group, (particle: DestroyParticle) => {
@@ -95,7 +95,7 @@ function addSplitParticle(
             return false;
         }
 
-        particle.velocity.length = randomInRange(setRangeValue(parent.velocity.length, particle.velocity.length));
+        particle.velocity.length = randomInRangeValue(setRangeValue(parent.velocity.length, particle.velocity.length));
         particle.splitCount = (parent.splitCount ?? defaultSplitCount) + increment;
         particle.unbreakable = true;
 

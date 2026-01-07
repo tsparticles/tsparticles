@@ -1,22 +1,20 @@
 import { type Engine } from "@tsparticles/engine";
-import { Repulser } from "./Repulser.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadExternalRepulseInteraction(engine: Engine, refresh = true): Promise<void> {
+export function loadExternalRepulseInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addInteractor(
-        "externalRepulse",
-        container => {
-            return Promise.resolve(new Repulser(engine, container));
-        },
-        refresh,
-    );
+    engine.register(e => {
+        e.addInteractor("externalRepulse", async container => {
+            const { Repulser } = await import("./Repulser.js");
+
+            return new Repulser(engine, container);
+        });
+    });
 }
 
 export * from "./Options/Classes/RepulseBase.js";

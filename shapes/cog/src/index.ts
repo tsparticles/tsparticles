@@ -1,14 +1,16 @@
-import { CogDrawer } from "./CogDrawer.js";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
-export async function loadCogShape(engine: Engine, refresh = true): Promise<void> {
+export function loadCogShape(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    await engine.addShape(new CogDrawer(), refresh);
+    engine.register(async e => {
+        const { CogDrawer } = await import("./CogDrawer.js");
+
+        e.addShape(new CogDrawer());
+    });
 }
