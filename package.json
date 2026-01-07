@@ -13,7 +13,7 @@
     "build:docs:json": "rimraf docs.json && typedoc --json docs.json",
     "prettify:ci:readme": "prettier --check ./README.md && prettier --check ./markdown/*",
     "prettify:readme": "prettier --write ./README.md && prettier --write ./markdown/*",
-    "version:alpha": "lerna version prerelease --preid alpha --conventional-commits",
+    "version:alpha": "lerna version premajor --preid alpha --conventional-commits",
     "version:beta": "lerna version prerelease --preid beta --conventional-commits",
     "publish:alpha": "lerna publish from-package --pre-dist-tag alpha --preid alpha",
     "publish:beta": "lerna publish from-package --pre-dist-tag beta --preid beta",
