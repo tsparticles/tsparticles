@@ -4,7 +4,6 @@ declare const __VERSION__: string;
 
 /**
  * @param engine -
- * @param refresh -
  */
 export function loadParallaxMover(engine: Engine): void {
     engine.checkVersion(__VERSION__);
