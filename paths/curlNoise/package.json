@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-curl-noise",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.2",
   "description": "tsParticles curl noise path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -95,8 +95,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.0",
-    "@tsparticles/simplex-noise": "workspace:4.0.0-alpha.0"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.2",
+    "@tsparticles/simplex-noise": "workspace:4.0.0-alpha.2"
   },
   "publishConfig": {
     "access": "public",

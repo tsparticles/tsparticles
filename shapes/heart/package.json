@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-heart",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.2",
   "description": "tsParticles heart shape",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,7 +108,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.0"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.2"
   },
   "publishConfig": {
     "access": "public",

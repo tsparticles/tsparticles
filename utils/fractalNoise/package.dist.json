@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/fractal-noise",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.2",
   "description": "tsParticles fractal noise library",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -92,7 +92,7 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "@tsparticles/smooth-value-noise": "4.0.0-alpha.0"
+    "@tsparticles/smooth-value-noise": "4.0.0-alpha.2"
   },
   "exports": {
     ".": {

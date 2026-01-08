@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/fireworks",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.2",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -99,15 +99,15 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "4.0.0-alpha.0",
-    "@tsparticles/effect-trail": "4.0.0-alpha.0",
-    "@tsparticles/engine": "4.0.0-alpha.0",
-    "@tsparticles/plugin-emitters": "4.0.0-alpha.0",
-    "@tsparticles/plugin-emitters-shape-square": "4.0.0-alpha.0",
-    "@tsparticles/plugin-sounds": "4.0.0-alpha.0",
-    "@tsparticles/updater-destroy": "4.0.0-alpha.0",
-    "@tsparticles/updater-life": "4.0.0-alpha.0",
-    "@tsparticles/updater-rotate": "4.0.0-alpha.0"
+    "@tsparticles/basic": "4.0.0-alpha.2",
+    "@tsparticles/effect-trail": "4.0.0-alpha.2",
+    "@tsparticles/engine": "4.0.0-alpha.2",
+    "@tsparticles/plugin-emitters": "4.0.0-alpha.2",
+    "@tsparticles/plugin-emitters-shape-square": "4.0.0-alpha.2",
+    "@tsparticles/plugin-sounds": "4.0.0-alpha.2",
+    "@tsparticles/updater-destroy": "4.0.0-alpha.2",
+    "@tsparticles/updater-life": "4.0.0-alpha.2",
+    "@tsparticles/updater-rotate": "4.0.0-alpha.2"
   },
   "publishConfig": {
     "access": "public"

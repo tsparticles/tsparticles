@@ -1,7 +1,7 @@
 {
     "name": "@tsparticles/demo-new",
     "private": true,
-    "version": "4.0.0-alpha.0",
+    "version": "4.0.0-alpha.2",
     "description": "tsParticles Demo Website",
     "main": "index.html",
     "scripts": {
@@ -34,23 +34,24 @@
     },
     "homepage": "https://particles.js.org",
     "devDependencies": {
+        "@swc/core": "^1.15.8",
         "fs-extra": "^11.3.3",
         "minify": "^15.0.0",
         "sass": "^1.97.1"
     },
     "dependencies": {
-        "@tsparticles/configs": "workspace:4.0.0-alpha.0",
-        "@tsparticles/engine": "workspace:4.0.0-alpha.0",
-        "@tsparticles/interaction-light": "workspace:4.0.0-alpha.0",
-        "@tsparticles/interaction-particles-repulse": "workspace:4.0.0-alpha.0",
-        "@tsparticles/path-curves": "workspace:4.0.0-alpha.0",
-        "@tsparticles/path-perlin-noise": "workspace:4.0.0-alpha.0",
-        "@tsparticles/path-polygon": "workspace:4.0.0-alpha.0",
-        "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.0",
-        "@tsparticles/plugin-infection": "workspace:4.0.0-alpha.0",
-        "@tsparticles/updater-gradient": "workspace:4.0.0-alpha.0",
-        "@tsparticles/updater-orbit": "workspace:4.0.0-alpha.0",
-        "tsparticles": "workspace:4.0.0-alpha.0"
+        "@tsparticles/configs": "workspace:4.0.0-alpha.2",
+        "@tsparticles/engine": "workspace:4.0.0-alpha.2",
+        "@tsparticles/interaction-light": "workspace:4.0.0-alpha.2",
+        "@tsparticles/interaction-particles-repulse": "workspace:4.0.0-alpha.2",
+        "@tsparticles/path-curves": "workspace:4.0.0-alpha.2",
+        "@tsparticles/path-perlin-noise": "workspace:4.0.0-alpha.2",
+        "@tsparticles/path-polygon": "workspace:4.0.0-alpha.2",
+        "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.2",
+        "@tsparticles/plugin-infection": "workspace:4.0.0-alpha.2",
+        "@tsparticles/updater-gradient": "workspace:4.0.0-alpha.2",
+        "@tsparticles/updater-orbit": "workspace:4.0.0-alpha.2",
+        "tsparticles": "workspace:4.0.0-alpha.2"
     },
     "type": "module"
 }

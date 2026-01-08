@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-hex-color",
-  "version": "4.0.0-alpha.0",
+  "version": "4.0.0-alpha.2",
   "description": "tsParticles hex color plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.0"
+    "@tsparticles/engine": "4.0.0-alpha.2"
   },
   "publishConfig": {
     "access": "public"
