@@ -1,11 +1,14 @@
-const path = require("path");
+import path from "path";
+import { fileURLToPath } from "url";
+import fs from "fs-extra";
 
-function checkErrors() {
-    const particlesJsFoundError = "particles.js-found",
+async function checkErrors() {
+    const angularParticlesFoundError = "ng-particles-found",
+        particlesJsFoundError = "particles.js-found",
         reactParticlesJsFoundError = "react-particles-js-found",
         reactParticlesFoundError = "react-particles-found",
         reactTsParticlesFoundError = "react-tsparticles-found",
-        angularParticlesFoundError = "ng-particles-found",
+        svelteParticlesFoundError = "svelte-particles-found",
         vue2ParticlesFoundError = "vue2-particles-found",
         vue3ParticlesFoundError = "vue3-particles-found";
 
@@ -18,7 +21,8 @@ function checkErrors() {
             "Don't forget to star the tsParticles repository, if you like the project and want to support it: https://github.com/tsparticles/tsparticles"
         );
 
-        const pkgSettings = require(path.join(process.env.INIT_CWD, "package.json"));
+        const rootPkgPath = path.join(process.env.INIT_CWD, "package.json"),
+            pkgSettings = await fs.readJson(rootPkgPath);
 
         if (!pkgSettings) {
             return;
@@ -183,13 +187,27 @@ function checkErrors() {
         }
 
         if (dependencies["svelte"]) {
-            if (!dependencies["svelte-particles"]) {
+            if (dependencies["svelte-particles"]) {
+                console.error(
+                    "\x1b[31m%s\x1b[0m",
+                    "The package svelte-particles has been deprecated and is not supported anymore."
+                );
+                console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/svelte package.");
+                console.error(
+                    "\x1b[31m%s\x1b[0m",
+                    "This error will be fixed once svelte-particles is removed from the package.json file."
+                );
+
+                throw new Error(svelteParticlesFoundError);
+            }
+
+            if (!dependencies["@tsparticles/svelte"]) {
                 console.warn(
                     "\x1b[43m\x1b[30m%s\x1b[0m",
-                    "Found Svelte installed. Please Download svelte-particles to use tsParticles with a component ready to use and easier to configure."
+                    "Found Svelte installed. Please Download @tsparticles/svelte to use tsParticles with a component ready to use and easier to configure."
                 );
                 console.log(
-                    "You can read more about the component here: https://github.com/tsparticles/tsparticles/blob/main/components/svelte/README.md"
+                    "You can read more about the component here: https://github.com/tsparticles/svelte/#readme"
                 );
             }
         }
@@ -236,7 +254,8 @@ function checkErrors() {
             error.message === reactTsParticlesFoundError ||
             error.message === angularParticlesFoundError ||
             error.message === vue2ParticlesFoundError ||
-            error.message === vue3ParticlesFoundError
+            error.message === vue3ParticlesFoundError ||
+            error.message === svelteParticlesFoundError
         ) {
             throw error;
         }
