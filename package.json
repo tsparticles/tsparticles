@@ -46,7 +46,7 @@
     "cross-env": "^10.1.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-jsdoc": "^61.5.0",
+    "eslint-plugin-jsdoc": "^62.0.0",
     "eslint-plugin-prettier": "^5.5.4",
     "eslint-plugin-tsdoc": "^0.5.0",
     "fs-extra": "^11.3.3",
