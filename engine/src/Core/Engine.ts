@@ -44,6 +44,8 @@ import { getRandom } from "../Utils/MathUtils.js";
 
 declare const __VERSION__: string;
 
+const fullPercent = "100%";
+
 declare global {
     var tsParticles: Engine;
 }
@@ -133,6 +135,8 @@ async function getDataFromUrl(
 }
 
 const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
+        const documentSafe = safeDocument();
+
         let canvasEl: HTMLCanvasElement;
 
         if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
@@ -150,7 +154,7 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
                 canvasEl.dataset[generatedAttribute] = generatedFalse;
             } else {
                 /* create canvas element */
-                canvasEl = safeDocument().createElement(canvasTag);
+                canvasEl = documentSafe.createElement(canvasTag);
 
                 canvasEl.dataset[generatedAttribute] = generatedTrue;
 
@@ -159,31 +163,26 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
             }
         }
 
-        const fullPercent = "100%";
-
-        if (!canvasEl.style.width) {
-            canvasEl.style.width = fullPercent;
-        }
-
-        if (!canvasEl.style.height) {
-            canvasEl.style.height = fullPercent;
-        }
+        canvasEl.style.width ||= fullPercent;
+        canvasEl.style.height ||= fullPercent;
 
         return canvasEl;
     },
     getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
-        let domContainer = source ?? safeDocument().getElementById(id);
+        const documentSafe = safeDocument();
+
+        let domContainer = source ?? document.getElementById(id);
 
         if (domContainer) {
             return domContainer;
         }
 
-        domContainer = safeDocument().createElement("div");
+        domContainer = documentSafe.createElement("div");
 
         domContainer.id = id;
         domContainer.dataset[generatedAttribute] = generatedTrue;
 
-        safeDocument().body.append(domContainer);
+        documentSafe.body.append(domContainer);
 
         return domContainer;
     };

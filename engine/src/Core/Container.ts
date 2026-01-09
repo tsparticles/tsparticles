@@ -75,6 +75,8 @@ function loadContainerOptions(
  * [[include:Container.md]]
  */
 export class Container {
+    abortController;
+
     /**
      * The options loaded by the container, it's a full {@link Options} object
      */
@@ -177,6 +179,7 @@ export class Container {
      */
     constructor(engine: Engine, id: string, sourceOptions?: ISourceOptions) {
         this._engine = engine;
+        this.abortController = new AbortController();
         this.id = Symbol(id);
         this.fpsLimit = 120;
         this.hdr = false;
@@ -406,17 +409,13 @@ export class Container {
             effectDrawer.destroy?.(this);
         }
 
+        this.effectDrawers.clear();
+
         for (const shapeDrawer of this.shapeDrawers.values()) {
             shapeDrawer.destroy?.(this);
         }
 
-        for (const key of this.effectDrawers.keys()) {
-            this.effectDrawers.delete(key);
-        }
-
-        for (const key of this.shapeDrawers.keys()) {
-            this.shapeDrawers.delete(key);
-        }
+        this.shapeDrawers.clear();
 
         this._engine.clearPlugins(this);
 
@@ -726,6 +725,8 @@ export class Container {
         if (!guardCheck(this) || !this.started) {
             return;
         }
+
+        this.abortController.abort();
 
         if (this._delayTimeout) {
             clearTimeout(this._delayTimeout);

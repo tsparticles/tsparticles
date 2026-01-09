@@ -20,13 +20,13 @@ export class OverlapPluginInstance implements IContainerPlugin {
                 radius = particle.getRadius();
 
             if (!collisionsOptions?.enable) {
-                return false;
+                return true;
             }
 
             const overlapOptions = collisionsOptions.overlap;
 
             if (overlapOptions.enable) {
-                return false;
+                return true;
             }
 
             const retries = overlapOptions.retries;

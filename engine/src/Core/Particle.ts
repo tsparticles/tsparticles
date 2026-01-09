@@ -748,72 +748,62 @@ export class Particle {
         }
     }
 
-    private readonly _calcPosition: (
-        container: Container,
-        position: ICoordinates | undefined,
-        zIndex: number,
-        tryCount?: number,
-    ) => Vector3d = (container, position, zIndex, tryCount = defaultRetryCount) => {
-        const plugins = container.plugins.values();
+    private readonly _calcPosition: (position: ICoordinates | undefined, zIndex: number) => Vector3d | undefined = (
+        position,
+        zIndex,
+    ) => {
+        let tryCount = defaultRetryCount,
+            posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
-        for (const plugin of plugins) {
-            const pluginPos = plugin.particlePosition?.(position, this);
-
-            if (pluginPos) {
-                return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
-            }
-        }
-
-        const canvasSize = container.canvas.size,
-            exactPosition = calcExactPositionOrRandomFromSize({
-                size: canvasSize,
-                position: position,
-            }),
-            pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex),
-            radius = this.getRadius(),
-            /* check position - into the canvas */
+        const container = this.container,
+            plugins = Array.from(container.plugins.values()),
             outModes = this.options.move.outModes,
-            fixHorizontal = (outMode: OutMode | keyof typeof OutMode): void => {
-                fixOutMode({
-                    outMode,
-                    checkModes: [OutMode.bounce],
-                    coord: pos.x,
-                    maxCoord: container.canvas.size.width,
-                    setCb: (value: number) => (pos.x += value),
-                    radius,
-                });
-            },
-            fixVertical = (outMode: OutMode | keyof typeof OutMode): void => {
-                fixOutMode({
-                    outMode,
-                    checkModes: [OutMode.bounce],
-                    coord: pos.y,
-                    maxCoord: container.canvas.size.height,
-                    setCb: (value: number) => (pos.y += value),
-                    radius,
-                });
-            };
+            radius = this.getRadius(),
+            canvasSize = container.canvas.size,
+            { signal } = container.abortController,
+            maxTryCount = 3;
 
-        fixHorizontal(outModes.left ?? outModes.default);
-        fixHorizontal(outModes.right ?? outModes.default);
-        fixVertical(outModes.top ?? outModes.default);
-        fixVertical(outModes.bottom ?? outModes.default);
+        while (!signal.aborted && tryCount < maxTryCount) {
+            for (const plugin of plugins) {
+                const pluginPos = plugin.particlePosition?.(posVec, this);
 
-        let isValidPosition: boolean | undefined = true;
-
-        for (const plugin of plugins) {
-            isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount);
-
-            if (isValidPosition === false) {
-                break;
+                if (pluginPos) {
+                    return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
+                }
             }
+
+            const exactPosition = calcExactPositionOrRandomFromSize({
+                    size: canvasSize,
+                    position: posVec,
+                }),
+                pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex);
+
+            /* check position - into the canvas */
+            this._fixHorizontal(pos, radius, outModes.left ?? outModes.default);
+            this._fixHorizontal(pos, radius, outModes.right ?? outModes.default);
+            this._fixVertical(pos, radius, outModes.top ?? outModes.default);
+            this._fixVertical(pos, radius, outModes.bottom ?? outModes.default);
+
+            let isValidPosition = true;
+
+            for (const plugin of plugins) {
+                isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount) ?? true;
+
+                if (!isValidPosition) {
+                    break;
+                }
+            }
+
+            if (isValidPosition) {
+                return pos;
+            }
+
+            tryCount += tryCountIncrement;
+
+            posVec = undefined;
         }
 
-        if (!isValidPosition) {
-            return this._calcPosition(container, undefined, zIndex, tryCount + tryCountIncrement);
-        }
-
-        return pos;
+        return posVec;
     };
 
     private readonly _calculateVelocity: () => Vector = () => {
@@ -841,6 +831,36 @@ export class Particle {
         }
 
         return res;
+    };
+
+    private readonly _fixHorizontal = (
+        pos: ICoordinates,
+        radius: number,
+        outMode: OutMode | keyof typeof OutMode,
+    ): void => {
+        fixOutMode({
+            outMode,
+            checkModes: [OutMode.bounce],
+            coord: pos.x,
+            maxCoord: this.container.canvas.size.width,
+            setCb: (value: number) => (pos.x += value),
+            radius,
+        });
+    };
+
+    private readonly _fixVertical = (
+        pos: ICoordinates,
+        radius: number,
+        outMode: OutMode | keyof typeof OutMode,
+    ): void => {
+        fixOutMode({
+            outMode,
+            checkModes: [OutMode.bounce],
+            coord: pos.y,
+            maxCoord: this.container.canvas.size.height,
+            setCb: (value: number) => (pos.y += value),
+            radius,
+        });
     };
 
     private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = color => {
@@ -871,7 +891,13 @@ export class Particle {
         const container = this.container,
             zIndexValue = getRangeValue(this.options.zIndex.value);
 
-        this.position = this._calcPosition(container, position, clamp(zIndexValue, minZ, container.zLayers));
+        const initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
+
+        if (!initialPosition) {
+            throw new Error("a valid position cannot be found for particle");
+        }
+
+        this.position = initialPosition;
         this.initialPosition = this.position.copy();
 
         const canvasSize = container.canvas.size;
