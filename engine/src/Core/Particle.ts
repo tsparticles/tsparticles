@@ -14,9 +14,12 @@ import {
 import {
     decayOffset,
     defaultAngle,
+    defaultOpacity,
     defaultRetryCount,
+    defaultTransform,
     double,
     half,
+    identity,
     millisecondsToSeconds,
     minZ,
     none,
@@ -24,6 +27,7 @@ import {
     rollFactor,
     squareExp,
     tryCountIncrement,
+    zIndexFactorOffset,
 } from "./Utils/Constants.js";
 import {
     deepExtend,
@@ -43,8 +47,11 @@ import type { IHsl } from "./Interfaces/Colors.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
+import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
+import type { IParticleRotateData } from "./Interfaces/IParticleRotateData.js";
+import type { IParticleTransformValues } from "../export-types.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
@@ -370,6 +377,20 @@ export class Particle {
      */
     zIndexFactor!: number;
 
+    private readonly _cachedOpacityData: IParticleOpacityData = {
+        opacity: defaultOpacity,
+        strokeOpacity: defaultOpacity,
+    };
+
+    private readonly _cachedPosition = Vector3d.origin;
+    private readonly _cachedRotateData: IParticleRotateData = { sin: 0, cos: 0 };
+    private readonly _cachedTransform: IParticleTransformValues = {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 1,
+    };
+
     /**
      * Gets the particle containing engine instance
      * @internal
@@ -439,20 +460,58 @@ export class Particle {
         return this.getRadius() ** squareExp * Math.PI * half;
     }
 
+    getOpacity(): IParticleOpacityData {
+        const zIndexOptions = this.options.zIndex,
+            zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
+            zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
+            opacity = this.bubble.opacity ?? getRangeValue(this.opacity?.value ?? defaultOpacity),
+            strokeOpacity = this.strokeOpacity ?? opacity;
+
+        this._cachedOpacityData.opacity = opacity * zOpacityFactor;
+        this._cachedOpacityData.strokeOpacity = strokeOpacity * zOpacityFactor;
+
+        return this._cachedOpacityData;
+    }
+
     getPosition(): ICoordinates3d {
-        return {
-            x: this.position.x + this.offset.x,
-            y: this.position.y + this.offset.y,
-            z: this.position.z,
-        };
+        this._cachedPosition.x = this.position.x + this.offset.x;
+        this._cachedPosition.y = this.position.y + this.offset.y;
+        this._cachedPosition.z = this.position.z;
+
+        return this._cachedPosition;
     }
 
     getRadius(): number {
         return this.bubble.radius ?? this.size.value;
     }
 
+    getRotateData(): IParticleRotateData {
+        const angle = this.getAngle();
+
+        this._cachedRotateData.sin = Math.sin(angle);
+        this._cachedRotateData.cos = Math.cos(angle);
+
+        return this._cachedRotateData;
+    }
+
     getStrokeColor(): IHsl | undefined {
         return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
+    }
+
+    getTransformData(externalTransform: Partial<IParticleTransformValues>): IParticleTransformValues {
+        const rotateData = this.getRotateData(),
+            rotating = this.isRotating;
+
+        this._cachedTransform.a = rotateData.cos * (externalTransform.a ?? defaultTransform.a);
+        this._cachedTransform.b = rotating
+            ? rotateData.sin * (externalTransform.b ?? identity)
+            : (externalTransform.b ?? defaultTransform.b);
+        this._cachedTransform.c = rotating
+            ? -rotateData.sin * (externalTransform.c ?? identity)
+            : (externalTransform.c ?? defaultTransform.c);
+        this._cachedTransform.d = rotateData.cos * (externalTransform.d ?? defaultTransform.d);
+
+        return this._cachedTransform;
     }
 
     init(

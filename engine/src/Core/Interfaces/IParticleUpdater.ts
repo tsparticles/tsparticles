@@ -18,7 +18,7 @@ export interface IParticleUpdater {
         opacity: number,
     ) => IParticleColorStyle;
 
-    getTransformValues?: (particle: Particle) => IParticleTransformValues;
+    getTransformValues?: (particle: Particle) => Partial<IParticleTransformValues>;
 
     loadOptions?: (options: ParticlesOptions, ...sources: (RecursivePartial<IParticlesOptions> | undefined)[]) => void;
 

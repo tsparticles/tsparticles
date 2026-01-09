@@ -28,7 +28,7 @@ export class TiltUpdater implements IParticleUpdater {
         this.container = container;
     }
 
-    getTransformValues(particle: TiltParticle): IParticleTransformValues {
+    getTransformValues(particle: TiltParticle): Partial<IParticleTransformValues> {
         const tilt = particle.tilt?.enable && particle.tilt;
 
         return {

@@ -42,16 +42,14 @@ function guardCheck(container: Container): boolean {
 }
 
 /**
- * @param value -
- * @param fpsLimit -
- * @param smooth -
- * @returns the initialized delta value
+ * @param delta - the delta object to update
+ * @param value - the delta value
+ * @param fpsLimit - the fps limit
+ * @param smooth - if true, uses smooth delta
  */
-function initDelta(value: number, fpsLimit = defaultFps, smooth = false): IDelta {
-    return {
-        value,
-        factor: smooth ? defaultFps / fpsLimit : (defaultFps * value) / millisecondsToSeconds,
-    };
+function updateDelta(delta: IDelta, value: number, fpsLimit = defaultFps, smooth = false): void {
+    delta.value = value;
+    delta.factor = smooth ? defaultFps / fpsLimit : (defaultFps * value) / millisecondsToSeconds;
 }
 
 /**
@@ -146,6 +144,7 @@ export class Container {
     private _currentTheme?: string;
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
+    private readonly _delta: IDelta = { value: 0, factor: 0 };
     private _drawAnimationFrame?: number;
     /**
      * The container duration
@@ -814,18 +813,18 @@ export class Container {
 
             this._lastFrameTime ??= timestamp;
 
-            const delta = initDelta(timestamp - this._lastFrameTime, this.fpsLimit, this._smooth);
+            updateDelta(this._delta, timestamp - this._lastFrameTime, this.fpsLimit, this._smooth);
 
-            this.addLifeTime(delta.value);
+            this.addLifeTime(this._delta.value);
             this._lastFrameTime = timestamp;
 
-            if (delta.value > millisecondsToSeconds) {
+            if (this._delta.value > millisecondsToSeconds) {
                 this.draw(false);
 
                 return;
             }
 
-            this.canvas.drawParticles(delta);
+            this.canvas.drawParticles(this._delta);
 
             if (!this.alive()) {
                 this.destroy();

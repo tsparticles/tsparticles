@@ -25,7 +25,7 @@ export class EventDispatcher {
         arr.push(listener);
     }
 
-    dispatchEvent(type: string, args: CustomEventArgs): void {
+    dispatchEvent(type: string, args?: CustomEventArgs): void {
         const listeners = this._listeners.get(type);
 
         listeners?.forEach(handler => {

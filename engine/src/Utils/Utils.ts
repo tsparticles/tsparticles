@@ -687,7 +687,7 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
     for (const key in style) {
         const styleKey = style[key];
 
-        if (!Object.prototype.hasOwnProperty.call(style, key) || isNull(styleKey)) {
+        if (!Object.hasOwn(style, key) || isNull(styleKey)) {
             continue;
         }
 

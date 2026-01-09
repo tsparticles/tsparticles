@@ -448,7 +448,7 @@ export class Engine {
      * @param type - The event to dispatch
      * @param args - The event parameters
      */
-    dispatchEvent(type: string, args: CustomEventArgs): void {
+    dispatchEvent(type: string, args?: CustomEventArgs): void {
         this._eventDispatcher.dispatchEvent(type, args);
     }
 

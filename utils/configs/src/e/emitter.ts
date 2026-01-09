@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "@tsparticles/engine";
+import { type ISourceOptions, OutMode } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
     key: "emitter",
@@ -39,10 +39,6 @@ const options: ISourceOptions = {
     },
     interactivity: {
         events: {
-            onHover: {
-                enable: false,
-                mode: "repulse",
-            },
             onClick: {
                 enable: true,
                 mode: "emitter",
@@ -58,8 +54,10 @@ const options: ISourceOptions = {
                 particles: {
                     shape: {
                         type: "star",
-                        polygon: {
-                            sides: 7,
+                        options: {
+                            star: {
+                                sides: 7,
+                            },
                         },
                     },
                     rotate: {
@@ -88,7 +86,7 @@ const options: ISourceOptions = {
                     },
                     move: {
                         speed: 20,
-                        outModes: "destroy",
+                        outModes: OutMode.destroy,
                     },
                 },
             },
@@ -128,8 +126,10 @@ const options: ISourceOptions = {
             particles: {
                 shape: {
                     type: "polygon",
-                    polygon: {
-                        sides: 6,
+                    options: {
+                        polygon: {
+                            sides: 6,
+                        },
                     },
                 },
                 rotate: {
@@ -158,7 +158,7 @@ const options: ISourceOptions = {
                 },
                 move: {
                     speed: 20,
-                    outModes: "destroy",
+                    outModes: OutMode.destroy,
                 },
             },
         },
@@ -205,7 +205,7 @@ const options: ISourceOptions = {
                 },
                 move: {
                     speed: 10,
-                    outModes: "destroy",
+                    outModes: OutMode.destroy,
                 },
             },
         },
@@ -245,7 +245,7 @@ const options: ISourceOptions = {
                 },
                 move: {
                     speed: 20,
-                    outModes: "destroy",
+                    outModes: OutMode.destroy,
                 },
             },
         },

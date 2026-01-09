@@ -103,21 +103,22 @@ export class Emitters implements IContainerPlugin {
         let emittersModeOptions: SingleOrMultiple<IEmitter> | undefined;
 
         if (isArray(modeEmitters.value)) {
-            const minLength = 0;
+            const minLength = 0,
+                modeEmittersCount = modeEmitters.value.length;
 
-            if (modeEmitters.value.length > minLength && modeEmitters.random.enable) {
+            if (modeEmittersCount > minLength && modeEmitters.random.enable) {
                 emittersModeOptions = [];
-                const usedIndexes: number[] = [];
+                const usedIndexes = new Set<number>();
 
                 for (let i = 0; i < modeEmitters.random.count; i++) {
                     const idx = arrayRandomIndex(modeEmitters.value);
 
-                    if (usedIndexes.includes(idx) && usedIndexes.length < modeEmitters.value.length) {
+                    if (usedIndexes.has(idx) && usedIndexes.size < modeEmittersCount) {
                         i--;
                         continue;
                     }
 
-                    usedIndexes.push(idx);
+                    usedIndexes.add(idx);
 
                     const selectedOptions = itemFromArray(modeEmitters.value, idx);
 
@@ -188,8 +189,16 @@ export class Emitters implements IContainerPlugin {
     }
 
     update(delta: IDelta): void {
+        const updates: (() => void)[] = [];
+
         for (const emitter of this.array) {
-            emitter.update(delta);
+            updates.push(() => {
+                emitter.update(delta);
+            });
         }
+
+        updates.forEach(update => {
+            update();
+        });
     }
 }

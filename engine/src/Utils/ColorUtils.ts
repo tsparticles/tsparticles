@@ -50,6 +50,29 @@ import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
 import { itemFromArray } from "./Utils.js";
 
+const styleCache = new Map<string, string>(),
+    maxCacheSize = 1000;
+
+/**
+ * Generic cache function for color styles
+ * @param key - the cache key
+ * @param generator - the style generator function
+ * @returns the cached style string
+ */
+function getCachedStyle(key: string, generator: () => string): string {
+    let cached = styleCache.get(key);
+
+    if (!cached) {
+        cached = generator();
+
+        if (styleCache.size < maxCacheSize) {
+            styleCache.set(key, cached);
+        }
+    }
+
+    return cached;
+}
+
 /**
  * Converts a string to a RGBA color.
  * @param engine - The engine managing the current parameters.
@@ -367,7 +390,10 @@ export function getRandomRgbColor(min?: number): IRgb {
  * @returns the CSS style string
  */
 export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): string {
-    return hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity);
+    const op = opacity ?? defaultOpacity,
+        key = `rgb-${color.r.toString()}-${color.g.toString()}-${color.b.toString()}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+
+    return getCachedStyle(key, () => (hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity)));
 }
 
 /**
@@ -398,7 +424,10 @@ function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
  * @returns the CSS style string
  */
 export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
-    return hdr ? getHdrStyleFromHsl(color, opacity) : getSdrStyleFromHsl(color, opacity);
+    const op = opacity ?? defaultOpacity,
+        key = `hsl-${color.h.toString()}-${color.s.toString()}-${color.l.toString()}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+
+    return getCachedStyle(key, () => (hdr ? getHdrStyleFromHsl(color, opacity) : getSdrStyleFromHsl(color, opacity)));
 }
 
 /**

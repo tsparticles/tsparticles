@@ -1,13 +1,16 @@
 import type { EmittersEngine } from "./EmittersEngine.js";
-import type { Engine } from "@tsparticles/engine";
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
+ * @param loadEmitterShapes -
  */
-export function loadEmittersPlugin(engine: Engine): void {
+export function loadEmittersPlugin(
+    engine: EmittersEngine,
+    loadEmitterShapes?: (engine: EmittersEngine) => Promise<void>,
+): void {
     engine.checkVersion(__VERSION__);
 
     engine.register(async (e: EmittersEngine) => {
@@ -22,6 +25,10 @@ export function loadEmittersPlugin(engine: Engine): void {
         const plugin = new EmittersPlugin(e);
 
         e.addPlugin(plugin);
+
+        if (loadEmitterShapes) {
+            await loadEmitterShapes(e);
+        }
     });
 }
 

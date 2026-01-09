@@ -357,7 +357,11 @@ export class SoundsInstance implements IContainerPlugin {
         }
 
         for (const event of soundsOptions.events) {
-            const cb = (args: CustomEventArgs): void => {
+            const cb = (args?: CustomEventArgs): void => {
+                if (!args) {
+                    return;
+                }
+
                 void (async (): Promise<void> => {
                     const filterNotValid = event.filter && !event.filter(args);
 

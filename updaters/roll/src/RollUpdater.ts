@@ -17,7 +17,7 @@ export class RollUpdater implements IParticleUpdater {
         this._engine = engine;
     }
 
-    getTransformValues(particle: Particle): IParticleTransformValues {
+    getTransformValues(particle: Particle): Partial<IParticleTransformValues> {
         const roll = particle.roll?.enable && particle.roll,
             rollHorizontal = roll && roll.horizontal,
             rollVertical = roll && roll.vertical;

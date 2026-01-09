@@ -31,9 +31,6 @@ export function loadAll(engine: Engine): void {
             { loadEasingQuartPlugin } = await import("@tsparticles/plugin-easing-quart"),
             { loadEasingQuintPlugin } = await import("@tsparticles/plugin-easing-quint"),
             { loadEasingSinePlugin } = await import("@tsparticles/plugin-easing-sine"),
-            { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
-            { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
-            { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon"),
             { loadBackgroundMaskPlugin } = await import("@tsparticles/plugin-background-mask"),
             { loadCanvasMaskPlugin } = await import("@tsparticles/plugin-canvas-mask"),
             { loadInfectionPlugin } = await import("@tsparticles/plugin-infection"),
@@ -74,7 +71,15 @@ export function loadAll(engine: Engine): void {
 
         initPjs(e);
 
-        loadFull(e);
+        loadFull(e, async emittersEngine => {
+            const { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
+                { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
+                { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon");
+
+            await loadEmittersShapeCanvas(emittersEngine);
+            await loadEmittersShapePath(emittersEngine);
+            await loadEmittersShapePolygon(emittersEngine);
+        });
 
         loadHsvColorPlugin(e);
         loadHwbColorPlugin(e);
@@ -92,10 +97,6 @@ export function loadAll(engine: Engine): void {
         loadEasingQuartPlugin(e);
         loadEasingQuintPlugin(e);
         loadEasingSinePlugin(e);
-
-        loadEmittersShapeCanvas(e);
-        loadEmittersShapePath(e);
-        loadEmittersShapePolygon(e);
 
         loadBackgroundMaskPlugin(e);
         loadCanvasMaskPlugin(e);

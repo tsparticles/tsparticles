@@ -39,7 +39,8 @@ const defaultLifeDelay = 0,
     defaultSpawnDelay = 0,
     defaultEmitDelay = 0,
     defaultLifeCount = -1,
-    defaultColorAnimationFactor = 1;
+    defaultColorAnimationFactor = 1,
+    colorFactor = 3.6;
 
 /**
  *
@@ -401,23 +402,24 @@ export class EmitterInstance {
     }
 
     private _emitParticles(quantity: number): void {
-        const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions),
-            reduceFactor = this.container.retina.reduceFactor;
+        const singleParticlesOptions = itemFromSingleOrMultiple(
+                this._particlesOptions,
+            ) as RecursivePartial<IParticlesOptions>,
+            hslAnimation = this.options.spawnColor?.animation,
+            reduceFactor = this.container.retina.reduceFactor,
+            needsColorAnimation = !!hslAnimation,
+            needsShapeData = !!this._shape,
+            needsCopy = needsColorAnimation || needsShapeData,
+            maxValues = needsColorAnimation ? { h: hMax, s: sMax, l: lMax } : null,
+            shapeOptions = this.options.shape;
 
         for (let i = 0; i < quantity * reduceFactor; i++) {
-            const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;
+            const particlesOptions = needsCopy
+                ? (deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>)
+                : singleParticlesOptions;
 
             if (this.spawnColor) {
-                const hslAnimation = this.options.spawnColor?.animation;
-
-                if (hslAnimation) {
-                    const maxValues = {
-                            h: hMax,
-                            s: sMax,
-                            l: lMax,
-                        },
-                        colorFactor = 3.6;
-
+                if (hslAnimation && maxValues) {
                     this.spawnColor.h = this._setColorAnimation(
                         hslAnimation.h,
                         this.spawnColor.h,
@@ -430,8 +432,6 @@ export class EmitterInstance {
 
                 setParticlesOptionsColor(particlesOptions, this.spawnColor);
             }
-
-            const shapeOptions = this.options.shape;
 
             let position: ICoordinates | null = this.position;
 
