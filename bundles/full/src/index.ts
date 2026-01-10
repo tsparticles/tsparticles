@@ -1,4 +1,3 @@
-import { type EmittersEngine } from "@tsparticles/plugin-emitters";
 import { type Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
@@ -10,12 +9,8 @@ declare const __VERSION__: string;
  * If this function is not called, the tsparticles package/dependency can be safely removed.
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
- * @param loadMoreEmitterShapesShapes - a function to load more emitter shapes, the default is to load the circle and square shapes
  */
-export function loadFull(
-    engine: Engine,
-    loadMoreEmitterShapesShapes?: (emittersEngine: EmittersEngine) => Promise<void>,
-): void {
+export function loadFull(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
     engine.register(async e => {
@@ -28,7 +23,11 @@ export function loadFull(
             { loadExternalTrailInteraction } = await import("@tsparticles/interaction-external-trail"),
             { loadAbsorbersPlugin } = await import("@tsparticles/plugin-absorbers"),
             { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
+            { loadEmittersShapeCircle } = await import("@tsparticles/plugin-emitters-shape-circle"),
+            { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
             { loadSlim } = await import("@tsparticles/slim");
+
+        loadSlim(engine);
 
         loadDestroyUpdater(e);
         loadRollUpdater(e);
@@ -41,18 +40,9 @@ export function loadFull(
         loadExternalTrailInteraction(e);
 
         loadAbsorbersPlugin(e);
-        loadEmittersPlugin(e, async emittersEngine => {
-            const { loadEmittersShapeCircle } = await import("@tsparticles/plugin-emitters-shape-circle"),
-                { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square");
+        loadEmittersPlugin(e);
 
-            await loadEmittersShapeCircle(emittersEngine);
-            await loadEmittersShapeSquare(emittersEngine);
-
-            if (loadMoreEmitterShapesShapes) {
-                await loadMoreEmitterShapesShapes(emittersEngine);
-            }
-        });
-
-        loadSlim(engine);
+        loadEmittersShapeCircle(e);
+        loadEmittersShapeSquare(e);
     });
 }

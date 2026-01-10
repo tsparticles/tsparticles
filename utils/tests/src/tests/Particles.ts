@@ -216,7 +216,7 @@ describe("Particles", async () => {
 
         const logP = arr[0];
 
-        console.log(logP.id);
+        getLogger().log(logP.id);
 
         container.particles.update({
             value: ts,

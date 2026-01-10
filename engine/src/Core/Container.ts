@@ -75,8 +75,6 @@ function loadContainerOptions(
  * [[include:Container.md]]
  */
 export class Container {
-    abortController;
-
     /**
      * The options loaded by the container, it's a full {@link Options} object
      */
@@ -179,7 +177,6 @@ export class Container {
      */
     constructor(engine: Engine, id: string, sourceOptions?: ISourceOptions) {
         this._engine = engine;
-        this.abortController = new AbortController();
         this.id = Symbol(id);
         this.fpsLimit = 120;
         this.hdr = false;
@@ -725,8 +722,6 @@ export class Container {
         if (!guardCheck(this) || !this.started) {
             return;
         }
-
-        this.abortController.abort();
 
         if (this._delayTimeout) {
             clearTimeout(this._delayTimeout);

@@ -588,11 +588,48 @@ export class Engine {
             return;
         }
 
-        for (const loadPromise of this._loadPromises) {
-            await loadPromise(this);
+        const executed = new Set<LoadPluginFunction>(),
+            allLoaders = new Set(this._loadPromises),
+            stack = [...allLoaders];
+
+        while (stack.length) {
+            const loader = stack.shift();
+
+            if (!loader) {
+                continue;
+            }
+
+            if (executed.has(loader)) {
+                continue;
+            }
+
+            executed.add(loader);
+
+            const inner: LoadPluginFunction[] = [],
+                origRegister = this.register.bind(this);
+
+            this.register = (...loaders: LoadPluginFunction[]): void => {
+                inner.push(...loaders);
+
+                for (const loader of loaders) {
+                    allLoaders.add(loader);
+                }
+            };
+
+            await loader(this);
+
+            this.register = origRegister;
+
+            stack.unshift(...inner);
+
+            this._loadPromises.delete(loader);
         }
 
         this._loadPromises.clear();
+
+        for (const loader of allLoaders) {
+            this._loadPromises.add(loader);
+        }
 
         this._initialized = true;
     }

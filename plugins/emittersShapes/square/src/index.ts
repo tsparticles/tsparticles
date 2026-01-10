@@ -1,19 +1,21 @@
 import type { EmittersEngine } from "@tsparticles/plugin-emitters";
+import type { Engine } from "@tsparticles/engine";
 
 declare const __VERSION__: string;
 
 /**
- *
- * @param emittersEngine -
+ * @param engine -
  */
-export async function loadEmittersShapeSquare(emittersEngine: EmittersEngine): Promise<void> {
-    emittersEngine.checkVersion(__VERSION__);
+export function loadEmittersShapeSquare(engine: Engine): void {
+    engine.checkVersion(__VERSION__);
 
-    if (!emittersEngine.addEmitterShapeGenerator) {
-        return;
-    }
+    engine.register(async (e: EmittersEngine) => {
+        if (!e.addEmitterShapeGenerator) {
+            throw new Error("tsParticles emitters plugin missing or initialized after shapes");
+        }
 
-    const { EmittersSquareShapeGenerator } = await import("./EmittersSquareShapeGenerator.js");
+        const { EmittersSquareShapeGenerator } = await import("./EmittersSquareShapeGenerator.js");
 
-    emittersEngine.addEmitterShapeGenerator("square", new EmittersSquareShapeGenerator());
+        e.addEmitterShapeGenerator("square", new EmittersSquareShapeGenerator());
+    });
 }

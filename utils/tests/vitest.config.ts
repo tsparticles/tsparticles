@@ -4,11 +4,7 @@ export default defineConfig({
     test: {
         include: ["src/tests/*.ts"],
         environment: "jsdom",
-        poolOptions: {
-            threads: {
-                singleThread: true,
-            }
-        },
+        maxWorkers: 1,
         coverage: {
             provider: "v8",
             enabled: true,

@@ -760,10 +760,10 @@ export class Particle {
             outModes = this.options.move.outModes,
             radius = this.getRadius(),
             canvasSize = container.canvas.size,
-            { signal } = container.abortController,
-            maxTryCount = 3;
+            abortController = new AbortController(),
+            { signal } = abortController;
 
-        while (!signal.aborted && tryCount < maxTryCount) {
+        while (!signal.aborted) {
             for (const plugin of plugins) {
                 const pluginPos = plugin.particlePosition?.(posVec, this);
 

@@ -104,13 +104,11 @@ async function initPlugins(engine: Engine): Promise<void> {
             { loadDestroyUpdater } = await import("@tsparticles/updater-destroy"),
             { loadLifeUpdater } = await import("@tsparticles/updater-life"),
             { loadTrailEffect } = await import("@tsparticles/effect-trail"),
-            { loadBasic } = await import("@tsparticles/basic");
+            { loadBasic } = await import("@tsparticles/basic"),
+            { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square");
 
-        loadEmittersPlugin(e, async emittersEngine => {
-            const { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square");
-
-            await loadEmittersShapeSquare(emittersEngine);
-        });
+        loadEmittersPlugin(e);
+        loadEmittersShapeSquare(e);
         loadSoundsPlugin(e);
         loadRotateUpdater(e);
         loadDestroyUpdater(e);

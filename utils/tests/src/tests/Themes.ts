@@ -44,9 +44,6 @@ describe("Themes", async () => {
             particles: {
                 number: {
                     value: 30,
-                    density: {
-                        enable: true,
-                    },
                 },
                 shape: {
                     type: ["circle", "square"],

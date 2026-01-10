@@ -316,9 +316,11 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
  * @returns the exact position
  */
 export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
+    const { position, size } = data;
+
     return {
-        x: data.position?.x ?? getRandom() * data.size.width,
-        y: data.position?.y ?? getRandom() * data.size.height,
+        x: position?.x ?? getRandom() * size.width,
+        y: position?.y ?? getRandom() * size.height,
     };
 }
 

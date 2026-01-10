@@ -67,19 +67,18 @@ export function loadAll(engine: Engine): void {
             { loadSimplexNoisePath } = await import("@tsparticles/path-simplex-noise"),
             { loadBubbleEffect } = await import("@tsparticles/effect-bubble"),
             { loadShadowEffect } = await import("@tsparticles/effect-shadow"),
-            { loadTrailEffect } = await import("@tsparticles/effect-trail");
+            { loadTrailEffect } = await import("@tsparticles/effect-trail"),
+            { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
+            { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
+            { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon");
 
         initPjs(e);
 
-        loadFull(e, async emittersEngine => {
-            const { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
-                { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
-                { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon");
+        loadFull(e);
 
-            await loadEmittersShapeCanvas(emittersEngine);
-            await loadEmittersShapePath(emittersEngine);
-            await loadEmittersShapePolygon(emittersEngine);
-        });
+        loadEmittersShapeCanvas(e);
+        loadEmittersShapePath(e);
+        loadEmittersShapePolygon(e);
 
         loadHsvColorPlugin(e);
         loadHwbColorPlugin(e);
