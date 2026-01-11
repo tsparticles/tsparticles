@@ -1,12 +1,12 @@
 {
-  "name": "@tsparticles/pjs",
+  "name": "@tsparticles/plugin-responsive",
   "version": "4.0.0-alpha.3",
-  "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
+  "description": "tsParticles responsive plugin",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "bundles/pjs"
+    "directory": "plugins/responsive"
   },
   "keywords": [
     "front-end",
@@ -59,30 +59,17 @@
     "confetti-js",
     "confettijs",
     "fireworksjs",
-    "canvas-confetti"
+    "canvas-confetti",
+    "tsparticles-plugin"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/matteobruni"
-    },
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/tsparticles"
-    },
-    {
-      "type": "buymeacoffee",
-      "url": "https://www.buymeacoffee.com/matteobruni"
-    }
-  ],
   "sideEffects": false,
-  "jsdelivr": "tsparticles.pjs.min.js",
-  "unpkg": "tsparticles.pjs.min.js",
+  "jsdelivr": "tsparticles.plugin.responsive.min.js",
+  "unpkg": "tsparticles.plugin.responsive.min.js",
   "browser": "browser/index.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -99,8 +86,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.3",
-    "@tsparticles/plugin-responsive": "4.0.0-alpha.3"
+    "@tsparticles/engine": "4.0.0-alpha.3"
   },
   "publishConfig": {
     "access": "public"

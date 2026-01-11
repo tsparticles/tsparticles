@@ -1,10 +1,12 @@
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import {
+    type IOptionLoader,
+    type ISourceOptions,
+    type RecursivePartial,
+    deepExtend,
+    isNull,
+} from "@tsparticles/engine";
 import type { IResponsive } from "../Interfaces/IResponsive.js";
-import type { ISourceOptions } from "../../Types/ISourceOptions.js";
-import type { RecursivePartial } from "../../Types/RecursivePartial.js";
-import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
-import { deepExtend } from "../../Utils/Utils.js";
-import { isNull } from "../../Utils/TypeUtils.js";
+import { ResponsiveMode } from "../../ResponsiveMode.js";
 
 export class Responsive implements IResponsive, IOptionLoader<IResponsive> {
     maxWidth: number;

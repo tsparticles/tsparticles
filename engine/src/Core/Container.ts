@@ -165,7 +165,6 @@ export class Container {
     private _lifeTime;
     private _options;
     private _paused;
-    private _responsiveMaxWidth?: number;
     private _smooth;
     private _sourceOptions;
 
@@ -758,23 +757,17 @@ export class Container {
      * @returns true if the options were updated, false otherwise
      */
     updateActualOptions(): boolean {
-        this.actualOptions.responsive = [];
+        let refresh = false;
 
-        const newMaxWidth = this.actualOptions.setResponsive(
-            this.canvas.size.width,
-            this.retina.pixelRatio,
-            this._options,
-        );
+        for (const plugin of this.plugins.values()) {
+            if (plugin.updateActualOptions) {
+                refresh ||= plugin.updateActualOptions();
+            }
+        }
 
         this.actualOptions.setTheme(this._currentTheme);
 
-        if (this._responsiveMaxWidth === newMaxWidth) {
-            return false;
-        }
-
-        this._responsiveMaxWidth = newMaxWidth;
-
-        return true;
+        return refresh;
     }
 
     private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {

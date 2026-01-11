@@ -160,6 +160,7 @@ app.use("/plugin-oklch-color", express.static("./node_modules/@tsparticles/plugi
 app.use("/plugin-rgb-color", express.static("./node_modules/@tsparticles/plugin-rgb-color"));
 app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-infection"));
 app.use("/plugin-motion", express.static("./node_modules/@tsparticles/plugin-motion"));
+app.use("/plugin-responsive", express.static("./node_modules/@tsparticles/plugin-responsive"));
 app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sounds"));
 app.use("/plugin-trail", express.static("./node_modules/@tsparticles/plugin-trail"));
 app.use("/effect-bubble", express.static("./node_modules/@tsparticles/effect-bubble"));

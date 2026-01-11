@@ -143,6 +143,7 @@
     "@tsparticles/plugin-oklch-color": "4.0.0-alpha.3",
     "@tsparticles/plugin-poisson-disc": "4.0.0-alpha.3",
     "@tsparticles/plugin-polygon-mask": "4.0.0-alpha.3",
+    "@tsparticles/plugin-responsive": "4.0.0-alpha.3",
     "@tsparticles/plugin-sounds": "4.0.0-alpha.3",
     "@tsparticles/plugin-trail": "4.0.0-alpha.3",
     "@tsparticles/shape-arrow": "4.0.0-alpha.3",

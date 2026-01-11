@@ -47,7 +47,6 @@ export type * from "./Options/Interfaces/IManualParticle.js";
 export type * from "./Options/Interfaces/IOptionLoader.js";
 export type * from "./Options/Interfaces/IOptions.js";
 export type * from "./Options/Interfaces/IOptionsColor.js";
-export type * from "./Options/Interfaces/IResponsive.js";
 export type * from "./Options/Interfaces/IValueWithRandom.js";
 
 export type * from "./Options/Interfaces/Interactivity/Events/IClickEvent.js";

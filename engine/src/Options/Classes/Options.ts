@@ -11,8 +11,6 @@ import { Interactivity } from "./Interactivity/Interactivity.js";
 import { ManualParticle } from "./ManualParticle.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
-import { Responsive } from "./Responsive.js";
-import { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { Theme } from "./Theme/Theme.js";
 import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
@@ -48,7 +46,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     pauseOnBlur;
     pauseOnOutsideViewport;
     preset?: SingleOrMultiple<string>;
-    responsive: Responsive[];
     smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
     readonly themes: Theme[];
@@ -75,7 +72,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.particles = loadParticlesOptions(this._engine, this._container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
-        this.responsive = [];
         this.smooth = false;
         this.style = {};
         this.themes = [];
@@ -189,18 +185,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             }
         }
 
-        if (data.responsive !== undefined) {
-            for (const responsive of data.responsive) {
-                const optResponsive = new Responsive();
-
-                optResponsive.load(responsive);
-
-                this.responsive.push(optResponsive);
-            }
-        }
-
-        this.responsive.sort((a, b) => a.maxWidth - b.maxWidth);
-
         if (data.themes !== undefined) {
             for (const theme of data.themes) {
                 const existingTheme = this.themes.find(t => t.name === theme.name);
@@ -219,18 +203,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
 
         this.defaultThemes.dark = this._findDefaultTheme(ThemeMode.dark)?.name;
         this.defaultThemes.light = this._findDefaultTheme(ThemeMode.light)?.name;
-    }
-
-    setResponsive(width: number, pxRatio: number, defaultOptions: IOptions): number | undefined {
-        this.load(defaultOptions);
-
-        const responsiveOptions = this.responsive.find(t =>
-            t.mode === ResponsiveMode.screen ? t.maxWidth > screen.availWidth : t.maxWidth * pxRatio > width,
-        );
-
-        this.load(responsiveOptions?.options);
-
-        return responsiveOptions?.maxWidth;
     }
 
     setTheme(name?: string): void {

@@ -1,5 +1,5 @@
-import type { ISourceOptions } from "../../Types/ISourceOptions.js";
-import type { ResponsiveMode } from "../../Enums/Modes/ResponsiveMode.js";
+import type { ISourceOptions } from "@tsparticles/engine";
+import type { ResponsiveMode } from "../../ResponsiveMode.js";
 
 export interface IResponsive {
     /**

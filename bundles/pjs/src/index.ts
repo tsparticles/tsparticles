@@ -56,6 +56,12 @@ const initPjs = (
 } => {
     engine.checkVersion(__VERSION__);
 
+    engine.register(async e => {
+        const { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive");
+
+        loadResponsivePlugin(e);
+    });
+
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     const { particlesJS, pJSDom } = initParticlesJS(engine);
 

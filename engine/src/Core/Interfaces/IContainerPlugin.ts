@@ -34,4 +34,5 @@ export interface IContainerPlugin {
     start?: () => Promise<void>;
     stop?: () => void;
     update?: (delta: IDelta) => void;
+    updateActualOptions?: () => boolean;
 }

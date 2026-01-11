@@ -5,7 +5,6 @@ import type { IFullScreen } from "./FullScreen/IFullScreen.js";
 import type { IInteractivity } from "./Interactivity/IInteractivity.js";
 import type { IManualParticle } from "./IManualParticle.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
-import type { IResponsive } from "./IResponsive.js";
 import type { ITheme } from "./Theme/ITheme.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
@@ -105,11 +104,6 @@ export interface IOptions {
      * This property will be used to add specified presets to the options
      */
     preset?: SingleOrMultiple<string>;
-
-    /**
-     * This sets custom options based on canvas size
-     */
-    responsive: IResponsive[];
 
     /**
      * Enables a smooth effect, by default it's disabled
