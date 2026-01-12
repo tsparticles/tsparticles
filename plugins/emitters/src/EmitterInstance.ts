@@ -402,9 +402,8 @@ export class EmitterInstance {
     }
 
     private _emitParticles(quantity: number): void {
-        const singleParticlesOptions = itemFromSingleOrMultiple(
-                this._particlesOptions,
-            ) as RecursivePartial<IParticlesOptions>,
+        const singleParticlesOptions = (itemFromSingleOrMultiple(this._particlesOptions) ??
+                {}) as RecursivePartial<IParticlesOptions>,
             hslAnimation = this.options.spawnColor?.animation,
             reduceFactor = this.container.retina.reduceFactor,
             needsColorAnimation = !!hslAnimation,

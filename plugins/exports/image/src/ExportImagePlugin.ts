@@ -1,5 +1,4 @@
-import type { Container, IPlugin } from "@tsparticles/engine";
-import { ExportImageInstance } from "./ExportImageInstance.js";
+import type { Container, IContainerPlugin, IPlugin } from "@tsparticles/engine";
 
 /**
  */
@@ -10,8 +9,10 @@ export class ExportImagePlugin implements IPlugin {
         this.id = "export-image";
     }
 
-    getPlugin(container: Container): Promise<ExportImageInstance> {
-        return Promise.resolve(new ExportImageInstance(container));
+    async getPlugin(container: Container): Promise<IContainerPlugin> {
+        const { ExportImageInstance } = await import("./ExportImageInstance.js");
+
+        return new ExportImageInstance(container);
     }
 
     loadOptions(): void {

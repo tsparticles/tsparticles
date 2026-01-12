@@ -91,6 +91,7 @@ export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 
 export type * from "./Types/CustomEventArgs.js";
 export type * from "./Types/CustomEventListener.js";
+export type * from "./Types/EasingFunction.js";
 export type * from "./Types/ExportResult.js";
 export type * from "./Types/ISourceOptions.js";
 export type * from "./Types/ParticlesGroups.js";

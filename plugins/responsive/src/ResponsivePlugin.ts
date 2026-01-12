@@ -1,7 +1,6 @@
-import type { Container, IPlugin, ISourceOptions, RecursivePartial } from "@tsparticles/engine";
-import type { IResponsiveOptions, ResponsiveOptions } from "./types.js";
+import type { IContainerPlugin, IPlugin, ISourceOptions, RecursivePartial } from "@tsparticles/engine";
+import type { IResponsiveOptions, ResponsiveContainer, ResponsiveOptions } from "./types.js";
 import { Responsive } from "./Options/Classes/Responsive.js";
-import { ResponsiveInstance } from "./ResponsiveInstance.js";
 import { ResponsiveMode } from "./ResponsiveMode.js";
 
 /**
@@ -13,12 +12,14 @@ export class ResponsivePlugin implements IPlugin {
         this.id = "responsive";
     }
 
-    getPlugin(container: Container): Promise<ResponsiveInstance> {
-        return Promise.resolve(new ResponsiveInstance(container));
+    async getPlugin(container: ResponsiveContainer): Promise<IContainerPlugin> {
+        const { ResponsiveInstance } = await import("./ResponsiveInstance.js");
+
+        return new ResponsiveInstance(container);
     }
 
     loadOptions(options: ResponsiveOptions, source?: RecursivePartial<IResponsiveOptions>): void {
-        if (!this.needsPlugin()) {
+        if (!this.needsPlugin(source)) {
             return;
         }
 
@@ -56,7 +57,7 @@ export class ResponsivePlugin implements IPlugin {
         options.responsive.sort((a, b) => a.maxWidth - b.maxWidth);
     }
 
-    needsPlugin(): boolean {
-        return true;
+    needsPlugin(options?: RecursivePartial<IResponsiveOptions>): boolean {
+        return !!options?.responsive?.length;
     }
 }

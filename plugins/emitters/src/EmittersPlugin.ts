@@ -1,5 +1,6 @@
 import type { EmitterOptions, IEmitterModeOptions, IEmitterModeRandomOptions, IEmitterOptions } from "./types.js";
 import {
+    type IContainerPlugin,
     type IOptions,
     type IPlugin,
     type RecursivePartial,
@@ -10,7 +11,6 @@ import {
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
@@ -26,8 +26,10 @@ export class EmittersPlugin implements IPlugin {
         this.id = "emitters";
     }
 
-    getPlugin(container: EmitterContainer): Promise<Emitters> {
-        return Promise.resolve(new Emitters(this._engine, container));
+    async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {
+        const { Emitters } = await import("./Emitters.js");
+
+        return new Emitters(this._engine, container);
     }
 
     loadOptions(options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {

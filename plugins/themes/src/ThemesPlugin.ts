@@ -1,8 +1,7 @@
-import { type Container, type IPlugin, type RecursivePartial, safeMatchMedia } from "@tsparticles/engine";
-import type { IThemesOptions, ThemesOptions } from "./types.js";
+import { type IContainerPlugin, type IPlugin, type RecursivePartial, safeMatchMedia } from "@tsparticles/engine";
+import type { IThemesOptions, ThemesContainer, ThemesOptions } from "./types.js";
 import { Theme } from "./Options/Classes/Theme.js";
 import { ThemeMode } from "./ThemeMode.js";
-import { ThemesPluginInstance } from "./ThemesPluginInstance.js";
 
 /**
  */
@@ -13,16 +12,14 @@ export class ThemesPlugin implements IPlugin {
         this.id = "theme";
     }
 
-    getPlugin(container: Container): Promise<ThemesPluginInstance> {
-        return Promise.resolve(new ThemesPluginInstance(container));
+    async getPlugin(container: ThemesContainer): Promise<IContainerPlugin> {
+        const { ThemesPluginInstance } = await import("./ThemesPluginInstance.js");
+
+        return new ThemesPluginInstance(container);
     }
 
-    /*
-
-     */
-
     loadOptions(options: ThemesOptions, source?: RecursivePartial<IThemesOptions>): void {
-        if (!this.needsPlugin()) {
+        if (!this.needsPlugin(source)) {
             return;
         }
 
@@ -86,7 +83,7 @@ export class ThemesPlugin implements IPlugin {
         options.defaultThemes.light = findDefaultTheme(ThemeMode.light)?.name;
     }
 
-    needsPlugin(): boolean {
-        return true;
+    needsPlugin(options?: RecursivePartial<IThemesOptions>): boolean {
+        return !!options?.themes?.length;
     }
 }

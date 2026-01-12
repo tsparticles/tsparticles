@@ -171,7 +171,7 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
     getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
         const documentSafe = safeDocument();
 
-        let domContainer = source ?? document.getElementById(id);
+        let domContainer = source ?? documentSafe.getElementById(id);
 
         if (domContainer) {
             return domContainer;
@@ -659,6 +659,8 @@ export class Engine {
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
         await this.init();
+
+        this._loadPromises.clear();
 
         const { Container } = await import("./Container.js"),
             id =

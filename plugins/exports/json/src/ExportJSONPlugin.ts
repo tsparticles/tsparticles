@@ -1,5 +1,4 @@
-import type { Container, IPlugin } from "@tsparticles/engine";
-import { ExportJSONInstance } from "./ExportJSONInstance.js";
+import type { Container, IContainerPlugin, IPlugin } from "@tsparticles/engine";
 
 /**
  */
@@ -10,8 +9,10 @@ export class ExportJSONPlugin implements IPlugin {
         this.id = "export-json";
     }
 
-    getPlugin(container: Container): Promise<ExportJSONInstance> {
-        return Promise.resolve(new ExportJSONInstance(container));
+    async getPlugin(container: Container): Promise<IContainerPlugin> {
+        const { ExportJSONInstance } = await import("./ExportJSONInstance.js");
+
+        return new ExportJSONInstance(container);
     }
 
     loadOptions(): void {

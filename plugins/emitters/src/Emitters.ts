@@ -189,16 +189,8 @@ export class Emitters implements IContainerPlugin {
     }
 
     update(delta: IDelta): void {
-        const updates: (() => void)[] = [];
-
-        for (const emitter of this.array) {
-            updates.push(() => {
-                emitter.update(delta);
-            });
-        }
-
-        updates.forEach(update => {
-            update();
+        this.array.forEach(emitter => {
+            emitter.update(delta);
         });
     }
 }

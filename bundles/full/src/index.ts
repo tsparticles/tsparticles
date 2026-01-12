@@ -27,7 +27,7 @@ export function loadFull(engine: Engine): void {
             { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
             { loadSlim } = await import("@tsparticles/slim");
 
-        loadSlim(engine);
+        loadSlim(e);
 
         loadDestroyUpdater(e);
         loadRollUpdater(e);

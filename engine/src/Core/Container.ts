@@ -746,7 +746,7 @@ export class Container {
 
         for (const plugin of this.plugins.values()) {
             if (plugin.updateActualOptions) {
-                refresh ||= plugin.updateActualOptions();
+                refresh = plugin.updateActualOptions() || refresh;
             }
         }
 

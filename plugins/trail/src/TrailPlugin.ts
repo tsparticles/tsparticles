@@ -1,7 +1,6 @@
-import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { Container, Engine, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import type { ITrailOptions, TrailOptions } from "./types.js";
 import { Trail } from "./Options/Classes/Trail.js";
-import { TrailInstance } from "./TrailInstance.js";
 
 /**
  */
@@ -16,8 +15,10 @@ export class TrailPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    getPlugin(container: Container): Promise<TrailInstance> {
-        return Promise.resolve(new TrailInstance(container, this._engine));
+    async getPlugin(container: Container): Promise<IContainerPlugin> {
+        const { TrailInstance } = await import("./TrailInstance.js");
+
+        return new TrailInstance(container, this._engine);
     }
 
     loadOptions(options: TrailOptions, source?: RecursivePartial<ITrailOptions>): void {
