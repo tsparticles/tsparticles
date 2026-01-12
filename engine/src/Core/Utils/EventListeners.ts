@@ -15,7 +15,7 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants.js";
-import { executeOnSingleOrMultiple, safeDocument, safeMatchMedia } from "../../Utils/Utils.js";
+import { executeOnSingleOrMultiple, safeDocument } from "../../Utils/Utils.js";
 import type { Container } from "../Container.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
@@ -58,9 +58,7 @@ interface EventListenersHandlers {
     readonly mouseLeave: EventListenerOrEventListenerObject;
     readonly mouseMove: EventListenerOrEventListenerObject;
     readonly mouseUp: EventListenerOrEventListenerObject;
-    readonly oldThemeChange: (this: MediaQueryList, ev: MediaQueryListEvent) => unknown;
     readonly resize: EventListenerOrEventListenerObject;
-    readonly themeChange: EventListenerOrEventListenerObject;
     readonly touchCancel: EventListenerOrEventListenerObject;
     readonly touchEnd: EventListenerOrEventListenerObject;
     readonly touchEndClick: EventListenerOrEventListenerObject;
@@ -74,9 +72,7 @@ interface EventListenersHandlers {
  */
 export class EventListeners {
     private _canPush = true;
-
     private readonly _handlers: EventListenersHandlers;
-    private readonly _matchMedia;
     private _resizeObserver?: ResizeObserver;
     private _resizeTimeout?: NodeJS.Timeout;
     private readonly _touches: Map<number, number>;
@@ -86,7 +82,6 @@ export class EventListeners {
      * @param container - the calling container
      */
     constructor(private readonly container: Container) {
-        this._matchMedia = safeMatchMedia("(prefers-color-scheme: dark)");
         this._touches = new Map<number, number>();
         this._handlers = {
             mouseDown: (): void => {
@@ -118,12 +113,6 @@ export class EventListeners {
             },
             visibilityChange: (): void => {
                 this._handleVisibilityChange();
-            },
-            themeChange: (e): void => {
-                this._handleThemeChange(e);
-            },
-            oldThemeChange: (e): void => {
-                this._handleThemeChange(e);
             },
             resize: (): void => {
                 this._handleWindowResize();
@@ -175,24 +164,6 @@ export class EventListeners {
             setTimeout(() => {
                 this._mouseTouchFinish();
             }, touchDelay);
-        }
-    };
-
-    /**
-     * Handle browser theme change
-     * @param e - the media query event
-     * @internal
-     */
-    private readonly _handleThemeChange = (e: Event): void => {
-        const mediaEvent = e as MediaQueryListEvent,
-            container = this.container,
-            options = container.options,
-            defaultThemes = options.defaultThemes,
-            themeName = mediaEvent.matches ? defaultThemes.dark : defaultThemes.light,
-            theme = options.themes.find(theme => theme.name === themeName);
-
-        if (theme?.default.auto) {
-            void container.loadTheme(themeName);
         }
     };
 
@@ -312,21 +283,10 @@ export class EventListeners {
             container.interactivity.element = canvasEl;
         }
 
-        this._manageMediaMatch(add);
         this._manageResize(add);
         this._manageInteractivityListeners(mouseLeaveTmpEvent, add);
 
         manageListener(document, visibilityChangeEvent, handlers.visibilityChange, add, false);
-    };
-
-    private readonly _manageMediaMatch: (add: boolean) => void = add => {
-        const handlers = this._handlers;
-
-        if (!this._matchMedia) {
-            return;
-        }
-
-        manageListener(this._matchMedia, "change", handlers.themeChange, add);
     };
 
     private readonly _manageResize: (add: boolean) => void = add => {

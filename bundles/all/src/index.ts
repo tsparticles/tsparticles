@@ -39,6 +39,7 @@ export function loadAll(engine: Engine): void {
             { loadPolygonMaskPlugin } = await import("@tsparticles/plugin-polygon-mask"),
             { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive"),
             { loadSoundsPlugin } = await import("@tsparticles/plugin-sounds"),
+            { loadThemesPlugin } = await import("@tsparticles/plugin-themes"),
             { loadTrailPlugin } = await import("@tsparticles/plugin-trail"),
             { loadExportImagePlugin } = await import("@tsparticles/plugin-export-image"),
             { loadExportJSONPlugin } = await import("@tsparticles/plugin-export-json"),
@@ -106,6 +107,7 @@ export function loadAll(engine: Engine): void {
         loadPolygonMaskPlugin(e);
         loadResponsivePlugin(e);
         loadSoundsPlugin(e);
+        loadThemesPlugin(e);
         loadTrailPlugin(e);
 
         loadExportImagePlugin(e);

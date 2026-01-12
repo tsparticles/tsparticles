@@ -1,10 +1,12 @@
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
-import type { ISourceOptions } from "../../../Types/ISourceOptions.js";
-import type { ITheme } from "../../Interfaces/Theme/ITheme.js";
-import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
+import {
+    type IOptionLoader,
+    type ISourceOptions,
+    type RecursivePartial,
+    deepExtend,
+    isNull,
+} from "@tsparticles/engine";
+import type { ITheme } from "../Interfaces/ITheme.js";
 import { ThemeDefault } from "./ThemeDefault.js";
-import { deepExtend } from "../../../Utils/Utils.js";
-import { isNull } from "../../../Utils/TypeUtils.js";
 
 export class Theme implements ITheme, IOptionLoader<ITheme> {
     readonly default;

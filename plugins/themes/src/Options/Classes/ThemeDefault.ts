@@ -1,8 +1,6 @@
-import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
-import type { IThemeDefault } from "../../Interfaces/Theme/IThemeDefault.js";
-import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
-import { ThemeMode } from "../../../Enums/Modes/ThemeMode.js";
-import { isNull } from "../../../Utils/TypeUtils.js";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
+import type { IThemeDefault } from "../Interfaces/IThemeDefault.js";
+import { ThemeMode } from "../../ThemeMode.js";
 
 export class ThemeDefault implements IThemeDefault, IOptionLoader<IThemeDefault> {
     auto;

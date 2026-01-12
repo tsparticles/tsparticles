@@ -314,6 +314,9 @@ importers:
       '@tsparticles/plugin-sounds':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/sounds/dist
+      '@tsparticles/plugin-themes':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../plugins/themes/dist
       '@tsparticles/plugin-trail':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/trail/dist
@@ -859,6 +862,9 @@ importers:
       '@tsparticles/plugin-sounds':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/sounds/dist
+      '@tsparticles/plugin-themes':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../plugins/themes/dist
       '@tsparticles/plugin-trail':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/trail/dist
@@ -1621,6 +1627,13 @@ importers:
     publishDirectory: dist
 
   plugins/sounds:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  plugins/themes:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.3

@@ -89,9 +89,6 @@ export type * from "./Options/Interfaces/Particles/Size/ISizeAnimation.js";
 
 export type * from "./Options/Interfaces/Particles/ZIndex/IZIndex.js";
 
-export type * from "./Options/Interfaces/Theme/ITheme.js";
-export type * from "./Options/Interfaces/Theme/IThemeDefault.js";
-
 export type * from "./Types/CustomEventArgs.js";
 export type * from "./Types/CustomEventListener.js";
 export type * from "./Types/ExportResult.js";

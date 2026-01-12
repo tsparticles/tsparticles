@@ -1,4 +1,4 @@
-import type { ISourceOptions } from "../../../Types/ISourceOptions.js";
+import type { ISourceOptions } from "@tsparticles/engine";
 import type { IThemeDefault } from "./IThemeDefault.js";
 
 /**

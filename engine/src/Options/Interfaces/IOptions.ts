@@ -1,11 +1,8 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { Container } from "../../Core/Container.js";
 import type { IBackground } from "./Background/IBackground.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
 import type { IInteractivity } from "./Interactivity/IInteractivity.js";
 import type { IManualParticle } from "./IManualParticle.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
-import type { ITheme } from "./Theme/ITheme.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -118,11 +115,6 @@ export interface IOptions {
     smooth: boolean;
 
     style: RecursivePartial<CSSStyleDeclaration>;
-
-    /**
-     * User-defined themes that can be retrieved by the particles {@link Container}
-     */
-    themes: ITheme[];
 
     /**
      * The maximum layers used in the z-axis

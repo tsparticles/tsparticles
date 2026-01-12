@@ -153,6 +153,7 @@
     "@tsparticles/plugin-polygon-mask": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-responsive": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-sounds": "workspace:4.0.0-alpha.3",
+    "@tsparticles/plugin-themes": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-trail": "workspace:4.0.0-alpha.3",
     "@tsparticles/shape-arrow": "workspace:4.0.0-alpha.3",
     "@tsparticles/shape-cards": "workspace:4.0.0-alpha.3",

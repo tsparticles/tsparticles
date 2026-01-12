@@ -1,4 +1,4 @@
-import type { ThemeMode } from "../../../Enums/Modes/ThemeMode.js";
+import type { ThemeMode } from "../../ThemeMode.js";
 
 /**
  * Options to set the default theme

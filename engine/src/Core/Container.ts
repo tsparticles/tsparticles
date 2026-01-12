@@ -141,7 +141,6 @@ export class Container {
     zLayers;
 
     private readonly _clickHandlers;
-    private _currentTheme?: string;
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
     private readonly _delta: IDelta = { value: 0, factor: 0 };
@@ -575,20 +574,6 @@ export class Container {
     }
 
     /**
-     * Loads the given theme, overriding the options
-     * @param name - the theme name, if `undefined` resets the default options or the default theme
-     */
-    async loadTheme(name?: string): Promise<void> {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        this._currentTheme = name;
-
-        await this.refresh();
-    }
-
-    /**
      * Pauses animations
      */
     pause(): void {
@@ -764,8 +749,6 @@ export class Container {
                 refresh ||= plugin.updateActualOptions();
             }
         }
-
-        this.actualOptions.setTheme(this._currentTheme);
 
         return refresh;
     }

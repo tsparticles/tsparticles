@@ -162,6 +162,7 @@ app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-
 app.use("/plugin-motion", express.static("./node_modules/@tsparticles/plugin-motion"));
 app.use("/plugin-responsive", express.static("./node_modules/@tsparticles/plugin-responsive"));
 app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sounds"));
+app.use("/plugin-themes", express.static("./node_modules/@tsparticles/plugin-themes"));
 app.use("/plugin-trail", express.static("./node_modules/@tsparticles/plugin-trail"));
 app.use("/effect-bubble", express.static("./node_modules/@tsparticles/effect-bubble"));
 app.use("/effect-shadow", express.static("./node_modules/@tsparticles/effect-shadow"));

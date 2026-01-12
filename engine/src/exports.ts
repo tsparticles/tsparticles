@@ -13,7 +13,6 @@ export * from "./Enums/Modes/AnimationMode.js";
 export * from "./Enums/Modes/LimitMode.js";
 export * from "./Enums/Modes/OutMode.js";
 export * from "./Enums/Modes/PixelMode.js";
-export * from "./Enums/Modes/ThemeMode.js";
 
 export * from "./Enums/Types/AlterType.js";
 export * from "./Enums/Types/DestroyType.js";
@@ -82,9 +81,6 @@ export * from "./Options/Classes/Particles/Size/Size.js";
 export * from "./Options/Classes/Particles/Size/SizeAnimation.js";
 
 export * from "./Options/Classes/Particles/ZIndex/ZIndex.js";
-
-export * from "./Options/Classes/Theme/Theme.js";
-export * from "./Options/Classes/Theme/ThemeDefault.js";
 
 export * from "./Options/Classes/ValueWithRandom.js";
 

@@ -1,4 +1,4 @@
-import { deepExtend, executeOnSingleOrMultiple, safeMatchMedia } from "../../Utils/Utils.js";
+import { deepExtend, executeOnSingleOrMultiple } from "../../Utils/Utils.js";
 import { isBoolean, isNull } from "../../Utils/TypeUtils.js";
 import { Background } from "./Background/Background.js";
 import type { Container } from "../../Core/Container.js";
@@ -12,8 +12,6 @@ import { ManualParticle } from "./ManualParticle.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
-import { Theme } from "./Theme/Theme.js";
-import { ThemeMode } from "../../Enums/Modes/ThemeMode.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
@@ -48,7 +46,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     preset?: SingleOrMultiple<string>;
     smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
-    readonly themes: Theme[];
     zLayers;
 
     private readonly _container;
@@ -74,7 +71,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.pauseOnOutsideViewport = true;
         this.smooth = false;
         this.style = {};
-        this.themes = [];
         this.zLayers = 100;
     }
 
@@ -184,51 +180,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
                 }
             }
         }
-
-        if (data.themes !== undefined) {
-            for (const theme of data.themes) {
-                const existingTheme = this.themes.find(t => t.name === theme.name);
-
-                if (existingTheme) {
-                    existingTheme.load(theme);
-                } else {
-                    const optTheme = new Theme();
-
-                    optTheme.load(theme);
-
-                    this.themes.push(optTheme);
-                }
-            }
-        }
-
-        this.defaultThemes.dark = this._findDefaultTheme(ThemeMode.dark)?.name;
-        this.defaultThemes.light = this._findDefaultTheme(ThemeMode.light)?.name;
     }
-
-    setTheme(name?: string): void {
-        if (name) {
-            const chosenTheme = this.themes.find(theme => theme.name === name);
-
-            if (chosenTheme) {
-                this.load(chosenTheme.options);
-            }
-        } else {
-            const mediaMatch = safeMatchMedia("(prefers-color-scheme: dark)"),
-                clientDarkMode = mediaMatch?.matches,
-                defaultTheme = this._findDefaultTheme(clientDarkMode ? ThemeMode.dark : ThemeMode.light);
-
-            if (defaultTheme) {
-                this.load(defaultTheme.options);
-            }
-        }
-    }
-
-    private readonly _findDefaultTheme: (mode: ThemeMode) => Theme | undefined = mode => {
-        return (
-            this.themes.find(theme => theme.default.value && theme.default.mode === mode) ??
-            this.themes.find(theme => theme.default.value && theme.default.mode === ThemeMode.any)
-        );
-    };
 
     private readonly _importPreset: (preset: string) => void = preset => {
         this.load(this._engine.getPreset(preset));
