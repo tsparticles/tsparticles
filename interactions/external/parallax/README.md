@@ -1,12 +1,12 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles External Bubble Interaction
+# tsParticles External Parallax Interaction
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/interaction-external-bubble/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/interaction-external-bubble)
-[![npmjs](https://badge.fury.io/js/@tsparticles/interaction-external-bubble.svg)](https://www.npmjs.com/package/@tsparticles/interaction-external-bubble)
-[![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-external-bubble)](https://www.npmjs.com/package/@tsparticles/interaction-external-bubble) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/interaction-external-parallax/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/interaction-external-parallax)
+[![npmjs](https://badge.fury.io/js/@tsparticles/interaction-external-parallax.svg)](https://www.npmjs.com/package/@tsparticles/interaction-external-parallax)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/interaction-external-parallax)](https://www.npmjs.com/package/@tsparticles/interaction-external-parallax) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for bubble effect around mouse or HTML
+[tsParticles](https://github.com/tsparticles/tsparticles) interaction plugin for parallax effect around mouse or HTML
 elements.
 
 ## How to use it
@@ -15,11 +15,11 @@ elements.
 
 The CDN/Vanilla version JS has one required file in vanilla configuration:
 
-Including the `tsparticles.interaction.external.bubble.min.js` file will export the function to load the interaction
+Including the `tsparticles.interaction.external.parallax.min.js` file will export the function to load the interaction
 plugin:
 
 ```javascript
-loadExternalBubbleInteraction;
+loadExternalParallaxInteraction;
 ```
 
 ### Usage
@@ -28,7 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 
 ```javascript
 (async () => {
-  await loadExternalBubbleInteraction(tsParticles);
+  await loadExternalParallaxInteraction(tsParticles);
 
   await tsParticles.load({
     id: "tsparticles",
@@ -44,23 +44,23 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install @tsparticles/interaction-external-bubble
+$ npm install @tsparticles/interaction-external-parallax
 ```
 
 or
 
 ```shell
-$ yarn add @tsparticles/interaction-external-bubble
+$ yarn add @tsparticles/interaction-external-parallax
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
-const { loadExternalBubbleInteraction } = require("@tsparticles/interaction-external-bubble");
+const { loadExternalParallaxInteraction } = require("@tsparticles/interaction-external-parallax");
 
 (async () => {
-  await loadExternalBubbleInteraction(tsParticles);
+  await loadExternalParallaxInteraction(tsParticles);
 })();
 ```
 
@@ -68,9 +68,9 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
-import { loadExternalBubbleInteraction } from "@tsparticles/interaction-external-bubble";
+import { loadExternalParallaxInteraction } from "@tsparticles/interaction-external-parallax";
 
 (async () => {
-  await loadExternalBubbleInteraction(tsParticles);
+  await loadExternalParallaxInteraction(tsParticles);
 })();
 ```
