@@ -11,7 +11,7 @@ import {
     randomInRangeValue,
 } from "./MathUtils.js";
 import { half, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
-import { isArray, isNull, isObject } from "./TypeUtils.js";
+import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import { DestroyType } from "../Enums/Types/DestroyType.js";
@@ -744,3 +744,35 @@ function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
 }
 
 export const getFullScreenStyle = memoize(computeFullScreenStyle);
+
+/**
+ * Manage the given event listeners
+ * @param element - the event listener receiver
+ * @param event - the event to listen
+ * @param handler - the handler called once the event is triggered
+ * @param add - flag for adding or removing the event listener
+ * @param options - event listener options object
+ */
+export function manageListener(
+    element: HTMLElement | Node | Window | MediaQueryList | typeof globalThis,
+    event: string,
+    handler: EventListenerOrEventListenerObject,
+    add: boolean,
+    options?: boolean | AddEventListenerOptions | EventListenerObject,
+): void {
+    if (add) {
+        let addOptions: AddEventListenerOptions = { passive: true };
+
+        if (isBoolean(options)) {
+            addOptions.capture = options;
+        } else if (options !== undefined) {
+            addOptions = options as AddEventListenerOptions;
+        }
+
+        element.addEventListener(event, handler, addOptions);
+    } else {
+        const removeOptions = options as boolean | EventListenerOptions | undefined;
+
+        element.removeEventListener(event, handler, removeOptions);
+    }
+}

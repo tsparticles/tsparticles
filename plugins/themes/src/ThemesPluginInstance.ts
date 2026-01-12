@@ -1,36 +1,5 @@
-import { type IContainerPlugin, isBoolean, safeMatchMedia } from "@tsparticles/engine";
+import { type IContainerPlugin, manageListener, safeMatchMedia } from "@tsparticles/engine";
 import type { ThemesContainer } from "./types.js";
-
-/**
- * @param element -
- * @param event -
- * @param handler -
- * @param add -
- * @param options -
- */
-function manageListener(
-    element: HTMLElement | Node | Window | MediaQueryList | typeof globalThis,
-    event: string,
-    handler: EventListenerOrEventListenerObject,
-    add: boolean,
-    options?: boolean | AddEventListenerOptions | EventListenerObject,
-): void {
-    if (add) {
-        let addOptions: AddEventListenerOptions = { passive: true };
-
-        if (isBoolean(options)) {
-            addOptions.capture = options;
-        } else if (options !== undefined) {
-            addOptions = options as AddEventListenerOptions;
-        }
-
-        element.addEventListener(event, handler, addOptions);
-    } else {
-        const removeOptions = options as boolean | EventListenerOptions | undefined;
-
-        element.removeEventListener(event, handler, removeOptions);
-    }
-}
 
 export class ThemesPluginInstance implements IContainerPlugin {
     private readonly _container;

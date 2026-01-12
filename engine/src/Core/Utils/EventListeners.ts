@@ -15,43 +15,10 @@ import {
     touchStartEvent,
     visibilityChangeEvent,
 } from "./Constants.js";
-import { executeOnSingleOrMultiple, safeDocument } from "../../Utils/Utils.js";
+import { executeOnSingleOrMultiple, manageListener, safeDocument } from "../../Utils/Utils.js";
 import type { Container } from "../Container.js";
 import type { ICoordinates } from "../Interfaces/ICoordinates.js";
 import { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
-import { isBoolean } from "../../Utils/TypeUtils.js";
-
-/**
- * Manage the given event listeners
- * @param element - the event listener receiver
- * @param event - the event to listen
- * @param handler - the handler called once the event is triggered
- * @param add - flag for adding or removing the event listener
- * @param options - event listener options object
- */
-function manageListener(
-    element: HTMLElement | Node | Window | MediaQueryList | typeof globalThis,
-    event: string,
-    handler: EventListenerOrEventListenerObject,
-    add: boolean,
-    options?: boolean | AddEventListenerOptions | EventListenerObject,
-): void {
-    if (add) {
-        let addOptions: AddEventListenerOptions = { passive: true };
-
-        if (isBoolean(options)) {
-            addOptions.capture = options;
-        } else if (options !== undefined) {
-            addOptions = options as AddEventListenerOptions;
-        }
-
-        element.addEventListener(event, handler, addOptions);
-    } else {
-        const removeOptions = options as boolean | EventListenerOptions | undefined;
-
-        element.removeEventListener(event, handler, removeOptions);
-    }
-}
 
 interface EventListenersHandlers {
     readonly mouseDown: EventListenerOrEventListenerObject;
