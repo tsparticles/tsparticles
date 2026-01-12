@@ -59,7 +59,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
     }
 
     private _parallaxInteract(particle: Particle): void {
-        if (this.isEnabled(particle)) {
+        if (!this.isEnabled(particle)) {
             return;
         }
 
