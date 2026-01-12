@@ -43,7 +43,6 @@ export type * from "./Options/Interfaces/IAnimatableColor.js";
 export type * from "./Options/Interfaces/IAnimation.js";
 export type * from "./Options/Interfaces/IColorAnimation.js";
 export type * from "./Options/Interfaces/IHslAnimation.js";
-export type * from "./Options/Interfaces/IManualParticle.js";
 export type * from "./Options/Interfaces/IOptionLoader.js";
 export type * from "./Options/Interfaces/IOptions.js";
 export type * from "./Options/Interfaces/IOptionsColor.js";

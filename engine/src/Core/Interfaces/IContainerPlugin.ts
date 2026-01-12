@@ -25,6 +25,7 @@ export interface IContainerPlugin {
     particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
     particleStrokeColor?: (particle: Particle) => string | IOptionsColor | undefined;
     particleUpdate?: (particle: Particle, delta: IDelta) => void;
+    particlesDensityCount?: () => number;
     particlesInitialization?: () => boolean;
     particlesSetup?: () => void;
     pause?: () => void;

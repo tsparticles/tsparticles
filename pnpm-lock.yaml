@@ -290,6 +290,9 @@ importers:
       '@tsparticles/plugin-lch-color':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/colors/lch/dist
+      '@tsparticles/plugin-manual-particles':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../plugins/manualParticles/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/motion/dist
@@ -835,6 +838,9 @@ importers:
       '@tsparticles/plugin-lch-color':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/colors/lch/dist
+      '@tsparticles/plugin-manual-particles':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../plugins/manualParticles/dist
       '@tsparticles/plugin-motion':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/motion/dist
@@ -1592,6 +1598,13 @@ importers:
     publishDirectory: dist
 
   plugins/infection:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  plugins/manualParticles:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.3

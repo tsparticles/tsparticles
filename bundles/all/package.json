@@ -145,6 +145,7 @@
     "@tsparticles/plugin-infection": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-lab-color": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-lch-color": "workspace:4.0.0-alpha.3",
+    "@tsparticles/plugin-manual-particles": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-motion": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-named-color": "workspace:4.0.0-alpha.3",
     "@tsparticles/plugin-oklab-color": "workspace:4.0.0-alpha.3",

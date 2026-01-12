@@ -8,7 +8,6 @@ import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import { Interactivity } from "./Interactivity/Interactivity.js";
-import { ManualParticle } from "./ManualParticle.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -38,7 +37,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     hdr;
     readonly interactivity;
     key?: string;
-    manualParticles: ManualParticle[];
     name?: string;
     readonly particles;
     pauseOnBlur;
@@ -65,7 +63,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.fpsLimit = 120;
         this.hdr = true;
         this.interactivity = new Interactivity(engine, container);
-        this.manualParticles = [];
         this.particles = loadParticlesOptions(this._engine, this._container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
@@ -152,16 +149,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         }
 
         this.interactivity.load(data.interactivity);
-
-        if (data.manualParticles) {
-            this.manualParticles = data.manualParticles.map(t => {
-                const tmp = new ManualParticle();
-
-                tmp.load(t);
-
-                return tmp;
-            });
-        }
 
         this.particles.load(data.particles);
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;

@@ -137,6 +137,7 @@
     "@tsparticles/plugin-infection": "4.0.0-alpha.3",
     "@tsparticles/plugin-lab-color": "4.0.0-alpha.3",
     "@tsparticles/plugin-lch-color": "4.0.0-alpha.3",
+    "@tsparticles/plugin-manual-particles": "4.0.0-alpha.3",
     "@tsparticles/plugin-motion": "4.0.0-alpha.3",
     "@tsparticles/plugin-named-color": "4.0.0-alpha.3",
     "@tsparticles/plugin-oklab-color": "4.0.0-alpha.3",

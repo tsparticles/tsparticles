@@ -1,12 +1,14 @@
-import type { ICoordinatesWithMode } from "../../Core/Interfaces/ICoordinates.js";
+import {
+    type ICoordinatesWithMode,
+    type IOptionLoader,
+    type IParticlesOptions,
+    PixelMode,
+    type RecursivePartial,
+    deepExtend,
+    isNull,
+    manualDefaultPosition,
+} from "@tsparticles/engine";
 import type { IManualParticle } from "../Interfaces/IManualParticle.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
-import type { IParticlesOptions } from "../Interfaces/Particles/IParticlesOptions.js";
-import { PixelMode } from "../../Enums/Modes/PixelMode.js";
-import type { RecursivePartial } from "../../Types/RecursivePartial.js";
-import { deepExtend } from "../../Utils/Utils.js";
-import { isNull } from "../../Utils/TypeUtils.js";
-import { manualDefaultPosition } from "../../Core/Utils/Constants.js";
 
 export class ManualParticle implements IManualParticle, IOptionLoader<IManualParticle> {
     options?: RecursivePartial<IParticlesOptions>;

@@ -49,7 +49,6 @@ export * from "./Options/Classes/Interactivity/Events/ResizeEvent.js";
 export * from "./Options/Classes/Interactivity/Interactivity.js";
 export * from "./Options/Classes/Interactivity/Modes/Modes.js";
 
-export * from "./Options/Classes/ManualParticle.js";
 export * from "./Options/Classes/Options.js";
 export * from "./Options/Classes/OptionsColor.js";
 

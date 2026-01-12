@@ -1,7 +1,6 @@
 import type { IBackground } from "./Background/IBackground.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
 import type { IInteractivity } from "./Interactivity/IInteractivity.js";
-import type { IManualParticle } from "./IManualParticle.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
@@ -71,11 +70,6 @@ export interface IOptions {
      * The key used to store the options in the {@link Engine.configs} collection
      */
     key?: string;
-
-    /**
-     * Particles inserted at load time with a specific position
-     */
-    manualParticles: IManualParticle[];
 
     /**
      * The name of the config, if it needs to be shown to the user, used also if key is missing

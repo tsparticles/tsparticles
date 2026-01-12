@@ -34,6 +34,7 @@ export function loadAll(engine: Engine): void {
             { loadBackgroundMaskPlugin } = await import("@tsparticles/plugin-background-mask"),
             { loadCanvasMaskPlugin } = await import("@tsparticles/plugin-canvas-mask"),
             { loadInfectionPlugin } = await import("@tsparticles/plugin-infection"),
+            { loadManualParticlesPlugin } = await import("@tsparticles/plugin-manual-particles"),
             { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
             { loadPoissonDiscPlugin } = await import("@tsparticles/plugin-poisson-disc"),
             { loadPolygonMaskPlugin } = await import("@tsparticles/plugin-polygon-mask"),
@@ -102,6 +103,7 @@ export function loadAll(engine: Engine): void {
         loadBackgroundMaskPlugin(e);
         loadCanvasMaskPlugin(e);
         loadInfectionPlugin(e);
+        loadManualParticlesPlugin(e);
         loadMotionPlugin(e);
         loadPoissonDiscPlugin(e);
         loadPolygonMaskPlugin(e);

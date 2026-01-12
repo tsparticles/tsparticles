@@ -32,7 +32,6 @@ import { QuadTree } from "./Utils/QuadTree.js";
 import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import { getLogger } from "../Utils/LogUtils.js";
-import { getPosition } from "../Utils/Utils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
@@ -100,15 +99,6 @@ export class Particles {
 
     get count(): number {
         return this._array.length;
-    }
-
-    addManualParticles(): void {
-        const container = this._container,
-            options = container.actualOptions;
-
-        options.manualParticles.forEach(p =>
-            this.addParticle(p.position ? getPosition(p.position, container.canvas.size) : undefined, p.options),
-        );
     }
 
     addParticle(
@@ -202,8 +192,6 @@ export class Particles {
             }
         }
 
-        this.addManualParticles();
-
         if (!handled) {
             const particlesOptions = options.particles,
                 groups = particlesOptions.groups;
@@ -284,8 +272,15 @@ export class Particles {
 
     setDensity(): void {
         const options = this._container.actualOptions,
-            groups = options.particles.groups,
-            manualCount = options.manualParticles.length;
+            groups = options.particles.groups;
+
+        let pluginsCount = 0;
+
+        for (const plugin of this._container.plugins.values()) {
+            if (plugin.particlesDensityCount) {
+                pluginsCount += plugin.particlesDensityCount();
+            }
+        }
 
         for (const group in groups) {
             const groupData = groups[group];
@@ -296,10 +291,10 @@ export class Particles {
 
             const groupDataOptions = loadParticlesOptions(this._engine, this._container, groupData);
 
-            this._applyDensity(groupDataOptions, manualCount, group);
+            this._applyDensity(groupDataOptions, pluginsCount, group);
         }
 
-        this._applyDensity(options.particles, manualCount);
+        this._applyDensity(options.particles, pluginsCount);
     }
 
     setLastZIndex(zIndex: number): void {
