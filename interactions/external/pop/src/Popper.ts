@@ -18,7 +18,7 @@ export class Popper extends ExternalInteractorBase {
                 return;
             }
 
-            const clickPos = container.interactivity.mouse.clickPosition;
+            const clickPos = container.interactionManager.interactivityData.mouse.clickPosition;
 
             if (!clickPos) {
                 return;

@@ -163,7 +163,7 @@ export class AbsorberPluginInstance {
             options = this.options;
 
         if (options.draggable) {
-            const mouse = container.interactivity.mouse;
+            const mouse = container.interactionManager.interactivityData.mouse;
 
             if (mouse.clicking && mouse.downPosition) {
                 const mouseDist = getDistance(this.position, mouse.downPosition);

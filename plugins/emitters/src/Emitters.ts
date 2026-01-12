@@ -136,7 +136,7 @@ export class Emitters implements IContainerPlugin {
         }
 
         const emittersOptions = emittersModeOptions,
-            ePosition = this.container.interactivity.mouse.clickPosition;
+            ePosition = this.container.interactionManager.interactivityData.mouse.clickPosition;
 
         void executeOnSingleOrMultiple(emittersOptions, async emitter => {
             await this.addEmitter(emitter, ePosition);

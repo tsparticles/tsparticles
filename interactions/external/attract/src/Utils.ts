@@ -81,7 +81,7 @@ export function clickAttract(
     }
 
     if (attract.clicking) {
-        const mousePos = container.interactivity.mouse.clickPosition,
+        const mousePos = container.interactionManager.interactivityData.mouse.clickPosition,
             attractRadius = container.retina.attractModeDistance;
 
         if (!attractRadius || attractRadius < minRadius || !mousePos) {
@@ -112,7 +112,7 @@ export function hoverAttract(
     container: AttractContainer,
     enabledCb: (particle: Particle) => boolean,
 ): void {
-    const mousePos = container.interactivity.mouse.position,
+    const mousePos = container.interactionManager.interactivityData.mouse.position,
         attractRadius = container.retina.attractModeDistance;
 
     if (!attractRadius || attractRadius < minRadius || !mousePos) {

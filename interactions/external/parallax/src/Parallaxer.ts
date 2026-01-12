@@ -37,7 +37,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
 
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(parallaxMode, events.onHover.mode);
@@ -72,7 +72,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
         }
 
         const parallaxForce = parallaxOptions.force,
-            mousePos = container.interactivity.mouse.position;
+            mousePos = container.interactionManager.interactivityData.mouse.position;
 
         if (!mousePos) {
             return;

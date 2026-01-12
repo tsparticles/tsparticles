@@ -48,7 +48,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
 
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(slowMode, events.onHover.mode);
@@ -67,7 +67,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
 
         const container = this.container,
             options = container.actualOptions,
-            mousePos = container.interactivity.mouse.position,
+            mousePos = container.interactionManager.interactivityData.mouse.position,
             radius = container.retina.slowModeRadius,
             slowOptions = options.interactivity.modes.slow;
 

@@ -14,16 +14,16 @@ import {
     circleBounce,
     circleBounceDataFromParticle,
     divModeExecute,
+    double,
     getRangeValue,
+    half,
     safeDocument,
 } from "@tsparticles/engine";
 import type { BounceContainer } from "./Types.js";
 import type { IRectSideResult } from "./IRectSideResult.js";
 
 const squareExp = 2,
-    half = 0.5,
     halfPI = Math.PI * half,
-    double = 2,
     toleranceFactor = 10,
     minRadius = 0,
     minVelocity = 0;
@@ -157,7 +157,7 @@ export function divBounce(
 export function mouseBounce(container: BounceContainer, enabledCb: (p: Particle) => boolean): void {
     const pxRatio = container.retina.pixelRatio,
         tolerance = toleranceFactor * pxRatio,
-        mousePos = container.interactivity.mouse.position,
+        mousePos = container.interactionManager.interactivityData.mouse.position,
         radius = container.retina.bounceModeDistance;
 
     if (!radius || radius < minRadius || !mousePos) {

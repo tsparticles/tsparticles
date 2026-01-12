@@ -14,8 +14,10 @@ import {
     colorMix,
     divMode,
     divModeExecute,
+    double,
     getDistance,
     getRangeMax,
+    half,
     isDivModeEnabled,
     isInArray,
     itemFromSingleOrMultiple,
@@ -35,12 +37,10 @@ import { calculateBubbleValue } from "./Utils.js";
 const bubbleMode = "bubble",
     minDistance = 0,
     defaultClickTime = 0,
-    double = 2,
     defaultOpacity = 1,
     ratioOffset = 1,
     defaultBubbleValue = 0,
     minRatio = 0,
-    half = 0.5,
     defaultRatio = 1;
 
 /**
@@ -121,7 +121,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             { onClick, onDiv, onHover } = events,
             divBubble = isDivModeEnabled(bubbleMode, onDiv);
@@ -151,7 +151,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     private readonly _clickBubble: () => void = () => {
         const container = this.container,
             options = container.actualOptions,
-            mouseClickPos = container.interactivity.mouse.clickPosition,
+            mouseClickPos = container.interactionManager.interactivityData.mouse.clickPosition,
             bubbleOptions = options.interactivity.modes.bubble;
 
         if (!bubbleOptions || !mouseClickPos) {
@@ -179,7 +179,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             const pos = particle.getPosition(),
                 distMouse = getDistance(pos, mouseClickPos),
                 timeSpent =
-                    (new Date().getTime() - (container.interactivity.mouse.clickTime ?? defaultClickTime)) /
+                    (new Date().getTime() -
+                        (container.interactionManager.interactivityData.mouse.clickTime ?? defaultClickTime)) /
                     millisecondsToSeconds;
 
             if (timeSpent > bubbleOptions.duration) {
@@ -229,7 +230,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     private readonly _hoverBubble: () => void = () => {
         const container = this.container,
-            mousePos = container.interactivity.mouse.position,
+            { interactivityData } = container.interactionManager,
+            mousePos = interactivityData.mouse.position,
             distance = container.retina.bubbleModeDistance;
 
         if (!distance || distance < minDistance || !mousePos) {
@@ -248,7 +250,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
             /* mousemove - check ratio */
             if (pointDistance <= distance) {
-                if (ratio >= minRatio && container.interactivity.status === mouseMoveEvent) {
+                if (ratio >= minRatio && interactivityData.status === mouseMoveEvent) {
                     /* size */
                     this._hoverBubbleSize(particle, ratio);
 
@@ -263,7 +265,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             }
 
             /* mouseleave */
-            if (container.interactivity.status === mouseLeaveEvent) {
+            if (interactivityData.status === mouseLeaveEvent) {
                 this.reset(particle);
             }
         }

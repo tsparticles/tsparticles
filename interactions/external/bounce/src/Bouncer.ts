@@ -39,7 +39,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,
-            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
+            mouseMoveStatus = container.interactionManager.interactivityData.status === mouseMoveEvent,
             hoverEnabled = events.onHover.enable,
             hoverMode = events.onHover.mode,
             divs = events.onDiv;
@@ -54,7 +54,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv;
 

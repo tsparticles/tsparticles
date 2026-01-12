@@ -1,6 +1,6 @@
 import type { Container, ICoordinates, RecursivePartial } from "@tsparticles/engine";
-import type { AbsorberPluginInstance } from "./AbsorberPluginInstance.js";
 import type { AbsorberOptions } from "./types.js";
+import type { AbsorberPluginInstance } from "./AbsorberPluginInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 export interface AbsorberContainer extends Container {

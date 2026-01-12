@@ -105,7 +105,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     interact(): void {
         const container = this.container,
             options = container.actualOptions,
-            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
+            mouseMoveStatus = container.interactionManager.interactivityData.status === mouseMoveEvent,
             events = options.interactivity.events,
             hover = events.onHover,
             hoverEnabled = hover.enable,
@@ -129,7 +129,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv,
             hover = events.onHover,
@@ -188,7 +188,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
             }
 
             const repulseRadius = Math.pow(repulseDistance / repulseRadiusFactor, repulseRadiusPower),
-                mouseClickPos = container.interactivity.mouse.clickPosition;
+                mouseClickPos = container.interactionManager.interactivityData.mouse.clickPosition;
 
             if (mouseClickPos === undefined) {
                 return;
@@ -224,7 +224,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
     private readonly _hoverRepulse: () => void = () => {
         const container = this.container,
-            mousePos = container.interactivity.mouse.position,
+            mousePos = container.interactionManager.interactivityData.mouse.position,
             repulseRadius = container.retina.repulseModeDistance;
 
         if (!repulseRadius || repulseRadius < minRadius || !mousePos) {

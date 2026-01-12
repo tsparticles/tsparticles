@@ -31,7 +31,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
     interact(): void {
         const container = this.container,
             options = container.actualOptions,
-            interactivity = container.interactivity;
+            interactivity = container.interactionManager.interactivityData;
 
         if (!options.interactivity.events.onHover.enable || interactivity.status !== "pointermove") {
             return;
@@ -50,7 +50,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
 
     isEnabled(particle?: LightParticle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
             events = interactivity.events;
 

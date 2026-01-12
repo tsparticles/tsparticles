@@ -49,17 +49,18 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     interact(): void {
         const container = this.container,
             options = container.actualOptions,
-            interactivity = options.interactivity;
+            interactivity = options.interactivity,
+            { interactivityData } = container.interactionManager;
 
         if (
             !interactivity.modes.grab ||
             !interactivity.events.onHover.enable ||
-            container.interactivity.status !== mouseMoveEvent
+            interactivityData.status !== mouseMoveEvent
         ) {
             return;
         }
 
-        const mousePos = container.interactivity.mouse.position;
+        const mousePos = interactivityData.mouse.position;
 
         if (!mousePos) {
             return;
@@ -120,7 +121,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);

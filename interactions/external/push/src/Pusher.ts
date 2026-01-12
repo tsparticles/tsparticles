@@ -48,7 +48,12 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
                 particlesOptions = itemFromSingleOrMultiple(pushOptions.particles),
                 overrideOptions = deepExtend(groupOptions, particlesOptions) as RecursivePartial<IParticlesOptions>;
 
-            container.particles.push(quantity, container.interactivity.mouse, overrideOptions, group);
+            container.particles.push(
+                quantity,
+                container.interactionManager.interactivityData.mouse,
+                overrideOptions,
+                group,
+            );
         };
     }
 

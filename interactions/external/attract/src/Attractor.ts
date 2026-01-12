@@ -84,7 +84,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     interact(): void {
         const container = this.container,
             options = container.actualOptions,
-            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
+            mouseMoveStatus = container.interactionManager.interactivityData.status === mouseMoveEvent,
             events = options.interactivity.events,
             { enable: hoverEnabled, mode: hoverMode } = events.onHover,
             { enable: clickEnabled, mode: clickMode } = events.onClick;
@@ -99,7 +99,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {

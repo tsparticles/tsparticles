@@ -43,10 +43,11 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
      */
     interact(): void {
         const container = this.container,
-            options = container.actualOptions;
+            options = container.actualOptions,
+            { interactivityData } = container.interactionManager;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
-            const mousePos = container.interactivity.mouse.position,
+        if (options.interactivity.events.onHover.enable && interactivityData.status === "pointermove") {
+            const mousePos = interactivityData.mouse.position,
                 { connectModeDistance, connectModeRadius } = container.retina;
 
             if (
@@ -82,7 +83,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
 
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         if (!(events.onHover.enable && mouse.position)) {

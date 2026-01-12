@@ -36,7 +36,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
     interact(delta: IDelta): void {
         const container = this.container,
-            { interactivity } = container;
+            { interactivityData } = container.interactionManager;
 
         if (!container.retina.reduceFactor) {
             return;
@@ -60,13 +60,12 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         const canEmit = !(
-            trailOptions.pauseOnStop &&
-            (interactivity.mouse.position === this._lastPosition ||
-                (interactivity.mouse.position?.x === this._lastPosition?.x &&
-                    interactivity.mouse.position?.y === this._lastPosition?.y))
-        );
-
-        const mousePos = container.interactivity.mouse.position;
+                trailOptions.pauseOnStop &&
+                (interactivityData.mouse.position === this._lastPosition ||
+                    (interactivityData.mouse.position?.x === this._lastPosition?.x &&
+                        interactivityData.mouse.position?.y === this._lastPosition?.y))
+            ),
+            mousePos = interactivityData.mouse.position;
 
         if (mousePos) {
             this._lastPosition = { ...mousePos };
@@ -75,7 +74,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         if (canEmit) {
-            container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
+            container.particles.push(trailOptions.quantity, interactivityData.mouse, trailOptions.particles);
         }
 
         this._delay -= optDelay;
@@ -84,7 +83,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         return (

@@ -37,14 +37,14 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
     interact(): void {
         const container = this.container,
-            { interactivity } = container,
+            { interactivityData } = container.interactionManager,
             options = container.actualOptions;
 
         if (!container.retina.reduceFactor) {
             return;
         }
 
-        const mousePos = interactivity.mouse.position,
+        const mousePos = interactivityData.mouse.position,
             interactivityParticleOptions = options.interactivity.modes.particle;
 
         if (!interactivityParticleOptions) {
@@ -53,9 +53,9 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
         const mouseStopped =
                 interactivityParticleOptions.pauseOnStop &&
-                (interactivity.mouse.position === this._lastPosition ||
-                    (interactivity.mouse.position?.x === this._lastPosition?.x &&
-                        interactivity.mouse.position?.y === this._lastPosition?.y)),
+                (interactivityData.mouse.position === this._lastPosition ||
+                    (interactivityData.mouse.position?.x === this._lastPosition?.x &&
+                        interactivityData.mouse.position?.y === this._lastPosition?.y)),
             clearDelay = interactivityParticleOptions.stopDelay;
 
         if (mousePos) {
@@ -79,7 +79,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
                 }
 
                 if (interactivityParticleOptions.replaceCursor) {
-                    const element = interactivity.element as HTMLElement | Window | undefined;
+                    const element = interactivityData.element as HTMLElement | Window | undefined;
 
                     if (element) {
                         if (element instanceof Window) {
@@ -114,7 +114,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
             this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
 
             if (interactivityParticleOptions.replaceCursor) {
-                const element = interactivity.element as HTMLElement | Window | undefined;
+                const element = interactivityData.element as HTMLElement | Window | undefined;
 
                 if (element) {
                     if (element instanceof Window) {
@@ -137,7 +137,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
     isEnabled(particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
+            mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         return (
