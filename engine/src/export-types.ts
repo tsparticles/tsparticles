@@ -52,7 +52,6 @@ export type * from "./Options/Interfaces/Interactivity/Events/IClickEvent.js";
 export type * from "./Options/Interfaces/Interactivity/Events/IDivEvent.js";
 export type * from "./Options/Interfaces/Interactivity/Events/IEvents.js";
 export type * from "./Options/Interfaces/Interactivity/Events/IHoverEvent.js";
-export type * from "./Options/Interfaces/Interactivity/Events/IParallax.js";
 export type * from "./Options/Interfaces/Interactivity/Events/IResizeEvent.js";
 export type * from "./Options/Interfaces/Interactivity/Modes/IModeDiv.js";
 export type * from "./Options/Interfaces/Interactivity/Modes/IModes.js";

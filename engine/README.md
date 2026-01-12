@@ -755,6 +755,7 @@ flowchart TD
         interaction-external-bubble[Bubble]
         interaction-external-connect[Connect]
         interaction-external-grab[Grab]
+        interaction-external-parallax[Parallax]
         interaction-external-pause[Pause]
         interaction-external-push[Push]
         interaction-external-remove[Remove]
@@ -768,10 +769,6 @@ flowchart TD
         interaction-particles-links[Links]
       end
 
-    end
-
-    subgraph slim-movers [Movers]
-      move-parallax[Parallax]
     end
 
     subgraph slim-plugins [Plugins]

@@ -14,7 +14,7 @@ export function loadSlim(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
     engine.register(async e => {
-        const { loadParallaxMover } = await import("@tsparticles/move-parallax"),
+        const { loadExternalParallaxInteraction } = await import("@tsparticles/interaction-external-parallax"),
             { loadExternalAttractInteraction } = await import("@tsparticles/interaction-external-attract"),
             { loadExternalBounceInteraction } = await import("@tsparticles/interaction-external-bounce"),
             { loadExternalBubbleInteraction } = await import("@tsparticles/interaction-external-bubble"),
@@ -40,7 +40,7 @@ export function loadSlim(engine: Engine): void {
             { loadStrokeColorUpdater } = await import("@tsparticles/updater-stroke-color"),
             { loadBasic } = await import("@tsparticles/basic");
 
-        loadParallaxMover(e);
+        loadExternalParallaxInteraction(e);
 
         loadExternalAttractInteraction(e);
         loadExternalBounceInteraction(e);

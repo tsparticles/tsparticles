@@ -54,12 +54,7 @@ const options: ISourceOptions = {
         events: {
             onHover: {
                 enable: true,
-                mode: "grab",
-                parallax: {
-                    enable: true,
-                    smooth: 10,
-                    force: 60,
-                },
+                mode: ["grab", "parallax"],
             },
             onClick: {
                 enable: true,
@@ -73,20 +68,13 @@ const options: ISourceOptions = {
                     opacity: 1,
                 },
             },
-            bubble: {
-                distance: 400,
-                size: 40,
-                duration: 2,
-                opacity: 0.8,
-            },
-            repulse: {
-                distance: 200,
+            parallax: {
+                enable: true,
+                smooth: 10,
+                force: 60,
             },
             push: {
                 quantity: 4,
-            },
-            remove: {
-                quantity: 2,
             },
         },
     },

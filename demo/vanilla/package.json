@@ -79,7 +79,7 @@
         "@tsparticles/interaction-particles-links": "workspace:4.0.0-alpha.3",
         "@tsparticles/interaction-particles-repulse": "workspace:4.0.0-alpha.3",
         "@tsparticles/move-base": "workspace:4.0.0-alpha.3",
-        "@tsparticles/move-parallax": "workspace:4.0.0-alpha.3",
+        "@tsparticles/interaction-external-parallax": "workspace:4.0.0-alpha.3",
         "@tsparticles/noise-field": "workspace:4.0.0-alpha.3",
         "@tsparticles/path-curl-noise": "workspace:4.0.0-alpha.3",
         "@tsparticles/path-curves": "workspace:4.0.0-alpha.3",

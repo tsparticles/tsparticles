@@ -1,4 +1,4 @@
-import { loadParticlesMove } from "@tsparticles/webpack-plugin";
+import { loadParticlesInteractionExternal } from "@tsparticles/webpack-plugin";
 import { fileURLToPath } from "url";
 import fs from "fs-extra";
 import path from "path";
@@ -9,4 +9,4 @@ const __filename = fileURLToPath(import.meta.url),
     pkg = await fs.readJson(rootPkgPath),
     version = pkg.version;
 
-export default loadParticlesMove({ moduleName: "parallax", pluginName: "Parallax", version, dir: __dirname });
+export default loadParticlesInteractionExternal({ moduleName: "parallax", pluginName: "Parallax", version, dir: __dirname });

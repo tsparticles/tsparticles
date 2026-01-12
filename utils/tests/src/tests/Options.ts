@@ -55,9 +55,6 @@ describe("Options tests", () => {
         expect(options.interactivity.events.onClick.mode).to.be.empty;
         expect(options.interactivity.events.onHover.enable).to.be.false;
         expect(options.interactivity.events.onHover.mode).to.be.empty;
-        expect(options.interactivity.events.onHover.parallax.enable).to.be.false;
-        expect(options.interactivity.events.onHover.parallax.force).to.equal(2);
-        expect(options.interactivity.events.onHover.parallax.smooth).to.equal(10);
         expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */

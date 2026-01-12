@@ -113,6 +113,7 @@ app.use("/plugin-absorbers", express.static("./node_modules/@tsparticles/plugin-
 app.use("/plugin-emitters", express.static("./node_modules/@tsparticles/plugin-emitters"));
 app.use("/plugin-polygon-mask", express.static("./node_modules/@tsparticles/plugin-polygon-mask"));
 app.use("/plugin-poisson-disc", express.static("./node_modules/@tsparticles/plugin-poisson-disc"));
+app.use("/interaction-external-parallax", express.static("./node_modules/@tsparticles/interaction-external-parallax"));
 app.use("/interaction-external-particle", express.static("./node_modules/@tsparticles/interaction-external-particle"));
 app.use("/interaction-external-pop", express.static("./node_modules/@tsparticles/interaction-external-pop"));
 app.use("/interaction-light", express.static("./node_modules/@tsparticles/interaction-light"));
@@ -120,7 +121,6 @@ app.use("/interaction-particles-repulse", express.static("./node_modules/@tspart
 app.use("/updater-gradient", express.static("./node_modules/@tsparticles/updater-gradient"));
 app.use("/updater-orbit", express.static("./node_modules/@tsparticles/updater-orbit"));
 app.use("/move-base", express.static("./node_modules/@tsparticles/move-base"));
-app.use("/move-parallax", express.static("./node_modules/@tsparticles/move-parallax"));
 app.use("/path-curves", express.static("./node_modules/@tsparticles/path-curves"));
 app.use("/path-curl-noise", express.static("./node_modules/@tsparticles/path-curl-noise"));
 app.use("/path-fractal-noise", express.static("./node_modules/@tsparticles/path-fractal-noise"));

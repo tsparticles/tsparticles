@@ -1,4 +1,3 @@
-import type { IParallax } from "./IParallax.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 
 /**
@@ -15,9 +14,4 @@ export interface IHoverEvent {
      * If this value is an array, every mode will be used on click.
      */
     mode: SingleOrMultiple<string>;
-
-    /**
-     * The hover event parallax options
-     */
-    parallax: IParallax;
 }

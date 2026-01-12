@@ -12,11 +12,6 @@ const options: ISourceOptions = {
             onHover: {
                 enable: true,
                 mode: "connect",
-                parallax: {
-                    enable: false,
-                    force: 60,
-                    smooth: 10,
-                },
             },
         },
         modes: {

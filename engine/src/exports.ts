@@ -44,7 +44,6 @@ export * from "./Options/Classes/Interactivity/Events/ClickEvent.js";
 export * from "./Options/Classes/Interactivity/Events/DivEvent.js";
 export * from "./Options/Classes/Interactivity/Events/Events.js";
 export * from "./Options/Classes/Interactivity/Events/HoverEvent.js";
-export * from "./Options/Classes/Interactivity/Events/Parallax.js";
 export * from "./Options/Classes/Interactivity/Events/ResizeEvent.js";
 export * from "./Options/Classes/Interactivity/Interactivity.js";
 export * from "./Options/Classes/Interactivity/Modes/Modes.js";

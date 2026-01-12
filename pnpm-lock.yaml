@@ -554,6 +554,9 @@ importers:
       '@tsparticles/interaction-external-grab':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../interactions/external/grab/dist
+      '@tsparticles/interaction-external-parallax':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../interactions/external/parallax/dist
       '@tsparticles/interaction-external-pause':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../interactions/external/pause/dist
@@ -578,9 +581,6 @@ importers:
       '@tsparticles/interaction-particles-links':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../interactions/particles/links/dist
-      '@tsparticles/move-parallax':
-        specifier: workspace:4.0.0-alpha.3
-        version: link:../../move/parallax/dist
       '@tsparticles/plugin-easing-quad':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../plugins/easings/quad/dist
@@ -676,6 +676,9 @@ importers:
       '@tsparticles/interaction-external-grab':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../interactions/external/grab/dist
+      '@tsparticles/interaction-external-parallax':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../interactions/external/parallax/dist
       '@tsparticles/interaction-external-particle':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../interactions/external/particle/dist
@@ -718,9 +721,6 @@ importers:
       '@tsparticles/move-base':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../move/base/dist
-      '@tsparticles/move-parallax':
-        specifier: workspace:4.0.0-alpha.3
-        version: link:../../move/parallax/dist
       '@tsparticles/noise-field':
         specifier: workspace:4.0.0-alpha.3
         version: link:../../utils/noiseField/dist
@@ -1183,6 +1183,13 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
+  interactions/external/parallax:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.3
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   interactions/external/particle:
     dependencies:
       '@tsparticles/engine':
@@ -1275,13 +1282,6 @@ importers:
     publishDirectory: dist
 
   move/base:
-    dependencies:
-      '@tsparticles/engine':
-        specifier: workspace:4.0.0-alpha.3
-        version: link:../../engine/dist
-    publishDirectory: dist
-
-  move/parallax:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.3

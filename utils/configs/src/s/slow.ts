@@ -42,11 +42,6 @@ const options: ISourceOptions = {
             onHover: {
                 enable: true,
                 mode: "slow",
-                parallax: {
-                    enable: false,
-                    force: 60,
-                    smooth: 10,
-                },
             },
             onClick: {
                 enable: true,
