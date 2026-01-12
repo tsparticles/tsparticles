@@ -3,7 +3,7 @@ export type * from "./Core/Interfaces/IBounds.js";
 export type * from "./Core/Interfaces/IBubbleParticleData.js";
 export type * from "./Core/Interfaces/ICircleBouncer.js";
 export type * from "./Core/Interfaces/IColorManager.js";
-export type * from "./Core/Interfaces/IContainerInteractivity.js";
+export type * from "./Core/Interfaces/IInteractivityData.js";
 export type * from "./Core/Interfaces/IContainerPlugin.js";
 export type * from "./Core/Interfaces/ICoordinates.js";
 export type * from "./Core/Interfaces/IDelta.js";

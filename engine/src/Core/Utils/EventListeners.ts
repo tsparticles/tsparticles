@@ -110,7 +110,7 @@ export class EventListeners {
             options = container.actualOptions;
 
         if (this._canPush) {
-            const mouseInteractivity = container.interactivity.mouse,
+            const mouseInteractivity = container.interactionManager.interactivityData.mouse,
                 mousePos = mouseInteractivity.position;
 
             if (!mousePos) {
@@ -193,7 +193,7 @@ export class EventListeners {
         const handlers = this._handlers,
             container = this.container,
             options = container.actualOptions,
-            interactivityEl = container.interactivity.element;
+            interactivityEl = container.interactionManager.interactivityData.element;
 
         /* detect mouse pos - on hover / click event */
         if (!interactivityEl) {
@@ -241,13 +241,13 @@ export class EventListeners {
 
         /* events target element */
         if (detectType === InteractivityDetect.window) {
-            container.interactivity.element = window;
+            container.interactionManager.interactivityData.element = window;
 
             mouseLeaveTmpEvent = mouseOutEvent;
         } else if (detectType === InteractivityDetect.parent && canvasEl) {
-            container.interactivity.element = canvasEl.parentElement ?? canvasEl.parentNode;
+            container.interactionManager.interactivityData.element = canvasEl.parentElement ?? canvasEl.parentNode;
         } else {
-            container.interactivity.element = canvasEl;
+            container.interactionManager.interactivityData.element = canvasEl;
         }
 
         this._manageResize(add);
@@ -301,8 +301,8 @@ export class EventListeners {
      * @internal
      */
     private readonly _mouseDown: () => void = () => {
-        const { interactivity } = this.container,
-            { mouse } = interactivity;
+        const { interactivityData } = this.container.interactionManager,
+            { mouse } = interactivityData;
 
         mouse.clicking = true;
         mouse.downPosition = mouse.position;
@@ -315,7 +315,7 @@ export class EventListeners {
     private readonly _mouseTouchClick: (e: Event) => void = e => {
         const container = this.container,
             options = container.actualOptions,
-            { mouse } = container.interactivity;
+            { mouse } = container.interactionManager.interactivityData;
 
         mouse.inside = true;
 
@@ -350,14 +350,14 @@ export class EventListeners {
      * Mouse/Touch event finish
      */
     private readonly _mouseTouchFinish: () => void = () => {
-        const { interactivity } = this.container,
-            { mouse } = interactivity;
+        const { interactivityData } = this.container.interactionManager,
+            { mouse } = interactivityData;
 
         delete mouse.position;
         delete mouse.clickPosition;
         delete mouse.downPosition;
 
-        interactivity.status = mouseLeaveEvent;
+        interactivityData.status = mouseLeaveEvent;
 
         mouse.inside = false;
         mouse.clicking = false;
@@ -370,7 +370,7 @@ export class EventListeners {
     private readonly _mouseTouchMove: (e: Event) => void = e => {
         const container = this.container,
             options = container.actualOptions,
-            interactivity = container.interactivity,
+            interactivity = container.interactionManager.interactivityData,
             canvasEl = container.canvas.element;
 
         if (!interactivity.element) {

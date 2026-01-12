@@ -23,7 +23,6 @@ import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
-import { InteractionManager } from "./Utils/InteractionManager.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
@@ -60,7 +59,6 @@ export class Particles {
     private readonly _container: Container;
     private readonly _engine;
     private readonly _groupLimits: Map<string, number>;
-    private readonly _interactionManager;
     private _lastZIndex;
     private _limit;
     private _needsSort;
@@ -86,7 +84,6 @@ export class Particles {
         this._groupLimits = new Map<string, number>();
         this._needsSort = false;
         this._lastZIndex = 0;
-        this._interactionManager = new InteractionManager(engine, container);
         this._pluginsInitialized = false;
 
         const canvasSize = container.canvas.size;
@@ -168,10 +165,6 @@ export class Particles {
         return this._array[index];
     }
 
-    handleClickMode(mode: string): void {
-        this._interactionManager.handleClickMode(mode);
-    }
-
     /* --------- tsParticles functions - particles ----------- */
     async init(): Promise<void> {
         const container = this._container,
@@ -227,7 +220,7 @@ export class Particles {
 
         this.movers = await this._engine.getMovers(container, true);
         this.updaters = await this._engine.getUpdaters(container, true);
-        await this._interactionManager.init();
+        await this._container.interactionManager.init();
 
         for (const pathGenerator of container.pathGenerators.values()) {
             pathGenerator.init(container);
@@ -332,7 +325,7 @@ export class Particles {
 
             particle.ignoresResizeRatio = false;
 
-            this._interactionManager.reset(particle);
+            this._container.interactionManager.reset(particle);
 
             for (const plugin of this._container.plugins.values()) {
                 if (particle.destroyed) {
@@ -375,7 +368,9 @@ export class Particles {
             this._addToPool(...particlesToDelete);
         }
 
-        this._interactionManager.externalInteract(delta);
+        const { interactionManager } = container;
+
+        interactionManager.externalInteract(delta);
 
         // this loop is required to be done after mouse interactions
         for (const particle of this._array) {
@@ -384,7 +379,7 @@ export class Particles {
             }
 
             if (!particle.destroyed && !particle.spawning) {
-                this._interactionManager.particlesInteract(particle, delta);
+                interactionManager.particlesInteract(particle, delta);
             }
         }
 

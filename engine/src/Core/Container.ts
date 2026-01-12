@@ -14,7 +14,6 @@ import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
-import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
@@ -22,6 +21,7 @@ import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
+import { InteractionManager } from "./Utils/InteractionManager.js";
 import { Options } from "../Options/Classes/Options.js";
 import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
@@ -107,7 +107,7 @@ export class Container {
 
     readonly id;
 
-    interactivity: IContainerInteractivity;
+    readonly interactionManager;
 
     /**
      * The container check if it's hidden on the web page
@@ -192,16 +192,11 @@ export class Container {
         this._clickHandlers = new Map<string, ContainerClickHandler>();
         this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
+        this.interactionManager = new InteractionManager(engine, this);
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, this._engine);
         this.particles = new Particles(this._engine, this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
-        this.interactivity = {
-            mouse: {
-                clicking: false,
-                inside: false,
-            },
-        };
         this.plugins = new Map<string, IContainerPlugin>();
         this.effectDrawers = new Map<string, IEffectDrawer>();
         this.shapeDrawers = new Map<string, IShapeDrawer>();
@@ -250,7 +245,7 @@ export class Container {
             return;
         }
 
-        const el = this.interactivity.element;
+        const el = this.interactionManager.interactivityData.element;
 
         if (!el) {
             return;
@@ -378,7 +373,7 @@ export class Container {
         }
 
         for (const [key, handler] of this._clickHandlers) {
-            this.interactivity.element?.removeEventListener(key, handler);
+            this.interactionManager.interactivityData.element?.removeEventListener(key, handler);
         }
 
         this._clickHandlers.clear();
@@ -418,7 +413,7 @@ export class Container {
 
         if (remove) {
             const mainArr = this._engine.items,
-                idx = mainArr.findIndex(t => t === this);
+                idx = mainArr.indexOf(this);
 
             if (idx >= removeMinIndex) {
                 mainArr.splice(idx, removeDeleteCount);
@@ -483,7 +478,7 @@ export class Container {
             return;
         }
 
-        this.particles.handleClickMode(mode);
+        this.interactionManager.handleClickMode(mode);
 
         for (const plugin of this.plugins.values()) {
             plugin.handleClickMode?.(mode);
@@ -680,8 +675,10 @@ export class Container {
             const start = async (): Promise<void> => {
                 this._eventListeners.addListeners();
 
-                if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
-                    this._intersectionObserver.observe(this.interactivity.element);
+                const interactivityData = this.interactionManager.interactivityData;
+
+                if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
+                    this._intersectionObserver.observe(interactivityData.element);
                 }
 
                 for (const plugin of this.plugins.values()) {
@@ -720,8 +717,10 @@ export class Container {
         this.particles.clear();
         this.canvas.stop();
 
-        if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
-            this._intersectionObserver.unobserve(this.interactivity.element);
+        const interactivityData = this.interactionManager.interactivityData;
+
+        if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
+            this._intersectionObserver.unobserve(interactivityData.element);
         }
 
         for (const plugin of this.plugins.values()) {
@@ -759,7 +758,7 @@ export class Container {
         }
 
         for (const entry of entries) {
-            if (entry.target !== this.interactivity.element) {
+            if (entry.target !== this.interactionManager.interactivityData.element) {
                 continue;
             }
 

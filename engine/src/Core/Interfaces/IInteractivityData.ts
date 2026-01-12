@@ -2,7 +2,7 @@ import type { IMouseData } from "./IMouseData.js";
 
 /**
  */
-export interface IContainerInteractivity {
+export interface IInteractivityData {
     element?: HTMLElement | Window | Node | null;
     mouse: IMouseData;
     status?: string;

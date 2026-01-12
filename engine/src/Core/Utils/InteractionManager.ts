@@ -4,12 +4,15 @@ import type { Container } from "../Container.js";
 import type { Engine } from "../Engine.js";
 import type { IDelta } from "../Interfaces/IDelta.js";
 import type { IExternalInteractor } from "../Interfaces/IExternalInteractor.js";
+import type { IInteractivityData } from "../Interfaces/IInteractivityData.js";
 import type { IInteractor } from "../Interfaces/IInteractor.js";
 import type { IParticlesInteractor } from "../Interfaces/IParticlesInteractor.js";
 import { InteractorType } from "../../Enums/Types/InteractorType.js";
 import type { Particle } from "../Particle.js";
 
 export class InteractionManager {
+    interactivityData: IInteractivityData;
+
     /**
      * The engine used for registering the interactions managers
      * @internal
@@ -47,6 +50,12 @@ export class InteractionManager {
         this._interactors = [];
         this._externalInteractors = [];
         this._particleInteractors = [];
+        this.interactivityData = {
+            mouse: {
+                clicking: false,
+                inside: false,
+            },
+        };
     }
 
     /**
