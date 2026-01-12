@@ -412,7 +412,7 @@ export class Particles {
 
     private readonly _applyDensity = (
         options: ParticlesOptions,
-        manualCount: number,
+        pluginsCount: number,
         group?: string,
         groupOptions?: ParticlesOptions,
     ): void => {
@@ -431,7 +431,7 @@ export class Particles {
         const densityFactor = this._initDensityFactor(numberOptions.density),
             optParticlesNumber = numberOptions.value,
             optParticlesLimit = numberOptions.limit.value > minLimit ? numberOptions.limit.value : optParticlesNumber,
-            particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + manualCount,
+            particlesNumber = Math.min(optParticlesNumber, optParticlesLimit) * densityFactor + pluginsCount,
             particlesCount = Math.min(this.count, this.filter(t => t.group === group).length);
 
         if (group === undefined) {
