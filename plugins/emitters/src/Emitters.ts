@@ -13,9 +13,9 @@ import {
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { EmitterModeOptions } from "./types.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
+import { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 /**

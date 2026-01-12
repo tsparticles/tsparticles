@@ -1,6 +1,6 @@
 import type { Container, ICoordinates, RecursivePartial } from "@tsparticles/engine";
-import type { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { EmitterOptions } from "./types.js";
+import type { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 export type EmitterContainer = Container & {
