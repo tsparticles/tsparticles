@@ -182,7 +182,7 @@ export class EventListeners {
 
         this._resizeTimeout = setTimeout(
             () => void handleResize(),
-            this.container.actualOptions.interactivity.events.resize.delay * millisecondsToSeconds,
+            this.container.actualOptions.resize.delay * millisecondsToSeconds,
         );
     };
 
@@ -261,7 +261,7 @@ export class EventListeners {
             container = this.container,
             options = container.actualOptions;
 
-        if (!options.interactivity.events.resize.enable) {
+        if (!options.resize.enable) {
             return;
         }
 

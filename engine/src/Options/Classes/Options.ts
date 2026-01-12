@@ -10,6 +10,7 @@ import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import { Interactivity } from "./Interactivity/Interactivity.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
@@ -42,6 +43,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     pauseOnBlur;
     pauseOnOutsideViewport;
     preset?: SingleOrMultiple<string>;
+    readonly resize;
     smooth: boolean;
     style: RecursivePartial<CSSStyleDeclaration>;
     zLayers;
@@ -66,6 +68,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.particles = loadParticlesOptions(this._engine, this._container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
+        this.resize = new ResizeEvent();
         this.smooth = false;
         this.style = {};
         this.zLayers = 100;
@@ -151,6 +154,9 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.interactivity.load(data.interactivity);
 
         this.particles.load(data.particles);
+
+        this.resize.load(data.resize);
+
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
         this._engine.loadOptions(this, data);
 

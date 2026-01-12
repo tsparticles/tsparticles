@@ -1,7 +1,7 @@
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
-import type { IResizeEvent } from "../../../Interfaces/Interactivity/Events/IResizeEvent.js";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
+import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import type { IResizeEvent } from "../Interfaces/IResizeEvent.js";
+import type { RecursivePartial } from "../../Types/RecursivePartial.js";
+import { isNull } from "../../Utils/TypeUtils.js";
 
 export class ResizeEvent implements IResizeEvent, IOptionLoader<IResizeEvent> {
     delay;

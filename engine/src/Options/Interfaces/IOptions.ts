@@ -2,6 +2,7 @@ import type { IBackground } from "./Background/IBackground.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
 import type { IInteractivity } from "./Interactivity/IInteractivity.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
+import type { IResizeEvent } from "./IResizeEvent.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -95,6 +96,11 @@ export interface IOptions {
      * This property will be used to add specified presets to the options
      */
     preset?: SingleOrMultiple<string>;
+
+    /**
+     * Resize event options
+     */
+    resize: IResizeEvent;
 
     /**
      * Enables a smooth effect, by default it's disabled

@@ -4,7 +4,7 @@ import { HoverEvent } from "./HoverEvent.js";
 import type { IEvents } from "../../../Interfaces/Interactivity/Events/IEvents.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { ResizeEvent } from "./ResizeEvent.js";
+import { ResizeEvent } from "../../ResizeEvent.js";
 import type { SingleOrMultiple } from "../../../../Types/SingleOrMultiple.js";
 import { executeOnSingleOrMultiple } from "../../../../Utils/Utils.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
@@ -45,6 +45,5 @@ export class Events implements IEvents, IOptionLoader<IEvents> {
         }
 
         this.onHover.load(data.onHover);
-        this.resize.load(data.resize);
     }
 }
