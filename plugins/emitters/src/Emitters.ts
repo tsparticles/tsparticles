@@ -15,7 +15,7 @@ import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterModeOptions } from "./types.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
-import { EmittersPluginInstance } from "./EmittersPluginInstance.js";
+import type { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 /**
@@ -84,7 +84,8 @@ export class Emitters implements IContainerPlugin {
 
         emitterOptions.load(options);
 
-        const emitter = new EmittersPluginInstance(this._engine, this, this.container, emitterOptions, position);
+        const { EmittersPluginInstance } = await import("./EmittersPluginInstance.js"),
+            emitter = new EmittersPluginInstance(this._engine, this, this.container, emitterOptions, position);
 
         await emitter.init();
 

@@ -12,7 +12,7 @@ import {
 import { Absorber } from "./Options/Classes/Absorber.js";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import { AbsorberPluginInstance } from "./AbsorberPluginInstance.js";
+import type { AbsorberPluginInstance } from "./AbsorberPluginInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 const defaultIndex = 0;
@@ -46,11 +46,12 @@ export class Absorbers implements IContainerPlugin {
     }
 
     async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberPluginInstance> {
-        const absorber = new AbsorberPluginInstance(this._container, this._engine, options, position);
+        const { AbsorberPluginInstance } = await import("./AbsorberPluginInstance.js"),
+            absorber = new AbsorberPluginInstance(this._container, this._engine, options, position);
 
         this.array.push(absorber);
 
-        return Promise.resolve(absorber);
+        return absorber;
     }
 
     draw(context: CanvasRenderingContext2D): void {
