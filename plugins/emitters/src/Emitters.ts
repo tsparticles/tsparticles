@@ -13,7 +13,7 @@ import {
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import { EmitterInstance } from "./EmitterInstance.js";
+import { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { EmitterModeOptions } from "./types.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
@@ -21,7 +21,7 @@ import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 /**
  */
 export class Emitters implements IContainerPlugin {
-    array: EmitterInstance[];
+    array: EmittersPluginInstance[];
     emitters: SingleOrMultiple<Emitter>;
     interactivityEmitters: EmitterModeOptions;
 
@@ -44,7 +44,7 @@ export class Emitters implements IContainerPlugin {
 
         const defaultIndex = 0;
 
-        container.getEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
+        container.getEmitter = (idxOrName?: number | string): EmittersPluginInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName ?? defaultIndex]
                 : this.array.find(t => t.name === idxOrName);
@@ -52,7 +52,7 @@ export class Emitters implements IContainerPlugin {
         container.addEmitter = async (
             options: RecursivePartial<IEmitter>,
             position?: ICoordinates,
-        ): Promise<EmitterInstance> => this.addEmitter(options, position);
+        ): Promise<EmittersPluginInstance> => this.addEmitter(options, position);
 
         container.removeEmitter = (idxOrName?: number | string): void => {
             const emitter = container.getEmitter(idxOrName);
@@ -79,12 +79,12 @@ export class Emitters implements IContainerPlugin {
         };
     }
 
-    async addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): Promise<EmitterInstance> {
+    async addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): Promise<EmittersPluginInstance> {
         const emitterOptions = new Emitter();
 
         emitterOptions.load(options);
 
-        const emitter = new EmitterInstance(this._engine, this, this.container, emitterOptions, position);
+        const emitter = new EmittersPluginInstance(this._engine, this, this.container, emitterOptions, position);
 
         await emitter.init();
 
@@ -168,7 +168,7 @@ export class Emitters implements IContainerPlugin {
         }
     }
 
-    removeEmitter(emitter: EmitterInstance): void {
+    removeEmitter(emitter: EmittersPluginInstance): void {
         const index = this.array.indexOf(emitter),
             minIndex = 0,
             deleteCount = 1;

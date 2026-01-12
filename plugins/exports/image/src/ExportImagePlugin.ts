@@ -10,9 +10,9 @@ export class ExportImagePlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { ExportImageInstance } = await import("./ExportImageInstance.js");
+        const { ExportImagePluginInstance } = await import("./ExportImagePluginInstance.js");
 
-        return new ExportImageInstance(container);
+        return new ExportImagePluginInstance(container);
     }
 
     loadOptions(): void {

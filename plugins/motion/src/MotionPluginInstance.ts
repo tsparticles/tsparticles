@@ -6,7 +6,7 @@ const defaultFactor = 1,
     disableReduce = 0,
     identity = 1;
 
-export class MotionInstance implements IContainerPlugin {
+export class MotionPluginInstance implements IContainerPlugin {
     private readonly _container;
 
     constructor(container: MotionContainer) {

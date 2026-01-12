@@ -1,7 +1,7 @@
 import { type IContainerPlugin } from "@tsparticles/engine";
 import type { ResponsiveContainer } from "./types.js";
 
-export class ResponsiveInstance implements IContainerPlugin {
+export class ResponsivePluginInstance implements IContainerPlugin {
     private readonly _container;
 
     constructor(container: ResponsiveContainer) {

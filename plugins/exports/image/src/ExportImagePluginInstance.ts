@@ -1,7 +1,7 @@
 import type { Container, ExportResult, IContainerPlugin } from "@tsparticles/engine";
 import type { IExportImageData } from "./IExportImageData.js";
 
-export class ExportImageInstance implements IContainerPlugin {
+export class ExportImagePluginInstance implements IContainerPlugin {
     private readonly _container: Container;
 
     constructor(container: Container) {

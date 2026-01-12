@@ -16,9 +16,9 @@ export class TrailPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { TrailInstance } = await import("./TrailInstance.js");
+        const { TrailPluginInstance } = await import("./TrailPluginInstance.js");
 
-        return new TrailInstance(container, this._engine);
+        return new TrailPluginInstance(container, this._engine);
     }
 
     loadOptions(options: TrailOptions, source?: RecursivePartial<ITrailOptions>): void {

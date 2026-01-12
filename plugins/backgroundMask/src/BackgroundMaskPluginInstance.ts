@@ -8,7 +8,7 @@ import {
 } from "@tsparticles/engine";
 import type { BackgroundMaskContainer } from "./types.js";
 
-export class BackgroundMaskInstance implements IContainerPlugin {
+export class BackgroundMaskPluginInstance implements IContainerPlugin {
     private readonly _container;
     private _coverColorStyle?: string;
     private _coverImage?: { image: HTMLImageElement; opacity: number };

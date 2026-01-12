@@ -12,9 +12,9 @@ export class PoissonDiscPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { PoissonInstance } = await import("./PoissonInstance.js");
+        const { PoissonDiscPluginInstance } = await import("./PoissonDiscPluginInstance.js");
 
-        return new PoissonInstance(container);
+        return new PoissonDiscPluginInstance(container);
     }
 
     loadOptions(options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {

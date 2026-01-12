@@ -18,7 +18,7 @@ interface ITrailFillData {
     opacity: number;
 }
 
-export class TrailInstance implements IContainerPlugin {
+export class TrailPluginInstance implements IContainerPlugin {
     private readonly _container;
     private readonly _engine;
     private _trailFill?: ITrailFillData;

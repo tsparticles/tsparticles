@@ -59,7 +59,7 @@ function setParticlesOptionsColor(particlesOptions: RecursivePartial<IParticlesO
 
 /**
  */
-export class EmitterInstance {
+export class EmittersPluginInstance {
     fill;
     readonly name?: string;
     options;

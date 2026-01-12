@@ -12,9 +12,9 @@ export class MotionPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { MotionInstance } = await import("./MotionInstance.js");
+        const { MotionPluginInstance } = await import("./MotionPluginInstance.js");
 
-        return new MotionInstance(container);
+        return new MotionPluginInstance(container);
     }
 
     loadOptions(options: MotionOptions, source?: RecursivePartial<IMotionOptions>): void {

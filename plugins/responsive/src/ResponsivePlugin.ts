@@ -13,9 +13,9 @@ export class ResponsivePlugin implements IPlugin {
     }
 
     async getPlugin(container: ResponsiveContainer): Promise<IContainerPlugin> {
-        const { ResponsiveInstance } = await import("./ResponsiveInstance.js");
+        const { ResponsivePluginInstance } = await import("./ResponsivePluginInstance.js");
 
-        return new ResponsiveInstance(container);
+        return new ResponsivePluginInstance(container);
     }
 
     loadOptions(options: ResponsiveOptions, source?: RecursivePartial<IResponsiveOptions>): void {

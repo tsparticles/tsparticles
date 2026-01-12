@@ -16,9 +16,9 @@ export class BackgroundMaskPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { BackgroundMaskInstance } = await import("./BackgroundMaskInstance.js");
+        const { BackgroundMaskPluginInstance } = await import("./BackgroundMaskPluginInstance.js");
 
-        return new BackgroundMaskInstance(container, this._engine);
+        return new BackgroundMaskPluginInstance(container, this._engine);
     }
 
     loadOptions(options: BackgroundMaskOptions, source?: RecursivePartial<IBackgroundMaskOptions>): void {

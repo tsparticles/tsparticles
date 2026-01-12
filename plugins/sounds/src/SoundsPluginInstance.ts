@@ -102,7 +102,7 @@ function setIconStyle(
     icon.style.cssText += style;
 }
 
-export class SoundsInstance implements IContainerPlugin {
+export class SoundsPluginInstance implements IContainerPlugin {
     private _audioMap: Map<string, AudioBuffer>;
     private readonly _audioSources: AudioScheduledSourceNode[];
     private readonly _container;

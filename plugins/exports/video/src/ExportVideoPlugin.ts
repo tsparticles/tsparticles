@@ -10,9 +10,9 @@ export class ExportVideoPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { ExportVideoInstance } = await import("./ExportVideoInstance.js");
+        const { ExportVideoPluginInstance } = await import("./ExportVideoPluginInstance.js");
 
-        return new ExportVideoInstance(container);
+        return new ExportVideoPluginInstance(container);
     }
 
     loadOptions(): void {

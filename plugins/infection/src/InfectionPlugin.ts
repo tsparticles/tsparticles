@@ -12,9 +12,9 @@ export class InfectionPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { InfectionInstance } = await import("./InfectionInstance.js");
+        const { InfectionPluginInstance } = await import("./InfectionPluginInstance.js");
 
-        return new InfectionInstance(container);
+        return new InfectionPluginInstance(container);
     }
 
     loadOptions(options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {

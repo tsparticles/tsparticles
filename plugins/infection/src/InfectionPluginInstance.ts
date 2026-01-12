@@ -4,7 +4,7 @@ import { Infecter } from "./Infecter.js";
 
 const minStage = 0;
 
-export class InfectionInstance implements IContainerPlugin {
+export class InfectionPluginInstance implements IContainerPlugin {
     private readonly _container;
 
     constructor(container: InfectableContainer) {

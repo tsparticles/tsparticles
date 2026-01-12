@@ -8,7 +8,7 @@ import {
 import { type IContainerPlugin, isNull, safeDocument } from "@tsparticles/engine";
 import type { CanvasMaskContainer } from "./types.js";
 
-export class CanvasMaskInstance implements IContainerPlugin {
+export class CanvasMaskPluginInstance implements IContainerPlugin {
     private readonly _container;
 
     constructor(container: CanvasMaskContainer) {

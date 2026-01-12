@@ -10,9 +10,9 @@ export class ExportJSONPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { ExportJSONInstance } = await import("./ExportJSONInstance.js");
+        const { ExportJSONPluginInstance } = await import("./ExportJSONPluginInstance.js");
 
-        return new ExportJSONInstance(container);
+        return new ExportJSONPluginInstance(container);
     }
 
     loadOptions(): void {

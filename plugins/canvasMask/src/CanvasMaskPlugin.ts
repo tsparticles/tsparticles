@@ -12,9 +12,9 @@ export class CanvasMaskPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { CanvasMaskInstance } = await import("./CanvasMaskInstance.js");
+        const { CanvasMaskPluginInstance } = await import("./CanvasMaskPluginInstance.js");
 
-        return new CanvasMaskInstance(container);
+        return new CanvasMaskPluginInstance(container);
     }
 
     loadOptions(options: CanvasMaskOptions, source?: RecursivePartial<ICanvasMaskOptions>): void {

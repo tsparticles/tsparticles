@@ -40,9 +40,9 @@ export class SoundsPlugin implements IPlugin {
     }
 
     async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { SoundsInstance } = await import("./SoundsInstance.js");
+        const { SoundsPluginInstance } = await import("./SoundsPluginInstance.js");
 
-        return new SoundsInstance(container, this._engine);
+        return new SoundsPluginInstance(container, this._engine);
     }
 
     loadOptions(options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {

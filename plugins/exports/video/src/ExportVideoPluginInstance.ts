@@ -52,7 +52,7 @@ function getVideoSupportedMimeTypes(): string[] {
     return supported;
 }
 
-export class ExportVideoInstance implements IContainerPlugin {
+export class ExportVideoPluginInstance implements IContainerPlugin {
     private readonly _container: Container;
     private readonly _supportedTypes: string[] = [];
 

@@ -9,6 +9,7 @@ import {
     Vector,
     calcPositionOrRandomFromSize,
     calcPositionOrRandomFromSizeRanged,
+    doublePI,
     getDistance,
     getDistances,
     getRandom,
@@ -29,8 +30,7 @@ const squareExp = 2,
     minRadius = 0,
     minMass = 0,
     minAngle = 0,
-    double = 2,
-    maxAngle = Math.PI * double,
+    maxAngle = doublePI,
     minVelocity = 0;
 
 /**
@@ -55,7 +55,7 @@ type OrbitingParticle = Particle & {
 
 /**
  */
-export class AbsorberInstance {
+export class AbsorberPluginInstance {
     /**
      * The absorber color
      */

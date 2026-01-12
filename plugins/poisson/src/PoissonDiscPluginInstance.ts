@@ -5,7 +5,7 @@ import { PoissonDisc } from "./PoissonDisc.js";
 /**
  * Poisson Disc manager
  */
-export class PoissonInstance implements IContainerPlugin {
+export class PoissonDiscPluginInstance implements IContainerPlugin {
     poissonDisc?: PoissonDisc;
     redrawTimeout?: number | NodeJS.Timeout;
 

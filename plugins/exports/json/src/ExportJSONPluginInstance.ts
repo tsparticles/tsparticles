@@ -2,7 +2,7 @@ import type { Container, ExportResult, IContainerPlugin } from "@tsparticles/eng
 
 const indent = 2;
 
-export class ExportJSONInstance implements IContainerPlugin {
+export class ExportJSONPluginInstance implements IContainerPlugin {
     private readonly _container: Container;
 
     constructor(container: Container) {
