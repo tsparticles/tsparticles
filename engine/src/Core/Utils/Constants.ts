@@ -4,15 +4,6 @@ import type { ICoordinates3d } from "../Interfaces/ICoordinates.js";
  * Project's constants
  */
 export const generatedAttribute = "generated",
-    mouseDownEvent = "pointerdown",
-    mouseUpEvent = "pointerup",
-    mouseLeaveEvent = "pointerleave",
-    mouseOutEvent = "pointerout",
-    mouseMoveEvent = "pointermove",
-    touchStartEvent = "touchstart",
-    touchEndEvent = "touchend",
-    touchMoveEvent = "touchmove",
-    touchCancelEvent = "touchcancel",
     resizeEvent = "resize",
     visibilityChangeEvent = "visibilitychange",
     percentDenominator = 100,

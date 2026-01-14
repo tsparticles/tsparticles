@@ -1,5 +1,6 @@
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -29,15 +30,15 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
         // no-op
     }
 
-    interact(): void {
-        for (const particle of this.container.particles.filter(p => this.isEnabled(p))) {
-            this._parallaxInteract(particle);
+    interact(interactivityData: IInteractivityData): void {
+        for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
+            this._parallaxInteract(interactivityData, particle);
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(parallaxMode, events.onHover.mode);
@@ -58,8 +59,8 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
         // no-op
     }
 
-    private _parallaxInteract(particle: Particle): void {
-        if (!this.isEnabled(particle)) {
+    private _parallaxInteract(interactivityData: IInteractivityData, particle: Particle): void {
+        if (!this.isEnabled(interactivityData, particle)) {
             return;
         }
 
@@ -72,7 +73,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
         }
 
         const parallaxForce = parallaxOptions.force,
-            mousePos = container.interactionManager.interactivityData.mouse.position;
+            mousePos = interactivityData.mouse.position;
 
         if (!mousePos) {
             return;

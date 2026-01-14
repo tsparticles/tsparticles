@@ -1,6 +1,7 @@
 import type { Container } from "../Container.js";
 import type { IDelta } from "../Interfaces/IDelta.js";
 import type { IExternalInteractor } from "../Interfaces/IExternalInteractor.js";
+import type { IInteractivityData } from "../Interfaces/IInteractivityData.js";
 import { InteractorType } from "../../Enums/Types/InteractorType.js";
 import type { Particle } from "../Particle.js";
 
@@ -41,20 +42,23 @@ export abstract class ExternalInteractorBase<
 
     /**
      * Interaction handler
+     * @param interactivityData - the interactivity data of the event, contains the position of the event, etc
      * @param delta - this variable contains the delta between the current frame and the previous frame
      */
-    abstract interact(delta: IDelta): void;
+    abstract interact(interactivityData: IInteractivityData, delta: IDelta): void;
 
     /**
      * Interaction enabled check
+     * @param interactivityData - the interactivity data of the event, contains the position of the event, etc
      * @param particle - the particle to check, if null, checks the container
      * @returns true or false, checking if the options enable this interaction manager
      */
-    abstract isEnabled(particle?: TParticle): boolean;
+    abstract isEnabled(interactivityData: IInteractivityData, particle?: TParticle): boolean;
 
     /**
      * Before interaction reset
+     * @param interactivityData - the interactivity data of the event, contains the position of the event, etc
      * @param particle - the particle to reset
      */
-    abstract reset(particle: TParticle): void;
+    abstract reset(interactivityData: IInteractivityData, particle: TParticle): void;
 }

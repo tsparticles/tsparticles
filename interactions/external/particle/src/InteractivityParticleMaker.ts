@@ -1,6 +1,7 @@
 import {
     ExternalInteractorBase,
     type ICoordinates,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -35,9 +36,8 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         // do nothing
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
-            { interactivityData } = container.interactionManager,
             options = container.actualOptions;
 
         if (!container.retina.reduceFactor) {
@@ -134,10 +134,10 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         this._particle.position.y = this._lastPosition.y;
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         return (

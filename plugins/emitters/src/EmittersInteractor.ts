@@ -4,6 +4,7 @@ import {
     ExternalInteractorBase,
     type ICoordinates,
     type IDelta,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -27,7 +28,7 @@ const emittersMode = "emitters",
 
 export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer> {
     array: EmitterInstance[];
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
     private readonly _engine;
 
     constructor(engine: Engine, container: EmitterContainer) {
@@ -70,7 +71,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
             }
         };
 
-        this.handleClickMode = (mode): void => {
+        this.handleClickMode = (mode, interactivityData): void => {
             const container = this.container,
                 options = container.actualOptions,
                 modeEmitters = options.interactivity.modes.emitters;
@@ -116,7 +117,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
             }
 
             const emittersOptions = emittersModeOptions,
-                ePosition = container.interactionManager.interactivityData.mouse.clickPosition;
+                ePosition = interactivityData.mouse.clickPosition;
 
             void executeOnSingleOrMultiple(emittersOptions, async emitter => {
                 await this.addEmitter(emitter, ePosition);
@@ -149,16 +150,16 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         // no-op
     }
 
-    interact(delta: IDelta): void {
+    interact(_interactivityData: IInteractivityData, delta: IDelta): void {
         for (const emitter of this.array) {
             emitter.update(delta);
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         if (!mouse.clickPosition || !events.onClick.enable) {

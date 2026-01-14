@@ -3,6 +3,7 @@ import {
     Circle,
     type Engine,
     type ICoordinates,
+    type IInteractivityData,
     type Particle,
     Vector,
     clamp,
@@ -57,14 +58,15 @@ function processAttract(
 }
 
 /**
- *
  * @param engine -
  * @param container -
+ * @param interactivityData -
  * @param enabledCb -
  */
 export function clickAttract(
     engine: Engine,
     container: AttractContainer,
+    interactivityData: IInteractivityData,
     enabledCb: (particle: Particle) => boolean,
 ): void {
     container.attract ??= { particles: [] };
@@ -81,7 +83,7 @@ export function clickAttract(
     }
 
     if (attract.clicking) {
-        const mousePos = container.interactionManager.interactivityData.mouse.clickPosition,
+        const mousePos = interactivityData.mouse.clickPosition,
             attractRadius = container.retina.attractModeDistance;
 
         if (!attractRadius || attractRadius < minRadius || !mousePos) {
@@ -102,17 +104,18 @@ export function clickAttract(
 }
 
 /**
- *
  * @param engine -
  * @param container -
+ * @param interactivityData -
  * @param enabledCb -
  */
 export function hoverAttract(
     engine: Engine,
     container: AttractContainer,
+    interactivityData: IInteractivityData,
     enabledCb: (particle: Particle) => boolean,
 ): void {
-    const mousePos = container.interactionManager.interactivityData.mouse.position,
+    const mousePos = interactivityData.mouse.position,
         attractRadius = container.retina.attractModeDistance;
 
     if (!attractRadius || attractRadius < minRadius || !mousePos) {

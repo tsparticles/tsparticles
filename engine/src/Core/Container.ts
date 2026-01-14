@@ -1,21 +1,17 @@
 import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
 import {
-    clickRadius,
     defaultFps,
     defaultFpsLimit,
     millisecondsToSeconds,
-    minCoordinate,
     minFpsLimit,
     removeDeleteCount,
     removeMinIndex,
-    touchEndLengthOffset,
 } from "./Utils/Constants.js";
 import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
-import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
@@ -28,9 +24,6 @@ import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
-import { safeIntersectionObserver } from "../Utils/Utils.js";
-
-type ContainerClickHandler = (evt: Event) => void;
 
 /**
  * Checks if the container is still usable
@@ -140,7 +133,6 @@ export class Container {
 
     zLayers;
 
-    private readonly _clickHandlers;
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
     private readonly _delta: IDelta = { value: 0, factor: 0 };
@@ -153,7 +145,6 @@ export class Container {
     private readonly _eventListeners;
     private _firstStart;
     private _initialSourceOptions;
-    private readonly _intersectionObserver;
     /**
      * Last frame time, used for delta values, for keeping animation correct in lower frame rates
      */
@@ -189,7 +180,6 @@ export class Container {
         this._lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
-        this._clickHandlers = new Map<string, ContainerClickHandler>();
         this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
         this.interactionManager = new InteractionManager(engine, this);
@@ -206,9 +196,6 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-        this._intersectionObserver = safeIntersectionObserver(entries => {
-            this._intersectionManager(entries);
-        });
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
@@ -241,105 +228,7 @@ export class Container {
      * @param callback - the callback to be called when the click event occurs
      */
     addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        const el = this.interactionManager.interactivityData.element;
-
-        if (!el) {
-            return;
-        }
-
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                const pxRatio = this.retina.pixelRatio,
-                    posRetina = {
-                        x: pos.x * pxRatio,
-                        y: pos.y * pxRatio,
-                    },
-                    particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
-
-                callback(e, particles);
-            },
-            clickHandler = (e: Event): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                const mouseEvent = e as MouseEvent,
-                    pos = {
-                        x: mouseEvent.offsetX || mouseEvent.clientX,
-                        y: mouseEvent.offsetY || mouseEvent.clientY,
-                    };
-
-                clickOrTouchHandler(e, pos, clickRadius);
-            },
-            touchStartHandler = (): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                touched = true;
-                touchMoved = false;
-            },
-            touchMoveHandler = (): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                touchMoved = true;
-            },
-            touchEndHandler = (e: Event): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                if (touched && !touchMoved) {
-                    const touchEvent = e as TouchEvent,
-                        lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
-
-                    if (!lastTouch) {
-                        return;
-                    }
-
-                    const element = this.canvas.element,
-                        canvasRect = element ? element.getBoundingClientRect() : undefined,
-                        pos = {
-                            x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
-                            y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
-                        };
-
-                    clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
-                }
-
-                touched = false;
-                touchMoved = false;
-            },
-            touchCancelHandler = (): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                touched = false;
-                touchMoved = false;
-            };
-
-        let touched = false,
-            touchMoved = false;
-
-        this._clickHandlers.set("click", clickHandler);
-        this._clickHandlers.set("touchstart", touchStartHandler);
-        this._clickHandlers.set("touchmove", touchMoveHandler);
-        this._clickHandlers.set("touchend", touchEndHandler);
-        this._clickHandlers.set("touchcancel", touchCancelHandler);
-
-        for (const [key, handler] of this._clickHandlers) {
-            el.addEventListener(key, handler);
-        }
+        this.interactionManager.addClickHandler(callback);
     }
 
     addLifeTime(value: number): void {
@@ -368,15 +257,7 @@ export class Container {
     }
 
     clearClickHandlers(): void {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        for (const [key, handler] of this._clickHandlers) {
-            this.interactionManager.interactivityData.element?.removeEventListener(key, handler);
-        }
-
-        this._clickHandlers.clear();
+        this.interactionManager.clearClickHandlers();
     }
 
     /**
@@ -671,11 +552,8 @@ export class Container {
             const start = async (): Promise<void> => {
                 this._eventListeners.addListeners();
 
-                const interactivityData = this.interactionManager.interactivityData;
-
-                if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
-                    this._intersectionObserver.observe(interactivityData.element);
-                }
+                this.interactionManager.addListeners();
+                this.interactionManager.startObserving();
 
                 for (const plugin of this.plugins.values()) {
                     await plugin.start?.();
@@ -709,15 +587,12 @@ export class Container {
         this._firstStart = true;
         this.started = false;
         this._eventListeners.removeListeners();
+        this.interactionManager.removeListeners();
         this.pause();
         this.particles.clear();
         this.canvas.stop();
 
-        const interactivityData = this.interactionManager.interactivityData;
-
-        if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
-            this._intersectionObserver.unobserve(interactivityData.element);
-        }
+        this.interactionManager.stopObserving();
 
         for (const plugin of this.plugins.values()) {
             plugin.stop?.();
@@ -747,24 +622,6 @@ export class Container {
 
         return refresh;
     }
-
-    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
-        if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
-            return;
-        }
-
-        for (const entry of entries) {
-            if (entry.target !== this.interactionManager.interactivityData.element) {
-                continue;
-            }
-
-            if (entry.isIntersecting) {
-                this.play();
-            } else {
-                this.pause();
-            }
-        }
-    };
 
     private readonly _nextFrame = (timestamp: DOMHighResTimeStamp): void => {
         try {

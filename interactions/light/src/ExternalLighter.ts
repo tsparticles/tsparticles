@@ -1,6 +1,7 @@
 import {
     type Engine,
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type RecursivePartial,
@@ -28,10 +29,10 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
         // do nothing
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
             options = container.actualOptions,
-            interactivity = container.interactionManager.interactivityData;
+            interactivity = interactivityData;
 
         if (!options.interactivity.events.onHover.enable || interactivity.status !== "pointermove") {
             return;
@@ -48,9 +49,9 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
         });
     }
 
-    isEnabled(particle?: LightParticle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: LightParticle): boolean {
         const container = this.container,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
             events = interactivity.events;
 

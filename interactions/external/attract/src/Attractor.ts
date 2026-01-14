@@ -2,6 +2,7 @@ import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
 import {
     type Engine,
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -19,7 +20,7 @@ const attractMode = "attract";
  * Particle external attract manager
  */
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     private readonly _engine;
 
@@ -30,7 +31,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
         container.attract ??= { particles: [] };
 
-        this.handleClickMode = (mode): void => {
+        this.handleClickMode = (mode, interactivityData): void => {
             const options = this.container.actualOptions,
                 attract = options.interactivity.modes.attract;
 
@@ -44,7 +45,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
             container.attract.count = 0;
 
             for (const particle of container.attract.particles) {
-                if (!this.isEnabled(particle)) {
+                if (!this.isEnabled(interactivityData, particle)) {
                     continue;
                 }
 
@@ -81,25 +82,25 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
             options = container.actualOptions,
-            mouseMoveStatus = container.interactionManager.interactivityData.status === mouseMoveEvent,
+            mouseMoveStatus = interactivityData.status === mouseMoveEvent,
             events = options.interactivity.events,
             { enable: hoverEnabled, mode: hoverMode } = events.onHover,
             { enable: clickEnabled, mode: clickMode } = events.onClick;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
-            hoverAttract(this._engine, this.container, p => this.isEnabled(p));
+            hoverAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
         } else if (clickEnabled && isInArray(attractMode, clickMode)) {
-            clickAttract(this._engine, this.container, p => this.isEnabled(p));
+            clickAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {

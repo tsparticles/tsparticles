@@ -1,6 +1,7 @@
 import {
     ExternalInteractorBase,
     type IDelta,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -46,9 +47,9 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         // nothing to do
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(slowMode, events.onHover.mode);
@@ -62,12 +63,12 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         }
     }
 
-    reset(particle: Particle): void {
+    reset(interactivityData: IInteractivityData, particle: Particle): void {
         particle.slow.inRange = false;
 
         const container = this.container,
             options = container.actualOptions,
-            mousePos = container.interactionManager.interactivityData.mouse.position,
+            mousePos = interactivityData.mouse.position,
             radius = container.retina.slowModeRadius,
             slowOptions = options.interactivity.modes.slow;
 

@@ -1,6 +1,7 @@
 import type { BounceContainer, BounceMode, IBounceMode } from "./Types.js";
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -35,26 +36,26 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
         container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
             options = container.actualOptions,
             events = options.interactivity.events,
-            mouseMoveStatus = container.interactionManager.interactivityData.status === mouseMoveEvent,
+            mouseMoveStatus = interactivityData.status === mouseMoveEvent,
             hoverEnabled = events.onHover.enable,
             hoverMode = events.onHover.mode,
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(bounceMode, hoverMode)) {
-            mouseBounce(this.container, p => this.isEnabled(p));
+            mouseBounce(this.container, interactivityData, p => this.isEnabled(interactivityData, p));
         } else {
-            divBounce(this.container, divs, bounceMode, p => this.isEnabled(p));
+            divBounce(this.container, divs, bounceMode, p => this.isEnabled(interactivityData, p));
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events,
             divs = events.onDiv;
 

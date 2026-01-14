@@ -1,5 +1,6 @@
 export * from "./Core/Utils/Constants.js";
 export * from "./Core/Utils/ExternalInteractorBase.js";
+export * from "./Core/Utils/InteractivityConstants.js";
 export * from "./Core/Utils/ParticlesInteractorBase.js";
 export * from "./Core/Utils/Point.js";
 export * from "./Core/Utils/Ranges.js";

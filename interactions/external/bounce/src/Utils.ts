@@ -5,6 +5,7 @@ import {
     DivType,
     type IBounds,
     type ICoordinates,
+    type IInteractivityData,
     type IRangeValue,
     type Particle,
     Rectangle,
@@ -152,12 +153,17 @@ export function divBounce(
 /**
  *
  * @param container -
+ * @param interactivityData -
  * @param enabledCb -
  */
-export function mouseBounce(container: BounceContainer, enabledCb: (p: Particle) => boolean): void {
+export function mouseBounce(
+    container: BounceContainer,
+    interactivityData: IInteractivityData,
+    enabledCb: (p: Particle) => boolean,
+): void {
     const pxRatio = container.retina.pixelRatio,
         tolerance = toleranceFactor * pxRatio,
-        mousePos = container.interactionManager.interactivityData.mouse.position,
+        mousePos = interactivityData.mouse.position,
         radius = container.retina.bounceModeDistance;
 
     if (!radius || radius < minRadius || !mousePos) {

@@ -1,4 +1,5 @@
 import type { IDelta } from "./IDelta.js";
+import type { IInteractivityData } from "./IInteractivityData.js";
 import type { IParticlesOptions } from "../../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
 import type { InteractorType } from "../../Enums/Types/InteractorType.js";
@@ -23,5 +24,5 @@ export interface IInteractor<TParticle extends Particle = Particle> {
 
     init(): void;
 
-    reset(particle: TParticle): void;
+    reset(interactivityData: IInteractivityData, particle: TParticle): void;
 }

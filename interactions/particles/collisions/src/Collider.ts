@@ -2,6 +2,7 @@ import { type CollisionParticle, type IParticlesCollisionOptions, type Particles
 import {
     type Container,
     type IDelta,
+    type IInteractivityData,
     ParticlesInteractorBase,
     type RecursivePartial,
     getDistance,
@@ -27,7 +28,7 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
         // do nothing
     }
 
-    interact(p1: CollisionParticle, delta: IDelta): void {
+    interact(p1: CollisionParticle, _interactivityData: IInteractivityData, delta: IDelta): void {
         if (p1.destroyed || p1.spawning) {
             return;
         }

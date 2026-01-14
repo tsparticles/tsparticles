@@ -9,14 +9,13 @@ import {
     isNumber,
     itemFromArray,
     itemFromSingleOrMultiple,
-    mouseDownEvent,
     percentDenominator,
     safeDocument,
-    touchStartEvent,
 } from "@tsparticles/engine";
 import { ImageDisplay, SoundsEventType } from "./enums.js";
 import type { ImageMargins, InitImageData, SoundsContainer } from "./types.js";
 import { getNoteFrequency, isWindowMuted, unmuteWindow } from "./utils.js";
+import { mouseDownEvent, touchStartEvent } from "./constants.js";
 import type { SoundsAudio } from "./Options/Classes/SoundsAudio.js";
 import type { SoundsNote } from "./Options/Classes/SoundsNote.js";
 

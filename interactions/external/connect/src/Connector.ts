@@ -1,6 +1,7 @@
 import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types.js";
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -40,11 +41,11 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
 
     /**
      * Connecting particles on hover interactivity
+     * @param interactivityData
      */
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
-            options = container.actualOptions,
-            { interactivityData } = container.interactionManager;
+            options = container.actualOptions;
 
         if (options.interactivity.events.onHover.enable && interactivityData.status === "pointermove") {
             const mousePos = interactivityData.mouse.position,
@@ -61,7 +62,9 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
             }
 
             const distance = Math.abs(connectModeRadius),
-                query = container.particles.quadTree.queryCircle(mousePos, distance, p => this.isEnabled(p));
+                query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
+                    this.isEnabled(interactivityData, p),
+                );
 
             query.forEach((p1, i) => {
                 const pos1 = p1.getPosition(),
@@ -81,9 +84,9 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         if (!(events.onHover.enable && mouse.position)) {

@@ -1,4 +1,4 @@
-import { type IDelta, ParticlesInteractorBase, getRandom } from "@tsparticles/engine";
+import { type IDelta, type IInteractivityData, ParticlesInteractorBase, getRandom } from "@tsparticles/engine";
 import type { InfectableContainer, InfectableParticle } from "./Types.js";
 
 const minStagesCount = 1,
@@ -20,7 +20,7 @@ export class ParticlesInfecter extends ParticlesInteractorBase<InfectableContain
         // do nothing
     }
 
-    interact(p1: InfectableParticle, delta: IDelta): void {
+    interact(p1: InfectableParticle, _interactivityData: IInteractivityData, delta: IDelta): void {
         const infecter = this.container.infecter;
 
         if (!infecter) {

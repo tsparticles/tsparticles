@@ -1,5 +1,6 @@
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type RecursivePartial,
@@ -14,7 +15,7 @@ const removeMode = "remove";
  * Particle attract manager
  */
 export class Remover extends ExternalInteractorBase<RemoveContainer> {
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     constructor(container: RemoveContainer) {
         super(container);

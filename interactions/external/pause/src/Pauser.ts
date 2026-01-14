@@ -1,4 +1,4 @@
-import { type Container, ExternalInteractorBase } from "@tsparticles/engine";
+import { type Container, ExternalInteractorBase, type IInteractivityData } from "@tsparticles/engine";
 
 const pauseMode = "pause";
 
@@ -6,7 +6,7 @@ const pauseMode = "pause";
  * Particle attract manager
  */
 export class Pauser extends ExternalInteractorBase {
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     constructor(container: Container) {
         super(container);

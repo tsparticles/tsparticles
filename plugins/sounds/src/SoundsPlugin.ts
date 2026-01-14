@@ -4,10 +4,9 @@ import {
     type IContainerPlugin,
     type IPlugin,
     type RecursivePartial,
-    mouseDownEvent,
-    touchStartEvent,
 } from "@tsparticles/engine";
 import type { ISoundsOptions, SoundsOptions } from "./types.js";
+import { mouseDownEvent, touchStartEvent } from "./constants.js";
 import { Sounds } from "./Options/Classes/Sounds.js";
 import { unmuteWindow } from "./utils.js";
 

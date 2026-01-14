@@ -2,6 +2,7 @@ import {
     ExternalInteractorBase,
     type ICoordinates,
     type IDelta,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -34,9 +35,8 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         // do nothing
     }
 
-    interact(delta: IDelta): void {
-        const container = this.container,
-            { interactivityData } = container.interactionManager;
+    interact(interactivityData: IInteractivityData, delta: IDelta): void {
+        const container = this.container;
 
         if (!container.retina.reduceFactor) {
             return;
@@ -80,10 +80,10 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         this._delay -= optDelay;
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         return (

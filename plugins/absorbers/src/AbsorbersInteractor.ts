@@ -4,6 +4,7 @@ import {
     ExternalInteractorBase,
     type ICoordinates,
     type IDelta,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -23,7 +24,7 @@ const absorbersMode = "absorbers",
 
 export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContainer> {
     array: AbsorberInstance[];
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     private readonly _engine;
 
@@ -43,7 +44,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
             position?: ICoordinates,
         ): Promise<AbsorberInstance> => this.addAbsorber(options, position);
 
-        this.handleClickMode = (mode): void => {
+        this.handleClickMode = (mode, interactivityData): void => {
             const container = this.container,
                 options = container.actualOptions,
                 absorbers = options.interactivity.modes.absorbers;
@@ -53,7 +54,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
             }
 
             const absorbersModeOptions = itemFromArray(absorbers) ?? new Absorber(),
-                aPosition = container.interactionManager.interactivityData.mouse.clickPosition;
+                aPosition = interactivityData.mouse.clickPosition;
 
             void this.addAbsorber(absorbersModeOptions, aPosition);
         };
@@ -76,8 +77,8 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         // no-op
     }
 
-    interact(delta: IDelta): void {
-        for (const particle of this.container.particles.filter(p => this.isEnabled(p))) {
+    interact(interactivityData: IInteractivityData, delta: IDelta): void {
+        for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
             for (const absorber of this.array) {
                 absorber.attract(particle, delta);
 
@@ -88,10 +89,10 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
         if (!mouse.clickPosition || !events.onClick.enable) {

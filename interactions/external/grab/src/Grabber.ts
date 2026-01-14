@@ -1,6 +1,7 @@
 import {
     type Engine,
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
     type Particle,
@@ -46,11 +47,10 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
             options = container.actualOptions,
-            interactivity = options.interactivity,
-            { interactivityData } = container.interactionManager;
+            interactivity = options.interactivity;
 
         if (
             !interactivity.modes.grab ||
@@ -73,7 +73,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         }
 
         const query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
-            this.isEnabled(p),
+            this.isEnabled(interactivityData, p),
         ) as LinkParticle[];
 
         for (const particle of query) {
@@ -119,9 +119,9 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
         const container = this.container,
-            mouse = container.interactionManager.interactivityData.mouse,
+            mouse = interactivityData.mouse,
             events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
 
         return events.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
