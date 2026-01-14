@@ -5,6 +5,11 @@ import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 export interface AbsorberContainer extends Container {
     actualOptions: AbsorberOptions;
-    addAbsorber: (options: RecursivePartial<IAbsorber>, position?: ICoordinates) => Promise<AbsorberInstance>;
-    getAbsorber: (idxOrName?: number | string) => AbsorberInstance | undefined;
+    addAbsorber?: (options: RecursivePartial<IAbsorber>, position?: ICoordinates) => Promise<AbsorberInstance>;
+    addInteractivityAbsorber?: (
+        options: RecursivePartial<IAbsorber>,
+        position?: ICoordinates,
+    ) => Promise<AbsorberInstance>;
+    getAbsorber?: (idxOrName?: number | string) => AbsorberInstance | undefined;
+    getInteractivityAbsorber?: (idxOrName?: number | string) => AbsorberInstance | undefined;
 }
