@@ -41,7 +41,7 @@ const options: ISourceOptions = {
         events: {
             onClick: {
                 enable: true,
-                mode: "emitter",
+                mode: "emitters",
             },
         },
         modes: {

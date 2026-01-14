@@ -3,6 +3,7 @@ import {
     type Engine,
     ExternalInteractorBase,
     type ICoordinates,
+    type IDelta,
     type IModes,
     type Modes,
     type Particle,
@@ -86,6 +87,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
 
                 if (modeEmittersCount > minLength && modeEmitters.random.enable) {
                     emittersModeOptions = [];
+
                     const usedIndexes = new Set<number>();
 
                     for (let i = 0; i < modeEmitters.random.count; i++) {
@@ -114,7 +116,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
             }
 
             const emittersOptions = emittersModeOptions,
-                ePosition = this.container.interactionManager.interactivityData.mouse.clickPosition;
+                ePosition = container.interactionManager.interactivityData.mouse.clickPosition;
 
             void executeOnSingleOrMultiple(emittersOptions, async emitter => {
                 await this.addEmitter(emitter, ePosition);
@@ -147,8 +149,10 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         // no-op
     }
 
-    interact(): void {
-        // no-op
+    interact(delta: IDelta): void {
+        for (const emitter of this.array) {
+            emitter.update(delta);
+        }
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -157,7 +161,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
             mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
-        if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {
+        if (!mouse.clickPosition || !events.onClick.enable) {
             return false;
         }
 
@@ -168,7 +172,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         options: Modes & EmitterModeOptions,
         ...sources: RecursivePartial<(IModes & IEmitterModeOptions) | undefined>[]
     ): void {
-        options.emitters ??= {
+        options.emitters = {
             random: defaultRandomOptions,
             value: [],
         };
@@ -186,36 +190,33 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
 
                     options.emitters.value.push(tmp);
                 }
-            } else {
-                if (Object.hasOwn(source.emitters, "value")) {
-                    const emitterModeOptions = source.emitters as RecursivePartial<IEmitterDataModeOptions>;
+            } else if (Object.hasOwn(source.emitters, "value")) {
+                const emitterModeOptions = source.emitters as RecursivePartial<IEmitterDataModeOptions>;
 
-                    options.emitters.random.enable =
-                        emitterModeOptions.random?.enable ?? options.emitters.random.enable;
-                    options.emitters.random.count = emitterModeOptions.random?.count ?? options.emitters.random.count;
+                options.emitters.random.enable = emitterModeOptions.random?.enable ?? options.emitters.random.enable;
+                options.emitters.random.count = emitterModeOptions.random?.count ?? options.emitters.random.count;
 
-                    if (isArray(emitterModeOptions.value)) {
-                        for (const emitter of emitterModeOptions.value) {
-                            const tmp = new Emitter();
-
-                            tmp.load(emitter);
-
-                            options.emitters.value.push(tmp);
-                        }
-                    } else {
+                if (isArray(emitterModeOptions.value)) {
+                    for (const emitter of emitterModeOptions.value) {
                         const tmp = new Emitter();
 
-                        tmp.load(emitterModeOptions.value);
+                        tmp.load(emitter);
 
                         options.emitters.value.push(tmp);
                     }
                 } else {
                     const tmp = new Emitter();
 
-                    tmp.load(source.emitters as RecursivePartial<IEmitter>);
+                    tmp.load(emitterModeOptions.value);
 
                     options.emitters.value.push(tmp);
                 }
+            } else {
+                const tmp = new Emitter();
+
+                tmp.load(source.emitters as RecursivePartial<IEmitter>);
+
+                options.emitters.value.push(tmp);
             }
         }
     }

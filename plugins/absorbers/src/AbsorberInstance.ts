@@ -2,6 +2,7 @@ import {
     type Container,
     type Engine,
     type ICoordinates,
+    type IDelta,
     type IRgb,
     type Particle,
     type RecursivePartial,
@@ -157,8 +158,9 @@ export class AbsorberInstance {
     /**
      * Absorber attraction interaction, attract the particle to the absorber
      * @param particle - the particle to attract to the absorber
+     * @param delta - the delta time of the frame, used for calculating the force between the particles and the absorber
      */
-    attract(particle: OrbitingParticle): void {
+    attract(particle: OrbitingParticle, delta: IDelta): void {
         const container = this._container,
             options = this.options;
 
@@ -188,7 +190,7 @@ export class AbsorberInstance {
         v.length = (this.mass / Math.pow(distance, squareExp)) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
-            const sizeFactor = particle.getRadius() * absorbFactor * container.retina.pixelRatio;
+            const sizeFactor = particle.getRadius() * absorbFactor * container.retina.pixelRatio * delta.factor;
 
             if (
                 (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||

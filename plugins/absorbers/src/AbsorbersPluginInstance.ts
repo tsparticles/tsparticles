@@ -2,6 +2,7 @@ import {
     type Engine,
     type IContainerPlugin,
     type ICoordinates,
+    type IDelta,
     type Particle,
     type RecursivePartial,
     executeOnSingleOrMultiple,
@@ -66,9 +67,9 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
         }
     }
 
-    particleUpdate(particle: Particle): void {
+    particleUpdate(particle: Particle, delta: IDelta): void {
         for (const absorber of this.array) {
-            absorber.attract(particle);
+            absorber.attract(particle, delta);
 
             if (particle.destroyed) {
                 break;

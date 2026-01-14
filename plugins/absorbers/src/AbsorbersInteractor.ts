@@ -3,6 +3,7 @@ import {
     type Engine,
     ExternalInteractorBase,
     type ICoordinates,
+    type IDelta,
     type IModes,
     type Modes,
     type Particle,
@@ -75,8 +76,16 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
         // no-op
     }
 
-    interact(): void {
-        // no-op
+    interact(delta: IDelta): void {
+        for (const particle of this.container.particles.filter(p => this.isEnabled(p))) {
+            for (const absorber of this.array) {
+                absorber.attract(particle, delta);
+
+                if (particle.destroyed) {
+                    break;
+                }
+            }
+        }
     }
 
     isEnabled(particle?: Particle): boolean {
@@ -85,14 +94,11 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
             mouse = container.interactionManager.interactivityData.mouse,
             events = (particle?.interactivity ?? options.interactivity).events;
 
-        if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {
+        if (!mouse.clickPosition || !events.onClick.enable) {
             return false;
         }
 
-        const hoverMode = events.onHover.mode,
-            clickMode = events.onClick.mode;
-
-        return isInArray(absorbersMode, hoverMode) || isInArray(absorbersMode, clickMode);
+        return isInArray(absorbersMode, events.onClick.mode);
     }
 
     loadModeOptions(
