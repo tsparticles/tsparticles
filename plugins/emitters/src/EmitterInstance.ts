@@ -29,7 +29,6 @@ import {
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterSize } from "./Options/Classes/EmitterSize.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
-import type { EmittersPluginInstance } from "./EmittersPluginInstance.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IEmitterSize } from "./Options/Interfaces/IEmitterSize.js";
@@ -59,7 +58,7 @@ function setParticlesOptionsColor(particlesOptions: RecursivePartial<IParticlesO
 
 /**
  */
-export class EmittersInstance {
+export class EmitterInstance {
     fill;
     readonly name?: string;
     options;
@@ -88,8 +87,8 @@ export class EmittersInstance {
 
     constructor(
         engine: EmittersEngine,
-        private readonly emitters: EmittersPluginInstance,
         private readonly container: Container,
+        private readonly removeCallback: (emitter: EmitterInstance) => void,
         options: Emitter | RecursivePartial<IEmitter>,
         position?: ICoordinates,
     ) {
@@ -381,7 +380,7 @@ export class EmittersInstance {
         this._resizeObserver?.disconnect();
         this._resizeObserver = undefined;
 
-        this.emitters.removeEmitter(this);
+        this.removeCallback(this);
 
         this._engine.dispatchEvent("emitterDestroyed", {
             container: this.container,

@@ -1,13 +1,21 @@
 import type { Container, ICoordinates, RecursivePartial } from "@tsparticles/engine";
+import type { EmitterInstance } from "./EmitterInstance.js";
 import type { EmitterOptions } from "./types.js";
-import type { EmittersInstance } from "./EmittersInstance.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 export type EmitterContainer = Container & {
     actualOptions: EmitterOptions;
-    addEmitter: (options: RecursivePartial<IEmitter>, position?: ICoordinates) => Promise<EmittersInstance>;
-    getEmitter: (idxOrName?: number | string) => EmittersInstance | undefined;
-    pauseEmitter: (idxOrName?: number | string) => void;
-    playEmitter: (idxOrName?: number | string) => void;
-    removeEmitter: (idxOrName?: number | string) => void;
+    addEmitter?: (options: RecursivePartial<IEmitter>, position?: ICoordinates) => Promise<EmitterInstance>;
+    addInteractivityEmitter?: (
+        options: RecursivePartial<IEmitter>,
+        position?: ICoordinates,
+    ) => Promise<EmitterInstance>;
+    getEmitter?: (idxOrName?: number | string) => EmitterInstance | undefined;
+    getInteractivityEmitter?: (idxOrName?: number | string) => EmitterInstance | undefined;
+    pauseEmitter?: (idxOrName?: number | string) => void;
+    pauseInteractivityEmitter?: (idxOrName?: number | string) => void;
+    playEmitter?: (idxOrName?: number | string) => void;
+    playInteractivityEmitter?: (idxOrName?: number | string) => void;
+    removeEmitter?: (idxOrName?: number | string) => void;
+    removeInteractivityEmitter?: (idxOrName?: number | string) => void;
 };

@@ -1,4 +1,4 @@
-import type { EmitterOptions, IEmitterModeOptions, IEmitterModeRandomOptions, IEmitterOptions } from "./types.js";
+import type { EmitterOptions, IEmitterOptions } from "./types.js";
 import {
     type IContainerPlugin,
     type IOptions,
@@ -12,7 +12,6 @@ import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
-import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 /**
  */
@@ -45,73 +44,6 @@ export class EmittersPlugin implements IPlugin {
 
                 return tmp;
             });
-        }
-
-        const interactivityEmitters = source?.interactivity?.modes?.emitters;
-
-        if (!interactivityEmitters) {
-            return;
-        }
-
-        const defaultRandomOptions: IEmitterModeRandomOptions = {
-            count: 1,
-            enable: true,
-        };
-
-        if (isArray(interactivityEmitters)) {
-            options.interactivity.modes.emitters = {
-                random: defaultRandomOptions,
-                value: interactivityEmitters.map(s => {
-                    const tmp = new Emitter();
-
-                    tmp.load(s);
-
-                    return tmp;
-                }),
-            };
-        } else {
-            const emitterMode = interactivityEmitters;
-
-            if (Object.hasOwn(emitterMode, "value")) {
-                const emitterModeOptions = emitterMode as RecursivePartial<IEmitterModeOptions>;
-
-                if (isArray(emitterModeOptions.value)) {
-                    options.interactivity.modes.emitters = {
-                        random: {
-                            count: emitterModeOptions.random?.count ?? defaultRandomOptions.count,
-                            enable: emitterModeOptions.random?.enable ?? defaultRandomOptions.enable,
-                        },
-                        value: emitterModeOptions.value.map(s => {
-                            const tmp = new Emitter();
-
-                            tmp.load(s);
-
-                            return tmp;
-                        }),
-                    };
-                } else {
-                    const tmp = new Emitter();
-
-                    tmp.load(emitterModeOptions.value);
-
-                    options.interactivity.modes.emitters = {
-                        random: {
-                            count: emitterModeOptions.random?.count ?? defaultRandomOptions.count,
-                            enable: emitterModeOptions.random?.enable ?? defaultRandomOptions.enable,
-                        },
-                        value: tmp,
-                    };
-                }
-            } else {
-                const tmp = new Emitter();
-
-                tmp.load(emitterMode as RecursivePartial<IEmitter>);
-
-                options.interactivity.modes.emitters = {
-                    random: defaultRandomOptions,
-                    value: tmp,
-                };
-            }
         }
     }
 

@@ -114,12 +114,12 @@ export class AbsorberInstance {
 
     /**
      * The absorber constructor, initializes the absorber based on the given options and position
-     * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
      * @param engine - the Engine instance that will be used for calculating the Absorber interactions
+     * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
      * @param options - the Absorber source options
      * @param position - the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
      */
-    constructor(container: Container, engine: Engine, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
+    constructor(engine: Engine, container: Container, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
         this._container = container;
         this._engine = engine;
 

@@ -1,3 +1,4 @@
+import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
 
@@ -21,6 +22,11 @@ export function loadEmittersPlugin(engine: EmittersEngine): void {
         const plugin = new EmittersPlugin(e);
 
         e.addPlugin(plugin);
+        e.addInteractor("externalEmitters", async container => {
+            const { EmittersInteractor } = await import("./EmittersInteractor.js");
+
+            return new EmittersInteractor(e, container as EmitterContainer);
+        });
     });
 }
 

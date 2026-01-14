@@ -479,10 +479,6 @@ export class Container {
         }
 
         this.interactionManager.handleClickMode(mode);
-
-        for (const plugin of this.plugins.values()) {
-            plugin.handleClickMode?.(mode);
-        }
     }
 
     /**

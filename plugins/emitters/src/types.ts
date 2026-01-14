@@ -2,7 +2,7 @@ import type { IOptions, Options, SingleOrMultiple } from "@tsparticles/engine";
 import type { Emitter } from "./Options/Classes/Emitter.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
-export interface IEmitterModeOptions {
+export interface IEmitterDataModeOptions {
     random: IEmitterModeRandomOptions;
     value: SingleOrMultiple<IEmitter>;
 }
@@ -12,25 +12,34 @@ export interface IEmitterModeRandomOptions {
     enable: boolean;
 }
 
+export interface EmitterModeRandomOptions {
+    count: number;
+    enable: boolean;
+}
+
+export interface EmitterDataModeOptions {
+    random: EmitterModeRandomOptions;
+    value: Emitter[];
+}
+
 export interface EmitterModeOptions {
-    random: IEmitterModeRandomOptions;
-    value: SingleOrMultiple<Emitter>;
+    emitters?: EmitterDataModeOptions;
+}
+
+export interface IEmitterModeOptions {
+    emitters?: IEmitterDataModeOptions | SingleOrMultiple<IEmitter>;
 }
 
 export type IEmitterOptions = IOptions & {
     emitters: SingleOrMultiple<IEmitter>;
     interactivity: {
-        modes: {
-            emitters: IEmitterModeOptions | SingleOrMultiple<IEmitter>;
-        };
+        modes: IEmitterModeOptions;
     };
 };
 
 export type EmitterOptions = Options & {
     emitters: SingleOrMultiple<Emitter>;
     interactivity: {
-        modes: {
-            emitters: EmitterModeOptions;
-        };
+        modes: EmitterModeOptions;
     };
 };

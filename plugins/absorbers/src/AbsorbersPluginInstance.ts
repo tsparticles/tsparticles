@@ -40,7 +40,7 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
 
     async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
         const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-            absorber = new AbsorberInstance(this._container, this._engine, options, position);
+            absorber = new AbsorberInstance(this._engine, this._container, options, position);
 
         this.array.push(absorber);
 

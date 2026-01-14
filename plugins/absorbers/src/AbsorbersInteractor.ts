@@ -60,7 +60,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
 
     async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
         const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-            absorber = new AbsorberInstance(this.container, this._engine, options, position);
+            absorber = new AbsorberInstance(this._engine, this.container, options, position);
 
         this.array.push(absorber);
 
