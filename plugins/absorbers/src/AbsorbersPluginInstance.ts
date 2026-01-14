@@ -12,16 +12,16 @@ import {
 import { Absorber } from "./Options/Classes/Absorber.js";
 import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import type { AbsorberPluginInstance } from "./AbsorberPluginInstance.js";
+import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
 
 const defaultIndex = 0;
 
 /**
  */
-export class Absorbers implements IContainerPlugin {
+export class AbsorbersPluginInstance implements IContainerPlugin {
     absorbers: SingleOrMultiple<Absorber>;
-    array: AbsorberPluginInstance[];
+    array: AbsorberInstance[];
     interactivityAbsorbers: SingleOrMultiple<Absorber>;
 
     private readonly _container;
@@ -34,7 +34,7 @@ export class Absorbers implements IContainerPlugin {
         this.absorbers = [];
         this.interactivityAbsorbers = [];
 
-        container.getAbsorber = (idxOrName?: number | string): AbsorberPluginInstance | undefined =>
+        container.getAbsorber = (idxOrName?: number | string): AbsorberInstance | undefined =>
             idxOrName === undefined || isNumber(idxOrName)
                 ? this.array[idxOrName ?? defaultIndex]
                 : this.array.find(t => t.name === idxOrName);
@@ -42,12 +42,12 @@ export class Absorbers implements IContainerPlugin {
         container.addAbsorber = async (
             options: RecursivePartial<IAbsorber>,
             position?: ICoordinates,
-        ): Promise<AbsorberPluginInstance> => this.addAbsorber(options, position);
+        ): Promise<AbsorberInstance> => this.addAbsorber(options, position);
     }
 
-    async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberPluginInstance> {
-        const { AbsorberPluginInstance } = await import("./AbsorberPluginInstance.js"),
-            absorber = new AbsorberPluginInstance(this._container, this._engine, options, position);
+    async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
+        const { AbsorberInstance } = await import("./AbsorberInstance.js"),
+            absorber = new AbsorberInstance(this._container, this._engine, options, position);
 
         this.array.push(absorber);
 
@@ -96,7 +96,7 @@ export class Absorbers implements IContainerPlugin {
         }
     }
 
-    removeAbsorber(absorber: AbsorberPluginInstance): void {
+    removeAbsorber(absorber: AbsorberInstance): void {
         const index = this.array.indexOf(absorber),
             deleteCount = 1;
 

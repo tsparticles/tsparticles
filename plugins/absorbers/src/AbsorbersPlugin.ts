@@ -26,9 +26,9 @@ export class AbsorbersPlugin implements IPlugin {
     }
 
     async getPlugin(container: AbsorberContainer): Promise<IContainerPlugin> {
-        const { Absorbers } = await import("./Absorbers.js");
+        const { AbsorbersPluginInstance } = await import("./AbsorbersPluginInstance.js");
 
-        return new Absorbers(container, this._engine);
+        return new AbsorbersPluginInstance(container, this._engine);
     }
 
     loadOptions(options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {

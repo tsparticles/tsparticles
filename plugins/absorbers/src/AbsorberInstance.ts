@@ -55,7 +55,7 @@ type OrbitingParticle = Particle & {
 
 /**
  */
-export class AbsorberPluginInstance {
+export class AbsorberInstance {
     /**
      * The absorber color
      */

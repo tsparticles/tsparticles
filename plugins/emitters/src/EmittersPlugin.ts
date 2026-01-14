@@ -27,9 +27,9 @@ export class EmittersPlugin implements IPlugin {
     }
 
     async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {
-        const { Emitters } = await import("./Emitters.js");
+        const { EmittersPluginInstance } = await import("./EmittersPluginInstance.js");
 
-        return new Emitters(this._engine, container);
+        return new EmittersPluginInstance(this._engine, container);
     }
 
     loadOptions(options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
