@@ -1,8 +1,6 @@
 import type { AbsorberModeOptions, IAbsorberModeOptions } from "./types.js";
 import {
-    type Engine,
     ExternalInteractorBase,
-    type ICoordinates,
     type IDelta,
     type IInteractivityData,
     type IModes,
@@ -11,38 +9,25 @@ import {
     type RecursivePartial,
     isArray,
     isInArray,
-    isNumber,
     itemFromArray,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import type { AbsorberInstance } from "./AbsorberInstance.js";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
+import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
-const absorbersMode = "absorbers",
-    defaultIndex = 0;
+const absorbersMode = "absorbers";
 
 export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContainer> {
-    array: AbsorberInstance[];
     handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
-    private readonly _engine;
+    private readonly _instancesManager;
 
-    constructor(engine: Engine, container: AbsorberContainer) {
+    constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
         super(container);
 
-        this._engine = engine;
-        this.array = [];
+        this._instancesManager = instancesManager;
 
-        container.getInteractivityAbsorber ??= (idxOrName?: number | string): AbsorberInstance | undefined =>
-            idxOrName === undefined || isNumber(idxOrName)
-                ? this.array[idxOrName ?? defaultIndex]
-                : this.array.find(t => t.name === idxOrName);
-
-        container.addInteractivityAbsorber ??= async (
-            options: RecursivePartial<IAbsorber>,
-            position?: ICoordinates,
-        ): Promise<AbsorberInstance> => this.addAbsorber(options, position);
+        this._instancesManager.initContainer(container);
 
         this.handleClickMode = (mode, interactivityData): void => {
             const container = this.container,
@@ -56,17 +41,8 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
             const absorbersModeOptions = itemFromArray(absorbers) ?? new Absorber(),
                 aPosition = interactivityData.mouse.clickPosition;
 
-            void this.addAbsorber(absorbersModeOptions, aPosition);
+            void this._instancesManager.addAbsorber(container, absorbersModeOptions, aPosition);
         };
-    }
-
-    async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
-        const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-            absorber = new AbsorberInstance(this._engine, this.container, options, position);
-
-        this.array.push(absorber);
-
-        return absorber;
     }
 
     clear(): void {
@@ -79,7 +55,7 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
 
     interact(interactivityData: IInteractivityData, delta: IDelta): void {
         for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
-            for (const absorber of this.array) {
+            for (const absorber of this._instancesManager.getArray(this.container)) {
                 absorber.attract(particle, delta);
 
                 if (particle.destroyed) {

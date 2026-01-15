@@ -11,24 +11,24 @@ import {
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import type { EmittersEngine } from "./EmittersEngine.js";
+import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 
 /**
  */
 export class EmittersPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
+    private readonly _instancesManager;
 
-    constructor(engine: EmittersEngine) {
-        this._engine = engine;
+    constructor(instancesManager: EmittersInstancesManager) {
+        this._instancesManager = instancesManager;
         this.id = "emitters";
     }
 
     async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {
         const { EmittersPluginInstance } = await import("./EmittersPluginInstance.js");
 
-        return new EmittersPluginInstance(this._engine, container);
+        return new EmittersPluginInstance(this._instancesManager, container);
     }
 
     loadOptions(options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {

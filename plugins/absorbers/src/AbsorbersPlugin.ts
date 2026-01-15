@@ -1,6 +1,5 @@
 import type { AbsorberOptions, IAbsorberOptions } from "./types.js";
 import {
-    type Engine,
     type IContainerPlugin,
     type IOptions,
     type IPlugin,
@@ -10,23 +9,24 @@ import {
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
+import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
 /**
  */
 export class AbsorbersPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
+    private readonly _instancesManager;
 
-    constructor(engine: Engine) {
+    constructor(instancesManager: AbsorbersInstancesManager) {
         this.id = "absorbers";
-        this._engine = engine;
+        this._instancesManager = instancesManager;
     }
 
     async getPlugin(container: AbsorberContainer): Promise<IContainerPlugin> {
         const { AbsorbersPluginInstance } = await import("./AbsorbersPluginInstance.js");
 
-        return new AbsorbersPluginInstance(container, this._engine);
+        return new AbsorbersPluginInstance(container, this._instancesManager);
     }
 
     loadOptions(options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {

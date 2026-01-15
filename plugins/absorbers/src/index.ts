@@ -10,13 +10,15 @@ export function loadAbsorbersPlugin(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
     engine.register(async e => {
-        const { AbsorbersPlugin } = await import("./AbsorbersPlugin.js");
+        const { AbsorbersInstancesManager } = await import("./AbsorbersInstancesManager.js"),
+            { AbsorbersPlugin } = await import("./AbsorbersPlugin.js"),
+            instancesManager = new AbsorbersInstancesManager(e);
 
-        e.addPlugin(new AbsorbersPlugin(e));
+        e.addPlugin(new AbsorbersPlugin(instancesManager));
         e.addInteractor("externalAbsorbers", async container => {
             const { AbsorbersInteractor } = await import("./AbsorbersInteractor.js");
 
-            return new AbsorbersInteractor(e, container as AbsorberContainer);
+            return new AbsorbersInteractor(container as AbsorberContainer, instancesManager);
         });
     });
 }

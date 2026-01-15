@@ -12,20 +12,20 @@ export function loadEmittersPlugin(engine: EmittersEngine): void {
 
     engine.register(async (e: EmittersEngine) => {
         const { ShapeManager } = await import("./ShapeManager.js"),
-            { EmittersPlugin } = await import("./EmittersPlugin.js");
+            { EmittersInstancesManager } = await import("./EmittersInstancesManager.js"),
+            { EmittersPlugin } = await import("./EmittersPlugin.js"),
+            instancesManager = new EmittersInstancesManager(e);
 
         e.emitterShapeManager ??= new ShapeManager();
         e.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
             e.emitterShapeManager?.addShapeGenerator(name, generator);
         };
 
-        const plugin = new EmittersPlugin(e);
-
-        e.addPlugin(plugin);
+        e.addPlugin(new EmittersPlugin(instancesManager));
         e.addInteractor("externalEmitters", async container => {
             const { EmittersInteractor } = await import("./EmittersInteractor.js");
 
-            return new EmittersInteractor(e, container as EmitterContainer);
+            return new EmittersInteractor(instancesManager, container as EmitterContainer);
         });
     });
 }

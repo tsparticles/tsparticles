@@ -1,8 +1,6 @@
 import type { EmitterModeOptions, IEmitterDataModeOptions, IEmitterModeOptions } from "./types.js";
 import {
-    type Engine,
     ExternalInteractorBase,
-    type ICoordinates,
     type IDelta,
     type IInteractivityData,
     type IModes,
@@ -14,62 +12,25 @@ import {
     executeOnSingleOrMultiple,
     isArray,
     isInArray,
-    isNumber,
     itemFromArray,
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterInstance } from "./EmitterInstance.js";
+import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import { defaultRandomOptions } from "./constants.js";
 
-const emittersMode = "emitters",
-    defaultIndex = 0;
+const emittersMode = "emitters";
 
 export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer> {
-    array: EmitterInstance[];
     handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
-    private readonly _engine;
+    private readonly _instancesManager;
 
-    constructor(engine: Engine, container: EmitterContainer) {
+    constructor(instancesManager: EmittersInstancesManager, container: EmitterContainer) {
         super(container);
 
-        this._engine = engine;
-        this.array = [];
-
-        container.getInteractivityEmitter = (idxOrName?: number | string): EmitterInstance | undefined =>
-            idxOrName === undefined || isNumber(idxOrName)
-                ? this.array[idxOrName ?? defaultIndex]
-                : this.array.find(t => t.name === idxOrName);
-
-        container.addInteractivityEmitter = async (
-            options: RecursivePartial<IEmitter>,
-            position?: ICoordinates,
-        ): Promise<EmitterInstance> => this.addEmitter(options, position);
-
-        container.removeInteractivityEmitter = (idxOrName?: number | string): void => {
-            const emitter = container.getEmitter?.(idxOrName);
-
-            if (emitter) {
-                this.removeEmitter(emitter);
-            }
-        };
-
-        container.playInteractivityEmitter = (idxOrName?: number | string): void => {
-            const emitter = container.getEmitter?.(idxOrName);
-
-            if (emitter) {
-                emitter.externalPlay();
-            }
-        };
-
-        container.pauseInteractivityEmitter = (idxOrName?: number | string): void => {
-            const emitter = container.getEmitter?.(idxOrName);
-
-            if (emitter) {
-                emitter.externalPause();
-            }
-        };
+        this._instancesManager = instancesManager;
 
         this.handleClickMode = (mode, interactivityData): void => {
             const container = this.container,
@@ -120,26 +81,9 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
                 ePosition = interactivityData.mouse.clickPosition;
 
             void executeOnSingleOrMultiple(emittersOptions, async emitter => {
-                await this.addEmitter(emitter, ePosition);
+                await this._instancesManager.addEmitter(this.container, emitter, ePosition);
             });
         };
-    }
-
-    async addEmitter(options: RecursivePartial<IEmitter>, position?: ICoordinates): Promise<EmitterInstance> {
-        const { EmitterInstance } = await import("./EmitterInstance.js"),
-            emitter = new EmitterInstance(
-                this._engine,
-                this.container,
-                (emitter: EmitterInstance) => {
-                    this.removeEmitter(emitter);
-                },
-                options,
-                position,
-            );
-
-        this.array.push(emitter);
-
-        return emitter;
     }
 
     clear(): void {
@@ -151,7 +95,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
     }
 
     interact(_interactivityData: IInteractivityData, delta: IDelta): void {
-        for (const emitter of this.array) {
+        for (const emitter of this._instancesManager.getArray(this.container)) {
             emitter.update(delta);
         }
     }
@@ -223,12 +167,12 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
     }
 
     removeEmitter(emitter: EmitterInstance): void {
-        const index = this.array.indexOf(emitter),
+        const index = this._instancesManager.getArray(this.container).indexOf(emitter),
             minIndex = 0,
             deleteCount = 1;
 
         if (index >= minIndex) {
-            this.array.splice(index, deleteCount);
+            this._instancesManager.getArray(this.container).splice(index, deleteCount);
         }
     }
 

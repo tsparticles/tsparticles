@@ -1,55 +1,28 @@
 import {
-    type Engine,
     type IContainerPlugin,
-    type ICoordinates,
     type IDelta,
     type Particle,
-    type RecursivePartial,
     executeOnSingleOrMultiple,
     isArray,
-    isNumber,
 } from "@tsparticles/engine";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import type { AbsorberInstance } from "./AbsorberInstance.js";
-import type { IAbsorber } from "./Options/Interfaces/IAbsorber.js";
-
-const defaultIndex = 0;
+import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
 /**
  */
 export class AbsorbersPluginInstance implements IContainerPlugin {
-    array: AbsorberInstance[];
-
     private readonly _container;
-    private readonly _engine;
+    private readonly _instancesManager;
 
-    constructor(container: AbsorberContainer, engine: Engine) {
+    constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
         this._container = container;
-        this._engine = engine;
-        this.array = [];
+        this._instancesManager = instancesManager;
 
-        container.getAbsorber ??= (idxOrName?: number | string): AbsorberInstance | undefined =>
-            idxOrName === undefined || isNumber(idxOrName)
-                ? this.array[idxOrName ?? defaultIndex]
-                : this.array.find(t => t.name === idxOrName);
-
-        container.addAbsorber ??= async (
-            options: RecursivePartial<IAbsorber>,
-            position?: ICoordinates,
-        ): Promise<AbsorberInstance> => this.addAbsorber(options, position);
-    }
-
-    async addAbsorber(options: RecursivePartial<IAbsorber>, position?: ICoordinates): Promise<AbsorberInstance> {
-        const { AbsorberInstance } = await import("./AbsorberInstance.js"),
-            absorber = new AbsorberInstance(this._engine, this._container, options, position);
-
-        this.array.push(absorber);
-
-        return absorber;
+        this._instancesManager.initContainer(container);
     }
 
     draw(context: CanvasRenderingContext2D): void {
-        for (const absorber of this.array) {
+        for (const absorber of this._instancesManager.getArray(this._container)) {
             absorber.draw(context);
         }
     }
@@ -57,7 +30,7 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
     async init(): Promise<void> {
         const absorbers = this._container.actualOptions.absorbers,
             promises = executeOnSingleOrMultiple(absorbers, async (absorber): Promise<void> => {
-                await this.addAbsorber(absorber);
+                await this._instancesManager.addAbsorber(this._container, absorber);
             });
 
         if (isArray(promises)) {
@@ -68,7 +41,7 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
     }
 
     particleUpdate(particle: Particle, delta: IDelta): void {
-        for (const absorber of this.array) {
+        for (const absorber of this._instancesManager.getArray(this._container)) {
             absorber.attract(particle, delta);
 
             if (particle.destroyed) {
@@ -77,22 +50,13 @@ export class AbsorbersPluginInstance implements IContainerPlugin {
         }
     }
 
-    removeAbsorber(absorber: AbsorberInstance): void {
-        const index = this.array.indexOf(absorber),
-            deleteCount = 1;
-
-        if (index >= defaultIndex) {
-            this.array.splice(index, deleteCount);
-        }
-    }
-
     resize(): void {
-        for (const absorber of this.array) {
+        for (const absorber of this._instancesManager.getArray(this._container)) {
             absorber.resize();
         }
     }
 
     stop(): void {
-        this.array = [];
+        this._instancesManager.clear(this._container);
     }
 }
