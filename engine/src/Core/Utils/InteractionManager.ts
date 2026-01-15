@@ -310,7 +310,7 @@ export class InteractionManager {
     private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
         const { container } = this;
 
-        if (!container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
+        if (container.destroyed || !container.actualOptions.pauseOnOutsideViewport) {
             return;
         }
 
