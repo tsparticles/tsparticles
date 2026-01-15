@@ -7,12 +7,14 @@ import {
     type Modes,
     type Particle,
     type RecursivePartial,
+    getDistance,
     isArray,
     isInArray,
     itemFromArray,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
+import type { AbsorberInstance } from "./AbsorberInstance.js";
 import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
 const absorbersMode = "absorbers";
@@ -21,6 +23,9 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     private readonly _instancesManager;
+
+    private dragging = false;
+    private draggingAbsorber: AbsorberInstance | undefined;
 
     constructor(container: AbsorberContainer, instancesManager: AbsorbersInstancesManager) {
         super(container);
@@ -38,10 +43,21 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
                 return;
             }
 
-            const absorbersModeOptions = itemFromArray(absorbers) ?? new Absorber(),
-                aPosition = interactivityData.mouse.clickPosition;
+            const { clickPosition } = interactivityData.mouse;
 
-            void this._instancesManager.addAbsorber(container, absorbersModeOptions, aPosition);
+            if (clickPosition) {
+                const existingAbsorber = instancesManager
+                    .getArray(this.container)
+                    .some(t => getDistance(t.position, clickPosition) < t.size);
+
+                if (existingAbsorber) {
+                    return;
+                }
+            }
+
+            const absorbersModeOptions = itemFromArray(absorbers) ?? new Absorber();
+
+            void this._instancesManager.addAbsorber(container, absorbersModeOptions, clickPosition);
         };
     }
 
@@ -56,6 +72,27 @@ export class AbsorbersInteractor extends ExternalInteractorBase<AbsorberContaine
     interact(interactivityData: IInteractivityData, delta: IDelta): void {
         for (const particle of this.container.particles.filter(p => this.isEnabled(interactivityData, p))) {
             for (const absorber of this._instancesManager.getArray(this.container)) {
+                if (absorber.options.draggable) {
+                    const mouse = interactivityData.mouse;
+
+                    if (mouse.clicking && mouse.downPosition) {
+                        const mouseDist = getDistance(absorber.position, mouse.downPosition);
+
+                        if (mouseDist <= absorber.size) {
+                            this.dragging = true;
+                            this.draggingAbsorber = absorber;
+                        }
+                    } else {
+                        this.dragging = false;
+                        this.draggingAbsorber = undefined;
+                    }
+
+                    if (this.dragging && this.draggingAbsorber == absorber && mouse.position) {
+                        absorber.position.x = mouse.position.x;
+                        absorber.position.y = mouse.position.y;
+                    }
+                }
+
                 absorber.attract(particle, delta);
 
                 if (particle.destroyed) {

@@ -217,6 +217,10 @@ export class InteractionManager {
     }
 
     handleClickMode(mode: string): void {
+        if (this.container.destroyed) {
+            return;
+        }
+
         const { interactivityData } = this;
 
         for (const interactor of this._externalInteractors) {

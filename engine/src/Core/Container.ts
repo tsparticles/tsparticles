@@ -351,18 +351,6 @@ export class Container {
     }
 
     /**
-     * Handles click event in the container
-     * @param mode - click mode to handle
-     */
-    handleClickMode(mode: string): void {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        this.interactionManager.handleClickMode(mode);
-    }
-
-    /**
      * Initializes the container
      */
     async init(): Promise<void> {

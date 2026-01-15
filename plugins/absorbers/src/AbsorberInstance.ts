@@ -83,6 +83,12 @@ export class AbsorberInstance {
     opacity;
 
     /**
+     * Gets the absorber options
+     * @internal
+     */
+    readonly options;
+
+    /**
      * The absorber position
      */
     position: Vector;
@@ -96,22 +102,10 @@ export class AbsorberInstance {
     private readonly _engine;
 
     /**
-     * Sets if the absorber can be moved with mouse drag&drop
-     * @internal
-     */
-    private dragging;
-
-    /**
      * Gets the absorber initial position
      * @internal
      */
     private readonly initialPosition?: Vector;
-
-    /**
-     * Gets the absorber options
-     * @internal
-     */
-    private readonly options;
 
     /**
      * The absorber constructor, initializes the absorber based on the given options and position
@@ -133,7 +127,6 @@ export class AbsorberInstance {
             this.options.load(options);
         }
 
-        this.dragging = false;
         this.name = this.options.name;
         this.opacity = this.options.opacity;
         this.size = getRangeValue(this.options.size.value) * container.retina.pixelRatio;
@@ -162,28 +155,8 @@ export class AbsorberInstance {
      */
     attract(particle: OrbitingParticle, delta: IDelta): void {
         const container = this._container,
-            options = this.options;
-
-        if (options.draggable) {
-            const mouse = container.interactionManager.interactivityData.mouse;
-
-            if (mouse.clicking && mouse.downPosition) {
-                const mouseDist = getDistance(this.position, mouse.downPosition);
-
-                if (mouseDist <= this.size) {
-                    this.dragging = true;
-                }
-            } else {
-                this.dragging = false;
-            }
-
-            if (this.dragging && mouse.position) {
-                this.position.x = mouse.position.x;
-                this.position.y = mouse.position.y;
-            }
-        }
-
-        const pos = particle.getPosition(),
+            options = this.options,
+            pos = particle.getPosition(),
             { dx, dy, distance } = getDistances(this.position, pos),
             v = Vector.create(dx, dy);
 

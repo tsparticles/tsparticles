@@ -117,7 +117,7 @@ export class InteractivityEventListeners {
             const onClick = options.interactivity.events.onClick;
 
             executeOnSingleOrMultiple(onClick.mode, mode => {
-                this.container.handleClickMode(mode);
+                this.interactionManager.handleClickMode(mode);
             });
         }
 
