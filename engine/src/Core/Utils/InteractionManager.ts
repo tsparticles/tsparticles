@@ -114,8 +114,8 @@ export class InteractionManager {
 
                 const mouseEvent = e as MouseEvent,
                     pos = {
-                        x: mouseEvent.offsetX || mouseEvent.clientX,
-                        y: mouseEvent.offsetY || mouseEvent.clientY,
+                        x: mouseEvent.offsetX,
+                        y: mouseEvent.offsetY,
                     };
 
                 clickOrTouchHandler(e, pos, clickRadius);
