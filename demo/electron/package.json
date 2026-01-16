@@ -19,7 +19,7 @@
         "tsparticles": "workspace:4.0.0-alpha.3"
     },
     "devDependencies": {
-        "electron": "^39.2.7"
+        "electron": "^40.0.0"
     },
     "type": "module"
 }
