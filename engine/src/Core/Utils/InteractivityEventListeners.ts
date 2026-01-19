@@ -241,7 +241,7 @@ export class InteractivityEventListeners {
             return;
         }
 
-        for (const plugin of container.plugins.values()) {
+        for (const plugin of container.plugins) {
             if (!plugin.clickPositionValid) {
                 continue;
             }

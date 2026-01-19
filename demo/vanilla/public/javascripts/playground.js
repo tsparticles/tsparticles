@@ -2,7 +2,7 @@
     const stats = new Stats();
 
     stats.addPanel("count", "#ff8", 0, () => {
-        const container = tsParticles.domItem(0);
+        const container = tsParticles.item(0);
         if (container) {
             maxParticles = Math.max(container.particles.count, maxParticles);
 
@@ -88,7 +88,7 @@
             sidebar.setAttribute("hidden", "");
         }
 
-        tsParticles.domItem(0).refresh();
+        tsParticles.item(0).refresh();
     };
 
     window.addEventListener("load", async function () {
@@ -160,7 +160,7 @@
         });
 
         document.getElementById("export-image").addEventListener("click", function () {
-            const container = tsParticles.domItem(0);
+            const container = tsParticles.item(0);
 
             if (container) {
                 container.exportImage(function (blob) {
@@ -189,7 +189,7 @@
         });
 
         document.getElementById("export-config").addEventListener("click", function () {
-            const container = tsParticles.domItem(0);
+            const container = tsParticles.item(0);
 
             if (container) {
                 const modalBody = document.body.querySelector("#exportModal .modal-body .modal-body-content");
@@ -203,7 +203,7 @@
         });
 
         document.getElementById("codepen-export").addEventListener("click", function () {
-            const container = tsParticles.domItem(0);
+            const container = tsParticles.item(0);
 
             if (container) {
                 const form = document.getElementById("code-pen-form"),

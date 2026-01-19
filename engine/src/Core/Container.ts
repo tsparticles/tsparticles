@@ -118,7 +118,7 @@ export class Container {
     /**
      * All the plugins used by the container
      */
-    readonly plugins;
+    readonly plugins: IContainerPlugin[];
 
     readonly retina;
 
@@ -188,7 +188,7 @@ export class Container {
         this.canvas = new Canvas(this, this._engine);
         this.particles = new Particles(this._engine, this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
-        this.plugins = new Map<string, IContainerPlugin>();
+        this.plugins = [];
         this.effectDrawers = new Map<string, IEffectDrawer>();
         this.shapeDrawers = new Map<string, IShapeDrawer>();
         /* tsParticles variables with default values */
@@ -332,7 +332,7 @@ export class Container {
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             if (!plugin.export) {
                 continue;
             }
@@ -399,11 +399,9 @@ export class Container {
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
-        const availablePlugin = new Map<string, IContainerPlugin>();
-
         for (const [plugin, containerPlugin] of allContainerPlugins) {
             if (plugin.needsPlugin(this.actualOptions)) {
-                availablePlugin.set(plugin.id, containerPlugin);
+                this.plugins.push(containerPlugin);
             }
         }
 
@@ -426,7 +424,7 @@ export class Container {
         this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
         this._smooth = smooth;
 
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             await plugin.init?.();
         }
 
@@ -443,7 +441,7 @@ export class Container {
         await this.particles.init();
         this.particles.setDensity();
 
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             plugin.particlesSetup?.();
         }
 
@@ -468,7 +466,7 @@ export class Container {
             return;
         }
 
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             plugin.pause?.();
         }
 
@@ -501,7 +499,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const plugin of this.plugins.values()) {
+            for (const plugin of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -560,7 +558,7 @@ export class Container {
                 this.interactionManager.addListeners();
                 this.interactionManager.startObserving();
 
-                for (const plugin of this.plugins.values()) {
+                for (const plugin of this.plugins) {
                     await plugin.start?.();
                 }
 
@@ -599,13 +597,11 @@ export class Container {
 
         this.interactionManager.stopObserving();
 
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             plugin.stop?.();
         }
 
-        for (const key of this.plugins.keys()) {
-            this.plugins.delete(key);
-        }
+        this.plugins.length = 0;
 
         this._sourceOptions = this._options;
 
@@ -619,7 +615,7 @@ export class Container {
     updateActualOptions(): boolean {
         let refresh = false;
 
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             if (plugin.updateActualOptions) {
                 refresh = plugin.updateActualOptions() || refresh;
             }
