@@ -14,8 +14,10 @@ import { half, millisecondsToSeconds, percentDenominator } from "../Core/Utils/C
 import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import type { Container } from "../Core/Container.js";
 import { DestroyType } from "../Enums/Types/DestroyType.js";
 import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
+import type { GenericInitializer } from "../Types/EngineInitializers.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
@@ -775,4 +777,28 @@ export function manageListener(
 
         element.removeEventListener(event, handler, removeOptions);
     }
+}
+
+/**
+ * @param container -
+ * @param map -
+ * @param initializers -
+ * @param force -
+ * @returns the items from the given initializer
+ */
+export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+    container: Container,
+    map: Map<Container, TItem[]>,
+    initializers: Map<string, TInitializer>,
+    force = false,
+): Promise<TItem[]> {
+    let res = map.get(container);
+
+    if (!res || force) {
+        res = await Promise.all([...initializers.values()].map(t => t(container)));
+
+        map.set(container, res);
+    }
+
+    return res;
 }

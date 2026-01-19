@@ -3,6 +3,12 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
+import type {
+    Initializers,
+    InteractorInitializer,
+    MoverInitializer,
+    UpdaterInitializer,
+} from "../Types/EngineInitializers.js";
 import {
     canvasFirstIndex,
     canvasTag,
@@ -15,7 +21,7 @@ import {
     one,
     removeDeleteCount,
 } from "./Utils/Constants.js";
-import { itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import { getItemsFromInitializer, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -54,26 +60,6 @@ interface DataFromUrlParams {
     url: SingleOrMultiple<string>;
 }
 
-type GenericInitializer<T> = (container: Container) => Promise<T>;
-
-/**
- * Alias for interactivity manager initializer function
- */
-type InteractorInitializer = GenericInitializer<IInteractor>;
-
-type MoverInitializer = GenericInitializer<IParticleMover>;
-
-/**
- * Alias for updater initializer function
- */
-type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
-
-interface Initializers {
-    interactors: Map<string, InteractorInitializer>;
-    movers: Map<string, MoverInitializer>;
-    updaters: Map<string, UpdaterInitializer>;
-}
-
 type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
 type SyncLoadPluginFunction = (engine: Engine) => void;
 type AsyncLoadPluginNoEngine = () => Promise<void>;
@@ -83,30 +69,6 @@ type LoadPluginFunction =
     | SyncLoadPluginFunction
     | AsyncLoadPluginNoEngine
     | SyncLoadPluginNoEngine;
-
-/**
- * @param container -
- * @param map -
- * @param initializers -
- * @param force -
- * @returns the items from the given initializer
- */
-async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
-    container: Container,
-    map: Map<Container, TItem[]>,
-    initializers: Map<string, TInitializer>,
-    force = false,
-): Promise<TItem[]> {
-    let res = map.get(container);
-
-    if (!res || force) {
-        res = await Promise.all([...initializers.values()].map(t => t(container)));
-
-        map.set(container, res);
-    }
-
-    return res;
-}
 
 /**
  * @param data -
@@ -447,25 +409,6 @@ export class Engine {
      */
     dispatchEvent(type: string, args?: CustomEventArgs): void {
         this._eventDispatcher.dispatchEvent(type, args);
-    }
-
-    /**
-     * All the {@link Container} objects loaded
-     * @deprecated the dom() function is deprecated, please use the items property instead
-     * @returns All the {@link Container} objects loaded
-     */
-    dom(): Container[] {
-        return this.items;
-    }
-
-    /**
-     * Retrieves a {@link Container} from all the objects loaded
-     * @deprecated the domItem() function is deprecated, please use the item function instead
-     * @param index - The object index
-     * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
-     */
-    domItem(index: number): Container | undefined {
-        return this.item(index);
     }
 
     /**

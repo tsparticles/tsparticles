@@ -318,7 +318,7 @@ const initParticlesJS = (
      * All the {@link Container} objects loaded
      * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
      */
-    const pJSDom = engine.dom();
+    const pJSDom = engine.items;
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     return { particlesJS, pJSDom };
