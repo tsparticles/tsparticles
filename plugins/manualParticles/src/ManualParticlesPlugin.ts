@@ -22,7 +22,7 @@ export class ManualParticlesPlugin implements IPlugin {
         options: ManualParticlesOptions,
         source?: RecursivePartial<IManualParticlesOptions>,
     ): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 

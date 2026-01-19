@@ -26,7 +26,7 @@ export class BackgroundMaskPlugin implements IPlugin {
         options: BackgroundMaskOptions,
         source?: RecursivePartial<IBackgroundMaskOptions>,
     ): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 

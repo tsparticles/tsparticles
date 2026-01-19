@@ -23,7 +23,7 @@ export class ResponsivePlugin implements IPlugin {
         options: ResponsiveOptions,
         source?: RecursivePartial<IResponsiveOptions>,
     ): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 

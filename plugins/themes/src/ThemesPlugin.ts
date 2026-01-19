@@ -25,7 +25,7 @@ export class ThemesPlugin implements IPlugin {
     }
 
     loadOptions(_container: Container, options: ThemesOptions, source?: RecursivePartial<IThemesOptions>): void {
-        if (!this.needsPlugin(source)) {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 
