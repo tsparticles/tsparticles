@@ -292,8 +292,8 @@ async function parseImageBlock(
                             image.data.set(
                                 [r, g, b, a],
                                 InterlaceOffsets[pass]! * frame.width +
-                                InterlaceSteps[pass]! * lineIndex +
-                                (pixelPos % (frame.width * 4)),
+                                    InterlaceSteps[pass]! * lineIndex +
+                                    (pixelPos % (frame.width * 4)),
                             );
 
                             pixelPos += 4;
@@ -333,7 +333,7 @@ async function parseImageBlock(
 
         const dic = [[0]];
 
-        for (; ;) {
+        for (;;) {
             const last = code;
 
             code = readBits(pos, size);
@@ -693,21 +693,22 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
             }
 
             break;
-        case DisposalMethod.RestorePrevious: {
-            const previousImageData = offscreenContext.getImageData(
-                origin.x,
-                origin.y,
-                offscreenCanvas.width,
-                offscreenCanvas.height,
-            );
+        case DisposalMethod.RestorePrevious:
+            {
+                const previousImageData = offscreenContext.getImageData(
+                    origin.x,
+                    origin.y,
+                    offscreenCanvas.width,
+                    offscreenCanvas.height,
+                );
 
-            offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
+                offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
 
-            context.drawImage(offscreenCanvas, pos.x, pos.y);
+                context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-            offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-            offscreenContext.putImageData(previousImageData, origin.x, origin.y);
-        }
+                offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
+                offscreenContext.putImageData(previousImageData, origin.x, origin.y);
+            }
             break;
     }
 
