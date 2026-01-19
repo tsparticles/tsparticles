@@ -1,8 +1,6 @@
-import { type IHsl, type Particle, degToRad, getStyleFromHsl } from "@tsparticles/engine";
+import { type IHsl, type Particle, degToRad, double, getStyleFromHsl, half } from "@tsparticles/engine";
 
-const minWidth = 0,
-    half = 0.5,
-    double = 2;
+const minWidth = 0;
 
 /**
  * Draws an ellipse for the given particle.

@@ -426,16 +426,16 @@ export class Container {
         this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
         this._smooth = smooth;
 
+        for (const plugin of this.plugins.values()) {
+            await plugin.init?.();
+        }
+
         for (const drawer of this.effectDrawers.values()) {
             await drawer.init?.(this);
         }
 
         for (const drawer of this.shapeDrawers.values()) {
             await drawer.init?.(this);
-        }
-
-        for (const plugin of this.plugins.values()) {
-            await plugin.init?.();
         }
 
         this._engine.dispatchEvent(EventType.containerInit, { container: this });

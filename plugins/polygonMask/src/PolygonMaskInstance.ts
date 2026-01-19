@@ -8,12 +8,15 @@ import {
     OutModeDirection,
     type Particle,
     deepExtend,
+    double,
     getDistance,
     getDistances,
     getRandom,
+    half,
     isArray,
     isString,
     itemFromArray,
+    originPoint,
     percentDenominator,
     safeDocument,
 } from "@tsparticles/engine";
@@ -24,13 +27,7 @@ import { PolygonMaskInlineArrangement } from "./Enums/PolygonMaskInlineArrangeme
 import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 
 const noPolygonDataLoaded = `No polygon data loaded.`,
-    noPolygonFound = `No polygon found, you need to specify SVG url in config.`,
-    origin: ICoordinates = {
-        x: 0,
-        y: 0,
-    },
-    half = 0.5,
-    double = 2;
+    noPolygonFound = `No polygon found, you need to specify SVG url in config.`;
 
 /**
  * Polygon Mask manager
@@ -365,8 +362,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         const scale = this._scale;
 
         return {
-            x: (point?.x ?? origin.x) * scale + (this.offset?.x ?? origin.x),
-            y: (point?.y ?? origin.y) * scale + (this.offset?.y ?? origin.y),
+            x: (point?.x ?? originPoint.x) * scale + (this.offset?.x ?? originPoint.x),
+            y: (point?.y ?? originPoint.y) * scale + (this.offset?.y ?? originPoint.y),
         };
     };
 
@@ -428,8 +425,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
             scale = this._scale;
 
         return {
-            x: point.x * scale + (this.offset?.x ?? origin.x),
-            y: point.y * scale + (this.offset?.y ?? origin.y),
+            x: point.x * scale + (this.offset?.x ?? originPoint.x),
+            y: point.y * scale + (this.offset?.y ?? originPoint.y),
         };
     };
 

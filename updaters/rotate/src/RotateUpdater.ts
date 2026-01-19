@@ -11,8 +11,11 @@ import {
     type RecursivePartial,
     RotateDirection,
     degToRad,
+    double,
+    doublePI,
     getRandom,
     getRangeValue,
+    identity,
     updateAnimation,
 } from "@tsparticles/engine";
 import type { IRotate } from "./Options/Interfaces/IRotate.js";
@@ -31,10 +34,7 @@ type RotateParticlesOptions = ParticlesOptions & {
     rotate?: Rotate;
 };
 
-const double = 2,
-    doublePI = Math.PI * double,
-    identity = 1,
-    doublePIDeg = 360;
+const doublePIDeg = 360;
 
 export class RotateUpdater implements IParticleUpdater {
     private readonly container;

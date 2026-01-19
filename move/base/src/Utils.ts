@@ -4,21 +4,20 @@ import {
     type Particle,
     RotateDirection,
     clamp,
+    doublePI,
     getDistance,
     getDistances,
     getRandom,
     getRangeValue,
+    half,
 } from "@tsparticles/engine";
 import type { MoveParticle } from "./Types.js";
 
-const half = 0.5,
-    double = 2,
-    minVelocity = 0,
+const minVelocity = 0,
     identity = 1,
     moveSpeedFactor = 60,
     minSpinRadius = 0,
-    spinFactor = 0.01,
-    doublePI = Math.PI * double;
+    spinFactor = 0.01;
 
 /**
  * @param particle -

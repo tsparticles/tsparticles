@@ -4,6 +4,7 @@ import {
     type IDimension,
     type IRgba,
     getRandom,
+    half,
     isFunction,
     isNull,
     isString,
@@ -13,8 +14,7 @@ import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types.js";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
-const maxRetries = 100,
-    half = 0.5;
+const maxRetries = 100;
 
 export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOptions> {
     filter: (pixel: IRgba) => boolean;

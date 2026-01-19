@@ -2,6 +2,7 @@ import {
     type Engine,
     type ICoordinates,
     Vector,
+    double,
     getDistances,
     getStyleFromRgb,
     rangeColorToRgb,
@@ -21,8 +22,7 @@ const squareExp = 2,
     inSegmentRange = {
         min: 0,
         max: 1,
-    },
-    double = 2;
+    };
 
 /**
  * @param engine -

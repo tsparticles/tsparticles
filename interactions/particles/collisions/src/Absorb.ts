@@ -1,8 +1,7 @@
-import { type IDelta, type Particle, clamp } from "@tsparticles/engine";
+import { type IDelta, type Particle, clamp, half } from "@tsparticles/engine";
 import type { CollisionParticle } from "./Types.js";
 
-const half = 0.5,
-    absorbFactor = 10,
+const absorbFactor = 10,
     minAbsorbFactor = 0;
 
 /**

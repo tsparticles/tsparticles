@@ -2,6 +2,7 @@ import {
     AlterType,
     type Engine,
     type IDelta,
+    doublePI,
     getRandom,
     getRangeValue,
     half,
@@ -10,9 +11,7 @@ import {
 import { RollMode } from "./RollMode.js";
 import type { RollParticle } from "./Types.js";
 
-const double = 2,
-    doublePI = Math.PI * double,
-    maxAngle = 360;
+const maxAngle = 360;
 
 /**
  * @param engine -

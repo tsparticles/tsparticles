@@ -4,6 +4,7 @@ import {
     type Particle,
     Vector,
     deepExtend,
+    doublePI,
     getRandom,
 } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
@@ -22,8 +23,6 @@ const originCoordinate = 0,
         e: 0,
         f: 0,
     },
-    double = 2,
-    doublePI = Math.PI * double,
     defaultOptions: INoiseFieldOptions = {
         draw: false,
         size: 20,

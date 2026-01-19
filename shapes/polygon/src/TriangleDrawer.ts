@@ -1,10 +1,9 @@
-import type { ICoordinates, Particle } from "@tsparticles/engine";
+import { type ICoordinates, type Particle, double } from "@tsparticles/engine";
 import type { ISide } from "./ISide.js";
 import { PolygonDrawerBase } from "./PolygonDrawerBase.js";
 
 const yFactor = 1.66,
-    sides = 3,
-    double = 2;
+    sides = 3;
 
 /**
  */

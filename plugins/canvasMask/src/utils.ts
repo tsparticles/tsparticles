@@ -5,22 +5,19 @@ import {
     type IParticlesOptions,
     type IRgba,
     type RecursivePartial,
+    defaultAlpha,
     getRandom,
+    half,
     isNumber,
+    originPoint,
     percentDenominator,
     safeDocument,
 } from "@tsparticles/engine";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
 import type { TextMask } from "./Options/Classes/TextMask.js";
 
-const half = 0.5,
-    origin: ICoordinates = {
-        x: 0,
-        y: 0,
-    },
-    defaultWidth = 0,
-    defaultRgb = 0,
-    defaultAlpha = 1;
+const defaultWidth = 0,
+    defaultRgb = 0;
 
 export interface CanvasPixelData {
     height: number;
@@ -126,10 +123,10 @@ export function getCanvasImageData(
     offset: number,
     clear = true,
 ): CanvasPixelData {
-    const imageData = ctx.getImageData(origin.x, origin.y, size.width, size.height).data;
+    const imageData = ctx.getImageData(originPoint.x, originPoint.y, size.width, size.height).data;
 
     if (clear) {
-        ctx.clearRect(origin.x, origin.y, size.width, size.height);
+        ctx.clearRect(originPoint.x, originPoint.y, size.width, size.height);
     }
 
     const pixels: IRgba[][] = [];
@@ -198,12 +195,12 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
 
             context.drawImage(
                 image,
-                origin.x,
-                origin.y,
+                originPoint.x,
+                originPoint.y,
                 image.width,
                 image.height,
-                origin.x,
-                origin.y,
+                originPoint.x,
+                originPoint.y,
                 canvas.width,
                 canvas.height,
             );
@@ -263,7 +260,7 @@ export function getTextData(textOptions: TextMask, offset: number): CanvasPixelD
     for (const line of linesData) {
         context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
         context.fillStyle = color;
-        context.fillText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
+        context.fillText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
 
         currentHeight += line.height + linesOptions.spacing;
     }

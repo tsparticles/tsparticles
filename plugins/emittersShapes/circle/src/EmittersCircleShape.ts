@@ -1,11 +1,7 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, double, doublePI, getRandom, half, quarter } from "@tsparticles/engine";
 
-const quarter = 0.25,
-    double = 2,
-    doublePI = Math.PI * double,
-    squareExp = 2,
-    half = 0.5;
+const squareExp = 2;
 
 export class EmittersCircleShape extends EmitterShapeBase {
     // eslint-disable-next-line @typescript-eslint/no-useless-constructor

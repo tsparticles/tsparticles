@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
-import type { ICoordinates, IRgb, IRgba, IShapeDrawData } from "@tsparticles/engine";
+import { type ICoordinates, type IRgb, type IRgba, type IShapeDrawData, half } from "@tsparticles/engine";
 import { type IImage, type ImageParticle, loadImage } from "../Utils.js";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants.js";
 import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
@@ -16,7 +15,6 @@ const origin: ICoordinates = {
         y: 0,
     },
     defaultFrame = 0,
-    half = 0.5,
     initialTime = 0,
     firstIndex = 0,
     defaultLoopCount = 0;
@@ -294,8 +292,8 @@ async function parseImageBlock(
                             image.data.set(
                                 [r, g, b, a],
                                 InterlaceOffsets[pass]! * frame.width +
-                                    InterlaceSteps[pass]! * lineIndex +
-                                    (pixelPos % (frame.width * 4)),
+                                InterlaceSteps[pass]! * lineIndex +
+                                (pixelPos % (frame.width * 4)),
                             );
 
                             pixelPos += 4;
@@ -335,7 +333,7 @@ async function parseImageBlock(
 
         const dic = [[0]];
 
-        for (;;) {
+        for (; ;) {
             const last = code;
 
             code = readBits(pos, size);
@@ -695,22 +693,21 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
             }
 
             break;
-        case DisposalMethod.RestorePrevious:
-            {
-                const previousImageData = offscreenContext.getImageData(
-                    origin.x,
-                    origin.y,
-                    offscreenCanvas.width,
-                    offscreenCanvas.height,
-                );
+        case DisposalMethod.RestorePrevious: {
+            const previousImageData = offscreenContext.getImageData(
+                origin.x,
+                origin.y,
+                offscreenCanvas.width,
+                offscreenCanvas.height,
+            );
 
-                offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
+            offscreenContext.drawImage(frame.bitmap, frame.left, frame.top);
 
-                context.drawImage(offscreenCanvas, pos.x, pos.y);
+            context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-                offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-                offscreenContext.putImageData(previousImageData, origin.x, origin.y);
-            }
+            offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
+            offscreenContext.putImageData(previousImageData, origin.x, origin.y);
+        }
             break;
     }
 
