@@ -1,4 +1,4 @@
-import type { IContainerPlugin, IPlugin, ISourceOptions, RecursivePartial } from "@tsparticles/engine";
+import type { Container, IContainerPlugin, IPlugin, ISourceOptions, RecursivePartial } from "@tsparticles/engine";
 import type { IResponsiveOptions, ResponsiveContainer, ResponsiveOptions } from "./types.js";
 import { Responsive } from "./Options/Classes/Responsive.js";
 import { ResponsiveMode } from "./ResponsiveMode.js";
@@ -18,7 +18,11 @@ export class ResponsivePlugin implements IPlugin {
         return new ResponsivePluginInstance(container);
     }
 
-    loadOptions(options: ResponsiveOptions, source?: RecursivePartial<IResponsiveOptions>): void {
+    loadOptions(
+        _container: Container,
+        options: ResponsiveOptions,
+        source?: RecursivePartial<IResponsiveOptions>,
+    ): void {
         if (!this.needsPlugin(source)) {
             return;
         }

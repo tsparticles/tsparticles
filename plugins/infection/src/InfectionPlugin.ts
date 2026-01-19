@@ -17,7 +17,7 @@ export class InfectionPlugin implements IPlugin {
         return new InfectionPluginInstance(container);
     }
 
-    loadOptions(options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
+    loadOptions(_container: Container, options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }

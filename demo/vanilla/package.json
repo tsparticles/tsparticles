@@ -39,7 +39,7 @@
         "express": "^5.2.1",
         "express-rate-limit": "^8.2.1",
         "helmet": "^8.1.0",
-        "jquery": "^3.7.1",
+        "jquery": "^4.0.0",
         "jsoneditor": "^10.4.2",
         "livereload": "^0.10.3",
         "lodash": "^4.17.21",

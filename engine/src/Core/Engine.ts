@@ -23,7 +23,6 @@ import type { EasingFunction } from "../Types/EasingFunction.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
@@ -34,7 +33,6 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
-import type { Options } from "../Options/Classes/Options.js";
 import type { Particle } from "./Particle.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
@@ -471,23 +469,6 @@ export class Engine {
     }
 
     /**
-     * Gets all the available plugins, for the specified container
-     * @param container - the container used to check which are the valid plugins
-     * @returns a map containing all enabled plugins, with the id as a key
-     */
-    async getAvailablePlugins(container: Container): Promise<Map<string, IContainerPlugin>> {
-        const res = new Map<string, IContainerPlugin>();
-
-        for (const plugin of this.plugins) {
-            if (plugin.needsPlugin(container.actualOptions)) {
-                res.set(plugin.id, await plugin.getPlugin(container));
-            }
-        }
-
-        return res;
-    }
-
-    /**
      * @param name -
      * @returns the easing function
      */
@@ -697,17 +678,6 @@ export class Engine {
         await newItem.start();
 
         return newItem;
-    }
-
-    /**
-     * Load the given options for all the plugins
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        this.plugins.forEach(plugin => {
-            plugin.loadOptions(options, sourceOptions);
-        });
     }
 
     /**

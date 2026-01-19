@@ -21,7 +21,11 @@ export class BackgroundMaskPlugin implements IPlugin {
         return new BackgroundMaskPluginInstance(container, this._engine);
     }
 
-    loadOptions(options: BackgroundMaskOptions, source?: RecursivePartial<IBackgroundMaskOptions>): void {
+    loadOptions(
+        _container: Container,
+        options: BackgroundMaskOptions,
+        source?: RecursivePartial<IBackgroundMaskOptions>,
+    ): void {
         if (!this.needsPlugin(source)) {
             return;
         }

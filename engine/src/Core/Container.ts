@@ -15,6 +15,7 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
+import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { InteractionManager } from "./Utils/InteractionManager.js";
@@ -378,16 +379,32 @@ export class Container {
             }
         }
 
+        const allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
+
+        for (const plugin of this._engine.plugins) {
+            const containerPlugin = await plugin.getPlugin(this);
+
+            if (containerPlugin.preInit) {
+                await containerPlugin.preInit();
+            }
+
+            allContainerPlugins.set(plugin, containerPlugin);
+        }
+
+        await this.interactionManager.init();
+
         await this.particles.initPlugins();
 
         /* options settings */
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
-        const availablePlugins = await this._engine.getAvailablePlugins(this);
+        const availablePlugin = new Map<string, IContainerPlugin>();
 
-        for (const [id, plugin] of availablePlugins) {
-            this.plugins.set(id, plugin);
+        for (const [plugin, containerPlugin] of allContainerPlugins) {
+            if (plugin.needsPlugin(this.actualOptions)) {
+                availablePlugin.set(plugin.id, containerPlugin);
+            }
         }
 
         /* init canvas + particles */
