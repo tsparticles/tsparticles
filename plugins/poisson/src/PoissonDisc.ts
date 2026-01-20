@@ -1,8 +1,5 @@
-import { type ICoordinates, type IDimension, getDistance, getRandom } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, double, doublePI, getDistance, getRandom } from "@tsparticles/engine";
 import type { IPoissonPoint } from "./Interfaces/IPoissonPoint.js";
-
-const double = 2,
-    doublePI = Math.PI * double;
 
 /**
  * A Poisson Disc Sampling routine - randomly but evenly place dots on the screen..

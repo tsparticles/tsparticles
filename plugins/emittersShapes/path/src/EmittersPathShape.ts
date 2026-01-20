@@ -1,9 +1,7 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, percentDenominator, safeDocument } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, half, percentDenominator, safeDocument } from "@tsparticles/engine";
 import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
-
-const half = 0.5;
 
 export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions> {
     checkContext: CanvasRenderingContext2D;

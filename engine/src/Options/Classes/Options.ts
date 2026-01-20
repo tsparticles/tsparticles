@@ -158,11 +158,14 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.resize.load(data.resize);
 
         this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
-        this._engine.loadOptions(this, data);
 
         if (data.smooth !== undefined) {
             this.smooth = data.smooth;
         }
+
+        this._engine.plugins.forEach(plugin => {
+            plugin.loadOptions(this._container, this, data);
+        });
 
         const interactors = this._engine.interactors.get(this._container);
 

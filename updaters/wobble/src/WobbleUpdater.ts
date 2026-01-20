@@ -3,6 +3,7 @@ import {
     type IDelta,
     type IParticleUpdater,
     type RecursivePartial,
+    doublePI,
     getRandom,
     getRangeValue,
 } from "@tsparticles/engine";
@@ -10,9 +11,7 @@ import type { IWobbleParticlesOptions, WobbleParticle, WobbleParticlesOptions } 
 import { Wobble } from "./Options/Classes/Wobble.js";
 import { updateWobble } from "./Utils.js";
 
-const double = 2,
-    doublePI = Math.PI * double,
-    maxAngle = 360,
+const maxAngle = 360,
     moveSpeedFactor = 10,
     defaultDistance = 0;
 

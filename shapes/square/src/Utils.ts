@@ -1,8 +1,7 @@
-import type { IShapeDrawData } from "@tsparticles/engine";
+import { type IShapeDrawData, double } from "@tsparticles/engine";
 
 const fixFactorSquared = 2,
-    fixFactor = Math.sqrt(fixFactorSquared),
-    double = 2;
+    fixFactor = Math.sqrt(fixFactorSquared);
 
 /**
  *

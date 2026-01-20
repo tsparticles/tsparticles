@@ -111,6 +111,12 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         }
 
         if (this._container) {
+            for (const plugin of this._engine.plugins) {
+                if (plugin.loadParticlesOptions) {
+                    plugin.loadParticlesOptions(this._container, this, data);
+                }
+            }
+
             const updaters = this._engine.updaters.get(this._container);
 
             if (updaters) {

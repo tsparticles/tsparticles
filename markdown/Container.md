@@ -2,7 +2,7 @@
 
 The {@link Container} class is the manager of the entire tsParticles instance. If you get the result of {@link Engine.load | tsParticles.load} the result it's this class, in the {@link Engine.loadJSON | tsParticles.loadJSON} is the `then` parameter.
 
-Otherwise you can retrieve any loaded instance using {@link Engine.dom | tsParticles.dom()} or {@link Engine.domItem | tsParticles.domItem(index)}.
+Otherwise you can retrieve any loaded instance using {@link Engine.items | tsParticles.items} or {@link Engine.item | tsParticles.item(index)}.
 
 ## Properties
 

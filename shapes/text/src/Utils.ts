@@ -1,9 +1,6 @@
-import { type IShapeDrawData, itemFromSingleOrMultiple } from "@tsparticles/engine";
+import { type IShapeDrawData, double, half, itemFromSingleOrMultiple } from "@tsparticles/engine";
 import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
-
-const double = 2,
-    half = 0.5;
 
 /**
  *

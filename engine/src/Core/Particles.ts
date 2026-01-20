@@ -173,11 +173,19 @@ export class Particles {
         this._lastZIndex = 0;
         this._needsSort = false;
 
+        await this._container.interactionManager.init();
+
+        for (const plugin of container.plugins) {
+            if (plugin.redrawInit) {
+                await plugin.redrawInit();
+            }
+        }
+
         await this.initPlugins();
 
         let handled = false;
 
-        for (const plugin of container.plugins.values()) {
+        for (const plugin of container.plugins) {
             handled = plugin.particlesInitialization?.() ?? handled;
 
             if (handled) {
@@ -220,7 +228,6 @@ export class Particles {
 
         this.movers = await this._engine.getMovers(container, true);
         this.updaters = await this._engine.getUpdaters(container, true);
-        await this._container.interactionManager.init();
 
         for (const pathGenerator of container.pathGenerators.values()) {
             pathGenerator.init(container);
@@ -269,7 +276,7 @@ export class Particles {
 
         let pluginsCount = 0;
 
-        for (const plugin of this._container.plugins.values()) {
+        for (const plugin of this._container.plugins) {
             if (plugin.particlesDensityCount) {
                 pluginsCount += plugin.particlesDensityCount();
             }
@@ -309,7 +316,7 @@ export class Particles {
             pathGenerator.update();
         }
 
-        for (const plugin of container.plugins.values()) {
+        for (const plugin of container.plugins) {
             plugin.update?.(delta);
         }
 
@@ -327,7 +334,13 @@ export class Particles {
 
             this._container.interactionManager.reset(particle);
 
-            for (const plugin of this._container.plugins.values()) {
+            for (const plugin of this._container.plugins) {
+                if (plugin.particleReset) {
+                    plugin.particleReset(particle);
+                }
+            }
+
+            for (const plugin of this._container.plugins) {
                 if (particle.destroyed) {
                     break;
                 }
@@ -372,6 +385,12 @@ export class Particles {
 
         interactionManager.externalInteract(delta);
 
+        for (const plugin of container.plugins) {
+            if (plugin.postUpdate) {
+                plugin.postUpdate(delta);
+            }
+        }
+
         // this loop is required to be done after mouse interactions
         for (const particle of this._array) {
             for (const updater of this.updaters) {
@@ -380,6 +399,12 @@ export class Particles {
 
             if (!particle.destroyed && !particle.spawning) {
                 interactionManager.particlesInteract(particle, delta);
+
+                for (const plugin of container.plugins) {
+                    if (plugin.postParticleUpdate) {
+                        plugin.postParticleUpdate(particle, delta);
+                    }
+                }
             }
         }
 

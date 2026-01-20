@@ -1,7 +1,4 @@
-import type { IShapeDrawData } from "@tsparticles/engine";
-
-const half = 0.5,
-    double = 2;
+import { type IShapeDrawData, double, half } from "@tsparticles/engine";
 
 /**
  *

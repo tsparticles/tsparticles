@@ -5,12 +5,11 @@ import {
     type IInteractivityData,
     ParticlesInteractorBase,
     type RecursivePartial,
+    double,
     getDistance,
 } from "@tsparticles/engine";
 import { Collisions } from "./Options/Classes/Collisions.js";
 import { resolveCollision } from "./ResolveCollision.js";
-
-const double = 2;
 
 /**
  */

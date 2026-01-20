@@ -1,8 +1,7 @@
-import { type IDelta, type IInteractivityData, ParticlesInteractorBase, getRandom } from "@tsparticles/engine";
+import { type IDelta, type IInteractivityData, ParticlesInteractorBase, double, getRandom } from "@tsparticles/engine";
 import type { InfectableContainer, InfectableParticle } from "./Types.js";
 
-const minStagesCount = 1,
-    double = 2;
+const minStagesCount = 1;
 
 /**
  */

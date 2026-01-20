@@ -1,5 +1,5 @@
+import { type IShapeDrawData, half } from "@tsparticles/engine";
 import type { EmojiParticle } from "./EmojiParticle.js";
-import type { IShapeDrawData } from "@tsparticles/engine";
 
 /**
  *
@@ -8,7 +8,6 @@ import type { IShapeDrawData } from "@tsparticles/engine";
  */
 export function drawEmoji(data: IShapeDrawData<EmojiParticle>, image: ImageBitmap | HTMLCanvasElement): void {
     const { context, opacity } = data,
-        half = 0.5,
         previousAlpha = context.globalAlpha,
         diameter = image.width,
         radius = diameter * half;

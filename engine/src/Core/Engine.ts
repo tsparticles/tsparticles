@@ -3,6 +3,12 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
+import type {
+    Initializers,
+    InteractorInitializer,
+    MoverInitializer,
+    UpdaterInitializer,
+} from "../Types/EngineInitializers.js";
 import {
     canvasFirstIndex,
     canvasTag,
@@ -15,7 +21,7 @@ import {
     one,
     removeDeleteCount,
 } from "./Utils/Constants.js";
-import { itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import { getItemsFromInitializer, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -23,7 +29,6 @@ import type { EasingFunction } from "../Types/EasingFunction.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
@@ -34,7 +39,6 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
-import type { Options } from "../Options/Classes/Options.js";
 import type { Particle } from "./Particle.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
@@ -56,26 +60,6 @@ interface DataFromUrlParams {
     url: SingleOrMultiple<string>;
 }
 
-type GenericInitializer<T> = (container: Container) => Promise<T>;
-
-/**
- * Alias for interactivity manager initializer function
- */
-type InteractorInitializer = GenericInitializer<IInteractor>;
-
-type MoverInitializer = GenericInitializer<IParticleMover>;
-
-/**
- * Alias for updater initializer function
- */
-type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
-
-interface Initializers {
-    interactors: Map<string, InteractorInitializer>;
-    movers: Map<string, MoverInitializer>;
-    updaters: Map<string, UpdaterInitializer>;
-}
-
 type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
 type SyncLoadPluginFunction = (engine: Engine) => void;
 type AsyncLoadPluginNoEngine = () => Promise<void>;
@@ -85,30 +69,6 @@ type LoadPluginFunction =
     | SyncLoadPluginFunction
     | AsyncLoadPluginNoEngine
     | SyncLoadPluginNoEngine;
-
-/**
- * @param container -
- * @param map -
- * @param initializers -
- * @param force -
- * @returns the items from the given initializer
- */
-async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
-    container: Container,
-    map: Map<Container, TItem[]>,
-    initializers: Map<string, TInitializer>,
-    force = false,
-): Promise<TItem[]> {
-    let res = map.get(container);
-
-    if (!res || force) {
-        res = await Promise.all([...initializers.values()].map(t => t(container)));
-
-        map.set(container, res);
-    }
-
-    return res;
-}
 
 /**
  * @param data -
@@ -452,42 +412,6 @@ export class Engine {
     }
 
     /**
-     * All the {@link Container} objects loaded
-     * @deprecated the dom() function is deprecated, please use the items property instead
-     * @returns All the {@link Container} objects loaded
-     */
-    dom(): Container[] {
-        return this.items;
-    }
-
-    /**
-     * Retrieves a {@link Container} from all the objects loaded
-     * @deprecated the domItem() function is deprecated, please use the item function instead
-     * @param index - The object index
-     * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
-     */
-    domItem(index: number): Container | undefined {
-        return this.item(index);
-    }
-
-    /**
-     * Gets all the available plugins, for the specified container
-     * @param container - the container used to check which are the valid plugins
-     * @returns a map containing all enabled plugins, with the id as a key
-     */
-    async getAvailablePlugins(container: Container): Promise<Map<string, IContainerPlugin>> {
-        const res = new Map<string, IContainerPlugin>();
-
-        for (const plugin of this.plugins) {
-            if (plugin.needsPlugin(container.actualOptions)) {
-                res.set(plugin.id, await plugin.getPlugin(container));
-            }
-        }
-
-        return res;
-    }
-
-    /**
      * @param name -
      * @returns the easing function
      */
@@ -697,17 +621,6 @@ export class Engine {
         await newItem.start();
 
         return newItem;
-    }
-
-    /**
-     * Load the given options for all the plugins
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        this.plugins.forEach(plugin => {
-            plugin.loadOptions(options, sourceOptions);
-        });
     }
 
     /**

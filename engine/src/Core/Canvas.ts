@@ -172,7 +172,7 @@ export class Canvas {
     clear(): void {
         let pluginHandled = false;
 
-        for (const plugin of this.container.plugins.values()) {
+        for (const plugin of this.container.plugins) {
             if (!pluginHandled && plugin.canvasClear) {
                 pluginHandled = plugin.canvasClear();
             }
@@ -407,7 +407,7 @@ export class Canvas {
     initPlugins(): void {
         this._resizePlugins = [];
 
-        for (const plugin of this.container.plugins.values()) {
+        for (const plugin of this.container.plugins) {
             if (plugin.resize) {
                 this._resizePlugins.push(plugin);
             }
@@ -495,7 +495,7 @@ export class Canvas {
     paint(): void {
         let handled = false;
 
-        for (const plugin of this.container.plugins.values()) {
+        for (const plugin of this.container.plugins) {
             if (handled) {
                 break;
             }
