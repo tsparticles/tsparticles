@@ -1,6 +1,4 @@
-import { type BaseRange, Circle, type ICoordinates, type IDimension, Rectangle } from "@tsparticles/engine";
-
-const double = 2;
+import { type BaseRange, Circle, type ICoordinates, type IDimension, Rectangle, double } from "@tsparticles/engine";
 
 /**
  */

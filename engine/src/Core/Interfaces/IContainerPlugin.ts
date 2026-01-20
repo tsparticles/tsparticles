@@ -13,6 +13,7 @@ export interface IContainerPlugin {
     checkParticlePosition?: (particle: Particle, position: ICoordinates, tryCount: number) => boolean;
     clearDraw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     clickPositionValid?: (position: ICoordinates) => boolean;
+    destroy?: () => void;
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
     export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;
@@ -22,6 +23,7 @@ export interface IContainerPlugin {
     particleDestroyed?: (particle: Particle, override?: boolean) => void;
     particleFillColor?: (particle: Particle) => string | IOptionsColor | undefined;
     particlePosition?: (position?: ICoordinates, particle?: Particle) => ICoordinates | undefined;
+    particleReset?: (particle: Particle) => void;
     particleStrokeColor?: (particle: Particle) => string | IOptionsColor | undefined;
     particleUpdate?: (particle: Particle, delta: IDelta) => void;
     particlesDensityCount?: () => number;
@@ -29,6 +31,10 @@ export interface IContainerPlugin {
     particlesSetup?: () => void;
     pause?: () => void;
     play?: () => void;
+    postParticleUpdate?: (particle: Particle, delta: IDelta) => void;
+    postUpdate?: (delta: IDelta) => void;
+    preInit?: () => Promise<void>;
+    redrawInit?: () => Promise<void>;
     reset?: () => void;
     resize?: () => void;
     start?: () => Promise<void>;

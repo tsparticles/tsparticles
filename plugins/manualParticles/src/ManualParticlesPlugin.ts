@@ -1,4 +1,4 @@
-import { type IContainerPlugin, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
+import { type Container, type IContainerPlugin, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
 import type { IManualParticlesOptions, ManualParticlesContainer, ManualParticlesOptions } from "./types.js";
 import { ManualParticle } from "./Options/Classes/ManualParticle.js";
 
@@ -17,8 +17,12 @@ export class ManualParticlesPlugin implements IPlugin {
         return new ManualParticlesPluginInstance(container);
     }
 
-    loadOptions(options: ManualParticlesOptions, source?: RecursivePartial<IManualParticlesOptions>): void {
-        if (!this.needsPlugin(source)) {
+    loadOptions(
+        _container: Container,
+        options: ManualParticlesOptions,
+        source?: RecursivePartial<IManualParticlesOptions>,
+    ): void {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 

@@ -17,6 +17,7 @@ import {
     divMode,
     divModeExecute,
     getDistances,
+    half,
     isDivModeEnabled,
     isInArray,
     millisecondsToSeconds,
@@ -34,8 +35,7 @@ const repulseMode = "repulse",
     squarePower = 2,
     minRadius = 0,
     minSpeed = 0,
-    easingOffset = 1,
-    half = 0.5;
+    easingOffset = 1;
 
 /**
  * Particle repulse manager

@@ -34,7 +34,9 @@ interface InteractivityEventListenersHandlers {
  */
 export class InteractivityEventListeners {
     private _canPush = true;
+    private readonly _container: Container;
     private readonly _handlers: InteractivityEventListenersHandlers;
+    private readonly _interactionManager: InteractionManager;
     private readonly _touches: Map<number, number>;
 
     /**
@@ -42,10 +44,9 @@ export class InteractivityEventListeners {
      * @param container - the calling container
      * @param interactionManager - the interaction manager instance
      */
-    constructor(
-        private readonly container: Container,
-        private readonly interactionManager: InteractionManager,
-    ) {
+    constructor(container: Container, interactionManager: InteractionManager) {
+        this._container = container;
+        this._interactionManager = interactionManager;
         this._touches = new Map<number, number>();
         this._handlers = {
             mouseDown: (): void => {
@@ -100,7 +101,8 @@ export class InteractivityEventListeners {
      * @param e - the click event arguments
      */
     private readonly _doMouseTouchClick: (e: Event) => void = e => {
-        const { container, interactionManager } = this,
+        const container = this._container,
+            interactionManager = this._interactionManager,
             options = container.actualOptions;
 
         if (this._canPush) {
@@ -117,7 +119,7 @@ export class InteractivityEventListeners {
             const onClick = options.interactivity.events.onClick;
 
             executeOnSingleOrMultiple(onClick.mode, mode => {
-                this.interactionManager.handleClickMode(mode);
+                interactionManager.handleClickMode(mode);
             });
         }
 
@@ -141,7 +143,8 @@ export class InteractivityEventListeners {
         add,
     ) => {
         const handlers = this._handlers,
-            { container, interactionManager } = this,
+            container = this._container,
+            interactionManager = this._interactionManager,
             options = container.actualOptions,
             interactivityEl = interactionManager.interactivityData.element;
 
@@ -182,7 +185,8 @@ export class InteractivityEventListeners {
      */
     private readonly _manageListeners: (add: boolean) => void = add => {
         const handlers = this._handlers,
-            { container, interactionManager } = this,
+            container = this._container,
+            interactionManager = this._interactionManager,
             options = container.actualOptions,
             detectType = options.interactivity.detectsOn,
             canvasEl = container.canvas.element;
@@ -191,7 +195,7 @@ export class InteractivityEventListeners {
 
         /* events target element */
         if (detectType === InteractivityDetect.window) {
-            interactionManager.interactivityData.element = window;
+            interactionManager.interactivityData.element = globalThis;
 
             mouseLeaveTmpEvent = mouseOutEvent;
         } else if (detectType === InteractivityDetect.parent && canvasEl) {
@@ -210,7 +214,7 @@ export class InteractivityEventListeners {
      * @internal
      */
     private readonly _mouseDown: () => void = () => {
-        const { interactivityData } = this.interactionManager,
+        const { interactivityData } = this._interactionManager,
             { mouse } = interactivityData;
 
         mouse.clicking = true;
@@ -222,7 +226,8 @@ export class InteractivityEventListeners {
      * @param e - the click event arguments
      */
     private readonly _mouseTouchClick: (e: Event) => void = e => {
-        const { container, interactionManager } = this,
+        const container = this._container,
+            interactionManager = this._interactionManager,
             options = container.actualOptions,
             { mouse } = interactionManager.interactivityData;
 
@@ -236,7 +241,7 @@ export class InteractivityEventListeners {
             return;
         }
 
-        for (const plugin of container.plugins.values()) {
+        for (const plugin of container.plugins) {
             if (!plugin.clickPositionValid) {
                 continue;
             }
@@ -259,7 +264,7 @@ export class InteractivityEventListeners {
      * Mouse/Touch event finish
      */
     private readonly _mouseTouchFinish: () => void = () => {
-        const { interactivityData } = this.interactionManager,
+        const { interactivityData } = this._interactionManager,
             { mouse } = interactivityData;
 
         delete mouse.position;
@@ -277,7 +282,8 @@ export class InteractivityEventListeners {
      * @param e - the event arguments
      */
     private readonly _mouseTouchMove: (e: Event) => void = e => {
-        const { container, interactionManager } = this,
+        const container = this._container,
+            interactionManager = this._interactionManager,
             options = container.actualOptions,
             interactivity = interactionManager.interactivityData,
             canvasEl = container.canvas.element;
@@ -295,7 +301,7 @@ export class InteractivityEventListeners {
 
             const mouseEvent = e as MouseEvent;
 
-            if (interactivity.element === window) {
+            if (interactivity.element === globalThis) {
                 if (canvasEl) {
                     const clientRect = canvasEl.getBoundingClientRect();
 

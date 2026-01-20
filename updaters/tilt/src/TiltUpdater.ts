@@ -7,19 +7,19 @@ import {
     type IParticleUpdater,
     type RecursivePartial,
     degToRad,
+    double,
+    doublePI,
     getRandom,
     getRangeValue,
     half,
+    identity,
     updateAnimation,
 } from "@tsparticles/engine";
 import type { ITiltParticlesOptions, TiltParticle, TiltParticlesOptions } from "./Types.js";
 import { Tilt } from "./Options/Classes/Tilt.js";
 import { TiltDirection } from "./TiltDirection.js";
 
-const identity = 1,
-    double = 2,
-    doublePI = Math.PI * double,
-    maxAngle = 360;
+const maxAngle = 360;
 
 export class TiltUpdater implements IParticleUpdater {
     private readonly container;

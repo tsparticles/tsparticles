@@ -3,6 +3,7 @@ import {
     type IShapeDrawData,
     type IShapeDrawer,
     type SingleOrMultiple,
+    double,
     executeOnSingleOrMultiple,
     getRangeMax,
     isInArray,
@@ -76,8 +77,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     }
 
     particleInit(_container: Container, particle: EmojiParticle): void {
-        const double = 2,
-            shapeData = particle.shapeData as unknown as IEmojiShape;
+        const shapeData = particle.shapeData as unknown as IEmojiShape;
 
         if (!shapeData.value) {
             return;

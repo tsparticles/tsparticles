@@ -7,10 +7,10 @@ import {
     Vector,
     getRandom,
     getRangeValue,
+    half,
 } from "@tsparticles/engine";
 
 const angularFrequencyFactor = 0.5,
-    half = 0.5,
     halfPI = Math.PI * half;
 
 interface ZigZagParticle extends Particle {

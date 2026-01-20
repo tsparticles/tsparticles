@@ -1,9 +1,6 @@
-import type { ICoordinates } from "@tsparticles/engine";
+import { type ICoordinates, doublePI, half } from "@tsparticles/engine";
 
-const double = 2,
-    doublePI = Math.PI * double,
-    half = 0.5,
-    defaultRotation = 0;
+const defaultRotation = 0;
 
 /**
  * @param sides -

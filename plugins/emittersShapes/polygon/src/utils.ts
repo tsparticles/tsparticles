@@ -1,8 +1,6 @@
-import { type ICoordinates, getRandom } from "@tsparticles/engine";
+import { type ICoordinates, doublePI, getRandom } from "@tsparticles/engine";
 
-const double = 2,
-    doublePI = Math.PI * double,
-    defaultRotation = 0,
+const defaultRotation = 0,
     maxAttempts = 100;
 
 /**

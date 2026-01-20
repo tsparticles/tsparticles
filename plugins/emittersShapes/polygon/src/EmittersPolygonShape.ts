@@ -1,13 +1,11 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, degToRad } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, degToRad, half } from "@tsparticles/engine";
 import {
     generateRandomPointOnPolygonPerimeter,
     generateRandomPointWithinPolygon,
     generateRandomPolygon,
 } from "./utils.js";
 import type { EmittersPolygonShapeOptions } from "./Options/Classes/EmittersPolygonShapeOptions.js";
-
-const half = 0.5;
 
 export class EmittersPolygonShape extends EmitterShapeBase<EmittersPolygonShapeOptions> {
     angle: number;

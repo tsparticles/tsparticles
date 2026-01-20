@@ -7,7 +7,8 @@
     const stats = new Stats();
 
     stats.addPanel("count", "#ff8", 0, () => {
-        const container = tsParticles.domItem(0);
+        const container = tsParticles.item(0);
+
         if (container) {
             maxParticles = Math.max(container.particles.count, maxParticles);
 
@@ -41,7 +42,7 @@
         poolCount = document.getElementById("pool-count");
 
     setInterval(() => {
-        const container = tsParticles.domItem(0);
+        const container = tsParticles.item(0);
 
         if (container) {
             particlesCount.innerText = `${container.particles.count}`;
@@ -203,7 +204,7 @@
         const btnUpdate = document.getElementById("btnUpdate");
 
         btnUpdate.onclick = function () {
-            const particles = tsParticles.domItem(0);
+            const particles = tsParticles.item(0);
 
             particles.reset().then(() => {
                 particles.options.load(editor.get());
@@ -233,7 +234,7 @@
         });
 
         document.getElementById("export-image").addEventListener("click", function () {
-            const container = tsParticles.domItem(0);
+            const container = tsParticles.item(0);
 
             if (container) {
                 container.export("image").then(function (blob) {
@@ -262,7 +263,7 @@
         });
 
         document.getElementById("export-video").addEventListener("click", function () {
-            const container = tsParticles.domItem(0);
+            const container = tsParticles.item(0);
 
             if (container) {
                 container.export("video").then(function (blob) {
@@ -303,7 +304,7 @@
         });
 
         document.getElementById("export-config").addEventListener("click", function () {
-            const container = tsParticles.domItem(0);
+            const container = tsParticles.item(0);
 
             if (container) {
                 container.export("json").then(function (blob) {
@@ -321,7 +322,7 @@
         });
 
         document.getElementById("codepen-export").addEventListener("click", function () {
-            const container = tsParticles.domItem(0);
+            const container = tsParticles.item(0);
 
             if (container) {
                 const form = document.getElementById("code-pen-form");

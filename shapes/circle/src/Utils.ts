@@ -1,10 +1,7 @@
-import type { ICoordinates, IShapeDrawData } from "@tsparticles/engine";
+import { type IShapeDrawData, doublePI, originPoint } from "@tsparticles/engine";
 import type { CircleParticle } from "./CircleParticle.js";
 
-const double = 2,
-    doublePI = Math.PI * double,
-    minAngle = 0,
-    origin: ICoordinates = { x: 0, y: 0 };
+const minAngle = 0;
 
 /**
  *
@@ -17,5 +14,5 @@ export function drawCircle(data: IShapeDrawData<CircleParticle>): void {
 
     const circleRange = particle.circleRange;
 
-    context.arc(origin.x, origin.y, radius, circleRange.min, circleRange.max, false);
+    context.arc(originPoint.x, originPoint.y, radius, circleRange.min, circleRange.max, false);
 }

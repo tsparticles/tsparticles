@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
-import type { ICoordinates, IRgb, IRgba, IShapeDrawData } from "@tsparticles/engine";
+import { type ICoordinates, type IRgb, type IRgba, type IShapeDrawData, half } from "@tsparticles/engine";
 import { type IImage, type ImageParticle, loadImage } from "../Utils.js";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants.js";
 import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
@@ -16,7 +15,6 @@ const origin: ICoordinates = {
         y: 0,
     },
     defaultFrame = 0,
-    half = 0.5,
     initialTime = 0,
     firstIndex = 0,
     defaultLoopCount = 0;
