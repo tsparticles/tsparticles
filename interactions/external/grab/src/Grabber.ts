@@ -1,17 +1,19 @@
 import {
     type Engine,
-    ExternalInteractorBase,
-    type IInteractivityData,
-    type IModes,
-    type Modes,
-    type Particle,
     type RecursivePartial,
     getDistance,
     getLinkColor,
     getLinkRandomColor,
     isInArray,
-    mouseMoveEvent,
 } from "@tsparticles/engine";
+import {
+    ExternalInteractorBase,
+    type IInteractivityData,
+    type IModes,
+    type InteractivityParticle,
+    type Modes,
+    mouseMoveEvent,
+} from "@tsparticles/plugin-interactivity";
 import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.js";
 import { Grab } from "./Options/Classes/Grab.js";
 import { drawGrab } from "./Utils.js";
@@ -38,7 +40,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
     init(): void {
         const container = this.container,
-            grab = container.actualOptions.interactivity.modes.grab;
+            grab = container.actualOptions.interactivity?.modes.grab;
 
         if (!grab) {
             return;
@@ -53,7 +55,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
             interactivity = options.interactivity;
 
         if (
-            !interactivity.modes.grab ||
+            !interactivity?.modes.grab ||
             !interactivity.events.onHover.enable ||
             interactivityData.status !== mouseMoveEvent
         ) {
@@ -119,12 +121,12 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         }
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+            events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
+        return !!events?.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {

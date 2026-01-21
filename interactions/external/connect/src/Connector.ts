@@ -3,11 +3,10 @@ import {
     ExternalInteractorBase,
     type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
-    type RecursivePartial,
-    isInArray,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
+import { type RecursivePartial, isInArray } from "@tsparticles/engine";
 import { Connect } from "./Options/Classes/Connect.js";
 import { drawConnection } from "./Utils.js";
 
@@ -29,7 +28,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
 
     init(): void {
         const container = this.container,
-            connect = container.actualOptions.interactivity.modes.connect;
+            connect = container.actualOptions.interactivity?.modes.connect;
 
         if (!connect) {
             return;
@@ -47,7 +46,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
         const container = this.container,
             options = container.actualOptions;
 
-        if (options.interactivity.events.onHover.enable && interactivityData.status === "pointermove") {
+        if (options.interactivity?.events.onHover.enable && interactivityData.status === "pointermove") {
             const mousePos = interactivityData.mouse.position,
                 { connectModeDistance, connectModeRadius } = container.retina;
 
@@ -84,12 +83,12 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
         }
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+            events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-        if (!(events.onHover.enable && mouse.position)) {
+        if (!(events?.onHover.enable && mouse.position)) {
             return false;
         }
 

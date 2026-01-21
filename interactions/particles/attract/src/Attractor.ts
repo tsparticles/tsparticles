@@ -1,11 +1,6 @@
-import {
-    type Container,
-    type Particle,
-    ParticlesInteractorBase,
-    getDistances,
-    getRangeValue,
-} from "@tsparticles/engine";
+import { type Container, type Particle, getDistances, getRangeValue } from "@tsparticles/engine";
 import type { AttractParticle } from "./AttractParticle.js";
+import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
 const attractFactor = 1000,
     identity = 1;

@@ -1,6 +1,5 @@
 import type { IBackground } from "./Background/IBackground.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
-import type { IInteractivity } from "./Interactivity/IInteractivity.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
 import type { IResizeEvent } from "./IResizeEvent.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
@@ -61,11 +60,6 @@ export interface IOptions {
      * Enables or disables the HDR mode, if enabled the particles will be rendered in a higher color precision
      */
     hdr: boolean;
-
-    /**
-     * The particles interaction options
-     */
-    interactivity: IInteractivity;
 
     /**
      * The key used to store the options in the {@link Engine.configs} collection

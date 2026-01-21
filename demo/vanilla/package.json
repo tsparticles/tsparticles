@@ -117,6 +117,7 @@
         "@tsparticles/plugin-hsv-color": "workspace:4.0.0-alpha.3",
         "@tsparticles/plugin-hwb-color": "workspace:4.0.0-alpha.3",
         "@tsparticles/plugin-infection": "workspace:4.0.0-alpha.3",
+        "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.3",
         "@tsparticles/plugin-lab-color": "workspace:4.0.0-alpha.3",
         "@tsparticles/plugin-lch-color": "workspace:4.0.0-alpha.3",
         "@tsparticles/plugin-manual-particles": "workspace:4.0.0-alpha.3",

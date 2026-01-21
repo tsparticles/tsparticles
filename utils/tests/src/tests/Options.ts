@@ -2,7 +2,6 @@
 import {
     type IParticlesOptions,
     type ISourceOptions,
-    InteractivityDetect,
     LimitMode,
     MoveDirection,
     OptionsColor,
@@ -46,34 +45,6 @@ describe("Options tests", () => {
 
         /* fps limit */
         expect(options.fpsLimit).to.equal(120);
-
-        /* interactivity */
-        expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.window);
-
-        /* interactivity events */
-        expect(options.interactivity.events.onClick.enable).to.be.false;
-        expect(options.interactivity.events.onClick.mode).to.be.empty;
-        expect(options.interactivity.events.onHover.enable).to.be.false;
-        expect(options.interactivity.events.onHover.mode).to.be.empty;
-        expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
-
-        /* interactivity modes */
-        // expect(options.interactivity.modes.bubble.color).to.be.undefined;
-        // expect(options.interactivity.modes.bubble.distance).to.equal(200);
-        // expect(options.interactivity.modes.bubble.duration).to.equal(0.4);
-        // expect(options.interactivity.modes.bubble.opacity).to.be.undefined;
-        // expect(options.interactivity.modes.bubble.size).to.be.undefined;
-        // expect(options.interactivity.modes.connect.distance).to.equal(80);
-        // expect(options.interactivity.modes.connect.links.opacity).to.equal(0.5);
-        // expect(options.interactivity.modes.connect.radius).to.equal(60);
-        // expect(options.interactivity.modes.grab.distance).to.equal(100);
-        // expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
-        // expect(options.interactivity.modes.push.quantity).to.equal(4);
-        // expect(options.interactivity.modes.remove.quantity).to.equal(2);
-        // expect(options.interactivity.modes.repulse.distance).to.equal(200);
-        // expect(options.interactivity.modes.repulse.duration).to.equal(0.4);
-        // expect(options.interactivity.modes.slow.factor).to.equal(3);
-        // expect(options.interactivity.modes.slow.radius).to.equal(200);
 
         /* particles */
         /* particles color */
@@ -149,7 +120,6 @@ describe("Options tests", () => {
                     color: "#0d47a1",
                 },
                 interactivity: {
-                    detectsOn: InteractivityDetect.canvas,
                     events: {
                         onClick: {
                             enable: true,
@@ -257,27 +227,6 @@ describe("Options tests", () => {
         /* detect retina */
         expect(options.detectRetina).to.be.true;
 
-        /* interactivity */
-        expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.canvas);
-
-        /* interactivity events */
-        expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal("push");
-        expect(options.interactivity.events.onHover.enable).to.be.true;
-        expect(options.interactivity.events.onHover.mode).to.equal("repulse");
-        expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
-
-        /* interactivity modes */
-        // expect(options.interactivity.modes.bubble.distance).to.equal(400);
-        // expect(options.interactivity.modes.bubble.duration).to.equal(2);
-        // expect(options.interactivity.modes.bubble.opacity).to.equal(0.8);
-        // expect(options.interactivity.modes.bubble.size).to.equal(40);
-        // expect(options.interactivity.modes.grab.distance).to.equal(400);
-        // expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
-        // expect(options.interactivity.modes.push.quantity).to.equal(4);
-        // expect(options.interactivity.modes.remove.quantity).to.equal(2);
-        // expect(options.interactivity.modes.repulse.distance).to.equal(200);
-
         /* particles */
         /* particles color */
         expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
@@ -331,7 +280,6 @@ describe("Options tests", () => {
                     color: "#0d47a1",
                 },
                 interactivity: {
-                    detectsOn: InteractivityDetect.canvas,
                     events: {
                         onClick: {
                             enable: true,
@@ -435,16 +383,6 @@ describe("Options tests", () => {
 
         /* detect retina */
         expect(options.detectRetina).to.be.true;
-
-        /* interactivity */
-        expect(options.interactivity.detectsOn).to.equal(InteractivityDetect.canvas);
-
-        /* interactivity events */
-        expect(options.interactivity.events.onClick.enable).to.be.true;
-        expect(options.interactivity.events.onClick.mode).to.equal("repulse");
-        expect(options.interactivity.events.onHover.enable).to.be.false;
-        expect(options.interactivity.events.onHover.mode).to.equal("grab");
-        expect(options.interactivity.events.resize).to.be.an("object").to.have.property("enable").to.be.true;
 
         /* interactivity modes */
         // expect(options.interactivity.modes.bubble.distance).to.equal(400);

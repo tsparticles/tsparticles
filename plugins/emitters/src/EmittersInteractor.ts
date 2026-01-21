@@ -1,11 +1,13 @@
 import type { EmitterModeOptions, IEmitterDataModeOptions, IEmitterModeOptions } from "./types.js";
 import {
     ExternalInteractorBase,
-    type IDelta,
     type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
+} from "@tsparticles/plugin-interactivity";
+import {
+    type IDelta,
     type RecursivePartial,
     type SingleOrMultiple,
     arrayRandomIndex,
@@ -100,7 +102,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
         }
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = interactivityData.mouse,

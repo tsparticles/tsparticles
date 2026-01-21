@@ -18,7 +18,6 @@ import { EventType } from "../Enums/Types/EventType.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
-import type { IMouseData } from "./Interfaces/IMouseData.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
@@ -173,8 +172,6 @@ export class Particles {
         this._lastZIndex = 0;
         this._needsSort = false;
 
-        await this._container.interactionManager.init();
-
         for (const plugin of container.plugins) {
             if (plugin.redrawInit) {
                 await plugin.redrawInit();
@@ -234,9 +231,14 @@ export class Particles {
         }
     }
 
-    push(nb: number, mouse?: IMouseData, overrideOptions?: RecursivePartial<IParticlesOptions>, group?: string): void {
+    push(
+        nb: number,
+        position?: ICoordinates,
+        overrideOptions?: RecursivePartial<IParticlesOptions>,
+        group?: string,
+    ): void {
         for (let i = 0; i < nb; i++) {
-            this.addParticle(mouse?.position, overrideOptions, group);
+            this.addParticle(position, overrideOptions, group);
         }
     }
 
@@ -332,8 +334,6 @@ export class Particles {
 
             particle.ignoresResizeRatio = false;
 
-            this._container.interactionManager.reset(particle);
-
             for (const plugin of this._container.plugins) {
                 if (plugin.particleReset) {
                     plugin.particleReset(particle);
@@ -381,10 +381,6 @@ export class Particles {
             this._addToPool(...particlesToDelete);
         }
 
-        const { interactionManager } = container;
-
-        interactionManager.externalInteract(delta);
-
         for (const plugin of container.plugins) {
             if (plugin.postUpdate) {
                 plugin.postUpdate(delta);
@@ -398,8 +394,6 @@ export class Particles {
             }
 
             if (!particle.destroyed && !particle.spawning) {
-                interactionManager.particlesInteract(particle, delta);
-
                 for (const plugin of container.plugins) {
                     if (plugin.postParticleUpdate) {
                         plugin.postParticleUpdate(particle, delta);

@@ -1,34 +1,37 @@
 import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types.js";
 import {
     Circle,
-    type DivEvent,
-    DivType,
     type Engine,
-    ExternalInteractorBase,
     type IDelta,
-    type IInteractivityData,
-    type IModes,
-    type Modes,
     type Particle,
     Rectangle,
     type RecursivePartial,
     colorMix,
-    divMode,
-    divModeExecute,
     double,
     getDistance,
     getRangeMax,
     half,
-    isDivModeEnabled,
     isInArray,
     itemFromSingleOrMultiple,
     millisecondsToSeconds,
-    mouseLeaveEvent,
-    mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
     safeDocument,
 } from "@tsparticles/engine";
+import {
+    type DivEvent,
+    DivType,
+    ExternalInteractorBase,
+    type IInteractivityData,
+    type IModes,
+    type InteractivityParticle,
+    type Modes,
+    divMode,
+    divModeExecute,
+    isDivModeEnabled,
+    mouseLeaveEvent,
+    mouseMoveEvent,
+} from "@tsparticles/plugin-interactivity";
 import { Bubble } from "./Options/Classes/Bubble.js";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv.js";
 import type { Interfaces } from "./Interfaces.js";
@@ -83,7 +86,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     init(): void {
         const container = this.container,
-            bubble = container.actualOptions.interactivity.modes.bubble;
+            bubble = container.actualOptions.interactivity?.modes.bubble;
 
         if (!bubble) {
             return;
@@ -98,8 +101,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     interact(interactivityData: IInteractivityData, delta: IDelta): void {
         const options = this.container.actualOptions,
-            events = options.interactivity.events,
-            onHover = events.onHover,
+            events = options.interactivity?.events;
+
+        if (!events) {
+            return;
+        }
+
+        const onHover = events.onHover,
             onClick = events.onClick,
             hoverEnabled = onHover.enable,
             hoverMode = onHover.mode,
@@ -119,12 +127,17 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events,
-            { onClick, onDiv, onHover } = events,
+            events = (particle?.interactivity ?? options.interactivity)?.events;
+
+        if (!events) {
+            return false;
+        }
+
+        const { onClick, onDiv, onHover } = events,
             divBubble = isDivModeEnabled(bubbleMode, onDiv);
 
         if (!(divBubble || (onHover.enable && !!mouse.position) || (onClick.enable && mouse.clickPosition))) {
@@ -153,7 +166,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         const container = this.container,
             options = container.actualOptions,
             mouseClickPos = interactivityData.mouse.clickPosition,
-            bubbleOptions = options.interactivity.modes.bubble;
+            bubbleOptions = options.interactivity?.modes.bubble;
 
         if (!bubbleOptions || !mouseClickPos) {
             return;
@@ -280,7 +293,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         divBubble,
     ) => {
         const options = this.container.actualOptions,
-            bubbleOptions = divBubble ?? options.interactivity.modes.bubble;
+            bubbleOptions = divBubble ?? options.interactivity?.modes.bubble;
 
         if (!bubbleOptions) {
             return;
@@ -322,7 +335,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     ) => {
         const container = this.container,
             options = container.actualOptions,
-            modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble?.opacity;
+            modeOpacity = divBubble?.opacity ?? options.interactivity?.modes.bubble?.opacity;
 
         if (!modeOpacity) {
             return;
@@ -367,7 +380,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         const container = this.container,
             bubbleParam = data.bubbleObj.optValue,
             options = container.actualOptions,
-            bubbleOptions = options.interactivity.modes.bubble;
+            bubbleOptions = options.interactivity?.modes.bubble;
 
         if (!bubbleOptions || bubbleParam === undefined) {
             return;
@@ -431,7 +444,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     ) => void = (interactivityData, delta, selector, div) => {
         const container = this.container,
             selectors = safeDocument().querySelectorAll(selector),
-            bubble = container.actualOptions.interactivity.modes.bubble;
+            bubble = container.actualOptions.interactivity?.modes.bubble;
 
         if (!bubble || !selectors.length) {
             return;

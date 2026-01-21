@@ -4,7 +4,6 @@ import {
     type ICoordinates,
     type IDimension,
     type IRgb,
-    ParticlesInteractorBase,
     type RecursivePartial,
     getDistances,
     getLinkRandomColor,
@@ -13,6 +12,7 @@ import {
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
 import { CircleWarp } from "./CircleWarp.js";
 import { Links } from "./Options/Classes/Links.js";
+import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
 const squarePower = 2,
     opacityOffset = 1,

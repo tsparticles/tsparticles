@@ -1,4 +1,4 @@
-import type { Container, Particle } from "@tsparticles/engine";
+import type { InteractivityContainer, InteractivityParticle } from "@tsparticles/plugin-interactivity";
 import type { Attract } from "./Options/Classes/Attract.js";
 import type { AttractOptions } from "./Options/Classes/AttractOptions.js";
 import type { IAttract } from "./Options/Interfaces/IAttract.js";
@@ -15,10 +15,10 @@ interface IContainerAttract {
     clicking?: boolean;
     count?: number;
     finish?: boolean;
-    particles: Particle[];
+    particles: InteractivityParticle[];
 }
 
-export type AttractContainer = Container & {
+export type AttractContainer = InteractivityContainer & {
     actualOptions: AttractOptions;
     attract?: IContainerAttract;
     retina: {

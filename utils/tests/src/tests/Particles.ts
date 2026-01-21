@@ -189,7 +189,7 @@ describe("Particles", async () => {
 
         const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
 
-        container.particles.push(numParticles, { position, clicking: false, inside: false });
+        container.particles.push(numParticles, position);
 
         expect(container.particles.count).to.equal(numParticles);
 
@@ -206,7 +206,7 @@ describe("Particles", async () => {
 
         const position: ICoordinates3d = { x: 100, y: 100, z: 0 };
 
-        container.particles.push(numParticles, { position, clicking: false, inside: false });
+        container.particles.push(numParticles, position);
 
         expect(container.particles.count).to.equal(5);
 

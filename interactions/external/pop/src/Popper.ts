@@ -1,4 +1,8 @@
-import { type Container, ExternalInteractorBase, type IInteractivityData } from "@tsparticles/engine";
+import {
+    ExternalInteractorBase,
+    type IInteractivityData,
+    type InteractivityContainer,
+} from "@tsparticles/plugin-interactivity";
 
 const popMode = "pop";
 
@@ -8,7 +12,7 @@ const popMode = "pop";
 export class Popper extends ExternalInteractorBase {
     handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
-    constructor(container: Container) {
+    constructor(container: InteractivityContainer) {
         super(container);
 
         this.handleClickMode = (mode, interactivityData): void => {

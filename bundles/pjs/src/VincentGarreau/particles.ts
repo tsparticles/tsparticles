@@ -1,5 +1,6 @@
-import { type Container, type Engine, type Particle, type RecursivePartial, deepExtend } from "@tsparticles/engine";
+import { type Container, type Particle, type RecursivePartial, deepExtend } from "@tsparticles/engine";
 import type { IParticlesJS, IParticlesJSOptions } from "./IParticlesJS.js";
+import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 
 const defaultMinOpacity = 0,
     defaultMinSize = 0,
@@ -116,7 +117,7 @@ const defaultMinOpacity = 0,
     };
 
 const initParticlesJS = (
-    engine: Engine,
+    engine: InteractivityEngine,
 ): {
     /**
      * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
@@ -311,7 +312,7 @@ const initParticlesJS = (
      */
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     particlesJS.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
-        engine.setOnClickHandler(callback);
+        engine.setOnClickHandler?.(callback);
     };
 
     /**
