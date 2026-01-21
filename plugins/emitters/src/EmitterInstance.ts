@@ -28,7 +28,6 @@ import {
 } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import { EmitterSize } from "./Options/Classes/EmitterSize.js";
-import type { Emitters } from "./Emitters.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 import type { IEmitterShape } from "./IEmitterShape.js";
@@ -39,7 +38,8 @@ const defaultLifeDelay = 0,
     defaultSpawnDelay = 0,
     defaultEmitDelay = 0,
     defaultLifeCount = -1,
-    defaultColorAnimationFactor = 1;
+    defaultColorAnimationFactor = 1,
+    colorFactor = 3.6;
 
 /**
  *
@@ -87,8 +87,8 @@ export class EmitterInstance {
 
     constructor(
         engine: EmittersEngine,
-        private readonly emitters: Emitters,
         private readonly container: Container,
+        private readonly removeCallback: (emitter: EmitterInstance) => void,
         options: Emitter | RecursivePartial<IEmitter>,
         position?: ICoordinates,
     ) {
@@ -380,7 +380,7 @@ export class EmitterInstance {
         this._resizeObserver?.disconnect();
         this._resizeObserver = undefined;
 
-        this.emitters.removeEmitter(this);
+        this.removeCallback(this);
 
         this._engine.dispatchEvent("emitterDestroyed", {
             container: this.container,
@@ -401,23 +401,23 @@ export class EmitterInstance {
     }
 
     private _emitParticles(quantity: number): void {
-        const singleParticlesOptions = itemFromSingleOrMultiple(this._particlesOptions),
-            reduceFactor = this.container.retina.reduceFactor;
+        const singleParticlesOptions = (itemFromSingleOrMultiple(this._particlesOptions) ??
+                {}) as RecursivePartial<IParticlesOptions>,
+            hslAnimation = this.options.spawnColor?.animation,
+            reduceFactor = this.container.retina.reduceFactor,
+            needsColorAnimation = !!hslAnimation,
+            needsShapeData = !!this._shape,
+            needsCopy = needsColorAnimation || needsShapeData,
+            maxValues = needsColorAnimation ? { h: hMax, s: sMax, l: lMax } : null,
+            shapeOptions = this.options.shape;
 
         for (let i = 0; i < quantity * reduceFactor; i++) {
-            const particlesOptions = deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>;
+            const particlesOptions = needsCopy
+                ? (deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>)
+                : singleParticlesOptions;
 
             if (this.spawnColor) {
-                const hslAnimation = this.options.spawnColor?.animation;
-
-                if (hslAnimation) {
-                    const maxValues = {
-                            h: hMax,
-                            s: sMax,
-                            l: lMax,
-                        },
-                        colorFactor = 3.6;
-
+                if (hslAnimation && maxValues) {
                     this.spawnColor.h = this._setColorAnimation(
                         hslAnimation.h,
                         this.spawnColor.h,
@@ -430,8 +430,6 @@ export class EmitterInstance {
 
                 setParticlesOptionsColor(particlesOptions, this.spawnColor);
             }
-
-            const shapeOptions = this.options.shape;
 
             let position: ICoordinates | null = this.position;
 

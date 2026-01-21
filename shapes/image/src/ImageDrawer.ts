@@ -1,13 +1,17 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer } from "@tsparticles/engine";
+import {
+    type Container,
+    type IShapeDrawData,
+    type IShapeDrawer,
+    defaultAlpha,
+    defaultRatio,
+    double,
+} from "@tsparticles/engine";
 import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
 import { drawGif } from "./GifUtils/Utils.js";
 
-const double = 2,
-    defaultAlpha = 1,
-    sides = 12,
-    defaultRatio = 1;
+const sides = 12;
 
 /**
  * Particles Image Drawer

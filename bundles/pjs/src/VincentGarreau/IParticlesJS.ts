@@ -1,12 +1,5 @@
-import type {
-    Container,
-    IHsl,
-    IRgb,
-    IValueColor,
-    InteractivityDetect,
-    MoveDirection,
-    OutMode,
-} from "@tsparticles/engine";
+import type { Container, IHsl, IRgb, IValueColor, MoveDirection, OutMode } from "@tsparticles/engine";
+import type { InteractivityDetect } from "@tsparticles/plugin-interactivity";
 
 export interface IParticlesJSOptions {
     interactivity: {

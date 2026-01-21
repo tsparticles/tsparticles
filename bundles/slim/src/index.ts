@@ -10,11 +10,11 @@ declare const __VERSION__: string;
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
  */
-export function loadSlim(engine: Engine): void {
+export async function loadSlim(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
-        const { loadParallaxMover } = await import("@tsparticles/move-parallax"),
+    await engine.register(async e => {
+        const { loadExternalParallaxInteraction } = await import("@tsparticles/interaction-external-parallax"),
             { loadExternalAttractInteraction } = await import("@tsparticles/interaction-external-attract"),
             { loadExternalBounceInteraction } = await import("@tsparticles/interaction-external-bounce"),
             { loadExternalBubbleInteraction } = await import("@tsparticles/interaction-external-bubble"),
@@ -40,36 +40,36 @@ export function loadSlim(engine: Engine): void {
             { loadStrokeColorUpdater } = await import("@tsparticles/updater-stroke-color"),
             { loadBasic } = await import("@tsparticles/basic");
 
-        loadParallaxMover(e);
+        await loadExternalParallaxInteraction(e);
 
-        loadExternalAttractInteraction(e);
-        loadExternalBounceInteraction(e);
-        loadExternalBubbleInteraction(e);
-        loadExternalConnectInteraction(e);
-        loadExternalGrabInteraction(e);
-        loadExternalPauseInteraction(e);
-        loadExternalPushInteraction(e);
-        loadExternalRemoveInteraction(e);
-        loadExternalRepulseInteraction(e);
-        loadExternalSlowInteraction(e);
+        await loadExternalAttractInteraction(e);
+        await loadExternalBounceInteraction(e);
+        await loadExternalBubbleInteraction(e);
+        await loadExternalConnectInteraction(e);
+        await loadExternalGrabInteraction(e);
+        await loadExternalPauseInteraction(e);
+        await loadExternalPushInteraction(e);
+        await loadExternalRemoveInteraction(e);
+        await loadExternalRepulseInteraction(e);
+        await loadExternalSlowInteraction(e);
 
-        loadParticlesAttractInteraction(e);
-        loadParticlesCollisionsInteraction(e);
-        loadParticlesLinksInteraction(e);
+        await loadParticlesAttractInteraction(e);
+        await loadParticlesCollisionsInteraction(e);
+        await loadParticlesLinksInteraction(e);
 
-        loadEasingQuadPlugin(e);
+        await loadEasingQuadPlugin(e);
 
-        loadEmojiShape(e);
-        loadImageShape(e);
-        loadLineShape(e);
-        loadPolygonShape(e);
-        loadSquareShape(e);
-        loadStarShape(e);
+        await loadEmojiShape(e);
+        await loadImageShape(e);
+        await loadLineShape(e);
+        await loadPolygonShape(e);
+        await loadSquareShape(e);
+        await loadStarShape(e);
 
-        loadLifeUpdater(e);
-        loadRotateUpdater(e);
-        loadStrokeColorUpdater(e);
+        await loadLifeUpdater(e);
+        await loadRotateUpdater(e);
+        await loadStrokeColorUpdater(e);
 
-        loadBasic(engine);
+        await loadBasic(engine);
     });
 }

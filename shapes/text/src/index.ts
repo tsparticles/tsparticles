@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadTextShape(engine: Engine): void {
+export async function loadTextShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { TextDrawer } = await import("./TextDrawer.js");
 
         e.addShape(new TextDrawer());

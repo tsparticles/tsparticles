@@ -83,7 +83,7 @@ export function lineStyle(
     p2: Particle,
 ): CanvasGradient | undefined {
     const options = container.actualOptions,
-        connectOptions = options.interactivity.modes.connect;
+        connectOptions = options.interactivity?.modes.connect;
 
     if (!connectOptions) {
         return;

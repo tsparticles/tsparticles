@@ -1,3 +1,3 @@
 import type { CustomEventArgs } from "./CustomEventArgs.js";
 
-export type CustomEventListener = (args: CustomEventArgs) => void;
+export type CustomEventListener = (args?: CustomEventArgs) => void;

@@ -1,8 +1,11 @@
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
-    type IParticlesOptions,
     type Modes,
+} from "@tsparticles/plugin-interactivity";
+import {
+    type IParticlesOptions,
     type RecursivePartial,
     deepExtend,
     getRangeValue,
@@ -19,19 +22,19 @@ const pushMode = "push",
  * Particle attract manager
  */
 export class Pusher extends ExternalInteractorBase<PushContainer> {
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     constructor(container: PushContainer) {
         super(container);
 
-        this.handleClickMode = (mode): void => {
+        this.handleClickMode = (mode, interactivityData): void => {
             if (mode !== pushMode) {
                 return;
             }
 
             const container = this.container,
                 options = container.actualOptions,
-                pushOptions = options.interactivity.modes.push;
+                pushOptions = options.interactivity?.modes.push;
 
             if (!pushOptions) {
                 return;
@@ -48,7 +51,7 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
                 particlesOptions = itemFromSingleOrMultiple(pushOptions.particles),
                 overrideOptions = deepExtend(groupOptions, particlesOptions) as RecursivePartial<IParticlesOptions>;
 
-            container.particles.push(quantity, container.interactivity.mouse, overrideOptions, group);
+            container.particles.push(quantity, interactivityData.mouse.position, overrideOptions, group);
         };
     }
 

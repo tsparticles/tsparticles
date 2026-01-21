@@ -1,9 +1,7 @@
-import { type IDelta, millisecondsToSeconds } from "@tsparticles/engine";
+import { type IDelta, doublePI, millisecondsToSeconds } from "@tsparticles/engine";
 import type { WobbleParticle } from "./Types.js";
 
 const defaultDistance = 0,
-    double = 2,
-    doublePI = Math.PI * double,
     distanceFactor = 60;
 
 /**

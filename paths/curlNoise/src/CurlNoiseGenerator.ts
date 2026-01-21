@@ -4,16 +4,16 @@ import {
     type Particle,
     Vector,
     deepExtend,
+    double,
     getRandom,
 } from "@tsparticles/engine";
 import type { ICurlOptions } from "./ICurlOptions.js";
 import { SimplexNoise } from "@tsparticles/simplex-noise";
 
 const defaultOptions: ICurlOptions = {
-        speed: 0.2,
-        step: 250,
-    },
-    double = 2;
+    speed: 0.2,
+    step: 250,
+};
 
 export class CurlNoiseGenerator implements IMovePathGenerator {
     readonly options: ICurlOptions;

@@ -11,11 +11,6 @@ const minFilterValue = 30,
                 onHover: {
                     enable: true,
                     mode: "bubble",
-                    parallax: {
-                        enable: false,
-                        force: 2,
-                        smooth: 10,
-                    },
                 },
             },
             modes: {

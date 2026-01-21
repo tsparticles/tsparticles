@@ -31,7 +31,7 @@ export class OklchColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             oklchColor = colorValue.oklch ?? (color.value as IOklch);
 
-        if (!Object.hasOwn(oklchColor, "l") && !Object.hasOwn(oklchColor, "c") && !Object.hasOwn(oklchColor, "h")) {
+        if (!Object.hasOwn(oklchColor, "l") || !Object.hasOwn(oklchColor, "c") || !Object.hasOwn(oklchColor, "h")) {
             return;
         }
 
@@ -42,7 +42,7 @@ export class OklchColorManager implements IColorManager {
         const colorValue = color.value as IRangeValueColor,
             oklchColor = colorValue.oklch ?? (color.value as IRangeOklch);
 
-        if (!Object.hasOwn(oklchColor, "l") && !Object.hasOwn(oklchColor, "c") && !Object.hasOwn(oklchColor, "h")) {
+        if (!Object.hasOwn(oklchColor, "l") || !Object.hasOwn(oklchColor, "c") || !Object.hasOwn(oklchColor, "h")) {
             return;
         }
 

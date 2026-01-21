@@ -1,36 +1,28 @@
 import { animate, cancelAnimation, getRangeValue } from "../Utils/MathUtils.js";
 import {
-    clickRadius,
     defaultFps,
     defaultFpsLimit,
     millisecondsToSeconds,
-    minCoordinate,
     minFpsLimit,
     removeDeleteCount,
     removeMinIndex,
-    touchEndLengthOffset,
 } from "./Utils/Constants.js";
 import { Canvas } from "./Canvas.js";
 import type { Engine } from "./Engine.js";
 import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
-import type { IContainerInteractivity } from "./Interfaces/IContainerInteractivity.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
-import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
+import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
-import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
-import { safeIntersectionObserver } from "../Utils/Utils.js";
-
-type ContainerClickHandler = (evt: Event) => void;
 
 /**
  * Checks if the container is still usable
@@ -42,16 +34,14 @@ function guardCheck(container: Container): boolean {
 }
 
 /**
- * @param value -
- * @param fpsLimit -
- * @param smooth -
- * @returns the initialized delta value
+ * @param delta - the delta object to update
+ * @param value - the delta value
+ * @param fpsLimit - the fps limit
+ * @param smooth - if true, uses smooth delta
  */
-function initDelta(value: number, fpsLimit = defaultFps, smooth = false): IDelta {
-    return {
-        value,
-        factor: smooth ? defaultFps / fpsLimit : (defaultFps * value) / millisecondsToSeconds,
-    };
+function updateDelta(delta: IDelta, value: number, fpsLimit = defaultFps, smooth = false): void {
+    delta.value = value;
+    delta.factor = smooth ? defaultFps / fpsLimit : (defaultFps * value) / millisecondsToSeconds;
 }
 
 /**
@@ -109,8 +99,6 @@ export class Container {
 
     readonly id;
 
-    interactivity: IContainerInteractivity;
-
     /**
      * The container check if it's hidden on the web page
      */
@@ -126,7 +114,7 @@ export class Container {
     /**
      * All the plugins used by the container
      */
-    readonly plugins;
+    readonly plugins: IContainerPlugin[];
 
     readonly retina;
 
@@ -142,10 +130,9 @@ export class Container {
 
     zLayers;
 
-    private readonly _clickHandlers;
-    private _currentTheme?: string;
     private _delay: number;
     private _delayTimeout?: number | NodeJS.Timeout;
+    private readonly _delta: IDelta = { value: 0, factor: 0 };
     private _drawAnimationFrame?: number;
     /**
      * The container duration
@@ -155,7 +142,6 @@ export class Container {
     private readonly _eventListeners;
     private _firstStart;
     private _initialSourceOptions;
-    private readonly _intersectionObserver;
     /**
      * Last frame time, used for delta values, for keeping animation correct in lower frame rates
      */
@@ -166,7 +152,6 @@ export class Container {
     private _lifeTime;
     private _options;
     private _paused;
-    private _responsiveMaxWidth?: number;
     private _smooth;
     private _sourceOptions;
 
@@ -192,20 +177,13 @@ export class Container {
         this._lastFrameTime = 0;
         this.zLayers = 100;
         this.pageHidden = false;
-        this._clickHandlers = new Map<string, ContainerClickHandler>();
         this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, this._engine);
         this.particles = new Particles(this._engine, this);
         this.pathGenerators = new Map<string, IMovePathGenerator>();
-        this.interactivity = {
-            mouse: {
-                clicking: false,
-                inside: false,
-            },
-        };
-        this.plugins = new Map<string, IContainerPlugin>();
+        this.plugins = [];
         this.effectDrawers = new Map<string, IEffectDrawer>();
         this.shapeDrawers = new Map<string, IShapeDrawer>();
         /* tsParticles variables with default values */
@@ -214,9 +192,6 @@ export class Container {
 
         /* ---------- tsParticles - start ------------ */
         this._eventListeners = new EventListeners(this);
-        this._intersectionObserver = safeIntersectionObserver(entries => {
-            this._intersectionManager(entries);
-        });
         this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
     }
 
@@ -244,112 +219,6 @@ export class Container {
         return this._sourceOptions;
     }
 
-    /**
-     * Adds a click handler to the container
-     * @param callback - the callback to be called when the click event occurs
-     */
-    addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        const el = this.interactivity.element;
-
-        if (!el) {
-            return;
-        }
-
-        const clickOrTouchHandler = (e: Event, pos: ICoordinates, radius: number): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                const pxRatio = this.retina.pixelRatio,
-                    posRetina = {
-                        x: pos.x * pxRatio,
-                        y: pos.y * pxRatio,
-                    },
-                    particles = this.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
-
-                callback(e, particles);
-            },
-            clickHandler = (e: Event): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                const mouseEvent = e as MouseEvent,
-                    pos = {
-                        x: mouseEvent.offsetX || mouseEvent.clientX,
-                        y: mouseEvent.offsetY || mouseEvent.clientY,
-                    };
-
-                clickOrTouchHandler(e, pos, clickRadius);
-            },
-            touchStartHandler = (): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                touched = true;
-                touchMoved = false;
-            },
-            touchMoveHandler = (): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                touchMoved = true;
-            },
-            touchEndHandler = (e: Event): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                if (touched && !touchMoved) {
-                    const touchEvent = e as TouchEvent,
-                        lastTouch = touchEvent.touches[touchEvent.touches.length - touchEndLengthOffset];
-
-                    if (!lastTouch) {
-                        return;
-                    }
-
-                    const element = this.canvas.element,
-                        canvasRect = element ? element.getBoundingClientRect() : undefined,
-                        pos = {
-                            x: lastTouch.clientX - (canvasRect ? canvasRect.left : minCoordinate),
-                            y: lastTouch.clientY - (canvasRect ? canvasRect.top : minCoordinate),
-                        };
-
-                    clickOrTouchHandler(e, pos, Math.max(lastTouch.radiusX, lastTouch.radiusY));
-                }
-
-                touched = false;
-                touchMoved = false;
-            },
-            touchCancelHandler = (): void => {
-                if (!guardCheck(this)) {
-                    return;
-                }
-
-                touched = false;
-                touchMoved = false;
-            };
-
-        let touched = false,
-            touchMoved = false;
-
-        this._clickHandlers.set("click", clickHandler);
-        this._clickHandlers.set("touchstart", touchStartHandler);
-        this._clickHandlers.set("touchmove", touchMoveHandler);
-        this._clickHandlers.set("touchend", touchEndHandler);
-        this._clickHandlers.set("touchcancel", touchCancelHandler);
-
-        for (const [key, handler] of this._clickHandlers) {
-            el.addEventListener(key, handler);
-        }
-    }
-
     addLifeTime(value: number): void {
         this._lifeTime += value;
     }
@@ -375,18 +244,6 @@ export class Container {
         return !this._duration || this._lifeTime <= this._duration;
     }
 
-    clearClickHandlers(): void {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        for (const [key, handler] of this._clickHandlers) {
-            this.interactivity.element?.removeEventListener(key, handler);
-        }
-
-        this._clickHandlers.clear();
-    }
-
     /**
      * Destroys the current container, invalidating it
      * @param remove - if true, removes the container from the engine
@@ -398,8 +255,6 @@ export class Container {
 
         this.stop();
 
-        this.clearClickHandlers();
-
         this.particles.destroy();
         this.canvas.destroy();
 
@@ -407,17 +262,19 @@ export class Container {
             effectDrawer.destroy?.(this);
         }
 
+        this.effectDrawers.clear();
+
         for (const shapeDrawer of this.shapeDrawers.values()) {
             shapeDrawer.destroy?.(this);
         }
 
-        for (const key of this.effectDrawers.keys()) {
-            this.effectDrawers.delete(key);
+        this.shapeDrawers.clear();
+
+        for (const plugin of this.plugins) {
+            plugin.destroy?.();
         }
 
-        for (const key of this.shapeDrawers.keys()) {
-            this.shapeDrawers.delete(key);
-        }
+        this.plugins.length = 0;
 
         this._engine.clearPlugins(this);
 
@@ -425,7 +282,7 @@ export class Container {
 
         if (remove) {
             const mainArr = this._engine.items,
-                idx = mainArr.findIndex(t => t === this);
+                idx = mainArr.indexOf(this);
 
             if (idx >= removeMinIndex) {
                 mainArr.splice(idx, removeDeleteCount);
@@ -462,7 +319,7 @@ export class Container {
     }
 
     async export(type: string, options: Record<string, unknown> = {}): Promise<Blob | undefined> {
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             if (!plugin.export) {
                 continue;
             }
@@ -479,22 +336,6 @@ export class Container {
         getLogger().error(`Export plugin with type ${type} not found`);
 
         return undefined;
-    }
-
-    /**
-     * Handles click event in the container
-     * @param mode - click mode to handle
-     */
-    handleClickMode(mode: string): void {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        this.particles.handleClickMode(mode);
-
-        for (const plugin of this.plugins.values()) {
-            plugin.handleClickMode?.(mode);
-        }
     }
 
     /**
@@ -525,16 +366,28 @@ export class Container {
             }
         }
 
+        const allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
+
+        for (const plugin of this._engine.plugins) {
+            const containerPlugin = await plugin.getPlugin(this);
+
+            if (containerPlugin.preInit) {
+                await containerPlugin.preInit();
+            }
+
+            allContainerPlugins.set(plugin, containerPlugin);
+        }
+
         await this.particles.initPlugins();
 
         /* options settings */
         this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
         this.actualOptions = loadContainerOptions(this._engine, this, this._options);
 
-        const availablePlugins = await this._engine.getAvailablePlugins(this);
-
-        for (const [id, plugin] of availablePlugins) {
-            this.plugins.set(id, plugin);
+        for (const [plugin, containerPlugin] of allContainerPlugins) {
+            if (plugin.needsPlugin(this.actualOptions)) {
+                this.plugins.push(containerPlugin);
+            }
         }
 
         /* init canvas + particles */
@@ -556,6 +409,10 @@ export class Container {
         this.fpsLimit = fpsLimit > minFpsLimit ? fpsLimit : defaultFpsLimit;
         this._smooth = smooth;
 
+        for (const plugin of this.plugins) {
+            await plugin.init?.();
+        }
+
         for (const drawer of this.effectDrawers.values()) {
             await drawer.init?.(this);
         }
@@ -564,34 +421,16 @@ export class Container {
             await drawer.init?.(this);
         }
 
-        for (const plugin of this.plugins.values()) {
-            await plugin.init?.();
-        }
-
         this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
         await this.particles.init();
         this.particles.setDensity();
 
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             plugin.particlesSetup?.();
         }
 
         this._engine.dispatchEvent(EventType.particlesSetup, { container: this });
-    }
-
-    /**
-     * Loads the given theme, overriding the options
-     * @param name - the theme name, if `undefined` resets the default options or the default theme
-     */
-    async loadTheme(name?: string): Promise<void> {
-        if (!guardCheck(this)) {
-            return;
-        }
-
-        this._currentTheme = name;
-
-        await this.refresh();
     }
 
     /**
@@ -612,7 +451,7 @@ export class Container {
             return;
         }
 
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             plugin.pause?.();
         }
 
@@ -645,7 +484,7 @@ export class Container {
         }
 
         if (needsUpdate) {
-            for (const plugin of this.plugins.values()) {
+            for (const plugin of this.plugins) {
                 if (plugin.play) {
                     plugin.play();
                 }
@@ -701,11 +540,7 @@ export class Container {
             const start = async (): Promise<void> => {
                 this._eventListeners.addListeners();
 
-                if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
-                    this._intersectionObserver.observe(this.interactivity.element);
-                }
-
-                for (const plugin of this.plugins.values()) {
+                for (const plugin of this.plugins) {
                     await plugin.start?.();
                 }
 
@@ -741,17 +576,11 @@ export class Container {
         this.particles.clear();
         this.canvas.stop();
 
-        if (this.interactivity.element instanceof HTMLElement && this._intersectionObserver) {
-            this._intersectionObserver.unobserve(this.interactivity.element);
-        }
-
-        for (const plugin of this.plugins.values()) {
+        for (const plugin of this.plugins) {
             plugin.stop?.();
         }
 
-        for (const key of this.plugins.keys()) {
-            this.plugins.delete(key);
-        }
+        this.plugins.length = 0;
 
         this._sourceOptions = this._options;
 
@@ -763,42 +592,16 @@ export class Container {
      * @returns true if the options were updated, false otherwise
      */
     updateActualOptions(): boolean {
-        this.actualOptions.responsive = [];
+        let refresh = false;
 
-        const newMaxWidth = this.actualOptions.setResponsive(
-            this.canvas.size.width,
-            this.retina.pixelRatio,
-            this._options,
-        );
-
-        this.actualOptions.setTheme(this._currentTheme);
-
-        if (this._responsiveMaxWidth === newMaxWidth) {
-            return false;
+        for (const plugin of this.plugins) {
+            if (plugin.updateActualOptions) {
+                refresh = plugin.updateActualOptions() || refresh;
+            }
         }
 
-        this._responsiveMaxWidth = newMaxWidth;
-
-        return true;
+        return refresh;
     }
-
-    private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {
-        if (!guardCheck(this) || !this.actualOptions.pauseOnOutsideViewport) {
-            return;
-        }
-
-        for (const entry of entries) {
-            if (entry.target !== this.interactivity.element) {
-                continue;
-            }
-
-            if (entry.isIntersecting) {
-                this.play();
-            } else {
-                this.pause();
-            }
-        }
-    };
 
     private readonly _nextFrame = (timestamp: DOMHighResTimeStamp): void => {
         try {
@@ -814,18 +617,18 @@ export class Container {
 
             this._lastFrameTime ??= timestamp;
 
-            const delta = initDelta(timestamp - this._lastFrameTime, this.fpsLimit, this._smooth);
+            updateDelta(this._delta, timestamp - this._lastFrameTime, this.fpsLimit, this._smooth);
 
-            this.addLifeTime(delta.value);
+            this.addLifeTime(this._delta.value);
             this._lastFrameTime = timestamp;
 
-            if (delta.value > millisecondsToSeconds) {
+            if (this._delta.value > millisecondsToSeconds) {
                 this.draw(false);
 
                 return;
             }
 
-            this.canvas.drawParticles(delta);
+            this.canvas.drawParticles(this._delta);
 
             if (!this.alive()) {
                 this.destroy();

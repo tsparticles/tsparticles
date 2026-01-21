@@ -1,11 +1,11 @@
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
     type Modes,
-    type RecursivePartial,
-    getRangeValue,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types.js";
+import { type RecursivePartial, getRangeValue } from "@tsparticles/engine";
 import { Remove } from "./Options/Classes/Remove.js";
 
 const removeMode = "remove";
@@ -14,7 +14,7 @@ const removeMode = "remove";
  * Particle attract manager
  */
 export class Remover extends ExternalInteractorBase<RemoveContainer> {
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     constructor(container: RemoveContainer) {
         super(container);
@@ -23,7 +23,7 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
             const container = this.container,
                 options = container.actualOptions;
 
-            if (!options.interactivity.modes.remove || mode !== removeMode) {
+            if (!options.interactivity?.modes.remove || mode !== removeMode) {
                 return;
             }
 

@@ -1,15 +1,20 @@
 import { type Engine } from "@tsparticles/engine";
+import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine - The engine to use for the interaction
  */
-export function loadExternalPushInteraction(engine: Engine): void {
+export async function loadExternalPushInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
-        e.addInteractor("externalPush", async container => {
+    await engine.register(async (e: InteractivityEngine) => {
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+
+        await loadInteractivityPlugin(e);
+
+        e.addInteractor?.("externalPush", async container => {
             const { Pusher } = await import("./Pusher.js");
 
             return new Pusher(container);

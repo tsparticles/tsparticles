@@ -12,11 +12,6 @@ const options: ISourceOptions = {
             onHover: {
                 enable: true,
                 mode: "bubble",
-                parallax: {
-                    enable: false,
-                    force: 60,
-                    smooth: 10,
-                },
             },
         },
         modes: {

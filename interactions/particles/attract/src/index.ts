@@ -1,15 +1,20 @@
 import { type Engine } from "@tsparticles/engine";
+import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
  */
-export function loadParticlesAttractInteraction(engine: Engine): void {
+export async function loadParticlesAttractInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
-        e.addInteractor("particlesAttract", async container => {
+    await engine.register(async (e: InteractivityEngine) => {
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+
+        await loadInteractivityPlugin(e);
+
+        e.addInteractor?.("particlesAttract", async container => {
             const { Attractor } = await import("./Attractor.js");
 
             return new Attractor(container);

@@ -1,5 +1,6 @@
-import { type Container, type Engine, type Particle, type RecursivePartial, deepExtend } from "@tsparticles/engine";
+import { type Container, type Particle, type RecursivePartial, deepExtend } from "@tsparticles/engine";
 import type { IParticlesJS, IParticlesJSOptions } from "./IParticlesJS.js";
+import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 
 const defaultMinOpacity = 0,
     defaultMinSize = 0,
@@ -116,7 +117,7 @@ const defaultMinOpacity = 0,
     };
 
 const initParticlesJS = (
-    engine: Engine,
+    engine: InteractivityEngine,
 ): {
     /**
      * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
@@ -137,13 +138,13 @@ const initParticlesJS = (
      * @param options - the options object to initialize the {@link Container}
      * @returns the loaded container
      */
-    const particlesJS = (
+    const particlesJS = async (
         tagId: string,
         options: RecursivePartial<IParticlesJSOptions>,
     ): Promise<Container | undefined> => {
-        const fixedOptions = deepExtend(defaultPjsOptions, options) as IParticlesJSOptions;
+        const fixedOptions = deepExtend({}, defaultPjsOptions, options) as IParticlesJSOptions;
 
-        return engine.load({
+        return await engine.load({
             id: tagId,
             options: {
                 fullScreen: {
@@ -161,9 +162,6 @@ const initParticlesJS = (
                         onClick: {
                             enable: fixedOptions.interactivity.events.onclick.enable,
                             mode: fixedOptions.interactivity.events.onclick.mode,
-                        },
-                        resize: {
-                            enable: fixedOptions.interactivity.events.resize,
                         },
                     },
                     modes: {
@@ -278,6 +276,9 @@ const initParticlesJS = (
                         },
                     },
                 },
+                resize: {
+                    enable: fixedOptions.interactivity.events.resize,
+                },
             },
         });
     };
@@ -311,14 +312,14 @@ const initParticlesJS = (
      */
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     particlesJS.setOnClickHandler = (callback: (e: Event, particles?: Particle[]) => void): void => {
-        engine.setOnClickHandler(callback);
+        engine.setOnClickHandler?.(callback);
     };
 
     /**
      * All the {@link Container} objects loaded
      * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
      */
-    const pJSDom = engine.dom();
+    const pJSDom = engine.items;
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     return { particlesJS, pJSDom };

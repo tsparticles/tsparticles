@@ -8,13 +8,7 @@ import {
     paintImage,
 } from "../Utils/CanvasUtils.js";
 import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
-import {
-    defaultOpacity,
-    defaultTransformValue,
-    generatedAttribute,
-    minimumSize,
-    zIndexFactorOffset,
-} from "./Utils/Constants.js";
+import { defaultTransformValue, generatedAttribute, minimumSize, zIndexFactorOffset } from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
@@ -27,14 +21,17 @@ import type { IParticleTransformValues } from "./Interfaces/IParticleTransformVa
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { Particle } from "./Particle.js";
 
+const fColorIndex = 0,
+    sColorIndex = 1;
+
 /**
  * @param factor -
  * @param newFactor -
  * @param key -
  */
 function setTransformValue(
-    factor: IParticleTransformValues,
-    newFactor: IParticleTransformValues,
+    factor: Partial<IParticleTransformValues>,
+    newFactor: Partial<IParticleTransformValues>,
     key: keyof IParticleTransformValues,
 ): void {
     const newValue = newFactor[key];
@@ -118,6 +115,9 @@ export class Canvas {
     private _postDrawUpdaters: IParticleUpdater[];
     private _preDrawUpdaters: IParticleUpdater[];
     private _resizePlugins: IContainerPlugin[];
+    private readonly _reusableColorStyles: IParticleColorStyle = {};
+    private readonly _reusablePluginColors: (IHsl | undefined)[] = [undefined, undefined];
+    private readonly _reusableTransform: Partial<IParticleTransformValues> = {};
     private readonly _standardSize: IDimension;
 
     /**
@@ -172,7 +172,7 @@ export class Canvas {
     clear(): void {
         let pluginHandled = false;
 
-        for (const plugin of this.container.plugins.values()) {
+        for (const plugin of this.container.plugins) {
             if (!pluginHandled && plugin.canvasClear) {
                 pluginHandled = plugin.canvasClear();
             }
@@ -264,34 +264,19 @@ export class Canvas {
         const container = this.container,
             zIndexOptions = particle.options.zIndex,
             zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
-            zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
-            opacity = particle.bubble.opacity ?? particle.opacity?.value ?? defaultOpacity,
-            strokeOpacity = particle.strokeOpacity ?? opacity,
-            zOpacity = opacity * zOpacityFactor,
-            zStrokeOpacity = strokeOpacity * zOpacityFactor,
-            transform: IParticleTransformValues = {},
-            getFillStyle = (): string | undefined => {
-                if (!fColor) {
-                    return;
-                }
+            { opacity, strokeOpacity } = particle.getOpacity(),
+            transform = this._reusableTransform,
+            colorStyles = this._reusableColorStyles,
+            fill = fColor ? getStyleFromHsl(fColor, container.hdr, opacity) : undefined,
+            stroke = sColor ? getStyleFromHsl(sColor, container.hdr, strokeOpacity) : fill;
 
-                return getStyleFromHsl(fColor, container.hdr, zOpacity);
-            },
-            colorStyles: IParticleColorStyle = {
-                fill: getFillStyle(),
-            },
-            getStrokestyle = (): string | CanvasGradient | CanvasPattern | undefined => {
-                if (!sColor) {
-                    return colorStyles.fill;
-                }
+        transform.a = transform.b = transform.c = transform.d = undefined;
 
-                return getStyleFromHsl(sColor, container.hdr, zStrokeOpacity);
-            };
-
-        colorStyles.stroke = getStrokestyle();
+        colorStyles.fill = fill;
+        colorStyles.stroke = stroke;
 
         this.draw((context): void => {
-            this._applyPreDrawUpdaters(context, particle, radius, zOpacity, colorStyles, transform);
+            this._applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
 
             drawParticle({
                 container,
@@ -300,7 +285,7 @@ export class Canvas {
                 delta,
                 colorStyles,
                 radius: radius * zIndexFactor ** zIndexOptions.sizeRate,
-                opacity: zOpacity,
+                opacity: opacity,
                 transform,
             });
         });
@@ -422,7 +407,7 @@ export class Canvas {
     initPlugins(): void {
         this._resizePlugins = [];
 
-        for (const plugin of this.container.plugins.values()) {
+        for (const plugin of this.container.plugins) {
             if (plugin.resize) {
                 this._resizePlugins.push(plugin);
             }
@@ -510,7 +495,7 @@ export class Canvas {
     paint(): void {
         let handled = false;
 
-        for (const plugin of this.container.plugins.values()) {
+        for (const plugin of this.container.plugins) {
             if (handled) {
                 break;
             }
@@ -642,7 +627,7 @@ export class Canvas {
         radius: number,
         zOpacity: number,
         colorStyles: IParticleColorStyle,
-        transform: IParticleTransformValues,
+        transform: Partial<IParticleTransformValues>,
     ) => void = (ctx, particle, radius, zOpacity, colorStyles, transform) => {
         for (const updater of this._preDrawUpdaters) {
             if (updater.getColorStyles) {
@@ -692,7 +677,10 @@ export class Canvas {
             }
         }
 
-        return [fColor, sColor];
+        this._reusablePluginColors[fColorIndex] = fColor;
+        this._reusablePluginColors[sColorIndex] = sColor;
+
+        return this._reusablePluginColors;
     };
 
     private readonly _initStyle: () => void = () => {
@@ -710,7 +698,7 @@ export class Canvas {
         }
 
         for (const key in options.style) {
-            if (!key || !Object.prototype.hasOwnProperty.call(options.style, key)) {
+            if (!key || !Object.hasOwn(options.style, key)) {
                 continue;
             }
 

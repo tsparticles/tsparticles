@@ -111,8 +111,10 @@ app.use("/updater-wobble", express.static("./node_modules/@tsparticles/updater-w
 app.use("/interaction-external-trail", express.static("./node_modules/@tsparticles/interaction-external-trail"));
 app.use("/plugin-absorbers", express.static("./node_modules/@tsparticles/plugin-absorbers"));
 app.use("/plugin-emitters", express.static("./node_modules/@tsparticles/plugin-emitters"));
+app.use("/plugin-interactivity", express.static("./node_modules/@tsparticles/plugin-interactivity"));
 app.use("/plugin-polygon-mask", express.static("./node_modules/@tsparticles/plugin-polygon-mask"));
 app.use("/plugin-poisson-disc", express.static("./node_modules/@tsparticles/plugin-poisson-disc"));
+app.use("/interaction-external-parallax", express.static("./node_modules/@tsparticles/interaction-external-parallax"));
 app.use("/interaction-external-particle", express.static("./node_modules/@tsparticles/interaction-external-particle"));
 app.use("/interaction-external-pop", express.static("./node_modules/@tsparticles/interaction-external-pop"));
 app.use("/interaction-light", express.static("./node_modules/@tsparticles/interaction-light"));
@@ -120,7 +122,6 @@ app.use("/interaction-particles-repulse", express.static("./node_modules/@tspart
 app.use("/updater-gradient", express.static("./node_modules/@tsparticles/updater-gradient"));
 app.use("/updater-orbit", express.static("./node_modules/@tsparticles/updater-orbit"));
 app.use("/move-base", express.static("./node_modules/@tsparticles/move-base"));
-app.use("/move-parallax", express.static("./node_modules/@tsparticles/move-parallax"));
 app.use("/path-curves", express.static("./node_modules/@tsparticles/path-curves"));
 app.use("/path-curl-noise", express.static("./node_modules/@tsparticles/path-curl-noise"));
 app.use("/path-fractal-noise", express.static("./node_modules/@tsparticles/path-fractal-noise"));
@@ -159,8 +160,11 @@ app.use("/plugin-oklab-color", express.static("./node_modules/@tsparticles/plugi
 app.use("/plugin-oklch-color", express.static("./node_modules/@tsparticles/plugin-oklch-color"));
 app.use("/plugin-rgb-color", express.static("./node_modules/@tsparticles/plugin-rgb-color"));
 app.use("/plugin-infection", express.static("./node_modules/@tsparticles/plugin-infection"));
+app.use("/plugin-manual-particles", express.static("./node_modules/@tsparticles/plugin-manual-particles"));
 app.use("/plugin-motion", express.static("./node_modules/@tsparticles/plugin-motion"));
+app.use("/plugin-responsive", express.static("./node_modules/@tsparticles/plugin-responsive"));
 app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sounds"));
+app.use("/plugin-themes", express.static("./node_modules/@tsparticles/plugin-themes"));
 app.use("/plugin-trail", express.static("./node_modules/@tsparticles/plugin-trail"));
 app.use("/effect-bubble", express.static("./node_modules/@tsparticles/effect-bubble"));
 app.use("/effect-shadow", express.static("./node_modules/@tsparticles/effect-shadow"));

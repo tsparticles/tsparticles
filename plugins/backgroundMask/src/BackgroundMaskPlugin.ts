@@ -1,7 +1,6 @@
 import type { BackgroundMaskOptions, IBackgroundMaskOptions } from "./types.js";
-import type { Container, Engine, IPlugin, RecursivePartial } from "@tsparticles/engine";
+import type { Container, Engine, IContainerPlugin, IPlugin, RecursivePartial } from "@tsparticles/engine";
 import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
-import { BackgroundMaskInstance } from "./BackgroundMaskInstance.js";
 
 /**
  */
@@ -16,12 +15,18 @@ export class BackgroundMaskPlugin implements IPlugin {
         this._engine = engine;
     }
 
-    getPlugin(container: Container): Promise<BackgroundMaskInstance> {
-        return Promise.resolve(new BackgroundMaskInstance(container, this._engine));
+    async getPlugin(container: Container): Promise<IContainerPlugin> {
+        const { BackgroundMaskPluginInstance } = await import("./BackgroundMaskPluginInstance.js");
+
+        return new BackgroundMaskPluginInstance(container, this._engine);
     }
 
-    loadOptions(options: BackgroundMaskOptions, source?: RecursivePartial<IBackgroundMaskOptions>): void {
-        if (!this.needsPlugin()) {
+    loadOptions(
+        _container: Container,
+        options: BackgroundMaskOptions,
+        source?: RecursivePartial<IBackgroundMaskOptions>,
+    ): void {
+        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
 
@@ -34,7 +39,7 @@ export class BackgroundMaskPlugin implements IPlugin {
         backgroundMaskOptions.load(source?.backgroundMask);
     }
 
-    needsPlugin(): boolean {
-        return true;
+    needsPlugin(options?: RecursivePartial<IBackgroundMaskOptions>): boolean {
+        return !!options?.backgroundMask?.enable;
     }
 }

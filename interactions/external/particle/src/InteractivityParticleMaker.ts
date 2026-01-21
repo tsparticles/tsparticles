@@ -1,8 +1,12 @@
 import {
     ExternalInteractorBase,
-    type ICoordinates,
+    type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
+} from "@tsparticles/plugin-interactivity";
+import {
+    type ICoordinates,
     type Particle,
     type ParticlesOptions,
     type RecursivePartial,
@@ -11,7 +15,7 @@ import {
     safeDocument,
 } from "@tsparticles/engine";
 import type { IParticleMode, InteractivityParticleContainer, ParticleMode } from "./Types.js";
-import { InteractivityParticle } from "./Options/Classes/InteractivityParticle.js";
+import { InteractivityParticleOptions } from "./Options/Classes/InteractivityParticleOptions.js";
 
 const particleMode = "particle";
 
@@ -35,17 +39,16 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         // do nothing
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
-            { interactivity } = container,
             options = container.actualOptions;
 
         if (!container.retina.reduceFactor) {
             return;
         }
 
-        const mousePos = interactivity.mouse.position,
-            interactivityParticleOptions = options.interactivity.modes.particle;
+        const mousePos = interactivityData.mouse.position,
+            interactivityParticleOptions = options.interactivity?.modes.particle;
 
         if (!interactivityParticleOptions) {
             return;
@@ -53,9 +56,9 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
 
         const mouseStopped =
                 interactivityParticleOptions.pauseOnStop &&
-                (interactivity.mouse.position === this._lastPosition ||
-                    (interactivity.mouse.position?.x === this._lastPosition?.x &&
-                        interactivity.mouse.position?.y === this._lastPosition?.y)),
+                (interactivityData.mouse.position === this._lastPosition ||
+                    (interactivityData.mouse.position?.x === this._lastPosition?.x &&
+                        interactivityData.mouse.position?.y === this._lastPosition?.y)),
             clearDelay = interactivityParticleOptions.stopDelay;
 
         if (mousePos) {
@@ -79,7 +82,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
                 }
 
                 if (interactivityParticleOptions.replaceCursor) {
-                    const element = interactivity.element as HTMLElement | Window | undefined;
+                    const element = interactivityData.element as HTMLElement | Window | undefined;
 
                     if (element) {
                         if (element instanceof Window) {
@@ -114,7 +117,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
             this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
 
             if (interactivityParticleOptions.replaceCursor) {
-                const element = interactivity.element as HTMLElement | Window | undefined;
+                const element = interactivityData.element as HTMLElement | Window | undefined;
 
                 if (element) {
                     if (element instanceof Window) {
@@ -134,15 +137,16 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         this._particle.position.y = this._lastPosition.y;
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events;
+            mouse = interactivityData.mouse,
+            events = (particle?.interactivity ?? options.interactivity)?.events;
 
         return (
-            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(particleMode, events.onClick.mode)) ||
-            (mouse.inside && !!mouse.position && isInArray(particleMode, events.onHover.mode))
+            !!events &&
+            ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(particleMode, events.onClick.mode)) ||
+                (mouse.inside && !!mouse.position && isInArray(particleMode, events.onHover.mode)))
         );
     }
 
@@ -150,7 +154,7 @@ export class InteractivityParticleMaker extends ExternalInteractorBase<Interacti
         options: Modes & ParticleMode,
         ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
     ): void {
-        options.particle ??= new InteractivityParticle();
+        options.particle ??= new InteractivityParticleOptions();
 
         for (const source of sources) {
             options.particle.load(source?.particle);

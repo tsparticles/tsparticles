@@ -14,9 +14,12 @@ import {
 import {
     decayOffset,
     defaultAngle,
+    defaultOpacity,
     defaultRetryCount,
+    defaultTransform,
     double,
     half,
+    identity,
     millisecondsToSeconds,
     minZ,
     none,
@@ -24,6 +27,7 @@ import {
     rollFactor,
     squareExp,
     tryCountIncrement,
+    zIndexFactorOffset,
 } from "./Utils/Constants.js";
 import {
     deepExtend,
@@ -43,14 +47,16 @@ import type { IHsl } from "./Interfaces/Colors.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
+import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js";
 import type { IParticleRetinaProps } from "./Interfaces/IParticleRetinaProps.js";
 import type { IParticleRoll } from "./Interfaces/IParticleRoll.js";
+import type { IParticleRotateData } from "./Interfaces/IParticleRotateData.js";
+import type { IParticleTransformValues } from "../export-types.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { IShapeValues } from "./Interfaces/IShapeValues.js";
 import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
-import { Interactivity } from "../Options/Classes/Interactivity/Interactivity.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
@@ -222,8 +228,6 @@ export class Particle {
      */
     initialVelocity!: Vector;
 
-    interactivity!: Interactivity;
-
     isRotating!: boolean;
 
     /**
@@ -370,6 +374,20 @@ export class Particle {
      */
     zIndexFactor!: number;
 
+    private readonly _cachedOpacityData: IParticleOpacityData = {
+        opacity: defaultOpacity,
+        strokeOpacity: defaultOpacity,
+    };
+
+    private readonly _cachedPosition = Vector3d.origin;
+    private readonly _cachedRotateData: IParticleRotateData = { sin: 0, cos: 0 };
+    private readonly _cachedTransform: IParticleTransformValues = {
+        a: 1,
+        b: 0,
+        c: 0,
+        d: 1,
+    };
+
     /**
      * Gets the particle containing engine instance
      * @internal
@@ -398,7 +416,7 @@ export class Particle {
 
         shapeDrawer?.particleDestroy?.(this);
 
-        for (const plugin of container.plugins.values()) {
+        for (const plugin of container.plugins) {
             plugin.particleDestroyed?.(this, override);
         }
 
@@ -420,7 +438,7 @@ export class Particle {
         const container = this.container,
             canvas = container.canvas;
 
-        for (const plugin of container.plugins.values()) {
+        for (const plugin of container.plugins) {
             canvas.drawParticlePlugin(plugin, this, delta);
         }
 
@@ -439,20 +457,58 @@ export class Particle {
         return this.getRadius() ** squareExp * Math.PI * half;
     }
 
+    getOpacity(): IParticleOpacityData {
+        const zIndexOptions = this.options.zIndex,
+            zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
+            zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
+            opacity = this.bubble.opacity ?? getRangeValue(this.opacity?.value ?? defaultOpacity),
+            strokeOpacity = this.strokeOpacity ?? opacity;
+
+        this._cachedOpacityData.opacity = opacity * zOpacityFactor;
+        this._cachedOpacityData.strokeOpacity = strokeOpacity * zOpacityFactor;
+
+        return this._cachedOpacityData;
+    }
+
     getPosition(): ICoordinates3d {
-        return {
-            x: this.position.x + this.offset.x,
-            y: this.position.y + this.offset.y,
-            z: this.position.z,
-        };
+        this._cachedPosition.x = this.position.x + this.offset.x;
+        this._cachedPosition.y = this.position.y + this.offset.y;
+        this._cachedPosition.z = this.position.z;
+
+        return this._cachedPosition;
     }
 
     getRadius(): number {
         return this.bubble.radius ?? this.size.value;
     }
 
+    getRotateData(): IParticleRotateData {
+        const angle = this.getAngle();
+
+        this._cachedRotateData.sin = Math.sin(angle);
+        this._cachedRotateData.cos = Math.cos(angle);
+
+        return this._cachedRotateData;
+    }
+
     getStrokeColor(): IHsl | undefined {
         return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.strokeColor));
+    }
+
+    getTransformData(externalTransform: Partial<IParticleTransformValues>): IParticleTransformValues {
+        const rotateData = this.getRotateData(),
+            rotating = this.isRotating;
+
+        this._cachedTransform.a = rotateData.cos * (externalTransform.a ?? defaultTransform.a);
+        this._cachedTransform.b = rotating
+            ? rotateData.sin * (externalTransform.b ?? identity)
+            : (externalTransform.b ?? defaultTransform.b);
+        this._cachedTransform.c = rotating
+            ? -rotateData.sin * (externalTransform.c ?? identity)
+            : (externalTransform.c ?? defaultTransform.c);
+        this._cachedTransform.d = rotateData.cos * (externalTransform.d ?? defaultTransform.d);
+
+        return this._cachedTransform;
     }
 
     init(
@@ -461,8 +517,7 @@ export class Particle {
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
     ): void {
-        const container = this.container,
-            engine = this._engine;
+        const container = this.container;
 
         this.id = id;
         this.group = group;
@@ -550,13 +605,6 @@ export class Particle {
         if (shapeData) {
             particlesOptions.load(shapeData.particles);
         }
-
-        const interactivity = new Interactivity(engine, container);
-
-        interactivity.load(container.actualOptions.interactivity);
-        interactivity.load(particlesOptions.interactivity);
-
-        this.interactivity = interactivity;
 
         this.effectFill = effectData?.fill ?? particlesOptions.effect.fill;
         this.effectClose = effectData?.close ?? particlesOptions.effect.close;
@@ -658,7 +706,7 @@ export class Particle {
         effectDrawer?.particleInit?.(container, this);
         shapeDrawer?.particleInit?.(container, this);
 
-        for (const plugin of container.plugins.values()) {
+        for (const plugin of container.plugins) {
             plugin.particleCreated?.(this);
         }
     }
@@ -689,72 +737,62 @@ export class Particle {
         }
     }
 
-    private readonly _calcPosition: (
-        container: Container,
-        position: ICoordinates | undefined,
-        zIndex: number,
-        tryCount?: number,
-    ) => Vector3d = (container, position, zIndex, tryCount = defaultRetryCount) => {
-        const plugins = container.plugins.values();
+    private readonly _calcPosition: (position: ICoordinates | undefined, zIndex: number) => Vector3d | undefined = (
+        position,
+        zIndex,
+    ) => {
+        let tryCount = defaultRetryCount,
+            posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
-        for (const plugin of plugins) {
-            const pluginPos = plugin.particlePosition?.(position, this);
-
-            if (pluginPos) {
-                return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
-            }
-        }
-
-        const canvasSize = container.canvas.size,
-            exactPosition = calcExactPositionOrRandomFromSize({
-                size: canvasSize,
-                position: position,
-            }),
-            pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex),
-            radius = this.getRadius(),
-            /* check position - into the canvas */
+        const container = this.container,
+            plugins = Array.from(container.plugins),
             outModes = this.options.move.outModes,
-            fixHorizontal = (outMode: OutMode | keyof typeof OutMode): void => {
-                fixOutMode({
-                    outMode,
-                    checkModes: [OutMode.bounce],
-                    coord: pos.x,
-                    maxCoord: container.canvas.size.width,
-                    setCb: (value: number) => (pos.x += value),
-                    radius,
-                });
-            },
-            fixVertical = (outMode: OutMode | keyof typeof OutMode): void => {
-                fixOutMode({
-                    outMode,
-                    checkModes: [OutMode.bounce],
-                    coord: pos.y,
-                    maxCoord: container.canvas.size.height,
-                    setCb: (value: number) => (pos.y += value),
-                    radius,
-                });
-            };
+            radius = this.getRadius(),
+            canvasSize = container.canvas.size,
+            abortController = new AbortController(),
+            { signal } = abortController;
 
-        fixHorizontal(outModes.left ?? outModes.default);
-        fixHorizontal(outModes.right ?? outModes.default);
-        fixVertical(outModes.top ?? outModes.default);
-        fixVertical(outModes.bottom ?? outModes.default);
+        while (!signal.aborted) {
+            for (const plugin of plugins) {
+                const pluginPos = plugin.particlePosition?.(posVec, this);
 
-        let isValidPosition: boolean | undefined = true;
-
-        for (const plugin of plugins) {
-            isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount);
-
-            if (isValidPosition === false) {
-                break;
+                if (pluginPos) {
+                    return Vector3d.create(pluginPos.x, pluginPos.y, zIndex);
+                }
             }
+
+            const exactPosition = calcExactPositionOrRandomFromSize({
+                    size: canvasSize,
+                    position: posVec,
+                }),
+                pos = Vector3d.create(exactPosition.x, exactPosition.y, zIndex);
+
+            /* check position - into the canvas */
+            this._fixHorizontal(pos, radius, outModes.left ?? outModes.default);
+            this._fixHorizontal(pos, radius, outModes.right ?? outModes.default);
+            this._fixVertical(pos, radius, outModes.top ?? outModes.default);
+            this._fixVertical(pos, radius, outModes.bottom ?? outModes.default);
+
+            let isValidPosition = true;
+
+            for (const plugin of plugins) {
+                isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount) ?? true;
+
+                if (!isValidPosition) {
+                    break;
+                }
+            }
+
+            if (isValidPosition) {
+                return pos;
+            }
+
+            tryCount += tryCountIncrement;
+
+            posVec = undefined;
         }
 
-        if (!isValidPosition) {
-            return this._calcPosition(container, undefined, zIndex, tryCount + tryCountIncrement);
-        }
-
-        return pos;
+        return posVec;
     };
 
     private readonly _calculateVelocity: () => Vector = () => {
@@ -782,6 +820,36 @@ export class Particle {
         }
 
         return res;
+    };
+
+    private readonly _fixHorizontal = (
+        pos: ICoordinates,
+        radius: number,
+        outMode: OutMode | keyof typeof OutMode,
+    ): void => {
+        fixOutMode({
+            outMode,
+            checkModes: [OutMode.bounce],
+            coord: pos.x,
+            maxCoord: this.container.canvas.size.width,
+            setCb: (value: number) => (pos.x += value),
+            radius,
+        });
+    };
+
+    private readonly _fixVertical = (
+        pos: ICoordinates,
+        radius: number,
+        outMode: OutMode | keyof typeof OutMode,
+    ): void => {
+        fixOutMode({
+            outMode,
+            checkModes: [OutMode.bounce],
+            coord: pos.y,
+            maxCoord: this.container.canvas.size.height,
+            setCb: (value: number) => (pos.y += value),
+            radius,
+        });
     };
 
     private readonly _getRollColor: (color?: IHsl) => IHsl | undefined = color => {
@@ -812,7 +880,13 @@ export class Particle {
         const container = this.container,
             zIndexValue = getRangeValue(this.options.zIndex.value);
 
-        this.position = this._calcPosition(container, position, clamp(zIndexValue, minZ, container.zLayers));
+        const initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
+
+        if (!initialPosition) {
+            throw new Error("a valid position cannot be found for particle");
+        }
+
+        this.position = initialPosition;
         this.initialPosition = this.position.copy();
 
         const canvasSize = container.canvas.size;

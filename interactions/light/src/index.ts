@@ -1,20 +1,25 @@
 import { type Engine } from "@tsparticles/engine";
+import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
  */
-export function loadLightInteraction(engine: Engine): void {
+export async function loadLightInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
-        e.addInteractor("externalLight", async container => {
+    await engine.register(async (e: InteractivityEngine) => {
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+
+        await loadInteractivityPlugin(e);
+
+        e.addInteractor?.("externalLight", async container => {
             const { ExternalLighter } = await import("./ExternalLighter.js");
 
             return new ExternalLighter(container, engine);
         });
-        e.addInteractor("particlesLight", async container => {
+        e.addInteractor?.("particlesLight", async container => {
             const { ParticlesLighter } = await import("./ParticlesLighter.js");
 
             return new ParticlesLighter(container, engine);

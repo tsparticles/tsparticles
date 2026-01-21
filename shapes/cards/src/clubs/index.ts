@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadClubsCardsShape(engine: Engine): void {
+export async function loadClubsCardsShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { ClubDrawer } = await import("./ClubDrawer.js");
 
         e.addShape(new ClubDrawer());

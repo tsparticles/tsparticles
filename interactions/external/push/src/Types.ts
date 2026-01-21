@@ -1,4 +1,4 @@
-import type { Container, Options } from "@tsparticles/engine";
+import type { InteractivityContainer, InteractivityOptions } from "@tsparticles/plugin-interactivity";
 import type { IPush } from "./Options/Interfaces/IPush.js";
 import type { Push } from "./Options/Classes/Push.js";
 
@@ -10,12 +10,12 @@ export interface PushMode {
     push?: Push;
 }
 
-export type PushContainer = Container & {
+export type PushContainer = InteractivityContainer & {
     actualOptions: PushOptions;
 };
 
-export type PushOptions = Options & {
-    interactivity: {
+export type PushOptions = InteractivityOptions & {
+    interactivity?: {
         modes: PushMode;
     };
 };

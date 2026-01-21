@@ -7,10 +7,10 @@ export const perlinNoisePathName = "perlinNoise";
 /**
  * @param engine -
  */
-export function loadPerlinNoisePath(engine: Engine): void {
+export async function loadPerlinNoisePath(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { PerlinNoiseGenerator } = await import("./PerlinNoiseGenerator.js");
 
         e.addPathGenerator(perlinNoisePathName, new PerlinNoiseGenerator());

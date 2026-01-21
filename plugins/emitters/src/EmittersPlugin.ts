@@ -1,35 +1,36 @@
-import type { EmitterOptions, IEmitterModeOptions, IEmitterOptions } from "./types.js";
 import {
+    type Container,
+    type IContainerPlugin,
     type IOptions,
     type IPlugin,
     type RecursivePartial,
     executeOnSingleOrMultiple,
     isArray,
-    isInArray,
 } from "@tsparticles/engine";
+import type { EmitterOptions, IEmitterOptions } from "./types.js";
 import { Emitter } from "./Options/Classes/Emitter.js";
-import { EmitterClickMode } from "./Enums/EmitterClickMode.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
-import { Emitters } from "./Emitters.js";
-import type { EmittersEngine } from "./EmittersEngine.js";
+import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 
 /**
  */
 export class EmittersPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
+    private readonly _instancesManager;
 
-    constructor(engine: EmittersEngine) {
-        this._engine = engine;
+    constructor(instancesManager: EmittersInstancesManager) {
+        this._instancesManager = instancesManager;
         this.id = "emitters";
     }
 
-    getPlugin(container: EmitterContainer): Promise<Emitters> {
-        return Promise.resolve(new Emitters(this._engine, container));
+    async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {
+        const { EmittersPluginInstance } = await import("./EmittersPluginInstance.js");
+
+        return new EmittersPluginInstance(this._instancesManager, container);
     }
 
-    loadOptions(options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
+    loadOptions(_container: Container, options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
@@ -43,56 +44,6 @@ export class EmittersPlugin implements IPlugin {
                 return tmp;
             });
         }
-
-        const interactivityEmitters = source?.interactivity?.modes?.emitters;
-
-        if (interactivityEmitters) {
-            if (isArray(interactivityEmitters)) {
-                options.interactivity.modes.emitters = {
-                    random: {
-                        count: 1,
-                        enable: true,
-                    },
-                    value: interactivityEmitters.map(s => {
-                        const tmp = new Emitter();
-
-                        tmp.load(s);
-
-                        return tmp;
-                    }),
-                };
-            } else {
-                const emitterMode = interactivityEmitters as IEmitterModeOptions;
-
-                if (isArray(emitterMode.value)) {
-                    options.interactivity.modes.emitters = {
-                        random: {
-                            count: emitterMode.random.count,
-                            enable: emitterMode.random.enable,
-                        },
-                        value: emitterMode.value.map(s => {
-                            const tmp = new Emitter();
-
-                            tmp.load(s);
-
-                            return tmp;
-                        }),
-                    };
-                } else {
-                    const tmp = new Emitter();
-
-                    tmp.load(emitterMode.value);
-
-                    options.interactivity.modes.emitters = {
-                        random: {
-                            count: emitterMode.random.count,
-                            enable: emitterMode.random.enable,
-                        },
-                        value: tmp,
-                    };
-                }
-            }
-        }
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
@@ -102,11 +53,6 @@ export class EmittersPlugin implements IPlugin {
 
         const emitters = options.emitters;
 
-        return (
-            (isArray(emitters) && !!emitters.length) ||
-            emitters !== undefined ||
-            (!!options.interactivity?.events?.onClick?.mode &&
-                isInArray(EmitterClickMode.emitter, options.interactivity.events.onClick.mode))
-        );
+        return (isArray(emitters) && !!emitters.length) || emitters !== undefined;
     }
 }

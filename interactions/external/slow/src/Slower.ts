@@ -1,13 +1,11 @@
 import {
     ExternalInteractorBase,
-    type IDelta,
+    type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
-    type RecursivePartial,
-    getDistance,
-    isInArray,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
+import { type IDelta, type Particle, type RecursivePartial, getDistance, isInArray } from "@tsparticles/engine";
 import type { ISlowMode, SlowContainer, SlowMode } from "./Types.js";
 import { Slow } from "./Options/Classes/Slow.js";
 
@@ -33,7 +31,7 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
 
     init(): void {
         const container = this.container,
-            slow = container.actualOptions.interactivity.modes.slow;
+            slow = container.actualOptions.interactivity?.modes.slow;
 
         if (!slow) {
             return;
@@ -46,12 +44,12 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         // nothing to do
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+            mouse = interactivityData.mouse,
+            events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(slowMode, events.onHover.mode);
+        return !!events?.onHover.enable && !!mouse.position && isInArray(slowMode, events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & SlowMode, ...sources: RecursivePartial<(IModes & ISlowMode) | undefined>[]): void {
@@ -62,14 +60,14 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
         }
     }
 
-    reset(particle: Particle): void {
+    reset(interactivityData: IInteractivityData, particle: Particle): void {
         particle.slow.inRange = false;
 
         const container = this.container,
             options = container.actualOptions,
-            mousePos = container.interactivity.mouse.position,
+            mousePos = interactivityData.mouse.position,
             radius = container.retina.slowModeRadius,
-            slowOptions = options.interactivity.modes.slow;
+            slowOptions = options.interactivity?.modes.slow;
 
         if (!slowOptions || !radius || radius < minRadius || !mousePos) {
             return;

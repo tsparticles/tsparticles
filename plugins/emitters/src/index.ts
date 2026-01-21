@@ -1,5 +1,5 @@
+import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmittersEngine } from "./EmittersEngine.js";
-import type { Engine } from "@tsparticles/engine";
 import type { IEmitterShapeGenerator } from "./IEmitterShapeGenerator.js";
 
 declare const __VERSION__: string;
@@ -7,21 +7,30 @@ declare const __VERSION__: string;
 /**
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
  */
-export function loadEmittersPlugin(engine: Engine): void {
+export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: EmittersEngine) => {
-        const { ShapeManager } = await import("./ShapeManager.js"),
-            { EmittersPlugin } = await import("./EmittersPlugin.js");
+    await engine.register(async (e: EmittersEngine) => {
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
+            { ShapeManager } = await import("./ShapeManager.js"),
+            { EmittersInstancesManager } = await import("./EmittersInstancesManager.js"),
+            { EmittersPlugin } = await import("./EmittersPlugin.js"),
+            instancesManager = new EmittersInstancesManager(e);
+
+        await loadInteractivityPlugin(e);
 
         e.emitterShapeManager ??= new ShapeManager();
         e.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
             e.emitterShapeManager?.addShapeGenerator(name, generator);
         };
 
-        const plugin = new EmittersPlugin(e);
+        e.addPlugin(new EmittersPlugin(instancesManager));
 
-        e.addPlugin(plugin);
+        e.addInteractor?.("externalEmitters", async container => {
+            const { EmittersInteractor } = await import("./EmittersInteractor.js");
+
+            return new EmittersInteractor(instancesManager, container as EmitterContainer);
+        });
     });
 }
 

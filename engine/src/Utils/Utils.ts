@@ -11,15 +11,15 @@ import {
     randomInRangeValue,
 } from "./MathUtils.js";
 import { half, millisecondsToSeconds, percentDenominator } from "../Core/Utils/Constants.js";
-import { isArray, isNull, isObject } from "./TypeUtils.js";
+import { isArray, isBoolean, isNull, isObject } from "./TypeUtils.js";
 import { AnimationMode } from "../Enums/Modes/AnimationMode.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
+import type { Container } from "../Core/Container.js";
 import { DestroyType } from "../Enums/Types/DestroyType.js";
-import type { DivEvent } from "../Options/Classes/Interactivity/Events/DivEvent.js";
+import type { GenericInitializer } from "../Types/EngineInitializers.js";
 import type { IBounds } from "../Core/Interfaces/IBounds.js";
 import type { ICircleBouncer } from "../Core/Interfaces/ICircleBouncer.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
-import type { IModeDiv } from "../Options/Interfaces/Interactivity/Modes/IModeDiv.js";
 import type { IParticleNumericValueAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import { OutModeDirection } from "../Enums/Directions/OutModeDirection.js";
 import type { Particle } from "../Core/Particle.js";
@@ -52,20 +52,6 @@ function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result):
 
         return result;
     };
-}
-
-/**
- * Checks if the given selectors matches the element
- * @param element - element to check
- * @param selectors - selectors to check
- * @returns true or false, if the selector has found something
- */
-function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
-    const res = executeOnSingleOrMultiple(selectors, selector => {
-        return element.matches(selector);
-    });
-
-    return isArray(res) ? res.some(t => t) : res;
 }
 
 /**
@@ -252,10 +238,14 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
         const sourceIsArray = Array.isArray(source);
 
-        if (sourceIsArray && (isObject(destination) || !destination || !Array.isArray(destination))) {
-            destination = [];
-        } else if (!sourceIsArray && (isObject(destination) || !destination || Array.isArray(destination))) {
-            destination = {};
+        if (sourceIsArray) {
+            if (!Array.isArray(destination)) {
+                destination = [];
+            }
+        } else {
+            if (!isObject(destination) || Array.isArray(destination)) {
+                destination = {};
+            }
         }
 
         for (const key in source) {
@@ -275,66 +265,6 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
     }
 
     return destination;
-}
-
-/**
- * Checks if the given div mode is enabled in the given div elements
- * @param mode - the div mode to check
- * @param divs - the div elements to check
- * @returns true if the div mode is enabled
- */
-export function isDivModeEnabled(mode: string, divs: SingleOrMultiple<DivEvent>): boolean {
-    return !!findItemFromSingleOrMultiple(divs, t => t.enable && isInArray(mode, t.mode));
-}
-
-/**
- * Execute the given callback if div mode in the given div elements is enabled
- * @param mode - the div mode to check
- * @param divs - the div elements to check
- * @param callback - the callback to execute
- */
-export function divModeExecute(
-    mode: string,
-    divs: SingleOrMultiple<DivEvent>,
-    callback: (id: string, div: DivEvent) => void,
-): void {
-    executeOnSingleOrMultiple(divs, div => {
-        const divMode = div.mode,
-            divEnabled = div.enable;
-
-        if (divEnabled && isInArray(mode, divMode)) {
-            singleDivModeExecute(div, callback);
-        }
-    });
-}
-
-/**
- * Execute the given callback for the given div event
- * @param div - the div event to execute the callback for
- * @param callback - the callback to execute
- */
-export function singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
-    const selectors = div.selectors;
-
-    executeOnSingleOrMultiple(selectors, selector => {
-        callback(selector, div);
-    });
-}
-
-/**
- * Checks if the given element targets any of the div modes
- * @param divs - the div elements to check
- * @param element - the element to check
- * @returns true if the element targets any of the div modes
- */
-export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
-    if (!element || !divs) {
-        return;
-    }
-
-    return findItemFromSingleOrMultiple(divs, div => {
-        return checkSelector(element, div.selectors);
-    });
 }
 
 /**
@@ -687,7 +617,7 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
     for (const key in style) {
         const styleKey = style[key];
 
-        if (!Object.prototype.hasOwnProperty.call(style, key) || isNull(styleKey)) {
+        if (!Object.hasOwn(style, key) || isNull(styleKey)) {
             continue;
         }
 
@@ -744,3 +674,59 @@ function computeFullScreenStyle(zIndex: number): CSSStyleDeclaration {
 }
 
 export const getFullScreenStyle = memoize(computeFullScreenStyle);
+
+/**
+ * Manage the given event listeners
+ * @param element - the event listener receiver
+ * @param event - the event to listen
+ * @param handler - the handler called once the event is triggered
+ * @param add - flag for adding or removing the event listener
+ * @param options - event listener options object
+ */
+export function manageListener(
+    element: HTMLElement | Node | Window | MediaQueryList | typeof globalThis,
+    event: string,
+    handler: EventListenerOrEventListenerObject,
+    add: boolean,
+    options?: boolean | AddEventListenerOptions | EventListenerObject,
+): void {
+    if (add) {
+        let addOptions: AddEventListenerOptions = { passive: true };
+
+        if (isBoolean(options)) {
+            addOptions.capture = options;
+        } else if (options !== undefined) {
+            addOptions = options as AddEventListenerOptions;
+        }
+
+        element.addEventListener(event, handler, addOptions);
+    } else {
+        const removeOptions = options as boolean | EventListenerOptions | undefined;
+
+        element.removeEventListener(event, handler, removeOptions);
+    }
+}
+
+/**
+ * @param container -
+ * @param map -
+ * @param initializers -
+ * @param force -
+ * @returns the items from the given initializer
+ */
+export async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+    container: Container,
+    map: Map<Container, TItem[]>,
+    initializers: Map<string, TInitializer>,
+    force = false,
+): Promise<TItem[]> {
+    let res = map.get(container);
+
+    if (!res || force) {
+        res = await Promise.all([...initializers.values()].map(t => t(container)));
+
+        map.set(container, res);
+    }
+
+    return res;
+}

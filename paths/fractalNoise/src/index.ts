@@ -7,10 +7,10 @@ export const fractalNoisePathName = "fractalNoise";
 /**
  * @param engine -
  */
-export function loadFractalNoisePath(engine: Engine): void {
+export async function loadFractalNoisePath(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { FractalNoiseGenerator } = await import("./FractalNoiseGenerator.js");
 
         e.addPathGenerator(fractalNoisePathName, new FractalNoiseGenerator());

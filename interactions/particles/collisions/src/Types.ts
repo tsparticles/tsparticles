@@ -1,15 +1,19 @@
-import type { IParticlesOptions, Particle, ParticlesOptions } from "@tsparticles/engine";
+import type {
+    IInteractivityParticlesOptions,
+    InteractivityParticle,
+    InteractivityParticlesOptions,
+} from "@tsparticles/plugin-interactivity";
 import type { Collisions } from "./Options/Classes/Collisions.js";
 import type { ICollisions } from "./Options/Interfaces/ICollisions.js";
 
-export type CollisionParticle = Particle & {
+export type CollisionParticle = InteractivityParticle & {
     options: ParticlesCollisionOptions;
 };
 
-export type IParticlesCollisionOptions = IParticlesOptions & {
+export type IParticlesCollisionOptions = IInteractivityParticlesOptions & {
     collisions?: ICollisions;
 };
 
-export type ParticlesCollisionOptions = ParticlesOptions & {
+export type ParticlesCollisionOptions = InteractivityParticlesOptions & {
     collisions?: Collisions;
 };

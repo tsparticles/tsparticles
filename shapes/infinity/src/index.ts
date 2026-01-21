@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadInfinityShape(engine: Engine): void {
+export async function loadInfinityShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { InfinityDrawer } = await import("./InfinityDrawer.js");
 
         e.addShape(new InfinityDrawer());

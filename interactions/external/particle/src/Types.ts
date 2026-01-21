@@ -1,16 +1,16 @@
-import type { Container } from "@tsparticles/engine";
-import type { IInteractivityParticle } from "./Options/Interfaces/IInteractivityParticle.js";
-import type { InteractivityParticle } from "./Options/Classes/InteractivityParticle.js";
+import type { IInteractivityParticleOptions } from "./Options/Interfaces/IInteractivityParticleOptions.js";
+import type { InteractivityContainer } from "@tsparticles/plugin-interactivity";
 import type { InteractivityParticleOptions } from "./Options/Classes/InteractivityParticleOptions.js";
+import type { InteractivityParticleOptionsData } from "./Options/Classes/InteractivityParticleOptionsData.js";
 
 export interface IParticleMode {
-    particle: IInteractivityParticle;
+    particle: IInteractivityParticleOptions;
 }
 
 export interface ParticleMode {
-    particle?: InteractivityParticle;
+    particle?: InteractivityParticleOptions;
 }
 
-export type InteractivityParticleContainer = Container & {
-    actualOptions: InteractivityParticleOptions;
+export type InteractivityParticleContainer = InteractivityContainer & {
+    actualOptions: InteractivityParticleOptionsData;
 };

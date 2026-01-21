@@ -1,35 +1,36 @@
 import type { AbsorberOptions, IAbsorberOptions } from "./types.js";
 import {
-    type Engine,
+    type Container,
+    type IContainerPlugin,
     type IOptions,
     type IPlugin,
     type RecursivePartial,
     executeOnSingleOrMultiple,
     isArray,
-    isInArray,
 } from "@tsparticles/engine";
 import { Absorber } from "./Options/Classes/Absorber.js";
-import { AbsorberClickMode } from "./Enums/AbsorberClickMode.js";
 import type { AbsorberContainer } from "./AbsorberContainer.js";
-import { Absorbers } from "./Absorbers.js";
+import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 
 /**
  */
 export class AbsorbersPlugin implements IPlugin {
     readonly id;
 
-    private readonly _engine;
+    private readonly _instancesManager;
 
-    constructor(engine: Engine) {
+    constructor(instancesManager: AbsorbersInstancesManager) {
         this.id = "absorbers";
-        this._engine = engine;
+        this._instancesManager = instancesManager;
     }
 
-    async getPlugin(container: AbsorberContainer): Promise<Absorbers> {
-        return Promise.resolve(new Absorbers(container, this._engine));
+    async getPlugin(container: AbsorberContainer): Promise<IContainerPlugin> {
+        const { AbsorbersPluginInstance } = await import("./AbsorbersPluginInstance.js");
+
+        return new AbsorbersPluginInstance(container, this._instancesManager);
     }
 
-    loadOptions(options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {
+    loadOptions(_container: Container, options: AbsorberOptions, source?: RecursivePartial<IAbsorberOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }
@@ -43,17 +44,6 @@ export class AbsorbersPlugin implements IPlugin {
                 return tmp;
             });
         }
-
-        options.interactivity.modes.absorbers = executeOnSingleOrMultiple(
-            source?.interactivity?.modes?.absorbers,
-            absorber => {
-                const tmp = new Absorber();
-
-                tmp.load(absorber);
-
-                return tmp;
-            },
-        );
     }
 
     needsPlugin(options?: RecursivePartial<IOptions & IAbsorberOptions>): boolean {
@@ -66,11 +56,6 @@ export class AbsorbersPlugin implements IPlugin {
         if (isArray(absorbers)) {
             return !!absorbers.length;
         } else if (absorbers) {
-            return true;
-        } else if (
-            options.interactivity?.events?.onClick?.mode &&
-            isInArray(AbsorberClickMode.absorber, options.interactivity.events.onClick.mode)
-        ) {
             return true;
         }
 

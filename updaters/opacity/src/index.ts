@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine - The engine instance to load the updater for
  */
-export function loadOpacityUpdater(engine: Engine): void {
+export async function loadOpacityUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("opacity", async container => {
             const { OpacityUpdater } = await import("./OpacityUpdater.js");
 

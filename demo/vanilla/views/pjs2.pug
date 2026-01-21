@@ -46,14 +46,18 @@ html(lang="en")
         script(src="/jquery/jquery.slim.min.js")
         script(src="/popper.js/umd/popper.min.js")
         script(src="/bootstrap/js/bootstrap.min.js")
-        script(src="/tsparticles/tsparticles.bundle.min.js")
+        script(src="/tsparticles-pjs/tsparticles.pjs.bundle.min.js")
         script.
-            Particles.init({
-                selector: ".background",
-                maxParticles: 100,
-                connectParticles: true,
-                color: ["#DA0463", "#404B69", "#DBEDF3"],
-                sizeVariations: 5,
-                speed: 0.5,
-                minDistance: 120,
-            })
+            (async (engine) => {
+                await initPjs(engine);
+
+                await Particles.init({
+                    selector: ".background",
+                    maxParticles: 100,
+                    connectParticles: true,
+                    color: ["#DA0463", "#404B69", "#DBEDF3"],
+                    sizeVariations: 5,
+                    speed: 0.5,
+                    minDistance: 120,
+                });
+            })(tsParticles);

@@ -6,6 +6,7 @@ import {
     getLinkColor,
     getRandom,
     getRangeValue,
+    half,
     rangeColorToRgb,
 } from "@tsparticles/engine";
 import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces.js";
@@ -15,7 +16,6 @@ import { drawLinkLine, drawLinkTriangle, setLinkFrequency } from "./Utils.js";
 const minOpacity = 0,
     minWidth = 0,
     minDistance = 0,
-    half = 0.5,
     maxFrequency = 1;
 
 export class LinkInstance implements IContainerPlugin {

@@ -1,8 +1,8 @@
 import type { BounceMode } from "../../Types.js";
-import type { Options } from "@tsparticles/engine";
+import type { InteractivityOptions } from "@tsparticles/plugin-interactivity";
 
-export type BounceOptions = Options & {
-    interactivity: {
+export type BounceOptions = InteractivityOptions & {
+    interactivity?: {
         modes: BounceMode;
     };
 };

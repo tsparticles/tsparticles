@@ -10,12 +10,11 @@ declare const __VERSION__: string;
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
  */
-export function loadAll(engine: Engine): void {
+export async function loadAll(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
-        const { initPjs } = await import("@tsparticles/pjs"),
-            { loadFull } = await import("tsparticles"),
+    await engine.register(async e => {
+        const { loadFull } = await import("tsparticles"),
             { loadHsvColorPlugin } = await import("@tsparticles/plugin-hsv-color"),
             { loadHwbColorPlugin } = await import("@tsparticles/plugin-hwb-color"),
             { loadLabColorPlugin } = await import("@tsparticles/plugin-lab-color"),
@@ -31,16 +30,16 @@ export function loadAll(engine: Engine): void {
             { loadEasingQuartPlugin } = await import("@tsparticles/plugin-easing-quart"),
             { loadEasingQuintPlugin } = await import("@tsparticles/plugin-easing-quint"),
             { loadEasingSinePlugin } = await import("@tsparticles/plugin-easing-sine"),
-            { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
-            { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
-            { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon"),
             { loadBackgroundMaskPlugin } = await import("@tsparticles/plugin-background-mask"),
             { loadCanvasMaskPlugin } = await import("@tsparticles/plugin-canvas-mask"),
             { loadInfectionPlugin } = await import("@tsparticles/plugin-infection"),
+            { loadManualParticlesPlugin } = await import("@tsparticles/plugin-manual-particles"),
             { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
             { loadPoissonDiscPlugin } = await import("@tsparticles/plugin-poisson-disc"),
             { loadPolygonMaskPlugin } = await import("@tsparticles/plugin-polygon-mask"),
+            { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive"),
             { loadSoundsPlugin } = await import("@tsparticles/plugin-sounds"),
+            { loadThemesPlugin } = await import("@tsparticles/plugin-themes"),
             { loadTrailPlugin } = await import("@tsparticles/plugin-trail"),
             { loadExportImagePlugin } = await import("@tsparticles/plugin-export-image"),
             { loadExportJSONPlugin } = await import("@tsparticles/plugin-export-json"),
@@ -70,77 +69,81 @@ export function loadAll(engine: Engine): void {
             { loadSimplexNoisePath } = await import("@tsparticles/path-simplex-noise"),
             { loadBubbleEffect } = await import("@tsparticles/effect-bubble"),
             { loadShadowEffect } = await import("@tsparticles/effect-shadow"),
-            { loadTrailEffect } = await import("@tsparticles/effect-trail");
+            { loadTrailEffect } = await import("@tsparticles/effect-trail"),
+            { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
+            { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
+            { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon");
 
-        initPjs(e);
+        await loadFull(e);
 
-        loadFull(e);
+        await loadEmittersShapeCanvas(e);
+        await loadEmittersShapePath(e);
+        await loadEmittersShapePolygon(e);
 
-        loadHsvColorPlugin(e);
-        loadHwbColorPlugin(e);
-        loadLabColorPlugin(e);
-        loadLchColorPlugin(e);
-        loadOklabColorPlugin(e);
-        loadOklchColorPlugin(e);
-        loadNamedColorPlugin(e);
+        await loadHsvColorPlugin(e);
+        await loadHwbColorPlugin(e);
+        await loadLabColorPlugin(e);
+        await loadLchColorPlugin(e);
+        await loadOklabColorPlugin(e);
+        await loadOklchColorPlugin(e);
+        await loadNamedColorPlugin(e);
 
-        loadEasingBackPlugin(e);
-        loadEasingCircPlugin(e);
-        loadEasingCubicPlugin(e);
-        loadEasingExpoPlugin(e);
-        loadEasingLinearPlugin(e);
-        loadEasingQuartPlugin(e);
-        loadEasingQuintPlugin(e);
-        loadEasingSinePlugin(e);
+        await loadEasingBackPlugin(e);
+        await loadEasingCircPlugin(e);
+        await loadEasingCubicPlugin(e);
+        await loadEasingExpoPlugin(e);
+        await loadEasingLinearPlugin(e);
+        await loadEasingQuartPlugin(e);
+        await loadEasingQuintPlugin(e);
+        await loadEasingSinePlugin(e);
 
-        loadEmittersShapeCanvas(e);
-        loadEmittersShapePath(e);
-        loadEmittersShapePolygon(e);
+        await loadBackgroundMaskPlugin(e);
+        await loadCanvasMaskPlugin(e);
+        await loadInfectionPlugin(e);
+        await loadManualParticlesPlugin(e);
+        await loadMotionPlugin(e);
+        await loadPoissonDiscPlugin(e);
+        await loadPolygonMaskPlugin(e);
+        await loadResponsivePlugin(e);
+        await loadSoundsPlugin(e);
+        await loadThemesPlugin(e);
+        await loadTrailPlugin(e);
 
-        loadBackgroundMaskPlugin(e);
-        loadCanvasMaskPlugin(e);
-        loadInfectionPlugin(e);
-        loadMotionPlugin(e);
-        loadPoissonDiscPlugin(e);
-        loadPolygonMaskPlugin(e);
-        loadSoundsPlugin(e);
-        loadTrailPlugin(e);
+        await loadExportImagePlugin(e);
+        await loadExportJSONPlugin(e);
+        await loadExportVideoPlugin(e);
 
-        loadExportImagePlugin(e);
-        loadExportJSONPlugin(e);
-        loadExportVideoPlugin(e);
+        await loadExternalParticleInteraction(e);
+        await loadExternalPopInteraction(e);
 
-        loadExternalParticleInteraction(e);
-        loadExternalPopInteraction(e);
+        await loadLightInteraction(e);
 
-        loadLightInteraction(e);
+        await loadParticlesRepulseInteraction(e);
 
-        loadParticlesRepulseInteraction(e);
+        await loadGradientUpdater(e);
+        await loadOrbitUpdater(e);
 
-        loadGradientUpdater(e);
-        loadOrbitUpdater(e);
+        await loadCurlNoisePath(e);
+        await loadCurvesPath(e);
+        await loadFractalNoisePath(e);
+        await loadPerlinNoisePath(e);
+        await loadPolygonPath(e);
+        await loadSVGPath(e);
+        await loadZigZagPath(e);
+        await loadSimplexNoisePath(e);
 
-        loadCurlNoisePath(e);
-        loadCurvesPath(e);
-        loadFractalNoisePath(e);
-        loadPerlinNoisePath(e);
-        loadPolygonPath(e);
-        loadSVGPath(e);
-        loadZigZagPath(e);
-        loadSimplexNoisePath(e);
+        await loadBubbleEffect(e);
+        await loadShadowEffect(e);
+        await loadTrailEffect(e);
 
-        loadBubbleEffect(e);
-        loadShadowEffect(e);
-        loadTrailEffect(e);
-
-        loadArrowShape(e);
-        loadCardsShape(e);
-        loadCogShape(e);
-        loadHeartShape(e);
-        loadInfinityShape(e);
-        loadPathShape(e);
-        loadRoundedPolygonShape(e);
-        loadRoundedRectShape(e);
-        loadSpiralShape(e);
+        await loadArrowShape(e);
+        await loadCardsShape(e);
+        await loadCogShape(e);
+        await loadHeartShape(e);
+        await loadInfinityShape(e);
+        await loadPathShape(e);
+        await loadRoundedPolygonShape(e);
+        await loadRoundedRectShape(e);
+        await loadSpiralShape(e);
     });
 }

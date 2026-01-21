@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-sounds",
-  "version": "4.0.0-alpha.2",
+  "version": "4.0.0-alpha.5",
   "description": "tsParticles sounds plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -94,7 +94,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.2"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.5"
   },
   "publishConfig": {
     "access": "public",

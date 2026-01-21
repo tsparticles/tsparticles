@@ -1,10 +1,7 @@
-import { type ICoordinates, type IShapeDrawData, percentDenominator } from "@tsparticles/engine";
+import { type IShapeDrawData, double, doublePI, originPoint, percentDenominator } from "@tsparticles/engine";
 import type { CogParticle } from "./CogParticle.js";
 
-const double = 2,
-    doublePI = Math.PI * double,
-    minAngle = 0,
-    origin: ICoordinates = { x: 0, y: 0 },
+const minAngle = 0,
     taperFactor = 0.005;
 
 /**
@@ -29,8 +26,8 @@ export function drawCogHole(data: IShapeDrawData<CogParticle>): void {
     context.globalCompositeOperation = "destination-out";
 
     context.beginPath();
-    context.moveTo(holeRadius, origin.y);
-    context.arc(origin.x, origin.y, holeRadius, minAngle, doublePI);
+    context.moveTo(holeRadius, originPoint.y);
+    context.arc(originPoint.x, originPoint.y, holeRadius, minAngle, doublePI);
     context.closePath();
     context.fill();
 

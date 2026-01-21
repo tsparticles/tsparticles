@@ -99,7 +99,7 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
             { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
             { loadCardsShape } = await import("@tsparticles/shape-cards"),
@@ -116,21 +116,21 @@ async function initPlugins(engine: Engine): Promise<void> {
             { loadWobbleUpdater } = await import("@tsparticles/updater-wobble"),
             { loadBasic } = await import("@tsparticles/basic");
 
-        loadEmittersPlugin(e);
-        loadMotionPlugin(e);
-        loadCardsShape(e);
-        loadHeartShape(e);
-        loadImageShape(e);
-        loadPolygonShape(e);
-        loadSquareShape(e);
-        loadStarShape(e);
-        loadEmojiShape(e);
-        loadRotateUpdater(e);
-        loadLifeUpdater(e);
-        loadRollUpdater(e);
-        loadTiltUpdater(e);
-        loadWobbleUpdater(e);
-        loadBasic(e);
+        await loadEmittersPlugin(e);
+        await loadMotionPlugin(e);
+        await loadCardsShape(e);
+        await loadHeartShape(e);
+        await loadImageShape(e);
+        await loadPolygonShape(e);
+        await loadSquareShape(e);
+        await loadStarShape(e);
+        await loadEmojiShape(e);
+        await loadRotateUpdater(e);
+        await loadLifeUpdater(e);
+        await loadRollUpdater(e);
+        await loadTiltUpdater(e);
+        await loadWobbleUpdater(e);
+        await loadBasic(e);
     });
 
     initializing = false;
@@ -160,7 +160,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
             const alias = container as EmitterContainer;
 
             if (Object.hasOwn(alias, "addEmitter")) {
-                await alias.addEmitter({
+                await alias.addEmitter?.({
                     startCount: actualOptions.count,
                     position: actualOptions.position,
                     size: {

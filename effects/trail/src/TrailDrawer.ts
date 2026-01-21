@@ -74,7 +74,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
                 x: currentPos.x,
                 y: currentPos.y,
             },
-            transformData: { ...data.transformData },
+            transformData,
         });
 
         if (trail.length < minTrailLength) {

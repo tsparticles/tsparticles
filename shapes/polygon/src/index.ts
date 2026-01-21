@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadGenericPolygonShape(engine: Engine): void {
+export async function loadGenericPolygonShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { PolygonDrawer } = await import("./PolygonDrawer.js");
 
         e.addShape(new PolygonDrawer());
@@ -18,10 +18,10 @@ export function loadGenericPolygonShape(engine: Engine): void {
 /**
  * @param engine -
  */
-export function loadTriangleShape(engine: Engine): void {
+export async function loadTriangleShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { TriangleDrawer } = await import("./TriangleDrawer.js");
 
         e.addShape(new TriangleDrawer());
@@ -31,11 +31,11 @@ export function loadTriangleShape(engine: Engine): void {
 /**
  * @param engine -
  */
-export function loadPolygonShape(engine: Engine): void {
+export async function loadPolygonShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
-        loadGenericPolygonShape(e);
-        loadTriangleShape(e);
+    await engine.register(async e => {
+        await loadGenericPolygonShape(e);
+        await loadTriangleShape(e);
     });
 }

@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadStarShape(engine: Engine): void {
+export async function loadStarShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { StarDrawer } = await import("./StarDrawer.js");
 
         e.addShape(new StarDrawer());

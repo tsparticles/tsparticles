@@ -2,6 +2,7 @@ import {
     type Container,
     type Engine,
     type ICoordinates,
+    type IDelta,
     type IRgb,
     type Particle,
     type RecursivePartial,
@@ -9,6 +10,7 @@ import {
     Vector,
     calcPositionOrRandomFromSize,
     calcPositionOrRandomFromSizeRanged,
+    doublePI,
     getDistance,
     getDistances,
     getRandom,
@@ -29,8 +31,7 @@ const squareExp = 2,
     minRadius = 0,
     minMass = 0,
     minAngle = 0,
-    double = 2,
-    maxAngle = Math.PI * double,
+    maxAngle = doublePI,
     minVelocity = 0;
 
 /**
@@ -82,6 +83,12 @@ export class AbsorberInstance {
     opacity;
 
     /**
+     * Gets the absorber options
+     * @internal
+     */
+    readonly options;
+
+    /**
      * The absorber position
      */
     position: Vector;
@@ -95,31 +102,19 @@ export class AbsorberInstance {
     private readonly _engine;
 
     /**
-     * Sets if the absorber can be moved with mouse drag&drop
-     * @internal
-     */
-    private dragging;
-
-    /**
      * Gets the absorber initial position
      * @internal
      */
     private readonly initialPosition?: Vector;
 
     /**
-     * Gets the absorber options
-     * @internal
-     */
-    private readonly options;
-
-    /**
      * The absorber constructor, initializes the absorber based on the given options and position
-     * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
      * @param engine - the Engine instance that will be used for calculating the Absorber interactions
+     * @param container - the Container engine using the absorber plugin, containing the particles that will interact with this Absorber
      * @param options - the Absorber source options
      * @param position - the Absorber optional position, if not given, it will be searched in options, and if not available also there, a random one will be used
      */
-    constructor(container: Container, engine: Engine, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
+    constructor(engine: Engine, container: Container, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
         this._container = container;
         this._engine = engine;
 
@@ -132,7 +127,6 @@ export class AbsorberInstance {
             this.options.load(options);
         }
 
-        this.dragging = false;
         this.name = this.options.name;
         this.opacity = this.options.opacity;
         this.size = getRangeValue(this.options.size.value) * container.retina.pixelRatio;
@@ -157,38 +151,19 @@ export class AbsorberInstance {
     /**
      * Absorber attraction interaction, attract the particle to the absorber
      * @param particle - the particle to attract to the absorber
+     * @param delta - the delta time of the frame, used for calculating the force between the particles and the absorber
      */
-    attract(particle: OrbitingParticle): void {
+    attract(particle: OrbitingParticle, delta: IDelta): void {
         const container = this._container,
-            options = this.options;
-
-        if (options.draggable) {
-            const mouse = container.interactivity.mouse;
-
-            if (mouse.clicking && mouse.downPosition) {
-                const mouseDist = getDistance(this.position, mouse.downPosition);
-
-                if (mouseDist <= this.size) {
-                    this.dragging = true;
-                }
-            } else {
-                this.dragging = false;
-            }
-
-            if (this.dragging && mouse.position) {
-                this.position.x = mouse.position.x;
-                this.position.y = mouse.position.y;
-            }
-        }
-
-        const pos = particle.getPosition(),
+            options = this.options,
+            pos = particle.getPosition(),
             { dx, dy, distance } = getDistances(this.position, pos),
             v = Vector.create(dx, dy);
 
         v.length = (this.mass / Math.pow(distance, squareExp)) * container.retina.reduceFactor;
 
         if (distance < this.size + particle.getRadius()) {
-            const sizeFactor = particle.getRadius() * absorbFactor * container.retina.pixelRatio;
+            const sizeFactor = particle.getRadius() * absorbFactor * container.retina.pixelRatio * delta.factor;
 
             if (
                 (this.size > particle.getRadius() && distance < this.size - particle.getRadius()) ||

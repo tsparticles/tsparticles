@@ -33,28 +33,16 @@ declare global {
  * @param engine - the engine that requires particles.js compatibility
  * @returns the particles.js compatibility object
  */
-const initPjs = (
-    engine: Engine,
-): {
-    /**
-     * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
-     * The particles.js compatibility object
-     */
-    Particles: typeof MBParticles;
-
-    /**
-     * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
-     * The particles.js compatibility dom array
-     */
-    pJSDom: Container[];
-
-    /**
-     * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
-     * The particles.js compatibility instance
-     */
-    particlesJS: IParticlesJS;
-} => {
+const initPjs = async (engine: Engine): Promise<void> => {
     engine.checkVersion(__VERSION__);
+
+    await engine.register(async e => {
+        const { loadFull } = await import("tsparticles"),
+            { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive");
+
+        await loadFull(e);
+        await loadResponsivePlugin(e);
+    });
 
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     const { particlesJS, pJSDom } = initParticlesJS(engine);
@@ -65,8 +53,6 @@ const initPjs = (
     globalThis.pJSDom = pJSDom;
     // eslint-disable-next-line @typescript-eslint/no-deprecated
     globalThis.Particles = MBParticles;
-
-    return { particlesJS, pJSDom, Particles: MBParticles };
 };
 
 export { initPjs };

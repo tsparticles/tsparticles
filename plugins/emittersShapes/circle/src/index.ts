@@ -6,12 +6,16 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadEmittersShapeCircle(engine: Engine): void {
+export async function loadEmittersShapeCircle(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (emittersEngine: EmittersEngine) => {
+    await engine.register(async (e: EmittersEngine) => {
+        if (!e.addEmitterShapeGenerator) {
+            throw new Error("tsParticles emitters plugin missing or initialized after shapes");
+        }
+
         const { EmittersCircleShapeGenerator } = await import("./EmittersCircleShapeGenerator.js");
 
-        emittersEngine.addEmitterShapeGenerator?.("circle", new EmittersCircleShapeGenerator());
+        e.addEmitterShapeGenerator("circle", new EmittersCircleShapeGenerator());
     });
 }

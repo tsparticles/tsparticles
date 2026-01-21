@@ -7,11 +7,12 @@ import {
     Vector,
     clamp,
     getDistances,
+    identity,
 } from "@tsparticles/engine";
 import type { AttractContainer } from "./Types.js";
+import type { IInteractivityData } from "@tsparticles/plugin-interactivity";
 
 const minFactor = 1,
-    identity = 1,
     minRadius = 0;
 
 /**
@@ -31,7 +32,7 @@ function processAttract(
     area: BaseRange,
     queryCb: (p: Particle) => boolean,
 ): void {
-    const attractOptions = container.actualOptions.interactivity.modes.attract;
+    const attractOptions = container.actualOptions.interactivity?.modes.attract;
 
     if (!attractOptions) {
         return;
@@ -57,14 +58,15 @@ function processAttract(
 }
 
 /**
- *
  * @param engine -
  * @param container -
+ * @param interactivityData -
  * @param enabledCb -
  */
 export function clickAttract(
     engine: Engine,
     container: AttractContainer,
+    interactivityData: IInteractivityData,
     enabledCb: (particle: Particle) => boolean,
 ): void {
     container.attract ??= { particles: [] };
@@ -81,7 +83,7 @@ export function clickAttract(
     }
 
     if (attract.clicking) {
-        const mousePos = container.interactivity.mouse.clickPosition,
+        const mousePos = interactivityData.mouse.clickPosition,
             attractRadius = container.retina.attractModeDistance;
 
         if (!attractRadius || attractRadius < minRadius || !mousePos) {
@@ -102,17 +104,18 @@ export function clickAttract(
 }
 
 /**
- *
  * @param engine -
  * @param container -
+ * @param interactivityData -
  * @param enabledCb -
  */
 export function hoverAttract(
     engine: Engine,
     container: AttractContainer,
+    interactivityData: IInteractivityData,
     enabledCb: (particle: Particle) => boolean,
 ): void {
-    const mousePos = container.interactivity.mouse.position,
+    const mousePos = interactivityData.mouse.position,
         attractRadius = container.retina.attractModeDistance;
 
     if (!attractRadius || attractRadius < minRadius || !mousePos) {

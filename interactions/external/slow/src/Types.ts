@@ -1,5 +1,5 @@
-import type { Container } from "@tsparticles/engine";
 import type { ISlow } from "./Options/Interfaces/ISlow.js";
+import type { InteractivityContainer } from "@tsparticles/plugin-interactivity";
 import type { Slow } from "./Options/Classes/Slow.js";
 import type { SlowOptions } from "./Options/Classes/SlowOptions.js";
 
@@ -11,7 +11,7 @@ export interface SlowMode {
     slow?: Slow;
 }
 
-export type SlowContainer = Container & {
+export type SlowContainer = InteractivityContainer & {
     actualOptions: SlowOptions;
     retina: {
         slowModeRadius?: number;

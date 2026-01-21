@@ -1,25 +1,23 @@
+import type { ICoordinates, IDimension, IRgb } from "@tsparticles/engine";
 import type {
-    Container,
-    Engine,
-    ICoordinates,
-    IDimension,
-    IParticlesOptions,
-    IRgb,
-    Particle,
-    ParticlesOptions,
-} from "@tsparticles/engine";
+    IInteractivityParticlesOptions,
+    InteractivityContainer,
+    InteractivityEngine,
+    InteractivityParticle,
+    InteractivityParticlesOptions,
+} from "@tsparticles/plugin-interactivity";
 import type { ILink } from "./Interfaces.js";
 import type { ILinks } from "./Options/Interfaces/ILinks.js";
 import type { Links } from "./Options/Classes/Links.js";
 
-export type LinkContainer = Container & {
+export type LinkContainer = InteractivityContainer & {
     particles: {
         linksColor?: IRgb | string;
         linksColors: Map<string, IRgb | string | undefined>;
     };
 };
 
-export type LinkParticle = Particle & {
+export type LinkParticle = InteractivityParticle & {
     links?: ILink[];
     options: ParticlesLinkOptions;
     retina: {
@@ -34,7 +32,7 @@ export interface LinkLineDrawParams {
     colorLine: IRgb;
     context: CanvasRenderingContext2D;
     end: ICoordinates;
-    engine: Engine;
+    engine: InteractivityEngine;
     hdr: boolean;
     links: Links;
     maxDistance: number;
@@ -52,10 +50,10 @@ export interface LinkTriangleDrawParams {
     pos3: ICoordinates;
 }
 
-export type IParticlesLinkOptions = IParticlesOptions & {
+export type IParticlesLinkOptions = IInteractivityParticlesOptions & {
     links?: ILinks;
 };
 
-export type ParticlesLinkOptions = ParticlesOptions & {
+export type ParticlesLinkOptions = InteractivityParticlesOptions & {
     links?: Links;
 };

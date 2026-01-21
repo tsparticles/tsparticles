@@ -1,19 +1,28 @@
-import { type Engine } from "@tsparticles/engine";
+import type { Engine } from "@tsparticles/engine";
+import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
+import type { LinkContainer } from "./Types.js";
 
 declare const __VERSION__: string;
 
 /**
  * @param engine -
  */
-export function loadParticlesLinksInteraction(engine: Engine): void {
+export async function loadParticlesLinksInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
-        const { loadLinksInteraction } = await import("./interaction.js"),
-            { loadLinksPlugin } = await import("./plugin.js");
+    await engine.register(async (e: InteractivityEngine) => {
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
+            { LinksPlugin } = await import("./LinksPlugin.js");
 
-        loadLinksInteraction(e);
-        loadLinksPlugin(e);
+        await loadInteractivityPlugin(e);
+
+        e.addPlugin(new LinksPlugin(e));
+
+        e.addInteractor?.("particlesLinks", async container => {
+            const { Linker } = await import("./Linker.js");
+
+            return new Linker(container as LinkContainer, engine);
+        });
     });
 }
 

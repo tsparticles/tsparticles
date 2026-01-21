@@ -1,7 +1,6 @@
-import { type Container, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
+import { type Container, type IContainerPlugin, type IPlugin, type RecursivePartial } from "@tsparticles/engine";
 import type { IPoissonOptions, PoissonOptions } from "./types.js";
 import { Poisson } from "./Options/Classes/Poisson.js";
-import { PoissonInstance } from "./PoissonInstance.js";
 
 /**
  */
@@ -12,11 +11,13 @@ export class PoissonDiscPlugin implements IPlugin {
         this.id = "poisson";
     }
 
-    getPlugin(container: Container): Promise<PoissonInstance> {
-        return Promise.resolve(new PoissonInstance(container));
+    async getPlugin(container: Container): Promise<IContainerPlugin> {
+        const { PoissonDiscPluginInstance } = await import("./PoissonDiscPluginInstance.js");
+
+        return new PoissonDiscPluginInstance(container);
     }
 
-    loadOptions(options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {
+    loadOptions(_container: Container, options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {
         if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
             return;
         }

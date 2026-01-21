@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-circ",
-  "version": "4.0.0-alpha.2",
+  "version": "4.0.0-alpha.5",
   "description": "tsParticles easing circ plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.2"
+    "@tsparticles/engine": "4.0.0-alpha.5"
   },
   "publishConfig": {
     "access": "public"

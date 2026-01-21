@@ -36,5 +36,5 @@ export interface IDrawParticleParams {
     /**
      * The particle transform values
      */
-    transform: IParticleTransformValues;
+    transform: Partial<IParticleTransformValues>;
 }

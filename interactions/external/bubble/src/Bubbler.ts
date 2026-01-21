@@ -1,31 +1,37 @@
 import type { BubbleContainer, BubbleMode, IBubbleMode } from "./Types.js";
 import {
     Circle,
-    type DivEvent,
-    DivType,
     type Engine,
-    ExternalInteractorBase,
     type IDelta,
-    type IModes,
-    type Modes,
     type Particle,
     Rectangle,
     type RecursivePartial,
     colorMix,
-    divMode,
-    divModeExecute,
+    double,
     getDistance,
     getRangeMax,
-    isDivModeEnabled,
+    half,
     isInArray,
     itemFromSingleOrMultiple,
     millisecondsToSeconds,
-    mouseLeaveEvent,
-    mouseMoveEvent,
     rangeColorToHsl,
     rgbToHsl,
     safeDocument,
 } from "@tsparticles/engine";
+import {
+    type DivEvent,
+    DivType,
+    ExternalInteractorBase,
+    type IInteractivityData,
+    type IModes,
+    type InteractivityParticle,
+    type Modes,
+    divMode,
+    divModeExecute,
+    isDivModeEnabled,
+    mouseLeaveEvent,
+    mouseMoveEvent,
+} from "@tsparticles/plugin-interactivity";
 import { Bubble } from "./Options/Classes/Bubble.js";
 import type { BubbleDiv } from "./Options/Classes/BubbleDiv.js";
 import type { Interfaces } from "./Interfaces.js";
@@ -35,19 +41,17 @@ import { calculateBubbleValue } from "./Utils.js";
 const bubbleMode = "bubble",
     minDistance = 0,
     defaultClickTime = 0,
-    double = 2,
     defaultOpacity = 1,
     ratioOffset = 1,
     defaultBubbleValue = 0,
     minRatio = 0,
-    half = 0.5,
     defaultRatio = 1;
 
 /**
  * Particle bubble manager
  */
 export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
-    handleClickMode: (mode: string) => void;
+    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
     private readonly _engine;
 
@@ -82,7 +86,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
     init(): void {
         const container = this.container,
-            bubble = container.actualOptions.interactivity.modes.bubble;
+            bubble = container.actualOptions.interactivity?.modes.bubble;
 
         if (!bubble) {
             return;
@@ -95,10 +99,15 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     }
 
-    interact(delta: IDelta): void {
+    interact(interactivityData: IInteractivityData, delta: IDelta): void {
         const options = this.container.actualOptions,
-            events = options.interactivity.events,
-            onHover = events.onHover,
+            events = options.interactivity?.events;
+
+        if (!events) {
+            return;
+        }
+
+        const onHover = events.onHover,
             onClick = events.onClick,
             hoverEnabled = onHover.enable,
             hoverMode = onHover.mode,
@@ -108,22 +117,27 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
         /* on hover event */
         if (hoverEnabled && isInArray(bubbleMode, hoverMode)) {
-            this._hoverBubble();
+            this._hoverBubble(interactivityData);
         } else if (clickEnabled && isInArray(bubbleMode, clickMode)) {
-            this._clickBubble();
+            this._clickBubble(interactivityData);
         } else {
             divModeExecute(bubbleMode, divs, (selector, div): void => {
-                this._singleSelectorHover(delta, selector, div);
+                this._singleSelectorHover(interactivityData, delta, selector, div);
             });
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events,
-            { onClick, onDiv, onHover } = events,
+            mouse = interactivityData.mouse,
+            events = (particle?.interactivity ?? options.interactivity)?.events;
+
+        if (!events) {
+            return false;
+        }
+
+        const { onClick, onDiv, onHover } = events,
             divBubble = isDivModeEnabled(bubbleMode, onDiv);
 
         if (!(divBubble || (onHover.enable && !!mouse.position) || (onClick.enable && mouse.clickPosition))) {
@@ -144,15 +158,15 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     }
 
-    reset(particle: Particle): void {
+    reset(_interactivityData: IInteractivityData, particle: Particle): void {
         particle.bubble.inRange = false;
     }
 
-    private readonly _clickBubble: () => void = () => {
+    private readonly _clickBubble: (interactivityData: IInteractivityData) => void = interactivityData => {
         const container = this.container,
             options = container.actualOptions,
-            mouseClickPos = container.interactivity.mouse.clickPosition,
-            bubbleOptions = options.interactivity.modes.bubble;
+            mouseClickPos = interactivityData.mouse.clickPosition,
+            bubbleOptions = options.interactivity?.modes.bubble;
 
         if (!bubbleOptions || !mouseClickPos) {
             return;
@@ -166,7 +180,9 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             return;
         }
 
-        const query = container.particles.quadTree.queryCircle(mouseClickPos, distance, p => this.isEnabled(p)),
+        const query = container.particles.quadTree.queryCircle(mouseClickPos, distance, p =>
+                this.isEnabled(interactivityData, p),
+            ),
             { bubble } = container;
 
         for (const particle of query) {
@@ -179,7 +195,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
             const pos = particle.getPosition(),
                 distMouse = getDistance(pos, mouseClickPos),
                 timeSpent =
-                    (new Date().getTime() - (container.interactivity.mouse.clickTime ?? defaultClickTime)) /
+                    (new Date().getTime() - (interactivityData.mouse.clickTime ?? defaultClickTime)) /
                     millisecondsToSeconds;
 
             if (timeSpent > bubbleOptions.duration) {
@@ -227,16 +243,18 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     };
 
-    private readonly _hoverBubble: () => void = () => {
+    private readonly _hoverBubble: (interactivityData: IInteractivityData) => void = interactivityData => {
         const container = this.container,
-            mousePos = container.interactivity.mouse.position,
+            mousePos = interactivityData.mouse.position,
             distance = container.retina.bubbleModeDistance;
 
         if (!distance || distance < minDistance || !mousePos) {
             return;
         }
 
-        const query = container.particles.quadTree.queryCircle(mousePos, distance, p => this.isEnabled(p));
+        const query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
+            this.isEnabled(interactivityData, p),
+        );
 
         // for (const { distance, particle } of query) {
         for (const particle of query) {
@@ -248,7 +266,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
             /* mousemove - check ratio */
             if (pointDistance <= distance) {
-                if (ratio >= minRatio && container.interactivity.status === mouseMoveEvent) {
+                if (ratio >= minRatio && interactivityData.status === mouseMoveEvent) {
                     /* size */
                     this._hoverBubbleSize(particle, ratio);
 
@@ -259,12 +277,12 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                     this._hoverBubbleColor(particle, ratio);
                 }
             } else {
-                this.reset(particle);
+                this.reset(interactivityData, particle);
             }
 
             /* mouseleave */
-            if (container.interactivity.status === mouseLeaveEvent) {
-                this.reset(particle);
+            if (interactivityData.status === mouseLeaveEvent) {
+                this.reset(interactivityData, particle);
             }
         }
     };
@@ -275,7 +293,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         divBubble,
     ) => {
         const options = this.container.actualOptions,
-            bubbleOptions = divBubble ?? options.interactivity.modes.bubble;
+            bubbleOptions = divBubble ?? options.interactivity?.modes.bubble;
 
         if (!bubbleOptions) {
             return;
@@ -317,7 +335,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     ) => {
         const container = this.container,
             options = container.actualOptions,
-            modeOpacity = divBubble?.opacity ?? options.interactivity.modes.bubble?.opacity;
+            modeOpacity = divBubble?.opacity ?? options.interactivity?.modes.bubble?.opacity;
 
         if (!modeOpacity) {
             return;
@@ -362,7 +380,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         const container = this.container,
             bubbleParam = data.bubbleObj.optValue,
             options = container.actualOptions,
-            bubbleOptions = options.interactivity.modes.bubble;
+            bubbleOptions = options.interactivity?.modes.bubble;
 
         if (!bubbleOptions || bubbleParam === undefined) {
             return;
@@ -418,14 +436,15 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
         }
     };
 
-    private readonly _singleSelectorHover: (delta: IDelta, selector: string, div: DivEvent) => void = (
-        delta,
-        selector,
-        div,
-    ) => {
+    private readonly _singleSelectorHover: (
+        interactivityData: IInteractivityData,
+        delta: IDelta,
+        selector: string,
+        div: DivEvent,
+    ) => void = (interactivityData, delta, selector, div) => {
         const container = this.container,
             selectors = safeDocument().querySelectorAll(selector),
-            bubble = container.actualOptions.interactivity.modes.bubble;
+            bubble = container.actualOptions.interactivity?.modes.bubble;
 
         if (!bubble || !selectors.length) {
             return;
@@ -448,7 +467,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                               elem.offsetWidth * pxRatio,
                               elem.offsetHeight * pxRatio,
                           ),
-                query = container.particles.quadTree.query(area, p => this.isEnabled(p));
+                query = container.particles.quadTree.query(area, p => this.isEnabled(interactivityData, p));
 
             for (const particle of query) {
                 if (!area.contains(particle.getPosition())) {

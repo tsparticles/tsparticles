@@ -4,21 +4,18 @@ import {
     type ICoordinates,
     type IDimension,
     type IRgb,
-    ParticlesInteractorBase,
     type RecursivePartial,
     getDistances,
     getLinkRandomColor,
+    originPoint,
 } from "@tsparticles/engine";
 import type { IParticlesLinkOptions, LinkContainer, LinkParticle, ParticlesLinkOptions } from "./Types.js";
 import { CircleWarp } from "./CircleWarp.js";
 import { Links } from "./Options/Classes/Links.js";
+import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
 const squarePower = 2,
     opacityOffset = 1,
-    origin: ICoordinates = {
-        x: 0,
-        y: 0,
-    },
     minDistance = 0;
 
 /**
@@ -83,7 +80,12 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
             container = this.container,
             canvasSize = container.canvas.size;
 
-        if (pos1.x < origin.x || pos1.y < origin.y || pos1.x > canvasSize.width || pos1.y > canvasSize.height) {
+        if (
+            pos1.x < originPoint.x ||
+            pos1.y < originPoint.y ||
+            pos1.x > canvasSize.width ||
+            pos1.y > canvasSize.height
+        ) {
             return;
         }
 
@@ -120,7 +122,12 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
 
             const pos2 = p2.getPosition();
 
-            if (pos2.x < origin.x || pos2.y < origin.y || pos2.x > canvasSize.width || pos2.y > canvasSize.height) {
+            if (
+                pos2.x < originPoint.x ||
+                pos2.y < originPoint.y ||
+                pos2.x > canvasSize.width ||
+                pos2.y > canvasSize.height
+            ) {
                 continue;
             }
 

@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadSizeUpdater(engine: Engine): void {
+export async function loadSizeUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("size", async () => {
             const { SizeUpdater } = await import("./SizeUpdater.js");
 

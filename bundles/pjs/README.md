@@ -17,8 +17,9 @@ The CDN/Vanilla version JS has two different files:
 
 #### Bundle
 
-Including the `tsparticles.pjs.bundle.min.js` file will work exactly like `v1`, you can start using the `tsParticles`,
-the `particlesJS` instance, or the `Particles` object in the same way.
+Including the `tsparticles.pjs.bundle.min.js` file will also include the tsParticles engine exports.
+You need to call initPjs function awaiting it like in the samples, after that the `particlesJS` instance,
+or the `Particles` object are ready to be used in the same way.
 
 #### Not Bundle
 
@@ -27,37 +28,32 @@ specified in the **Included Packages** section.
 
 ### Usage
 
-Once the scripts are loaded you can set up `tsParticles` or `particlesJS` like this:
+Once the scripts are loaded you can set up `particlesJS` like this:
 
 ```javascript
-const { particlesJS } = initPjs(tsParticles); // not needed if using the bundle script, required for any other installation
+(async (engine) => {
+  await initPjs(engine);
 
-particlesJS("tsparticles", {
-  /* options */
-});
-
-// or
-
-tsParticles.load({
-  id: "tsparticles",
-  options: {
+  particlesJS("tsparticles", {
     /* options */
-  },
-});
+  });
+})(tsParticles);
 ```
 
 #### Options
 
-Here you can use ParticlesJS or tsParticles options, they will work both fine.
+Here you can use ParticlesJS options.
 
 ### Alternative Usage
 
 ```javascript
-const { Particles } = initPjs(tsParticles); // not needed if using the bundle script, required for any other installation
+(async (engine) => {
+  initPjs(engine);
 
-Particles.init({
-  /* options */
-});
+  Particles.init({
+    /* options */
+  });
+})(tsParticles);
 ```
 
 #### Particles Options (only for Particles.init)

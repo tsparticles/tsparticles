@@ -1,4 +1,5 @@
-import { type Engine, ParticlesInteractorBase, isInArray, rangeColorToRgb } from "@tsparticles/engine";
+import { type Engine, isInArray, rangeColorToRgb } from "@tsparticles/engine";
+import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import type { LightContainer, LightParticle } from "./Types.js";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
@@ -19,16 +20,15 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
         // do nothing
     }
 
-    interact(particle: LightParticle): void {
+    interact(particle: LightParticle, interactivityData: IInteractivityData): void {
         const container = this.container,
-            options = container.actualOptions,
-            interactivity = container.interactivity;
+            options = container.actualOptions;
 
-        if (!options.interactivity.events.onHover.enable || interactivity.status !== "pointermove") {
+        if (!options.interactivity?.events.onHover.enable || interactivityData.status !== "pointermove") {
             return;
         }
 
-        const mousePos = interactivity.mouse.position;
+        const mousePos = interactivityData.mouse.position;
 
         if (!mousePos) {
             return;
@@ -39,10 +39,9 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
         });
     }
 
-    isEnabled(particle: LightParticle): boolean {
-        const container = this.container,
-            interactivity = particle.interactivity,
-            mouse = container.interactivity.mouse,
+    isEnabled(particle: LightParticle, interactivityData: IInteractivityData): boolean {
+        const interactivity = particle.interactivity,
+            mouse = interactivityData.mouse,
             events = interactivity.events;
 
         if (!(events.onHover.enable && mouse.position)) {

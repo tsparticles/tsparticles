@@ -1,14 +1,14 @@
 import type { BounceContainer, BounceMode, IBounceMode } from "./Types.js";
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
-    type RecursivePartial,
     isDivModeEnabled,
-    isInArray,
     mouseMoveEvent,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
+import { type RecursivePartial, isInArray } from "@tsparticles/engine";
 import { divBounce, mouseBounce } from "./Utils.js";
 import { Bounce } from "./Options/Classes/Bounce.js";
 
@@ -26,7 +26,7 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
 
     init(): void {
         const container = this.container,
-            bounce = container.actualOptions.interactivity.modes.bounce;
+            bounce = container.actualOptions.interactivity?.modes.bounce;
 
         if (!bounce) {
             return;
@@ -35,28 +35,38 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
         container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
             options = container.actualOptions,
-            events = options.interactivity.events,
-            mouseMoveStatus = container.interactivity.status === mouseMoveEvent,
-            hoverEnabled = events.onHover.enable,
+            events = options.interactivity?.events,
+            mouseMoveStatus = interactivityData.status === mouseMoveEvent;
+
+        if (!events) {
+            return;
+        }
+
+        const hoverEnabled = events.onHover.enable,
             hoverMode = events.onHover.mode,
             divs = events.onDiv;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(bounceMode, hoverMode)) {
-            mouseBounce(this.container, p => this.isEnabled(p));
+            mouseBounce(this.container, interactivityData, p => this.isEnabled(interactivityData, p));
         } else {
-            divBounce(this.container, divs, bounceMode, p => this.isEnabled(p));
+            divBounce(this.container, divs, bounceMode, p => this.isEnabled(interactivityData, p));
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events,
-            divs = events.onDiv;
+            mouse = interactivityData.mouse,
+            events = (particle?.interactivity ?? options.interactivity)?.events;
+
+        if (!events) {
+            return false;
+        }
+
+        const divs = events.onDiv;
 
         return (
             (!!mouse.position && events.onHover.enable && isInArray(bounceMode, events.onHover.mode)) ||

@@ -11,13 +11,12 @@ export class OverlapPluginInstance implements IContainerPlugin {
     }
 
     checkParticlePosition(particle: CollisionParticle, position: ICoordinates, tryCount: number): boolean {
-        return this._checkOverlap(particle, position, tryCount);
+        return !this._hasOverlaps(particle, position, tryCount);
     }
 
-    private readonly _checkOverlap: (particle: CollisionParticle, position: ICoordinates, tryCount: number) => boolean =
+    private readonly _hasOverlaps: (particle: CollisionParticle, position: ICoordinates, tryCount: number) => boolean =
         (particle, pos, tryCount) => {
-            const collisionsOptions = particle.options.collisions,
-                radius = particle.getRadius();
+            const collisionsOptions = particle.options.collisions;
 
             if (!collisionsOptions?.enable) {
                 return false;
@@ -35,6 +34,8 @@ export class OverlapPluginInstance implements IContainerPlugin {
                 throw new Error(`Particle is overlapping and can't be placed`);
             }
 
-            return !!this._container.particles.find(p => getDistance(pos, p.position) < radius + p.getRadius());
+            return !!this._container.particles.find(
+                p => getDistance(pos, p.position) < particle.getRadius() + p.getRadius(),
+            );
         };
 }

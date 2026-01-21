@@ -1,4 +1,5 @@
-import type { Container, IRgb, OptionsColor, Particle } from "@tsparticles/engine";
+import type { IRgb, OptionsColor } from "@tsparticles/engine";
+import type { InteractivityContainer, InteractivityParticle } from "@tsparticles/plugin-interactivity";
 import type { Grab } from "./Options/Classes/Grab.js";
 import type { GrabOptions } from "./Options/Classes/GrabOptions.js";
 import type { IGrab } from "./Options/Interfaces/IGrab.js";
@@ -11,7 +12,7 @@ export interface GrabMode {
     grab?: Grab;
 }
 
-export type GrabContainer = Container & {
+export type GrabContainer = InteractivityContainer & {
     actualOptions: GrabOptions;
     particles: {
         grabLineColor?: IRgb | string;
@@ -21,7 +22,7 @@ export type GrabContainer = Container & {
     };
 };
 
-export type LinkParticle = Particle & {
+export type LinkParticle = InteractivityParticle & {
     options: {
         links?: {
             color?: OptionsColor;

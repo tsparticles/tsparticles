@@ -1,10 +1,13 @@
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
+    type IModes,
+    type InteractivityParticle,
+    type Modes,
+} from "@tsparticles/plugin-interactivity";
+import {
     type ICoordinates,
     type IDelta,
-    type IModes,
-    type Modes,
-    type Particle,
     type RecursivePartial,
     isInArray,
     millisecondsToSeconds,
@@ -34,16 +37,15 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         // do nothing
     }
 
-    interact(delta: IDelta): void {
-        const container = this.container,
-            { interactivity } = container;
+    interact(interactivityData: IInteractivityData, delta: IDelta): void {
+        const container = this.container;
 
         if (!container.retina.reduceFactor) {
             return;
         }
 
         const options = container.actualOptions,
-            trailOptions = options.interactivity.modes.trail;
+            trailOptions = options.interactivity?.modes.trail;
 
         if (!trailOptions) {
             return;
@@ -60,13 +62,12 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         const canEmit = !(
-            trailOptions.pauseOnStop &&
-            (interactivity.mouse.position === this._lastPosition ||
-                (interactivity.mouse.position?.x === this._lastPosition?.x &&
-                    interactivity.mouse.position?.y === this._lastPosition?.y))
-        );
-
-        const mousePos = container.interactivity.mouse.position;
+                trailOptions.pauseOnStop &&
+                (interactivityData.mouse.position === this._lastPosition ||
+                    (interactivityData.mouse.position?.x === this._lastPosition?.x &&
+                        interactivityData.mouse.position?.y === this._lastPosition?.y))
+            ),
+            mousePos = interactivityData.mouse.position;
 
         if (mousePos) {
             this._lastPosition = { ...mousePos };
@@ -75,21 +76,22 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         if (canEmit) {
-            container.particles.push(trailOptions.quantity, container.interactivity.mouse, trailOptions.particles);
+            container.particles.push(trailOptions.quantity, interactivityData.mouse.position, trailOptions.particles);
         }
 
         this._delay -= optDelay;
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events;
+            mouse = interactivityData.mouse,
+            events = (particle?.interactivity ?? options.interactivity)?.events;
 
         return (
-            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(trailMode, events.onClick.mode)) ||
-            (mouse.inside && !!mouse.position && isInArray(trailMode, events.onHover.mode))
+            !!events &&
+            ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(trailMode, events.onClick.mode)) ||
+                (mouse.inside && !!mouse.position && isInArray(trailMode, events.onHover.mode)))
         );
     }
 

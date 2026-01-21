@@ -7,10 +7,10 @@ export const polygonPathName = "polygonPathGenerator";
 /**
  * @param engine -
  */
-export function loadPolygonPath(engine: Engine): void {
+export async function loadPolygonPath(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { PolygonPathGenerator } = await import("./PolygonPathGenerator.js");
 
         e.addPathGenerator(polygonPathName, new PolygonPathGenerator());

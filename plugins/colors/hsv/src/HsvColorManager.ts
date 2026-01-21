@@ -30,7 +30,7 @@ export class HsvColorManager implements IColorManager {
         const colorValue = color.value as IValueColor,
             hsvColor = colorValue.hsv ?? (color.value as IHsv);
 
-        if (!Object.hasOwn(hsvColor, "h") && !Object.hasOwn(hsvColor, "v")) {
+        if (!Object.hasOwn(hsvColor, "h") || !Object.hasOwn(hsvColor, "s") || !Object.hasOwn(hsvColor, "v")) {
             return;
         }
 
@@ -41,7 +41,7 @@ export class HsvColorManager implements IColorManager {
         const colorValue = color.value as IRangeValueColor,
             hsvColor = colorValue.hsv ?? (color.value as IRangeHsv);
 
-        if (!Object.hasOwn(hsvColor, "h") && !Object.hasOwn(hsvColor, "v")) {
+        if (!Object.hasOwn(hsvColor, "h") || !Object.hasOwn(hsvColor, "s") || !Object.hasOwn(hsvColor, "v")) {
             return;
         }
 

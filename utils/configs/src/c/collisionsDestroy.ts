@@ -69,15 +69,6 @@ const options: ISourceOptions = {
     },
     interactivity: {
         events: {
-            onHover: {
-                enable: false,
-                mode: "repulse",
-                parallax: {
-                    enable: false,
-                    force: 60,
-                    smooth: 10,
-                },
-            },
             onClick: {
                 enable: true,
                 mode: "push",

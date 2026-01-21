@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.5](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2026-01-21)
+
+**Note:** Version bump only for package @tsparticles/engine
+
+# [4.0.0-alpha.4](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2026-01-21)
+
+### Bug Fixes
+
+- fixed wrong condition ([f14e08c](https://github.com/tsparticles/tsparticles/commit/f14e08c0e2b2ca8a2a973542567bb1ae112f5452))
+- prevent engine register from being overwritten when loader fails ([652d2d2](https://github.com/tsparticles/tsparticles/commit/652d2d2af9b72f9200e0efe99a52dff2e6fe9b95))
+- removed inconsistent or operator ([f5a4ed7](https://github.com/tsparticles/tsparticles/commit/f5a4ed7140fc3a77cb23125ed11410f972753a5d))
+- removed some deprecation, added more functions and utils to exports ([119aa9e](https://github.com/tsparticles/tsparticles/commit/119aa9e33b1dfc6e3ce17d827a94a6afb1664b60))
+- removed some duplicated constants ([2e46059](https://github.com/tsparticles/tsparticles/commit/2e460599a6763d22663e0f2c402867f569890e00))
+
+### Features
+
+- add manual particles plugin with configuration and usage examples ([8d73e42](https://github.com/tsparticles/tsparticles/commit/8d73e42320f8f3845545a2bef0f8d92979f1e2ee))
+- reworked parallax mover plugin to parallax external interaction plugin ([6e2052c](https://github.com/tsparticles/tsparticles/commit/6e2052c5ec2412b7aa2b63a688b06af1c9ef4ec9))
+
+# [4.0.0-alpha.3](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2026-01-10)
+
+**Note:** Version bump only for package @tsparticles/engine
+
 # [4.0.0-alpha.2](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2026-01-08)
 
 ### Bug Fixes

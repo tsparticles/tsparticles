@@ -1,11 +1,10 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, double, getRangeValue } from "@tsparticles/engine";
 import type { IRoundedRectData } from "./IRoundedRectData.js";
 import type { RoundedParticle } from "./RoundedParticle.js";
 import { drawRoundedRect } from "./Utils.js";
 
 const fixFactorSquare = 2,
     fixFactor = Math.sqrt(fixFactorSquare),
-    double = 2,
     defaultRadius = 5;
 
 export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {

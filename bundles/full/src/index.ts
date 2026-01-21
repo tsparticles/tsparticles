@@ -10,10 +10,10 @@ declare const __VERSION__: string;
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
  */
-export function loadFull(engine: Engine): void {
+export async function loadFull(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { loadDestroyUpdater } = await import("@tsparticles/updater-destroy"),
             { loadRollUpdater } = await import("@tsparticles/updater-roll"),
             { loadTiltUpdater } = await import("@tsparticles/updater-tilt"),
@@ -27,22 +27,22 @@ export function loadFull(engine: Engine): void {
             { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
             { loadSlim } = await import("@tsparticles/slim");
 
-        loadDestroyUpdater(e);
-        loadRollUpdater(e);
-        loadTiltUpdater(e);
-        loadTwinkleUpdater(e);
-        loadWobbleUpdater(e);
+        await loadSlim(e);
 
-        loadTextShape(e);
+        await loadDestroyUpdater(e);
+        await loadRollUpdater(e);
+        await loadTiltUpdater(e);
+        await loadTwinkleUpdater(e);
+        await loadWobbleUpdater(e);
 
-        loadExternalTrailInteraction(e);
+        await loadTextShape(e);
 
-        loadAbsorbersPlugin(e);
-        loadEmittersPlugin(e);
+        await loadExternalTrailInteraction(e);
 
-        loadEmittersShapeCircle(e);
-        loadEmittersShapeSquare(e);
+        await loadAbsorbersPlugin(e);
+        await loadEmittersPlugin(e);
 
-        loadSlim(engine);
+        await loadEmittersShapeCircle(e);
+        await loadEmittersShapeSquare(e);
     });
 }

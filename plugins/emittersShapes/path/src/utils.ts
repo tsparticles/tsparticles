@@ -1,7 +1,6 @@
-import { type ICoordinates, type IDimension, getRandom } from "@tsparticles/engine";
+import { type ICoordinates, type IDimension, getRandom, half } from "@tsparticles/engine";
 
-const maxAttempts = 100,
-    half = 0.5;
+const maxAttempts = 100;
 
 /**
  *

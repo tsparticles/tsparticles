@@ -3,7 +3,6 @@ import { AnimatableColor } from "../AnimatableColor.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import type { Engine } from "../../../Core/Engine.js";
-import type { IInteractivity } from "../../Interfaces/Interactivity/IInteractivity.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
 import { Move } from "./Move/Move.js";
@@ -29,7 +28,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     color;
     readonly effect;
     readonly groups: ParticlesGroups;
-    interactivity?: RecursivePartial<IInteractivity>;
     readonly move;
     readonly number;
     readonly opacity;
@@ -94,10 +92,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         this.size.load(data.size);
         this.zIndex.load(data.zIndex);
 
-        if (data.interactivity !== undefined) {
-            this.interactivity = deepExtend({}, data.interactivity) as RecursivePartial<IInteractivity>;
-        }
-
         const strokeToLoad = data.stroke;
 
         if (strokeToLoad) {
@@ -111,22 +105,18 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
         }
 
         if (this._container) {
+            for (const plugin of this._engine.plugins) {
+                if (plugin.loadParticlesOptions) {
+                    plugin.loadParticlesOptions(this._container, this, data);
+                }
+            }
+
             const updaters = this._engine.updaters.get(this._container);
 
             if (updaters) {
                 for (const updater of updaters) {
                     if (updater.loadOptions) {
                         updater.loadOptions(this, data);
-                    }
-                }
-            }
-
-            const interactors = this._engine.interactors.get(this._container);
-
-            if (interactors) {
-                for (const interactor of interactors) {
-                    if (interactor.loadParticlesOptions) {
-                        interactor.loadParticlesOptions(this, data);
                     }
                 }
             }

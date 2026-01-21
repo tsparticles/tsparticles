@@ -3,6 +3,7 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
+import type { Initializers, MoverInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
 import {
     canvasFirstIndex,
     canvasTag,
@@ -15,7 +16,7 @@ import {
     one,
     removeDeleteCount,
 } from "./Utils/Constants.js";
-import { itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import { getItemsFromInitializer, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -23,9 +24,7 @@ import type { EasingFunction } from "../Types/EasingFunction.js";
 import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
-import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
@@ -34,8 +33,6 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
-import type { Options } from "../Options/Classes/Options.js";
-import type { Particle } from "./Particle.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
@@ -43,6 +40,8 @@ import { getLogger } from "../Utils/LogUtils.js";
 import { getRandom } from "../Utils/MathUtils.js";
 
 declare const __VERSION__: string;
+
+const fullPercent = "100%";
 
 declare global {
     var tsParticles: Engine;
@@ -54,26 +53,6 @@ interface DataFromUrlParams {
     url: SingleOrMultiple<string>;
 }
 
-type GenericInitializer<T> = (container: Container) => Promise<T>;
-
-/**
- * Alias for interactivity manager initializer function
- */
-type InteractorInitializer = GenericInitializer<IInteractor>;
-
-type MoverInitializer = GenericInitializer<IParticleMover>;
-
-/**
- * Alias for updater initializer function
- */
-type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
-
-interface Initializers {
-    interactors: Map<string, InteractorInitializer>;
-    movers: Map<string, MoverInitializer>;
-    updaters: Map<string, UpdaterInitializer>;
-}
-
 type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
 type SyncLoadPluginFunction = (engine: Engine) => void;
 type AsyncLoadPluginNoEngine = () => Promise<void>;
@@ -83,30 +62,6 @@ type LoadPluginFunction =
     | SyncLoadPluginFunction
     | AsyncLoadPluginNoEngine
     | SyncLoadPluginNoEngine;
-
-/**
- * @param container -
- * @param map -
- * @param initializers -
- * @param force -
- * @returns the items from the given initializer
- */
-async function getItemsFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
-    container: Container,
-    map: Map<Container, TItem[]>,
-    initializers: Map<string, TInitializer>,
-    force = false,
-): Promise<TItem[]> {
-    let res = map.get(container);
-
-    if (!res || force) {
-        res = await Promise.all([...initializers.values()].map(t => t(container)));
-
-        map.set(container, res);
-    }
-
-    return res;
-}
 
 /**
  * @param data -
@@ -133,6 +88,8 @@ async function getDataFromUrl(
 }
 
 const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
+        const documentSafe = safeDocument();
+
         let canvasEl: HTMLCanvasElement;
 
         if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
@@ -150,7 +107,7 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
                 canvasEl.dataset[generatedAttribute] = generatedFalse;
             } else {
                 /* create canvas element */
-                canvasEl = safeDocument().createElement(canvasTag);
+                canvasEl = documentSafe.createElement(canvasTag);
 
                 canvasEl.dataset[generatedAttribute] = generatedTrue;
 
@@ -159,31 +116,26 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
             }
         }
 
-        const fullPercent = "100%";
-
-        if (!canvasEl.style.width) {
-            canvasEl.style.width = fullPercent;
-        }
-
-        if (!canvasEl.style.height) {
-            canvasEl.style.height = fullPercent;
-        }
+        canvasEl.style.width ||= fullPercent;
+        canvasEl.style.height ||= fullPercent;
 
         return canvasEl;
     },
     getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
-        let domContainer = source ?? safeDocument().getElementById(id);
+        const documentSafe = safeDocument();
+
+        let domContainer = source ?? documentSafe.getElementById(id);
 
         if (domContainer) {
             return domContainer;
         }
 
-        domContainer = safeDocument().createElement("div");
+        domContainer = documentSafe.createElement("div");
 
         domContainer.id = id;
         domContainer.dataset[generatedAttribute] = generatedTrue;
 
-        safeDocument().body.append(domContainer);
+        documentSafe.body.append(domContainer);
 
         return domContainer;
     };
@@ -202,11 +154,6 @@ export class Engine {
      * The drawers (additional effects) array
      */
     readonly effectDrawers;
-
-    /**
-     * The interaction managers array
-     */
-    readonly interactors;
 
     readonly movers;
 
@@ -235,6 +182,8 @@ export class Engine {
      */
     readonly updaters;
 
+    private _allLoadersSet;
+
     private readonly _configs: Map<string, ISourceOptions>;
 
     /**
@@ -244,12 +193,16 @@ export class Engine {
 
     private readonly _eventDispatcher;
 
+    private _executedSet;
+
     /**
      * Checks if the engine instance is initialized
      */
     private _initialized: boolean;
 
     private readonly _initializers: Initializers;
+
+    private _isRunningLoaders;
 
     private readonly _loadPromises: Set<LoadPluginFunction>;
 
@@ -261,16 +214,17 @@ export class Engine {
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
         this._initialized = false;
+        this._isRunningLoaders = false;
         this._loadPromises = new Set<LoadPluginFunction>();
+        this._allLoadersSet = new Set<LoadPluginFunction>();
+        this._executedSet = new Set<LoadPluginFunction>();
         this.plugins = [];
         this.colorManagers = new Map<string, IColorManager>();
         this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
         this._initializers = {
-            interactors: new Map<string, InteractorInitializer>(),
             movers: new Map<string, MoverInitializer>(),
             updaters: new Map<string, UpdaterInitializer>(),
         };
-        this.interactors = new Map<Container, IInteractor[]>();
         this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
         this.presets = new Map<string, ISourceOptions>();
@@ -343,15 +297,6 @@ export class Engine {
      */
     addEventListener(type: string, listener: CustomEventListener): void {
         this._eventDispatcher.addEventListener(type, listener);
-    }
-
-    /**
-     * Adds an interaction manager to the current collection
-     * @param name - the interaction manager name
-     * @param interactorInitializer - the interaction manager initializer
-     */
-    addInteractor(name: string, interactorInitializer: InteractorInitializer): void {
-        this._initializers.interactors.set(name, interactorInitializer);
     }
 
     /**
@@ -440,7 +385,6 @@ export class Engine {
     clearPlugins(container: Container): void {
         this.updaters.delete(container);
         this.movers.delete(container);
-        this.interactors.delete(container);
     }
 
     /**
@@ -448,44 +392,8 @@ export class Engine {
      * @param type - The event to dispatch
      * @param args - The event parameters
      */
-    dispatchEvent(type: string, args: CustomEventArgs): void {
+    dispatchEvent(type: string, args?: CustomEventArgs): void {
         this._eventDispatcher.dispatchEvent(type, args);
-    }
-
-    /**
-     * All the {@link Container} objects loaded
-     * @deprecated the dom() function is deprecated, please use the items property instead
-     * @returns All the {@link Container} objects loaded
-     */
-    dom(): Container[] {
-        return this.items;
-    }
-
-    /**
-     * Retrieves a {@link Container} from all the objects loaded
-     * @deprecated the domItem() function is deprecated, please use the item function instead
-     * @param index - The object index
-     * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
-     */
-    domItem(index: number): Container | undefined {
-        return this.item(index);
-    }
-
-    /**
-     * Gets all the available plugins, for the specified container
-     * @param container - the container used to check which are the valid plugins
-     * @returns a map containing all enabled plugins, with the id as a key
-     */
-    async getAvailablePlugins(container: Container): Promise<Map<string, IContainerPlugin>> {
-        const res = new Map<string, IContainerPlugin>();
-
-        for (const plugin of this.plugins) {
-            if (plugin.needsPlugin(container.actualOptions)) {
-                res.set(plugin.id, await plugin.getPlugin(container));
-            }
-        }
-
-        return res;
     }
 
     /**
@@ -503,16 +411,6 @@ export class Engine {
      */
     getEffectDrawer(type: string): IEffectDrawer | undefined {
         return this.effectDrawers.get(type);
-    }
-
-    /**
-     * Returns all the container interaction managers
-     * @param container - the container used to check which interaction managers are compatible
-     * @param force - if true reloads the interaction managers collection for the given container
-     * @returns the array of interaction managers for the given container
-     */
-    async getInteractors(container: Container, force = false): Promise<IInteractor[]> {
-        return getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
     }
 
     async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
@@ -585,17 +483,22 @@ export class Engine {
      * init method, used by imports
      */
     async init(): Promise<void> {
-        if (this._initialized) {
-            return;
+        if (this._initialized || this._isRunningLoaders) return;
+
+        this._isRunningLoaders = true;
+
+        this._executedSet = new Set<LoadPluginFunction>();
+        this._allLoadersSet = new Set(this._loadPromises);
+
+        try {
+            for (const loader of this._allLoadersSet) {
+                await this._runLoader(loader, this._executedSet, this._allLoadersSet);
+            }
+        } finally {
+            this._loadPromises.clear();
+            this._isRunningLoaders = false;
+            this._initialized = true; // Hard stop: da qui in poi register() darà errore
         }
-
-        for (const loadPromise of this._loadPromises) {
-            await loadPromise(this);
-        }
-
-        this._loadPromises.clear();
-
-        this._initialized = true;
     }
 
     /**
@@ -662,17 +565,6 @@ export class Engine {
     }
 
     /**
-     * Load the given options for all the plugins
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadOptions(options: Options, sourceOptions: ISourceOptions): void {
-        this.plugins.forEach(plugin => {
-            plugin.loadOptions(options, sourceOptions);
-        });
-    }
-
-    /**
      * Load the given particles options for all the updaters
      * @param container - the container of the updaters
      * @param options - the actual options to set
@@ -704,13 +596,17 @@ export class Engine {
         await Promise.all(this.items.map(t => t.refresh()));
     }
 
-    register(...loadPromises: LoadPluginFunction[]): void {
+    async register(...loaders: LoadPluginFunction[]): Promise<void> {
         if (this._initialized) {
-            throw new Error(`Register plugins can only be done before calling tsParticles.load()`);
+            throw new Error("Register plugins can only be done before calling tsParticles.load()");
         }
 
-        for (const loadPromise of loadPromises) {
-            this._loadPromises.add(loadPromise);
+        for (const loader of loaders) {
+            if (this._isRunningLoaders) {
+                await this._runLoader(loader, this._executedSet, this._allLoadersSet);
+            } else {
+                this._loadPromises.add(loader);
+            }
         }
     }
 
@@ -723,19 +619,16 @@ export class Engine {
         this._eventDispatcher.removeEventListener(type, listener);
     }
 
-    /**
-     * Adds another click handler to all the loaded {@link Container} objects.
-     * @param callback - The function called after the click event is fired
-     */
-    setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const { items } = this;
+    private async _runLoader(
+        loader: LoadPluginFunction,
+        executed: Set<LoadPluginFunction>,
+        allLoaders: Set<LoadPluginFunction>,
+    ): Promise<void> {
+        if (executed.has(loader)) return;
 
-        if (!items.length) {
-            throw new Error("Click handlers can only be set after calling tsParticles.load()");
-        }
+        executed.add(loader);
+        allLoaders.add(loader);
 
-        items.forEach(item => {
-            item.addClickHandler(callback);
-        });
+        await loader(this);
     }
 }

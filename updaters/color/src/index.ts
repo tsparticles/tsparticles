@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadColorUpdater(engine: Engine): void {
+export async function loadColorUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("color", async container => {
             const { ColorUpdater } = await import("./ColorUpdater.js");
 

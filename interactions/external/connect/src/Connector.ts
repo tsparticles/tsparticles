@@ -1,12 +1,12 @@
 import type { ConnectContainer, ConnectMode, IConnectMode } from "./Types.js";
 import {
     ExternalInteractorBase,
+    type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
-    type RecursivePartial,
-    isInArray,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
+import { type RecursivePartial, isInArray } from "@tsparticles/engine";
 import { Connect } from "./Options/Classes/Connect.js";
 import { drawConnection } from "./Utils.js";
 
@@ -28,7 +28,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
 
     init(): void {
         const container = this.container,
-            connect = container.actualOptions.interactivity.modes.connect;
+            connect = container.actualOptions.interactivity?.modes.connect;
 
         if (!connect) {
             return;
@@ -40,13 +40,14 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
 
     /**
      * Connecting particles on hover interactivity
+     * @param interactivityData
      */
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
             options = container.actualOptions;
 
-        if (options.interactivity.events.onHover.enable && container.interactivity.status === "pointermove") {
-            const mousePos = container.interactivity.mouse.position,
+        if (options.interactivity?.events.onHover.enable && interactivityData.status === "pointermove") {
+            const mousePos = interactivityData.mouse.position,
                 { connectModeDistance, connectModeRadius } = container.retina;
 
             if (
@@ -60,7 +61,9 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
             }
 
             const distance = Math.abs(connectModeRadius),
-                query = container.particles.quadTree.queryCircle(mousePos, distance, p => this.isEnabled(p));
+                query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
+                    this.isEnabled(interactivityData, p),
+                );
 
             query.forEach((p1, i) => {
                 const pos1 = p1.getPosition(),
@@ -80,12 +83,12 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+            mouse = interactivityData.mouse,
+            events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-        if (!(events.onHover.enable && mouse.position)) {
+        if (!(events?.onHover.enable && mouse.position)) {
             return false;
         }
 

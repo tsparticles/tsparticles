@@ -1,16 +1,19 @@
 import {
     type Engine,
-    ExternalInteractorBase,
-    type IModes,
-    type Modes,
-    type Particle,
     type RecursivePartial,
     getDistance,
     getLinkColor,
     getLinkRandomColor,
     isInArray,
-    mouseMoveEvent,
 } from "@tsparticles/engine";
+import {
+    ExternalInteractorBase,
+    type IInteractivityData,
+    type IModes,
+    type InteractivityParticle,
+    type Modes,
+    mouseMoveEvent,
+} from "@tsparticles/plugin-interactivity";
 import type { GrabContainer, GrabMode, IGrabMode, LinkParticle } from "./Types.js";
 import { Grab } from "./Options/Classes/Grab.js";
 import { drawGrab } from "./Utils.js";
@@ -37,7 +40,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
 
     init(): void {
         const container = this.container,
-            grab = container.actualOptions.interactivity.modes.grab;
+            grab = container.actualOptions.interactivity?.modes.grab;
 
         if (!grab) {
             return;
@@ -46,20 +49,20 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
     }
 
-    interact(): void {
+    interact(interactivityData: IInteractivityData): void {
         const container = this.container,
             options = container.actualOptions,
             interactivity = options.interactivity;
 
         if (
-            !interactivity.modes.grab ||
+            !interactivity?.modes.grab ||
             !interactivity.events.onHover.enable ||
-            container.interactivity.status !== mouseMoveEvent
+            interactivityData.status !== mouseMoveEvent
         ) {
             return;
         }
 
-        const mousePos = container.interactivity.mouse.position;
+        const mousePos = interactivityData.mouse.position;
 
         if (!mousePos) {
             return;
@@ -72,7 +75,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         }
 
         const query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
-            this.isEnabled(p),
+            this.isEnabled(interactivityData, p),
         ) as LinkParticle[];
 
         for (const particle of query) {
@@ -118,12 +121,12 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
         }
     }
 
-    isEnabled(particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
-            mouse = container.interactivity.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+            mouse = interactivityData.mouse,
+            events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
+        return !!events?.onHover.enable && !!mouse.position && isInArray(grabMode, events.onHover.mode);
     }
 
     loadModeOptions(options: Modes & GrabMode, ...sources: RecursivePartial<(IModes & IGrabMode) | undefined>[]): void {

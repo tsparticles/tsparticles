@@ -1,8 +1,8 @@
 import type { AttractMode } from "../../Types.js";
-import type { Options } from "@tsparticles/engine";
+import type { InteractivityOptions } from "@tsparticles/plugin-interactivity";
 
-export type AttractOptions = Options & {
-    interactivity: {
+export type AttractOptions = InteractivityOptions & {
+    interactivity?: {
         modes: AttractMode;
     };
 };
