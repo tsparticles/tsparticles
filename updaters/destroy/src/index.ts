@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadDestroyUpdater(engine: Engine): void {
+export async function loadDestroyUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("destroy", async container => {
             const { DestroyUpdater } = await import("./DestroyUpdater.js");
 

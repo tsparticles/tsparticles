@@ -7,14 +7,14 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadParticlesLinksInteraction(engine: Engine): void {
+export async function loadParticlesLinksInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: InteractivityEngine) => {
+    await engine.register(async (e: InteractivityEngine) => {
         const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
             { LinksPlugin } = await import("./LinksPlugin.js");
 
-        loadInteractivityPlugin(e);
+        await loadInteractivityPlugin(e);
 
         e.addPlugin(new LinksPlugin(e));
 

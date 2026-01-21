@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine - The engine instance
  */
-export function loadManualParticlesPlugin(engine: Engine): void {
+export async function loadManualParticlesPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { ManualParticlesPlugin } = await import("./ManualParticlesPlugin.js");
 
         e.addPlugin(new ManualParticlesPlugin());

@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadCircleShape(engine: Engine): void {
+export async function loadCircleShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { CircleDrawer } = await import("./CircleDrawer.js");
 
         e.addShape(new CircleDrawer());

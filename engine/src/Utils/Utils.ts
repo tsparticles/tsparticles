@@ -238,10 +238,14 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
 
         const sourceIsArray = Array.isArray(source);
 
-        if (sourceIsArray && (isObject(destination) || !destination || !Array.isArray(destination))) {
-            destination = [];
-        } else if (!sourceIsArray && (isObject(destination) || !destination || Array.isArray(destination))) {
-            destination = {};
+        if (sourceIsArray) {
+            if (!Array.isArray(destination)) {
+                destination = [];
+            }
+        } else {
+            if (!isObject(destination) || Array.isArray(destination)) {
+                destination = {};
+            }
         }
 
         for (const key in source) {

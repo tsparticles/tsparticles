@@ -100,8 +100,8 @@
   },
   "dependencies": {
     "@tsparticles/engine": "4.0.0-alpha.4",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.4",
-    "@tsparticles/plugin-responsive": "4.0.0-alpha.4"
+    "@tsparticles/plugin-responsive": "4.0.0-alpha.4",
+    "tsparticles": "4.0.0-alpha.4"
   },
   "publishConfig": {
     "access": "public"

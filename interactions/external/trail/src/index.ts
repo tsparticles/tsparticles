@@ -6,13 +6,13 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadExternalTrailInteraction(engine: Engine): void {
+export async function loadExternalTrailInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: InteractivityEngine) => {
+    await engine.register(async (e: InteractivityEngine) => {
         const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        loadInteractivityPlugin(e);
+        await loadInteractivityPlugin(e);
 
         e.addInteractor?.("externalTrail", async container => {
             const { TrailMaker } = await import("./TrailMaker.js");

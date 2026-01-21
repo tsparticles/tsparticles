@@ -7,10 +7,10 @@ export const simplexNoisePathName = "simplexNoise";
 /**
  * @param engine -
  */
-export function loadSimplexNoisePath(engine: Engine): void {
+export async function loadSimplexNoisePath(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { SimplexNoiseGenerator } = await import("./SimplexNoiseGenerator.js");
 
         e.addPathGenerator(simplexNoisePathName, new SimplexNoiseGenerator());

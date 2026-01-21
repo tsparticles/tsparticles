@@ -115,7 +115,6 @@
     "@tsparticles/path-simplex-noise": "4.0.0-alpha.4",
     "@tsparticles/path-svg": "4.0.0-alpha.4",
     "@tsparticles/path-zig-zag": "4.0.0-alpha.4",
-    "@tsparticles/pjs": "4.0.0-alpha.4",
     "@tsparticles/plugin-background-mask": "4.0.0-alpha.4",
     "@tsparticles/plugin-canvas-mask": "4.0.0-alpha.4",
     "@tsparticles/plugin-easing-back": "4.0.0-alpha.4",

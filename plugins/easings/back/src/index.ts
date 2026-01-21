@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadEasingBackPlugin(engine: Engine): void {
+export async function loadEasingBackPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { easingsFunctions } = await import("./easingsFunctions.js");
 
         for (const [easing, easingFn] of easingsFunctions) {

@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadBubbleEffect(engine: Engine): void {
+export async function loadBubbleEffect(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { BubbleDrawer } = await import("./BubbleDrawer.js");
 
         e.addEffect("bubble", new BubbleDrawer());

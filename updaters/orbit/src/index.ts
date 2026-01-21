@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadOrbitUpdater(engine: Engine): void {
+export async function loadOrbitUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("orbit", async container => {
             const { OrbitUpdater } = await import("./OrbitUpdater.js");
 

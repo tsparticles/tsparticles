@@ -7,10 +7,10 @@ export const zigZagPathName = "zigZagPathGenerator";
 /**
  * @param engine -
  */
-export function loadZigZagPath(engine: Engine): void {
+export async function loadZigZagPath(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { ZigZagPathGenerator } = await import("./ZigZagPathGenerator.js");
 
         e.addPathGenerator(zigZagPathName, new ZigZagPathGenerator());

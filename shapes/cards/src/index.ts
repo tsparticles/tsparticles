@@ -5,19 +5,19 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadCardsShape(engine: Engine): void {
+export async function loadCardsShape(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { loadClubsCardsShape } = await import("./clubs/index.js"),
             { loadDiamondsCardsShape } = await import("./diamonds/index.js"),
             { loadHeartsCardsShape } = await import("./hearts/index.js"),
             { loadSpadesCardsShape } = await import("./spades/index.js");
 
-        loadClubsCardsShape(e);
-        loadDiamondsCardsShape(e);
-        loadHeartsCardsShape(e);
-        loadSpadesCardsShape(e);
+        await loadClubsCardsShape(e);
+        await loadDiamondsCardsShape(e);
+        await loadHeartsCardsShape(e);
+        await loadSpadesCardsShape(e);
     });
 }
 

@@ -7,17 +7,17 @@ declare const __VERSION__: string;
 /**
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
  */
-export function loadEmittersPlugin(engine: EmittersEngine): void {
+export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: EmittersEngine) => {
+    await engine.register(async (e: EmittersEngine) => {
         const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
             { ShapeManager } = await import("./ShapeManager.js"),
             { EmittersInstancesManager } = await import("./EmittersInstancesManager.js"),
             { EmittersPlugin } = await import("./EmittersPlugin.js"),
             instancesManager = new EmittersInstancesManager(e);
 
-        loadInteractivityPlugin(e);
+        await loadInteractivityPlugin(e);
 
         e.emitterShapeManager ??= new ShapeManager();
         e.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {

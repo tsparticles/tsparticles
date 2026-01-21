@@ -10,10 +10,10 @@ declare const __VERSION__: string;
  * This function is called automatically using CDN bundle files.
  * @param engine - the engine to use for loading all plugins
  */
-export function loadBasic(engine: Engine): void {
+export async function loadBasic(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color"),
             { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color"),
             { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color"),
@@ -24,17 +24,17 @@ export function loadBasic(engine: Engine): void {
             { loadOutModesUpdater } = await import("@tsparticles/updater-out-modes"),
             { loadSizeUpdater } = await import("@tsparticles/updater-size");
 
-        loadHexColorPlugin(e);
-        loadHslColorPlugin(e);
-        loadRgbColorPlugin(e);
+        await loadHexColorPlugin(e);
+        await loadHslColorPlugin(e);
+        await loadRgbColorPlugin(e);
 
-        loadBaseMover(e);
+        await loadBaseMover(e);
 
-        loadCircleShape(e);
+        await loadCircleShape(e);
 
-        loadColorUpdater(e);
-        loadOpacityUpdater(e);
-        loadOutModesUpdater(e);
-        loadSizeUpdater(e);
+        await loadColorUpdater(e);
+        await loadOpacityUpdater(e);
+        await loadOutModesUpdater(e);
+        await loadSizeUpdater(e);
     });
 }

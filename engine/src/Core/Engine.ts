@@ -182,6 +182,8 @@ export class Engine {
      */
     readonly updaters;
 
+    private _allLoadersSet;
+
     private readonly _configs: Map<string, ISourceOptions>;
 
     /**
@@ -191,12 +193,16 @@ export class Engine {
 
     private readonly _eventDispatcher;
 
+    private _executedSet;
+
     /**
      * Checks if the engine instance is initialized
      */
     private _initialized: boolean;
 
     private readonly _initializers: Initializers;
+
+    private _isRunningLoaders;
 
     private readonly _loadPromises: Set<LoadPluginFunction>;
 
@@ -208,7 +214,10 @@ export class Engine {
         this._domArray = [];
         this._eventDispatcher = new EventDispatcher();
         this._initialized = false;
+        this._isRunningLoaders = false;
         this._loadPromises = new Set<LoadPluginFunction>();
+        this._allLoadersSet = new Set<LoadPluginFunction>();
+        this._executedSet = new Set<LoadPluginFunction>();
         this.plugins = [];
         this.colorManagers = new Map<string, IColorManager>();
         this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
@@ -474,56 +483,22 @@ export class Engine {
      * init method, used by imports
      */
     async init(): Promise<void> {
-        if (this._initialized) {
-            return;
-        }
+        if (this._initialized || this._isRunningLoaders) return;
 
-        const executed = new Set<LoadPluginFunction>(),
-            allLoaders = new Set(this._loadPromises),
-            stack = [...allLoaders];
+        this._isRunningLoaders = true;
 
-        while (stack.length) {
-            const loader = stack.shift();
+        this._executedSet = new Set<LoadPluginFunction>();
+        this._allLoadersSet = new Set(this._loadPromises);
 
-            if (!loader) {
-                continue;
+        try {
+            for (const loader of this._allLoadersSet) {
+                await this._runLoader(loader, this._executedSet, this._allLoadersSet);
             }
-
-            if (executed.has(loader)) {
-                continue;
-            }
-
-            executed.add(loader);
-
-            const inner: LoadPluginFunction[] = [],
-                origRegister = this.register.bind(this);
-
-            this.register = (...loaders: LoadPluginFunction[]): void => {
-                inner.push(...loaders);
-
-                for (const loader of loaders) {
-                    allLoaders.add(loader);
-                }
-            };
-
-            try {
-                await loader(this);
-            } finally {
-                this.register = origRegister;
-            }
-
-            stack.unshift(...inner);
-
-            this._loadPromises.delete(loader);
+        } finally {
+            this._loadPromises.clear();
+            this._isRunningLoaders = false;
+            this._initialized = true; // Hard stop: da qui in poi register() darà errore
         }
-
-        this._loadPromises.clear();
-
-        for (const loader of allLoaders) {
-            this._loadPromises.add(loader);
-        }
-
-        this._initialized = true;
     }
 
     /**
@@ -551,8 +526,6 @@ export class Engine {
      */
     async load(params: ILoadParams): Promise<Container | undefined> {
         await this.init();
-
-        this._loadPromises.clear();
 
         const { Container } = await import("./Container.js"),
             id =
@@ -623,13 +596,17 @@ export class Engine {
         await Promise.all(this.items.map(t => t.refresh()));
     }
 
-    register(...loadPromises: LoadPluginFunction[]): void {
+    async register(...loaders: LoadPluginFunction[]): Promise<void> {
         if (this._initialized) {
-            throw new Error(`Register plugins can only be done before calling tsParticles.load()`);
+            throw new Error("Register plugins can only be done before calling tsParticles.load()");
         }
 
-        for (const loadPromise of loadPromises) {
-            this._loadPromises.add(loadPromise);
+        for (const loader of loaders) {
+            if (this._isRunningLoaders) {
+                await this._runLoader(loader, this._executedSet, this._allLoadersSet);
+            } else {
+                this._loadPromises.add(loader);
+            }
         }
     }
 
@@ -640,5 +617,18 @@ export class Engine {
      */
     removeEventListener(type: string, listener: CustomEventListener): void {
         this._eventDispatcher.removeEventListener(type, listener);
+    }
+
+    private async _runLoader(
+        loader: LoadPluginFunction,
+        executed: Set<LoadPluginFunction>,
+        allLoaders: Set<LoadPluginFunction>,
+    ): Promise<void> {
+        if (executed.has(loader)) return;
+
+        executed.add(loader);
+        allLoaders.add(loader);
+
+        await loader(this);
     }
 }

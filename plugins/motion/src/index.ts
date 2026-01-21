@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine - The engine instance
  */
-export function loadMotionPlugin(engine: Engine): void {
+export async function loadMotionPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { MotionPlugin } = await import("./MotionPlugin.js");
 
         e.addPlugin(new MotionPlugin());

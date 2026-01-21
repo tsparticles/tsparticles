@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine - The engine instance
  */
-export function loadThemesPlugin(engine: Engine): void {
+export async function loadThemesPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { ThemesPlugin } = await import("./ThemesPlugin.js");
 
         e.addPlugin(new ThemesPlugin());

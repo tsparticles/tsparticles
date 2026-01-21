@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadTwinkleUpdater(engine: Engine): void {
+export async function loadTwinkleUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("twinkle", async () => {
             const { TwinkleUpdater } = await import("./TwinkleUpdater.js");
 

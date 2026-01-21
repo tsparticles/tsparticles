@@ -138,13 +138,13 @@ const initParticlesJS = (
      * @param options - the options object to initialize the {@link Container}
      * @returns the loaded container
      */
-    const particlesJS = (
+    const particlesJS = async (
         tagId: string,
         options: RecursivePartial<IParticlesJSOptions>,
     ): Promise<Container | undefined> => {
-        const fixedOptions = deepExtend(defaultPjsOptions, options) as IParticlesJSOptions;
+        const fixedOptions = deepExtend({}, defaultPjsOptions, options) as IParticlesJSOptions;
 
-        return engine.load({
+        return await engine.load({
             id: tagId,
             options: {
                 fullScreen: {

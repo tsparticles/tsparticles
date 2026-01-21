@@ -21,11 +21,11 @@ import { loadHsvColorPlugin } from "@tsparticles/plugin-hsv-color";
 import { loadRgbColorPlugin } from "@tsparticles/plugin-rgb-color";
 
 describe("ColorUtils", async () => {
-    tsParticles.register(engine => {
-        loadHexColorPlugin(engine);
-        loadHslColorPlugin(engine);
-        loadHsvColorPlugin(engine);
-        loadRgbColorPlugin(engine);
+    await tsParticles.register(async engine => {
+        await loadHexColorPlugin(engine);
+        await loadHslColorPlugin(engine);
+        await loadHsvColorPlugin(engine);
+        await loadRgbColorPlugin(engine);
     });
 
     await tsParticles.init();

@@ -6,13 +6,13 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadExternalParticleInteraction(engine: Engine): void {
+export async function loadExternalParticleInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: InteractivityEngine) => {
+    await engine.register(async (e: InteractivityEngine) => {
         const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        loadInteractivityPlugin(e);
+        await loadInteractivityPlugin(e);
 
         e.addInteractor?.("externalParticle", async container => {
             const { InteractivityParticleMaker } = await import("./InteractivityParticleMaker.js");

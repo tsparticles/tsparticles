@@ -6,14 +6,14 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadInfectionPlugin(engine: Engine): void {
+export async function loadInfectionPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: InteractivityEngine) => {
+    await engine.register(async (e: InteractivityEngine) => {
         const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
             { InfectionPlugin } = await import("./InfectionPlugin.js");
 
-        loadInteractivityPlugin(e);
+        await loadInteractivityPlugin(e);
 
         e.addPlugin(new InfectionPlugin());
 

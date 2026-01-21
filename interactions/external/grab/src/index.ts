@@ -6,13 +6,13 @@ declare const __VERSION__: string;
 /**
  * @param engine - The engine to load the interaction for.
  */
-export function loadExternalGrabInteraction(engine: Engine): void {
+export async function loadExternalGrabInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: InteractivityEngine) => {
+    await engine.register(async (e: InteractivityEngine) => {
         const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        loadInteractivityPlugin(e);
+        await loadInteractivityPlugin(e);
 
         e.addInteractor?.("externalGrab", async container => {
             const { Grabber } = await import("./Grabber.js");

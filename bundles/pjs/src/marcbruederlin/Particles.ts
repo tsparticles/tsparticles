@@ -1,5 +1,6 @@
 import {
     type Container,
+    type Engine,
     type RecursivePartial,
     type SingleOrMultiple,
     safeDocument,
@@ -44,63 +45,65 @@ export class MBParticles {
             throw new Error("No element found for selector");
         }
 
-        void tsParticles
-            .load({
-                element: el as HTMLElement,
-                id: selector.replace(".", "").replace("!", ""),
-                options: {
-                    fullScreen: {
-                        enable: false,
-                    },
-                    particles: {
-                        color: {
-                            value: options.color ?? "!000000",
+        void (async (engine: Engine): Promise<void> => {
+            await engine
+                .load({
+                    element: el as HTMLElement,
+                    id: selector.replace(".", "").replace("!", ""),
+                    options: {
+                        fullScreen: {
+                            enable: false,
                         },
-                        links: {
-                            color: "random",
-                            distance: options.minDistance ?? linksMinDistance,
-                            enable: options.connectParticles ?? false,
-                        },
-                        move: {
-                            enable: true,
-                            speed: options.speed ?? moveMinSpeed,
-                        },
-                        number: {
-                            value: options.maxParticles ?? particlesMinCount,
-                        },
-                        size: {
-                            value: { min: 1, max: options.sizeVariations ?? sizeMinValue },
-                        },
-                    },
-                    responsive: options.responsive?.map(responsive => ({
-                        maxWidth: responsive.breakpoint,
-                        options: {
-                            particles: {
-                                color: {
-                                    value: responsive.options?.color,
-                                },
-                                links: {
-                                    distance: responsive.options?.minDistance,
-                                    enable: responsive.options?.connectParticles,
-                                },
-                                number: {
-                                    value: options.maxParticles,
-                                },
-                                move: {
-                                    enable: true,
-                                    speed: responsive.options?.speed,
-                                },
-                                size: {
-                                    value: responsive.options?.sizeVariations,
-                                },
+                        particles: {
+                            color: {
+                                value: options.color ?? "!000000",
+                            },
+                            links: {
+                                color: "random",
+                                distance: options.minDistance ?? linksMinDistance,
+                                enable: options.connectParticles ?? false,
+                            },
+                            move: {
+                                enable: true,
+                                speed: options.speed ?? moveMinSpeed,
+                            },
+                            number: {
+                                value: options.maxParticles ?? particlesMinCount,
+                            },
+                            size: {
+                                value: { min: 1, max: options.sizeVariations ?? sizeMinValue },
                             },
                         },
-                    })),
-                },
-            })
-            .then(container => {
-                particles._container = container;
-            });
+                        responsive: options.responsive?.map(responsive => ({
+                            maxWidth: responsive.breakpoint,
+                            options: {
+                                particles: {
+                                    color: {
+                                        value: responsive.options?.color,
+                                    },
+                                    links: {
+                                        distance: responsive.options?.minDistance,
+                                        enable: responsive.options?.connectParticles,
+                                    },
+                                    number: {
+                                        value: options.maxParticles,
+                                    },
+                                    move: {
+                                        enable: true,
+                                        speed: responsive.options?.speed,
+                                    },
+                                    size: {
+                                        value: responsive.options?.sizeVariations,
+                                    },
+                                },
+                            },
+                        })),
+                    },
+                })
+                .then(container => {
+                    particles._container = container;
+                });
+        })(tsParticles);
 
         return particles;
     }

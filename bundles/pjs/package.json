@@ -108,8 +108,11 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:4.0.0-alpha.4",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.4",
-    "@tsparticles/plugin-responsive": "workspace:4.0.0-alpha.4"
+    "@tsparticles/plugin-responsive": "workspace:4.0.0-alpha.4",
+    "tsparticles": "workspace:4.0.0-alpha.4"
+  },
+  "devDependencies": {
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.4"
   },
   "publishConfig": {
     "access": "public",

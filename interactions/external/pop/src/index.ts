@@ -6,13 +6,13 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadExternalPopInteraction(engine: Engine): void {
+export async function loadExternalPopInteraction(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async (e: InteractivityEngine) => {
+    await engine.register(async (e: InteractivityEngine) => {
         const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        loadInteractivityPlugin(e);
+        await loadInteractivityPlugin(e);
 
         e.addInteractor?.("externalPop", async container => {
             const { Popper } = await import("./Popper.js");

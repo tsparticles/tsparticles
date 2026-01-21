@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadWobbleUpdater(engine: Engine): void {
+export async function loadWobbleUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("wobble", async container => {
             const { WobbleUpdater } = await import("./WobbleUpdater.js");
 

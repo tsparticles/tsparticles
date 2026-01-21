@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadShadowEffect(engine: Engine): void {
+export async function loadShadowEffect(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { ShadowDrawer } = await import("./ShadowDrawer.js");
 
         e.addEffect("shadow", new ShadowDrawer(e));

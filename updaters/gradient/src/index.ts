@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadGradientUpdater(engine: Engine): void {
+export async function loadGradientUpdater(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addParticleUpdater("gradient", async () => {
             const { GradientUpdater } = await import("./GradientUpdater.js");
 

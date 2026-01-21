@@ -7,10 +7,10 @@ declare const __VERSION__: string;
 /**
  * @param engine - The engine instance
  */
-export function loadInteractivityPlugin(engine: Engine): void {
+export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const interactivityEngine = e as InteractivityEngine,
             { InteractivityPlugin } = await import("./InteractivityPlugin.js");
 

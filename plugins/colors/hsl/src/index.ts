@@ -6,10 +6,10 @@ declare const __VERSION__: string;
  * This function is used to load the HSL color plugin
  * @param engine - The engine that will use the plugin
  */
-export function loadHslColorPlugin(engine: Engine): void {
+export async function loadHslColorPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { HslColorManager } = await import("./HslColorManager.js");
 
         e.addColorManager(new HslColorManager());

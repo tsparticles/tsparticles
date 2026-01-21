@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadBaseMover(engine: Engine): void {
+export async function loadBaseMover(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(e => {
+    await engine.register(e => {
         e.addMover("base", async () => {
             const { BaseMover } = await import("./BaseMover.js");
 

@@ -5,10 +5,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export function loadExportJSONPlugin(engine: Engine): void {
+export async function loadExportJSONPlugin(engine: Engine): Promise<void> {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
+    await engine.register(async e => {
         const { ExportJSONPlugin } = await import("./ExportJSONPlugin.js");
 
         e.addPlugin(new ExportJSONPlugin());

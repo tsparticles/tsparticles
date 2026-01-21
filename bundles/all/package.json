@@ -123,7 +123,6 @@
     "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.4",
     "@tsparticles/path-svg": "workspace:4.0.0-alpha.4",
     "@tsparticles/path-zig-zag": "workspace:4.0.0-alpha.4",
-    "@tsparticles/pjs": "workspace:4.0.0-alpha.4",
     "@tsparticles/plugin-background-mask": "workspace:4.0.0-alpha.4",
     "@tsparticles/plugin-canvas-mask": "workspace:4.0.0-alpha.4",
     "@tsparticles/plugin-easing-back": "workspace:4.0.0-alpha.4",
