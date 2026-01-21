@@ -11,10 +11,13 @@ export function loadEmittersPlugin(engine: EmittersEngine): void {
     engine.checkVersion(__VERSION__);
 
     engine.register(async (e: EmittersEngine) => {
-        const { ShapeManager } = await import("./ShapeManager.js"),
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
+            { ShapeManager } = await import("./ShapeManager.js"),
             { EmittersInstancesManager } = await import("./EmittersInstancesManager.js"),
             { EmittersPlugin } = await import("./EmittersPlugin.js"),
             instancesManager = new EmittersInstancesManager(e);
+
+        loadInteractivityPlugin(e);
 
         e.emitterShapeManager ??= new ShapeManager();
         e.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
@@ -22,7 +25,8 @@ export function loadEmittersPlugin(engine: EmittersEngine): void {
         };
 
         e.addPlugin(new EmittersPlugin(instancesManager));
-        e.addInteractor("externalEmitters", async container => {
+
+        e.addInteractor?.("externalEmitters", async container => {
             const { EmittersInteractor } = await import("./EmittersInteractor.js");
 
             return new EmittersInteractor(instancesManager, container as EmitterContainer);

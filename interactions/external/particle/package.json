@@ -67,7 +67,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.3"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.3",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.3"
   },
   "publishConfig": {
     "access": "public",

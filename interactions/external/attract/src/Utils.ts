@@ -3,16 +3,16 @@ import {
     Circle,
     type Engine,
     type ICoordinates,
-    type IInteractivityData,
     type Particle,
     Vector,
     clamp,
     getDistances,
+    identity,
 } from "@tsparticles/engine";
 import type { AttractContainer } from "./Types.js";
+import type { IInteractivityData } from "@tsparticles/plugin-interactivity";
 
 const minFactor = 1,
-    identity = 1,
     minRadius = 0;
 
 /**
@@ -32,7 +32,7 @@ function processAttract(
     area: BaseRange,
     queryCb: (p: Particle) => boolean,
 ): void {
-    const attractOptions = container.actualOptions.interactivity.modes.attract;
+    const attractOptions = container.actualOptions.interactivity?.modes.attract;
 
     if (!attractOptions) {
         return;

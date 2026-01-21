@@ -1,7 +1,4 @@
 export * from "./Core/Utils/Constants.js";
-export * from "./Core/Utils/ExternalInteractorBase.js";
-export * from "./Core/Utils/InteractivityConstants.js";
-export * from "./Core/Utils/ParticlesInteractorBase.js";
 export * from "./Core/Utils/Point.js";
 export * from "./Core/Utils/Ranges.js";
 export * from "./Core/Utils/Vectors.js";
@@ -18,15 +15,12 @@ export * from "./Enums/Modes/PixelMode.js";
 export * from "./Enums/Types/AlterType.js";
 export * from "./Enums/Types/DestroyType.js";
 export * from "./Enums/Types/GradientType.js";
-export * from "./Enums/Types/InteractorType.js";
 export * from "./Enums/Types/ParticleOutType.js";
 export * from "./Enums/Types/StartValueType.js";
-export * from "./Enums/Types/DivType.js";
 export * from "./Enums/Types/EasingType.js";
 export * from "./Enums/Types/EventType.js";
 
 export * from "./Enums/AnimationStatus.js";
-export * from "./Enums/InteractivityDetect.js";
 
 export * from "./Options/Classes/AnimatableColor.js";
 export * from "./Options/Classes/AnimationOptions.js";
@@ -38,15 +32,6 @@ export * from "./Options/Classes/ColorAnimation.js";
 export * from "./Options/Classes/FullScreen/FullScreen.js";
 
 export * from "./Options/Classes/HslAnimation.js";
-
-export * from "./Options/Classes/Interactivity/Events/ClickEvent.js";
-export * from "./Options/Classes/Interactivity/Events/DivEvent.js";
-export * from "./Options/Classes/Interactivity/Events/ClickEvent.js";
-export * from "./Options/Classes/Interactivity/Events/DivEvent.js";
-export * from "./Options/Classes/Interactivity/Events/Events.js";
-export * from "./Options/Classes/Interactivity/Events/HoverEvent.js";
-export * from "./Options/Classes/Interactivity/Interactivity.js";
-export * from "./Options/Classes/Interactivity/Modes/Modes.js";
 
 export * from "./Options/Classes/Options.js";
 export * from "./Options/Classes/OptionsColor.js";

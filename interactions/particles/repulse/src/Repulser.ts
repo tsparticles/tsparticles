@@ -1,14 +1,6 @@
-import {
-    type Container,
-    type Particle,
-    ParticlesInteractorBase,
-    type RecursivePartial,
-    Vector,
-    clamp,
-    getDistances,
-    getRangeValue,
-} from "@tsparticles/engine";
 import type { IRepulseParticlesOptions, RepulseParticlesOptions } from "./Types.js";
+import { type InteractivityContainer, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
+import { type Particle, type RecursivePartial, Vector, clamp, getDistances, getRangeValue } from "@tsparticles/engine";
 import { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse.js";
 
 const minDistance = 0,
@@ -27,7 +19,7 @@ type RepulseParticle = Particle & {
 
 export class Repulser extends ParticlesInteractorBase {
     // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-    constructor(container: Container) {
+    constructor(container: InteractivityContainer) {
         super(container);
 
         // do nothing

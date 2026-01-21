@@ -3,12 +3,7 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
-import type {
-    Initializers,
-    InteractorInitializer,
-    MoverInitializer,
-    UpdaterInitializer,
-} from "../Types/EngineInitializers.js";
+import type { Initializers, MoverInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
 import {
     canvasFirstIndex,
     canvasTag,
@@ -30,7 +25,6 @@ import { EventDispatcher } from "../Utils/EventDispatcher.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
@@ -39,7 +33,6 @@ import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticl
 import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
-import type { Particle } from "./Particle.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
@@ -162,11 +155,6 @@ export class Engine {
      */
     readonly effectDrawers;
 
-    /**
-     * The interaction managers array
-     */
-    readonly interactors;
-
     readonly movers;
 
     /**
@@ -225,11 +213,9 @@ export class Engine {
         this.colorManagers = new Map<string, IColorManager>();
         this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
         this._initializers = {
-            interactors: new Map<string, InteractorInitializer>(),
             movers: new Map<string, MoverInitializer>(),
             updaters: new Map<string, UpdaterInitializer>(),
         };
-        this.interactors = new Map<Container, IInteractor[]>();
         this.movers = new Map<Container, IParticleMover[]>();
         this.updaters = new Map<Container, IParticleUpdater[]>();
         this.presets = new Map<string, ISourceOptions>();
@@ -302,15 +288,6 @@ export class Engine {
      */
     addEventListener(type: string, listener: CustomEventListener): void {
         this._eventDispatcher.addEventListener(type, listener);
-    }
-
-    /**
-     * Adds an interaction manager to the current collection
-     * @param name - the interaction manager name
-     * @param interactorInitializer - the interaction manager initializer
-     */
-    addInteractor(name: string, interactorInitializer: InteractorInitializer): void {
-        this._initializers.interactors.set(name, interactorInitializer);
     }
 
     /**
@@ -399,7 +376,6 @@ export class Engine {
     clearPlugins(container: Container): void {
         this.updaters.delete(container);
         this.movers.delete(container);
-        this.interactors.delete(container);
     }
 
     /**
@@ -426,16 +402,6 @@ export class Engine {
      */
     getEffectDrawer(type: string): IEffectDrawer | undefined {
         return this.effectDrawers.get(type);
-    }
-
-    /**
-     * Returns all the container interaction managers
-     * @param container - the container used to check which interaction managers are compatible
-     * @param force - if true reloads the interaction managers collection for the given container
-     * @returns the array of interaction managers for the given container
-     */
-    async getInteractors(container: Container, force = false): Promise<IInteractor[]> {
-        return getItemsFromInitializer(container, this.interactors, this._initializers.interactors, force);
     }
 
     async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
@@ -672,21 +638,5 @@ export class Engine {
      */
     removeEventListener(type: string, listener: CustomEventListener): void {
         this._eventDispatcher.removeEventListener(type, listener);
-    }
-
-    /**
-     * Adds another click handler to all the loaded {@link Container} objects.
-     * @param callback - The function called after the click event is fired
-     */
-    setOnClickHandler(callback: (e: Event, particles?: Particle[]) => void): void {
-        const { items } = this;
-
-        if (!items.length) {
-            throw new Error("Click handlers can only be set after calling tsParticles.load()");
-        }
-
-        items.forEach(item => {
-            item.addClickHandler(callback);
-        });
     }
 }

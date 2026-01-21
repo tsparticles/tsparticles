@@ -17,7 +17,7 @@ export const lightMode = "light";
  * @param mousePos -
  */
 export function drawLight(container: LightContainer, context: CanvasRenderingContext2D, mousePos: ICoordinates): void {
-    const lightOptions = container.actualOptions.interactivity.modes.light?.area;
+    const lightOptions = container.actualOptions.interactivity?.modes.light?.area;
 
     if (!lightOptions) {
         return;
@@ -61,7 +61,7 @@ export function drawParticleShadow(
     mousePos: ICoordinates,
 ): void {
     const pos = particle.getPosition(),
-        shadowOptions = container.actualOptions.interactivity.modes.light?.shadow;
+        shadowOptions = container.actualOptions.interactivity?.modes.light?.shadow;
 
     if (!shadowOptions) {
         return;

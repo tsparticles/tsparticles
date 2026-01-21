@@ -1,13 +1,6 @@
 import { type CollisionParticle, type IParticlesCollisionOptions, type ParticlesCollisionOptions } from "./Types.js";
-import {
-    type Container,
-    type IDelta,
-    type IInteractivityData,
-    ParticlesInteractorBase,
-    type RecursivePartial,
-    double,
-    getDistance,
-} from "@tsparticles/engine";
+import { type Container, type IDelta, type RecursivePartial, double, getDistance } from "@tsparticles/engine";
+import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import { Collisions } from "./Options/Classes/Collisions.js";
 import { resolveCollision } from "./ResolveCollision.js";
 

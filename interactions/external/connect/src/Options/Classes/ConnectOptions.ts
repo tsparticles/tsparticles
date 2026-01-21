@@ -1,8 +1,8 @@
 import type { ConnectMode } from "../../Types.js";
-import type { Options } from "@tsparticles/engine";
+import type { InteractivityOptions } from "@tsparticles/plugin-interactivity";
 
-export type ConnectOptions = Options & {
-    interactivity: {
+export type ConnectOptions = InteractivityOptions & {
+    interactivity?: {
         modes: ConnectMode;
     };
 };

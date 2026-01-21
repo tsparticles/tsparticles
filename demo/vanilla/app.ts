@@ -111,6 +111,7 @@ app.use("/updater-wobble", express.static("./node_modules/@tsparticles/updater-w
 app.use("/interaction-external-trail", express.static("./node_modules/@tsparticles/interaction-external-trail"));
 app.use("/plugin-absorbers", express.static("./node_modules/@tsparticles/plugin-absorbers"));
 app.use("/plugin-emitters", express.static("./node_modules/@tsparticles/plugin-emitters"));
+app.use("/plugin-interactivity", express.static("./node_modules/@tsparticles/plugin-interactivity"));
 app.use("/plugin-polygon-mask", express.static("./node_modules/@tsparticles/plugin-polygon-mask"));
 app.use("/plugin-poisson-disc", express.static("./node_modules/@tsparticles/plugin-poisson-disc"));
 app.use("/interaction-external-parallax", express.static("./node_modules/@tsparticles/interaction-external-parallax"));

@@ -87,7 +87,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.3"
+    "@tsparticles/engine": "4.0.0-alpha.3",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.3"
   },
   "publishConfig": {
     "access": "public"
