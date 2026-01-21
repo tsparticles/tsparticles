@@ -1,12 +1,4 @@
-import {
-    clear,
-    clearDrawPlugin,
-    drawParticle,
-    drawParticlePlugin,
-    drawPlugin,
-    paintBase,
-    paintImage,
-} from "../Utils/CanvasUtils.js";
+import { clear, drawParticle, drawParticlePlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
 import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
 import { defaultTransformValue, generatedAttribute, minimumSize, zIndexFactorOffset } from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
@@ -186,17 +178,6 @@ export class Canvas {
     }
 
     /**
-     * Clears the context after drawing stuff using the given plugin
-     * @param plugin - the plugin to use for clearing the context
-     * @param delta - the frame delta time values
-     */
-    clearDrawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
-        this.draw(ctx => {
-            clearDrawPlugin(ctx, plugin, delta);
-        });
-    }
-
-    /**
      * Destroying object actions
      */
     destroy(): void {
@@ -313,31 +294,26 @@ export class Canvas {
         /* update each particle before drawing */
         particles.update(delta);
 
-        for (const plugin of plugins.values()) {
-            this.drawPlugin(plugin, delta);
-        }
-
-        /* container.canvas.draw((ctx) => {
-            this.quadTree.draw(ctx);
-        }); */
-
-        this.draw(() => {
-            particles.drawParticles(delta);
-        });
-
-        for (const plugin of plugins.values()) {
-            this.clearDrawPlugin(plugin, delta);
-        }
-    }
-
-    /**
-     * Draws stuff using the given plugin
-     * @param plugin - the plugin to use for drawing stuff
-     * @param delta - the frame delta time values
-     */
-    drawPlugin(plugin: IContainerPlugin, delta: IDelta): void {
         this.draw(ctx => {
-            drawPlugin(ctx, plugin, delta);
+            for (const plugin of plugins) {
+                plugin.drawSettingsSetup?.(ctx, delta);
+            }
+
+            for (const plugin of plugins) {
+                plugin.draw?.(ctx, delta);
+            }
+
+            // this.quadTree.draw(ctx);
+
+            particles.drawParticles(delta);
+
+            for (const plugin of plugins) {
+                plugin.clearDraw?.(ctx, delta);
+            }
+
+            for (const plugin of plugins) {
+                plugin.drawSettingsCleanup?.(ctx, delta);
+            }
         });
     }
 

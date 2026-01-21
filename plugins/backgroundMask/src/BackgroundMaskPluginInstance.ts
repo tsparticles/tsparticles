@@ -1,7 +1,6 @@
 import {
     type Engine,
     type IContainerPlugin,
-    getLogger,
     getStyleFromRgb,
     rangeColorToRgb,
     safeDocument,
@@ -48,7 +47,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
         return true;
     }
 
-    clearDraw(context: CanvasRenderingContext2D): void {
+    drawSettingsCleanup(context: CanvasRenderingContext2D): void {
         if (!this._defaultCompositeValue) {
             return;
         }
@@ -56,7 +55,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
         context.globalCompositeOperation = this._defaultCompositeValue;
     }
 
-    draw(context: CanvasRenderingContext2D): void {
+    drawSettingsSetup(context: CanvasRenderingContext2D): void {
         const previousComposite = context.globalCompositeOperation,
             backgroundMask = this._container.actualOptions.backgroundMask;
 
@@ -102,9 +101,7 @@ export class BackgroundMaskPluginInstance implements IContainerPlugin {
                     resolve();
                 });
 
-                img.addEventListener("error", evt => {
-                    getLogger().error(evt);
-
+                img.addEventListener("error", () => {
                     reject(new Error("Error loading image"));
                 });
 

@@ -11,20 +11,6 @@ import type { IShapeDrawData } from "../export-types.js";
 import type { Particle } from "../Core/Particle.js";
 
 /**
- * Clear the context after the given plugin draws in the canvas.
- * @param context - The canvas context.
- * @param plugin - The plugin to clear.
- * @param delta - this variable contains the delta between the current frame and the previous frame
- */
-export function clearDrawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
-    if (!plugin.clearDraw) {
-        return;
-    }
-
-    plugin.clearDraw(context, delta);
-}
-
-/**
  * Draws a line between two points using canvas API in the given context.
  * @param context - The canvas context to draw on.
  * @param begin - The start point of the line.
@@ -240,20 +226,6 @@ export function drawShapeBeforeDraw(container: Container, data: IShapeDrawData):
     }
 
     drawer.beforeDraw(data);
-}
-
-/**
- * Draws the given plugin in the canvas.
- * @param context - The canvas context.
- * @param plugin - The plugin to draw.
- * @param delta - this variable contains the delta between the current frame and the previous frame
- */
-export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
-    if (!plugin.draw) {
-        return;
-    }
-
-    plugin.draw(context, delta);
 }
 
 /**
