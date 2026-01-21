@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.4](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2026-01-21)
+
+### Features
+
+- add manual particles plugin with configuration and usage examples ([8d73e42](https://github.com/tsparticles/tsparticles/commit/8d73e42320f8f3845545a2bef0f8d92979f1e2ee))
+
 # [4.0.0-alpha.3](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2026-01-10)
 
 **Note:** Version bump only for package @tsparticles/all

@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.4](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2026-01-21)
+
+### Bug Fixes
+
+- fixed condition in parallax interact ([c84d3b6](https://github.com/tsparticles/tsparticles/commit/c84d3b69ffe8c2aaf62671799ab8e75314a4f10c))
+- fixed errors after previous refactor ([c8f65d8](https://github.com/tsparticles/tsparticles/commit/c8f65d82516f4f9c0258a2beb2fc38f333910ec1))
+- fixed hsv color manager ([76600a2](https://github.com/tsparticles/tsparticles/commit/76600a202d3bba98d2704c8f12098b0c1fc69cf6))
+- fixed imports in emitters plugin ([0eb375d](https://github.com/tsparticles/tsparticles/commit/0eb375d04c5d88389f10470bcc531710b7d3fb62))
+- fixed load options in some plugins ([4e1cd4b](https://github.com/tsparticles/tsparticles/commit/4e1cd4b6ad2570d23d38484ba0a053521c6e4d95))
+- fixed two readmes ([433c426](https://github.com/tsparticles/tsparticles/commit/433c4262d3e6d29d74506bd74ef96c4cd84e163c))
+- fixed wrong condition ([f14e08c](https://github.com/tsparticles/tsparticles/commit/f14e08c0e2b2ca8a2a973542567bb1ae112f5452))
+- format fix ([cab2a5f](https://github.com/tsparticles/tsparticles/commit/cab2a5f58021c11b614ac63ea64e18ec5ed8c6c7))
+- prevent engine register from being overwritten when loader fails ([652d2d2](https://github.com/tsparticles/tsparticles/commit/652d2d2af9b72f9200e0efe99a52dff2e6fe9b95))
+- removed inconsistent or operator ([f5a4ed7](https://github.com/tsparticles/tsparticles/commit/f5a4ed7140fc3a77cb23125ed11410f972753a5d))
+- removed some deprecation, added more functions and utils to exports ([119aa9e](https://github.com/tsparticles/tsparticles/commit/119aa9e33b1dfc6e3ce17d827a94a6afb1664b60))
+- removed some duplicated constants ([2e46059](https://github.com/tsparticles/tsparticles/commit/2e460599a6763d22663e0f2c402867f569890e00))
+
+### Features
+
+- add manual particles plugin with configuration and usage examples ([8d73e42](https://github.com/tsparticles/tsparticles/commit/8d73e42320f8f3845545a2bef0f8d92979f1e2ee))
+- reworked parallax mover plugin to parallax external interaction plugin ([6e2052c](https://github.com/tsparticles/tsparticles/commit/6e2052c5ec2412b7aa2b63a688b06af1c9ef4ec9))
+
 # [4.0.0-alpha.3](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2026-01-10)
 
 **Note:** Version bump only for package @tsparticles/workspace
