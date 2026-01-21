@@ -506,9 +506,11 @@ export class Engine {
                 }
             };
 
-            await loader(this);
-
-            this.register = origRegister;
+            try {
+                await loader(this);
+            } finally {
+                this.register = origRegister;
+            }
 
             stack.unshift(...inner);
 
