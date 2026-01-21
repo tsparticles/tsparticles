@@ -1,13 +1,10 @@
+import { type Engine, type RecursivePartial, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import {
-    type Engine,
     ExternalInteractorBase,
     type IInteractivityData,
     type IModes,
     type Modes,
-    type RecursivePartial,
-    isInArray,
-    rangeColorToRgb,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
 import type { ILightMode, LightContainer, LightMode, LightParticle } from "./Types.js";
 import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
@@ -34,7 +31,7 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
             options = container.actualOptions,
             interactivity = interactivityData;
 
-        if (!options.interactivity.events.onHover.enable || interactivity.status !== "pointermove") {
+        if (!options.interactivity?.events.onHover.enable || interactivity.status !== "pointermove") {
             return;
         }
 
@@ -53,15 +50,15 @@ export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
         const container = this.container,
             mouse = interactivityData.mouse,
             interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
-            events = interactivity.events;
+            events = interactivity?.events;
 
-        if (!(events.onHover.enable && mouse.position)) {
+        if (!(events?.onHover.enable && mouse.position)) {
             return false;
         }
 
         const res = isInArray(lightMode, events.onHover.mode);
 
-        if (res && interactivity.modes.light) {
+        if (res && interactivity?.modes.light) {
             const lightGradient = interactivity.modes.light.area.gradient;
 
             container.canvas.mouseLight = {

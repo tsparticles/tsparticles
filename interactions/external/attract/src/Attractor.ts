@@ -1,16 +1,13 @@
 import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
+import { type Engine, type RecursivePartial, isInArray, millisecondsToSeconds } from "@tsparticles/engine";
 import {
-    type Engine,
     ExternalInteractorBase,
     type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
-    type RecursivePartial,
-    isInArray,
-    millisecondsToSeconds,
     mouseMoveEvent,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
 import { clickAttract, hoverAttract } from "./Utils.js";
 import { Attract } from "./Options/Classes/Attract.js";
 
@@ -33,7 +30,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
         this.handleClickMode = (mode, interactivityData): void => {
             const options = this.container.actualOptions,
-                attract = options.interactivity.modes.attract;
+                attract = options.interactivity?.modes.attract;
 
             if (!attract || mode !== attractMode) {
                 return;
@@ -73,7 +70,7 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
 
     init(): void {
         const container = this.container,
-            attract = container.actualOptions.interactivity.modes.attract;
+            attract = container.actualOptions.interactivity?.modes.attract;
 
         if (!attract) {
             return;
@@ -86,8 +83,13 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         const container = this.container,
             options = container.actualOptions,
             mouseMoveStatus = interactivityData.status === mouseMoveEvent,
-            events = options.interactivity.events,
-            { enable: hoverEnabled, mode: hoverMode } = events.onHover,
+            events = options.interactivity?.events;
+
+        if (!events) {
+            return;
+        }
+
+        const { enable: hoverEnabled, mode: hoverMode } = events.onHover,
             { enable: clickEnabled, mode: clickMode } = events.onClick;
 
         if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
@@ -97,13 +99,13 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
         }
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events;
+            events = (particle?.interactivity ?? options.interactivity)?.events;
 
-        if ((!mouse.position || !events.onHover.enable) && (!mouse.clickPosition || !events.onClick.enable)) {
+        if ((!mouse.position || !events?.onHover.enable) && (!mouse.clickPosition || !events?.onClick.enable)) {
             return false;
         }
 

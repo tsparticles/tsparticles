@@ -57,8 +57,10 @@ const initPjs = (
     engine.checkVersion(__VERSION__);
 
     engine.register(async e => {
-        const { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive");
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
+            { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive");
 
+        loadInteractivityPlugin(e);
         loadResponsivePlugin(e);
     });
 

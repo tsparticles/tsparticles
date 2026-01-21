@@ -1,5 +1,6 @@
-import type { Container, Particle } from "@tsparticles/engine";
 import type { IRepulse } from "./Options/Interfaces/IRepulse.js";
+import type { InteractivityContainer } from "@tsparticles/plugin-interactivity";
+import type { Particle } from "@tsparticles/engine";
 import type { Repulse } from "./Options/Classes/Repulse.js";
 import type { RepulseOptions } from "./Options/Classes/RepulseOptions.js";
 
@@ -18,7 +19,7 @@ interface IContainerRepulse {
     particles: Particle[];
 }
 
-export type RepulseContainer = Container & {
+export type RepulseContainer = InteractivityContainer & {
     actualOptions: RepulseOptions;
     repulse?: IContainerRepulse;
     retina: {

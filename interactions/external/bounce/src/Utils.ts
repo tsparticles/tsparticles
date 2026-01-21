@@ -1,11 +1,8 @@
 import {
     type BaseRange,
     Circle,
-    type DivEvent,
-    DivType,
     type IBounds,
     type ICoordinates,
-    type IInteractivityData,
     type IRangeValue,
     type Particle,
     Rectangle,
@@ -14,12 +11,12 @@ import {
     calculateBounds,
     circleBounce,
     circleBounceDataFromParticle,
-    divModeExecute,
     double,
     getRangeValue,
     half,
     safeDocument,
 } from "@tsparticles/engine";
+import { type DivEvent, DivType, type IInteractivityData, divModeExecute } from "@tsparticles/plugin-interactivity";
 import type { BounceContainer } from "./Types.js";
 import type { IRectSideResult } from "./IRectSideResult.js";
 

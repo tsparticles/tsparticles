@@ -1,7 +1,8 @@
-import { type Engine, type ICoordinates, type RecursivePartial, isNumber } from "@tsparticles/engine";
+import { type ICoordinates, type RecursivePartial, isNumber } from "@tsparticles/engine";
 import { Emitter } from "./Options/Classes/Emitter.js";
 import type { EmitterContainer } from "./EmitterContainer.js";
 import type { EmitterInstance } from "./EmitterInstance.js";
+import type { EmittersEngine } from "./EmittersEngine.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 const defaultIndex = 0;
@@ -10,7 +11,7 @@ export class EmittersInstancesManager {
     private readonly _containerArrays;
     private readonly _engine;
 
-    constructor(engine: Engine) {
+    constructor(engine: EmittersEngine) {
         this._containerArrays = new Map<EmitterContainer, EmitterInstance[]>();
         this._engine = engine;
     }

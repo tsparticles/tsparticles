@@ -57,7 +57,6 @@ import type { IShape } from "../Options/Interfaces/Particles/Shape/IShape.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { IShapeValues } from "./Interfaces/IShapeValues.js";
 import type { ISlowParticleData } from "./Interfaces/ISlowParticleData.js";
-import { Interactivity } from "../Options/Classes/Interactivity/Interactivity.js";
 import { MoveDirection } from "../Enums/Directions/MoveDirection.js";
 import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
@@ -228,8 +227,6 @@ export class Particle {
      * Gets particle initial velocity
      */
     initialVelocity!: Vector;
-
-    interactivity!: Interactivity;
 
     isRotating!: boolean;
 
@@ -520,8 +517,7 @@ export class Particle {
         overrideOptions?: RecursivePartial<IParticlesOptions>,
         group?: string,
     ): void {
-        const container = this.container,
-            engine = this._engine;
+        const container = this.container;
 
         this.id = id;
         this.group = group;
@@ -609,13 +605,6 @@ export class Particle {
         if (shapeData) {
             particlesOptions.load(shapeData.particles);
         }
-
-        const interactivity = new Interactivity(engine, container);
-
-        interactivity.load(container.actualOptions.interactivity);
-        interactivity.load(particlesOptions.interactivity);
-
-        this.interactivity = interactivity;
 
         this.effectFill = effectData?.fill ?? particlesOptions.effect.fill;
         this.effectClose = effectData?.close ?? particlesOptions.effect.close;

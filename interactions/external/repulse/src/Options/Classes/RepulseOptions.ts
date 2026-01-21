@@ -1,8 +1,8 @@
-import type { Options } from "@tsparticles/engine";
+import type { InteractivityOptions } from "@tsparticles/plugin-interactivity";
 import type { RepulseMode } from "../../Types.js";
 
-export type RepulseOptions = Options & {
-    interactivity: {
+export type RepulseOptions = InteractivityOptions & {
+    interactivity?: {
         modes: RepulseMode;
     };
 };

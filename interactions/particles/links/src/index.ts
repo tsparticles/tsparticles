@@ -1,4 +1,5 @@
 import type { Engine } from "@tsparticles/engine";
+import type { InteractivityEngine } from "@tsparticles/plugin-interactivity";
 import type { LinkContainer } from "./Types.js";
 
 declare const __VERSION__: string;
@@ -9,12 +10,15 @@ declare const __VERSION__: string;
 export function loadParticlesLinksInteraction(engine: Engine): void {
     engine.checkVersion(__VERSION__);
 
-    engine.register(async e => {
-        const { LinksPlugin } = await import("./LinksPlugin.js");
+    engine.register(async (e: InteractivityEngine) => {
+        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
+            { LinksPlugin } = await import("./LinksPlugin.js");
+
+        loadInteractivityPlugin(e);
 
         e.addPlugin(new LinksPlugin(e));
 
-        e.addInteractor("particlesLinks", async container => {
+        e.addInteractor?.("particlesLinks", async container => {
             const { Linker } = await import("./Linker.js");
 
             return new Linker(container as LinkContainer, engine);

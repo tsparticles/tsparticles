@@ -18,9 +18,7 @@ import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
-import { InteractionManager } from "./Utils/InteractionManager.js";
 import { Options } from "../Options/Classes/Options.js";
-import type { Particle } from "./Particle.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
 import { getLogger } from "../Utils/LogUtils.js";
@@ -100,8 +98,6 @@ export class Container {
     hdr;
 
     readonly id;
-
-    readonly interactionManager;
 
     /**
      * The container check if it's hidden on the web page
@@ -183,7 +179,6 @@ export class Container {
         this.pageHidden = false;
         this._sourceOptions = sourceOptions;
         this._initialSourceOptions = sourceOptions;
-        this.interactionManager = new InteractionManager(engine, this);
         this.retina = new Retina(this);
         this.canvas = new Canvas(this, this._engine);
         this.particles = new Particles(this._engine, this);
@@ -224,14 +219,6 @@ export class Container {
         return this._sourceOptions;
     }
 
-    /**
-     * Adds a click handler to the container
-     * @param callback - the callback to be called when the click event occurs
-     */
-    addClickHandler(callback: (evt: Event, particles?: Particle[]) => void): void {
-        this.interactionManager.addClickHandler(callback);
-    }
-
     addLifeTime(value: number): void {
         this._lifeTime += value;
     }
@@ -257,10 +244,6 @@ export class Container {
         return !this._duration || this._lifeTime <= this._duration;
     }
 
-    clearClickHandlers(): void {
-        this.interactionManager.clearClickHandlers();
-    }
-
     /**
      * Destroys the current container, invalidating it
      * @param remove - if true, removes the container from the engine
@@ -271,8 +254,6 @@ export class Container {
         }
 
         this.stop();
-
-        this.clearClickHandlers();
 
         this.particles.destroy();
         this.canvas.destroy();
@@ -288,6 +269,12 @@ export class Container {
         }
 
         this.shapeDrawers.clear();
+
+        for (const plugin of this.plugins) {
+            plugin.destroy?.();
+        }
+
+        this.plugins.length = 0;
 
         this._engine.clearPlugins(this);
 
@@ -390,8 +377,6 @@ export class Container {
 
             allContainerPlugins.set(plugin, containerPlugin);
         }
-
-        await this.interactionManager.init();
 
         await this.particles.initPlugins();
 
@@ -555,9 +540,6 @@ export class Container {
             const start = async (): Promise<void> => {
                 this._eventListeners.addListeners();
 
-                this.interactionManager.addListeners();
-                this.interactionManager.startObserving();
-
                 for (const plugin of this.plugins) {
                     await plugin.start?.();
                 }
@@ -590,12 +572,9 @@ export class Container {
         this._firstStart = true;
         this.started = false;
         this._eventListeners.removeListeners();
-        this.interactionManager.removeListeners();
         this.pause();
         this.particles.clear();
         this.canvas.stop();
-
-        this.interactionManager.stopObserving();
 
         for (const plugin of this.plugins) {
             plugin.stop?.();

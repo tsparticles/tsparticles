@@ -1,7 +1,7 @@
 import type { Bubble } from "./Options/Classes/Bubble.js";
 import type { BubbleOptions } from "./Options/Classes/BubbleOptions.js";
-import type { Container } from "@tsparticles/engine";
 import type { IBubble } from "./Options/Interfaces/IBubble.js";
+import type { InteractivityContainer } from "@tsparticles/plugin-interactivity";
 
 export interface IBubbleMode {
     bubble: IBubble;
@@ -16,7 +16,7 @@ interface IContainerBubble {
     durationEnd?: boolean;
 }
 
-export type BubbleContainer = Container & {
+export type BubbleContainer = InteractivityContainer & {
     actualOptions: BubbleOptions;
     bubble?: IContainerBubble;
     retina: {

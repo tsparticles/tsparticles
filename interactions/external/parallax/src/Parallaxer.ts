@@ -2,13 +2,11 @@ import {
     ExternalInteractorBase,
     type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
-    type RecursivePartial,
-    half,
-    isInArray,
-} from "@tsparticles/engine";
+} from "@tsparticles/plugin-interactivity";
 import type { IParallaxMode, ParallaxContainer, ParallaxMode } from "./Types.js";
+import { type Particle, type RecursivePartial, half, isInArray } from "@tsparticles/engine";
 import { Parallax } from "./Options/Classes/Parallax.js";
 
 const parallaxMode = "parallax";
@@ -36,12 +34,12 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
         }
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? container.actualOptions.interactivity).events;
+            events = (particle?.interactivity ?? container.actualOptions.interactivity)?.events;
 
-        return events.onHover.enable && !!mouse.position && isInArray(parallaxMode, events.onHover.mode);
+        return !!events?.onHover.enable && !!mouse.position && isInArray(parallaxMode, events.onHover.mode);
     }
 
     loadModeOptions(
@@ -66,7 +64,7 @@ export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
 
         const container = this.container,
             options = container.actualOptions,
-            parallaxOptions = options.interactivity.modes.parallax;
+            parallaxOptions = options.interactivity?.modes.parallax;
 
         if (!parallaxOptions) {
             return;

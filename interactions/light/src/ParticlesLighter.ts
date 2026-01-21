@@ -1,10 +1,5 @@
-import {
-    type Engine,
-    type IInteractivityData,
-    ParticlesInteractorBase,
-    isInArray,
-    rangeColorToRgb,
-} from "@tsparticles/engine";
+import { type Engine, isInArray, rangeColorToRgb } from "@tsparticles/engine";
+import { type IInteractivityData, ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 import type { LightContainer, LightParticle } from "./Types.js";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
@@ -29,7 +24,7 @@ export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
         const container = this.container,
             options = container.actualOptions;
 
-        if (!options.interactivity.events.onHover.enable || interactivityData.status !== "pointermove") {
+        if (!options.interactivity?.events.onHover.enable || interactivityData.status !== "pointermove") {
             return;
         }
 

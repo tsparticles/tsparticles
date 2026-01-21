@@ -1,11 +1,13 @@
 import {
     ExternalInteractorBase,
-    type ICoordinates,
-    type IDelta,
     type IInteractivityData,
     type IModes,
+    type InteractivityParticle,
     type Modes,
-    type Particle,
+} from "@tsparticles/plugin-interactivity";
+import {
+    type ICoordinates,
+    type IDelta,
     type RecursivePartial,
     isInArray,
     millisecondsToSeconds,
@@ -43,7 +45,7 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         const options = container.actualOptions,
-            trailOptions = options.interactivity.modes.trail;
+            trailOptions = options.interactivity?.modes.trail;
 
         if (!trailOptions) {
             return;
@@ -74,21 +76,22 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
         }
 
         if (canEmit) {
-            container.particles.push(trailOptions.quantity, interactivityData.mouse, trailOptions.particles);
+            container.particles.push(trailOptions.quantity, interactivityData.mouse.position, trailOptions.particles);
         }
 
         this._delay -= optDelay;
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: Particle): boolean {
+    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
         const container = this.container,
             options = container.actualOptions,
             mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? options.interactivity).events;
+            events = (particle?.interactivity ?? options.interactivity)?.events;
 
         return (
-            (mouse.clicking && mouse.inside && !!mouse.position && isInArray(trailMode, events.onClick.mode)) ||
-            (mouse.inside && !!mouse.position && isInArray(trailMode, events.onHover.mode))
+            !!events &&
+            ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(trailMode, events.onClick.mode)) ||
+                (mouse.inside && !!mouse.position && isInArray(trailMode, events.onHover.mode)))
         );
     }
 

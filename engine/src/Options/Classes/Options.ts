@@ -7,7 +7,6 @@ import { FullScreen } from "./FullScreen/FullScreen.js";
 import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
 import type { IOptions } from "../Interfaces/IOptions.js";
 import type { ISourceOptions } from "../../Types/ISourceOptions.js";
-import { Interactivity } from "./Interactivity/Interactivity.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
@@ -36,7 +35,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     fpsLimit;
     readonly fullScreen;
     hdr;
-    readonly interactivity;
     key?: string;
     name?: string;
     readonly particles;
@@ -64,7 +62,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this.duration = 0;
         this.fpsLimit = 120;
         this.hdr = true;
-        this.interactivity = new Interactivity(engine, container);
         this.particles = loadParticlesOptions(this._engine, this._container);
         this.pauseOnBlur = true;
         this.pauseOnOutsideViewport = true;
@@ -151,8 +148,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
             this.fullScreen.load(fullScreen);
         }
 
-        this.interactivity.load(data.interactivity);
-
         this.particles.load(data.particles);
 
         this.resize.load(data.resize);
@@ -166,16 +161,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         this._engine.plugins.forEach(plugin => {
             plugin.loadOptions(this._container, this, data);
         });
-
-        const interactors = this._engine.interactors.get(this._container);
-
-        if (interactors) {
-            for (const interactor of interactors) {
-                if (interactor.loadOptions) {
-                    interactor.loadOptions(this, data);
-                }
-            }
-        }
     }
 
     private readonly _importPreset: (preset: string) => void = preset => {
