@@ -236,15 +236,24 @@ importers:
       '@tsparticles/plugin-easing-back':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/back/dist
+      '@tsparticles/plugin-easing-bounce':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/bounce/dist
       '@tsparticles/plugin-easing-circ':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/circ/dist
       '@tsparticles/plugin-easing-cubic':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/cubic/dist
+      '@tsparticles/plugin-easing-elastic':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/elastic/dist
       '@tsparticles/plugin-easing-expo':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/expo/dist
+      '@tsparticles/plugin-easing-gaussian':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/gaussian/dist
       '@tsparticles/plugin-easing-linear':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/linear/dist
@@ -254,9 +263,15 @@ importers:
       '@tsparticles/plugin-easing-quint':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/quint/dist
+      '@tsparticles/plugin-easing-sigmoid':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/sigmoid/dist
       '@tsparticles/plugin-easing-sine':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/sine/dist
+      '@tsparticles/plugin-easing-smoothstep':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/smoothstep/dist
       '@tsparticles/plugin-emitters-shape-canvas':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/emittersShapes/canvas/dist
@@ -776,15 +791,24 @@ importers:
       '@tsparticles/plugin-easing-back':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/back/dist
+      '@tsparticles/plugin-easing-bounce':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/bounce/dist
       '@tsparticles/plugin-easing-circ':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/circ/dist
       '@tsparticles/plugin-easing-cubic':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/cubic/dist
+      '@tsparticles/plugin-easing-elastic':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/elastic/dist
       '@tsparticles/plugin-easing-expo':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/expo/dist
+      '@tsparticles/plugin-easing-gaussian':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/gaussian/dist
       '@tsparticles/plugin-easing-linear':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/linear/dist
@@ -797,9 +821,15 @@ importers:
       '@tsparticles/plugin-easing-quint':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/quint/dist
+      '@tsparticles/plugin-easing-sigmoid':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/sigmoid/dist
       '@tsparticles/plugin-easing-sine':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/easings/sine/dist
+      '@tsparticles/plugin-easing-smoothstep':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../plugins/easings/smoothstep/dist
       '@tsparticles/plugin-emitters':
         specifier: workspace:4.0.0-alpha.5
         version: link:../../plugins/emitters/dist
@@ -1543,6 +1573,13 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
+  plugins/easings/bounce:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   plugins/easings/circ:
     dependencies:
       '@tsparticles/engine':
@@ -1557,7 +1594,21 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
+  plugins/easings/elastic:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   plugins/easings/expo:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/easings/gaussian:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.5
@@ -1592,7 +1643,21 @@ importers:
         version: link:../../../engine/dist
     publishDirectory: dist
 
+  plugins/easings/sigmoid:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
   plugins/easings/sine:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.5
+        version: link:../../../engine/dist
+    publishDirectory: dist
+
+  plugins/easings/smoothstep:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.5

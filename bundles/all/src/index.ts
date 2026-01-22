@@ -23,13 +23,18 @@ export async function loadAll(engine: Engine): Promise<void> {
             { loadOklchColorPlugin } = await import("@tsparticles/plugin-oklch-color"),
             { loadNamedColorPlugin } = await import("@tsparticles/plugin-named-color"),
             { loadEasingBackPlugin } = await import("@tsparticles/plugin-easing-back"),
+            { loadEasingBouncePlugin } = await import("@tsparticles/plugin-easing-bounce"),
             { loadEasingCircPlugin } = await import("@tsparticles/plugin-easing-circ"),
             { loadEasingCubicPlugin } = await import("@tsparticles/plugin-easing-cubic"),
+            { loadEasingElasticPlugin } = await import("@tsparticles/plugin-easing-elastic"),
             { loadEasingExpoPlugin } = await import("@tsparticles/plugin-easing-expo"),
+            { loadEasingGaussianPlugin } = await import("@tsparticles/plugin-easing-gaussian"),
             { loadEasingLinearPlugin } = await import("@tsparticles/plugin-easing-linear"),
             { loadEasingQuartPlugin } = await import("@tsparticles/plugin-easing-quart"),
             { loadEasingQuintPlugin } = await import("@tsparticles/plugin-easing-quint"),
+            { loadEasingSigmoidPlugin } = await import("@tsparticles/plugin-easing-sigmoid"),
             { loadEasingSinePlugin } = await import("@tsparticles/plugin-easing-sine"),
+            { loadEasingSmoothstepPlugin } = await import("@tsparticles/plugin-easing-smoothstep"),
             { loadBackgroundMaskPlugin } = await import("@tsparticles/plugin-background-mask"),
             { loadBlendPlugin } = await import("@tsparticles/plugin-blend"),
             { loadCanvasMaskPlugin } = await import("@tsparticles/plugin-canvas-mask"),
@@ -90,13 +95,18 @@ export async function loadAll(engine: Engine): Promise<void> {
         await loadNamedColorPlugin(e);
 
         await loadEasingBackPlugin(e);
+        await loadEasingBouncePlugin(e);
         await loadEasingCircPlugin(e);
         await loadEasingCubicPlugin(e);
+        await loadEasingElasticPlugin(e);
         await loadEasingExpoPlugin(e);
+        await loadEasingGaussianPlugin(e);
         await loadEasingLinearPlugin(e);
         await loadEasingQuartPlugin(e);
         await loadEasingQuintPlugin(e);
+        await loadEasingSigmoidPlugin(e);
         await loadEasingSinePlugin(e);
+        await loadEasingSmoothstepPlugin(e);
 
         await loadBackgroundMaskPlugin(e);
         await loadBlendPlugin(e);
