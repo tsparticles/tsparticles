@@ -6,7 +6,7 @@
     "scripts": {
         "build": "tsparticles-cli build",
         "build:ci": "tsparticles-cli build --ci",
-        "version": "tsparticles-cli build -d && git add package.dist.json && tsparticles-cli build -p -l",
+        "version": "tsparticles-cli build -d && git add package.dist.json && tsparticles-cli build -p -l && git add .",
         "prepack": "pnpm run build"
     },
     "repository": {
