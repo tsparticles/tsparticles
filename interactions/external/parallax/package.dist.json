@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-parallax",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-alpha.6",
   "description": "tsParticles parallax external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,8 +87,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.5",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.5"
+    "@tsparticles/engine": "4.0.0-alpha.6",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.6"
   },
   "publishConfig": {
     "access": "public"

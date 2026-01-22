@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/move-base",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-alpha.6",
   "description": "tsParticles Base movement",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,7 +87,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.5"
+    "@tsparticles/engine": "4.0.0-alpha.6"
   },
   "publishConfig": {
     "access": "public"
