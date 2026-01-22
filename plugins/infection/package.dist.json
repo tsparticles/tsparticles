@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-infection",
-  "version": "4.0.0-alpha.7",
+  "version": "4.0.0-alpha.8",
   "description": "tsParticles infection plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,8 +100,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.7",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.7"
+    "@tsparticles/engine": "4.0.0-alpha.8",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.8"
   },
   "publishConfig": {
     "access": "public"
