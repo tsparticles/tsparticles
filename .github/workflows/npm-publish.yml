@@ -27,7 +27,7 @@ jobs:
         with:
           run_install: false
 
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install
 
       - name: Publish
         run: |
