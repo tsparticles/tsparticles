@@ -9,7 +9,7 @@
     "build": "tsparticles-cli build && pnpm run build:schema",
     "build:ci": "tsparticles-cli build --ci && pnpm run build:schema",
     "build:schema": "echo ts-json-schema-generator --path 'src/**/*.ts' --type 'IOptions' -f tsconfig.schema.json --additional-properties true --out ./schema/options.schema.json",
-    "version": "tsparticles-cli build -d && git add package.dist.json",
+    "version": "tsparticles-cli build -d && git add package.dist.json && tsparticles-cli build -p -l",
     "postversion": "git push && git push --tags",
     "prepack": "pnpm run build",
     "release:alpha": "pnpm run version --prerelease --preid alpha",
