@@ -1,0 +1,59 @@
+name: Publish Packages
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          registry-url: 'https://registry.npmjs.org'
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - run: pnpm install --no-frozen-lockfile
+
+      - name: Setup npm auth
+        run: echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > ~/.npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Decide publish command from tag
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          echo "Tag detected: $TAG"
+
+          if [[ "$TAG" == *"-alpha."* ]]; then
+            echo "Alpha release"
+            pnpm run publish:alpha
+
+          elif [[ "$TAG" == *"-beta."* ]]; then
+            echo "Beta release"
+            pnpm run publish:beta
+
+          else
+            echo "Stable release"
+
+            # se vuoi gestire i dist-tag major
+            if [[ "$TAG" == v1* ]]; then
+              pnpm run publish:v1
+            elif [[ "$TAG" == v2* ]]; then
+              pnpm run publish:v2
+            elif [[ "$TAG" == v3* ]]; then
+              pnpm run publish:v3
+            else
+              pnpm run publish:next
+            fi
+          fi
