@@ -116,6 +116,7 @@
     "@tsparticles/path-svg": "4.0.0-alpha.5",
     "@tsparticles/path-zig-zag": "4.0.0-alpha.5",
     "@tsparticles/plugin-background-mask": "4.0.0-alpha.5",
+    "@tsparticles/plugin-blend": "4.0.0-alpha.5",
     "@tsparticles/plugin-canvas-mask": "4.0.0-alpha.5",
     "@tsparticles/plugin-easing-back": "4.0.0-alpha.5",
     "@tsparticles/plugin-easing-circ": "4.0.0-alpha.5",

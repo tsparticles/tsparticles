@@ -124,6 +124,7 @@
     "@tsparticles/path-svg": "workspace:4.0.0-alpha.5",
     "@tsparticles/path-zig-zag": "workspace:4.0.0-alpha.5",
     "@tsparticles/plugin-background-mask": "workspace:4.0.0-alpha.5",
+    "@tsparticles/plugin-blend": "workspace:4.0.0-alpha.5",
     "@tsparticles/plugin-canvas-mask": "workspace:4.0.0-alpha.5",
     "@tsparticles/plugin-easing-back": "workspace:4.0.0-alpha.5",
     "@tsparticles/plugin-easing-circ": "workspace:4.0.0-alpha.5",

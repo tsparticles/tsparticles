@@ -31,6 +31,7 @@ export async function loadAll(engine: Engine): Promise<void> {
             { loadEasingQuintPlugin } = await import("@tsparticles/plugin-easing-quint"),
             { loadEasingSinePlugin } = await import("@tsparticles/plugin-easing-sine"),
             { loadBackgroundMaskPlugin } = await import("@tsparticles/plugin-background-mask"),
+            { loadBlendPlugin } = await import("@tsparticles/plugin-blend"),
             { loadCanvasMaskPlugin } = await import("@tsparticles/plugin-canvas-mask"),
             { loadInfectionPlugin } = await import("@tsparticles/plugin-infection"),
             { loadManualParticlesPlugin } = await import("@tsparticles/plugin-manual-particles"),
@@ -98,6 +99,7 @@ export async function loadAll(engine: Engine): Promise<void> {
         await loadEasingSinePlugin(e);
 
         await loadBackgroundMaskPlugin(e);
+        await loadBlendPlugin(e);
         await loadCanvasMaskPlugin(e);
         await loadInfectionPlugin(e);
         await loadManualParticlesPlugin(e);

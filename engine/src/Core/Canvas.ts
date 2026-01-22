@@ -257,6 +257,12 @@ export class Canvas {
         colorStyles.stroke = stroke;
 
         this.draw((context): void => {
+            for (const plugin of container.plugins) {
+                if (plugin.drawParticleSetup) {
+                    plugin.drawParticleSetup(context, particle, delta);
+                }
+            }
+
             this._applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
 
             drawParticle({
@@ -269,9 +275,15 @@ export class Canvas {
                 opacity: opacity,
                 transform,
             });
-        });
 
-        this._applyPostDrawUpdaters(particle);
+            this._applyPostDrawUpdaters(particle);
+
+            for (const plugin of container.plugins) {
+                if (plugin.drawParticleCleanup) {
+                    plugin.drawParticleCleanup(context, particle, delta);
+                }
+            }
+        });
     }
 
     /**

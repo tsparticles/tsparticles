@@ -16,6 +16,8 @@ export interface IContainerPlugin {
     destroy?: () => void;
     draw?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+    drawParticleCleanup?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+    drawParticleSetup?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
     drawSettingsCleanup?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     drawSettingsSetup?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
     export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;

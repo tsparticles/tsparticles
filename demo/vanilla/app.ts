@@ -131,6 +131,7 @@ app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-
 app.use("/path-svg", express.static("./node_modules/@tsparticles/path-svg"));
 app.use("/path-zig-zag", express.static("./node_modules/@tsparticles/path-zig-zag"));
 app.use("/plugin-background-mask", express.static("./node_modules/@tsparticles/plugin-background-mask"));
+app.use("/plugin-blend", express.static("./node_modules/@tsparticles/plugin-blend"));
 app.use("/plugin-canvas-mask", express.static("./node_modules/@tsparticles/plugin-canvas-mask"));
 app.use("/plugin-easing-back", express.static("./node_modules/@tsparticles/plugin-easing-back"));
 app.use("/plugin-easing-circ", express.static("./node_modules/@tsparticles/plugin-easing-circ"));
