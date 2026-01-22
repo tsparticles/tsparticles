@@ -17,7 +17,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 Including the `tsparticles.plugin.easing.linear.min.js` file will export the function to load the plugin:
 
 ```text
-loadEasingBackPlugin
+loadEasingLinearPlugin
 ```
 
 ### Usage
@@ -26,7 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 
 ```javascript
 (async () => {
-  await loadEasingBackPlugin();
+  await loadEasingLinearPlugin();
 
   await tsParticles.load({
     id: "tsparticles",
@@ -55,10 +55,10 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
-const { loadEasingBackPlugin } = require("@tsparticles/plugin-easing-linear");
+const { loadEasingLinearPlugin } = require("@tsparticles/plugin-easing-linear");
 
 (async () => {
-  await loadEasingBackPlugin();
+  await loadEasingLinearPlugin();
 })();
 ```
 
@@ -66,9 +66,9 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
-import { loadEasingBackPlugin } from "@tsparticles/plugin-easing-linear";
+import { loadEasingLinearPlugin } from "@tsparticles/plugin-easing-linear";
 
 (async () => {
-  await loadEasingBackPlugin();
+  await loadEasingLinearPlugin();
 })();
 ```

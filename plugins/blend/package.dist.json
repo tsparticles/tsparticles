@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/plugin-blend",
   "version": "4.0.0-alpha.5",
-  "description": "tsParticles background mask plugin",
+  "description": "tsParticles blend plugin",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",

@@ -1,12 +1,12 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles Background Mask Plugin
+# tsParticles Blend Plugin
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/plugin-blend/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/plugin-blend)
 [![npmjs](https://badge.fury.io/js/@tsparticles/plugin-blend.svg)](https://www.npmjs.com/package/@tsparticles/plugin-blend)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-blend)](https://www.npmjs.com/package/@tsparticles/plugin-blend) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/tsparticles/tsparticles) plugin for handling background mask feature.
+[tsParticles](https://github.com/tsparticles/tsparticles) plugin for handling blend feature.
 
 ## How to use it
 

@@ -6,7 +6,7 @@ import type { IBlend } from "../Interfaces/IBlend.js";
  */
 export class Blend implements IBlend, IOptionLoader<IBlend> {
     /**
-     * Background mask enabling options
+     * Blend enabling options
      */
     enable;
 

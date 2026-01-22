@@ -4,7 +4,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles Background Mask Plugin",
+  "name": "tsParticles Blend Plugin",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

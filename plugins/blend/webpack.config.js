@@ -9,4 +9,4 @@ const __filename = fileURLToPath(import.meta.url),
     pkg = await fs.readJson(rootPkgPath),
     version = pkg.version;
 
-export default loadParticlesPlugin({ moduleName: "blend", pluginName: "Background Mask", version, dir: __dirname });
+export default loadParticlesPlugin({ moduleName: "blend", pluginName: "Blend", version, dir: __dirname });

@@ -17,7 +17,7 @@ The CDN/Vanilla version JS has one required file in vanilla configuration:
 Including the `tsparticles.plugin.easing.gaussian.min.js` file will export the function to load the plugin:
 
 ```text
-loadEasingBackPlugin
+loadEasingGaussianPlugin
 ```
 
 ### Usage
@@ -26,7 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 
 ```javascript
 (async () => {
-  await loadEasingBackPlugin();
+  await loadEasingGaussianPlugin();
 
   await tsParticles.load({
     id: "tsparticles",
@@ -55,10 +55,10 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
-const { loadEasingBackPlugin } = require("@tsparticles/plugin-easing-gaussian");
+const { loadEasingGaussianPlugin } = require("@tsparticles/plugin-easing-gaussian");
 
 (async () => {
-  await loadEasingBackPlugin();
+  await loadEasingGaussianPlugin();
 })();
 ```
 
@@ -66,9 +66,9 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
-import { loadEasingBackPlugin } from "@tsparticles/plugin-easing-gaussian";
+import { loadEasingGaussianPlugin } from "@tsparticles/plugin-easing-gaussian";
 
 (async () => {
-  await loadEasingBackPlugin();
+  await loadEasingGaussianPlugin();
 })();
 ```
