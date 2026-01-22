@@ -34,10 +34,10 @@
     },
     "homepage": "https://particles.js.org",
     "devDependencies": {
-        "@swc/core": "^1.15.8",
+        "@swc/core": "^1.15.10",
         "fs-extra": "^11.3.3",
         "minify": "^15.0.1",
-        "sass": "^1.97.2"
+        "sass": "^1.97.3"
     },
     "dependencies": {
         "@tsparticles/configs": "workspace:4.0.0-alpha.5",
