@@ -1,6 +1,6 @@
 /**
- * The options to apply a base color to canvas to cover what's behind
- * The particles will unveil what is covered by the canvas
+ * Options for configuring canvas blend/composite operations
+ * This allows particles to use different blend modes when drawn
  * [[include:Options/Blend.md]]
  */
 export interface IBlend {
