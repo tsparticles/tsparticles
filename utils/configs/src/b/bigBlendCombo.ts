@@ -74,7 +74,7 @@ const options: ISourceOptions = {
         },
         blend: {
             enable: true,
-            mode: "xor",
+            mode: "color-burn",
         },
     },
     background: {
@@ -82,7 +82,7 @@ const options: ISourceOptions = {
     },
     blend: {
         enable: true,
-        mode: "darken",
+        mode: "screen",
     },
 };
 
