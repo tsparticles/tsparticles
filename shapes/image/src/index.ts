@@ -11,56 +11,56 @@ const extLength = 3;
  * @param engine -
  */
 function addLoadImageToEngine(engine: ImageEngine): void {
-    if (engine.loadImage) {
-        return;
+  if (engine.loadImage) {
+    return;
+  }
+
+  engine.loadImage = async (data: IPreload): Promise<void> => {
+    if (!data.name && !data.src) {
+      throw new Error("No image source provided");
     }
 
-    engine.loadImage = async (data: IPreload): Promise<void> => {
-        if (!data.name && !data.src) {
-            throw new Error("No image source provided");
-        }
+    engine.images ??= [];
 
-        engine.images ??= [];
+    if (engine.images.some((t: IImage) => t.name === data.name || t.source === data.src)) {
+      return;
+    }
 
-        if (engine.images.some((t: IImage) => t.name === data.name || t.source === data.src)) {
-            return;
-        }
+    try {
+      const image: IImage = {
+        gif: data.gif,
+        name: data.name ?? data.src,
+        source: data.src,
+        type: data.src.substring(data.src.length - extLength),
+        error: false,
+        loading: true,
+        replaceColor: data.replaceColor,
+        ratio: data.width && data.height ? data.width / data.height : undefined,
+      };
 
-        try {
-            const image: IImage = {
-                gif: data.gif,
-                name: data.name ?? data.src,
-                source: data.src,
-                type: data.src.substring(data.src.length - extLength),
-                error: false,
-                loading: true,
-                replaceColor: data.replaceColor,
-                ratio: data.width && data.height ? data.width / data.height : undefined,
-            };
+      engine.images.push(image);
 
-            engine.images.push(image);
+      let imageFunc: (image: IImage) => Promise<void>;
 
-            let imageFunc: (image: IImage) => Promise<void>;
+      if (data.gif) {
+        const { loadGifImage } = await import("./GifUtils/Utils.js");
 
-            if (data.gif) {
-                const { loadGifImage } = await import("./GifUtils/Utils.js");
+        imageFunc = loadGifImage;
+      } else if (data.replaceColor) {
+        const { downloadSvgImage } = await import("./Utils.js");
 
-                imageFunc = loadGifImage;
-            } else if (data.replaceColor) {
-                const { downloadSvgImage } = await import("./Utils.js");
+        imageFunc = downloadSvgImage;
+      } else {
+        const { loadImage } = await import("./Utils.js");
 
-                imageFunc = downloadSvgImage;
-            } else {
-                const { loadImage } = await import("./Utils.js");
+        imageFunc = loadImage;
+      }
 
-                imageFunc = loadImage;
-            }
-
-            await imageFunc(image);
-        } catch {
-            throw new Error(`${data.name ?? data.src} not found`);
-        }
-    };
+      await imageFunc(image);
+    } catch {
+      throw new Error(`${data.name ?? data.src} not found`);
+    }
+  };
 }
 
 /**
@@ -68,17 +68,17 @@ function addLoadImageToEngine(engine: ImageEngine): void {
  * @param engine - the engine where the image shape is going to be added
  */
 export async function loadImageShape(engine: ImageEngine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { ImageDrawer } = await import("./ImageDrawer.js"),
-            { ImagePreloaderPlugin } = await import("./ImagePreloader.js");
+  await engine.register(async e => {
+    const { ImageDrawer } = await import("./ImageDrawer.js"),
+      { ImagePreloaderPlugin } = await import("./ImagePreloader.js");
 
-        addLoadImageToEngine(e);
+    addLoadImageToEngine(e);
 
-        const preloader = new ImagePreloaderPlugin();
+    const preloader = new ImagePreloaderPlugin();
 
-        e.addPlugin(preloader);
-        e.addShape(new ImageDrawer(e));
-    });
+    e.addPlugin(preloader);
+    e.addShape(new ImageDrawer(e));
+  });
 }

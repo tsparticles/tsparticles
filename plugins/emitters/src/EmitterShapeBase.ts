@@ -3,24 +3,24 @@ import type { IEmitterShape } from "./IEmitterShape.js";
 import type { IRandomPositionData } from "./IRandomPositionData.js";
 
 export abstract class EmitterShapeBase<TOptions = unknown> implements IEmitterShape {
-    fill: boolean;
-    options: TOptions;
-    position: ICoordinates;
-    size: IDimension;
+  fill: boolean;
+  options: TOptions;
+  position: ICoordinates;
+  size: IDimension;
 
-    protected constructor(position: ICoordinates, size: IDimension, fill: boolean, options: TOptions) {
-        this.position = position;
-        this.size = size;
-        this.fill = fill;
-        this.options = options;
-    }
+  protected constructor(position: ICoordinates, size: IDimension, fill: boolean, options: TOptions) {
+    this.position = position;
+    this.size = size;
+    this.fill = fill;
+    this.options = options;
+  }
 
-    resize(position: ICoordinates, size: IDimension): void {
-        this.position = position;
-        this.size = size;
-    }
+  resize(position: ICoordinates, size: IDimension): void {
+    this.position = position;
+    this.size = size;
+  }
 
-    abstract init(): Promise<void>;
+  abstract init(): Promise<void>;
 
-    abstract randomPosition(): IRandomPositionData | null;
+  abstract randomPosition(): IRandomPositionData | null;
 }

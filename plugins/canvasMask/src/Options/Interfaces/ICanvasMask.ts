@@ -7,13 +7,13 @@ import type { ITextMask } from "./ITextMask.js";
 /**
  */
 export interface ICanvasMask {
-    element?: HTMLCanvasElement;
-    enable: boolean;
-    image?: IImageMask;
-    override: ICanvasMaskOverride;
-    pixels: ICanvasMaskPixels;
-    position: ICoordinates;
-    scale: number;
-    selector?: string;
-    text?: ITextMask;
+  element?: HTMLCanvasElement;
+  enable: boolean;
+  image?: IImageMask;
+  override: ICanvasMaskOverride;
+  pixels: ICanvasMaskPixels;
+  position: ICoordinates;
+  scale: number;
+  selector?: string;
+  text?: ITextMask;
 }

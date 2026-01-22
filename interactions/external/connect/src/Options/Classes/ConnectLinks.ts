@@ -4,19 +4,19 @@ import type { IConnectLinks } from "../Interfaces/IConnectLinks.js";
 /**
  */
 export class ConnectLinks implements IConnectLinks, IOptionLoader<IConnectLinks> {
-    opacity;
+  opacity;
 
-    constructor() {
-        this.opacity = 0.5;
+  constructor() {
+    this.opacity = 0.5;
+  }
+
+  load(data?: RecursivePartial<IConnectLinks>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IConnectLinks>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.opacity !== undefined) {
-            this.opacity = data.opacity;
-        }
+    if (data.opacity !== undefined) {
+      this.opacity = data.opacity;
     }
+  }
 }

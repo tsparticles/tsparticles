@@ -1,17 +1,17 @@
 import {
-    type IDelta,
-    type IDimension,
-    getRangeValue,
-    millisecondsToSeconds,
-    randomInRangeValue,
-    setRangeValue,
+  type IDelta,
+  type IDimension,
+  getRangeValue,
+  millisecondsToSeconds,
+  randomInRangeValue,
+  setRangeValue,
 } from "@tsparticles/engine";
 import type { LifeParticle } from "./Types.js";
 
 const noTime = 0,
-    infiniteValue = -1,
-    noLife = 0,
-    minCanvasSize = 0;
+  infiniteValue = -1,
+  noLife = 0,
+  minCanvasSize = 0;
 
 /**
  * @param particle -
@@ -19,67 +19,67 @@ const noTime = 0,
  * @param canvasSize -
  */
 export function updateLife(particle: LifeParticle, delta: IDelta, canvasSize: IDimension): void {
-    if (!particle.life) {
-        return;
-    }
+  if (!particle.life) {
+    return;
+  }
 
-    const life = particle.life;
+  const life = particle.life;
 
-    let justSpawned = false;
+  let justSpawned = false;
 
-    if (particle.spawning) {
-        life.delayTime += delta.value;
+  if (particle.spawning) {
+    life.delayTime += delta.value;
 
-        if (life.delayTime >= particle.life.delay) {
-            justSpawned = true;
-            particle.spawning = false;
-            life.delayTime = noTime;
-            life.time = noTime;
-        } else {
-            return;
-        }
-    }
-
-    if (life.duration === infiniteValue) {
-        return;
-    }
-
-    if (justSpawned) {
-        life.time = noTime;
+    if (life.delayTime >= particle.life.delay) {
+      justSpawned = true;
+      particle.spawning = false;
+      life.delayTime = noTime;
+      life.time = noTime;
     } else {
-        life.time += delta.value;
+      return;
     }
+  }
 
-    if (life.time < life.duration) {
-        return;
-    }
+  if (life.duration === infiniteValue) {
+    return;
+  }
 
+  if (justSpawned) {
     life.time = noTime;
+  } else {
+    life.time += delta.value;
+  }
 
-    if (particle.life.count > noLife) {
-        particle.life.count--;
-    }
+  if (life.time < life.duration) {
+    return;
+  }
 
-    if (particle.life.count === noLife) {
-        particle.destroy();
+  life.time = noTime;
 
-        return;
-    }
+  if (particle.life.count > noLife) {
+    particle.life.count--;
+  }
 
-    const widthRange = setRangeValue(minCanvasSize, canvasSize.width),
-        heightRange = setRangeValue(minCanvasSize, canvasSize.width);
+  if (particle.life.count === noLife) {
+    particle.destroy();
 
-    particle.position.x = randomInRangeValue(widthRange);
-    particle.position.y = randomInRangeValue(heightRange);
-    particle.spawning = true;
-    life.delayTime = noTime;
-    life.time = noTime;
-    particle.reset();
+    return;
+  }
 
-    const lifeOptions = particle.options.life;
+  const widthRange = setRangeValue(minCanvasSize, canvasSize.width),
+    heightRange = setRangeValue(minCanvasSize, canvasSize.width);
 
-    if (lifeOptions) {
-        life.delay = getRangeValue(lifeOptions.delay.value) * millisecondsToSeconds;
-        life.duration = getRangeValue(lifeOptions.duration.value) * millisecondsToSeconds;
-    }
+  particle.position.x = randomInRangeValue(widthRange);
+  particle.position.y = randomInRangeValue(heightRange);
+  particle.spawning = true;
+  life.delayTime = noTime;
+  life.time = noTime;
+  particle.reset();
+
+  const lifeOptions = particle.options.life;
+
+  if (lifeOptions) {
+    life.delay = getRangeValue(lifeOptions.delay.value) * millisecondsToSeconds;
+    life.duration = getRangeValue(lifeOptions.duration.value) * millisecondsToSeconds;
+  }
 }

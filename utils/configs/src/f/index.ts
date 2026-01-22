@@ -6,10 +6,10 @@ import fontawesome from "./fontawesome.js";
 import forward from "./forward.js";
 
 export default {
-    fallingConfetti,
-    fireworks,
-    fireworks2,
-    fireworksMask,
-    fontawesome,
-    forward,
+  fallingConfetti,
+  fireworks,
+  fireworks2,
+  fireworksMask,
+  fontawesome,
+  forward,
 };

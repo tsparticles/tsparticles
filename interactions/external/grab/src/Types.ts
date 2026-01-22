@@ -5,30 +5,30 @@ import type { GrabOptions } from "./Options/Classes/GrabOptions.js";
 import type { IGrab } from "./Options/Interfaces/IGrab.js";
 
 export interface IGrabMode {
-    grab: IGrab;
+  grab: IGrab;
 }
 
 export interface GrabMode {
-    grab?: Grab;
+  grab?: Grab;
 }
 
 export type GrabContainer = InteractivityContainer & {
-    actualOptions: GrabOptions;
-    particles: {
-        grabLineColor?: IRgb | string;
-    };
-    retina: {
-        grabModeDistance?: number;
-    };
+  actualOptions: GrabOptions;
+  particles: {
+    grabLineColor?: IRgb | string;
+  };
+  retina: {
+    grabModeDistance?: number;
+  };
 };
 
 export type LinkParticle = InteractivityParticle & {
-    options: {
-        links?: {
-            color?: OptionsColor;
-        };
+  options: {
+    links?: {
+      color?: OptionsColor;
     };
-    retina: {
-        linksWidth?: number;
-    };
+  };
+  retina: {
+    linksWidth?: number;
+  };
 };

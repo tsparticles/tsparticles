@@ -12,6 +12,6 @@ export type MoverInitializer = GenericInitializer<IParticleMover>;
 export type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
 
 export interface Initializers {
-    movers: Map<string, MoverInitializer>;
-    updaters: Map<string, UpdaterInitializer>;
+  movers: Map<string, MoverInitializer>;
+  updaters: Map<string, UpdaterInitializer>;
 }

@@ -12,27 +12,27 @@ import { destroy } from "./Destroy.js";
  * @param pixelRatio -
  */
 export function resolveCollision(
-    p1: CollisionParticle,
-    p2: CollisionParticle,
-    delta: IDelta,
-    pixelRatio: number,
+  p1: CollisionParticle,
+  p2: CollisionParticle,
+  delta: IDelta,
+  pixelRatio: number,
 ): void {
-    if (!p1.options.collisions || !p2.options.collisions) {
-        return;
-    }
+  if (!p1.options.collisions || !p2.options.collisions) {
+    return;
+  }
 
-    switch (p1.options.collisions.mode) {
-        case CollisionMode.absorb: {
-            absorb(p1, p2, delta, pixelRatio);
-            break;
-        }
-        case CollisionMode.bounce: {
-            bounce(p1, p2);
-            break;
-        }
-        case CollisionMode.destroy: {
-            destroy(p1, p2);
-            break;
-        }
+  switch (p1.options.collisions.mode) {
+    case CollisionMode.absorb: {
+      absorb(p1, p2, delta, pixelRatio);
+      break;
     }
+    case CollisionMode.bounce: {
+      bounce(p1, p2);
+      break;
+    }
+    case CollisionMode.destroy: {
+      destroy(p1, p2);
+      break;
+    }
+  }
 }

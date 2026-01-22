@@ -9,13 +9,13 @@ import connect from "./connect.js";
 import curlNoise from "./curlNoise.js";
 
 export default {
-    cards,
-    chars,
-    clickPause,
-    collisionsAbsorb,
-    collisionsBounce,
-    collisionsDestroy,
-    colorAnimation,
-    connect,
-    curlNoise,
+  cards,
+  chars,
+  clickPause,
+  collisionsAbsorb,
+  collisionsBounce,
+  collisionsDestroy,
+  colorAnimation,
+  connect,
+  curlNoise,
 };

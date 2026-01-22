@@ -1,9 +1,9 @@
 import {
-    type Container,
-    type Engine,
-    type IContainerPlugin,
-    type IPlugin,
-    type RecursivePartial,
+  type Container,
+  type Engine,
+  type IContainerPlugin,
+  type IPlugin,
+  type RecursivePartial,
 } from "@tsparticles/engine";
 import type { ISoundsOptions, SoundsOptions } from "./types.js";
 import { mouseDownEvent, touchStartEvent } from "./constants.js";
@@ -11,54 +11,54 @@ import { Sounds } from "./Options/Classes/Sounds.js";
 import { unmuteWindow } from "./utils.js";
 
 const generalFirstClickHandler = (): void => {
-    removeEventListener(mouseDownEvent, generalFirstClickHandler);
-    removeEventListener(touchStartEvent, generalFirstClickHandler);
+  removeEventListener(mouseDownEvent, generalFirstClickHandler);
+  removeEventListener(touchStartEvent, generalFirstClickHandler);
 
-    unmuteWindow();
+  unmuteWindow();
 };
 
 /**
  */
 export class SoundsPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    private readonly _engine;
+  private readonly _engine;
 
-    constructor(engine: Engine) {
-        this.id = "sounds";
+  constructor(engine: Engine) {
+    this.id = "sounds";
 
-        this._engine = engine;
+    this._engine = engine;
 
-        const listenerOptions = {
-            capture: true,
-            once: true,
-        };
+    const listenerOptions = {
+      capture: true,
+      once: true,
+    };
 
-        addEventListener(mouseDownEvent, generalFirstClickHandler, listenerOptions);
-        addEventListener(touchStartEvent, generalFirstClickHandler, listenerOptions);
+    addEventListener(mouseDownEvent, generalFirstClickHandler, listenerOptions);
+    addEventListener(touchStartEvent, generalFirstClickHandler, listenerOptions);
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { SoundsPluginInstance } = await import("./SoundsPluginInstance.js");
+
+    return new SoundsPluginInstance(container, this._engine);
+  }
+
+  loadOptions(_container: Container, options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { SoundsPluginInstance } = await import("./SoundsPluginInstance.js");
+    let soundsOptions = options.sounds;
 
-        return new SoundsPluginInstance(container, this._engine);
+    if (soundsOptions?.load === undefined) {
+      options.sounds = soundsOptions = new Sounds();
     }
 
-    loadOptions(_container: Container, options: SoundsOptions, source?: RecursivePartial<ISoundsOptions>): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    soundsOptions.load(source?.sounds);
+  }
 
-        let soundsOptions = options.sounds;
-
-        if (soundsOptions?.load === undefined) {
-            options.sounds = soundsOptions = new Sounds();
-        }
-
-        soundsOptions.load(source?.sounds);
-    }
-
-    needsPlugin(options?: RecursivePartial<ISoundsOptions>): boolean {
-        return options?.sounds?.enable ?? false;
-    }
+  needsPlugin(options?: RecursivePartial<ISoundsOptions>): boolean {
+    return options?.sounds?.enable ?? false;
+  }
 }

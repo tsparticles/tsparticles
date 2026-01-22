@@ -4,13 +4,13 @@ import type { InteractivityParticleOptions } from "./Options/Classes/Interactivi
 import type { InteractivityParticleOptionsData } from "./Options/Classes/InteractivityParticleOptionsData.js";
 
 export interface IParticleMode {
-    particle: IInteractivityParticleOptions;
+  particle: IInteractivityParticleOptions;
 }
 
 export interface ParticleMode {
-    particle?: InteractivityParticleOptions;
+  particle?: InteractivityParticleOptions;
 }
 
 export type InteractivityParticleContainer = InteractivityContainer & {
-    actualOptions: InteractivityParticleOptionsData;
+  actualOptions: InteractivityParticleOptionsData;
 };

@@ -4,25 +4,25 @@ import type { IParallax } from "../Interfaces/IParallax.js";
 /**
  */
 export class Parallax implements IParallax, IOptionLoader<IParallax> {
-    force;
-    smooth;
+  force;
+  smooth;
 
-    constructor() {
-        this.force = 2;
-        this.smooth = 10;
+  constructor() {
+    this.force = 2;
+    this.smooth = 10;
+  }
+
+  load(data?: RecursivePartial<IParallax>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IParallax>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.force !== undefined) {
-            this.force = data.force;
-        }
-
-        if (data.smooth !== undefined) {
-            this.smooth = data.smooth;
-        }
+    if (data.force !== undefined) {
+      this.force = data.force;
     }
+
+    if (data.smooth !== undefined) {
+      this.smooth = data.smooth;
+    }
+  }
 }

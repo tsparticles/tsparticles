@@ -4,38 +4,39 @@ import type { CollisionParticle } from "./Types.js";
 const minRetries = 0;
 
 export class OverlapPluginInstance implements IContainerPlugin {
-    private readonly _container: Container;
+  private readonly _container: Container;
 
-    constructor(container: Container) {
-        this._container = container;
+  constructor(container: Container) {
+    this._container = container;
+  }
+
+  checkParticlePosition(particle: CollisionParticle, position: ICoordinates, tryCount: number): boolean {
+    return !this._hasOverlaps(particle, position, tryCount);
+  }
+
+  private readonly _hasOverlaps: (particle: CollisionParticle, position: ICoordinates, tryCount: number) => boolean = (
+    particle,
+    pos,
+    tryCount,
+  ) => {
+    const collisionsOptions = particle.options.collisions;
+
+    if (!collisionsOptions?.enable) {
+      return false;
     }
 
-    checkParticlePosition(particle: CollisionParticle, position: ICoordinates, tryCount: number): boolean {
-        return !this._hasOverlaps(particle, position, tryCount);
+    const overlapOptions = collisionsOptions.overlap;
+
+    if (overlapOptions.enable) {
+      return false;
     }
 
-    private readonly _hasOverlaps: (particle: CollisionParticle, position: ICoordinates, tryCount: number) => boolean =
-        (particle, pos, tryCount) => {
-            const collisionsOptions = particle.options.collisions;
+    const retries = overlapOptions.retries;
 
-            if (!collisionsOptions?.enable) {
-                return false;
-            }
+    if (retries >= minRetries && tryCount > retries) {
+      throw new Error(`Particle is overlapping and can't be placed`);
+    }
 
-            const overlapOptions = collisionsOptions.overlap;
-
-            if (overlapOptions.enable) {
-                return false;
-            }
-
-            const retries = overlapOptions.retries;
-
-            if (retries >= minRetries && tryCount > retries) {
-                throw new Error(`Particle is overlapping and can't be placed`);
-            }
-
-            return !!this._container.particles.find(
-                p => getDistance(pos, p.position) < particle.getRadius() + p.getRadius(),
-            );
-        };
+    return !!this._container.particles.find(p => getDistance(pos, p.position) < particle.getRadius() + p.getRadius());
+  };
 }

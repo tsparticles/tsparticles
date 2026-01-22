@@ -3,8 +3,8 @@ import type { IParticlesOptions, RangeValue, RecursivePartial, SingleOrMultiple 
 /**
  */
 export interface IPush {
-    default: boolean;
-    groups: string[];
-    particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
-    quantity: RangeValue;
+  default: boolean;
+  groups: string[];
+  particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
+  quantity: RangeValue;
 }

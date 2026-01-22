@@ -1,2 +1,2 @@
 export const mouseDownEvent = "pointerdown",
-    touchStartEvent = "touchstart";
+  touchStartEvent = "touchstart";

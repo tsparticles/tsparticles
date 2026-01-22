@@ -1,57 +1,57 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers,@typescript-eslint/no-unused-expressions */
 import {
-    type IParticlesOptions,
-    type ISourceOptions,
-    LimitMode,
-    MoveDirection,
-    OptionsColor,
-    OutMode,
-    type RecursivePartial,
-    tsParticles,
+  type IParticlesOptions,
+  type ISourceOptions,
+  LimitMode,
+  MoveDirection,
+  OptionsColor,
+  OutMode,
+  type RecursivePartial,
+  tsParticles,
 } from "@tsparticles/engine";
 import { describe, expect, it } from "vitest";
 import { TestWindow } from "../Fixture/Window.js";
 
 describe("Options tests", () => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    globalThis.window = TestWindow;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  globalThis.window = TestWindow;
 
-    it("checking default options", async () => {
-        const container = await tsParticles.load({
-            id: "test",
-            options: {
-                autoPlay: false,
-            },
-        });
+  it("checking default options", async () => {
+    const container = await tsParticles.load({
+      id: "test",
+      options: {
+        autoPlay: false,
+      },
+    });
 
-        expect(container).to.be.not.undefined;
+    expect(container).to.be.not.undefined;
 
-        if (!container) {
-            return;
-        }
+    if (!container) {
+      return;
+    }
 
-        const options = container.options;
+    const options = container.options;
 
-        /* background */
-        expect(options.background.color).to.include({ value: "" });
-        expect(options.background.image).to.be.equal("");
-        expect(options.background.position).to.be.equal("");
-        expect(options.background.repeat).to.be.equal("");
-        expect(options.background.size).to.be.equal("");
-        expect(options.background.opacity).to.be.equal(1);
+    /* background */
+    expect(options.background.color).to.include({ value: "" });
+    expect(options.background.image).to.be.equal("");
+    expect(options.background.position).to.be.equal("");
+    expect(options.background.repeat).to.be.equal("");
+    expect(options.background.size).to.be.equal("");
+    expect(options.background.opacity).to.be.equal(1);
 
-        /* detect retina */
-        expect(options.detectRetina).to.be.true;
+    /* detect retina */
+    expect(options.detectRetina).to.be.true;
 
-        /* fps limit */
-        expect(options.fpsLimit).to.equal(120);
+    /* fps limit */
+    expect(options.fpsLimit).to.equal(120);
 
-        /* particles */
-        /* particles color */
-        expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
+    /* particles */
+    /* particles color */
+    expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
 
-        /* particles line linked */
-        /* expect(options.particles.links.blink).to.be.false;
+    /* particles line linked */
+    /* expect(options.particles.links.blink).to.be.false;
         expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#fff");
         expect(options.particles.links.consent).to.be.false;
         expect(options.particles.links.distance).to.equal(100);
@@ -62,494 +62,494 @@ describe("Options tests", () => {
         expect(options.particles.links.shadow.enable).to.be.false;
         expect(options.particles.links.width).to.equal(1); */
 
-        /* particles move */
-        expect(options.particles.move.attract.enable).to.be.false;
-        expect(options.particles.move.attract.rotate.x).to.equal(3000);
-        expect(options.particles.move.attract.rotate.y).to.equal(3000);
-        expect(options.particles.move.direction).to.equal(MoveDirection.none);
-        expect(options.particles.move.enable).to.be.false;
-        expect(options.particles.move.outModes.default).to.equal(OutMode.out);
-        expect(options.particles.move.random).to.be.false;
-        expect(options.particles.move.speed).to.equal(2);
-        expect(options.particles.move.straight).to.be.false;
+    /* particles move */
+    expect(options.particles.move.attract.enable).to.be.false;
+    expect(options.particles.move.attract.rotate.x).to.equal(3000);
+    expect(options.particles.move.attract.rotate.y).to.equal(3000);
+    expect(options.particles.move.direction).to.equal(MoveDirection.none);
+    expect(options.particles.move.enable).to.be.false;
+    expect(options.particles.move.outModes.default).to.equal(OutMode.out);
+    expect(options.particles.move.random).to.be.false;
+    expect(options.particles.move.speed).to.equal(2);
+    expect(options.particles.move.straight).to.be.false;
 
-        /* particles number */
-        expect(options.particles.number.density.width).to.equal(1920);
-        expect(options.particles.number.density.height).to.equal(1080);
-        expect(options.particles.number.density.enable).to.be.false;
-        expect(options.particles.number.limit.value).to.equal(0);
-        expect(options.particles.number.limit.mode).to.equal(LimitMode.delete);
-        expect(options.particles.number.value).to.equal(0);
+    /* particles number */
+    expect(options.particles.number.density.width).to.equal(1920);
+    expect(options.particles.number.density.height).to.equal(1080);
+    expect(options.particles.number.density.enable).to.be.false;
+    expect(options.particles.number.limit.value).to.equal(0);
+    expect(options.particles.number.limit.mode).to.equal(LimitMode.delete);
+    expect(options.particles.number.value).to.equal(0);
 
-        /* particles opacity */
-        expect(options.particles.opacity.animation.enable).to.be.false;
-        expect(options.particles.opacity.animation.speed).to.equal(2);
-        expect(options.particles.opacity.animation.sync).to.be.false;
-        expect(options.particles.opacity.value).to.equal(1);
+    /* particles opacity */
+    expect(options.particles.opacity.animation.enable).to.be.false;
+    expect(options.particles.opacity.animation.speed).to.equal(2);
+    expect(options.particles.opacity.animation.sync).to.be.false;
+    expect(options.particles.opacity.value).to.equal(1);
 
-        /* particles rotate */
-        // expect(options.particles.rotate.animation.enable).to.be.false;
-        // expect(options.particles.rotate.animation.speed).to.equal(0);
-        // expect(options.particles.rotate.animation.sync).to.be.false;
-        // expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
-        // expect(options.particles.rotate.value).to.be.equal(0);
+    /* particles rotate */
+    // expect(options.particles.rotate.animation.enable).to.be.false;
+    // expect(options.particles.rotate.animation.speed).to.equal(0);
+    // expect(options.particles.rotate.animation.sync).to.be.false;
+    // expect(options.particles.rotate.direction).to.equal(RotateDirection.clockwise);
+    // expect(options.particles.rotate.value).to.be.equal(0);
 
-        /* particles shape */
-        expect(options.particles.shape.type).to.equal("circle");
+    /* particles shape */
+    expect(options.particles.shape.type).to.equal("circle");
 
-        /* particles size */
-        expect(options.particles.size.animation.enable).to.be.false;
-        expect(options.particles.size.animation.speed).to.equal(5);
-        expect(options.particles.size.animation.sync).to.be.false;
-        expect(options.particles.size.value).to.equal(3);
+    /* particles size */
+    expect(options.particles.size.animation.enable).to.be.false;
+    expect(options.particles.size.animation.speed).to.equal(5);
+    expect(options.particles.size.animation.sync).to.be.false;
+    expect(options.particles.size.value).to.equal(3);
 
-        /* particles stroke */
-        expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
+    /* particles stroke */
+    expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
 
-        /* pause on blur */
-        expect(options.pauseOnBlur).to.be.true;
+    /* pause on blur */
+    expect(options.pauseOnBlur).to.be.true;
 
-        /** pause on Element Outside Viewport */
-        expect(options.pauseOnOutsideViewport).to.be.true;
-    });
+    /** pause on Element Outside Viewport */
+    expect(options.pauseOnOutsideViewport).to.be.true;
+  });
 
-    it("check default preset options", async () => {
-        const preset: ISourceOptions = {
-                autoPlay: false,
-                background: {
-                    color: "#0d47a1",
-                },
-                interactivity: {
-                    events: {
-                        onClick: {
-                            enable: true,
-                            mode: "push",
-                        },
-                        onHover: {
-                            enable: true,
-                            mode: "repulse",
-                        },
-                    },
-                    modes: {
-                        bubble: {
-                            distance: 400,
-                            size: 40,
-                            duration: 2,
-                            opacity: 0.8,
-                        },
-                        grab: {
-                            distance: 400,
-                            links: {
-                                opacity: 1,
-                            },
-                        },
-                        push: {
-                            quantity: 4,
-                        },
-                        remove: {
-                            quantity: 2,
-                        },
-                        repulse: {
-                            distance: 200,
-                        },
-                    },
-                },
-                particles: {
-                    color: {
-                        value: "#ffffff",
-                    },
-                    links: {
-                        enable: true,
-                        distance: 150,
-                        color: "#ffffff",
-                        opacity: 0.4,
-                        width: 1,
-                    },
-                    move: {
-                        enable: true,
-                        speed: 2,
-                        direction: MoveDirection.none,
-                        random: false,
-                        straight: false,
-                        outModes: OutMode.out,
-                        attract: {
-                            enable: false,
-                            rotate: {
-                                x: 600,
-                                y: 1200,
-                            },
-                        },
-                    },
-                    number: {
-                        value: 80,
-                        density: {
-                            enable: true,
-                        },
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    opacity: {
-                        value: { min: 0.1, max: 0.5 },
-                        animation: {
-                            enable: true,
-                            speed: 3,
-                            sync: false,
-                        },
-                    },
-                    size: {
-                        value: { min: 0.1, max: 5 },
-                        animation: {
-                            enable: true,
-                            speed: 20,
-                            sync: false,
-                        },
-                    },
-                },
-                detectRetina: true,
+  it("check default preset options", async () => {
+    const preset: ISourceOptions = {
+        autoPlay: false,
+        background: {
+          color: "#0d47a1",
+        },
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "push",
             },
-            container = await tsParticles.load({
-                id: "test",
-                options: preset,
-            });
+            onHover: {
+              enable: true,
+              mode: "repulse",
+            },
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 0.8,
+            },
+            grab: {
+              distance: 400,
+              links: {
+                opacity: 1,
+              },
+            },
+            push: {
+              quantity: 4,
+            },
+            remove: {
+              quantity: 2,
+            },
+            repulse: {
+              distance: 200,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
+          },
+          links: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: MoveDirection.none,
+            random: false,
+            straight: false,
+            outModes: OutMode.out,
+            attract: {
+              enable: false,
+              rotate: {
+                x: 600,
+                y: 1200,
+              },
+            },
+          },
+          number: {
+            value: 80,
+            density: {
+              enable: true,
+            },
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: { min: 0.1, max: 0.5 },
+            animation: {
+              enable: true,
+              speed: 3,
+              sync: false,
+            },
+          },
+          size: {
+            value: { min: 0.1, max: 5 },
+            animation: {
+              enable: true,
+              speed: 20,
+              sync: false,
+            },
+          },
+        },
+        detectRetina: true,
+      },
+      container = await tsParticles.load({
+        id: "test",
+        options: preset,
+      });
 
-        expect(container).to.be.not.undefined;
+    expect(container).to.be.not.undefined;
 
-        if (!container) {
-            return;
-        }
+    if (!container) {
+      return;
+    }
 
-        const options = container.options;
+    const options = container.options;
 
-        /* background */
-        expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
+    /* background */
+    expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
 
-        /* detect retina */
-        expect(options.detectRetina).to.be.true;
+    /* detect retina */
+    expect(options.detectRetina).to.be.true;
 
-        /* particles */
-        /* particles color */
-        expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+    /* particles */
+    /* particles color */
+    expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
-        /* particles line linked */
-        /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+    /* particles line linked */
+    /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
         expect(options.particles.links.distance).to.equal(150);
         expect(options.particles.links.enable).to.be.true;
         expect(options.particles.links.opacity).to.equal(0.4);
         expect(options.particles.links.width).to.equal(1); */
 
-        /* particles move */
-        expect(options.particles.move.attract.enable).to.be.false;
-        expect(options.particles.move.attract.rotate.x).to.equal(600);
-        expect(options.particles.move.attract.rotate.y).to.equal(1200);
-        expect(options.particles.move.direction).to.equal(MoveDirection.none);
-        expect(options.particles.move.enable).to.be.true;
-        expect(options.particles.move.outModes.default).to.equal(OutMode.out);
-        expect(options.particles.move.random).to.be.false;
-        expect(options.particles.move.speed).to.equal(2);
-        expect(options.particles.move.straight).to.be.false;
+    /* particles move */
+    expect(options.particles.move.attract.enable).to.be.false;
+    expect(options.particles.move.attract.rotate.x).to.equal(600);
+    expect(options.particles.move.attract.rotate.y).to.equal(1200);
+    expect(options.particles.move.direction).to.equal(MoveDirection.none);
+    expect(options.particles.move.enable).to.be.true;
+    expect(options.particles.move.outModes.default).to.equal(OutMode.out);
+    expect(options.particles.move.random).to.be.false;
+    expect(options.particles.move.speed).to.equal(2);
+    expect(options.particles.move.straight).to.be.false;
 
-        /* particles number */
-        expect(options.particles.number.density.width).to.equal(1920);
-        expect(options.particles.number.density.height).to.equal(1080);
-        expect(options.particles.number.density.enable).to.be.true;
-        expect(options.particles.number.value).to.equal(80);
+    /* particles number */
+    expect(options.particles.number.density.width).to.equal(1920);
+    expect(options.particles.number.density.height).to.equal(1080);
+    expect(options.particles.number.density.enable).to.be.true;
+    expect(options.particles.number.value).to.equal(80);
 
-        /* particles opacity */
-        expect(options.particles.opacity.animation.enable).to.be.true;
-        expect(options.particles.opacity.animation.speed).to.equal(3);
-        expect(options.particles.opacity.animation.sync).to.be.false;
-        expect(options.particles.opacity.value).to.be.an("object").to.have.property("max").to.be.equal(0.5);
-        expect(options.particles.opacity.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
+    /* particles opacity */
+    expect(options.particles.opacity.animation.enable).to.be.true;
+    expect(options.particles.opacity.animation.speed).to.equal(3);
+    expect(options.particles.opacity.animation.sync).to.be.false;
+    expect(options.particles.opacity.value).to.be.an("object").to.have.property("max").to.be.equal(0.5);
+    expect(options.particles.opacity.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
 
-        /* particles shape */
-        expect(options.particles.shape.type).to.equal("circle");
+    /* particles shape */
+    expect(options.particles.shape.type).to.equal("circle");
 
-        /* particles size */
-        expect(options.particles.size.animation.enable).to.be.true;
-        expect(options.particles.size.animation.speed).to.equal(20);
-        expect(options.particles.size.animation.sync).to.be.false;
-        expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(5);
-        expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
-    });
+    /* particles size */
+    expect(options.particles.size.animation.enable).to.be.true;
+    expect(options.particles.size.animation.speed).to.equal(20);
+    expect(options.particles.size.animation.sync).to.be.false;
+    expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(5);
+    expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(0.1);
+  });
 
-    it("check test preset options", async () => {
-        const preset: ISourceOptions = {
-                autoPlay: false,
-                background: {
-                    color: "#0d47a1",
-                },
-                interactivity: {
-                    events: {
-                        onClick: {
-                            enable: true,
-                            mode: "repulse",
-                        },
-                        onHover: {
-                            enable: false,
-                            mode: "grab",
-                        },
-                    },
-                    modes: {
-                        bubble: {
-                            distance: 400,
-                            size: 40,
-                            duration: 2,
-                            opacity: 8,
-                        },
-                        grab: {
-                            distance: 200,
-                            links: {
-                                opacity: 1,
-                            },
-                        },
-                        repulse: {
-                            distance: 200,
-                        },
-                        push: {
-                            quantity: 4,
-                        },
-                        remove: {
-                            quantity: 2,
-                        },
-                    },
-                },
-                particles: {
-                    color: {
-                        value: "#ffffff",
-                    },
-                    links: {
-                        enable: false,
-                        distance: 150,
-                        color: "#ffffff",
-                        opacity: 0.4,
-                        width: 1,
-                    },
-                    move: {
-                        enable: true,
-                        speed: 2,
-                        direction: MoveDirection.none,
-                        random: false,
-                        straight: false,
-                        outModes: OutMode.bounce,
-                        attract: {
-                            enable: false,
-                            rotate: {
-                                x: 600,
-                                y: 1200,
-                            },
-                        },
-                    },
-                    number: {
-                        value: 100,
-                        density: {
-                            enable: false,
-                        },
-                    },
-                    shape: {
-                        type: "circle",
-                    },
-                    opacity: {
-                        value: 0.5,
-                        animation: {
-                            enable: false,
-                            speed: 1,
-                            sync: false,
-                        },
-                    },
-                    size: {
-                        value: { min: 1, max: 4 },
-                        animation: {
-                            enable: false,
-                            speed: 40,
-                            sync: false,
-                        },
-                    },
-                },
-                detectRetina: true,
+  it("check test preset options", async () => {
+    const preset: ISourceOptions = {
+        autoPlay: false,
+        background: {
+          color: "#0d47a1",
+        },
+        interactivity: {
+          events: {
+            onClick: {
+              enable: true,
+              mode: "repulse",
             },
-            container = await tsParticles.load({ id: "test", options: preset });
+            onHover: {
+              enable: false,
+              mode: "grab",
+            },
+          },
+          modes: {
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+            },
+            grab: {
+              distance: 200,
+              links: {
+                opacity: 1,
+              },
+            },
+            repulse: {
+              distance: 200,
+            },
+            push: {
+              quantity: 4,
+            },
+            remove: {
+              quantity: 2,
+            },
+          },
+        },
+        particles: {
+          color: {
+            value: "#ffffff",
+          },
+          links: {
+            enable: false,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1,
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: MoveDirection.none,
+            random: false,
+            straight: false,
+            outModes: OutMode.bounce,
+            attract: {
+              enable: false,
+              rotate: {
+                x: 600,
+                y: 1200,
+              },
+            },
+          },
+          number: {
+            value: 100,
+            density: {
+              enable: false,
+            },
+          },
+          shape: {
+            type: "circle",
+          },
+          opacity: {
+            value: 0.5,
+            animation: {
+              enable: false,
+              speed: 1,
+              sync: false,
+            },
+          },
+          size: {
+            value: { min: 1, max: 4 },
+            animation: {
+              enable: false,
+              speed: 40,
+              sync: false,
+            },
+          },
+        },
+        detectRetina: true,
+      },
+      container = await tsParticles.load({ id: "test", options: preset });
 
-        expect(container).to.be.not.undefined;
+    expect(container).to.be.not.undefined;
 
-        if (!container) {
-            return;
-        }
+    if (!container) {
+      return;
+    }
 
-        const options = container.options;
+    const options = container.options;
 
-        /* background */
-        expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
+    /* background */
+    expect(options.background.color).to.be.an("object").to.have.property("value").to.equal("#0d47a1");
 
-        /* detect retina */
-        expect(options.detectRetina).to.be.true;
+    /* detect retina */
+    expect(options.detectRetina).to.be.true;
 
-        /* interactivity modes */
-        // expect(options.interactivity.modes.bubble.distance).to.equal(400);
-        // expect(options.interactivity.modes.bubble.duration).to.equal(2);
-        // expect(options.interactivity.modes.bubble.opacity).to.equal(8);
-        // expect(options.interactivity.modes.bubble.size).to.equal(40);
-        // expect(options.interactivity.modes.grab.distance).to.equal(200);
-        // expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
-        // expect(options.interactivity.modes.push.quantity).to.equal(4);
-        // expect(options.interactivity.modes.remove.quantity).to.equal(2);
-        // expect(options.interactivity.modes.repulse.distance).to.equal(200);
+    /* interactivity modes */
+    // expect(options.interactivity.modes.bubble.distance).to.equal(400);
+    // expect(options.interactivity.modes.bubble.duration).to.equal(2);
+    // expect(options.interactivity.modes.bubble.opacity).to.equal(8);
+    // expect(options.interactivity.modes.bubble.size).to.equal(40);
+    // expect(options.interactivity.modes.grab.distance).to.equal(200);
+    // expect(options.interactivity.modes.grab.links.opacity).to.equal(1);
+    // expect(options.interactivity.modes.push.quantity).to.equal(4);
+    // expect(options.interactivity.modes.remove.quantity).to.equal(2);
+    // expect(options.interactivity.modes.repulse.distance).to.equal(200);
 
-        /* particles */
-        /* particles color */
-        expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+    /* particles */
+    /* particles color */
+    expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
 
-        /* particles line linked */
-        /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+    /* particles line linked */
+    /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
         expect(options.particles.links.distance).to.equal(150);
         expect(options.particles.links.enable).to.be.false;
         expect(options.particles.links.opacity).to.equal(0.4);
         expect(options.particles.links.width).to.equal(1); */
 
-        /* particles move */
-        expect(options.particles.move.attract.enable).to.be.false;
-        expect(options.particles.move.attract.rotate.x).to.equal(600);
-        expect(options.particles.move.attract.rotate.y).to.equal(1200);
-        expect(options.particles.move.direction).to.equal(MoveDirection.none);
-        expect(options.particles.move.enable).to.be.true;
-        expect(options.particles.move.outModes.default).to.equal(OutMode.bounce);
-        expect(options.particles.move.random).to.be.false;
-        expect(options.particles.move.speed).to.equal(2);
-        expect(options.particles.move.straight).to.be.false;
+    /* particles move */
+    expect(options.particles.move.attract.enable).to.be.false;
+    expect(options.particles.move.attract.rotate.x).to.equal(600);
+    expect(options.particles.move.attract.rotate.y).to.equal(1200);
+    expect(options.particles.move.direction).to.equal(MoveDirection.none);
+    expect(options.particles.move.enable).to.be.true;
+    expect(options.particles.move.outModes.default).to.equal(OutMode.bounce);
+    expect(options.particles.move.random).to.be.false;
+    expect(options.particles.move.speed).to.equal(2);
+    expect(options.particles.move.straight).to.be.false;
 
-        /* particles number */
-        expect(options.particles.number.density.width).to.equal(1920);
-        expect(options.particles.number.density.height).to.equal(1080);
-        expect(options.particles.number.density.enable).to.be.false;
-        expect(options.particles.number.value).to.equal(100);
+    /* particles number */
+    expect(options.particles.number.density.width).to.equal(1920);
+    expect(options.particles.number.density.height).to.equal(1080);
+    expect(options.particles.number.density.enable).to.be.false;
+    expect(options.particles.number.value).to.equal(100);
 
-        /* particles opacity */
-        expect(options.particles.opacity.animation.enable).to.be.false;
-        expect(options.particles.opacity.animation.speed).to.equal(1);
-        expect(options.particles.opacity.animation.sync).to.be.false;
-        expect(options.particles.opacity.value).to.equal(0.5);
+    /* particles opacity */
+    expect(options.particles.opacity.animation.enable).to.be.false;
+    expect(options.particles.opacity.animation.speed).to.equal(1);
+    expect(options.particles.opacity.animation.sync).to.be.false;
+    expect(options.particles.opacity.value).to.equal(0.5);
 
-        /* particles shape */
-        expect(options.particles.shape.type).to.equal("circle");
+    /* particles shape */
+    expect(options.particles.shape.type).to.equal("circle");
 
-        /* particles size */
-        expect(options.particles.size.animation.enable).to.be.false;
-        expect(options.particles.size.animation.speed).to.equal(40);
-        expect(options.particles.size.animation.sync).to.be.false;
-        expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(4);
-        expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(1);
+    /* particles size */
+    expect(options.particles.size.animation.enable).to.be.false;
+    expect(options.particles.size.animation.speed).to.equal(40);
+    expect(options.particles.size.animation.sync).to.be.false;
+    expect(options.particles.size.value).to.be.an("object").to.have.property("max").to.be.equal(4);
+    expect(options.particles.size.value).to.be.an("object").and.to.have.property("min").to.be.equal(1);
 
-        /* particles stroke */
-        /* expect(options.particles.stroke)
+    /* particles stroke */
+    /* expect(options.particles.stroke)
             .to.be.an("object")
             .to.have.property("color")
             .to.be.an("object")
             .to.have.property("value")
             .to.equal("#000000"); */
-        expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
-    });
+    expect(options.particles.stroke).to.be.an("object").to.have.property("width").to.equal(0);
+  });
 
-    it("check particlesOptions override", async () => {
-        const generalOptions: ISourceOptions = {
-                number: {
-                    value: 100,
-                    density: {
-                        enable: false,
-                    },
-                },
-                color: {
-                    value: "#000",
-                },
-                shape: {
-                    type: "circle",
-                },
-                opacity: {
-                    value: 0.5,
-                    animation: {
-                        enable: false,
-                        speed: 1,
-                        sync: false,
-                    },
-                },
-                size: {
-                    value: { min: 0.1, max: 5 },
-                    animation: {
-                        enable: false,
-                        speed: 40,
-                        sync: false,
-                    },
-                },
-                links: {
-                    enable: true,
-                    distance: 150,
-                    color: "#000",
-                    opacity: 0.4,
-                    width: 1,
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: MoveDirection.none,
-                    random: false,
-                    straight: false,
-                    outModes: OutMode.out,
-                    attract: {
-                        enable: false,
-                        rotate: {
-                            x: 600,
-                            y: 1200,
-                        },
-                    },
-                },
-            },
-            container = await tsParticles.load({
-                id: "test",
-                options: {
-                    autoPlay: false,
-                    particles: generalOptions,
-                },
-            });
-
-        expect(container).to.be.not.undefined;
-
-        if (!container) {
-            return;
-        }
-
-        const emitterOptions: RecursivePartial<IParticlesOptions> = {
-            color: { value: "#f0f" },
-            links: { enable: false },
-            move: { speed: 20, random: false, outModes: OutMode.destroy },
-            opacity: { value: 1 },
+  it("check particlesOptions override", async () => {
+    const generalOptions: ISourceOptions = {
+        number: {
+          value: 100,
+          density: {
+            enable: false,
+          },
+        },
+        color: {
+          value: "#000",
+        },
+        shape: {
+          type: "circle",
+        },
+        opacity: {
+          value: 0.5,
+          animation: {
+            enable: false,
+            speed: 1,
+            sync: false,
+          },
+        },
+        size: {
+          value: { min: 0.1, max: 5 },
+          animation: {
+            enable: false,
+            speed: 40,
+            sync: false,
+          },
+        },
+        links: {
+          enable: true,
+          distance: 150,
+          color: "#000",
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: MoveDirection.none,
+          random: false,
+          straight: false,
+          outModes: OutMode.out,
+          attract: {
+            enable: false,
             rotate: {
-                value: { min: 0, max: 360 },
-                direction: "clockwise",
-                animation: { enable: true, speed: 15, sync: false },
+              x: 600,
+              y: 1200,
             },
-            shape: { type: "star", options: { star: { sides: 7 } } },
-            size: { value: 15 },
-        };
+          },
+        },
+      },
+      container = await tsParticles.load({
+        id: "test",
+        options: {
+          autoPlay: false,
+          particles: generalOptions,
+        },
+      });
 
-        container.options.particles.load(emitterOptions);
+    expect(container).to.be.not.undefined;
 
-        expect(container.options.particles).to.not.include(generalOptions).and.include(emitterOptions);
+    if (!container) {
+      return;
+    }
+
+    const emitterOptions: RecursivePartial<IParticlesOptions> = {
+      color: { value: "#f0f" },
+      links: { enable: false },
+      move: { speed: 20, random: false, outModes: OutMode.destroy },
+      opacity: { value: 1 },
+      rotate: {
+        value: { min: 0, max: 360 },
+        direction: "clockwise",
+        animation: { enable: true, speed: 15, sync: false },
+      },
+      shape: { type: "star", options: { star: { sides: 7 } } },
+      size: { value: 15 },
+    };
+
+    container.options.particles.load(emitterOptions);
+
+    expect(container.options.particles).to.not.include(generalOptions).and.include(emitterOptions);
+  });
+
+  it("check color options override", () => {
+    const colorOptions = new OptionsColor();
+
+    colorOptions.load({
+      value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
     });
 
-    it("check color options override", () => {
-        const colorOptions = new OptionsColor();
+    const otherOptions = new OptionsColor();
 
-        colorOptions.load({
-            value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
-        });
+    const copyOptions = OptionsColor.create(otherOptions, colorOptions);
 
-        const otherOptions = new OptionsColor();
+    const copyOptions2 = OptionsColor.create(otherOptions, copyOptions);
 
-        const copyOptions = OptionsColor.create(otherOptions, colorOptions);
-
-        const copyOptions2 = OptionsColor.create(otherOptions, copyOptions);
-
-        expect(colorOptions.value).to.be.an("array");
-        expect(copyOptions.value).to.be.an("array");
-        expect(copyOptions2.value).to.be.an("array");
-    });
+    expect(colorOptions.value).to.be.an("array");
+    expect(copyOptions.value).to.be.an("array");
+    expect(copyOptions2.value).to.be.an("array");
+  });
 });

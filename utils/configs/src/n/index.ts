@@ -9,13 +9,13 @@ import nyancat from "./nyancat.js";
 import nyancat2 from "./nyancat2.js";
 
 export default {
-    namedColors,
-    nasa,
-    noClear,
-    noConfig,
-    noisePlanesFractal,
-    noisePlanesPerlin,
-    noisePlanesSimplex,
-    nyancat,
-    nyancat2,
+  namedColors,
+  nasa,
+  noClear,
+  noConfig,
+  noisePlanesFractal,
+  noisePlanesPerlin,
+  noisePlanesSimplex,
+  nyancat,
+  nyancat2,
 };

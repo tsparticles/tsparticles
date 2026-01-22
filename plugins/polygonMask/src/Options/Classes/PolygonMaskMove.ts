@@ -5,25 +5,25 @@ import { PolygonMaskMoveType } from "../../Enums/PolygonMaskMoveType.js";
 /**
  */
 export class PolygonMaskMove implements IPolygonMaskMove, IOptionLoader<IPolygonMaskMove> {
-    radius;
-    type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType;
+  radius;
+  type: PolygonMaskMoveType | keyof typeof PolygonMaskMoveType;
 
-    constructor() {
-        this.radius = 10;
-        this.type = PolygonMaskMoveType.path;
+  constructor() {
+    this.radius = 10;
+    this.type = PolygonMaskMoveType.path;
+  }
+
+  load(data?: RecursivePartial<IPolygonMaskMove>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IPolygonMaskMove>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.radius !== undefined) {
-            this.radius = data.radius;
-        }
-
-        if (data.type !== undefined) {
-            this.type = data.type;
-        }
+    if (data.radius !== undefined) {
+      this.radius = data.radius;
     }
+
+    if (data.type !== undefined) {
+      this.type = data.type;
+    }
+  }
 }

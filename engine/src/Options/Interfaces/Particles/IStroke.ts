@@ -8,18 +8,18 @@ import type { RecursivePartial } from "../../../Types/RecursivePartial.js";
  * [[include:Options/Particles/Stroke.md]]
  */
 export interface IStroke {
-    /**
-     * The stroke color, can be animated too
-     */
-    color?: string | RecursivePartial<IAnimatableColor> | RecursivePartial<IColor>;
+  /**
+   * The stroke color, can be animated too
+   */
+  color?: string | RecursivePartial<IAnimatableColor> | RecursivePartial<IColor>;
 
-    /**
-     * The stroke opacity
-     */
-    opacity?: RangeValue;
+  /**
+   * The stroke opacity
+   */
+  opacity?: RangeValue;
 
-    /**
-     * The stroke line width
-     */
-    width: RangeValue;
+  /**
+   * The stroke line width
+   */
+  width: RangeValue;
 }

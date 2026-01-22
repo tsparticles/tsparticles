@@ -2,27 +2,27 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { IEmittersPolygonShapeOptions } from "../Interfaces/IEmittersPolygonShapeOptions.js";
 
 export class EmittersPolygonShapeOptions
-    implements IEmittersPolygonShapeOptions, IOptionLoader<IEmittersPolygonShapeOptions>
+  implements IEmittersPolygonShapeOptions, IOptionLoader<IEmittersPolygonShapeOptions>
 {
-    angle: number;
-    sides: number;
+  angle: number;
+  sides: number;
 
-    constructor() {
-        this.angle = 0;
-        this.sides = 5;
+  constructor() {
+    this.angle = 0;
+    this.sides = 5;
+  }
+
+  load(data?: RecursivePartial<IEmittersPolygonShapeOptions>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IEmittersPolygonShapeOptions>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.angle !== undefined) {
-            this.angle = data.angle;
-        }
-
-        if (data.sides !== undefined) {
-            this.sides = data.sides;
-        }
+    if (data.angle !== undefined) {
+      this.angle = data.angle;
     }
+
+    if (data.sides !== undefined) {
+      this.sides = data.sides;
+    }
+  }
 }

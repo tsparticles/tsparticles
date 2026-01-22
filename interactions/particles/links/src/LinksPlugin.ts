@@ -3,25 +3,25 @@ import type { LinkContainer } from "./Types.js";
 import type { LinkInstance } from "./LinkInstance.js";
 
 export class LinksPlugin implements IPlugin {
-    readonly id;
-    private readonly _engine;
+  readonly id;
+  private readonly _engine;
 
-    constructor(engine: Engine) {
-        this.id = "links";
-        this._engine = engine;
-    }
+  constructor(engine: Engine) {
+    this.id = "links";
+    this._engine = engine;
+  }
 
-    async getPlugin(container: LinkContainer): Promise<LinkInstance> {
-        const { LinkInstance } = await import("./LinkInstance.js");
+  async getPlugin(container: LinkContainer): Promise<LinkInstance> {
+    const { LinkInstance } = await import("./LinkInstance.js");
 
-        return new LinkInstance(container, this._engine);
-    }
+    return new LinkInstance(container, this._engine);
+  }
 
-    loadOptions(): void {
-        // do nothing
-    }
+  loadOptions(): void {
+    // do nothing
+  }
 
-    needsPlugin(): boolean {
-        return true;
-    }
+  needsPlugin(): boolean {
+    return true;
+  }
 }

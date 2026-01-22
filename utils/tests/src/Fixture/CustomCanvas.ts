@@ -8,30 +8,30 @@ import { type Canvas, createCanvas } from "canvas";
  * @returns the custom canvas
  */
 export function createCustomCanvas(width: number, height: number): Canvas {
-    const canvas = createCanvas(width, height),
-        augmentCanvas = canvas as any;
+  const canvas = createCanvas(width, height),
+    augmentCanvas = canvas as any;
 
-    augmentCanvas.offsetWidth = width;
-    augmentCanvas.offsetHeight = height;
-    augmentCanvas.tagName = "CANVAS";
-    augmentCanvas.setAttribute = (qualifiedName: string, value: string): void => {
-        augmentCanvas.style[qualifiedName] = value;
-    };
-    augmentCanvas.style = {
-        height: `${height.toString()}px`,
-        width: `${width.toString()}px`,
-        setProperty(property: string, value: string | null, priority?: string): void {
-            this[property] = priority ? `${value?.toString() ?? ""} !important` : value;
-        },
-        removeProperty(property: string): string {
-            const value = this[property];
+  augmentCanvas.offsetWidth = width;
+  augmentCanvas.offsetHeight = height;
+  augmentCanvas.tagName = "CANVAS";
+  augmentCanvas.setAttribute = (qualifiedName: string, value: string): void => {
+    augmentCanvas.style[qualifiedName] = value;
+  };
+  augmentCanvas.style = {
+    height: `${height.toString()}px`,
+    width: `${width.toString()}px`,
+    setProperty(property: string, value: string | null, priority?: string): void {
+      this[property] = priority ? `${value?.toString() ?? ""} !important` : value;
+    },
+    removeProperty(property: string): string {
+      const value = this[property];
 
-            this[property] = undefined;
+      this[property] = undefined;
 
-            return value as string;
-        },
-    };
-    augmentCanvas.dataset = {};
+      return value as string;
+    },
+  };
+  augmentCanvas.dataset = {};
 
-    return canvas;
+  return canvas;
 }

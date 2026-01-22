@@ -1,5 +1,5 @@
 export enum ParticleOutType {
-    normal = "normal",
-    inside = "inside",
-    outside = "outside",
+  normal = "normal",
+  inside = "inside",
+  outside = "outside",
 }

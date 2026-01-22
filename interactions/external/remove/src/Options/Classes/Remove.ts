@@ -4,21 +4,21 @@ import type { IRemove } from "../Interfaces/IRemove.js";
 /**
  */
 export class Remove implements IRemove, IOptionLoader<IRemove> {
-    quantity: RangeValue;
+  quantity: RangeValue;
 
-    constructor() {
-        this.quantity = 2;
+  constructor() {
+    this.quantity = 2;
+  }
+
+  load(data?: RecursivePartial<IRemove>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IRemove>): void {
-        if (isNull(data)) {
-            return;
-        }
+    const quantity = data.quantity;
 
-        const quantity = data.quantity;
-
-        if (quantity !== undefined) {
-            this.quantity = setRangeValue(quantity);
-        }
+    if (quantity !== undefined) {
+      this.quantity = setRangeValue(quantity);
     }
+  }
 }

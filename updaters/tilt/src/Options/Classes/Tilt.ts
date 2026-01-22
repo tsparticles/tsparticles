@@ -7,33 +7,33 @@ import { TiltAnimation } from "./TiltAnimation.js";
  * [[include:Options/Particles/Rotate.md]]
  */
 export class Tilt extends ValueWithRandom implements ITilt, IOptionLoader<ITilt> {
-    animation;
-    direction: TiltDirection | keyof typeof TiltDirection | TiltDirectionAlt;
-    enable;
+  animation;
+  direction: TiltDirection | keyof typeof TiltDirection | TiltDirectionAlt;
+  enable;
 
-    constructor() {
-        super();
-        this.animation = new TiltAnimation();
-        this.direction = TiltDirection.clockwise;
-        this.enable = false;
-        this.value = 0;
+  constructor() {
+    super();
+    this.animation = new TiltAnimation();
+    this.direction = TiltDirection.clockwise;
+    this.enable = false;
+    this.value = 0;
+  }
+
+  override load(data?: RecursivePartial<ITilt>): void {
+    super.load(data);
+
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<ITilt>): void {
-        super.load(data);
+    this.animation.load(data.animation);
 
-        if (isNull(data)) {
-            return;
-        }
-
-        this.animation.load(data.animation);
-
-        if (data.direction !== undefined) {
-            this.direction = data.direction;
-        }
-
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
+    if (data.direction !== undefined) {
+      this.direction = data.direction;
     }
+
+    if (data.enable !== undefined) {
+      this.enable = data.enable;
+    }
+  }
 }

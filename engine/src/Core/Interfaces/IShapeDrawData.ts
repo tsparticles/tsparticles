@@ -2,68 +2,68 @@ import type { IDelta } from "./IDelta.js";
 import type { Particle } from "../Particle.js";
 
 export interface IShapeDrawData<TParticle extends Particle = Particle> {
+  /**
+   * the canvas context for drawing
+   */
+  context: CanvasRenderingContext2D;
+
+  /**
+   * this variable contains the delta between the current frame and the previous frame
+   */
+  delta: IDelta;
+
+  /**
+   * the particle fill status
+   */
+  fill: boolean;
+
+  /**
+   * the particle opacity
+   */
+  opacity: number;
+
+  /**
+   * the particle to be drawn using the shape
+   */
+  particle: TParticle;
+
+  /**
+   * the device pixel ratio, used for retina displays
+   */
+  pixelRatio: number;
+
+  /**
+   * the particle radius
+   */
+  radius: number;
+
+  /**
+   * the particle stroke status
+   */
+  stroke: boolean;
+
+  /**
+   * the transform data of the particle
+   */
+  transformData: {
     /**
-     * the canvas context for drawing
+     * the horizontal scale of the particle
      */
-    context: CanvasRenderingContext2D;
+    a: number;
 
     /**
-     * this variable contains the delta between the current frame and the previous frame
+     * the horizontal skew of the particle
      */
-    delta: IDelta;
+    b: number;
 
     /**
-     * the particle fill status
+     * the vertical skew of the particle
      */
-    fill: boolean;
+    c: number;
 
     /**
-     * the particle opacity
+     * the vertical scale of the particle
      */
-    opacity: number;
-
-    /**
-     * the particle to be drawn using the shape
-     */
-    particle: TParticle;
-
-    /**
-     * the device pixel ratio, used for retina displays
-     */
-    pixelRatio: number;
-
-    /**
-     * the particle radius
-     */
-    radius: number;
-
-    /**
-     * the particle stroke status
-     */
-    stroke: boolean;
-
-    /**
-     * the transform data of the particle
-     */
-    transformData: {
-        /**
-         * the horizontal scale of the particle
-         */
-        a: number;
-
-        /**
-         * the horizontal skew of the particle
-         */
-        b: number;
-
-        /**
-         * the vertical skew of the particle
-         */
-        c: number;
-
-        /**
-         * the vertical scale of the particle
-         */
-        d: number;
-    };
+    d: number;
+  };
 }

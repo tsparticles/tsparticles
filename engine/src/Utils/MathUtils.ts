@@ -1,6 +1,6 @@
 import type {
-    IPositionFromSizeParams,
-    IRangedPositionFromSizeParams,
+  IPositionFromSizeParams,
+  IRangedPositionFromSizeParams,
 } from "../Core/Interfaces/IPositionFromSizeParams.js";
 import { MoveDirection, type MoveDirectionAlt } from "../Enums/Directions/MoveDirection.js";
 import { double, doublePI, empty, half, percentDenominator, quarter, threeQuarter } from "../Core/Utils/Constants.js";
@@ -10,20 +10,20 @@ import { Vector } from "../Core/Utils/Vectors.js";
 import { isNumber } from "./TypeUtils.js";
 
 const piDeg = 180,
-    degToRadFactor = Math.PI / piDeg;
+  degToRadFactor = Math.PI / piDeg;
 
 interface AnimationLoop {
-    cancel: (handle: number) => void;
-    nextFrame: (callback: FrameRequestCallback) => number;
+  cancel: (handle: number) => void;
+  nextFrame: (callback: FrameRequestCallback) => number;
 }
 
 let _random = Math.random;
 
 const _animationLoop: AnimationLoop = {
-    nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
-    cancel: (idx: number): void => {
-        cancelAnimationFrame(idx);
-    },
+  nextFrame: (cb: FrameRequestCallback): number => requestAnimationFrame(cb),
+  cancel: (idx: number): void => {
+    cancelAnimationFrame(idx);
+  },
 };
 
 /**
@@ -31,7 +31,7 @@ const _animationLoop: AnimationLoop = {
  * @param rnd - A random function that returns a number between 0 and 1.
  */
 export function setRandom(rnd: () => number = Math.random): void {
-    _random = rnd;
+  _random = rnd;
 }
 
 /**
@@ -39,10 +39,10 @@ export function setRandom(rnd: () => number = Math.random): void {
  * @returns a random number between 0 and 1
  */
 export function getRandom(): number {
-    const min = 0,
-        max = 1;
+  const min = 0,
+    max = 1;
 
-    return clamp(_random(), min, max - Number.EPSILON);
+  return clamp(_random(), min, max - Number.EPSILON);
 }
 
 /**
@@ -52,7 +52,7 @@ export function getRandom(): number {
  * @returns a random number between the given range
  */
 export function getRandomInRange(min: number, max: number): number {
-    return getRandom() * (max - min) + min;
+  return getRandom() * (max - min) + min;
 }
 
 /**
@@ -61,13 +61,13 @@ export function getRandomInRange(min: number, max: number): number {
  * @param cancel - A function that will be called with the handle of the frame to be canceled.
  */
 export function setAnimationFunctions(
-    nextFrame: (callback: FrameRequestCallback) => number,
-    cancel: (handle: number) => void,
+  nextFrame: (callback: FrameRequestCallback) => number,
+  cancel: (handle: number) => void,
 ): void {
-    _animationLoop.nextFrame = (callback: FrameRequestCallback): number => nextFrame(callback);
-    _animationLoop.cancel = (handle: number): void => {
-        cancel(handle);
-    };
+  _animationLoop.nextFrame = (callback: FrameRequestCallback): number => nextFrame(callback);
+  _animationLoop.cancel = (handle: number): void => {
+    cancel(handle);
+  };
 }
 
 /**
@@ -76,7 +76,7 @@ export function setAnimationFunctions(
  * @returns the handle of the frame.
  */
 export function animate(fn: FrameRequestCallback): number {
-    return _animationLoop.nextFrame(fn);
+  return _animationLoop.nextFrame(fn);
 }
 
 /**
@@ -84,7 +84,7 @@ export function animate(fn: FrameRequestCallback): number {
  * @param handle - The handle of the frame to be canceled.
  */
 export function cancelAnimation(handle: number): void {
-    _animationLoop.cancel(handle);
+  _animationLoop.cancel(handle);
 }
 
 /**
@@ -95,7 +95,7 @@ export function cancelAnimation(handle: number): void {
  * @returns the clamped number
  */
 export function clamp(num: number, min: number, max: number): number {
-    return Math.min(Math.max(num, min), max);
+  return Math.min(Math.max(num, min), max);
 }
 
 /**
@@ -106,7 +106,7 @@ export function clamp(num: number, min: number, max: number): number {
  * @returns the mixed value
  */
 export function mix(comp1: number, comp2: number, weight1: number, weight2: number): number {
-    return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
+  return Math.floor((comp1 * weight1 + comp2 * weight2) / (weight1 + weight2));
 }
 
 /**
@@ -114,16 +114,16 @@ export function mix(comp1: number, comp2: number, weight1: number, weight2: numb
  * @returns the random value in the given range
  */
 export function randomInRangeValue(r: RangeValue): number {
-    const max = getRangeMax(r),
-        minOffset = 0;
+  const max = getRangeMax(r),
+    minOffset = 0;
 
-    let min = getRangeMin(r);
+  let min = getRangeMin(r);
 
-    if (max === min) {
-        min = minOffset;
-    }
+  if (max === min) {
+    min = minOffset;
+  }
 
-    return getRandomInRange(min, max);
+  return getRandomInRange(min, max);
 }
 
 /**
@@ -131,7 +131,7 @@ export function randomInRangeValue(r: RangeValue): number {
  * @returns gets a value in the given range, if the range is a number, the source is returned, if the range is an object, a random value is returned
  */
 export function getRangeValue(value: RangeValue): number {
-    return isNumber(value) ? value : randomInRangeValue(value);
+  return isNumber(value) ? value : randomInRangeValue(value);
 }
 
 /**
@@ -139,7 +139,7 @@ export function getRangeValue(value: RangeValue): number {
  * @returns the minimum value of the range
  */
 export function getRangeMin(value: RangeValue): number {
-    return isNumber(value) ? value : value.min;
+  return isNumber(value) ? value : value.min;
 }
 
 /**
@@ -147,7 +147,7 @@ export function getRangeMin(value: RangeValue): number {
  * @returns the maximum value of the range
  */
 export function getRangeMax(value: RangeValue): number {
-    return isNumber(value) ? value : value.max;
+  return isNumber(value) ? value : value.max;
 }
 
 /**
@@ -156,19 +156,19 @@ export function getRangeMax(value: RangeValue): number {
  * @returns the range value with the new value
  */
 export function setRangeValue(source: RangeValue, value?: number): RangeValue {
-    if (source === value || (value === undefined && isNumber(source))) {
-        return source;
-    }
+  if (source === value || (value === undefined && isNumber(source))) {
+    return source;
+  }
 
-    const min = getRangeMin(source),
-        max = getRangeMax(source);
+  const min = getRangeMin(source),
+    max = getRangeMax(source);
 
-    return value !== undefined
-        ? {
-              min: Math.min(min, value),
-              max: Math.max(max, value),
-          }
-        : setRangeValue(min, max);
+  return value !== undefined
+    ? {
+        min: Math.min(min, value),
+        max: Math.max(max, value),
+      }
+    : setRangeValue(min, max);
 }
 
 /**
@@ -178,11 +178,11 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
  * @returns the all the distance values between the two coordinates
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
-    const dx = pointA.x - pointB.x,
-        dy = pointA.y - pointB.y,
-        squareExp = 2;
+  const dx = pointA.x - pointB.x,
+    dy = pointA.y - pointB.y,
+    squareExp = 2;
 
-    return { dx: dx, dy: dy, distance: Math.sqrt(dx ** squareExp + dy ** squareExp) };
+  return { dx: dx, dy: dy, distance: Math.sqrt(dx ** squareExp + dy ** squareExp) };
 }
 
 /**
@@ -192,7 +192,7 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
  * @returns the distance between the two coordinates
  */
 export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
-    return getDistances(pointA, pointB).distance;
+  return getDistances(pointA, pointB).distance;
 }
 
 /**
@@ -201,7 +201,7 @@ export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number 
  * @returns the radians value of the given degrees
  */
 export function degToRad(degrees: number): number {
-    return degrees * degToRadFactor;
+  return degrees * degToRadFactor;
 }
 
 /**
@@ -211,38 +211,38 @@ export function degToRad(degrees: number): number {
  * @returns the angle of the direction
  */
 export function getParticleDirectionAngle(
-    direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
-    position: ICoordinates,
-    center: ICoordinates,
+  direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number,
+  position: ICoordinates,
+  center: ICoordinates,
 ): number {
-    if (isNumber(direction)) {
-        return degToRad(direction);
-    }
+  if (isNumber(direction)) {
+    return degToRad(direction);
+  }
 
-    switch (direction) {
-        case MoveDirection.top:
-            return -Math.PI * half;
-        case MoveDirection.topRight:
-            return -Math.PI * quarter;
-        case MoveDirection.right:
-            return empty;
-        case MoveDirection.bottomRight:
-            return Math.PI * quarter;
-        case MoveDirection.bottom:
-            return Math.PI * half;
-        case MoveDirection.bottomLeft:
-            return Math.PI * threeQuarter;
-        case MoveDirection.left:
-            return Math.PI;
-        case MoveDirection.topLeft:
-            return -Math.PI * threeQuarter;
-        case MoveDirection.inside:
-            return Math.atan2(center.y - position.y, center.x - position.x);
-        case MoveDirection.outside:
-            return Math.atan2(position.y - center.y, position.x - center.x);
-        default:
-            return getRandom() * doublePI;
-    }
+  switch (direction) {
+    case MoveDirection.top:
+      return -Math.PI * half;
+    case MoveDirection.topRight:
+      return -Math.PI * quarter;
+    case MoveDirection.right:
+      return empty;
+    case MoveDirection.bottomRight:
+      return Math.PI * quarter;
+    case MoveDirection.bottom:
+      return Math.PI * half;
+    case MoveDirection.bottomLeft:
+      return Math.PI * threeQuarter;
+    case MoveDirection.left:
+      return Math.PI;
+    case MoveDirection.topLeft:
+      return -Math.PI * threeQuarter;
+    case MoveDirection.inside:
+      return Math.atan2(center.y - position.y, center.x - position.x);
+    case MoveDirection.outside:
+      return Math.atan2(position.y - center.y, position.x - center.x);
+    default:
+      return getRandom() * doublePI;
+  }
 }
 
 /**
@@ -251,12 +251,12 @@ export function getParticleDirectionAngle(
  * @returns the base velocity
  */
 export function getParticleBaseVelocity(direction: number): Vector {
-    const baseVelocity = Vector.origin;
+  const baseVelocity = Vector.origin;
 
-    baseVelocity.length = 1;
-    baseVelocity.angle = direction;
+  baseVelocity.length = 1;
+  baseVelocity.angle = direction;
 
-    return baseVelocity;
+  return baseVelocity;
 }
 
 /**
@@ -267,7 +267,7 @@ export function getParticleBaseVelocity(direction: number): Vector {
  * @returns the velocity after collision
  */
 export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number): Vector {
-    return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * double * m2) / (m1 + m2), v1.y);
+  return Vector.create((v1.x * (m1 - m2)) / (m1 + m2) + (v2.x * double * m2) / (m1 + m2), v1.y);
 }
 
 /**
@@ -276,12 +276,12 @@ export function collisionVelocity(v1: Vector, v2: Vector, m1: number, m2: number
  * @returns the exact position
  */
 export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinates | undefined {
-    return data.position?.x !== undefined && data.position.y !== undefined
-        ? {
-              x: (data.position.x * data.size.width) / percentDenominator,
-              y: (data.position.y * data.size.height) / percentDenominator,
-          }
-        : undefined;
+  return data.position?.x !== undefined && data.position.y !== undefined
+    ? {
+        x: (data.position.x * data.size.width) / percentDenominator,
+        y: (data.position.y * data.size.height) / percentDenominator,
+      }
+    : undefined;
 }
 
 /**
@@ -290,10 +290,10 @@ export function calcPositionFromSize(data: IPositionFromSizeParams): ICoordinate
  * @returns the exact position
  */
 export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
-    return {
-        x: ((data.position?.x ?? getRandom() * percentDenominator) * data.size.width) / percentDenominator,
-        y: ((data.position?.y ?? getRandom() * percentDenominator) * data.size.height) / percentDenominator,
-    };
+  return {
+    x: ((data.position?.x ?? getRandom() * percentDenominator) * data.size.width) / percentDenominator,
+    y: ((data.position?.y ?? getRandom() * percentDenominator) * data.size.height) / percentDenominator,
+  };
 }
 
 /**
@@ -302,12 +302,12 @@ export function calcPositionOrRandomFromSize(data: IPositionFromSizeParams): ICo
  * @returns the exact position
  */
 export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
-    const position = {
-        x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
-        y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
-    };
+  const position = {
+    x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
+    y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
+  };
 
-    return calcPositionOrRandomFromSize({ size: data.size, position });
+  return calcPositionOrRandomFromSize({ size: data.size, position });
 }
 
 /**
@@ -316,12 +316,12 @@ export function calcPositionOrRandomFromSizeRanged(data: IRangedPositionFromSize
  * @returns the exact position
  */
 export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams): ICoordinates {
-    const { position, size } = data;
+  const { position, size } = data;
 
-    return {
-        x: position?.x ?? getRandom() * size.width,
-        y: position?.y ?? getRandom() * size.height,
-    };
+  return {
+    x: position?.x ?? getRandom() * size.width,
+    y: position?.y ?? getRandom() * size.height,
+  };
 }
 
 /**
@@ -330,12 +330,12 @@ export function calcExactPositionOrRandomFromSize(data: IPositionFromSizeParams)
  * @returns the exact position
  */
 export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFromSizeParams): ICoordinates {
-    const position = {
-        x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
-        y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
-    };
+  const position = {
+    x: data.position?.x !== undefined ? getRangeValue(data.position.x) : undefined,
+    y: data.position?.y !== undefined ? getRangeValue(data.position.y) : undefined,
+  };
 
-    return calcExactPositionOrRandomFromSize({ size: data.size, position });
+  return calcExactPositionOrRandomFromSize({ size: data.size, position });
 }
 
 /**
@@ -343,11 +343,11 @@ export function calcExactPositionOrRandomFromSizeRanged(data: IRangedPositionFro
  * @returns the parsed color
  */
 export function parseAlpha(input?: string): number {
-    const defaultAlpha = 1;
+  const defaultAlpha = 1;
 
-    if (!input) {
-        return defaultAlpha;
-    }
+  if (!input) {
+    return defaultAlpha;
+  }
 
-    return input.endsWith("%") ? parseFloat(input) / percentDenominator : parseFloat(input);
+  return input.endsWith("%") ? parseFloat(input) / percentDenominator : parseFloat(input);
 }

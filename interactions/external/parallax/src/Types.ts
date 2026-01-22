@@ -4,13 +4,13 @@ import type { Parallax } from "./Options/Classes/Parallax.js";
 import type { ParallaxOptions } from "./Options/Classes/ParallaxOptions.js";
 
 export interface IParallaxMode {
-    parallax: IParallax;
+  parallax: IParallax;
 }
 
 export interface ParallaxMode {
-    parallax?: Parallax;
+  parallax?: Parallax;
 }
 
 export type ParallaxContainer = InteractivityContainer & {
-    actualOptions: ParallaxOptions;
+  actualOptions: ParallaxOptions;
 };

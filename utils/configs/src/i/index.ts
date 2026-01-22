@@ -4,8 +4,8 @@ import imagesDirections from "./imagesDirections.js";
 import infection from "./infection.js";
 
 export default {
-    imageMask,
-    images,
-    imagesDirections,
-    infection,
+  imageMask,
+  images,
+  imagesDirections,
+  infection,
 };

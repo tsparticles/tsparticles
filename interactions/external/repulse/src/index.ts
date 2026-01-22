@@ -7,19 +7,19 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadExternalRepulseInteraction(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: InteractivityEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+  await engine.register(async (e: InteractivityEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.addInteractor?.("externalRepulse", async container => {
-            const { Repulser } = await import("./Repulser.js");
+    e.addInteractor?.("externalRepulse", async container => {
+      const { Repulser } = await import("./Repulser.js");
 
-            return new Repulser(engine, container);
-        });
+      return new Repulser(engine, container);
     });
+  });
 }
 
 export * from "./Options/Classes/RepulseBase.js";

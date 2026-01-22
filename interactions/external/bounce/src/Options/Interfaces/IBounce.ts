@@ -1,3 +1,3 @@
 export interface IBounce {
-    distance: number;
+  distance: number;
 }

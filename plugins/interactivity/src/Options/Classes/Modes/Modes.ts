@@ -7,37 +7,37 @@ import type { InteractivityEngine } from "../../../types.js";
  * [[include:Options/Interactivity/Modes.md]]
  */
 export class Modes implements IModes, IOptionLoader<IModes> {
-    [name: string]: unknown;
+  [name: string]: unknown;
 
-    private readonly _container;
-    private readonly _engine;
+  private readonly _container;
+  private readonly _engine;
 
-    constructor(engine: InteractivityEngine, container?: Container) {
-        this._engine = engine;
-        this._container = container;
+  constructor(engine: InteractivityEngine, container?: Container) {
+    this._engine = engine;
+    this._container = container;
+  }
+
+  load(data?: RecursivePartial<IModes>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IModes>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (!this._container) {
-            return;
-        }
-
-        const interactors = this._engine.interactors?.get(this._container) as IExternalInteractor[] | undefined;
-
-        if (!interactors) {
-            return;
-        }
-
-        for (const interactor of interactors) {
-            if (!interactor.loadModeOptions) {
-                continue;
-            }
-
-            interactor.loadModeOptions(this, data);
-        }
+    if (!this._container) {
+      return;
     }
+
+    const interactors = this._engine.interactors?.get(this._container) as IExternalInteractor[] | undefined;
+
+    if (!interactors) {
+      return;
+    }
+
+    for (const interactor of interactors) {
+      if (!interactor.loadModeOptions) {
+        continue;
+      }
+
+      interactor.loadModeOptions(this, data);
+    }
+  }
 }

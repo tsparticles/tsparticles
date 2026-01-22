@@ -3,13 +3,13 @@ import type { ISoundsIcons } from "./ISoundsIcons.js";
 import type { ISoundsVolume } from "./ISoundsVolume.js";
 
 export interface ISounds {
-    autoPlay: boolean;
+  autoPlay: boolean;
 
-    enable: boolean;
+  enable: boolean;
 
-    events: ISoundsEvent[];
+  events: ISoundsEvent[];
 
-    icons: ISoundsIcons;
+  icons: ISoundsIcons;
 
-    volume: ISoundsVolume | number;
+  volume: ISoundsVolume | number;
 }

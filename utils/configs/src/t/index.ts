@@ -9,13 +9,13 @@ import triangles from "./triangles.js";
 import twinkle from "./twinkle.js";
 
 export default {
-    test,
-    textMask,
-    textMaskMultiline,
-    themes,
-    tilt,
-    trail,
-    trailImage,
-    triangles,
-    twinkle,
+  test,
+  textMask,
+  textMaskMultiline,
+  themes,
+  tilt,
+  trail,
+  trailImage,
+  triangles,
+  twinkle,
 };

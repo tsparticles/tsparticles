@@ -3,17 +3,17 @@ import { type IValueWithRandom, type RecursivePartial, ValueWithRandom, isNull }
 /**
  */
 export class OrbitRotation extends ValueWithRandom {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.value = 45;
+    this.value = 45;
+  }
+
+  override load(data?: RecursivePartial<IValueWithRandom>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<IValueWithRandom>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        super.load(data);
-    }
+    super.load(data);
+  }
 }

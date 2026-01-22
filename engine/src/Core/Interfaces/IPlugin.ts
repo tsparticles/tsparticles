@@ -10,17 +10,17 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
  * [[include:Plugins.md]]
  */
 export interface IPlugin {
-    readonly id: string;
+  readonly id: string;
 
-    loadParticlesOptions?: (
-        container: Container,
-        options: ParticlesOptions,
-        source?: RecursivePartial<IParticlesOptions>,
-    ) => void;
+  loadParticlesOptions?: (
+    container: Container,
+    options: ParticlesOptions,
+    source?: RecursivePartial<IParticlesOptions>,
+  ) => void;
 
-    getPlugin(container: Container): Promise<IContainerPlugin>;
+  getPlugin(container: Container): Promise<IContainerPlugin>;
 
-    loadOptions(container: Container, options: Options, source?: ISourceOptions): void;
+  loadOptions(container: Container, options: Options, source?: ISourceOptions): void;
 
-    needsPlugin(options?: ISourceOptions): boolean;
+  needsPlugin(options?: ISourceOptions): boolean;
 }

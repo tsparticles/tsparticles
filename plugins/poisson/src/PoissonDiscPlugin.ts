@@ -5,33 +5,33 @@ import { Poisson } from "./Options/Classes/Poisson.js";
 /**
  */
 export class PoissonDiscPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    constructor() {
-        this.id = "poisson";
+  constructor() {
+    this.id = "poisson";
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { PoissonDiscPluginInstance } = await import("./PoissonDiscPluginInstance.js");
+
+    return new PoissonDiscPluginInstance(container);
+  }
+
+  loadOptions(_container: Container, options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { PoissonDiscPluginInstance } = await import("./PoissonDiscPluginInstance.js");
+    let poissonOptions = options.poisson;
 
-        return new PoissonDiscPluginInstance(container);
+    if (poissonOptions?.load === undefined) {
+      options.poisson = poissonOptions = new Poisson();
     }
 
-    loadOptions(_container: Container, options: PoissonOptions, source?: RecursivePartial<IPoissonOptions>): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    poissonOptions.load(source?.poisson);
+  }
 
-        let poissonOptions = options.poisson;
-
-        if (poissonOptions?.load === undefined) {
-            options.poisson = poissonOptions = new Poisson();
-        }
-
-        poissonOptions.load(source?.poisson);
-    }
-
-    needsPlugin(options?: RecursivePartial<IPoissonOptions>): boolean {
-        return options?.poisson?.enable ?? false;
-    }
+  needsPlugin(options?: RecursivePartial<IPoissonOptions>): boolean {
+    return options?.poisson?.enable ?? false;
+  }
 }

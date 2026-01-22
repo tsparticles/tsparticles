@@ -6,10 +6,10 @@ import groups from "./groups.js";
 import growing from "./growing.js";
 
 export default {
-    gifs,
-    grabRandomColor,
-    gradients,
-    gravity,
-    groups,
-    growing,
+  gifs,
+  grabRandomColor,
+  gradients,
+  gravity,
+  groups,
+  growing,
 };

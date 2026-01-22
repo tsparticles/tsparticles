@@ -7,11 +7,11 @@ declare const __VERSION__: string;
  * @param engine - The engine, used to add the color manager
  */
 export async function loadLchColorPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { LchColorManager } = await import("./LchColorManager.js");
+  await engine.register(async e => {
+    const { LchColorManager } = await import("./LchColorManager.js");
 
-        e.addColorManager(new LchColorManager());
-    });
+    e.addColorManager(new LchColorManager());
+  });
 }

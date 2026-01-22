@@ -4,19 +4,19 @@ import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import type { Preload } from "./Options/Classes/Preload.js";
 
 export type ImageEngine = Engine & {
-    images?: IImage[];
+  images?: IImage[];
 
-    loadImage?: (data: IPreload) => Promise<void>;
+  loadImage?: (data: IPreload) => Promise<void>;
 };
 
 export type IPreloadOptions = IOptions & {
-    preload: IPreload[];
+  preload: IPreload[];
 };
 
 export type PreloadOptions = Options & {
-    preload?: Preload[];
+  preload?: Preload[];
 };
 
 export type ImageContainer = Container & {
-    actualOptions: PreloadOptions;
+  actualOptions: PreloadOptions;
 };

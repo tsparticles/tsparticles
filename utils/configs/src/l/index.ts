@@ -5,9 +5,9 @@ import linkTriangles from "./linkTriangles.js";
 import localPolygonMask from "./localPolygonMask.js";
 
 export default {
-    lch,
-    life,
-    lightHover,
-    linkTriangles,
-    localPolygonMask,
+  lch,
+  life,
+  lightHover,
+  linkTriangles,
+  localPolygonMask,
 };

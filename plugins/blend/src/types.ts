@@ -3,30 +3,30 @@ import type { Blend } from "./Options/Classes/Blend.js";
 import type { IBlend } from "./Options/Interfaces/IBlend.js";
 
 export type IBlendParticlesOptions = IParticlesOptions & {
-    blend?: IBlend;
+  blend?: IBlend;
 };
 
 export type BlendParticlesOptions = ParticlesOptions & {
-    blend?: Blend;
+  blend?: Blend;
 };
 
 export type IBlendOptions = IOptions & {
-    blend?: IBlend;
+  blend?: IBlend;
 
-    particles: IBlendParticlesOptions;
+  particles: IBlendParticlesOptions;
 };
 
 export type BlendOptions = Options & {
-    blend?: Blend;
+  blend?: Blend;
 
-    particles: BlendParticlesOptions;
+  particles: BlendParticlesOptions;
 };
 
 export type BlendContainer = Container & {
-    actualOptions: BlendOptions;
+  actualOptions: BlendOptions;
 };
 
 export type BlendParticle = Particle & {
-    options: BlendParticlesOptions;
-    originalBlendMode?: GlobalCompositeOperation;
+  options: BlendParticlesOptions;
+  originalBlendMode?: GlobalCompositeOperation;
 };

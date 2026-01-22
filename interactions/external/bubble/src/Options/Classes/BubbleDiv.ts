@@ -5,23 +5,23 @@ import type { IBubbleDiv } from "../Interfaces/IBubbleDiv.js";
 /**
  */
 export class BubbleDiv extends BubbleBase implements IBubbleDiv, IOptionLoader<IBubbleDiv> {
-    selectors: SingleOrMultiple<string>;
+  selectors: SingleOrMultiple<string>;
 
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.selectors = [];
+    this.selectors = [];
+  }
+
+  override load(data?: RecursivePartial<IBubbleDiv>): void {
+    super.load(data);
+
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<IBubbleDiv>): void {
-        super.load(data);
-
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.selectors !== undefined) {
-            this.selectors = data.selectors;
-        }
+    if (data.selectors !== undefined) {
+      this.selectors = data.selectors;
     }
+  }
 }

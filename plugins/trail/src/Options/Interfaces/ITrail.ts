@@ -3,9 +3,9 @@ import type { ITrailFill } from "./ITrailFill.js";
 /**
  */
 export interface ITrail {
-    enable: boolean;
+  enable: boolean;
 
-    fill: ITrailFill;
+  fill: ITrailFill;
 
-    length: number;
+  length: number;
 }

@@ -1,6 +1,6 @@
 /**
  */
 export enum DivType {
-    circle = "circle",
-    rectangle = "rectangle",
+  circle = "circle",
+  rectangle = "rectangle",
 }

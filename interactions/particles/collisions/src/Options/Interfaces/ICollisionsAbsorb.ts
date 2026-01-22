@@ -1,3 +1,3 @@
 export interface ICollisionsAbsorb {
-    speed: number;
+  speed: number;
 }

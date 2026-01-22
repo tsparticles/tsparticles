@@ -1,128 +1,128 @@
 import {
-    type Container,
-    type Engine,
-    type RecursivePartial,
-    type SingleOrMultiple,
-    safeDocument,
-    tsParticles,
+  type Container,
+  type Engine,
+  type RecursivePartial,
+  type SingleOrMultiple,
+  safeDocument,
+  tsParticles,
 } from "@tsparticles/engine";
 
 interface ResponsiveOptions {
-    breakpoint: number;
-    options: ParticlesOptions;
+  breakpoint: number;
+  options: ParticlesOptions;
 }
 
 interface ParticlesOptions {
-    color: SingleOrMultiple<string>;
-    connectParticles: boolean;
-    maxParticles: number;
-    minDistance: number;
-    responsive: ResponsiveOptions[];
-    selector: string;
-    sizeVariations: number;
-    speed: number;
+  color: SingleOrMultiple<string>;
+  connectParticles: boolean;
+  maxParticles: number;
+  minDistance: number;
+  responsive: ResponsiveOptions[];
+  selector: string;
+  sizeVariations: number;
+  speed: number;
 }
 
 const linksMinDistance = 120,
-    moveMinSpeed = 0.5,
-    particlesMinCount = 100,
-    sizeMinValue = 3;
+  moveMinSpeed = 0.5,
+  particlesMinCount = 100,
+  sizeMinValue = 3;
 
 export class MBParticles {
-    private _container?: Container;
+  private _container?: Container;
 
-    static init(options: RecursivePartial<ParticlesOptions>): MBParticles {
-        const particles = new MBParticles(),
-            selector = options.selector;
+  static init(options: RecursivePartial<ParticlesOptions>): MBParticles {
+    const particles = new MBParticles(),
+      selector = options.selector;
 
-        if (!selector) {
-            throw new Error("No selector provided");
-        }
-
-        const el = safeDocument().querySelector(selector);
-
-        if (!el) {
-            throw new Error("No element found for selector");
-        }
-
-        void (async (engine: Engine): Promise<void> => {
-            await engine
-                .load({
-                    element: el as HTMLElement,
-                    id: selector.replace(".", "").replace("!", ""),
-                    options: {
-                        fullScreen: {
-                            enable: false,
-                        },
-                        particles: {
-                            color: {
-                                value: options.color ?? "!000000",
-                            },
-                            links: {
-                                color: "random",
-                                distance: options.minDistance ?? linksMinDistance,
-                                enable: options.connectParticles ?? false,
-                            },
-                            move: {
-                                enable: true,
-                                speed: options.speed ?? moveMinSpeed,
-                            },
-                            number: {
-                                value: options.maxParticles ?? particlesMinCount,
-                            },
-                            size: {
-                                value: { min: 1, max: options.sizeVariations ?? sizeMinValue },
-                            },
-                        },
-                        responsive: options.responsive?.map(responsive => ({
-                            maxWidth: responsive.breakpoint,
-                            options: {
-                                particles: {
-                                    color: {
-                                        value: responsive.options?.color,
-                                    },
-                                    links: {
-                                        distance: responsive.options?.minDistance,
-                                        enable: responsive.options?.connectParticles,
-                                    },
-                                    number: {
-                                        value: options.maxParticles,
-                                    },
-                                    move: {
-                                        enable: true,
-                                        speed: responsive.options?.speed,
-                                    },
-                                    size: {
-                                        value: responsive.options?.sizeVariations,
-                                    },
-                                },
-                            },
-                        })),
-                    },
-                })
-                .then(container => {
-                    particles._container = container;
-                });
-        })(tsParticles);
-
-        return particles;
+    if (!selector) {
+      throw new Error("No selector provided");
     }
 
-    destroy(): void {
-        const container = this._container;
+    const el = safeDocument().querySelector(selector);
 
-        container?.destroy();
+    if (!el) {
+      throw new Error("No element found for selector");
     }
 
-    pauseAnimation(): void {
-        const container = this._container;
+    void (async (engine: Engine): Promise<void> => {
+      await engine
+        .load({
+          element: el as HTMLElement,
+          id: selector.replace(".", "").replace("!", ""),
+          options: {
+            fullScreen: {
+              enable: false,
+            },
+            particles: {
+              color: {
+                value: options.color ?? "!000000",
+              },
+              links: {
+                color: "random",
+                distance: options.minDistance ?? linksMinDistance,
+                enable: options.connectParticles ?? false,
+              },
+              move: {
+                enable: true,
+                speed: options.speed ?? moveMinSpeed,
+              },
+              number: {
+                value: options.maxParticles ?? particlesMinCount,
+              },
+              size: {
+                value: { min: 1, max: options.sizeVariations ?? sizeMinValue },
+              },
+            },
+            responsive: options.responsive?.map(responsive => ({
+              maxWidth: responsive.breakpoint,
+              options: {
+                particles: {
+                  color: {
+                    value: responsive.options?.color,
+                  },
+                  links: {
+                    distance: responsive.options?.minDistance,
+                    enable: responsive.options?.connectParticles,
+                  },
+                  number: {
+                    value: options.maxParticles,
+                  },
+                  move: {
+                    enable: true,
+                    speed: responsive.options?.speed,
+                  },
+                  size: {
+                    value: responsive.options?.sizeVariations,
+                  },
+                },
+              },
+            })),
+          },
+        })
+        .then(container => {
+          particles._container = container;
+        });
+    })(tsParticles);
 
-        container?.pause();
-    }
+    return particles;
+  }
 
-    resumeAnimation(): void {
-        const container = this._container;
+  destroy(): void {
+    const container = this._container;
 
-        container?.play();
-    }
+    container?.destroy();
+  }
+
+  pauseAnimation(): void {
+    const container = this._container;
+
+    container?.pause();
+  }
+
+  resumeAnimation(): void {
+    const container = this._container;
+
+    container?.play();
+  }
 }

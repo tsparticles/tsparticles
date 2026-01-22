@@ -7,11 +7,11 @@ declare const __VERSION__: string;
  * @param engine - The engine, used to add the plugin
  */
 export async function loadNamedColorPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { NamedColorManager } = await import("./NamedColorManager.js");
+  await engine.register(async e => {
+    const { NamedColorManager } = await import("./NamedColorManager.js");
 
-        e.addColorManager(new NamedColorManager());
-    });
+    e.addColorManager(new NamedColorManager());
+  });
 }

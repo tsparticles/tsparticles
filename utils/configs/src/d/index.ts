@@ -9,13 +9,13 @@ import disappearing from "./disappearing.js";
 import divEvents from "./divEvents.js";
 
 export default {
-    dataImages,
-    delay,
-    delayColor,
-    delayOpacity,
-    delaySize,
-    delayStrokeColor,
-    destroy,
-    disappearing,
-    divEvents,
+  dataImages,
+  delay,
+  delayColor,
+  delayOpacity,
+  delaySize,
+  delayStrokeColor,
+  destroy,
+  disappearing,
+  divEvents,
 };

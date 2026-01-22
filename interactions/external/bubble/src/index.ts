@@ -7,19 +7,19 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadExternalBubbleInteraction(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: InteractivityEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+  await engine.register(async (e: InteractivityEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.addInteractor?.("externalBubble", async container => {
-            const { Bubbler } = await import("./Bubbler.js");
+    e.addInteractor?.("externalBubble", async container => {
+      const { Bubbler } = await import("./Bubbler.js");
 
-            return new Bubbler(e, container);
-        });
+      return new Bubbler(e, container);
     });
+  });
 }
 
 export * from "./Options/Classes/BubbleBase.js";

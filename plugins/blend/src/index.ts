@@ -6,11 +6,11 @@ declare const __VERSION__: string;
  * @param engine - The engine instance
  */
 export async function loadBlendPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { BlendPlugin } = await import("./BlendPlugin.js");
+  await engine.register(async e => {
+    const { BlendPlugin } = await import("./BlendPlugin.js");
 
-        e.addPlugin(new BlendPlugin());
-    });
+    e.addPlugin(new BlendPlugin());
+  });
 }

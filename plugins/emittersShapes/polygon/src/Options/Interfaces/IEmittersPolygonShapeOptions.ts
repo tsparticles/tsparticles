@@ -1,4 +1,4 @@
 export interface IEmittersPolygonShapeOptions {
-    angle: number;
-    sides: number;
+  angle: number;
+  sides: number;
 }

@@ -1,87 +1,84 @@
 import { type Engine, type RecursivePartial, isInArray, rangeColorToRgb } from "@tsparticles/engine";
 import {
-    ExternalInteractorBase,
-    type IInteractivityData,
-    type IModes,
-    type Modes,
+  ExternalInteractorBase,
+  type IInteractivityData,
+  type IModes,
+  type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { ILightMode, LightContainer, LightMode, LightParticle } from "./Types.js";
 import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
 
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
-    private readonly _engine;
+  private readonly _engine;
 
-    constructor(container: LightContainer, engine: Engine) {
-        super(container);
+  constructor(container: LightContainer, engine: Engine) {
+    super(container);
 
-        this._engine = engine;
+    this._engine = engine;
+  }
+
+  clear(): void {
+    // do nothing
+  }
+
+  init(): void {
+    // do nothing
+  }
+
+  interact(interactivityData: IInteractivityData): void {
+    const container = this.container,
+      options = container.actualOptions,
+      interactivity = interactivityData;
+
+    if (!options.interactivity?.events.onHover.enable || interactivity.status !== "pointermove") {
+      return;
     }
 
-    clear(): void {
-        // do nothing
+    const mousePos = interactivity.mouse.position;
+
+    if (!mousePos) {
+      return;
     }
 
-    init(): void {
-        // do nothing
+    container.canvas.draw(ctx => {
+      drawLight(container, ctx, mousePos);
+    });
+  }
+
+  isEnabled(interactivityData: IInteractivityData, particle?: LightParticle): boolean {
+    const container = this.container,
+      mouse = interactivityData.mouse,
+      interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
+      events = interactivity?.events;
+
+    if (!(events?.onHover.enable && mouse.position)) {
+      return false;
     }
 
-    interact(interactivityData: IInteractivityData): void {
-        const container = this.container,
-            options = container.actualOptions,
-            interactivity = interactivityData;
+    const res = isInArray(lightMode, events.onHover.mode);
 
-        if (!options.interactivity?.events.onHover.enable || interactivity.status !== "pointermove") {
-            return;
-        }
+    if (res && interactivity?.modes.light) {
+      const lightGradient = interactivity.modes.light.area.gradient;
 
-        const mousePos = interactivity.mouse.position;
-
-        if (!mousePos) {
-            return;
-        }
-
-        container.canvas.draw(ctx => {
-            drawLight(container, ctx, mousePos);
-        });
+      container.canvas.mouseLight = {
+        start: rangeColorToRgb(this._engine, lightGradient.start),
+        stop: rangeColorToRgb(this._engine, lightGradient.stop),
+      };
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: LightParticle): boolean {
-        const container = this.container,
-            mouse = interactivityData.mouse,
-            interactivity = particle?.interactivity ?? container.actualOptions.interactivity,
-            events = interactivity?.events;
+    return res;
+  }
 
-        if (!(events?.onHover.enable && mouse.position)) {
-            return false;
-        }
+  loadModeOptions(options: Modes & LightMode, ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]): void {
+    options.light ??= new Light();
 
-        const res = isInArray(lightMode, events.onHover.mode);
-
-        if (res && interactivity?.modes.light) {
-            const lightGradient = interactivity.modes.light.area.gradient;
-
-            container.canvas.mouseLight = {
-                start: rangeColorToRgb(this._engine, lightGradient.start),
-                stop: rangeColorToRgb(this._engine, lightGradient.stop),
-            };
-        }
-
-        return res;
+    for (const source of sources) {
+      options.light.load(source?.light);
     }
+  }
 
-    loadModeOptions(
-        options: Modes & LightMode,
-        ...sources: RecursivePartial<(IModes & ILightMode) | undefined>[]
-    ): void {
-        options.light ??= new Light();
-
-        for (const source of sources) {
-            options.light.load(source?.light);
-        }
-    }
-
-    reset(): void {
-        // do nothing
-    }
+  reset(): void {
+    // do nothing
+  }
 }

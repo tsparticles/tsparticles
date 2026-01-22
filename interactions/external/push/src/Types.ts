@@ -3,19 +3,19 @@ import type { IPush } from "./Options/Interfaces/IPush.js";
 import type { Push } from "./Options/Classes/Push.js";
 
 export interface IPushMode {
-    push: IPush;
+  push: IPush;
 }
 
 export interface PushMode {
-    push?: Push;
+  push?: Push;
 }
 
 export type PushContainer = InteractivityContainer & {
-    actualOptions: PushOptions;
+  actualOptions: PushOptions;
 };
 
 export type PushOptions = InteractivityOptions & {
-    interactivity?: {
-        modes: PushMode;
-    };
+  interactivity?: {
+    modes: PushMode;
+  };
 };

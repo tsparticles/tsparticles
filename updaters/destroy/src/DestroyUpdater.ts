@@ -1,11 +1,11 @@
 import {
-    type Container,
-    type Engine,
-    type IParticleUpdater,
-    type Particle,
-    type RecursivePartial,
-    getRangeValue,
-    percentDenominator,
+  type Container,
+  type Engine,
+  type IParticleUpdater,
+  type Particle,
+  type RecursivePartial,
+  getRangeValue,
+  percentDenominator,
 } from "@tsparticles/engine";
 import type { DestroyParticle, DestroyParticlesOptions, IDestroyParticlesOptions } from "./Types.js";
 import { Destroy } from "./Options/Classes/Destroy.js";
@@ -13,96 +13,96 @@ import { DestroyMode } from "./Enums/DestroyMode.js";
 import { split } from "./Utils.js";
 
 export class DestroyUpdater implements IParticleUpdater {
-    private readonly container;
-    private readonly engine;
+  private readonly container;
+  private readonly engine;
 
-    constructor(engine: Engine, container: Container) {
-        this.container = container;
-        this.engine = engine;
+  constructor(engine: Engine, container: Container) {
+    this.container = container;
+    this.engine = engine;
+  }
+
+  init(particle: DestroyParticle): void {
+    const container = this.container,
+      particlesOptions = particle.options,
+      destroyOptions = particlesOptions.destroy;
+
+    if (!destroyOptions) {
+      return;
     }
 
-    init(particle: DestroyParticle): void {
-        const container = this.container,
-            particlesOptions = particle.options,
-            destroyOptions = particlesOptions.destroy;
+    particle.splitCount = 0;
 
-        if (!destroyOptions) {
-            return;
-        }
+    const destroyBoundsOptions = destroyOptions.bounds;
 
-        particle.splitCount = 0;
+    particle.destroyBounds ??= {};
 
-        const destroyBoundsOptions = destroyOptions.bounds;
+    const { bottom, left, right, top } = destroyBoundsOptions,
+      { destroyBounds } = particle,
+      canvasSize = container.canvas.size;
 
-        particle.destroyBounds ??= {};
-
-        const { bottom, left, right, top } = destroyBoundsOptions,
-            { destroyBounds } = particle,
-            canvasSize = container.canvas.size;
-
-        if (bottom) {
-            destroyBounds.bottom = (getRangeValue(bottom) * canvasSize.height) / percentDenominator;
-        }
-
-        if (left) {
-            destroyBounds.left = (getRangeValue(left) * canvasSize.width) / percentDenominator;
-        }
-
-        if (right) {
-            destroyBounds.right = (getRangeValue(right) * canvasSize.width) / percentDenominator;
-        }
-
-        if (top) {
-            destroyBounds.top = (getRangeValue(top) * canvasSize.height) / percentDenominator;
-        }
+    if (bottom) {
+      destroyBounds.bottom = (getRangeValue(bottom) * canvasSize.height) / percentDenominator;
     }
 
-    isEnabled(particle: Particle): boolean {
-        return !particle.destroyed;
+    if (left) {
+      destroyBounds.left = (getRangeValue(left) * canvasSize.width) / percentDenominator;
     }
 
-    loadOptions(
-        options: DestroyParticlesOptions,
-        ...sources: (RecursivePartial<IDestroyParticlesOptions> | undefined)[]
-    ): void {
-        options.destroy ??= new Destroy();
-
-        for (const source of sources) {
-            options.destroy.load(source?.destroy);
-        }
+    if (right) {
+      destroyBounds.right = (getRangeValue(right) * canvasSize.width) / percentDenominator;
     }
 
-    particleDestroyed(particle: DestroyParticle, override?: boolean): void {
-        if (override) {
-            return;
-        }
+    if (top) {
+      destroyBounds.top = (getRangeValue(top) * canvasSize.height) / percentDenominator;
+    }
+  }
 
-        const destroyOptions = particle.options.destroy;
+  isEnabled(particle: Particle): boolean {
+    return !particle.destroyed;
+  }
 
-        if (destroyOptions?.mode === DestroyMode.split) {
-            split(this.engine, this.container, particle);
-        }
+  loadOptions(
+    options: DestroyParticlesOptions,
+    ...sources: (RecursivePartial<IDestroyParticlesOptions> | undefined)[]
+  ): void {
+    options.destroy ??= new Destroy();
+
+    for (const source of sources) {
+      options.destroy.load(source?.destroy);
+    }
+  }
+
+  particleDestroyed(particle: DestroyParticle, override?: boolean): void {
+    if (override) {
+      return;
     }
 
-    update(particle: DestroyParticle): void {
-        if (!this.isEnabled(particle)) {
-            return;
-        }
+    const destroyOptions = particle.options.destroy;
 
-        const position = particle.getPosition(),
-            bounds = particle.destroyBounds;
-
-        if (!bounds) {
-            return;
-        }
-
-        if (
-            (bounds.bottom !== undefined && position.y >= bounds.bottom) ||
-            (bounds.left !== undefined && position.x <= bounds.left) ||
-            (bounds.right !== undefined && position.x >= bounds.right) ||
-            (bounds.top !== undefined && position.y <= bounds.top)
-        ) {
-            particle.destroy();
-        }
+    if (destroyOptions?.mode === DestroyMode.split) {
+      split(this.engine, this.container, particle);
     }
+  }
+
+  update(particle: DestroyParticle): void {
+    if (!this.isEnabled(particle)) {
+      return;
+    }
+
+    const position = particle.getPosition(),
+      bounds = particle.destroyBounds;
+
+    if (!bounds) {
+      return;
+    }
+
+    if (
+      (bounds.bottom !== undefined && position.y >= bounds.bottom) ||
+      (bounds.left !== undefined && position.x <= bounds.left) ||
+      (bounds.right !== undefined && position.x >= bounds.right) ||
+      (bounds.top !== undefined && position.y <= bounds.top)
+    ) {
+      particle.destroy();
+    }
+  }
 }

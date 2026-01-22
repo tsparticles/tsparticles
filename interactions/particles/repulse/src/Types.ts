@@ -3,9 +3,9 @@ import type { IParticlesRepulse } from "./Options/Interfaces/IParticlesRepulse.j
 import type { ParticlesRepulse } from "./Options/Classes/ParticlesRepulse.js";
 
 export type RepulseParticlesOptions = InteractivityParticlesOptions & {
-    repulse?: ParticlesRepulse;
+  repulse?: ParticlesRepulse;
 };
 
 export type IRepulseParticlesOptions = IInteractivityParticlesOptions & {
-    repulse?: IParticlesRepulse;
+  repulse?: IParticlesRepulse;
 };

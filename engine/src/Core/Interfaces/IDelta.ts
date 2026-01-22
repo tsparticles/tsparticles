@@ -1,6 +1,6 @@
 /**
  */
 export interface IDelta {
-    factor: number;
-    value: number;
+  factor: number;
+  value: number;
 }

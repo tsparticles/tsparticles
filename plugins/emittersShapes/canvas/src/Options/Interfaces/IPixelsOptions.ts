@@ -1,3 +1,3 @@
 export interface IPixelsOptions {
-    offset: number;
+  offset: number;
 }

@@ -1,9 +1,9 @@
 import {
-    type IOptionLoader,
-    type RecursivePartial,
-    type SingleOrMultiple,
-    executeOnSingleOrMultiple,
-    isNull,
+  type IOptionLoader,
+  type RecursivePartial,
+  type SingleOrMultiple,
+  executeOnSingleOrMultiple,
+  isNull,
 } from "@tsparticles/engine";
 import { BubbleBase } from "./BubbleBase.js";
 import { BubbleDiv } from "./BubbleDiv.js";
@@ -12,21 +12,21 @@ import type { IBubble } from "../Interfaces/IBubble.js";
 /**
  */
 export class Bubble extends BubbleBase implements IBubble, IOptionLoader<IBubble> {
-    divs?: SingleOrMultiple<BubbleDiv>;
+  divs?: SingleOrMultiple<BubbleDiv>;
 
-    override load(data?: RecursivePartial<IBubble>): void {
-        super.load(data);
+  override load(data?: RecursivePartial<IBubble>): void {
+    super.load(data);
 
-        if (isNull(data)) {
-            return;
-        }
-
-        this.divs = executeOnSingleOrMultiple(data.divs, div => {
-            const tmp = new BubbleDiv();
-
-            tmp.load(div);
-
-            return tmp;
-        });
+    if (isNull(data)) {
+      return;
     }
+
+    this.divs = executeOnSingleOrMultiple(data.divs, div => {
+      const tmp = new BubbleDiv();
+
+      tmp.load(div);
+
+      return tmp;
+    });
+  }
 }

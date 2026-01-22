@@ -3,6 +3,6 @@ import type { IAnimatableGradientColor, IOptionsGradient } from "./IOptionsGradi
 import type { IGradientAngle } from "./Gradients.js";
 
 export type IAnimatableGradient = IOptionsGradient & {
-    angle: IGradientAngle & IAnimatable<IAnimation>;
-    colors: IAnimatableGradientColor[];
+  angle: IGradientAngle & IAnimatable<IAnimation>;
+  colors: IAnimatableGradientColor[];
 };

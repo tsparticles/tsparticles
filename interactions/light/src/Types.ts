@@ -5,24 +5,24 @@ import type { IRgb } from "@tsparticles/engine";
 import type { Light } from "./Options/Classes/Light.js";
 
 export interface ILightMode {
-    light?: ILight;
+  light?: ILight;
 }
 
 export interface LightMode {
-    light?: Light;
+  light?: Light;
 }
 
 export type LightContainer = InteractivityContainer & {
-    actualOptions: LightOptions;
-    canvas: {
-        mouseLight?: { start?: IRgb; stop?: IRgb };
-    };
+  actualOptions: LightOptions;
+  canvas: {
+    mouseLight?: { start?: IRgb; stop?: IRgb };
+  };
 };
 
 export type LightParticle = InteractivityParticle & {
-    interactivity: {
-        modes: ILightMode;
-    };
-    lightShadow?: IRgb;
-    options: LightParticlesOptions;
+  interactivity: {
+    modes: ILightMode;
+  };
+  lightShadow?: IRgb;
+  options: LightParticlesOptions;
 };

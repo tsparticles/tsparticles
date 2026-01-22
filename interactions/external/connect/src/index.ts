@@ -7,19 +7,19 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadExternalConnectInteraction(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: InteractivityEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+  await engine.register(async (e: InteractivityEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.addInteractor?.("externalConnect", async container => {
-            const { Connector } = await import("./Connector.js");
+    e.addInteractor?.("externalConnect", async container => {
+      const { Connector } = await import("./Connector.js");
 
-            return new Connector(container);
-        });
+      return new Connector(container);
     });
+  });
 }
 
 export * from "./Options/Classes/Connect.js";

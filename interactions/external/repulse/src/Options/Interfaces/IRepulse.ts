@@ -5,5 +5,5 @@ import type { SingleOrMultiple } from "@tsparticles/engine";
 /**
  */
 export interface IRepulse extends IRepulseBase {
-    divs?: SingleOrMultiple<IRepulseDiv>;
+  divs?: SingleOrMultiple<IRepulseDiv>;
 }

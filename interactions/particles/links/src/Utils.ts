@@ -1,11 +1,11 @@
 import {
-    type ICoordinates,
-    drawLine,
-    getDistance,
-    getDistances,
-    getRandom,
-    getStyleFromRgb,
-    rangeColorToRgb,
+  type ICoordinates,
+  drawLine,
+  getDistance,
+  getDistances,
+  getRandom,
+  getStyleFromRgb,
+  rangeColorToRgb,
 } from "@tsparticles/engine";
 import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from "./Types.js";
 
@@ -17,124 +17,124 @@ import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from ".
  * @param p3 - The third point of the triangle.
  */
 export function drawTriangle(
-    context: CanvasRenderingContext2D,
-    p1: ICoordinates,
-    p2: ICoordinates,
-    p3: ICoordinates,
+  context: CanvasRenderingContext2D,
+  p1: ICoordinates,
+  p2: ICoordinates,
+  p3: ICoordinates,
 ): void {
-    context.beginPath();
-    context.moveTo(p1.x, p1.y);
-    context.lineTo(p2.x, p2.y);
-    context.lineTo(p3.x, p3.y);
-    context.closePath();
+  context.beginPath();
+  context.moveTo(p1.x, p1.y);
+  context.lineTo(p2.x, p2.y);
+  context.lineTo(p3.x, p3.y);
+  context.closePath();
 }
 
 /**
  * @param params -
  */
 export function drawLinkLine(params: LinkLineDrawParams): void {
-    // this.ctx.lineCap = "round"; /* performance issue */
-    /* path */
+  // this.ctx.lineCap = "round"; /* performance issue */
+  /* path */
 
-    let drawn = false;
+  let drawn = false;
 
-    const { begin, end, engine, maxDistance, context, canvasSize, width, colorLine, opacity, links, hdr } = params;
+  const { begin, end, engine, maxDistance, context, canvasSize, width, colorLine, opacity, links, hdr } = params;
 
-    if (getDistance(begin, end) <= maxDistance) {
-        drawLine(context, begin, end);
+  if (getDistance(begin, end) <= maxDistance) {
+    drawLine(context, begin, end);
 
-        drawn = true;
-    } else if (links.warp) {
-        let pi1: ICoordinates | undefined;
-        let pi2: ICoordinates | undefined;
+    drawn = true;
+  } else if (links.warp) {
+    let pi1: ICoordinates | undefined;
+    let pi2: ICoordinates | undefined;
 
-        const endNE = {
-            x: end.x - canvasSize.width,
-            y: end.y,
+    const endNE = {
+      x: end.x - canvasSize.width,
+      y: end.y,
+    };
+
+    const d1 = getDistances(begin, endNE);
+
+    if (d1.distance <= maxDistance) {
+      const yi = begin.y - (d1.dy / d1.dx) * begin.x;
+
+      pi1 = { x: 0, y: yi };
+      pi2 = { x: canvasSize.width, y: yi };
+    } else {
+      const endSW = {
+        x: end.x,
+        y: end.y - canvasSize.height,
+      };
+
+      const d2 = getDistances(begin, endSW);
+
+      if (d2.distance <= maxDistance) {
+        const yi = begin.y - (d2.dy / d2.dx) * begin.x;
+        const xi = -yi / (d2.dy / d2.dx);
+
+        pi1 = { x: xi, y: 0 };
+        pi2 = { x: xi, y: canvasSize.height };
+      } else {
+        const endSE = {
+          x: end.x - canvasSize.width,
+          y: end.y - canvasSize.height,
         };
 
-        const d1 = getDistances(begin, endNE);
+        const d3 = getDistances(begin, endSE);
 
-        if (d1.distance <= maxDistance) {
-            const yi = begin.y - (d1.dy / d1.dx) * begin.x;
+        if (d3.distance <= maxDistance) {
+          const yi = begin.y - (d3.dy / d3.dx) * begin.x;
+          const xi = -yi / (d3.dy / d3.dx);
 
-            pi1 = { x: 0, y: yi };
-            pi2 = { x: canvasSize.width, y: yi };
-        } else {
-            const endSW = {
-                x: end.x,
-                y: end.y - canvasSize.height,
-            };
-
-            const d2 = getDistances(begin, endSW);
-
-            if (d2.distance <= maxDistance) {
-                const yi = begin.y - (d2.dy / d2.dx) * begin.x;
-                const xi = -yi / (d2.dy / d2.dx);
-
-                pi1 = { x: xi, y: 0 };
-                pi2 = { x: xi, y: canvasSize.height };
-            } else {
-                const endSE = {
-                    x: end.x - canvasSize.width,
-                    y: end.y - canvasSize.height,
-                };
-
-                const d3 = getDistances(begin, endSE);
-
-                if (d3.distance <= maxDistance) {
-                    const yi = begin.y - (d3.dy / d3.dx) * begin.x;
-                    const xi = -yi / (d3.dy / d3.dx);
-
-                    pi1 = { x: xi, y: yi };
-                    pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
-                }
-            }
+          pi1 = { x: xi, y: yi };
+          pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };
         }
-
-        if (pi1 && pi2) {
-            drawLine(context, begin, pi1);
-            drawLine(context, end, pi2);
-
-            drawn = true;
-        }
+      }
     }
 
-    if (!drawn) {
-        return;
+    if (pi1 && pi2) {
+      drawLine(context, begin, pi1);
+      drawLine(context, end, pi2);
+
+      drawn = true;
     }
+  }
 
-    context.lineWidth = width;
-    context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
+  if (!drawn) {
+    return;
+  }
 
-    const { shadow } = links;
+  context.lineWidth = width;
+  context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
 
-    if (shadow.enable) {
-        const shadowColor = rangeColorToRgb(engine, shadow.color);
+  const { shadow } = links;
 
-        if (shadowColor) {
-            context.shadowBlur = shadow.blur;
-            context.shadowColor = getStyleFromRgb(shadowColor, hdr);
-        }
+  if (shadow.enable) {
+    const shadowColor = rangeColorToRgb(engine, shadow.color);
+
+    if (shadowColor) {
+      context.shadowBlur = shadow.blur;
+      context.shadowColor = getStyleFromRgb(shadowColor, hdr);
     }
+  }
 
-    context.stroke();
+  context.stroke();
 }
 
 /**
  * @param params -
  */
 export function drawLinkTriangle(params: LinkTriangleDrawParams): void {
-    const { context, hdr, pos1, pos2, pos3, colorTriangle, opacityTriangle } = params;
+  const { context, hdr, pos1, pos2, pos3, colorTriangle, opacityTriangle } = params;
 
-    // this.ctx.lineCap = "round"; /* performance issue */
-    /* path */
+  // this.ctx.lineCap = "round"; /* performance issue */
+  /* path */
 
-    drawTriangle(context, pos1, pos2, pos3);
+  drawTriangle(context, pos1, pos2, pos3);
 
-    context.fillStyle = getStyleFromRgb(colorTriangle, hdr, opacityTriangle);
+  context.fillStyle = getStyleFromRgb(colorTriangle, hdr, opacityTriangle);
 
-    context.fill();
+  context.fill();
 }
 
 /**
@@ -142,9 +142,9 @@ export function drawLinkTriangle(params: LinkTriangleDrawParams): void {
  * @returns the key for the link
  */
 export function getLinkKey(ids: number[]): string {
-    ids.sort((a, b) => a - b);
+  ids.sort((a, b) => a - b);
 
-    return ids.join("_");
+  return ids.join("_");
 }
 
 /**
@@ -153,15 +153,15 @@ export function getLinkKey(ids: number[]): string {
  * @returns the frequency of the link
  */
 export function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
-    const key = getLinkKey(particles.map(t => t.id));
+  const key = getLinkKey(particles.map(t => t.id));
 
-    let res = dictionary.get(key);
+  let res = dictionary.get(key);
 
-    if (res === undefined) {
-        res = getRandom();
+  if (res === undefined) {
+    res = getRandom();
 
-        dictionary.set(key, res);
-    }
+    dictionary.set(key, res);
+  }
 
-    return res;
+  return res;
 }

@@ -7,18 +7,18 @@ import type { SingleOrMultiple } from "@tsparticles/engine";
  * [[include:Options/Interactivity/Events.md]]
  */
 export interface IEvents {
-    /**
-     * Click event options
-     */
-    onClick: IClickEvent;
+  /**
+   * Click event options
+   */
+  onClick: IClickEvent;
 
-    /**
-     * Div event options
-     */
-    onDiv: SingleOrMultiple<IDivEvent>;
+  /**
+   * Div event options
+   */
+  onDiv: SingleOrMultiple<IDivEvent>;
 
-    /**
-     * Hover event options
-     */
-    onHover: IHoverEvent;
+  /**
+   * Hover event options
+   */
+  onHover: IHoverEvent;
 }

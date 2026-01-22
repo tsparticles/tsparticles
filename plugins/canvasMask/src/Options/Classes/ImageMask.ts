@@ -2,19 +2,19 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { IImageMask } from "../Interfaces/IImageMask.js";
 
 export class ImageMask implements IImageMask, IOptionLoader<IImageMask> {
-    src: string;
+  src: string;
 
-    constructor() {
-        this.src = "";
+  constructor() {
+    this.src = "";
+  }
+
+  load(data?: RecursivePartial<IImageMask>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IImageMask>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.src !== undefined) {
-            this.src = data.src;
-        }
+    if (data.src !== undefined) {
+      this.src = data.src;
     }
+  }
 }

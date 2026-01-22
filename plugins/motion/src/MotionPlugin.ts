@@ -5,33 +5,33 @@ import { Motion } from "./Options/Classes/Motion.js";
 /**
  */
 export class MotionPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    constructor() {
-        this.id = "motion";
+  constructor() {
+    this.id = "motion";
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { MotionPluginInstance } = await import("./MotionPluginInstance.js");
+
+    return new MotionPluginInstance(container);
+  }
+
+  loadOptions(_container: Container, options: MotionOptions, source?: RecursivePartial<IMotionOptions>): void {
+    if (!this.needsPlugin()) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { MotionPluginInstance } = await import("./MotionPluginInstance.js");
+    let motionOptions = options.motion;
 
-        return new MotionPluginInstance(container);
+    if (!motionOptions?.load) {
+      options.motion = motionOptions = new Motion();
     }
 
-    loadOptions(_container: Container, options: MotionOptions, source?: RecursivePartial<IMotionOptions>): void {
-        if (!this.needsPlugin()) {
-            return;
-        }
+    motionOptions.load(source?.motion);
+  }
 
-        let motionOptions = options.motion;
-
-        if (!motionOptions?.load) {
-            options.motion = motionOptions = new Motion();
-        }
-
-        motionOptions.load(source?.motion);
-    }
-
-    needsPlugin(): boolean {
-        return true;
-    }
+  needsPlugin(): boolean {
+    return true;
+  }
 }

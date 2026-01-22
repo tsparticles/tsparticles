@@ -1,4 +1,4 @@
 export interface ISlowParticleData {
-    factor: number;
-    inRange: boolean;
+  factor: number;
+  inRange: boolean;
 }

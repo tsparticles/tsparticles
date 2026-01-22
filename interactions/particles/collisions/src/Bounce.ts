@@ -2,19 +2,19 @@ import { circleBounce, circleBounceDataFromParticle, getRangeValue } from "@tspa
 import { type CollisionParticle } from "./Types.js";
 
 type BounceParticle = CollisionParticle & {
-    collisionMaxSpeed?: number;
+  collisionMaxSpeed?: number;
 };
 
 const fixBounceSpeed = (p: BounceParticle): void => {
-    if (!p.options.collisions) {
-        return;
-    }
+  if (!p.options.collisions) {
+    return;
+  }
 
-    p.collisionMaxSpeed ??= getRangeValue(p.options.collisions.maxSpeed);
+  p.collisionMaxSpeed ??= getRangeValue(p.options.collisions.maxSpeed);
 
-    if (p.velocity.length > p.collisionMaxSpeed) {
-        p.velocity.length = p.collisionMaxSpeed;
-    }
+  if (p.velocity.length > p.collisionMaxSpeed) {
+    p.velocity.length = p.collisionMaxSpeed;
+  }
 };
 
 /**
@@ -22,8 +22,8 @@ const fixBounceSpeed = (p: BounceParticle): void => {
  * @param p2 - second particle to bounce
  */
 export function bounce(p1: BounceParticle, p2: BounceParticle): void {
-    circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
+  circleBounce(circleBounceDataFromParticle(p1), circleBounceDataFromParticle(p2));
 
-    fixBounceSpeed(p1);
-    fixBounceSpeed(p2);
+  fixBounceSpeed(p1);
+  fixBounceSpeed(p2);
 }

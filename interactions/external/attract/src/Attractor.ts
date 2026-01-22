@@ -1,12 +1,12 @@
 import type { AttractContainer, AttractMode, IAttractMode } from "./Types.js";
 import { type Engine, type RecursivePartial, isInArray, millisecondsToSeconds } from "@tsparticles/engine";
 import {
-    ExternalInteractorBase,
-    type IInteractivityData,
-    type IModes,
-    type InteractivityParticle,
-    type Modes,
-    mouseMoveEvent,
+  ExternalInteractorBase,
+  type IInteractivityData,
+  type IModes,
+  type InteractivityParticle,
+  type Modes,
+  mouseMoveEvent,
 } from "@tsparticles/plugin-interactivity";
 import { clickAttract, hoverAttract } from "./Utils.js";
 import { Attract } from "./Options/Classes/Attract.js";
@@ -17,116 +17,116 @@ const attractMode = "attract";
  * Particle external attract manager
  */
 export class Attractor extends ExternalInteractorBase<AttractContainer> {
-    handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
-    private readonly _engine;
+  private readonly _engine;
 
-    constructor(engine: Engine, container: AttractContainer) {
-        super(container);
+  constructor(engine: Engine, container: AttractContainer) {
+    super(container);
 
-        this._engine = engine;
+    this._engine = engine;
+
+    container.attract ??= { particles: [] };
+
+    this.handleClickMode = (mode, interactivityData): void => {
+      const options = this.container.actualOptions,
+        attract = options.interactivity?.modes.attract;
+
+      if (!attract || mode !== attractMode) {
+        return;
+      }
+
+      container.attract ??= { particles: [] };
+
+      container.attract.clicking = true;
+      container.attract.count = 0;
+
+      for (const particle of container.attract.particles) {
+        if (!this.isEnabled(interactivityData, particle)) {
+          continue;
+        }
+
+        particle.velocity.setTo(particle.initialVelocity);
+      }
+
+      container.attract.particles = [];
+      container.attract.finish = false;
+
+      setTimeout(() => {
+        if (container.destroyed) {
+          return;
+        }
 
         container.attract ??= { particles: [] };
 
-        this.handleClickMode = (mode, interactivityData): void => {
-            const options = this.container.actualOptions,
-                attract = options.interactivity?.modes.attract;
+        container.attract.clicking = false;
+      }, attract.duration * millisecondsToSeconds);
+    };
+  }
 
-            if (!attract || mode !== attractMode) {
-                return;
-            }
+  clear(): void {
+    // do nothing
+  }
 
-            container.attract ??= { particles: [] };
+  init(): void {
+    const container = this.container,
+      attract = container.actualOptions.interactivity?.modes.attract;
 
-            container.attract.clicking = true;
-            container.attract.count = 0;
-
-            for (const particle of container.attract.particles) {
-                if (!this.isEnabled(interactivityData, particle)) {
-                    continue;
-                }
-
-                particle.velocity.setTo(particle.initialVelocity);
-            }
-
-            container.attract.particles = [];
-            container.attract.finish = false;
-
-            setTimeout(() => {
-                if (container.destroyed) {
-                    return;
-                }
-
-                container.attract ??= { particles: [] };
-
-                container.attract.clicking = false;
-            }, attract.duration * millisecondsToSeconds);
-        };
+    if (!attract) {
+      return;
     }
 
-    clear(): void {
-        // do nothing
+    container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
+  }
+
+  interact(interactivityData: IInteractivityData): void {
+    const container = this.container,
+      options = container.actualOptions,
+      mouseMoveStatus = interactivityData.status === mouseMoveEvent,
+      events = options.interactivity?.events;
+
+    if (!events) {
+      return;
     }
 
-    init(): void {
-        const container = this.container,
-            attract = container.actualOptions.interactivity?.modes.attract;
+    const { enable: hoverEnabled, mode: hoverMode } = events.onHover,
+      { enable: clickEnabled, mode: clickMode } = events.onClick;
 
-        if (!attract) {
-            return;
-        }
+    if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
+      hoverAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
+    } else if (clickEnabled && isInArray(attractMode, clickMode)) {
+      clickAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
+    }
+  }
 
-        container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+    const container = this.container,
+      options = container.actualOptions,
+      mouse = interactivityData.mouse,
+      events = (particle?.interactivity ?? options.interactivity)?.events;
+
+    if ((!mouse.position || !events?.onHover.enable) && (!mouse.clickPosition || !events?.onClick.enable)) {
+      return false;
     }
 
-    interact(interactivityData: IInteractivityData): void {
-        const container = this.container,
-            options = container.actualOptions,
-            mouseMoveStatus = interactivityData.status === mouseMoveEvent,
-            events = options.interactivity?.events;
+    const hoverMode = events.onHover.mode,
+      clickMode = events.onClick.mode;
 
-        if (!events) {
-            return;
-        }
+    return isInArray(attractMode, hoverMode) || isInArray(attractMode, clickMode);
+  }
 
-        const { enable: hoverEnabled, mode: hoverMode } = events.onHover,
-            { enable: clickEnabled, mode: clickMode } = events.onClick;
+  loadModeOptions(
+    options: Modes & AttractMode,
+    ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
+  ): void {
+    options.attract ??= new Attract();
 
-        if (mouseMoveStatus && hoverEnabled && isInArray(attractMode, hoverMode)) {
-            hoverAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
-        } else if (clickEnabled && isInArray(attractMode, clickMode)) {
-            clickAttract(this._engine, this.container, interactivityData, p => this.isEnabled(interactivityData, p));
-        }
+    for (const source of sources) {
+      options.attract.load(source?.attract);
     }
+  }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
-        const container = this.container,
-            options = container.actualOptions,
-            mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? options.interactivity)?.events;
-
-        if ((!mouse.position || !events?.onHover.enable) && (!mouse.clickPosition || !events?.onClick.enable)) {
-            return false;
-        }
-
-        const hoverMode = events.onHover.mode,
-            clickMode = events.onClick.mode;
-
-        return isInArray(attractMode, hoverMode) || isInArray(attractMode, clickMode);
-    }
-
-    loadModeOptions(
-        options: Modes & AttractMode,
-        ...sources: RecursivePartial<(IModes & IAttractMode) | undefined>[]
-    ): void {
-        options.attract ??= new Attract();
-
-        for (const source of sources) {
-            options.attract.load(source?.attract);
-        }
-    }
-
-    reset(): void {
-        // do nothing
-    }
+  reset(): void {
+    // do nothing
+  }
 }

@@ -1,5 +1,5 @@
 /**
  */
 export interface IImageMask {
-    src: string;
+  src: string;
 }

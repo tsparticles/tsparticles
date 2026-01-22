@@ -4,35 +4,35 @@ import { GradientAngle } from "./GradientAngle.js";
 import type { IAnimatableGradient } from "../Interfaces/IAnimatableGradient.js";
 
 export class AnimatableGradient implements IAnimatableGradient, IOptionLoader<IAnimatableGradient> {
-    angle: GradientAngle;
-    colors: AnimatableGradientColor[];
-    type: GradientType;
+  angle: GradientAngle;
+  colors: AnimatableGradientColor[];
+  type: GradientType;
 
-    constructor() {
-        this.angle = new GradientAngle();
-        this.colors = [];
-        this.type = GradientType.random;
+  constructor() {
+    this.angle = new GradientAngle();
+    this.colors = [];
+    this.type = GradientType.random;
+  }
+
+  load(data?: RecursivePartial<IAnimatableGradient>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IAnimatableGradient>): void {
-        if (isNull(data)) {
-            return;
-        }
+    this.angle.load(data.angle);
 
-        this.angle.load(data.angle);
+    if (data.colors !== undefined) {
+      this.colors = data.colors.map(s => {
+        const tmp = new AnimatableGradientColor();
 
-        if (data.colors !== undefined) {
-            this.colors = data.colors.map(s => {
-                const tmp = new AnimatableGradientColor();
+        tmp.load(s);
 
-                tmp.load(s);
-
-                return tmp;
-            });
-        }
-
-        if (data.type !== undefined) {
-            this.type = data.type;
-        }
+        return tmp;
+      });
     }
+
+    if (data.type !== undefined) {
+      this.type = data.type;
+    }
+  }
 }

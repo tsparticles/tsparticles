@@ -5,26 +5,26 @@ import type { Repulse } from "./Options/Classes/Repulse.js";
 import type { RepulseOptions } from "./Options/Classes/RepulseOptions.js";
 
 export interface IRepulseMode {
-    repulse: IRepulse;
+  repulse: IRepulse;
 }
 
 export interface RepulseMode {
-    repulse?: Repulse;
+  repulse?: Repulse;
 }
 
 interface IContainerRepulse {
-    clicking?: boolean;
-    count?: number;
-    finish?: boolean;
-    particles: Particle[];
+  clicking?: boolean;
+  count?: number;
+  finish?: boolean;
+  particles: Particle[];
 }
 
 export type RepulseContainer = InteractivityContainer & {
-    actualOptions: RepulseOptions;
-    repulse?: IContainerRepulse;
-    retina: {
-        repulseModeDistance?: number;
-    };
+  actualOptions: RepulseOptions;
+  repulse?: IContainerRepulse;
+  retina: {
+    repulseModeDistance?: number;
+  };
 };
 
 /* export type RepulsParticle = Particle & {

@@ -4,16 +4,16 @@ import type { IBounce } from "./Options/Interfaces/IBounce.js";
 import type { InteractivityContainer } from "@tsparticles/plugin-interactivity";
 
 export interface IBounceMode {
-    bounce: IBounce;
+  bounce: IBounce;
 }
 
 export interface BounceMode {
-    bounce?: Bounce;
+  bounce?: Bounce;
 }
 
 export type BounceContainer = InteractivityContainer & {
-    actualOptions: BounceOptions;
-    retina: {
-        bounceModeDistance?: number;
-    };
+  actualOptions: BounceOptions;
+  retina: {
+    bounceModeDistance?: number;
+  };
 };

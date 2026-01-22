@@ -1,4 +1,4 @@
 export enum AnimationStatus {
-    increasing = "increasing",
-    decreasing = "decreasing",
+  increasing = "increasing",
+  decreasing = "decreasing",
 }

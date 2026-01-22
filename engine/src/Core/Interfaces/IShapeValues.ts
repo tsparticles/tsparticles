@@ -5,9 +5,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
  */
 
 export interface IShapeValues {
-    [key: string]: unknown;
+  [key: string]: unknown;
 
-    close?: boolean;
-    fill?: boolean;
-    particles?: RecursivePartial<IParticlesOptions>;
+  close?: boolean;
+  fill?: boolean;
+  particles?: RecursivePartial<IParticlesOptions>;
 }

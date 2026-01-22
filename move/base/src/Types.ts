@@ -3,20 +3,20 @@ import type { IParticleSpin } from "./IParticleSpin.js";
 import type { Particle } from "@tsparticles/engine";
 
 export type MoveParticle = Particle & {
-    /**
-     * Gets particle gravity options
-     */
-    gravity?: IParticleGravity;
+  /**
+   * Gets particle gravity options
+   */
+  gravity?: IParticleGravity;
 
+  /**
+   */
+  retina: {
     /**
      */
-    retina: {
-        /**
-         */
-        spinAcceleration?: number;
-    };
+    spinAcceleration?: number;
+  };
 
-    /**
-     */
-    spin?: IParticleSpin;
+  /**
+   */
+  spin?: IParticleSpin;
 };

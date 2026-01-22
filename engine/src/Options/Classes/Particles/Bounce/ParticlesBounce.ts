@@ -5,20 +5,20 @@ import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
 import { isNull } from "../../../../Utils/TypeUtils.js";
 
 export class ParticlesBounce implements IParticlesBounce, IOptionLoader<IParticlesBounce> {
-    readonly horizontal;
-    readonly vertical;
+  readonly horizontal;
+  readonly vertical;
 
-    constructor() {
-        this.horizontal = new ParticlesBounceFactor();
-        this.vertical = new ParticlesBounceFactor();
+  constructor() {
+    this.horizontal = new ParticlesBounceFactor();
+    this.vertical = new ParticlesBounceFactor();
+  }
+
+  load(data?: RecursivePartial<IParticlesBounce>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IParticlesBounce>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        this.horizontal.load(data.horizontal);
-        this.vertical.load(data.vertical);
-    }
+    this.horizontal.load(data.horizontal);
+    this.vertical.load(data.vertical);
+  }
 }

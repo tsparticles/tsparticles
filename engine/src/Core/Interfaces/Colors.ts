@@ -6,10 +6,10 @@ import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
  * [[include:Color.md]]
  */
 export interface IAlphaColor {
-    /**
-     * Color Alpha value
-     */
-    a: number;
+  /**
+   * Color Alpha value
+   */
+  a: number;
 }
 
 /**
@@ -17,12 +17,12 @@ export interface IAlphaColor {
  * [[include:Color.md]]
  */
 export interface IColor {
-    /**
-     * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
-     */
-    value: SingleOrMultiple<
-        IValueColor | IRgb | IHsl | IHsv | IHwb | ILab | ILch | IOklab | IOklch | SingleOrMultiple<string>
-    >;
+  /**
+   * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
+   */
+  value: SingleOrMultiple<
+    IValueColor | IRgb | IHsl | IHsv | IHwb | ILab | ILch | IOklab | IOklch | SingleOrMultiple<string>
+  >;
 }
 
 /**
@@ -30,20 +30,20 @@ export interface IColor {
  * [[include:Color.md]]
  */
 export interface IRangeColor {
-    /**
-     * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
-     */
-    value: SingleOrMultiple<
-        | IRangeValueColor
-        | IRangeRgb
-        | IRangeHsl
-        | IRangeHsv
-        | IRangeHwb
-        | IRangeLab
-        | IRangeLch
-        | IRangeOklab
-        | SingleOrMultiple<string>
-    >;
+  /**
+   * Color value, can be a single or an array of {@link IValueColor}, {@link IRgb}, {@link IHsl} or string
+   */
+  value: SingleOrMultiple<
+    | IRangeValueColor
+    | IRangeRgb
+    | IRangeHsl
+    | IRangeHsv
+    | IRangeHwb
+    | IRangeLab
+    | IRangeLch
+    | IRangeOklab
+    | SingleOrMultiple<string>
+  >;
 }
 
 /**
@@ -51,20 +51,20 @@ export interface IRangeColor {
  * [[include:Color.md]]
  */
 export interface IHsl {
-    /**
-     * Hue
-     */
-    h: number;
+  /**
+   * Hue
+   */
+  h: number;
 
-    /**
-     * Luminance
-     */
-    l: number;
+  /**
+   * Luminance
+   */
+  l: number;
 
-    /**
-     * Saturation
-     */
-    s: number;
+  /**
+   * Saturation
+   */
+  s: number;
 }
 
 /**
@@ -72,20 +72,20 @@ export interface IHsl {
  * [[include:Color.md]]
  */
 export interface IRangeHsl {
-    /**
-     * Hue
-     */
-    h: RangeValue;
+  /**
+   * Hue
+   */
+  h: RangeValue;
 
-    /**
-     * Luminance
-     */
-    l: RangeValue;
+  /**
+   * Luminance
+   */
+  l: RangeValue;
 
-    /**
-     * Saturation
-     */
-    s: RangeValue;
+  /**
+   * Saturation
+   */
+  s: RangeValue;
 }
 
 /**
@@ -99,20 +99,20 @@ export interface IHsla extends IHsl, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface IHsv {
-    /**
-     * Hue
-     */
-    h: number;
+  /**
+   * Hue
+   */
+  h: number;
 
-    /**
-     * Saturation
-     */
-    s: number;
+  /**
+   * Saturation
+   */
+  s: number;
 
-    /**
-     * Value
-     */
-    v: number;
+  /**
+   * Value
+   */
+  v: number;
 }
 
 /**
@@ -120,20 +120,20 @@ export interface IHsv {
  * [[include:Color.md]]
  */
 export interface IRangeHsv {
-    /**
-     * Hue
-     */
-    h: RangeValue;
+  /**
+   * Hue
+   */
+  h: RangeValue;
 
-    /**
-     * Saturation
-     */
-    s: RangeValue;
+  /**
+   * Saturation
+   */
+  s: RangeValue;
 
-    /**
-     * Value
-     */
-    v: RangeValue;
+  /**
+   * Value
+   */
+  v: RangeValue;
 }
 
 /**
@@ -147,20 +147,20 @@ export interface IHsva extends IHsv, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface IRgb {
-    /**
-     * Blue
-     */
-    b: number;
+  /**
+   * Blue
+   */
+  b: number;
 
-    /**
-     * Green
-     */
-    g: number;
+  /**
+   * Green
+   */
+  g: number;
 
-    /**
-     * Red
-     */
-    r: number;
+  /**
+   * Red
+   */
+  r: number;
 }
 
 /**
@@ -168,20 +168,20 @@ export interface IRgb {
  * [[include:Color.md]]
  */
 export interface IRangeRgb {
-    /**
-     * Blue
-     */
-    b: RangeValue;
+  /**
+   * Blue
+   */
+  b: RangeValue;
 
-    /**
-     * Green
-     */
-    g: RangeValue;
+  /**
+   * Green
+   */
+  g: RangeValue;
 
-    /**
-     * Red
-     */
-    r: RangeValue;
+  /**
+   * Red
+   */
+  r: RangeValue;
 }
 
 /**
@@ -195,20 +195,20 @@ export interface IRgba extends IRgb, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface IOklch {
-    /**
-     * Chroma
-     */
-    c: number;
+  /**
+   * Chroma
+   */
+  c: number;
 
-    /**
-     * Hue
-     */
-    h: number;
+  /**
+   * Hue
+   */
+  h: number;
 
-    /**
-     * Lightness
-     */
-    l: number;
+  /**
+   * Lightness
+   */
+  l: number;
 }
 
 /**
@@ -216,20 +216,20 @@ export interface IOklch {
  * [[include:Color.md]]
  */
 export interface ILch {
-    /**
-     * Chroma
-     */
-    c: number;
+  /**
+   * Chroma
+   */
+  c: number;
 
-    /**
-     * Hue
-     */
-    h: number;
+  /**
+   * Hue
+   */
+  h: number;
 
-    /**
-     * Lightness
-     */
-    l: number;
+  /**
+   * Lightness
+   */
+  l: number;
 }
 
 /**
@@ -237,20 +237,20 @@ export interface ILch {
  * [[include:Color.md]]
  */
 export interface IRangeOklch {
-    /**
-     * Chroma
-     */
-    c: RangeValue;
+  /**
+   * Chroma
+   */
+  c: RangeValue;
 
-    /**
-     * Hue
-     */
-    h: RangeValue;
+  /**
+   * Hue
+   */
+  h: RangeValue;
 
-    /**
-     * Lightness
-     */
-    l: RangeValue;
+  /**
+   * Lightness
+   */
+  l: RangeValue;
 }
 
 /**
@@ -258,20 +258,20 @@ export interface IRangeOklch {
  * [[include:Color.md]]
  */
 export interface IRangeLch {
-    /**
-     * Chroma
-     */
-    c: RangeValue;
+  /**
+   * Chroma
+   */
+  c: RangeValue;
 
-    /**
-     * Hue
-     */
-    h: RangeValue;
+  /**
+   * Hue
+   */
+  h: RangeValue;
 
-    /**
-     * Lightness
-     */
-    l: RangeValue;
+  /**
+   * Lightness
+   */
+  l: RangeValue;
 }
 
 /**
@@ -291,20 +291,20 @@ export interface ILcha extends ILch, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface IOklab {
-    /**
-     * a axis (green–red)
-     */
-    aAxis: number;
+  /**
+   * a axis (green–red)
+   */
+  aAxis: number;
 
-    /**
-     * b axis (blue–yellow)
-     */
-    bAxis: number;
+  /**
+   * b axis (blue–yellow)
+   */
+  bAxis: number;
 
-    /**
-     * Lightness
-     */
-    l: number;
+  /**
+   * Lightness
+   */
+  l: number;
 }
 
 /**
@@ -312,20 +312,20 @@ export interface IOklab {
  * [[include:Color.md]]
  */
 export interface IRangeOklab {
-    /**
-     * a axis (green–red)
-     */
-    aAxis: RangeValue;
+  /**
+   * a axis (green–red)
+   */
+  aAxis: RangeValue;
 
-    /**
-     * b axis (blue–yellow)
-     */
-    bAxis: RangeValue;
+  /**
+   * b axis (blue–yellow)
+   */
+  bAxis: RangeValue;
 
-    /**
-     * Lightness
-     */
-    l: RangeValue;
+  /**
+   * Lightness
+   */
+  l: RangeValue;
 }
 
 /**
@@ -339,20 +339,20 @@ export interface IOklaba extends IOklab, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface ILab {
-    /**
-     * a axis (green–red)
-     */
-    aAxis: number;
+  /**
+   * a axis (green–red)
+   */
+  aAxis: number;
 
-    /**
-     * b axis (blue–yellow)
-     */
-    bAxis: number;
+  /**
+   * b axis (blue–yellow)
+   */
+  bAxis: number;
 
-    /**
-     * Lightness
-     */
-    l: number;
+  /**
+   * Lightness
+   */
+  l: number;
 }
 
 /**
@@ -360,20 +360,20 @@ export interface ILab {
  * [[include:Color.md]]
  */
 export interface IRangeLab {
-    /**
-     * a axis (green–red)
-     */
-    aAxis: RangeValue;
+  /**
+   * a axis (green–red)
+   */
+  aAxis: RangeValue;
 
-    /**
-     * b axis (blue–yellow)
-     */
-    bAxis: RangeValue;
+  /**
+   * b axis (blue–yellow)
+   */
+  bAxis: RangeValue;
 
-    /**
-     * Lightness
-     */
-    l: RangeValue;
+  /**
+   * Lightness
+   */
+  l: RangeValue;
 }
 
 /**
@@ -387,9 +387,9 @@ export interface ILaba extends IOklab, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface IHwb {
-    b: number;
-    h: number;
-    w: number;
+  b: number;
+  h: number;
+  w: number;
 }
 
 /**
@@ -402,9 +402,9 @@ export interface IHwba extends IHwb, IAlphaColor {}
  * Range HWB Color
  */
 export interface IRangeHwb {
-    b: RangeValue;
-    h: RangeValue;
-    w: RangeValue;
+  b: RangeValue;
+  h: RangeValue;
+  w: RangeValue;
 }
 
 /**
@@ -417,45 +417,45 @@ export interface IRangeHwba extends IRangeHwb, IAlphaColor {}
  * [[include:Color.md]]
  */
 export interface IValueColor {
-    /**
-     * Hsl value
-     */
-    hsl?: IHsl;
+  /**
+   * Hsl value
+   */
+  hsl?: IHsl;
 
-    /**
-     * Hsv value
-     */
-    hsv?: IHsv;
+  /**
+   * Hsv value
+   */
+  hsv?: IHsv;
 
-    /**
-     * HWB value
-     */
-    hwb?: IHwb;
+  /**
+   * HWB value
+   */
+  hwb?: IHwb;
 
-    /**
-     * Lab Value
-     */
-    lab?: ILab;
+  /**
+   * Lab Value
+   */
+  lab?: ILab;
 
-    /**
-     * Lch Value
-     */
-    lch?: ILch;
+  /**
+   * Lch Value
+   */
+  lch?: ILch;
 
-    /**
-     * Oklab Value
-     */
-    oklab?: IOklab;
+  /**
+   * Oklab Value
+   */
+  oklab?: IOklab;
 
-    /**
-     * Oklch Value
-     */
-    oklch?: IOklch;
+  /**
+   * Oklch Value
+   */
+  oklch?: IOklch;
 
-    /**
-     * Rgb Value
-     */
-    rgb?: IRgb;
+  /**
+   * Rgb Value
+   */
+  rgb?: IRgb;
 }
 
 /**
@@ -463,43 +463,43 @@ export interface IValueColor {
  * [[include:Color.md]]
  */
 export interface IRangeValueColor {
-    /**
-     * Hsl value
-     */
-    hsl?: IRangeHsl;
+  /**
+   * Hsl value
+   */
+  hsl?: IRangeHsl;
 
-    /**
-     * Hsv value
-     */
-    hsv?: IRangeHsv;
+  /**
+   * Hsv value
+   */
+  hsv?: IRangeHsv;
 
-    /**
-     * HWB value
-     */
-    hwb?: IRangeHwb;
+  /**
+   * HWB value
+   */
+  hwb?: IRangeHwb;
 
-    /**
-     * Lab Value
-     */
-    lab?: IRangeLab;
+  /**
+   * Lab Value
+   */
+  lab?: IRangeLab;
 
-    /**
-     * Lch Value
-     */
-    lch?: IRangeLch;
+  /**
+   * Lch Value
+   */
+  lch?: IRangeLch;
 
-    /**
-     * Oklab Value
-     */
-    oklab?: IRangeOklab;
+  /**
+   * Oklab Value
+   */
+  oklab?: IRangeOklab;
 
-    /**
-     * Oklch Value
-     */
-    oklch?: IRangeOklch;
+  /**
+   * Oklch Value
+   */
+  oklch?: IRangeOklch;
 
-    /**
-     * Rgb Value
-     */
-    rgb?: IRangeRgb;
+  /**
+   * Rgb Value
+   */
+  rgb?: IRangeRgb;
 }

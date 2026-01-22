@@ -4,13 +4,13 @@ import type { Trail } from "./Options/Classes/Trail.js";
 import type { TrailOptions } from "./Options/Classes/TrailOptions.js";
 
 export interface ITrailMode {
-    trail: ITrail;
+  trail: ITrail;
 }
 
 export interface TrailMode {
-    trail?: Trail;
+  trail?: Trail;
 }
 
 export type TrailContainer = InteractivityContainer & {
-    actualOptions: TrailOptions;
+  actualOptions: TrailOptions;
 };

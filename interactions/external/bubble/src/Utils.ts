@@ -8,20 +8,20 @@ import { clamp } from "@tsparticles/engine";
  * @returns the calculated value
  */
 export function calculateBubbleValue(
-    particleValue: number,
-    modeValue: number,
-    optionsValue: number,
-    ratio: number,
+  particleValue: number,
+  modeValue: number,
+  optionsValue: number,
+  ratio: number,
 ): number | undefined {
-    if (modeValue >= optionsValue) {
-        const value = particleValue + (modeValue - optionsValue) * ratio;
+  if (modeValue >= optionsValue) {
+    const value = particleValue + (modeValue - optionsValue) * ratio;
 
-        return clamp(value, particleValue, modeValue);
-    } else if (modeValue < optionsValue) {
-        const value = particleValue - (optionsValue - modeValue) * ratio;
+    return clamp(value, particleValue, modeValue);
+  } else if (modeValue < optionsValue) {
+    const value = particleValue - (optionsValue - modeValue) * ratio;
 
-        return clamp(value, modeValue, particleValue);
-    }
+    return clamp(value, modeValue, particleValue);
+  }
 
-    return undefined;
+  return undefined;
 }

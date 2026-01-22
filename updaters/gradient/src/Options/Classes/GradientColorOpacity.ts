@@ -1,39 +1,39 @@
 import {
-    type IAnimatable,
-    type IAnimation,
-    type IOptionLoader,
-    type RangeValue,
-    type RecursivePartial,
-    isNull,
-    setRangeValue,
+  type IAnimatable,
+  type IAnimation,
+  type IOptionLoader,
+  type RangeValue,
+  type RecursivePartial,
+  isNull,
+  setRangeValue,
 } from "@tsparticles/engine";
 import { GradientColorOpacityAnimation } from "./GradientColorOpacityAnimation.js";
 import type { IGradientColorOpacity } from "../Interfaces/Gradients.js";
 import type { IGradientColorOpacityAnimation } from "../Interfaces/IOptionsGradient.js";
 
 export class GradientColorOpacity
-    implements
-        IGradientColorOpacity,
-        IAnimatable<GradientColorOpacityAnimation>,
-        IOptionLoader<IGradientColorOpacity & IAnimatable<IGradientColorOpacityAnimation>>
+  implements
+    IGradientColorOpacity,
+    IAnimatable<GradientColorOpacityAnimation>,
+    IOptionLoader<IGradientColorOpacity & IAnimatable<IGradientColorOpacityAnimation>>
 {
-    animation;
-    value: RangeValue;
+  animation;
+  value: RangeValue;
 
-    constructor() {
-        this.value = 0;
-        this.animation = new GradientColorOpacityAnimation();
+  constructor() {
+    this.value = 0;
+    this.animation = new GradientColorOpacityAnimation();
+  }
+
+  load(data?: RecursivePartial<IGradientColorOpacity & IAnimatable<IAnimation>>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IGradientColorOpacity & IAnimatable<IAnimation>>): void {
-        if (isNull(data)) {
-            return;
-        }
+    this.animation.load(data.animation);
 
-        this.animation.load(data.animation);
-
-        if (data.value !== undefined) {
-            this.value = setRangeValue(data.value);
-        }
+    if (data.value !== undefined) {
+      this.value = setRangeValue(data.value);
     }
+  }
 }

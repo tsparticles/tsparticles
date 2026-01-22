@@ -5,64 +5,64 @@ import type { CustomEventListener } from "../Types/CustomEventListener.js";
 /**
  */
 export class EventDispatcher {
-    private _listeners: Map<string, CustomEventListener[]>;
+  private _listeners: Map<string, CustomEventListener[]>;
 
-    constructor() {
-        this._listeners = new Map<string, CustomEventListener[]>();
+  constructor() {
+    this._listeners = new Map<string, CustomEventListener[]>();
+  }
+
+  addEventListener(type: string, listener: CustomEventListener): void {
+    this.removeEventListener(type, listener);
+
+    let arr = this._listeners.get(type);
+
+    if (!arr) {
+      arr = [];
+
+      this._listeners.set(type, arr);
     }
 
-    addEventListener(type: string, listener: CustomEventListener): void {
-        this.removeEventListener(type, listener);
+    arr.push(listener);
+  }
 
-        let arr = this._listeners.get(type);
+  dispatchEvent(type: string, args?: CustomEventArgs): void {
+    const listeners = this._listeners.get(type);
 
-        if (!arr) {
-            arr = [];
+    listeners?.forEach(handler => {
+      handler(args);
+    });
+  }
 
-            this._listeners.set(type, arr);
-        }
+  hasEventListener(type: string): boolean {
+    return !!this._listeners.get(type);
+  }
 
-        arr.push(listener);
+  removeAllEventListeners(type?: string): void {
+    if (!type) {
+      this._listeners = new Map<string, CustomEventListener[]>();
+    } else {
+      this._listeners.delete(type);
+    }
+  }
+
+  removeEventListener(type: string, listener: CustomEventListener): void {
+    const arr = this._listeners.get(type);
+
+    if (!arr) {
+      return;
     }
 
-    dispatchEvent(type: string, args?: CustomEventArgs): void {
-        const listeners = this._listeners.get(type);
+    const length = arr.length,
+      idx = arr.indexOf(listener);
 
-        listeners?.forEach(handler => {
-            handler(args);
-        });
+    if (idx < minIndex) {
+      return;
     }
 
-    hasEventListener(type: string): boolean {
-        return !!this._listeners.get(type);
+    if (length === deleteCount) {
+      this._listeners.delete(type);
+    } else {
+      arr.splice(idx, deleteCount);
     }
-
-    removeAllEventListeners(type?: string): void {
-        if (!type) {
-            this._listeners = new Map<string, CustomEventListener[]>();
-        } else {
-            this._listeners.delete(type);
-        }
-    }
-
-    removeEventListener(type: string, listener: CustomEventListener): void {
-        const arr = this._listeners.get(type);
-
-        if (!arr) {
-            return;
-        }
-
-        const length = arr.length,
-            idx = arr.indexOf(listener);
-
-        if (idx < minIndex) {
-            return;
-        }
-
-        if (length === deleteCount) {
-            this._listeners.delete(type);
-        } else {
-            arr.splice(idx, deleteCount);
-        }
-    }
+  }
 }

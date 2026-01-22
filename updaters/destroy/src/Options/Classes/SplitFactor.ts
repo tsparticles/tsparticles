@@ -1,9 +1,9 @@
 import { ValueWithRandom } from "@tsparticles/engine";
 
 export class SplitFactor extends ValueWithRandom {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.value = 3;
-    }
+    this.value = 3;
+  }
 }

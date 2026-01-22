@@ -7,19 +7,19 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadExternalSlowInteraction(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: InteractivityEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+  await engine.register(async (e: InteractivityEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.addInteractor?.("externalSlow", async container => {
-            const { Slower } = await import("./Slower.js");
+    e.addInteractor?.("externalSlow", async container => {
+      const { Slower } = await import("./Slower.js");
 
-            return new Slower(container);
-        });
+      return new Slower(container);
     });
+  });
 }
 
 export * from "./Options/Classes/Slow.js";

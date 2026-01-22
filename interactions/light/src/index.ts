@@ -7,24 +7,24 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadLightInteraction(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: InteractivityEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+  await engine.register(async (e: InteractivityEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.addInteractor?.("externalLight", async container => {
-            const { ExternalLighter } = await import("./ExternalLighter.js");
+    e.addInteractor?.("externalLight", async container => {
+      const { ExternalLighter } = await import("./ExternalLighter.js");
 
-            return new ExternalLighter(container, engine);
-        });
-        e.addInteractor?.("particlesLight", async container => {
-            const { ParticlesLighter } = await import("./ParticlesLighter.js");
-
-            return new ParticlesLighter(container, engine);
-        });
+      return new ExternalLighter(container, engine);
     });
+    e.addInteractor?.("particlesLight", async container => {
+      const { ParticlesLighter } = await import("./ParticlesLighter.js");
+
+      return new ParticlesLighter(container, engine);
+    });
+  });
 }
 
 export * from "./Options/Classes/Light.js";

@@ -3,7 +3,7 @@ import type { IGrabLinks } from "./IGrabLinks.js";
 /**
  */
 export interface IGrab {
-    distance: number;
+  distance: number;
 
-    links: IGrabLinks;
+  links: IGrabLinks;
 }

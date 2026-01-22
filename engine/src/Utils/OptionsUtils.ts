@@ -10,12 +10,12 @@ import type { RecursivePartial } from "../Types/RecursivePartial.js";
  * @param sourceOptionsArr -
  */
 export function loadOptions<T>(
-    options: IOptionLoader<T>,
-    ...sourceOptionsArr: RecursivePartial<T | undefined>[]
+  options: IOptionLoader<T>,
+  ...sourceOptionsArr: RecursivePartial<T | undefined>[]
 ): void {
-    for (const sourceOptions of sourceOptionsArr) {
-        options.load(sourceOptions);
-    }
+  for (const sourceOptions of sourceOptionsArr) {
+    options.load(sourceOptions);
+  }
 }
 
 /**
@@ -25,13 +25,13 @@ export function loadOptions<T>(
  * @returns the newly created {@link ParticlesOptions} object
  */
 export function loadParticlesOptions(
-    engine: Engine,
-    container: Container,
-    ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
+  engine: Engine,
+  container: Container,
+  ...sourceOptionsArr: RecursivePartial<IParticlesOptions | undefined>[]
 ): ParticlesOptions {
-    const options = new ParticlesOptions(engine, container);
+  const options = new ParticlesOptions(engine, container);
 
-    loadOptions(options, ...sourceOptionsArr);
+  loadOptions(options, ...sourceOptionsArr);
 
-    return options;
+  return options;
 }

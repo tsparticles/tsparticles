@@ -4,16 +4,16 @@ import type { Slow } from "./Options/Classes/Slow.js";
 import type { SlowOptions } from "./Options/Classes/SlowOptions.js";
 
 export interface ISlowMode {
-    slow: ISlow;
+  slow: ISlow;
 }
 
 export interface SlowMode {
-    slow?: Slow;
+  slow?: Slow;
 }
 
 export type SlowContainer = InteractivityContainer & {
-    actualOptions: SlowOptions;
-    retina: {
-        slowModeRadius?: number;
-    };
+  actualOptions: SlowOptions;
+  retina: {
+    slowModeRadius?: number;
+  };
 };

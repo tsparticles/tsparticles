@@ -6,11 +6,11 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadExportImagePlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { ExportImagePlugin } = await import("./ExportImagePlugin.js");
+  await engine.register(async e => {
+    const { ExportImagePlugin } = await import("./ExportImagePlugin.js");
 
-        e.addPlugin(new ExportImagePlugin());
-    });
+    e.addPlugin(new ExportImagePlugin());
+  });
 }

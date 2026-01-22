@@ -5,43 +5,43 @@ import { Blend } from "./Options/Classes/Blend.js";
 /**
  */
 export class BlendPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    constructor() {
-        this.id = "blend";
+  constructor() {
+    this.id = "blend";
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { BlendPluginInstance } = await import("./BlendPluginInstance.js");
+
+    return new BlendPluginInstance(container);
+  }
+
+  loadOptions(_container: Container, options: BlendOptions, source?: RecursivePartial<IBlendOptions>): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { BlendPluginInstance } = await import("./BlendPluginInstance.js");
+    let blendOptions = options.blend;
 
-        return new BlendPluginInstance(container);
+    if (!blendOptions?.load) {
+      options.blend = blendOptions = new Blend();
     }
 
-    loadOptions(_container: Container, options: BlendOptions, source?: RecursivePartial<IBlendOptions>): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    blendOptions.load(source?.blend);
+  }
 
-        let blendOptions = options.blend;
+  loadParticlesOptions(
+    _container: Container,
+    options: BlendParticlesOptions,
+    source?: RecursivePartial<IBlendParticlesOptions>,
+  ): void {
+    options.blend ??= new Blend();
 
-        if (!blendOptions?.load) {
-            options.blend = blendOptions = new Blend();
-        }
+    options.blend.load(source?.blend);
+  }
 
-        blendOptions.load(source?.blend);
-    }
-
-    loadParticlesOptions(
-        _container: Container,
-        options: BlendParticlesOptions,
-        source?: RecursivePartial<IBlendParticlesOptions>,
-    ): void {
-        options.blend ??= new Blend();
-
-        options.blend.load(source?.blend);
-    }
-
-    needsPlugin(options?: RecursivePartial<IBlendOptions>): boolean {
-        return !!options?.blend?.enable || !!options?.particles?.blend?.enable;
-    }
+  needsPlugin(options?: RecursivePartial<IBlendOptions>): boolean {
+    return !!options?.blend?.enable || !!options?.particles?.blend?.enable;
+  }
 }

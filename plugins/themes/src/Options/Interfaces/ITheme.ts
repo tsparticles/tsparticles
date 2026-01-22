@@ -6,18 +6,18 @@ import type { IThemeDefault } from "./IThemeDefault.js";
  * [[include:Options/Themes.md]]
  */
 export interface ITheme {
-    /**
-     * Options to set the default theme
-     */
-    default: IThemeDefault;
+  /**
+   * Options to set the default theme
+   */
+  default: IThemeDefault;
 
-    /**
-     * Theme name, use it when changing theme
-     */
-    name: string;
+  /**
+   * Theme name, use it when changing theme
+   */
+  name: string;
 
-    /**
-     * All options the theme will override
-     */
-    options?: ISourceOptions;
+  /**
+   * All options the theme will override
+   */
+  options?: ISourceOptions;
 }

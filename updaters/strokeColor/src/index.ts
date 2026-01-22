@@ -6,13 +6,13 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadStrokeColorUpdater(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(e => {
-        e.addParticleUpdater("strokeColor", async container => {
-            const { StrokeColorUpdater } = await import("./StrokeColorUpdater.js");
+  await engine.register(e => {
+    e.addParticleUpdater("strokeColor", async container => {
+      const { StrokeColorUpdater } = await import("./StrokeColorUpdater.js");
 
-            return new StrokeColorUpdater(e, container);
-        });
+      return new StrokeColorUpdater(e, container);
     });
+  });
 }

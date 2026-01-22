@@ -22,104 +22,104 @@ import { isNull } from "../../../Utils/TypeUtils.js";
  * [[include:Options/Particles.md]]
  */
 export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParticlesOptions> {
-    [name: string]: unknown;
+  [name: string]: unknown;
 
-    readonly bounce;
-    color;
-    readonly effect;
-    readonly groups: ParticlesGroups;
-    readonly move;
-    readonly number;
-    readonly opacity;
-    reduceDuplicates;
-    readonly shape;
-    readonly size;
-    stroke: SingleOrMultiple<Stroke>;
-    readonly zIndex;
+  readonly bounce;
+  color;
+  readonly effect;
+  readonly groups: ParticlesGroups;
+  readonly move;
+  readonly number;
+  readonly opacity;
+  reduceDuplicates;
+  readonly shape;
+  readonly size;
+  stroke: SingleOrMultiple<Stroke>;
+  readonly zIndex;
 
-    private readonly _container;
-    private readonly _engine;
+  private readonly _container;
+  private readonly _engine;
 
-    constructor(engine: Engine, container?: Container) {
-        this._engine = engine;
-        this._container = container;
+  constructor(engine: Engine, container?: Container) {
+    this._engine = engine;
+    this._container = container;
 
-        this.bounce = new ParticlesBounce();
-        this.color = new AnimatableColor();
-        this.color.value = "#fff";
-        this.effect = new Effect();
-        this.groups = {};
-        this.move = new Move();
-        this.number = new ParticlesNumber();
-        this.opacity = new Opacity();
-        this.reduceDuplicates = false;
-        this.shape = new Shape();
-        this.size = new Size();
-        this.stroke = new Stroke();
-        this.zIndex = new ZIndex();
+    this.bounce = new ParticlesBounce();
+    this.color = new AnimatableColor();
+    this.color.value = "#fff";
+    this.effect = new Effect();
+    this.groups = {};
+    this.move = new Move();
+    this.number = new ParticlesNumber();
+    this.opacity = new Opacity();
+    this.reduceDuplicates = false;
+    this.shape = new Shape();
+    this.size = new Size();
+    this.stroke = new Stroke();
+    this.zIndex = new ZIndex();
+  }
+
+  load(data?: RecursivePartial<IParticlesOptions>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IParticlesOptions>): void {
-        if (isNull(data)) {
-            return;
+    if (data.groups !== undefined) {
+      for (const group of Object.keys(data.groups)) {
+        if (!Object.hasOwn(data.groups, group)) {
+          continue;
         }
 
-        if (data.groups !== undefined) {
-            for (const group of Object.keys(data.groups)) {
-                if (!Object.hasOwn(data.groups, group)) {
-                    continue;
-                }
+        const item = data.groups[group];
 
-                const item = data.groups[group];
-
-                if (item !== undefined) {
-                    this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
-                }
-            }
+        if (item !== undefined) {
+          this.groups[group] = deepExtend(this.groups[group] ?? {}, item) as IParticlesOptions;
         }
-
-        if (data.reduceDuplicates !== undefined) {
-            this.reduceDuplicates = data.reduceDuplicates;
-        }
-
-        this.bounce.load(data.bounce);
-        this.color.load(AnimatableColor.create(this.color, data.color));
-        this.effect.load(data.effect);
-        this.move.load(data.move);
-        this.number.load(data.number);
-        this.opacity.load(data.opacity);
-        this.shape.load(data.shape);
-        this.size.load(data.size);
-        this.zIndex.load(data.zIndex);
-
-        const strokeToLoad = data.stroke;
-
-        if (strokeToLoad) {
-            this.stroke = executeOnSingleOrMultiple(strokeToLoad, t => {
-                const tmp = new Stroke();
-
-                tmp.load(t);
-
-                return tmp;
-            });
-        }
-
-        if (this._container) {
-            for (const plugin of this._engine.plugins) {
-                if (plugin.loadParticlesOptions) {
-                    plugin.loadParticlesOptions(this._container, this, data);
-                }
-            }
-
-            const updaters = this._engine.updaters.get(this._container);
-
-            if (updaters) {
-                for (const updater of updaters) {
-                    if (updater.loadOptions) {
-                        updater.loadOptions(this, data);
-                    }
-                }
-            }
-        }
+      }
     }
+
+    if (data.reduceDuplicates !== undefined) {
+      this.reduceDuplicates = data.reduceDuplicates;
+    }
+
+    this.bounce.load(data.bounce);
+    this.color.load(AnimatableColor.create(this.color, data.color));
+    this.effect.load(data.effect);
+    this.move.load(data.move);
+    this.number.load(data.number);
+    this.opacity.load(data.opacity);
+    this.shape.load(data.shape);
+    this.size.load(data.size);
+    this.zIndex.load(data.zIndex);
+
+    const strokeToLoad = data.stroke;
+
+    if (strokeToLoad) {
+      this.stroke = executeOnSingleOrMultiple(strokeToLoad, t => {
+        const tmp = new Stroke();
+
+        tmp.load(t);
+
+        return tmp;
+      });
+    }
+
+    if (this._container) {
+      for (const plugin of this._engine.plugins) {
+        if (plugin.loadParticlesOptions) {
+          plugin.loadParticlesOptions(this._container, this, data);
+        }
+      }
+
+      const updaters = this._engine.updaters.get(this._container);
+
+      if (updaters) {
+        for (const updater of updaters) {
+          if (updater.loadOptions) {
+            updater.loadOptions(this, data);
+          }
+        }
+      }
+    }
+  }
 }

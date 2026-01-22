@@ -2,22 +2,22 @@ import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull } fr
 import type { ILifeDuration } from "../Interfaces/ILifeDuration.js";
 
 export class LifeDuration extends ValueWithRandom implements ILifeDuration, IOptionLoader<ILifeDuration> {
-    sync;
+  sync;
 
-    constructor() {
-        super();
-        this.sync = false;
+  constructor() {
+    super();
+    this.sync = false;
+  }
+
+  override load(data?: RecursivePartial<ILifeDuration>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<ILifeDuration>): void {
-        if (isNull(data)) {
-            return;
-        }
+    super.load(data);
 
-        super.load(data);
-
-        if (data.sync !== undefined) {
-            this.sync = data.sync;
-        }
+    if (data.sync !== undefined) {
+      this.sync = data.sync;
     }
+  }
 }

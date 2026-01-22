@@ -9,13 +9,13 @@ import blackHole from "./blackHole.js";
 import bubble from "./bubble.js";
 
 export default {
-    backgroundMask,
-    backgroundMaskImage,
-    basic,
-    big,
-    bigBlend,
-    bigBlendCombo,
-    bigBlendParticle,
-    blackHole,
-    bubble,
+  backgroundMask,
+  backgroundMaskImage,
+  basic,
+  big,
+  bigBlend,
+  bigBlendCombo,
+  bigBlendParticle,
+  blackHole,
+  bubble,
 };

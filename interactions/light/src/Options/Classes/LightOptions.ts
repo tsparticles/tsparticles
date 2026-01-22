@@ -2,13 +2,13 @@ import type { InteractivityOptions, InteractivityParticlesOptions } from "@tspar
 import type { LightMode } from "../../Types.js";
 
 export type LightOptions = InteractivityOptions & {
-    interactivity?: {
-        modes: LightMode;
-    };
+  interactivity?: {
+    modes: LightMode;
+  };
 };
 
 export type LightParticlesOptions = InteractivityParticlesOptions & {
-    interactivity?: {
-        modes: LightMode;
-    };
+  interactivity?: {
+    modes: LightMode;
+  };
 };

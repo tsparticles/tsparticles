@@ -11,30 +11,30 @@ declare const __VERSION__: string;
  * @param engine - the engine to use for loading all plugins
  */
 export async function loadBasic(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color"),
-            { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color"),
-            { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color"),
-            { loadBaseMover } = await import("@tsparticles/move-base"),
-            { loadCircleShape } = await import("@tsparticles/shape-circle"),
-            { loadColorUpdater } = await import("@tsparticles/updater-color"),
-            { loadOpacityUpdater } = await import("@tsparticles/updater-opacity"),
-            { loadOutModesUpdater } = await import("@tsparticles/updater-out-modes"),
-            { loadSizeUpdater } = await import("@tsparticles/updater-size");
+  await engine.register(async e => {
+    const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color"),
+      { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color"),
+      { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color"),
+      { loadBaseMover } = await import("@tsparticles/move-base"),
+      { loadCircleShape } = await import("@tsparticles/shape-circle"),
+      { loadColorUpdater } = await import("@tsparticles/updater-color"),
+      { loadOpacityUpdater } = await import("@tsparticles/updater-opacity"),
+      { loadOutModesUpdater } = await import("@tsparticles/updater-out-modes"),
+      { loadSizeUpdater } = await import("@tsparticles/updater-size");
 
-        await loadHexColorPlugin(e);
-        await loadHslColorPlugin(e);
-        await loadRgbColorPlugin(e);
+    await loadHexColorPlugin(e);
+    await loadHslColorPlugin(e);
+    await loadRgbColorPlugin(e);
 
-        await loadBaseMover(e);
+    await loadBaseMover(e);
 
-        await loadCircleShape(e);
+    await loadCircleShape(e);
 
-        await loadColorUpdater(e);
-        await loadOpacityUpdater(e);
-        await loadOutModesUpdater(e);
-        await loadSizeUpdater(e);
-    });
+    await loadColorUpdater(e);
+    await loadOpacityUpdater(e);
+    await loadOutModesUpdater(e);
+    await loadSizeUpdater(e);
+  });
 }

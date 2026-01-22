@@ -7,17 +7,17 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadParticlesAttractInteraction(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: InteractivityEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+  await engine.register(async (e: InteractivityEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.addInteractor?.("particlesAttract", async container => {
-            const { Attractor } = await import("./Attractor.js");
+    e.addInteractor?.("particlesAttract", async container => {
+      const { Attractor } = await import("./Attractor.js");
 
-            return new Attractor(container);
-        });
+      return new Attractor(container);
     });
+  });
 }

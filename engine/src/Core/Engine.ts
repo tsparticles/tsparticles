@@ -5,16 +5,16 @@
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import type { Initializers, MoverInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
 import {
-    canvasFirstIndex,
-    canvasTag,
-    generatedAttribute,
-    generatedFalse,
-    generatedTrue,
-    loadMinIndex,
-    loadRandomFactor,
-    none,
-    one,
-    removeDeleteCount,
+  canvasFirstIndex,
+  canvasTag,
+  generatedAttribute,
+  generatedFalse,
+  generatedTrue,
+  loadMinIndex,
+  loadRandomFactor,
+  none,
+  one,
+  removeDeleteCount,
 } from "./Utils/Constants.js";
 import { getItemsFromInitializer, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
@@ -44,13 +44,13 @@ declare const __VERSION__: string;
 const fullPercent = "100%";
 
 declare global {
-    var tsParticles: Engine;
+  var tsParticles: Engine;
 }
 
 interface DataFromUrlParams {
-    fallback?: SingleOrMultiple<ISourceOptions>;
-    index?: number;
-    url: SingleOrMultiple<string>;
+  fallback?: SingleOrMultiple<ISourceOptions>;
+  index?: number;
+  url: SingleOrMultiple<string>;
 }
 
 type AsyncLoadPluginFunction = (engine: Engine) => Promise<void>;
@@ -58,87 +58,87 @@ type SyncLoadPluginFunction = (engine: Engine) => void;
 type AsyncLoadPluginNoEngine = () => Promise<void>;
 type SyncLoadPluginNoEngine = () => void;
 type LoadPluginFunction =
-    | AsyncLoadPluginFunction
-    | SyncLoadPluginFunction
-    | AsyncLoadPluginNoEngine
-    | SyncLoadPluginNoEngine;
+  | AsyncLoadPluginFunction
+  | SyncLoadPluginFunction
+  | AsyncLoadPluginNoEngine
+  | SyncLoadPluginNoEngine;
 
 /**
  * @param data -
  * @returns the options object from the jsonUrl
  */
 async function getDataFromUrl(
-    data: DataFromUrlParams,
+  data: DataFromUrlParams,
 ): Promise<SingleOrMultiple<Readonly<ISourceOptions>> | undefined> {
-    const url = itemFromSingleOrMultiple(data.url, data.index);
+  const url = itemFromSingleOrMultiple(data.url, data.index);
 
-    if (!url) {
-        return data.fallback;
-    }
-
-    const response = await fetch(url);
-
-    if (response.ok) {
-        return (await response.json()) as SingleOrMultiple<ISourceOptions>;
-    }
-
-    getLogger().error(`${response.status.toString()} while retrieving config file`);
-
+  if (!url) {
     return data.fallback;
+  }
+
+  const response = await fetch(url);
+
+  if (response.ok) {
+    return (await response.json()) as SingleOrMultiple<ISourceOptions>;
+  }
+
+  getLogger().error(`${response.status.toString()} while retrieving config file`);
+
+  return data.fallback;
 }
 
 const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement => {
-        const documentSafe = safeDocument();
+    const documentSafe = safeDocument();
 
-        let canvasEl: HTMLCanvasElement;
+    let canvasEl: HTMLCanvasElement;
 
-        if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
-            canvasEl = domContainer as HTMLCanvasElement;
+    if (domContainer instanceof HTMLCanvasElement || domContainer.tagName.toLowerCase() === canvasTag) {
+      canvasEl = domContainer as HTMLCanvasElement;
 
-            canvasEl.dataset[generatedAttribute] ??= generatedFalse;
-        } else {
-            const existingCanvases = domContainer.getElementsByTagName(canvasTag),
-                foundCanvas = existingCanvases[canvasFirstIndex];
+      canvasEl.dataset[generatedAttribute] ??= generatedFalse;
+    } else {
+      const existingCanvases = domContainer.getElementsByTagName(canvasTag),
+        foundCanvas = existingCanvases[canvasFirstIndex];
 
-            /* get existing canvas if present, otherwise a new one will be created */
-            if (foundCanvas) {
-                canvasEl = foundCanvas;
+      /* get existing canvas if present, otherwise a new one will be created */
+      if (foundCanvas) {
+        canvasEl = foundCanvas;
 
-                canvasEl.dataset[generatedAttribute] = generatedFalse;
-            } else {
-                /* create canvas element */
-                canvasEl = documentSafe.createElement(canvasTag);
+        canvasEl.dataset[generatedAttribute] = generatedFalse;
+      } else {
+        /* create canvas element */
+        canvasEl = documentSafe.createElement(canvasTag);
 
-                canvasEl.dataset[generatedAttribute] = generatedTrue;
+        canvasEl.dataset[generatedAttribute] = generatedTrue;
 
-                /* append canvas */
-                domContainer.appendChild(canvasEl);
-            }
-        }
+        /* append canvas */
+        domContainer.appendChild(canvasEl);
+      }
+    }
 
-        canvasEl.style.width ||= fullPercent;
-        canvasEl.style.height ||= fullPercent;
+    canvasEl.style.width ||= fullPercent;
+    canvasEl.style.height ||= fullPercent;
 
-        return canvasEl;
-    },
-    getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
-        const documentSafe = safeDocument();
+    return canvasEl;
+  },
+  getDomContainer = (id: string, source?: HTMLElement): HTMLElement => {
+    const documentSafe = safeDocument();
 
-        let domContainer = source ?? documentSafe.getElementById(id);
+    let domContainer = source ?? documentSafe.getElementById(id);
 
-        if (domContainer) {
-            return domContainer;
-        }
+    if (domContainer) {
+      return domContainer;
+    }
 
-        domContainer = documentSafe.createElement("div");
+    domContainer = documentSafe.createElement("div");
 
-        domContainer.id = id;
-        domContainer.dataset[generatedAttribute] = generatedTrue;
+    domContainer.id = id;
+    domContainer.dataset[generatedAttribute] = generatedTrue;
 
-        documentSafe.body.append(domContainer);
+    documentSafe.body.append(domContainer);
 
-        return domContainer;
-    };
+    return domContainer;
+  };
 
 /**
  * Engine class for creating the singleton on globalThis.
@@ -146,489 +146,486 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
-    readonly colorManagers;
+  readonly colorManagers;
 
-    readonly easingFunctions;
+  readonly easingFunctions;
 
-    /**
-     * The drawers (additional effects) array
-     */
-    readonly effectDrawers;
+  /**
+   * The drawers (additional effects) array
+   */
+  readonly effectDrawers;
 
-    readonly movers;
+  readonly movers;
 
-    /**
-     * The path generators array
-     */
-    readonly pathGenerators;
+  /**
+   * The path generators array
+   */
+  readonly pathGenerators;
 
-    /**
-     * The plugins array
-     */
-    readonly plugins: IPlugin[];
+  /**
+   * The plugins array
+   */
+  readonly plugins: IPlugin[];
 
-    /**
-     * The presets array
-     */
-    readonly presets;
+  /**
+   * The presets array
+   */
+  readonly presets;
 
-    /**
-     * The drawers (additional shapes) array
-     */
-    readonly shapeDrawers;
+  /**
+   * The drawers (additional shapes) array
+   */
+  readonly shapeDrawers;
 
-    /**
-     * The updaters array
-     */
-    readonly updaters;
+  /**
+   * The updaters array
+   */
+  readonly updaters;
 
-    private _allLoadersSet;
+  private _allLoadersSet;
 
-    private readonly _configs: Map<string, ISourceOptions>;
+  private readonly _configs: Map<string, ISourceOptions>;
 
-    /**
-     * Contains all the {@link Container} instances of the current engine instance
-     */
-    private readonly _domArray: Container[];
+  /**
+   * Contains all the {@link Container} instances of the current engine instance
+   */
+  private readonly _domArray: Container[];
 
-    private readonly _eventDispatcher;
+  private readonly _eventDispatcher;
 
-    private _executedSet;
+  private _executedSet;
 
-    /**
-     * Checks if the engine instance is initialized
-     */
-    private _initialized: boolean;
+  /**
+   * Checks if the engine instance is initialized
+   */
+  private _initialized: boolean;
 
-    private readonly _initializers: Initializers;
+  private readonly _initializers: Initializers;
 
-    private _isRunningLoaders;
+  private _isRunningLoaders;
 
-    private readonly _loadPromises: Set<LoadPluginFunction>;
+  private readonly _loadPromises: Set<LoadPluginFunction>;
 
-    /**
-     * Engine constructor, initializes plugins, loader and the containers array
-     */
-    constructor() {
-        this._configs = new Map();
-        this._domArray = [];
-        this._eventDispatcher = new EventDispatcher();
-        this._initialized = false;
-        this._isRunningLoaders = false;
-        this._loadPromises = new Set<LoadPluginFunction>();
-        this._allLoadersSet = new Set<LoadPluginFunction>();
-        this._executedSet = new Set<LoadPluginFunction>();
-        this.plugins = [];
-        this.colorManagers = new Map<string, IColorManager>();
-        this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
-        this._initializers = {
-            movers: new Map<string, MoverInitializer>(),
-            updaters: new Map<string, UpdaterInitializer>(),
-        };
-        this.movers = new Map<Container, IParticleMover[]>();
-        this.updaters = new Map<Container, IParticleUpdater[]>();
-        this.presets = new Map<string, ISourceOptions>();
-        this.effectDrawers = new Map<string, IEffectDrawer>();
-        this.shapeDrawers = new Map<string, IShapeDrawer>();
-        this.pathGenerators = new Map<string, IMovePathGenerator>();
+  /**
+   * Engine constructor, initializes plugins, loader and the containers array
+   */
+  constructor() {
+    this._configs = new Map();
+    this._domArray = [];
+    this._eventDispatcher = new EventDispatcher();
+    this._initialized = false;
+    this._isRunningLoaders = false;
+    this._loadPromises = new Set<LoadPluginFunction>();
+    this._allLoadersSet = new Set<LoadPluginFunction>();
+    this._executedSet = new Set<LoadPluginFunction>();
+    this.plugins = [];
+    this.colorManagers = new Map<string, IColorManager>();
+    this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
+    this._initializers = {
+      movers: new Map<string, MoverInitializer>(),
+      updaters: new Map<string, UpdaterInitializer>(),
+    };
+    this.movers = new Map<Container, IParticleMover[]>();
+    this.updaters = new Map<Container, IParticleUpdater[]>();
+    this.presets = new Map<string, ISourceOptions>();
+    this.effectDrawers = new Map<string, IEffectDrawer>();
+    this.shapeDrawers = new Map<string, IShapeDrawer>();
+    this.pathGenerators = new Map<string, IMovePathGenerator>();
+  }
+
+  get configs(): Record<string, ISourceOptions> {
+    const res: Record<string, ISourceOptions> = {};
+
+    for (const [name, config] of this._configs) {
+      res[name] = config;
     }
 
-    get configs(): Record<string, ISourceOptions> {
-        const res: Record<string, ISourceOptions> = {};
+    return res;
+  }
 
-        for (const [name, config] of this._configs) {
-            res[name] = config;
-        }
+  get items(): Container[] {
+    return this._domArray;
+  }
 
-        return res;
+  get version(): string {
+    return __VERSION__;
+  }
+
+  /**
+   * @param manager -
+   */
+  addColorManager(manager: IColorManager): void {
+    this.colorManagers.set(manager.key, manager);
+  }
+
+  addConfig(config: ISourceOptions): void {
+    const key = config.key ?? config.name ?? "default";
+
+    this._configs.set(key, config);
+    this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
+  }
+
+  /**
+   * @param name -
+   * @param easing -
+   */
+  addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
+    if (this.easingFunctions.get(name)) {
+      return;
     }
 
-    get items(): Container[] {
-        return this._domArray;
+    this.easingFunctions.set(name, easing);
+  }
+
+  /**
+   * addEffect adds effect to tsParticles, it will be available to all future instances created
+   * @param effect - the effect name
+   * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
+   */
+  addEffect(effect: string, drawer: IEffectDrawer): void {
+    if (this.getEffectDrawer(effect)) {
+      return;
     }
 
-    get version(): string {
-        return __VERSION__;
+    this.effectDrawers.set(effect, drawer);
+  }
+
+  /**
+   * Adds a listener to the specified event
+   * @param type - The event to listen to
+   * @param listener - The listener of the specified event
+   */
+  addEventListener(type: string, listener: CustomEventListener): void {
+    this._eventDispatcher.addEventListener(type, listener);
+  }
+
+  /**
+   * @param name - the mover name
+   * @param moverInitializer - the mover initializer
+   */
+  addMover(name: string, moverInitializer: MoverInitializer): void {
+    this._initializers.movers.set(name, moverInitializer);
+  }
+
+  /**
+   * Adds a particle updater to the collection
+   * @param name - the particle updater name used as a key
+   * @param updaterInitializer - the particle updater initializer
+   */
+  addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
+    this._initializers.updaters.set(name, updaterInitializer);
+  }
+
+  /**
+   * addPathGenerator adds a named path generator to tsParticles, this can be called by options
+   * @param name - the path generator name
+   * @param generator - the path generator object
+   */
+  addPathGenerator(name: string, generator: IMovePathGenerator): void {
+    if (this.getPathGenerator(name)) {
+      return;
     }
 
-    /**
-     * @param manager -
-     */
-    addColorManager(manager: IColorManager): void {
-        this.colorManagers.set(manager.key, manager);
+    this.pathGenerators.set(name, generator);
+  }
+
+  /**
+   * addPlugin adds plugin to tsParticles, if an instance needs it, it will be loaded
+   * @param plugin - the plugin implementation of {@link IPlugin}
+   */
+  addPlugin(plugin: IPlugin): void {
+    if (this.getPlugin(plugin.id)) {
+      return;
     }
 
-    addConfig(config: ISourceOptions): void {
-        const key = config.key ?? config.name ?? "default";
+    this.plugins.push(plugin);
+  }
 
-        this._configs.set(key, config);
-        this._eventDispatcher.dispatchEvent(EventType.configAdded, { data: { name: key, config } });
+  /**
+   * addPreset adds preset to tsParticles, it will be available to all future instances created
+   * @param preset - the preset name
+   * @param options - the options to add to the preset
+   * @param override - if true, the preset will override any existing with the same name
+   */
+  addPreset(preset: string, options: Readonly<ISourceOptions>, override = false): void {
+    if (!(override || !this.getPreset(preset))) {
+      return;
     }
 
-    /**
-     * @param name -
-     * @param easing -
-     */
-    addEasing(name: EasingType | EasingTypeAlt, easing: EasingFunction): void {
-        if (this.easingFunctions.get(name)) {
-            return;
-        }
+    this.presets.set(preset, options);
+  }
 
-        this.easingFunctions.set(name, easing);
+  /**
+   * addShape adds shape to tsParticles, it will be available to all future instances created
+   * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
+   */
+  addShape(drawer: IShapeDrawer): void {
+    for (const validType of drawer.validTypes) {
+      if (this.getShapeDrawer(validType)) {
+        continue;
+      }
+
+      this.shapeDrawers.set(validType, drawer);
+    }
+  }
+
+  /**
+   * @param pluginVersion - the plugin version to check against
+   */
+  checkVersion(pluginVersion: string): void {
+    if (this.version === pluginVersion) {
+      return;
     }
 
-    /**
-     * addEffect adds effect to tsParticles, it will be available to all future instances created
-     * @param effect - the effect name
-     * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
-     */
-    addEffect(effect: string, drawer: IEffectDrawer): void {
-        if (this.getEffectDrawer(effect)) {
-            return;
-        }
+    throw new Error(
+      `The tsParticles version is different from the loaded plugins version. Engine version: ${this.version}. Plugin version: ${pluginVersion}`,
+    );
+  }
 
-        this.effectDrawers.set(effect, drawer);
+  clearPlugins(container: Container): void {
+    this.updaters.delete(container);
+    this.movers.delete(container);
+  }
+
+  /**
+   * Dispatches an event that will be listened from listeners
+   * @param type - The event to dispatch
+   * @param args - The event parameters
+   */
+  dispatchEvent(type: string, args?: CustomEventArgs): void {
+    this._eventDispatcher.dispatchEvent(type, args);
+  }
+
+  /**
+   * @param name -
+   * @returns the easing function
+   */
+  getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
+    return this.easingFunctions.get(name) ?? ((value: number): number => value);
+  }
+
+  /**
+   * Searches the given effect drawer type with the given type name
+   * @param type - the effect drawer type name
+   * @returns the effect drawer if found, or undefined
+   */
+  getEffectDrawer(type: string): IEffectDrawer | undefined {
+    return this.effectDrawers.get(type);
+  }
+
+  async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
+    return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
+  }
+
+  /**
+   * Searches the path generator with the given type name
+   * @param type - the path generator type to search
+   * @returns the path generator if found, or undefined
+   */
+  getPathGenerator(type: string): IMovePathGenerator | undefined {
+    return this.pathGenerators.get(type);
+  }
+
+  /**
+   * Searches if the specified plugin exists and returns it
+   * @param plugin - the plugin name
+   * @returns the plugin if found, or undefined
+   */
+  getPlugin(plugin: string): IPlugin | undefined {
+    return this.plugins.find(t => t.id === plugin);
+  }
+
+  /**
+   * Searches the preset with the given name
+   * @param preset - the preset name to search
+   * @returns the preset if found, or undefined
+   */
+  getPreset(preset: string): ISourceOptions | undefined {
+    return this.presets.get(preset);
+  }
+
+  /**
+   * Searches the given shape drawer type with the given type name
+   * @param type - the shape drawer type name
+   * @returns the shape drawer if found, or undefined
+   */
+  getShapeDrawer(type: string): IShapeDrawer | undefined {
+    return this.shapeDrawers.get(type);
+  }
+
+  /**
+   * This method returns all the supported effects with this Plugins instance
+   * @returns all the supported effects type name
+   */
+  getSupportedEffects(): IterableIterator<string> {
+    return this.effectDrawers.keys();
+  }
+
+  /**
+   * This method returns all the supported shapes with this Plugins instance
+   * @returns all the supported shapes type name
+   */
+  getSupportedShapes(): IterableIterator<string> {
+    return this.shapeDrawers.keys();
+  }
+
+  /**
+   * Returns all the container particle updaters
+   * @param container - the container used to check which particle updaters are enabled
+   * @param force - if true reloads the updater collection for the given container
+   * @returns the array of updaters for the given container
+   */
+  async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
+    return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
+  }
+
+  /**
+   * init method, used by imports
+   */
+  async init(): Promise<void> {
+    if (this._initialized || this._isRunningLoaders) return;
+
+    this._isRunningLoaders = true;
+
+    this._executedSet = new Set<LoadPluginFunction>();
+    this._allLoadersSet = new Set(this._loadPromises);
+
+    try {
+      for (const loader of this._allLoadersSet) {
+        await this._runLoader(loader, this._executedSet, this._allLoadersSet);
+      }
+    } finally {
+      this._loadPromises.clear();
+      this._isRunningLoaders = false;
+      this._initialized = true; // Hard stop: da qui in poi register() darà errore
+    }
+  }
+
+  /**
+   * Retrieves a {@link Container} from all the objects loaded
+   * @param index - The object index
+   * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
+   */
+  item(index: number): Container | undefined {
+    const { items } = this,
+      item = items[index];
+
+    if (item?.destroyed) {
+      items.splice(index, removeDeleteCount);
+
+      return;
     }
 
-    /**
-     * Adds a listener to the specified event
-     * @param type - The event to listen to
-     * @param listener - The listener of the specified event
-     */
-    addEventListener(type: string, listener: CustomEventListener): void {
-        this._eventDispatcher.addEventListener(type, listener);
+    return item;
+  }
+
+  /**
+   * Loads the provided options to create a {@link Container} object.
+   * @param params - The particles container params {@link ILoadParams} object
+   * @returns A Promise with the {@link Container} object created
+   */
+  async load(params: ILoadParams): Promise<Container | undefined> {
+    await this.init();
+
+    const { Container } = await import("./Container.js"),
+      id = params.id ?? params.element?.id ?? `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
+      { index, url } = params,
+      options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
+      /* elements */
+      currentOptions = itemFromSingleOrMultiple(options, index),
+      { items } = this,
+      oldIndex = items.findIndex(v => v.id.description === id),
+      newItem = new Container(this, id, currentOptions);
+
+    if (oldIndex >= loadMinIndex) {
+      const old = this.item(oldIndex),
+        deleteCount = old ? one : none;
+
+      if (old && !old.destroyed) {
+        old.destroy(false);
+      }
+
+      items.splice(oldIndex, deleteCount, newItem);
+    } else {
+      items.push(newItem);
     }
 
-    /**
-     * @param name - the mover name
-     * @param moverInitializer - the mover initializer
-     */
-    addMover(name: string, moverInitializer: MoverInitializer): void {
-        this._initializers.movers.set(name, moverInitializer);
+    const domContainer = getDomContainer(id, params.element),
+      canvasEl = getCanvasFromContainer(domContainer);
+
+    newItem.canvas.loadCanvas(canvasEl);
+
+    /* launch tsParticles */
+    await newItem.start();
+
+    return newItem;
+  }
+
+  /**
+   * Load the given particles options for all the updaters
+   * @param container - the container of the updaters
+   * @param options - the actual options to set
+   * @param sourceOptions - the source options to read
+   */
+  loadParticlesOptions(
+    container: Container,
+    options: ParticlesOptions,
+    ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
+  ): void {
+    const updaters = this.updaters.get(container);
+
+    if (!updaters) {
+      return;
     }
 
-    /**
-     * Adds a particle updater to the collection
-     * @param name - the particle updater name used as a key
-     * @param updaterInitializer - the particle updater initializer
-     */
-    addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
-        this._initializers.updaters.set(name, updaterInitializer);
+    updaters.forEach(updater => updater.loadOptions?.(options, ...sourceOptions));
+  }
+
+  /**
+   * Reloads all existing tsParticles loaded instances
+   * @param refresh - should refresh the dom after reloading
+   */
+  async refresh(refresh = true): Promise<void> {
+    if (!refresh) {
+      return;
     }
 
-    /**
-     * addPathGenerator adds a named path generator to tsParticles, this can be called by options
-     * @param name - the path generator name
-     * @param generator - the path generator object
-     */
-    addPathGenerator(name: string, generator: IMovePathGenerator): void {
-        if (this.getPathGenerator(name)) {
-            return;
-        }
+    await Promise.all(this.items.map(t => t.refresh()));
+  }
 
-        this.pathGenerators.set(name, generator);
+  async register(...loaders: LoadPluginFunction[]): Promise<void> {
+    if (this._initialized) {
+      throw new Error("Register plugins can only be done before calling tsParticles.load()");
     }
 
-    /**
-     * addPlugin adds plugin to tsParticles, if an instance needs it, it will be loaded
-     * @param plugin - the plugin implementation of {@link IPlugin}
-     */
-    addPlugin(plugin: IPlugin): void {
-        if (this.getPlugin(plugin.id)) {
-            return;
-        }
-
-        this.plugins.push(plugin);
+    for (const loader of loaders) {
+      if (this._isRunningLoaders) {
+        await this._runLoader(loader, this._executedSet, this._allLoadersSet);
+      } else {
+        this._loadPromises.add(loader);
+      }
     }
+  }
 
-    /**
-     * addPreset adds preset to tsParticles, it will be available to all future instances created
-     * @param preset - the preset name
-     * @param options - the options to add to the preset
-     * @param override - if true, the preset will override any existing with the same name
-     */
-    addPreset(preset: string, options: Readonly<ISourceOptions>, override = false): void {
-        if (!(override || !this.getPreset(preset))) {
-            return;
-        }
+  /**
+   * Removes a listener from the specified event
+   * @param type - The event to stop listening to
+   * @param listener - The listener of the specified event
+   */
+  removeEventListener(type: string, listener: CustomEventListener): void {
+    this._eventDispatcher.removeEventListener(type, listener);
+  }
 
-        this.presets.set(preset, options);
-    }
+  private async _runLoader(
+    loader: LoadPluginFunction,
+    executed: Set<LoadPluginFunction>,
+    allLoaders: Set<LoadPluginFunction>,
+  ): Promise<void> {
+    if (executed.has(loader)) return;
 
-    /**
-     * addShape adds shape to tsParticles, it will be available to all future instances created
-     * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
-     */
-    addShape(drawer: IShapeDrawer): void {
-        for (const validType of drawer.validTypes) {
-            if (this.getShapeDrawer(validType)) {
-                continue;
-            }
+    executed.add(loader);
+    allLoaders.add(loader);
 
-            this.shapeDrawers.set(validType, drawer);
-        }
-    }
-
-    /**
-     * @param pluginVersion - the plugin version to check against
-     */
-    checkVersion(pluginVersion: string): void {
-        if (this.version === pluginVersion) {
-            return;
-        }
-
-        throw new Error(
-            `The tsParticles version is different from the loaded plugins version. Engine version: ${this.version}. Plugin version: ${pluginVersion}`,
-        );
-    }
-
-    clearPlugins(container: Container): void {
-        this.updaters.delete(container);
-        this.movers.delete(container);
-    }
-
-    /**
-     * Dispatches an event that will be listened from listeners
-     * @param type - The event to dispatch
-     * @param args - The event parameters
-     */
-    dispatchEvent(type: string, args?: CustomEventArgs): void {
-        this._eventDispatcher.dispatchEvent(type, args);
-    }
-
-    /**
-     * @param name -
-     * @returns the easing function
-     */
-    getEasing(name: EasingType | EasingTypeAlt): EasingFunction {
-        return this.easingFunctions.get(name) ?? ((value: number): number => value);
-    }
-
-    /**
-     * Searches the given effect drawer type with the given type name
-     * @param type - the effect drawer type name
-     * @returns the effect drawer if found, or undefined
-     */
-    getEffectDrawer(type: string): IEffectDrawer | undefined {
-        return this.effectDrawers.get(type);
-    }
-
-    async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
-        return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
-    }
-
-    /**
-     * Searches the path generator with the given type name
-     * @param type - the path generator type to search
-     * @returns the path generator if found, or undefined
-     */
-    getPathGenerator(type: string): IMovePathGenerator | undefined {
-        return this.pathGenerators.get(type);
-    }
-
-    /**
-     * Searches if the specified plugin exists and returns it
-     * @param plugin - the plugin name
-     * @returns the plugin if found, or undefined
-     */
-    getPlugin(plugin: string): IPlugin | undefined {
-        return this.plugins.find(t => t.id === plugin);
-    }
-
-    /**
-     * Searches the preset with the given name
-     * @param preset - the preset name to search
-     * @returns the preset if found, or undefined
-     */
-    getPreset(preset: string): ISourceOptions | undefined {
-        return this.presets.get(preset);
-    }
-
-    /**
-     * Searches the given shape drawer type with the given type name
-     * @param type - the shape drawer type name
-     * @returns the shape drawer if found, or undefined
-     */
-    getShapeDrawer(type: string): IShapeDrawer | undefined {
-        return this.shapeDrawers.get(type);
-    }
-
-    /**
-     * This method returns all the supported effects with this Plugins instance
-     * @returns all the supported effects type name
-     */
-    getSupportedEffects(): IterableIterator<string> {
-        return this.effectDrawers.keys();
-    }
-
-    /**
-     * This method returns all the supported shapes with this Plugins instance
-     * @returns all the supported shapes type name
-     */
-    getSupportedShapes(): IterableIterator<string> {
-        return this.shapeDrawers.keys();
-    }
-
-    /**
-     * Returns all the container particle updaters
-     * @param container - the container used to check which particle updaters are enabled
-     * @param force - if true reloads the updater collection for the given container
-     * @returns the array of updaters for the given container
-     */
-    async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
-        return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
-    }
-
-    /**
-     * init method, used by imports
-     */
-    async init(): Promise<void> {
-        if (this._initialized || this._isRunningLoaders) return;
-
-        this._isRunningLoaders = true;
-
-        this._executedSet = new Set<LoadPluginFunction>();
-        this._allLoadersSet = new Set(this._loadPromises);
-
-        try {
-            for (const loader of this._allLoadersSet) {
-                await this._runLoader(loader, this._executedSet, this._allLoadersSet);
-            }
-        } finally {
-            this._loadPromises.clear();
-            this._isRunningLoaders = false;
-            this._initialized = true; // Hard stop: da qui in poi register() darà errore
-        }
-    }
-
-    /**
-     * Retrieves a {@link Container} from all the objects loaded
-     * @param index - The object index
-     * @returns The {@link Container} object at specified index, if present or not destroyed, otherwise undefined
-     */
-    item(index: number): Container | undefined {
-        const { items } = this,
-            item = items[index];
-
-        if (item?.destroyed) {
-            items.splice(index, removeDeleteCount);
-
-            return;
-        }
-
-        return item;
-    }
-
-    /**
-     * Loads the provided options to create a {@link Container} object.
-     * @param params - The particles container params {@link ILoadParams} object
-     * @returns A Promise with the {@link Container} object created
-     */
-    async load(params: ILoadParams): Promise<Container | undefined> {
-        await this.init();
-
-        const { Container } = await import("./Container.js"),
-            id =
-                params.id ??
-                params.element?.id ??
-                `tsparticles${Math.floor(getRandom() * loadRandomFactor).toString()}`,
-            { index, url } = params,
-            options = url ? await getDataFromUrl({ fallback: params.options, url, index }) : params.options,
-            /* elements */
-            currentOptions = itemFromSingleOrMultiple(options, index),
-            { items } = this,
-            oldIndex = items.findIndex(v => v.id.description === id),
-            newItem = new Container(this, id, currentOptions);
-
-        if (oldIndex >= loadMinIndex) {
-            const old = this.item(oldIndex),
-                deleteCount = old ? one : none;
-
-            if (old && !old.destroyed) {
-                old.destroy(false);
-            }
-
-            items.splice(oldIndex, deleteCount, newItem);
-        } else {
-            items.push(newItem);
-        }
-
-        const domContainer = getDomContainer(id, params.element),
-            canvasEl = getCanvasFromContainer(domContainer);
-
-        newItem.canvas.loadCanvas(canvasEl);
-
-        /* launch tsParticles */
-        await newItem.start();
-
-        return newItem;
-    }
-
-    /**
-     * Load the given particles options for all the updaters
-     * @param container - the container of the updaters
-     * @param options - the actual options to set
-     * @param sourceOptions - the source options to read
-     */
-    loadParticlesOptions(
-        container: Container,
-        options: ParticlesOptions,
-        ...sourceOptions: (RecursivePartial<IParticlesOptions> | undefined)[]
-    ): void {
-        const updaters = this.updaters.get(container);
-
-        if (!updaters) {
-            return;
-        }
-
-        updaters.forEach(updater => updater.loadOptions?.(options, ...sourceOptions));
-    }
-
-    /**
-     * Reloads all existing tsParticles loaded instances
-     * @param refresh - should refresh the dom after reloading
-     */
-    async refresh(refresh = true): Promise<void> {
-        if (!refresh) {
-            return;
-        }
-
-        await Promise.all(this.items.map(t => t.refresh()));
-    }
-
-    async register(...loaders: LoadPluginFunction[]): Promise<void> {
-        if (this._initialized) {
-            throw new Error("Register plugins can only be done before calling tsParticles.load()");
-        }
-
-        for (const loader of loaders) {
-            if (this._isRunningLoaders) {
-                await this._runLoader(loader, this._executedSet, this._allLoadersSet);
-            } else {
-                this._loadPromises.add(loader);
-            }
-        }
-    }
-
-    /**
-     * Removes a listener from the specified event
-     * @param type - The event to stop listening to
-     * @param listener - The listener of the specified event
-     */
-    removeEventListener(type: string, listener: CustomEventListener): void {
-        this._eventDispatcher.removeEventListener(type, listener);
-    }
-
-    private async _runLoader(
-        loader: LoadPluginFunction,
-        executed: Set<LoadPluginFunction>,
-        allLoaders: Set<LoadPluginFunction>,
-    ): Promise<void> {
-        if (executed.has(loader)) return;
-
-        executed.add(loader);
-        allLoaders.add(loader);
-
-        await loader(this);
-    }
+    await loader(this);
+  }
 }

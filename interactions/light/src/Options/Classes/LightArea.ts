@@ -3,23 +3,23 @@ import type { ILightArea } from "../Interfaces/ILightArea.js";
 import { LightGradient } from "./LightGradient.js";
 
 export class LightArea implements ILightArea, IOptionLoader<ILightArea> {
-    gradient;
-    radius;
+  gradient;
+  radius;
 
-    constructor() {
-        this.gradient = new LightGradient();
-        this.radius = 1000;
+  constructor() {
+    this.gradient = new LightGradient();
+    this.radius = 1000;
+  }
+
+  load(data?: RecursivePartial<ILightArea>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<ILightArea>): void {
-        if (isNull(data)) {
-            return;
-        }
+    this.gradient.load(data.gradient);
 
-        this.gradient.load(data.gradient);
-
-        if (data.radius !== undefined) {
-            this.radius = data.radius;
-        }
+    if (data.radius !== undefined) {
+      this.radius = data.radius;
     }
+  }
 }

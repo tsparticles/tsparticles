@@ -1,9 +1,9 @@
 import {
-    type SingleOrMultiple,
-    executeOnSingleOrMultiple,
-    findItemFromSingleOrMultiple,
-    isArray,
-    isInArray,
+  type SingleOrMultiple,
+  executeOnSingleOrMultiple,
+  findItemFromSingleOrMultiple,
+  isArray,
+  isInArray,
 } from "@tsparticles/engine";
 import type { DivEvent } from "./Options/Classes/Events/DivEvent.js";
 import type { IModeDiv } from "./Options/Interfaces/Modes/IModeDiv.js";
@@ -15,11 +15,11 @@ import type { IModeDiv } from "./Options/Interfaces/Modes/IModeDiv.js";
  * @returns true or false, if the selector has found something
  */
 function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>): boolean {
-    const res = executeOnSingleOrMultiple(selectors, selector => {
-        return element.matches(selector);
-    });
+  const res = executeOnSingleOrMultiple(selectors, selector => {
+    return element.matches(selector);
+  });
 
-    return isArray(res) ? res.some(t => t) : res;
+  return isArray(res) ? res.some(t => t) : res;
 }
 
 /**
@@ -29,7 +29,7 @@ function checkSelector(element: HTMLElement, selectors: SingleOrMultiple<string>
  * @returns true if the div mode is enabled
  */
 export function isDivModeEnabled(mode: string, divs: SingleOrMultiple<DivEvent>): boolean {
-    return !!findItemFromSingleOrMultiple(divs, t => t.enable && isInArray(mode, t.mode));
+  return !!findItemFromSingleOrMultiple(divs, t => t.enable && isInArray(mode, t.mode));
 }
 
 /**
@@ -39,18 +39,18 @@ export function isDivModeEnabled(mode: string, divs: SingleOrMultiple<DivEvent>)
  * @param callback - the callback to execute
  */
 export function divModeExecute(
-    mode: string,
-    divs: SingleOrMultiple<DivEvent>,
-    callback: (id: string, div: DivEvent) => void,
+  mode: string,
+  divs: SingleOrMultiple<DivEvent>,
+  callback: (id: string, div: DivEvent) => void,
 ): void {
-    executeOnSingleOrMultiple(divs, div => {
-        const divMode = div.mode,
-            divEnabled = div.enable;
+  executeOnSingleOrMultiple(divs, div => {
+    const divMode = div.mode,
+      divEnabled = div.enable;
 
-        if (divEnabled && isInArray(mode, divMode)) {
-            singleDivModeExecute(div, callback);
-        }
-    });
+    if (divEnabled && isInArray(mode, divMode)) {
+      singleDivModeExecute(div, callback);
+    }
+  });
 }
 
 /**
@@ -59,11 +59,11 @@ export function divModeExecute(
  * @param callback - the callback to execute
  */
 export function singleDivModeExecute(div: DivEvent, callback: (selector: string, div: DivEvent) => void): void {
-    const selectors = div.selectors;
+  const selectors = div.selectors;
 
-    executeOnSingleOrMultiple(selectors, selector => {
-        callback(selector, div);
-    });
+  executeOnSingleOrMultiple(selectors, selector => {
+    callback(selector, div);
+  });
 }
 
 /**
@@ -73,11 +73,11 @@ export function singleDivModeExecute(div: DivEvent, callback: (selector: string,
  * @returns true if the element targets any of the div modes
  */
 export function divMode<T extends IModeDiv>(divs?: SingleOrMultiple<T>, element?: HTMLElement): T | undefined {
-    if (!element || !divs) {
-        return;
-    }
+  if (!element || !divs) {
+    return;
+  }
 
-    return findItemFromSingleOrMultiple(divs, div => {
-        return checkSelector(element, div.selectors);
-    });
+  return findItemFromSingleOrMultiple(divs, div => {
+    return checkSelector(element, div.selectors);
+  });
 }

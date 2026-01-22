@@ -1,6 +1,6 @@
 /**
  */
 export enum PixelMode {
-    precise = "precise",
-    percent = "percent",
+  precise = "precise",
+  percent = "percent",
 }

@@ -27,42 +27,42 @@ import y from "./y/index.js";
 import z from "./z/index.js";
 
 const configs = {
-    ...a,
-    ...b,
-    ...c,
-    ...d,
-    ...e,
-    ...f,
-    ...g,
-    ...h,
-    ...i,
-    ...j,
-    ...k,
-    ...l,
-    ...m,
-    ...n,
-    ...o,
-    ...p,
-    ...q,
-    ...r,
-    ...s,
-    ...t,
-    ...u,
-    ...v,
-    ...w,
-    ...x,
-    ...y,
-    ...z,
+  ...a,
+  ...b,
+  ...c,
+  ...d,
+  ...e,
+  ...f,
+  ...g,
+  ...h,
+  ...i,
+  ...j,
+  ...k,
+  ...l,
+  ...m,
+  ...n,
+  ...o,
+  ...p,
+  ...q,
+  ...r,
+  ...s,
+  ...t,
+  ...u,
+  ...v,
+  ...w,
+  ...x,
+  ...y,
+  ...z,
 };
 
 for (const key of Object.keys(configs)) {
-    const config = (configs as Record<string, ISourceOptions>)[key];
+  const config = (configs as Record<string, ISourceOptions>)[key];
 
-    if (!config) {
-        continue;
-    }
+  if (!config) {
+    continue;
+  }
 
-    tsParticles.addConfig(config);
+  tsParticles.addConfig(config);
 }
 
 export default configs;

@@ -3,13 +3,13 @@ import type { ITrail } from "./Options/Interfaces/ITrail.js";
 import type { Trail } from "./Options/Classes/Trail.js";
 
 export type ITrailOptions = IOptions & {
-    trail?: ITrail;
+  trail?: ITrail;
 };
 
 export type TrailOptions = Options & {
-    trail?: Trail;
+  trail?: Trail;
 };
 
 export type TrailContainer = Container & {
-    actualOptions: TrailOptions;
+  actualOptions: TrailOptions;
 };

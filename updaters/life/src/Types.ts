@@ -3,22 +3,22 @@ import type { ILife } from "./Options/Interfaces/ILife.js";
 import type { Life } from "./Options/Classes/Life.js";
 
 export interface IParticleLife {
-    count: number;
-    delay: number;
-    delayTime: number;
-    duration: number;
-    time: number;
+  count: number;
+  delay: number;
+  delayTime: number;
+  duration: number;
+  time: number;
 }
 
 export type ILifeParticlesOptions = IParticlesOptions & {
-    life?: ILife;
+  life?: ILife;
 };
 
 export type LifeParticlesOptions = ParticlesOptions & {
-    life?: Life;
+  life?: Life;
 };
 
 export type LifeParticle = Particle & {
-    life?: IParticleLife;
-    options: LifeParticlesOptions;
+  life?: IParticleLife;
+  options: LifeParticlesOptions;
 };

@@ -9,13 +9,13 @@ import type { PolygonMaskType } from "../../Enums/PolygonMaskType.js";
  * [[include:Options/Plugins/PolygonMask.md]]
  */
 export interface IPolygonMask {
-    data?: string | IPolygonMaskLocalSvg;
-    draw: IPolygonMaskDraw;
-    enable: boolean;
-    inline: IPolygonMaskInline;
-    move: IPolygonMaskMove;
-    position?: ICoordinates;
-    scale: number;
-    type: PolygonMaskType;
-    url?: string;
+  data?: string | IPolygonMaskLocalSvg;
+  draw: IPolygonMaskDraw;
+  enable: boolean;
+  inline: IPolygonMaskInline;
+  move: IPolygonMaskMove;
+  position?: ICoordinates;
+  scale: number;
+  type: PolygonMaskType;
+  url?: string;
 }

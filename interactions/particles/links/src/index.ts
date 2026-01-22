@@ -8,22 +8,22 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadParticlesLinksInteraction(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: InteractivityEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
-            { LinksPlugin } = await import("./LinksPlugin.js");
+  await engine.register(async (e: InteractivityEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
+      { LinksPlugin } = await import("./LinksPlugin.js");
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.addPlugin(new LinksPlugin(e));
+    e.addPlugin(new LinksPlugin(e));
 
-        e.addInteractor?.("particlesLinks", async container => {
-            const { Linker } = await import("./Linker.js");
+    e.addInteractor?.("particlesLinks", async container => {
+      const { Linker } = await import("./Linker.js");
 
-            return new Linker(container as LinkContainer, engine);
-        });
+      return new Linker(container as LinkContainer, engine);
     });
+  });
 }
 
 export * from "./Options/Classes/Links.js";

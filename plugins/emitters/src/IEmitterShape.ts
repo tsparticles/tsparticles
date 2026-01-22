@@ -2,9 +2,9 @@ import type { ICoordinates, IDimension } from "@tsparticles/engine";
 import type { IRandomPositionData } from "./IRandomPositionData.js";
 
 export interface IEmitterShape {
-    init(): Promise<void>;
+  init(): Promise<void>;
 
-    randomPosition(): IRandomPositionData | null;
+  randomPosition(): IRandomPositionData | null;
 
-    resize(position: ICoordinates, size: IDimension): void;
+  resize(position: ICoordinates, size: IDimension): void;
 }

@@ -3,43 +3,43 @@ import type { Emitter } from "./Options/Classes/Emitter.js";
 import type { IEmitter } from "./Options/Interfaces/IEmitter.js";
 
 export interface IEmitterDataModeOptions {
-    random: IEmitterModeRandomOptions;
-    value: SingleOrMultiple<IEmitter>;
+  random: IEmitterModeRandomOptions;
+  value: SingleOrMultiple<IEmitter>;
 }
 
 export interface IEmitterModeRandomOptions {
-    count: number;
-    enable: boolean;
+  count: number;
+  enable: boolean;
 }
 
 export interface EmitterModeRandomOptions {
-    count: number;
-    enable: boolean;
+  count: number;
+  enable: boolean;
 }
 
 export interface EmitterDataModeOptions {
-    random: EmitterModeRandomOptions;
-    value: Emitter[];
+  random: EmitterModeRandomOptions;
+  value: Emitter[];
 }
 
 export interface EmitterModeOptions {
-    emitters?: EmitterDataModeOptions;
+  emitters?: EmitterDataModeOptions;
 }
 
 export interface IEmitterModeOptions {
-    emitters?: IEmitterDataModeOptions | SingleOrMultiple<IEmitter>;
+  emitters?: IEmitterDataModeOptions | SingleOrMultiple<IEmitter>;
 }
 
 export type IEmitterOptions = IOptions & {
-    emitters: SingleOrMultiple<IEmitter>;
-    interactivity: {
-        modes: IEmitterModeOptions;
-    };
+  emitters: SingleOrMultiple<IEmitter>;
+  interactivity: {
+    modes: IEmitterModeOptions;
+  };
 };
 
 export type EmitterOptions = Options & {
-    emitters: SingleOrMultiple<Emitter>;
-    interactivity: {
-        modes: EmitterModeOptions;
-    };
+  emitters: SingleOrMultiple<Emitter>;
+  interactivity: {
+    modes: EmitterModeOptions;
+  };
 };

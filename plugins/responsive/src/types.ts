@@ -3,16 +3,16 @@ import type { IResponsive } from "./Options/Interfaces/IResponsive.js";
 import type { Responsive } from "./Options/Classes/Responsive.js";
 
 export type IResponsiveOptions = IOptions & {
-    responsive?: IResponsive[];
+  responsive?: IResponsive[];
 };
 
 export type ResponsiveOptions = Options & {
-    responsive?: Responsive[];
-    setResponsive?: (width: number, pxRatio: number, defaultOptions: IOptions) => number | undefined;
+  responsive?: Responsive[];
+  setResponsive?: (width: number, pxRatio: number, defaultOptions: IOptions) => number | undefined;
 };
 
 export type ResponsiveContainer = Container & {
-    actualOptions: ResponsiveOptions;
+  actualOptions: ResponsiveOptions;
 
-    responsiveMaxWidth?: number;
+  responsiveMaxWidth?: number;
 };

@@ -29,77 +29,77 @@ React.js, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Inferno, Riot.j
 ## Table of Contents
 
 - [tsParticles - TypeScript Particles](#tsparticles---typescript-particles)
-    - [Table of Contents](#table-of-contents)
-    - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
-    - [**_Library installation_**](#library-installation)
-        - [**_Hosting / CDN_**](#hosting--cdn)
-            - [jsDelivr](#jsdelivr)
-            - [cdnjs](#cdnjs)
-            - [unpkg](#unpkg)
-        - [**_npm_**](#npm)
-        - [**_yarn_**](#yarn)
-        - [**_pnpm_**](#pnpm)
-            - [Import and require](#import-and-require)
-        - [**_Usage_**](#usage)
-    - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
-        - [Angular](#angular)
-            - [`@tsparticles/angular`](#@tsparticles/angular)
-        - [Astro](#astro)
-            - [`astro-particles`](#astro-particles)
-        - [Ember.js](#emberjs)
-            - [`ember-tsparticles`](#ember-tsparticles)
-        - [Inferno](#inferno)
-            - [`inferno-particles`](#inferno-particles)
-        - [jQuery](#jquery)
-            - [`jquery-particles`](#jquery-particles)
-        - [Preact](#preact)
-            - [`preact-particles`](#preact-particles)
-        - [ReactJS](#reactjs)
-            - [`@tsparticles/react`](#tsparticlesreact)
-        - [RiotJS](#riotjs)
-            - [`riot-particles`](#riot-particles)
-        - [SolidJS](#solidjs)
-            - [`solid-particles`](#solid-particles)
-        - [Svelte](#svelte)
-            - [`@tsparticles/svelte`](#@tsparticles/svelte)
-        - [VueJS 2.x](#vuejs-2x)
-            - [`@tsparticles/vue2`](#tsparticlesvue2)
-        - [VueJS 3.x](#vuejs-3x)
-            - [`@tsparticles/vue3`](#tsparticlesvue3)
-        - [Web Components](#web-components)
-            - [`web-particles`](#web-particles)
-        - [WordPress](#wordpress)
-            - [`@tsparticles/wordpress`](#@tsparticles/wordpress)
-        - [Elementor](#elementor)
-    - [Presets](#presets)
-        - [Big Circles](#big-circles)
-        - [Bubbles](#bubbles)
-        - [Confetti](#confetti)
-        - [Fire](#fire)
-        - [Firefly](#firefly)
-        - [Fireworks](#fireworks)
-        - [Fountain](#fountain)
-        - [Links](#links)
-        - [Sea Anemone](#sea-anemone)
-        - [Snow](#snow)
-        - [Stars](#stars)
-        - [Triangles](#triangles)
-    - [Templates and Resources](#templates-and-resources)
-    - [**_Demo / Generator_**](#demo--generator)
-    - [**_Video Tutorials_**](#video-tutorials)
-        - [Characters as particles](#characters-as-particles)
-        - [Polygon mask](#polygon-mask)
-        - [Animated stars](#animated-stars)
-        - [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
-        - [Snow particles](#snow-particles)
-        - [Background Mask particles](#background-mask-particles)
-    - [**_Options_**](#options)
-    - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
-    - [Migrating from Particles.js](#migrating-from-particlesjs)
-    - [Plugins/Customizations](#pluginscustomizations)
-    - [Dependency Graph](#dependency-graph)
-    - [Sponsors](#sponsors)
-        - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
+  - [Table of Contents](#table-of-contents)
+  - [Do you want to use it on your website?](#do-you-want-to-use-it-on-your-website)
+  - [**_Library installation_**](#library-installation)
+    - [**_Hosting / CDN_**](#hosting--cdn)
+      - [jsDelivr](#jsdelivr)
+      - [cdnjs](#cdnjs)
+      - [unpkg](#unpkg)
+    - [**_npm_**](#npm)
+    - [**_yarn_**](#yarn)
+    - [**_pnpm_**](#pnpm)
+      - [Import and require](#import-and-require)
+    - [**_Usage_**](#usage)
+  - [Official components for some of the most used frameworks](#official-components-for-some-of-the-most-used-frameworks)
+    - [Angular](#angular)
+      - [`@tsparticles/angular`](#@tsparticles/angular)
+    - [Astro](#astro)
+      - [`astro-particles`](#astro-particles)
+    - [Ember.js](#emberjs)
+      - [`ember-tsparticles`](#ember-tsparticles)
+    - [Inferno](#inferno)
+      - [`inferno-particles`](#inferno-particles)
+    - [jQuery](#jquery)
+      - [`jquery-particles`](#jquery-particles)
+    - [Preact](#preact)
+      - [`preact-particles`](#preact-particles)
+    - [ReactJS](#reactjs)
+      - [`@tsparticles/react`](#tsparticlesreact)
+    - [RiotJS](#riotjs)
+      - [`riot-particles`](#riot-particles)
+    - [SolidJS](#solidjs)
+      - [`solid-particles`](#solid-particles)
+    - [Svelte](#svelte)
+      - [`@tsparticles/svelte`](#@tsparticles/svelte)
+    - [VueJS 2.x](#vuejs-2x)
+      - [`@tsparticles/vue2`](#tsparticlesvue2)
+    - [VueJS 3.x](#vuejs-3x)
+      - [`@tsparticles/vue3`](#tsparticlesvue3)
+    - [Web Components](#web-components)
+      - [`web-particles`](#web-particles)
+    - [WordPress](#wordpress)
+      - [`@tsparticles/wordpress`](#@tsparticles/wordpress)
+    - [Elementor](#elementor)
+  - [Presets](#presets)
+    - [Big Circles](#big-circles)
+    - [Bubbles](#bubbles)
+    - [Confetti](#confetti)
+    - [Fire](#fire)
+    - [Firefly](#firefly)
+    - [Fireworks](#fireworks)
+    - [Fountain](#fountain)
+    - [Links](#links)
+    - [Sea Anemone](#sea-anemone)
+    - [Snow](#snow)
+    - [Stars](#stars)
+    - [Triangles](#triangles)
+  - [Templates and Resources](#templates-and-resources)
+  - [**_Demo / Generator_**](#demo--generator)
+  - [**_Video Tutorials_**](#video-tutorials)
+    - [Characters as particles](#characters-as-particles)
+    - [Polygon mask](#polygon-mask)
+    - [Animated stars](#animated-stars)
+    - [Nyan cat flying on scrolling stars](#nyan-cat-flying-on-scrolling-stars)
+    - [Snow particles](#snow-particles)
+    - [Background Mask particles](#background-mask-particles)
+  - [**_Options_**](#options)
+  - [Want to see it in action and try it?](#want-to-see-it-in-action-and-try-it)
+  - [Migrating from Particles.js](#migrating-from-particlesjs)
+  - [Plugins/Customizations](#pluginscustomizations)
+  - [Dependency Graph](#dependency-graph)
+  - [Sponsors](#sponsors)
+    - [Huge thanks to JetBrains for the 2020-2022 Open Source Licenses!](#huge-thanks-to-jetbrains-for-the-2020-2022-open-source-licenses)
 
 ---
 
@@ -233,52 +233,52 @@ Load tsParticles and configure the particles:
 /* tsParticles.load(@params); */
 
 tsParticles
-    .load({
-        id: "tsparticles",
-        url: "presets/default.json",
-    })
-    .then(container => {
-        console.log("callback - tsparticles config loaded");
-    })
-    .catch(error => {
-        console.error(error);
-    });
+  .load({
+    id: "tsparticles",
+    url: "presets/default.json",
+  })
+  .then(container => {
+    console.log("callback - tsparticles config loaded");
+  })
+  .catch(error => {
+    console.error(error);
+  });
 
 //or
 
 tsParticles.load({
-    id: "tsparticles",
-    options: {
-        /* options here */
-    },
+  id: "tsparticles",
+  options: {
+    /* options here */
+  },
 });
 
 //or
 
 tsParticles.load({
-    id: "tsparticles",
-    options: [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        },
-    ],
+  id: "tsparticles",
+  options: [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
 });
 //random object
 
 tsParticles.load({
-    id: "tsparticles",
-    options: [
-        {
-            /* options here */
-        },
-        {
-            /* other options here */
-        },
-    ],
-    index: 1,
+  id: "tsparticles",
+  options: [
+    {
+      /* options here */
+    },
+    {
+      /* other options here */
+    },
+  ],
+  index: 1,
 }); //the second one
 // Important! If the index is not in range 0...<array.length, the index will be ignored.
 
@@ -289,7 +289,7 @@ tsParticles.load({
 /* this will be fired from all particles loaded */
 
 tsParticles.setOnClickHandler((event, particles) => {
-    /* custom on click handler */
+  /* custom on click handler */
 });
 
 // now you can control the animations too, it's possible to pause and resume the animations

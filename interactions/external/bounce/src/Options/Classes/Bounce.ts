@@ -2,19 +2,19 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { IBounce } from "../Interfaces/IBounce.js";
 
 export class Bounce implements IBounce, IOptionLoader<IBounce> {
-    distance: number;
+  distance: number;
 
-    constructor() {
-        this.distance = 200;
+  constructor() {
+    this.distance = 200;
+  }
+
+  load(data?: RecursivePartial<IBounce>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IBounce>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.distance !== undefined) {
-            this.distance = data.distance;
-        }
+    if (data.distance !== undefined) {
+      this.distance = data.distance;
     }
+  }
 }

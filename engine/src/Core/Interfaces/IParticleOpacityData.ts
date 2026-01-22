@@ -1,5 +1,5 @@
 export interface IParticleOpacityData {
-    opacity: number;
+  opacity: number;
 
-    strokeOpacity: number;
+  strokeOpacity: number;
 }

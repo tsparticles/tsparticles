@@ -5,41 +5,41 @@ import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
 /**
  */
 export class BackgroundMaskPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    private readonly _engine;
+  private readonly _engine;
 
-    constructor(engine: Engine) {
-        this.id = "background-mask";
+  constructor(engine: Engine) {
+    this.id = "background-mask";
 
-        this._engine = engine;
+    this._engine = engine;
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { BackgroundMaskPluginInstance } = await import("./BackgroundMaskPluginInstance.js");
+
+    return new BackgroundMaskPluginInstance(container, this._engine);
+  }
+
+  loadOptions(
+    _container: Container,
+    options: BackgroundMaskOptions,
+    source?: RecursivePartial<IBackgroundMaskOptions>,
+  ): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { BackgroundMaskPluginInstance } = await import("./BackgroundMaskPluginInstance.js");
+    let backgroundMaskOptions = options.backgroundMask;
 
-        return new BackgroundMaskPluginInstance(container, this._engine);
+    if (!backgroundMaskOptions?.load) {
+      options.backgroundMask = backgroundMaskOptions = new BackgroundMask();
     }
 
-    loadOptions(
-        _container: Container,
-        options: BackgroundMaskOptions,
-        source?: RecursivePartial<IBackgroundMaskOptions>,
-    ): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    backgroundMaskOptions.load(source?.backgroundMask);
+  }
 
-        let backgroundMaskOptions = options.backgroundMask;
-
-        if (!backgroundMaskOptions?.load) {
-            options.backgroundMask = backgroundMaskOptions = new BackgroundMask();
-        }
-
-        backgroundMaskOptions.load(source?.backgroundMask);
-    }
-
-    needsPlugin(options?: RecursivePartial<IBackgroundMaskOptions>): boolean {
-        return !!options?.backgroundMask?.enable;
-    }
+  needsPlugin(options?: RecursivePartial<IBackgroundMaskOptions>): boolean {
+    return !!options?.backgroundMask?.enable;
+  }
 }

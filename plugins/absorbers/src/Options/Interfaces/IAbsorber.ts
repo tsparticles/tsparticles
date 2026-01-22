@@ -6,43 +6,43 @@ import type { IAbsorberSize } from "./IAbsorberSize.js";
  * [[include:Options/Plugins/Absorbers.md]]
  */
 export interface IAbsorber {
-    /**
-     * Absorber color
-     */
-    color: string | IOptionsColor;
+  /**
+   * Absorber color
+   */
+  color: string | IOptionsColor;
 
-    /**
-     * Absorber destroy, this enable particle destruction, if disabled the particle will randomly respawn
-     */
-    destroy: boolean;
+  /**
+   * Absorber destroy, this enable particle destruction, if disabled the particle will randomly respawn
+   */
+  destroy: boolean;
 
-    /**
-     * Absorber draggable, this enables dragging on absorbers
-     */
-    draggable: boolean;
+  /**
+   * Absorber draggable, this enables dragging on absorbers
+   */
+  draggable: boolean;
 
-    /**
-     * Absorber name
-     */
-    name?: string;
+  /**
+   * Absorber name
+   */
+  name?: string;
 
-    /**
-     * Absorber opacity
-     */
-    opacity: number;
+  /**
+   * Absorber opacity
+   */
+  opacity: number;
 
-    /**
-     * Absorber orbits, this enable particles orbiting while being attracted by the attracter
-     */
-    orbits: boolean;
+  /**
+   * Absorber orbits, this enable particles orbiting while being attracted by the attracter
+   */
+  orbits: boolean;
 
-    /**
-     * Absorber position, percent values calculated on canvas size
-     */
-    position?: RecursivePartial<IRangedCoordinates>;
+  /**
+   * Absorber position, percent values calculated on canvas size
+   */
+  position?: RecursivePartial<IRangedCoordinates>;
 
-    /**
-     * Absorber size, these values will be used as pixels
-     */
-    size: IAbsorberSize;
+  /**
+   * Absorber size, these values will be used as pixels
+   */
+  size: IAbsorberSize;
 }

@@ -3,13 +3,13 @@ import type { CanvasMask } from "./Options/Classes/CanvasMask.js";
 import type { ICanvasMask } from "./Options/Interfaces/ICanvasMask.js";
 
 export type ICanvasMaskOptions = IOptions & {
-    canvasMask?: ICanvasMask;
+  canvasMask?: ICanvasMask;
 };
 
 export type CanvasMaskOptions = Options & {
-    canvasMask?: CanvasMask;
+  canvasMask?: CanvasMask;
 };
 
 export type CanvasMaskContainer = Container & {
-    actualOptions: CanvasMaskOptions;
+  actualOptions: CanvasMaskOptions;
 };

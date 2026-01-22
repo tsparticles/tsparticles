@@ -6,18 +6,18 @@ import type { InteractorType } from "./InteractorType.js";
 /**
  */
 export interface IInteractor<TParticle extends Particle = Particle> {
-    loadOptions?: (options: Options, ...sources: (ISourceOptions | undefined)[]) => void;
+  loadOptions?: (options: Options, ...sources: (ISourceOptions | undefined)[]) => void;
 
-    loadParticlesOptions?: (
-        options: InteractivityParticlesOptions,
-        ...sources: (RecursivePartial<IInteractivityParticlesOptions> | undefined)[]
-    ) => void;
+  loadParticlesOptions?: (
+    options: InteractivityParticlesOptions,
+    ...sources: (RecursivePartial<IInteractivityParticlesOptions> | undefined)[]
+  ) => void;
 
-    type: InteractorType;
+  type: InteractorType;
 
-    clear(particle: TParticle, delta: IDelta): void;
+  clear(particle: TParticle, delta: IDelta): void;
 
-    init(): void;
+  init(): void;
 
-    reset(interactivityData: IInteractivityData, particle: TParticle): void;
+  reset(interactivityData: IInteractivityData, particle: TParticle): void;
 }

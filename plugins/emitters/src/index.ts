@@ -8,30 +8,30 @@ declare const __VERSION__: string;
  * @param engine - The [[EmittersEngine]] instance to load the plugin into
  */
 export async function loadEmittersPlugin(engine: EmittersEngine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async (e: EmittersEngine) => {
-        const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
-            { ShapeManager } = await import("./ShapeManager.js"),
-            { EmittersInstancesManager } = await import("./EmittersInstancesManager.js"),
-            { EmittersPlugin } = await import("./EmittersPlugin.js"),
-            instancesManager = new EmittersInstancesManager(e);
+  await engine.register(async (e: EmittersEngine) => {
+    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
+      { ShapeManager } = await import("./ShapeManager.js"),
+      { EmittersInstancesManager } = await import("./EmittersInstancesManager.js"),
+      { EmittersPlugin } = await import("./EmittersPlugin.js"),
+      instancesManager = new EmittersInstancesManager(e);
 
-        await loadInteractivityPlugin(e);
+    await loadInteractivityPlugin(e);
 
-        e.emitterShapeManager ??= new ShapeManager();
-        e.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
-            e.emitterShapeManager?.addShapeGenerator(name, generator);
-        };
+    e.emitterShapeManager ??= new ShapeManager();
+    e.addEmitterShapeGenerator ??= (name: string, generator: IEmitterShapeGenerator): void => {
+      e.emitterShapeManager?.addShapeGenerator(name, generator);
+    };
 
-        e.addPlugin(new EmittersPlugin(instancesManager));
+    e.addPlugin(new EmittersPlugin(instancesManager));
 
-        e.addInteractor?.("externalEmitters", async container => {
-            const { EmittersInteractor } = await import("./EmittersInteractor.js");
+    e.addInteractor?.("externalEmitters", async container => {
+      const { EmittersInteractor } = await import("./EmittersInteractor.js");
 
-            return new EmittersInteractor(instancesManager, container as EmitterContainer);
-        });
+      return new EmittersInteractor(instancesManager, container as EmitterContainer);
     });
+  });
 }
 
 export type * from "./EmitterContainer.js";

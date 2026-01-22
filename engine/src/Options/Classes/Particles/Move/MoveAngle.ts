@@ -8,25 +8,25 @@ import { setRangeValue } from "../../../../Utils/MathUtils.js";
 /**
  */
 export class MoveAngle implements IMoveAngle, IOptionLoader<IMoveAngle> {
-    offset: RangeValue;
-    value: RangeValue;
+  offset: RangeValue;
+  value: RangeValue;
 
-    constructor() {
-        this.offset = 0; // 45;
-        this.value = 90;
+  constructor() {
+    this.offset = 0; // 45;
+    this.value = 90;
+  }
+
+  load(data?: RecursivePartial<IMoveAngle>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IMoveAngle>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.offset !== undefined) {
-            this.offset = setRangeValue(data.offset);
-        }
-
-        if (data.value !== undefined) {
-            this.value = setRangeValue(data.value);
-        }
+    if (data.offset !== undefined) {
+      this.offset = setRangeValue(data.offset);
     }
+
+    if (data.value !== undefined) {
+      this.value = setRangeValue(data.value);
+    }
+  }
 }
