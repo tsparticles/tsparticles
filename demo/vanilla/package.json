@@ -88,6 +88,7 @@
     "@tsparticles/path-polygon": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-svg": "workspace:4.0.0-alpha.8",
+    "@tsparticles/path-utils": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-zig-zag": "workspace:4.0.0-alpha.8",
     "@tsparticles/perlin-noise": "workspace:4.0.0-alpha.8",
     "@tsparticles/pjs": "workspace:4.0.0-alpha.8",

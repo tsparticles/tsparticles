@@ -1,0 +1,6 @@
+{
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.browser.json"],
+    "compilerOptions": {
+        "outDir": "./dist/browser"
+    }
+}

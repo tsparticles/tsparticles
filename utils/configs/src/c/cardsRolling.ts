@@ -10,11 +10,11 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
   );
 
 const options: ISourceOptions = {
-  key: "cards",
-  name: "Cards",
+  key: "cardsRolling",
+  name: "Cards Rolling",
   particles: {
     color: {
-      value: "#fff",
+      value: "#000",
     },
     number: {
       value: 52,
@@ -32,13 +32,41 @@ const options: ISourceOptions = {
     size: {
       value: 30,
     },
+    stroke: {
+      width: 1,
+      color: "#000",
+    },
     move: {
       enable: true,
       speed: 2,
     },
-    stroke: {
-      width: 1,
-      color: "#000",
+    roll: {
+      darken: {
+        enable: true,
+        value: 30,
+      },
+      enlighten: {
+        enable: true,
+        value: 30,
+      },
+      enable: true,
+      mode: "both",
+      speed: {
+        min: 5,
+        max: 15,
+      },
+    },
+    tilt: {
+      direction: "random",
+      enable: true,
+      value: {
+        min: 0,
+        max: 360,
+      },
+      animation: {
+        enable: true,
+        speed: 15,
+      },
     },
   },
   interactivity: {

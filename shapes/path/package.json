@@ -108,7 +108,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.8"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.8",
+    "@tsparticles/path-utils": "workspace:4.0.0-alpha.8"
   },
   "publishConfig": {
     "access": "public",

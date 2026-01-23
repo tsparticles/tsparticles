@@ -26,7 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the shape like this
 
 ```javascript
 (async () => {
-  await loadCardsShape(tsParticles);
+  await loadFullCardsShape(tsParticles);
 
   await tsParticles.load({
     id: "tsparticles",

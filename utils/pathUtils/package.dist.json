@@ -1,12 +1,12 @@
 {
-  "name": "@tsparticles/shape-cards",
+  "name": "@tsparticles/path-utils",
   "version": "4.0.0-alpha.8",
-  "description": "tsParticles cards shape",
+  "description": "tsParticles path utils library",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "shapes/cards"
+    "directory": "utils/pathUtils"
   },
   "keywords": [
     "front-end",
@@ -60,8 +60,11 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-shape"
+    "tsparticles-plugin"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
@@ -82,8 +85,8 @@
     }
   ],
   "sideEffects": false,
-  "jsdelivr": "tsparticles.shape.cards.min.js",
-  "unpkg": "tsparticles.shape.cards.min.js",
+  "jsdelivr": "tsparticles.path.utils.min.js",
+  "unpkg": "tsparticles.path.utils.min.js",
   "browser": "browser/index.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -100,11 +103,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.8",
-    "@tsparticles/path-utils": "4.0.0-alpha.8"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@tsparticles/engine": "4.0.0-alpha.8"
   },
   "type": "module"
 }

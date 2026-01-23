@@ -1,29 +1,47 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
-const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
-  cardValues = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"] as const,
-  allCards = cardSuits.flatMap(suit =>
-    cardValues.map(value => ({
-      suit,
-      value,
-    })),
-  );
-
 const options: ISourceOptions = {
-  key: "cards",
-  name: "Cards",
+  key: "cardSuits",
+  name: "Card Suits",
   particles: {
-    color: {
-      value: "#fff",
-    },
     number: {
-      value: 52,
+      value: 80,
+      density: {
+        enable: true,
+      },
     },
     reduceDuplicates: true,
     shape: {
-      type: ["card"],
+      type: ["spades", "hearts", "diamonds", "clubs"],
       options: {
-        card: allCards,
+        spades: {
+          particles: {
+            color: {
+              value: "#000000",
+            },
+          },
+        },
+        hearts: {
+          particles: {
+            color: {
+              value: "#ff0000",
+            },
+          },
+        },
+        diamonds: {
+          particles: {
+            color: {
+              value: "#ff0000",
+            },
+          },
+        },
+        clubs: {
+          particles: {
+            color: {
+              value: "#000000",
+            },
+          },
+        },
       },
     },
     opacity: {
@@ -35,10 +53,6 @@ const options: ISourceOptions = {
     move: {
       enable: true,
       speed: 2,
-    },
-    stroke: {
-      width: 1,
-      color: "#000",
     },
   },
   interactivity: {

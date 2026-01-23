@@ -1,12 +1,18 @@
 {
-  "name": "@tsparticles/shape-cards",
+  "name": "@tsparticles/path-utils",
   "version": "4.0.0-alpha.8",
-  "description": "tsParticles cards shape",
+  "description": "tsParticles path utils path",
   "homepage": "https://particles.js.org",
+  "scripts": {
+    "build": "tsparticles-cli build",
+    "build:ci": "tsparticles-cli build --ci",
+    "version": "tsparticles-cli build -d && git add package.dist.json && tsparticles-cli build -p -l && git add .",
+    "prepack": "pnpm run build"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "shapes/cards"
+    "directory": "paths/pathUtils"
   },
   "keywords": [
     "front-end",
@@ -60,7 +66,7 @@
     "confettijs",
     "fireworksjs",
     "canvas-confetti",
-    "tsparticles-shape"
+    "tsparticles-plugin"
   ],
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
@@ -81,30 +87,33 @@
       "url": "https://www.buymeacoffee.com/matteobruni"
     }
   ],
+  "prettier": "@tsparticles/prettier-config",
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
-  "jsdelivr": "tsparticles.shape.cards.min.js",
-  "unpkg": "tsparticles.shape.cards.min.js",
-  "browser": "browser/index.js",
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "types": "types/index.d.ts",
+  "browser": "dist/browser/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./types/index.d.ts",
-      "browser": "./browser/index.js",
-      "import": "./esm/index.js",
-      "require": "./cjs/index.js",
-      "umd": "./umd/index.js",
-      "default": "./cjs/index.js"
+      "types": "./dist/types/index.d.ts",
+      "browser": "./dist/browser/index.js",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "umd": "./dist/umd/index.js",
+      "default": "./dist/cjs/index.js"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.8",
-    "@tsparticles/path-utils": "4.0.0-alpha.8"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.8"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": true
   },
   "type": "module"
 }

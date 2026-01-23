@@ -722,6 +722,17 @@ export class Particle {
     );
   }
 
+  isShowingBack(): boolean {
+    if (!this.roll) {
+      return false;
+    }
+
+    const backFactor = this.roll.horizontal && this.roll.vertical ? double * rollFactor : rollFactor,
+      backSum = this.roll.horizontal ? Math.PI * half : none;
+
+    return !!(Math.floor((this.roll.angle + backSum) / (Math.PI / backFactor)) % double);
+  }
+
   isVisible(): boolean {
     return !this.destroyed && !this.spawning && this.isInsideCanvas();
   }
@@ -855,11 +866,7 @@ export class Particle {
       return color;
     }
 
-    const backFactor = this.roll.horizontal && this.roll.vertical ? double * rollFactor : rollFactor,
-      backSum = this.roll.horizontal ? Math.PI * half : none,
-      rolled = Math.floor((this.roll.angle + backSum) / (Math.PI / backFactor)) % double;
-
-    if (!rolled) {
+    if (!this.isShowingBack()) {
       return color;
     }
 

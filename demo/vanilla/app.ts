@@ -129,6 +129,7 @@ app.use("/path-perlin-noise", express.static("./node_modules/@tsparticles/path-p
 app.use("/path-polygon", express.static("./node_modules/@tsparticles/path-polygon"));
 app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-simplex-noise"));
 app.use("/path-svg", express.static("./node_modules/@tsparticles/path-svg"));
+app.use("/path-utils", express.static("./node_modules/@tsparticles/path-utils"));
 app.use("/path-zig-zag", express.static("./node_modules/@tsparticles/path-zig-zag"));
 app.use("/plugin-background-mask", express.static("./node_modules/@tsparticles/plugin-background-mask"));
 app.use("/plugin-blend", express.static("./node_modules/@tsparticles/plugin-blend"));

@@ -5,7 +5,7 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export async function loadDiamondsCardsShape(engine: Engine): Promise<void> {
+export async function loadDiamondsSuitShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async e => {

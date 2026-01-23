@@ -1,14 +1,22 @@
 import type { IPathData } from "./IPathData.js";
 import { SegmentType } from "./SegmentType.js";
 
+const firstIndex = 0,
+  index2 = 1,
+  index3 = 2,
+  index4 = 3;
+
 /**
  * @param ctx -
  * @param radius -
  * @param path -
  */
-export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IPathData): void {
-  const firstIndex = 0,
-    firstSegment = path.segments[firstIndex];
+export function drawPath(
+  ctx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D,
+  radius: number,
+  path: IPathData,
+): void {
+  const firstSegment = path.segments[firstIndex];
 
   if (!firstSegment) {
     return;
@@ -23,10 +31,7 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
   ctx.moveTo(firstValue.x * radius, firstValue.y * radius);
 
   for (const segment of path.segments) {
-    const value = segment.values[firstIndex],
-      index2 = 1,
-      index3 = 2,
-      index4 = 3;
+    const value = segment.values[firstIndex];
 
     if (!value) {
       continue;
@@ -37,13 +42,19 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
       segmentValue4 = segment.values[index4];
 
     switch (segment.type) {
+      case SegmentType.move:
+        ctx.moveTo(value.x * radius, value.y * radius);
+
+        break;
+
       case SegmentType.line:
         ctx.lineTo(value.x * radius, value.y * radius);
+
         break;
 
       case SegmentType.bezier:
         if (!segmentValue2 || !segmentValue3 || !segmentValue4) {
-          break;
+          continue;
         }
 
         ctx.bezierCurveTo(
@@ -54,11 +65,12 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
           segmentValue4.x * radius,
           segmentValue4.y * radius,
         );
+
         break;
 
       case SegmentType.quadratic:
         if (!segmentValue2 || !segmentValue3) {
-          break;
+          continue;
         }
 
         ctx.quadraticCurveTo(
@@ -67,19 +79,21 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
           segmentValue3.x * radius,
           segmentValue3.y * radius,
         );
+
         break;
 
       case SegmentType.arc:
         if (!segmentValue2 || !segmentValue3) {
-          break;
+          continue;
         }
 
         ctx.arc(value.x * radius, value.y * radius, segmentValue2.x * radius, segmentValue3.x, segmentValue3.y);
+
         break;
 
       case SegmentType.ellipse:
         if (!segmentValue2 || !segmentValue3 || !segmentValue4) {
-          break;
+          continue;
         }
 
         ctx.ellipse(
@@ -91,6 +105,8 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
           segmentValue4.x,
           segmentValue4.y,
         );
+
+        break;
     }
   }
 
@@ -134,7 +150,7 @@ export function drawPath(ctx: CanvasRenderingContext2D, radius: number, path: IP
           segmentValue3.y * radius,
           -segmentValue2.x * radius,
           segmentValue2.y * radius,
-          value.x * radius,
+          -value.x * radius,
           value.y * radius,
         );
         break;

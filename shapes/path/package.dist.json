@@ -100,7 +100,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.8"
+    "@tsparticles/engine": "4.0.0-alpha.8",
+    "@tsparticles/path-utils": "4.0.0-alpha.8"
   },
   "publishConfig": {
     "access": "public"
