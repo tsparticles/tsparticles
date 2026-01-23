@@ -18,14 +18,14 @@ import {
   defaultRetryCount,
   defaultTransform,
   double,
+  doublePI,
   half,
   identity,
   millisecondsToSeconds,
   minZ,
-  none,
   randomColorValue,
-  rollFactor,
   squareExp,
+  triple,
   tryCountIncrement,
   zIndexFactorOffset,
 } from "./Utils/Constants.js";
@@ -727,10 +727,30 @@ export class Particle {
       return false;
     }
 
-    const backFactor = this.roll.horizontal && this.roll.vertical ? double * rollFactor : rollFactor,
-      backSum = this.roll.horizontal ? Math.PI * half : none;
+    const angle = this.roll.angle;
 
-    return !!(Math.floor((this.roll.angle + backSum) / (Math.PI / backFactor)) % double);
+    if (this.roll.horizontal && this.roll.vertical) {
+      const normalizedAngle = angle % doublePI,
+        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + doublePI : normalizedAngle;
+
+      return adjustedAngle >= Math.PI * half && adjustedAngle < Math.PI * triple * half;
+    }
+
+    if (this.roll.horizontal) {
+      const normalizedAngle = (angle + Math.PI * half) % (Math.PI * double),
+        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + Math.PI * double : normalizedAngle;
+
+      return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
+    }
+
+    if (this.roll.vertical) {
+      const normalizedAngle = angle % (Math.PI * double),
+        adjustedAngle = normalizedAngle < defaultAngle ? normalizedAngle + Math.PI * double : normalizedAngle;
+
+      return adjustedAngle >= Math.PI && adjustedAngle < Math.PI * double;
+    }
+
+    return false;
   }
 
   isVisible(): boolean {
