@@ -1,12 +1,12 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-square",
-  "version": "4.0.0-alpha.5",
+  "version": "4.0.0-alpha.8",
   "description": "tsParticles emitters shape square plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
     "build:ci": "tsparticles-cli build --ci",
-    "version": "tsparticles-cli build -d && git add package.dist.json",
+    "version": "tsparticles-cli build -d && git add package.dist.json && tsparticles-cli build -p -l && git add .",
     "prepack": "pnpm run build"
   },
   "repository": {
@@ -108,8 +108,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.5",
-    "@tsparticles/plugin-emitters": "workspace:4.0.0-alpha.5"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.8",
+    "@tsparticles/plugin-emitters": "workspace:4.0.0-alpha.8"
   },
   "publishConfig": {
     "access": "public",

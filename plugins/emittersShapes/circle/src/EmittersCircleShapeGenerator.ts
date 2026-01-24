@@ -3,7 +3,7 @@ import type { IEmitterShape, IEmitterShapeGenerator } from "@tsparticles/plugin-
 import { EmittersCircleShape } from "./EmittersCircleShape.js";
 
 export class EmittersCircleShapeGenerator implements IEmitterShapeGenerator {
-    generate(position: ICoordinates, size: IDimension, fill: boolean, options: unknown): IEmitterShape {
-        return new EmittersCircleShape(position, size, fill, options);
-    }
+  generate(position: ICoordinates, size: IDimension, fill: boolean, options: unknown): IEmitterShape {
+    return new EmittersCircleShape(position, size, fill, options);
+  }
 }

@@ -5,23 +5,23 @@ import { RepulseBase } from "./RepulseBase.js";
 /**
  */
 export class RepulseDiv extends RepulseBase implements IRepulseDiv, IOptionLoader<IRepulseDiv> {
-    selectors: SingleOrMultiple<string>;
+  selectors: SingleOrMultiple<string>;
 
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.selectors = [];
+    this.selectors = [];
+  }
+
+  override load(data?: RecursivePartial<IRepulseDiv>): void {
+    super.load(data);
+
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<IRepulseDiv>): void {
-        super.load(data);
-
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.selectors !== undefined) {
-            this.selectors = data.selectors;
-        }
+    if (data.selectors !== undefined) {
+      this.selectors = data.selectors;
     }
+  }
 }

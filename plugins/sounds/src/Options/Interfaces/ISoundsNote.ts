@@ -1,7 +1,7 @@
 import type { SingleOrMultiple } from "@tsparticles/engine";
 
 export interface ISoundsNote {
-    duration: number;
+  duration: number;
 
-    value: SingleOrMultiple<string>;
+  value: SingleOrMultiple<string>;
 }

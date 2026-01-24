@@ -2,19 +2,19 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { IPixelsOptions } from "../Interfaces/IPixelsOptions.js";
 
 export class PixelsOptions implements IPixelsOptions, IOptionLoader<IPixelsOptions> {
-    offset: number;
+  offset: number;
 
-    constructor() {
-        this.offset = 4;
+  constructor() {
+    this.offset = 4;
+  }
+
+  load(data?: RecursivePartial<IPixelsOptions>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IPixelsOptions>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.offset !== undefined) {
-            this.offset = data.offset;
-        }
+    if (data.offset !== undefined) {
+      this.offset = data.offset;
     }
+  }
 }

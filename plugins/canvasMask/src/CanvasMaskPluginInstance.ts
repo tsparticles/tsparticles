@@ -1,79 +1,78 @@
 import {
-    type CanvasPixelData,
-    addParticlesFromCanvasPixels,
-    getCanvasImageData,
-    getImageData,
-    getTextData,
+  type CanvasPixelData,
+  addParticlesFromCanvasPixels,
+  getCanvasImageData,
+  getImageData,
+  getTextData,
 } from "./utils.js";
 import { type IContainerPlugin, isNull, safeDocument } from "@tsparticles/engine";
 import type { CanvasMaskContainer } from "./types.js";
 
 export class CanvasMaskPluginInstance implements IContainerPlugin {
-    private readonly _container;
+  private readonly _container;
 
-    constructor(container: CanvasMaskContainer) {
-        this._container = container;
+  constructor(container: CanvasMaskContainer) {
+    this._container = container;
+  }
+
+  async init(): Promise<void> {
+    const container = this._container,
+      options = container.actualOptions.canvasMask;
+
+    if (!options?.enable) {
+      return;
     }
 
-    async init(): Promise<void> {
-        const container = this._container,
-            options = container.actualOptions.canvasMask;
+    let pixelData: CanvasPixelData = {
+      pixels: [],
+      height: 0,
+      width: 0,
+    };
 
-        if (!options?.enable) {
-            return;
-        }
+    const offset = options.pixels.offset;
 
-        let pixelData: CanvasPixelData = {
-            pixels: [],
-            height: 0,
-            width: 0,
-        };
+    if (options.image) {
+      const url = options.image.src;
 
-        const offset = options.pixels.offset;
+      if (!url) {
+        return;
+      }
 
-        if (options.image) {
-            const url = options.image.src;
+      pixelData = await getImageData(url, offset);
+    } else if (options.text) {
+      const textOptions = options.text;
 
-            if (!url) {
-                return;
-            }
+      const data = getTextData(textOptions, offset);
 
-            pixelData = await getImageData(url, offset);
-        } else if (options.text) {
-            const textOptions = options.text;
+      if (isNull(data)) {
+        return;
+      }
 
-            const data = getTextData(textOptions, offset);
+      pixelData = data;
+    } else if (options.element ?? options.selector) {
+      const canvas =
+        options.element ?? (options.selector && safeDocument().querySelector<HTMLCanvasElement>(options.selector));
 
-            if (isNull(data)) {
-                return;
-            }
+      if (!canvas) {
+        return;
+      }
 
-            pixelData = data;
-        } else if (options.element ?? options.selector) {
-            const canvas =
-                options.element ??
-                (options.selector && safeDocument().querySelector<HTMLCanvasElement>(options.selector));
+      const context = canvas.getContext("2d");
 
-            if (!canvas) {
-                return;
-            }
+      if (!context) {
+        return;
+      }
 
-            const context = canvas.getContext("2d");
-
-            if (!context) {
-                return;
-            }
-
-            pixelData = getCanvasImageData(context, canvas, offset);
-        }
-
-        addParticlesFromCanvasPixels(
-            container,
-            pixelData,
-            options.position,
-            options.scale,
-            options.override,
-            options.pixels.filter,
-        );
+      pixelData = getCanvasImageData(context, canvas, offset);
     }
+
+    addParticlesFromCanvasPixels(
+      container,
+      pixelData,
+      options.position,
+      options.scale,
+      options.override,
+      options.pixels.filter,
+    );
+  }
 }

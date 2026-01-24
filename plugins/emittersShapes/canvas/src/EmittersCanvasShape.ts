@@ -1,14 +1,14 @@
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import {
-    type ICoordinates,
-    type IDimension,
-    type IRgba,
-    getRandom,
-    half,
-    isFunction,
-    isNull,
-    isString,
-    safeDocument,
+  type ICoordinates,
+  type IDimension,
+  type IRgba,
+  getRandom,
+  half,
+  isFunction,
+  isNull,
+  isString,
+  safeDocument,
 } from "@tsparticles/engine";
 import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
 import type { CanvasPixelData } from "./types.js";
@@ -17,135 +17,135 @@ import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanva
 const maxRetries = 100;
 
 export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOptions> {
-    filter: (pixel: IRgba) => boolean;
-    pixelData: CanvasPixelData;
-    scale: number;
+  filter: (pixel: IRgba) => boolean;
+  pixelData: CanvasPixelData;
+  scale: number;
 
-    constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersCanvasShapeOptions) {
-        super(position, size, fill, options);
+  constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersCanvasShapeOptions) {
+    super(position, size, fill, options);
 
-        const filter = options.filter,
-            minAlpha = 0;
+    const filter = options.filter,
+      minAlpha = 0;
 
-        let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
+    let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
 
-        if (isString(filter)) {
-            if (Object.hasOwn(globalThis, filter)) {
-                const wndFilter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
+    if (isString(filter)) {
+      if (Object.hasOwn(globalThis, filter)) {
+        const wndFilter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
 
-                if (isFunction(wndFilter)) {
-                    filterFunc = wndFilter;
-                }
-            }
-        } else {
-            filterFunc = filter;
+        if (isFunction(wndFilter)) {
+          filterFunc = wndFilter;
         }
-
-        this.filter = filterFunc;
-
-        this.scale = options.scale;
-
-        this.pixelData = {
-            pixels: [],
-            height: 0,
-            width: 0,
-        };
+      }
+    } else {
+      filterFunc = filter;
     }
 
-    async init(): Promise<void> {
-        let pixelData: CanvasPixelData | undefined;
+    this.filter = filterFunc;
 
-        const options = this.options,
-            selector = options.selector,
-            pixels = options.pixels,
-            image = options.image,
-            element = options.element,
-            text = options.text,
-            offset = pixels.offset;
+    this.scale = options.scale;
 
-        if (image) {
-            const url = image.src;
+    this.pixelData = {
+      pixels: [],
+      height: 0,
+      width: 0,
+    };
+  }
 
-            if (!url) {
-                return;
-            }
+  async init(): Promise<void> {
+    let pixelData: CanvasPixelData | undefined;
 
-            pixelData = await getImageData(url, offset);
-        } else if (element ?? selector) {
-            const canvas = element ?? (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
+    const options = this.options,
+      selector = options.selector,
+      pixels = options.pixels,
+      image = options.image,
+      element = options.element,
+      text = options.text,
+      offset = pixels.offset;
 
-            if (!canvas) {
-                return;
-            }
+    if (image) {
+      const url = image.src;
 
-            const context = canvas.getContext("2d");
+      if (!url) {
+        return;
+      }
 
-            if (!context) {
-                return;
-            }
+      pixelData = await getImageData(url, offset);
+    } else if (element ?? selector) {
+      const canvas = element ?? (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
 
-            pixelData = getCanvasImageData(context, canvas, offset);
-        } else {
-            const data = getTextData(text, offset, this.fill);
+      if (!canvas) {
+        return;
+      }
 
-            if (isNull(data)) {
-                return;
-            }
+      const context = canvas.getContext("2d");
 
-            pixelData = data;
-        }
+      if (!context) {
+        return;
+      }
 
-        this.pixelData = pixelData;
+      pixelData = getCanvasImageData(context, canvas, offset);
+    } else {
+      const data = getTextData(text, offset, this.fill);
+
+      if (isNull(data)) {
+        return;
+      }
+
+      pixelData = data;
     }
 
-    randomPosition(): IRandomPositionData | null {
-        const { height, width } = this.pixelData,
-            data = this.pixelData,
-            position = this.position,
-            scale = this.scale,
-            positionOffset = {
-                x: position.x - width * scale * half,
-                y: position.y - height * scale * half,
-            };
+    this.pixelData = pixelData;
+  }
 
-        for (let i = 0; i < maxRetries; i++) {
-            const nextIndex = Math.floor(getRandom() * width * height),
-                pixelPos = {
-                    x: nextIndex % width,
-                    y: Math.floor(nextIndex / width),
-                },
-                row = data.pixels[pixelPos.y];
+  randomPosition(): IRandomPositionData | null {
+    const { height, width } = this.pixelData,
+      data = this.pixelData,
+      position = this.position,
+      scale = this.scale,
+      positionOffset = {
+        x: position.x - width * scale * half,
+        y: position.y - height * scale * half,
+      };
 
-            if (!row) {
-                continue;
-            }
+    for (let i = 0; i < maxRetries; i++) {
+      const nextIndex = Math.floor(getRandom() * width * height),
+        pixelPos = {
+          x: nextIndex % width,
+          y: Math.floor(nextIndex / width),
+        },
+        row = data.pixels[pixelPos.y];
 
-            const pixel = row[pixelPos.x];
+      if (!row) {
+        continue;
+      }
 
-            if (!pixel) {
-                continue;
-            }
+      const pixel = row[pixelPos.x];
 
-            const shouldCreateParticle = this.filter(pixel);
+      if (!pixel) {
+        continue;
+      }
 
-            if (!shouldCreateParticle) {
-                continue;
-            }
+      const shouldCreateParticle = this.filter(pixel);
 
-            return {
-                position: {
-                    x: pixelPos.x * scale + positionOffset.x,
-                    y: pixelPos.y * scale + positionOffset.y,
-                },
-                color: { ...pixel },
-                opacity: pixel.a,
-            };
-        }
+      if (!shouldCreateParticle) {
+        continue;
+      }
 
-        return null;
+      return {
+        position: {
+          x: pixelPos.x * scale + positionOffset.x,
+          y: pixelPos.y * scale + positionOffset.y,
+        },
+        color: { ...pixel },
+        opacity: pixel.a,
+      };
     }
 
-    override resize(position: ICoordinates, size: IDimension): void {
-        super.resize(position, size);
-    }
+    return null;
+  }
+
+  override resize(position: ICoordinates, size: IDimension): void {
+    super.resize(position, size);
+  }
 }

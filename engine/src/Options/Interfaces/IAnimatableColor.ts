@@ -7,8 +7,8 @@ import type { IOptionsColor } from "./IOptionsColor.js";
  * [[include:Options/Particles/Color.md]]
  */
 export interface IAnimatableColor extends IOptionsColor {
-    /**
-     * The color animation property
-     */
-    animation: IColorAnimation | IHslAnimation;
+  /**
+   * The color animation property
+   */
+  animation: IColorAnimation | IHslAnimation;
 }

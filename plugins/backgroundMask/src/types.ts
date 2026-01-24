@@ -3,13 +3,13 @@ import type { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
 import type { IBackgroundMask } from "./Options/Interfaces/IBackgroundMask.js";
 
 export type IBackgroundMaskOptions = IOptions & {
-    backgroundMask?: IBackgroundMask;
+  backgroundMask?: IBackgroundMask;
 };
 
 export type BackgroundMaskOptions = Options & {
-    backgroundMask?: BackgroundMask;
+  backgroundMask?: BackgroundMask;
 };
 
 export type BackgroundMaskContainer = Container & {
-    actualOptions: BackgroundMaskOptions;
+  actualOptions: BackgroundMaskOptions;
 };

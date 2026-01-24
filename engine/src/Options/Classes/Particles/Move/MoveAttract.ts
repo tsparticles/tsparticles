@@ -9,44 +9,44 @@ import { setRangeValue } from "../../../../Utils/MathUtils.js";
 /**
  */
 export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
-    distance: RangeValue;
-    enable;
-    rotate: ICoordinates;
+  distance: RangeValue;
+  enable;
+  rotate: ICoordinates;
 
-    constructor() {
-        this.distance = 200;
-        this.enable = false;
-        this.rotate = {
-            x: 3000,
-            y: 3000,
-        };
+  constructor() {
+    this.distance = 200;
+    this.enable = false;
+    this.rotate = {
+      x: 3000,
+      y: 3000,
+    };
+  }
+
+  load(data?: RecursivePartial<IMoveAttract>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IMoveAttract>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.distance !== undefined) {
-            this.distance = setRangeValue(data.distance);
-        }
-
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
-
-        if (data.rotate) {
-            const rotateX = data.rotate.x;
-
-            if (rotateX !== undefined) {
-                this.rotate.x = rotateX;
-            }
-
-            const rotateY = data.rotate.y;
-
-            if (rotateY !== undefined) {
-                this.rotate.y = rotateY;
-            }
-        }
+    if (data.distance !== undefined) {
+      this.distance = setRangeValue(data.distance);
     }
+
+    if (data.enable !== undefined) {
+      this.enable = data.enable;
+    }
+
+    if (data.rotate) {
+      const rotateX = data.rotate.x;
+
+      if (rotateX !== undefined) {
+        this.rotate.x = rotateX;
+      }
+
+      const rotateY = data.rotate.y;
+
+      if (rotateY !== undefined) {
+        this.rotate.y = rotateY;
+      }
+    }
+  }
 }

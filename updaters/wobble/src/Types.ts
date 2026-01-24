@@ -3,34 +3,34 @@ import type { IWobble } from "./Options/Interfaces/IWobble.js";
 import type { Wobble } from "./Options/Classes/Wobble.js";
 
 interface IParticleWobble {
-    angle: number;
-    angleSpeed: number;
-    moveSpeed: number;
+  angle: number;
+  angleSpeed: number;
+  moveSpeed: number;
 }
 
 /**
  * Wobble particle extension type
  */
 export type WobbleParticle = Particle & {
-    options: WobbleParticlesOptions;
+  options: WobbleParticlesOptions;
 
+  /**
+   * Particle retina cached options
+   */
+  retina: {
     /**
-     * Particle retina cached options
+     * The particle maximum wobble distance
      */
-    retina: {
-        /**
-         * The particle maximum wobble distance
-         */
-        wobbleDistance?: number;
-    };
+    wobbleDistance?: number;
+  };
 
-    wobble?: IParticleWobble;
+  wobble?: IParticleWobble;
 };
 
 export type IWobbleParticlesOptions = IParticlesOptions & {
-    wobble?: IWobble;
+  wobble?: IWobble;
 };
 
 export type WobbleParticlesOptions = ParticlesOptions & {
-    wobble?: Wobble;
+  wobble?: Wobble;
 };

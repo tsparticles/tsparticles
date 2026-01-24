@@ -32,32 +32,32 @@ notes.set("pause", [0]);
  * @returns frequency
  */
 export function getNoteFrequency(note: string): number | undefined {
-    const regex = /(([A-G]b?)(\d))|pause/i,
-        result = regex.exec(note),
-        groupKey = 2,
-        defaultMatchKey = 0,
-        innerGroupKey = 3;
+  const regex = /(([A-G]b?)(\d))|pause/i,
+    result = regex.exec(note),
+    groupKey = 2,
+    defaultMatchKey = 0,
+    innerGroupKey = 3;
 
-    if (!result?.length) {
-        return;
-    }
+  if (!result?.length) {
+    return;
+  }
 
-    const noteKey = result[groupKey] ?? result[defaultMatchKey],
-        noteItem = notes.get(noteKey);
+  const noteKey = result[groupKey] ?? result[defaultMatchKey],
+    noteItem = notes.get(noteKey);
 
-    if (!noteItem) {
-        return;
-    }
+  if (!noteItem) {
+    return;
+  }
 
-    return noteItem[parseInt(result[innerGroupKey] ?? "0")];
+  return noteItem[parseInt(result[innerGroupKey] ?? "0")];
 }
 
 let muted = true;
 
 export const isWindowMuted = (): boolean => {
-    return muted;
+  return muted;
 };
 
 export const unmuteWindow = (): void => {
-    muted = false;
+  muted = false;
 };

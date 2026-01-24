@@ -3,13 +3,13 @@ import type { ITwinkle } from "./Options/Interfaces/ITwinkle.js";
 import type { Twinkle } from "./Options/Classes/Twinkle.js";
 
 export type TwinkeParticle = Particle & {
-    options: TwinkleParticlesOptions;
+  options: TwinkleParticlesOptions;
 };
 
 export type ITwinkleParticlesOptions = IParticlesOptions & {
-    twinkle?: ITwinkle;
+  twinkle?: ITwinkle;
 };
 
 export type TwinkleParticlesOptions = ParticlesOptions & {
-    twinkle?: Twinkle;
+  twinkle?: Twinkle;
 };

@@ -9,31 +9,31 @@ import { Modes } from "./Modes/Modes.js";
  * [[include:Options/Interactivity.md]]
  */
 export class Interactivity implements IInteractivity, IOptionLoader<IInteractivity> {
-    [name: string]: unknown;
+  [name: string]: unknown;
 
-    detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
+  detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
 
-    readonly events;
-    readonly modes;
+  readonly events;
+  readonly modes;
 
-    constructor(engine: InteractivityEngine, container?: Container) {
-        this.detectsOn = InteractivityDetect.window;
-        this.events = new Events();
-        this.modes = new Modes(engine, container);
+  constructor(engine: InteractivityEngine, container?: Container) {
+    this.detectsOn = InteractivityDetect.window;
+    this.events = new Events();
+    this.modes = new Modes(engine, container);
+  }
+
+  load(data?: RecursivePartial<IInteractivity>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IInteractivity>): void {
-        if (isNull(data)) {
-            return;
-        }
+    const detectsOn = data.detectsOn;
 
-        const detectsOn = data.detectsOn;
-
-        if (detectsOn !== undefined) {
-            this.detectsOn = detectsOn;
-        }
-
-        this.events.load(data.events);
-        this.modes.load(data.modes);
+    if (detectsOn !== undefined) {
+      this.detectsOn = detectsOn;
     }
+
+    this.events.load(data.events);
+    this.modes.load(data.modes);
+  }
 }

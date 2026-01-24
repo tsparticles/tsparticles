@@ -1,5 +1,5 @@
 export interface IParticleGravity {
-    acceleration: number;
-    enable: boolean;
-    inverse: boolean;
+  acceleration: number;
+  enable: boolean;
+  inverse: boolean;
 }

@@ -2,25 +2,25 @@ import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/
 import type { ICanvasMaskOverride } from "../Interfaces/ICanvasMaskOverride.js";
 
 export class CanvasMaskOverride implements ICanvasMaskOverride, IOptionLoader<ICanvasMaskOverride> {
-    color: boolean;
-    opacity: boolean;
+  color: boolean;
+  opacity: boolean;
 
-    constructor() {
-        this.color = true;
-        this.opacity = false;
+  constructor() {
+    this.color = true;
+    this.opacity = false;
+  }
+
+  load(data?: RecursivePartial<ICanvasMaskOverride>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<ICanvasMaskOverride>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.color !== undefined) {
-            this.color = data.color;
-        }
-
-        if (data.opacity !== undefined) {
-            this.opacity = data.opacity;
-        }
+    if (data.color !== undefined) {
+      this.color = data.color;
     }
+
+    if (data.opacity !== undefined) {
+      this.opacity = data.opacity;
+    }
+  }
 }

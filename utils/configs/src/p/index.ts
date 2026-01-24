@@ -10,14 +10,14 @@ import polygons from "./polygons.js";
 import pop from "./pop.js";
 
 export default {
-    parallax,
-    pathPolygonMask,
-    pathSvg,
-    pathZigZag,
-    planes,
-    plasma,
-    poisson,
-    polygonMask,
-    polygons,
-    pop,
+  parallax,
+  pathPolygonMask,
+  pathSvg,
+  pathZigZag,
+  planes,
+  plasma,
+  poisson,
+  polygonMask,
+  polygons,
+  pop,
 };

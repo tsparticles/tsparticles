@@ -4,9 +4,9 @@ import type { RangeValue } from "../../../../Types/RangeValue.js";
 /**
  */
 export interface IMoveAttract {
-    distance: RangeValue;
+  distance: RangeValue;
 
-    enable: boolean;
+  enable: boolean;
 
-    rotate: ICoordinates;
+  rotate: ICoordinates;
 }

@@ -7,11 +7,11 @@ import type { Modes } from "./Options/Classes/Modes/Modes.js";
 /**
  */
 export interface IExternalInteractor<TParticle extends Particle = Particle> extends IInteractor<TParticle> {
-    handleClickMode?: (mode: string, interactivityData: IInteractivityData) => void;
+  handleClickMode?: (mode: string, interactivityData: IInteractivityData) => void;
 
-    loadModeOptions?: (options: Modes, ...sources: RecursivePartial<IModes | undefined>[]) => void;
+  loadModeOptions?: (options: Modes, ...sources: RecursivePartial<IModes | undefined>[]) => void;
 
-    interact(interactivityData: IInteractivityData, delta: IDelta): void;
+  interact(interactivityData: IInteractivityData, delta: IDelta): void;
 
-    isEnabled(interactivityData: IInteractivityData, particle?: TParticle): boolean;
+  isEnabled(interactivityData: IInteractivityData, particle?: TParticle): boolean;
 }

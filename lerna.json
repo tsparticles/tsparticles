@@ -1,11 +1,11 @@
 {
-    "version": "4.0.0-alpha.5",
-    "npmClient": "pnpm",
-    "conventionalCommits": true,
-    "command": {
-        "version": {
-            "message": "chore(release): published new version"
-        }
-    },
-    "$schema": "node_modules/lerna/schemas/lerna-schema.json"
+  "version": "4.0.0-alpha.8",
+  "npmClient": "pnpm",
+  "conventionalCommits": true,
+  "command": {
+    "version": {
+      "message": "chore(release): published new version"
+    }
+  },
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }

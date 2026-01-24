@@ -6,11 +6,11 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadSoundsPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { SoundsPlugin } = await import("./SoundsPlugin.js");
+  await engine.register(async e => {
+    const { SoundsPlugin } = await import("./SoundsPlugin.js");
 
-        e.addPlugin(new SoundsPlugin(engine));
-    });
+    e.addPlugin(new SoundsPlugin(engine));
+  });
 }

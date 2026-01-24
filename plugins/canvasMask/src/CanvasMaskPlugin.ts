@@ -5,37 +5,33 @@ import { CanvasMask } from "./Options/Classes/CanvasMask.js";
 /**
  */
 export class CanvasMaskPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    constructor() {
-        this.id = "canvasMask";
+  constructor() {
+    this.id = "canvasMask";
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { CanvasMaskPluginInstance } = await import("./CanvasMaskPluginInstance.js");
+
+    return new CanvasMaskPluginInstance(container);
+  }
+
+  loadOptions(_container: Container, options: CanvasMaskOptions, source?: RecursivePartial<ICanvasMaskOptions>): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { CanvasMaskPluginInstance } = await import("./CanvasMaskPluginInstance.js");
+    let canvasMaskOptions = options.canvasMask;
 
-        return new CanvasMaskPluginInstance(container);
+    if (canvasMaskOptions?.load === undefined) {
+      options.canvasMask = canvasMaskOptions = new CanvasMask();
     }
 
-    loadOptions(
-        _container: Container,
-        options: CanvasMaskOptions,
-        source?: RecursivePartial<ICanvasMaskOptions>,
-    ): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    canvasMaskOptions.load(source?.canvasMask);
+  }
 
-        let canvasMaskOptions = options.canvasMask;
-
-        if (canvasMaskOptions?.load === undefined) {
-            options.canvasMask = canvasMaskOptions = new CanvasMask();
-        }
-
-        canvasMaskOptions.load(source?.canvasMask);
-    }
-
-    needsPlugin(options?: RecursivePartial<ICanvasMaskOptions>): boolean {
-        return options?.canvasMask?.enable ?? false;
-    }
+  needsPlugin(options?: RecursivePartial<ICanvasMaskOptions>): boolean {
+    return options?.canvasMask?.enable ?? false;
+  }
 }

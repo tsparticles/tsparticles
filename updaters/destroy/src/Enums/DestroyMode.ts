@@ -1,4 +1,4 @@
 export enum DestroyMode {
-    none = "none",
-    split = "split",
+  none = "none",
+  split = "split",
 }

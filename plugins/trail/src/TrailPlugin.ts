@@ -5,37 +5,37 @@ import { Trail } from "./Options/Classes/Trail.js";
 /**
  */
 export class TrailPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    private readonly _engine;
+  private readonly _engine;
 
-    constructor(engine: Engine) {
-        this.id = "trail";
+  constructor(engine: Engine) {
+    this.id = "trail";
 
-        this._engine = engine;
+    this._engine = engine;
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { TrailPluginInstance } = await import("./TrailPluginInstance.js");
+
+    return new TrailPluginInstance(container, this._engine);
+  }
+
+  loadOptions(_container: Container, options: TrailOptions, source?: RecursivePartial<ITrailOptions>): void {
+    if (!this.needsPlugin()) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { TrailPluginInstance } = await import("./TrailPluginInstance.js");
+    let trailOptions = options.trail;
 
-        return new TrailPluginInstance(container, this._engine);
+    if (!trailOptions?.load) {
+      options.trail = trailOptions = new Trail();
     }
 
-    loadOptions(_container: Container, options: TrailOptions, source?: RecursivePartial<ITrailOptions>): void {
-        if (!this.needsPlugin()) {
-            return;
-        }
+    trailOptions.load(source?.trail);
+  }
 
-        let trailOptions = options.trail;
-
-        if (!trailOptions?.load) {
-            options.trail = trailOptions = new Trail();
-        }
-
-        trailOptions.load(source?.trail);
-    }
-
-    needsPlugin(): boolean {
-        return true;
-    }
+  needsPlugin(): boolean {
+    return true;
+  }
 }

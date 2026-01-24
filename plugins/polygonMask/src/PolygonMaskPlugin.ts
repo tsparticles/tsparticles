@@ -6,44 +6,44 @@ import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 /**
  */
 export class PolygonMaskPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    private readonly _engine;
+  private readonly _engine;
 
-    constructor(engine: Engine) {
-        this.id = "polygonMask";
+  constructor(engine: Engine) {
+    this.id = "polygonMask";
 
-        this._engine = engine;
+    this._engine = engine;
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { PolygonMaskInstance } = await import("./PolygonMaskInstance.js");
+
+    return new PolygonMaskInstance(container, this._engine);
+  }
+
+  loadOptions(
+    _container: Container,
+    options: PolygonMaskOptions,
+    source?: RecursivePartial<IPolygonMaskOptions>,
+  ): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { PolygonMaskInstance } = await import("./PolygonMaskInstance.js");
+    let polygonOptions = options.polygon;
 
-        return new PolygonMaskInstance(container, this._engine);
+    if (polygonOptions?.load === undefined) {
+      options.polygon = polygonOptions = new PolygonMask(this._engine);
     }
 
-    loadOptions(
-        _container: Container,
-        options: PolygonMaskOptions,
-        source?: RecursivePartial<IPolygonMaskOptions>,
-    ): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    polygonOptions.load(source?.polygon);
+  }
 
-        let polygonOptions = options.polygon;
-
-        if (polygonOptions?.load === undefined) {
-            options.polygon = polygonOptions = new PolygonMask(this._engine);
-        }
-
-        polygonOptions.load(source?.polygon);
-    }
-
-    needsPlugin(options?: RecursivePartial<IPolygonMaskOptions>): boolean {
-        return (
-            options?.polygon?.enable ??
-            (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
-        );
-    }
+  needsPlugin(options?: RecursivePartial<IPolygonMaskOptions>): boolean {
+    return (
+      options?.polygon?.enable ??
+      (options?.polygon?.type !== undefined && options.polygon.type !== PolygonMaskType.none)
+    );
+  }
 }

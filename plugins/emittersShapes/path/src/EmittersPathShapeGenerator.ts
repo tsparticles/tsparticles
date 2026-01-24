@@ -5,16 +5,11 @@ import { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOpt
 import type { IEmittersPathShapeOptions } from "./Options/Interfaces/IEmittersPathShapeOptions.js";
 
 export class EmittersPathShapeGenerator implements IEmitterShapeGenerator<IEmittersPathShapeOptions> {
-    generate(
-        position: ICoordinates,
-        size: IDimension,
-        fill: boolean,
-        options: IEmittersPathShapeOptions,
-    ): IEmitterShape {
-        const shapeOptions = new EmittersPathShapeOptions();
+  generate(position: ICoordinates, size: IDimension, fill: boolean, options: IEmittersPathShapeOptions): IEmitterShape {
+    const shapeOptions = new EmittersPathShapeOptions();
 
-        shapeOptions.load(options);
+    shapeOptions.load(options);
 
-        return new EmittersPathShape(position, size, fill, shapeOptions);
-    }
+    return new EmittersPathShape(position, size, fill, shapeOptions);
+  }
 }

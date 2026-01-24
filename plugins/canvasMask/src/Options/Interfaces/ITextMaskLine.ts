@@ -1,4 +1,4 @@
 export interface ITextMaskLine {
-    separator: string;
-    spacing: number;
+  separator: string;
+  spacing: number;
 }

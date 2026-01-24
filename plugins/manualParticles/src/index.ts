@@ -6,11 +6,11 @@ declare const __VERSION__: string;
  * @param engine - The engine instance
  */
 export async function loadManualParticlesPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { ManualParticlesPlugin } = await import("./ManualParticlesPlugin.js");
+  await engine.register(async e => {
+    const { ManualParticlesPlugin } = await import("./ManualParticlesPlugin.js");
 
-        e.addPlugin(new ManualParticlesPlugin());
-    });
+    e.addPlugin(new ManualParticlesPlugin());
+  });
 }

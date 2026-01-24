@@ -7,11 +7,11 @@ declare const __VERSION__: string;
  * @param engine - The engine, used to add the color manager
  */
 export async function loadOklabColorPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { OklabColorManager } = await import("./OklabColorManager.js");
+  await engine.register(async e => {
+    const { OklabColorManager } = await import("./OklabColorManager.js");
 
-        e.addColorManager(new OklabColorManager());
-    });
+    e.addColorManager(new OklabColorManager());
+  });
 }

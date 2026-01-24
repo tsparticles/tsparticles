@@ -4,62 +4,62 @@ import type { LightContainer, LightParticle } from "./Types.js";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
-    private readonly _engine;
+  private readonly _engine;
 
-    constructor(container: LightContainer, engine: Engine) {
-        super(container);
+  constructor(container: LightContainer, engine: Engine) {
+    super(container);
 
-        this._engine = engine;
+    this._engine = engine;
+  }
+
+  clear(): void {
+    // do nothing
+  }
+
+  init(): void {
+    // do nothing
+  }
+
+  interact(particle: LightParticle, interactivityData: IInteractivityData): void {
+    const container = this.container,
+      options = container.actualOptions;
+
+    if (!options.interactivity?.events.onHover.enable || interactivityData.status !== "pointermove") {
+      return;
     }
 
-    clear(): void {
-        // do nothing
+    const mousePos = interactivityData.mouse.position;
+
+    if (!mousePos) {
+      return;
     }
 
-    init(): void {
-        // do nothing
+    container.canvas.draw(ctx => {
+      drawParticleShadow(container, ctx, particle, mousePos);
+    });
+  }
+
+  isEnabled(particle: LightParticle, interactivityData: IInteractivityData): boolean {
+    const interactivity = particle.interactivity,
+      mouse = interactivityData.mouse,
+      events = interactivity.events;
+
+    if (!(events.onHover.enable && mouse.position)) {
+      return false;
     }
 
-    interact(particle: LightParticle, interactivityData: IInteractivityData): void {
-        const container = this.container,
-            options = container.actualOptions;
+    const res = isInArray(lightMode, events.onHover.mode);
 
-        if (!options.interactivity?.events.onHover.enable || interactivityData.status !== "pointermove") {
-            return;
-        }
+    if (res && interactivity.modes.light) {
+      const shadowOptions = interactivity.modes.light.shadow;
 
-        const mousePos = interactivityData.mouse.position;
-
-        if (!mousePos) {
-            return;
-        }
-
-        container.canvas.draw(ctx => {
-            drawParticleShadow(container, ctx, particle, mousePos);
-        });
+      particle.lightShadow = rangeColorToRgb(this._engine, shadowOptions.color);
     }
 
-    isEnabled(particle: LightParticle, interactivityData: IInteractivityData): boolean {
-        const interactivity = particle.interactivity,
-            mouse = interactivityData.mouse,
-            events = interactivity.events;
+    return res;
+  }
 
-        if (!(events.onHover.enable && mouse.position)) {
-            return false;
-        }
-
-        const res = isInArray(lightMode, events.onHover.mode);
-
-        if (res && interactivity.modes.light) {
-            const shadowOptions = interactivity.modes.light.shadow;
-
-            particle.lightShadow = rangeColorToRgb(this._engine, shadowOptions.color);
-        }
-
-        return res;
-    }
-
-    reset(): void {
-        // do nothing
-    }
+  reset(): void {
+    // do nothing
+  }
 }

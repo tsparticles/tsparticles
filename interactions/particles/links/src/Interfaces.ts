@@ -4,27 +4,27 @@ import type { LinkParticle } from "./Types.js";
 /**
  */
 export interface ILink {
-    destination: LinkParticle;
-    opacity: number;
+  destination: LinkParticle;
+  opacity: number;
 }
 
 /**
  */
 export interface ILinkTriangle {
-    opacity: number;
-    vertices: LinkParticle[];
+  opacity: number;
+  vertices: LinkParticle[];
 }
 
 export interface IParticlesFrequencies {
-    links: Map<string, number>;
-    triangles: Map<string, number>;
+  links: Map<string, number>;
+  triangles: Map<string, number>;
 }
 
 export interface ITwinkle {
-    lines: {
-        color: IRangeColor;
-        enable: boolean;
-        frequency: number;
-        opacity: RangeValue;
-    };
+  lines: {
+    color: IRangeColor;
+    enable: boolean;
+    frequency: number;
+    opacity: RangeValue;
+  };
 }

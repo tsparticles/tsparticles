@@ -7,28 +7,28 @@ import type { ParticlesOptions } from "../../Options/Classes/Particles/Particles
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 
 export interface IParticleUpdater {
-    afterDraw?: (particle: Particle) => void;
+  afterDraw?: (particle: Particle) => void;
 
-    beforeDraw?: (particle: Particle) => void;
+  beforeDraw?: (particle: Particle) => void;
 
-    getColorStyles?: (
-        particle: Particle,
-        context: CanvasRenderingContext2D,
-        radius: number,
-        opacity: number,
-    ) => IParticleColorStyle;
+  getColorStyles?: (
+    particle: Particle,
+    context: CanvasRenderingContext2D,
+    radius: number,
+    opacity: number,
+  ) => IParticleColorStyle;
 
-    getTransformValues?: (particle: Particle) => Partial<IParticleTransformValues>;
+  getTransformValues?: (particle: Particle) => Partial<IParticleTransformValues>;
 
-    loadOptions?: (options: ParticlesOptions, ...sources: (RecursivePartial<IParticlesOptions> | undefined)[]) => void;
+  loadOptions?: (options: ParticlesOptions, ...sources: (RecursivePartial<IParticlesOptions> | undefined)[]) => void;
 
-    particleDestroyed?: (particle: Particle, override?: boolean) => void;
+  particleDestroyed?: (particle: Particle, override?: boolean) => void;
 
-    reset?: (particle: Particle) => void;
+  reset?: (particle: Particle) => void;
 
-    init(particle: Particle): void;
+  init(particle: Particle): void;
 
-    isEnabled(particle: Particle): boolean;
+  isEnabled(particle: Particle): boolean;
 
-    update(particle: Particle, delta: IDelta): void;
+  update(particle: Particle, delta: IDelta): void;
 }

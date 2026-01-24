@@ -1,4 +1,4 @@
 export interface IAbsorberSizeLimit {
-    mass: number;
-    radius: number;
+  mass: number;
+  radius: number;
 }

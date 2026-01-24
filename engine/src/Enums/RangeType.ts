@@ -1,4 +1,4 @@
 export enum RangeType {
-    circle = "circle",
-    rectangle = "rectangle",
+  circle = "circle",
+  rectangle = "rectangle",
 }

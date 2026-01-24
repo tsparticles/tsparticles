@@ -2,8 +2,8 @@ import { type ICoordinates, type IShapeDrawData, degToRad } from "@tsparticles/e
 import type { ISide } from "./ISide.js";
 
 const piDeg = 180,
-    origin: ICoordinates = { x: 0, y: 0 },
-    sidesOffset = 2;
+  origin: ICoordinates = { x: 0, y: 0 },
+  sidesOffset = 2;
 
 /**
  *
@@ -12,19 +12,19 @@ const piDeg = 180,
  * @param side -
  */
 export function drawPolygon(data: IShapeDrawData, start: ICoordinates, side: ISide): void {
-    const { context } = data,
-        sideCount = side.count.numerator * side.count.denominator,
-        decimalSides = side.count.numerator / side.count.denominator,
-        interiorAngleDegrees = (piDeg * (decimalSides - sidesOffset)) / decimalSides,
-        interiorAngle = Math.PI - degToRad(interiorAngleDegrees); // convert to radians
+  const { context } = data,
+    sideCount = side.count.numerator * side.count.denominator,
+    decimalSides = side.count.numerator / side.count.denominator,
+    interiorAngleDegrees = (piDeg * (decimalSides - sidesOffset)) / decimalSides,
+    interiorAngle = Math.PI - degToRad(interiorAngleDegrees); // convert to radians
 
-    context.beginPath();
-    context.translate(start.x, start.y);
-    context.moveTo(origin.x, origin.y);
+  context.beginPath();
+  context.translate(start.x, start.y);
+  context.moveTo(origin.x, origin.y);
 
-    for (let i = 0; i < sideCount; i++) {
-        context.lineTo(side.length, origin.y);
-        context.translate(side.length, origin.y);
-        context.rotate(interiorAngle);
-    }
+  for (let i = 0; i < sideCount; i++) {
+    context.lineTo(side.length, origin.y);
+    context.translate(side.length, origin.y);
+    context.rotate(interiorAngle);
+  }
 }

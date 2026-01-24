@@ -3,13 +3,13 @@ import type { IRoll } from "./Options/Interfaces/IRoll.js";
 import type { Roll } from "./Options/Classes/Roll.js";
 
 export type RollParticle = Particle & {
-    options: RollParticlesOptions;
+  options: RollParticlesOptions;
 };
 
 export type RollParticlesOptions = ParticlesOptions & {
-    roll?: Roll;
+  roll?: Roll;
 };
 
 export type IRollParticlesOptions = IParticlesOptions & {
-    roll?: IRoll;
+  roll?: IRoll;
 };

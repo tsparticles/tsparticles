@@ -5,23 +5,23 @@ import type { IGrab } from "../Interfaces/IGrab.js";
 /**
  */
 export class Grab implements IGrab, IOptionLoader<IGrab> {
-    distance;
-    links;
+  distance;
+  links;
 
-    constructor() {
-        this.distance = 100;
-        this.links = new GrabLinks();
+  constructor() {
+    this.distance = 100;
+    this.links = new GrabLinks();
+  }
+
+  load(data?: RecursivePartial<IGrab>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IGrab>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.distance !== undefined) {
-            this.distance = data.distance;
-        }
-
-        this.links.load(data.links);
+    if (data.distance !== undefined) {
+      this.distance = data.distance;
     }
+
+    this.links.load(data.links);
+  }
 }

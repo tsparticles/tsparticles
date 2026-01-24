@@ -8,30 +8,30 @@ import { isNull } from "../../../../Utils/TypeUtils.js";
 import { setRangeValue } from "../../../../Utils/MathUtils.js";
 
 export class Spin implements ISpin, IOptionLoader<ISpin> {
-    acceleration: RangeValue;
-    enable;
-    position?: ICoordinatesWithMode;
+  acceleration: RangeValue;
+  enable;
+  position?: ICoordinatesWithMode;
 
-    constructor() {
-        this.acceleration = 0;
-        this.enable = false;
+  constructor() {
+    this.acceleration = 0;
+    this.enable = false;
+  }
+
+  load(data?: RecursivePartial<ISpin>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<ISpin>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.acceleration !== undefined) {
-            this.acceleration = setRangeValue(data.acceleration);
-        }
-
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
-
-        if (data.position) {
-            this.position = deepExtend({}, data.position) as ICoordinatesWithMode | undefined;
-        }
+    if (data.acceleration !== undefined) {
+      this.acceleration = setRangeValue(data.acceleration);
     }
+
+    if (data.enable !== undefined) {
+      this.enable = data.enable;
+    }
+
+    if (data.position) {
+      this.position = deepExtend({}, data.position) as ICoordinatesWithMode | undefined;
+    }
+  }
 }

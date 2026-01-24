@@ -5,33 +5,33 @@ import { Infection } from "./Options/Classes/Infection.js";
 /**
  */
 export class InfectionPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    constructor() {
-        this.id = "infection";
+  constructor() {
+    this.id = "infection";
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { InfectionPluginInstance } = await import("./InfectionPluginInstance.js");
+
+    return new InfectionPluginInstance(container);
+  }
+
+  loadOptions(_container: Container, options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { InfectionPluginInstance } = await import("./InfectionPluginInstance.js");
+    let infectionOptions = options.infection;
 
-        return new InfectionPluginInstance(container);
+    if (infectionOptions?.load === undefined) {
+      options.infection = infectionOptions = new Infection();
     }
 
-    loadOptions(_container: Container, options: InfectionOptions, source?: RecursivePartial<IInfectionOptions>): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    infectionOptions.load(source?.infection);
+  }
 
-        let infectionOptions = options.infection;
-
-        if (infectionOptions?.load === undefined) {
-            options.infection = infectionOptions = new Infection();
-        }
-
-        infectionOptions.load(source?.infection);
-    }
-
-    needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
-        return options?.infection?.enable ?? false;
-    }
+  needsPlugin(options?: RecursivePartial<IInfectionOptions>): boolean {
+    return options?.infection?.enable ?? false;
+  }
 }

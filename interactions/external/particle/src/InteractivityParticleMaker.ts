@@ -1,18 +1,18 @@
 import {
-    ExternalInteractorBase,
-    type IInteractivityData,
-    type IModes,
-    type InteractivityParticle,
-    type Modes,
+  ExternalInteractorBase,
+  type IInteractivityData,
+  type IModes,
+  type InteractivityParticle,
+  type Modes,
 } from "@tsparticles/plugin-interactivity";
 import {
-    type ICoordinates,
-    type Particle,
-    type ParticlesOptions,
-    type RecursivePartial,
-    deepExtend,
-    isInArray,
-    safeDocument,
+  type ICoordinates,
+  type Particle,
+  type ParticlesOptions,
+  type RecursivePartial,
+  deepExtend,
+  isInArray,
+  safeDocument,
 } from "@tsparticles/engine";
 import type { IParticleMode, InteractivityParticleContainer, ParticleMode } from "./Types.js";
 import { InteractivityParticleOptions } from "./Options/Classes/InteractivityParticleOptions.js";
@@ -22,146 +22,146 @@ const particleMode = "particle";
 /**
  */
 export class InteractivityParticleMaker extends ExternalInteractorBase<InteractivityParticleContainer> {
-    private _clearTimeout?: number | NodeJS.Timeout;
-    private _lastPosition?: ICoordinates;
-    private _particle?: Particle;
+  private _clearTimeout?: number | NodeJS.Timeout;
+  private _lastPosition?: ICoordinates;
+  private _particle?: Particle;
 
-    // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-    constructor(container: InteractivityParticleContainer) {
-        super(container);
+  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  constructor(container: InteractivityParticleContainer) {
+    super(container);
+  }
+
+  clear(): void {
+    // do nothing
+  }
+
+  init(): void {
+    // do nothing
+  }
+
+  interact(interactivityData: IInteractivityData): void {
+    const container = this.container,
+      options = container.actualOptions;
+
+    if (!container.retina.reduceFactor) {
+      return;
     }
 
-    clear(): void {
-        // do nothing
+    const mousePos = interactivityData.mouse.position,
+      interactivityParticleOptions = options.interactivity?.modes.particle;
+
+    if (!interactivityParticleOptions) {
+      return;
     }
 
-    init(): void {
-        // do nothing
+    const mouseStopped =
+        interactivityParticleOptions.pauseOnStop &&
+        (interactivityData.mouse.position === this._lastPosition ||
+          (interactivityData.mouse.position?.x === this._lastPosition?.x &&
+            interactivityData.mouse.position?.y === this._lastPosition?.y)),
+      clearDelay = interactivityParticleOptions.stopDelay;
+
+    if (mousePos) {
+      this._lastPosition = { ...mousePos };
+    } else {
+      delete this._lastPosition;
     }
 
-    interact(interactivityData: IInteractivityData): void {
-        const container = this.container,
-            options = container.actualOptions;
+    if (!this._lastPosition) {
+      return;
+    }
 
-        if (!container.retina.reduceFactor) {
-            return;
-        }
+    if (mouseStopped) {
+      if (this._clearTimeout) {
+        return;
+      }
 
-        const mousePos = interactivityData.mouse.position,
-            interactivityParticleOptions = options.interactivity?.modes.particle;
-
-        if (!interactivityParticleOptions) {
-            return;
-        }
-
-        const mouseStopped =
-                interactivityParticleOptions.pauseOnStop &&
-                (interactivityData.mouse.position === this._lastPosition ||
-                    (interactivityData.mouse.position?.x === this._lastPosition?.x &&
-                        interactivityData.mouse.position?.y === this._lastPosition?.y)),
-            clearDelay = interactivityParticleOptions.stopDelay;
-
-        if (mousePos) {
-            this._lastPosition = { ...mousePos };
-        } else {
-            delete this._lastPosition;
-        }
-
-        if (!this._lastPosition) {
-            return;
-        }
-
-        if (mouseStopped) {
-            if (this._clearTimeout) {
-                return;
-            }
-
-            this._clearTimeout = setTimeout(() => {
-                if (!this._particle) {
-                    return;
-                }
-
-                if (interactivityParticleOptions.replaceCursor) {
-                    const element = interactivityData.element as HTMLElement | Window | undefined;
-
-                    if (element) {
-                        if (element instanceof Window) {
-                            safeDocument().body.style.cursor = "";
-                        } else {
-                            element.style.cursor = "";
-                        }
-                    }
-                }
-
-                this.container.particles.remove(this._particle, undefined, true);
-
-                delete this._particle;
-            }, clearDelay);
-
-            return;
-        }
-
-        if (this._clearTimeout) {
-            clearTimeout(this._clearTimeout);
-
-            delete this._clearTimeout;
-        }
-
+      this._clearTimeout = setTimeout(() => {
         if (!this._particle) {
-            const particleOptions = deepExtend(interactivityParticleOptions.options, {
-                move: {
-                    enable: false,
-                },
-            }) as RecursivePartial<ParticlesOptions>;
+          return;
+        }
 
-            this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
+        if (interactivityParticleOptions.replaceCursor) {
+          const element = interactivityData.element as HTMLElement | Window | undefined;
 
-            if (interactivityParticleOptions.replaceCursor) {
-                const element = interactivityData.element as HTMLElement | Window | undefined;
-
-                if (element) {
-                    if (element instanceof Window) {
-                        safeDocument().body.style.cursor = "none";
-                    } else {
-                        element.style.cursor = "none";
-                    }
-                }
+          if (element) {
+            if (element instanceof Window) {
+              safeDocument().body.style.cursor = "";
+            } else {
+              element.style.cursor = "";
             }
+          }
         }
 
-        if (!this._particle) {
-            return;
+        this.container.particles.remove(this._particle, undefined, true);
+
+        delete this._particle;
+      }, clearDelay);
+
+      return;
+    }
+
+    if (this._clearTimeout) {
+      clearTimeout(this._clearTimeout);
+
+      delete this._clearTimeout;
+    }
+
+    if (!this._particle) {
+      const particleOptions = deepExtend(interactivityParticleOptions.options, {
+        move: {
+          enable: false,
+        },
+      }) as RecursivePartial<ParticlesOptions>;
+
+      this._particle = container.particles.addParticle(this._lastPosition, particleOptions);
+
+      if (interactivityParticleOptions.replaceCursor) {
+        const element = interactivityData.element as HTMLElement | Window | undefined;
+
+        if (element) {
+          if (element instanceof Window) {
+            safeDocument().body.style.cursor = "none";
+          } else {
+            element.style.cursor = "none";
+          }
         }
-
-        this._particle.position.x = this._lastPosition.x;
-        this._particle.position.y = this._lastPosition.y;
+      }
     }
 
-    isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
-        const container = this.container,
-            options = container.actualOptions,
-            mouse = interactivityData.mouse,
-            events = (particle?.interactivity ?? options.interactivity)?.events;
-
-        return (
-            !!events &&
-            ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(particleMode, events.onClick.mode)) ||
-                (mouse.inside && !!mouse.position && isInArray(particleMode, events.onHover.mode)))
-        );
+    if (!this._particle) {
+      return;
     }
 
-    loadModeOptions(
-        options: Modes & ParticleMode,
-        ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
-    ): void {
-        options.particle ??= new InteractivityParticleOptions();
+    this._particle.position.x = this._lastPosition.x;
+    this._particle.position.y = this._lastPosition.y;
+  }
 
-        for (const source of sources) {
-            options.particle.load(source?.particle);
-        }
-    }
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+    const container = this.container,
+      options = container.actualOptions,
+      mouse = interactivityData.mouse,
+      events = (particle?.interactivity ?? options.interactivity)?.events;
 
-    reset(): void {
-        // do nothing
+    return (
+      !!events &&
+      ((mouse.clicking && mouse.inside && !!mouse.position && isInArray(particleMode, events.onClick.mode)) ||
+        (mouse.inside && !!mouse.position && isInArray(particleMode, events.onHover.mode)))
+    );
+  }
+
+  loadModeOptions(
+    options: Modes & ParticleMode,
+    ...sources: RecursivePartial<(IModes & IParticleMode) | undefined>[]
+  ): void {
+    options.particle ??= new InteractivityParticleOptions();
+
+    for (const source of sources) {
+      options.particle.load(source?.particle);
     }
+  }
+
+  reset(): void {
+    // do nothing
+  }
 }

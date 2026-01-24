@@ -1,16 +1,16 @@
 import {
-    type CustomEventArgs,
-    type Engine,
-    type IContainerPlugin,
-    clamp,
-    executeOnSingleOrMultiple,
-    getLogger,
-    isArray,
-    isNumber,
-    itemFromArray,
-    itemFromSingleOrMultiple,
-    percentDenominator,
-    safeDocument,
+  type CustomEventArgs,
+  type Engine,
+  type IContainerPlugin,
+  clamp,
+  executeOnSingleOrMultiple,
+  getLogger,
+  isArray,
+  isNumber,
+  itemFromArray,
+  itemFromSingleOrMultiple,
+  percentDenominator,
+  safeDocument,
 } from "@tsparticles/engine";
 import { ImageDisplay, SoundsEventType } from "./enums.js";
 import type { ImageMargins, InitImageData, SoundsContainer } from "./types.js";
@@ -20,44 +20,42 @@ import type { SoundsAudio } from "./Options/Classes/SoundsAudio.js";
 import type { SoundsNote } from "./Options/Classes/SoundsNote.js";
 
 const zIndexOffset = 1,
-    rightOffset = 1,
-    minVolume = 0;
+  rightOffset = 1,
+  minVolume = 0;
 
 /**
  * @param data -
  * @returns the image element
  */
 function initImage(data: InitImageData): HTMLImageElement {
-    const img = safeDocument().createElement("img"),
-        { clickCb, container, display, iconOptions, margin, options, pos, rightOffsets } = data,
-        { width, path, style, svg } = iconOptions,
-        defaultAccumulator = 0;
+  const img = safeDocument().createElement("img"),
+    { clickCb, container, display, iconOptions, margin, options, pos, rightOffsets } = data,
+    { width, path, style, svg } = iconOptions,
+    defaultAccumulator = 0;
 
-    setIconStyle(
-        img,
-        pos.top + margin,
-        pos.right -
-            (margin * (rightOffsets.length + rightOffset) +
-                width +
-                rightOffsets.reduce((a, b) => a + b, defaultAccumulator)),
-        display,
-        options.fullScreen.zIndex + zIndexOffset,
-        width,
-        margin,
-        style,
-    );
+  setIconStyle(
+    img,
+    pos.top + margin,
+    pos.right -
+      (margin * (rightOffsets.length + rightOffset) + width + rightOffsets.reduce((a, b) => a + b, defaultAccumulator)),
+    display,
+    options.fullScreen.zIndex + zIndexOffset,
+    width,
+    margin,
+    style,
+  );
 
-    img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
+  img.src = path ?? (svg ? `data:image/svg+xml;base64,${btoa(svg)}` : "");
 
-    const parent = container.canvas.element?.parentNode ?? safeDocument().body;
+  const parent = container.canvas.element?.parentNode ?? safeDocument().body;
 
-    parent.append(img);
+  parent.append(img);
 
-    img.addEventListener("click", (): void => {
-        void clickCb();
-    });
+  img.addEventListener("click", (): void => {
+    void clickCb();
+  });
 
-    return img;
+  return img;
 }
 
 /**
@@ -65,11 +63,11 @@ function initImage(data: InitImageData): HTMLImageElement {
  * @param image -
  */
 function removeImage(image?: HTMLImageElement): void {
-    if (!image) {
-        return;
-    }
+  if (!image) {
+    return;
+  }
 
-    image.remove();
+  image.remove();
 }
 
 /**
@@ -83,597 +81,597 @@ function removeImage(image?: HTMLImageElement): void {
  * @param style -
  */
 function setIconStyle(
-    icon: HTMLImageElement,
-    top: number,
-    left: number,
-    display: "block" | "none",
-    zIndex: number,
-    width: number,
-    margin: number,
-    style: string,
+  icon: HTMLImageElement,
+  top: number,
+  left: number,
+  display: "block" | "none",
+  zIndex: number,
+  width: number,
+  margin: number,
+  style: string,
 ): void {
-    icon.style.userSelect = "none";
-    icon.style.position = "absolute";
-    icon.style.top = `${(top + margin).toString()}px`;
-    icon.style.left = `${(left - margin - width).toString()}px`;
-    icon.style.display = display;
-    icon.style.zIndex = (zIndex + zIndexOffset).toString();
-    icon.style.cssText += style;
+  icon.style.userSelect = "none";
+  icon.style.position = "absolute";
+  icon.style.top = `${(top + margin).toString()}px`;
+  icon.style.left = `${(left - margin - width).toString()}px`;
+  icon.style.display = display;
+  icon.style.zIndex = (zIndex + zIndexOffset).toString();
+  icon.style.cssText += style;
 }
 
 export class SoundsPluginInstance implements IContainerPlugin {
-    private _audioMap: Map<string, AudioBuffer>;
-    private readonly _audioSources: AudioScheduledSourceNode[];
-    private readonly _container;
-    private readonly _engine;
-    private _gain?: GainNode;
-    private _muteImg?: HTMLImageElement;
-    private _unmuteImg?: HTMLImageElement;
-    private _volume: number;
-    private _volumeDownImg?: HTMLImageElement;
-    private _volumeUpImg?: HTMLImageElement;
+  private _audioMap: Map<string, AudioBuffer>;
+  private readonly _audioSources: AudioScheduledSourceNode[];
+  private readonly _container;
+  private readonly _engine;
+  private _gain?: GainNode;
+  private _muteImg?: HTMLImageElement;
+  private _unmuteImg?: HTMLImageElement;
+  private _volume: number;
+  private _volumeDownImg?: HTMLImageElement;
+  private _volumeUpImg?: HTMLImageElement;
 
-    constructor(container: SoundsContainer, engine: Engine) {
-        this._container = container;
-        this._engine = engine;
-        this._volume = 0;
-        this._audioSources = [];
-        this._audioMap = new Map<string, AudioBuffer>();
+  constructor(container: SoundsContainer, engine: Engine) {
+    this._container = container;
+    this._engine = engine;
+    this._volume = 0;
+    this._audioSources = [];
+    this._audioMap = new Map<string, AudioBuffer>();
+  }
+
+  async init(): Promise<void> {
+    const container = this._container,
+      options = container.actualOptions,
+      soundsOptions = options.sounds;
+
+    if (!soundsOptions?.enable) {
+      return;
     }
 
-    async init(): Promise<void> {
-        const container = this._container,
-            options = container.actualOptions,
-            soundsOptions = options.sounds;
+    if (soundsOptions.autoPlay && isWindowMuted()) {
+      const firstClickHandler = (): void => {
+        removeEventListener(mouseDownEvent, firstClickHandler);
+        removeEventListener(touchStartEvent, firstClickHandler);
 
-        if (!soundsOptions?.enable) {
-            return;
-        }
+        unmuteWindow();
 
-        if (soundsOptions.autoPlay && isWindowMuted()) {
-            const firstClickHandler = (): void => {
-                removeEventListener(mouseDownEvent, firstClickHandler);
-                removeEventListener(touchStartEvent, firstClickHandler);
+        void this.unmute();
+      };
 
-                unmuteWindow();
+      const listenerOptions = {
+        capture: true,
+        once: true,
+      };
 
-                void this.unmute();
-            };
-
-            const listenerOptions = {
-                capture: true,
-                once: true,
-            };
-
-            addEventListener(mouseDownEvent, firstClickHandler, listenerOptions);
-            addEventListener(touchStartEvent, firstClickHandler, listenerOptions);
-        }
-
-        this._volume = soundsOptions.volume.value;
-
-        const events = soundsOptions.events;
-
-        this._audioMap = new Map<string, AudioBuffer>();
-
-        for (const event of events) {
-            if (!event.audio) {
-                continue;
-            }
-
-            const promises = executeOnSingleOrMultiple(event.audio, async audio => {
-                const response = await fetch(audio.source);
-
-                if (!response.ok) {
-                    return;
-                }
-
-                const arrayBuffer = await response.arrayBuffer(),
-                    audioContext = this._getAudioContext(),
-                    audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-
-                this._audioMap.set(audio.source, audioBuffer);
-            });
-
-            if (promises instanceof Promise) {
-                await promises;
-            } else {
-                await Promise.allSettled(promises);
-            }
-        }
+      addEventListener(mouseDownEvent, firstClickHandler, listenerOptions);
+      addEventListener(touchStartEvent, firstClickHandler, listenerOptions);
     }
 
-    async mute(): Promise<void> {
-        if (!this._container.muted) {
-            await this.toggleMute();
+    this._volume = soundsOptions.volume.value;
+
+    const events = soundsOptions.events;
+
+    this._audioMap = new Map<string, AudioBuffer>();
+
+    for (const event of events) {
+      if (!event.audio) {
+        continue;
+      }
+
+      const promises = executeOnSingleOrMultiple(event.audio, async audio => {
+        const response = await fetch(audio.source);
+
+        if (!response.ok) {
+          return;
         }
+
+        const arrayBuffer = await response.arrayBuffer(),
+          audioContext = this._getAudioContext(),
+          audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+        this._audioMap.set(audio.source, audioBuffer);
+      });
+
+      if (promises instanceof Promise) {
+        await promises;
+      } else {
+        await Promise.allSettled(promises);
+      }
+    }
+  }
+
+  async mute(): Promise<void> {
+    if (!this._container.muted) {
+      await this.toggleMute();
+    }
+  }
+
+  async start(): Promise<void> {
+    const container = this._container,
+      options = container.actualOptions,
+      soundsOptions = options.sounds;
+
+    if (!soundsOptions?.enable || !container.canvas.element) {
+      return;
     }
 
-    async start(): Promise<void> {
-        const container = this._container,
-            options = container.actualOptions,
-            soundsOptions = options.sounds;
+    container.muted = true;
 
-        if (!soundsOptions?.enable || !container.canvas.element) {
-            return;
-        }
+    const canvas = container.canvas.element,
+      pos: ImageMargins = {
+        top: canvas.offsetTop,
+        right: canvas.offsetLeft + canvas.offsetWidth,
+      },
+      { mute, unmute, volumeDown, volumeUp } = soundsOptions.icons,
+      margin = 10,
+      toggleMute = async (): Promise<void> => {
+        await this.toggleMute();
+      },
+      enableIcons = soundsOptions.icons.enable,
+      display = enableIcons ? ImageDisplay.Block : ImageDisplay.None;
 
-        container.muted = true;
+    this._muteImg = initImage({
+      container,
+      options,
+      pos,
+      display,
+      iconOptions: mute,
+      margin,
+      rightOffsets: [volumeDown.width, volumeUp.width],
+      clickCb: toggleMute,
+    });
 
-        const canvas = container.canvas.element,
-            pos: ImageMargins = {
-                top: canvas.offsetTop,
-                right: canvas.offsetLeft + canvas.offsetWidth,
-            },
-            { mute, unmute, volumeDown, volumeUp } = soundsOptions.icons,
-            margin = 10,
-            toggleMute = async (): Promise<void> => {
-                await this.toggleMute();
-            },
-            enableIcons = soundsOptions.icons.enable,
-            display = enableIcons ? ImageDisplay.Block : ImageDisplay.None;
+    this._unmuteImg = initImage({
+      container,
+      options,
+      pos,
+      display: ImageDisplay.None,
+      iconOptions: unmute,
+      margin,
+      rightOffsets: [volumeDown.width, volumeUp.width],
+      clickCb: toggleMute,
+    });
 
-        this._muteImg = initImage({
-            container,
-            options,
-            pos,
-            display,
-            iconOptions: mute,
-            margin,
-            rightOffsets: [volumeDown.width, volumeUp.width],
-            clickCb: toggleMute,
-        });
+    this._volumeDownImg = initImage({
+      container,
+      options,
+      pos,
+      display,
+      iconOptions: volumeDown,
+      margin,
+      rightOffsets: [volumeUp.width],
+      clickCb: async (): Promise<void> => {
+        await this.volumeDown();
+      },
+    });
 
-        this._unmuteImg = initImage({
-            container,
-            options,
-            pos,
-            display: ImageDisplay.None,
-            iconOptions: unmute,
-            margin,
-            rightOffsets: [volumeDown.width, volumeUp.width],
-            clickCb: toggleMute,
-        });
+    this._volumeUpImg = initImage({
+      container,
+      options,
+      pos,
+      display,
+      iconOptions: volumeUp,
+      margin,
+      rightOffsets: [],
+      clickCb: async (): Promise<void> => {
+        await this.volumeUp();
+      },
+    });
 
-        this._volumeDownImg = initImage({
-            container,
-            options,
-            pos,
-            display,
-            iconOptions: volumeDown,
-            margin,
-            rightOffsets: [volumeUp.width],
-            clickCb: async (): Promise<void> => {
-                await this.volumeDown();
-            },
-        });
+    if (!isWindowMuted() && soundsOptions.autoPlay) {
+      await this.unmute();
+    }
+  }
 
-        this._volumeUpImg = initImage({
-            container,
-            options,
-            pos,
-            display,
-            iconOptions: volumeUp,
-            margin,
-            rightOffsets: [],
-            clickCb: async (): Promise<void> => {
-                await this.volumeUp();
-            },
-        });
+  stop(): void {
+    this._container.muted = true;
 
-        if (!isWindowMuted() && soundsOptions.autoPlay) {
-            await this.unmute();
-        }
+    void (async (): Promise<void> => {
+      await this._mute();
+
+      removeImage(this._muteImg);
+      removeImage(this._unmuteImg);
+      removeImage(this._volumeDownImg);
+      removeImage(this._volumeUpImg);
+    })();
+  }
+
+  async toggleMute(): Promise<void> {
+    const container = this._container;
+
+    container.muted = !container.muted;
+
+    this._updateMuteIcons();
+    await this._updateMuteStatus();
+  }
+
+  async unmute(): Promise<void> {
+    if (this._container.muted) {
+      await this.toggleMute();
+    }
+  }
+
+  async volumeDown(): Promise<void> {
+    const container = this._container,
+      soundsOptions = container.actualOptions.sounds;
+
+    if (!soundsOptions?.enable) {
+      return;
     }
 
-    stop(): void {
-        this._container.muted = true;
+    if (container.muted) {
+      this._volume = 0;
+    }
+
+    this._volume -= soundsOptions.volume.step;
+
+    await this._updateVolume();
+  }
+
+  async volumeUp(): Promise<void> {
+    const container = this._container,
+      soundsOptions = container.actualOptions.sounds;
+
+    if (!soundsOptions?.enable) {
+      return;
+    }
+
+    this._volume += soundsOptions.volume.step;
+
+    await this._updateVolume();
+  }
+
+  private readonly _addBuffer: (audioCtx: AudioContext) => AudioBufferSourceNode = audioCtx => {
+    const buffer = audioCtx.createBufferSource();
+
+    this._audioSources.push(buffer);
+
+    return buffer;
+  };
+
+  private readonly _addOscillator: (audioCtx: AudioContext) => OscillatorNode = audioCtx => {
+    const oscillator = audioCtx.createOscillator();
+
+    this._audioSources.push(oscillator);
+
+    return oscillator;
+  };
+
+  private _getAudioContext(): AudioContext {
+    const container = this._container;
+
+    container.audioContext ??= new AudioContext();
+
+    return container.audioContext;
+  }
+
+  private readonly _initEvents: () => void = () => {
+    const container = this._container,
+      soundsOptions = container.actualOptions.sounds;
+
+    if (!soundsOptions?.enable || !container.canvas.element) {
+      return;
+    }
+
+    for (const event of soundsOptions.events) {
+      const cb = (args?: CustomEventArgs): void => {
+        if (!args) {
+          return;
+        }
 
         void (async (): Promise<void> => {
-            await this._mute();
+          const filterNotValid = event.filter && !event.filter(args);
 
-            removeImage(this._muteImg);
-            removeImage(this._unmuteImg);
-            removeImage(this._volumeDownImg);
-            removeImage(this._volumeUpImg);
-        })();
-    }
-
-    async toggleMute(): Promise<void> {
-        const container = this._container;
-
-        container.muted = !container.muted;
-
-        this._updateMuteIcons();
-        await this._updateMuteStatus();
-    }
-
-    async unmute(): Promise<void> {
-        if (this._container.muted) {
-            await this.toggleMute();
-        }
-    }
-
-    async volumeDown(): Promise<void> {
-        const container = this._container,
-            soundsOptions = container.actualOptions.sounds;
-
-        if (!soundsOptions?.enable) {
+          if (this._container !== args.container) {
             return;
-        }
+          }
 
-        if (container.muted) {
-            this._volume = 0;
-        }
-
-        this._volume -= soundsOptions.volume.step;
-
-        await this._updateVolume();
-    }
-
-    async volumeUp(): Promise<void> {
-        const container = this._container,
-            soundsOptions = container.actualOptions.sounds;
-
-        if (!soundsOptions?.enable) {
-            return;
-        }
-
-        this._volume += soundsOptions.volume.step;
-
-        await this._updateVolume();
-    }
-
-    private readonly _addBuffer: (audioCtx: AudioContext) => AudioBufferSourceNode = audioCtx => {
-        const buffer = audioCtx.createBufferSource();
-
-        this._audioSources.push(buffer);
-
-        return buffer;
-    };
-
-    private readonly _addOscillator: (audioCtx: AudioContext) => OscillatorNode = audioCtx => {
-        const oscillator = audioCtx.createOscillator();
-
-        this._audioSources.push(oscillator);
-
-        return oscillator;
-    };
-
-    private _getAudioContext(): AudioContext {
-        const container = this._container;
-
-        container.audioContext ??= new AudioContext();
-
-        return container.audioContext;
-    }
-
-    private readonly _initEvents: () => void = () => {
-        const container = this._container,
-            soundsOptions = container.actualOptions.sounds;
-
-        if (!soundsOptions?.enable || !container.canvas.element) {
-            return;
-        }
-
-        for (const event of soundsOptions.events) {
-            const cb = (args?: CustomEventArgs): void => {
-                if (!args) {
-                    return;
-                }
-
-                void (async (): Promise<void> => {
-                    const filterNotValid = event.filter && !event.filter(args);
-
-                    if (this._container !== args.container) {
-                        return;
-                    }
-
-                    if (!!this._container.muted || this._container.destroyed) {
-                        executeOnSingleOrMultiple(event.event, item => {
-                            this._engine.removeEventListener(item, cb);
-                        });
-
-                        return;
-                    }
-
-                    if (filterNotValid) {
-                        return;
-                    }
-
-                    const defaultNoteIndex = 0;
-
-                    if (event.audio) {
-                        const audio = itemFromSingleOrMultiple(event.audio);
-
-                        if (!audio) {
-                            return;
-                        }
-
-                        this._playBuffer(audio);
-                    } else if (event.melodies) {
-                        const melody = itemFromArray(event.melodies);
-
-                        if (!melody) {
-                            return;
-                        }
-
-                        if (melody.melodies.length) {
-                            await Promise.allSettled(
-                                melody.melodies.map(m => this._playNote(m.notes, defaultNoteIndex, melody.loop)),
-                            );
-                        } else {
-                            await this._playNote(melody.notes, defaultNoteIndex, melody.loop);
-                        }
-                    } else if (event.notes) {
-                        const note = itemFromArray(event.notes);
-
-                        if (!note) {
-                            return;
-                        }
-
-                        await this._playNote([note], defaultNoteIndex, false);
-                    }
-                })();
-            };
-
+          if (!!this._container.muted || this._container.destroyed) {
             executeOnSingleOrMultiple(event.event, item => {
-                this._engine.addEventListener(item, cb);
-            });
-        }
-    };
-
-    private readonly _mute: () => Promise<void> = async () => {
-        const container = this._container,
-            audioContext = this._getAudioContext();
-
-        for (const source of this._audioSources) {
-            this._removeAudioSource(source);
-        }
-
-        if (this._gain) {
-            this._gain.disconnect();
-        }
-
-        await audioContext.close();
-
-        container.audioContext = undefined;
-
-        this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
-    };
-
-    private readonly _playBuffer: (audio: SoundsAudio) => void = audio => {
-        const audioBuffer = this._audioMap.get(audio.source);
-
-        if (!audioBuffer) {
-            return;
-        }
-
-        const audioCtx = this._container.audioContext;
-
-        if (!audioCtx) {
-            return;
-        }
-
-        const source = this._addBuffer(audioCtx);
-
-        source.loop = audio.loop;
-        source.buffer = audioBuffer;
-
-        source.connect(this._gain ?? audioCtx.destination);
-        source.start();
-    };
-
-    private readonly _playFrequency: (frequency: number, duration: number) => Promise<void> = async (
-        frequency,
-        duration,
-    ) => {
-        if (!this._gain || this._container.muted) {
-            return;
-        }
-
-        const audioContext = this._getAudioContext(),
-            oscillator = this._addOscillator(audioContext);
-
-        oscillator.connect(this._gain);
-
-        oscillator.type = "sine";
-        oscillator.frequency.value = frequency;
-
-        oscillator.start();
-
-        return new Promise<void>(resolve => {
-            setTimeout(() => {
-                this._removeAudioSource(oscillator);
-
-                resolve();
-            }, duration);
-        });
-    };
-
-    private readonly _playMuteSound: () => void = () => {
-        if (this._container.muted) {
-            return;
-        }
-
-        const audioContext = this._getAudioContext(),
-            gain = audioContext.createGain();
-
-        gain.connect(audioContext.destination);
-        gain.gain.value = 0;
-
-        const oscillator = audioContext.createOscillator();
-
-        oscillator.connect(gain);
-        oscillator.type = "sine";
-        oscillator.frequency.value = 1;
-        oscillator.start();
-
-        setTimeout(() => {
-            oscillator.stop();
-            oscillator.disconnect();
-            gain.disconnect();
-        });
-    };
-
-    private readonly _playNote: (notes: SoundsNote[], noteIdx: number, loop: boolean) => Promise<void> = async (
-        notes,
-        noteIdx,
-        loop,
-    ) => {
-        if (this._container.muted) {
-            return;
-        }
-
-        const note = notes[noteIdx];
-
-        if (!note) {
-            return;
-        }
-
-        const value = note.value,
-            promises = executeOnSingleOrMultiple(value, async (_, idx) => {
-                return this._playNoteValue(notes, noteIdx, idx);
+              this._engine.removeEventListener(item, cb);
             });
 
-        await (isArray(promises) ? Promise.allSettled(promises) : promises);
-
-        const indexOffset = 1;
-
-        let nextNoteIdx = noteIdx + indexOffset;
-
-        if (loop && nextNoteIdx >= notes.length) {
-            nextNoteIdx = nextNoteIdx % notes.length;
-        }
-
-        await this._playNote(notes, nextNoteIdx, loop);
-    };
-
-    private readonly _playNoteValue: (notes: SoundsNote[], noteIdx: number, valueIdx: number) => Promise<void> = async (
-        notes,
-        noteIdx,
-        valueIdx,
-    ) => {
-        const note = notes[noteIdx];
-
-        if (!note) {
             return;
-        }
+          }
 
-        const value = itemFromSingleOrMultiple(note.value, valueIdx, true);
-
-        if (!value) {
+          if (filterNotValid) {
             return;
-        }
+          }
 
-        try {
-            const freq = getNoteFrequency(value);
+          const defaultNoteIndex = 0;
 
-            if (!isNumber(freq)) {
-                return;
+          if (event.audio) {
+            const audio = itemFromSingleOrMultiple(event.audio);
+
+            if (!audio) {
+              return;
             }
 
-            await this._playFrequency(freq, note.duration);
-        } catch (e) {
-            getLogger().error(e);
-        }
-    };
+            this._playBuffer(audio);
+          } else if (event.melodies) {
+            const melody = itemFromArray(event.melodies);
 
-    private readonly _removeAudioSource: (source: AudioScheduledSourceNode) => void = source => {
-        source.stop();
-        source.disconnect();
+            if (!melody) {
+              return;
+            }
 
-        const deleteCount = 1;
+            if (melody.melodies.length) {
+              await Promise.allSettled(
+                melody.melodies.map(m => this._playNote(m.notes, defaultNoteIndex, melody.loop)),
+              );
+            } else {
+              await this._playNote(melody.notes, defaultNoteIndex, melody.loop);
+            }
+          } else if (event.notes) {
+            const note = itemFromArray(event.notes);
 
-        this._audioSources.splice(this._audioSources.indexOf(source), deleteCount);
-    };
+            if (!note) {
+              return;
+            }
 
-    private readonly _unmute: () => void = () => {
-        const container = this._container,
-            options = container.actualOptions,
-            soundsOptions = options.sounds;
+            await this._playNote([note], defaultNoteIndex, false);
+          }
+        })();
+      };
 
-        if (!soundsOptions) {
-            return;
-        }
+      executeOnSingleOrMultiple(event.event, item => {
+        this._engine.addEventListener(item, cb);
+      });
+    }
+  };
 
-        const audioContext = this._getAudioContext(),
-            gain = audioContext.createGain();
+  private readonly _mute: () => Promise<void> = async () => {
+    const container = this._container,
+      audioContext = this._getAudioContext();
 
-        gain.connect(audioContext.destination);
+    for (const source of this._audioSources) {
+      this._removeAudioSource(source);
+    }
 
-        gain.gain.value = soundsOptions.volume.value / percentDenominator;
+    if (this._gain) {
+      this._gain.disconnect();
+    }
 
-        this._gain = gain;
+    await audioContext.close();
 
-        this._initEvents();
+    container.audioContext = undefined;
 
-        this._engine.dispatchEvent(SoundsEventType.unmute, { container: this._container });
-    };
+    this._engine.dispatchEvent(SoundsEventType.mute, { container: this._container });
+  };
 
-    private readonly _updateMuteIcons: () => void = () => {
-        const container = this._container,
-            soundsOptions = container.actualOptions.sounds;
+  private readonly _playBuffer: (audio: SoundsAudio) => void = audio => {
+    const audioBuffer = this._audioMap.get(audio.source);
 
-        if (!soundsOptions?.enable || !soundsOptions.icons.enable) {
-            return;
-        }
+    if (!audioBuffer) {
+      return;
+    }
 
-        const muteImg = this._muteImg,
-            unmuteImg = this._unmuteImg;
+    const audioCtx = this._container.audioContext;
 
-        if (muteImg) {
-            muteImg.style.display = container.muted ? "block" : "none";
-        }
+    if (!audioCtx) {
+      return;
+    }
 
-        if (unmuteImg) {
-            unmuteImg.style.display = container.muted ? "none" : "block";
-        }
-    };
+    const source = this._addBuffer(audioCtx);
 
-    private readonly _updateMuteStatus: () => Promise<void> = async () => {
-        const container = this._container,
-            audioContext = this._getAudioContext();
+    source.loop = audio.loop;
+    source.buffer = audioBuffer;
 
-        if (container.muted) {
-            await audioContext.suspend();
-            await this._mute();
-        } else {
-            await audioContext.resume();
-            this._unmute();
+    source.connect(this._gain ?? audioCtx.destination);
+    source.start();
+  };
 
-            this._playMuteSound();
-        }
-    };
+  private readonly _playFrequency: (frequency: number, duration: number) => Promise<void> = async (
+    frequency,
+    duration,
+  ) => {
+    if (!this._gain || this._container.muted) {
+      return;
+    }
 
-    private readonly _updateVolume: () => Promise<void> = async () => {
-        const container = this._container,
-            soundsOptions = container.actualOptions.sounds;
+    const audioContext = this._getAudioContext(),
+      oscillator = this._addOscillator(audioContext);
 
-        if (!soundsOptions?.enable) {
-            return;
-        }
+    oscillator.connect(this._gain);
 
-        clamp(this._volume, soundsOptions.volume.min, soundsOptions.volume.max);
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
 
-        let stateChanged = false;
+    oscillator.start();
 
-        if (this._volume <= minVolume && !container.muted) {
-            this._volume = 0;
+    return new Promise<void>(resolve => {
+      setTimeout(() => {
+        this._removeAudioSource(oscillator);
 
-            container.muted = true;
-            stateChanged = true;
-        } else if (this._volume > minVolume && container.muted) {
-            container.muted = false;
-            stateChanged = true;
-        }
+        resolve();
+      }, duration);
+    });
+  };
 
-        if (stateChanged) {
-            this._updateMuteIcons();
-            await this._updateMuteStatus();
-        }
+  private readonly _playMuteSound: () => void = () => {
+    if (this._container.muted) {
+      return;
+    }
 
-        if (this._gain?.gain) {
-            this._gain.gain.value = this._volume / percentDenominator;
-        }
-    };
+    const audioContext = this._getAudioContext(),
+      gain = audioContext.createGain();
+
+    gain.connect(audioContext.destination);
+    gain.gain.value = 0;
+
+    const oscillator = audioContext.createOscillator();
+
+    oscillator.connect(gain);
+    oscillator.type = "sine";
+    oscillator.frequency.value = 1;
+    oscillator.start();
+
+    setTimeout(() => {
+      oscillator.stop();
+      oscillator.disconnect();
+      gain.disconnect();
+    });
+  };
+
+  private readonly _playNote: (notes: SoundsNote[], noteIdx: number, loop: boolean) => Promise<void> = async (
+    notes,
+    noteIdx,
+    loop,
+  ) => {
+    if (this._container.muted) {
+      return;
+    }
+
+    const note = notes[noteIdx];
+
+    if (!note) {
+      return;
+    }
+
+    const value = note.value,
+      promises = executeOnSingleOrMultiple(value, async (_, idx) => {
+        return this._playNoteValue(notes, noteIdx, idx);
+      });
+
+    await (isArray(promises) ? Promise.allSettled(promises) : promises);
+
+    const indexOffset = 1;
+
+    let nextNoteIdx = noteIdx + indexOffset;
+
+    if (loop && nextNoteIdx >= notes.length) {
+      nextNoteIdx = nextNoteIdx % notes.length;
+    }
+
+    await this._playNote(notes, nextNoteIdx, loop);
+  };
+
+  private readonly _playNoteValue: (notes: SoundsNote[], noteIdx: number, valueIdx: number) => Promise<void> = async (
+    notes,
+    noteIdx,
+    valueIdx,
+  ) => {
+    const note = notes[noteIdx];
+
+    if (!note) {
+      return;
+    }
+
+    const value = itemFromSingleOrMultiple(note.value, valueIdx, true);
+
+    if (!value) {
+      return;
+    }
+
+    try {
+      const freq = getNoteFrequency(value);
+
+      if (!isNumber(freq)) {
+        return;
+      }
+
+      await this._playFrequency(freq, note.duration);
+    } catch (e) {
+      getLogger().error(e);
+    }
+  };
+
+  private readonly _removeAudioSource: (source: AudioScheduledSourceNode) => void = source => {
+    source.stop();
+    source.disconnect();
+
+    const deleteCount = 1;
+
+    this._audioSources.splice(this._audioSources.indexOf(source), deleteCount);
+  };
+
+  private readonly _unmute: () => void = () => {
+    const container = this._container,
+      options = container.actualOptions,
+      soundsOptions = options.sounds;
+
+    if (!soundsOptions) {
+      return;
+    }
+
+    const audioContext = this._getAudioContext(),
+      gain = audioContext.createGain();
+
+    gain.connect(audioContext.destination);
+
+    gain.gain.value = soundsOptions.volume.value / percentDenominator;
+
+    this._gain = gain;
+
+    this._initEvents();
+
+    this._engine.dispatchEvent(SoundsEventType.unmute, { container: this._container });
+  };
+
+  private readonly _updateMuteIcons: () => void = () => {
+    const container = this._container,
+      soundsOptions = container.actualOptions.sounds;
+
+    if (!soundsOptions?.enable || !soundsOptions.icons.enable) {
+      return;
+    }
+
+    const muteImg = this._muteImg,
+      unmuteImg = this._unmuteImg;
+
+    if (muteImg) {
+      muteImg.style.display = container.muted ? "block" : "none";
+    }
+
+    if (unmuteImg) {
+      unmuteImg.style.display = container.muted ? "none" : "block";
+    }
+  };
+
+  private readonly _updateMuteStatus: () => Promise<void> = async () => {
+    const container = this._container,
+      audioContext = this._getAudioContext();
+
+    if (container.muted) {
+      await audioContext.suspend();
+      await this._mute();
+    } else {
+      await audioContext.resume();
+      this._unmute();
+
+      this._playMuteSound();
+    }
+  };
+
+  private readonly _updateVolume: () => Promise<void> = async () => {
+    const container = this._container,
+      soundsOptions = container.actualOptions.sounds;
+
+    if (!soundsOptions?.enable) {
+      return;
+    }
+
+    clamp(this._volume, soundsOptions.volume.min, soundsOptions.volume.max);
+
+    let stateChanged = false;
+
+    if (this._volume <= minVolume && !container.muted) {
+      this._volume = 0;
+
+      container.muted = true;
+      stateChanged = true;
+    } else if (this._volume > minVolume && container.muted) {
+      container.muted = false;
+      stateChanged = true;
+    }
+
+    if (stateChanged) {
+      this._updateMuteIcons();
+      await this._updateMuteStatus();
+    }
+
+    if (this._gain?.gain) {
+      this._gain.gain.value = this._volume / percentDenominator;
+    }
+  };
 }

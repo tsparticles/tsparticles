@@ -7,11 +7,11 @@ declare const __VERSION__: string;
  * @param engine - The engine that will use the plugin
  */
 export async function loadHexColorPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { HexColorManager } = await import("./HexColorManager.js");
+  await engine.register(async e => {
+    const { HexColorManager } = await import("./HexColorManager.js");
 
-        e.addColorManager(new HexColorManager());
-    });
+    e.addColorManager(new HexColorManager());
+  });
 }

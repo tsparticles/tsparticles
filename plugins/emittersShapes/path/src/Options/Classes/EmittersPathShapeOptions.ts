@@ -4,19 +4,19 @@ import type { IEmittersPathShapeOptions } from "../Interfaces/IEmittersPathShape
 const defaultPosition: ICoordinates = { x: 50, y: 50 };
 
 export class EmittersPathShapeOptions implements IEmittersPathShapeOptions, IOptionLoader<IEmittersPathShapeOptions> {
-    points: ICoordinates[];
+  points: ICoordinates[];
 
-    constructor() {
-        this.points = [];
+  constructor() {
+    this.points = [];
+  }
+
+  load(data?: RecursivePartial<IEmittersPathShapeOptions>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IEmittersPathShapeOptions>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.points !== undefined) {
-            this.points = data.points.map(t => ({ x: t.x ?? defaultPosition.x, y: t.y ?? defaultPosition.y }));
-        }
+    if (data.points !== undefined) {
+      this.points = data.points.map(t => ({ x: t.x ?? defaultPosition.x, y: t.y ?? defaultPosition.y }));
     }
+  }
 }

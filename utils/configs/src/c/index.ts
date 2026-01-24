@@ -1,4 +1,6 @@
+import cardSuits from "./cardSuits.js";
 import cards from "./cards.js";
+import cardsRolling from "./cardsRolling.js";
 import chars from "./chars.js";
 import clickPause from "./clickPause.js";
 import collisionsAbsorb from "./collisionsAbsorb.js";
@@ -9,13 +11,15 @@ import connect from "./connect.js";
 import curlNoise from "./curlNoise.js";
 
 export default {
-    cards,
-    chars,
-    clickPause,
-    collisionsAbsorb,
-    collisionsBounce,
-    collisionsDestroy,
-    colorAnimation,
-    connect,
-    curlNoise,
+  cardSuits,
+  cards,
+  cardsRolling,
+  chars,
+  clickPause,
+  collisionsAbsorb,
+  collisionsBounce,
+  collisionsDestroy,
+  colorAnimation,
+  connect,
+  curlNoise,
 };

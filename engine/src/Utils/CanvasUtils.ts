@@ -11,30 +11,16 @@ import type { IShapeDrawData } from "../export-types.js";
 import type { Particle } from "../Core/Particle.js";
 
 /**
- * Clear the context after the given plugin draws in the canvas.
- * @param context - The canvas context.
- * @param plugin - The plugin to clear.
- * @param delta - this variable contains the delta between the current frame and the previous frame
- */
-export function clearDrawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
-    if (!plugin.clearDraw) {
-        return;
-    }
-
-    plugin.clearDraw(context, delta);
-}
-
-/**
  * Draws a line between two points using canvas API in the given context.
  * @param context - The canvas context to draw on.
  * @param begin - The start point of the line.
  * @param end - The end point of the line.
  */
 export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
-    context.beginPath();
-    context.moveTo(begin.x, begin.y);
-    context.lineTo(end.x, end.y);
-    context.closePath();
+  context.beginPath();
+  context.moveTo(begin.x, begin.y);
+  context.lineTo(end.x, end.y);
+  context.closePath();
 }
 
 /**
@@ -44,8 +30,8 @@ export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates,
  * @param baseColor - The base color of the rectangle, if not specified a transparent color will be used.
  */
 export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
-    context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
-    context.fillRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
+  context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
+  context.fillRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
 }
 
 /**
@@ -56,18 +42,18 @@ export function paintBase(context: CanvasRenderingContext2D, dimension: IDimensi
  * @param opacity - The opacity of the image.
  */
 export function paintImage(
-    context: CanvasRenderingContext2D,
-    dimension: IDimension,
-    image: HTMLImageElement | undefined,
-    opacity: number,
+  context: CanvasRenderingContext2D,
+  dimension: IDimension,
+  image: HTMLImageElement | undefined,
+  opacity: number,
 ): void {
-    if (!image) {
-        return;
-    }
+  if (!image) {
+    return;
+  }
 
-    context.globalAlpha = opacity;
-    context.drawImage(image, originPoint.x, originPoint.y, dimension.width, dimension.height);
-    context.globalAlpha = 1;
+  context.globalAlpha = opacity;
+  context.drawImage(image, originPoint.x, originPoint.y, dimension.width, dimension.height);
+  context.globalAlpha = 1;
 }
 
 /**
@@ -76,7 +62,7 @@ export function paintImage(
  * @param dimension - The dimension of the canvas.
  */
 export function clear(context: CanvasRenderingContext2D, dimension: IDimension): void {
-    context.clearRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
+  context.clearRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
 }
 
 /**
@@ -84,42 +70,42 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
  * @param data - The function parameters.
  */
 export function drawParticle(data: IDrawParticleParams): void {
-    const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data,
-        pos = particle.getPosition(),
-        transformData = particle.getTransformData(transform);
+  const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data,
+    pos = particle.getPosition(),
+    transformData = particle.getTransformData(transform);
 
-    context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
+  context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
-    if (colorStyles.fill) {
-        context.fillStyle = colorStyles.fill;
-    }
+  if (colorStyles.fill) {
+    context.fillStyle = colorStyles.fill;
+  }
 
-    const strokeWidth = particle.strokeWidth ?? minStrokeWidth;
+  const strokeWidth = particle.strokeWidth ?? minStrokeWidth;
 
-    context.lineWidth = strokeWidth;
+  context.lineWidth = strokeWidth;
 
-    if (colorStyles.stroke) {
-        context.strokeStyle = colorStyles.stroke;
-    }
+  if (colorStyles.stroke) {
+    context.strokeStyle = colorStyles.stroke;
+  }
 
-    const drawData: IShapeDrawData = {
-        context,
-        particle,
-        radius,
-        opacity,
-        delta,
-        pixelRatio: container.retina.pixelRatio,
-        fill: particle.shapeFill,
-        stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
-        transformData,
-    };
+  const drawData: IShapeDrawData = {
+    context,
+    particle,
+    radius,
+    opacity,
+    delta,
+    pixelRatio: container.retina.pixelRatio,
+    fill: particle.shapeFill,
+    stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
+    transformData,
+  };
 
-    drawBeforeEffect(container, drawData);
-    drawShapeBeforeDraw(container, drawData);
-    drawShape(container, drawData);
-    drawShapeAfterDraw(container, drawData);
-    drawAfterEffect(container, drawData);
-    context.resetTransform();
+  drawBeforeEffect(container, drawData);
+  drawShapeBeforeDraw(container, drawData);
+  drawShape(container, drawData);
+  drawShapeAfterDraw(container, drawData);
+  drawAfterEffect(container, drawData);
+  context.resetTransform();
 }
 
 /**
@@ -128,20 +114,20 @@ export function drawParticle(data: IDrawParticleParams): void {
  * @param data - the function parameters.
  */
 export function drawAfterEffect(container: Container, data: IShapeDrawData): void {
-    const { particle } = data;
+  const { particle } = data;
 
-    if (!particle.effect) {
-        return;
-    }
+  if (!particle.effect) {
+    return;
+  }
 
-    const drawer = container.effectDrawers.get(particle.effect),
-        drawFunc = drawer?.drawAfter;
+  const drawer = container.effectDrawers.get(particle.effect),
+    drawFunc = drawer?.drawAfter;
 
-    if (!drawFunc) {
-        return;
-    }
+  if (!drawFunc) {
+    return;
+  }
 
-    drawFunc(data);
+  drawFunc(data);
 }
 
 /**
@@ -150,19 +136,19 @@ export function drawAfterEffect(container: Container, data: IShapeDrawData): voi
  * @param data - the function parameters.
  */
 export function drawBeforeEffect(container: Container, data: IShapeDrawData): void {
-    const { particle } = data;
+  const { particle } = data;
 
-    if (!particle.effect) {
-        return;
-    }
+  if (!particle.effect) {
+    return;
+  }
 
-    const drawer = container.effectDrawers.get(particle.effect);
+  const drawer = container.effectDrawers.get(particle.effect);
 
-    if (!drawer?.drawBefore) {
-        return;
-    }
+  if (!drawer?.drawBefore) {
+    return;
+  }
 
-    drawer.drawBefore(data);
+  drawer.drawBefore(data);
 }
 
 /**
@@ -171,33 +157,33 @@ export function drawBeforeEffect(container: Container, data: IShapeDrawData): vo
  * @param data - the function parameters.
  */
 export function drawShape(container: Container, data: IShapeDrawData): void {
-    const { context, particle, stroke } = data;
+  const { context, particle, stroke } = data;
 
-    if (!particle.shape) {
-        return;
-    }
+  if (!particle.shape) {
+    return;
+  }
 
-    const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.shapeDrawers.get(particle.shape);
 
-    if (!drawer) {
-        return;
-    }
+  if (!drawer) {
+    return;
+  }
 
-    context.beginPath();
+  context.beginPath();
 
-    drawer.draw(data);
+  drawer.draw(data);
 
-    if (particle.shapeClose) {
-        context.closePath();
-    }
+  if (particle.shapeClose) {
+    context.closePath();
+  }
 
-    if (stroke) {
-        context.stroke();
-    }
+  if (stroke) {
+    context.stroke();
+  }
 
-    if (particle.shapeFill) {
-        context.fill();
-    }
+  if (particle.shapeFill) {
+    context.fill();
+  }
 }
 
 /**
@@ -206,19 +192,19 @@ export function drawShape(container: Container, data: IShapeDrawData): void {
  * @param data - the function parameters.
  */
 export function drawShapeAfterDraw(container: Container, data: IShapeDrawData): void {
-    const { particle } = data;
+  const { particle } = data;
 
-    if (!particle.shape) {
-        return;
-    }
+  if (!particle.shape) {
+    return;
+  }
 
-    const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.shapeDrawers.get(particle.shape);
 
-    if (!drawer?.afterDraw) {
-        return;
-    }
+  if (!drawer?.afterDraw) {
+    return;
+  }
 
-    drawer.afterDraw(data);
+  drawer.afterDraw(data);
 }
 
 /**
@@ -227,33 +213,19 @@ export function drawShapeAfterDraw(container: Container, data: IShapeDrawData): 
  * @param data - the function parameters.
  */
 export function drawShapeBeforeDraw(container: Container, data: IShapeDrawData): void {
-    const { particle } = data;
+  const { particle } = data;
 
-    if (!particle.shape) {
-        return;
-    }
+  if (!particle.shape) {
+    return;
+  }
 
-    const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.shapeDrawers.get(particle.shape);
 
-    if (!drawer?.beforeDraw) {
-        return;
-    }
+  if (!drawer?.beforeDraw) {
+    return;
+  }
 
-    drawer.beforeDraw(data);
-}
-
-/**
- * Draws the given plugin in the canvas.
- * @param context - The canvas context.
- * @param plugin - The plugin to draw.
- * @param delta - this variable contains the delta between the current frame and the previous frame
- */
-export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainerPlugin, delta: IDelta): void {
-    if (!plugin.draw) {
-        return;
-    }
-
-    plugin.draw(context, delta);
+  drawer.beforeDraw(data);
 }
 
 /**
@@ -264,16 +236,16 @@ export function drawPlugin(context: CanvasRenderingContext2D, plugin: IContainer
  * @param delta - this variable contains the delta between the current frame and the previous frame
  */
 export function drawParticlePlugin(
-    context: CanvasRenderingContext2D,
-    plugin: IContainerPlugin,
-    particle: Particle,
-    delta: IDelta,
+  context: CanvasRenderingContext2D,
+  plugin: IContainerPlugin,
+  particle: Particle,
+  delta: IDelta,
 ): void {
-    if (!plugin.drawParticle) {
-        return;
-    }
+  if (!plugin.drawParticle) {
+    return;
+  }
 
-    plugin.drawParticle(context, particle, delta);
+  plugin.drawParticle(context, particle, delta);
 }
 
 /**
@@ -284,9 +256,9 @@ export function drawParticlePlugin(
  * @returns the altered {@link IHsl} color
  */
 export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
-    return {
-        h: color.h,
-        s: color.s,
-        l: color.l + (type === AlterType.darken ? -lFactor : lFactor) * value,
-    };
+  return {
+    h: color.h,
+    s: color.s,
+    l: color.l + (type === AlterType.darken ? -lFactor : lFactor) * value,
+  };
 }

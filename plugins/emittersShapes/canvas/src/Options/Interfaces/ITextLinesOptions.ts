@@ -1,4 +1,4 @@
 export interface ITextLinesOptions {
-    separator: string;
-    spacing: number;
+  separator: string;
+  spacing: number;
 }

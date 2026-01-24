@@ -1,6 +1,6 @@
 /**
  */
 export interface ISlow {
-    factor: number;
-    radius: number;
+  factor: number;
+  radius: number;
 }

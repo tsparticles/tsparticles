@@ -4,25 +4,25 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { isNull } from "../../Utils/TypeUtils.js";
 
 export class ResizeEvent implements IResizeEvent, IOptionLoader<IResizeEvent> {
-    delay;
-    enable;
+  delay;
+  enable;
 
-    constructor() {
-        this.delay = 0.5;
-        this.enable = true;
+  constructor() {
+    this.delay = 0.5;
+    this.enable = true;
+  }
+
+  load(data?: RecursivePartial<IResizeEvent>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IResizeEvent>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.delay !== undefined) {
-            this.delay = data.delay;
-        }
-
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
+    if (data.delay !== undefined) {
+      this.delay = data.delay;
     }
+
+    if (data.enable !== undefined) {
+      this.enable = data.enable;
+    }
+  }
 }

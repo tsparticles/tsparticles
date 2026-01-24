@@ -9,38 +9,38 @@ import { isNull } from "../../../../../Utils/TypeUtils.js";
 /**
  */
 export class MovePath implements IMovePath, IOptionLoader<IMovePath> {
-    clamp;
-    delay;
-    enable;
-    generator?: string;
-    options: PathOptions;
+  clamp;
+  delay;
+  enable;
+  generator?: string;
+  options: PathOptions;
 
-    constructor() {
-        this.clamp = true;
-        this.delay = new ValueWithRandom();
-        this.enable = false;
-        this.options = {};
+  constructor() {
+    this.clamp = true;
+    this.delay = new ValueWithRandom();
+    this.enable = false;
+    this.options = {};
+  }
+
+  load(data?: RecursivePartial<IMovePath>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IMovePath>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.clamp !== undefined) {
-            this.clamp = data.clamp;
-        }
-
-        this.delay.load(data.delay);
-
-        if (data.enable !== undefined) {
-            this.enable = data.enable;
-        }
-
-        this.generator = data.generator;
-
-        if (data.options) {
-            this.options = deepExtend(this.options, data.options) as PathOptions;
-        }
+    if (data.clamp !== undefined) {
+      this.clamp = data.clamp;
     }
+
+    this.delay.load(data.delay);
+
+    if (data.enable !== undefined) {
+      this.enable = data.enable;
+    }
+
+    this.generator = data.generator;
+
+    if (data.options) {
+      this.options = deepExtend(this.options, data.options) as PathOptions;
+    }
+  }
 }

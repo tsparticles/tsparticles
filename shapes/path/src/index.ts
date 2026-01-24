@@ -6,11 +6,11 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadPathShape(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { PathDrawer } = await import("./PathDrawer.js");
+  await engine.register(async e => {
+    const { PathDrawer } = await import("./PathDrawer.js");
 
-        e.addShape(new PathDrawer());
-    });
+    e.addShape(new PathDrawer());
+  });
 }

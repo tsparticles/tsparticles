@@ -1,4 +1,4 @@
 export interface IDistance {
-    horizontal: number;
-    vertical: number;
+  horizontal: number;
+  vertical: number;
 }

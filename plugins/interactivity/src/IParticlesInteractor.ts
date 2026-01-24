@@ -5,7 +5,7 @@ import type { IInteractor } from "./IInteractor.js";
 /**
  */
 export interface IParticlesInteractor<TParticle extends Particle = Particle> extends IInteractor<TParticle> {
-    interact(particle: TParticle, interactivityData: IInteractivityData, delta: IDelta): void;
+  interact(particle: TParticle, interactivityData: IInteractivityData, delta: IDelta): void;
 
-    isEnabled(particle: TParticle, interactivityData: IInteractivityData): boolean;
+  isEnabled(particle: TParticle, interactivityData: IInteractivityData): boolean;
 }

@@ -2,12 +2,12 @@ import type { IAnimatable, IAnimatableColor, IAnimation, StartValueType } from "
 import type { IGradient, IGradientColor, IGradientColorOpacity } from "./Gradients.js";
 
 export interface IGradientColorOpacityAnimation extends IAnimation {
-    startValue: StartValueType | keyof typeof StartValueType;
+  startValue: StartValueType | keyof typeof StartValueType;
 }
 
 export interface IAnimatableGradientColor extends IGradientColor {
-    opacity?: (IGradientColorOpacity & IAnimatable<IGradientColorOpacityAnimation>) | number;
-    value: IAnimatableColor;
+  opacity?: (IGradientColorOpacity & IAnimatable<IGradientColorOpacityAnimation>) | number;
+  value: IAnimatableColor;
 }
 
 export type IOptionsGradient = IGradient;

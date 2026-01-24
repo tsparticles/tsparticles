@@ -9,25 +9,25 @@ import { isNull } from "../../../../Utils/TypeUtils.js";
  * [[include:Options/Particles/Size.md]]
  */
 export class Size extends RangedAnimationValueWithRandom implements ISize, IOptionLoader<ISize> {
-    override readonly animation;
+  override readonly animation;
 
-    constructor() {
-        super();
-        this.animation = new SizeAnimation();
-        this.value = 3;
+  constructor() {
+    super();
+    this.animation = new SizeAnimation();
+    this.value = 3;
+  }
+
+  override load(data?: RecursivePartial<ISize>): void {
+    super.load(data);
+
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<ISize>): void {
-        super.load(data);
+    const animation = data.animation;
 
-        if (isNull(data)) {
-            return;
-        }
-
-        const animation = data.animation;
-
-        if (animation !== undefined) {
-            this.animation.load(animation);
-        }
+    if (animation !== undefined) {
+      this.animation.load(animation);
     }
+  }
 }

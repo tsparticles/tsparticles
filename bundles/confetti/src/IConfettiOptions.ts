@@ -4,93 +4,93 @@ import type { ICoordinates, SingleOrMultiple } from "@tsparticles/engine";
  *
  */
 export interface IConfettiOptions {
-    /**
-     *
-     */
-    angle: number;
+  /**
+   *
+   */
+  angle: number;
 
-    /**
-     *
-     */
-    colors: SingleOrMultiple<string>;
+  /**
+   *
+   */
+  colors: SingleOrMultiple<string>;
 
-    /**
-     *
-     */
-    count: number;
+  /**
+   *
+   */
+  count: number;
 
-    /**
-     *
-     */
-    decay: number;
+  /**
+   *
+   */
+  decay: number;
 
-    /**
-     *
-     */
-    disableForReducedMotion: boolean;
+  /**
+   *
+   */
+  disableForReducedMotion: boolean;
 
-    /**
-     *
-     */
-    drift: number;
+  /**
+   *
+   */
+  drift: number;
 
-    /**
-     *
-     */
-    flat: boolean;
+  /**
+   *
+   */
+  flat: boolean;
 
-    /**
-     *
-     */
-    gravity: number;
+  /**
+   *
+   */
+  gravity: number;
 
-    /**
-     * @deprecated use position instead
-     */
-    origin: ICoordinates;
+  /**
+   * @deprecated use position instead
+   */
+  origin: ICoordinates;
 
-    /**
-     * @deprecated use count instead
-     */
-    particleCount: number;
+  /**
+   * @deprecated use count instead
+   */
+  particleCount: number;
 
-    /**
-     *
-     */
-    position: ICoordinates;
+  /**
+   *
+   */
+  position: ICoordinates;
 
-    /**
-     *
-     */
-    scalar: number;
+  /**
+   *
+   */
+  scalar: number;
 
-    /**
-     *
-     */
-    shapeOptions: Record<string, SingleOrMultiple<unknown>>;
+  /**
+   *
+   */
+  shapeOptions: Record<string, SingleOrMultiple<unknown>>;
 
-    /**
-     *
-     */
-    shapes: SingleOrMultiple<string>;
+  /**
+   *
+   */
+  shapes: SingleOrMultiple<string>;
 
-    /**
-     *
-     */
-    spread: number;
+  /**
+   *
+   */
+  spread: number;
 
-    /**
-     *
-     */
-    startVelocity: number;
+  /**
+   *
+   */
+  startVelocity: number;
 
-    /**
-     *
-     */
-    ticks: number;
+  /**
+   *
+   */
+  ticks: number;
 
-    /**
-     *
-     */
-    zIndex: number;
+  /**
+   *
+   */
+  zIndex: number;
 }

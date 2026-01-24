@@ -1,4 +1,4 @@
 export interface ICollisionsOverlap {
-    enable: boolean;
-    retries: number;
+  enable: boolean;
+  retries: number;
 }

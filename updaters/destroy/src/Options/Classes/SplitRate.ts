@@ -1,9 +1,9 @@
 import { ValueWithRandom } from "@tsparticles/engine";
 
 export class SplitRate extends ValueWithRandom {
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.value = { min: 4, max: 9 };
-    }
+    this.value = { min: 4, max: 9 };
+  }
 }

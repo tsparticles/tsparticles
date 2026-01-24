@@ -6,36 +6,36 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadGenericPolygonShape(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { PolygonDrawer } = await import("./PolygonDrawer.js");
+  await engine.register(async e => {
+    const { PolygonDrawer } = await import("./PolygonDrawer.js");
 
-        e.addShape(new PolygonDrawer());
-    });
+    e.addShape(new PolygonDrawer());
+  });
 }
 
 /**
  * @param engine -
  */
 export async function loadTriangleShape(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { TriangleDrawer } = await import("./TriangleDrawer.js");
+  await engine.register(async e => {
+    const { TriangleDrawer } = await import("./TriangleDrawer.js");
 
-        e.addShape(new TriangleDrawer());
-    });
+    e.addShape(new TriangleDrawer());
+  });
 }
 
 /**
  * @param engine -
  */
 export async function loadPolygonShape(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        await loadGenericPolygonShape(e);
-        await loadTriangleShape(e);
-    });
+  await engine.register(async e => {
+    await loadGenericPolygonShape(e);
+    await loadTriangleShape(e);
+  });
 }

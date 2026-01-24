@@ -15,32 +15,32 @@ const minWidth = 0;
  * @param end - The end angle of the particle.
  */
 export function drawEllipse(
-    context: CanvasRenderingContext2D,
-    particle: Particle,
-    fillColorValue: IHsl | undefined,
-    radius: number,
-    opacity: number,
-    width: number,
-    rotation: number,
-    start: number,
-    end: number,
+  context: CanvasRenderingContext2D,
+  particle: Particle,
+  fillColorValue: IHsl | undefined,
+  radius: number,
+  opacity: number,
+  width: number,
+  rotation: number,
+  start: number,
+  end: number,
 ): void {
-    if (width <= minWidth) {
-        return;
-    }
+  if (width <= minWidth) {
+    return;
+  }
 
-    const pos = particle.getPosition(),
-        { container } = particle;
+  const pos = particle.getPosition(),
+    { container } = particle;
 
-    if (fillColorValue) {
-        context.strokeStyle = getStyleFromHsl(fillColorValue, container.hdr, opacity);
-    }
+  if (fillColorValue) {
+    context.strokeStyle = getStyleFromHsl(fillColorValue, container.hdr, opacity);
+  }
 
-    context.lineWidth = width;
+  context.lineWidth = width;
 
-    const rotationRadian = degToRad(rotation);
+  const rotationRadian = degToRad(rotation);
 
-    context.beginPath();
-    context.ellipse(pos.x, pos.y, radius * half, radius * double, rotationRadian, start, end);
-    context.stroke();
+  context.beginPath();
+  context.ellipse(pos.x, pos.y, radius * half, radius * double, rotationRadian, start, end);
+  context.stroke();
 }

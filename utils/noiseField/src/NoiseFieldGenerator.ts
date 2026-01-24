@@ -1,265 +1,264 @@
 import {
-    type Container,
-    type IMovePathGenerator,
-    type Particle,
-    Vector,
-    deepExtend,
-    doublePI,
-    getRandom,
+  type Container,
+  type IMovePathGenerator,
+  type Particle,
+  Vector,
+  deepExtend,
+  doublePI,
+  getRandom,
 } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
 import type { INoiseGenerator } from "./INoiseGenerator.js";
 
 const originCoordinate = 0,
-    firstIndex = 0,
-    empty = 0,
-    optionsSizeOffset = 1,
-    transformDefaultValues = {
-        a: 1,
-        b: 0,
-        c: 0,
-        d: 1,
-        e: 0,
-        f: 0,
+  firstIndex = 0,
+  empty = 0,
+  optionsSizeOffset = 1,
+  transformDefaultValues = {
+    a: 1,
+    b: 0,
+    c: 0,
+    d: 1,
+    e: 0,
+    f: 0,
+  },
+  defaultOptions: INoiseFieldOptions = {
+    draw: false,
+    size: 20,
+    increment: 0.004,
+    columns: 0,
+    rows: 0,
+    layers: 0,
+    width: 0,
+    height: 0,
+    factor: {
+      angle: 0.02,
+      length: 0.01,
     },
-    defaultOptions: INoiseFieldOptions = {
-        draw: false,
-        size: 20,
-        increment: 0.004,
-        columns: 0,
-        rows: 0,
-        layers: 0,
-        width: 0,
-        height: 0,
-        factor: {
-            angle: 0.02,
-            length: 0.01,
-        },
-        offset: {
-            x: 40000,
-            y: 40000,
-            z: 40000,
-        },
-    };
+    offset: {
+      x: 40000,
+      y: 40000,
+      z: 40000,
+    },
+  };
 
 export abstract class NoiseFieldGenerator implements IMovePathGenerator {
-    container?: Container;
-    field: Vector[][][];
-    readonly noiseGen: INoiseGenerator;
-    noiseW: number;
-    readonly options: INoiseFieldOptions;
+  container?: Container;
+  field: Vector[][][];
+  readonly noiseGen: INoiseGenerator;
+  noiseW: number;
+  readonly options: INoiseFieldOptions;
 
-    protected constructor(noiseGen: INoiseGenerator) {
-        this.noiseGen = noiseGen;
-        this.field = [];
-        this.noiseW = 0;
-        this.options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
+  protected constructor(noiseGen: INoiseGenerator) {
+    this.noiseGen = noiseGen;
+    this.field = [];
+    this.noiseW = 0;
+    this.options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
+  }
+
+  generate(particle: Particle): Vector {
+    const pos = particle.getPosition(),
+      { size } = this.options,
+      point = {
+        x: Math.max(Math.floor(pos.x / size), originCoordinate),
+        y: Math.max(Math.floor(pos.y / size), originCoordinate),
+        z: Math.max(Math.floor(pos.z / size), originCoordinate),
+      },
+      { field } = this,
+      fieldPoint = field[point.x]?.[point.y]?.[point.z];
+
+    return fieldPoint ? fieldPoint.copy() : Vector.origin;
+  }
+
+  init(container: Container): void {
+    this.container = container;
+
+    this._setup();
+  }
+
+  reset(): void {
+    // nothing to do
+  }
+
+  update(): void {
+    if (!this.container) {
+      return;
     }
 
-    generate(particle: Particle): Vector {
-        const pos = particle.getPosition(),
-            { size } = this.options,
-            point = {
-                x: Math.max(Math.floor(pos.x / size), originCoordinate),
-                y: Math.max(Math.floor(pos.y / size), originCoordinate),
-                z: Math.max(Math.floor(pos.z / size), originCoordinate),
-            },
-            { field } = this,
-            fieldPoint = field[point.x]?.[point.y]?.[point.z];
+    this._calculateField();
 
-        return fieldPoint ? fieldPoint.copy() : Vector.origin;
+    this.noiseW += this.options.increment;
+
+    if (!this.options.draw) {
+      return;
     }
 
-    init(container: Container): void {
-        this.container = container;
+    this.container.canvas.draw(ctx => {
+      this._drawField(ctx);
+    });
+  }
 
-        this._setup();
-    }
+  private _calculateField(): void {
+    const { field, noiseGen, options, noiseW } = this,
+      lengthFactor = options.factor.length,
+      angleFactor = options.factor.angle;
 
-    reset(): void {
-        // nothing to do
-    }
+    for (let x = 0; x < options.columns; x++) {
+      const xColumn = field[x];
 
-    update(): void {
-        if (!this.container) {
-            return;
+      if (!xColumn) {
+        continue;
+      }
+
+      for (let y = 0; y < options.rows; y++) {
+        const yColumn = xColumn[y];
+
+        if (!yColumn) {
+          continue;
         }
 
-        this._calculateField();
+        for (let z = 0; z < options.layers; z++) {
+          const cell = yColumn[z];
 
-        this.noiseW += this.options.increment;
+          if (!cell) {
+            continue;
+          }
 
-        if (!this.options.draw) {
-            return;
+          cell.length = noiseGen.noise4d(
+            x * lengthFactor + options.offset.x,
+            y * lengthFactor + options.offset.y,
+            z * lengthFactor + options.offset.z,
+            noiseW,
+          );
+          cell.angle = noiseGen.noise4d(x * angleFactor, y * angleFactor, z * angleFactor, noiseW) * doublePI;
+        }
+      }
+    }
+  }
+
+  private _drawField(ctx: CanvasRenderingContext2D): void {
+    const { field, options } = this;
+
+    for (let x = 0; x < options.columns; x++) {
+      const xColumn = field[x];
+
+      if (!xColumn) {
+        continue;
+      }
+
+      for (let y = 0; y < options.rows; y++) {
+        const yColumn = xColumn[y];
+
+        if (!yColumn) {
+          continue;
         }
 
-        this.container.canvas.draw(ctx => {
-            this._drawField(ctx);
-        });
-    }
+        const cell = yColumn[firstIndex]; // only 2D
 
-    private _calculateField(): void {
-        const { field, noiseGen, options, noiseW } = this,
-            lengthFactor = options.factor.length,
-            angleFactor = options.factor.angle;
-
-        for (let x = 0; x < options.columns; x++) {
-            const xColumn = field[x];
-
-            if (!xColumn) {
-                continue;
-            }
-
-            for (let y = 0; y < options.rows; y++) {
-                const yColumn = xColumn[y];
-
-                if (!yColumn) {
-                    continue;
-                }
-
-                for (let z = 0; z < options.layers; z++) {
-                    const cell = yColumn[z];
-
-                    if (!cell) {
-                        continue;
-                    }
-
-                    cell.length = noiseGen.noise4d(
-                        x * lengthFactor + options.offset.x,
-                        y * lengthFactor + options.offset.y,
-                        z * lengthFactor + options.offset.z,
-                        noiseW,
-                    );
-                    cell.angle = noiseGen.noise4d(x * angleFactor, y * angleFactor, z * angleFactor, noiseW) * doublePI;
-                }
-            }
-        }
-    }
-
-    private _drawField(ctx: CanvasRenderingContext2D): void {
-        const { field, options } = this;
-
-        for (let x = 0; x < options.columns; x++) {
-            const xColumn = field[x];
-
-            if (!xColumn) {
-                continue;
-            }
-
-            for (let y = 0; y < options.rows; y++) {
-                const yColumn = xColumn[y];
-
-                if (!yColumn) {
-                    continue;
-                }
-
-                const cell = yColumn[firstIndex]; // only 2D
-
-                if (!cell) {
-                    continue;
-                }
-
-                const { angle, length } = cell;
-
-                ctx.setTransform(
-                    transformDefaultValues.a,
-                    transformDefaultValues.b,
-                    transformDefaultValues.c,
-                    transformDefaultValues.d,
-                    x * this.options.size,
-                    y * this.options.size,
-                );
-                ctx.rotate(angle);
-                ctx.strokeStyle = "white";
-                ctx.beginPath();
-                ctx.moveTo(originCoordinate, originCoordinate);
-                ctx.lineTo(originCoordinate, this.options.size * length);
-                ctx.stroke();
-                ctx.setTransform(
-                    transformDefaultValues.a,
-                    transformDefaultValues.b,
-                    transformDefaultValues.c,
-                    transformDefaultValues.d,
-                    transformDefaultValues.e,
-                    transformDefaultValues.f,
-                );
-            }
-        }
-    }
-
-    private _initField(): void {
-        const { columns, rows, layers } = this.options;
-
-        this.field = new Array<Vector[][]>(columns);
-
-        for (let x = 0; x < columns; x++) {
-            const newX = new Array<Vector[]>(rows);
-
-            for (let y = 0; y < rows; y++) {
-                const newY = new Array<Vector>(layers);
-
-                for (let z = 0; z < layers; z++) {
-                    newY[z] = Vector.origin;
-                }
-
-                newX[y] = newY;
-            }
-
-            this.field[x] = newX;
-        }
-    }
-
-    private _resetField(): void {
-        const container = this.container;
-
-        if (!container) {
-            return;
+        if (!cell) {
+          continue;
         }
 
-        const sourceOptions = container.actualOptions.particles.move.path.options,
-            { options } = this;
+        const { angle, length } = cell;
 
-        options.width = container.canvas.size.width;
-        options.height = container.canvas.size.height;
+        ctx.setTransform(
+          transformDefaultValues.a,
+          transformDefaultValues.b,
+          transformDefaultValues.c,
+          transformDefaultValues.d,
+          x * this.options.size,
+          y * this.options.size,
+        );
+        ctx.rotate(angle);
+        ctx.strokeStyle = "white";
+        ctx.beginPath();
+        ctx.moveTo(originCoordinate, originCoordinate);
+        ctx.lineTo(originCoordinate, this.options.size * length);
+        ctx.stroke();
+        ctx.setTransform(
+          transformDefaultValues.a,
+          transformDefaultValues.b,
+          transformDefaultValues.c,
+          transformDefaultValues.d,
+          transformDefaultValues.e,
+          transformDefaultValues.f,
+        );
+      }
+    }
+  }
 
-        options.size =
-            (sourceOptions["size"] as number) > empty ? (sourceOptions["size"] as number) : defaultOptions.size;
-        options.increment =
-            (sourceOptions["increment"] as number) > empty
-                ? (sourceOptions["increment"] as number)
-                : defaultOptions.increment;
-        options.draw = !!sourceOptions["draw"];
+  private _initField(): void {
+    const { columns, rows, layers } = this.options;
 
-        const offset = sourceOptions["offset"] as IOffsetValues | undefined;
+    this.field = new Array<Vector[][]>(columns);
 
-        options.offset.x = offset?.x ?? defaultOptions.offset.x;
-        options.offset.y = offset?.y ?? defaultOptions.offset.y;
-        options.offset.z = offset?.z ?? defaultOptions.offset.z;
+    for (let x = 0; x < columns; x++) {
+      const newX = new Array<Vector[]>(rows);
 
-        const factor = sourceOptions["factor"] as IFactorValues | undefined;
+      for (let y = 0; y < rows; y++) {
+        const newY = new Array<Vector>(layers);
 
-        options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
-        options.factor.length = factor?.length ?? defaultOptions.factor.length;
+        for (let z = 0; z < layers; z++) {
+          newY[z] = Vector.origin;
+        }
 
-        options.seed = sourceOptions["seed"] as number | undefined;
+        newX[y] = newY;
+      }
 
-        this.noiseGen.seed(options.seed ?? getRandom());
+      this.field[x] = newX;
+    }
+  }
 
-        options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
-        options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;
-        options.layers = Math.floor(container.zLayers / options.size) + optionsSizeOffset;
+  private _resetField(): void {
+    const container = this.container;
 
-        this._initField();
+    if (!container) {
+      return;
     }
 
-    private _setup(): void {
-        this.noiseW = 0;
+    const sourceOptions = container.actualOptions.particles.move.path.options,
+      { options } = this;
 
-        this._resetField();
+    options.width = container.canvas.size.width;
+    options.height = container.canvas.size.height;
 
-        addEventListener("resize", () => {
-            this._resetField();
-        });
-    }
+    options.size = (sourceOptions["size"] as number) > empty ? (sourceOptions["size"] as number) : defaultOptions.size;
+    options.increment =
+      (sourceOptions["increment"] as number) > empty
+        ? (sourceOptions["increment"] as number)
+        : defaultOptions.increment;
+    options.draw = !!sourceOptions["draw"];
+
+    const offset = sourceOptions["offset"] as IOffsetValues | undefined;
+
+    options.offset.x = offset?.x ?? defaultOptions.offset.x;
+    options.offset.y = offset?.y ?? defaultOptions.offset.y;
+    options.offset.z = offset?.z ?? defaultOptions.offset.z;
+
+    const factor = sourceOptions["factor"] as IFactorValues | undefined;
+
+    options.factor.angle = factor?.angle ?? defaultOptions.factor.angle;
+    options.factor.length = factor?.length ?? defaultOptions.factor.length;
+
+    options.seed = sourceOptions["seed"] as number | undefined;
+
+    this.noiseGen.seed(options.seed ?? getRandom());
+
+    options.columns = Math.floor(options.width / options.size) + optionsSizeOffset;
+    options.rows = Math.floor(options.height / options.size) + optionsSizeOffset;
+    options.layers = Math.floor(container.zLayers / options.size) + optionsSizeOffset;
+
+    this._initField();
+  }
+
+  private _setup(): void {
+    this.noiseW = 0;
+
+    this._resetField();
+
+    addEventListener("resize", () => {
+      this._resetField();
+    });
+  }
 }

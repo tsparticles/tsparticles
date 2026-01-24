@@ -4,23 +4,23 @@ import type { RangeValue } from "../../Types/RangeValue.js";
 /**
  */
 export interface IParticleValueAnimation<T> {
-    decay?: number;
-    delayTime?: number;
-    enable: boolean;
-    initialValue?: number;
-    loops?: number;
-    maxLoops?: number;
-    status?: AnimationStatus;
-    time?: number;
-    value: T;
-    velocity?: number;
+  decay?: number;
+  delayTime?: number;
+  enable: boolean;
+  initialValue?: number;
+  loops?: number;
+  maxLoops?: number;
+  status?: AnimationStatus;
+  time?: number;
+  value: T;
+  velocity?: number;
 }
 
 export interface IParticleColorAnimation extends IParticleValueAnimation<number> {
-    offset?: RangeValue;
+  offset?: RangeValue;
 }
 
 export interface IParticleNumericValueAnimation extends IParticleValueAnimation<number> {
-    max: number;
-    min: number;
+  max: number;
+  min: number;
 }

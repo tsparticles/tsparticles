@@ -5,29 +5,29 @@ import type { IDestroy } from "../Interfaces/IDestroy.js";
 import { Split } from "./Split.js";
 
 export class Destroy implements IDestroy, IOptionLoader<IDestroy> {
-    bounds: DestroyBounds;
-    mode: DestroyMode | keyof typeof DestroyMode;
-    split: Split;
+  bounds: DestroyBounds;
+  mode: DestroyMode | keyof typeof DestroyMode;
+  split: Split;
 
-    constructor() {
-        this.bounds = new DestroyBounds();
-        this.mode = DestroyMode.none;
-        this.split = new Split();
+  constructor() {
+    this.bounds = new DestroyBounds();
+    this.mode = DestroyMode.none;
+    this.split = new Split();
+  }
+
+  load(data?: RecursivePartial<IDestroy>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IDestroy>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.mode) {
-            this.mode = data.mode;
-        }
-
-        if (data.bounds) {
-            this.bounds.load(data.bounds);
-        }
-
-        this.split.load(data.split);
+    if (data.mode) {
+      this.mode = data.mode;
     }
+
+    if (data.bounds) {
+      this.bounds.load(data.bounds);
+    }
+
+    this.split.load(data.split);
+  }
 }

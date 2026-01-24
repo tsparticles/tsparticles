@@ -11,45 +11,45 @@ import { isNull } from "../../../../Utils/TypeUtils.js";
  * [[include:Options/Particles/Effect.md]]
  */
 export class Effect implements IEffect, IOptionLoader<IEffect> {
-    close;
-    fill;
-    options: ShapeData;
-    type: SingleOrMultiple<string>;
+  close;
+  fill;
+  options: ShapeData;
+  type: SingleOrMultiple<string>;
 
-    constructor() {
-        this.close = true;
-        this.fill = true;
-        this.options = {};
-        this.type = [];
+  constructor() {
+    this.close = true;
+    this.fill = true;
+    this.options = {};
+    this.type = [];
+  }
+
+  load(data?: RecursivePartial<IEffect>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<IEffect>): void {
-        if (isNull(data)) {
-            return;
+    const options = data.options;
+
+    if (options !== undefined) {
+      for (const effect in options) {
+        const item = options[effect];
+
+        if (item) {
+          this.options[effect] = deepExtend(this.options[effect] ?? {}, item) as IShapeValues[];
         }
-
-        const options = data.options;
-
-        if (options !== undefined) {
-            for (const effect in options) {
-                const item = options[effect];
-
-                if (item) {
-                    this.options[effect] = deepExtend(this.options[effect] ?? {}, item) as IShapeValues[];
-                }
-            }
-        }
-
-        if (data.close !== undefined) {
-            this.close = data.close;
-        }
-
-        if (data.fill !== undefined) {
-            this.fill = data.fill;
-        }
-
-        if (data.type !== undefined) {
-            this.type = data.type;
-        }
+      }
     }
+
+    if (data.close !== undefined) {
+      this.close = data.close;
+    }
+
+    if (data.fill !== undefined) {
+      this.fill = data.fill;
+    }
+
+    if (data.type !== undefined) {
+      this.type = data.type;
+    }
+  }
 }

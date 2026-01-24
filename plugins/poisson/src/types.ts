@@ -3,13 +3,13 @@ import type { IPoisson } from "./Options/Interfaces/IPoisson.js";
 import type { Poisson } from "./Options/Classes/Poisson.js";
 
 export type IPoissonOptions = IOptions & {
-    poisson: IPoisson;
+  poisson: IPoisson;
 };
 
 export type PoissonOptions = Options & {
-    poisson?: Poisson;
+  poisson?: Poisson;
 };
 
 export type PoissonContainer = Container & {
-    actualOptions: PoissonOptions;
+  actualOptions: PoissonOptions;
 };

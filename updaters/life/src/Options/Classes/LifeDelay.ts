@@ -2,22 +2,22 @@ import { type IOptionLoader, type RecursivePartial, ValueWithRandom, isNull } fr
 import type { ILifeDelay } from "../Interfaces/ILifeDelay.js";
 
 export class LifeDelay extends ValueWithRandom implements ILifeDelay, IOptionLoader<ILifeDelay> {
-    sync;
+  sync;
 
-    constructor() {
-        super();
-        this.sync = false;
+  constructor() {
+    super();
+    this.sync = false;
+  }
+
+  override load(data?: RecursivePartial<ILifeDelay>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<ILifeDelay>): void {
-        if (isNull(data)) {
-            return;
-        }
+    super.load(data);
 
-        super.load(data);
-
-        if (data.sync !== undefined) {
-            this.sync = data.sync;
-        }
+    if (data.sync !== undefined) {
+      this.sync = data.sync;
     }
+  }
 }

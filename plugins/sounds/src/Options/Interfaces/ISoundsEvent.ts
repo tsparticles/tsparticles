@@ -5,13 +5,13 @@ import type { ISoundsNote } from "./ISoundsNote.js";
 import type { SingleOrMultiple } from "@tsparticles/engine";
 
 export interface ISoundsEvent {
-    audio?: SingleOrMultiple<ISoundsAudio | string>;
+  audio?: SingleOrMultiple<ISoundsAudio | string>;
 
-    event: SingleOrMultiple<string>;
+  event: SingleOrMultiple<string>;
 
-    filter?: string | FilterFunction;
+  filter?: string | FilterFunction;
 
-    melodies?: ISoundsMelody[];
+  melodies?: ISoundsMelody[];
 
-    notes?: ISoundsNote[];
+  notes?: ISoundsNote[];
 }

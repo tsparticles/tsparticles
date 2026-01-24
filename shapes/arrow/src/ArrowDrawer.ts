@@ -4,21 +4,21 @@ import type { IArrowData } from "./IArrowData.js";
 import { drawArrow } from "./Utils.js";
 
 const defaultHeightFactor = 0.5,
-    defaultHeadWidthFactor = 0.2,
-    defaultBodyHeightFactor = 0.5;
+  defaultHeadWidthFactor = 0.2,
+  defaultBodyHeightFactor = 0.5;
 
 export class ArrowDrawer implements IShapeDrawer<ArrowParticle> {
-    readonly validTypes = ["arrow"] as const;
+  readonly validTypes = ["arrow"] as const;
 
-    draw(data: IShapeDrawData<ArrowParticle>): void {
-        drawArrow(data);
-    }
+  draw(data: IShapeDrawData<ArrowParticle>): void {
+    drawArrow(data);
+  }
 
-    particleInit(_container: Container, particle: ArrowParticle): void {
-        const shapeData = particle.shapeData as IArrowData | undefined;
+  particleInit(_container: Container, particle: ArrowParticle): void {
+    const shapeData = particle.shapeData as IArrowData | undefined;
 
-        particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? defaultHeightFactor);
-        particle.headWidthFactor = getRangeValue(shapeData?.headWidthFactor ?? defaultHeadWidthFactor);
-        particle.bodyHeightFactor = getRangeValue(shapeData?.bodyHeightFactor ?? defaultBodyHeightFactor);
-    }
+    particle.heightFactor = getRangeValue(shapeData?.heightFactor ?? defaultHeightFactor);
+    particle.headWidthFactor = getRangeValue(shapeData?.headWidthFactor ?? defaultHeadWidthFactor);
+    particle.bodyHeightFactor = getRangeValue(shapeData?.bodyHeightFactor ?? defaultBodyHeightFactor);
+  }
 }

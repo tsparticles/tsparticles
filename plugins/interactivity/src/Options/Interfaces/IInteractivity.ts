@@ -7,23 +7,23 @@ import type { InteractivityDetect } from "../../InteractivityDetect.js";
  * [[include:Options/Interactivity.md]]
  */
 export interface IInteractivity {
-    [name: string]: unknown;
+  [name: string]: unknown;
 
-    /**
-     * Where the mouse events will be detected
-     * If set to `canvas` only the particles canvas will be targeted
-     * If set to `parent` only the particles canvas parent will be targeted
-     * If set to `window` every area will be the target
-     */
-    detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
+  /**
+   * Where the mouse events will be detected
+   * If set to `canvas` only the particles canvas will be targeted
+   * If set to `parent` only the particles canvas parent will be targeted
+   * If set to `window` every area will be the target
+   */
+  detectsOn: InteractivityDetect | keyof typeof InteractivityDetect;
 
-    /**
-     * Interaction events options, this configures which events are enabled and which modes should be used
-     */
-    events: IEvents;
+  /**
+   * Interaction events options, this configures which events are enabled and which modes should be used
+   */
+  events: IEvents;
 
-    /**
-     * Interaction modes options, this configures every mode behavior
-     */
-    modes: IModes;
+  /**
+   * Interaction modes options, this configures every mode behavior
+   */
+  modes: IModes;
 }

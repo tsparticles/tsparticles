@@ -1,4 +1,4 @@
 export interface IExportImageData {
-    quality?: number;
-    type?: string;
+  quality?: number;
+  type?: string;
 }

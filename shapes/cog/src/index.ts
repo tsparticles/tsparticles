@@ -6,11 +6,11 @@ declare const __VERSION__: string;
  * @param engine -
  */
 export async function loadCogShape(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { CogDrawer } = await import("./CogDrawer.js");
+  await engine.register(async e => {
+    const { CogDrawer } = await import("./CogDrawer.js");
 
-        e.addShape(new CogDrawer());
-    });
+    e.addShape(new CogDrawer());
+  });
 }

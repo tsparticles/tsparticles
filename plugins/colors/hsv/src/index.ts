@@ -7,11 +7,11 @@ declare const __VERSION__: string;
  * @param engine - The engine that will use the plugin
  */
 export async function loadHsvColorPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { HsvColorManager } = await import("./HsvColorManager.js");
+  await engine.register(async e => {
+    const { HsvColorManager } = await import("./HsvColorManager.js");
 
-        e.addColorManager(new HsvColorManager());
-    });
+    e.addColorManager(new HsvColorManager());
+  });
 }

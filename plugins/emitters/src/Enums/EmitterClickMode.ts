@@ -1,5 +1,5 @@
 /**
  */
 export enum EmitterClickMode {
-    emitter = "emitter",
+  emitter = "emitter",
 }

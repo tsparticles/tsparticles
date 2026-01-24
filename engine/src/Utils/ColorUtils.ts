@@ -1,41 +1,41 @@
 import type { IColor, IHsl, IHsla, IRangeColor, IRgb, IRgba } from "../Core/Interfaces/Colors.js";
 import {
-    clamp,
-    getRandom,
-    getRandomInRange,
-    getRangeMax,
-    getRangeMin,
-    getRangeValue,
-    mix,
-    randomInRangeValue,
-    setRangeValue,
+  clamp,
+  getRandom,
+  getRandomInRange,
+  getRangeMax,
+  getRangeMin,
+  getRangeValue,
+  mix,
+  randomInRangeValue,
+  setRangeValue,
 } from "./MathUtils.js";
 import {
-    decayOffset,
-    defaultLoops,
-    defaultOpacity,
-    defaultRgbMin,
-    defaultTime,
-    defaultVelocity,
-    double,
-    hMax,
-    hMin,
-    hPhase,
-    half,
-    identity,
-    lMax,
-    lMin,
-    midColorValue,
-    millisecondsToSeconds,
-    percentDenominator,
-    phaseNumerator,
-    randomColorValue,
-    rgbMax,
-    sMax,
-    sMin,
-    sNormalizedOffset,
-    sextuple,
-    triple,
+  decayOffset,
+  defaultLoops,
+  defaultOpacity,
+  defaultRgbMin,
+  defaultTime,
+  defaultVelocity,
+  double,
+  hMax,
+  hMin,
+  hPhase,
+  half,
+  identity,
+  lMax,
+  lMin,
+  midColorValue,
+  millisecondsToSeconds,
+  percentDenominator,
+  phaseNumerator,
+  randomColorValue,
+  rgbMax,
+  sMax,
+  sMin,
+  sNormalizedOffset,
+  sextuple,
+  triple,
 } from "../Core/Utils/Constants.js";
 import { isArray, isString } from "./TypeUtils.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
@@ -51,10 +51,10 @@ import type { Particle } from "../Core/Particle.js";
 import { itemFromArray } from "./Utils.js";
 
 const styleCache = new Map<string, string>(),
-    maxCacheSize = 1000,
-    firstIndex = 0,
-    rgbFixedPrecision = 2,
-    hslFixedPrecision = 2;
+  maxCacheSize = 1000,
+  firstIndex = 0,
+  rgbFixedPrecision = 2,
+  hslFixedPrecision = 2;
 
 /**
  * Generic cache function for color styles
@@ -63,21 +63,21 @@ const styleCache = new Map<string, string>(),
  * @returns the cached style string
  */
 function getCachedStyle(key: string, generator: () => string): string {
-    let cached = styleCache.get(key);
+  let cached = styleCache.get(key);
 
-    if (!cached) {
-        cached = generator();
+  if (!cached) {
+    cached = generator();
 
-        if (styleCache.size >= maxCacheSize) {
-            const keysToDelete = [...styleCache.keys()].slice(firstIndex, maxCacheSize * half);
+    if (styleCache.size >= maxCacheSize) {
+      const keysToDelete = [...styleCache.keys()].slice(firstIndex, maxCacheSize * half);
 
-            keysToDelete.forEach(k => styleCache.delete(k));
-        }
-
-        styleCache.set(key, cached);
+      keysToDelete.forEach(k => styleCache.delete(k));
     }
 
-    return cached;
+    styleCache.set(key, cached);
+  }
+
+  return cached;
 }
 
 /**
@@ -87,17 +87,17 @@ function getCachedStyle(key: string, generator: () => string): string {
  * @returns the converted color from string to {@link IRgba} interfaec
  */
 function stringToRgba(engine: Engine, input: string): IRgba | undefined {
-    if (!input) {
-        return;
-    }
+  if (!input) {
+    return;
+  }
 
-    for (const manager of engine.colorManagers.values()) {
-        if (manager.accepts(input)) {
-            return manager.parseString(input);
-        }
+  for (const manager of engine.colorManagers.values()) {
+    if (manager.accepts(input)) {
+      return manager.parseString(input);
     }
+  }
 
-    return undefined;
+  return undefined;
 }
 
 /**
@@ -109,42 +109,42 @@ function stringToRgba(engine: Engine, input: string): IRgba | undefined {
  * @returns returns a RGB color in the given range
  */
 export function rangeColorToRgb(
-    engine: Engine,
-    input?: string | IRangeColor,
-    index?: number,
-    useIndex = true,
+  engine: Engine,
+  input?: string | IRangeColor,
+  index?: number,
+  useIndex = true,
 ): IRgb | undefined {
-    if (!input) {
-        return;
+  if (!input) {
+    return;
+  }
+
+  const color = isString(input) ? { value: input } : input;
+
+  if (isString(color.value)) {
+    return colorToRgb(engine, color.value, index, useIndex);
+  }
+
+  if (isArray(color.value)) {
+    const value = itemFromArray(color.value, index, useIndex);
+
+    if (!value) {
+      return;
     }
 
-    const color = isString(input) ? { value: input } : input;
+    return rangeColorToRgb(engine, {
+      value,
+    });
+  }
 
-    if (isString(color.value)) {
-        return colorToRgb(engine, color.value, index, useIndex);
+  for (const manager of engine.colorManagers.values()) {
+    const res = manager.handleRangeColor(color);
+
+    if (res) {
+      return res;
     }
+  }
 
-    if (isArray(color.value)) {
-        const value = itemFromArray(color.value, index, useIndex);
-
-        if (!value) {
-            return;
-        }
-
-        return rangeColorToRgb(engine, {
-            value,
-        });
-    }
-
-    for (const manager of engine.colorManagers.values()) {
-        const res = manager.handleRangeColor(color);
-
-        if (res) {
-            return res;
-        }
-    }
-
-    return undefined;
+  return undefined;
 }
 
 /**
@@ -156,37 +156,37 @@ export function rangeColorToRgb(
  * @returns returns an RGB color taken from a {@link IColor} object
  */
 export function colorToRgb(engine: Engine, input?: string | IColor, index?: number, useIndex = true): IRgb | undefined {
-    if (!input) {
-        return;
+  if (!input) {
+    return;
+  }
+
+  const color = isString(input) ? { value: input } : input;
+
+  if (isString(color.value)) {
+    return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(engine, color.value);
+  }
+
+  if (isArray(color.value)) {
+    const value = itemFromArray(color.value, index, useIndex);
+
+    if (!value) {
+      return;
     }
 
-    const color = isString(input) ? { value: input } : input;
+    return colorToRgb(engine, {
+      value,
+    });
+  }
 
-    if (isString(color.value)) {
-        return color.value === randomColorValue ? getRandomRgbColor() : stringToRgb(engine, color.value);
+  for (const manager of engine.colorManagers.values()) {
+    const res = manager.handleColor(color);
+
+    if (res) {
+      return res;
     }
+  }
 
-    if (isArray(color.value)) {
-        const value = itemFromArray(color.value, index, useIndex);
-
-        if (!value) {
-            return;
-        }
-
-        return colorToRgb(engine, {
-            value,
-        });
-    }
-
-    for (const manager of engine.colorManagers.values()) {
-        const res = manager.handleColor(color);
-
-        if (res) {
-            return res;
-        }
-    }
-
-    return undefined;
+  return undefined;
 }
 
 /**
@@ -198,14 +198,14 @@ export function colorToRgb(engine: Engine, input?: string | IColor, index?: numb
  * @returns the {@link IHsl} object
  */
 export function colorToHsl(
-    engine: Engine,
-    color: string | IColor | undefined,
-    index?: number,
-    useIndex = true,
+  engine: Engine,
+  color: string | IColor | undefined,
+  index?: number,
+  useIndex = true,
 ): IHsl | undefined {
-    const rgb = colorToRgb(engine, color, index, useIndex);
+  const rgb = colorToRgb(engine, color, index, useIndex);
 
-    return rgb ? rgbToHsl(rgb) : undefined;
+  return rgb ? rgbToHsl(rgb) : undefined;
 }
 
 /**
@@ -217,14 +217,14 @@ export function colorToHsl(
  * @returns the {@link IHsl} object
  */
 export function rangeColorToHsl(
-    engine: Engine,
-    color: string | IRangeColor | undefined,
-    index?: number,
-    useIndex = true,
+  engine: Engine,
+  color: string | IRangeColor | undefined,
+  index?: number,
+  useIndex = true,
 ): IHsl | undefined {
-    const rgb = rangeColorToRgb(engine, color, index, useIndex);
+  const rgb = rangeColorToRgb(engine, color, index, useIndex);
 
-    return rgb ? rgbToHsl(rgb) : undefined;
+  return rgb ? rgbToHsl(rgb) : undefined;
 }
 
 /**
@@ -233,44 +233,44 @@ export function rangeColorToHsl(
  * @returns hsl color
  */
 export function rgbToHsl(color: IRgb): IHsl {
-    const r1 = color.r / rgbMax,
-        g1 = color.g / rgbMax,
-        b1 = color.b / rgbMax,
-        max = Math.max(r1, g1, b1),
-        min = Math.min(r1, g1, b1),
-        // Calculate L:
-        res = {
-            h: hMin,
-            l: (max + min) * half,
-            s: sMin,
-        };
+  const r1 = color.r / rgbMax,
+    g1 = color.g / rgbMax,
+    b1 = color.b / rgbMax,
+    max = Math.max(r1, g1, b1),
+    min = Math.min(r1, g1, b1),
+    // Calculate L:
+    res = {
+      h: hMin,
+      l: (max + min) * half,
+      s: sMin,
+    };
 
-    if (max !== min) {
-        // Calculate S:
-        res.s = res.l < half ? (max - min) / (max + min) : (max - min) / (double - max - min);
-        // Calculate H:
-        if (r1 === max) {
-            res.h = (g1 - b1) / (max - min);
-        } else if (g1 === max) {
-            res.h = double + (b1 - r1) / (max - min);
-        } else {
-            res.h = double * double + (r1 - g1) / (max - min);
-        }
+  if (max !== min) {
+    // Calculate S:
+    res.s = res.l < half ? (max - min) / (max + min) : (max - min) / (double - max - min);
+    // Calculate H:
+    if (r1 === max) {
+      res.h = (g1 - b1) / (max - min);
+    } else if (g1 === max) {
+      res.h = double + (b1 - r1) / (max - min);
+    } else {
+      res.h = double * double + (r1 - g1) / (max - min);
     }
+  }
 
-    res.l *= lMax;
-    res.s *= sMax;
-    res.h *= hPhase;
+  res.l *= lMax;
+  res.s *= sMax;
+  res.h *= hPhase;
 
-    if (res.h < hMin) {
-        res.h += hMax;
-    }
+  if (res.h < hMin) {
+    res.h += hMax;
+  }
 
-    if (res.h >= hMax) {
-        res.h -= hMax;
-    }
+  if (res.h >= hMax) {
+    res.h -= hMax;
+  }
 
-    return res;
+  return res;
 }
 
 /**
@@ -280,7 +280,7 @@ export function rgbToHsl(color: IRgb): IHsl {
  * @returns the alpha value
  */
 export function stringToAlpha(engine: Engine, input: string): number | undefined {
-    return stringToRgba(engine, input)?.a;
+  return stringToRgba(engine, input)?.a;
 }
 
 /**
@@ -290,7 +290,7 @@ export function stringToAlpha(engine: Engine, input: string): number | undefined
  * @returns the {@link IRgb} object
  */
 export function stringToRgb(engine: Engine, input: string): IRgb | undefined {
-    return stringToRgba(engine, input);
+  return stringToRgba(engine, input);
 }
 
 /**
@@ -299,61 +299,61 @@ export function stringToRgb(engine: Engine, input: string): IRgb | undefined {
  * @returns the {@link IRgb} object
  */
 export function hslToRgb(hsl: IHsl): IRgb {
-    // Ensure that h, s, and l are in the valid range
-    const h = ((hsl.h % hMax) + hMax) % hMax,
-        s = Math.max(sMin, Math.min(sMax, hsl.s)),
-        l = Math.max(lMin, Math.min(lMax, hsl.l)),
-        // Convert h, s, and l to the range [0, 1]
-        hNormalized = h / hMax,
-        sNormalized = s / sMax,
-        lNormalized = l / lMax;
+  // Ensure that h, s, and l are in the valid range
+  const h = ((hsl.h % hMax) + hMax) % hMax,
+    s = Math.max(sMin, Math.min(sMax, hsl.s)),
+    l = Math.max(lMin, Math.min(lMax, hsl.l)),
+    // Convert h, s, and l to the range [0, 1]
+    hNormalized = h / hMax,
+    sNormalized = s / sMax,
+    lNormalized = l / lMax;
 
-    if (s === sMin) {
-        // If saturation is 0, the color is grayscale
-        const grayscaleValue = Math.round(lNormalized * rgbMax);
+  if (s === sMin) {
+    // If saturation is 0, the color is grayscale
+    const grayscaleValue = Math.round(lNormalized * rgbMax);
 
-        return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
-    }
+    return { r: grayscaleValue, g: grayscaleValue, b: grayscaleValue };
+  }
 
-    const channel = (temp1: number, temp2: number, temp3: number): number => {
-            const temp3Min = 0,
-                temp3Max = 1;
+  const channel = (temp1: number, temp2: number, temp3: number): number => {
+      const temp3Min = 0,
+        temp3Max = 1;
 
-            if (temp3 < temp3Min) {
-                temp3++;
-            }
+      if (temp3 < temp3Min) {
+        temp3++;
+      }
 
-            if (temp3 > temp3Max) {
-                temp3--;
-            }
+      if (temp3 > temp3Max) {
+        temp3--;
+      }
 
-            if (temp3 * sextuple < temp3Max) {
-                return temp1 + (temp2 - temp1) * sextuple * temp3;
-            }
+      if (temp3 * sextuple < temp3Max) {
+        return temp1 + (temp2 - temp1) * sextuple * temp3;
+      }
 
-            if (temp3 * double < temp3Max) {
-                return temp2;
-            }
+      if (temp3 * double < temp3Max) {
+        return temp2;
+      }
 
-            if (temp3 * triple < temp3Max * double) {
-                const temp3Offset = double / triple;
+      if (temp3 * triple < temp3Max * double) {
+        const temp3Offset = double / triple;
 
-                return temp1 + (temp2 - temp1) * (temp3Offset - temp3) * sextuple;
-            }
+        return temp1 + (temp2 - temp1) * (temp3Offset - temp3) * sextuple;
+      }
 
-            return temp1;
-        },
-        temp1 =
-            lNormalized < half
-                ? lNormalized * (sNormalizedOffset + sNormalized)
-                : lNormalized + sNormalized - lNormalized * sNormalized,
-        temp2 = double * lNormalized - temp1,
-        phaseThird = phaseNumerator / triple,
-        red = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized + phaseThird)),
-        green = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized)),
-        blue = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized - phaseThird));
+      return temp1;
+    },
+    temp1 =
+      lNormalized < half
+        ? lNormalized * (sNormalizedOffset + sNormalized)
+        : lNormalized + sNormalized - lNormalized * sNormalized,
+    temp2 = double * lNormalized - temp1,
+    phaseThird = phaseNumerator / triple,
+    red = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized + phaseThird)),
+    green = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized)),
+    blue = Math.min(rgbMax, rgbMax * channel(temp2, temp1, hNormalized - phaseThird));
 
-    return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
+  return { r: Math.round(red), g: Math.round(green), b: Math.round(blue) };
 }
 
 /**
@@ -362,14 +362,14 @@ export function hslToRgb(hsl: IHsl): IRgb {
  * @returns the RGBA color
  */
 export function hslaToRgba(hsla: IHsla): IRgba {
-    const rgbResult = hslToRgb(hsla);
+  const rgbResult = hslToRgb(hsla);
 
-    return {
-        a: hsla.a,
-        b: rgbResult.b,
-        g: rgbResult.g,
-        r: rgbResult.r,
-    };
+  return {
+    a: hsla.a,
+    b: rgbResult.b,
+    g: rgbResult.g,
+    r: rgbResult.r,
+  };
 }
 
 /**
@@ -378,15 +378,15 @@ export function hslaToRgba(hsla: IHsla): IRgba {
  * @returns the random ({@link IRgb}) color
  */
 export function getRandomRgbColor(min?: number): IRgb {
-    const fixedMin = min ?? defaultRgbMin,
-        fixedMax = rgbMax + identity,
-        getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
+  const fixedMin = min ?? defaultRgbMin,
+    fixedMax = rgbMax + identity,
+    getRgbInRangeValue = (): number => Math.floor(getRandomInRange(fixedMin, fixedMax));
 
-    return {
-        b: getRgbInRangeValue(),
-        g: getRgbInRangeValue(),
-        r: getRgbInRangeValue(),
-    };
+  return {
+    b: getRgbInRangeValue(),
+    g: getRgbInRangeValue(),
+    r: getRgbInRangeValue(),
+  };
 }
 
 /**
@@ -397,10 +397,10 @@ export function getRandomRgbColor(min?: number): IRgb {
  * @returns the CSS style string
  */
 export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): string {
-    const op = opacity ?? defaultOpacity,
-        key = `rgb-${color.r.toFixed(rgbFixedPrecision)}-${color.g.toFixed(rgbFixedPrecision)}-${color.b.toFixed(rgbFixedPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+  const op = opacity ?? defaultOpacity,
+    key = `rgb-${color.r.toFixed(rgbFixedPrecision)}-${color.g.toFixed(rgbFixedPrecision)}-${color.b.toFixed(rgbFixedPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
 
-    return getCachedStyle(key, () => (hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity)));
+  return getCachedStyle(key, () => (hdr ? getHdrStyleFromRgb(color, opacity) : getSdrStyleFromRgb(color, opacity)));
 }
 
 /**
@@ -410,7 +410,7 @@ export function getStyleFromRgb(color: IRgb, hdr: boolean, opacity?: number): st
  * @returns the CSS style string
  */
 function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
-    return `color(display-p3 ${(color.r / rgbMax).toString()} ${(color.g / rgbMax).toString()} ${(color.b / rgbMax).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
+  return `color(display-p3 ${(color.r / rgbMax).toString()} ${(color.g / rgbMax).toString()} ${(color.b / rgbMax).toString()} / ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -420,7 +420,7 @@ function getHdrStyleFromRgb(color: IRgb, opacity?: number): string {
  * @returns the CSS style string
  */
 function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
-    return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
+  return `rgba(${color.r.toString()}, ${color.g.toString()}, ${color.b.toString()}, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -431,10 +431,10 @@ function getSdrStyleFromRgb(color: IRgb, opacity?: number): string {
  * @returns the CSS style string
  */
 export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): string {
-    const op = opacity ?? defaultOpacity,
-        key = `hsl-${color.h.toFixed(hslFixedPrecision)}-${color.s.toFixed(hslFixedPrecision)}-${color.l.toFixed(hslFixedPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
+  const op = opacity ?? defaultOpacity,
+    key = `hsl-${color.h.toFixed(hslFixedPrecision)}-${color.s.toFixed(hslFixedPrecision)}-${color.l.toFixed(hslFixedPrecision)}-${hdr ? "hdr" : "sdr"}-${op.toString()}`;
 
-    return getCachedStyle(key, () => (hdr ? getHdrStyleFromHsl(color, opacity) : getSdrStyleFromHsl(color, opacity)));
+  return getCachedStyle(key, () => (hdr ? getHdrStyleFromHsl(color, opacity) : getSdrStyleFromHsl(color, opacity)));
 }
 
 /**
@@ -444,7 +444,7 @@ export function getStyleFromHsl(color: IHsl, hdr: boolean, opacity?: number): st
  * @returns the CSS style string
  */
 function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
-    return getHdrStyleFromRgb(hslToRgb(color), opacity);
+  return getHdrStyleFromRgb(hslToRgb(color), opacity);
 }
 
 /**
@@ -454,7 +454,7 @@ function getHdrStyleFromHsl(color: IHsl, opacity?: number): string {
  * @returns the CSS style string
  */
 function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
-    return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
+  return `hsla(${color.h.toString()}, ${color.s.toString()}%, ${color.l.toString()}%, ${(opacity ?? defaultOpacity).toString()})`;
 }
 
 /**
@@ -465,22 +465,22 @@ function getSdrStyleFromHsl(color: IHsl, opacity?: number): string {
  * @returns the return value is a color mix between the two parameters, using sizes to mix more the biggest value
  */
 export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number, size2: number): IRgb {
-    let rgb1 = color1 as IRgb,
-        rgb2 = color2 as IRgb;
+  let rgb1 = color1 as IRgb,
+    rgb2 = color2 as IRgb;
 
-    if (!Object.hasOwn(rgb1, "r")) {
-        rgb1 = hslToRgb(color1 as IHsl);
-    }
+  if (!Object.hasOwn(rgb1, "r")) {
+    rgb1 = hslToRgb(color1 as IHsl);
+  }
 
-    if (!Object.hasOwn(rgb2, "r")) {
-        rgb2 = hslToRgb(color2 as IHsl);
-    }
+  if (!Object.hasOwn(rgb2, "r")) {
+    rgb2 = hslToRgb(color2 as IHsl);
+  }
 
-    return {
-        b: mix(rgb1.b, rgb2.b, size1, size2),
-        g: mix(rgb1.g, rgb2.g, size1, size2),
-        r: mix(rgb1.r, rgb2.r, size1, size2),
-    };
+  return {
+    b: mix(rgb1.b, rgb2.b, size1, size2),
+    g: mix(rgb1.g, rgb2.g, size1, size2),
+    r: mix(rgb1.r, rgb2.r, size1, size2),
+  };
 }
 
 /**
@@ -490,26 +490,26 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
  * @returns the link color calculated using the two linked particles
  */
 export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | IRgb): IRgb | undefined {
-    if (linkColor === randomColorValue) {
-        return getRandomRgbColor();
-    } else if (linkColor === midColorValue) {
-        const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
-            destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
+  if (linkColor === randomColorValue) {
+    return getRandomRgbColor();
+  } else if (linkColor === midColorValue) {
+    const sourceColor = p1.getFillColor() ?? p1.getStrokeColor(),
+      destColor = p2?.getFillColor() ?? p2?.getStrokeColor();
 
-        if (sourceColor && destColor && p2) {
-            return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
-        } else {
-            const hslColor = sourceColor ?? destColor;
-
-            if (hslColor) {
-                return hslToRgb(hslColor);
-            }
-        }
+    if (sourceColor && destColor && p2) {
+      return colorMix(sourceColor, destColor, p1.getRadius(), p2.getRadius());
     } else {
-        return linkColor as IRgb;
-    }
+      const hslColor = sourceColor ?? destColor;
 
-    return undefined;
+      if (hslColor) {
+        return hslToRgb(hslColor);
+      }
+    }
+  } else {
+    return linkColor as IRgb;
+  }
+
+  return undefined;
 }
 
 /**
@@ -520,32 +520,32 @@ export function getLinkColor(p1: Particle, p2?: Particle, linkColor?: string | I
  * @returns returns a link random color, if needed
  */
 export function getLinkRandomColor(
-    engine: Engine,
-    optColor: string | IOptionsColor,
-    blink: boolean,
-    consent: boolean,
+  engine: Engine,
+  optColor: string | IOptionsColor,
+  blink: boolean,
+  consent: boolean,
 ): IRgb | string | undefined {
-    const color = isString(optColor) ? optColor : optColor.value;
+  const color = isString(optColor) ? optColor : optColor.value;
 
-    if (color === randomColorValue) {
-        if (consent) {
-            return rangeColorToRgb(engine, {
-                value: color,
-            });
-        }
-
-        if (blink) {
-            return randomColorValue;
-        }
-
-        return midColorValue;
-    } else if (color === midColorValue) {
-        return midColorValue;
-    } else {
-        return rangeColorToRgb(engine, {
-            value: color,
-        });
+  if (color === randomColorValue) {
+    if (consent) {
+      return rangeColorToRgb(engine, {
+        value: color,
+      });
     }
+
+    if (blink) {
+      return randomColorValue;
+    }
+
+    return midColorValue;
+  } else if (color === midColorValue) {
+    return midColorValue;
+  } else {
+    return rangeColorToRgb(engine, {
+      value: color,
+    });
+  }
 }
 
 /**
@@ -553,13 +553,13 @@ export function getLinkRandomColor(
  * @returns returns an animatable HSL color, if needed
  */
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
-    return animation !== undefined
-        ? {
-              h: animation.h.value,
-              s: animation.s.value,
-              l: animation.l.value,
-          }
-        : undefined;
+  return animation !== undefined
+    ? {
+        h: animation.h.value,
+        s: animation.s.value,
+        l: animation.l.value,
+      }
+    : undefined;
 }
 
 /**
@@ -569,33 +569,33 @@ export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | u
  * @returns returns the particle HSL animation values
  */
 export function getHslAnimationFromHsl(
-    hsl: IHsl,
-    animationOptions: HslAnimation | undefined,
-    reduceFactor: number,
+  hsl: IHsl,
+  animationOptions: HslAnimation | undefined,
+  reduceFactor: number,
 ): IParticleHslAnimation {
-    /* color */
-    const resColor: IParticleHslAnimation = {
-        h: {
-            enable: false,
-            value: hsl.h,
-        },
-        s: {
-            enable: false,
-            value: hsl.s,
-        },
-        l: {
-            enable: false,
-            value: hsl.l,
-        },
-    };
+  /* color */
+  const resColor: IParticleHslAnimation = {
+    h: {
+      enable: false,
+      value: hsl.h,
+    },
+    s: {
+      enable: false,
+      value: hsl.s,
+    },
+    l: {
+      enable: false,
+      value: hsl.l,
+    },
+  };
 
-    if (animationOptions) {
-        setColorAnimation(resColor.h, animationOptions.h, reduceFactor);
-        setColorAnimation(resColor.s, animationOptions.s, reduceFactor);
-        setColorAnimation(resColor.l, animationOptions.l, reduceFactor);
-    }
+  if (animationOptions) {
+    setColorAnimation(resColor.h, animationOptions.h, reduceFactor);
+    setColorAnimation(resColor.s, animationOptions.s, reduceFactor);
+    setColorAnimation(resColor.l, animationOptions.l, reduceFactor);
+  }
 
-    return resColor;
+  return resColor;
 }
 
 /**
@@ -604,31 +604,31 @@ export function getHslAnimationFromHsl(
  * @param reduceFactor -
  */
 function setColorAnimation(
-    colorValue: IParticleColorAnimation,
-    colorAnimation: IColorAnimation,
-    reduceFactor: number,
+  colorValue: IParticleColorAnimation,
+  colorAnimation: IColorAnimation,
+  reduceFactor: number,
 ): void {
-    colorValue.enable = colorAnimation.enable;
+  colorValue.enable = colorAnimation.enable;
 
-    if (colorValue.enable) {
-        colorValue.velocity = (getRangeValue(colorAnimation.speed) / percentDenominator) * reduceFactor;
-        colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay);
-        colorValue.status = AnimationStatus.increasing;
-        colorValue.loops = defaultLoops;
-        colorValue.maxLoops = getRangeValue(colorAnimation.count);
-        colorValue.time = defaultTime;
-        colorValue.delayTime = getRangeValue(colorAnimation.delay) * millisecondsToSeconds;
+  if (colorValue.enable) {
+    colorValue.velocity = (getRangeValue(colorAnimation.speed) / percentDenominator) * reduceFactor;
+    colorValue.decay = decayOffset - getRangeValue(colorAnimation.decay);
+    colorValue.status = AnimationStatus.increasing;
+    colorValue.loops = defaultLoops;
+    colorValue.maxLoops = getRangeValue(colorAnimation.count);
+    colorValue.time = defaultTime;
+    colorValue.delayTime = getRangeValue(colorAnimation.delay) * millisecondsToSeconds;
 
-        if (!colorAnimation.sync) {
-            colorValue.velocity *= getRandom();
-            colorValue.value *= getRandom();
-        }
-
-        colorValue.initialValue = colorValue.value;
-        colorValue.offset = setRangeValue(colorAnimation.offset);
-    } else {
-        colorValue.velocity = defaultVelocity;
+    if (!colorAnimation.sync) {
+      colorValue.velocity *= getRandom();
+      colorValue.value *= getRandom();
     }
+
+    colorValue.initialValue = colorValue.value;
+    colorValue.offset = setRangeValue(colorAnimation.offset);
+  } else {
+    colorValue.velocity = defaultVelocity;
+  }
 }
 
 /**
@@ -638,72 +638,72 @@ function setColorAnimation(
  * @param delta -
  */
 export function updateColorValue(
-    data: IParticleColorAnimation,
-    range: IRangeValue,
-    decrease: boolean,
-    delta: IDelta,
+  data: IParticleColorAnimation,
+  range: IRangeValue,
+  decrease: boolean,
+  delta: IDelta,
 ): void {
-    const minLoops = 0,
-        minDelay = 0,
-        identity = 1,
-        minVelocity = 0,
-        minOffset = 0,
-        velocityFactor = 3.6;
+  const minLoops = 0,
+    minDelay = 0,
+    identity = 1,
+    minVelocity = 0,
+    minOffset = 0,
+    velocityFactor = 3.6;
 
-    if (
-        !data.enable ||
-        ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
-    ) {
-        return;
+  if (
+    !data.enable ||
+    ((data.maxLoops ?? minLoops) > minLoops && (data.loops ?? minLoops) > (data.maxLoops ?? minLoops))
+  ) {
+    return;
+  }
+
+  data.time ??= 0;
+
+  if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+    data.time += delta.value;
+  }
+
+  if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
+    return;
+  }
+
+  const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
+    velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
+    decay = data.decay ?? identity,
+    max = getRangeMax(range),
+    min = getRangeMin(range);
+
+  if (!decrease || data.status === AnimationStatus.increasing) {
+    data.value += velocity;
+
+    if (data.value > max) {
+      data.loops ??= 0;
+      data.loops++;
+
+      if (decrease) {
+        data.status = AnimationStatus.decreasing;
+      } else {
+        data.value -= max;
+      }
     }
+  } else {
+    data.value -= velocity;
 
-    data.time ??= 0;
+    const minValue = 0;
 
-    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
-        data.time += delta.value;
+    if (data.value < minValue) {
+      data.loops ??= 0;
+      data.loops++;
+
+      data.status = AnimationStatus.increasing;
     }
+  }
 
-    if ((data.delayTime ?? minDelay) > minDelay && data.time < (data.delayTime ?? minDelay)) {
-        return;
-    }
+  if (data.velocity && decay !== identity) {
+    data.velocity *= decay;
+  }
 
-    const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
-        velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
-        decay = data.decay ?? identity,
-        max = getRangeMax(range),
-        min = getRangeMin(range);
-
-    if (!decrease || data.status === AnimationStatus.increasing) {
-        data.value += velocity;
-
-        if (data.value > max) {
-            data.loops ??= 0;
-            data.loops++;
-
-            if (decrease) {
-                data.status = AnimationStatus.decreasing;
-            } else {
-                data.value -= max;
-            }
-        }
-    } else {
-        data.value -= velocity;
-
-        const minValue = 0;
-
-        if (data.value < minValue) {
-            data.loops ??= 0;
-            data.loops++;
-
-            data.status = AnimationStatus.increasing;
-        }
-    }
-
-    if (data.velocity && decay !== identity) {
-        data.velocity *= decay;
-    }
-
-    data.value = clamp(data.value, min, max);
+  data.value = clamp(data.value, min, max);
 }
 
 /**
@@ -711,18 +711,18 @@ export function updateColorValue(
  * @param delta -
  */
 export function updateColor(color: IParticleHslAnimation | undefined, delta: IDelta): void {
-    if (!color) {
-        return;
-    }
+  if (!color) {
+    return;
+  }
 
-    const { h, s, l } = color,
-        ranges = {
-            h: { min: hMin, max: hMax },
-            s: { min: sMin, max: sMax },
-            l: { min: lMin, max: lMax },
-        };
+  const { h, s, l } = color,
+    ranges = {
+      h: { min: hMin, max: hMax },
+      s: { min: sMin, max: sMax },
+      l: { min: lMin, max: lMax },
+    };
 
-    updateColorValue(h, ranges.h, false, delta);
-    updateColorValue(s, ranges.s, true, delta);
-    updateColorValue(l, ranges.l, true, delta);
+  updateColorValue(h, ranges.h, false, delta);
+  updateColorValue(s, ranges.s, true, delta);
+  updateColorValue(l, ranges.l, true, delta);
 }

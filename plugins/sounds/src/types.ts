@@ -7,31 +7,31 @@ import type { SoundsIcon } from "./Options/Classes/SoundsIcon.js";
 export type FilterFunction = (args: CustomEventArgs) => boolean;
 
 export type ISoundsOptions = IOptions & {
-    sounds?: ISounds;
+  sounds?: ISounds;
 };
 
 export type SoundsOptions = Options & {
-    sounds?: Sounds;
+  sounds?: Sounds;
 };
 
 export type SoundsContainer = Container & {
-    actualOptions: SoundsOptions;
-    audioContext?: AudioContext;
-    muted?: boolean;
+  actualOptions: SoundsOptions;
+  audioContext?: AudioContext;
+  muted?: boolean;
 };
 
 export interface ImageMargins {
-    right: number;
-    top: number;
+  right: number;
+  top: number;
 }
 
 export interface InitImageData {
-    clickCb: () => Promise<void>;
-    container: SoundsContainer;
-    display: ImageDisplay;
-    iconOptions: SoundsIcon;
-    margin: number;
-    options: Options;
-    pos: ImageMargins;
-    rightOffsets: number[];
+  clickCb: () => Promise<void>;
+  container: SoundsContainer;
+  display: ImageDisplay;
+  iconOptions: SoundsIcon;
+  margin: number;
+  options: Options;
+  pos: ImageMargins;
+  rightOffsets: number[];
 }

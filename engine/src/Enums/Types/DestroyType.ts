@@ -1,7 +1,7 @@
 /**
  */
 export enum DestroyType {
-    none = "none",
-    max = "max",
-    min = "min",
+  none = "none",
+  max = "max",
+  min = "min",
 }

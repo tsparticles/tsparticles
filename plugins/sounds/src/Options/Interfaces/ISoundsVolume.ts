@@ -1,6 +1,6 @@
 export interface ISoundsVolume {
-    max: number;
-    min: number;
-    step: number;
-    value: number;
+  max: number;
+  min: number;
+  step: number;
+  value: number;
 }

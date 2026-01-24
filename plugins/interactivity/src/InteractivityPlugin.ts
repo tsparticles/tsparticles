@@ -1,16 +1,16 @@
 import {
-    type Container,
-    type IContainerPlugin,
-    type IPlugin,
-    type RecursivePartial,
-    deepExtend,
+  type Container,
+  type IContainerPlugin,
+  type IPlugin,
+  type RecursivePartial,
+  deepExtend,
 } from "@tsparticles/engine";
 import type {
-    IInteractivityOptions,
-    IInteractivityParticlesOptions,
-    InteractivityEngine,
-    InteractivityOptions,
-    InteractivityParticlesOptions,
+  IInteractivityOptions,
+  IInteractivityParticlesOptions,
+  InteractivityEngine,
+  InteractivityOptions,
+  InteractivityParticlesOptions,
 } from "./types.js";
 import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
 import { Interactivity } from "./Options/Classes/Interactivity.js";
@@ -18,73 +18,73 @@ import { Interactivity } from "./Options/Classes/Interactivity.js";
 /**
  */
 export class InteractivityPlugin implements IPlugin {
-    readonly _engine;
-    readonly id;
+  readonly _engine;
+  readonly id;
 
-    constructor(engine: InteractivityEngine) {
-        this._engine = engine;
-        this.id = "interactivity";
+  constructor(engine: InteractivityEngine) {
+    this._engine = engine;
+    this.id = "interactivity";
+  }
+
+  async getPlugin(container: Container): Promise<IContainerPlugin> {
+    const { InteractivityPluginInstance } = await import("./InteractivityPluginInstance.js");
+
+    return new InteractivityPluginInstance(this._engine, container);
+  }
+
+  loadOptions(
+    container: Container,
+    options: InteractivityOptions,
+    source?: RecursivePartial<IInteractivityOptions>,
+  ): void {
+    if (!this.needsPlugin()) {
+      return;
     }
 
-    async getPlugin(container: Container): Promise<IContainerPlugin> {
-        const { InteractivityPluginInstance } = await import("./InteractivityPluginInstance.js");
+    let interactivityOptions = options.interactivity;
 
-        return new InteractivityPluginInstance(this._engine, container);
+    if (!interactivityOptions?.load) {
+      options.interactivity = interactivityOptions = new Interactivity(this._engine, container);
     }
 
-    loadOptions(
-        container: Container,
-        options: InteractivityOptions,
-        source?: RecursivePartial<IInteractivityOptions>,
-    ): void {
-        if (!this.needsPlugin()) {
-            return;
-        }
+    interactivityOptions.load(source?.interactivity);
 
-        let interactivityOptions = options.interactivity;
+    const interactors = this._engine.interactors?.get(container);
 
-        if (!interactivityOptions?.load) {
-            options.interactivity = interactivityOptions = new Interactivity(this._engine, container);
-        }
-
-        interactivityOptions.load(source?.interactivity);
-
-        const interactors = this._engine.interactors?.get(container);
-
-        if (!interactors) {
-            return;
-        }
-
-        for (const interactor of interactors) {
-            if (interactor.loadOptions) {
-                interactor.loadOptions(options, source);
-            }
-        }
+    if (!interactors) {
+      return;
     }
 
-    loadParticlesOptions(
-        container: Container,
-        options: InteractivityParticlesOptions,
-        source?: RecursivePartial<IInteractivityParticlesOptions>,
-    ): void {
-        if (source?.interactivity) {
-            options.interactivity = deepExtend({}, source.interactivity) as RecursivePartial<IInteractivity>;
-        }
+    for (const interactor of interactors) {
+      if (interactor.loadOptions) {
+        interactor.loadOptions(options, source);
+      }
+    }
+  }
 
-        const interactors = this._engine.interactors?.get(container);
-
-        if (!interactors) {
-            return;
-        }
-
-        for (const interactor of interactors) {
-            if (interactor.loadParticlesOptions) {
-                interactor.loadParticlesOptions(options, source);
-            }
-        }
+  loadParticlesOptions(
+    container: Container,
+    options: InteractivityParticlesOptions,
+    source?: RecursivePartial<IInteractivityParticlesOptions>,
+  ): void {
+    if (source?.interactivity) {
+      options.interactivity = deepExtend({}, source.interactivity) as RecursivePartial<IInteractivity>;
     }
 
-    needsPlugin(): boolean {
-        return true;
+    const interactors = this._engine.interactors?.get(container);
+
+    if (!interactors) {
+      return;
     }
+
+    for (const interactor of interactors) {
+      if (interactor.loadParticlesOptions) {
+        interactor.loadParticlesOptions(options, source);
+      }
+    }
+  }
+
+  needsPlugin(): boolean {
+    return true;
+  }
 }

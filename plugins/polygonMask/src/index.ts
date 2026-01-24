@@ -6,13 +6,13 @@ declare const __VERSION__: string;
  * @param engine - The engine to add the plugin to
  */
 export async function loadPolygonMaskPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { PolygonMaskPlugin } = await import("./PolygonMaskPlugin.js");
+  await engine.register(async e => {
+    const { PolygonMaskPlugin } = await import("./PolygonMaskPlugin.js");
 
-        e.addPlugin(new PolygonMaskPlugin(engine));
-    });
+    e.addPlugin(new PolygonMaskPlugin(engine));
+  });
 }
 
 export * from "./Enums/PolygonMaskInlineArrangement.js";

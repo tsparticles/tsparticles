@@ -6,11 +6,11 @@ declare const __VERSION__: string;
  * @param engine - The engine to add the plugin to
  */
 export async function loadPoissonDiscPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { PoissonDiscPlugin } = await import("./PoissonDiscPlugin.js");
+  await engine.register(async e => {
+    const { PoissonDiscPlugin } = await import("./PoissonDiscPlugin.js");
 
-        e.addPlugin(new PoissonDiscPlugin());
-    });
+    e.addPlugin(new PoissonDiscPlugin());
+  });
 }

@@ -4,25 +4,25 @@ import type { ISlow } from "../Interfaces/ISlow.js";
 /**
  */
 export class Slow implements ISlow, IOptionLoader<ISlow> {
-    factor;
-    radius;
+  factor;
+  radius;
 
-    constructor() {
-        this.factor = 3;
-        this.radius = 200;
+  constructor() {
+    this.factor = 3;
+    this.radius = 200;
+  }
+
+  load(data?: RecursivePartial<ISlow>): void {
+    if (isNull(data)) {
+      return;
     }
 
-    load(data?: RecursivePartial<ISlow>): void {
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.factor !== undefined) {
-            this.factor = data.factor;
-        }
-
-        if (data.radius !== undefined) {
-            this.radius = data.radius;
-        }
+    if (data.factor !== undefined) {
+      this.factor = data.factor;
     }
+
+    if (data.radius !== undefined) {
+      this.radius = data.radius;
+    }
+  }
 }

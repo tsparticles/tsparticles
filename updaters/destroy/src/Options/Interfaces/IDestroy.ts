@@ -7,7 +7,7 @@ import type { ISplit } from "./ISplit.js";
  * [[include:Destroy.md]]
  */
 export interface IDestroy {
-    bounds: IDestroyBounds;
-    mode: DestroyMode | keyof typeof DestroyMode;
-    split: ISplit;
+  bounds: IDestroyBounds;
+  mode: DestroyMode | keyof typeof DestroyMode;
+  split: ISplit;
 }

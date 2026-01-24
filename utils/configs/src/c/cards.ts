@@ -1,83 +1,69 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
+const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
+  cardValues = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"] as const,
+  allCards = cardSuits.flatMap(suit =>
+    cardValues.map(value => ({
+      suit,
+      value,
+    })),
+  );
+
 const options: ISourceOptions = {
-    key: "cards",
-    name: "Cards",
-    particles: {
-        number: {
-            value: 80,
-            density: {
-                enable: true,
-            },
-        },
-        reduceDuplicates: true,
-        shape: {
-            type: ["spades", "hearts", "diamonds", "clubs"],
-            options: {
-                spades: {
-                    particles: {
-                        color: {
-                            value: "#000000",
-                        },
-                    },
-                },
-                hearts: {
-                    particles: {
-                        color: {
-                            value: "#ff0000",
-                        },
-                    },
-                },
-                diamonds: {
-                    particles: {
-                        color: {
-                            value: "#ff0000",
-                        },
-                    },
-                },
-                clubs: {
-                    particles: {
-                        color: {
-                            value: "#000000",
-                        },
-                    },
-                },
-            },
-        },
-        opacity: {
-            value: 1,
-        },
-        size: {
-            value: 30,
-        },
-        move: {
-            enable: true,
-            speed: 2,
-        },
+  key: "cards",
+  name: "Cards",
+  particles: {
+    color: {
+      value: "#fff",
     },
-    interactivity: {
-        events: {
-            onHover: {
-                enable: true,
-                mode: "repulse",
-            },
-            onClick: {
-                enable: true,
-                mode: "push",
-            },
-        },
-        modes: {
-            repulse: {
-                distance: 200,
-            },
-            push: {
-                quantity: 4,
-            },
-        },
+    number: {
+      value: 52,
     },
-    background: {
-        color: "#fff",
+    reduceDuplicates: true,
+    shape: {
+      type: ["card"],
+      options: {
+        card: allCards,
+      },
     },
+    opacity: {
+      value: 1,
+    },
+    size: {
+      value: 30,
+    },
+    move: {
+      enable: true,
+      speed: 2,
+    },
+    stroke: {
+      width: 1,
+      color: "#000",
+    },
+  },
+  interactivity: {
+    events: {
+      onHover: {
+        enable: true,
+        mode: "repulse",
+      },
+      onClick: {
+        enable: true,
+        mode: "push",
+      },
+    },
+    modes: {
+      repulse: {
+        distance: 200,
+      },
+      push: {
+        quantity: 4,
+      },
+    },
+  },
+  background: {
+    color: "#fff",
+  },
 };
 
 export default options;

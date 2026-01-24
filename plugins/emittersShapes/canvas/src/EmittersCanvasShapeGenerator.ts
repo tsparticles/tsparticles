@@ -5,16 +5,16 @@ import { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShap
 import type { IEmittersCanvasShapeOptions } from "./Options/Interfaces/IEmittersCanvasShapeOptions.js";
 
 export class EmittersCanvasShapeGenerator implements IEmitterShapeGenerator<IEmittersCanvasShapeOptions> {
-    generate(
-        position: ICoordinates,
-        size: IDimension,
-        fill: boolean,
-        options: IEmittersCanvasShapeOptions,
-    ): IEmitterShape {
-        const shapeOptions = new EmittersCanvasShapeOptions();
+  generate(
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: IEmittersCanvasShapeOptions,
+  ): IEmitterShape {
+    const shapeOptions = new EmittersCanvasShapeOptions();
 
-        shapeOptions.load(options);
+    shapeOptions.load(options);
 
-        return new EmittersCanvasShape(position, size, fill, shapeOptions);
-    }
+    return new EmittersCanvasShape(position, size, fill, shapeOptions);
+  }
 }

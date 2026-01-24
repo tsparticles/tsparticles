@@ -1,10 +1,13 @@
 import type { IShapeDrawData, IShapeDrawer } from "@tsparticles/engine";
-import { drawPath, paths } from "../Utils.js";
+import { drawPath } from "@tsparticles/path-utils";
+import { paths } from "../paths.js";
 
 export class HeartDrawer implements IShapeDrawer {
-    readonly validTypes = ["heart", "hearts"] as const;
+  readonly validTypes = ["heart", "hearts"] as const;
 
-    draw(data: IShapeDrawData): void {
-        drawPath(data, paths.heart);
-    }
+  draw(data: IShapeDrawData): void {
+    const { context, radius } = data;
+
+    drawPath(context, radius, paths.hearts);
+  }
 }

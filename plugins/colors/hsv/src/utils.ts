@@ -1,15 +1,15 @@
 import {
-    type IHsl,
-    type IHsla,
-    type IHsv,
-    type IHsva,
-    type IRgb,
-    type IRgba,
-    double,
-    getStyleFromHsl,
-    half,
-    percentDenominator,
-    rgbMax,
+  type IHsl,
+  type IHsla,
+  type IHsv,
+  type IHsva,
+  type IRgb,
+  type IRgba,
+  double,
+  getStyleFromHsl,
+  half,
+  percentDenominator,
+  rgbMax,
 } from "@tsparticles/engine";
 
 /**
@@ -18,41 +18,41 @@ import {
  * @returns the {@link IHsv} object
  */
 export function rgbToHsv(rgb: IRgb): IHsv {
-    const rgbPercent = {
-            r: rgb.r / rgbMax,
-            g: rgb.g / rgbMax,
-            b: rgb.b / rgbMax,
-        },
-        xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b),
-        xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b),
-        v = xMax,
-        c = xMax - xMin;
+  const rgbPercent = {
+      r: rgb.r / rgbMax,
+      g: rgb.g / rgbMax,
+      b: rgb.b / rgbMax,
+    },
+    xMax = Math.max(rgbPercent.r, rgbPercent.g, rgbPercent.b),
+    xMin = Math.min(rgbPercent.r, rgbPercent.g, rgbPercent.b),
+    v = xMax,
+    c = xMax - xMin;
 
-    let h = 0;
+  let h = 0;
 
-    const phaseOffset = {
-            r: 0,
-            g: 2,
-            b: 4,
-        },
-        phaseValue = 60;
+  const phaseOffset = {
+      r: 0,
+      g: 2,
+      b: 4,
+    },
+    phaseValue = 60;
 
-    if (v === rgbPercent.r) {
-        h = phaseValue * (phaseOffset.r + (rgbPercent.g - rgbPercent.b) / c);
-    } else if (v === rgbPercent.g) {
-        h = phaseValue * (phaseOffset.g + (rgbPercent.b - rgbPercent.r) / c);
-    } else if (v === rgbPercent.b) {
-        h = phaseValue * (phaseOffset.b + (rgbPercent.r - rgbPercent.g) / c);
-    }
+  if (v === rgbPercent.r) {
+    h = phaseValue * (phaseOffset.r + (rgbPercent.g - rgbPercent.b) / c);
+  } else if (v === rgbPercent.g) {
+    h = phaseValue * (phaseOffset.g + (rgbPercent.b - rgbPercent.r) / c);
+  } else if (v === rgbPercent.b) {
+    h = phaseValue * (phaseOffset.b + (rgbPercent.r - rgbPercent.g) / c);
+  }
 
-    const defaultSaturation = 0,
-        s = !v ? defaultSaturation : c / v;
+  const defaultSaturation = 0,
+    s = !v ? defaultSaturation : c / v;
 
-    return {
-        h,
-        s: s * percentDenominator,
-        v: v * percentDenominator,
-    };
+  return {
+    h,
+    s: s * percentDenominator,
+    v: v * percentDenominator,
+  };
 }
 
 /**
@@ -61,10 +61,10 @@ export function rgbToHsv(rgb: IRgb): IHsv {
  * @returns the {@link IHsva} object
  */
 export function rgbaToHsva(rgba: IRgba): IHsva {
-    return {
-        a: rgba.a,
-        ...rgbToHsv(rgba),
-    };
+  return {
+    a: rgba.a,
+    ...rgbToHsv(rgba),
+  };
 }
 
 /**
@@ -75,7 +75,7 @@ export function rgbaToHsva(rgba: IRgba): IHsva {
  * @returns the CSS style string
  */
 export function getStyleFromHsv(color: IHsv, hdr: boolean, opacity?: number): string {
-    return getStyleFromHsl(hsvToHsl(color), hdr, opacity);
+  return getStyleFromHsl(hsvToHsl(color), hdr, opacity);
 }
 
 /**
@@ -84,18 +84,18 @@ export function getStyleFromHsv(color: IHsv, hdr: boolean, opacity?: number): st
  * @returns the {@link IHsv} object
  */
 export function hslToHsv(hsl: IHsl): IHsv {
-    const l = hsl.l / percentDenominator,
-        sl = hsl.s / percentDenominator,
-        offset = 1,
-        noValue = 0,
-        v = l + sl * Math.min(l, offset - l),
-        sv = !v ? noValue : double * (offset - l / v);
+  const l = hsl.l / percentDenominator,
+    sl = hsl.s / percentDenominator,
+    offset = 1,
+    noValue = 0,
+    v = l + sl * Math.min(l, offset - l),
+    sv = !v ? noValue : double * (offset - l / v);
 
-    return {
-        h: hsl.h,
-        s: sv * percentDenominator,
-        v: v * percentDenominator,
-    };
+  return {
+    h: hsl.h,
+    s: sv * percentDenominator,
+    v: v * percentDenominator,
+  };
 }
 
 /**
@@ -104,10 +104,10 @@ export function hslToHsv(hsl: IHsl): IHsv {
  * @returns the {@link IHsva} object
  */
 export function hslaToHsva(hsla: IHsla): IHsva {
-    return {
-        a: hsla.a,
-        ...hslToHsv(hsla),
-    };
+  return {
+    a: hsla.a,
+    ...hslToHsv(hsla),
+  };
 }
 
 /**
@@ -116,18 +116,18 @@ export function hslaToHsva(hsla: IHsla): IHsva {
  * @returns the {@link IHsl} object
  */
 export function hsvToHsl(hsv: IHsv): IHsl {
-    const v = hsv.v / percentDenominator,
-        sv = hsv.s / percentDenominator,
-        offset = 1,
-        noValue = 0,
-        l = v * (offset - sv * half),
-        sl = !l || l === offset ? noValue : (v - l) / Math.min(l, offset - l);
+  const v = hsv.v / percentDenominator,
+    sv = hsv.s / percentDenominator,
+    offset = 1,
+    noValue = 0,
+    l = v * (offset - sv * half),
+    sl = !l || l === offset ? noValue : (v - l) / Math.min(l, offset - l);
 
-    return {
-        h: hsv.h,
-        l: l * percentDenominator,
-        s: sl * percentDenominator,
-    };
+  return {
+    h: hsv.h,
+    l: l * percentDenominator,
+    s: sl * percentDenominator,
+  };
 }
 
 /**
@@ -136,10 +136,10 @@ export function hsvToHsl(hsv: IHsv): IHsl {
  * @returns the {@link IHsla} object
  */
 export function hsvaToHsla(hsva: IHsva): IHsla {
-    return {
-        a: hsva.a,
-        ...hsvToHsl(hsva),
-    };
+  return {
+    a: hsva.a,
+    ...hsvToHsl(hsva),
+  };
 }
 
 /**
@@ -148,74 +148,74 @@ export function hsvaToHsla(hsva: IHsva): IHsla {
  * @returns the {@link IRgb} object
  */
 export function hsvToRgb(hsv: IHsv): IRgb {
-    const result: IRgb = { b: 0, g: 0, r: 0 },
-        phase = 60,
-        hsvPercent = {
-            h: hsv.h / phase,
-            s: hsv.s / percentDenominator,
-            v: hsv.v / percentDenominator,
-        },
-        offset = 1,
-        hPercentFactor = 2,
-        c = hsvPercent.v * hsvPercent.s,
-        x = c * (offset - Math.abs((hsvPercent.h % hPercentFactor) - offset));
+  const result: IRgb = { b: 0, g: 0, r: 0 },
+    phase = 60,
+    hsvPercent = {
+      h: hsv.h / phase,
+      s: hsv.s / percentDenominator,
+      v: hsv.v / percentDenominator,
+    },
+    offset = 1,
+    hPercentFactor = 2,
+    c = hsvPercent.v * hsvPercent.s,
+    x = c * (offset - Math.abs((hsvPercent.h % hPercentFactor) - offset));
 
-    let tempRgb: IRgb | undefined;
+  let tempRgb: IRgb | undefined;
 
-    const cxzRange = { min: 0, max: 1 },
-        xczRange = { min: 1, max: 2 },
-        zcxRange = { min: 2, max: 3 },
-        zxcRange = { min: 3, max: 4 },
-        xzcRange = { min: 4, max: 5 },
-        czxRange = { min: 5, max: 6 };
+  const cxzRange = { min: 0, max: 1 },
+    xczRange = { min: 1, max: 2 },
+    zcxRange = { min: 2, max: 3 },
+    zxcRange = { min: 3, max: 4 },
+    xzcRange = { min: 4, max: 5 },
+    czxRange = { min: 5, max: 6 };
 
-    if (hsvPercent.h >= cxzRange.min && hsvPercent.h <= cxzRange.max) {
-        tempRgb = {
-            r: c,
-            g: x,
-            b: 0,
-        };
-    } else if (hsvPercent.h > xczRange.min && hsvPercent.h <= xczRange.max) {
-        tempRgb = {
-            r: x,
-            g: c,
-            b: 0,
-        };
-    } else if (hsvPercent.h > zcxRange.min && hsvPercent.h <= zcxRange.max) {
-        tempRgb = {
-            r: 0,
-            g: c,
-            b: x,
-        };
-    } else if (hsvPercent.h > zxcRange.min && hsvPercent.h <= zxcRange.max) {
-        tempRgb = {
-            r: 0,
-            g: x,
-            b: c,
-        };
-    } else if (hsvPercent.h > xzcRange.min && hsvPercent.h <= xzcRange.max) {
-        tempRgb = {
-            r: x,
-            g: 0,
-            b: c,
-        };
-    } else if (hsvPercent.h > czxRange.min && hsvPercent.h <= czxRange.max) {
-        tempRgb = {
-            r: c,
-            g: 0,
-            b: x,
-        };
-    }
+  if (hsvPercent.h >= cxzRange.min && hsvPercent.h <= cxzRange.max) {
+    tempRgb = {
+      r: c,
+      g: x,
+      b: 0,
+    };
+  } else if (hsvPercent.h > xczRange.min && hsvPercent.h <= xczRange.max) {
+    tempRgb = {
+      r: x,
+      g: c,
+      b: 0,
+    };
+  } else if (hsvPercent.h > zcxRange.min && hsvPercent.h <= zcxRange.max) {
+    tempRgb = {
+      r: 0,
+      g: c,
+      b: x,
+    };
+  } else if (hsvPercent.h > zxcRange.min && hsvPercent.h <= zxcRange.max) {
+    tempRgb = {
+      r: 0,
+      g: x,
+      b: c,
+    };
+  } else if (hsvPercent.h > xzcRange.min && hsvPercent.h <= xzcRange.max) {
+    tempRgb = {
+      r: x,
+      g: 0,
+      b: c,
+    };
+  } else if (hsvPercent.h > czxRange.min && hsvPercent.h <= czxRange.max) {
+    tempRgb = {
+      r: c,
+      g: 0,
+      b: x,
+    };
+  }
 
-    if (tempRgb) {
-        const m = hsvPercent.v - c;
+  if (tempRgb) {
+    const m = hsvPercent.v - c;
 
-        result.r = Math.floor((tempRgb.r + m) * rgbMax);
-        result.g = Math.floor((tempRgb.g + m) * rgbMax);
-        result.b = Math.floor((tempRgb.b + m) * rgbMax);
-    }
+    result.r = Math.floor((tempRgb.r + m) * rgbMax);
+    result.g = Math.floor((tempRgb.g + m) * rgbMax);
+    result.b = Math.floor((tempRgb.b + m) * rgbMax);
+  }
 
-    return result;
+  return result;
 }
 
 /**
@@ -224,8 +224,8 @@ export function hsvToRgb(hsv: IHsv): IRgb {
  * @returns the {@link IRgba} object
  */
 export function hsvaToRgba(hsva: IHsva): IRgba {
-    return {
-        a: hsva.a,
-        ...hsvToRgb(hsva),
-    };
+  return {
+    a: hsva.a,
+    ...hsvToRgb(hsva),
+  };
 }

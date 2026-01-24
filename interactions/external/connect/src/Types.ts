@@ -4,23 +4,23 @@ import type { ConnectOptions } from "./Options/Classes/ConnectOptions.js";
 import type { IConnect } from "./Options/Interfaces/IConnect.js";
 
 export interface IConnectMode {
-    connect: IConnect;
+  connect: IConnect;
 }
 
 export interface ConnectMode {
-    connect?: Connect;
+  connect?: Connect;
 }
 
 export type ConnectContainer = InteractivityContainer & {
-    actualOptions: ConnectOptions;
-    retina: {
-        connectModeDistance?: number;
-        connectModeRadius?: number;
-    };
+  actualOptions: ConnectOptions;
+  retina: {
+    connectModeDistance?: number;
+    connectModeRadius?: number;
+  };
 };
 
 export type LinkParticle = InteractivityParticle & {
-    retina: {
-        linksWidth?: number;
-    };
+  retina: {
+    linksWidth?: number;
+  };
 };

@@ -1,20 +1,20 @@
 {
-    "name": "@tsparticles/vite-demo",
-    "private": true,
-    "version": "4.0.0-alpha.5",
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "tsc && vite build",
-        "preview": "vite preview"
-    },
-    "dependencies": {
-        "@tsparticles/all": "workspace:4.0.0-alpha.5",
-        "@tsparticles/configs": "workspace:4.0.0-alpha.5",
-        "@tsparticles/engine": "workspace:4.0.0-alpha.5"
-    },
-    "devDependencies": {
-        "typescript": "^5.9.3",
-        "vite": "^7.3.0"
-    }
+  "name": "@tsparticles/vite-demo",
+  "private": true,
+  "version": "4.0.0-alpha.8",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tsparticles/all": "workspace:4.0.0-alpha.8",
+    "@tsparticles/configs": "workspace:4.0.0-alpha.8",
+    "@tsparticles/engine": "workspace:4.0.0-alpha.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^7.3.0"
+  }
 }

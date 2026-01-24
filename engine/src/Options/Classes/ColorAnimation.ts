@@ -9,24 +9,24 @@ import { setRangeValue } from "../../Utils/MathUtils.js";
 /**
  */
 export class ColorAnimation extends AnimationOptions implements IColorAnimation, IOptionLoader<IColorAnimation> {
-    offset: RangeValue;
+  offset: RangeValue;
 
-    constructor() {
-        super();
+  constructor() {
+    super();
 
-        this.offset = 0;
-        this.sync = true;
+    this.offset = 0;
+    this.sync = true;
+  }
+
+  override load(data?: RecursivePartial<IColorAnimation>): void {
+    super.load(data);
+
+    if (isNull(data)) {
+      return;
     }
 
-    override load(data?: RecursivePartial<IColorAnimation>): void {
-        super.load(data);
-
-        if (isNull(data)) {
-            return;
-        }
-
-        if (data.offset !== undefined) {
-            this.offset = setRangeValue(data.offset);
-        }
+    if (data.offset !== undefined) {
+      this.offset = setRangeValue(data.offset);
     }
+  }
 }

@@ -1,11 +1,11 @@
 import {
-    type Container,
-    type IContainerPlugin,
-    type IOptions,
-    type IPlugin,
-    type RecursivePartial,
-    executeOnSingleOrMultiple,
-    isArray,
+  type Container,
+  type IContainerPlugin,
+  type IOptions,
+  type IPlugin,
+  type RecursivePartial,
+  executeOnSingleOrMultiple,
+  isArray,
 } from "@tsparticles/engine";
 import type { EmitterOptions, IEmitterOptions } from "./types.js";
 import { Emitter } from "./Options/Classes/Emitter.js";
@@ -15,44 +15,44 @@ import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 /**
  */
 export class EmittersPlugin implements IPlugin {
-    readonly id;
+  readonly id;
 
-    private readonly _instancesManager;
+  private readonly _instancesManager;
 
-    constructor(instancesManager: EmittersInstancesManager) {
-        this._instancesManager = instancesManager;
-        this.id = "emitters";
+  constructor(instancesManager: EmittersInstancesManager) {
+    this._instancesManager = instancesManager;
+    this.id = "emitters";
+  }
+
+  async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {
+    const { EmittersPluginInstance } = await import("./EmittersPluginInstance.js");
+
+    return new EmittersPluginInstance(this._instancesManager, container);
+  }
+
+  loadOptions(_container: Container, options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
+    if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
+      return;
     }
 
-    async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {
-        const { EmittersPluginInstance } = await import("./EmittersPluginInstance.js");
+    if (source?.emitters) {
+      options.emitters = executeOnSingleOrMultiple(source.emitters, emitter => {
+        const tmp = new Emitter();
 
-        return new EmittersPluginInstance(this._instancesManager, container);
+        tmp.load(emitter);
+
+        return tmp;
+      });
+    }
+  }
+
+  needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
+    if (!options) {
+      return false;
     }
 
-    loadOptions(_container: Container, options: EmitterOptions, source?: RecursivePartial<IEmitterOptions>): void {
-        if (!this.needsPlugin(options) && !this.needsPlugin(source)) {
-            return;
-        }
+    const emitters = options.emitters;
 
-        if (source?.emitters) {
-            options.emitters = executeOnSingleOrMultiple(source.emitters, emitter => {
-                const tmp = new Emitter();
-
-                tmp.load(emitter);
-
-                return tmp;
-            });
-        }
-    }
-
-    needsPlugin(options?: RecursivePartial<IOptions & IEmitterOptions>): boolean {
-        if (!options) {
-            return false;
-        }
-
-        const emitters = options.emitters;
-
-        return (isArray(emitters) && !!emitters.length) || emitters !== undefined;
-    }
+    return (isArray(emitters) && !!emitters.length) || emitters !== undefined;
+  }
 }

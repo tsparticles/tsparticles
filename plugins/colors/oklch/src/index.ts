@@ -7,11 +7,11 @@ declare const __VERSION__: string;
  * @param engine - The engine, used to add the color manager
  */
 export async function loadOklchColorPlugin(engine: Engine): Promise<void> {
-    engine.checkVersion(__VERSION__);
+  engine.checkVersion(__VERSION__);
 
-    await engine.register(async e => {
-        const { OklchColorManager } = await import("./OklchColorManager.js");
+  await engine.register(async e => {
+    const { OklchColorManager } = await import("./OklchColorManager.js");
 
-        e.addColorManager(new OklchColorManager());
-    });
+    e.addColorManager(new OklchColorManager());
+  });
 }

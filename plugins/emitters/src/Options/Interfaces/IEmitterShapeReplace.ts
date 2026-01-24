@@ -1,4 +1,4 @@
 export interface IEmitterShapeReplace {
-    color: boolean;
-    opacity: boolean;
+  color: boolean;
+  opacity: boolean;
 }

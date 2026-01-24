@@ -1,4 +1,6 @@
 {
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "extends": "nx/presets/npm.json",
     "targetDefaults": {
         "build": {
             "dependsOn": [
@@ -24,7 +26,6 @@
             ]
         }
     },
-    "extends": "@nx/workspace/presets/npm.json",
     "tasksRunnerOptions": {
         "default": {
             "runner": "nx-cloud",
@@ -61,7 +62,6 @@
             "analyzeSourceFiles": false
         }
     },
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "namedInputs": {
         "default": [
             "{projectRoot}/**/*",

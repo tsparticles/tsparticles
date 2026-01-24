@@ -14,19 +14,19 @@ const defaultWidth = 0;
  * @param hdr - Whether the line should be drawn in HDR mode or not.
  */
 export function drawGrabLine(
-    context: CanvasRenderingContext2D,
-    width: number,
-    begin: ICoordinates,
-    end: ICoordinates,
-    colorLine: IRgb,
-    opacity: number,
-    hdr = false,
+  context: CanvasRenderingContext2D,
+  width: number,
+  begin: ICoordinates,
+  end: ICoordinates,
+  colorLine: IRgb,
+  opacity: number,
+  hdr = false,
 ): void {
-    drawLine(context, begin, end);
+  drawLine(context, begin, end);
 
-    context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
-    context.lineWidth = width;
-    context.stroke();
+  context.strokeStyle = getStyleFromRgb(colorLine, hdr, opacity);
+  context.lineWidth = width;
+  context.stroke();
 }
 
 /**
@@ -37,23 +37,23 @@ export function drawGrabLine(
  * @param mousePos -
  */
 export function drawGrab(
-    container: GrabContainer,
-    particle: LinkParticle,
-    lineColor: IRgb,
-    opacity: number,
-    mousePos: ICoordinates,
+  container: GrabContainer,
+  particle: LinkParticle,
+  lineColor: IRgb,
+  opacity: number,
+  mousePos: ICoordinates,
 ): void {
-    container.canvas.draw(ctx => {
-        const beginPos = particle.getPosition();
+  container.canvas.draw(ctx => {
+    const beginPos = particle.getPosition();
 
-        drawGrabLine(
-            ctx,
-            particle.retina.linksWidth ?? defaultWidth,
-            beginPos,
-            mousePos,
-            lineColor,
-            opacity,
-            container.hdr,
-        );
-    });
+    drawGrabLine(
+      ctx,
+      particle.retina.linksWidth ?? defaultWidth,
+      beginPos,
+      mousePos,
+      lineColor,
+      opacity,
+      container.hdr,
+    );
+  });
 }

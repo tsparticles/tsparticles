@@ -1,4 +1,4 @@
 export enum InteractorType {
-    external = "external",
-    particles = "particles",
+  external = "external",
+  particles = "particles",
 }
