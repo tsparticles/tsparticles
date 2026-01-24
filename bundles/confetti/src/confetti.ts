@@ -102,7 +102,7 @@ async function initPlugins(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
       { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
-      { loadCardsShape } = await import("@tsparticles/shape-cards"),
+      { loadCardSuitsShape } = await import("@tsparticles/shape-cards"),
       { loadHeartShape } = await import("@tsparticles/shape-heart"),
       { loadImageShape } = await import("@tsparticles/shape-image"),
       { loadPolygonShape } = await import("@tsparticles/shape-polygon"),
@@ -118,7 +118,7 @@ async function initPlugins(engine: Engine): Promise<void> {
 
     await loadEmittersPlugin(e);
     await loadMotionPlugin(e);
-    await loadCardsShape(e);
+    await loadCardSuitsShape(e);
     await loadHeartShape(e);
     await loadImageShape(e);
     await loadPolygonShape(e);
