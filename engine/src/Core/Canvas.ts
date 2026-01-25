@@ -93,6 +93,8 @@ export class Canvas {
    */
   readonly size: IDimension;
 
+  private _canvasClearPlugins: IContainerPlugin[];
+  private _canvasPaintPlugins: IContainerPlugin[];
   private _canvasSettings?: CanvasRenderingContext2DSettings;
 
   private _colorPlugins: IContainerPlugin[];
@@ -143,6 +145,8 @@ export class Canvas {
     this._postDrawUpdaters = [];
     this._resizePlugins = [];
     this._colorPlugins = [];
+    this._canvasClearPlugins = [];
+    this._canvasPaintPlugins = [];
     this._pointerEvents = "none";
   }
 
@@ -170,9 +174,11 @@ export class Canvas {
   clear(): void {
     let pluginHandled = false;
 
-    for (const plugin of this.container.plugins) {
-      if (!pluginHandled && plugin.canvasClear) {
-        pluginHandled = plugin.canvasClear();
+    for (const plugin of this._canvasClearPlugins) {
+      pluginHandled = plugin.canvasClear?.() ?? false;
+
+      if (pluginHandled) {
+        break;
       }
     }
 
@@ -203,6 +209,8 @@ export class Canvas {
     this._postDrawUpdaters = [];
     this._resizePlugins = [];
     this._colorPlugins = [];
+    this._canvasClearPlugins = [];
+    this._canvasPaintPlugins = [];
   }
 
   /**
@@ -409,6 +417,14 @@ export class Canvas {
       if (plugin.particleFillColor ?? plugin.particleStrokeColor) {
         this._colorPlugins.push(plugin);
       }
+
+      if (plugin.canvasClear) {
+        this._canvasClearPlugins.push(plugin);
+      }
+
+      if (plugin.canvasPaint) {
+        this._canvasPaintPlugins.push(plugin);
+      }
     }
   }
 
@@ -490,12 +506,12 @@ export class Canvas {
   paint(): void {
     let handled = false;
 
-    for (const plugin of this.container.plugins) {
+    for (const plugin of this._canvasPaintPlugins) {
+      handled = plugin.canvasPaint?.() ?? false;
+
       if (handled) {
         break;
       }
-
-      handled = plugin.canvasPaint?.() ?? false;
     }
 
     if (handled) {
