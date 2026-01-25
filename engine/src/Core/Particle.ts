@@ -416,7 +416,7 @@ export class Particle {
 
     shapeDrawer?.particleDestroy?.(this);
 
-    for (const plugin of container.plugins) {
+    for (const plugin of container.particleDestroyedPlugins) {
       plugin.particleDestroyed?.(this, override);
     }
 
@@ -438,10 +438,7 @@ export class Particle {
     const container = this.container,
       canvas = container.canvas;
 
-    for (const plugin of container.plugins) {
-      canvas.drawParticlePlugin(plugin, this, delta);
-    }
-
+    canvas.drawParticlePlugins(this, delta);
     canvas.drawParticle(this, delta);
   }
 
@@ -704,7 +701,7 @@ export class Particle {
     effectDrawer?.particleInit?.(container, this);
     shapeDrawer?.particleInit?.(container, this);
 
-    for (const plugin of container.plugins) {
+    for (const plugin of container.particleCreatedPlugins) {
       plugin.particleCreated?.(this);
     }
   }
@@ -774,7 +771,7 @@ export class Particle {
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
     const container = this.container,
-      plugins = container.plugins,
+      plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
       canvasSize = container.canvas.size,
@@ -804,7 +801,7 @@ export class Particle {
 
       let isValidPosition = true;
 
-      for (const plugin of plugins) {
+      for (const plugin of container.particles.checkParticlePositionPlugins) {
         isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount) ?? true;
 
         if (!isValidPosition) {

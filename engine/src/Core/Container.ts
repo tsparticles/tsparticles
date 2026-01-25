@@ -104,10 +104,16 @@ export class Container {
    */
   pageHidden;
 
+  particleCreatedPlugins: IContainerPlugin[];
+
+  particleDestroyedPlugins: IContainerPlugin[];
+
   /**
    * The particles manager
    */
   readonly particles;
+
+  particlePositionPlugins: IContainerPlugin[];
 
   readonly pathGenerators: Map<string, IMovePathGenerator>;
 
@@ -184,6 +190,9 @@ export class Container {
     this.particles = new Particles(this._engine, this);
     this.pathGenerators = new Map<string, IMovePathGenerator>();
     this.plugins = [];
+    this.particleDestroyedPlugins = [];
+    this.particleCreatedPlugins = [];
+    this.particlePositionPlugins = [];
     this.effectDrawers = new Map<string, IEffectDrawer>();
     this.shapeDrawers = new Map<string, IShapeDrawer>();
     /* tsParticles variables with default values */
@@ -275,6 +284,9 @@ export class Container {
     }
 
     this.plugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particleDestroyedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
 
     this._engine.clearPlugins(this);
 
@@ -387,6 +399,18 @@ export class Container {
     for (const [plugin, containerPlugin] of allContainerPlugins) {
       if (plugin.needsPlugin(this.actualOptions)) {
         this.plugins.push(containerPlugin);
+
+        if (containerPlugin.particleCreated) {
+          this.particleCreatedPlugins.push(containerPlugin);
+        }
+
+        if (containerPlugin.particleDestroyed) {
+          this.particleDestroyedPlugins.push(containerPlugin);
+        }
+
+        if (containerPlugin.particlePosition) {
+          this.particlePositionPlugins.push(containerPlugin);
+        }
       }
     }
 

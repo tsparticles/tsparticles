@@ -43,6 +43,8 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
  * Particles manager object
  */
 export class Particles {
+  checkParticlePositionPlugins: IContainerPlugin[];
+
   movers: IParticleMover[];
 
   /**
@@ -63,7 +65,11 @@ export class Particles {
   private _limit;
   private _needsSort;
   private _nextId;
+  private _particleResetPlugins: IContainerPlugin[];
+  private _particleUpdatePlugins: IContainerPlugin[];
   private readonly _pool: Particle[];
+  private _postParticleUpdatePlugins: IContainerPlugin[];
+  private _postUpdatePlugin: IContainerPlugin[];
   private _resizeFactor?: IDimension;
   private _updatePlugins: IContainerPlugin[];
   private _zArray: Particle[];
@@ -91,6 +97,11 @@ export class Particles {
 
     this.movers = [];
     this.updaters = [];
+    this.checkParticlePositionPlugins = [];
+    this._particleResetPlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugin = [];
+    this._postParticleUpdatePlugins = [];
     this._updatePlugins = [];
   }
 
@@ -144,6 +155,11 @@ export class Particles {
     this._zArray = [];
     this.movers = [];
     this.updaters = [];
+    this.checkParticlePositionPlugins = [];
+    this._particleResetPlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugin = [];
+    this._postParticleUpdatePlugins = [];
     this._updatePlugins = [];
   }
 
@@ -178,8 +194,28 @@ export class Particles {
         await plugin.redrawInit();
       }
 
+      if (plugin.checkParticlePosition) {
+        this.checkParticlePositionPlugins.push(plugin);
+      }
+
       if (plugin.update) {
         this._updatePlugins.push(plugin);
+      }
+
+      if (plugin.particleUpdate) {
+        this._particleUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.postUpdate) {
+        this._postUpdatePlugin.push(plugin);
+      }
+
+      if (plugin.particleReset) {
+        this._particleResetPlugins.push(plugin);
+      }
+
+      if (plugin.postParticleUpdate) {
+        this._postParticleUpdatePlugins.push(plugin);
       }
     }
 
@@ -331,13 +367,11 @@ export class Particles {
 
       particle.ignoresResizeRatio = false;
 
-      for (const plugin of this._container.plugins) {
-        if (plugin.particleReset) {
-          plugin.particleReset(particle);
-        }
+      for (const plugin of this._particleResetPlugins) {
+        plugin.particleReset?.(particle);
       }
 
-      for (const plugin of this._container.plugins) {
+      for (const plugin of this._particleUpdatePlugins) {
         if (particle.destroyed) {
           break;
         }
@@ -378,10 +412,8 @@ export class Particles {
       this._addToPool(...particlesToDelete);
     }
 
-    for (const plugin of container.plugins) {
-      if (plugin.postUpdate) {
-        plugin.postUpdate(delta);
-      }
+    for (const plugin of this._postUpdatePlugin) {
+      plugin.postUpdate?.(delta);
     }
 
     // this loop is required to be done after mouse interactions
@@ -391,10 +423,8 @@ export class Particles {
       }
 
       if (!particle.destroyed && !particle.spawning) {
-        for (const plugin of container.plugins) {
-          if (plugin.postParticleUpdate) {
-            plugin.postParticleUpdate(particle, delta);
-          }
+        for (const plugin of this._postParticleUpdatePlugins) {
+          plugin.postParticleUpdate?.(particle, delta);
         }
       }
     }

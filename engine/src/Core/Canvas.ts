@@ -96,15 +96,18 @@ export class Canvas {
   private _canvasClearPlugins: IContainerPlugin[];
   private _canvasPaintPlugins: IContainerPlugin[];
   private _canvasSettings?: CanvasRenderingContext2DSettings;
-
+  private _clearDrawPlugins: IContainerPlugin[];
   private _colorPlugins: IContainerPlugin[];
-
   /**
    * The particles canvas context
    */
   private _context: CanvasRenderingContext2D | null;
+  private _drawParticlePlugins: IContainerPlugin[];
   private _drawParticlesCleanupPlugins: IContainerPlugin[];
   private _drawParticlesSetupPlugins: IContainerPlugin[];
+  private _drawPlugins: IContainerPlugin[];
+  private _drawSettingsCleanupPlugins: IContainerPlugin[];
+  private _drawSettingsSetupPlugins: IContainerPlugin[];
   private readonly _engine;
   private _generated;
   private _mutationObserver?: MutationObserver;
@@ -149,8 +152,13 @@ export class Canvas {
     this._colorPlugins = [];
     this._canvasClearPlugins = [];
     this._canvasPaintPlugins = [];
+    this._clearDrawPlugins = [];
+    this._drawParticlePlugins = [];
     this._drawParticlesCleanupPlugins = [];
     this._drawParticlesSetupPlugins = [];
+    this._drawPlugins = [];
+    this._drawSettingsSetupPlugins = [];
+    this._drawSettingsCleanupPlugins = [];
     this._pointerEvents = "none";
   }
 
@@ -215,8 +223,13 @@ export class Canvas {
     this._colorPlugins = [];
     this._canvasClearPlugins = [];
     this._canvasPaintPlugins = [];
+    this._clearDrawPlugins = [];
+    this._drawParticlePlugins = [];
     this._drawParticlesCleanupPlugins = [];
     this._drawParticlesSetupPlugins = [];
+    this._drawPlugins = [];
+    this._drawSettingsSetupPlugins = [];
+    this._drawSettingsCleanupPlugins = [];
   }
 
   /**
@@ -304,18 +317,19 @@ export class Canvas {
 
   /**
    * Draws stuff using the given plugin, using the given particle
-   * @param plugin - the plugin to use for drawing stuff
    * @param particle - the particle used
    * @param delta - the frame delta time values
    */
-  drawParticlePlugin(plugin: IContainerPlugin, particle: Particle, delta: IDelta): void {
+  drawParticlePlugins(particle: Particle, delta: IDelta): void {
     this.draw(ctx => {
-      drawParticlePlugin(ctx, plugin, particle, delta);
+      for (const plugin of this._drawParticlePlugins) {
+        drawParticlePlugin(ctx, plugin, particle, delta);
+      }
     });
   }
 
   drawParticles(delta: IDelta): void {
-    const { particles, plugins } = this.container;
+    const { particles } = this.container;
 
     this.clear();
 
@@ -323,11 +337,11 @@ export class Canvas {
     particles.update(delta);
 
     this.draw(ctx => {
-      for (const plugin of plugins) {
+      for (const plugin of this._drawSettingsSetupPlugins) {
         plugin.drawSettingsSetup?.(ctx, delta);
       }
 
-      for (const plugin of plugins) {
+      for (const plugin of this._drawPlugins) {
         plugin.draw?.(ctx, delta);
       }
 
@@ -335,11 +349,11 @@ export class Canvas {
 
       particles.drawParticles(delta);
 
-      for (const plugin of plugins) {
+      for (const plugin of this._clearDrawPlugins) {
         plugin.clearDraw?.(ctx, delta);
       }
 
-      for (const plugin of plugins) {
+      for (const plugin of this._drawSettingsCleanupPlugins) {
         plugin.drawSettingsCleanup?.(ctx, delta);
       }
     });
@@ -428,12 +442,32 @@ export class Canvas {
         this._canvasPaintPlugins.push(plugin);
       }
 
+      if (plugin.drawParticle) {
+        this._drawParticlePlugins.push(plugin);
+      }
+
       if (plugin.drawParticleSetup) {
         this._drawParticlesSetupPlugins.push(plugin);
       }
 
       if (plugin.drawParticleCleanup) {
         this._drawParticlesCleanupPlugins.push(plugin);
+      }
+
+      if (plugin.draw) {
+        this._drawPlugins.push(plugin);
+      }
+
+      if (plugin.drawSettingsSetup) {
+        this._drawSettingsSetupPlugins.push(plugin);
+      }
+
+      if (plugin.drawSettingsCleanup) {
+        this._drawSettingsCleanupPlugins.push(plugin);
+      }
+
+      if (plugin.clearDraw) {
+        this._clearDrawPlugins.push(plugin);
       }
     }
   }
