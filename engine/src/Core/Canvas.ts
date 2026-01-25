@@ -93,6 +93,8 @@ export class Canvas {
    */
   readonly size: IDimension;
 
+  private _canvasSettings?: CanvasRenderingContext2DSettings;
+
   private _colorPlugins: IContainerPlugin[];
 
   /**
@@ -142,6 +144,10 @@ export class Canvas {
     this._resizePlugins = [];
     this._colorPlugins = [];
     this._pointerEvents = "none";
+  }
+
+  get settings(): CanvasRenderingContext2DSettings | undefined {
+    return this._canvasSettings;
   }
 
   private get _fullScreen(): boolean {
@@ -454,12 +460,13 @@ export class Canvas {
 
     const canSupportHdrQuery = safeMatchMedia("(color-gamut: p3)");
 
-    this._context = this.element.getContext("2d", {
+    this._canvasSettings = {
       alpha: true,
       colorSpace: canSupportHdrQuery?.matches && container.hdr ? "display-p3" : "srgb",
       desynchronized: true,
       willReadFrequently: false,
-    });
+    };
+    this._context = this.element.getContext("2d", this._canvasSettings);
 
     this._safeMutationObserver(obs => {
       obs.disconnect();

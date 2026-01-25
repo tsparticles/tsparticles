@@ -1,4 +1,13 @@
-import { double, doublePI, getStyleFromRgb, half, originPoint, triple } from "@tsparticles/engine";
+import {
+  type IRgb,
+  double,
+  doublePI,
+  getStyleFromRgb,
+  half,
+  originPoint,
+  safeDocument,
+  triple,
+} from "@tsparticles/engine";
 import type { ICardData } from "./ICardData.js";
 import { SuitType } from "./SuitType.js";
 import { drawPath } from "@tsparticles/path-utils";
@@ -9,7 +18,7 @@ const cardWidthRatio = (double * double) / triple,
   cornerRadiusRatio = 0.2,
   cornerFontRatio = 0.4,
   cornerSuitRatio = 0.3,
-  centerSuitRatio = 0.9,
+  centerSuitRatio = 0.7,
   cornerPaddingRatio = 0.2,
   // Adjusted for a tighter fit between suit and text
   textHorizontalOffsetRatio = 0.25,
@@ -17,7 +26,9 @@ const cardWidthRatio = (double * double) / triple,
   minAngle = 0,
   suitEdgeBufferFactor = 0.1,
   fixedCacheKey = 2,
-  cardsCache = new Map<string, OffscreenCanvas>();
+  cardsCache = new Map<string, ImageBitmap | HTMLCanvasElement>(),
+  redSuitColor: IRgb = { r: 215, g: 20, b: 20 },
+  blackSuitColor: IRgb = { r: 18, g: 18, b: 18 };
 
 /**
  * Draws a rounded card with suit and value side-by-side.
@@ -27,6 +38,7 @@ const cardWidthRatio = (double * double) / triple,
  * @param cardData -
  * @param hdr -
  * @param flipped -
+ * @param canvasSettings -
  */
 export function drawRoundedCard(
   ctx: CanvasRenderingContext2D,
@@ -34,6 +46,7 @@ export function drawRoundedCard(
   cardData: ICardData,
   hdr: boolean,
   flipped: boolean,
+  canvasSettings?: CanvasRenderingContext2DSettings,
 ): void {
   if (flipped) {
     drawRoundedCardBack(ctx, radius);
@@ -44,23 +57,37 @@ export function drawRoundedCard(
       halfWidth = cardWidth * half,
       halfHeight = cardHeight * half;
 
-    if (!cardsCache.has(cacheKey)) {
-      const canvas = new OffscreenCanvas(cardWidth, cardHeight),
-        offCtx = canvas.getContext("2d");
+    let cachedData = cardsCache.get(cacheKey);
 
-      if (offCtx) {
-        offCtx.translate(halfWidth, halfHeight);
+    if (!cachedData) {
+      let cacheCanvas: HTMLCanvasElement | OffscreenCanvas,
+        cacheCtx: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
 
-        drawRoundedCardFront(offCtx, radius, cardData, hdr);
+      if (typeof OffscreenCanvas === "undefined") {
+        cacheCanvas = safeDocument().createElement("canvas");
 
-        cardsCache.set(cacheKey, canvas);
+        cacheCanvas.width = cardWidth;
+        cacheCanvas.height = cardHeight;
+
+        cacheCtx = cacheCanvas.getContext("2d", canvasSettings);
+      } else {
+        cacheCanvas = new OffscreenCanvas(cardWidth, cardHeight);
+        cacheCtx = cacheCanvas.getContext("2d", canvasSettings);
+      }
+
+      if (cacheCtx) {
+        cacheCtx.translate(halfWidth, halfHeight);
+
+        drawRoundedCardFront(cacheCtx, radius, cardData, hdr);
+
+        cachedData = cacheCanvas instanceof HTMLCanvasElement ? cacheCanvas : cacheCanvas.transferToImageBitmap();
+
+        cardsCache.set(cacheKey, cachedData);
       }
     }
 
-    const cachedCanvas = cardsCache.get(cacheKey);
-
-    if (cachedCanvas) {
-      ctx.drawImage(cachedCanvas, -halfWidth, -halfHeight, cardWidth, cardHeight);
+    if (cachedData) {
+      ctx.drawImage(cachedData, -halfWidth, -halfHeight, cardWidth, cardHeight);
     } else {
       drawRoundedCardFront(ctx, radius, cardData, hdr);
     }
@@ -110,7 +137,7 @@ function drawRoundedCardFront(
     // Extra padding to keep the suit away from the card edge
     suitEdgeBuffer = radius * suitEdgeBufferFactor,
     isRed = suit === SuitType.hearts || suit === SuitType.diamonds,
-    color = isRed ? getStyleFromRgb({ r: 255, g: 0, b: 0 }, hdr) : getStyleFromRgb({ r: 0, g: 0, b: 0 }, hdr);
+    color = isRed ? getStyleFromRgb(redSuitColor, hdr) : getStyleFromRgb(blackSuitColor, hdr);
 
   ctx.save();
 

@@ -55,7 +55,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     context.globalAlpha = opacity;
 
     if (image.gif && image.gifData) {
-      drawGif(data);
+      drawGif(data, particle.container.canvas.settings);
     } else if (element) {
       const ratio = image.ratio,
         pos = {

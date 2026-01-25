@@ -171,9 +171,14 @@ export function getCanvasImageData(
 /**
  * @param src -
  * @param offset -
+ * @param canvasSettings -
  * @returns the canvas pixel data
  */
-export function getImageData(src: string, offset: number): Promise<CanvasPixelData> {
+export function getImageData(
+  src: string,
+  offset: number,
+  canvasSettings?: CanvasRenderingContext2DSettings,
+): Promise<CanvasPixelData> {
   const image = new Image();
 
   image.crossOrigin = "Anonymous";
@@ -186,7 +191,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
       canvas.width = image.width;
       canvas.height = image.height;
 
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", canvasSettings);
 
       if (!context) {
         reject(new Error("Could not get canvas context"));
@@ -217,11 +222,16 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
 /**
  * @param textOptions -
  * @param offset -
+ * @param canvasSettings -
  * @returns the canvas pixel data
  */
-export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
+export function getTextData(
+  textOptions: TextMask,
+  offset: number,
+  canvasSettings?: CanvasRenderingContext2DSettings,
+): CanvasPixelData | undefined {
   const canvas = safeDocument().createElement("canvas"),
-    context = canvas.getContext("2d"),
+    context = canvas.getContext("2d", canvasSettings),
     { font, text, lines: linesOptions, color } = textOptions;
 
   if (!text || !context) {

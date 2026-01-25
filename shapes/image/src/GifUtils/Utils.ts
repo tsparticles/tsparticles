@@ -618,10 +618,10 @@ export async function decodeGIF(
 }
 
 /**
- *
  * @param data -
+ * @param canvasSettings -
  */
-export function drawGif(data: IShapeDrawData<ImageParticle>): void {
+export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: CanvasRenderingContext2DSettings): void {
   const { context, radius, particle, delta } = data,
     image = particle.image;
 
@@ -630,7 +630,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
   }
 
   const offscreenCanvas = new OffscreenCanvas(image.gifData.width, image.gifData.height),
-    offscreenContext = offscreenCanvas.getContext("2d");
+    offscreenContext = offscreenCanvas.getContext("2d", canvasSettings);
 
   if (!offscreenContext) {
     throw new Error("could not create offscreen canvas context");

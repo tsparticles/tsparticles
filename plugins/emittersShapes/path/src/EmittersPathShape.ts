@@ -1,5 +1,12 @@
+import {
+  type Container,
+  type ICoordinates,
+  type IDimension,
+  half,
+  percentDenominator,
+  safeDocument,
+} from "@tsparticles/engine";
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { type ICoordinates, type IDimension, half, percentDenominator, safeDocument } from "@tsparticles/engine";
 import { generateRandomPointOnPathPerimeter, generateRandomPointWithinPath } from "./utils.js";
 import type { EmittersPathShapeOptions } from "./Options/Classes/EmittersPathShapeOptions.js";
 
@@ -8,10 +15,16 @@ export class EmittersPathShape extends EmitterShapeBase<EmittersPathShapeOptions
   path: Path2D;
   points: ICoordinates[];
 
-  constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersPathShapeOptions) {
+  constructor(
+    container: Container,
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: EmittersPathShapeOptions,
+  ) {
     super(position, size, fill, options);
 
-    const ctx = safeDocument().createElement("canvas").getContext("2d");
+    const ctx = safeDocument().createElement("canvas").getContext("2d", container.canvas.settings);
 
     if (!ctx) {
       throw new Error(`No 2d context available`);

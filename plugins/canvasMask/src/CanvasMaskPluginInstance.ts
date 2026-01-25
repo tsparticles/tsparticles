@@ -38,11 +38,11 @@ export class CanvasMaskPluginInstance implements IContainerPlugin {
         return;
       }
 
-      pixelData = await getImageData(url, offset);
+      pixelData = await getImageData(url, offset, container.canvas.settings);
     } else if (options.text) {
       const textOptions = options.text;
 
-      const data = getTextData(textOptions, offset);
+      const data = getTextData(textOptions, offset, container.canvas.settings);
 
       if (isNull(data)) {
         return;
@@ -57,7 +57,7 @@ export class CanvasMaskPluginInstance implements IContainerPlugin {
         return;
       }
 
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", container.canvas.settings);
 
       if (!context) {
         return;

@@ -28,6 +28,8 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
 
   context.font = `${style} ${weight} ${size.toString()}px "${font}"`;
 
+  const originalGlobalAlpha = context.globalAlpha;
+
   context.globalAlpha = opacity;
 
   for (let i = 0; i < lines.length; i++) {
@@ -37,26 +39,24 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
       continue;
     }
 
-    drawLine(context, currentLine, radius, opacity, i, fill, stroke);
+    drawTextLine(context, currentLine, radius, i, fill, stroke);
   }
 
-  context.globalAlpha = 1;
+  context.globalAlpha = originalGlobalAlpha;
 }
 
 /**
  * @param context -
  * @param line -
  * @param radius -
- * @param _opacity -
  * @param index -
  * @param fill -
  * @param stroke -
  */
-function drawLine(
+function drawTextLine(
   context: CanvasRenderingContext2D,
   line: string,
   radius: number,
-  _opacity: number,
   index: number,
   fill: boolean,
   stroke: boolean,
