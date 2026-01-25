@@ -15,6 +15,7 @@ import {
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
@@ -62,9 +63,9 @@ export class Particles {
   private _limit;
   private _needsSort;
   private _nextId;
-  private _pluginsInitialized;
   private readonly _pool: Particle[];
   private _resizeFactor?: IDimension;
+  private _updatePlugins: IContainerPlugin[];
   private _zArray: Particle[];
 
   /**
@@ -83,7 +84,6 @@ export class Particles {
     this._groupLimits = new Map<string, number>();
     this._needsSort = false;
     this._lastZIndex = 0;
-    this._pluginsInitialized = false;
 
     const canvasSize = container.canvas.size;
 
@@ -91,6 +91,7 @@ export class Particles {
 
     this.movers = [];
     this.updaters = [];
+    this._updatePlugins = [];
   }
 
   get count(): number {
@@ -136,7 +137,6 @@ export class Particles {
   clear(): void {
     this._array = [];
     this._zArray = [];
-    this._pluginsInitialized = false;
   }
 
   destroy(): void {
@@ -144,6 +144,7 @@ export class Particles {
     this._zArray = [];
     this.movers = [];
     this.updaters = [];
+    this._updatePlugins = [];
   }
 
   drawParticles(delta: IDelta): void {
@@ -175,6 +176,10 @@ export class Particles {
     for (const plugin of container.plugins) {
       if (plugin.redrawInit) {
         await plugin.redrawInit();
+      }
+
+      if (plugin.update) {
+        this._updatePlugins.push(plugin);
       }
     }
 
@@ -213,10 +218,6 @@ export class Particles {
   }
 
   async initPlugins(): Promise<void> {
-    if (this._pluginsInitialized) {
-      return;
-    }
-
     const container = this._container;
 
     this.movers = await this._engine.getMovers(container, true);
@@ -314,7 +315,7 @@ export class Particles {
       pathGenerator.update();
     }
 
-    for (const plugin of container.plugins) {
+    for (const plugin of this._updatePlugins) {
       plugin.update?.(delta);
     }
 

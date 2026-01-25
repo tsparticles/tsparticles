@@ -103,6 +103,8 @@ export class Canvas {
    * The particles canvas context
    */
   private _context: CanvasRenderingContext2D | null;
+  private _drawParticlesCleanupPlugins: IContainerPlugin[];
+  private _drawParticlesSetupPlugins: IContainerPlugin[];
   private readonly _engine;
   private _generated;
   private _mutationObserver?: MutationObserver;
@@ -147,6 +149,8 @@ export class Canvas {
     this._colorPlugins = [];
     this._canvasClearPlugins = [];
     this._canvasPaintPlugins = [];
+    this._drawParticlesCleanupPlugins = [];
+    this._drawParticlesSetupPlugins = [];
     this._pointerEvents = "none";
   }
 
@@ -211,6 +215,8 @@ export class Canvas {
     this._colorPlugins = [];
     this._canvasClearPlugins = [];
     this._canvasPaintPlugins = [];
+    this._drawParticlesCleanupPlugins = [];
+    this._drawParticlesSetupPlugins = [];
   }
 
   /**
@@ -271,10 +277,8 @@ export class Canvas {
     colorStyles.stroke = stroke;
 
     this.draw((context): void => {
-      for (const plugin of container.plugins) {
-        if (plugin.drawParticleSetup) {
-          plugin.drawParticleSetup(context, particle, delta);
-        }
+      for (const plugin of this._drawParticlesSetupPlugins) {
+        plugin.drawParticleSetup?.(context, particle, delta);
       }
 
       this._applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
@@ -292,10 +296,8 @@ export class Canvas {
 
       this._applyPostDrawUpdaters(particle);
 
-      for (const plugin of container.plugins) {
-        if (plugin.drawParticleCleanup) {
-          plugin.drawParticleCleanup(context, particle, delta);
-        }
+      for (const plugin of this._drawParticlesCleanupPlugins) {
+        plugin.drawParticleCleanup?.(context, particle, delta);
       }
     });
   }
@@ -424,6 +426,14 @@ export class Canvas {
 
       if (plugin.canvasPaint) {
         this._canvasPaintPlugins.push(plugin);
+      }
+
+      if (plugin.drawParticleSetup) {
+        this._drawParticlesSetupPlugins.push(plugin);
+      }
+
+      if (plugin.drawParticleCleanup) {
+        this._drawParticlesCleanupPlugins.push(plugin);
       }
     }
   }
