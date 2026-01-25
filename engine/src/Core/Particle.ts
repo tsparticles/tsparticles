@@ -774,7 +774,7 @@ export class Particle {
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
     const container = this.container,
-      plugins = Array.from(container.plugins),
+      plugins = container.plugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
       canvasSize = container.canvas.size,
