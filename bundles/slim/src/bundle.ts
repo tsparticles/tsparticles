@@ -1,5 +1,2 @@
-import { loadSlim } from "./index.js";
-
-export { loadSlim };
-
 export * from "@tsparticles/engine";
+export { loadSlim } from "./index.js";
