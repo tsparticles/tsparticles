@@ -1,5 +1,6 @@
 import type { GrabContainer, LinkParticle } from "./Types.js";
-import { type ICoordinates, type IRgb, drawLine, getStyleFromRgb } from "@tsparticles/engine";
+import { type ICoordinates, type IRgb, getStyleFromRgb } from "@tsparticles/engine";
+import { drawLine } from "@tsparticles/canvas-utils";
 
 const defaultWidth = 0;
 

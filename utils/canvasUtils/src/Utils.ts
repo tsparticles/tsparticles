@@ -1,5 +1,6 @@
 import type { CanvasPixelData, ITextDataOptions, TextLineData } from "./types.js";
 import {
+  type ICoordinates,
   type IDimension,
   type IRgba,
   defaultAlpha,
@@ -10,6 +11,19 @@ import {
 } from "@tsparticles/engine";
 
 const defaultWidth = 0;
+
+/**
+ * Draws a line between two points using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param begin - The start point of the line.
+ * @param end - The end point of the line.
+ */
+export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+  context.beginPath();
+  context.moveTo(begin.x, begin.y);
+  context.lineTo(end.x, end.y);
+  context.closePath();
+}
 
 /**
  * @param ctx -

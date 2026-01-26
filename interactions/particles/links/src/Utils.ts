@@ -1,6 +1,5 @@
 import {
   type ICoordinates,
-  drawLine,
   getDistance,
   getDistances,
   getRandom,
@@ -8,6 +7,7 @@ import {
   rangeColorToRgb,
 } from "@tsparticles/engine";
 import type { LinkLineDrawParams, LinkParticle, LinkTriangleDrawParams } from "./Types.js";
+import { drawLine } from "@tsparticles/canvas-utils";
 
 /**
  * Draws a triangle with three points using canvas API in the given context.
