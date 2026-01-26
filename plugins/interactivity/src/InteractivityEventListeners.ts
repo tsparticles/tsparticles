@@ -99,6 +99,8 @@ export class InteractivityEventListeners {
   }
 
   init(): void {
+    this._clickPositionPlugins.length = 0;
+
     for (const plugin of this._container.plugins.filter(p => !!p.clickPositionValid)) {
       this._clickPositionPlugins.push(plugin);
     }
