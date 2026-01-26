@@ -11,7 +11,7 @@ import {
   safeDocument,
 } from "@tsparticles/engine";
 import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
-import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
+import { getCanvasImageData, getImageData, getTextData } from "@tsparticles/canvas-utils";
 import type { CanvasPixelData } from "./types.js";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 

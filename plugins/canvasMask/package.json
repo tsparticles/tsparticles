@@ -94,6 +94,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
+    "@tsparticles/canvas-utils": "workspace:4.0.0-alpha.8",
     "@tsparticles/engine": "workspace:4.0.0-alpha.8"
   },
   "publishConfig": {

@@ -8,12 +8,12 @@ import {
   getRangeMax,
   isInArray,
   itemFromSingleOrMultiple,
-  loadFont,
   safeDocument,
 } from "@tsparticles/engine";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
 import { drawEmoji } from "./Utils.js";
+import { loadFont } from "@tsparticles/canvas-utils";
 
 const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
   noPadding = 0,

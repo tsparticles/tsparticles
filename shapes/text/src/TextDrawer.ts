@@ -6,11 +6,11 @@ import {
   executeOnSingleOrMultiple,
   isInArray,
   itemFromSingleOrMultiple,
-  loadFont,
 } from "@tsparticles/engine";
 import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
 import { drawText } from "./Utils.js";
+import { loadFont } from "@tsparticles/canvas-utils";
 
 const firstItem = 0;
 

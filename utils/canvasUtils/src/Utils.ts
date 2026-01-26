@@ -1,4 +1,4 @@
-import type { CanvasPixelData, TextLineData } from "./types.js";
+import type { CanvasPixelData, ITextDataOptions, TextLineData } from "./types.js";
 import {
   type IDimension,
   type IRgba,
@@ -8,7 +8,6 @@ import {
   originPoint,
   safeDocument,
 } from "@tsparticles/engine";
-import type { TextOptions } from "./Options/Classes/TextOptions.js";
 
 const defaultWidth = 0;
 
@@ -129,7 +128,7 @@ export function getImageData(
  * @returns the canvas pixel data
  */
 export function getTextData(
-  textOptions: TextOptions,
+  textOptions: ITextDataOptions,
   offset: number,
   fill: boolean,
   canvasSettings?: CanvasRenderingContext2DSettings,
@@ -186,4 +185,17 @@ export function getTextData(
   }
 
   return getCanvasImageData(context, canvas, offset);
+}
+
+/**
+ * Loads a font for the canvas
+ * @param font - font name
+ * @param weight - font weight
+ */
+export async function loadFont(font?: string, weight?: string): Promise<void> {
+  try {
+    await safeDocument().fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
+  } catch {
+    // ignores any error
+  }
 }

@@ -86,6 +86,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
+    "@tsparticles/canvas-utils": "4.0.0-alpha.8",
     "@tsparticles/engine": "4.0.0-alpha.8"
   },
   "publishConfig": {

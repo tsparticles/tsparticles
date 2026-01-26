@@ -117,19 +117,6 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 }
 
 /**
- * Loads a font for the canvas
- * @param font - font name
- * @param weight - font weight
- */
-export async function loadFont(font?: string, weight?: string): Promise<void> {
-  try {
-    await safeDocument().fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
-  } catch {
-    // ignores any error
-  }
-}
-
-/**
  * Returns a random array index
  * @param array - the array to get the index from
  * @returns a random array index
