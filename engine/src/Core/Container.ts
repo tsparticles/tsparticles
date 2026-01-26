@@ -105,15 +105,13 @@ export class Container {
   pageHidden;
 
   particleCreatedPlugins: IContainerPlugin[];
-
   particleDestroyedPlugins: IContainerPlugin[];
+  particlePositionPlugins: IContainerPlugin[];
 
   /**
    * The particles manager
    */
   readonly particles;
-
-  particlePositionPlugins: IContainerPlugin[];
 
   readonly pathGenerators: Map<string, IMovePathGenerator>;
 
