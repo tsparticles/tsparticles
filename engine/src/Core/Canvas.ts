@@ -424,6 +424,16 @@ export class Canvas {
    */
   initPlugins(): void {
     this._resizePlugins = [];
+    this._colorPlugins = [];
+    this._canvasClearPlugins = [];
+    this._canvasPaintPlugins = [];
+    this._clearDrawPlugins = [];
+    this._drawParticlePlugins = [];
+    this._drawParticlesSetupPlugins = [];
+    this._drawParticlesCleanupPlugins = [];
+    this._drawPlugins = [];
+    this._drawSettingsSetupPlugins = [];
+    this._drawSettingsCleanupPlugins = [];
 
     for (const plugin of this.container.plugins) {
       if (plugin.resize) {
