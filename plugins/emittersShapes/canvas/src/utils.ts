@@ -1,14 +1,16 @@
 import type { CanvasPixelData, TextLineData } from "./types.js";
-import { type ICoordinates, type IDimension, type IRgba, isNumber, safeDocument } from "@tsparticles/engine";
+import {
+  type IDimension,
+  type IRgba,
+  defaultAlpha,
+  defaultRgbMin,
+  isNumber,
+  originPoint,
+  safeDocument,
+} from "@tsparticles/engine";
 import type { TextOptions } from "./Options/Classes/TextOptions.js";
 
-const origin: ICoordinates = {
-    x: 0,
-    y: 0,
-  },
-  minWidth = 0,
-  defaultRgbValue = 0,
-  defaultAlphaValue = 1;
+const defaultWidth = 0;
 
 /**
  * @param ctx -
@@ -23,10 +25,10 @@ export function getCanvasImageData(
   offset: number,
   clear = true,
 ): CanvasPixelData {
-  const imageData = ctx.getImageData(origin.x, origin.y, size.width, size.height).data;
+  const imageData = ctx.getImageData(originPoint.x, originPoint.y, size.width, size.height).data;
 
   if (clear) {
-    ctx.clearRect(origin.x, origin.y, size.width, size.height);
+    ctx.clearRect(originPoint.x, originPoint.y, size.width, size.height);
   }
 
   const pixels: IRgba[][] = [];
@@ -54,10 +56,10 @@ export function getCanvasImageData(
     }
 
     row[pos.x] = {
-      r: imageData[i + indexesOffset.r] ?? defaultRgbValue,
-      g: imageData[i + indexesOffset.g] ?? defaultRgbValue,
-      b: imageData[i + indexesOffset.b] ?? defaultRgbValue,
-      a: (imageData[i + indexesOffset.a] ?? defaultAlphaValue) / alphaFactor,
+      r: imageData[i + indexesOffset.r] ?? defaultRgbMin,
+      g: imageData[i + indexesOffset.g] ?? defaultRgbMin,
+      b: imageData[i + indexesOffset.b] ?? defaultRgbMin,
+      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) / alphaFactor,
     };
   }
 
@@ -100,12 +102,12 @@ export function getImageData(
 
       context.drawImage(
         image,
-        origin.x,
-        origin.y,
+        originPoint.x,
+        originPoint.y,
         image.width,
         image.height,
-        origin.x,
-        origin.y,
+        originPoint.x,
+        originPoint.y,
         canvas.width,
         canvas.height,
       );
@@ -158,7 +160,7 @@ export function getTextData(
         width: measure.width,
       };
 
-    maxWidth = Math.max(maxWidth || minWidth, lineData.width);
+    maxWidth = Math.max(maxWidth || defaultWidth, lineData.width);
     totalHeight += lineData.height + linesOptions.spacing;
 
     linesData.push(lineData);
@@ -174,10 +176,10 @@ export function getTextData(
 
     if (fill) {
       context.fillStyle = color;
-      context.fillText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
+      context.fillText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
     } else {
       context.strokeStyle = color;
-      context.strokeText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
+      context.strokeText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
     }
 
     currentHeight += line.height + linesOptions.spacing;

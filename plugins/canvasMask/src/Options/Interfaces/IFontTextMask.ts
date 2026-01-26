@@ -3,5 +3,5 @@ export interface IFontTextMask {
   size: number | string;
   style?: string;
   variant?: string;
-  weight?: number | string;
+  weight?: string;
 }

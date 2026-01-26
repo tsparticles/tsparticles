@@ -3,11 +3,10 @@ import type { LinkContainer } from "./Types.js";
 import type { LinkInstance } from "./LinkInstance.js";
 
 export class LinksPlugin implements IPlugin {
-  readonly id;
+  readonly id = "links";
   private readonly _engine;
 
   constructor(engine: Engine) {
-    this.id = "links";
     this._engine = engine;
   }
 

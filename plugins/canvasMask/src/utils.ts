@@ -6,6 +6,7 @@ import {
   type IRgba,
   type RecursivePartial,
   defaultAlpha,
+  defaultRgbMin,
   getRandom,
   half,
   isNumber,
@@ -16,8 +17,7 @@ import {
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
 import type { TextMask } from "./Options/Classes/TextMask.js";
 
-const defaultWidth = 0,
-  defaultRgb = 0;
+const defaultWidth = 0;
 
 export interface CanvasPixelData {
   height: number;
@@ -154,9 +154,9 @@ export function getCanvasImageData(
     }
 
     row[pos.x] = {
-      r: imageData[i + indexesOffset.r] ?? defaultRgb,
-      g: imageData[i + indexesOffset.g] ?? defaultRgb,
-      b: imageData[i + indexesOffset.b] ?? defaultRgb,
+      r: imageData[i + indexesOffset.r] ?? defaultRgbMin,
+      g: imageData[i + indexesOffset.g] ?? defaultRgbMin,
+      b: imageData[i + indexesOffset.b] ?? defaultRgbMin,
       a: (imageData[i + indexesOffset.a] ?? defaultAlpha) / alphaFactor,
     };
   }
@@ -246,7 +246,7 @@ export function getTextData(
     totalHeight = 0;
 
   for (const line of lines) {
-    context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
+    context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
 
     const measure = context.measureText(line),
       lineData = {
@@ -268,7 +268,7 @@ export function getTextData(
   let currentHeight = 0;
 
   for (const line of linesData) {
-    context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
+    context.font = `${font.style || ""} ${font.variant || ""} ${font.weight || ""} ${fontSize} ${font.family}`;
     context.fillStyle = color;
     context.fillText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
 
