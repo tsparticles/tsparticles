@@ -245,6 +245,7 @@ export class InteractionManager {
     this._interactors = interactors;
     this._externalInteractors = [];
     this._particleInteractors = [];
+    this._eventListeners.init();
 
     for (const interactor of this._interactors) {
       switch (interactor.type) {

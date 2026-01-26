@@ -54,7 +54,7 @@ export class InteractivityEventListeners {
    */
   constructor(container: InteractivityContainer, interactionManager: InteractionManager) {
     this._container = container;
-    this._clickPositionPlugins = container.plugins.filter(p => !!p.clickPositionValid);
+    this._clickPositionPlugins = [];
     this._interactionManager = interactionManager;
     this._touches = new Map<number, number>();
     this._handlers = {
@@ -96,6 +96,12 @@ export class InteractivityEventListeners {
    */
   addListeners(): void {
     this._manageListeners(true);
+  }
+
+  init(): void {
+    for (const plugin of this._container.plugins.filter(p => !!p.clickPositionValid)) {
+      this._clickPositionPlugins.push(plugin);
+    }
   }
 
   /**
