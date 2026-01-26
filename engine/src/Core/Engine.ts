@@ -146,92 +146,68 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
-  readonly colorManagers;
+  readonly colorManagers = new Map<string, IColorManager>();
 
-  readonly easingFunctions;
+  readonly easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
 
   /**
    * The drawers (additional effects) array
    */
-  readonly effectDrawers;
+  readonly effectDrawers = new Map<string, IEffectDrawer>();
 
-  readonly movers;
+  readonly movers = new Map<Container, IParticleMover[]>();
 
   /**
    * The path generators array
    */
-  readonly pathGenerators;
+  readonly pathGenerators = new Map<string, IMovePathGenerator>();
 
   /**
    * The plugins array
    */
-  readonly plugins: IPlugin[];
+  readonly plugins: IPlugin[] = [];
 
   /**
    * The presets array
    */
-  readonly presets;
+  readonly presets = new Map<string, ISourceOptions>();
 
   /**
    * The drawers (additional shapes) array
    */
-  readonly shapeDrawers;
+  readonly shapeDrawers = new Map<string, IShapeDrawer>();
 
   /**
    * The updaters array
    */
-  readonly updaters;
+  readonly updaters = new Map<Container, IParticleUpdater[]>();
 
-  private _allLoadersSet;
+  private _allLoadersSet = new Set<LoadPluginFunction>();
 
-  private readonly _configs: Map<string, ISourceOptions>;
+  private readonly _configs = new Map<string, ISourceOptions>();
 
   /**
    * Contains all the {@link Container} instances of the current engine instance
    */
-  private readonly _domArray: Container[];
+  private readonly _domArray: Container[] = [];
 
-  private readonly _eventDispatcher;
+  private readonly _eventDispatcher = new EventDispatcher();
 
-  private _executedSet;
+  private _executedSet = new Set<LoadPluginFunction>();
 
   /**
    * Checks if the engine instance is initialized
    */
-  private _initialized: boolean;
+  private _initialized = false;
 
-  private readonly _initializers: Initializers;
+  private readonly _initializers: Initializers = {
+    movers: new Map<string, MoverInitializer>(),
+    updaters: new Map<string, UpdaterInitializer>(),
+  };
 
-  private _isRunningLoaders;
+  private _isRunningLoaders = false;
 
-  private readonly _loadPromises: Set<LoadPluginFunction>;
-
-  /**
-   * Engine constructor, initializes plugins, loader and the containers array
-   */
-  constructor() {
-    this._configs = new Map();
-    this._domArray = [];
-    this._eventDispatcher = new EventDispatcher();
-    this._initialized = false;
-    this._isRunningLoaders = false;
-    this._loadPromises = new Set<LoadPluginFunction>();
-    this._allLoadersSet = new Set<LoadPluginFunction>();
-    this._executedSet = new Set<LoadPluginFunction>();
-    this.plugins = [];
-    this.colorManagers = new Map<string, IColorManager>();
-    this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
-    this._initializers = {
-      movers: new Map<string, MoverInitializer>(),
-      updaters: new Map<string, UpdaterInitializer>(),
-    };
-    this.movers = new Map<Container, IParticleMover[]>();
-    this.updaters = new Map<Container, IParticleUpdater[]>();
-    this.presets = new Map<string, ISourceOptions>();
-    this.effectDrawers = new Map<string, IEffectDrawer>();
-    this.shapeDrawers = new Map<string, IShapeDrawer>();
-    this.pathGenerators = new Map<string, IMovePathGenerator>();
-  }
+  private readonly _loadPromises = new Set<LoadPluginFunction>();
 
   get configs(): Record<string, ISourceOptions> {
     const res: Record<string, ISourceOptions> = {};
