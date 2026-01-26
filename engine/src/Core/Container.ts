@@ -282,9 +282,6 @@ export class Container {
     }
 
     this.plugins.length = 0;
-    this.particleCreatedPlugins.length = 0;
-    this.particleDestroyedPlugins.length = 0;
-    this.particlePositionPlugins.length = 0;
 
     this._engine.clearPlugins(this);
 
@@ -602,7 +599,9 @@ export class Container {
       plugin.stop?.();
     }
 
-    this.plugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particleDestroyedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
 
     this._sourceOptions = this._options;
 
