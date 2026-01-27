@@ -390,6 +390,9 @@ export function initParticleNumericAnimationValue(
         res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
         break;
+      default:
+        // no-op
+        break;
     }
 
     const autoStatus = animationOptions.mode === AnimationMode.auto;
@@ -507,6 +510,9 @@ function checkDestroy(
       }
 
       break;
+    default:
+      // no-op
+      break;
   }
 }
 
@@ -582,6 +588,11 @@ export function updateAnimation(
       } else {
         data.value -= velocity;
       }
+
+      break;
+    default:
+      // no-op
+      break;
   }
 
   if (data.velocity && decay !== identity) {

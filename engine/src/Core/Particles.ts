@@ -136,6 +136,9 @@ export class Particles {
           }
 
           break;
+        default:
+          // no-op
+          break;
       }
     }
 

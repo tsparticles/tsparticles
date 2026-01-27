@@ -928,6 +928,9 @@ export class Particle {
       case MoveDirection.outside:
         this.outType = ParticleOutType.outside;
         break;
+      default:
+        // no-op
+        break;
     }
 
     /* parallax */
