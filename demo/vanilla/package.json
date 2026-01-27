@@ -52,6 +52,7 @@
   "dependencies": {
     "@tsparticles/all": "workspace:4.0.0-alpha.8",
     "@tsparticles/basic": "workspace:4.0.0-alpha.8",
+    "@tsparticles/canvas-utils": "workspace:4.0.0-alpha.8",
     "@tsparticles/confetti": "workspace:4.0.0-alpha.8",
     "@tsparticles/configs": "workspace:4.0.0-alpha.8",
     "@tsparticles/effect-bubble": "workspace:4.0.0-alpha.8",

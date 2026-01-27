@@ -72,6 +72,7 @@ app.use("/tsparticles-confetti", express.static("./node_modules/@tsparticles/con
 app.use("/tsparticles-fireworks", express.static("./node_modules/@tsparticles/fireworks"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/tsparticles-configs", express.static("./node_modules/@tsparticles/configs"));
+app.use("/canvas-utils", express.static("./node_modules/@tsparticles/canvas-utils"));
 app.use("/interaction-external-attract", express.static("./node_modules/@tsparticles/interaction-external-attract"));
 app.use("/interaction-external-bounce", express.static("./node_modules/@tsparticles/interaction-external-bounce"));
 app.use("/interaction-external-bubble", express.static("./node_modules/@tsparticles/interaction-external-bubble"));

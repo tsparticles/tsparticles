@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/canvas-utils",
   "version": "4.0.0-alpha.8",
-  "description": "tsParticles path utils path",
+  "description": "tsParticles canvas utils path",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",

@@ -5,12 +5,14 @@ import { TextMaskLine } from "./TextMaskLine.js";
 
 export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
   color;
+  fill;
   font;
   lines;
   text;
 
   constructor() {
     this.color = "#000000";
+    this.fill = true;
     this.font = new FontTextMask();
     this.lines = new TextMaskLine();
     this.text = "";
@@ -23,6 +25,10 @@ export class TextMask implements ITextMask, IOptionLoader<ITextMask> {
 
     if (data.color !== undefined) {
       this.color = data.color;
+    }
+
+    if (data.fill !== undefined) {
+      this.fill = data.fill;
     }
 
     this.font.load(data.font);

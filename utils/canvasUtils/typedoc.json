@@ -4,7 +4,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles Path Utils Path",
+  "name": "tsParticles Canvas Utils",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

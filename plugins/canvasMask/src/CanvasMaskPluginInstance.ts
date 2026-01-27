@@ -37,7 +37,7 @@ export class CanvasMaskPluginInstance implements IContainerPlugin {
     } else if (options.text) {
       const textOptions = options.text;
 
-      const data = getTextData(textOptions, offset, false, container.canvas.settings);
+      const data = getTextData(textOptions, offset, textOptions.fill, container.canvas.settings);
 
       if (isNull(data)) {
         return;

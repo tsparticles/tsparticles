@@ -1,12 +1,12 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# tsParticles Path Utils Library
+# tsParticles Canvas Utils Library
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/canvas-utils/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/canvas-utils)
 [![npmjs](https://badge.fury.io/js/@tsparticles/canvas-utils.svg)](https://www.npmjs.com/package/@tsparticles/canvas-utils)
 [![npmjs](https://img.shields.io/npm/dt/@tsparticles/canvas-utils)](https://www.npmjs.com/package/@tsparticles/canvas-utils) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/tsparticles/tsparticles) path plugin for path utils movement.
+[tsParticles](https://github.com/tsparticles/tsparticles) canvas utils.
 
 ## How to use it
 
@@ -14,7 +14,7 @@
 
 The CDN/Vanilla version JS has one required file in vanilla configuration:
 
-Including the `tsparticles.path.utils.min.js` file will export the function to load the path plugin:
+Including the `tsparticles.canvas.utils.min.js` file will export the function to load the canvas utils:
 
 ```text
 loadCanvasUtilsPath
@@ -22,7 +22,7 @@ loadCanvasUtilsPath
 
 ### Usage
 
-Once the scripts are loaded you can set up `tsParticles` and the path plugin like this:
+Once the scripts are loaded you can set up `tsParticles` and the canvas utils like this:
 
 ```javascript
 (async () => {

@@ -656,6 +656,9 @@ importers:
       '@tsparticles/basic':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../bundles/basic/dist
+      '@tsparticles/canvas-utils':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../utils/canvasUtils/dist
       '@tsparticles/confetti':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../bundles/confetti/dist

@@ -9,4 +9,4 @@ const __filename = fileURLToPath(import.meta.url),
     pkg = await fs.readJson(rootPkgPath),
     version = pkg.version;
 
-export default loadParticlesBundle({ moduleName: "path.utils", bundle: false, bundleName: "Path Utils", version, dir: __dirname });
+export default loadParticlesBundle({ moduleName: "canvas.utils", bundle: false, bundleName: "Canvas Utils", version, dir: __dirname });

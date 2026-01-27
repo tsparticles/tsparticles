@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/canvas-utils",
   "version": "4.0.0-alpha.8",
-  "description": "tsParticles path utils library",
+  "description": "tsParticles canvas utils library",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
@@ -85,8 +85,8 @@
     }
   ],
   "sideEffects": false,
-  "jsdelivr": "tsparticles.path.utils.min.js",
-  "unpkg": "tsparticles.path.utils.min.js",
+  "jsdelivr": "tsparticles.canvas.utils.min.js",
+  "unpkg": "tsparticles.canvas.utils.min.js",
   "browser": "browser/index.js",
   "main": "cjs/index.js",
   "module": "esm/index.js",
