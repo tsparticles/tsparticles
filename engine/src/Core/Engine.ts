@@ -241,10 +241,11 @@ export class Engine {
   }
 
   /**
+   * @param name -
    * @param manager -
    */
-  addColorManager(manager: IColorManager): void {
-    this.colorManagers.set(manager.key, manager);
+  addColorManager(name: string, manager: IColorManager): void {
+    this.colorManagers.set(name, manager);
   }
 
   addConfig(config: ISourceOptions): void {

@@ -12,6 +12,6 @@ export async function loadHslColorPlugin(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { HslColorManager } = await import("./HslColorManager.js");
 
-    e.addColorManager(new HslColorManager());
+    e.addColorManager("hsl", new HslColorManager());
   });
 }

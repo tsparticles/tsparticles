@@ -12,6 +12,6 @@ export async function loadNamedColorPlugin(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { NamedColorManager } = await import("./NamedColorManager.js");
 
-    e.addColorManager(new NamedColorManager());
+    e.addColorManager("named", new NamedColorManager());
   });
 }

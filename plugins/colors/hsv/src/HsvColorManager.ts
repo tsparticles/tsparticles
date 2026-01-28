@@ -16,12 +16,6 @@ import { hsvToRgb, hsvaToRgba } from "./utils.js";
 const hsvRegex = /hsva?\(\s*(\d+)°\s*[\s,]\s*(\d+)%\s*[\s,]\s*(\d+)%\s*([\s,]\s*(0|1|0?\.\d+|(\d{1,3})%)\s*)?\)/i;
 
 export class HsvColorManager implements IColorManager {
-  readonly key;
-
-  constructor() {
-    this.key = "hsv";
-  }
-
   accepts(input: string): boolean {
     return input.startsWith("hsv");
   }

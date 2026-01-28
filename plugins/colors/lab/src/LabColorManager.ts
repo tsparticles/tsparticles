@@ -16,12 +16,6 @@ import { labToRgb, labaToRgba } from "./utils.js";
 const labRegex = /lab\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
 export class LabColorManager implements IColorManager {
-  readonly key;
-
-  constructor() {
-    this.key = "lab";
-  }
-
   accepts(input: string): boolean {
     return input.startsWith("lab");
   }
