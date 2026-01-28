@@ -97,9 +97,9 @@ export class Container {
    */
   pageHidden;
 
-  particleCreatedPlugins: IContainerPlugin[];
-  particleDestroyedPlugins: IContainerPlugin[];
-  particlePositionPlugins: IContainerPlugin[];
+  readonly particleCreatedPlugins: IContainerPlugin[];
+  readonly particleDestroyedPlugins: IContainerPlugin[];
+  readonly particlePositionPlugins: IContainerPlugin[];
 
   /**
    * The particles manager
@@ -344,6 +344,11 @@ export class Container {
     /* options settings */
     this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
     this.actualOptions = loadContainerOptions(this._engine, this, this._options);
+
+    this.plugins.length = 0;
+    this.particleDestroyedPlugins.length = 0;
+    this.particleCreatedPlugins.length = 0;
+    this.particlePositionPlugins.length = 0;
 
     for (const [plugin, containerPlugin] of allContainerPlugins) {
       if (plugin.needsPlugin(this.actualOptions)) {
