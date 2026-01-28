@@ -365,8 +365,10 @@ export class Engine {
   }
 
   clearPlugins(container: Container): void {
-    this.updaters.delete(container);
+    this.effectDrawers.delete(container);
     this.movers.delete(container);
+    this.shapeDrawers.delete(container);
+    this.updaters.delete(container);
   }
 
   /**
