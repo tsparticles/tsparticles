@@ -221,6 +221,13 @@ export class Particles {
       await drawer.init?.(container);
     }
 
+    this.checkParticlePositionPlugins = [];
+    this._updatePlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugin = [];
+    this._particleResetPlugins = [];
+    this._postParticleUpdatePlugins = [];
+
     for (const plugin of container.plugins) {
       if (plugin.redrawInit) {
         await plugin.redrawInit();
