@@ -185,7 +185,7 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
 
         default:
           // no-op
-          break;
+          continue;
       }
 
       res.push({
