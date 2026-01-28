@@ -166,6 +166,13 @@ export class Engine {
    */
   readonly effectDrawers = new Map<Container, Map<string, IEffectDrawer>>();
 
+  readonly initializers: Initializers = {
+    effects: new Map<string, EffectInitializer>(),
+    movers: new Map<string, MoverInitializer>(),
+    shapes: new Map<string, ShapeInitializer>(),
+    updaters: new Map<string, UpdaterInitializer>(),
+  };
+
   readonly movers = new Map<Container, IParticleMover[]>();
 
   /**
@@ -210,13 +217,6 @@ export class Engine {
    * Checks if the engine instance is initialized
    */
   private _initialized = false;
-
-  private readonly _initializers: Initializers = {
-    effects: new Map<string, EffectInitializer>(),
-    movers: new Map<string, MoverInitializer>(),
-    shapes: new Map<string, ShapeInitializer>(),
-    updaters: new Map<string, UpdaterInitializer>(),
-  };
 
   private _isRunningLoaders = false;
 
@@ -273,7 +273,7 @@ export class Engine {
    * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
    */
   addEffect(effect: string, drawer: EffectInitializer): void {
-    this._initializers.effects.set(effect, drawer);
+    this.initializers.effects.set(effect, drawer);
   }
 
   /**
@@ -290,7 +290,7 @@ export class Engine {
    * @param moverInitializer - the mover initializer
    */
   addMover(name: string, moverInitializer: MoverInitializer): void {
-    this._initializers.movers.set(name, moverInitializer);
+    this.initializers.movers.set(name, moverInitializer);
   }
 
   /**
@@ -299,7 +299,7 @@ export class Engine {
    * @param updaterInitializer - the particle updater initializer
    */
   addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
-    this._initializers.updaters.set(name, updaterInitializer);
+    this.initializers.updaters.set(name, updaterInitializer);
   }
 
   /**
@@ -348,7 +348,7 @@ export class Engine {
    */
   addShape(shapes: string[], drawer: ShapeInitializer): void {
     for (const shape of shapes) {
-      this._initializers.shapes.set(shape, drawer);
+      this.initializers.shapes.set(shape, drawer);
     }
   }
 
@@ -390,11 +390,11 @@ export class Engine {
   }
 
   async getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
-    return getItemMapFromInitializer(container, this.effectDrawers, this._initializers.effects, force);
+    return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
   }
 
   async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
-    return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
+    return getItemsFromInitializer(container, this.movers, this.initializers.movers, force);
   }
 
   /**
@@ -425,7 +425,7 @@ export class Engine {
   }
 
   async getShapeDrawers(container: Container, force = false): Promise<Map<string, IShapeDrawer>> {
-    return getItemMapFromInitializer(container, this.shapeDrawers, this._initializers.shapes, force);
+    return getItemMapFromInitializer(container, this.shapeDrawers, this.initializers.shapes, force);
   }
 
   /**
@@ -435,7 +435,7 @@ export class Engine {
    * @returns the array of updaters for the given container
    */
   async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
-    return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
+    return getItemsFromInitializer(container, this.updaters, this.initializers.updaters, force);
   }
 
   /**
