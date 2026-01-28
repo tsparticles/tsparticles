@@ -8,9 +8,11 @@ declare const __VERSION__: string;
 export async function loadCogShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { CogDrawer } = await import("./CogDrawer.js");
+  await engine.register(e => {
+    e.addShape(["cog"], async () => {
+      const { CogDrawer } = await import("./CogDrawer.js");
 
-    e.addShape(new CogDrawer());
+      return new CogDrawer();
+    });
   });
 }

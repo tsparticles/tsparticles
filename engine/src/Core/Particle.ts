@@ -412,7 +412,7 @@ export class Particle {
 
     const container = this.container,
       pathGenerator = this.pathGenerator,
-      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
+      shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
 
@@ -573,13 +573,13 @@ export class Particle {
     }
 
     if (this.effect === randomColorValue) {
-      const availableEffects = [...this.container.effectDrawers.keys()];
+      const availableEffects = [...this.container.particles.effectDrawers.keys()];
 
       this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
     }
 
     if (this.shape === randomColorValue) {
-      const availableShapes = [...this.container.shapeDrawers.keys()];
+      const availableShapes = [...this.container.particles.shapeDrawers.keys()];
 
       this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
     }
@@ -651,15 +651,7 @@ export class Particle {
     let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
 
     if (this.effect) {
-      effectDrawer = container.effectDrawers.get(this.effect);
-
-      if (!effectDrawer) {
-        effectDrawer = this._engine.getEffectDrawer(this.effect);
-
-        if (effectDrawer) {
-          container.effectDrawers.set(this.effect, effectDrawer);
-        }
-      }
+      effectDrawer = container.particles.effectDrawers.get(this.effect);
     }
 
     if (effectDrawer?.loadEffect) {
@@ -667,15 +659,7 @@ export class Particle {
     }
 
     if (this.shape) {
-      shapeDrawer = container.shapeDrawers.get(this.shape);
-
-      if (!shapeDrawer) {
-        shapeDrawer = this._engine.getShapeDrawer(this.shape);
-
-        if (shapeDrawer) {
-          container.shapeDrawers.set(this.shape, shapeDrawer);
-        }
-      }
+      shapeDrawer = container.particles.shapeDrawers.get(this.shape);
     }
 
     if (shapeDrawer?.loadShape) {

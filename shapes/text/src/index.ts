@@ -1,4 +1,5 @@
 import { type Engine } from "@tsparticles/engine";
+import { validTypes } from "./Utils.js";
 
 declare const __VERSION__: string;
 
@@ -8,9 +9,11 @@ declare const __VERSION__: string;
 export async function loadTextShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { TextDrawer } = await import("./TextDrawer.js");
+  await engine.register(e => {
+    e.addShape(validTypes, async () => {
+      const { TextDrawer } = await import("./TextDrawer.js");
 
-    e.addShape(new TextDrawer());
+      return new TextDrawer();
+    });
   });
 }

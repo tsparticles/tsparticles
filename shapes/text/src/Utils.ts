@@ -2,6 +2,8 @@ import { type IShapeDrawData, double, half, itemFromSingleOrMultiple } from "@ts
 import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
 
+export const validTypes = ["text", "character", "char", "multiline-text"];
+
 /**
  *
  * @param data -

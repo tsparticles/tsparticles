@@ -8,9 +8,11 @@ declare const __VERSION__: string;
 export async function loadRoundedRectShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { RoundedRectDrawer } = await import("./RoundedRectDrawer.js");
+  await engine.register(e => {
+    e.addShape(["rounded-rect"], async () => {
+      const { RoundedRectDrawer } = await import("./RoundedRectDrawer.js");
 
-    e.addShape(new RoundedRectDrawer());
+      return new RoundedRectDrawer();
+    });
   });
 }

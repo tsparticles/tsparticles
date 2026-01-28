@@ -17,8 +17,6 @@ const sides = 12;
  * Particles Image Drawer
  */
 export class ImageDrawer implements IShapeDrawer<ImageParticle> {
-  readonly validTypes = ["image", "images"] as const;
-
   private readonly _engine: ImageEngine;
 
   /**

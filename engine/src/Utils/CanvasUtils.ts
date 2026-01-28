@@ -106,7 +106,7 @@ export function drawAfterEffect(container: Container, data: IShapeDrawData): voi
     return;
   }
 
-  const drawer = container.effectDrawers.get(particle.effect),
+  const drawer = container.particles.effectDrawers.get(particle.effect),
     drawFunc = drawer?.drawAfter;
 
   if (!drawFunc) {
@@ -128,7 +128,7 @@ export function drawBeforeEffect(container: Container, data: IShapeDrawData): vo
     return;
   }
 
-  const drawer = container.effectDrawers.get(particle.effect);
+  const drawer = container.particles.effectDrawers.get(particle.effect);
 
   if (!drawer?.drawBefore) {
     return;
@@ -149,7 +149,7 @@ export function drawShape(container: Container, data: IShapeDrawData): void {
     return;
   }
 
-  const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.particles.shapeDrawers.get(particle.shape);
 
   if (!drawer) {
     return;
@@ -184,7 +184,7 @@ export function drawShapeAfterDraw(container: Container, data: IShapeDrawData): 
     return;
   }
 
-  const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.particles.shapeDrawers.get(particle.shape);
 
   if (!drawer?.afterDraw) {
     return;
@@ -205,7 +205,7 @@ export function drawShapeBeforeDraw(container: Container, data: IShapeDrawData):
     return;
   }
 
-  const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.particles.shapeDrawers.get(particle.shape);
 
   if (!drawer?.beforeDraw) {
     return;

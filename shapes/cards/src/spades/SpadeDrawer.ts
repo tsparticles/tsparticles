@@ -3,8 +3,6 @@ import { drawPath } from "@tsparticles/path-utils";
 import { paths } from "../paths.js";
 
 export class SpadeDrawer implements IShapeDrawer {
-  readonly validTypes = ["spade", "spades"] as const;
-
   draw(data: IShapeDrawData): void {
     const { context, radius } = data;
 

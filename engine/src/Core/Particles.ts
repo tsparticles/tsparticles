@@ -19,10 +19,12 @@ import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
@@ -45,12 +47,16 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
 export class Particles {
   checkParticlePositionPlugins: IContainerPlugin[];
 
+  effectDrawers: Map<string, IEffectDrawer>;
+
   movers: IParticleMover[];
 
   /**
    * The quad tree used to search particles withing ranges
    */
   quadTree;
+
+  shapeDrawers: Map<string, IShapeDrawer>;
 
   updaters: IParticleUpdater[];
 
@@ -95,7 +101,9 @@ export class Particles {
 
     this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
+    this.effectDrawers = new Map();
     this.movers = [];
+    this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
@@ -154,9 +162,22 @@ export class Particles {
   }
 
   destroy(): void {
+    const container = this._container;
+
+    for (const [, effectDrawer] of this.effectDrawers) {
+      effectDrawer.destroy?.(container);
+    }
+
+    for (const [, shapeDrawer] of this.shapeDrawers) {
+      shapeDrawer.destroy?.(container);
+    }
+
     this._array = [];
+    this._pool.length = 0;
     this._zArray = [];
+    this.effectDrawers = new Map();
     this.movers = [];
+    this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
@@ -191,6 +212,14 @@ export class Particles {
 
     this._lastZIndex = 0;
     this._needsSort = false;
+
+    for (const drawer of this.effectDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
+    for (const drawer of this.shapeDrawers.values()) {
+      await drawer.init?.(container);
+    }
 
     for (const plugin of container.plugins) {
       if (plugin.redrawInit) {
@@ -259,7 +288,9 @@ export class Particles {
   async initPlugins(): Promise<void> {
     const container = this._container;
 
+    this.effectDrawers = await this._engine.getEffectDrawers(container, true);
     this.movers = await this._engine.getMovers(container, true);
+    this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
 
     for (const pathGenerator of container.pathGenerators.values()) {

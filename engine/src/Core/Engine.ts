@@ -3,7 +3,13 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
-import type { Initializers, MoverInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
+import type {
+  EffectInitializer,
+  Initializers,
+  MoverInitializer,
+  ShapeInitializer,
+  UpdaterInitializer,
+} from "../Types/EngineInitializers.js";
 import {
   canvasFirstIndex,
   canvasTag,
@@ -16,7 +22,12 @@ import {
   one,
   removeDeleteCount,
 } from "./Utils/Constants.js";
-import { getItemsFromInitializer, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import {
+  getItemMapFromInitializer,
+  getItemsFromInitializer,
+  itemFromSingleOrMultiple,
+  safeDocument,
+} from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -153,7 +164,7 @@ export class Engine {
   /**
    * The drawers (additional effects) array
    */
-  readonly effectDrawers = new Map<string, IEffectDrawer>();
+  readonly effectDrawers = new Map<Container, Map<string, IEffectDrawer>>();
 
   readonly movers = new Map<Container, IParticleMover[]>();
 
@@ -175,7 +186,7 @@ export class Engine {
   /**
    * The drawers (additional shapes) array
    */
-  readonly shapeDrawers = new Map<string, IShapeDrawer>();
+  readonly shapeDrawers = new Map<Container, Map<string, IShapeDrawer>>();
 
   /**
    * The updaters array
@@ -201,7 +212,9 @@ export class Engine {
   private _initialized = false;
 
   private readonly _initializers: Initializers = {
+    effects: new Map<string, EffectInitializer>(),
     movers: new Map<string, MoverInitializer>(),
+    shapes: new Map<string, ShapeInitializer>(),
     updaters: new Map<string, UpdaterInitializer>(),
   };
 
@@ -258,12 +271,8 @@ export class Engine {
    * @param effect - the effect name
    * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
    */
-  addEffect(effect: string, drawer: IEffectDrawer): void {
-    if (this.getEffectDrawer(effect)) {
-      return;
-    }
-
-    this.effectDrawers.set(effect, drawer);
+  addEffect(effect: string, drawer: EffectInitializer): void {
+    this._initializers.effects.set(effect, drawer);
   }
 
   /**
@@ -333,15 +342,12 @@ export class Engine {
 
   /**
    * addShape adds shape to tsParticles, it will be available to all future instances created
+   * @param shapes - the shape names to add, it can be a single shape or an array of shapes
    * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
    */
-  addShape(drawer: IShapeDrawer): void {
-    for (const validType of drawer.validTypes) {
-      if (this.getShapeDrawer(validType)) {
-        continue;
-      }
-
-      this.shapeDrawers.set(validType, drawer);
+  addShape(shapes: string[], drawer: ShapeInitializer): void {
+    for (const shape of shapes) {
+      this._initializers.shapes.set(shape, drawer);
     }
   }
 
@@ -380,13 +386,8 @@ export class Engine {
     return this.easingFunctions.get(name) ?? ((value: number): number => value);
   }
 
-  /**
-   * Searches the given effect drawer type with the given type name
-   * @param type - the effect drawer type name
-   * @returns the effect drawer if found, or undefined
-   */
-  getEffectDrawer(type: string): IEffectDrawer | undefined {
-    return this.effectDrawers.get(type);
+  async getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
+    return getItemMapFromInitializer(container, this.effectDrawers, this._initializers.effects, force);
   }
 
   async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
@@ -420,29 +421,8 @@ export class Engine {
     return this.presets.get(preset);
   }
 
-  /**
-   * Searches the given shape drawer type with the given type name
-   * @param type - the shape drawer type name
-   * @returns the shape drawer if found, or undefined
-   */
-  getShapeDrawer(type: string): IShapeDrawer | undefined {
-    return this.shapeDrawers.get(type);
-  }
-
-  /**
-   * This method returns all the supported effects with this Plugins instance
-   * @returns all the supported effects type name
-   */
-  getSupportedEffects(): IterableIterator<string> {
-    return this.effectDrawers.keys();
-  }
-
-  /**
-   * This method returns all the supported shapes with this Plugins instance
-   * @returns all the supported shapes type name
-   */
-  getSupportedShapes(): IterableIterator<string> {
-    return this.shapeDrawers.keys();
+  async getShapeDrawers(container: Container, force = false): Promise<Map<string, IShapeDrawer>> {
+    return getItemMapFromInitializer(container, this.shapeDrawers, this._initializers.shapes, force);
   }
 
   /**

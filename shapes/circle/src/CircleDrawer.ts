@@ -10,8 +10,6 @@ const sides = 12,
 /**
  */
 export class CircleDrawer implements IShapeDrawer<CircleParticle> {
-  readonly validTypes = ["circle"] as const;
-
   draw(data: IShapeDrawData<CircleParticle>): void {
     drawCircle(data);
   }

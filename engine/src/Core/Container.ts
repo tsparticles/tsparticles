@@ -13,10 +13,8 @@ import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
-import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
-import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
 import { Particles } from "./Particles.js";
@@ -83,11 +81,6 @@ export class Container {
   destroyed;
 
   /**
-   * All the effect drawers used by the container
-   */
-  readonly effectDrawers;
-
-  /**
    * The container fps limit, coming from options
    */
   fpsLimit;
@@ -121,11 +114,6 @@ export class Container {
   readonly plugins: IContainerPlugin[];
 
   readonly retina;
-
-  /**
-   * All the shape drawers used by the container
-   */
-  readonly shapeDrawers;
 
   /**
    * Check if the particles container is started
@@ -191,8 +179,6 @@ export class Container {
     this.particleDestroyedPlugins = [];
     this.particleCreatedPlugins = [];
     this.particlePositionPlugins = [];
-    this.effectDrawers = new Map<string, IEffectDrawer>();
-    this.shapeDrawers = new Map<string, IShapeDrawer>();
     /* tsParticles variables with default values */
     this._options = loadContainerOptions(this._engine, this);
     this.actualOptions = loadContainerOptions(this._engine, this);
@@ -264,18 +250,6 @@ export class Container {
 
     this.particles.destroy();
     this.canvas.destroy();
-
-    for (const effectDrawer of this.effectDrawers.values()) {
-      effectDrawer.destroy?.(this);
-    }
-
-    this.effectDrawers.clear();
-
-    for (const shapeDrawer of this.shapeDrawers.values()) {
-      shapeDrawer.destroy?.(this);
-    }
-
-    this.shapeDrawers.clear();
 
     for (const plugin of this.plugins) {
       plugin.destroy?.();
@@ -353,26 +327,6 @@ export class Container {
       return;
     }
 
-    const effects = this._engine.getSupportedEffects();
-
-    for (const type of effects) {
-      const drawer = this._engine.getEffectDrawer(type);
-
-      if (drawer) {
-        this.effectDrawers.set(type, drawer);
-      }
-    }
-
-    const shapes = this._engine.getSupportedShapes();
-
-    for (const type of shapes) {
-      const drawer = this._engine.getShapeDrawer(type);
-
-      if (drawer) {
-        this.shapeDrawers.set(type, drawer);
-      }
-    }
-
     const allContainerPlugins = new Map<IPlugin, IContainerPlugin>();
 
     for (const plugin of this._engine.plugins) {
@@ -432,17 +386,10 @@ export class Container {
       await plugin.init?.();
     }
 
-    for (const drawer of this.effectDrawers.values()) {
-      await drawer.init?.(this);
-    }
-
-    for (const drawer of this.shapeDrawers.values()) {
-      await drawer.init?.(this);
-    }
+    await this.particles.init();
 
     this._engine.dispatchEvent(EventType.containerInit, { container: this });
 
-    await this.particles.init();
     this.particles.setDensity();
 
     for (const plugin of this.plugins) {

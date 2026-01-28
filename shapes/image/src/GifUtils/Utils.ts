@@ -47,7 +47,6 @@ function parseColorTable(byteStream: ByteStream, count: number): IRgb[] {
  * @param gif - GIF object to write to
  * @param getFrameIndex - function to get current frame index in `GIF.frames` (optionally increment before next call)
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
- * @throws if an unknown block type was encountered
  */
 function parseExtensionBlock(
   byteStream: ByteStream,
@@ -166,7 +165,6 @@ function parseExtensionBlock(
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
- * @throws if an unknown block type was encountered
  */
 async function parseImageBlock(
   byteStream: ByteStream,
@@ -394,7 +392,6 @@ async function parseImageBlock(
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
- * @throws if an unknown block type was encountered
  */
 async function parseBlock(
   byteStream: ByteStream,

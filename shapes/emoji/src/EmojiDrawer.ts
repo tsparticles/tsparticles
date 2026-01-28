@@ -10,9 +10,9 @@ import {
   itemFromSingleOrMultiple,
   safeDocument,
 } from "@tsparticles/engine";
+import { drawEmoji, validTypes } from "./Utils.js";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
-import { drawEmoji } from "./Utils.js";
 import { loadFont } from "@tsparticles/canvas-utils";
 
 const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
@@ -20,8 +20,6 @@ const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", 
   firstItem = 0;
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
-  readonly validTypes = ["emoji"] as const;
-
   private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
 
   destroy(): void {
@@ -52,7 +50,6 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
   async init(container: Container): Promise<void> {
     const options = container.actualOptions,
-      { validTypes } = this,
       shapeData = options.particles.shape;
 
     if (!validTypes.some(t => isInArray(t, shapeData.type))) {

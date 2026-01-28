@@ -4,8 +4,6 @@ import type { ICardData } from "../ICardData.js";
 import { drawRoundedCard } from "../utils.js";
 
 export class CardDrawer implements IShapeDrawer<CardParticle> {
-  readonly validTypes = ["card"] as const;
-
   draw(data: IShapeDrawData<CardParticle>): void {
     const { context, particle, opacity, radius } = data;
 

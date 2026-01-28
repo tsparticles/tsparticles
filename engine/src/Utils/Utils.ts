@@ -728,3 +728,31 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
 
   return res;
 }
+
+/**
+ * @param container -
+ * @param map -
+ * @param initializers -
+ * @param force -
+ * @returns the items from the given initializer
+ */
+export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+  container: Container,
+  map: Map<Container, Map<string, TItem>>,
+  initializers: Map<string, TInitializer>,
+  force = false,
+): Promise<Map<string, TItem>> {
+  let res = map.get(container);
+
+  if (!res || force) {
+    res = new Map<string, TItem>();
+
+    for (const [key, initializer] of initializers) {
+      res.set(key, await initializer(container));
+    }
+
+    map.set(container, res);
+  }
+
+  return res;
+}
