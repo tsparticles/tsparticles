@@ -75,7 +75,7 @@ export class Particles {
   private _particleUpdatePlugins: IContainerPlugin[];
   private readonly _pool: Particle[];
   private _postParticleUpdatePlugins: IContainerPlugin[];
-  private _postUpdatePlugin: IContainerPlugin[];
+  private _postUpdatePlugins: IContainerPlugin[];
   private _resizeFactor?: IDimension;
   private _updatePlugins: IContainerPlugin[];
   private _zArray: Particle[];
@@ -108,7 +108,7 @@ export class Particles {
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
     this._particleUpdatePlugins = [];
-    this._postUpdatePlugin = [];
+    this._postUpdatePlugins = [];
     this._postParticleUpdatePlugins = [];
     this._updatePlugins = [];
   }
@@ -182,7 +182,7 @@ export class Particles {
     this.checkParticlePositionPlugins = [];
     this._particleResetPlugins = [];
     this._particleUpdatePlugins = [];
-    this._postUpdatePlugin = [];
+    this._postUpdatePlugins = [];
     this._postParticleUpdatePlugins = [];
     this._updatePlugins = [];
   }
@@ -224,7 +224,7 @@ export class Particles {
     this.checkParticlePositionPlugins = [];
     this._updatePlugins = [];
     this._particleUpdatePlugins = [];
-    this._postUpdatePlugin = [];
+    this._postUpdatePlugins = [];
     this._particleResetPlugins = [];
     this._postParticleUpdatePlugins = [];
 
@@ -246,7 +246,7 @@ export class Particles {
       }
 
       if (plugin.postUpdate) {
-        this._postUpdatePlugin.push(plugin);
+        this._postUpdatePlugins.push(plugin);
       }
 
       if (plugin.particleReset) {
@@ -453,7 +453,7 @@ export class Particles {
       this._addToPool(...particlesToDelete);
     }
 
-    for (const plugin of this._postUpdatePlugin) {
+    for (const plugin of this._postUpdatePlugins) {
       plugin.postUpdate?.(delta);
     }
 
