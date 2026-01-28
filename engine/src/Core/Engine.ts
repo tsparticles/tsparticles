@@ -455,7 +455,7 @@ export class Engine {
     } finally {
       this._loadPromises.clear();
       this._isRunningLoaders = false;
-      this._initialized = true; // Hard stop: da qui in poi register() darà errore
+      this._initialized = true;
     }
   }
 
