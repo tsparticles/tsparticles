@@ -612,9 +612,19 @@ export class Particle {
     this.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
 
     if (pathOptions.generator) {
-      this.pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
+      let pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
 
-      this.pathGenerator?.init();
+      if (pathGenerator) {
+        this.pathGenerator = pathGenerator;
+      } else {
+        pathGenerator = this.container.particles.availablePathGenerators.get(pathOptions.generator);
+
+        if (pathGenerator) {
+          this.container.particles.pathGenerators.set(pathOptions.generator, pathGenerator);
+
+          pathGenerator.init();
+        }
+      }
     }
 
     container.retina.initParticle(this);

@@ -46,6 +46,8 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
  * Particles manager object
  */
 export class Particles {
+  availablePathGenerators: Map<string, IMovePathGenerator>;
+
   checkParticlePositionPlugins: IContainerPlugin[];
 
   effectDrawers: Map<string, IEffectDrawer>;
@@ -106,6 +108,7 @@ export class Particles {
 
     this.effectDrawers = new Map();
     this.movers = [];
+    this.availablePathGenerators = new Map();
     this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
@@ -181,6 +184,7 @@ export class Particles {
     this._zArray = [];
     this.effectDrawers = new Map();
     this.movers = [];
+    this.availablePathGenerators = new Map();
     this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
@@ -302,7 +306,7 @@ export class Particles {
 
     this.effectDrawers = await this._engine.getEffectDrawers(container, true);
     this.movers = await this._engine.getMovers(container, true);
-    this.pathGenerators = await this._engine.getPathGenerators(container, true);
+    this.availablePathGenerators = await this._engine.getPathGenerators(container, true);
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
 
@@ -394,7 +398,7 @@ export class Particles {
 
     this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
 
-    for (const pathGenerator of this.pathGenerators.values()) {
+    for (const pathGenerator of this.availablePathGenerators.values()) {
       pathGenerator.update();
     }
 
