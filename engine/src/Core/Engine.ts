@@ -7,6 +7,7 @@ import type {
   EffectInitializer,
   Initializers,
   MoverInitializer,
+  PathGeneratorInitializer,
   ShapeInitializer,
   UpdaterInitializer,
 } from "../Types/EngineInitializers.js";
@@ -169,6 +170,7 @@ export class Engine {
   readonly initializers: Initializers = {
     effects: new Map<string, EffectInitializer>(),
     movers: new Map<string, MoverInitializer>(),
+    pathGenerators: new Map<string, PathGeneratorInitializer>(),
     shapes: new Map<string, ShapeInitializer>(),
     updaters: new Map<string, UpdaterInitializer>(),
   };
@@ -178,7 +180,7 @@ export class Engine {
   /**
    * The path generators array
    */
-  readonly pathGenerators = new Map<string, IMovePathGenerator>();
+  readonly pathGenerators = new Map<Container, Map<string, IMovePathGenerator>>();
 
   /**
    * The plugins array
@@ -307,12 +309,8 @@ export class Engine {
    * @param name - the path generator name
    * @param generator - the path generator object
    */
-  addPathGenerator(name: string, generator: IMovePathGenerator): void {
-    if (this.getPathGenerator(name)) {
-      return;
-    }
-
-    this.pathGenerators.set(name, generator);
+  addPathGenerator(name: string, generator: PathGeneratorInitializer): void {
+    this.initializers.pathGenerators.set(name, generator);
   }
 
   /**
@@ -389,21 +387,16 @@ export class Engine {
     return this.easingFunctions.get(name) ?? ((value: number): number => value);
   }
 
-  async getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
+  getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
     return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
   }
 
-  async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
+  getMovers(container: Container, force = false): Promise<IParticleMover[]> {
     return getItemsFromInitializer(container, this.movers, this.initializers.movers, force);
   }
 
-  /**
-   * Searches the path generator with the given type name
-   * @param type - the path generator type to search
-   * @returns the path generator if found, or undefined
-   */
-  getPathGenerator(type: string): IMovePathGenerator | undefined {
-    return this.pathGenerators.get(type);
+  getPathGenerators(container: Container, force = false): Promise<Map<string, IMovePathGenerator>> {
+    return getItemMapFromInitializer(container, this.pathGenerators, this.initializers.pathGenerators, force);
   }
 
   /**

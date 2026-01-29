@@ -10,9 +10,11 @@ export const spiralPathName = "spiralPathGenerator";
 export async function loadSpiralPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { SpiralPathGenerator } = await import("./SpiralPathGenerator.js");
+  await engine.register(e => {
+    e.addPathGenerator(spiralPathName, async container => {
+      const { SpiralPathGenerator } = await import("./SpiralPathGenerator.js");
 
-    e.addPathGenerator(spiralPathName, new SpiralPathGenerator());
+      return new SpiralPathGenerator(container);
+    });
   });
 }

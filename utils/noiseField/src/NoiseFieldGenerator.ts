@@ -44,13 +44,14 @@ const originCoordinate = 0,
   };
 
 export abstract class NoiseFieldGenerator implements IMovePathGenerator {
-  container?: Container;
+  readonly container: Container;
   field: Vector[][][];
   readonly noiseGen: INoiseGenerator;
   noiseW: number;
   readonly options: INoiseFieldOptions;
 
-  protected constructor(noiseGen: INoiseGenerator) {
+  protected constructor(container: Container, noiseGen: INoiseGenerator) {
+    this.container = container;
     this.noiseGen = noiseGen;
     this.field = [];
     this.noiseW = 0;
@@ -71,9 +72,7 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
     return fieldPoint ? fieldPoint.copy() : Vector.origin;
   }
 
-  init(container: Container): void {
-    this.container = container;
-
+  init(): void {
     this._setup();
   }
 
@@ -82,10 +81,6 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   }
 
   update(): void {
-    if (!this.container) {
-      return;
-    }
-
     this._calculateField();
 
     this.noiseW += this.options.increment;
@@ -211,13 +206,8 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   }
 
   private _resetField(): void {
-    const container = this.container;
-
-    if (!container) {
-      return;
-    }
-
-    const sourceOptions = container.actualOptions.particles.move.path.options,
+    const container = this.container,
+      sourceOptions = container.actualOptions.particles.move.path.options,
       { options } = this;
 
     options.width = container.canvas.size.width;

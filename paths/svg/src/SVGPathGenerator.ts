@@ -54,6 +54,7 @@ interface SVGPathData {
 }
 
 export class SVGPathGenerator implements IMovePathGenerator {
+  private readonly _container;
   private readonly _offset: ICoordinatesWithMode;
   private _paths: SVGPathData[];
   private _reverse: boolean;
@@ -61,7 +62,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
   private readonly _size: IDimension;
   private _width: number;
 
-  constructor() {
+  constructor(container: Container) {
+    this._container = container;
     this._paths = [];
     this._reverse = false;
     this._size = { width: 0, height: 0 };
@@ -71,7 +73,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
   }
 
   generate(particle: SVGPathParticle, delta: IDelta): Vector {
-    const container = particle.container,
+    const container = this._container,
       pxRatio = container.retina.pixelRatio;
 
     particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
@@ -134,7 +136,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
     const pathElement = path.element,
       pos = pathElement.getPointAtLength(particle.svgStep),
-      canvasSize = particle.container.canvas.size,
+      canvasSize = this._container.canvas.size,
       offset = getPosition(this._offset, canvasSize),
       scale = this._scale * pxRatio;
 
@@ -146,8 +148,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
     return Vector.origin;
   }
 
-  init(container: Container): void {
-    const options = container.actualOptions.particles.move.path.options as SVGPathOptions,
+  init(): void {
+    const options = this._container.actualOptions.particles.move.path.options as SVGPathOptions,
       position = options.position ?? this._offset;
 
     this._reverse = options.reverse ?? this._reverse;

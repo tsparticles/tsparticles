@@ -20,6 +20,7 @@ import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
@@ -50,6 +51,8 @@ export class Particles {
   effectDrawers: Map<string, IEffectDrawer>;
 
   movers: IParticleMover[];
+
+  pathGenerators: Map<string, IMovePathGenerator>;
 
   /**
    * The quad tree used to search particles withing ranges
@@ -103,6 +106,7 @@ export class Particles {
 
     this.effectDrawers = new Map();
     this.movers = [];
+    this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -177,6 +181,7 @@ export class Particles {
     this._zArray = [];
     this.effectDrawers = new Map();
     this.movers = [];
+    this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -297,11 +302,12 @@ export class Particles {
 
     this.effectDrawers = await this._engine.getEffectDrawers(container, true);
     this.movers = await this._engine.getMovers(container, true);
+    this.pathGenerators = await this._engine.getPathGenerators(container, true);
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
 
-    for (const pathGenerator of container.pathGenerators.values()) {
-      pathGenerator.init(container);
+    for (const pathGenerator of this.pathGenerators.values()) {
+      pathGenerator.init();
     }
   }
 
@@ -388,7 +394,7 @@ export class Particles {
 
     this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
 
-    for (const pathGenerator of container.pathGenerators.values()) {
+    for (const pathGenerator of this.pathGenerators.values()) {
       pathGenerator.update();
     }
 

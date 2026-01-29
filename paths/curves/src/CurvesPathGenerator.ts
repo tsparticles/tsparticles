@@ -34,13 +34,17 @@ function randomVelocity(): number {
 export class CurvesPathGenerator implements IMovePathGenerator {
   readonly options;
 
-  constructor() {
-    this.options = new Map<Container, ICurvesOptions>();
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+
+    this.options = deepExtend({}, defaultOptions) as ICurvesOptions;
   }
 
   generate(particle: CurvesPathParticle): Vector {
     if (!particle.pathGen) {
-      const options = this.options.get(particle.container) ?? (deepExtend({}, defaultOptions) as ICurvesOptions);
+      const { options } = this;
 
       particle.pathGen = CurvesPathGen(
         options.rndFunc,
@@ -68,25 +72,23 @@ export class CurvesPathGenerator implements IMovePathGenerator {
     return particle.curveVelocity;
   }
 
-  init(container: Container): void {
-    const sourceOptions = container.actualOptions.particles.move.path.options,
-      options = deepExtend({}, defaultOptions) as ICurvesOptions;
+  init(): void {
+    const sourceOptions = this._container.actualOptions.particles.move.path.options;
 
     if (isFunction(sourceOptions["rndFunc"])) {
-      options.rndFunc = sourceOptions["rndFunc"] as () => number;
+      this.options.rndFunc = sourceOptions["rndFunc"] as () => number;
     } else if (isString(sourceOptions["rndFunc"])) {
-      options.rndFunc =
+      this.options.rndFunc =
         ((globalThis as Record<string, unknown>)[sourceOptions["rndFunc"]] as (() => number) | null | undefined) ??
-        options.rndFunc;
+        this.options.rndFunc;
     }
 
-    options.period = (sourceOptions["period"] as number | undefined) ?? options.period;
-    options.nbHarmonics = (sourceOptions["nbHarmonics"] as number | undefined) ?? options.nbHarmonics;
-    options.attenHarmonics = (sourceOptions["attenHarmonics"] as number | undefined) ?? options.attenHarmonics;
-    options.lowValue = (sourceOptions["lowValue"] as number | undefined) ?? options.lowValue;
-    options.highValue = (sourceOptions["highValue"] as number | undefined) ?? options.highValue;
-
-    this.options.set(container, options);
+    this.options.period = (sourceOptions["period"] as number | undefined) ?? this.options.period;
+    this.options.nbHarmonics = (sourceOptions["nbHarmonics"] as number | undefined) ?? this.options.nbHarmonics;
+    this.options.attenHarmonics =
+      (sourceOptions["attenHarmonics"] as number | undefined) ?? this.options.attenHarmonics;
+    this.options.lowValue = (sourceOptions["lowValue"] as number | undefined) ?? this.options.lowValue;
+    this.options.highValue = (sourceOptions["highValue"] as number | undefined) ?? this.options.highValue;
   }
 
   reset(particle: CurvesPathParticle): void {

@@ -10,9 +10,11 @@ export const zigZagPathName = "zigZagPathGenerator";
 export async function loadZigZagPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { ZigZagPathGenerator } = await import("./ZigZagPathGenerator.js");
+  await engine.register(e => {
+    e.addPathGenerator(zigZagPathName, async container => {
+      const { ZigZagPathGenerator } = await import("./ZigZagPathGenerator.js");
 
-    e.addPathGenerator(zigZagPathName, new ZigZagPathGenerator());
+      return new ZigZagPathGenerator(container);
+    });
   });
 }

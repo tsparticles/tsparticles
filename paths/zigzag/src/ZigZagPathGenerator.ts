@@ -35,14 +35,17 @@ const defaultOptions: IZigZagOptions = {
 };
 
 export class ZigZagPathGenerator implements IMovePathGenerator {
-  options;
+  readonly options;
 
-  constructor() {
-    this.options = new Map<Container, IZigZagOptions>();
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+    this.options = deepExtend({}, defaultOptions) as IZigZagOptions;
   }
 
   generate(particle: ZigZagParticle, delta: IDelta): Vector {
-    const options = this.options.get(particle.container) ?? (deepExtend({}, defaultOptions) as IZigZagOptions);
+    const { options } = this;
 
     particle.zigzag ??= {
       counter: getRandom(),
@@ -62,14 +65,11 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     return Vector.origin;
   }
 
-  init(container: Container): void {
-    const sourceOptions = container.actualOptions.particles.move.path.options,
-      options = deepExtend({}, defaultOptions) as IZigZagOptions;
+  init(): void {
+    const sourceOptions = this._container.actualOptions.particles.move.path.options;
 
-    options.waveLength = (sourceOptions["waveLength"] as RangeValue | undefined) ?? options.waveLength;
-    options.waveHeight = (sourceOptions["waveHeight"] as RangeValue | undefined) ?? options.waveHeight;
-
-    this.options.set(container, options);
+    this.options.waveLength = (sourceOptions["waveLength"] as RangeValue | undefined) ?? this.options.waveLength;
+    this.options.waveHeight = (sourceOptions["waveHeight"] as RangeValue | undefined) ?? this.options.waveHeight;
   }
 
   reset(): void {

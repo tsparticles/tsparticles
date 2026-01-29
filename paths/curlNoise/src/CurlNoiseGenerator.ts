@@ -18,19 +18,21 @@ const defaultOptions: ICurlOptions = {
 export class CurlNoiseGenerator implements IMovePathGenerator {
   readonly options;
 
+  private readonly _container;
   private readonly _simplex;
 
-  constructor() {
+  constructor(container: Container) {
+    this._container = container;
+
     const simplex = new SimplexNoise();
 
     this._simplex = simplex.noise2d;
-    this.options = new Map<Container, ICurlOptions>();
+    this.options = deepExtend({}, defaultOptions) as ICurlOptions;
   }
 
   generate(particle: Particle): Vector {
     const pos = particle.getPosition(),
-      options = this.options.get(particle.container) ?? (deepExtend({}, defaultOptions) as ICurlOptions),
-      { speed, step } = options,
+      { speed, step } = this.options,
       x = pos.x / step,
       y = pos.y / step,
       eps = 0.001,
@@ -47,18 +49,16 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
     return Vector.create(speed * a, speed * -b);
   }
 
-  init(container: Container): void {
-    const sourceOptions = container.actualOptions.particles.move.path.options,
-      options = deepExtend({}, defaultOptions) as ICurlOptions;
+  init(): void {
+    const container = this._container,
+      sourceOptions = container.actualOptions.particles.move.path.options;
 
-    options.seed = sourceOptions["seed"] as number | undefined;
-    options.speed =
+    this.options.seed = sourceOptions["seed"] as number | undefined;
+    this.options.speed =
       ((sourceOptions["speed"] as number | undefined) ?? defaultOptions.speed) * container.retina.pixelRatio;
-    options.step = (sourceOptions["step"] as number | undefined) ?? defaultOptions.step;
+    this.options.step = (sourceOptions["step"] as number | undefined) ?? defaultOptions.step;
 
-    this.options.set(container, options);
-
-    this._simplex.seed(options.seed ?? getRandom());
+    this._simplex.seed(this.options.seed ?? getRandom());
   }
 
   reset(): void {

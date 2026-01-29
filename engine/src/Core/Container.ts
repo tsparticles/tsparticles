@@ -13,7 +13,6 @@ import { EventListeners } from "./Utils/EventListeners.js";
 import { EventType } from "../Enums/Types/EventType.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
 import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
@@ -106,8 +105,6 @@ export class Container {
    */
   readonly particles;
 
-  readonly pathGenerators: Map<string, IMovePathGenerator>;
-
   /**
    * All the plugins used by the container
    */
@@ -174,7 +171,6 @@ export class Container {
     this.retina = new Retina(this);
     this.canvas = new Canvas(this, this._engine);
     this.particles = new Particles(this._engine, this);
-    this.pathGenerators = new Map<string, IMovePathGenerator>();
     this.plugins = [];
     this.particleDestroyedPlugins = [];
     this.particleCreatedPlugins = [];
@@ -214,23 +210,6 @@ export class Container {
 
   addLifeTime(value: number): void {
     this._lifeTime += value;
-  }
-
-  /**
-   * Add a new path generator to the container
-   * @param key - the key to identify the path generator
-   * @param generator - the path generator
-   * @param override - if true, override the existing path generator
-   * @returns true if the path generator was added, false otherwise
-   */
-  addPath(key: string, generator: IMovePathGenerator, override = false): boolean {
-    if (!guardCheck(this) || (!override && this.pathGenerators.has(key))) {
-      return false;
-    }
-
-    this.pathGenerators.set(key, generator);
-
-    return true;
   }
 
   alive(): boolean {

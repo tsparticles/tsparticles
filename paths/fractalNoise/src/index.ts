@@ -10,9 +10,11 @@ export const fractalNoisePathName = "fractalNoise";
 export async function loadFractalNoisePath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { FractalNoiseGenerator } = await import("./FractalNoiseGenerator.js");
+  await engine.register(e => {
+    e.addPathGenerator(fractalNoisePathName, async container => {
+      const { FractalNoiseGenerator } = await import("./FractalNoiseGenerator.js");
 
-    e.addPathGenerator(fractalNoisePathName, new FractalNoiseGenerator());
+      return new FractalNoiseGenerator(container);
+    });
   });
 }

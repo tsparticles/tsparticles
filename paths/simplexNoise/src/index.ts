@@ -10,9 +10,11 @@ export const simplexNoisePathName = "simplexNoise";
 export async function loadSimplexNoisePath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { SimplexNoiseGenerator } = await import("./SimplexNoiseGenerator.js");
+  await engine.register(e => {
+    e.addPathGenerator(simplexNoisePathName, async container => {
+      const { SimplexNoiseGenerator } = await import("./SimplexNoiseGenerator.js");
 
-    e.addPathGenerator(simplexNoisePathName, new SimplexNoiseGenerator());
+      return new SimplexNoiseGenerator(container);
+    });
   });
 }
