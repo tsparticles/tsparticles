@@ -1,31 +1,40 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-
-import { type Container, type ICoordinates, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
+import {
+  type Container,
+  type ICoordinates,
+  type IMovePathGenerator,
+  Vector,
+  deepExtend,
+  getRandom,
+} from "@tsparticles/engine";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
 import type { PolygonPathParticle } from "./PolygonPathParticle.js";
 
+const defaultOptions = {
+  sides: 6,
+  turnSteps: 20,
+  angle: 30,
+};
+
 export class PolygonPathGenerator implements IMovePathGenerator {
-  dirsList: ICoordinates[];
-  readonly options: IPolygonPathOptions;
+  dirsList;
+  readonly options;
 
   constructor() {
-    this.dirsList = [];
-    this.options = {
-      sides: 6,
-      turnSteps: 20,
-      angle: 30,
-    };
+    this.dirsList = new Map<Container, ICoordinates[]>();
+    this.options = new Map<Container, IPolygonPathOptions>();
   }
 
   generate(p: PolygonPathParticle): Vector {
-    const { sides } = this.options;
+    const options = this.options.get(p.container) ?? (deepExtend({}, defaultOptions) as IPolygonPathOptions),
+      { sides, turnSteps } = options;
 
     p.hexStep ??= 0;
     p.hexDirection ??= sides === 6 ? ((getRandom() * 3) | 0) * 2 : (getRandom() * sides) | 0;
     p.hexSpeed ??= p.velocity.length;
 
-    if (p.hexStep % this.options.turnSteps === 0) {
+    if (p.hexStep % turnSteps === 0) {
       p.hexDirection = getRandom() > 0.5 ? (p.hexDirection + 1) % sides : (p.hexDirection + sides - 1) % sides;
     }
 
@@ -34,19 +43,31 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
     p.hexStep++;
 
-    const direction = this.dirsList[p.hexDirection]!;
+    let dirsList = this.dirsList.get(p.container);
+
+    if (!dirsList) {
+      dirsList = [];
+
+      this.dirsList.set(p.container, dirsList);
+    }
+
+    const direction = dirsList[p.hexDirection]!;
 
     return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
   }
 
   init(container: Container): void {
-    const options = container.actualOptions.particles.move.path.options;
+    const sourceOptions = container.actualOptions.particles.move.path.options,
+      options = deepExtend({}, defaultOptions) as IPolygonPathOptions;
 
-    this.options.sides = (options["sides"] as number) > 0 ? (options["sides"] as number) : 6;
-    this.options.angle = (options["angle"] as number | undefined) ?? 30;
-    this.options.turnSteps = (options["turnSteps"] as number) >= 0 ? (options["turnSteps"] as number) : 20;
+    options.sides = (sourceOptions["sides"] as number) > 0 ? (sourceOptions["sides"] as number) : options.sides;
+    options.angle = (sourceOptions["angle"] as number | undefined) ?? options.angle;
+    options.turnSteps =
+      (sourceOptions["turnSteps"] as number) >= 0 ? (sourceOptions["turnSteps"] as number) : options.turnSteps;
 
-    this._createDirs();
+    this.options.set(container, options);
+
+    this._createDirs(container);
   }
 
   reset(particle: PolygonPathParticle): void {
@@ -59,13 +80,16 @@ export class PolygonPathGenerator implements IMovePathGenerator {
     // do nothing
   }
 
-  private readonly _createDirs: () => void = () => {
-    this.dirsList = [];
+  private readonly _createDirs: (container: Container) => void = container => {
+    const dirsList = [],
+      options = this.options.get(container) ?? (deepExtend({}, defaultOptions) as IPolygonPathOptions);
 
-    for (let i = 0; i < 360; i += 360 / this.options.sides) {
-      const angle = this.options.angle + i;
+    for (let i = 0; i < 360; i += 360 / options.sides) {
+      const angle = options.angle + i;
 
-      this.dirsList.push(Vector.create(Math.cos((angle * Math.PI) / 180), Math.sin((angle * Math.PI) / 180)));
+      dirsList.push(Vector.create(Math.cos((angle * Math.PI) / 180), Math.sin((angle * Math.PI) / 180)));
     }
+
+    this.dirsList.set(container, dirsList);
   };
 }
