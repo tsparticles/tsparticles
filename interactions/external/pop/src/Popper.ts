@@ -2,7 +2,9 @@ import {
   ExternalInteractorBase,
   type IInteractivityData,
   type InteractivityContainer,
+  type InteractivityParticle,
 } from "@tsparticles/plugin-interactivity";
+import { isInArray } from "@tsparticles/engine";
 
 const popMode = "pop";
 
@@ -52,8 +54,13 @@ export class Popper extends ExternalInteractorBase {
     // do nothing
   }
 
-  isEnabled(): boolean {
-    return true;
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+    const container = this.container,
+      options = container.actualOptions,
+      mouse = interactivityData.mouse,
+      events = (particle?.interactivity ?? options.interactivity)?.events;
+
+    return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(popMode, events.onClick.mode);
   }
 
   reset(): void {

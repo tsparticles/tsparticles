@@ -2,6 +2,7 @@ import {
   ExternalInteractorBase,
   type IInteractivityData,
   type IModes,
+  type InteractivityParticle,
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import {
@@ -9,6 +10,7 @@ import {
   type RecursivePartial,
   deepExtend,
   getRangeValue,
+  isInArray,
   itemFromArray,
   itemFromSingleOrMultiple,
 } from "@tsparticles/engine";
@@ -67,8 +69,13 @@ export class Pusher extends ExternalInteractorBase<PushContainer> {
     // do nothing
   }
 
-  isEnabled(): boolean {
-    return true;
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+    const container = this.container,
+      options = container.actualOptions,
+      mouse = interactivityData.mouse,
+      events = (particle?.interactivity ?? options.interactivity)?.events;
+
+    return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(pushMode, events.onClick.mode);
   }
 
   loadModeOptions(options: Modes & PushMode, ...sources: RecursivePartial<(IModes & IPushMode) | undefined>[]): void {

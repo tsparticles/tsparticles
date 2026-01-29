@@ -2,26 +2,12 @@ import { lFactor, minStrokeWidth, originPoint } from "../Core/Utils/Constants.js
 import { AlterType } from "../Enums/Types/AlterType.js";
 import type { Container } from "../Core/Container.js";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
-import type { ICoordinates } from "../Core/Interfaces/ICoordinates.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IDimension } from "../Core/Interfaces/IDimension.js";
 import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams.js";
 import type { IHsl } from "../Core/Interfaces/Colors.js";
 import type { IShapeDrawData } from "../export-types.js";
 import type { Particle } from "../Core/Particle.js";
-
-/**
- * Draws a line between two points using canvas API in the given context.
- * @param context - The canvas context to draw on.
- * @param begin - The start point of the line.
- * @param end - The end point of the line.
- */
-export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
-  context.beginPath();
-  context.moveTo(begin.x, begin.y);
-  context.lineTo(end.x, end.y);
-  context.closePath();
-}
 
 /**
  * Fills a rectangle with the given color for the whole canvas.
@@ -120,7 +106,7 @@ export function drawAfterEffect(container: Container, data: IShapeDrawData): voi
     return;
   }
 
-  const drawer = container.effectDrawers.get(particle.effect),
+  const drawer = container.particles.effectDrawers.get(particle.effect),
     drawFunc = drawer?.drawAfter;
 
   if (!drawFunc) {
@@ -142,7 +128,7 @@ export function drawBeforeEffect(container: Container, data: IShapeDrawData): vo
     return;
   }
 
-  const drawer = container.effectDrawers.get(particle.effect);
+  const drawer = container.particles.effectDrawers.get(particle.effect);
 
   if (!drawer?.drawBefore) {
     return;
@@ -163,7 +149,7 @@ export function drawShape(container: Container, data: IShapeDrawData): void {
     return;
   }
 
-  const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.particles.shapeDrawers.get(particle.shape);
 
   if (!drawer) {
     return;
@@ -198,7 +184,7 @@ export function drawShapeAfterDraw(container: Container, data: IShapeDrawData): 
     return;
   }
 
-  const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.particles.shapeDrawers.get(particle.shape);
 
   if (!drawer?.afterDraw) {
     return;
@@ -219,7 +205,7 @@ export function drawShapeBeforeDraw(container: Container, data: IShapeDrawData):
     return;
   }
 
-  const drawer = container.shapeDrawers.get(particle.shape);
+  const drawer = container.particles.shapeDrawers.get(particle.shape);
 
   if (!drawer?.beforeDraw) {
     return;

@@ -5,11 +5,7 @@ import { Motion } from "./Options/Classes/Motion.js";
 /**
  */
 export class MotionPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "motion";
-  }
+  readonly id = "motion";
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { MotionPluginInstance } = await import("./MotionPluginInstance.js");

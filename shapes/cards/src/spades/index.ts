@@ -8,9 +8,11 @@ declare const __VERSION__: string;
 export async function loadSpadesSuitShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { SpadeDrawer } = await import("./SpadeDrawer.js");
+  await engine.register(e => {
+    e.addShape(["spade", "spades"], async () => {
+      const { SpadeDrawer } = await import("./SpadeDrawer.js");
 
-    e.addShape(new SpadeDrawer());
+      return new SpadeDrawer();
+    });
   });
 }

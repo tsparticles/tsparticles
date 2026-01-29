@@ -2,7 +2,9 @@ import {
   ExternalInteractorBase,
   type IInteractivityData,
   type InteractivityContainer,
+  type InteractivityParticle,
 } from "@tsparticles/plugin-interactivity";
+import { isInArray } from "@tsparticles/engine";
 
 const pauseMode = "pause";
 
@@ -42,8 +44,12 @@ export class Pauser extends ExternalInteractorBase {
     // do nothing
   }
 
-  isEnabled(): boolean {
-    return true;
+  isEnabled(_interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+    const container = this.container,
+      options = container.actualOptions,
+      events = (particle?.interactivity ?? options.interactivity)?.events;
+
+    return !!events && isInArray(pauseMode, events.onClick.mode);
   }
 
   reset(): void {

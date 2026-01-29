@@ -4,13 +4,16 @@ import type { IFontTextMask } from "../Interfaces/IFontTextMask.js";
 export class FontTextMask implements IFontTextMask, IOptionLoader<IFontTextMask> {
   family: string;
   size: string | number;
-  style?: string;
-  variant?: string;
-  weight?: string | number;
+  style: string;
+  variant: string;
+  weight: string;
 
   constructor() {
     this.family = "sans-serif";
     this.size = 100;
+    this.style = "";
+    this.variant = "";
+    this.weight = "";
   }
 
   load(data?: RecursivePartial<IFontTextMask>): void {

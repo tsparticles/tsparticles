@@ -5,11 +5,7 @@ import { ManualParticle } from "./Options/Classes/ManualParticle.js";
 /**
  */
 export class ManualParticlesPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "manual-particles";
-  }
+  readonly id = "manual-particles";
 
   async getPlugin(container: ManualParticlesContainer): Promise<IContainerPlugin> {
     const { ManualParticlesPluginInstance } = await import("./ManualParticlesPluginInstance.js");

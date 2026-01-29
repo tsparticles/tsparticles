@@ -89,12 +89,6 @@ function hwbaToRgba(hwba: IHwba): IRgba {
 }
 
 export class HwbColorManager implements IColorManager {
-  readonly key;
-
-  constructor() {
-    this.key = "hwb";
-  }
-
   accepts(input: string): boolean {
     return input.startsWith("hwb");
   }

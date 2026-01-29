@@ -1,4 +1,4 @@
-import { type ICoordinates, type IDimension } from "@tsparticles/engine";
+import { type Container, type ICoordinates, type IDimension } from "@tsparticles/engine";
 import type { IEmitterShape, IEmitterShapeGenerator } from "@tsparticles/plugin-emitters";
 import { EmittersCanvasShape } from "./EmittersCanvasShape.js";
 import { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
@@ -6,6 +6,7 @@ import type { IEmittersCanvasShapeOptions } from "./Options/Interfaces/IEmitters
 
 export class EmittersCanvasShapeGenerator implements IEmitterShapeGenerator<IEmittersCanvasShapeOptions> {
   generate(
+    container: Container,
     position: ICoordinates,
     size: IDimension,
     fill: boolean,
@@ -15,6 +16,6 @@ export class EmittersCanvasShapeGenerator implements IEmitterShapeGenerator<IEmi
 
     shapeOptions.load(options);
 
-    return new EmittersCanvasShape(position, size, fill, shapeOptions);
+    return new EmittersCanvasShape(container, position, size, fill, shapeOptions);
   }
 }

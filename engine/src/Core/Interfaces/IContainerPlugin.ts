@@ -39,7 +39,6 @@ export interface IContainerPlugin {
   postUpdate?: (delta: IDelta) => void;
   preInit?: () => Promise<void>;
   redrawInit?: () => Promise<void>;
-  reset?: () => void;
   resize?: () => void;
   start?: () => Promise<void>;
   stop?: () => void;

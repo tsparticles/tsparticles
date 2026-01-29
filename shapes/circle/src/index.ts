@@ -8,9 +8,11 @@ declare const __VERSION__: string;
 export async function loadCircleShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { CircleDrawer } = await import("./CircleDrawer.js");
+  await engine.register(e => {
+    e.addShape(["circle"], async () => {
+      const { CircleDrawer } = await import("./CircleDrawer.js");
 
-    e.addShape(new CircleDrawer());
+      return new CircleDrawer();
+    });
   });
 }

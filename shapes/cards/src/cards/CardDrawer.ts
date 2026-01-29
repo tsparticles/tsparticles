@@ -4,16 +4,27 @@ import type { ICardData } from "../ICardData.js";
 import { drawRoundedCard } from "../utils.js";
 
 export class CardDrawer implements IShapeDrawer<CardParticle> {
-  readonly validTypes = ["card"] as const;
-
   draw(data: IShapeDrawData<CardParticle>): void {
-    const { context, particle, radius } = data;
+    const { context, particle, opacity, radius } = data;
 
     if (!particle.cardData) {
       return;
     }
 
-    drawRoundedCard(context, radius, particle.cardData, particle.container.hdr, particle.isShowingBack());
+    const defaultOpacity = context.globalAlpha;
+
+    context.globalAlpha = opacity;
+
+    drawRoundedCard(
+      context,
+      radius,
+      particle.cardData,
+      particle.container.hdr,
+      particle.isShowingBack(),
+      particle.container.canvas.settings,
+    );
+
+    context.globalAlpha = defaultOpacity;
   }
 
   particleInit(_container: Container, particle: CardParticle): void {

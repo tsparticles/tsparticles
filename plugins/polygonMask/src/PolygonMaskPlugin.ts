@@ -6,13 +6,11 @@ import { PolygonMaskType } from "./Enums/PolygonMaskType.js";
 /**
  */
 export class PolygonMaskPlugin implements IPlugin {
-  readonly id;
+  readonly id = "polygon-mask";
 
   private readonly _engine;
 
   constructor(engine: Engine) {
-    this.id = "polygonMask";
-
     this._engine = engine;
   }
 

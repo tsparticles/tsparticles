@@ -50,9 +50,11 @@ export type InteractivityEngine = Engine & {
 
   getInteractors?: (container: Container, force?: boolean) => Promise<IInteractor[]>;
 
-  interactors?: Map<Container, IInteractor[]>;
+  initializers: {
+    interactors?: Map<string, InteractorInitializer>;
+  };
 
-  interactorsInitializers?: Map<string, InteractorInitializer>;
+  interactors?: Map<Container, IInteractor[]>;
 
   setOnClickHandler?: (callback: (e: Event, particles?: Particle[]) => void) => void;
 };

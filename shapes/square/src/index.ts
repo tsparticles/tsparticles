@@ -8,9 +8,11 @@ declare const __VERSION__: string;
 export async function loadSquareShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { SquareDrawer } = await import("./SquareDrawer.js");
+  await engine.register(e => {
+    e.addShape(["edge", "square"], async () => {
+      const { SquareDrawer } = await import("./SquareDrawer.js");
 
-    e.addShape(new SquareDrawer());
+      return new SquareDrawer();
+    });
   });
 }

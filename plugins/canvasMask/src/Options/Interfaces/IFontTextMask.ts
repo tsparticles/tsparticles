@@ -1,7 +1,3 @@
-export interface IFontTextMask {
-  family: string;
-  size: number | string;
-  style?: string;
-  variant?: string;
-  weight?: number | string;
-}
+import type { ITextDataFontOptions } from "@tsparticles/canvas-utils";
+
+export type IFontTextMask = ITextDataFontOptions;

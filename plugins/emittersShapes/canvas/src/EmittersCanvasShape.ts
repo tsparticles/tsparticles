@@ -1,5 +1,5 @@
-import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
 import {
+  type Container,
   type ICoordinates,
   type IDimension,
   type IRgba,
@@ -10,7 +10,8 @@ import {
   isString,
   safeDocument,
 } from "@tsparticles/engine";
-import { getCanvasImageData, getImageData, getTextData } from "./utils.js";
+import { EmitterShapeBase, type IRandomPositionData } from "@tsparticles/plugin-emitters";
+import { getCanvasImageData, getImageData, getTextData } from "@tsparticles/canvas-utils";
 import type { CanvasPixelData } from "./types.js";
 import type { EmittersCanvasShapeOptions } from "./Options/Classes/EmittersCanvasShapeOptions.js";
 
@@ -21,8 +22,18 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
   pixelData: CanvasPixelData;
   scale: number;
 
-  constructor(position: ICoordinates, size: IDimension, fill: boolean, options: EmittersCanvasShapeOptions) {
+  private readonly _container;
+
+  constructor(
+    container: Container,
+    position: ICoordinates,
+    size: IDimension,
+    fill: boolean,
+    options: EmittersCanvasShapeOptions,
+  ) {
     super(position, size, fill, options);
+
+    this._container = container;
 
     const filter = options.filter,
       minAlpha = 0;
@@ -70,7 +81,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         return;
       }
 
-      pixelData = await getImageData(url, offset);
+      pixelData = await getImageData(url, offset, this._container.canvas.settings);
     } else if (element ?? selector) {
       const canvas = element ?? (selector && safeDocument().querySelector<HTMLCanvasElement>(selector));
 
@@ -78,7 +89,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
         return;
       }
 
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", this._container.canvas.settings);
 
       if (!context) {
         return;
@@ -86,7 +97,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
 
       pixelData = getCanvasImageData(context, canvas, offset);
     } else {
-      const data = getTextData(text, offset, this.fill);
+      const data = getTextData(text, offset, this.fill, this._container.canvas.settings);
 
       if (isNull(data)) {
         return;

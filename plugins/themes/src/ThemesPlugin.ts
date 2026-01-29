@@ -12,11 +12,7 @@ import { ThemeMode } from "./ThemeMode.js";
 /**
  */
 export class ThemesPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "theme";
-  }
+  readonly id = "theme";
 
   async getPlugin(container: ThemesContainer): Promise<IContainerPlugin> {
     const { ThemesPluginInstance } = await import("./ThemesPluginInstance.js");

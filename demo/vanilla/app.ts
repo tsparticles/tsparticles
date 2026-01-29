@@ -72,6 +72,7 @@ app.use("/tsparticles-confetti", express.static("./node_modules/@tsparticles/con
 app.use("/tsparticles-fireworks", express.static("./node_modules/@tsparticles/fireworks"));
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/tsparticles-configs", express.static("./node_modules/@tsparticles/configs"));
+app.use("/canvas-utils", express.static("./node_modules/@tsparticles/canvas-utils"));
 app.use("/interaction-external-attract", express.static("./node_modules/@tsparticles/interaction-external-attract"));
 app.use("/interaction-external-bounce", express.static("./node_modules/@tsparticles/interaction-external-bounce"));
 app.use("/interaction-external-bubble", express.static("./node_modules/@tsparticles/interaction-external-bubble"));
@@ -128,6 +129,7 @@ app.use("/path-fractal-noise", express.static("./node_modules/@tsparticles/path-
 app.use("/path-perlin-noise", express.static("./node_modules/@tsparticles/path-perlin-noise"));
 app.use("/path-polygon", express.static("./node_modules/@tsparticles/path-polygon"));
 app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-simplex-noise"));
+app.use("/path-spiral", express.static("./node_modules/@tsparticles/path-spiral"));
 app.use("/path-svg", express.static("./node_modules/@tsparticles/path-svg"));
 app.use("/path-utils", express.static("./node_modules/@tsparticles/path-utils"));
 app.use("/path-zig-zag", express.static("./node_modules/@tsparticles/path-zig-zag"));

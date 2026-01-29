@@ -5,11 +5,7 @@ import { Infection } from "./Options/Classes/Infection.js";
 /**
  */
 export class InfectionPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "infection";
-  }
+  readonly id = "infection";
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { InfectionPluginInstance } = await import("./InfectionPluginInstance.js");

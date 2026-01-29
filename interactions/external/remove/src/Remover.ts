@@ -2,10 +2,11 @@ import {
   ExternalInteractorBase,
   type IInteractivityData,
   type IModes,
+  type InteractivityParticle,
   type Modes,
 } from "@tsparticles/plugin-interactivity";
 import type { IRemoveMode, RemoveContainer, RemoveMode } from "./Types.js";
-import { type RecursivePartial, getRangeValue } from "@tsparticles/engine";
+import { type RecursivePartial, getRangeValue, isInArray } from "@tsparticles/engine";
 import { Remove } from "./Options/Classes/Remove.js";
 
 const removeMode = "remove";
@@ -45,8 +46,13 @@ export class Remover extends ExternalInteractorBase<RemoveContainer> {
     // do nothing
   }
 
-  isEnabled(): boolean {
-    return true;
+  isEnabled(interactivityData: IInteractivityData, particle?: InteractivityParticle): boolean {
+    const container = this.container,
+      options = container.actualOptions,
+      mouse = interactivityData.mouse,
+      events = (particle?.interactivity ?? options.interactivity)?.events;
+
+    return !!events && mouse.clicking && mouse.inside && !!mouse.position && isInArray(removeMode, events.onClick.mode);
   }
 
   loadModeOptions(

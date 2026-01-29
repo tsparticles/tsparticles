@@ -1,4 +1,2 @@
-import { loadBasic } from "./index.js";
-
-export { loadBasic };
 export * from "@tsparticles/engine";
+export { loadBasic } from "./index.js";

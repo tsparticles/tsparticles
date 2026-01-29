@@ -182,6 +182,10 @@ export function parsePaths(paths: ISvgPath[], scale: number, offset: ICoordinate
         case svgPathSeg.PATHSEG_UNKNOWN:
         case svgPathSeg.PATHSEG_CLOSEPATH:
           continue; // Skip the closing path (and the UNKNOWN)
+
+        default:
+          // no-op
+          continue;
       }
 
       res.push({

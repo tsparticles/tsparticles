@@ -17,12 +17,6 @@ const oklchRegex =
   /oklch\(\s*(\d+(\.\d+)?)%\s+(\d+(\.\d+)?)\s+(\d+(\.\d+)?)(°)?(?:\s*\/\s*(0|1|0?\.\d+|\d{1,3}%))?\s*\)/i;
 
 export class OklchColorManager implements IColorManager {
-  readonly key;
-
-  constructor() {
-    this.key = "oklch";
-  }
-
   accepts(input: string): boolean {
     return input.startsWith("oklch");
   }

@@ -70,6 +70,9 @@ export class TiltUpdater implements IParticleUpdater {
       case TiltDirection.clockwise:
         particle.tilt.status = AnimationStatus.increasing;
         break;
+      default:
+        // no-op
+        break;
     }
 
     const tiltAnimation = particle.options.tilt?.animation;

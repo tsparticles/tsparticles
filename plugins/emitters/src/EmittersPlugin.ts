@@ -15,13 +15,12 @@ import type { EmittersInstancesManager } from "./EmittersInstancesManager.js";
 /**
  */
 export class EmittersPlugin implements IPlugin {
-  readonly id;
+  readonly id = "emitters";
 
   private readonly _instancesManager;
 
   constructor(instancesManager: EmittersInstancesManager) {
     this._instancesManager = instancesManager;
-    this.id = "emitters";
   }
 
   async getPlugin(container: EmitterContainer): Promise<IContainerPlugin> {

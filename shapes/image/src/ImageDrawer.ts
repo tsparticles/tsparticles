@@ -17,8 +17,6 @@ const sides = 12;
  * Particles Image Drawer
  */
 export class ImageDrawer implements IShapeDrawer<ImageParticle> {
-  readonly validTypes = ["image", "images"] as const;
-
   private readonly _engine: ImageEngine;
 
   /**
@@ -55,7 +53,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     context.globalAlpha = opacity;
 
     if (image.gif && image.gifData) {
-      drawGif(data);
+      drawGif(data, particle.container.canvas.settings);
     } else if (element) {
       const ratio = image.ratio,
         pos = {

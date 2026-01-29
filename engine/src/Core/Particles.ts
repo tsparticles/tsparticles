@@ -15,13 +15,16 @@ import {
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
@@ -42,12 +45,18 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
  * Particles manager object
  */
 export class Particles {
+  checkParticlePositionPlugins: IContainerPlugin[];
+
+  effectDrawers: Map<string, IEffectDrawer>;
+
   movers: IParticleMover[];
 
   /**
    * The quad tree used to search particles withing ranges
    */
   quadTree;
+
+  shapeDrawers: Map<string, IShapeDrawer>;
 
   updaters: IParticleUpdater[];
 
@@ -62,9 +71,13 @@ export class Particles {
   private _limit;
   private _needsSort;
   private _nextId;
-  private _pluginsInitialized;
+  private _particleResetPlugins: IContainerPlugin[];
+  private _particleUpdatePlugins: IContainerPlugin[];
   private readonly _pool: Particle[];
+  private _postParticleUpdatePlugins: IContainerPlugin[];
+  private _postUpdatePlugins: IContainerPlugin[];
   private _resizeFactor?: IDimension;
+  private _updatePlugins: IContainerPlugin[];
   private _zArray: Particle[];
 
   /**
@@ -83,14 +96,21 @@ export class Particles {
     this._groupLimits = new Map<string, number>();
     this._needsSort = false;
     this._lastZIndex = 0;
-    this._pluginsInitialized = false;
 
     const canvasSize = container.canvas.size;
 
     this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
+    this.effectDrawers = new Map();
     this.movers = [];
+    this.shapeDrawers = new Map();
     this.updaters = [];
+    this.checkParticlePositionPlugins = [];
+    this._particleResetPlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugins = [];
+    this._postParticleUpdatePlugins = [];
+    this._updatePlugins = [];
   }
 
   get count(): number {
@@ -124,6 +144,9 @@ export class Particles {
           }
 
           break;
+        default:
+          // no-op
+          break;
       }
     }
 
@@ -136,14 +159,32 @@ export class Particles {
   clear(): void {
     this._array = [];
     this._zArray = [];
-    this._pluginsInitialized = false;
   }
 
   destroy(): void {
+    const container = this._container;
+
+    for (const [, effectDrawer] of this.effectDrawers) {
+      effectDrawer.destroy?.(container);
+    }
+
+    for (const [, shapeDrawer] of this.shapeDrawers) {
+      shapeDrawer.destroy?.(container);
+    }
+
     this._array = [];
+    this._pool.length = 0;
     this._zArray = [];
+    this.effectDrawers = new Map();
     this.movers = [];
+    this.shapeDrawers = new Map();
     this.updaters = [];
+    this.checkParticlePositionPlugins = [];
+    this._particleResetPlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugins = [];
+    this._postParticleUpdatePlugins = [];
+    this._updatePlugins = [];
   }
 
   drawParticles(delta: IDelta): void {
@@ -172,9 +213,48 @@ export class Particles {
     this._lastZIndex = 0;
     this._needsSort = false;
 
+    for (const drawer of this.effectDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
+    for (const drawer of this.shapeDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
+    this.checkParticlePositionPlugins = [];
+    this._updatePlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugins = [];
+    this._particleResetPlugins = [];
+    this._postParticleUpdatePlugins = [];
+
     for (const plugin of container.plugins) {
       if (plugin.redrawInit) {
         await plugin.redrawInit();
+      }
+
+      if (plugin.checkParticlePosition) {
+        this.checkParticlePositionPlugins.push(plugin);
+      }
+
+      if (plugin.update) {
+        this._updatePlugins.push(plugin);
+      }
+
+      if (plugin.particleUpdate) {
+        this._particleUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.postUpdate) {
+        this._postUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.particleReset) {
+        this._particleResetPlugins.push(plugin);
+      }
+
+      if (plugin.postParticleUpdate) {
+        this._postParticleUpdatePlugins.push(plugin);
       }
     }
 
@@ -213,13 +293,11 @@ export class Particles {
   }
 
   async initPlugins(): Promise<void> {
-    if (this._pluginsInitialized) {
-      return;
-    }
-
     const container = this._container;
 
+    this.effectDrawers = await this._engine.getEffectDrawers(container, true);
     this.movers = await this._engine.getMovers(container, true);
+    this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
 
     for (const pathGenerator of container.pathGenerators.values()) {
@@ -314,7 +392,7 @@ export class Particles {
       pathGenerator.update();
     }
 
-    for (const plugin of container.plugins) {
+    for (const plugin of this._updatePlugins) {
       plugin.update?.(delta);
     }
 
@@ -330,13 +408,11 @@ export class Particles {
 
       particle.ignoresResizeRatio = false;
 
-      for (const plugin of this._container.plugins) {
-        if (plugin.particleReset) {
-          plugin.particleReset(particle);
-        }
+      for (const plugin of this._particleResetPlugins) {
+        plugin.particleReset?.(particle);
       }
 
-      for (const plugin of this._container.plugins) {
+      for (const plugin of this._particleUpdatePlugins) {
         if (particle.destroyed) {
           break;
         }
@@ -377,10 +453,8 @@ export class Particles {
       this._addToPool(...particlesToDelete);
     }
 
-    for (const plugin of container.plugins) {
-      if (plugin.postUpdate) {
-        plugin.postUpdate(delta);
-      }
+    for (const plugin of this._postUpdatePlugins) {
+      plugin.postUpdate?.(delta);
     }
 
     // this loop is required to be done after mouse interactions
@@ -390,10 +464,8 @@ export class Particles {
       }
 
       if (!particle.destroyed && !particle.spawning) {
-        for (const plugin of container.plugins) {
-          if (plugin.postParticleUpdate) {
-            plugin.postParticleUpdate(particle, delta);
-          }
+        for (const plugin of this._postParticleUpdatePlugins) {
+          plugin.postParticleUpdate?.(particle, delta);
         }
       }
     }

@@ -1,14 +1,29 @@
-import type { CanvasPixelData, TextLineData } from "./types.js";
-import { type ICoordinates, type IDimension, type IRgba, isNumber, safeDocument } from "@tsparticles/engine";
-import type { TextOptions } from "./Options/Classes/TextOptions.js";
+import type { CanvasPixelData, ITextDataOptions, TextLineData } from "./types.js";
+import {
+  type ICoordinates,
+  type IDimension,
+  type IRgba,
+  defaultAlpha,
+  defaultRgbMin,
+  isNumber,
+  originPoint,
+  safeDocument,
+} from "@tsparticles/engine";
 
-const origin: ICoordinates = {
-    x: 0,
-    y: 0,
-  },
-  minWidth = 0,
-  defaultRgbValue = 0,
-  defaultAlphaValue = 1;
+const defaultWidth = 0;
+
+/**
+ * Draws a line between two points using canvas API in the given context.
+ * @param context - The canvas context to draw on.
+ * @param begin - The start point of the line.
+ * @param end - The end point of the line.
+ */
+export function drawLine(context: CanvasRenderingContext2D, begin: ICoordinates, end: ICoordinates): void {
+  context.beginPath();
+  context.moveTo(begin.x, begin.y);
+  context.lineTo(end.x, end.y);
+  context.closePath();
+}
 
 /**
  * @param ctx -
@@ -23,10 +38,10 @@ export function getCanvasImageData(
   offset: number,
   clear = true,
 ): CanvasPixelData {
-  const imageData = ctx.getImageData(origin.x, origin.y, size.width, size.height).data;
+  const imageData = ctx.getImageData(originPoint.x, originPoint.y, size.width, size.height).data;
 
   if (clear) {
-    ctx.clearRect(origin.x, origin.y, size.width, size.height);
+    ctx.clearRect(originPoint.x, originPoint.y, size.width, size.height);
   }
 
   const pixels: IRgba[][] = [];
@@ -54,10 +69,10 @@ export function getCanvasImageData(
     }
 
     row[pos.x] = {
-      r: imageData[i + indexesOffset.r] ?? defaultRgbValue,
-      g: imageData[i + indexesOffset.g] ?? defaultRgbValue,
-      b: imageData[i + indexesOffset.b] ?? defaultRgbValue,
-      a: (imageData[i + indexesOffset.a] ?? defaultAlphaValue) / alphaFactor,
+      r: imageData[i + indexesOffset.r] ?? defaultRgbMin,
+      g: imageData[i + indexesOffset.g] ?? defaultRgbMin,
+      b: imageData[i + indexesOffset.b] ?? defaultRgbMin,
+      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) / alphaFactor,
     };
   }
 
@@ -71,9 +86,14 @@ export function getCanvasImageData(
 /**
  * @param src -
  * @param offset -
+ * @param canvasSettings -
  * @returns the canvas pixel data
  */
-export function getImageData(src: string, offset: number): Promise<CanvasPixelData> {
+export function getImageData(
+  src: string,
+  offset: number,
+  canvasSettings?: CanvasRenderingContext2DSettings,
+): Promise<CanvasPixelData> {
   const image = new Image();
 
   image.crossOrigin = "Anonymous";
@@ -86,7 +106,7 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
       canvas.width = image.width;
       canvas.height = image.height;
 
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", canvasSettings);
 
       if (!context) {
         reject(new Error("Could not get canvas context"));
@@ -95,12 +115,12 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
 
       context.drawImage(
         image,
-        origin.x,
-        origin.y,
+        originPoint.x,
+        originPoint.y,
         image.width,
         image.height,
-        origin.x,
-        origin.y,
+        originPoint.x,
+        originPoint.y,
         canvas.width,
         canvas.height,
       );
@@ -118,11 +138,17 @@ export function getImageData(src: string, offset: number): Promise<CanvasPixelDa
  * @param textOptions -
  * @param offset -
  * @param fill -
+ * @param canvasSettings -
  * @returns the canvas pixel data
  */
-export function getTextData(textOptions: TextOptions, offset: number, fill: boolean): CanvasPixelData | undefined {
+export function getTextData(
+  textOptions: ITextDataOptions,
+  offset: number,
+  fill: boolean,
+  canvasSettings?: CanvasRenderingContext2DSettings,
+): CanvasPixelData | undefined {
   const canvas = safeDocument().createElement("canvas"),
-    context = canvas.getContext("2d"),
+    context = canvas.getContext("2d", canvasSettings),
     { font, text, lines: linesOptions, color } = textOptions;
 
   if (!text || !context) {
@@ -147,7 +173,7 @@ export function getTextData(textOptions: TextOptions, offset: number, fill: bool
         width: measure.width,
       };
 
-    maxWidth = Math.max(maxWidth || minWidth, lineData.width);
+    maxWidth = Math.max(maxWidth || defaultWidth, lineData.width);
     totalHeight += lineData.height + linesOptions.spacing;
 
     linesData.push(lineData);
@@ -163,14 +189,27 @@ export function getTextData(textOptions: TextOptions, offset: number, fill: bool
 
     if (fill) {
       context.fillStyle = color;
-      context.fillText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
+      context.fillText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
     } else {
       context.strokeStyle = color;
-      context.strokeText(line.text, origin.x, currentHeight + line.measure.actualBoundingBoxAscent);
+      context.strokeText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
     }
 
     currentHeight += line.height + linesOptions.spacing;
   }
 
   return getCanvasImageData(context, canvas, offset);
+}
+
+/**
+ * Loads a font for the canvas
+ * @param font - font name
+ * @param weight - font weight
+ */
+export async function loadFont(font?: string, weight?: string): Promise<void> {
+  try {
+    await safeDocument().fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
+  } catch {
+    // ignores any error
+  }
 }

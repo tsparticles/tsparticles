@@ -8,9 +8,11 @@ declare const __VERSION__: string;
 export async function loadDiamondsSuitShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { DiamondDrawer } = await import("./DiamondDrawer.js");
+  await engine.register(e => {
+    e.addShape(["diamond", "diamonds"], async () => {
+      const { DiamondDrawer } = await import("./DiamondDrawer.js");
 
-    e.addShape(new DiamondDrawer());
+      return new DiamondDrawer();
+    });
   });
 }

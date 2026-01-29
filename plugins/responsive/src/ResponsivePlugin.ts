@@ -6,11 +6,7 @@ import { ResponsiveMode } from "./ResponsiveMode.js";
 /**
  */
 export class ResponsivePlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "responsive";
-  }
+  readonly id = "responsive";
 
   async getPlugin(container: ResponsiveContainer): Promise<IContainerPlugin> {
     const { ResponsivePluginInstance } = await import("./ResponsivePluginInstance.js");

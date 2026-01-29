@@ -47,7 +47,6 @@ function parseColorTable(byteStream: ByteStream, count: number): IRgb[] {
  * @param gif - GIF object to write to
  * @param getFrameIndex - function to get current frame index in `GIF.frames` (optionally increment before next call)
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
- * @throws if an unknown block type was encountered
  */
 function parseExtensionBlock(
   byteStream: ByteStream,
@@ -166,7 +165,6 @@ function parseExtensionBlock(
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
- * @throws if an unknown block type was encountered
  */
 async function parseImageBlock(
   byteStream: ByteStream,
@@ -394,7 +392,6 @@ async function parseImageBlock(
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
- * @throws if an unknown block type was encountered
  */
 async function parseBlock(
   byteStream: ByteStream,
@@ -618,10 +615,10 @@ export async function decodeGIF(
 }
 
 /**
- *
  * @param data -
+ * @param canvasSettings -
  */
-export function drawGif(data: IShapeDrawData<ImageParticle>): void {
+export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: CanvasRenderingContext2DSettings): void {
   const { context, radius, particle, delta } = data,
     image = particle.image;
 
@@ -630,7 +627,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
   }
 
   const offscreenCanvas = new OffscreenCanvas(image.gifData.width, image.gifData.height),
-    offscreenContext = offscreenCanvas.getContext("2d");
+    offscreenContext = offscreenCanvas.getContext("2d", canvasSettings);
 
   if (!offscreenContext) {
     throw new Error("could not create offscreen canvas context");

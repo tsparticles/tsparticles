@@ -113,6 +113,7 @@
     "@tsparticles/path-perlin-noise": "4.0.0-alpha.8",
     "@tsparticles/path-polygon": "4.0.0-alpha.8",
     "@tsparticles/path-simplex-noise": "4.0.0-alpha.8",
+    "@tsparticles/path-spiral": "4.0.0-alpha.8",
     "@tsparticles/path-svg": "4.0.0-alpha.8",
     "@tsparticles/path-zig-zag": "4.0.0-alpha.8",
     "@tsparticles/plugin-background-mask": "4.0.0-alpha.8",

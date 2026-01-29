@@ -114,6 +114,9 @@ export class GradientUpdater implements IParticleUpdater {
       case RotateDirection.clockwise:
         particle.gradient.angle.status = AnimationStatus.increasing;
         break;
+      default:
+        // no-op
+        break;
     }
 
     const reduceDuplicates = particle.options.reduceDuplicates;

@@ -8,20 +8,18 @@ import {
   getRangeMax,
   isInArray,
   itemFromSingleOrMultiple,
-  loadFont,
   safeDocument,
 } from "@tsparticles/engine";
+import { drawEmoji, validTypes } from "./Utils.js";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
-import { drawEmoji } from "./Utils.js";
+import { loadFont } from "@tsparticles/canvas-utils";
 
-const defaultFont = '"Twemoji Mozilla", Apple Color Emoji, "Segoe UI Emoji", "Noto Color Emoji", "EmojiOne Color"',
+const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
   noPadding = 0,
   firstItem = 0;
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
-  readonly validTypes = ["emoji"] as const;
-
   private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
 
   destroy(): void {
@@ -52,16 +50,14 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
 
   async init(container: Container): Promise<void> {
     const options = container.actualOptions,
-      { validTypes } = this;
+      shapeData = options.particles.shape;
 
-    if (!validTypes.find(t => isInArray(t, options.particles.shape.type))) {
+    if (!validTypes.some(t => isInArray(t, shapeData.type))) {
       return;
     }
 
     const promises: Promise<void>[] = [loadFont(defaultFont)],
-      shapeOptions = validTypes.map(t => options.particles.shape.options[t])[
-        firstItem
-      ] as SingleOrMultiple<IEmojiShape>;
+      shapeOptions = validTypes.map(t => shapeData.options[t])[firstItem] as SingleOrMultiple<IEmojiShape>;
 
     executeOnSingleOrMultiple(shapeOptions, shape => {
       if (shape.font) {
@@ -76,7 +72,7 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
     particle.emojiDataKey = undefined;
   }
 
-  particleInit(_container: Container, particle: EmojiParticle): void {
+  particleInit(container: Container, particle: EmojiParticle): void {
     const shapeData = particle.shapeData as unknown as IEmojiShape;
 
     if (!shapeData.value) {
@@ -103,12 +99,11 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
               ...emoji,
             },
       font = emojiOptions.font,
-      value = emojiOptions.value;
+      value = emojiOptions.value,
+      cacheKey = `${value}_${font}`;
 
-    const key = `${value}_${font}`;
-
-    if (this._emojiShapeDict.has(key)) {
-      particle.emojiDataKey = key;
+    if (this._emojiShapeDict.has(cacheKey)) {
+      particle.emojiDataKey = cacheKey;
 
       return;
     }
@@ -118,46 +113,36 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       fullSize = maxSize + padding,
       canvasSize = fullSize * double;
 
-    let image: ImageBitmap | HTMLCanvasElement;
+    let cacheCanvas: HTMLCanvasElement | OffscreenCanvas,
+      context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
 
-    if (typeof OffscreenCanvas !== "undefined") {
-      const canvas = new OffscreenCanvas(canvasSize, canvasSize),
-        context = canvas.getContext("2d");
-
-      if (!context) {
-        return;
-      }
-
-      context.font = `400 ${(maxSize * double).toString()}px ${font}`;
-      context.textBaseline = "middle";
-      context.textAlign = "center";
-
-      context.fillText(value, fullSize, fullSize);
-
-      image = canvas.transferToImageBitmap();
-    } else {
+    if (typeof OffscreenCanvas === "undefined") {
       const canvas = safeDocument().createElement("canvas");
 
       canvas.width = canvasSize;
       canvas.height = canvasSize;
 
-      const context = canvas.getContext("2d");
-
-      if (!context) {
-        return;
-      }
-
-      context.font = `400 ${(maxSize * double).toString()}px ${font}`;
-      context.textBaseline = "middle";
-      context.textAlign = "center";
-
-      context.fillText(value, fullSize, fullSize);
-
-      image = canvas;
+      context = canvas.getContext("2d", container.canvas.settings);
+      cacheCanvas = canvas;
+    } else {
+      cacheCanvas = new OffscreenCanvas(canvasSize, canvasSize);
+      context = cacheCanvas.getContext("2d", container.canvas.settings);
     }
 
-    this._emojiShapeDict.set(key, image);
+    if (!context) {
+      return;
+    }
 
-    particle.emojiDataKey = key;
+    context.font = `400 ${(maxSize * double).toString()}px ${font}`;
+    context.textBaseline = "middle";
+    context.textAlign = "center";
+
+    context.fillText(value, fullSize, fullSize);
+
+    const image = cacheCanvas instanceof HTMLCanvasElement ? cacheCanvas : cacheCanvas.transferToImageBitmap();
+
+    this._emojiShapeDict.set(cacheKey, image);
+
+    particle.emojiDataKey = cacheKey;
   }
 }

@@ -12,6 +12,6 @@ export async function loadLabColorPlugin(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { LabColorManager } = await import("./LabColorManager.js");
 
-    e.addColorManager(new LabColorManager());
+    e.addColorManager("lab", new LabColorManager());
   });
 }

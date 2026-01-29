@@ -5,11 +5,7 @@ import { Blend } from "./Options/Classes/Blend.js";
 /**
  */
 export class BlendPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "blend";
-  }
+  readonly id = "blend";
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { BlendPluginInstance } = await import("./BlendPluginInstance.js");

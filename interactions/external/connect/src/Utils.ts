@@ -4,10 +4,10 @@ import {
   type Particle,
   clamp,
   colorMix,
-  drawLine,
   getStyleFromHsl,
   getStyleFromRgb,
 } from "@tsparticles/engine";
+import { drawLine } from "@tsparticles/canvas-utils";
 
 const gradientMin = 0,
   gradientMax = 1,

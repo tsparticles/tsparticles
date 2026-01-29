@@ -208,8 +208,8 @@ export class ConfettiOptions implements IConfettiOptions, IOptionLoader<IConfett
 
     if (origin && !data.position) {
       data.position = {
-        x: origin.x !== undefined ? origin.x * percentDenominator : undefined,
-        y: origin.y !== undefined ? origin.y * percentDenominator : undefined,
+        x: origin.x === undefined ? undefined : origin.x * percentDenominator,
+        y: origin.y === undefined ? undefined : origin.y * percentDenominator,
       };
     }
 

@@ -20,13 +20,11 @@ const generalFirstClickHandler = (): void => {
 /**
  */
 export class SoundsPlugin implements IPlugin {
-  readonly id;
+  readonly id = "sounds";
 
   private readonly _engine;
 
   constructor(engine: Engine) {
-    this.id = "sounds";
-
     this._engine = engine;
 
     const listenerOptions = {
