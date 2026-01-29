@@ -59,6 +59,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadInfinityShape } = await import("@tsparticles/shape-infinity"),
       { loadPathShape } = await import("@tsparticles/shape-path"),
       { loadPolygonPath } = await import("@tsparticles/path-polygon"),
+      { loadSpiralPath } = await import("@tsparticles/path-spiral"),
       { loadRoundedPolygonShape } = await import("@tsparticles/shape-rounded-polygon"),
       { loadRoundedRectShape } = await import("@tsparticles/shape-rounded-rect"),
       { loadSpiralShape } = await import("@tsparticles/shape-spiral"),
@@ -141,6 +142,7 @@ export async function loadAll(engine: Engine): Promise<void> {
     await loadPerlinNoisePath(e);
     await loadPolygonPath(e);
     await loadSVGPath(e);
+    await loadSpiralPath(e);
     await loadZigZagPath(e);
     await loadSimplexNoisePath(e);
 

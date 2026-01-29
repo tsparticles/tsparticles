@@ -215,6 +215,9 @@ importers:
       '@tsparticles/path-simplex-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/simplexNoise/dist
+      '@tsparticles/path-spiral':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../paths/spiral/dist
       '@tsparticles/path-svg':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/svg/dist
@@ -1461,6 +1464,13 @@ importers:
       '@tsparticles/simplex-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../utils/simplexNoise/dist
+    publishDirectory: dist
+
+  paths/spiral:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../engine/dist
     publishDirectory: dist
 
   paths/svg:

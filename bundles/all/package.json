@@ -121,6 +121,7 @@
     "@tsparticles/path-perlin-noise": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-polygon": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.8",
+    "@tsparticles/path-spiral": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-svg": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-zig-zag": "workspace:4.0.0-alpha.8",
     "@tsparticles/plugin-background-mask": "workspace:4.0.0-alpha.8",
