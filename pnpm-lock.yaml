@@ -215,6 +215,9 @@ importers:
       '@tsparticles/path-grid':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/grid/dist
+      '@tsparticles/path-levy':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../paths/levy/dist
       '@tsparticles/path-perlin-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/perlinNoise/dist
@@ -776,6 +779,9 @@ importers:
       '@tsparticles/path-grid':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/grid/dist
+      '@tsparticles/path-levy':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../paths/levy/dist
       '@tsparticles/path-perlin-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/perlinNoise/dist
@@ -1469,6 +1475,13 @@ importers:
     publishDirectory: dist
 
   paths/grid:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  paths/levy:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.8
