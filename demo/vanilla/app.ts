@@ -73,6 +73,8 @@ app.use("/tsparticles-fireworks", express.static("./node_modules/@tsparticles/fi
 app.use("/tsparticles", express.static("./node_modules/tsparticles"));
 app.use("/tsparticles-configs", express.static("./node_modules/@tsparticles/configs"));
 app.use("/canvas-utils", express.static("./node_modules/@tsparticles/canvas-utils"));
+app.use("/path-utils", express.static("./node_modules/@tsparticles/path-utils"));
+app.use("/svg-path-utils", express.static("./node_modules/@tsparticles/svg-path-utils"));
 app.use("/interaction-external-attract", express.static("./node_modules/@tsparticles/interaction-external-attract"));
 app.use("/interaction-external-bounce", express.static("./node_modules/@tsparticles/interaction-external-bounce"));
 app.use("/interaction-external-bubble", express.static("./node_modules/@tsparticles/interaction-external-bubble"));

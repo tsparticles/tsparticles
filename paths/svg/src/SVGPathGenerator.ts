@@ -13,8 +13,8 @@ import {
   getRandom,
   half,
   randomInRangeValue,
-  safeDocument,
 } from "@tsparticles/engine";
+import { type SVGPathData, createSVGPaths, loadSVGFromString } from "@tsparticles/svg-path-utils";
 
 enum SVGPathDirection {
   normal,
@@ -46,11 +46,6 @@ interface SVGPathOptions {
   scale?: number;
   url?: string;
   width?: number;
-}
-
-interface SVGPathData {
-  element: SVGPathElement;
-  length: number;
 }
 
 export class SVGPathGenerator implements IMovePathGenerator {
@@ -85,7 +80,6 @@ export class SVGPathGenerator implements IMovePathGenerator {
       height: randomInRangeValue({ min: -this._width * half, max: this._width * half }) * pxRatio,
     };
     particle.svgInitialPosition ??= particle.position.copy();
-
     particle.velocity.x = 0;
     particle.velocity.y = 0;
 
@@ -164,52 +158,17 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
       void (async (): Promise<void> => {
         const response = await fetch(url),
-          data = await response.text();
+          data = await response.text(),
+          { paths, size } = loadSVGFromString(data);
 
-        // retrieve the svg path from the url
-        const parser = new DOMParser(),
-          doc = parser.parseFromString(data, "image/svg+xml"),
-          firstIndex = 0,
-          svg = doc.getElementsByTagName("svg")[firstIndex]!;
-
-        let svgPaths = svg.getElementsByTagName("path");
-
-        if (!svgPaths.length) {
-          svgPaths = doc.getElementsByTagName("path");
-        }
-
-        this._paths = [];
-
-        for (let i = 0; i < svgPaths.length; i++) {
-          const path = svgPaths.item(i);
-
-          if (path) {
-            this._paths.push({
-              element: path,
-              length: path.getTotalLength(),
-            });
-          }
-        }
-
-        this._size.height = Number.parseFloat(svg.getAttribute("height") ?? "0");
-        this._size.width = Number.parseFloat(svg.getAttribute("width") ?? "0");
+        this._paths = paths;
+        this._size.width = size.width;
+        this._size.height = size.height;
       })();
     } else if (options.path) {
       const path = options.path;
 
-      this._paths = [];
-
-      for (const item of path.data) {
-        const element = safeDocument().createElementNS("http://www.w3.org/2000/svg", "path");
-
-        element.setAttribute("d", item);
-
-        this._paths.push({
-          element,
-          length: element.getTotalLength(),
-        });
-      }
-
+      this._paths = createSVGPaths(options.path.data);
       this._size.height = path.size.height;
       this._size.width = path.size.width;
     }
