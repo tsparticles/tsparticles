@@ -197,6 +197,9 @@ importers:
       '@tsparticles/interaction-particles-repulse':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../interactions/particles/repulse/dist
+      '@tsparticles/path-branches':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../paths/branches/dist
       '@tsparticles/path-curl-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/curlNoise/dist
@@ -752,6 +755,9 @@ importers:
       '@tsparticles/noise-field':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../utils/noiseField/dist
+      '@tsparticles/path-branches':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../paths/branches/dist
       '@tsparticles/path-curl-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/curlNoise/dist
@@ -1406,6 +1412,13 @@ importers:
     publishDirectory: dist
 
   move/base:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  paths/branches:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.8

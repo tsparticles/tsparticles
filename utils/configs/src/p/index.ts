@@ -1,5 +1,6 @@
 import parallax from "./parallax.js";
-import pathGridPath from "./pathGridPath.js";
+import pathBranches from "./pathBranches.js";
+import pathGridPath from "./pathGrid.js";
 import pathMaze from "./pathMaze.js";
 import pathPolygonMask from "./pathPolygonMask.js";
 import pathSpiral from "./pathSpiral.js";
@@ -14,6 +15,7 @@ import pop from "./pop.js";
 
 export default {
   parallax,
+  pathBranches,
   pathGridPath,
   pathMaze,
   pathPolygonMask,

@@ -123,6 +123,7 @@ app.use("/interaction-particles-repulse", express.static("./node_modules/@tspart
 app.use("/updater-gradient", express.static("./node_modules/@tsparticles/updater-gradient"));
 app.use("/updater-orbit", express.static("./node_modules/@tsparticles/updater-orbit"));
 app.use("/move-base", express.static("./node_modules/@tsparticles/move-base"));
+app.use("/path-branches", express.static("./node_modules/@tsparticles/path-branches"));
 app.use("/path-curves", express.static("./node_modules/@tsparticles/path-curves"));
 app.use("/path-curl-noise", express.static("./node_modules/@tsparticles/path-curl-noise"));
 app.use("/path-fractal-noise", express.static("./node_modules/@tsparticles/path-fractal-noise"));

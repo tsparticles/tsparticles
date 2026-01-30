@@ -33,8 +33,6 @@ export class GridPathGenerator implements IMovePathGenerator {
       cellSize: 40,
       graph: undefined,
       autoMaze: false,
-      mazeWidth: 20,
-      mazeHeight: 20,
     };
   }
 

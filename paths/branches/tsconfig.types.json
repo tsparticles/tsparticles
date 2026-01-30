@@ -1,0 +1,6 @@
+{
+    "extends": ["./tsconfig.base.json", "@tsparticles/tsconfig/tsconfig.types.json"],
+    "compilerOptions": {
+        "outDir": "./dist/types"
+    }
+}

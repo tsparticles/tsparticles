@@ -107,6 +107,7 @@
     "@tsparticles/interaction-external-pop": "4.0.0-alpha.8",
     "@tsparticles/interaction-light": "4.0.0-alpha.8",
     "@tsparticles/interaction-particles-repulse": "4.0.0-alpha.8",
+    "@tsparticles/path-branches": "4.0.0-alpha.8",
     "@tsparticles/path-curl-noise": "4.0.0-alpha.8",
     "@tsparticles/path-curves": "4.0.0-alpha.8",
     "@tsparticles/path-fractal-noise": "4.0.0-alpha.8",

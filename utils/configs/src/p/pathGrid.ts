@@ -1,8 +1,8 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-  key: "pathMaze",
-  name: "Path Maze",
+  key: "pathGrid",
+  name: "Path Grid",
   particles: {
     color: {
       value: ["#ffffff", "#ff0000", "#00ff00", "#0000ff"],
@@ -15,7 +15,6 @@ const options: ISourceOptions = {
         enable: true,
         options: {
           cellSize: 40,
-          autoMaze: true,
         },
         generator: "gridPathGenerator",
       },
