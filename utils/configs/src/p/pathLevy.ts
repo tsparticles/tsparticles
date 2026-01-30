@@ -10,13 +10,13 @@ const options: ISourceOptions = {
     move: {
       enable: true,
       outModes: "out",
-      speed: { min: 1, max: 3 },
+      speed: { min: 10, max: 15 },
       path: {
         enable: true,
         options: {
-          alpha: 1.3,
+          alpha: 1.7,
           scale: 0.8,
-          maxStep: 12,
+          maxStep: 50,
         },
         generator: "levyPathGenerator",
       },
