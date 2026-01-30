@@ -398,7 +398,7 @@ export class Particles {
 
     this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
 
-    for (const pathGenerator of this.availablePathGenerators.values()) {
+    for (const pathGenerator of this.pathGenerators.values()) {
       pathGenerator.update();
     }
 
