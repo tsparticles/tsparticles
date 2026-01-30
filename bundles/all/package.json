@@ -116,6 +116,7 @@
     "@tsparticles/interaction-light": "workspace:4.0.0-alpha.8",
     "@tsparticles/interaction-particles-repulse": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-branches": "workspace:4.0.0-alpha.8",
+    "@tsparticles/path-brownian": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-curl-noise": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-curves": "workspace:4.0.0-alpha.8",
     "@tsparticles/path-fractal-noise": "workspace:4.0.0-alpha.8",

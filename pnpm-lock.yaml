@@ -200,6 +200,9 @@ importers:
       '@tsparticles/path-branches':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/branches/dist
+      '@tsparticles/path-brownian':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../paths/brownian/dist
       '@tsparticles/path-curl-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/curlNoise/dist
@@ -758,6 +761,9 @@ importers:
       '@tsparticles/path-branches':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/branches/dist
+      '@tsparticles/path-brownian':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../paths/brownian/dist
       '@tsparticles/path-curl-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/curlNoise/dist
@@ -1419,6 +1425,13 @@ importers:
     publishDirectory: dist
 
   paths/branches:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.8
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  paths/brownian:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.8

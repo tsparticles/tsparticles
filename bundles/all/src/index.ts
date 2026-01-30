@@ -58,6 +58,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadHeartShape } = await import("@tsparticles/shape-heart"),
       { loadInfinityShape } = await import("@tsparticles/shape-infinity"),
       { loadBranchesPath } = await import("@tsparticles/path-branches"),
+      { loadBrownianPath } = await import("@tsparticles/path-brownian"),
       { loadGridPath } = await import("@tsparticles/path-grid"),
       { loadPathShape } = await import("@tsparticles/shape-path"),
       { loadPolygonPath } = await import("@tsparticles/path-polygon"),
@@ -139,6 +140,7 @@ export async function loadAll(engine: Engine): Promise<void> {
     await loadOrbitUpdater(e);
 
     await loadBranchesPath(e);
+    await loadBrownianPath(e);
     await loadCurlNoisePath(e);
     await loadCurvesPath(e);
     await loadFractalNoisePath(e);
