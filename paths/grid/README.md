@@ -1,6 +1,6 @@
 [![banner](https://particles.js.org/images/banner3.png)](https://particles.js.org)
 
-# tsParticles Grid Path Path
+# tsParticles Grid Path
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/path-grid/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/path-grid)
 [![npmjs](https://badge.fury.io/js/@tsparticles/path-grid.svg)](https://www.npmjs.com/package/@tsparticles/path-grid)

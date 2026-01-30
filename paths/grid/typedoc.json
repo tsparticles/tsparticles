@@ -4,7 +4,7 @@
     "./src/"
   ],
   "entryPointStrategy": "expand",
-  "name": "tsParticles Grid Path Path",
+  "name": "tsParticles Grid Path",
   "includeVersion": true,
   "hideGenerator": true,
   "out": "./docs",

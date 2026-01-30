@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/path-grid",
   "version": "4.0.0-alpha.8",
-  "description": "tsParticles grid path path",
+  "description": "tsParticles grid path",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
