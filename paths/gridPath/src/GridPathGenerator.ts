@@ -1,7 +1,16 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 /* eslint-disable no-nested-ternary */
-import { type Container, type IMovePathGenerator, Vector, getRandom, identity, originPoint } from "@tsparticles/engine";
+import {
+  type Container,
+  type ICoordinates,
+  type IDimension,
+  type IMovePathGenerator,
+  Vector,
+  getRandom,
+  identity,
+  originPoint,
+} from "@tsparticles/engine";
 import type { GridPathParticle } from "./GridPathParticle.js";
 import type { IGridPathOptions } from "./IGridPathOptions.js";
 
@@ -16,7 +25,6 @@ const dirs = [
 
 export class GridPathGenerator implements IMovePathGenerator {
   readonly options: IGridPathOptions;
-
   private readonly _container: Container;
 
   constructor(container: Container) {
@@ -33,26 +41,29 @@ export class GridPathGenerator implements IMovePathGenerator {
   // -------------------------------------------
 
   generate(p: GridPathParticle): Vector {
+    const size = this.options.cellSize;
+
     p.grid ??= {
       direction: Math.trunc(getRandom() * dirs.length),
       speed: p.velocity.length,
       cellPosition: {
-        x: Math.floor(p.position.x / this.options.cellSize),
-        y: Math.floor(p.position.y / this.options.cellSize),
+        x: Math.floor(p.position.x / size),
+        y: Math.floor(p.position.y / size),
       },
     };
 
-    const grid = p.grid;
+    const grid = p.grid,
+      c: ICoordinates = {
+        x: Math.floor(p.position.x / size),
+        y: Math.floor(p.position.y / size),
+      };
 
-    const cx = Math.floor(p.position.x / this.options.cellSize);
-    const cy = Math.floor(p.position.y / this.options.cellSize);
+    if (c.x !== grid.cellPosition.x || c.y !== grid.cellPosition.y) {
+      grid.cellPosition.x = c.x;
+      grid.cellPosition.y = c.y;
 
-    if (cx !== grid.cellPosition.x || cy !== grid.cellPosition.y) {
-      grid.cellPosition.x = cx;
-      grid.cellPosition.y = cy;
-
-      const key = `${cx},${cy}`;
-      const allowed = this.options.graph?.[key];
+      const key = `${c.x},${c.y}`,
+        allowed = this.options.graph?.[key];
 
       if (allowed && allowed.length > minLength) {
         grid.direction = allowed[Math.trunc(getRandom() * allowed.length)]!;
@@ -61,7 +72,6 @@ export class GridPathGenerator implements IMovePathGenerator {
         const turn = Math.trunc(getRandom() * 3) - 1;
         grid.direction = (grid.direction + turn + 4) % dirs.length;
       }
-      // if graph exists but cell not in graph -> go straight
     }
 
     p.velocity.x = 0;
@@ -72,20 +82,25 @@ export class GridPathGenerator implements IMovePathGenerator {
     return Vector.create(d.x * grid.speed, d.y * grid.speed);
   }
 
+  // -------------------------------------------
+
   init(): void {
     const source = this._container.actualOptions.particles.move.path.options;
 
     this.options.cellSize = (source["cellSize"] as number | undefined) ?? this.options.cellSize;
     this.options.autoMaze = (source["autoMaze"] as boolean | undefined) ?? this.options.autoMaze;
-    this.options.mazeWidth = (source["mazeWidth"] as number | undefined) ?? this.options.mazeWidth;
-    this.options.mazeHeight = (source["mazeHeight"] as number | undefined) ?? this.options.mazeHeight;
     this.options.graph = source["graph"] as Record<string, number[]> | undefined;
 
-    // autoMaze overrides graph if enabled
+    // AUTO MAZE = FULL CANVAS
     if (this.options.autoMaze) {
-      const w = Math.max(1, this.options.mazeWidth!),
-        h = Math.max(1, this.options.mazeHeight!);
-      this.options.graph = this._generateMazeGraph(w, h);
+      const canvas = this._container.canvas.size,
+        cellSize = this.options.cellSize,
+        size: IDimension = {
+          width: Math.ceil(canvas.width / cellSize),
+          height: Math.ceil(canvas.height / cellSize),
+        };
+
+      this.options.graph = this._generateMazeGraph(size);
     }
   }
 
@@ -98,9 +113,10 @@ export class GridPathGenerator implements IMovePathGenerator {
   }
 
   // ---------- MAZE GENERATION (DFS) ----------
-  private _generateMazeGraph(width: number, height: number): Record<string, number[]> {
-    const graph: Record<string, number[]> = {};
-    const visited: boolean[][] = [];
+  private _generateMazeGraph({ height, width }: IDimension): Record<string, number[]> {
+    const graph: Record<string, number[]> = {},
+      visited: boolean[][] = [];
+
     for (let y = 0; y < height; y++) {
       visited[y] = [];
     }
@@ -111,24 +127,26 @@ export class GridPathGenerator implements IMovePathGenerator {
       const dirsOrder = [0, 1, 2, 3].sort(() => getRandom() - 0.5);
 
       for (const d of dirsOrder) {
-        const nx = x + (d === 0 ? 1 : d === 2 ? -1 : 0),
-          ny = y + (d === 1 ? 1 : d === 3 ? -1 : 0);
+        const n: ICoordinates = {
+          x: x + (d === 0 ? 1 : d === 2 ? -1 : 0),
+          y: y + (d === 1 ? 1 : d === 3 ? -1 : 0),
+        };
 
-        if (nx < originPoint.x || ny < originPoint.y || nx >= width || ny >= height) {
+        if (n.x < 0 || n.y < 0 || n.x >= width || n.y >= height) {
           continue;
         }
 
-        if (!visited[ny]![nx]) {
-          const key = `${x},${y}`;
-          const nkey = `${nx},${ny}`;
+        if (!visited[n.y]![n.x]) {
+          const key = `${x},${y}`,
+            nKey = `${n.x},${n.y}`;
 
           graph[key] ??= [];
-          graph[nkey] ??= [];
+          graph[nKey] ??= [];
 
           graph[key].push(d);
-          graph[nkey].push(opposite[d]!);
+          graph[nKey].push(opposite[d]!);
 
-          walk(nx, ny);
+          walk(n.x, n.y);
         }
       }
     };
