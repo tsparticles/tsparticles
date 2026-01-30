@@ -57,7 +57,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadGradientUpdater } = await import("@tsparticles/updater-gradient"),
       { loadHeartShape } = await import("@tsparticles/shape-heart"),
       { loadInfinityShape } = await import("@tsparticles/shape-infinity"),
-      { loadGridPathPath } = await import("@tsparticles/path-grid-path"),
+      { loadGridPath } = await import("@tsparticles/path-grid"),
       { loadPathShape } = await import("@tsparticles/shape-path"),
       { loadPolygonPath } = await import("@tsparticles/path-polygon"),
       { loadSpiralPath } = await import("@tsparticles/path-spiral"),
@@ -140,7 +140,7 @@ export async function loadAll(engine: Engine): Promise<void> {
     await loadCurlNoisePath(e);
     await loadCurvesPath(e);
     await loadFractalNoisePath(e);
-    await loadGridPathPath(e);
+    await loadGridPath(e);
     await loadPerlinNoisePath(e);
     await loadPolygonPath(e);
     await loadSVGPath(e);

@@ -7,7 +7,7 @@ export const gridPathName = "gridPathGenerator";
 /**
  * @param engine -
  */
-export async function loadGridPathPath(engine: Engine): Promise<void> {
+export async function loadGridPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {

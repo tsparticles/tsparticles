@@ -9,4 +9,4 @@ const __filename = fileURLToPath(import.meta.url),
     pkg = await fs.readJson(rootPkgPath),
     version = pkg.version;
 
-export default loadParticlesPath({ moduleName: "gridPath", pluginName: "Grid Path", version, dir: __dirname });
+export default loadParticlesPath({ moduleName: "grid", pluginName: "Grid Path", version, dir: __dirname });

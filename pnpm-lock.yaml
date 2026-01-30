@@ -206,9 +206,9 @@ importers:
       '@tsparticles/path-fractal-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/fractalNoise/dist
-      '@tsparticles/path-grid-path':
+      '@tsparticles/path-grid':
         specifier: workspace:4.0.0-alpha.8
-        version: link:../../paths/gridPath/dist
+        version: link:../../paths/grid/dist
       '@tsparticles/path-perlin-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/perlinNoise/dist
@@ -761,9 +761,9 @@ importers:
       '@tsparticles/path-fractal-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/fractalNoise/dist
-      '@tsparticles/path-grid-path':
+      '@tsparticles/path-grid':
         specifier: workspace:4.0.0-alpha.8
-        version: link:../../paths/gridPath/dist
+        version: link:../../paths/grid/dist
       '@tsparticles/path-perlin-noise':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../paths/perlinNoise/dist
@@ -1442,7 +1442,7 @@ importers:
         version: link:../../utils/noiseField/dist
     publishDirectory: dist
 
-  paths/gridPath:
+  paths/grid:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.8

@@ -126,7 +126,7 @@ app.use("/move-base", express.static("./node_modules/@tsparticles/move-base"));
 app.use("/path-curves", express.static("./node_modules/@tsparticles/path-curves"));
 app.use("/path-curl-noise", express.static("./node_modules/@tsparticles/path-curl-noise"));
 app.use("/path-fractal-noise", express.static("./node_modules/@tsparticles/path-fractal-noise"));
-app.use("/path-grid-path", express.static("./node_modules/@tsparticles/path-grid-path"));
+app.use("/path-grid", express.static("./node_modules/@tsparticles/path-grid"));
 app.use("/path-perlin-noise", express.static("./node_modules/@tsparticles/path-perlin-noise"));
 app.use("/path-polygon", express.static("./node_modules/@tsparticles/path-polygon"));
 app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-simplex-noise"));
