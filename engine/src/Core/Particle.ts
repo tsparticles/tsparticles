@@ -614,9 +614,7 @@ export class Particle {
     if (pathOptions.generator) {
       let pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
 
-      if (pathGenerator) {
-        this.pathGenerator = pathGenerator;
-      } else {
+      if (!pathGenerator) {
         pathGenerator = this.container.particles.availablePathGenerators.get(pathOptions.generator);
 
         if (pathGenerator) {
@@ -625,6 +623,8 @@ export class Particle {
           pathGenerator.init();
         }
       }
+
+      this.pathGenerator = pathGenerator;
     }
 
     container.retina.initParticle(this);

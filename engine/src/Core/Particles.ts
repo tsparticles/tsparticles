@@ -221,15 +221,6 @@ export class Particles {
 
     this._lastZIndex = 0;
     this._needsSort = false;
-
-    for (const drawer of this.effectDrawers.values()) {
-      await drawer.init?.(container);
-    }
-
-    for (const drawer of this.shapeDrawers.values()) {
-      await drawer.init?.(container);
-    }
-
     this.checkParticlePositionPlugins = [];
     this._updatePlugins = [];
     this._particleUpdatePlugins = [];
@@ -269,6 +260,14 @@ export class Particles {
 
     await this.initPlugins();
 
+    for (const drawer of this.effectDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
+    for (const drawer of this.shapeDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
     let handled = false;
 
     for (const plugin of container.plugins) {
@@ -307,6 +306,7 @@ export class Particles {
     this.effectDrawers = await this._engine.getEffectDrawers(container, true);
     this.movers = await this._engine.getMovers(container, true);
     this.availablePathGenerators = await this._engine.getPathGenerators(container, true);
+    this.pathGenerators = new Map();
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
 
