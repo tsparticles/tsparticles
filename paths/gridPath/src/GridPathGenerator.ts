@@ -121,10 +121,17 @@ export class GridPathGenerator implements IMovePathGenerator {
       visited[y] = [];
     }
 
-    const walk = (x: number, y: number): void => {
-      visited[y]![x] = true;
+    const stack: ICoordinates[] = [{ x: originPoint.x, y: originPoint.y }];
+
+    while (stack.length > 0) {
+      const { x, y } = stack[stack.length - 1]!;
+
+      if (!visited[y]![x]) {
+        visited[y]![x] = true;
+      }
 
       const dirsOrder = [0, 1, 2, 3].sort(() => getRandom() - 0.5);
+      let moved = false;
 
       for (const d of dirsOrder) {
         const n: ICoordinates = {
@@ -146,12 +153,16 @@ export class GridPathGenerator implements IMovePathGenerator {
           graph[key].push(d);
           graph[nKey].push(opposite[d]!);
 
-          walk(n.x, n.y);
+          stack.push(n);
+          moved = true;
+          break;
         }
       }
-    };
 
-    walk(originPoint.x, originPoint.y);
+      if (!moved) {
+        stack.pop();
+      }
+    }
 
     return graph;
   }
