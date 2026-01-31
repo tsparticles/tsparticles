@@ -10,7 +10,7 @@ const options: ISourceOptions = {
     move: {
       enable: true,
       outModes: "out",
-      speed: { min: 1, max: 3 },
+      speed: 0,
       path: {
         enable: true,
         options: {
