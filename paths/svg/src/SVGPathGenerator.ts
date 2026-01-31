@@ -14,7 +14,9 @@ import {
   half,
   randomInRangeValue,
 } from "@tsparticles/engine";
-import { type SVGPathData, createSVGPaths, loadSVGFromString } from "@tsparticles/svg-path-utils";
+import type { SVGPathData } from "./types.js";
+import { createSVGPaths } from "./createSVGPaths.js";
+import { loadSVGFromString } from "./loadSVGFromString.js";
 
 enum SVGPathDirection {
   normal,

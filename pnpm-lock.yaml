@@ -1533,9 +1533,6 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.8
         version: link:../../engine/dist
-      '@tsparticles/svg-path-utils':
-        specifier: workspace:4.0.0-alpha.8
-        version: link:../../utils/svgPathUtils/dist
     publishDirectory: dist
 
   paths/zigzag:
@@ -2175,13 +2172,6 @@ importers:
     publishDirectory: dist
 
   utils/smoothValueNoise:
-    publishDirectory: dist
-
-  utils/svgPathUtils:
-    dependencies:
-      '@tsparticles/engine':
-        specifier: workspace:4.0.0-alpha.8
-        version: link:../../engine/dist
     publishDirectory: dist
 
   utils/tests:
