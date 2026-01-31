@@ -1,4 +1,5 @@
 import type { IOptionsColor, IRangedCoordinates, RecursivePartial } from "@tsparticles/engine";
+import type { IAbsorberLife } from "./IAbsorberLife.js";
 import type { IAbsorberSize } from "./IAbsorberSize.js";
 
 /**
@@ -20,6 +21,11 @@ export interface IAbsorber {
    * Absorber draggable, this enables dragging on absorbers
    */
   draggable: boolean;
+
+  /**
+   * Absorber life
+   */
+  life: IAbsorberLife;
 
   /**
    * Absorber name
