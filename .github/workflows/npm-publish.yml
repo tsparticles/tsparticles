@@ -29,23 +29,29 @@ jobs:
 
       - run: pnpm install
 
+      - name: Build All Packages
+        run: pnpm run build:ci
+        env:
+          CI: true
+
       - name: Publish
         run: |
           npm config set //registry.npmjs.org/:_authToken ""
           
           TAG="${GITHUB_REF#refs/tags/}"
-          EXTRA_FLAGS="-- --provenance --access public --loglevel verbose"
           
+          BASE_CMD="lerna publish from-package --ignore-scripts --loglevel verbose"
+
           if [[ "$TAG" == *"-alpha."* ]]; then
-            pnpm run publish:alpha $EXTRA_FLAGS
+            $BASE_CMD --pre-dist-tag alpha --preid alpha
           elif [[ "$TAG" == *"-beta."* ]]; then
-            pnpm run publish:beta $EXTRA_FLAGS
+            $BASE_CMD --pre-dist-tag beta --preid beta
           elif [[ "$TAG" == v1* ]]; then
-            pnpm run publish:v1 $EXTRA_FLAGS
+            $BASE_CMD --dist-tag v1
           elif [[ "$TAG" == v2* ]]; then
-            pnpm run publish:v2 $EXTRA_FLAGS
+            $BASE_CMD --dist-tag v2
           elif [[ "$TAG" == v3* ]]; then
-            pnpm run publish:v3 $EXTRA_FLAGS
+            $BASE_CMD --dist-tag v3
           else
-            lerna publish from-package -y --provenance --access public --loglevel verbose
+            $BASE_CMD
           fi
