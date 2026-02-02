@@ -1,6 +1,6 @@
 export interface ILevyPathOptions {
   /**
-   * Stability parameter (0 < alpha <= 2)
+   * Stability parameter (0 \< alpha \<= 2)
    */
   alpha?: number;
 
