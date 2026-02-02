@@ -3,6 +3,7 @@ packages:
   - presets/*
 
 onlyBuiltDependencies:
+  - '@swc/core'
   - '@tsparticles/engine'
   - esbuild
   - nx

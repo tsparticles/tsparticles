@@ -6,14 +6,14 @@ const presetNames = ["bigCircles", "big-circles"];
  * @param engine -
  */
 export async function loadBigCirclesPreset(engine: Engine): Promise<void> {
-    await engine.register(async e => {
-        const { loadBasic } = await import("@tsparticles/basic"),
-            { options } = await import("./options.js");
+  await engine.register(async e => {
+    const { loadBasic } = await import("@tsparticles/basic"),
+      { options } = await import("./options.js");
 
-        await loadBasic(e);
+    await loadBasic(e);
 
-        presetNames.forEach(name => {
-            e.addPreset(name, options);
-        });
+    presetNames.forEach(name => {
+      e.addPreset(name, options);
     });
+  });
 }

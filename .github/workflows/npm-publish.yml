@@ -1,0 +1,51 @@
+name: Publish Packages
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - run: pnpm install
+
+      - name: Build All Packages
+        run: pnpm run build:ci
+        env:
+          CI: true
+
+      - name: Publish
+        run: |
+          npm config set //registry.npmjs.org/:_authToken ""
+          
+          TAG="${GITHUB_REF#refs/tags/}"
+          
+          BASE_CMD="lerna publish from-package --ignore-scripts --loglevel verbose"
+
+          if [[ "$TAG" == *"-alpha."* ]]; then
+            $BASE_CMD --pre-dist-tag alpha --preid alpha
+          elif [[ "$TAG" == *"-beta."* ]]; then
+            $BASE_CMD --pre-dist-tag beta --preid beta
+          else
+            $BASE_CMD
+          fi
