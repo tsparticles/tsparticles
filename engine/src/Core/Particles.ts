@@ -171,6 +171,8 @@ export class Particles {
       }
 
       if (!canAdd) {
+        this._pool.push(particle);
+
         return;
       }
 
