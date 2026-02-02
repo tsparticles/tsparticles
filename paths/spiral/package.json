@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-spiral",
-  "version": "4.0.0-alpha.10",
+  "version": "4.0.0-alpha.14",
   "description": "tsParticles spiral path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -109,7 +109,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.10"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.14"
   },
   "publishConfig": {
     "access": "public",

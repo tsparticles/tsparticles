@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-attract",
-  "version": "4.0.0-alpha.13",
+  "version": "4.0.0-alpha.14",
   "description": "tsParticles attract external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,8 +87,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.10",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.13"
+    "@tsparticles/engine": "4.0.0-alpha.14",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.14"
   },
   "publishConfig": {
     "access": "public"
