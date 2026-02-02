@@ -213,26 +213,25 @@ async function parseImageBlock(
    * @returns RGBA color value
    */
   const getColor = (index: number): IRgba => {
-    const { r, g, b } = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index]!;
+      const { r, g, b } = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index]!;
 
-    if (index !== getTransparencyIndex(null)) {
-      return { r, g, b, a: 255 };
-    }
-
-    return { r, g, b, a: avgAlpha ? Math.trunc((r + g + b) / 3) : 0 };
-  };
-
-  const image = ((): ImageData | null => {
-    try {
-      return new ImageData(frame.width, frame.height, { colorSpace: "srgb" });
-    } catch (error) {
-      if (error instanceof DOMException && error.name === "IndexSizeError") {
-        return null;
+      if (index !== getTransparencyIndex(null)) {
+        return { r, g, b, a: 255 };
       }
 
-      throw error;
-    }
-  })();
+      return { r, g, b, a: avgAlpha ? Math.trunc((r + g + b) / 3) : 0 };
+    },
+    image = ((): ImageData | null => {
+      try {
+        return new ImageData(frame.width, frame.height, { colorSpace: "srgb" });
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "IndexSizeError") {
+          return null;
+        }
+
+        throw error;
+      }
+    })();
 
   if (image == null) {
     throw new EvalError("GIF frame size is to large");
@@ -240,22 +239,22 @@ async function parseImageBlock(
 
   const minCodeSize = byteStream.nextByte(),
     imageData = byteStream.readSubBlocksBin(),
-    clearCode = 1 << minCodeSize;
-  /**
-   * __read `len` bits from `imageData` at `pos`__
-   * @param pos - bit position in `imageData`
-   * @param len - bit length to read [1-12 bits]
-   * @returns `len` bits at `pos`
-   */
-  const readBits = (pos: number, len: number): number => {
-    const bytePos = pos >>> 3,
-      bitPos = pos & 7;
-    return (
-      ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
-        (((1 << len) - 1) << bitPos)) >>>
-      bitPos
-    );
-  };
+    clearCode = 1 << minCodeSize,
+    /**
+     * __read `len` bits from `imageData` at `pos`__
+     * @param pos - bit position in `imageData`
+     * @param len - bit length to read [1-12 bits]
+     * @returns `len` bits at `pos`
+     */
+    readBits = (pos: number, len: number): number => {
+      const bytePos = pos >>> 3,
+        bitPos = pos & 7;
+      return (
+        ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
+          (((1 << len) - 1) << bitPos)) >>>
+        bitPos
+      );
+    };
 
   if (interlacedFlag) {
     for (let code = 0, size = minCodeSize + 1, pos = 0, dic = [[0]], pass = 0; pass < 4; pass++) {
@@ -455,13 +454,12 @@ export async function decodeGIF(
     throw new EvalError("file not found");
   }
 
-  const buffer = await res.arrayBuffer();
-
-  // ? https://www.w3.org/Graphics/GIF/spec-gif89a.txt
-  // ? https://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
-  // ~ load stream and start decoding
-  /** the output gif object */
-  const gif: GIF = {
+  const buffer = await res.arrayBuffer(),
+    // ? https://www.w3.org/Graphics/GIF/spec-gif89a.txt
+    // ? https://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
+    // ~ load stream and start decoding
+    /** the output gif object */
+    gif: GIF = {
       width: 0,
       height: 0,
       totalTime: 0,
@@ -550,24 +548,24 @@ export async function decodeGIF(
    * @returns current frame index
    */
   const getframeIndex = (increment: boolean): number => {
-    if (increment) {
-      incrementFrameIndex = true;
-    }
+      if (increment) {
+        incrementFrameIndex = true;
+      }
 
-    return frameIndex;
-  };
-  /**
-   * __get the current transparency index for this frame__
-   * @param newValue - if set updates value of transparencyIndex to this
-   * @returns current transparency index
-   */
-  const getTransparencyIndex = (newValue?: number | null): number => {
-    if (newValue != null) {
-      transparencyIndex = newValue;
-    }
+      return frameIndex;
+    },
+    /**
+     * __get the current transparency index for this frame__
+     * @param newValue - if set updates value of transparencyIndex to this
+     * @returns current transparency index
+     */
+    getTransparencyIndex = (newValue?: number | null): number => {
+      if (newValue != null) {
+        transparencyIndex = newValue;
+      }
 
-    return transparencyIndex;
-  };
+      return transparencyIndex;
+    };
   try {
     do {
       if (incrementFrameIndex) {

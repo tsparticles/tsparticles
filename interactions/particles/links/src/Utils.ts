@@ -45,15 +45,13 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
 
     drawn = true;
   } else if (links.warp) {
-    let pi1: ICoordinates | undefined;
-    let pi2: ICoordinates | undefined;
+    let pi1: ICoordinates | undefined, pi2: ICoordinates | undefined;
 
     const endNE = {
-      x: end.x - canvasSize.width,
-      y: end.y,
-    };
-
-    const d1 = getDistances(begin, endNE);
+        x: end.x - canvasSize.width,
+        y: end.y,
+      },
+      d1 = getDistances(begin, endNE);
 
     if (d1.distance <= maxDistance) {
       const yi = begin.y - (d1.dy / d1.dx) * begin.x;
@@ -62,29 +60,27 @@ export function drawLinkLine(params: LinkLineDrawParams): void {
       pi2 = { x: canvasSize.width, y: yi };
     } else {
       const endSW = {
-        x: end.x,
-        y: end.y - canvasSize.height,
-      };
-
-      const d2 = getDistances(begin, endSW);
+          x: end.x,
+          y: end.y - canvasSize.height,
+        },
+        d2 = getDistances(begin, endSW);
 
       if (d2.distance <= maxDistance) {
-        const yi = begin.y - (d2.dy / d2.dx) * begin.x;
-        const xi = -yi / (d2.dy / d2.dx);
+        const yi = begin.y - (d2.dy / d2.dx) * begin.x,
+          xi = -yi / (d2.dy / d2.dx);
 
         pi1 = { x: xi, y: 0 };
         pi2 = { x: xi, y: canvasSize.height };
       } else {
         const endSE = {
-          x: end.x - canvasSize.width,
-          y: end.y - canvasSize.height,
-        };
-
-        const d3 = getDistances(begin, endSE);
+            x: end.x - canvasSize.width,
+            y: end.y - canvasSize.height,
+          },
+          d3 = getDistances(begin, endSE);
 
         if (d3.distance <= maxDistance) {
-          const yi = begin.y - (d3.dy / d3.dx) * begin.x;
-          const xi = -yi / (d3.dy / d3.dx);
+          const yi = begin.y - (d3.dy / d3.dx) * begin.x,
+            xi = -yi / (d3.dy / d3.dx);
 
           pi1 = { x: xi, y: yi };
           pi2 = { x: pi1.x + canvasSize.width, y: pi1.y + canvasSize.height };

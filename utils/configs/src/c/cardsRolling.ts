@@ -7,91 +7,90 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
       suit,
       value,
     })),
-  );
-
-const options: ISourceOptions = {
-  key: "cardsRolling",
-  name: "Cards Rolling",
-  particles: {
-    color: {
-      value: "#000",
-    },
-    number: {
-      value: 52,
-    },
-    reduceDuplicates: true,
-    shape: {
-      type: ["card"],
-      options: {
-        card: allCards,
+  ),
+  options: ISourceOptions = {
+    key: "cardsRolling",
+    name: "Cards Rolling",
+    particles: {
+      color: {
+        value: "#000",
       },
-    },
-    opacity: {
-      value: 1,
-    },
-    size: {
-      value: 30,
-    },
-    stroke: {
-      width: 1,
-      color: "#000",
-    },
-    move: {
-      enable: true,
-      speed: 2,
-    },
-    roll: {
-      darken: {
-        enable: true,
+      number: {
+        value: 52,
+      },
+      reduceDuplicates: true,
+      shape: {
+        type: ["card"],
+        options: {
+          card: allCards,
+        },
+      },
+      opacity: {
+        value: 1,
+      },
+      size: {
         value: 30,
       },
-      enlighten: {
-        enable: true,
-        value: 30,
+      stroke: {
+        width: 1,
+        color: "#000",
       },
-      enable: true,
-      mode: "both",
-      speed: {
-        min: 5,
-        max: 15,
+      move: {
+        enable: true,
+        speed: 2,
+      },
+      roll: {
+        darken: {
+          enable: true,
+          value: 30,
+        },
+        enlighten: {
+          enable: true,
+          value: 30,
+        },
+        enable: true,
+        mode: "both",
+        speed: {
+          min: 5,
+          max: 15,
+        },
+      },
+      tilt: {
+        direction: "random",
+        enable: true,
+        value: {
+          min: 0,
+          max: 360,
+        },
+        animation: {
+          enable: true,
+          speed: 15,
+        },
       },
     },
-    tilt: {
-      direction: "random",
-      enable: true,
-      value: {
-        min: 0,
-        max: 360,
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true,
+          mode: "repulse",
+        },
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
       },
-      animation: {
-        enable: true,
-        speed: 15,
-      },
-    },
-  },
-  interactivity: {
-    events: {
-      onHover: {
-        enable: true,
-        mode: "repulse",
-      },
-      onClick: {
-        enable: true,
-        mode: "push",
+      modes: {
+        repulse: {
+          distance: 200,
+        },
+        push: {
+          quantity: 4,
+        },
       },
     },
-    modes: {
-      repulse: {
-        distance: 200,
-      },
-      push: {
-        quantity: 4,
-      },
+    background: {
+      color: "#fff",
     },
-  },
-  background: {
-    color: "#fff",
-  },
-};
+  };
 
 export default options;

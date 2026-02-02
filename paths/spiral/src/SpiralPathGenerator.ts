@@ -14,13 +14,12 @@ import { SpiralDirection } from "./SpiralDirection.js";
 import type { SpiralParticle } from "./SpiralParticle.js";
 
 const minRadius = 0,
-  speedFactor = 0.01;
-
-const defaultOptions: ISpiralOptions = {
-  maxRadius: { min: 10, max: 50 },
-  angularSpeed: { min: 0.01, max: 0.04 },
-  radialSpeed: { min: 0.1, max: 0.3 },
-};
+  speedFactor = 0.01,
+  defaultOptions: ISpiralOptions = {
+    maxRadius: { min: 10, max: 50 },
+    angularSpeed: { min: 0.01, max: 0.04 },
+    radialSpeed: { min: 0.1, max: 0.3 },
+  };
 
 export class SpiralPathGenerator implements IMovePathGenerator {
   readonly options;

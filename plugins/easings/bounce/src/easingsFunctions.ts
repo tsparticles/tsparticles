@@ -3,8 +3,8 @@ import { type EasingFunction, EasingType, type EasingTypeAlt } from "@tsparticle
 
 const easingsFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>(),
   bounceOut = (t: number): number => {
-    const n1 = 7.5625;
-    const d1 = 2.75;
+    const n1 = 7.5625,
+      d1 = 2.75;
 
     if (t < 1 / d1) {
       return n1 * t * t;

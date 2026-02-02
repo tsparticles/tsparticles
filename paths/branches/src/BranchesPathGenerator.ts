@@ -47,8 +47,8 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
     b.remaining -= b.speed;
 
-    const vx = Math.cos(b.angle) * b.speed;
-    const vy = Math.sin(b.angle) * b.speed;
+    const vx = Math.cos(b.angle) * b.speed,
+      vy = Math.sin(b.angle) * b.speed;
 
     p.velocity.x = 0;
     p.velocity.y = 0;

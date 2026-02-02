@@ -2,9 +2,8 @@ import type { IImage } from "./Utils.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import type { ImageEngine } from "./types.js";
 
-declare const __VERSION__: string;
-
-const extLength = 3;
+declare const __VERSION__: string,
+  extLength = 3;
 
 /**
  *

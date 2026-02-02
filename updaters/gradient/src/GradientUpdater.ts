@@ -151,9 +151,8 @@ export class GradientUpdater implements IParticleUpdater {
                 time: 0,
               }
             : undefined,
-        };
-
-      const { opacity: addOpacity } = addColor;
+        },
+        { opacity: addOpacity } = addColor;
 
       if (grColor.opacity && addOpacity) {
         const opacityRange = grColor.opacity.value;

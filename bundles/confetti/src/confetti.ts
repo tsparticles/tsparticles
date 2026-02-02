@@ -13,18 +13,6 @@ import type { IConfettiOptions } from "./IConfettiOptions.js";
 
 declare const __VERSION__: string;
 
-const defaultGravity = 9.81,
-  sizeFactor = 5,
-  speedFactor = 3,
-  decayOffset = 1,
-  disableRotate = 0,
-  disableTilt = 0;
-
-/**
- *
- */
-export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
-
 declare global {
   /**
    *
@@ -47,10 +35,21 @@ declare global {
   };
 }
 
-let initialized = false;
-let initializing = false;
+/**
+ *
+ */
+export type ConfettiFirstParam = string | RecursivePartial<IConfettiOptions>;
 
-const ids = new Map<string, Container | undefined>();
+let initialized = false,
+  initializing = false;
+
+const ids = new Map<string, Container | undefined>(),
+  defaultGravity = 9.81,
+  sizeFactor = 5,
+  speedFactor = 3,
+  decayOffset = 1,
+  disableRotate = 0,
+  disableTilt = 0;
 
 /**
  * The {@link confetti} parameter object definition
@@ -426,8 +425,7 @@ export async function confetti(
 ): Promise<Container | undefined> {
   await initPlugins(tsParticles);
 
-  let options: RecursivePartial<IConfettiOptions>;
-  let id: string;
+  let options: RecursivePartial<IConfettiOptions>, id: string;
 
   if (isString(idOrOptions)) {
     id = idOrOptions;
@@ -463,8 +461,7 @@ confetti.create = async (
     idOrOptions: ConfettiFirstParam,
     confettiOptions?: RecursivePartial<IConfettiOptions>,
   ): Promise<Container | undefined> => {
-    let subOptions: RecursivePartial<IConfettiOptions>;
-    let subId: string;
+    let subOptions: RecursivePartial<IConfettiOptions>, subId: string;
 
     if (isString(idOrOptions)) {
       subId = idOrOptions;

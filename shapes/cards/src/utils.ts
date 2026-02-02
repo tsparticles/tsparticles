@@ -157,8 +157,8 @@ function drawRoundedCardFront(
   ctx.textBaseline = "middle";
 
   // Base coordinates for the corner content
-  const topLeftX = -halfWidth + cornerPadding + suitEdgeBuffer;
-  const topLeftY = -halfHeight + cornerPadding + cornerFontSize * half;
+  const topLeftX = -halfWidth + cornerPadding + suitEdgeBuffer,
+    topLeftY = -halfHeight + cornerPadding + cornerFontSize * half;
 
   // --- 3. Top Left Corner (Suit then Value) ---
   ctx.save();

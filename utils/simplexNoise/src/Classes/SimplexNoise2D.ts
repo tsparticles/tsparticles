@@ -101,9 +101,8 @@ export class SimplexNoise2D {
   }
 
   noise(x: number, y: number): number {
-    const { _gradients2D, _NORM_2D, _SQUISH_2D, _STRETCH_2D, _lookup, _perm, _perm2D } = this;
-
-    const stretchOffset = (x + y) * _STRETCH_2D,
+    const { _gradients2D, _NORM_2D, _SQUISH_2D, _STRETCH_2D, _lookup, _perm, _perm2D } = this,
+      stretchOffset = (x + y) * _STRETCH_2D,
       xs = x + stretchOffset,
       ys = y + stretchOffset,
       xsb = Math.floor(xs),
@@ -138,9 +137,8 @@ export class SimplexNoise2D {
   }
 
   seed(clientSeed: number): void {
-    const { _p2D, _base2D, _lookupPairs2D } = this;
-
-    const contributions: Contribution2D[] = [];
+    const { _p2D, _base2D, _lookupPairs2D } = this,
+      contributions: Contribution2D[] = [];
 
     for (let i = 0; i < _p2D.length; i += 4) {
       const baseSet = _base2D[_p2D[i]!]!;

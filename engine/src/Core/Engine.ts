@@ -53,11 +53,11 @@ import { getRandom } from "../Utils/MathUtils.js";
 
 declare const __VERSION__: string;
 
-const fullPercent = "100%";
-
 declare global {
   var tsParticles: Engine;
 }
+
+const fullPercent = "100%";
 
 interface DataFromUrlParams {
   fallback?: SingleOrMultiple<ISourceOptions>;

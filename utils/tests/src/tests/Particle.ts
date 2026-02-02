@@ -12,16 +12,15 @@ describe("Particle", async () => {
   globalThis.window = TestWindow;
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment,@typescript-eslint/no-explicit-any
-  const canvas = createCustomCanvas(width, height) as any;
-
-  const container = await tsParticles.load({
-    id: "test-particle",
-    options: {
-      autoPlay: false,
-    },
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    element: canvas,
-  });
+  const canvas = createCustomCanvas(width, height) as any,
+    container = await tsParticles.load({
+      id: "test-particle",
+      options: {
+        autoPlay: false,
+      },
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      element: canvas,
+    });
 
   if (!container) {
     throw new Error("test container not initialized");

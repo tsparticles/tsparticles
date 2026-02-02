@@ -443,9 +443,8 @@ export class PolygonMaskInstance implements IContainerPlugin {
         svg = data;
       } else {
         const getPath = (p: string): string => `<path d="${p}" />`,
-          path = isArray(data.path) ? data.path.map(getPath).join("") : getPath(data.path);
-
-        const namespaces = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
+          path = isArray(data.path) ? data.path.map(getPath).join("") : getPath(data.path),
+          namespaces = 'xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"';
 
         svg = `<svg ${namespaces} width="${data.size.width.toString()}" height="${data.size.height.toString()}">${path}</svg>`;
       }

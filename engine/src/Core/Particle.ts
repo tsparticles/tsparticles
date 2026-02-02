@@ -892,9 +892,8 @@ export class Particle {
 
   private readonly _initPosition: (position?: ICoordinates) => void = position => {
     const container = this.container,
-      zIndexValue = getRangeValue(this.options.zIndex.value);
-
-    const initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
+      zIndexValue = getRangeValue(this.options.zIndex.value),
+      initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
 
     if (!initialPosition) {
       throw new Error("a valid position cannot be found for particle");

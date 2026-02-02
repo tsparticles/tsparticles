@@ -24,9 +24,8 @@ export function drawText(data: IShapeDrawData<TextParticle>): void {
     style = character.style,
     weight = character.weight,
     size = Math.round(radius) * double,
-    font = character.font;
-
-  const lines = text?.split("\n") ?? [];
+    font = character.font,
+    lines = text?.split("\n") ?? [];
 
   context.font = `${style} ${weight} ${size.toString()}px "${font}"`;
 
