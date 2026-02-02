@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-circle",
-  "version": "4.0.0-alpha.10",
+  "version": "4.0.0-alpha.13",
   "description": "tsParticles emitters shape circle plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -109,7 +109,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:4.0.0-alpha.10",
-    "@tsparticles/plugin-emitters": "workspace:4.0.0-alpha.10"
+    "@tsparticles/plugin-emitters": "workspace:4.0.0-alpha.13"
   },
   "publishConfig": {
     "access": "public",

@@ -176,7 +176,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../effects/bubble/dist
       "@tsparticles/effect-particles":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../effects/particles/dist
       "@tsparticles/effect-shadow":
         specifier: workspace:4.0.0-alpha.10
@@ -188,16 +188,16 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/interaction-external-particle":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/particle/dist
       "@tsparticles/interaction-external-pop":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/pop/dist
       "@tsparticles/interaction-light":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/light/dist
       "@tsparticles/interaction-particles-repulse":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/repulse/dist
       "@tsparticles/path-branches":
         specifier: workspace:4.0.0-alpha.11
@@ -287,13 +287,13 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../plugins/easings/smoothstep/dist
       "@tsparticles/plugin-emitters-shape-canvas":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/canvas/dist
       "@tsparticles/plugin-emitters-shape-path":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/path/dist
       "@tsparticles/plugin-emitters-shape-polygon":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/polygon/dist
       "@tsparticles/plugin-export-image":
         specifier: workspace:4.0.0-alpha.10
@@ -311,7 +311,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../plugins/colors/hwb/dist
       "@tsparticles/plugin-infection":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/infection/dist
       "@tsparticles/plugin-lab-color":
         specifier: workspace:4.0.0-alpha.10
@@ -386,7 +386,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../updaters/orbit/dist
       tsparticles:
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../full/dist
     publishDirectory: dist
 
@@ -433,7 +433,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-motion":
         specifier: workspace:4.0.0-alpha.10
@@ -488,10 +488,10 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-emitters-shape-square":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/square/dist
       "@tsparticles/plugin-sounds":
         specifier: workspace:4.0.0-alpha.10
@@ -513,25 +513,25 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/interaction-external-trail":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/trail/dist
       "@tsparticles/plugin-absorbers":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/absorbers/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-emitters-shape-circle":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/circle/dist
       "@tsparticles/plugin-emitters-shape-square":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/square/dist
       "@tsparticles/shape-text":
         specifier: workspace:4.0.0-alpha.10
         version: link:../../shapes/text/dist
       "@tsparticles/slim":
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../slim/dist
       "@tsparticles/updater-destroy":
         specifier: workspace:4.0.0-alpha.10
@@ -559,11 +559,11 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../plugins/responsive/dist
       tsparticles:
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../full/dist
     devDependencies:
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -576,46 +576,46 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/interaction-external-attract":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/attract/dist
       "@tsparticles/interaction-external-bounce":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/bounce/dist
       "@tsparticles/interaction-external-bubble":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/bubble/dist
       "@tsparticles/interaction-external-connect":
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/connect/dist
       "@tsparticles/interaction-external-grab":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/grab/dist
       "@tsparticles/interaction-external-parallax":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/parallax/dist
       "@tsparticles/interaction-external-pause":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/pause/dist
       "@tsparticles/interaction-external-push":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/push/dist
       "@tsparticles/interaction-external-remove":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/remove/dist
       "@tsparticles/interaction-external-repulse":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/repulse/dist
       "@tsparticles/interaction-external-slow":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/slow/dist
       "@tsparticles/interaction-particles-attract":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/attract/dist
       "@tsparticles/interaction-particles-collisions":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/collisions/dist
       "@tsparticles/interaction-particles-links":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/links/dist
       "@tsparticles/plugin-easing-quad":
         specifier: workspace:4.0.0-alpha.10
@@ -658,7 +658,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       tsparticles:
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/full/dist
     devDependencies:
       electron:
@@ -668,7 +668,7 @@ importers:
   demo/vanilla:
     dependencies:
       "@tsparticles/all":
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/all/dist
       "@tsparticles/basic":
         specifier: workspace:4.0.0-alpha.10
@@ -677,7 +677,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../utils/canvasUtils/dist
       "@tsparticles/confetti":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/confetti/dist
       "@tsparticles/configs":
         specifier: workspace:4.0.0-alpha.10
@@ -686,7 +686,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../effects/bubble/dist
       "@tsparticles/effect-particles":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../effects/particles/dist
       "@tsparticles/effect-shadow":
         specifier: workspace:4.0.0-alpha.10
@@ -698,67 +698,67 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/fireworks":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/fireworks/dist
       "@tsparticles/fractal-noise":
         specifier: workspace:4.0.0-alpha.8
         version: link:../../utils/fractalNoise/dist
       "@tsparticles/interaction-external-attract":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/attract/dist
       "@tsparticles/interaction-external-bounce":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/bounce/dist
       "@tsparticles/interaction-external-bubble":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/bubble/dist
       "@tsparticles/interaction-external-connect":
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/connect/dist
       "@tsparticles/interaction-external-grab":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/grab/dist
       "@tsparticles/interaction-external-parallax":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/parallax/dist
       "@tsparticles/interaction-external-particle":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/particle/dist
       "@tsparticles/interaction-external-pause":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/pause/dist
       "@tsparticles/interaction-external-pop":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/pop/dist
       "@tsparticles/interaction-external-push":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/push/dist
       "@tsparticles/interaction-external-remove":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/remove/dist
       "@tsparticles/interaction-external-repulse":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/repulse/dist
       "@tsparticles/interaction-external-slow":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/slow/dist
       "@tsparticles/interaction-external-trail":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/external/trail/dist
       "@tsparticles/interaction-light":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/light/dist
       "@tsparticles/interaction-particles-attract":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/attract/dist
       "@tsparticles/interaction-particles-collisions":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/collisions/dist
       "@tsparticles/interaction-particles-links":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/links/dist
       "@tsparticles/interaction-particles-repulse":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/repulse/dist
       "@tsparticles/move-base":
         specifier: workspace:4.0.0-alpha.10
@@ -812,10 +812,10 @@ importers:
         specifier: workspace:4.0.0-alpha.8
         version: link:../../utils/perlinNoise/dist
       "@tsparticles/pjs":
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/pjs/dist
       "@tsparticles/plugin-absorbers":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/absorbers/dist
       "@tsparticles/plugin-background-mask":
         specifier: workspace:4.0.0-alpha.10
@@ -869,22 +869,22 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../plugins/easings/smoothstep/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emitters/dist
       "@tsparticles/plugin-emitters-shape-canvas":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/canvas/dist
       "@tsparticles/plugin-emitters-shape-circle":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/circle/dist
       "@tsparticles/plugin-emitters-shape-path":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/path/dist
       "@tsparticles/plugin-emitters-shape-polygon":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/polygon/dist
       "@tsparticles/plugin-emitters-shape-square":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/emittersShapes/square/dist
       "@tsparticles/plugin-export-image":
         specifier: workspace:4.0.0-alpha.10
@@ -908,10 +908,10 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../plugins/colors/hwb/dist
       "@tsparticles/plugin-infection":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/infection/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/interactivity/dist
       "@tsparticles/plugin-lab-color":
         specifier: workspace:4.0.0-alpha.10
@@ -1010,7 +1010,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../utils/simplexNoise/dist
       "@tsparticles/slim":
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/slim/dist
       "@tsparticles/smooth-value-noise":
         specifier: workspace:4.0.0-alpha.8
@@ -1058,7 +1058,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../updaters/wobble/dist
       tsparticles:
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/full/dist
     devDependencies:
       "@datalust/winston-seq":
@@ -1143,10 +1143,10 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/interaction-light":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/light/dist
       "@tsparticles/interaction-particles-repulse":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../interactions/particles/repulse/dist
       "@tsparticles/path-curves":
         specifier: workspace:4.0.0-alpha.10
@@ -1161,7 +1161,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../paths/simplexNoise/dist
       "@tsparticles/plugin-infection":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/infection/dist
       "@tsparticles/updater-gradient":
         specifier: workspace:4.0.0-alpha.10
@@ -1170,7 +1170,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../updaters/orbit/dist
       tsparticles:
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/full/dist
     devDependencies:
       "@swc/core":
@@ -1189,7 +1189,7 @@ importers:
   demo/vite:
     dependencies:
       "@tsparticles/all":
-        specifier: workspace:4.0.0-alpha.11
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../bundles/all/dist
       "@tsparticles/configs":
         specifier: workspace:4.0.0-alpha.10
@@ -1242,7 +1242,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1252,7 +1252,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1262,7 +1262,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1275,7 +1275,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1288,7 +1288,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1298,7 +1298,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1308,7 +1308,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1318,7 +1318,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1328,7 +1328,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1338,7 +1338,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1348,7 +1348,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1358,7 +1358,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1368,7 +1368,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1378,7 +1378,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1388,7 +1388,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1398,7 +1398,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1408,7 +1408,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1421,7 +1421,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1431,7 +1431,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../../plugins/interactivity/dist
     publishDirectory: dist
 
@@ -1560,7 +1560,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../interactivity/dist
     publishDirectory: dist
 
@@ -1762,7 +1762,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../interactivity/dist
     publishDirectory: dist
 
@@ -1775,7 +1775,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../emitters/dist
     publishDirectory: dist
 
@@ -1785,7 +1785,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../emitters/dist
     publishDirectory: dist
 
@@ -1795,7 +1795,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../emitters/dist
     publishDirectory: dist
 
@@ -1805,7 +1805,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../emitters/dist
     publishDirectory: dist
 
@@ -1815,7 +1815,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../../engine/dist
       "@tsparticles/plugin-emitters":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../../emitters/dist
     publishDirectory: dist
 
@@ -1846,7 +1846,7 @@ importers:
         specifier: workspace:4.0.0-alpha.10
         version: link:../../engine/dist
       "@tsparticles/plugin-interactivity":
-        specifier: workspace:4.0.0-alpha.10
+        specifier: workspace:4.0.0-alpha.13
         version: link:../interactivity/dist
     publishDirectory: dist
 

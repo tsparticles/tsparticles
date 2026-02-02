@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/vite-demo",
   "private": true,
-  "version": "4.0.0-alpha.11",
+  "version": "4.0.0-alpha.13",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tsparticles/all": "workspace:4.0.0-alpha.11",
+    "@tsparticles/all": "workspace:4.0.0-alpha.13",
     "@tsparticles/configs": "workspace:4.0.0-alpha.10",
     "@tsparticles/engine": "workspace:4.0.0-alpha.10"
   },

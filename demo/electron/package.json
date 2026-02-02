@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/electron-demo",
-  "version": "4.0.0-alpha.12",
+  "version": "4.0.0-alpha.13",
   "description": "",
   "main": "app/index.js",
   "private": true,
@@ -16,7 +16,7 @@
   "dependencies": {
     "@tsparticles/configs": "workspace:4.0.0-alpha.10",
     "@tsparticles/engine": "workspace:4.0.0-alpha.10",
-    "tsparticles": "workspace:4.0.0-alpha.11"
+    "tsparticles": "workspace:4.0.0-alpha.13"
   },
   "devDependencies": {
     "electron": "^40.1.0"
