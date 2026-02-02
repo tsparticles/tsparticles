@@ -79,6 +79,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadPerlinNoisePath } = await import("@tsparticles/path-perlin-noise"),
       { loadSimplexNoisePath } = await import("@tsparticles/path-simplex-noise"),
       { loadBubbleEffect } = await import("@tsparticles/effect-bubble"),
+      { loadParticlesEffect } = await import("@tsparticles/effect-particles"),
       { loadShadowEffect } = await import("@tsparticles/effect-shadow"),
       { loadTrailEffect } = await import("@tsparticles/effect-trail"),
       { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
@@ -155,6 +156,7 @@ export async function loadAll(engine: Engine): Promise<void> {
     await loadSimplexNoisePath(e);
 
     await loadBubbleEffect(e);
+    await loadParticlesEffect(e);
     await loadShadowEffect(e);
     await loadTrailEffect(e);
 

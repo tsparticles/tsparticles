@@ -65,7 +65,7 @@ export class DestroyUpdater implements IParticleUpdater {
     options: DestroyParticlesOptions,
     ...sources: (RecursivePartial<IDestroyParticlesOptions> | undefined)[]
   ): void {
-    options.destroy ??= new Destroy();
+    options.destroy = new Destroy();
 
     for (const source of sources) {
       options.destroy.load(source?.destroy);

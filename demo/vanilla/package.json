@@ -56,6 +56,7 @@
     "@tsparticles/confetti": "workspace:4.0.0-alpha.8",
     "@tsparticles/configs": "workspace:4.0.0-alpha.8",
     "@tsparticles/effect-bubble": "workspace:4.0.0-alpha.8",
+    "@tsparticles/effect-particles": "workspace:4.0.0-alpha.8",
     "@tsparticles/effect-shadow": "workspace:4.0.0-alpha.8",
     "@tsparticles/effect-trail": "workspace:4.0.0-alpha.8",
     "@tsparticles/engine": "workspace:4.0.0-alpha.8",

@@ -181,6 +181,7 @@ app.use("/plugin-sounds", express.static("./node_modules/@tsparticles/plugin-sou
 app.use("/plugin-themes", express.static("./node_modules/@tsparticles/plugin-themes"));
 app.use("/plugin-trail", express.static("./node_modules/@tsparticles/plugin-trail"));
 app.use("/effect-bubble", express.static("./node_modules/@tsparticles/effect-bubble"));
+app.use("/effect-particles", express.static("./node_modules/@tsparticles/effect-particles"));
 app.use("/effect-shadow", express.static("./node_modules/@tsparticles/effect-shadow"));
 app.use("/effect-trail", express.static("./node_modules/@tsparticles/effect-trail"));
 app.use("/shape-arrow", express.static("./node_modules/@tsparticles/shape-arrow"));

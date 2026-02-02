@@ -112,7 +112,7 @@ export class OrbitUpdater implements IParticleUpdater {
     options: OrbitParticlesOptions,
     ...sources: (RecursivePartial<IOrbitParticlesOptions> | undefined)[]
   ): void {
-    options.orbit ??= new Orbit();
+    options.orbit = new Orbit();
 
     for (const source of sources) {
       options.orbit.load(source?.orbit);

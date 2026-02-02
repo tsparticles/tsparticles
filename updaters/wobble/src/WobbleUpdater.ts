@@ -67,7 +67,7 @@ export class WobbleUpdater implements IParticleUpdater {
     options: WobbleParticlesOptions,
     ...sources: (RecursivePartial<IWobbleParticlesOptions> | undefined)[]
   ): void {
-    options.wobble ??= new Wobble();
+    options.wobble = new Wobble();
 
     for (const source of sources) {
       options.wobble.load(source?.wobble);

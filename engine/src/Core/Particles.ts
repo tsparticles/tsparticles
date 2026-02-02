@@ -72,8 +72,9 @@ export class Particles {
   private readonly _container: Container;
   private readonly _engine;
   private readonly _groupLimits: Map<string, number>;
-  private _lastZIndex;
   private _limit;
+  private _maxZIndex;
+  private _minZIndex;
   private _needsSort;
   private _nextId;
   private _particleResetPlugins: IContainerPlugin[];
@@ -100,7 +101,8 @@ export class Particles {
     this._limit = 0;
     this._groupLimits = new Map<string, number>();
     this._needsSort = false;
-    this._lastZIndex = 0;
+    this._minZIndex = 0;
+    this._maxZIndex = 0;
 
     const canvasSize = container.canvas.size;
 
@@ -157,7 +159,39 @@ export class Particles {
       }
     }
 
-    return this._pushParticle(position, overrideOptions, group, initializer);
+    try {
+      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
+
+      particle.init(this._nextId, position, overrideOptions, group);
+
+      let canAdd = true;
+
+      if (initializer) {
+        canAdd = initializer(particle);
+      }
+
+      if (!canAdd) {
+        return;
+      }
+
+      this._array.push(particle);
+      this._zArray.push(particle);
+
+      this._nextId++;
+
+      this._engine.dispatchEvent(EventType.particleAdded, {
+        container: this._container,
+        data: {
+          particle,
+        },
+      });
+
+      return particle;
+    } catch (e: unknown) {
+      getLogger().warning(`error adding particle: ${e as string}`);
+    }
+
+    return undefined;
   }
 
   /**
@@ -219,7 +253,8 @@ export class Particles {
     const container = this._container,
       options = container.actualOptions;
 
-    this._lastZIndex = 0;
+    this._minZIndex = 0;
+    this._maxZIndex = 0;
     this._needsSort = false;
     this.checkParticlePositionPlugins = [];
     this._updatePlugins = [];
@@ -384,8 +419,7 @@ export class Particles {
   }
 
   setLastZIndex(zIndex: number): void {
-    this._lastZIndex = zIndex;
-    this._needsSort = this._needsSort || this._lastZIndex < zIndex;
+    this._needsSort = this._needsSort || zIndex < this._minZIndex || zIndex > this._maxZIndex;
   }
 
   setResizeFactor(factor: IDimension): void {
@@ -487,13 +521,15 @@ export class Particles {
 
       zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
+      const firstItem = zArray[minIndex];
       const lastItem = zArray[zArray.length - lengthOffset];
 
-      if (!lastItem) {
+      if (!firstItem || !lastItem) {
         return;
       }
 
-      this._lastZIndex = lastItem.position.z;
+      this._maxZIndex = firstItem.position.z;
+      this._minZIndex = lastItem.position.z;
       this._needsSort = false;
     }
   }
@@ -550,47 +586,6 @@ export class Particles {
       pxRatio = container.retina.pixelRatio;
 
     return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
-  };
-
-  private readonly _pushParticle = (
-    position?: ICoordinates,
-    overrideOptions?: RecursivePartial<IParticlesOptions>,
-    group?: string,
-    initializer?: (particle: Particle) => boolean,
-  ): Particle | undefined => {
-    try {
-      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
-
-      particle.init(this._nextId, position, overrideOptions, group);
-
-      let canAdd = true;
-
-      if (initializer) {
-        canAdd = initializer(particle);
-      }
-
-      if (!canAdd) {
-        return;
-      }
-
-      this._array.push(particle);
-      this._zArray.push(particle);
-
-      this._nextId++;
-
-      this._engine.dispatchEvent(EventType.particleAdded, {
-        container: this._container,
-        data: {
-          particle,
-        },
-      });
-
-      return particle;
-    } catch (e: unknown) {
-      getLogger().warning(`error adding particle: ${e as string}`);
-    }
-
-    return undefined;
   };
 
   private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {

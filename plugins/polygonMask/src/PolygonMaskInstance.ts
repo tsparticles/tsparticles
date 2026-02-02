@@ -315,7 +315,7 @@ export class PolygonMaskInstance implements IContainerPlugin {
     }
 
     for (const item of this.raw) {
-      void this._container.particles.addParticle({
+      this._container.particles.addParticle({
         x: item.x,
         y: item.y,
       });
