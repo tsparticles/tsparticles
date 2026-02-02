@@ -3,11 +3,7 @@ import type { IPreloadOptions, PreloadOptions } from "./types.js";
 import { Preload } from "./Options/Classes/Preload.js";
 
 export class ImagePreloaderPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "imagePreloader";
-  }
+  readonly id = "image-preloader";
 
   async getPlugin(): Promise<IContainerPlugin> {
     await Promise.resolve();

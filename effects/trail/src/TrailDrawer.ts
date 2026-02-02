@@ -89,9 +89,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       canvasSize = {
         width: particle.container.canvas.size.width + diameter,
         height: particle.container.canvas.size.height + diameter,
-      };
-
-    const trailPos = trail[trailLength - trailLengthOffset];
+      },
+      trailPos = trail[trailLength - trailLengthOffset];
 
     if (!trailPos) {
       return;

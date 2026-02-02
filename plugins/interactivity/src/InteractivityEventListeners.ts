@@ -1,4 +1,5 @@
 import {
+  type IContainerPlugin,
   type ICoordinates,
   double,
   executeOnSingleOrMultiple,
@@ -40,6 +41,7 @@ interface InteractivityEventListenersHandlers {
  */
 export class InteractivityEventListeners {
   private _canPush = true;
+  private readonly _clickPositionPlugins: IContainerPlugin[];
   private readonly _container;
   private readonly _handlers: InteractivityEventListenersHandlers;
   private readonly _interactionManager: InteractionManager;
@@ -52,6 +54,7 @@ export class InteractivityEventListeners {
    */
   constructor(container: InteractivityContainer, interactionManager: InteractionManager) {
     this._container = container;
+    this._clickPositionPlugins = [];
     this._interactionManager = interactionManager;
     this._touches = new Map<number, number>();
     this._handlers = {
@@ -95,6 +98,14 @@ export class InteractivityEventListeners {
     this._manageListeners(true);
   }
 
+  init(): void {
+    this._clickPositionPlugins.length = 0;
+
+    for (const plugin of this._container.plugins.filter(p => !!p.clickPositionValid)) {
+      this._clickPositionPlugins.push(plugin);
+    }
+  }
+
   /**
    * Removing all listeners
    */
@@ -120,7 +131,7 @@ export class InteractivityEventListeners {
       }
 
       mouseInteractivity.clickPosition = { ...mousePos };
-      mouseInteractivity.clickTime = Date.now();
+      mouseInteractivity.clickTime = performance.now();
 
       const onClick = options.interactivity?.events.onClick;
 
@@ -251,12 +262,8 @@ export class InteractivityEventListeners {
       return;
     }
 
-    for (const plugin of container.plugins) {
-      if (!plugin.clickPositionValid) {
-        continue;
-      }
-
-      handled = plugin.clickPositionValid(mousePosition);
+    for (const plugin of this._clickPositionPlugins) {
+      handled = plugin.clickPositionValid?.(mousePosition) ?? false;
 
       if (handled) {
         break;

@@ -34,5 +34,8 @@ export function resolveCollision(
       destroy(p1, p2);
       break;
     }
+    default:
+      // no-op
+      break;
   }
 }

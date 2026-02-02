@@ -23,12 +23,12 @@ import { describe, expect, it } from "vitest";
 
 describe("Utils", () => {
   describe("clamp", () => {
-    const min = 1;
-    const max = 10;
+    const min = 1,
+      max = 10;
 
     it("should return minimum when number is less than minimum", () => {
-      const num = -5;
-      const clampedNumber = clamp(num, min, max);
+      const num = -5,
+        clampedNumber = clamp(num, min, max);
 
       expect(clampedNumber).to.equal(min);
     });
@@ -40,8 +40,8 @@ describe("Utils", () => {
     });
 
     it("should return number when number is between minimum and maximum", () => {
-      const num = 5;
-      const clampedNumber = clamp(num, min, max);
+      const num = 5,
+        clampedNumber = clamp(num, min, max);
 
       expect(clampedNumber).to.equal(num);
     });
@@ -53,16 +53,16 @@ describe("Utils", () => {
     });
 
     it("should return maximum when number is greater than maximum", () => {
-      const num = 15;
-      const clampedNumber = clamp(num, min, max);
+      const num = 15,
+        clampedNumber = clamp(num, min, max);
 
       expect(clampedNumber).to.equal(max);
     });
   });
 
   describe("isInArray", () => {
-    const numericArray: number[] = [1, 2, 3, Math.PI, Math.E];
-    const stringArray: string[] = ["lorem", "ipsum", "dolor"];
+    const numericArray: number[] = [1, 2, 3, Math.PI, Math.E],
+      stringArray: string[] = ["lorem", "ipsum", "dolor"];
 
     // Numeric
 
@@ -106,46 +106,46 @@ describe("Utils", () => {
   });
 
   describe("mix", () => {
-    const comp1 = 5;
-    const comp2 = 10;
-    const size = 10;
+    const comp1 = 5,
+      comp2 = 10,
+      size = 10;
 
     it("should return the average when weights are identical", () => {
-      const weight1 = Math.floor(getRandom() * (size - 1) + 1);
-      const weight2 = weight1;
-      const mean = Math.floor((comp1 + comp2) / 2);
+      const weight1 = Math.floor(getRandom() * (size - 1) + 1),
+        weight2 = weight1,
+        mean = Math.floor((comp1 + comp2) / 2);
 
       expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(mean);
     });
 
     it("should return comp1 when weight2 is 0 (and weight1 > 0)", () => {
-      const weight1 = Math.floor(getRandom() * (size - 1) + 1);
-      const weight2 = 0;
+      const weight1 = Math.floor(getRandom() * (size - 1) + 1),
+        weight2 = 0;
 
       expect(mix(comp1, comp2, weight1, weight2), `weight 1: ${weight1.toString()}`).to.be.equal(Math.floor(comp1));
     });
 
     it("should return comp2 when weight1 is 0 (and weight2 > 0)", () => {
-      const weight1 = 0;
-      const weight2 = Math.floor(getRandom() * (size - 1) + 1);
+      const weight1 = 0,
+        weight2 = Math.floor(getRandom() * (size - 1) + 1);
 
       expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(Math.floor(comp2));
     });
 
     it("should return the expected weighted-average when weights differ", () => {
-      const comp1 = 6;
-      const comp2 = 9;
-      const weight1 = 2;
-      const weight2 = 1;
+      const comp1 = 6,
+        comp2 = 9,
+        weight1 = 2,
+        weight2 = 1;
 
       expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(7);
     });
 
     it("should handle negative components", () => {
-      const comp1 = -6;
-      const comp2 = -9;
-      const weight1 = 2;
-      const weight2 = 1;
+      const comp1 = -6,
+        comp2 = -9,
+        weight1 = 2,
+        weight2 = 1;
 
       expect(mix(comp1, comp2, weight1, weight2)).to.be.equal(-7);
     });
@@ -153,8 +153,8 @@ describe("Utils", () => {
 
   describe("arrayRandomIndex", () => {
     it("should always return an index that is not out of the bounds of the array", () => {
-      const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-      const randomIndex = arrayRandomIndex(array);
+      const array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+        randomIndex = arrayRandomIndex(array);
 
       expect(randomIndex % 1).to.equal(0); // Make sure it is an integer
       expect(randomIndex).to.be.at.least(0);
@@ -164,9 +164,9 @@ describe("Utils", () => {
   });
 
   describe("itemFromArray", () => {
-    const numericArray = [1, 2, 3, Math.PI, Math.E];
-    const stringArray = ["lorem", "ipsum", "dolor"];
-    const objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
+    const numericArray = [1, 2, 3, Math.PI, Math.E],
+      stringArray = ["lorem", "ipsum", "dolor"],
+      objectArray = [{ x: 1 }, { y: 2 }, { z: 3 }];
 
     it("should always return a random item from a numeric array", () => {
       const randomItem = itemFromArray(numericArray);
@@ -204,70 +204,70 @@ describe("Utils", () => {
 
   describe("randomInRange", () => {
     it("should generate a random number in the specified range, range in positive reals", () => {
-      const min = 1;
-      const max = 10;
-      const randomNumber = randomInRangeValue(setRangeValue(min, max));
+      const min = 1,
+        max = 10,
+        randomNumber = randomInRangeValue(setRangeValue(min, max));
 
       expect(randomNumber).to.be.within(min, max);
     });
 
     it("should generate a random number in the specified range, range in negative reals", () => {
-      const min = -10;
-      const max = -1;
-      const randomNumber = randomInRangeValue(setRangeValue(min, max));
+      const min = -10,
+        max = -1,
+        randomNumber = randomInRangeValue(setRangeValue(min, max));
 
       expect(randomNumber).to.be.within(min, max);
     });
 
     it("should generate a random number in the specified range, range crossing negative and positive reals", () => {
-      const min = -10;
-      const max = 10;
-      const randomNumber = randomInRangeValue(setRangeValue(min, max));
+      const min = -10,
+        max = 10,
+        randomNumber = randomInRangeValue(setRangeValue(min, max));
 
       expect(randomNumber).to.be.within(min, max);
     });
 
     it("should set min as 0 when max equals to min", () => {
-      const min = 10;
-      const max = 10;
-      const randomNumber = randomInRangeValue(setRangeValue(min, max));
+      const min = 10,
+        max = 10,
+        randomNumber = randomInRangeValue(setRangeValue(min, max));
 
       expect(randomNumber).to.be.within(0, max);
     });
   });
 
   describe("getDistanceBetweenCoordinates", () => {
-    const point = { x: 1, y: 1 };
-    const precision = 1e-10;
+    const point = { x: 1, y: 1 },
+      precision = 1e-10;
 
     it("should return 0 whenever points are identical", () => {
       expect(getDistance(point, point)).to.be.closeTo(0, precision);
     });
 
     it("should calculate correct distance when both points are in first quadrant", () => {
-      const pointA = point;
-      const pointB = { x: 2, y: 2 };
+      const pointA = point,
+        pointB = { x: 2, y: 2 };
 
       expect(getDistance(pointA, pointB)).to.be.closeTo(Math.SQRT2, precision);
     });
 
     it("should calculate correct distance when one point is in first quadrant and one is in second quadrant", () => {
-      const pointA = point;
-      const pointB = { x: -1, y: 1 };
+      const pointA = point,
+        pointB = { x: -1, y: 1 };
 
       expect(getDistance(pointA, pointB)).to.be.closeTo(2, precision);
     });
 
     it("should calculate correct distance when one point is in first quadrant and one is in third quadrant", () => {
-      const pointA = point;
-      const pointB = { x: -1, y: -1 };
+      const pointA = point,
+        pointB = { x: -1, y: -1 };
 
       expect(getDistance(pointA, pointB)).to.be.closeTo(2 * Math.SQRT2, precision);
     });
 
     it("should return the same distance regardless of the order of the points", () => {
-      const pointA = point;
-      const pointB = { x: -1, y: -1 };
+      const pointA = point,
+        pointB = { x: -1, y: -1 };
 
       expect(getDistance(pointA, pointB)).to.equal(getDistance(pointB, pointA));
     });
@@ -275,15 +275,15 @@ describe("Utils", () => {
 
   describe("calculateBounds", () => {
     it("should return the correct bounds", () => {
-      const point = { x: 0, y: 0 };
-      const radius = 1;
-      const calculatedBounds = calculateBounds(point, radius);
-      const expectedBounds = {
-        bottom: radius, // On a display, going down the screen is actually increasing in y
-        left: -radius,
-        right: radius,
-        top: -radius, // On a display, going up the screen is actually decreasing in y
-      };
+      const point = { x: 0, y: 0 },
+        radius = 1,
+        calculatedBounds = calculateBounds(point, radius),
+        expectedBounds = {
+          bottom: radius, // On a display, going down the screen is actually increasing in y
+          left: -radius,
+          right: radius,
+          top: -radius, // On a display, going up the screen is actually decreasing in y
+        };
 
       expect(calculatedBounds).to.eql(expectedBounds);
     });
@@ -404,108 +404,108 @@ describe("Utils", () => {
 
     it("should return true when direction is top and the bounds do not intersect the screen and are below", () => {
       const bounds = {
-        bottom: dimension.height + 2,
-        top: dimension.height + 1,
-        left: 100,
-        right: 101,
-      };
-      const direction = OutModeDirection.top;
+          bottom: dimension.height + 2,
+          top: dimension.height + 1,
+          left: 100,
+          right: 101,
+        },
+        direction = OutModeDirection.top;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
     });
 
     it("should return false when direction is top and the bounds do not intersect the screen and are above", () => {
       const bounds = {
-        bottom: -1,
-        top: -2,
-        left: 100,
-        right: 101,
-      };
-      const direction = OutModeDirection.top;
+          bottom: -1,
+          top: -2,
+          left: 100,
+          right: 101,
+        },
+        direction = OutModeDirection.top;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
     });
 
     it("should return true when direction is bottom and the bounds do not intersect the screen and are above", () => {
       const bounds = {
-        bottom: -1,
-        top: -2,
-        left: 100,
-        right: 101,
-      };
-      const direction = OutModeDirection.bottom;
+          bottom: -1,
+          top: -2,
+          left: 100,
+          right: 101,
+        },
+        direction = OutModeDirection.bottom;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
     });
 
     it("should return false when direction is bottom and the bounds do not intersect the screen and are below", () => {
       const bounds = {
-        bottom: dimension.height + 2,
-        top: dimension.height + 1,
-        left: 100,
-        right: 101,
-      };
-      const direction = OutModeDirection.bottom;
+          bottom: dimension.height + 2,
+          top: dimension.height + 1,
+          left: 100,
+          right: 101,
+        },
+        direction = OutModeDirection.bottom;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
     });
 
     it("should return true when direction is left and the bounds do not intersect the screen and are to the right", () => {
       const bounds = {
-        bottom: 101,
-        top: 100,
-        left: dimension.width + 1,
-        right: dimension.width + 2,
-      };
-      const direction = OutModeDirection.left;
+          bottom: 101,
+          top: 100,
+          left: dimension.width + 1,
+          right: dimension.width + 2,
+        },
+        direction = OutModeDirection.left;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
     });
 
     it("should return false when direction is left and the bounds do not intersect the screen and are to the left", () => {
       const bounds = {
-        bottom: 101,
-        top: 100,
-        left: -2,
-        right: -1,
-      };
-      const direction = OutModeDirection.left;
+          bottom: 101,
+          top: 100,
+          left: -2,
+          right: -1,
+        },
+        direction = OutModeDirection.left;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
     });
 
     it("should return true when direction is right and the bounds do not intersect the screen and are to the left", () => {
       const bounds = {
-        bottom: 101,
-        top: 100,
-        left: -2,
-        right: -1,
-      };
-      const direction = OutModeDirection.right;
+          bottom: 101,
+          top: 100,
+          left: -2,
+          right: -1,
+        },
+        direction = OutModeDirection.right;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.true;
     });
 
     it("should return false when direction is right and the bounds do not intersect the screen and are to the right", () => {
       const bounds = {
-        bottom: 101,
-        top: 100,
-        left: dimension.width + 1,
-        right: dimension.width + 2,
-      };
-      const direction = OutModeDirection.right;
+          bottom: 101,
+          top: 100,
+          left: dimension.width + 1,
+          right: dimension.width + 2,
+        },
+        direction = OutModeDirection.right;
 
       expect(areBoundsInside(bounds, dimension, Vector.origin, direction)).to.be.false;
     });
   });
 
   describe("isPointInside", () => {
-    const dimension = { width: 1920, height: 1080 };
-    const centerPoint = { x: dimension.width / 2, y: dimension.height / 2 };
-    const topPoint = { x: dimension.width / 2, y: 0 };
-    const bottomPoint = { x: dimension.width / 2, y: dimension.height };
-    const leftPoint = { x: 0, y: dimension.height / 2 };
-    const rightPoint = { x: dimension.width, y: dimension.height / 2 };
+    const dimension = { width: 1920, height: 1080 },
+      centerPoint = { x: dimension.width / 2, y: dimension.height / 2 },
+      topPoint = { x: dimension.width / 2, y: 0 },
+      bottomPoint = { x: dimension.width / 2, y: dimension.height },
+      leftPoint = { x: 0, y: dimension.height / 2 },
+      rightPoint = { x: dimension.width, y: dimension.height / 2 };
 
     it("should return true when the point lies inside the screen, no radius", () => {
       expect(isPointInside(centerPoint, dimension, Vector.origin)).to.be.true;

@@ -22,12 +22,6 @@ const shorthandHexRegex = /^#?([a-f\d])([a-f\d])([a-f\d])([a-f\d])?$/i,
  * Implements the IColorManager interface for handling hex color values.
  */
 export class HexColorManager implements IColorManager {
-  readonly key;
-
-  constructor() {
-    this.key = "hex";
-  }
-
   accepts(input: string): boolean {
     return input.startsWith("#");
   }
@@ -50,16 +44,16 @@ export class HexColorManager implements IColorManager {
     }
 
     const hexFixed = hexColor.replace(shorthandHexRegex, (_, r: string, g: string, b: string, a?: string) => {
-        return r + r + g + g + b + b + (a !== undefined ? a + a : "");
+        return r + r + g + g + b + b + (a === undefined ? "" : a + a);
       }),
       result = hexRegex.exec(hexFixed);
 
     return result
       ? {
-          a: result[RgbIndexes.a] ? parseInt(result[RgbIndexes.a], hexRadix) / alphaFactor : defaultAlpha,
-          b: parseInt(result[RgbIndexes.b] ?? "0", hexRadix),
-          g: parseInt(result[RgbIndexes.g] ?? "0", hexRadix),
-          r: parseInt(result[RgbIndexes.r] ?? "0", hexRadix),
+          a: result[RgbIndexes.a] ? Number.parseInt(result[RgbIndexes.a], hexRadix) / alphaFactor : defaultAlpha,
+          b: Number.parseInt(result[RgbIndexes.b] ?? "0", hexRadix),
+          g: Number.parseInt(result[RgbIndexes.g] ?? "0", hexRadix),
+          r: Number.parseInt(result[RgbIndexes.r] ?? "0", hexRadix),
         }
       : undefined;
   }

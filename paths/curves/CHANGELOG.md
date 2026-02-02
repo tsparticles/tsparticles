@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.14](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.13...v4.0.0-alpha.14) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/path-curves
+
+# [4.0.0-alpha.10](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/path-curves
+
+# [4.0.0-alpha.9](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2026-02-02)
+
+### Features
+
+- refactor path generators to use container-specific options and add spiral path generator ([3aa87c3](https://github.com/tsparticles/tsparticles/commit/3aa87c39c5a70adfb146cd281b62a229623e3412))
+
 # [4.0.0-alpha.8](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2026-01-22)
 
 **Note:** Version bump only for package @tsparticles/path-curves

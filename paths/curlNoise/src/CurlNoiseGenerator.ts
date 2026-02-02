@@ -16,11 +16,14 @@ const defaultOptions: ICurlOptions = {
 };
 
 export class CurlNoiseGenerator implements IMovePathGenerator {
-  readonly options: ICurlOptions;
+  readonly options;
 
+  private readonly _container;
   private readonly _simplex;
 
-  constructor() {
+  constructor(container: Container) {
+    this._container = container;
+
     const simplex = new SimplexNoise();
 
     this._simplex = simplex.noise2d;
@@ -46,8 +49,9 @@ export class CurlNoiseGenerator implements IMovePathGenerator {
     return Vector.create(speed * a, speed * -b);
   }
 
-  init(container: Container): void {
-    const sourceOptions = container.actualOptions.particles.move.path.options;
+  init(): void {
+    const container = this._container,
+      sourceOptions = container.actualOptions.particles.move.path.options;
 
     this.options.seed = sourceOptions["seed"] as number | undefined;
     this.options.speed =

@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/demo-new",
   "private": true,
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-alpha.14",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -34,24 +34,24 @@
   },
   "homepage": "https://particles.js.org",
   "devDependencies": {
-    "@swc/core": "^1.15.10",
+    "@swc/core": "^1.15.11",
     "fs-extra": "^11.3.3",
     "minify": "^15.0.1",
     "sass": "^1.97.3"
   },
   "dependencies": {
-    "@tsparticles/configs": "workspace:4.0.0-alpha.8",
-    "@tsparticles/engine": "workspace:4.0.0-alpha.8",
-    "@tsparticles/interaction-light": "workspace:4.0.0-alpha.8",
-    "@tsparticles/interaction-particles-repulse": "workspace:4.0.0-alpha.8",
-    "@tsparticles/path-curves": "workspace:4.0.0-alpha.8",
-    "@tsparticles/path-perlin-noise": "workspace:4.0.0-alpha.8",
-    "@tsparticles/path-polygon": "workspace:4.0.0-alpha.8",
-    "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.8",
-    "@tsparticles/plugin-infection": "workspace:4.0.0-alpha.8",
-    "@tsparticles/updater-gradient": "workspace:4.0.0-alpha.8",
-    "@tsparticles/updater-orbit": "workspace:4.0.0-alpha.8",
-    "tsparticles": "workspace:4.0.0-alpha.8"
+    "@tsparticles/configs": "workspace:4.0.0-alpha.14",
+    "@tsparticles/engine": "workspace:4.0.0-alpha.14",
+    "@tsparticles/interaction-light": "workspace:4.0.0-alpha.14",
+    "@tsparticles/interaction-particles-repulse": "workspace:4.0.0-alpha.14",
+    "@tsparticles/path-curves": "workspace:4.0.0-alpha.14",
+    "@tsparticles/path-perlin-noise": "workspace:4.0.0-alpha.14",
+    "@tsparticles/path-polygon": "workspace:4.0.0-alpha.14",
+    "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.14",
+    "@tsparticles/plugin-infection": "workspace:4.0.0-alpha.14",
+    "@tsparticles/updater-gradient": "workspace:4.0.0-alpha.14",
+    "@tsparticles/updater-orbit": "workspace:4.0.0-alpha.14",
+    "tsparticles": "workspace:4.0.0-alpha.14"
   },
   "type": "module"
 }

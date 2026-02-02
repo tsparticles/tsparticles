@@ -12,6 +12,6 @@ export async function loadLchColorPlugin(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { LchColorManager } = await import("./LchColorManager.js");
 
-    e.addColorManager(new LchColorManager());
+    e.addColorManager("lch", new LchColorManager());
   });
 }

@@ -10,9 +10,11 @@ export const curvesPathName = "curvesPathGenerator";
 export async function loadCurvesPath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { CurvesPathGenerator } = await import("./CurvesPathGenerator.js");
+  await engine.register(e => {
+    e.addPathGenerator(curvesPathName, async container => {
+      const { CurvesPathGenerator } = await import("./CurvesPathGenerator.js");
 
-    e.addPathGenerator(curvesPathName, new CurvesPathGenerator());
+      return new CurvesPathGenerator(container);
+    });
   });
 }

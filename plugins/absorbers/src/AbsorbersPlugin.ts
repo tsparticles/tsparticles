@@ -15,12 +15,11 @@ import type { AbsorbersInstancesManager } from "./AbsorbersInstancesManager.js";
 /**
  */
 export class AbsorbersPlugin implements IPlugin {
-  readonly id;
+  readonly id = "absorbers";
 
   private readonly _instancesManager;
 
   constructor(instancesManager: AbsorbersInstancesManager) {
-    this.id = "absorbers";
     this._instancesManager = instancesManager;
   }
 

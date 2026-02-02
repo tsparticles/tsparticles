@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.14](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.13...v4.0.0-alpha.14) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
+# [4.0.0-alpha.13](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.12...v4.0.0-alpha.13) (2026-02-02)
+
+### Bug Fixes
+
+- fixed some issues with emitters/absorbers life ([76f95ad](https://github.com/tsparticles/tsparticles/commit/76f95ad53bb9f7a9bc36e1cb725a4dac9e549d4e))
+
+# [4.0.0-alpha.12](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.11...v4.0.0-alpha.12) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
+# [4.0.0-alpha.11](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2026-02-02)
+
+### Bug Fixes
+
+- small fixes ([ea234fc](https://github.com/tsparticles/tsparticles/commit/ea234fc0bf5d373ccfc1b1d259ccea6a66934426))
+- small fixes ([c4e6d06](https://github.com/tsparticles/tsparticles/commit/c4e6d0691b9055165fb745eb6a77d6601dcebae2))
+
+# [4.0.0-alpha.10](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
+# [4.0.0-alpha.9](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2026-02-02)
+
+### Bug Fixes
+
+- add particle to pool when unable to add to the canvas ([90343c7](https://github.com/tsparticles/tsparticles/commit/90343c7d933eabe5862cd44c49dac0e443a4328b))
+- change break to continue in default case for better flow ([c397377](https://github.com/tsparticles/tsparticles/commit/c3973771e2485627cba03f1b563861a6c24278da))
+- clear all relevant plugin types from container in clearPlugins method ([9c582ee](https://github.com/tsparticles/tsparticles/commit/9c582ee8801696cc84f9772a506f617e21aa36d7))
+- fixed performance picking only the used path generators ([8426714](https://github.com/tsparticles/tsparticles/commit/842671431c14336ee8182532361e35f64660edb5))
+- fixed some plugins initializations and cleanup ([f58601c](https://github.com/tsparticles/tsparticles/commit/f58601c61cf71509ec51f321a1aa9cbfaa55877d))
+- improved roll angle calculation and logic ([a886da3](https://github.com/tsparticles/tsparticles/commit/a886da36443ca811fdb5ec09cdfe0ebb9e8bf870))
+- remove unnecessary comment in Engine.ts ([fdee2c8](https://github.com/tsparticles/tsparticles/commit/fdee2c87727d24e32ed1808ebf801302e34e5015))
+- update getCacheKey function to include hdr parameter ([8dfa161](https://github.com/tsparticles/tsparticles/commit/8dfa16101a63de4d5d7df4c4073feb74ec6bce90))
+- update path generator reference in Particles.ts ([97dbfca](https://github.com/tsparticles/tsparticles/commit/97dbfca7751664a5207390e777a36fe47a41b29a))
+
+### Features
+
+- add branches path generator and related configurations ([41de076](https://github.com/tsparticles/tsparticles/commit/41de07658b1d5ab92f566520ac197fcacc17ac18))
+- add brownian path generator and related configurations ([d42ccaf](https://github.com/tsparticles/tsparticles/commit/d42ccaf6903309bc3c9c55ca7e4d501f767c6bcb))
+- add effect particles with configuration and drawing logic ([dee10d8](https://github.com/tsparticles/tsparticles/commit/dee10d847b4339f38432906cd36e4a5c51679f7a))
+- add full card shape, and utilities for path drawing ([f4a985f](https://github.com/tsparticles/tsparticles/commit/f4a985f092e7da94e6f8bd211c3007246d0488b3))
+- add grid and maze path options for particle movement ([400a6f6](https://github.com/tsparticles/tsparticles/commit/400a6f652de8bbd192ceda25a37517f25e3f01d2))
+- add grid path generator and related files ([5d2a1c8](https://github.com/tsparticles/tsparticles/commit/5d2a1c869fb5b9fcfba07a31214c4b68455c59c7))
+- add Levy path generator and related configurations ([ae59df8](https://github.com/tsparticles/tsparticles/commit/ae59df81081c2436be6d38afb6f2c5997820d1fb))
+- add life management to Absorber with new AbsorberLife class ([78b5126](https://github.com/tsparticles/tsparticles/commit/78b512680df568a196c80ce4afceeb5916906f41))
+- add spiral path generator and related files ([5aeeb58](https://github.com/tsparticles/tsparticles/commit/5aeeb58c6413db6cee187c43c2d95620c866b409))
+- initialize plugin arrays for particle updates ([d0cd05d](https://github.com/tsparticles/tsparticles/commit/d0cd05d06f629bb4e51682bbe9c373e8987ee72b))
+- refactor path generators to use container-specific options and add spiral path generator ([3aa87c3](https://github.com/tsparticles/tsparticles/commit/3aa87c39c5a70adfb146cd281b62a229623e3412))
+
 # [4.0.0-alpha.8](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2026-01-22)
 
 **Note:** Version bump only for package @tsparticles/workspace

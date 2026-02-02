@@ -5,11 +5,7 @@ import { Poisson } from "./Options/Classes/Poisson.js";
 /**
  */
 export class PoissonDiscPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "poisson";
-  }
+  readonly id = "poisson";
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { PoissonDiscPluginInstance } = await import("./PoissonDiscPluginInstance.js");

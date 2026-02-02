@@ -76,6 +76,9 @@ export class RotateUpdater implements IParticleUpdater {
       case RotateDirection.clockwise:
         particle.rotate.status = AnimationStatus.increasing;
         break;
+      default:
+        // no-op
+        break;
     }
 
     const rotateAnimation = rotateOptions.animation;

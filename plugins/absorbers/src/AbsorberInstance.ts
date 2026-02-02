@@ -17,6 +17,7 @@ import {
   getRangeValue,
   getStyleFromRgb,
   isPointInside,
+  millisecondsToSeconds,
   originPoint,
   percentDenominator,
   rangeColorToRgb,
@@ -32,7 +33,11 @@ const squareExp = 2,
   minMass = 0,
   minAngle = 0,
   maxAngle = doublePI,
-  minVelocity = 0;
+  minVelocity = 0,
+  defaultLifeDelay = 0,
+  minLifeCount = 0,
+  defaultSpawnDelay = 0,
+  defaultLifeCount = -1;
 
 /**
  * Particle extension type for Absorber orbit options
@@ -99,12 +104,14 @@ export class AbsorberInstance {
   size;
 
   private readonly _container;
+  private _currentDuration;
+  private _currentSpawnDelay;
+  private _duration?: number;
   private readonly _engine;
-
-  /**
-   * Gets the absorber initial position
-   * @internal
-   */
+  private _firstSpawn;
+  private readonly _immortal;
+  private _lifeCount;
+  private _spawnDelay?: number;
   private readonly initialPosition?: Vector;
 
   /**
@@ -117,6 +124,9 @@ export class AbsorberInstance {
   constructor(engine: Engine, container: Container, options: RecursivePartial<IAbsorber>, position?: ICoordinates) {
     this._container = container;
     this._engine = engine;
+
+    this._currentDuration = 0;
+    this._currentSpawnDelay = 0;
 
     this.initialPosition = position ? Vector.create(position.x, position.y) : undefined;
 
@@ -146,6 +156,14 @@ export class AbsorberInstance {
     };
 
     this.position = this.initialPosition?.copy() ?? this._calcPosition();
+
+    this._firstSpawn = !this.options.life.wait;
+    this._lifeCount = this.options.life.count ?? defaultLifeCount;
+    this._immortal = this._lifeCount <= minLifeCount;
+    this._spawnDelay = container.retina.reduceFactor
+      ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+        container.retina.reduceFactor
+      : Infinity;
   }
 
   /**
@@ -222,6 +240,53 @@ export class AbsorberInstance {
   }
 
   /**
+   * Updates the absorber state, including life management
+   * @param delta - the delta time of the frame
+   */
+  update(delta: IDelta): void {
+    if (this._firstSpawn) {
+      this._firstSpawn = false;
+
+      this._currentSpawnDelay = this._spawnDelay ?? defaultSpawnDelay;
+    }
+
+    if (this._duration !== undefined) {
+      this._currentDuration += delta.value;
+
+      if (this._currentDuration >= this._duration) {
+        if (!this._immortal) {
+          this._lifeCount--;
+        }
+
+        if (this._lifeCount > minLifeCount || this._immortal) {
+          this.position = this._calcPosition();
+
+          this._spawnDelay = this._container.retina.reduceFactor
+            ? (getRangeValue(this.options.life.delay ?? defaultLifeDelay) * millisecondsToSeconds) /
+              this._container.retina.reduceFactor
+            : Infinity;
+        }
+
+        this._currentDuration -= this._duration;
+
+        delete this._duration;
+      }
+    }
+
+    if (this._spawnDelay !== undefined) {
+      this._currentSpawnDelay += delta.value;
+
+      if (this._currentSpawnDelay >= this._spawnDelay) {
+        this.play();
+
+        this._currentSpawnDelay -= this._spawnDelay;
+
+        delete this._spawnDelay;
+      }
+    }
+  }
+
+  /**
    * This method calculate the absorber position, using the provided options and position
    * @internal
    * @returns the calculated position for the absorber
@@ -233,6 +298,19 @@ export class AbsorberInstance {
     });
 
     return Vector.create(exactPosition.x, exactPosition.y);
+  };
+
+  /**
+   * Prepares the absorber to die by calculating its life duration
+   * @internal
+   */
+  private readonly _prepareToDie: () => void = () => {
+    const duration = this.options.life.duration !== undefined ? getRangeValue(this.options.life.duration) : undefined,
+      minDuration = 0;
+
+    if ((this._lifeCount > minLifeCount || this._immortal) && duration !== undefined && duration > minDuration) {
+      this._duration = duration * millisecondsToSeconds;
+    }
   };
 
   /**
@@ -302,6 +380,24 @@ export class AbsorberInstance {
       addV.angle = v.angle;
 
       particle.velocity.addTo(addV);
+    }
+  };
+
+  /**
+   * Play method that prepares the absorber to be drawn and updated
+   */
+  private readonly play: () => void = () => {
+    if (
+      !(
+        (this._lifeCount > minLifeCount || this._immortal || !this.options.life.count) &&
+        (this._firstSpawn || this._currentSpawnDelay >= (this._spawnDelay ?? defaultSpawnDelay))
+      )
+    ) {
+      return;
+    }
+
+    if (this._lifeCount > minLifeCount || this._immortal) {
+      this._prepareToDie();
     }
   };
 }

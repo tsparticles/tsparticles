@@ -13,8 +13,10 @@ import {
   getRandom,
   half,
   randomInRangeValue,
-  safeDocument,
 } from "@tsparticles/engine";
+import type { SVGPathData } from "./types.js";
+import { createSVGPaths } from "./createSVGPaths.js";
+import { loadSVGFromString } from "./loadSVGFromString.js";
 
 enum SVGPathDirection {
   normal,
@@ -48,12 +50,8 @@ interface SVGPathOptions {
   width?: number;
 }
 
-interface SVGPathData {
-  element: SVGPathElement;
-  length: number;
-}
-
 export class SVGPathGenerator implements IMovePathGenerator {
+  private readonly _container;
   private readonly _offset: ICoordinatesWithMode;
   private _paths: SVGPathData[];
   private _reverse: boolean;
@@ -61,7 +59,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
   private readonly _size: IDimension;
   private _width: number;
 
-  constructor() {
+  constructor(container: Container) {
+    this._container = container;
     this._paths = [];
     this._reverse = false;
     this._size = { width: 0, height: 0 };
@@ -71,7 +70,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
   }
 
   generate(particle: SVGPathParticle, delta: IDelta): Vector {
-    const container = particle.container,
+    const container = this._container,
       pxRatio = container.retina.pixelRatio;
 
     particle.svgDirection ??= getRandom() > half ? SVGPathDirection.normal : SVGPathDirection.reverse;
@@ -83,7 +82,6 @@ export class SVGPathGenerator implements IMovePathGenerator {
       height: randomInRangeValue({ min: -this._width * half, max: this._width * half }) * pxRatio,
     };
     particle.svgInitialPosition ??= particle.position.copy();
-
     particle.velocity.x = 0;
     particle.velocity.y = 0;
 
@@ -134,7 +132,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
     const pathElement = path.element,
       pos = pathElement.getPointAtLength(particle.svgStep),
-      canvasSize = particle.container.canvas.size,
+      canvasSize = this._container.canvas.size,
       offset = getPosition(this._offset, canvasSize),
       scale = this._scale * pxRatio;
 
@@ -146,8 +144,8 @@ export class SVGPathGenerator implements IMovePathGenerator {
     return Vector.origin;
   }
 
-  init(container: Container): void {
-    const options = container.actualOptions.particles.move.path.options as SVGPathOptions,
+  init(): void {
+    const options = this._container.actualOptions.particles.move.path.options as SVGPathOptions,
       position = options.position ?? this._offset;
 
     this._reverse = options.reverse ?? this._reverse;
@@ -162,52 +160,17 @@ export class SVGPathGenerator implements IMovePathGenerator {
 
       void (async (): Promise<void> => {
         const response = await fetch(url),
-          data = await response.text();
+          data = await response.text(),
+          { paths, size } = loadSVGFromString(data);
 
-        // retrieve the svg path from the url
-        const parser = new DOMParser(),
-          doc = parser.parseFromString(data, "image/svg+xml"),
-          firstIndex = 0,
-          svg = doc.getElementsByTagName("svg")[firstIndex]!;
-
-        let svgPaths = svg.getElementsByTagName("path");
-
-        if (!svgPaths.length) {
-          svgPaths = doc.getElementsByTagName("path");
-        }
-
-        this._paths = [];
-
-        for (let i = 0; i < svgPaths.length; i++) {
-          const path = svgPaths.item(i);
-
-          if (path) {
-            this._paths.push({
-              element: path,
-              length: path.getTotalLength(),
-            });
-          }
-        }
-
-        this._size.height = Number.parseFloat(svg.getAttribute("height") ?? "0");
-        this._size.width = Number.parseFloat(svg.getAttribute("width") ?? "0");
+        this._paths = paths;
+        this._size.width = size.width;
+        this._size.height = size.height;
       })();
     } else if (options.path) {
       const path = options.path;
 
-      this._paths = [];
-
-      for (const item of path.data) {
-        const element = safeDocument().createElementNS("http://www.w3.org/2000/svg", "path");
-
-        element.setAttribute("d", item);
-
-        this._paths.push({
-          element,
-          length: element.getTotalLength(),
-        });
-      }
-
+      this._paths = createSVGPaths(options.path.data);
       this._size.height = path.size.height;
       this._size.width = path.size.width;
     }

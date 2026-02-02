@@ -15,8 +15,6 @@ const defaultSides = 5,
 /**
  */
 export class RoundedPolygonDrawer implements IShapeDrawer<RoundedParticle> {
-  readonly validTypes = ["rounded-polygon"] as const;
-
   draw(data: IShapeDrawData<RoundedParticle>): void {
     const { context, particle, radius } = data;
 

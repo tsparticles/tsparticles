@@ -18,12 +18,12 @@ import { Interactivity } from "./Options/Classes/Interactivity.js";
 /**
  */
 export class InteractivityPlugin implements IPlugin {
-  readonly _engine;
-  readonly id;
+  readonly id = "interactivity";
+
+  private readonly _engine;
 
   constructor(engine: InteractivityEngine) {
     this._engine = engine;
-    this.id = "interactivity";
   }
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {

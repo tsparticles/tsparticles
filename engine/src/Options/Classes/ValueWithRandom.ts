@@ -29,13 +29,7 @@ export class ValueWithRandom implements IValueWithRandom, IOptionLoader<IValueWi
 }
 
 export class AnimationValueWithRandom extends ValueWithRandom implements IOptionLoader<IAnimationValueWithRandom> {
-  readonly animation;
-
-  constructor() {
-    super();
-
-    this.animation = new AnimationOptions();
-  }
+  readonly animation = new AnimationOptions();
 
   override load(data?: RecursivePartial<IAnimationValueWithRandom>): void {
     super.load(data);

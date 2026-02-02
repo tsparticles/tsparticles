@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-links",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-alpha.14",
   "description": "tsParticles links particles interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,8 +87,9 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.8",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.8"
+    "@tsparticles/canvas-utils": "4.0.0-alpha.14",
+    "@tsparticles/engine": "4.0.0-alpha.14",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.14"
   },
   "publishConfig": {
     "access": "public"

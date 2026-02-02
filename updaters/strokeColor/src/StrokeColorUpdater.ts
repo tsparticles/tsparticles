@@ -25,10 +25,9 @@ export class StrokeColorUpdater implements IParticleUpdater {
 
   init(particle: StrokeParticle): void {
     const container = this._container,
-      options = particle.options;
-
-    /* strokeColor */
-    const stroke = itemFromSingleOrMultiple(options.stroke, particle.id, options.reduceDuplicates);
+      options = particle.options,
+      /* strokeColor */
+      stroke = itemFromSingleOrMultiple(options.stroke, particle.id, options.reduceDuplicates);
 
     if (!stroke) {
       return;

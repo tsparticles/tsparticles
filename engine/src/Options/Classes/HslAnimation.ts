@@ -5,15 +5,9 @@ import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { isNull } from "../../Utils/TypeUtils.js";
 
 export class HslAnimation implements IHslAnimation, IOptionLoader<IHslAnimation> {
-  h;
-  l;
-  s;
-
-  constructor() {
-    this.h = new ColorAnimation();
-    this.s = new ColorAnimation();
-    this.l = new ColorAnimation();
-  }
+  readonly h = new ColorAnimation();
+  readonly l = new ColorAnimation();
+  readonly s = new ColorAnimation();
 
   load(data?: RecursivePartial<IHslAnimation>): void {
     if (isNull(data)) {

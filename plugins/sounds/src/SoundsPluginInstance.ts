@@ -130,18 +130,17 @@ export class SoundsPluginInstance implements IContainerPlugin {
 
     if (soundsOptions.autoPlay && isWindowMuted()) {
       const firstClickHandler = (): void => {
-        removeEventListener(mouseDownEvent, firstClickHandler);
-        removeEventListener(touchStartEvent, firstClickHandler);
+          removeEventListener(mouseDownEvent, firstClickHandler);
+          removeEventListener(touchStartEvent, firstClickHandler);
 
-        unmuteWindow();
+          unmuteWindow();
 
-        void this.unmute();
-      };
-
-      const listenerOptions = {
-        capture: true,
-        once: true,
-      };
+          void this.unmute();
+        },
+        listenerOptions = {
+          capture: true,
+          once: true,
+        };
 
       addEventListener(mouseDownEvent, firstClickHandler, listenerOptions);
       addEventListener(touchStartEvent, firstClickHandler, listenerOptions);

@@ -16,7 +16,7 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
 
     interactivityEngine.addPlugin(new InteractivityPlugin(interactivityEngine));
 
-    interactivityEngine.interactorsInitializers ??= new Map<string, InteractorInitializer>();
+    interactivityEngine.initializers.interactors ??= new Map<string, InteractorInitializer>();
     interactivityEngine.interactors ??= new Map<Container, IInteractor[]>();
 
     /**
@@ -25,9 +25,9 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
      * @param interactorInitializer - the interaction manager initializer
      */
     interactivityEngine.addInteractor = (name: string, interactorInitializer: InteractorInitializer): void => {
-      interactivityEngine.interactorsInitializers ??= new Map<string, InteractorInitializer>();
+      interactivityEngine.initializers.interactors ??= new Map<string, InteractorInitializer>();
 
-      interactivityEngine.interactorsInitializers.set(name, interactorInitializer);
+      interactivityEngine.initializers.interactors.set(name, interactorInitializer);
     };
 
     /**
@@ -38,12 +38,12 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
      */
     interactivityEngine.getInteractors = async (container: Container, force = false): Promise<IInteractor[]> => {
       interactivityEngine.interactors ??= new Map<Container, IInteractor[]>();
-      interactivityEngine.interactorsInitializers ??= new Map<string, InteractorInitializer>();
+      interactivityEngine.initializers.interactors ??= new Map<string, InteractorInitializer>();
 
       return getItemsFromInitializer(
         container,
         interactivityEngine.interactors,
-        interactivityEngine.interactorsInitializers,
+        interactivityEngine.initializers.interactors,
         force,
       );
     };

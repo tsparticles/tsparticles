@@ -5,6 +5,7 @@ import {
   type Particle,
   type RangeValue,
   Vector,
+  deepExtend,
   getRandom,
   getRangeValue,
   half,
@@ -28,21 +29,28 @@ interface IZigZagOptions {
   waveLength: RangeValue;
 }
 
-export class ZigZagPathGenerator implements IMovePathGenerator {
-  options: IZigZagOptions;
+const defaultOptions: IZigZagOptions = {
+  waveHeight: { min: 0, max: 3 },
+  waveLength: { min: 0, max: 5 },
+};
 
-  constructor() {
-    this.options = {
-      waveHeight: { min: 0, max: 3 },
-      waveLength: { min: 0, max: 5 },
-    };
+export class ZigZagPathGenerator implements IMovePathGenerator {
+  readonly options;
+
+  private readonly _container;
+
+  constructor(container: Container) {
+    this._container = container;
+    this.options = deepExtend({}, defaultOptions) as IZigZagOptions;
   }
 
   generate(particle: ZigZagParticle, delta: IDelta): Vector {
+    const { options } = this;
+
     particle.zigzag ??= {
       counter: getRandom(),
-      waveHeight: getRangeValue(this.options.waveHeight),
-      waveLength: getRangeValue(this.options.waveLength),
+      waveHeight: getRangeValue(options.waveHeight),
+      waveLength: getRangeValue(options.waveLength),
     };
 
     const angularFrequency = (angularFrequencyFactor / particle.zigzag.waveLength) * delta.factor;
@@ -57,11 +65,11 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     return Vector.origin;
   }
 
-  init(container: Container): void {
-    const options = container.actualOptions.particles.move.path.options;
+  init(): void {
+    const sourceOptions = this._container.actualOptions.particles.move.path.options;
 
-    this.options.waveLength = (options["waveLength"] as RangeValue | undefined) ?? this.options.waveLength;
-    this.options.waveHeight = (options["waveHeight"] as RangeValue | undefined) ?? this.options.waveHeight;
+    this.options.waveLength = (sourceOptions["waveLength"] as RangeValue | undefined) ?? this.options.waveLength;
+    this.options.waveHeight = (sourceOptions["waveHeight"] as RangeValue | undefined) ?? this.options.waveHeight;
   }
 
   reset(): void {

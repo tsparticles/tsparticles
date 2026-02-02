@@ -12,6 +12,6 @@ export async function loadOklabColorPlugin(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { OklabColorManager } = await import("./OklabColorManager.js");
 
-    e.addColorManager(new OklabColorManager());
+    e.addColorManager("oklab", new OklabColorManager());
   });
 }

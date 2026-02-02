@@ -10,9 +10,11 @@ export const curlNoisePathName = "curlNoise";
 export async function loadCurlNoisePath(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(async e => {
-    const { CurlNoiseGenerator } = await import("./CurlNoiseGenerator.js");
+  await engine.register(e => {
+    e.addPathGenerator(curlNoisePathName, async container => {
+      const { CurlNoiseGenerator } = await import("./CurlNoiseGenerator.js");
 
-    e.addPathGenerator(curlNoisePathName, new CurlNoiseGenerator());
+      return new CurlNoiseGenerator(container);
+    });
   });
 }

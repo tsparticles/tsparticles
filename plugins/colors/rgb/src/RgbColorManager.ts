@@ -23,12 +23,6 @@ const rgbRegex =
 /**
  */
 export class RgbColorManager implements IColorManager {
-  readonly key;
-
-  constructor() {
-    this.key = "rgb";
-  }
-
   accepts(input: string): boolean {
     return input.startsWith("rgb");
   }

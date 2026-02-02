@@ -47,7 +47,6 @@ function parseColorTable(byteStream: ByteStream, count: number): IRgb[] {
  * @param gif - GIF object to write to
  * @param getFrameIndex - function to get current frame index in `GIF.frames` (optionally increment before next call)
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
- * @throws if an unknown block type was encountered
  */
 function parseExtensionBlock(
   byteStream: ByteStream,
@@ -166,7 +165,6 @@ function parseExtensionBlock(
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
- * @throws if an unknown block type was encountered
  */
 async function parseImageBlock(
   byteStream: ByteStream,
@@ -215,26 +213,25 @@ async function parseImageBlock(
    * @returns RGBA color value
    */
   const getColor = (index: number): IRgba => {
-    const { r, g, b } = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index]!;
+      const { r, g, b } = (localColorTableFlag ? frame.localColorTable : gif.globalColorTable)[index]!;
 
-    if (index !== getTransparencyIndex(null)) {
-      return { r, g, b, a: 255 };
-    }
-
-    return { r, g, b, a: avgAlpha ? Math.trunc((r + g + b) / 3) : 0 };
-  };
-
-  const image = ((): ImageData | null => {
-    try {
-      return new ImageData(frame.width, frame.height, { colorSpace: "srgb" });
-    } catch (error) {
-      if (error instanceof DOMException && error.name === "IndexSizeError") {
-        return null;
+      if (index !== getTransparencyIndex(null)) {
+        return { r, g, b, a: 255 };
       }
 
-      throw error;
-    }
-  })();
+      return { r, g, b, a: avgAlpha ? Math.trunc((r + g + b) / 3) : 0 };
+    },
+    image = ((): ImageData | null => {
+      try {
+        return new ImageData(frame.width, frame.height, { colorSpace: "srgb" });
+      } catch (error) {
+        if (error instanceof DOMException && error.name === "IndexSizeError") {
+          return null;
+        }
+
+        throw error;
+      }
+    })();
 
   if (image == null) {
     throw new EvalError("GIF frame size is to large");
@@ -242,22 +239,22 @@ async function parseImageBlock(
 
   const minCodeSize = byteStream.nextByte(),
     imageData = byteStream.readSubBlocksBin(),
-    clearCode = 1 << minCodeSize;
-  /**
-   * __read `len` bits from `imageData` at `pos`__
-   * @param pos - bit position in `imageData`
-   * @param len - bit length to read [1-12 bits]
-   * @returns `len` bits at `pos`
-   */
-  const readBits = (pos: number, len: number): number => {
-    const bytePos = pos >>> 3,
-      bitPos = pos & 7;
-    return (
-      ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
-        (((1 << len) - 1) << bitPos)) >>>
-      bitPos
-    );
-  };
+    clearCode = 1 << minCodeSize,
+    /**
+     * __read `len` bits from `imageData` at `pos`__
+     * @param pos - bit position in `imageData`
+     * @param len - bit length to read [1-12 bits]
+     * @returns `len` bits at `pos`
+     */
+    readBits = (pos: number, len: number): number => {
+      const bytePos = pos >>> 3,
+        bitPos = pos & 7;
+      return (
+        ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
+          (((1 << len) - 1) << bitPos)) >>>
+        bitPos
+      );
+    };
 
   if (interlacedFlag) {
     for (let code = 0, size = minCodeSize + 1, pos = 0, dic = [[0]], pass = 0; pass < 4; pass++) {
@@ -394,7 +391,6 @@ async function parseImageBlock(
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
- * @throws if an unknown block type was encountered
  */
 async function parseBlock(
   byteStream: ByteStream,
@@ -458,13 +454,12 @@ export async function decodeGIF(
     throw new EvalError("file not found");
   }
 
-  const buffer = await res.arrayBuffer();
-
-  // ? https://www.w3.org/Graphics/GIF/spec-gif89a.txt
-  // ? https://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
-  // ~ load stream and start decoding
-  /** the output gif object */
-  const gif: GIF = {
+  const buffer = await res.arrayBuffer(),
+    // ? https://www.w3.org/Graphics/GIF/spec-gif89a.txt
+    // ? https://www.matthewflickinger.com/lab/whatsinagif/bits_and_bytes.asp
+    // ~ load stream and start decoding
+    /** the output gif object */
+    gif: GIF = {
       width: 0,
       height: 0,
       totalTime: 0,
@@ -553,24 +548,24 @@ export async function decodeGIF(
    * @returns current frame index
    */
   const getframeIndex = (increment: boolean): number => {
-    if (increment) {
-      incrementFrameIndex = true;
-    }
+      if (increment) {
+        incrementFrameIndex = true;
+      }
 
-    return frameIndex;
-  };
-  /**
-   * __get the current transparency index for this frame__
-   * @param newValue - if set updates value of transparencyIndex to this
-   * @returns current transparency index
-   */
-  const getTransparencyIndex = (newValue?: number | null): number => {
-    if (newValue != null) {
-      transparencyIndex = newValue;
-    }
+      return frameIndex;
+    },
+    /**
+     * __get the current transparency index for this frame__
+     * @param newValue - if set updates value of transparencyIndex to this
+     * @returns current transparency index
+     */
+    getTransparencyIndex = (newValue?: number | null): number => {
+      if (newValue != null) {
+        transparencyIndex = newValue;
+      }
 
-    return transparencyIndex;
-  };
+      return transparencyIndex;
+    };
   try {
     do {
       if (incrementFrameIndex) {
@@ -618,10 +613,10 @@ export async function decodeGIF(
 }
 
 /**
- *
  * @param data -
+ * @param canvasSettings -
  */
-export function drawGif(data: IShapeDrawData<ImageParticle>): void {
+export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: CanvasRenderingContext2DSettings): void {
   const { context, radius, particle, delta } = data,
     image = particle.image;
 
@@ -630,7 +625,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>): void {
   }
 
   const offscreenCanvas = new OffscreenCanvas(image.gifData.width, image.gifData.height),
-    offscreenContext = offscreenCanvas.getContext("2d");
+    offscreenContext = offscreenCanvas.getContext("2d", canvasSettings);
 
   if (!offscreenContext) {
     throw new Error("could not create offscreen canvas context");

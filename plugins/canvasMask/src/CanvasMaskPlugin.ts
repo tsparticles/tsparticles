@@ -5,11 +5,7 @@ import { CanvasMask } from "./Options/Classes/CanvasMask.js";
 /**
  */
 export class CanvasMaskPlugin implements IPlugin {
-  readonly id;
-
-  constructor() {
-    this.id = "canvasMask";
-  }
+  readonly id = "canvas-mask";
 
   async getPlugin(container: Container): Promise<IContainerPlugin> {
     const { CanvasMaskPluginInstance } = await import("./CanvasMaskPluginInstance.js");

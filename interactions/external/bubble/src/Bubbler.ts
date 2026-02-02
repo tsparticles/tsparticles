@@ -195,7 +195,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       const pos = particle.getPosition(),
         distMouse = getDistance(pos, mouseClickPos),
         timeSpent =
-          (new Date().getTime() - (interactivityData.mouse.clickTime ?? defaultClickTime)) / millisecondsToSeconds;
+          (performance.now() - (interactivityData.mouse.clickTime ?? defaultClickTime)) / millisecondsToSeconds;
 
       if (timeSpent > bubbleOptions.duration) {
         bubble.durationEnd = true;

@@ -27,15 +27,14 @@ export function drawLight(container: LightContainer, context: CanvasRenderingCon
   context.arc(mousePos.x, mousePos.y, lightOptions.radius, arcStart, doublePI);
 
   const gradientAmbientLight = context.createRadialGradient(
-    mousePos.x,
-    mousePos.y,
-    arcStart,
-    mousePos.x,
-    mousePos.y,
-    lightOptions.radius,
-  );
-
-  const gradientRgb = container.canvas.mouseLight;
+      mousePos.x,
+      mousePos.y,
+      arcStart,
+      mousePos.x,
+      mousePos.y,
+      lightOptions.radius,
+    ),
+    gradientRgb = container.canvas.mouseLight;
 
   if (!gradientRgb?.start || !gradientRgb.stop) {
     return;

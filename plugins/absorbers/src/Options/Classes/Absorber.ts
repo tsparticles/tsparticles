@@ -6,6 +6,7 @@ import {
   isNull,
   setRangeValue,
 } from "@tsparticles/engine";
+import { AbsorberLife } from "./AbsorberLife.js";
 import { AbsorberSize } from "./AbsorberSize.js";
 import type { IAbsorber } from "../Interfaces/IAbsorber.js";
 
@@ -16,6 +17,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
   color;
   destroy;
   draggable;
+  life;
   name?: string;
   opacity;
   orbits;
@@ -29,6 +31,7 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
     this.opacity = 1;
     this.destroy = true;
     this.orbits = false;
+    this.life = new AbsorberLife();
     this.size = new AbsorberSize();
   }
 
@@ -43,6 +46,10 @@ export class Absorber implements IAbsorber, IOptionLoader<IAbsorber> {
 
     if (data.draggable !== undefined) {
       this.draggable = data.draggable;
+    }
+
+    if (data.life !== undefined) {
+      this.life.load(data.life);
     }
 
     this.name = data.name;

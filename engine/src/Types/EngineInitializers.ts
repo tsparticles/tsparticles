@@ -1,17 +1,21 @@
 import type { Container } from "../Core/Container.js";
+import type { IEffectDrawer } from "../Core/Interfaces/IEffectDrawer.js";
+import type { IMovePathGenerator } from "../Core/Interfaces/IMovePathGenerator.js";
 import type { IParticleMover } from "../Core/Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "../Core/Interfaces/IParticleUpdater.js";
+import type { IShapeDrawer } from "../Core/Interfaces/IShapeDrawer.js";
 
 export type GenericInitializer<T> = (container: Container) => Promise<T>;
-
+export type EffectInitializer = GenericInitializer<IEffectDrawer>;
 export type MoverInitializer = GenericInitializer<IParticleMover>;
-
-/**
- * Alias for updater initializer function
- */
+export type PathGeneratorInitializer = GenericInitializer<IMovePathGenerator>;
+export type ShapeInitializer = GenericInitializer<IShapeDrawer>;
 export type UpdaterInitializer = GenericInitializer<IParticleUpdater>;
 
 export interface Initializers {
+  effects: Map<string, EffectInitializer>;
   movers: Map<string, MoverInitializer>;
+  pathGenerators: Map<string, PathGeneratorInitializer>;
+  shapes: Map<string, ShapeInitializer>;
   updaters: Map<string, UpdaterInitializer>;
 }

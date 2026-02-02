@@ -412,11 +412,11 @@ export class Particle {
 
     const container = this.container,
       pathGenerator = this.pathGenerator,
-      shapeDrawer = this.shape ? container.shapeDrawers.get(this.shape) : undefined;
+      shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
 
-    for (const plugin of container.plugins) {
+    for (const plugin of container.particleDestroyedPlugins) {
       plugin.particleDestroyed?.(this, override);
     }
 
@@ -438,10 +438,7 @@ export class Particle {
     const container = this.container,
       canvas = container.canvas;
 
-    for (const plugin of container.plugins) {
-      canvas.drawParticlePlugin(plugin, this, delta);
-    }
-
+    canvas.drawParticlePlugins(this, delta);
     canvas.drawParticle(this, delta);
   }
 
@@ -576,13 +573,13 @@ export class Particle {
     }
 
     if (this.effect === randomColorValue) {
-      const availableEffects = [...this.container.effectDrawers.keys()];
+      const availableEffects = [...this.container.particles.effectDrawers.keys()];
 
       this.effect = availableEffects[Math.floor(getRandom() * availableEffects.length)];
     }
 
     if (this.shape === randomColorValue) {
-      const availableShapes = [...this.container.shapeDrawers.keys()];
+      const availableShapes = [...this.container.particles.shapeDrawers.keys()];
 
       this.shape = availableShapes[Math.floor(getRandom() * availableShapes.length)];
     }
@@ -615,11 +612,19 @@ export class Particle {
     this.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
 
     if (pathOptions.generator) {
-      this.pathGenerator = this._engine.getPathGenerator(pathOptions.generator);
+      let pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
 
-      if (this.pathGenerator && container.addPath(pathOptions.generator, this.pathGenerator)) {
-        this.pathGenerator.init(container);
+      if (!pathGenerator) {
+        pathGenerator = this.container.particles.availablePathGenerators.get(pathOptions.generator);
+
+        if (pathGenerator) {
+          this.container.particles.pathGenerators.set(pathOptions.generator, pathGenerator);
+
+          pathGenerator.init();
+        }
       }
+
+      this.pathGenerator = pathGenerator;
     }
 
     container.retina.initParticle(this);
@@ -654,15 +659,7 @@ export class Particle {
     let effectDrawer: IEffectDrawer | undefined, shapeDrawer: IShapeDrawer | undefined;
 
     if (this.effect) {
-      effectDrawer = container.effectDrawers.get(this.effect);
-
-      if (!effectDrawer) {
-        effectDrawer = this._engine.getEffectDrawer(this.effect);
-
-        if (effectDrawer) {
-          container.effectDrawers.set(this.effect, effectDrawer);
-        }
-      }
+      effectDrawer = container.particles.effectDrawers.get(this.effect);
     }
 
     if (effectDrawer?.loadEffect) {
@@ -670,15 +667,7 @@ export class Particle {
     }
 
     if (this.shape) {
-      shapeDrawer = container.shapeDrawers.get(this.shape);
-
-      if (!shapeDrawer) {
-        shapeDrawer = this._engine.getShapeDrawer(this.shape);
-
-        if (shapeDrawer) {
-          container.shapeDrawers.set(this.shape, shapeDrawer);
-        }
-      }
+      shapeDrawer = container.particles.shapeDrawers.get(this.shape);
     }
 
     if (shapeDrawer?.loadShape) {
@@ -704,7 +693,7 @@ export class Particle {
     effectDrawer?.particleInit?.(container, this);
     shapeDrawer?.particleInit?.(container, this);
 
-    for (const plugin of container.plugins) {
+    for (const plugin of container.particleCreatedPlugins) {
       plugin.particleCreated?.(this);
     }
   }
@@ -774,7 +763,7 @@ export class Particle {
       posVec = position ? Vector3d.create(position.x, position.y, zIndex) : undefined;
 
     const container = this.container,
-      plugins = Array.from(container.plugins),
+      plugins = container.particlePositionPlugins,
       outModes = this.options.move.outModes,
       radius = this.getRadius(),
       canvasSize = container.canvas.size,
@@ -804,7 +793,7 @@ export class Particle {
 
       let isValidPosition = true;
 
-      for (const plugin of plugins) {
+      for (const plugin of container.particles.checkParticlePositionPlugins) {
         isValidPosition = plugin.checkParticlePosition?.(this, pos, tryCount) ?? true;
 
         if (!isValidPosition) {
@@ -903,9 +892,8 @@ export class Particle {
 
   private readonly _initPosition: (position?: ICoordinates) => void = position => {
     const container = this.container,
-      zIndexValue = getRangeValue(this.options.zIndex.value);
-
-    const initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
+      zIndexValue = getRangeValue(this.options.zIndex.value),
+      initialPosition = this._calcPosition(position, clamp(zIndexValue, minZ, container.zLayers));
 
     if (!initialPosition) {
       throw new Error("a valid position cannot be found for particle");
@@ -930,6 +918,9 @@ export class Particle {
         break;
       case MoveDirection.outside:
         this.outType = ParticleOutType.outside;
+        break;
+      default:
+        // no-op
         break;
     }
 

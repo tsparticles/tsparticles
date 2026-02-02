@@ -223,16 +223,15 @@ describe("ColorUtils", async () => {
 
     it("hsl value zero saturation", () => {
       const color: IHsl = {
-        h: 180,
-        l: 50,
-        s: 0,
-      };
-
-      const grey: IRgb = {
-        b: 128,
-        g: 128,
-        r: 128,
-      };
+          h: 180,
+          l: 50,
+          s: 0,
+        },
+        grey: IRgb = {
+          b: 128,
+          g: 128,
+          r: 128,
+        };
 
       expect(hslToRgb(color)).to.include(grey).and.not.be.undefined.and.not.be.null;
     });
@@ -241,13 +240,12 @@ describe("ColorUtils", async () => {
   describe("hslaToRgba", () => {
     it("hsl value", () => {
       const color: IHsla = {
-        a: 1,
-        h: 0,
-        l: 50,
-        s: 100,
-      };
-
-      const rgb = hslaToRgba(color);
+          a: 1,
+          h: 0,
+          l: 50,
+          s: 100,
+        },
+        rgb = hslaToRgba(color);
 
       console.log("rgb", rgb, red);
 
@@ -312,10 +310,9 @@ describe("ColorUtils", async () => {
   // });
 
   describe("getRandomRgbColor", () => {
-    const checkRange = (n: number, min?: number): boolean => n >= (min ?? 0) && n < 256;
-
-    const checkColor = (rgb: IRgb, min?: number): boolean =>
-      checkRange(rgb.r, min) && checkRange(rgb.g, min) && checkRange(rgb.b, min);
+    const checkRange = (n: number, min?: number): boolean => n >= (min ?? 0) && n < 256,
+      checkColor = (rgb: IRgb, min?: number): boolean =>
+        checkRange(rgb.r, min) && checkRange(rgb.g, min) && checkRange(rgb.b, min);
 
     it("totally random color", () => {
       expect(getRandomRgbColor()).to.satisfy((rgb: IRgb) => checkColor(rgb)).and.not.be.undefined.and.not.be.null;

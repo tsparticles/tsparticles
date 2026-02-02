@@ -5,13 +5,11 @@ import { BackgroundMask } from "./Options/Classes/BackgroundMask.js";
 /**
  */
 export class BackgroundMaskPlugin implements IPlugin {
-  readonly id;
+  readonly id = "background-mask";
 
   private readonly _engine;
 
   constructor(engine: Engine) {
-    this.id = "background-mask";
-
     this._engine = engine;
   }
 

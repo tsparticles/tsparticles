@@ -1,6 +1,8 @@
 import { type IShapeDrawData, half } from "@tsparticles/engine";
 import type { EmojiParticle } from "./EmojiParticle.js";
 
+export const validTypes = ["emoji"];
+
 /**
  *
  * @param data -

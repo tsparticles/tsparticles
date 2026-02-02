@@ -22,10 +22,10 @@ import type { IFireworkOptions } from "./IFireworkOptions.js";
 
 declare const __VERSION__: string;
 
-const minSplitCount = 2;
+let initialized = false,
+  initializing = false;
 
-let initialized = false;
-let initializing = false;
+const minSplitCount = 2;
 
 type FireworksFunc = ((
   idOrOptions: string | RecursivePartial<IFireworkOptions>,
@@ -358,8 +358,7 @@ export async function fireworks(
   idOrOptions?: string | RecursivePartial<IFireworkOptions>,
   sourceOptions?: RecursivePartial<IFireworkOptions>,
 ): Promise<FireworksInstance | undefined> {
-  let id: string;
-  let options: RecursivePartial<IFireworkOptions>;
+  let id: string, options: RecursivePartial<IFireworkOptions>;
 
   if (isString(idOrOptions)) {
     id = idOrOptions;

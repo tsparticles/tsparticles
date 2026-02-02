@@ -15,13 +15,17 @@ import {
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
+import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
+import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
+import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
+import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
@@ -42,12 +46,22 @@ const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
  * Particles manager object
  */
 export class Particles {
+  availablePathGenerators: Map<string, IMovePathGenerator>;
+
+  checkParticlePositionPlugins: IContainerPlugin[];
+
+  effectDrawers: Map<string, IEffectDrawer>;
+
   movers: IParticleMover[];
+
+  pathGenerators: Map<string, IMovePathGenerator>;
 
   /**
    * The quad tree used to search particles withing ranges
    */
   quadTree;
+
+  shapeDrawers: Map<string, IShapeDrawer>;
 
   updaters: IParticleUpdater[];
 
@@ -58,13 +72,18 @@ export class Particles {
   private readonly _container: Container;
   private readonly _engine;
   private readonly _groupLimits: Map<string, number>;
-  private _lastZIndex;
   private _limit;
+  private _maxZIndex;
+  private _minZIndex;
   private _needsSort;
   private _nextId;
-  private _pluginsInitialized;
+  private _particleResetPlugins: IContainerPlugin[];
+  private _particleUpdatePlugins: IContainerPlugin[];
   private readonly _pool: Particle[];
+  private _postParticleUpdatePlugins: IContainerPlugin[];
+  private _postUpdatePlugins: IContainerPlugin[];
   private _resizeFactor?: IDimension;
+  private _updatePlugins: IContainerPlugin[];
   private _zArray: Particle[];
 
   /**
@@ -82,15 +101,25 @@ export class Particles {
     this._limit = 0;
     this._groupLimits = new Map<string, number>();
     this._needsSort = false;
-    this._lastZIndex = 0;
-    this._pluginsInitialized = false;
+    this._minZIndex = 0;
+    this._maxZIndex = 0;
 
     const canvasSize = container.canvas.size;
 
     this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
 
+    this.effectDrawers = new Map();
     this.movers = [];
+    this.availablePathGenerators = new Map();
+    this.pathGenerators = new Map();
+    this.shapeDrawers = new Map();
     this.updaters = [];
+    this.checkParticlePositionPlugins = [];
+    this._particleResetPlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugins = [];
+    this._postParticleUpdatePlugins = [];
+    this._updatePlugins = [];
   }
 
   get count(): number {
@@ -124,10 +153,47 @@ export class Particles {
           }
 
           break;
+        default:
+          // no-op
+          break;
       }
     }
 
-    return this._pushParticle(position, overrideOptions, group, initializer);
+    try {
+      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
+
+      particle.init(this._nextId, position, overrideOptions, group);
+
+      let canAdd = true;
+
+      if (initializer) {
+        canAdd = initializer(particle);
+      }
+
+      if (!canAdd) {
+        this._pool.push(particle);
+
+        return;
+      }
+
+      this._array.push(particle);
+      this._zArray.push(particle);
+
+      this._nextId++;
+
+      this._engine.dispatchEvent(EventType.particleAdded, {
+        container: this._container,
+        data: {
+          particle,
+        },
+      });
+
+      return particle;
+    } catch (e: unknown) {
+      getLogger().warning(`error adding particle: ${e as string}`);
+    }
+
+    return undefined;
   }
 
   /**
@@ -136,14 +202,34 @@ export class Particles {
   clear(): void {
     this._array = [];
     this._zArray = [];
-    this._pluginsInitialized = false;
   }
 
   destroy(): void {
+    const container = this._container;
+
+    for (const [, effectDrawer] of this.effectDrawers) {
+      effectDrawer.destroy?.(container);
+    }
+
+    for (const [, shapeDrawer] of this.shapeDrawers) {
+      shapeDrawer.destroy?.(container);
+    }
+
     this._array = [];
+    this._pool.length = 0;
     this._zArray = [];
+    this.effectDrawers = new Map();
     this.movers = [];
+    this.availablePathGenerators = new Map();
+    this.pathGenerators = new Map();
+    this.shapeDrawers = new Map();
     this.updaters = [];
+    this.checkParticlePositionPlugins = [];
+    this._particleResetPlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugins = [];
+    this._postParticleUpdatePlugins = [];
+    this._updatePlugins = [];
   }
 
   drawParticles(delta: IDelta): void {
@@ -169,16 +255,55 @@ export class Particles {
     const container = this._container,
       options = container.actualOptions;
 
-    this._lastZIndex = 0;
+    this._minZIndex = 0;
+    this._maxZIndex = 0;
     this._needsSort = false;
+    this.checkParticlePositionPlugins = [];
+    this._updatePlugins = [];
+    this._particleUpdatePlugins = [];
+    this._postUpdatePlugins = [];
+    this._particleResetPlugins = [];
+    this._postParticleUpdatePlugins = [];
 
     for (const plugin of container.plugins) {
       if (plugin.redrawInit) {
         await plugin.redrawInit();
       }
+
+      if (plugin.checkParticlePosition) {
+        this.checkParticlePositionPlugins.push(plugin);
+      }
+
+      if (plugin.update) {
+        this._updatePlugins.push(plugin);
+      }
+
+      if (plugin.particleUpdate) {
+        this._particleUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.postUpdate) {
+        this._postUpdatePlugins.push(plugin);
+      }
+
+      if (plugin.particleReset) {
+        this._particleResetPlugins.push(plugin);
+      }
+
+      if (plugin.postParticleUpdate) {
+        this._postParticleUpdatePlugins.push(plugin);
+      }
     }
 
     await this.initPlugins();
+
+    for (const drawer of this.effectDrawers.values()) {
+      await drawer.init?.(container);
+    }
+
+    for (const drawer of this.shapeDrawers.values()) {
+      await drawer.init?.(container);
+    }
 
     let handled = false;
 
@@ -213,17 +338,17 @@ export class Particles {
   }
 
   async initPlugins(): Promise<void> {
-    if (this._pluginsInitialized) {
-      return;
-    }
-
     const container = this._container;
 
+    this.effectDrawers = await this._engine.getEffectDrawers(container, true);
     this.movers = await this._engine.getMovers(container, true);
+    this.availablePathGenerators = await this._engine.getPathGenerators(container, true);
+    this.pathGenerators = new Map();
+    this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
 
-    for (const pathGenerator of container.pathGenerators.values()) {
-      pathGenerator.init(container);
+    for (const pathGenerator of this.pathGenerators.values()) {
+      pathGenerator.init();
     }
   }
 
@@ -296,8 +421,7 @@ export class Particles {
   }
 
   setLastZIndex(zIndex: number): void {
-    this._lastZIndex = zIndex;
-    this._needsSort = this._needsSort || this._lastZIndex < zIndex;
+    this._needsSort ||= zIndex >= this._maxZIndex || (zIndex > this._minZIndex && zIndex < this._maxZIndex);
   }
 
   setResizeFactor(factor: IDimension): void {
@@ -310,11 +434,11 @@ export class Particles {
 
     this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
 
-    for (const pathGenerator of container.pathGenerators.values()) {
+    for (const pathGenerator of this.pathGenerators.values()) {
       pathGenerator.update();
     }
 
-    for (const plugin of container.plugins) {
+    for (const plugin of this._updatePlugins) {
       plugin.update?.(delta);
     }
 
@@ -330,13 +454,11 @@ export class Particles {
 
       particle.ignoresResizeRatio = false;
 
-      for (const plugin of this._container.plugins) {
-        if (plugin.particleReset) {
-          plugin.particleReset(particle);
-        }
+      for (const plugin of this._particleResetPlugins) {
+        plugin.particleReset?.(particle);
       }
 
-      for (const plugin of this._container.plugins) {
+      for (const plugin of this._particleUpdatePlugins) {
         if (particle.destroyed) {
           break;
         }
@@ -377,10 +499,8 @@ export class Particles {
       this._addToPool(...particlesToDelete);
     }
 
-    for (const plugin of container.plugins) {
-      if (plugin.postUpdate) {
-        plugin.postUpdate(delta);
-      }
+    for (const plugin of this._postUpdatePlugins) {
+      plugin.postUpdate?.(delta);
     }
 
     // this loop is required to be done after mouse interactions
@@ -390,10 +510,8 @@ export class Particles {
       }
 
       if (!particle.destroyed && !particle.spawning) {
-        for (const plugin of container.plugins) {
-          if (plugin.postParticleUpdate) {
-            plugin.postParticleUpdate(particle, delta);
-          }
+        for (const plugin of this._postParticleUpdatePlugins) {
+          plugin.postParticleUpdate?.(particle, delta);
         }
       }
     }
@@ -405,13 +523,15 @@ export class Particles {
 
       zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-      const lastItem = zArray[zArray.length - lengthOffset];
+      const firstItem = zArray[minIndex],
+        lastItem = zArray[zArray.length - lengthOffset];
 
-      if (!lastItem) {
+      if (!firstItem || !lastItem) {
         return;
       }
 
-      this._lastZIndex = lastItem.position.z;
+      this._maxZIndex = firstItem.position.z;
+      this._minZIndex = lastItem.position.z;
       this._needsSort = false;
     }
   }
@@ -468,47 +588,6 @@ export class Particles {
       pxRatio = container.retina.pixelRatio;
 
     return (canvas.width * canvas.height) / (densityOptions.height * densityOptions.width * pxRatio ** squareExp);
-  };
-
-  private readonly _pushParticle = (
-    position?: ICoordinates,
-    overrideOptions?: RecursivePartial<IParticlesOptions>,
-    group?: string,
-    initializer?: (particle: Particle) => boolean,
-  ): Particle | undefined => {
-    try {
-      const particle = this._pool.pop() ?? new Particle(this._engine, this._container);
-
-      particle.init(this._nextId, position, overrideOptions, group);
-
-      let canAdd = true;
-
-      if (initializer) {
-        canAdd = initializer(particle);
-      }
-
-      if (!canAdd) {
-        return;
-      }
-
-      this._array.push(particle);
-      this._zArray.push(particle);
-
-      this._nextId++;
-
-      this._engine.dispatchEvent(EventType.particleAdded, {
-        container: this._container,
-        data: {
-          particle,
-        },
-      });
-
-      return particle;
-    } catch (e: unknown) {
-      getLogger().warning(`error adding particle: ${e as string}`);
-    }
-
-    return undefined;
   };
 
   private readonly _removeParticle = (index: number, group?: string, override?: boolean): boolean => {

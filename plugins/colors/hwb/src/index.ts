@@ -12,6 +12,6 @@ export async function loadHwbColorPlugin(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { HwbColorManager } = await import("./HwbColorManager.js");
 
-    e.addColorManager(new HwbColorManager());
+    e.addColorManager("hwb", new HwbColorManager());
   });
 }

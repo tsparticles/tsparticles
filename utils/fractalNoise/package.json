@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/fractal-noise",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-alpha.14",
   "description": "tsParticles fractal noise path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,7 +108,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/smooth-value-noise": "workspace:4.0.0-alpha.8"
+    "@tsparticles/smooth-value-noise": "workspace:4.0.0-alpha.14"
   },
   "publishConfig": {
     "access": "public",

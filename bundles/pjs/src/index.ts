@@ -13,19 +13,17 @@ declare global {
    * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
    * The particles.js compatibility object
    */
-  var Particles: typeof MBParticles;
-
-  /**
-   * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
-   * The particles.js compatibility dom array
-   */
-  var pJSDom: Container[];
-
-  /**
-   * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
-   * The particles.js compatibility instance
-   */
-  var particlesJS: IParticlesJS;
+  var Particles: typeof MBParticles,
+    /**
+     * @deprecated this method is obsolete, please use the new {@link Engine.dom | tsParticles.dom}
+     * The particles.js compatibility dom array
+     */
+    pJSDom: Container[],
+    /**
+     * @deprecated this method is obsolete, please use the new {@link Engine.load | tsParticles.load}
+     * The particles.js compatibility instance
+     */
+    particlesJS: IParticlesJS;
 }
 
 /**

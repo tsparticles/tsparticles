@@ -157,7 +157,7 @@ export class EmitterInstance {
       shapeGenerator = this._engine.emitterShapeManager?.getShapeGenerator(shapeOptions.type);
 
     if (shapeGenerator) {
-      this._shape = shapeGenerator.generate(this.position, this.size, this.fill, shapeOptions.options);
+      this._shape = shapeGenerator.generate(this.container, this.position, this.size, this.fill, shapeOptions.options);
     }
 
     this._engine.dispatchEvent("emitterCreated", {
@@ -301,7 +301,7 @@ export class EmitterInstance {
 
         this.play();
 
-        this._currentSpawnDelay -= this._currentSpawnDelay;
+        this._currentSpawnDelay -= this._spawnDelay;
 
         delete this._spawnDelay;
       }

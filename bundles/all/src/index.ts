@@ -57,8 +57,13 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadGradientUpdater } = await import("@tsparticles/updater-gradient"),
       { loadHeartShape } = await import("@tsparticles/shape-heart"),
       { loadInfinityShape } = await import("@tsparticles/shape-infinity"),
+      { loadBranchesPath } = await import("@tsparticles/path-branches"),
+      { loadBrownianPath } = await import("@tsparticles/path-brownian"),
+      { loadGridPath } = await import("@tsparticles/path-grid"),
+      { loadLevyPath } = await import("@tsparticles/path-levy"),
       { loadPathShape } = await import("@tsparticles/shape-path"),
       { loadPolygonPath } = await import("@tsparticles/path-polygon"),
+      { loadSpiralPath } = await import("@tsparticles/path-spiral"),
       { loadRoundedPolygonShape } = await import("@tsparticles/shape-rounded-polygon"),
       { loadRoundedRectShape } = await import("@tsparticles/shape-rounded-rect"),
       { loadSpiralShape } = await import("@tsparticles/shape-spiral"),
@@ -74,6 +79,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadPerlinNoisePath } = await import("@tsparticles/path-perlin-noise"),
       { loadSimplexNoisePath } = await import("@tsparticles/path-simplex-noise"),
       { loadBubbleEffect } = await import("@tsparticles/effect-bubble"),
+      { loadParticlesEffect } = await import("@tsparticles/effect-particles"),
       { loadShadowEffect } = await import("@tsparticles/effect-shadow"),
       { loadTrailEffect } = await import("@tsparticles/effect-trail"),
       { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
@@ -135,16 +141,22 @@ export async function loadAll(engine: Engine): Promise<void> {
     await loadGradientUpdater(e);
     await loadOrbitUpdater(e);
 
+    await loadBranchesPath(e);
+    await loadBrownianPath(e);
     await loadCurlNoisePath(e);
     await loadCurvesPath(e);
     await loadFractalNoisePath(e);
+    await loadGridPath(e);
+    await loadLevyPath(e);
     await loadPerlinNoisePath(e);
     await loadPolygonPath(e);
     await loadSVGPath(e);
+    await loadSpiralPath(e);
     await loadZigZagPath(e);
     await loadSimplexNoisePath(e);
 
     await loadBubbleEffect(e);
+    await loadParticlesEffect(e);
     await loadShadowEffect(e);
     await loadTrailEffect(e);
 

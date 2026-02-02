@@ -1,4 +1,4 @@
-import type { ICoordinates, IDimension } from "@tsparticles/engine";
+import type { Container, ICoordinates, IDimension } from "@tsparticles/engine";
 import type { IEmitterShape, IEmitterShapeGenerator } from "@tsparticles/plugin-emitters";
 import { EmittersPolygonShape } from "./EmittersPolygonShape.js";
 import { EmittersPolygonShapeOptions } from "./Options/Classes/EmittersPolygonShapeOptions.js";
@@ -6,6 +6,7 @@ import type { IEmittersPolygonShapeOptions } from "./Options/Interfaces/IEmitter
 
 export class EmittersPolygonShapeGenerator implements IEmitterShapeGenerator<IEmittersPolygonShapeOptions> {
   generate(
+    _container: Container,
     position: ICoordinates,
     size: IDimension,
     fill: boolean,

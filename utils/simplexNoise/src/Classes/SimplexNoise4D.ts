@@ -2806,9 +2806,8 @@ export class SimplexNoise4D {
    * @returns the noise value
    */
   noise(x: number, y: number, z: number, w: number): number {
-    const { _perm, _perm4D, _lookup, _STRETCH_4D, _SQUISH_4D, _gradients4D, _NORM_4D } = this;
-
-    const stretchOffset = (x + y + z + w) * _STRETCH_4D,
+    const { _perm, _perm4D, _lookup, _STRETCH_4D, _SQUISH_4D, _gradients4D, _NORM_4D } = this,
+      stretchOffset = (x + y + z + w) * _STRETCH_4D,
       xs = x + stretchOffset,
       ys = y + stretchOffset,
       zs = z + stretchOffset,
@@ -2871,9 +2870,8 @@ export class SimplexNoise4D {
   }
 
   seed(clientSeed: number): void {
-    const { _p4D, _base4D, _lookupPairs4D } = this;
-
-    const contributions: Contribution4D[] = [];
+    const { _p4D, _base4D, _lookupPairs4D } = this,
+      contributions: Contribution4D[] = [];
     for (let i = 0; i < _p4D.length; i += 16) {
       const baseSet = _base4D[_p4D[i]!]!;
 

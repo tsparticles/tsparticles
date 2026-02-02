@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.14](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.13...v4.0.0-alpha.14) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/all
+
+# [4.0.0-alpha.13](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.12...v4.0.0-alpha.13) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/all
+
+# [4.0.0-alpha.11](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.10...v4.0.0-alpha.11) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/all
+
+# [4.0.0-alpha.10](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2026-02-02)
+
+**Note:** Version bump only for package @tsparticles/all
+
+# [4.0.0-alpha.9](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2026-02-02)
+
+### Features
+
+- add branches path generator and related configurations ([41de076](https://github.com/tsparticles/tsparticles/commit/41de07658b1d5ab92f566520ac197fcacc17ac18))
+- add brownian path generator and related configurations ([d42ccaf](https://github.com/tsparticles/tsparticles/commit/d42ccaf6903309bc3c9c55ca7e4d501f767c6bcb))
+- add effect particles with configuration and drawing logic ([dee10d8](https://github.com/tsparticles/tsparticles/commit/dee10d847b4339f38432906cd36e4a5c51679f7a))
+- add grid path generator and related files ([5d2a1c8](https://github.com/tsparticles/tsparticles/commit/5d2a1c869fb5b9fcfba07a31214c4b68455c59c7))
+- add Levy path generator and related configurations ([ae59df8](https://github.com/tsparticles/tsparticles/commit/ae59df81081c2436be6d38afb6f2c5997820d1fb))
+- add spiral path generator and related files ([5aeeb58](https://github.com/tsparticles/tsparticles/commit/5aeeb58c6413db6cee187c43c2d95620c866b409))
+
 # [4.0.0-alpha.8](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2026-01-22)
 
 **Note:** Version bump only for package @tsparticles/all

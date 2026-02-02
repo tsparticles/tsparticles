@@ -15,8 +15,6 @@ const defaultInset = 2,
 /**
  */
 export class StarDrawer implements IShapeDrawer<StarParticle> {
-  readonly validTypes = ["star"] as const;
-
   draw(data: IShapeDrawData<StarParticle>): void {
     drawStar(data);
   }

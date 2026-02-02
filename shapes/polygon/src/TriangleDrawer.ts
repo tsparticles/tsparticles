@@ -8,8 +8,6 @@ const yFactor = 1.66,
 /**
  */
 export class TriangleDrawer extends PolygonDrawerBase {
-  readonly validTypes = ["triangle"] as const;
-
   getCenter(_particle: Particle, radius: number): ICoordinates {
     return {
       x: -radius,

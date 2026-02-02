@@ -542,11 +542,9 @@ describe("Options tests", () => {
       value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
     });
 
-    const otherOptions = new OptionsColor();
-
-    const copyOptions = OptionsColor.create(otherOptions, colorOptions);
-
-    const copyOptions2 = OptionsColor.create(otherOptions, copyOptions);
+    const otherOptions = new OptionsColor(),
+      copyOptions = OptionsColor.create(otherOptions, colorOptions),
+      copyOptions2 = OptionsColor.create(otherOptions, copyOptions);
 
     expect(colorOptions.value).to.be.an("array");
     expect(copyOptions.value).to.be.an("array");

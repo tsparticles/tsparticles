@@ -3,7 +3,14 @@
  * It's a singleton class for initializing {@link Container} instances
  */
 import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
-import type { Initializers, MoverInitializer, UpdaterInitializer } from "../Types/EngineInitializers.js";
+import type {
+  EffectInitializer,
+  Initializers,
+  MoverInitializer,
+  PathGeneratorInitializer,
+  ShapeInitializer,
+  UpdaterInitializer,
+} from "../Types/EngineInitializers.js";
 import {
   canvasFirstIndex,
   canvasTag,
@@ -16,7 +23,12 @@ import {
   one,
   removeDeleteCount,
 } from "./Utils/Constants.js";
-import { getItemsFromInitializer, itemFromSingleOrMultiple, safeDocument } from "../Utils/Utils.js";
+import {
+  getItemMapFromInitializer,
+  getItemsFromInitializer,
+  itemFromSingleOrMultiple,
+  safeDocument,
+} from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { CustomEventArgs } from "../Types/CustomEventArgs.js";
 import type { CustomEventListener } from "../Types/CustomEventListener.js";
@@ -41,11 +53,11 @@ import { getRandom } from "../Utils/MathUtils.js";
 
 declare const __VERSION__: string;
 
-const fullPercent = "100%";
-
 declare global {
   var tsParticles: Engine;
 }
+
+const fullPercent = "100%";
 
 interface DataFromUrlParams {
   fallback?: SingleOrMultiple<ISourceOptions>;
@@ -146,92 +158,71 @@ const getCanvasFromContainer = (domContainer: HTMLElement): HTMLCanvasElement =>
  * and for Plugins class responsible for every external feature
  */
 export class Engine {
-  readonly colorManagers;
+  readonly colorManagers = new Map<string, IColorManager>();
 
-  readonly easingFunctions;
+  readonly easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
 
   /**
    * The drawers (additional effects) array
    */
-  readonly effectDrawers;
+  readonly effectDrawers = new Map<Container, Map<string, IEffectDrawer>>();
 
-  readonly movers;
+  readonly initializers: Initializers = {
+    effects: new Map<string, EffectInitializer>(),
+    movers: new Map<string, MoverInitializer>(),
+    pathGenerators: new Map<string, PathGeneratorInitializer>(),
+    shapes: new Map<string, ShapeInitializer>(),
+    updaters: new Map<string, UpdaterInitializer>(),
+  };
+
+  readonly movers = new Map<Container, IParticleMover[]>();
 
   /**
    * The path generators array
    */
-  readonly pathGenerators;
+  readonly pathGenerators = new Map<Container, Map<string, IMovePathGenerator>>();
 
   /**
    * The plugins array
    */
-  readonly plugins: IPlugin[];
+  readonly plugins: IPlugin[] = [];
 
   /**
    * The presets array
    */
-  readonly presets;
+  readonly presets = new Map<string, ISourceOptions>();
 
   /**
    * The drawers (additional shapes) array
    */
-  readonly shapeDrawers;
+  readonly shapeDrawers = new Map<Container, Map<string, IShapeDrawer>>();
 
   /**
    * The updaters array
    */
-  readonly updaters;
+  readonly updaters = new Map<Container, IParticleUpdater[]>();
 
-  private _allLoadersSet;
+  private _allLoadersSet = new Set<LoadPluginFunction>();
 
-  private readonly _configs: Map<string, ISourceOptions>;
+  private readonly _configs = new Map<string, ISourceOptions>();
 
   /**
    * Contains all the {@link Container} instances of the current engine instance
    */
-  private readonly _domArray: Container[];
+  private readonly _domArray: Container[] = [];
 
-  private readonly _eventDispatcher;
+  private readonly _eventDispatcher = new EventDispatcher();
 
-  private _executedSet;
+  private _executedSet = new Set<LoadPluginFunction>();
 
   /**
    * Checks if the engine instance is initialized
    */
-  private _initialized: boolean;
+  private _initialized = false;
 
-  private readonly _initializers: Initializers;
+  private _isRunningLoaders = false;
 
-  private _isRunningLoaders;
-
-  private readonly _loadPromises: Set<LoadPluginFunction>;
-
-  /**
-   * Engine constructor, initializes plugins, loader and the containers array
-   */
-  constructor() {
-    this._configs = new Map();
-    this._domArray = [];
-    this._eventDispatcher = new EventDispatcher();
-    this._initialized = false;
-    this._isRunningLoaders = false;
-    this._loadPromises = new Set<LoadPluginFunction>();
-    this._allLoadersSet = new Set<LoadPluginFunction>();
-    this._executedSet = new Set<LoadPluginFunction>();
-    this.plugins = [];
-    this.colorManagers = new Map<string, IColorManager>();
-    this.easingFunctions = new Map<EasingType | EasingTypeAlt, EasingFunction>();
-    this._initializers = {
-      movers: new Map<string, MoverInitializer>(),
-      updaters: new Map<string, UpdaterInitializer>(),
-    };
-    this.movers = new Map<Container, IParticleMover[]>();
-    this.updaters = new Map<Container, IParticleUpdater[]>();
-    this.presets = new Map<string, ISourceOptions>();
-    this.effectDrawers = new Map<string, IEffectDrawer>();
-    this.shapeDrawers = new Map<string, IShapeDrawer>();
-    this.pathGenerators = new Map<string, IMovePathGenerator>();
-  }
+  private readonly _loadPromises = new Set<LoadPluginFunction>();
 
   get configs(): Record<string, ISourceOptions> {
     const res: Record<string, ISourceOptions> = {};
@@ -252,10 +243,11 @@ export class Engine {
   }
 
   /**
+   * @param name -
    * @param manager -
    */
-  addColorManager(manager: IColorManager): void {
-    this.colorManagers.set(manager.key, manager);
+  addColorManager(name: string, manager: IColorManager): void {
+    this.colorManagers.set(name, manager);
   }
 
   addConfig(config: ISourceOptions): void {
@@ -282,12 +274,8 @@ export class Engine {
    * @param effect - the effect name
    * @param drawer - the effect drawer function or class instance that draws the effect in the canvas
    */
-  addEffect(effect: string, drawer: IEffectDrawer): void {
-    if (this.getEffectDrawer(effect)) {
-      return;
-    }
-
-    this.effectDrawers.set(effect, drawer);
+  addEffect(effect: string, drawer: EffectInitializer): void {
+    this.initializers.effects.set(effect, drawer);
   }
 
   /**
@@ -304,7 +292,7 @@ export class Engine {
    * @param moverInitializer - the mover initializer
    */
   addMover(name: string, moverInitializer: MoverInitializer): void {
-    this._initializers.movers.set(name, moverInitializer);
+    this.initializers.movers.set(name, moverInitializer);
   }
 
   /**
@@ -313,7 +301,7 @@ export class Engine {
    * @param updaterInitializer - the particle updater initializer
    */
   addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
-    this._initializers.updaters.set(name, updaterInitializer);
+    this.initializers.updaters.set(name, updaterInitializer);
   }
 
   /**
@@ -321,12 +309,8 @@ export class Engine {
    * @param name - the path generator name
    * @param generator - the path generator object
    */
-  addPathGenerator(name: string, generator: IMovePathGenerator): void {
-    if (this.getPathGenerator(name)) {
-      return;
-    }
-
-    this.pathGenerators.set(name, generator);
+  addPathGenerator(name: string, generator: PathGeneratorInitializer): void {
+    this.initializers.pathGenerators.set(name, generator);
   }
 
   /**
@@ -357,15 +341,12 @@ export class Engine {
 
   /**
    * addShape adds shape to tsParticles, it will be available to all future instances created
+   * @param shapes - the shape names to add, it can be a single shape or an array of shapes
    * @param drawer - the shape drawer function or class instance that draws the shape in the canvas
    */
-  addShape(drawer: IShapeDrawer): void {
-    for (const validType of drawer.validTypes) {
-      if (this.getShapeDrawer(validType)) {
-        continue;
-      }
-
-      this.shapeDrawers.set(validType, drawer);
+  addShape(shapes: string[], drawer: ShapeInitializer): void {
+    for (const shape of shapes) {
+      this.initializers.shapes.set(shape, drawer);
     }
   }
 
@@ -383,8 +364,10 @@ export class Engine {
   }
 
   clearPlugins(container: Container): void {
-    this.updaters.delete(container);
+    this.effectDrawers.delete(container);
     this.movers.delete(container);
+    this.shapeDrawers.delete(container);
+    this.updaters.delete(container);
   }
 
   /**
@@ -404,26 +387,16 @@ export class Engine {
     return this.easingFunctions.get(name) ?? ((value: number): number => value);
   }
 
-  /**
-   * Searches the given effect drawer type with the given type name
-   * @param type - the effect drawer type name
-   * @returns the effect drawer if found, or undefined
-   */
-  getEffectDrawer(type: string): IEffectDrawer | undefined {
-    return this.effectDrawers.get(type);
+  getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
+    return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
   }
 
-  async getMovers(container: Container, force = false): Promise<IParticleMover[]> {
-    return getItemsFromInitializer(container, this.movers, this._initializers.movers, force);
+  getMovers(container: Container, force = false): Promise<IParticleMover[]> {
+    return getItemsFromInitializer(container, this.movers, this.initializers.movers, force);
   }
 
-  /**
-   * Searches the path generator with the given type name
-   * @param type - the path generator type to search
-   * @returns the path generator if found, or undefined
-   */
-  getPathGenerator(type: string): IMovePathGenerator | undefined {
-    return this.pathGenerators.get(type);
+  getPathGenerators(container: Container, force = false): Promise<Map<string, IMovePathGenerator>> {
+    return getItemMapFromInitializer(container, this.pathGenerators, this.initializers.pathGenerators, force);
   }
 
   /**
@@ -444,29 +417,8 @@ export class Engine {
     return this.presets.get(preset);
   }
 
-  /**
-   * Searches the given shape drawer type with the given type name
-   * @param type - the shape drawer type name
-   * @returns the shape drawer if found, or undefined
-   */
-  getShapeDrawer(type: string): IShapeDrawer | undefined {
-    return this.shapeDrawers.get(type);
-  }
-
-  /**
-   * This method returns all the supported effects with this Plugins instance
-   * @returns all the supported effects type name
-   */
-  getSupportedEffects(): IterableIterator<string> {
-    return this.effectDrawers.keys();
-  }
-
-  /**
-   * This method returns all the supported shapes with this Plugins instance
-   * @returns all the supported shapes type name
-   */
-  getSupportedShapes(): IterableIterator<string> {
-    return this.shapeDrawers.keys();
+  async getShapeDrawers(container: Container, force = false): Promise<Map<string, IShapeDrawer>> {
+    return getItemMapFromInitializer(container, this.shapeDrawers, this.initializers.shapes, force);
   }
 
   /**
@@ -476,7 +428,7 @@ export class Engine {
    * @returns the array of updaters for the given container
    */
   async getUpdaters(container: Container, force = false): Promise<IParticleUpdater[]> {
-    return getItemsFromInitializer(container, this.updaters, this._initializers.updaters, force);
+    return getItemsFromInitializer(container, this.updaters, this.initializers.updaters, force);
   }
 
   /**
@@ -497,7 +449,7 @@ export class Engine {
     } finally {
       this._loadPromises.clear();
       this._isRunningLoaders = false;
-      this._initialized = true; // Hard stop: da qui in poi register() darà errore
+      this._initialized = true;
     }
   }
 

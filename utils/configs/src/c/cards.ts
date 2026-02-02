@@ -7,63 +7,62 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
       suit,
       value,
     })),
-  );
-
-const options: ISourceOptions = {
-  key: "cards",
-  name: "Cards",
-  particles: {
-    color: {
-      value: "#fff",
-    },
-    number: {
-      value: 52,
-    },
-    reduceDuplicates: true,
-    shape: {
-      type: ["card"],
-      options: {
-        card: allCards,
+  ),
+  options: ISourceOptions = {
+    key: "cards",
+    name: "Cards",
+    particles: {
+      color: {
+        value: "#fff",
       },
-    },
-    opacity: {
-      value: 1,
-    },
-    size: {
-      value: 30,
-    },
-    move: {
-      enable: true,
-      speed: 2,
-    },
-    stroke: {
-      width: 1,
-      color: "#000",
-    },
-  },
-  interactivity: {
-    events: {
-      onHover: {
+      number: {
+        value: 52,
+      },
+      reduceDuplicates: true,
+      shape: {
+        type: ["card"],
+        options: {
+          card: allCards,
+        },
+      },
+      opacity: {
+        value: 1,
+      },
+      size: {
+        value: 30,
+      },
+      move: {
         enable: true,
-        mode: "repulse",
+        speed: 2,
       },
-      onClick: {
-        enable: true,
-        mode: "push",
-      },
-    },
-    modes: {
-      repulse: {
-        distance: 200,
-      },
-      push: {
-        quantity: 4,
+      stroke: {
+        width: 1,
+        color: "#000",
       },
     },
-  },
-  background: {
-    color: "#fff",
-  },
-};
+    interactivity: {
+      events: {
+        onHover: {
+          enable: true,
+          mode: "repulse",
+        },
+        onClick: {
+          enable: true,
+          mode: "push",
+        },
+      },
+      modes: {
+        repulse: {
+          distance: 200,
+        },
+        push: {
+          quantity: 4,
+        },
+      },
+    },
+    background: {
+      color: "#fff",
+    },
+  };
 
 export default options;

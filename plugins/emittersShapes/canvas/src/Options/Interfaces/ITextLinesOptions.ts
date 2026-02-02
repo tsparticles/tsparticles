@@ -1,4 +1,3 @@
-export interface ITextLinesOptions {
-  separator: string;
-  spacing: number;
-}
+import type { ITextDataLinesOptions } from "@tsparticles/canvas-utils";
+
+export type ITextLinesOptions = ITextDataLinesOptions;

@@ -1,12 +1,7 @@
-import {
-  type CanvasPixelData,
-  addParticlesFromCanvasPixels,
-  getCanvasImageData,
-  getImageData,
-  getTextData,
-} from "./utils.js";
+import { type CanvasPixelData, getCanvasImageData, getImageData, getTextData } from "@tsparticles/canvas-utils";
 import { type IContainerPlugin, isNull, safeDocument } from "@tsparticles/engine";
 import type { CanvasMaskContainer } from "./types.js";
+import { addParticlesFromCanvasPixels } from "./utils.js";
 
 export class CanvasMaskPluginInstance implements IContainerPlugin {
   private readonly _container;
@@ -38,11 +33,10 @@ export class CanvasMaskPluginInstance implements IContainerPlugin {
         return;
       }
 
-      pixelData = await getImageData(url, offset);
+      pixelData = await getImageData(url, offset, container.canvas.settings);
     } else if (options.text) {
-      const textOptions = options.text;
-
-      const data = getTextData(textOptions, offset);
+      const textOptions = options.text,
+        data = getTextData(textOptions, offset, textOptions.fill, container.canvas.settings);
 
       if (isNull(data)) {
         return;
@@ -57,7 +51,7 @@ export class CanvasMaskPluginInstance implements IContainerPlugin {
         return;
       }
 
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", container.canvas.settings);
 
       if (!context) {
         return;

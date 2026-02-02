@@ -117,19 +117,6 @@ export function isInArray<T>(value: T, array: SingleOrMultiple<T>): boolean {
 }
 
 /**
- * Loads a font for the canvas
- * @param font - font name
- * @param weight - font weight
- */
-export async function loadFont(font?: string, weight?: string): Promise<void> {
-  try {
-    await safeDocument().fonts.load(`${weight ?? "400"} 36px '${font ?? "Verdana"}'`);
-  } catch {
-    // ignores any error
-  }
-}
-
-/**
  * Returns a random array index
  * @param array - the array to get the index from
  * @returns a random array index
@@ -403,6 +390,9 @@ export function initParticleNumericAnimationValue(
         res.status = getRandom() >= half ? AnimationStatus.increasing : AnimationStatus.decreasing;
 
         break;
+      default:
+        // no-op
+        break;
     }
 
     const autoStatus = animationOptions.mode === AnimationMode.auto;
@@ -520,6 +510,9 @@ function checkDestroy(
       }
 
       break;
+    default:
+      // no-op
+      break;
   }
 }
 
@@ -595,6 +588,11 @@ export function updateAnimation(
       } else {
         data.value -= velocity;
       }
+
+      break;
+    default:
+      // no-op
+      break;
   }
 
   if (data.velocity && decay !== identity) {
@@ -724,6 +722,38 @@ export async function getItemsFromInitializer<TItem, TInitializer extends Generi
 
   if (!res || force) {
     res = await Promise.all([...initializers.values()].map(t => t(container)));
+
+    map.set(container, res);
+  }
+
+  return res;
+}
+
+/**
+ * @param container -
+ * @param map -
+ * @param initializers -
+ * @param force -
+ * @returns the items from the given initializer
+ */
+export async function getItemMapFromInitializer<TItem, TInitializer extends GenericInitializer<TItem>>(
+  container: Container,
+  map: Map<Container, Map<string, TItem>>,
+  initializers: Map<string, TInitializer>,
+  force = false,
+): Promise<Map<string, TItem>> {
+  let res = map.get(container);
+
+  if (!res || force) {
+    res = new Map<string, TItem>();
+
+    const entries = await Promise.all(
+      [...initializers.entries()].map(async ([key, initializer]) => [key, await initializer(container)] as const),
+    );
+
+    for (const [key, item] of entries) {
+      res.set(key, item);
+    }
 
     map.set(container, res);
   }

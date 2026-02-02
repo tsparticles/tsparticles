@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-path",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-alpha.14",
   "description": "tsParticles path shape",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,8 +108,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.8",
-    "@tsparticles/path-utils": "workspace:4.0.0-alpha.8"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.14",
+    "@tsparticles/path-utils": "workspace:4.0.0-alpha.14"
   },
   "publishConfig": {
     "access": "public",

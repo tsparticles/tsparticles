@@ -38,9 +38,8 @@ export class OutOutMode implements IOutModeManager {
 
     switch (particle.outType) {
       case ParticleOutType.inside: {
-        const { x: vx, y: vy } = particle.velocity;
-
-        const circVec = Vector.origin;
+        const { x: vx, y: vy } = particle.velocity,
+          circVec = Vector.origin;
 
         circVec.length = particle.moveCenter.radius;
         circVec.angle = particle.velocity.angle + Math.PI;

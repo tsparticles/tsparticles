@@ -40,7 +40,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
 
   /**
    * Connecting particles on hover interactivity
-   * @param interactivityData
+   * @param interactivityData -
    */
   interact(interactivityData: IInteractivityData): void {
     const container = this.container,

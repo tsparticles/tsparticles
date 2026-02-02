@@ -5,13 +5,11 @@ import { Trail } from "./Options/Classes/Trail.js";
 /**
  */
 export class TrailPlugin implements IPlugin {
-  readonly id;
+  readonly id = "trail";
 
   private readonly _engine;
 
   constructor(engine: Engine) {
-    this.id = "trail";
-
     this._engine = engine;
   }
 

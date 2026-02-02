@@ -1,36 +1,15 @@
 import {
   type Container,
   type ICoordinates,
-  type IDimension,
   type IParticlesOptions,
   type IRgba,
   type RecursivePartial,
-  defaultAlpha,
   getRandom,
   half,
-  isNumber,
-  originPoint,
   percentDenominator,
-  safeDocument,
 } from "@tsparticles/engine";
+import type { CanvasPixelData } from "@tsparticles/canvas-utils";
 import type { ICanvasMaskOverride } from "./Options/Interfaces/ICanvasMaskOverride.js";
-import type { TextMask } from "./Options/Classes/TextMask.js";
-
-const defaultWidth = 0,
-  defaultRgb = 0;
-
-export interface CanvasPixelData {
-  height: number;
-  pixels: IRgba[][];
-  width: number;
-}
-
-interface TextLineData {
-  height: number;
-  measure: TextMetrics;
-  text: string;
-  width: number;
-}
 
 /**
  * @param container -
@@ -108,164 +87,6 @@ export function addParticlesFromCanvasPixels(
 
     selectedPixels++;
   }
-}
-
-/**
- * @param ctx -
- * @param size -
- * @param offset -
- * @param clear -
- * @returns the canvas pixel data
- */
-export function getCanvasImageData(
-  ctx: CanvasRenderingContext2D,
-  size: IDimension,
-  offset: number,
-  clear = true,
-): CanvasPixelData {
-  const imageData = ctx.getImageData(originPoint.x, originPoint.y, size.width, size.height).data;
-
-  if (clear) {
-    ctx.clearRect(originPoint.x, originPoint.y, size.width, size.height);
-  }
-
-  const pixels: IRgba[][] = [];
-
-  for (let i = 0; i < imageData.length; i += offset) {
-    const idx = i / offset,
-      pos = {
-        x: idx % size.width,
-        y: Math.floor(idx / size.width),
-      };
-
-    pixels[pos.y] ??= [];
-
-    const indexesOffset = {
-        r: 0,
-        g: 1,
-        b: 2,
-        a: 3,
-      },
-      alphaFactor = 255,
-      row = pixels[pos.y];
-
-    if (!row) {
-      continue;
-    }
-
-    row[pos.x] = {
-      r: imageData[i + indexesOffset.r] ?? defaultRgb,
-      g: imageData[i + indexesOffset.g] ?? defaultRgb,
-      b: imageData[i + indexesOffset.b] ?? defaultRgb,
-      a: (imageData[i + indexesOffset.a] ?? defaultAlpha) / alphaFactor,
-    };
-  }
-
-  return {
-    pixels,
-    width: Math.min(...pixels.map(row => row.length)),
-    height: pixels.length,
-  };
-}
-
-/**
- * @param src -
- * @param offset -
- * @returns the canvas pixel data
- */
-export function getImageData(src: string, offset: number): Promise<CanvasPixelData> {
-  const image = new Image();
-
-  image.crossOrigin = "Anonymous";
-
-  const p = new Promise<CanvasPixelData>((resolve, reject) => {
-    image.onerror = reject;
-    image.onload = (): void => {
-      const canvas = safeDocument().createElement("canvas");
-
-      canvas.width = image.width;
-      canvas.height = image.height;
-
-      const context = canvas.getContext("2d");
-
-      if (!context) {
-        reject(new Error("Could not get canvas context"));
-        return;
-      }
-
-      context.drawImage(
-        image,
-        originPoint.x,
-        originPoint.y,
-        image.width,
-        image.height,
-        originPoint.x,
-        originPoint.y,
-        canvas.width,
-        canvas.height,
-      );
-
-      resolve(getCanvasImageData(context, canvas, offset));
-    };
-  });
-
-  image.src = src;
-
-  return p;
-}
-
-/**
- * @param textOptions -
- * @param offset -
- * @returns the canvas pixel data
- */
-export function getTextData(textOptions: TextMask, offset: number): CanvasPixelData | undefined {
-  const canvas = safeDocument().createElement("canvas"),
-    context = canvas.getContext("2d"),
-    { font, text, lines: linesOptions, color } = textOptions;
-
-  if (!text || !context) {
-    return;
-  }
-
-  const lines = text.split(linesOptions.separator),
-    fontSize = isNumber(font.size) ? `${font.size.toString()}px` : font.size,
-    linesData: TextLineData[] = [];
-
-  let maxWidth = 0,
-    totalHeight = 0;
-
-  for (const line of lines) {
-    context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
-
-    const measure = context.measureText(line),
-      lineData = {
-        measure,
-        text: line,
-        height: measure.actualBoundingBoxAscent + measure.actualBoundingBoxDescent,
-        width: measure.width,
-      };
-
-    maxWidth = Math.max(maxWidth || defaultWidth, lineData.width);
-    totalHeight += lineData.height + linesOptions.spacing;
-
-    linesData.push(lineData);
-  }
-
-  canvas.width = maxWidth;
-  canvas.height = totalHeight;
-
-  let currentHeight = 0;
-
-  for (const line of linesData) {
-    context.font = `${font.style ?? ""} ${font.variant ?? ""} ${font.weight?.toString() ?? ""} ${fontSize} ${font.family}`;
-    context.fillStyle = color;
-    context.fillText(line.text, originPoint.x, currentHeight + line.measure.actualBoundingBoxAscent);
-
-    currentHeight += line.height + linesOptions.spacing;
-  }
-
-  return getCanvasImageData(context, canvas, offset);
 }
 
 /**
