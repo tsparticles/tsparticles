@@ -4,7 +4,13 @@
   "conventionalCommits": true,
   "command": {
     "version": {
-      "message": "chore(release): published new version"
+      "message": "chore(release): published new version",
+      "forcePublish": true,
+      "yes": true,
+      "conventionalCommits": true
+    },
+    "publish": {
+      "yes": true
     }
   },
   "$schema": "node_modules/lerna/schemas/lerna-schema.json"
