@@ -419,7 +419,7 @@ export class Particles {
   }
 
   setLastZIndex(zIndex: number): void {
-    this._needsSort = this._needsSort || zIndex < this._minZIndex || zIndex > this._maxZIndex;
+    this._needsSort ||= zIndex >= this._maxZIndex || (zIndex > this._minZIndex && zIndex < this._maxZIndex);
   }
 
   setResizeFactor(factor: IDimension): void {
@@ -521,8 +521,8 @@ export class Particles {
 
       zArray.sort((a, b) => b.position.z - a.position.z || a.id - b.id);
 
-      const firstItem = zArray[minIndex];
-      const lastItem = zArray[zArray.length - lengthOffset];
+      const firstItem = zArray[minIndex],
+        lastItem = zArray[zArray.length - lengthOffset];
 
       if (!firstItem || !lastItem) {
         return;

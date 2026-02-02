@@ -38,7 +38,7 @@ type ParticlesParticle = Particle & {
 };
 
 export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
-  drawBefore(data: IShapeDrawData<ParticlesParticle>): void {
+  drawAfter(data: IShapeDrawData<ParticlesParticle>): void {
     const { particle } = data,
       { container } = particle;
 

@@ -67,7 +67,7 @@ export class LifeUpdater implements IParticleUpdater {
     options: LifeParticlesOptions,
     ...sources: (RecursivePartial<ILifeParticlesOptions> | undefined)[]
   ): void {
-    options.life = new Life();
+    options.life ??= new Life();
 
     for (const source of sources) {
       options.life.load(source?.life);

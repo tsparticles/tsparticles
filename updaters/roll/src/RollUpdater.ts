@@ -42,7 +42,7 @@ export class RollUpdater implements IParticleUpdater {
     options: RollParticlesOptions,
     ...sources: (RecursivePartial<IRollParticlesOptions> | undefined)[]
   ): void {
-    options.roll = new Roll();
+    options.roll ??= new Roll();
 
     for (const source of sources) {
       options.roll.load(source?.roll);
