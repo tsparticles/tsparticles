@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/demo-new",
   "private": true,
-  "version": "4.0.0-alpha.10",
+  "version": "4.0.0-alpha.11",
   "description": "tsParticles Demo Website",
   "main": "index.html",
   "scripts": {
@@ -51,7 +51,7 @@
     "@tsparticles/plugin-infection": "workspace:4.0.0-alpha.10",
     "@tsparticles/updater-gradient": "workspace:4.0.0-alpha.10",
     "@tsparticles/updater-orbit": "workspace:4.0.0-alpha.10",
-    "tsparticles": "workspace:4.0.0-alpha.10"
+    "tsparticles": "workspace:4.0.0-alpha.11"
   },
   "type": "module"
 }
