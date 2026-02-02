@@ -65,10 +65,10 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
   }
 
   particleInit(_container: Container, particle: ParticlesParticle): void {
-    const effectData = particle.effectData as IParticlesData,
-      spawnRate = getRangeValue(effectData.spawn?.rate?.delay ?? defaultSpawnRate);
+    const effectData = particle.effectData as IParticlesData | undefined,
+      spawnRate = getRangeValue(effectData?.spawn?.rate?.delay ?? defaultSpawnRate);
 
-    particle.particlesSpawnQuantity = getRangeValue(effectData.spawn?.rate?.quantity ?? defaultSpawnQuantity);
+    particle.particlesSpawnQuantity = getRangeValue(effectData?.spawn?.rate?.quantity ?? defaultSpawnQuantity);
     particle.particlesSpawnRate = (spawnRate > minSpawnRate ? spawnRate : defaultSpawnRate) * millisecondsToSeconds;
     particle.particlesNextSpawn = performance.now() + particle.particlesSpawnRate;
     particle.particlesData = effectData;

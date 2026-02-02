@@ -131,7 +131,7 @@ export class InteractivityEventListeners {
       }
 
       mouseInteractivity.clickPosition = { ...mousePos };
-      mouseInteractivity.clickTime = Date.now();
+      mouseInteractivity.clickTime = performance.now();
 
       const onClick = options.interactivity?.events.onClick;
 

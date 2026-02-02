@@ -301,7 +301,7 @@ export class EmitterInstance {
 
         this.play();
 
-        this._currentSpawnDelay -= this._currentSpawnDelay;
+        this._currentSpawnDelay -= this._spawnDelay;
 
         delete this._spawnDelay;
       }

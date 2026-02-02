@@ -279,7 +279,7 @@ export class AbsorberInstance {
       if (this._currentSpawnDelay >= this._spawnDelay) {
         this.play();
 
-        this._currentSpawnDelay -= this._currentSpawnDelay;
+        this._currentSpawnDelay -= this._spawnDelay;
 
         delete this._spawnDelay;
       }
