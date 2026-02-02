@@ -45,6 +45,6 @@ jobs:
             elif [[ "$TAG" == v3* ]]; then
               pnpm run publish:v3
             else
-              pnpm run publish:next
+              lerna publish from-packages -y
             fi
           fi
