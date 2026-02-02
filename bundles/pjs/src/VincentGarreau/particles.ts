@@ -225,11 +225,11 @@ const defaultMinOpacity = 0,
             opacity: {
               value: fixedOptions.particles.opacity.random
                 ? {
-                    min: fixedOptions.particles.opacity.anim.enable
-                      ? fixedOptions.particles.opacity.anim.opacity_min
-                      : defaultMinOpacity,
-                    max: fixedOptions.particles.opacity.value,
-                  }
+                  min: fixedOptions.particles.opacity.anim.enable
+                    ? fixedOptions.particles.opacity.anim.opacity_min
+                    : defaultMinOpacity,
+                  max: fixedOptions.particles.opacity.value,
+                }
                 : fixedOptions.particles.opacity.value,
               animation: {
                 enable: fixedOptions.particles.opacity.anim.enable,
@@ -240,11 +240,11 @@ const defaultMinOpacity = 0,
             size: {
               value: fixedOptions.particles.size.random
                 ? {
-                    min: fixedOptions.particles.size.anim.enable
-                      ? fixedOptions.particles.size.anim.size_min
-                      : defaultMinSize,
-                    max: fixedOptions.particles.size.value,
-                  }
+                  min: fixedOptions.particles.size.anim.enable
+                    ? fixedOptions.particles.size.anim.size_min
+                    : defaultMinSize,
+                  max: fixedOptions.particles.size.value,
+                }
                 : fixedOptions.particles.size.value,
               animation: {
                 enable: fixedOptions.particles.size.anim.enable,
@@ -295,9 +295,7 @@ const defaultMinOpacity = 0,
       engine
         .load({ id: tagId, url: pathConfigJson })
         .then(container => {
-          if (container) {
-            callback(container);
-          }
+          callback(container);
         })
         .catch(() => {
           callback(undefined);

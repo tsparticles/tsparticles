@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
+import { type Container, type IMovePathGenerator, Vector, doublePI, getRandom } from "@tsparticles/engine";
 import type { BranchesPathParticle } from "./BranchesPathParticle.js";
 import type { IBranchesPathOptions } from "./IBranchesPathOptions.js";
 
@@ -24,7 +24,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     const opts = this.options;
 
     p.branching ??= {
-      angle: getRandom() * Math.PI * 2,
+      angle: getRandom() * doublePI,
       remaining: opts.segmentLength,
       speed: p.velocity.length,
     };
