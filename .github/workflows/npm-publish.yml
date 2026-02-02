@@ -31,21 +31,21 @@ jobs:
 
       - name: Publish
         run: |
-          set -x
+          npm config set //registry.npmjs.org/:_authToken ""
+          
           TAG="${GITHUB_REF#refs/tags/}"
-
+          EXTRA_FLAGS="-- --provenance --access public --loglevel verbose"
+          
           if [[ "$TAG" == *"-alpha."* ]]; then
-            pnpm run publish:alpha
+            pnpm run publish:alpha $EXTRA_FLAGS
           elif [[ "$TAG" == *"-beta."* ]]; then
-            pnpm run publish:beta
+            pnpm run publish:beta $EXTRA_FLAGS
+          elif [[ "$TAG" == v1* ]]; then
+            pnpm run publish:v1 $EXTRA_FLAGS
+          elif [[ "$TAG" == v2* ]]; then
+            pnpm run publish:v2 $EXTRA_FLAGS
+          elif [[ "$TAG" == v3* ]]; then
+            pnpm run publish:v3 $EXTRA_FLAGS
           else
-            if [[ "$TAG" == v1* ]]; then
-              pnpm run publish:v1
-            elif [[ "$TAG" == v2* ]]; then
-              pnpm run publish:v2
-            elif [[ "$TAG" == v3* ]]; then
-              pnpm run publish:v3
-            else
-              lerna publish from-packages -y
-            fi
+            lerna publish from-package -y --provenance --access public --loglevel verbose
           fi
