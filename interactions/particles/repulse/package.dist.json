@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-repulse",
-  "version": "4.0.0-alpha.9",
+  "version": "4.0.0-alpha.10",
   "description": "tsParticles repulse particles interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -101,8 +101,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.9",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.9"
+    "@tsparticles/engine": "4.0.0-alpha.10",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.10"
   },
   "publishConfig": {
     "access": "public"
