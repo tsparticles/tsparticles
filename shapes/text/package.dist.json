@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-text",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-alpha.9",
   "description": "tsParticles text shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -59,8 +59,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/canvas-utils": "4.0.0-alpha.8",
-    "@tsparticles/engine": "4.0.0-alpha.8"
+    "@tsparticles/canvas-utils": "4.0.0-alpha.9",
+    "@tsparticles/engine": "4.0.0-alpha.9"
   },
   "publishConfig": {
     "access": "public"

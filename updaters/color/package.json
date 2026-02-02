@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-color",
-  "version": "4.0.0-alpha.8",
+  "version": "4.0.0-alpha.9",
   "description": "tsParticles particles color updater",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -97,7 +97,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.8"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.9"
   },
   "type": "module"
 }

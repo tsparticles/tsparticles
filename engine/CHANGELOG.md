@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.9](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2026-02-02)
+
+### Bug Fixes
+
+- add particle to pool when unable to add to the canvas ([90343c7](https://github.com/tsparticles/tsparticles/commit/90343c7d933eabe5862cd44c49dac0e443a4328b))
+- clear all relevant plugin types from container in clearPlugins method ([9c582ee](https://github.com/tsparticles/tsparticles/commit/9c582ee8801696cc84f9772a506f617e21aa36d7))
+- fixed performance picking only the used path generators ([8426714](https://github.com/tsparticles/tsparticles/commit/842671431c14336ee8182532361e35f64660edb5))
+- fixed some plugins initializations and cleanup ([f58601c](https://github.com/tsparticles/tsparticles/commit/f58601c61cf71509ec51f321a1aa9cbfaa55877d))
+- improved roll angle calculation and logic ([a886da3](https://github.com/tsparticles/tsparticles/commit/a886da36443ca811fdb5ec09cdfe0ebb9e8bf870))
+- remove unnecessary comment in Engine.ts ([fdee2c8](https://github.com/tsparticles/tsparticles/commit/fdee2c87727d24e32ed1808ebf801302e34e5015))
+- update path generator reference in Particles.ts ([97dbfca](https://github.com/tsparticles/tsparticles/commit/97dbfca7751664a5207390e777a36fe47a41b29a))
+
+### Features
+
+- add effect particles with configuration and drawing logic ([dee10d8](https://github.com/tsparticles/tsparticles/commit/dee10d847b4339f38432906cd36e4a5c51679f7a))
+- add full card shape, and utilities for path drawing ([f4a985f](https://github.com/tsparticles/tsparticles/commit/f4a985f092e7da94e6f8bd211c3007246d0488b3))
+- initialize plugin arrays for particle updates ([d0cd05d](https://github.com/tsparticles/tsparticles/commit/d0cd05d06f629bb4e51682bbe9c373e8987ee72b))
+
 # [4.0.0-alpha.8](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2026-01-22)
 
 **Note:** Version bump only for package @tsparticles/engine
