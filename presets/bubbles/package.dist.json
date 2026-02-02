@@ -99,9 +99,9 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.5",
-    "@tsparticles/engine": "^4.0.0-alpha.5",
-    "@tsparticles/plugin-emitters": "^4.0.0-alpha.5"
+    "@tsparticles/basic": "^4.0.0-alpha.14",
+    "@tsparticles/engine": "^4.0.0-alpha.14",
+    "@tsparticles/plugin-emitters": "^4.0.0-alpha.14"
   },
   "publishConfig": {
     "access": "public"
