@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-triangles",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.4",
   "description": "tsParticles triangles preset",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -110,9 +110,9 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.2",
-    "@tsparticles/engine": "^4.0.0-alpha.2",
-    "@tsparticles/interaction-particles-links": "^4.0.0-alpha.2"
+    "@tsparticles/basic": "^4.0.0-alpha.14",
+    "@tsparticles/engine": "^4.0.0-alpha.14",
+    "@tsparticles/interaction-particles-links": "^4.0.0-alpha.14"
   },
   "type": "module"
 }

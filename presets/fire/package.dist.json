@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fire",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.4",
   "description": "tsParticles fire preset",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -99,9 +99,9 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.2",
-    "@tsparticles/engine": "^4.0.0-alpha.2",
-    "@tsparticles/interaction-external-push": "^4.0.0-alpha.2"
+    "@tsparticles/basic": "^4.0.0-alpha.14",
+    "@tsparticles/engine": "^4.0.0-alpha.14",
+    "@tsparticles/interaction-external-push": "^4.0.0-alpha.14"
   },
   "publishConfig": {
     "access": "public"

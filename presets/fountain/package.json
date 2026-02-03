@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-fountain",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.4",
   "description": "tsParticles fountain preset",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -110,11 +110,11 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.2",
-    "@tsparticles/engine": "^4.0.0-alpha.2",
-    "@tsparticles/plugin-emitters": "^4.0.0-alpha.2",
-    "@tsparticles/plugin-trail": "^4.0.0-alpha.2",
-    "@tsparticles/updater-destroy": "^4.0.0-alpha.2"
+    "@tsparticles/basic": "^4.0.0-alpha.14",
+    "@tsparticles/engine": "^4.0.0-alpha.14",
+    "@tsparticles/plugin-emitters": "^4.0.0-alpha.14",
+    "@tsparticles/plugin-trail": "^4.0.0-alpha.14",
+    "@tsparticles/updater-destroy": "^4.0.0-alpha.14"
   },
   "type": "module"
 }

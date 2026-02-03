@@ -35,7 +35,6 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 10
           run_install: false
       - name: Get pnpm version
         id: pnpm-version
@@ -54,7 +53,7 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install
       #- run: npx nx-cloud start-ci-run
       #- run: pnpm run prettify:ci:readme
       - run: npx lerna run build:ci #--concurrency 3
@@ -77,7 +76,6 @@ jobs:
         name: Install pnpm
         id: pnpm-install
         with:
-          version: 10
           run_install: false
       - name: Get pnpm version
         id: pnpm-version
@@ -96,10 +94,10 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install
       #- run: npx nx-cloud start-ci-run
       #- run: pnpm run prettify:ci:readme
-      - run: npx lerna run build:ci #--concurrency 3
+      - run: pnpm run build:ci #--concurrency 3
       #- run: npx nx-cloud stop-all-agents
       - run: echo ${{ github.repository_owner }}
       - run: echo ${{ github.actor }}
@@ -139,6 +137,6 @@ jobs:
 #          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
 #          restore-keys: |
 #            ${{ runner.os }}-pnpm-store-
-#      - run: pnpm install --no-frozen-lockfile
+#      - run: pnpm install
 #      - name: Start Nx Agent ${{ matrix.agent }}
 #        run: npx nx-cloud start-agent

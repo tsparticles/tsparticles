@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/vite-demo",
   "private": true,
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.4",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tsparticles/engine": "^4.0.0-alpha.2",
+    "@tsparticles/engine": "^4.0.0-alpha.14",
     "@tsparticles/preset-big-circles": "workspace:^",
     "@tsparticles/preset-bubbles": "workspace:^",
     "@tsparticles/preset-confetti": "workspace:^",

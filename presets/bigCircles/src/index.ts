@@ -1,21 +1,19 @@
 import { type Engine } from "@tsparticles/engine";
 
+const presetNames = ["bigCircles", "big-circles"];
+
 /**
  * @param engine -
  */
-export function loadBigCirclesPreset(engine: Engine): void {
-    engine.register(async e => {
-        const { loadBasic } = await import("@tsparticles/basic"),
-            { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-            { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
-            { options, presetNames } = await import("./options.js");
+export async function loadBigCirclesPreset(engine: Engine): Promise<void> {
+  await engine.register(async e => {
+    const { loadBasic } = await import("@tsparticles/basic"),
+      { options } = await import("./options.js");
 
-        loadBasic(e);
-        loadEmittersPlugin(e);
-        loadEmittersShapeSquare(e);
+    await loadBasic(e);
 
-        presetNames.forEach(name => {
-            e.addPreset(name, options);
-        });
+    presetNames.forEach(name => {
+      e.addPreset(name, options);
     });
+  });
 }

@@ -5,9 +5,14 @@ import livereload from "livereload";
 import connectLiveReload from "connect-livereload";
 //import rateLimit from "express-rate-limit";
 
+const liveReloadPort = 35730,
+    expressPort = 3015;
+
 const app = express();
 
-const liveReloadServer = livereload.createServer();
+const liveReloadServer = livereload.createServer({
+    port: liveReloadPort
+});
 
 liveReloadServer.server.once("connection", () => {
     setTimeout(() => {
@@ -15,7 +20,9 @@ liveReloadServer.server.once("connection", () => {
     }, 100);
 });
 
-app.use(connectLiveReload());
+app.use(connectLiveReload({
+    port: liveReloadPort
+}));
 
 /*const limiter = rateLimit({
     windowMs: 1000, // 15 minutes
@@ -24,8 +31,6 @@ app.use(connectLiveReload());
 
 app.use(limiter);*/
 // app.use(helmet()); // Safari requires https, probably a bug
-
-const port = 3015;
 
 app.set("views", "./views");
 app.set("view engine", "pug");
@@ -114,4 +119,4 @@ app.get("/triangles", function (req, res) {
     res.render("triangles");
 });
 
-app.listen(port, () => console.log(`Demo app listening on port ${port}!`));
+app.listen(expressPort, () => console.log(`Demo app listening on port ${expressPort}!`));
