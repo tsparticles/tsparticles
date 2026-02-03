@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-confetti",
-  "version": "4.0.0-alpha.2",
+  "version": "4.0.0-alpha.3",
   "description": "tsParticles confetti preset",
   "homepage": "https://particles.js.org",
   "scripts": {
