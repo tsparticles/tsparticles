@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/preset-snow",
-  "version": "4.0.0-alpha.3",
+  "version": "4.0.0-alpha.4",
   "description": "tsParticles snow preset",
   "homepage": "https://particles.js.org",
   "scripts": {
