@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-square",
-  "version": "4.0.0-alpha.15",
+  "version": "4.0.0-alpha.16",
   "description": "tsParticles emitters shape square plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,8 +100,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.15",
-    "@tsparticles/plugin-emitters": "4.0.0-alpha.15"
+    "@tsparticles/engine": "4.0.0-alpha.16",
+    "@tsparticles/plugin-emitters": "4.0.0-alpha.16"
   },
   "publishConfig": {
     "access": "public"

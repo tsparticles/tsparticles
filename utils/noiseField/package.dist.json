@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/noise-field",
-  "version": "4.0.0-alpha.15",
+  "version": "4.0.0-alpha.16",
   "description": "tsParticles noise field library",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -92,7 +92,7 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.15"
+    "@tsparticles/engine": "4.0.0-alpha.16"
   },
   "exports": {
     ".": {

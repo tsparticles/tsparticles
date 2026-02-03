@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.16](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.15...v4.0.0-alpha.16) (2026-02-03)
+
+### Bug Fixes
+
+- checking that engine images exists, if not it will be initialized ([a616959](https://github.com/tsparticles/tsparticles/commit/a6169598919f809f6cc00837ac2a6c65949d3768))
+
 # [4.0.0-alpha.15](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.14...v4.0.0-alpha.15) (2026-02-03)
 
 ### Bug Fixes

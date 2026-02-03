@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-smoothstep",
-  "version": "4.0.0-alpha.15",
+  "version": "4.0.0-alpha.16",
   "description": "tsParticles easing smoothstep plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,7 +108,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.15"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.16"
   },
   "publishConfig": {
     "access": "public",
