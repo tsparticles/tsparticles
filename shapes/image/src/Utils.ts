@@ -2,6 +2,8 @@ import { type IHsl, type Particle, getLogger, getStyleFromHsl } from "@tsparticl
 import type { GIF } from "./GifUtils/Types/GIF.js";
 import type { IImageShape } from "./IImageShape.js";
 
+export const shapeTypes = ["image", "images"];
+
 const stringStart = 0,
   defaultOpacity = 1;
 
@@ -75,7 +77,7 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number, hdr =
 
   /* set color to svg element */
   if (svgData.includes("fill")) {
-    return svgData.replace(currentColorRegex, () => colorStyle);
+    return svgData.replaceAll(currentColorRegex, () => colorStyle);
   }
 
   const preFillIndex = svgData.indexOf(">");
@@ -88,7 +90,7 @@ function replaceColorSvg(imageShape: IImage, color: IHsl, opacity: number, hdr =
  * @param image - the image to load
  */
 export async function loadImage(image: IImage): Promise<void> {
-  return new Promise<void>((resolve: () => void) => {
+  return new Promise<void>(resolve => {
     image.loading = true;
 
     const img = new Image();
@@ -130,12 +132,12 @@ export async function downloadSvgImage(image: IImage): Promise<void> {
 
   const response = await fetch(image.source);
 
-  if (!response.ok) {
+  if (response.ok) {
+    image.svgData = await response.text();
+  } else {
     getLogger().error("Image not found");
 
     image.error = true;
-  } else {
-    image.svgData = await response.text();
   }
 
   image.loading = false;

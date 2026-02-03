@@ -6,7 +6,7 @@ import {
   defaultRatio,
   double,
 } from "@tsparticles/engine";
-import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor } from "./Utils.js";
+import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor, shapeTypes } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
 import { drawGif } from "./GifUtils/Utils.js";
@@ -32,9 +32,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param image - the image to add to the container collection
    */
   addImage(image: IImage): void {
-    this._engine.images ??= [];
-
-    this._engine.images.push(image);
+    this._engine.images?.push(image);
   }
 
   /**
@@ -90,11 +88,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
   }
 
   loadShape(particle: ImageParticle): void {
-    if (particle.shape !== "image" && particle.shape !== "images") {
+    if (!particle.shape || !shapeTypes.includes(particle.shape)) {
       return;
     }
-
-    this._engine.images ??= [];
 
     const imageData = particle.shapeData as IImageShape | undefined;
 
@@ -102,13 +98,15 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+    const image = this._engine.images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
-    if (!image) {
-      void this.loadImageShape(imageData).then(() => {
-        this.loadShape(particle);
-      });
+    if (image) {
+      return;
     }
+
+    void this.loadImageShape(imageData).then(() => {
+      this.loadShape(particle);
+    });
   }
 
   /**
@@ -121,8 +119,6 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    this._engine.images ??= [];
-
     const images = this._engine.images,
       imageData = particle.shapeData as IImageShape | undefined;
 
@@ -131,7 +127,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const color = particle.getFillColor(),
-      image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (!image) {
       return;

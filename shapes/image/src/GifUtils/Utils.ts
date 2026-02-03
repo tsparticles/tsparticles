@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { type ICoordinates, type IRgb, type IRgba, type IShapeDrawData, half } from "@tsparticles/engine";
 import { type IImage, type ImageParticle, loadImage } from "../Utils.js";
+import { type IRgb, type IRgba, type IShapeDrawData, half, originPoint } from "@tsparticles/engine";
 import { InterlaceOffsets, InterlaceSteps } from "./Constants.js";
 import type { ApplicationExtension } from "./Types/ApplicationExtension.js";
 import { ByteStream } from "./ByteStream.js";
@@ -10,11 +10,7 @@ import type { GIF } from "./Types/GIF.js";
 import { GIFDataHeaders } from "./Types/GIFDataHeaders.js";
 import type { GIFProgressCallbackFunction } from "./Types/GIFProgressCallbackFunction.js";
 
-const origin: ICoordinates = {
-    x: 0,
-    y: 0,
-  },
-  defaultFrame = 0,
+const defaultFrame = 0,
   initialTime = 0,
   firstIndex = 0,
   defaultLoopCount = 0;
@@ -157,6 +153,23 @@ function parseExtensionBlock(
 }
 
 /**
+ * __read `len` bits from `imageData` at `pos`__
+ * @param imageData - `Uint8ClampedArray` to read from
+ * @param pos - bit position in `imageData`
+ * @param len - bit length to read [1-12 bits]
+ * @returns `len` bits at `pos`
+ */
+function readBits(imageData: Uint8Array, pos: number, len: number): number {
+  const bytePos = pos >>> 3,
+    bitPos = pos & 7;
+  return (
+    ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
+      (((1 << len) - 1) << bitPos)) >>>
+    bitPos
+  );
+}
+
+/**
  * __parsing one image block in GIF data stream__
  * @param byteStream - GIF data stream
  * @param gif - GIF object to write to
@@ -239,22 +252,7 @@ async function parseImageBlock(
 
   const minCodeSize = byteStream.nextByte(),
     imageData = byteStream.readSubBlocksBin(),
-    clearCode = 1 << minCodeSize,
-    /**
-     * __read `len` bits from `imageData` at `pos`__
-     * @param pos - bit position in `imageData`
-     * @param len - bit length to read [1-12 bits]
-     * @returns `len` bits at `pos`
-     */
-    readBits = (pos: number, len: number): number => {
-      const bytePos = pos >>> 3,
-        bitPos = pos & 7;
-      return (
-        ((imageData[bytePos]! + (imageData[bytePos + 1]! << 8) + (imageData[bytePos + 2]! << 16)) &
-          (((1 << len) - 1) << bitPos)) >>>
-        bitPos
-      );
-    };
+    clearCode = 1 << minCodeSize;
 
   if (interlacedFlag) {
     for (let code = 0, size = minCodeSize + 1, pos = 0, dic = [[0]], pass = 0; pass < 4; pass++) {
@@ -266,7 +264,7 @@ async function parseImageBlock(
         while (!exit) {
           const last = code;
 
-          code = readBits(pos, size);
+          code = readBits(imageData, pos, size);
           pos += size + 1;
 
           if (code === clearCode) {
@@ -333,7 +331,7 @@ async function parseImageBlock(
     for (;;) {
       const last = code;
 
-      code = readBits(pos, size);
+      code = readBits(imageData, pos, size);
       pos += size;
 
       if (code === clearCode) {
@@ -431,7 +429,7 @@ export function getGIFLoopAmount(gif: GIF): number {
     return extension.data[1]! + (extension.data[2]! << 8);
   }
 
-  return NaN;
+  return Number.NaN;
 }
 
 /**
@@ -634,7 +632,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
   offscreenContext.imageSmoothingQuality = "low";
   offscreenContext.imageSmoothingEnabled = false;
 
-  offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
+  offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
 
   particle.gifLoopCount ??= image.gifLoopCount ?? defaultLoopCount;
 
@@ -661,7 +659,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
 
       context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-      offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
+      offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
 
       break;
     case DisposalMethod.Combine:
@@ -675,7 +673,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
 
       context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-      offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
+      offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
 
       if (!image.gifData.globalColorTable.length) {
         offscreenContext.putImageData(image.gifData.frames[firstIndex]!.image, pos.x + frame.left, pos.y + frame.top);
@@ -687,8 +685,8 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
     case DisposalMethod.RestorePrevious:
       {
         const previousImageData = offscreenContext.getImageData(
-          origin.x,
-          origin.y,
+          originPoint.x,
+          originPoint.y,
           offscreenCanvas.width,
           offscreenCanvas.height,
         );
@@ -697,8 +695,8 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
 
         context.drawImage(offscreenCanvas, pos.x, pos.y);
 
-        offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
-        offscreenContext.putImageData(previousImageData, origin.x, origin.y);
+        offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
+        offscreenContext.putImageData(previousImageData, originPoint.x, originPoint.y);
       }
       break;
   }
@@ -716,7 +714,7 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
       frameIndex = firstIndex;
 
       // ? so apparently some GIFs seam to set the disposal method of the last frame wrong?...so this is a "fix" for that (clear after the last frame)
-      offscreenContext.clearRect(origin.x, origin.y, offscreenCanvas.width, offscreenCanvas.height);
+      offscreenContext.clearRect(originPoint.x, originPoint.y, offscreenCanvas.width, offscreenCanvas.height);
     }
 
     particle.gifFrame = frameIndex;
