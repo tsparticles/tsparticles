@@ -154,7 +154,7 @@ function parseExtensionBlock(
 
 /**
  * __read `len` bits from `imageData` at `pos`__
- * @param imageData - `Uint8ClampedArray` to read from
+ * @param imageData - `Uint8Array` to read from
  * @param pos - bit position in `imageData`
  * @param len - bit length to read [1-12 bits]
  * @returns `len` bits at `pos`

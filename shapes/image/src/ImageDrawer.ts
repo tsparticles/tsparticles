@@ -32,7 +32,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    * @param image - the image to add to the container collection
    */
   addImage(image: IImage): void {
-    this._engine.images?.push(image);
+    this._engine.images ??= [];
+
+    this._engine.images.push(image);
   }
 
   /**
@@ -98,7 +100,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const image = this._engine.images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+    this._engine.images ??= [];
+
+    const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (image) {
       return;
@@ -119,6 +123,8 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
+    this._engine.images ??= [];
+
     const images = this._engine.images,
       imageData = particle.shapeData as IImageShape | undefined;
 
@@ -127,7 +133,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const color = particle.getFillColor(),
-      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (!image) {
       return;
