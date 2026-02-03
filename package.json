@@ -50,5 +50,6 @@
     "apps/*",
     "presets/*"
   ],
-  "type": "module"
+  "type": "module",
+  "packageManager": "pnpm@10.28.2"
 }
