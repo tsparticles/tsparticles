@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-cog",
-  "version": "4.0.0-alpha.14",
+  "version": "4.0.0-alpha.15",
   "description": "tsParticles cog shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.14"
+    "@tsparticles/engine": "4.0.0-alpha.15"
   },
   "publishConfig": {
     "access": "public"
