@@ -16,7 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          # Gestisce sia push che pull request correttamente
           ref: ${{ github.event.pull_request.head.ref || github.ref }}
           repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           fetch-depth: 0
@@ -32,11 +31,13 @@ jobs:
         with:
           run_install: false
 
+      - name: Initialize Nx Cloud
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+
       - name: Setup pnpm cache
         uses: actions/cache@v5
         with:
-          path: |
-            ~/.pnpm-store
+          path: ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install dependencies
@@ -48,7 +49,6 @@ jobs:
       - name: Build packages
         run: npx nx affected -t build:ci
 
-      # Deploy Produzione (Solo su push su main)
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -57,7 +57,6 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      # Deploy Preview (Solo per PR di matteobruni)
       - if: env.firebaseToken != '' && github.event_name == 'pull_request' && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -65,5 +64,6 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
 
-      - run: npx nx fix-ci
-        if: always() # IMPORTANT: Always run
+      - name: Stop Nx Cloud Session
+        run: npx nx fix-ci
+        if: always()
