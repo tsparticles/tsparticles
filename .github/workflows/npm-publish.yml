@@ -47,8 +47,8 @@ jobs:
       - name: Install Dependencies
         run: pnpm install
 
-      - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+      #- name: Initialize Nx Cloud
+      #  run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build All Packages
         run: npx lerna run build:ci
