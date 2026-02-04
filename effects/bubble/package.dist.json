@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/effect-bubble",
-  "version": "4.0.0-alpha.17",
+  "version": "4.0.0-alpha.18",
   "description": "tsParticles bubble effect",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.17"
+    "@tsparticles/engine": "4.0.0-alpha.18"
   },
   "publishConfig": {
     "access": "public"

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.18](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.17...v4.0.0-alpha.18) (2026-02-04)
+
+### Bug Fixes
+
+- fix slim loading order ([552e360](https://github.com/tsparticles/tsparticles/commit/552e360a668260461a9928860f1c71dcbc62e60b))
+
 # [4.0.0-alpha.17](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.16...v4.0.0-alpha.17) (2026-02-04)
 
 **Note:** Version bump only for package @tsparticles/slim
