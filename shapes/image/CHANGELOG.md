@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.17](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.16...v4.0.0-alpha.17) (2026-02-04)
+
+### Bug Fixes
+
+- fixed gifs ([245e28f](https://github.com/tsparticles/tsparticles/commit/245e28fcf5180a4add583107ad8facb3ad34eca0))
+
 # [4.0.0-alpha.16](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.15...v4.0.0-alpha.16) (2026-02-03)
 
 ### Bug Fixes

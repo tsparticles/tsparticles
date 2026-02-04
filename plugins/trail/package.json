@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-trail",
-  "version": "4.0.0-alpha.16",
+  "version": "4.0.0-alpha.17",
   "description": "tsParticles trail plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -94,7 +94,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.16"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.17"
   },
   "publishConfig": {
     "access": "public",
