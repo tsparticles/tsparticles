@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: false
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
 
 jobs:
@@ -44,11 +44,11 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install Dependencies
-        run: pnpm install
+      - name: Initialize Nx Cloud
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
-      #- name: Initialize Nx Cloud
-      #  run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+      - name: Install Dependencies
+        run: pnpm ci
 
       - name: Build All Packages
         run: npx lerna run build:ci
@@ -76,3 +76,6 @@ jobs:
           else
             $BASE_CMD
           fi
+
+      - run: npx nx fix-ci
+        if: always() # IMPORTANT: Always run

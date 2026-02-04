@@ -1,36 +1,27 @@
 name: Node.js CI
 on:
   push:
-    branches:
-      - main
-      - v4
-      - v3
-      - v2
-      - v1
+    branches: [main, v4, v3, v2, v1]
   pull_request:
-    branches:
-      - main
-      - v4
-      - v3
-      - v2
-      - v1
+    branches: [main, v4, v3, v2, v1]
 
 env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: false
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
   firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
 
 jobs:
-  main:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v6
-        name: Checkout [main]
         with:
+          # Gestisce sia push che pull request correttamente
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           fetch-depth: 0
 
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      - name: Derive SHAs for nx affected
         uses: nrwl/nx-set-shas@v4
 
       - uses: actions/setup-node@v6
@@ -38,37 +29,27 @@ jobs:
           node-version: '24'
 
       - uses: pnpm/action-setup@v4.2.0
-        name: Install pnpm
-        id: pnpm-install
         with:
           run_install: false
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v5
-        name: Setup pnpm cache
+      - name: Setup pnpm cache
+        uses: actions/cache@v5
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          path: |
+            ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm ci
 
       - name: Prettify README
         run: pnpm run prettify:ci:readme
 
-      #- name: Initialize Nx Cloud
-      #  run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
-
       - name: Build packages
         run: npx nx affected -t build:ci
 
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
+      # Deploy Produzione (Solo su push su main)
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -76,65 +57,13 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
+      # Deploy Preview (Solo per PR di matteobruni)
+      - if: env.firebaseToken != '' && github.event_name == 'pull_request' && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
-          channelId: next
 
-  pr:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          fetch-depth: 0
-
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v4
-
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-
-      - uses: pnpm/action-setup@v4.2.0
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - uses: actions/cache@v5
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Prettify README
-        run: pnpm run prettify:ci:readme
-
-      #- name: Initialize Nx Cloud
-      #  run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
-
-      - name: Build packages
-        run: npx nx affected -t build:ci
-
-      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
+      - run: npx nx fix-ci
+        if: always() # IMPORTANT: Always run
