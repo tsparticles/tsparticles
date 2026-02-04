@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-rgb-color",
-  "version": "4.0.0-alpha.20",
+  "version": "4.0.0-alpha.21",
   "description": "tsParticles RGB color plugin",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,7 +108,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.20"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.21"
   },
   "publishConfig": {
     "access": "public",

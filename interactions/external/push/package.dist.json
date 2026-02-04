@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-push",
-  "version": "4.0.0-alpha.20",
+  "version": "4.0.0-alpha.21",
   "description": "tsParticles push external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,8 +87,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.20",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.20"
+    "@tsparticles/engine": "4.0.0-alpha.21",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.21"
   },
   "publishConfig": {
     "access": "public"
