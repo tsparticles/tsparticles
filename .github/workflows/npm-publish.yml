@@ -51,7 +51,7 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install Dependencies
-        run: pnpm ci
+        run: pnpm install
 
       - name: Build All Packages
         run: npx nx run-many -t build:ci

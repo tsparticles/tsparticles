@@ -41,7 +41,7 @@ jobs:
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install dependencies
-        run: pnpm ci
+        run: pnpm install
 
       - name: Prettify README
         run: pnpm run prettify:ci:readme
