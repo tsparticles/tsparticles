@@ -42,10 +42,8 @@ export async function loadFull(engine: Engine): Promise<void> {
       import("@tsparticles/slim"),
     ]);
 
-    // 1️⃣ base
     await loadSlim(e);
 
-    // 2️⃣ tutto ciò che non ha dipendenze
     await Promise.all([
       loadDestroyUpdater(e),
       loadRollUpdater(e),
@@ -58,10 +56,8 @@ export async function loadFull(engine: Engine): Promise<void> {
       loadExternalTrailInteraction(e),
 
       loadAbsorbersPlugin(e),
+      loadEmittersPlugin(e),
     ]);
-
-    // 3️⃣ emitters (dipendenza interna)
-    await loadEmittersPlugin(e);
 
     await Promise.all([
       loadEmittersShapeCircle(e),
