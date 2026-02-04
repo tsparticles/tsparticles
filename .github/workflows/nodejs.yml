@@ -66,7 +66,7 @@ jobs:
         run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build packages
-        run: npx nx run-many -t build:ci
+        run: npx lerna run build:ci
 
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -130,7 +130,7 @@ jobs:
         run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build packages
-        run: npx nx run-many -t build:ci
+        run: npx lerna run -t build:ci
 
       - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0

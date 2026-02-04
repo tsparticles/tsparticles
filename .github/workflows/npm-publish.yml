@@ -51,7 +51,7 @@ jobs:
         run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build All Packages
-        run: npx nx run-many -t build:ci
+        run: npx lerna run build:ci
         env:
           CI: true
 
