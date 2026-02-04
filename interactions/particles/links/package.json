@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-particles-links",
-  "version": "4.0.0-alpha.19",
+  "version": "4.0.0-alpha.20",
   "description": "tsParticles links particles interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -95,9 +95,9 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/canvas-utils": "workspace:4.0.0-alpha.19",
-    "@tsparticles/engine": "workspace:4.0.0-alpha.19",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.19"
+    "@tsparticles/canvas-utils": "workspace:4.0.0-alpha.20",
+    "@tsparticles/engine": "workspace:4.0.0-alpha.20",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.20"
   },
   "publishConfig": {
     "access": "public",

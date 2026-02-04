@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-out-modes",
-  "version": "4.0.0-alpha.19",
+  "version": "4.0.0-alpha.20",
   "description": "tsParticles particles out modes updater",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,7 +87,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.19"
+    "@tsparticles/engine": "4.0.0-alpha.20"
   },
   "publishConfig": {
     "access": "public"
