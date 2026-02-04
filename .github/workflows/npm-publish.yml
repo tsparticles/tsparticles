@@ -51,7 +51,7 @@ jobs:
         run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build All Packages
-        run: npx lerna run build:ci --concurrency 5
+        run: npx nx run-many -t build:ci --concurrency 5
         env:
           CI: true
 
@@ -61,7 +61,7 @@ jobs:
           
           TAG="${GITHUB_REF#refs/tags/}"
           
-          BASE_CMD="lerna publish from-package --ignore-scripts --loglevel verbose"
+          BASE_CMD="lerna publish from-package --ignore-scripts"
 
           if [[ "$TAG" == *"-alpha."* ]]; then
             $BASE_CMD --pre-dist-tag alpha --preid alpha
