@@ -6,17 +6,26 @@
         "build": {
             "dependsOn": [
                 "^build"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
             ]
         },
         "build:ci": {
             "dependsOn": [
                 "^build:ci"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
             ]
         },
         "prepare": {
             "dependsOn": [
                 "^build",
                 "^prepare"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
             ]
         },
         "package": {
@@ -24,6 +33,9 @@
                 "^build",
                 "^prepare",
                 "^package"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
             ]
         }
     },
