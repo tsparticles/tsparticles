@@ -44,13 +44,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - run: pnpm install
+      - name: Install Dependencies
+        run: pnpm install
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build:ci"
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build:ci"
 
       - name: Build All Packages
-        run: pnpm run build:ci
+        run: npx lerna run build:ci --concurrency 5
         env:
           CI: true
 

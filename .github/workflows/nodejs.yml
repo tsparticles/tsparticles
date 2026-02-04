@@ -53,14 +53,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Prettify README
+        run: pnpm run prettify:ci:readme
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build:ci"
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build:ci"
 
-      - run: pnpm run prettify:ci:readme
-
-      - run: npx lerna run build:ci --concurrency 3
+      - name: Build packages
+        run: npx lerna run build:ci --concurrency 5
 
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -111,14 +114,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Prettify README
+        run: pnpm run prettify:ci:readme
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js" --stop-agents-after="build:ci"
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build:ci"
 
-      - run: pnpm run prettify:ci:readme
-
-      - run: npx lerna run build:ci --concurrency 3
+      - name: Build packages
+        run: npx lerna run build:ci --concurrency 5
 
       - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0

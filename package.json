@@ -5,7 +5,7 @@
   "version": "0.0.0",
   "scripts": {
     "slimbuild": "pnpm run prettify:readme && lerna run build",
-    "slimbuild:ci": "pnpm run prettify:readme && lerna run build:ci",
+    "slimbuild:ci": "pnpm run prettify:ci:readme && lerna run build:ci",
     "build": "pnpm run slimbuild && pnpm run build:docs",
     "build:ci": "pnpm run slimbuild:ci && pnpm run build:docs",
     "build:ci:json": "pnpm run slimbuild:ci && pnpm run build:docs:json",
