@@ -48,7 +48,7 @@ jobs:
         run: pnpm install
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build:ci"
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build All Packages
         run: npx lerna run build:ci --concurrency 5

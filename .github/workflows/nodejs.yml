@@ -60,7 +60,7 @@ jobs:
         run: pnpm run prettify:ci:readme
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build:ci"
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build packages
         run: npx lerna run build:ci --concurrency 5
@@ -121,7 +121,7 @@ jobs:
         run: pnpm run prettify:ci:readme
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" --stop-agents-after="build:ci"
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build packages
         run: npx lerna run build:ci --concurrency 5
