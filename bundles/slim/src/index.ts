@@ -40,6 +40,8 @@ export async function loadSlim(engine: Engine): Promise<void> {
       { loadStrokeColorUpdater } = await import("@tsparticles/updater-stroke-color"),
       { loadBasic } = await import("@tsparticles/basic");
 
+    await loadBasic(e);
+
     await loadExternalParallaxInteraction(e);
 
     await loadExternalAttractInteraction(e);
@@ -69,7 +71,5 @@ export async function loadSlim(engine: Engine): Promise<void> {
     await loadLifeUpdater(e);
     await loadRotateUpdater(e);
     await loadStrokeColorUpdater(e);
-
-    await loadBasic(engine);
   });
 }
