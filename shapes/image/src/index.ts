@@ -43,7 +43,7 @@ function addLoadImageToEngine(engine: ImageEngine): void {
       if (data.gif) {
         const { loadGifImage } = await import("./GifUtils/Utils.js");
 
-        imageFunc = loadGifImage;
+        imageFunc = (img): Promise<void> => loadGifImage(img, { colorSpace: "srgb" });
       } else if (data.replaceColor) {
         const { downloadSvgImage } = await import("./Utils.js");
 
