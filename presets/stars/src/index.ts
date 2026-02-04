@@ -7,8 +7,7 @@ const presetName = "stars";
  */
 export async function loadStarsPreset(engine: Engine): Promise<void> {
   await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { options } = await import("./options.js");
+    const [{ loadBasic }, { options }] = await Promise.all([import("@tsparticles/basic"), import("./options.js")]);
 
     await loadBasic(e);
 

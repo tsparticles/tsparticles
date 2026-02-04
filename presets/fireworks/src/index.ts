@@ -7,34 +7,58 @@ const presetName = "fireworks";
  */
 export async function loadFireworksPreset(engine: Engine): Promise<void> {
   await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadTrailEffect } = await import("@tsparticles/effect-trail"),
-      { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
-      { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color"),
-      { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color"),
-      { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color"),
-      { loadSoundsPlugin } = await import("@tsparticles/plugin-sounds"),
-      { loadLineShape } = await import("@tsparticles/shape-line"),
-      { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
-      { loadDestroyUpdater } = await import("@tsparticles/updater-destroy"),
-      { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-      { loadStrokeColorUpdater } = await import("@tsparticles/updater-stroke-color"),
-      { initOptions } = await import("./options.js");
+    const [
+      { loadBasic },
+      { loadEmittersPlugin },
+      { loadInteractivityPlugin },
+      { loadTrailEffect },
+      { loadEmittersShapeSquare },
+      { loadHexColorPlugin },
+      { loadHslColorPlugin },
+      { loadRgbColorPlugin },
+      { loadSoundsPlugin },
+      { loadLineShape },
+      { loadRotateUpdater },
+      { loadDestroyUpdater },
+      { loadLifeUpdater },
+      { loadStrokeColorUpdater },
+      { initOptions },
+    ] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/effect-trail"),
+      import("@tsparticles/plugin-emitters-shape-square"),
+      import("@tsparticles/plugin-hex-color"),
+      import("@tsparticles/plugin-hsl-color"),
+      import("@tsparticles/plugin-rgb-color"),
+      import("@tsparticles/plugin-sounds"),
+      import("@tsparticles/shape-line"),
+      import("@tsparticles/updater-rotate"),
+      import("@tsparticles/updater-destroy"),
+      import("@tsparticles/updater-life"),
+      import("@tsparticles/updater-stroke-color"),
+      import("./options.js"),
+    ]);
 
     await loadBasic(e);
-    await loadHexColorPlugin(e);
-    await loadHslColorPlugin(e);
-    await loadRgbColorPlugin(e);
-    await loadEmittersPlugin(e);
-    await loadTrailEffect(e);
+    await loadInteractivityPlugin(e);
+
+    await Promise.all([
+      loadHexColorPlugin(e),
+      loadHslColorPlugin(e),
+      loadRgbColorPlugin(e),
+      loadEmittersPlugin(e),
+      loadTrailEffect(e),
+      loadSoundsPlugin(e),
+      loadLineShape(e),
+      loadRotateUpdater(e),
+      loadDestroyUpdater(e),
+      loadLifeUpdater(e),
+      loadStrokeColorUpdater(e),
+    ]);
+
     await loadEmittersShapeSquare(e);
-    await loadSoundsPlugin(e);
-    await loadLineShape(e);
-    await loadRotateUpdater(e);
-    await loadDestroyUpdater(e);
-    await loadLifeUpdater(e);
-    await loadStrokeColorUpdater(e);
 
     e.addPreset(presetName, initOptions(), false);
   });

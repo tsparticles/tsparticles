@@ -7,9 +7,11 @@ const presetName = "snow";
  */
 export async function loadSnowPreset(engine: Engine): Promise<void> {
   await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadWobbleUpdater } = await import("@tsparticles/updater-wobble"),
-      { options } = await import("./options.js");
+    const [{ loadBasic }, { loadWobbleUpdater }, { options }] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/updater-wobble"),
+      import("./options.js"),
+    ]);
 
     await loadBasic(e);
     await loadWobbleUpdater(e);

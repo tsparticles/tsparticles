@@ -7,11 +7,15 @@ const presetName = "bubbles";
  */
 export async function loadBubblesPreset(engine: Engine): Promise<void> {
   await engine.register(async e => {
-    const { loadBasic } = await import("@tsparticles/basic"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { options } = await import("./options.js");
+    const [{ loadBasic }, { loadEmittersPlugin }, { loadInteractivityPlugin }, { options }] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-interactivity"),
+      import("./options.js"),
+    ]);
 
     await loadBasic(e);
+    await loadInteractivityPlugin(e);
     await loadEmittersPlugin(e);
 
     e.addPreset(presetName, options);

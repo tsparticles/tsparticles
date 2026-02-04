@@ -39,6 +39,7 @@
     "stylus": "^0.64.0"
   },
   "dependencies": {
+    "@tsparticles/preset-ambient": "workspace:^",
     "@tsparticles/preset-big-circles": "workspace:^",
     "@tsparticles/preset-bubbles": "workspace:^",
     "@tsparticles/preset-confetti": "workspace:^",

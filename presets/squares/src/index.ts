@@ -7,20 +7,36 @@ const presetName = "squares";
  */
 export async function loadSquaresPreset(engine: Engine): Promise<void> {
   await engine.register(async e => {
-    const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadSquareShape } = await import("@tsparticles/shape-square"),
-      { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
-      { loadSizeUpdater } = await import("@tsparticles/updater-size"),
-      { loadStrokeColorUpdater } = await import("@tsparticles/updater-stroke-color"),
-      { options } = await import("./options.js");
+    const [
+      { loadHexColorPlugin },
+      { loadEmittersPlugin },
+      { loadInteractivityPlugin },
+      { loadSquareShape },
+      { loadRotateUpdater },
+      { loadSizeUpdater },
+      { loadStrokeColorUpdater },
+      { options },
+    ] = await Promise.all([
+      import("@tsparticles/plugin-hex-color"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-interactivity"),
+      import("@tsparticles/shape-square"),
+      import("@tsparticles/updater-rotate"),
+      import("@tsparticles/updater-size"),
+      import("@tsparticles/updater-stroke-color"),
+      import("./options.js"),
+    ]);
 
-    await loadHexColorPlugin(e);
-    await loadEmittersPlugin(e);
-    await loadSquareShape(e);
-    await loadRotateUpdater(e);
-    await loadSizeUpdater(e);
-    await loadStrokeColorUpdater(e);
+    await loadInteractivityPlugin(e);
+
+    await Promise.all([
+      loadHexColorPlugin(e),
+      loadEmittersPlugin(e),
+      loadSquareShape(e),
+      loadRotateUpdater(e),
+      loadSizeUpdater(e),
+      loadStrokeColorUpdater(e),
+    ]);
 
     e.addPreset(presetName, options);
   });

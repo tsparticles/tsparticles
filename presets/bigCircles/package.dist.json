@@ -99,8 +99,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.14",
-    "@tsparticles/engine": "^4.0.0-alpha.14"
+    "@tsparticles/basic": "^4.0.0-alpha.21",
+    "@tsparticles/engine": "^4.0.0-alpha.21"
   },
   "publishConfig": {
     "access": "public"

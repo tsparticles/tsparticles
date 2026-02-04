@@ -43,6 +43,7 @@ app.use("/jquery", express.static("./node_modules/jquery/dist"));
 app.use("/lodash", express.static("./node_modules/lodash"));
 app.use("/popper.js", express.static("./node_modules/popper.js/dist"));
 app.use("/bootstrap", express.static("./node_modules/bootstrap/dist"));
+app.use("/preset-ambient", express.static("./node_modules/@tsparticles/preset-ambient"));
 app.use("/preset-big-circles", express.static("./node_modules/@tsparticles/preset-big-circles"));
 app.use("/preset-bubbles", express.static("./node_modules/@tsparticles/preset-bubbles"));
 app.use("/preset-confetti", express.static("./node_modules/@tsparticles/preset-confetti"));
@@ -61,6 +62,10 @@ app.use("/stats.ts", express.static("./node_modules/stats.ts/"));
 
 app.get("/", function (req, res) {
     res.render("index");
+});
+
+app.get("/ambient", function (req, res) {
+    res.render("ambient");
 });
 
 app.get("/bigCircles", function (req, res) {
