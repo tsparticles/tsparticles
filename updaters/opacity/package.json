@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/updater-opacity",
-  "version": "4.0.0-alpha.18",
+  "version": "4.0.0-alpha.19",
   "description": "tsParticles particles opacity updater",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -92,7 +92,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.18"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.19"
   },
   "publishConfig": {
     "access": "public",

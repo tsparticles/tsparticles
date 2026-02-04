@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-absorbers",
-  "version": "4.0.0-alpha.18",
+  "version": "4.0.0-alpha.19",
   "description": "tsParticles absorbers plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -86,8 +86,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.18",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.18"
+    "@tsparticles/engine": "4.0.0-alpha.19",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.19"
   },
   "publishConfig": {
     "access": "public"
