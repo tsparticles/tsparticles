@@ -30,8 +30,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v4
+      #- name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #  uses: nrwl/nx-set-shas@v4
 
       - uses: actions/setup-node@v6
         with:
@@ -66,7 +66,7 @@ jobs:
         run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build packages
-        run: npx nx affected -t build:ci
+        run: npx nx run-many -t build:ci
 
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
         uses: FirebaseExtended/action-hosting-deploy@v0
@@ -94,8 +94,8 @@ jobs:
           repository: ${{ github.event.pull_request.head.repo.full_name }}
           fetch-depth: 0
 
-      - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v4
+      #- name: Derive appropriate SHAs for base and head for `nx affected` commands
+      #  uses: nrwl/nx-set-shas@v4
 
       - uses: actions/setup-node@v6
         with:
@@ -130,7 +130,7 @@ jobs:
         run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
       - name: Build packages
-        run: npx nx affected -t build:ci
+        run: npx nx run-many -t build:ci
 
       - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
