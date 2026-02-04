@@ -176,6 +176,7 @@ function readBits(imageData: Uint8Array, pos: number, len: number): number {
  * @param avgAlpha - whether to average alpha channel
  * @param getFrameIndex - function to get current frame index in `GIF.frames` (optionally increment before next call)
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
+ * @param canvasSettings - settings for the canvas used to render the GIF frames
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
  */
@@ -185,6 +186,7 @@ async function parseImageBlock(
   avgAlpha: boolean,
   getFrameIndex: (increment: boolean) => number,
   getTransparencyIndex: (newValue?: number | null) => number,
+  canvasSettings: CanvasRenderingContext2DSettings,
   progressCallback?: GIFProgressCallbackFunction,
 ): Promise<void> {
   // ~ parse frame image - image descriptor
@@ -236,7 +238,7 @@ async function parseImageBlock(
     },
     image = ((): ImageData | null => {
       try {
-        return new ImageData(frame.width, frame.height, { colorSpace: "srgb" });
+        return new ImageData(frame.width, frame.height, canvasSettings);
       } catch (error) {
         if (error instanceof DOMException && error.name === "IndexSizeError") {
           return null;
@@ -356,9 +358,9 @@ async function parseImageBlock(
         for (const item of dic[code]!) {
           const { r, g, b, a } = getColor(item);
 
-          image.data.set([r, g, b, a], pixelPos);
-
           pixelPos += 4;
+
+          image.data.set([r, g, b, a], pixelPos);
         }
 
         if (dic.length >= 1 << size && size < 0xc) {
@@ -387,6 +389,7 @@ async function parseImageBlock(
  * @param avgAlpha - whether to average alpha channel
  * @param getFrameIndex - function to get current frame index in `GIF.frames` (optionally increment before next call)
  * @param getTransparencyIndex - function to get current transparency index into global/local color table (optionally update value)
+ * @param canvasSettings - settings for the canvas used to render the GIF frames
  * @param progressCallback - callback function to report progress
  * @returns true if EOF was reached
  */
@@ -396,13 +399,22 @@ async function parseBlock(
   avgAlpha: boolean,
   getFrameIndex: (increment: boolean) => number,
   getTransparencyIndex: (newValue?: number | null) => number,
+  canvasSettings: CanvasRenderingContext2DSettings,
   progressCallback?: GIFProgressCallbackFunction,
 ): Promise<boolean> {
   switch (byteStream.nextByte() as GIFDataHeaders) {
     case GIFDataHeaders.EndOfFile:
       return true;
     case GIFDataHeaders.Image:
-      await parseImageBlock(byteStream, gif, avgAlpha, getFrameIndex, getTransparencyIndex, progressCallback);
+      await parseImageBlock(
+        byteStream,
+        gif,
+        avgAlpha,
+        getFrameIndex,
+        getTransparencyIndex,
+        canvasSettings,
+        progressCallback,
+      );
 
       break;
     case GIFDataHeaders.Extension:
@@ -435,12 +447,14 @@ export function getGIFLoopAmount(gif: GIF): number {
 /**
  * __decodes a GIF into its components for rendering on a canvas__
  * @param gifURL - the URL of a GIF file
+ * @param canvasSettings - settings for the canvas used to render the GIF frames
  * @param progressCallback - [optional] callback for showing progress of decoding process (when GIF is interlaced calls after each pass (4x on the same frame))
  * @param avgAlpha - [optional] if this is true then, when encountering a transparent pixel, it uses the average value of the pixels RGB channels to calculate the alpha channels value, otherwise alpha channel is either 0 or 1 - _default false_
  * @returns the GIF with each frame decoded separately
  */
 export async function decodeGIF(
   gifURL: string,
+  canvasSettings: CanvasRenderingContext2DSettings,
   progressCallback?: GIFProgressCallbackFunction,
   avgAlpha?: boolean,
 ): Promise<GIF> {
@@ -466,7 +480,7 @@ export async function decodeGIF(
       frames: [],
       sortFlag: false,
       globalColorTable: [],
-      backgroundImage: new ImageData(1, 1, { colorSpace: "srgb" }),
+      backgroundImage: new ImageData(1, 1, canvasSettings),
       comments: [],
       applicationExtensions: [],
     },
@@ -512,7 +526,7 @@ export async function decodeGIF(
   // ~ set background image / background color or transparent
   const backgroundImage = ((): ImageData | null => {
     try {
-      return new ImageData(gif.width, gif.height, { colorSpace: "srgb" });
+      return new ImageData(gif.width, gif.height, canvasSettings);
     } catch (error) {
       if (error instanceof DOMException && error.name === "IndexSizeError") {
         return null;
@@ -573,7 +587,7 @@ export async function decodeGIF(
           width: 0,
           height: 0,
           disposalMethod: DisposalMethod.Replace,
-          image: new ImageData(1, 1, { colorSpace: "srgb" }),
+          image: new ImageData(1, 1, canvasSettings),
           plainTextData: null,
           userInputDelayFlag: false,
           delayTime: 0,
@@ -586,7 +600,17 @@ export async function decodeGIF(
         transparencyIndex = -1;
         incrementFrameIndex = false;
       }
-    } while (!(await parseBlock(byteStream, gif, avgAlpha, getframeIndex, getTransparencyIndex, progressCallback)));
+    } while (
+      !(await parseBlock(
+        byteStream,
+        gif,
+        avgAlpha,
+        getframeIndex,
+        getTransparencyIndex,
+        canvasSettings,
+        progressCallback,
+      ))
+    );
 
     gif.frames.length--;
 
@@ -726,8 +750,9 @@ export function drawGif(data: IShapeDrawData<ImageParticle>, canvasSettings?: Ca
 /**
  * Loads the GIF image
  * @param image - the image to load
+ * @param canvasSettings - settings for the canvas used to render the GIF frames
  */
-export async function loadGifImage(image: IImage): Promise<void> {
+export async function loadGifImage(image: IImage, canvasSettings: CanvasRenderingContext2DSettings): Promise<void> {
   if (image.type !== "gif") {
     await loadImage(image);
 
@@ -737,7 +762,7 @@ export async function loadGifImage(image: IImage): Promise<void> {
   image.loading = true;
 
   try {
-    image.gifData = await decodeGIF(image.source);
+    image.gifData = await decodeGIF(image.source, canvasSettings);
 
     image.gifLoopCount = getGIFLoopAmount(image.gifData);
 
