@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-pop",
-  "version": "4.0.0-alpha.14",
+  "version": "4.0.0-alpha.16",
   "description": "tsParticles pop external interaction",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -87,8 +87,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.14",
-    "@tsparticles/plugin-interactivity": "4.0.0-alpha.14"
+    "@tsparticles/engine": "4.0.0-alpha.16",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.16"
   },
   "publishConfig": {
     "access": "public"

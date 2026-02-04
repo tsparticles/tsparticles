@@ -9,7 +9,7 @@ export class ByteStream {
   /**
    * current position in `data`
    */
-  pos: number;
+  pos;
 
   constructor(bytes: Uint8ClampedArray) {
     this.pos = 0;
@@ -65,7 +65,7 @@ export class ByteStream {
     do {
       size = this.data[this.pos++]!;
 
-      for (let count = size; --count >= minCount; blockString += String.fromCharCode(this.data[this.pos++]!)) {
+      for (let count = size; --count >= minCount; blockString += String.fromCodePoint(this.data[this.pos++]!)) {
         // do nothing
       }
     } while (size !== emptySize);

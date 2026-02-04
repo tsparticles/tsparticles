@@ -1,9 +1,8 @@
-import type { IImage } from "./Utils.js";
+import { type IImage, shapeTypes } from "./Utils.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import type { ImageEngine } from "./types.js";
 
-declare const __VERSION__: string,
-  extLength = 3;
+const extLength = 3;
 
 /**
  *
@@ -62,6 +61,8 @@ function addLoadImageToEngine(engine: ImageEngine): void {
   };
 }
 
+declare const __VERSION__: string;
+
 /**
  * Loads the image shape in the given engine
  * @param engine - the engine where the image shape is going to be added
@@ -77,7 +78,7 @@ export async function loadImageShape(engine: ImageEngine): Promise<void> {
     const preloader = new ImagePreloaderPlugin();
 
     e.addPlugin(preloader);
-    e.addShape(["image", "images"], async () => {
+    e.addShape(shapeTypes, async () => {
       const { ImageDrawer } = await import("./ImageDrawer.js");
 
       return new ImageDrawer(e);
