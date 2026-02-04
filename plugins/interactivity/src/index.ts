@@ -68,6 +68,15 @@ export async function loadInteractivityPlugin(engine: Engine): Promise<void> {
   });
 }
 
+/**
+ * @param e -
+ */
+export function ensureInteractivityPluginLoaded(e: InteractivityEngine): void {
+  if (!e.addInteractor) {
+    throw new Error("tsParticles Interactivity Plugin is not loaded");
+  }
+}
+
 export * from "./DivType.js";
 export * from "./ExternalInteractorBase.js";
 export type * from "./IExternalInteractor.js";

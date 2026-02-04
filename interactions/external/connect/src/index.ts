@@ -10,9 +10,9 @@ export async function loadExternalConnectInteraction(engine: Engine): Promise<vo
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+    const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addInteractor?.("externalConnect", async container => {
       const { Connector } = await import("./Connector.js");

@@ -75,9 +75,7 @@ export async function loadImageShape(engine: ImageEngine): Promise<void> {
 
     addLoadImageToEngine(e);
 
-    const preloader = new ImagePreloaderPlugin();
-
-    e.addPlugin(preloader);
+    e.addPlugin(new ImagePreloaderPlugin());
     e.addShape(shapeTypes, async () => {
       const { ImageDrawer } = await import("./ImageDrawer.js");
 

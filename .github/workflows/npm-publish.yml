@@ -9,43 +9,69 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
+
 jobs:
   publish:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v6
+        name: Checkout Source
         with:
           fetch-depth: 0
 
       - uses: actions/setup-node@v6
+        name: Setup Node.js
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v4.2.0
+        name: Install pnpm
         with:
           run_install: false
 
-      - run: pnpm install
+      - name: Initialize Nx Cloud
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v5
+        name: Setup pnpm cache
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install Dependencies
+        run: pnpm install
 
       - name: Build All Packages
-        run: pnpm run build:ci
+        run: npx nx run-many -t build:ci
         env:
           CI: true
 
-      - name: Publish
+      - name: Publish to NPM (OIDC Auth)
         run: |
-          npm config set //registry.npmjs.org/:_authToken ""
-          
           TAG="${GITHUB_REF#refs/tags/}"
           
-          BASE_CMD="lerna publish from-package --ignore-scripts --loglevel verbose"
+          # --provenance: Fondamentale per OIDC e sicurezza nel 2026
+          # --yes: Evita blocchi interattivi in CI
+          BASE_CMD="npx lerna publish from-package --ignore-scripts --provenance --yes"
+
+          echo "Publishing tag: $TAG via OIDC"
 
           if [[ "$TAG" == *"-alpha."* ]]; then
-            $BASE_CMD --pre-dist-tag alpha --preid alpha
+            $BASE_CMD --dist-tag alpha
           elif [[ "$TAG" == *"-beta."* ]]; then
-            $BASE_CMD --pre-dist-tag beta --preid beta
+            $BASE_CMD --dist-tag beta
           elif [[ "$TAG" == v1* ]]; then
             $BASE_CMD --dist-tag v1
           elif [[ "$TAG" == v2* ]]; then
@@ -55,3 +81,7 @@ jobs:
           else
             $BASE_CMD
           fi
+
+      - name: Stop Nx Cloud Session
+        run: npx nx fix-ci
+        if: always()

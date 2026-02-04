@@ -38,6 +38,8 @@ export async function loadTriangleShape(engine: Engine): Promise<void> {
 export async function loadPolygonShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await loadGenericPolygonShape(engine);
-  await loadTriangleShape(engine);
+  await Promise.all([
+    loadGenericPolygonShape(engine),
+    loadTriangleShape(engine),
+  ]);
 }

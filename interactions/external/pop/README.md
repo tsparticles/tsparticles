@@ -28,6 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 
 ```javascript
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadExternalPopInteraction(tsParticles);
 
   await tsParticles.load({
@@ -57,9 +58,11 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
+const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadExternalPopInteraction } = require("@tsparticles/interaction-external-pop");
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadExternalPopInteraction(tsParticles);
 })();
 ```

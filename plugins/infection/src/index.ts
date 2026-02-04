@@ -10,10 +10,15 @@ export async function loadInfectionPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
-      { InfectionPlugin } = await import("./InfectionPlugin.js");
+    const [
+      { ensureInteractivityPluginLoaded },
+      { InfectionPlugin },
+    ] = await Promise.all([
+      import("@tsparticles/plugin-interactivity"),
+      import("./InfectionPlugin.js"),
+    ]);
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addPlugin(new InfectionPlugin());
 

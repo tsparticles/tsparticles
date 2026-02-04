@@ -1,69 +1,55 @@
 name: Node.js CI
 on:
   push:
-    branches:
-      - main
-      - v4
-      - v3
-      - v2
-      - v1
+    branches: [main, v4, v3, v2, v1]
   pull_request:
-    branches:
-      - main
-      - v4
-      - v3
-      - v2
-      - v1
+    branches: [main, v4, v3, v2, v1]
 
 env:
-  #NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  #NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-  #NX_BRANCH: '${{github.event.pull_request.number || github.ref_name}}'
+  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
   firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
 
 jobs:
-
-  main:
+  build-and-deploy:
     runs-on: ubuntu-latest
-    if: ${{ github.event_name != 'pull_request' }}
     steps:
       - uses: actions/checkout@v6
-        name: Checkout [main]
         with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+          repository: ${{ github.event.pull_request.head.repo.full_name || github.repository }}
           fetch-depth: 0
-      #- name: Derive appropriate SHAs for base and head for `nx affected` commands
-      #  uses: nrwl/nx-set-shas@v3
+
+      - name: Derive SHAs for nx affected
+        uses: nrwl/nx-set-shas@v4
+
       - uses: actions/setup-node@v6
         with:
           node-version: '24'
+
       - uses: pnpm/action-setup@v4.2.0
-        name: Install pnpm
-        id: pnpm-install
         with:
           run_install: false
-      - name: Get pnpm version
-        id: pnpm-version
-        run: |
-          echo "$(pnpm --version)"
 
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
+      - name: Initialize Nx Cloud
+        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
-      - uses: actions/cache@v5
-        name: Setup pnpm cache
+      - name: Setup pnpm cache
+        uses: actions/cache@v5
         with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          path: ~/.pnpm-store
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - run: pnpm install
-      #- run: npx nx-cloud start-ci-run
-      - run: pnpm run prettify:ci:readme
-      - run: npx lerna run build:ci #--concurrency 3
-      #- run: npx nx-cloud stop-all-agents
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Prettify README
+        run: pnpm run prettify:ci:readme
+
+      - name: Build packages
+        run: npx nx affected -t build:ci
+
+      - if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
@@ -71,97 +57,13 @@ jobs:
           projectId: tsparticles
           channelId: live
 
-      - if: env.firebaseToken != '' && github.ref == 'refs/heads/dev'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
-          projectId: tsparticles
-          channelId: next
-  pr:
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' }}
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          repository: ${{ github.event.pull_request.head.repo.full_name }}
-          fetch-depth: 0
-      #- name: Derive appropriate SHAs for base and head for `nx affected` commands
-      #  uses: nrwl/nx-set-shas@v3
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-      - uses: pnpm/action-setup@v4.2.0
-        name: Install pnpm
-        id: pnpm-install
-        with:
-          run_install: false
-      - name: Get pnpm version
-        id: pnpm-version
-        run: |
-          echo "$(pnpm --version)"
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-
-      - uses: actions/cache@v5
-        name: Setup pnpm cache
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
-      - run: pnpm install
-      #- run: npx nx-cloud start-ci-run
-      - run: pnpm run prettify:ci:readme
-      - run: npx lerna run build:ci #--concurrency 3
-      #- run: npx nx-cloud stop-all-agents
-      - run: echo ${{ github.repository_owner }}
-      - run: echo ${{ github.actor }}
-      - if: env.firebaseToken != '' && contains(github.ref, 'refs/pull') && github.actor == 'matteobruni'
+      - if: env.firebaseToken != '' && github.event_name == 'pull_request' && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
           projectId: tsparticles
 
-#  agents:
-#    runs-on: ubuntu-latest
-#    name: Nx Agent
-#    timeout-minutes: 60
-#    strategy:
-#      matrix:
-#        agent: [ 1, 2, 3 ]
-#    steps:
-#      - uses: actions/checkout@v3
-#      - uses: actions/setup-node@v3
-#        with:
-#          node-version: '20'
-#      - uses: pnpm/action-setup@v2.2.2
-#        name: Install pnpm
-#        id: pnpm-install
-#        with:
-#          run_install: false
-#      - name: Get pnpm version
-#        id: pnpm-version
-#        run: |
-#          echo "$(pnpm --version)"
-#
-#      - name: Get pnpm store directory
-#        id: pnpm-cache
-#        run: |
-#          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
-#
-#      - uses: actions/cache@v3
-#        name: Setup pnpm cache
-#        with:
-#          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-#          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-#          restore-keys: |
-#            ${{ runner.os }}-pnpm-store-
-#      - run: pnpm install
-#      - name: Start Nx Agent ${{ matrix.agent }}
-#        run: npx nx-cloud start-agent
+      - name: Stop Nx Cloud Session
+        run: npx nx fix-ci
+        if: always()

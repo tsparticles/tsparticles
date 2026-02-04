@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-cards",
-  "version": "4.0.0-alpha.17",
+  "version": "4.0.0-alpha.18",
   "description": "tsParticles cards shape",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,8 +108,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.17",
-    "@tsparticles/path-utils": "workspace:4.0.0-alpha.17"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.18",
+    "@tsparticles/path-utils": "workspace:4.0.0-alpha.18"
   },
   "publishConfig": {
     "access": "public",

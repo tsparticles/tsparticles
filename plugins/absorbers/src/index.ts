@@ -11,12 +11,18 @@ export async function loadAbsorbersPlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
-      { AbsorbersInstancesManager } = await import("./AbsorbersInstancesManager.js"),
-      { AbsorbersPlugin } = await import("./AbsorbersPlugin.js"),
+    const [
+        { ensureInteractivityPluginLoaded },
+        { AbsorbersInstancesManager },
+        { AbsorbersPlugin },
+      ] = await Promise.all([
+        import("@tsparticles/plugin-interactivity"),
+        import("./AbsorbersInstancesManager.js"),
+        import("./AbsorbersPlugin.js"),
+      ]),
       instancesManager = new AbsorbersInstancesManager(e);
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addPlugin(new AbsorbersPlugin(instancesManager));
 

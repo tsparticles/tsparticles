@@ -14,35 +14,54 @@ export async function loadFull(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async e => {
-    const { loadDestroyUpdater } = await import("@tsparticles/updater-destroy"),
-      { loadRollUpdater } = await import("@tsparticles/updater-roll"),
-      { loadTiltUpdater } = await import("@tsparticles/updater-tilt"),
-      { loadTwinkleUpdater } = await import("@tsparticles/updater-twinkle"),
-      { loadWobbleUpdater } = await import("@tsparticles/updater-wobble"),
-      { loadTextShape } = await import("@tsparticles/shape-text"),
-      { loadExternalTrailInteraction } = await import("@tsparticles/interaction-external-trail"),
-      { loadAbsorbersPlugin } = await import("@tsparticles/plugin-absorbers"),
-      { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadEmittersShapeCircle } = await import("@tsparticles/plugin-emitters-shape-circle"),
-      { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square"),
-      { loadSlim } = await import("@tsparticles/slim");
+    const [
+      { loadDestroyUpdater },
+      { loadRollUpdater },
+      { loadTiltUpdater },
+      { loadTwinkleUpdater },
+      { loadWobbleUpdater },
+      { loadTextShape },
+      { loadExternalTrailInteraction },
+      { loadAbsorbersPlugin },
+      { loadEmittersPlugin },
+      { loadEmittersShapeCircle },
+      { loadEmittersShapeSquare },
+      { loadSlim },
+    ] = await Promise.all([
+      import("@tsparticles/updater-destroy"),
+      import("@tsparticles/updater-roll"),
+      import("@tsparticles/updater-tilt"),
+      import("@tsparticles/updater-twinkle"),
+      import("@tsparticles/updater-wobble"),
+      import("@tsparticles/shape-text"),
+      import("@tsparticles/interaction-external-trail"),
+      import("@tsparticles/plugin-absorbers"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-emitters-shape-circle"),
+      import("@tsparticles/plugin-emitters-shape-square"),
+      import("@tsparticles/slim"),
+    ]);
 
     await loadSlim(e);
 
-    await loadDestroyUpdater(e);
-    await loadRollUpdater(e);
-    await loadTiltUpdater(e);
-    await loadTwinkleUpdater(e);
-    await loadWobbleUpdater(e);
+    await Promise.all([
+      loadDestroyUpdater(e),
+      loadRollUpdater(e),
+      loadTiltUpdater(e),
+      loadTwinkleUpdater(e),
+      loadWobbleUpdater(e),
 
-    await loadTextShape(e);
+      loadTextShape(e),
 
-    await loadExternalTrailInteraction(e);
+      loadExternalTrailInteraction(e),
 
-    await loadAbsorbersPlugin(e);
-    await loadEmittersPlugin(e);
+      loadAbsorbersPlugin(e),
+      loadEmittersPlugin(e),
+    ]);
 
-    await loadEmittersShapeCircle(e);
-    await loadEmittersShapeSquare(e);
+    await Promise.all([
+      loadEmittersShapeCircle(e),
+      loadEmittersShapeSquare(e),
+    ]);
   });
 }

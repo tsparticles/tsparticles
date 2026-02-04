@@ -9,15 +9,24 @@ export async function loadCardSuitsShape(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async e => {
-    const { loadClubsSuitShape } = await import("./clubs/index.js"),
-      { loadDiamondsSuitShape } = await import("./diamonds/index.js"),
-      { loadHeartsSuitShape } = await import("./hearts/index.js"),
-      { loadSpadesSuitShape } = await import("./spades/index.js");
+    const [
+      { loadClubsSuitShape },
+      { loadDiamondsSuitShape },
+      { loadHeartsSuitShape },
+      { loadSpadesSuitShape },
+    ] = await Promise.all([
+      import("./clubs/index.js"),
+      import("./diamonds/index.js"),
+      import("./hearts/index.js"),
+      import("./spades/index.js"),
+    ]);
 
-    await loadClubsSuitShape(e);
-    await loadDiamondsSuitShape(e);
-    await loadHeartsSuitShape(e);
-    await loadSpadesSuitShape(e);
+    await Promise.all([
+      loadClubsSuitShape(e),
+      loadDiamondsSuitShape(e),
+      loadHeartsSuitShape(e),
+      loadSpadesSuitShape(e),
+    ]);
   });
 }
 
@@ -30,8 +39,10 @@ export async function loadCardsShape(engine: Engine): Promise<void> {
   await engine.register(async e => {
     const { loadFullCardsShape } = await import("./cards/index.js");
 
-    await loadFullCardsShape(e);
-    await loadCardSuitsShape(e);
+    await Promise.all([
+      loadFullCardsShape(e),
+      loadCardSuitsShape(e),
+    ]);
   });
 }
 

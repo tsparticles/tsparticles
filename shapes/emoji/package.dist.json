@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-emoji",
-  "version": "4.0.0-alpha.17",
+  "version": "4.0.0-alpha.18",
   "description": "tsParticles emoji shape",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -59,8 +59,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/canvas-utils": "4.0.0-alpha.17",
-    "@tsparticles/engine": "4.0.0-alpha.17"
+    "@tsparticles/canvas-utils": "4.0.0-alpha.18",
+    "@tsparticles/engine": "4.0.0-alpha.18"
   },
   "publishConfig": {
     "access": "public"
