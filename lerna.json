@@ -1,5 +1,5 @@
 {
-  "version": "4.0.0-alpha.18",
+  "version": "4.0.0-alpha.20",
   "npmClient": "pnpm",
   "conventionalCommits": true,
   "command": {
@@ -13,5 +13,6 @@
       "yes": true
     }
   },
+  "useNx": true,
   "$schema": "node_modules/lerna/schemas/lerna-schema.json"
 }

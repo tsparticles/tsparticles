@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.20](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.19...v4.0.0-alpha.20) (2026-02-04)
+
+**Note:** Version bump only for package @tsparticles/all
+
+# [4.0.0-alpha.19](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.18...v4.0.0-alpha.19) (2026-02-04)
+
+**Note:** Version bump only for package @tsparticles/all
+
 # [4.0.0-alpha.18](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.17...v4.0.0-alpha.18) (2026-02-04)
 
 **Note:** Version bump only for package @tsparticles/all

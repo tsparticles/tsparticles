@@ -84,9 +84,13 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
+    const promises: Promise<void>[] = [];
+
     for (const imageData of options.preload) {
-      await this._engine.loadImage(imageData);
+      promises.push(this._engine.loadImage(imageData));
     }
+
+    await Promise.all(promises);
   }
 
   loadShape(particle: ImageParticle): void {

@@ -62,9 +62,7 @@ jobs:
         run: |
           TAG="${GITHUB_REF#refs/tags/}"
           
-          # --provenance: Fondamentale per OIDC e sicurezza nel 2026
-          # --yes: Evita blocchi interattivi in CI
-          BASE_CMD="npx lerna publish from-package --ignore-scripts --provenance --yes"
+          BASE_CMD="npx lerna publish from-package --ignore-scripts"
 
           echo "Publishing tag: $TAG via OIDC"
 
