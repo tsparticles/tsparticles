@@ -1,6 +1,7 @@
 {
     "$schema": "./node_modules/nx/schemas/nx-schema.json",
     "extends": "nx/presets/npm.json",
+    "nxCloudId": "62a6df5ddbaff92c46e3b366",
     "targetDefaults": {
         "build": {
             "dependsOn": [
@@ -30,7 +31,6 @@
         "default": {
             "runner": "nx-cloud",
             "options": {
-                "accessToken": "YmE3OGY1MTQtNTJjMC00MzdjLTgwYjEtZDk4YWE0OTQ4MTIzfHJlYWQ=",
                 "cacheableOperations": [
                     "build",
                     "build:ci",
