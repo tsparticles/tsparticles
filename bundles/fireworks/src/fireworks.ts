@@ -98,23 +98,38 @@ async function initPlugins(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async e => {
-    const { loadEmittersPlugin } = await import("@tsparticles/plugin-emitters"),
-      { loadSoundsPlugin } = await import("@tsparticles/plugin-sounds"),
-      { loadRotateUpdater } = await import("@tsparticles/updater-rotate"),
-      { loadDestroyUpdater } = await import("@tsparticles/updater-destroy"),
-      { loadLifeUpdater } = await import("@tsparticles/updater-life"),
-      { loadTrailEffect } = await import("@tsparticles/effect-trail"),
-      { loadBasic } = await import("@tsparticles/basic"),
-      { loadEmittersShapeSquare } = await import("@tsparticles/plugin-emitters-shape-square");
+    const [
+      { loadBasic },
+      { loadEmittersPlugin },
+      { loadEmittersShapeSquare },
+      { loadSoundsPlugin },
+      { loadRotateUpdater },
+      { loadDestroyUpdater },
+      { loadLifeUpdater },
+      { loadTrailEffect },
+    ] = await Promise.all([
+      import("@tsparticles/basic"),
+      import("@tsparticles/plugin-emitters"),
+      import("@tsparticles/plugin-emitters-shape-square"),
+      import("@tsparticles/plugin-sounds"),
+      import("@tsparticles/updater-rotate"),
+      import("@tsparticles/updater-destroy"),
+      import("@tsparticles/updater-life"),
+      import("@tsparticles/effect-trail"),
+    ]);
 
-    await loadEmittersPlugin(e);
-    await loadEmittersShapeSquare(e);
-    await loadSoundsPlugin(e);
-    await loadRotateUpdater(e);
-    await loadDestroyUpdater(e);
-    await loadLifeUpdater(e);
-    await loadTrailEffect(e);
     await loadBasic(e);
+
+    await Promise.all([
+      loadEmittersPlugin(e),
+      loadSoundsPlugin(e),
+      loadRotateUpdater(e),
+      loadDestroyUpdater(e),
+      loadLifeUpdater(e),
+      loadTrailEffect(e),
+    ]);
+
+    await loadEmittersShapeSquare(e);
   });
 
   initializing = false;

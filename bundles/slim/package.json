@@ -124,6 +124,7 @@
     "@tsparticles/interaction-particles-collisions": "workspace:4.0.0-alpha.17",
     "@tsparticles/interaction-particles-links": "workspace:4.0.0-alpha.17",
     "@tsparticles/plugin-easing-quad": "workspace:4.0.0-alpha.17",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.17",
     "@tsparticles/shape-emoji": "workspace:4.0.0-alpha.17",
     "@tsparticles/shape-image": "workspace:4.0.0-alpha.17",
     "@tsparticles/shape-line": "workspace:4.0.0-alpha.17",

@@ -28,6 +28,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 
 ```javascript
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadExternalParallaxInteraction(tsParticles);
 
   await tsParticles.load({
@@ -57,9 +58,11 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
+const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadExternalParallaxInteraction } = require("@tsparticles/interaction-external-parallax");
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadExternalParallaxInteraction(tsParticles);
 })();
 ```
@@ -68,9 +71,11 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadExternalParallaxInteraction } from "@tsparticles/interaction-external-parallax";
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadExternalParallaxInteraction(tsParticles);
 })();
 ```

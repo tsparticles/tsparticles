@@ -10,10 +10,15 @@ export async function loadParticlesCollisionsInteraction(engine: Engine): Promis
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
-      { OverlapPlugin } = await import("./OverlapPlugin.js");
+    const [
+      { ensureInteractivityPluginLoaded },
+      { OverlapPlugin },
+    ] = await Promise.all([
+      import("@tsparticles/plugin-interactivity"),
+      import("./OverlapPlugin.js"),
+    ]);
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addPlugin(new OverlapPlugin());
 

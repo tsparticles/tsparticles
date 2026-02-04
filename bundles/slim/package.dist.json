@@ -116,6 +116,7 @@
     "@tsparticles/interaction-particles-collisions": "4.0.0-alpha.17",
     "@tsparticles/interaction-particles-links": "4.0.0-alpha.17",
     "@tsparticles/plugin-easing-quad": "4.0.0-alpha.17",
+    "@tsparticles/plugin-interactivity": "4.0.0-alpha.17",
     "@tsparticles/shape-emoji": "4.0.0-alpha.17",
     "@tsparticles/shape-image": "4.0.0-alpha.17",
     "@tsparticles/shape-line": "4.0.0-alpha.17",

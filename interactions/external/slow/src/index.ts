@@ -10,9 +10,9 @@ export async function loadExternalSlowInteraction(engine: Engine): Promise<void>
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+    const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addInteractor?.("externalSlow", async container => {
       const { Slower } = await import("./Slower.js");

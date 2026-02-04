@@ -10,9 +10,9 @@ export async function loadExternalRepulseInteraction(engine: Engine): Promise<vo
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+    const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addInteractor?.("externalRepulse", async container => {
       const { Repulser } = await import("./Repulser.js");

@@ -14,27 +14,38 @@ export async function loadBasic(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async e => {
-    const { loadHexColorPlugin } = await import("@tsparticles/plugin-hex-color"),
-      { loadHslColorPlugin } = await import("@tsparticles/plugin-hsl-color"),
-      { loadRgbColorPlugin } = await import("@tsparticles/plugin-rgb-color"),
-      { loadBaseMover } = await import("@tsparticles/move-base"),
-      { loadCircleShape } = await import("@tsparticles/shape-circle"),
-      { loadColorUpdater } = await import("@tsparticles/updater-color"),
-      { loadOpacityUpdater } = await import("@tsparticles/updater-opacity"),
-      { loadOutModesUpdater } = await import("@tsparticles/updater-out-modes"),
-      { loadSizeUpdater } = await import("@tsparticles/updater-size");
+    const [
+      { loadHexColorPlugin },
+      { loadHslColorPlugin },
+      { loadRgbColorPlugin },
+      { loadBaseMover },
+      { loadCircleShape },
+      { loadColorUpdater },
+      { loadOpacityUpdater },
+      { loadOutModesUpdater },
+      { loadSizeUpdater },
+    ] = await Promise.all([
+      import("@tsparticles/plugin-hex-color"),
+      import("@tsparticles/plugin-hsl-color"),
+      import("@tsparticles/plugin-rgb-color"),
+      import("@tsparticles/move-base"),
+      import("@tsparticles/shape-circle"),
+      import("@tsparticles/updater-color"),
+      import("@tsparticles/updater-opacity"),
+      import("@tsparticles/updater-out-modes"),
+      import("@tsparticles/updater-size"),
+    ]);
 
-    await loadHexColorPlugin(e);
-    await loadHslColorPlugin(e);
-    await loadRgbColorPlugin(e);
-
-    await loadBaseMover(e);
-
-    await loadCircleShape(e);
-
-    await loadColorUpdater(e);
-    await loadOpacityUpdater(e);
-    await loadOutModesUpdater(e);
-    await loadSizeUpdater(e);
+    await Promise.all([
+      loadHexColorPlugin(e),
+      loadHslColorPlugin(e),
+      loadRgbColorPlugin(e),
+      loadBaseMover(e),
+      loadCircleShape(e),
+      loadColorUpdater(e),
+      loadOpacityUpdater(e),
+      loadOutModesUpdater(e),
+      loadSizeUpdater(e),
+    ]);
   });
 }

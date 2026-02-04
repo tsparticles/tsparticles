@@ -10,12 +10,12 @@ export async function loadEmittersShapePolygon(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: EmittersEngine) => {
-    if (!e.addEmitterShapeGenerator) {
-      throw new Error("tsParticles emitters plugin missing or initialized after shapes");
-    }
+    const { ensureEmittersPluginLoaded } = await import("@tsparticles/plugin-emitters");
+
+    ensureEmittersPluginLoaded(e);
 
     const { EmittersPolygonShapeGenerator } = await import("./EmittersPolygonShapeGenerator.js");
 
-    e.addEmitterShapeGenerator("polygon", new EmittersPolygonShapeGenerator());
+    e.addEmitterShapeGenerator?.("polygon", new EmittersPolygonShapeGenerator());
   });
 }

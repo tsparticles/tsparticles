@@ -26,6 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 
 ```javascript
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadAbsorbersPlugin(tsParticles);
 
   await tsParticles.load({
@@ -55,9 +56,11 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
+const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadAbsorbersPlugin } = require("@tsparticles/plugin-absorbers");
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadAbsorbersPlugin(tsParticles);
 })();
 ```
@@ -66,9 +69,11 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";
 import { loadAbsorbersPlugin } from "@tsparticles/plugin-absorbers";
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadAbsorbersPlugin(tsParticles);
 })();
 ```

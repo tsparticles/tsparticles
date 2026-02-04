@@ -26,6 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the plugin like thi
 
 ```javascript
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadInfectionPlugin(tsParticles);
 
   await tsParticles.load({
@@ -55,9 +56,11 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
+const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity-events");
 const { loadInfectionPlugin } = require("@tsparticles/plugin-infection");
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadInfectionPlugin(tsParticles);
 })();
 ```
@@ -66,9 +69,11 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity-events";
 import { loadInfectionPlugin } from "@tsparticles/plugin-infection";
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadInfectionPlugin(tsParticles);
 })();
 ```

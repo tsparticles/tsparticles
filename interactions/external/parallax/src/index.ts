@@ -10,9 +10,9 @@ export async function loadExternalParallaxInteraction(engine: Engine): Promise<v
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity");
+    const { ensureInteractivityPluginLoaded } = await import("@tsparticles/plugin-interactivity");
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addInteractor?.("externalParallax", async container => {
       const { Parallaxer } = await import("./Parallaxer.js");

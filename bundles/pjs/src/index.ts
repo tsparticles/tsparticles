@@ -35,10 +35,16 @@ const initPjs = async (engine: Engine): Promise<void> => {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async e => {
-    const { loadFull } = await import("tsparticles"),
-      { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive");
+    const [
+      { loadFull },
+      { loadResponsivePlugin },
+    ] = await Promise.all([
+      import("tsparticles"),
+      import("@tsparticles/plugin-responsive"),
+    ]);
 
     await loadFull(e);
+
     await loadResponsivePlugin(e);
   });
 

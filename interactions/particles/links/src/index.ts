@@ -11,10 +11,15 @@ export async function loadParticlesLinksInteraction(engine: Engine): Promise<voi
   engine.checkVersion(__VERSION__);
 
   await engine.register(async (e: InteractivityEngine) => {
-    const { loadInteractivityPlugin } = await import("@tsparticles/plugin-interactivity"),
-      { LinksPlugin } = await import("./LinksPlugin.js");
+    const [
+      { ensureInteractivityPluginLoaded },
+      { LinksPlugin },
+    ] = await Promise.all([
+      import("@tsparticles/plugin-interactivity"),
+      import("./LinksPlugin.js"),
+    ]);
 
-    await loadInteractivityPlugin(e);
+    ensureInteractivityPluginLoaded(e);
 
     e.addPlugin(new LinksPlugin(e));
 

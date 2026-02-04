@@ -27,6 +27,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 
 ```javascript
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadParticlesCollisionsInteraction(tsParticles);
 
   await tsParticles.load({
@@ -56,9 +57,11 @@ Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
+const { loadInteractivityPlugin } = require("@tsparticles/plugin-interactivity");
 const { loadParticlesCollisionsInteraction } = require("@tsparticles/interaction-particles-collisions");
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadParticlesCollisionsInteraction(tsParticles);
 })();
 ```
@@ -67,9 +70,11 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
+import { loadInteractivityPlugin } from "@tsparticles/plugin-interactivity";}
 import { loadParticlesCollisionsInteraction } from "@tsparticles/interaction-particles-collisions";
 
 (async () => {
+  await loadInteractivityPlugin(tsParticles);
   await loadParticlesCollisionsInteraction(tsParticles);
 })();
 ```

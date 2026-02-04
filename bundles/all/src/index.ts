@@ -14,160 +14,254 @@ export async function loadAll(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(async e => {
-    const { loadFull } = await import("tsparticles"),
-      { loadHsvColorPlugin } = await import("@tsparticles/plugin-hsv-color"),
-      { loadHwbColorPlugin } = await import("@tsparticles/plugin-hwb-color"),
-      { loadLabColorPlugin } = await import("@tsparticles/plugin-lab-color"),
-      { loadLchColorPlugin } = await import("@tsparticles/plugin-lch-color"),
-      { loadOklabColorPlugin } = await import("@tsparticles/plugin-oklab-color"),
-      { loadOklchColorPlugin } = await import("@tsparticles/plugin-oklch-color"),
-      { loadNamedColorPlugin } = await import("@tsparticles/plugin-named-color"),
-      { loadEasingBackPlugin } = await import("@tsparticles/plugin-easing-back"),
-      { loadEasingBouncePlugin } = await import("@tsparticles/plugin-easing-bounce"),
-      { loadEasingCircPlugin } = await import("@tsparticles/plugin-easing-circ"),
-      { loadEasingCubicPlugin } = await import("@tsparticles/plugin-easing-cubic"),
-      { loadEasingElasticPlugin } = await import("@tsparticles/plugin-easing-elastic"),
-      { loadEasingExpoPlugin } = await import("@tsparticles/plugin-easing-expo"),
-      { loadEasingGaussianPlugin } = await import("@tsparticles/plugin-easing-gaussian"),
-      { loadEasingLinearPlugin } = await import("@tsparticles/plugin-easing-linear"),
-      { loadEasingQuartPlugin } = await import("@tsparticles/plugin-easing-quart"),
-      { loadEasingQuintPlugin } = await import("@tsparticles/plugin-easing-quint"),
-      { loadEasingSigmoidPlugin } = await import("@tsparticles/plugin-easing-sigmoid"),
-      { loadEasingSinePlugin } = await import("@tsparticles/plugin-easing-sine"),
-      { loadEasingSmoothstepPlugin } = await import("@tsparticles/plugin-easing-smoothstep"),
-      { loadBackgroundMaskPlugin } = await import("@tsparticles/plugin-background-mask"),
-      { loadBlendPlugin } = await import("@tsparticles/plugin-blend"),
-      { loadCanvasMaskPlugin } = await import("@tsparticles/plugin-canvas-mask"),
-      { loadInfectionPlugin } = await import("@tsparticles/plugin-infection"),
-      { loadManualParticlesPlugin } = await import("@tsparticles/plugin-manual-particles"),
-      { loadMotionPlugin } = await import("@tsparticles/plugin-motion"),
-      { loadPoissonDiscPlugin } = await import("@tsparticles/plugin-poisson-disc"),
-      { loadPolygonMaskPlugin } = await import("@tsparticles/plugin-polygon-mask"),
-      { loadResponsivePlugin } = await import("@tsparticles/plugin-responsive"),
-      { loadSoundsPlugin } = await import("@tsparticles/plugin-sounds"),
-      { loadThemesPlugin } = await import("@tsparticles/plugin-themes"),
-      { loadTrailPlugin } = await import("@tsparticles/plugin-trail"),
-      { loadExportImagePlugin } = await import("@tsparticles/plugin-export-image"),
-      { loadExportJSONPlugin } = await import("@tsparticles/plugin-export-json"),
-      { loadExportVideoPlugin } = await import("@tsparticles/plugin-export-video"),
-      { loadExternalParticleInteraction } = await import("@tsparticles/interaction-external-particle"),
-      { loadExternalPopInteraction } = await import("@tsparticles/interaction-external-pop"),
-      { loadLightInteraction } = await import("@tsparticles/interaction-light"),
-      { loadParticlesRepulseInteraction } = await import("@tsparticles/interaction-particles-repulse"),
-      { loadGradientUpdater } = await import("@tsparticles/updater-gradient"),
-      { loadHeartShape } = await import("@tsparticles/shape-heart"),
-      { loadInfinityShape } = await import("@tsparticles/shape-infinity"),
-      { loadBranchesPath } = await import("@tsparticles/path-branches"),
-      { loadBrownianPath } = await import("@tsparticles/path-brownian"),
-      { loadGridPath } = await import("@tsparticles/path-grid"),
-      { loadLevyPath } = await import("@tsparticles/path-levy"),
-      { loadPathShape } = await import("@tsparticles/shape-path"),
-      { loadPolygonPath } = await import("@tsparticles/path-polygon"),
-      { loadSpiralPath } = await import("@tsparticles/path-spiral"),
-      { loadRoundedPolygonShape } = await import("@tsparticles/shape-rounded-polygon"),
-      { loadRoundedRectShape } = await import("@tsparticles/shape-rounded-rect"),
-      { loadSpiralShape } = await import("@tsparticles/shape-spiral"),
-      { loadSVGPath } = await import("@tsparticles/path-svg"),
-      { loadZigZagPath } = await import("@tsparticles/path-zig-zag"),
-      { loadArrowShape } = await import("@tsparticles/shape-arrow"),
-      { loadCardsShape } = await import("@tsparticles/shape-cards"),
-      { loadCogShape } = await import("@tsparticles/shape-cog"),
-      { loadOrbitUpdater } = await import("@tsparticles/updater-orbit"),
-      { loadCurlNoisePath } = await import("@tsparticles/path-curl-noise"),
-      { loadCurvesPath } = await import("@tsparticles/path-curves"),
-      { loadFractalNoisePath } = await import("@tsparticles/path-fractal-noise"),
-      { loadPerlinNoisePath } = await import("@tsparticles/path-perlin-noise"),
-      { loadSimplexNoisePath } = await import("@tsparticles/path-simplex-noise"),
-      { loadBubbleEffect } = await import("@tsparticles/effect-bubble"),
-      { loadParticlesEffect } = await import("@tsparticles/effect-particles"),
-      { loadShadowEffect } = await import("@tsparticles/effect-shadow"),
-      { loadTrailEffect } = await import("@tsparticles/effect-trail"),
-      { loadEmittersShapeCanvas } = await import("@tsparticles/plugin-emitters-shape-canvas"),
-      { loadEmittersShapePath } = await import("@tsparticles/plugin-emitters-shape-path"),
-      { loadEmittersShapePolygon } = await import("@tsparticles/plugin-emitters-shape-polygon");
+    const [
+      { loadFull },
+
+      { loadHsvColorPlugin },
+      { loadHwbColorPlugin },
+      { loadLabColorPlugin },
+      { loadLchColorPlugin },
+      { loadOklabColorPlugin },
+      { loadOklchColorPlugin },
+      { loadNamedColorPlugin },
+
+      { loadEasingBackPlugin },
+      { loadEasingBouncePlugin },
+      { loadEasingCircPlugin },
+      { loadEasingCubicPlugin },
+      { loadEasingElasticPlugin },
+      { loadEasingExpoPlugin },
+      { loadEasingGaussianPlugin },
+      { loadEasingLinearPlugin },
+      { loadEasingQuartPlugin },
+      { loadEasingQuintPlugin },
+      { loadEasingSigmoidPlugin },
+      { loadEasingSinePlugin },
+      { loadEasingSmoothstepPlugin },
+
+      { loadBackgroundMaskPlugin },
+      { loadBlendPlugin },
+      { loadCanvasMaskPlugin },
+      { loadInfectionPlugin },
+      { loadManualParticlesPlugin },
+      { loadMotionPlugin },
+      { loadPoissonDiscPlugin },
+      { loadPolygonMaskPlugin },
+      { loadResponsivePlugin },
+      { loadSoundsPlugin },
+      { loadThemesPlugin },
+      { loadTrailPlugin },
+
+      { loadExportImagePlugin },
+      { loadExportJSONPlugin },
+      { loadExportVideoPlugin },
+
+      { loadExternalParticleInteraction },
+      { loadExternalPopInteraction },
+      { loadLightInteraction },
+      { loadParticlesRepulseInteraction },
+
+      { loadGradientUpdater },
+      { loadOrbitUpdater },
+
+      { loadBranchesPath },
+      { loadBrownianPath },
+      { loadCurlNoisePath },
+      { loadCurvesPath },
+      { loadFractalNoisePath },
+      { loadGridPath },
+      { loadLevyPath },
+      { loadPerlinNoisePath },
+      { loadPolygonPath },
+      { loadSVGPath },
+      { loadSpiralPath },
+      { loadZigZagPath },
+      { loadSimplexNoisePath },
+
+      { loadBubbleEffect },
+      { loadParticlesEffect },
+      { loadShadowEffect },
+      { loadTrailEffect },
+
+      { loadArrowShape },
+      { loadCardsShape },
+      { loadCogShape },
+      { loadHeartShape },
+      { loadInfinityShape },
+      { loadPathShape },
+      { loadRoundedPolygonShape },
+      { loadRoundedRectShape },
+      { loadSpiralShape },
+
+      { loadEmittersShapeCanvas },
+      { loadEmittersShapePath },
+      { loadEmittersShapePolygon },
+    ] = await Promise.all([
+      import("tsparticles"),
+
+      import("@tsparticles/plugin-hsv-color"),
+      import("@tsparticles/plugin-hwb-color"),
+      import("@tsparticles/plugin-lab-color"),
+      import("@tsparticles/plugin-lch-color"),
+      import("@tsparticles/plugin-oklab-color"),
+      import("@tsparticles/plugin-oklch-color"),
+      import("@tsparticles/plugin-named-color"),
+
+      import("@tsparticles/plugin-easing-back"),
+      import("@tsparticles/plugin-easing-bounce"),
+      import("@tsparticles/plugin-easing-circ"),
+      import("@tsparticles/plugin-easing-cubic"),
+      import("@tsparticles/plugin-easing-elastic"),
+      import("@tsparticles/plugin-easing-expo"),
+      import("@tsparticles/plugin-easing-gaussian"),
+      import("@tsparticles/plugin-easing-linear"),
+      import("@tsparticles/plugin-easing-quart"),
+      import("@tsparticles/plugin-easing-quint"),
+      import("@tsparticles/plugin-easing-sigmoid"),
+      import("@tsparticles/plugin-easing-sine"),
+      import("@tsparticles/plugin-easing-smoothstep"),
+
+      import("@tsparticles/plugin-background-mask"),
+      import("@tsparticles/plugin-blend"),
+      import("@tsparticles/plugin-canvas-mask"),
+      import("@tsparticles/plugin-infection"),
+      import("@tsparticles/plugin-manual-particles"),
+      import("@tsparticles/plugin-motion"),
+      import("@tsparticles/plugin-poisson-disc"),
+      import("@tsparticles/plugin-polygon-mask"),
+      import("@tsparticles/plugin-responsive"),
+      import("@tsparticles/plugin-sounds"),
+      import("@tsparticles/plugin-themes"),
+      import("@tsparticles/plugin-trail"),
+
+      import("@tsparticles/plugin-export-image"),
+      import("@tsparticles/plugin-export-json"),
+      import("@tsparticles/plugin-export-video"),
+
+      import("@tsparticles/interaction-external-particle"),
+      import("@tsparticles/interaction-external-pop"),
+      import("@tsparticles/interaction-light"),
+      import("@tsparticles/interaction-particles-repulse"),
+
+      import("@tsparticles/updater-gradient"),
+      import("@tsparticles/updater-orbit"),
+
+      import("@tsparticles/path-branches"),
+      import("@tsparticles/path-brownian"),
+      import("@tsparticles/path-curl-noise"),
+      import("@tsparticles/path-curves"),
+      import("@tsparticles/path-fractal-noise"),
+      import("@tsparticles/path-grid"),
+      import("@tsparticles/path-levy"),
+      import("@tsparticles/path-perlin-noise"),
+      import("@tsparticles/path-polygon"),
+      import("@tsparticles/path-svg"),
+      import("@tsparticles/path-spiral"),
+      import("@tsparticles/path-zig-zag"),
+      import("@tsparticles/path-simplex-noise"),
+
+      import("@tsparticles/effect-bubble"),
+      import("@tsparticles/effect-particles"),
+      import("@tsparticles/effect-shadow"),
+      import("@tsparticles/effect-trail"),
+
+      import("@tsparticles/shape-arrow"),
+      import("@tsparticles/shape-cards"),
+      import("@tsparticles/shape-cog"),
+      import("@tsparticles/shape-heart"),
+      import("@tsparticles/shape-infinity"),
+      import("@tsparticles/shape-path"),
+      import("@tsparticles/shape-rounded-polygon"),
+      import("@tsparticles/shape-rounded-rect"),
+      import("@tsparticles/shape-spiral"),
+
+      import("@tsparticles/plugin-emitters-shape-canvas"),
+      import("@tsparticles/plugin-emitters-shape-path"),
+      import("@tsparticles/plugin-emitters-shape-polygon"),
+    ]);
 
     await loadFull(e);
 
-    await loadEmittersShapeCanvas(e);
-    await loadEmittersShapePath(e);
-    await loadEmittersShapePolygon(e);
+    await Promise.all([
+      loadEmittersShapeCanvas(e),
+      loadEmittersShapePath(e),
+      loadEmittersShapePolygon(e),
 
-    await loadHsvColorPlugin(e);
-    await loadHwbColorPlugin(e);
-    await loadLabColorPlugin(e);
-    await loadLchColorPlugin(e);
-    await loadOklabColorPlugin(e);
-    await loadOklchColorPlugin(e);
-    await loadNamedColorPlugin(e);
+      loadHsvColorPlugin(e),
+      loadHwbColorPlugin(e),
+      loadLabColorPlugin(e),
+      loadLchColorPlugin(e),
+      loadOklabColorPlugin(e),
+      loadOklchColorPlugin(e),
+      loadNamedColorPlugin(e),
 
-    await loadEasingBackPlugin(e);
-    await loadEasingBouncePlugin(e);
-    await loadEasingCircPlugin(e);
-    await loadEasingCubicPlugin(e);
-    await loadEasingElasticPlugin(e);
-    await loadEasingExpoPlugin(e);
-    await loadEasingGaussianPlugin(e);
-    await loadEasingLinearPlugin(e);
-    await loadEasingQuartPlugin(e);
-    await loadEasingQuintPlugin(e);
-    await loadEasingSigmoidPlugin(e);
-    await loadEasingSinePlugin(e);
-    await loadEasingSmoothstepPlugin(e);
+      loadEasingBackPlugin(e),
+      loadEasingBouncePlugin(e),
+      loadEasingCircPlugin(e),
+      loadEasingCubicPlugin(e),
+      loadEasingElasticPlugin(e),
+      loadEasingExpoPlugin(e),
+      loadEasingGaussianPlugin(e),
+      loadEasingLinearPlugin(e),
+      loadEasingQuartPlugin(e),
+      loadEasingQuintPlugin(e),
+      loadEasingSigmoidPlugin(e),
+      loadEasingSinePlugin(e),
+      loadEasingSmoothstepPlugin(e),
 
-    await loadBackgroundMaskPlugin(e);
-    await loadBlendPlugin(e);
-    await loadCanvasMaskPlugin(e);
-    await loadInfectionPlugin(e);
-    await loadManualParticlesPlugin(e);
-    await loadMotionPlugin(e);
-    await loadPoissonDiscPlugin(e);
-    await loadPolygonMaskPlugin(e);
-    await loadResponsivePlugin(e);
-    await loadSoundsPlugin(e);
-    await loadThemesPlugin(e);
-    await loadTrailPlugin(e);
+      loadBackgroundMaskPlugin(e),
+      loadBlendPlugin(e),
+      loadCanvasMaskPlugin(e),
+      loadInfectionPlugin(e),
+      loadManualParticlesPlugin(e),
+      loadMotionPlugin(e),
+      loadPoissonDiscPlugin(e),
+      loadPolygonMaskPlugin(e),
+      loadResponsivePlugin(e),
+      loadSoundsPlugin(e),
+      loadThemesPlugin(e),
+      loadTrailPlugin(e),
 
-    await loadExportImagePlugin(e);
-    await loadExportJSONPlugin(e);
-    await loadExportVideoPlugin(e);
+      loadExportImagePlugin(e),
+      loadExportJSONPlugin(e),
+      loadExportVideoPlugin(e),
 
-    await loadExternalParticleInteraction(e);
-    await loadExternalPopInteraction(e);
+      loadExternalParticleInteraction(e),
+      loadExternalPopInteraction(e),
+      loadLightInteraction(e),
+      loadParticlesRepulseInteraction(e),
 
-    await loadLightInteraction(e);
+      loadGradientUpdater(e),
+      loadOrbitUpdater(e),
 
-    await loadParticlesRepulseInteraction(e);
+      loadBranchesPath(e),
+      loadBrownianPath(e),
+      loadCurlNoisePath(e),
+      loadCurvesPath(e),
+      loadFractalNoisePath(e),
+      loadGridPath(e),
+      loadLevyPath(e),
+      loadPerlinNoisePath(e),
+      loadPolygonPath(e),
+      loadSVGPath(e),
+      loadSpiralPath(e),
+      loadZigZagPath(e),
+      loadSimplexNoisePath(e),
 
-    await loadGradientUpdater(e);
-    await loadOrbitUpdater(e);
+      loadBubbleEffect(e),
+      loadParticlesEffect(e),
+      loadShadowEffect(e),
+      loadTrailEffect(e),
 
-    await loadBranchesPath(e);
-    await loadBrownianPath(e);
-    await loadCurlNoisePath(e);
-    await loadCurvesPath(e);
-    await loadFractalNoisePath(e);
-    await loadGridPath(e);
-    await loadLevyPath(e);
-    await loadPerlinNoisePath(e);
-    await loadPolygonPath(e);
-    await loadSVGPath(e);
-    await loadSpiralPath(e);
-    await loadZigZagPath(e);
-    await loadSimplexNoisePath(e);
-
-    await loadBubbleEffect(e);
-    await loadParticlesEffect(e);
-    await loadShadowEffect(e);
-    await loadTrailEffect(e);
-
-    await loadArrowShape(e);
-    await loadCardsShape(e);
-    await loadCogShape(e);
-    await loadHeartShape(e);
-    await loadInfinityShape(e);
-    await loadPathShape(e);
-    await loadRoundedPolygonShape(e);
-    await loadRoundedRectShape(e);
-    await loadSpiralShape(e);
+      loadArrowShape(e),
+      loadCardsShape(e),
+      loadCogShape(e),
+      loadHeartShape(e),
+      loadInfinityShape(e),
+      loadPathShape(e),
+      loadRoundedPolygonShape(e),
+      loadRoundedRectShape(e),
+      loadSpiralShape(e),
+    ]);
   });
 }
