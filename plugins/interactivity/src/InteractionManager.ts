@@ -253,16 +253,7 @@ export class InteractionManager {
   /**
    * Initializes the interaction manager, loading all the engine registered managers into the container
    */
-  async init(): Promise<void> {
-    const interactors = await this._engine.getInteractors?.(this.container, true);
-
-    if (!interactors) {
-      return;
-    }
-
-    this._interactors = interactors;
-    this._externalInteractors = [];
-    this._particleInteractors = [];
+  init(): void {
     this._eventListeners.init();
 
     for (const interactor of this._interactors) {
@@ -283,6 +274,18 @@ export class InteractionManager {
 
       interactor.init();
     }
+  }
+
+  async initInteractors(): Promise<void> {
+    const interactors = await this._engine.getInteractors?.(this.container, true);
+
+    if (!interactors) {
+      return;
+    }
+
+    this._interactors = interactors;
+    this._externalInteractors = [];
+    this._particleInteractors = [];
   }
 
   /**

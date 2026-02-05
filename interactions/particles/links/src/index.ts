@@ -26,7 +26,7 @@ export async function loadParticlesLinksInteraction(engine: Engine): Promise<voi
     e.addInteractor?.("particlesLinks", async container => {
       const { Linker } = await import("./Linker.js");
 
-      return new Linker(container as LinkContainer, engine);
+      return new Linker(container as LinkContainer, e);
     });
   });
 }
