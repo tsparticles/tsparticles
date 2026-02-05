@@ -110,8 +110,8 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.21",
-    "@tsparticles/engine": "^4.0.0-alpha.21"
+    "@tsparticles/basic": "^4.0.0-alpha.22",
+    "@tsparticles/engine": "^4.0.0-alpha.22"
   },
   "type": "module"
 }

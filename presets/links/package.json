@@ -110,10 +110,10 @@
   },
   "prettier": "@tsparticles/prettier-config",
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.21",
-    "@tsparticles/engine": "^4.0.0-alpha.21",
-    "@tsparticles/interaction-particles-links": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.21"
+    "@tsparticles/basic": "^4.0.0-alpha.22",
+    "@tsparticles/engine": "^4.0.0-alpha.22",
+    "@tsparticles/interaction-particles-links": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.22"
   },
   "type": "module"
 }

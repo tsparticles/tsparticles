@@ -99,21 +99,21 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.21",
-    "@tsparticles/effect-trail": "^4.0.0-alpha.21",
-    "@tsparticles/engine": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-emitters": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-emitters-shape-square": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-hex-color": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-hsl-color": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-rgb-color": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-sounds": "^4.0.0-alpha.21",
-    "@tsparticles/shape-line": "^4.0.0-alpha.21",
-    "@tsparticles/updater-destroy": "^4.0.0-alpha.21",
-    "@tsparticles/updater-life": "^4.0.0-alpha.21",
-    "@tsparticles/updater-rotate": "^4.0.0-alpha.21",
-    "@tsparticles/updater-stroke-color": "^4.0.0-alpha.21"
+    "@tsparticles/basic": "^4.0.0-alpha.22",
+    "@tsparticles/effect-trail": "^4.0.0-alpha.22",
+    "@tsparticles/engine": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-emitters": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-emitters-shape-square": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-hex-color": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-hsl-color": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-rgb-color": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-sounds": "^4.0.0-alpha.22",
+    "@tsparticles/shape-line": "^4.0.0-alpha.22",
+    "@tsparticles/updater-destroy": "^4.0.0-alpha.22",
+    "@tsparticles/updater-life": "^4.0.0-alpha.22",
+    "@tsparticles/updater-rotate": "^4.0.0-alpha.22",
+    "@tsparticles/updater-stroke-color": "^4.0.0-alpha.22"
   },
   "publishConfig": {
     "access": "public"

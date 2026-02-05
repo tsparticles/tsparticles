@@ -99,14 +99,14 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-emitters": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-hex-color": "^4.0.0-alpha.21",
-    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.21",
-    "@tsparticles/shape-square": "^4.0.0-alpha.21",
-    "@tsparticles/updater-rotate": "^4.0.0-alpha.21",
-    "@tsparticles/updater-size": "^4.0.0-alpha.21",
-    "@tsparticles/updater-stroke-color": "^4.0.0-alpha.21"
+    "@tsparticles/engine": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-emitters": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-hex-color": "^4.0.0-alpha.22",
+    "@tsparticles/plugin-interactivity": "^4.0.0-alpha.22",
+    "@tsparticles/shape-square": "^4.0.0-alpha.22",
+    "@tsparticles/updater-rotate": "^4.0.0-alpha.22",
+    "@tsparticles/updater-size": "^4.0.0-alpha.22",
+    "@tsparticles/updater-stroke-color": "^4.0.0-alpha.22"
   },
   "publishConfig": {
     "access": "public"
