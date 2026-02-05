@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-zig-zag",
-  "version": "4.0.0-alpha.21",
+  "version": "4.0.0-alpha.22",
   "description": "tsParticles zig zag path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -109,7 +109,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.21"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.22"
   },
   "publishConfig": {
     "access": "public",

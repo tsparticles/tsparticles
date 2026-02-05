@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/pjs",
-  "version": "4.0.0-alpha.21",
+  "version": "4.0.0-alpha.22",
   "description": "Easily create highly customizable particle animations and use them as animated backgrounds for your website. Ready to use components available also for React, Vue.js (2.x and 3.x), Angular, Svelte, jQuery, Preact, Riot.js, Inferno.",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -107,12 +107,12 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.21",
-    "@tsparticles/plugin-responsive": "workspace:4.0.0-alpha.21",
-    "tsparticles": "workspace:4.0.0-alpha.21"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.22",
+    "@tsparticles/plugin-responsive": "workspace:4.0.0-alpha.22",
+    "tsparticles": "workspace:4.0.0-alpha.22"
   },
   "devDependencies": {
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.21"
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.22"
   },
   "publishConfig": {
     "access": "public",
