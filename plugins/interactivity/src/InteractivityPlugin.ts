@@ -13,6 +13,7 @@ import type {
   InteractivityParticlesOptions,
 } from "./types.js";
 import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
+import type { IParticleInteractorBase } from "./Interfaces/IParticleInteractorBase.js";
 import { Interactivity } from "./Options/Classes/Interactivity.js";
 
 /**
@@ -71,16 +72,14 @@ export class InteractivityPlugin implements IPlugin {
       options.interactivity = deepExtend({}, source.interactivity) as RecursivePartial<IInteractivity>;
     }
 
-    const interactors = this._engine.interactors?.get(container);
+    const interactors = this._engine.interactors?.get(container) as IParticleInteractorBase[] | undefined;
 
     if (!interactors) {
       return;
     }
 
     for (const interactor of interactors) {
-      if (interactor.loadParticlesOptions) {
-        interactor.loadParticlesOptions(options, source);
-      }
+      interactor.loadParticlesOptions?.(options, source);
     }
   }
 

@@ -21,7 +21,7 @@ import {
 } from "./InteractivityConstants.js";
 import type { InteractionManager } from "./InteractionManager.js";
 import type { InteractivityContainer } from "./types.js";
-import { InteractivityDetect } from "./InteractivityDetect.js";
+import { InteractivityDetect } from "./Enums/InteractivityDetect.js";
 
 interface InteractivityEventListenersHandlers {
   readonly mouseDown: EventListenerOrEventListenerObject;

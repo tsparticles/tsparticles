@@ -1,6 +1,6 @@
 import type { IEvents } from "./Events/IEvents.js";
 import type { IModes } from "./Modes/IModes.js";
-import type { InteractivityDetect } from "../../InteractivityDetect.js";
+import type { InteractivityDetect } from "../../Enums/InteractivityDetect.js";
 
 /**
  * Particles interactivity options
