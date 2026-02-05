@@ -1,0 +1,86 @@
+{
+    "$schema": "./node_modules/nx/schemas/nx-schema.json",
+    "extends": "nx/presets/npm.json",
+    "targetDefaults": {
+        "build": {
+            "dependsOn": [
+                "^build"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
+            ]
+        },
+        "build:ci": {
+            "dependsOn": [
+                "^build:ci"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
+            ]
+        },
+        "prepare": {
+            "dependsOn": [
+                "^build",
+                "^prepare"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
+            ]
+        },
+        "package": {
+            "dependsOn": [
+                "^build",
+                "^prepare",
+                "^package"
+            ],
+            "outputs": [
+                "{projectRoot}/dist"
+            ]
+        }
+    },
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "nx-cloud",
+            "options": {
+                "cacheableOperations": [
+                    "build",
+                    "build:ci",
+                    "test",
+                    "lint",
+                    "package",
+                    "prepare"
+                ]
+            }
+        },
+        "local": {
+            "runner": "nx/tasks-runners/default",
+            "options": {
+                "cacheableOperations": [
+                    "build",
+                    "build:ci",
+                    "lint",
+                    "test",
+                    "e2e"
+                ]
+            }
+        }
+    },
+    "affected": {
+        "defaultBase": "main"
+    },
+    "pluginsConfig": {
+        "@nrwl/js": {
+            "analyzeSourceFiles": false
+        }
+    },
+    "namedInputs": {
+        "default": [
+            "{projectRoot}/**/*",
+            "sharedGlobals"
+        ],
+        "sharedGlobals": [],
+        "production": [
+            "default"
+        ]
+    }
+}
