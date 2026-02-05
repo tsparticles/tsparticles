@@ -47,9 +47,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Prettify README
-        run: pnpm run prettify:ci:readme
-
       - name: Build packages
         run: npx nx affected -t build:ci
 
