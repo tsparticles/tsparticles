@@ -4,7 +4,7 @@
 
 [![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/preset-ambient/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/preset-ambient) [![npmjs](https://badge.fury.io/js/@tsparticles/preset-ambient.svg)](https://www.npmjs.com/package/@tsparticles/preset-ambient) [![npmjs](https://img.shields.io/npm/dt/@tsparticles/preset-ambient)](https://www.npmjs.com/package/@tsparticles/preset-ambient) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
-[tsParticles](https://github.com/tsparticles/tsparticles) preset for big colored circles on a white background.
+[tsParticles](https://github.com/tsparticles/tsparticles) preset for ambient circles on a dark background.
 
 [![Discord](https://particles.js.org/images/discord.png)](https://discord.gg/hACwv45Hme) [![Telegram](https://particles.js.org/images/telegram.png)](https://t.me/tsparticles)
 

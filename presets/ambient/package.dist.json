@@ -1,7 +1,7 @@
 {
   "name": "@tsparticles/preset-ambient",
   "version": "4.0.0-alpha.4",
-  "description": "tsParticles big circles preset",
+  "description": "tsParticles ambient preset",
   "homepage": "https://particles.js.org",
   "repository": {
     "type": "git",
