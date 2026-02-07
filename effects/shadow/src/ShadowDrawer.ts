@@ -1,5 +1,7 @@
 import {
+  CachePolicy,
   type Container,
+  EffectLayer,
   type Engine,
   type ICoordinates,
   type IEffectDrawer,
@@ -7,6 +9,7 @@ import {
   type IRgb,
   type IShapeDrawData,
   type IShapeValues,
+  type ITextureMetadata,
   OptionsColor,
   type Particle,
   getStyleFromRgb,
@@ -53,6 +56,24 @@ export class ShadowDrawer implements IEffectDrawer {
     context.shadowColor = getStyleFromRgb(shadowColor, container.hdr);
     context.shadowOffsetX = shadowOffset?.x ?? defaultShadowOffsetValue;
     context.shadowOffsetY = shadowOffset?.y ?? defaultShadowOffsetValue;
+  }
+
+  getDescriptor(particle: ShadowParticle): string {
+    const blur = particle.shadowBlur ?? defaultShadowBlur,
+      offset = particle.shadowOffset,
+      color = particle.shadowColor,
+      offsetX = offset?.x ?? defaultShadowOffsetValue,
+      offsetY = offset?.y ?? defaultShadowOffsetValue,
+      colorKey = color ? `${color.r}:${color.g}:${color.b}` : "none";
+
+    return `shadow:${particle.shadowEnabled ? "on" : "off"}:${blur}:${offsetX}:${offsetY}:${colorKey}`;
+  }
+
+  getMetadata(): ITextureMetadata {
+    return {
+      cachePolicy: CachePolicy.Static,
+      effectLayer: EffectLayer.External,
+    };
   }
 
   particleInit(_container: Container, particle: ShadowParticle): void {

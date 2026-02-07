@@ -18,21 +18,15 @@ const options: ISourceOptions = {
       color: "#ffffff",
     },
     shape: {
-      type: "char",
+      type: "text",
       options: {
-        char: [
+        text: [
           {
             value: ["t", "s", "P", "a", "r", "t", "i", "c", "l", "e", "s"],
-            font: "Verdana",
-            style: "",
-            weight: "400",
             fill: true,
           },
           {
             value: ["t", "s", "P", "a", "r", "t", "i", "c", "l", "e", "s"],
-            font: "Verdana",
-            style: "",
-            weight: "400",
             fill: false,
           },
         ],

@@ -1,8 +1,8 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-  key: "svgReplace",
-  name: "SVG Replace",
+  key: "svgReplaceAnimated",
+  name: "SVG Replace Animated",
   interactivity: {
     events: {
       onClick: {
@@ -49,6 +49,11 @@ const options: ISourceOptions = {
   particles: {
     color: {
       value: "#ff0000",
+      animation: {
+        enable: true,
+        speed: 20,
+        sync: true,
+      },
     },
     move: {
       enable: true,

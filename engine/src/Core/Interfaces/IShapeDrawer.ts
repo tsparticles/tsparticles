@@ -1,10 +1,11 @@
 import type { Container } from "../Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
+import type { ITextureComponent } from "./ITextureMetadata.js";
 import type { Particle } from "../Particle.js";
 
 /**
  */
-export interface IShapeDrawer<TParticle extends Particle = Particle> {
+export interface IShapeDrawer<TParticle extends Particle = Particle> extends ITextureComponent<TParticle> {
   /**
    * Shape after draw effect function
    * @param data - the data used for drawing

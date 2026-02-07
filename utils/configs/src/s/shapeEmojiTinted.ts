@@ -5,9 +5,12 @@ const emitterRate = {
     quantity: 1,
   },
   options: ISourceOptions = {
-    key: "shapeEmoji",
-    name: "Shape Emoji",
+    key: "shapeEmojiTinted",
+    name: "Shape Emoji Tinted",
     particles: {
+      color: {
+        value: "#ff0000",
+      },
       opacity: {
         value: 1,
       },
@@ -48,6 +51,7 @@ const emitterRate = {
             options: {
               emoji: {
                 value: "🦄",
+                tint: true,
               },
             },
           },
@@ -68,6 +72,7 @@ const emitterRate = {
             options: {
               emoji: {
                 value: "🌈",
+                tint: true,
               },
             },
           },
@@ -88,6 +93,7 @@ const emitterRate = {
             options: {
               emoji: {
                 value: "🎉",
+                tint: true,
               },
             },
           },
@@ -108,6 +114,7 @@ const emitterRate = {
             options: {
               emoji: {
                 value: "🤡",
+                tint: true,
               },
             },
           },
@@ -128,6 +135,7 @@ const emitterRate = {
             options: {
               emoji: {
                 value: "🍑",
+                tint: true,
               },
             },
           },

@@ -32,7 +32,7 @@ const options: ISourceOptions = {
           src: "https://particles.js.org/images/hdr/arrow.png",
           width: 512,
           height: 512,
-          replaceColor: true,
+          tint: true,
         },
       },
     },

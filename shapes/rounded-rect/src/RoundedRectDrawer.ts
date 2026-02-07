@@ -1,4 +1,13 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, double, getRangeValue } from "@tsparticles/engine";
+import {
+  CachePolicy,
+  type Container,
+  type IShapeDrawData,
+  type IShapeDrawer,
+  type ITextureMetadata,
+  TextureColorMode,
+  double,
+  getRangeValue,
+} from "@tsparticles/engine";
 import type { IRoundedRectData } from "./IRoundedRectData.js";
 import type { RoundedParticle } from "./RoundedParticle.js";
 import { drawRoundedRect } from "./Utils.js";
@@ -19,6 +28,17 @@ export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
     } else {
       drawRoundedRect(context, fixedRadius, fixedDiameter, borderRadius);
     }
+  }
+
+  getDescriptor(particle: RoundedParticle): string {
+    return `rounded-rect:${particle.borderRadius ?? defaultRadius}`;
+  }
+
+  getMetadata(): ITextureMetadata {
+    return {
+      cachePolicy: CachePolicy.Static,
+      colorMode: TextureColorMode.Single,
+    };
   }
 
   particleInit(container: Container, particle: RoundedParticle): void {

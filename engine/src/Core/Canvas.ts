@@ -1,8 +1,18 @@
 import { clear, drawParticle, drawParticlePlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
 import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
-import { defaultTransformValue, generatedAttribute, minimumSize, zIndexFactorOffset } from "./Utils/Constants.js";
+import {
+  defaultAlpha,
+  defaultOpacity,
+  defaultTransformValue,
+  double,
+  generatedAttribute,
+  minStrokeWidth,
+  minimumSize,
+  zIndexFactorOffset,
+} from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
+import { EffectLayer } from "../Enums/Texture/Enums.js";
 import type { Engine } from "./Engine.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
@@ -12,9 +22,12 @@ import type { IParticleColorStyle } from "./Interfaces/IParticleColorStyle.js";
 import type { IParticleTransformValues } from "./Interfaces/IParticleTransformValues.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { Particle } from "./Particle.js";
+import { TextureManager } from "./Rendering/TextureManager.js";
 
 const fColorIndex = 0,
-  sColorIndex = 1;
+  sColorIndex = 1,
+  minTextureRadius = 0,
+  defaultTextureScale = 1;
 
 /**
  * @param factor -
@@ -120,6 +133,7 @@ export class Canvas {
   private readonly _reusablePluginColors: (IHsl | undefined)[] = [undefined, undefined];
   private readonly _reusableTransform: Partial<IParticleTransformValues> = {};
   private readonly _standardSize: IDimension;
+  private readonly _textureManager: TextureManager;
 
   /**
    * Constructor of canvas manager
@@ -160,6 +174,7 @@ export class Canvas {
     this._drawSettingsSetupPlugins = [];
     this._drawSettingsCleanupPlugins = [];
     this._pointerEvents = "none";
+    this._textureManager = new TextureManager(container);
   }
 
   get settings(): CanvasRenderingContext2DSettings | undefined {
@@ -206,6 +221,8 @@ export class Canvas {
    */
   destroy(): void {
     this.stop();
+
+    this._textureManager.clear();
 
     if (this._generated) {
       const element = this.element;
@@ -281,31 +298,121 @@ export class Canvas {
       { opacity, strokeOpacity } = particle.getOpacity(),
       transform = this._reusableTransform,
       colorStyles = this._reusableColorStyles,
-      fill = fColor ? getStyleFromHsl(fColor, container.hdr, opacity) : undefined,
-      stroke = sColor ? getStyleFromHsl(sColor, container.hdr, strokeOpacity) : fill;
+      textureFill = fColor ? getStyleFromHsl(fColor, container.hdr, defaultAlpha) : undefined,
+      textureStroke = sColor ? getStyleFromHsl(sColor, container.hdr, defaultAlpha) : textureFill;
 
     transform.a = transform.b = transform.c = transform.d = undefined;
 
-    colorStyles.fill = fill;
-    colorStyles.stroke = stroke;
+    colorStyles.fill = textureFill;
+    colorStyles.stroke = textureStroke;
 
     this.draw((context): void => {
       for (const plugin of this._drawParticlesSetupPlugins) {
         plugin.drawParticleSetup?.(context, particle, delta);
       }
 
-      this._applyPreDrawUpdaters(context, particle, radius, opacity, colorStyles, transform);
+      this._applyPreDrawUpdaters(context, particle, radius, defaultOpacity, colorStyles, transform);
 
-      drawParticle({
-        container,
-        context,
-        particle,
-        delta,
-        colorStyles,
-        radius: radius * zIndexFactor ** zIndexOptions.sizeRate,
-        opacity: opacity,
-        transform,
-      });
+      const hasGradientOrPattern =
+          colorStyles.fill instanceof CanvasGradient ||
+          colorStyles.fill instanceof CanvasPattern ||
+          colorStyles.stroke instanceof CanvasGradient ||
+          colorStyles.stroke instanceof CanvasPattern,
+        drawRadius = radius * zIndexFactor ** zIndexOptions.sizeRate,
+        shapeDrawer = particle.shape ? container.particles.shapeDrawers.get(particle.shape) : undefined,
+        effectDrawer = particle.effect ? container.particles.effectDrawers.get(particle.effect) : undefined,
+        textureColorStyles = {
+          fill: textureFill,
+          stroke: textureStroke,
+        },
+        texture =
+          hasGradientOrPattern || !shapeDrawer
+            ? undefined
+            : this._textureManager.getTexture(
+                particle,
+                delta,
+                shapeDrawer,
+                effectDrawer,
+                fColor,
+                sColor,
+                textureColorStyles,
+                drawRadius,
+              );
+
+      if (!texture) {
+        const fallbackFill = colorStyles.fill ?? (fColor ? getStyleFromHsl(fColor, container.hdr, opacity) : undefined),
+          fallbackStroke =
+            colorStyles.stroke ?? (sColor ? getStyleFromHsl(sColor, container.hdr, strokeOpacity) : fallbackFill);
+
+        drawParticle({
+          container,
+          context,
+          particle,
+          delta,
+          colorStyles: {
+            fill: fallbackFill,
+            stroke: fallbackStroke,
+          },
+          radius: drawRadius,
+          opacity,
+          transform,
+        });
+
+        this._applyPostDrawUpdaters(particle);
+
+        for (const plugin of this._drawParticlesCleanupPlugins) {
+          plugin.drawParticleCleanup?.(context, particle, delta);
+        }
+
+        return;
+      }
+
+      const pos = particle.getPosition(),
+        transformData = particle.getTransformData(transform),
+        strokeWidth = particle.strokeWidth ?? minStrokeWidth,
+        effectLayer = this._textureManager.getEffectLayer(effectDrawer, particle),
+        drawData = {
+          context,
+          delta,
+          fill: particle.shapeFill,
+          opacity,
+          particle,
+          pixelRatio: container.retina.pixelRatio,
+          radius: drawRadius,
+          stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
+          transformData,
+        };
+
+      context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
+
+      if (effectLayer === EffectLayer.External) {
+        if (colorStyles.fill) {
+          context.fillStyle = colorStyles.fill;
+        }
+
+        if (colorStyles.stroke) {
+          context.strokeStyle = colorStyles.stroke;
+        }
+
+        effectDrawer?.drawBefore?.(drawData);
+      }
+
+      context.globalAlpha = opacity;
+
+      const textureSize = texture.width,
+        textureRadius = this._textureManager.getTextureRadius(texture) ?? drawRadius,
+        scaleFactor = textureRadius > minTextureRadius ? drawRadius / textureRadius : defaultTextureScale,
+        displaySize = textureSize * scaleFactor,
+        displayHalfSize = displaySize / double;
+
+      context.drawImage(texture, -displayHalfSize, -displayHalfSize, displaySize, displaySize);
+      context.globalAlpha = 1;
+
+      if (effectLayer === EffectLayer.External) {
+        effectDrawer?.drawAfter?.(drawData);
+      }
+
+      context.resetTransform();
 
       this._applyPostDrawUpdaters(particle);
 

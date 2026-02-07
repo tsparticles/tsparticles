@@ -1,8 +1,8 @@
 import type { ISourceOptions } from "@tsparticles/engine";
 
 const options: ISourceOptions = {
-  key: "shapeMultilineText",
-  name: "Shape Multiline Text",
+  key: "shapeText",
+  name: "Shape Text",
   particles: {
     number: {
       value: 80,
@@ -22,7 +22,7 @@ const options: ISourceOptions = {
       type: "text",
       options: {
         text: {
-          value: "pippo\npluto",
+          value: "pippo",
         },
       },
     },
