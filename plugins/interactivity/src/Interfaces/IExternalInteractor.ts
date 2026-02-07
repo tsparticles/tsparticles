@@ -1,12 +1,12 @@
 import type { IDelta, Particle, RecursivePartial } from "@tsparticles/engine";
 import type { IInteractivityData } from "./IInteractivityData.js";
-import type { IInteractor } from "./IInteractor.js";
-import type { IModes } from "./Options/Interfaces/Modes/IModes.js";
-import type { Modes } from "./Options/Classes/Modes/Modes.js";
+import type { IModes } from "../Options/Interfaces/Modes/IModes.js";
+import type { IParticleInteractorBase } from "./IParticleInteractorBase.js";
+import type { Modes } from "../Options/Classes/Modes/Modes.js";
 
 /**
  */
-export interface IExternalInteractor<TParticle extends Particle = Particle> extends IInteractor<TParticle> {
+export interface IExternalInteractor<TParticle extends Particle = Particle> extends IParticleInteractorBase<TParticle> {
   handleClickMode?: (mode: string, interactivityData: IInteractivityData) => void;
 
   loadModeOptions?: (options: Modes, ...sources: RecursivePartial<IModes | undefined>[]) => void;

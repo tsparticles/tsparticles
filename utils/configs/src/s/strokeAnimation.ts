@@ -19,7 +19,7 @@ const options: ISourceOptions = {
       },
     },
     stroke: {
-      width: 3,
+      width: 15,
       color: {
         value: "#0000ff",
         animation: {
@@ -36,17 +36,7 @@ const options: ISourceOptions = {
       value: 0.5,
     },
     size: {
-      value: {
-        min: 1,
-        max: 3,
-      },
-    },
-    links: {
-      enable: true,
-      distance: 100,
-      color: "#ffffff",
-      opacity: 0.4,
-      width: 1,
+      value: 15,
     },
     move: {
       enable: true,

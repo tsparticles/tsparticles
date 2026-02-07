@@ -6,6 +6,7 @@ import {
   type IRgb,
   type RecursivePartial,
   getDistances,
+  getLinkColor,
   getLinkRandomColor,
   originPoint,
 } from "@tsparticles/engine";
@@ -18,31 +19,17 @@ const squarePower = 2,
   opacityOffset = 1,
   minDistance = 0;
 
+/* calculates the shortest distance between two points considering canvas wrap */
 /**
- * @param pos1 -
- * @param pos2 -
- * @param optDistance -
- * @param canvasSize -
- * @param warp -
- * @returns the distance between two points
+ * calculates the shortest distance between two points considering canvas wrap
+ * @param pos1 - the first point
+ * @param pos2 - the second point
+ * @param canvasSize - the canvas size
+ * @returns shortest distance between two points considering canvas wrap
  */
-function getLinkDistance(
-  pos1: ICoordinates,
-  pos2: ICoordinates,
-  optDistance: number,
-  canvasSize: IDimension,
-  warp: boolean,
-): number {
-  const { dx, dy, distance } = getDistances(pos1, pos2);
-
-  if (!warp || distance <= optDistance) {
-    return distance;
-  }
-
-  const absDiffs = {
-      x: Math.abs(dx),
-      y: Math.abs(dy),
-    },
+function getWarpDistance(pos1: ICoordinates, pos2: ICoordinates, canvasSize: IDimension): number {
+  const { dx, dy } = getDistances(pos1, pos2),
+    absDiffs = { x: Math.abs(dx), y: Math.abs(dy) },
     warpDistances = {
       x: Math.min(absDiffs.x, canvasSize.width - absDiffs.x),
       y: Math.min(absDiffs.y, canvasSize.height - absDiffs.y),
@@ -66,7 +53,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
 
   init(): void {
     this.container.particles.linksColor = undefined;
-    this.container.particles.linksColors = new Map<string, IRgb | string | undefined>();
+    this.container.particles.linksColors = new Map();
   }
 
   interact(p1: LinkParticle): void {
@@ -87,17 +74,9 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     const linkOpt1 = p1.options.links,
       optOpacity = linkOpt1.opacity,
       optDistance = p1.retina.linksDistance ?? minDistance,
-      warp = linkOpt1.warp;
-
-    let range: Circle;
-
-    if (warp) {
-      range = new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize);
-    } else {
-      range = new Circle(pos1.x, pos1.y, optDistance);
-    }
-
-    const query = container.particles.quadTree.query(range) as LinkParticle[];
+      warp = linkOpt1.warp,
+      range = warp ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize) : new Circle(pos1.x, pos1.y, optDistance),
+      query = container.particles.quadTree.query(range) as LinkParticle[];
 
     for (const p2 of query) {
       const linkOpt2 = p2.options.links;
@@ -121,13 +100,15 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
         continue;
       }
 
-      const distance = getLinkDistance(pos1, pos2, optDistance, canvasSize, warp && linkOpt2.warp);
+      /* check both direct and warped distances */
+      const distDirect = getDistances(pos1, pos2).distance,
+        distWarp = warp && linkOpt2.warp ? getWarpDistance(pos1, pos2, canvasSize) : distDirect,
+        distance = Math.min(distDirect, distWarp);
 
       if (distance > optDistance) {
         continue;
       }
 
-      /* draw a line between p1 and p2 */
       const opacityLine = (opacityOffset - distance / optDistance) * optOpacity;
 
       this._setColor(p1);
@@ -135,6 +116,9 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       p1.links.push({
         destination: p2,
         opacity: opacityLine,
+        color: this._getLinkColor(p1, p2),
+        /* the link is warped if the shortest path crosses boundaries */
+        isWarped: distWarp < distDirect,
       });
     }
   }
@@ -148,7 +132,6 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     ...sources: (RecursivePartial<IParticlesLinkOptions> | undefined)[]
   ): void {
     options.links ??= new Links();
-
     for (const source of sources) {
       options.links.load(source?.links);
     }
@@ -158,7 +141,23 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
     // do nothing
   }
 
-  private readonly _setColor: (p1: LinkParticle) => void = p1 => {
+  private _getLinkColor(p1: LinkParticle, p2: LinkParticle): IRgb | undefined {
+    const container = this.container,
+      linksOptions = p1.options.links;
+
+    if (!linksOptions) {
+      return;
+    }
+
+    const linkColor =
+      linksOptions.id !== undefined
+        ? container.particles.linksColors.get(linksOptions.id)
+        : container.particles.linksColor;
+
+    return getLinkColor(p1, p2, linkColor);
+  }
+
+  private _setColor(p1: LinkParticle): void {
     if (!p1.options.links) {
       return;
     }
@@ -175,14 +174,12 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       return;
     }
 
-    const optColor = linksOptions.color;
-
-    linkColor = getLinkRandomColor(this._engine, optColor, linksOptions.blink, linksOptions.consent);
+    linkColor = getLinkRandomColor(this._engine, linksOptions.color, linksOptions.blink, linksOptions.consent);
 
     if (linksOptions.id === undefined) {
       container.particles.linksColor = linkColor;
     } else {
       container.particles.linksColors.set(linksOptions.id, linkColor);
     }
-  };
+  }
 }

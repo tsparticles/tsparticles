@@ -48,16 +48,7 @@ const options: ISourceOptions = {
   },
   particles: {
     color: {
-      value: "#00f",
-    },
-    links: {
-      blink: false,
-      color: "#000",
-      consent: false,
-      distance: 150,
-      enable: false,
-      opacity: 0.4,
-      width: 1,
+      value: "#ff0000",
     },
     move: {
       enable: true,
@@ -105,7 +96,7 @@ const options: ISourceOptions = {
       src: "/images/canine.svg",
       width: 32,
       height: 32,
-      replaceColor: true,
+      tint: true,
     },
   ],
   background: {

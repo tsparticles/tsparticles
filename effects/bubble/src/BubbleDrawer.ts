@@ -1,4 +1,12 @@
-import { type IEffectDrawer, type IShapeDrawData, defaultAngle, doublePI } from "@tsparticles/engine";
+import {
+  CachePolicy,
+  EffectLayer,
+  type IEffectDrawer,
+  type IShapeDrawData,
+  type ITextureMetadata,
+  defaultAngle,
+  doublePI,
+} from "@tsparticles/engine";
 
 const bubbleFactor = 3;
 
@@ -12,5 +20,16 @@ export class BubbleDrawer implements IEffectDrawer {
     context.closePath();
     context.fillStyle = "#fff9";
     context.fill();
+  }
+
+  getDescriptor(): string {
+    return "bubble";
+  }
+
+  getMetadata(): ITextureMetadata {
+    return {
+      cachePolicy: CachePolicy.Static,
+      effectLayer: EffectLayer.Internal,
+    };
   }
 }

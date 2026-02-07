@@ -1,51 +1,100 @@
 import {
+  CachePolicy,
   type Container,
   type IShapeDrawData,
   type IShapeDrawer,
-  type SingleOrMultiple,
-  double,
-  executeOnSingleOrMultiple,
+  type ITextureMetadata,
+  TextureColorMode,
   getRangeMax,
   isInArray,
   itemFromSingleOrMultiple,
-  safeDocument,
 } from "@tsparticles/engine";
-import { drawEmoji, validTypes } from "./Utils.js";
 import type { EmojiParticle } from "./EmojiParticle.js";
 import type { IEmojiShape } from "./IEmojiShape.js";
 import { loadFont } from "@tsparticles/canvas-utils";
+import { validTypes } from "./Utils.js";
 
-const defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
+const double = 2,
+  defaultFont = '"Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif',
   noPadding = 0,
-  firstItem = 0;
+  basePadding = 0.1;
 
 export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
-  private readonly _emojiShapeDict: Map<string, ImageBitmap | HTMLCanvasElement> = new Map<string, ImageBitmap>();
+  draw(data: IShapeDrawData<EmojiParticle>): void {
+    const { particle, context, radius, fill, stroke } = data,
+      shapeData = particle.shapeData as IEmojiShape | undefined;
 
-  destroy(): void {
-    for (const [key, data] of this._emojiShapeDict) {
-      if (data instanceof ImageBitmap) {
-        data.close();
-      }
+    if (!shapeData?.value) {
+      return;
+    }
 
-      this._emojiShapeDict.delete(key);
+    const emoji = itemFromSingleOrMultiple(shapeData.value, particle.randomIndexData);
+
+    if (!emoji) {
+      return;
+    }
+
+    const value = typeof emoji === "string" ? emoji : emoji.value,
+      font = (typeof emoji === "string" ? shapeData.font : emoji.font) ?? defaultFont;
+
+    context.font = `400 ${(radius * double).toString()}px ${font}`;
+    context.textBaseline = "middle";
+    context.textAlign = "center";
+
+    if (fill) {
+      context.fillText(value, noPadding, noPadding);
+    }
+
+    if (stroke) {
+      context.strokeText(value, noPadding, noPadding);
     }
   }
 
-  draw(data: IShapeDrawData<EmojiParticle>): void {
-    const key = data.particle.emojiDataKey;
+  getDescriptor(particle: EmojiParticle): string {
+    const shapeData = particle.shapeData as IEmojiShape | undefined,
+      dataValue = shapeData?.value;
 
-    if (!key) {
-      return;
+    if (!dataValue) {
+      return "emoji";
     }
 
-    const image = this._emojiShapeDict.get(key);
+    const emoji = itemFromSingleOrMultiple(dataValue, particle.randomIndexData),
+      value = typeof emoji === "string" ? emoji : emoji?.value,
+      font = (typeof emoji === "string" ? shapeData.font : emoji?.font) ?? defaultFont,
+      padding = (typeof emoji === "string" ? shapeData.padding : emoji?.padding) ?? noPadding,
+      tint = (typeof emoji === "string" ? shapeData.tint : emoji?.tint) === true,
+      maxSize = getRangeMax(particle.size.value),
+      tintColor = tint ? (particle.getFillColor() ?? particle.getStrokeColor()) : undefined,
+      tintKey = tintColor ? `${Math.round(tintColor.h)}:${Math.round(tintColor.s)}:${Math.round(tintColor.l)}` : "none",
+      tintValueKey = tint ? `:c:${tintKey}` : "";
 
-    if (!image) {
-      return;
+    return `emoji:${value}:${font}:${padding}:${tint ? "tint" : "raw"}:${maxSize}${tintValueKey}`;
+  }
+
+  getMetadata(particle: EmojiParticle): ITextureMetadata {
+    const shapeData = particle.shapeData as IEmojiShape | undefined,
+      dataValue = shapeData?.value;
+
+    if (!dataValue) {
+      return {
+        cachePolicy: CachePolicy.Static,
+        colorMode: TextureColorMode.Multi,
+      };
     }
 
-    drawEmoji(data, image);
+    const emoji = itemFromSingleOrMultiple(dataValue, particle.randomIndexData),
+      padding = (typeof emoji === "string" ? shapeData.padding : emoji?.padding) ?? noPadding,
+      tint = (typeof emoji === "string" ? shapeData.tint : emoji?.tint) === true,
+      radius = particle.getRadius(),
+      minPadding = radius * basePadding,
+      texturePadding = Math.max(padding, minPadding);
+
+    return {
+      cachePolicy: tint ? CachePolicy.Particle : CachePolicy.Static,
+      colorMode: tint ? TextureColorMode.Single : TextureColorMode.Multi,
+      tintMode: tint ? "color" : undefined,
+      padding: texturePadding,
+    };
   }
 
   async init(container: Container): Promise<void> {
@@ -56,26 +105,13 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       return;
     }
 
-    const promises: Promise<void>[] = [loadFont(defaultFont)],
-      shapeOptions = validTypes.map(t => shapeData.options[t])[firstItem] as SingleOrMultiple<IEmojiShape>;
-
-    executeOnSingleOrMultiple(shapeOptions, shape => {
-      if (shape.font) {
-        promises.push(loadFont(shape.font));
-      }
-    });
-
-    await Promise.all(promises);
+    await loadFont(defaultFont);
   }
 
-  particleDestroy(particle: EmojiParticle): void {
-    particle.emojiDataKey = undefined;
-  }
+  particleInit(_container: Container, particle: EmojiParticle): void {
+    const shapeData = particle.shapeData as IEmojiShape | undefined;
 
-  particleInit(container: Container, particle: EmojiParticle): void {
-    const shapeData = particle.shapeData as unknown as IEmojiShape;
-
-    if (!shapeData.value) {
+    if (!shapeData?.value) {
       return;
     }
 
@@ -85,64 +121,12 @@ export class EmojiDrawer implements IShapeDrawer<EmojiParticle> {
       return;
     }
 
-    const emojiOptions =
-        typeof emoji === "string"
-          ? {
-              font: shapeData.font ?? defaultFont,
-              padding: shapeData.padding ?? noPadding,
-              value: emoji,
-            }
-          : {
-              font: defaultFont,
-              padding: noPadding,
-              ...shapeData,
-              ...emoji,
-            },
-      font = emojiOptions.font,
-      value = emojiOptions.value,
-      cacheKey = `${value}_${font}`;
+    const font = typeof emoji === "string" ? (shapeData.font ?? defaultFont) : (emoji.font ?? defaultFont);
 
-    if (this._emojiShapeDict.has(cacheKey)) {
-      particle.emojiDataKey = cacheKey;
-
-      return;
+    if (font !== defaultFont) {
+      void loadFont(font);
     }
 
-    const padding = emojiOptions.padding * double,
-      maxSize = getRangeMax(particle.size.value),
-      fullSize = maxSize + padding,
-      canvasSize = fullSize * double;
-
-    let cacheCanvas: HTMLCanvasElement | OffscreenCanvas,
-      context: CanvasRenderingContext2D | OffscreenCanvasRenderingContext2D | null;
-
-    if (typeof OffscreenCanvas === "undefined") {
-      const canvas = safeDocument().createElement("canvas");
-
-      canvas.width = canvasSize;
-      canvas.height = canvasSize;
-
-      context = canvas.getContext("2d", container.canvas.settings);
-      cacheCanvas = canvas;
-    } else {
-      cacheCanvas = new OffscreenCanvas(canvasSize, canvasSize);
-      context = cacheCanvas.getContext("2d", container.canvas.settings);
-    }
-
-    if (!context) {
-      return;
-    }
-
-    context.font = `400 ${(maxSize * double).toString()}px ${font}`;
-    context.textBaseline = "middle";
-    context.textAlign = "center";
-
-    context.fillText(value, fullSize, fullSize);
-
-    const image = cacheCanvas instanceof HTMLCanvasElement ? cacheCanvas : cacheCanvas.transferToImageBitmap();
-
-    this._emojiShapeDict.set(cacheKey, image);
-
-    particle.emojiDataKey = cacheKey;
+    particle.tint = (typeof emoji === "string" ? shapeData.tint : emoji.tint) === true;
   }
 }

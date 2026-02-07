@@ -1,13 +1,12 @@
-import type { ICoordinates, IDimension, IRgb } from "@tsparticles/engine";
 import type {
   IInteractivityParticlesOptions,
   InteractivityContainer,
-  InteractivityEngine,
   InteractivityParticle,
   InteractivityParticlesOptions,
 } from "@tsparticles/plugin-interactivity";
 import type { ILink } from "./Interfaces.js";
 import type { ILinks } from "./Options/Interfaces/ILinks.js";
+import type { IRgb } from "@tsparticles/engine";
 import type { Links } from "./Options/Classes/Links.js";
 
 export type LinkContainer = InteractivityContainer & {
@@ -26,28 +25,17 @@ export type LinkParticle = InteractivityParticle & {
   };
 };
 
-export interface LinkLineDrawParams {
-  begin: ICoordinates;
-  canvasSize: IDimension;
-  colorLine: IRgb;
-  context: CanvasRenderingContext2D;
-  end: ICoordinates;
-  engine: InteractivityEngine;
-  hdr: boolean;
-  links: Links;
-  maxDistance: number;
+export interface LinkBatch {
+  colorStyle: string;
+  coords: number[];
   opacity: number;
   width: number;
 }
 
-export interface LinkTriangleDrawParams {
-  colorTriangle: IRgb;
-  context: CanvasRenderingContext2D;
-  hdr: boolean;
-  opacityTriangle: number;
-  pos1: ICoordinates;
-  pos2: ICoordinates;
-  pos3: ICoordinates;
+export interface TriangleBatch {
+  colorStyle: string;
+  coords: number[];
+  opacity: number;
 }
 
 export type IParticlesLinkOptions = IInteractivityParticlesOptions & {

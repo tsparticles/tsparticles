@@ -1,4 +1,12 @@
-import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
+import {
+  CachePolicy,
+  type Container,
+  type IShapeDrawData,
+  type IShapeDrawer,
+  type ITextureMetadata,
+  TextureColorMode,
+  getRangeValue,
+} from "@tsparticles/engine";
 import type { ISpiralData } from "./ISpiralData.js";
 import type { SpiralParticle } from "./SpiralParticle.js";
 import { drawSpiral } from "./Utils.js";
@@ -10,6 +18,19 @@ const defaultInnerRadius = 1,
 export class SpiralDrawer implements IShapeDrawer<SpiralParticle> {
   draw(data: IShapeDrawData<SpiralParticle>): void {
     drawSpiral(data);
+  }
+
+  getDescriptor(particle: SpiralParticle): string {
+    return `spiral:${particle.spiralInnerRadius ?? ""}:${particle.spiralLineSpacing ?? ""}:${
+      particle.spiralWidthFactor ?? ""
+    }`;
+  }
+
+  getMetadata(): ITextureMetadata {
+    return {
+      cachePolicy: CachePolicy.Static,
+      colorMode: TextureColorMode.Single,
+    };
   }
 
   particleInit(container: Container, particle: SpiralParticle): void {

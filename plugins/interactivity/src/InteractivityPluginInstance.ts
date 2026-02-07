@@ -56,15 +56,18 @@ export class InteractivityPluginInstance implements IContainerPlugin {
   }
 
   postUpdate(delta: IDelta): void {
+    this.interactionManager.globalInteract(delta);
     this.interactionManager.externalInteract(delta);
   }
 
   async preInit(): Promise<void> {
-    await this.interactionManager.init();
+    await this.interactionManager.initInteractors();
+    this.interactionManager.init();
   }
 
   async redrawInit(): Promise<void> {
-    await this.interactionManager.init();
+    await this.interactionManager.initInteractors();
+    this.interactionManager.init();
   }
 
   start(): Promise<void> {

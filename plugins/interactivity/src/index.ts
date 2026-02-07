@@ -1,6 +1,6 @@
 import { type Container, type Engine, type Particle, getItemsFromInitializer } from "@tsparticles/engine";
 import { type InteractivityContainer, type InteractivityEngine, type InteractorInitializer } from "./types.js";
-import { type IInteractor } from "./IInteractor.js";
+import { type IInteractor } from "./Interfaces/IInteractor.js";
 
 declare const __VERSION__: string;
 
@@ -77,16 +77,19 @@ export function ensureInteractivityPluginLoaded(e: InteractivityEngine): void {
   }
 }
 
-export * from "./DivType.js";
-export * from "./ExternalInteractorBase.js";
-export type * from "./IExternalInteractor.js";
-export type * from "./IInteractivityData.js";
-export type * from "./IInteractor.js";
+export * from "./BaseClasses/ExternalInteractorBase.js";
+export * from "./BaseClasses/GlobalInteractorBase.js";
+export * from "./BaseClasses/ParticlesInteractorBase.js";
+export type * from "./Interfaces/IExternalInteractor.js";
+export type * from "./Interfaces/IGlobalInteractor.js";
+export type * from "./Interfaces/IInteractivityData.js";
+export type * from "./Interfaces/IInteractor.js";
+export type * from "./Interfaces/IParticleInteractorBase.js";
+export type * from "./Interfaces/IParticlesInteractor.js";
 export * from "./InteractivityConstants.js";
-export * from "./InteractivityDetect.js";
-export * from "./InteractorType.js";
-export type * from "./IParticlesInteractor.js";
-export * from "./ParticlesInteractorBase.js";
+export * from "./Enums/DivType.js";
+export * from "./Enums/InteractivityDetect.js";
+export * from "./Enums/InteractorType.js";
 export type * from "./types.js";
 export * from "./utils.js";
 export type * from "./Options/Interfaces/Events/IDivEvent.js";
