@@ -1,12 +1,9 @@
 import {
-  CachePolicy,
   type Container,
-  EffectLayer,
   type ICoordinates,
   type IEffectDrawer,
   type IShapeDrawData,
   type IShapeValues,
-  type ITextureMetadata,
   type Particle,
   type RangeValue,
   defaultAlpha,
@@ -164,21 +161,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       currentPos.x,
       currentPos.y,
     );
-  }
-
-  getDescriptor(particle: TrailParticle): string {
-    const { trailFade, trailLength, trailMaxWidth, trailMinWidth, trailTransform } = particle;
-
-    return `trail:${trailFade ? "fade" : "nofade"}:${trailLength ?? "auto"}:${trailMinWidth ?? "auto"}:${
-      trailMaxWidth ?? "auto"
-    }:${trailTransform ? "transform" : "static"}`;
-  }
-
-  getMetadata(): ITextureMetadata {
-    return {
-      cachePolicy: CachePolicy.Dynamic,
-      effectLayer: EffectLayer.External,
-    };
   }
 
   particleInit(container: Container, particle: TrailParticle): void {

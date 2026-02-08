@@ -4,9 +4,9 @@ import type { IPreload } from "./Options/Interfaces/IPreload.js";
 import type { Preload } from "./Options/Classes/Preload.js";
 
 export type ImageEngine = Engine & {
-  images?: Map<ImageContainer, IImage[]>;
+  images?: IImage[];
 
-  loadImage?: (container: ImageContainer, data: IPreload) => Promise<void>;
+  loadImage?: (data: IPreload) => Promise<void>;
 };
 
 export type IPreloadOptions = IOptions & {

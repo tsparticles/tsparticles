@@ -1,25 +1,17 @@
 import {
-  CachePolicy,
   type Container,
   type IShapeDrawData,
   type IShapeDrawer,
-  type ITextureMetadata,
-  TextureColorMode,
   defaultAlpha,
   defaultRatio,
   double,
 } from "@tsparticles/engine";
-import { type IImage, type IParticleImage, type ImageParticle, shapeTypes } from "./Utils.js";
+import { type IImage, type IParticleImage, type ImageParticle, replaceImageColor, shapeTypes } from "./Utils.js";
 import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IImageShape } from "./IImageShape.js";
 import { drawGif } from "./GifUtils/Utils.js";
 
-const sides = 12,
-  startingFrame = 0,
-  defaultLoopCount = 0,
-  loopDecrement = 1,
-  lastFrameOffset = 1,
-  svgExtension = ".svg";
+const sides = 12;
 
 /**
  * Particles Image Drawer
@@ -33,6 +25,16 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
    */
   constructor(engine: ImageEngine) {
     this._engine = engine;
+  }
+
+  /**
+   * Adds an image to the given container
+   * @param image - the image to add to the container collection
+   */
+  addImage(image: IImage): void {
+    this._engine.images ??= [];
+
+    this._engine.images.push(image);
   }
 
   /**
@@ -66,71 +68,6 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     context.globalAlpha = defaultAlpha;
   }
 
-  getDescriptor(particle: ImageParticle): string {
-    const shapeData = particle.shapeData as IImageShape | undefined,
-      image = particle.image,
-      source = image?.source ?? shapeData?.src ?? image?.data.source ?? "image",
-      name = shapeData?.name ?? image?.data.name ?? "image",
-      isGif = image?.gif ?? shapeData?.gif ?? false,
-      imageType = image?.data.type,
-      imageSrc = image?.source ?? shapeData?.src,
-      isSvg = imageType === "svg" || imageSrc?.toLowerCase().endsWith(svgExtension);
-
-    let ratio = image?.ratio;
-
-    ratio ??= shapeData?.width && shapeData.height ? shapeData.width / shapeData.height : defaultRatio;
-
-    const tint = shapeData?.tint ?? image?.tint,
-      tintColor = tint ? (particle.getFillColor() ?? particle.getStrokeColor()) : undefined;
-
-    let tintKey = "none";
-
-    if (tintColor) {
-      tintKey = `${Math.round(tintColor.h)}:${Math.round(tintColor.s)}:${Math.round(tintColor.l)}`;
-    }
-
-    let frame = "static";
-
-    if (isGif && image?.gifData) {
-      // Update GIF frame based on time (before caching)
-      this._updateGifFrame(particle, image);
-      frame = (particle.gifFrame ?? startingFrame).toString();
-    }
-
-    const tintLabel = tint ? "tint" : "raw",
-      imageLabel = isGif ? "gif" : "img";
-
-    let tintModeLabel = "none";
-    if (tint) {
-      tintModeLabel = isSvg ? "source-in" : "color";
-    }
-
-    const tintSuffix = tint ? `:c:${tintKey}` : "";
-
-    return `image:${name}:${source}:${tintLabel}:${tintModeLabel}:${ratio}:${imageLabel}:${frame}${tintSuffix}`;
-  }
-
-  getMetadata(particle: ImageParticle): ITextureMetadata {
-    const shapeData = particle.shapeData as IImageShape | undefined,
-      isGif = particle.image?.gif ?? shapeData?.gif ?? false,
-      tint = shapeData?.tint ?? particle.image?.tint,
-      imageType = particle.image?.data.type,
-      source = particle.image?.source ?? shapeData?.src,
-      isSvg = imageType === "svg" || source?.toLowerCase().endsWith(svgExtension);
-
-    let tintMode: "source-in" | "color" | undefined;
-
-    if (tint) {
-      tintMode = isSvg ? "source-in" : "color";
-    }
-
-    return {
-      cachePolicy: isGif || tint ? CachePolicy.Particle : CachePolicy.Static,
-      colorMode: tint ? TextureColorMode.Single : TextureColorMode.Multi,
-      tintMode: tintMode,
-    };
-  }
-
   /**
    * Returning the side count for the image, defaults to 12 for using the inner circle as rendering
    * When using non-transparent images this can be an issue with shadows
@@ -150,7 +87,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     const promises: Promise<void>[] = [];
 
     for (const imageData of options.preload) {
-      promises.push(this._engine.loadImage(container, imageData));
+      promises.push(this._engine.loadImage(imageData));
     }
 
     await Promise.all(promises);
@@ -167,14 +104,15 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const images = this._engine.images?.get(particle.container) ?? [],
-      image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+    this._engine.images ??= [];
+
+    const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (image) {
       return;
     }
 
-    void this._loadImageShape(particle.container, imageData).then(() => {
+    void this.loadImageShape(imageData).then(() => {
       this.loadShape(particle);
     });
   }
@@ -189,7 +127,9 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const images = this._engine.images?.get(particle.container) ?? [],
+    this._engine.images ??= [];
+
+    const images = this._engine.images,
       imageData = particle.shapeData as IImageShape | undefined;
 
     if (!imageData) {
@@ -203,7 +143,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const tint = imageData.tint || image.tint;
+    const replaceColor = imageData.replaceColor;
 
     if (image.loading) {
       setTimeout((): void => {
@@ -213,115 +153,60 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    const imageRes: IParticleImage = {
-      color,
-      data: image,
-      element: image.element,
-      gif: image.gif,
-      gifData: image.gifData,
-      gifLoopCount: image.gifLoopCount,
-      loaded: true,
-      ratio: imageData.width && imageData.height ? imageData.width / imageData.height : (image.ratio ?? defaultRatio),
-      tint: tint ?? false,
-      source: imageData.src,
-    };
+    void (async (): Promise<void> => {
+      let imageRes: IParticleImage;
 
-    if (!imageRes.ratio) {
-      imageRes.ratio = 1;
-    }
+      if (image.svgData && color) {
+        imageRes = await replaceImageColor(image, imageData, color, particle, container.hdr);
+      } else {
+        imageRes = {
+          color,
+          data: image,
+          element: image.element,
+          gif: image.gif,
+          gifData: image.gifData,
+          gifLoopCount: image.gifLoopCount,
+          loaded: true,
+          ratio:
+            imageData.width && imageData.height ? imageData.width / imageData.height : (image.ratio ?? defaultRatio),
+          replaceColor: replaceColor,
+          source: imageData.src,
+        };
+      }
 
-    const fill = imageData.fill ?? particle.shapeFill,
-      close = imageData.close ?? particle.shapeClose,
-      imageShape = {
-        image: imageRes,
-        fill,
-        close,
-      };
+      if (!imageRes.ratio) {
+        imageRes.ratio = 1;
+      }
 
-    particle.image = imageShape.image;
-    particle.shapeFill = imageShape.fill;
-    particle.shapeClose = imageShape.close;
+      const fill = imageData.fill ?? particle.shapeFill,
+        close = imageData.close ?? particle.shapeClose,
+        imageShape = {
+          image: imageRes,
+          fill,
+          close,
+        };
+
+      particle.image = imageShape.image;
+      particle.shapeFill = imageShape.fill;
+      particle.shapeClose = imageShape.close;
+    })();
   }
 
   /**
    * Loads the image shape
-   * @param container - the particles container
    * @param imageShape - the image shape to load
    * @internal
    */
-  private readonly _loadImageShape = async (container: ImageContainer, imageShape: IImageShape): Promise<void> => {
+  private readonly loadImageShape = async (imageShape: IImageShape): Promise<void> => {
     if (!this._engine.loadImage) {
       throw new Error(`Image shape not initialized`);
     }
 
-    await this._engine.loadImage(container, {
+    await this._engine.loadImage({
       gif: imageShape.gif,
       name: imageShape.name,
-      tint: imageShape.tint,
+      replaceColor: imageShape.replaceColor,
       src: imageShape.src,
     });
-  };
-
-  /**
-   * Updates GIF animation frame based on elapsed time
-   * @param particle - the particle with GIF image
-   * @param image - the particle image data
-   * @internal
-   */
-  private readonly _updateGifFrame = (particle: ImageParticle, image: IParticleImage): void => {
-    if (!image.gifData || !image.gif) {
-      return;
-    }
-
-    const now = Date.now();
-
-    // Initialize timing on first call
-    if (particle.gifTime === undefined) {
-      particle.gifTime = defaultLoopCount;
-      particle.gifFrame = startingFrame;
-      particle.gifLoopCount = image.gifLoopCount ?? defaultLoopCount;
-      particle.gifLastUpdate = now;
-      return;
-    }
-
-    // Calculate delta since last update
-    const lastUpdate = particle.gifLastUpdate ?? now,
-      delta = now - lastUpdate;
-
-    particle.gifLastUpdate = now;
-    particle.gifTime += delta;
-
-    let frameIndex = particle.gifFrame ?? startingFrame;
-    const frame = image.gifData.frames[frameIndex];
-
-    if (!frame) {
-      return;
-    }
-
-    // Advance frame if enough time has passed
-    while (particle.gifTime > frame.delayTime) {
-      particle.gifTime -= frame.delayTime;
-
-      if (++frameIndex >= image.gifData.frames.length) {
-        const loopCount = particle.gifLoopCount ?? defaultLoopCount;
-
-        if (loopCount > defaultLoopCount) {
-          particle.gifLoopCount = loopCount - loopDecrement;
-          frameIndex = startingFrame;
-        } else {
-          // Stop at last frame if no more loops
-          frameIndex = image.gifData.frames.length - lastFrameOffset;
-          break;
-        }
-      }
-
-      const nextFrame = image.gifData.frames[frameIndex];
-
-      if (!nextFrame) {
-        break;
-      }
-    }
-
-    particle.gifFrame = frameIndex;
   };
 }

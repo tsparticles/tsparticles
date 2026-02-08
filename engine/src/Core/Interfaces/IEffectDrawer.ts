@@ -1,9 +1,8 @@
 import type { Container } from "../Container.js";
 import type { IShapeDrawData } from "./IShapeDrawData.js";
-import type { ITextureComponent } from "./ITextureMetadata.js";
 import type { Particle } from "../Particle.js";
 
-export interface IEffectDrawer<TParticle extends Particle = Particle> extends ITextureComponent<TParticle> {
+export interface IEffectDrawer<TParticle extends Particle = Particle> {
   /**
    * Shape destroy function
    * @param container - the container initializing the shape

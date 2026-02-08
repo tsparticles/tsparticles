@@ -1,12 +1,4 @@
-import {
-  CachePolicy,
-  type Container,
-  type IShapeDrawData,
-  type IShapeDrawer,
-  type ITextureMetadata,
-  TextureColorMode,
-  deepExtend,
-} from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, deepExtend } from "@tsparticles/engine";
 import type { IShapePathData } from "./IShapePathData.js";
 import type { PathParticle } from "./PathParticle.js";
 import { drawPath } from "@tsparticles/path-utils";
@@ -20,23 +12,6 @@ export class PathDrawer implements IShapeDrawer<PathParticle> {
     }
 
     drawPath(context, radius, particle.pathData);
-  }
-
-  getDescriptor(particle: PathParticle): string {
-    const pathData = particle.pathData ?? (particle.shapeData as IShapePathData | undefined);
-
-    if (!pathData) {
-      return "path";
-    }
-
-    return `path:${JSON.stringify(pathData)}`;
-  }
-
-  getMetadata(): ITextureMetadata {
-    return {
-      cachePolicy: CachePolicy.Static,
-      colorMode: TextureColorMode.Single,
-    };
   }
 
   particleInit(_container: Container, particle: PathParticle): void {

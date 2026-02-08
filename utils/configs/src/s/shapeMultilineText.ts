@@ -33,7 +33,10 @@ const options: ISourceOptions = {
       },
     },
     size: {
-      value: 64,
+      value: {
+        min: 16,
+        max: 32,
+      },
     },
     move: {
       enable: true,

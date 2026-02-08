@@ -28,7 +28,6 @@ export type * from "./Core/Interfaces/IShapeDrawData.js";
 export type * from "./Core/Interfaces/IShapeDrawer.js";
 export type * from "./Core/Interfaces/IShapeValues.js";
 export type * from "./Core/Interfaces/ISlowParticleData.js";
-export type * from "./Core/Interfaces/ITextureMetadata.js";
 
 export type * from "./Options/Interfaces/Background/IBackground.js";
 

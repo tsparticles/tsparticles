@@ -104,6 +104,7 @@ async function initPlugins(engine: Engine): Promise<void> {
       { loadEmittersPlugin },
       { loadMotionPlugin },
 
+      // shapes
       { loadCardSuitsShape },
       { loadHeartShape },
       { loadImageShape },
@@ -112,6 +113,7 @@ async function initPlugins(engine: Engine): Promise<void> {
       { loadStarShape },
       { loadEmojiShape },
 
+      // updaters
       { loadRotateUpdater },
       { loadLifeUpdater },
       { loadRollUpdater },

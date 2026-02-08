@@ -1,12 +1,4 @@
-import {
-  CachePolicy,
-  type Container,
-  type IShapeDrawData,
-  type IShapeDrawer,
-  type ITextureMetadata,
-  TextureColorMode,
-  getRangeValue,
-} from "@tsparticles/engine";
+import { type Container, type IShapeDrawData, type IShapeDrawer, getRangeValue } from "@tsparticles/engine";
 import { drawCog, drawCogHole } from "./Utils.js";
 import type { CogParticle } from "./CogParticle.js";
 import type { ICogData } from "./ICogData.js";
@@ -24,19 +16,6 @@ export class CogDrawer implements IShapeDrawer<CogParticle> {
 
   draw(data: IShapeDrawData<CogParticle>): void {
     drawCog(data);
-  }
-
-  getDescriptor(particle: CogParticle): string {
-    return `cog:${particle.cogHoleRadius ?? ""}:${particle.cogInnerRadius ?? ""}:${
-      particle.cogInnerTaper ?? ""
-    }:${particle.cogNotches ?? ""}:${particle.cogOuterTaper ?? ""}`;
-  }
-
-  getMetadata(): ITextureMetadata {
-    return {
-      cachePolicy: CachePolicy.Static,
-      colorMode: TextureColorMode.Single,
-    };
   }
 
   particleInit(_container: Container, particle: CogParticle): void {

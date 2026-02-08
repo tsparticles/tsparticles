@@ -28,6 +28,55 @@ const emitterRate = {
           top: "none",
         },
       },
+      rotate: {
+        value: {
+          min: 0,
+          max: 360,
+        },
+        direction: "random",
+        move: true,
+        animation: {
+          enable: true,
+          speed: 60,
+        },
+      },
+      tilt: {
+        direction: "random",
+        enable: true,
+        value: {
+          min: 0,
+          max: 360,
+        },
+        animation: {
+          enable: true,
+          speed: 60,
+        },
+      },
+      roll: {
+        darken: {
+          enable: true,
+          value: 30,
+        },
+        enlighten: {
+          enable: true,
+          value: 30,
+        },
+        enable: true,
+        mode: "both",
+        speed: {
+          min: 15,
+          max: 25,
+        },
+      },
+      wobble: {
+        distance: 30,
+        enable: true,
+        move: true,
+        speed: {
+          min: -15,
+          max: 15,
+        },
+      },
     },
     background: {
       color: "#000000",

@@ -1,12 +1,9 @@
 import {
-  CachePolicy,
   type Container,
-  EffectLayer,
   type IEffectDrawer,
   type IParticlesOptions,
   type IShapeDrawData,
   type IShapeValues,
-  type ITextureMetadata,
   type Particle,
   type RangeValue,
   type RecursivePartial,
@@ -65,20 +62,6 @@ export class ParticlesDrawer implements IEffectDrawer<ParticlesParticle> {
     for (let i = 0; i < quantity; i++) {
       container.particles.addParticle(pos, pOptions);
     }
-  }
-
-  getDescriptor(particle: ParticlesParticle): string {
-    const rate = particle.particlesSpawnRate ?? defaultSpawnRate,
-      quantity = particle.particlesSpawnQuantity ?? defaultSpawnQuantity;
-
-    return `particles:${rate}:${quantity}`;
-  }
-
-  getMetadata(): ITextureMetadata {
-    return {
-      cachePolicy: CachePolicy.Dynamic,
-      effectLayer: EffectLayer.External,
-    };
   }
 
   particleInit(_container: Container, particle: ParticlesParticle): void {

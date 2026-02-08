@@ -20,9 +20,9 @@ export interface IImage {
   loading: boolean;
   name: string;
   ratio?: number;
+  replaceColor?: boolean;
   source: string;
   svgData?: string;
-  tint?: boolean;
   type: string;
 }
 
@@ -38,8 +38,8 @@ export interface IParticleImage {
   gifLoopCount?: number;
   loaded?: boolean;
   ratio: number;
+  replaceColor: boolean;
   source: string;
-  tint: boolean;
 }
 
 /**
@@ -47,7 +47,6 @@ export interface IParticleImage {
  */
 export type ImageParticle = Particle & {
   gifFrame?: number;
-  gifLastUpdate?: number;
   gifLoopCount?: number;
   gifTime?: number;
   image?: IParticleImage;
@@ -170,8 +169,8 @@ export function replaceImageColor(
       },
       loaded: false,
       ratio: imageData.width / imageData.height,
+      replaceColor: imageData.replaceColor,
       source: imageData.src,
-      tint: imageData.tint,
     };
 
   return new Promise<IParticleImage>(resolve => {

@@ -5,8 +5,8 @@ export class Preload implements IPreload, IOptionLoader<IPreload> {
   gif: boolean;
   height?: number;
   name?: string;
+  replaceColor?: boolean;
   src: string;
-  tint?: boolean;
   width?: number;
 
   constructor() {
@@ -31,12 +31,12 @@ export class Preload implements IPreload, IOptionLoader<IPreload> {
       this.name = data.name;
     }
 
-    if (data.src !== undefined) {
-      this.src = data.src;
+    if (data.replaceColor !== undefined) {
+      this.replaceColor = data.replaceColor;
     }
 
-    if (data.tint !== undefined) {
-      this.tint = data.tint;
+    if (data.src !== undefined) {
+      this.src = data.src;
     }
 
     if (data.width !== undefined) {
