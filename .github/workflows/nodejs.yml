@@ -12,7 +12,6 @@ on:
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
   NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-  firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
 
 jobs:
   build-and-deploy:
@@ -36,7 +35,7 @@ jobs:
           run_install: false
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+        run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js"
 
       - name: Get pnpm store directory
         id: pnpm-cache

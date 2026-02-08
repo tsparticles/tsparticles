@@ -35,7 +35,7 @@ jobs:
           run_install: false
 
       - name: Initialize Nx Cloud
-        run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
+        run: npx nx-cloud start-ci-run --distribute-on="3 linux-medium-js"
 
       - name: Get pnpm store directory
         id: pnpm-cache
