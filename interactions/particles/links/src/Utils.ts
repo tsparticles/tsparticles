@@ -1,6 +1,5 @@
-/* eslint-disable */
-import { getRandom } from "@tsparticles/engine";
 import type { LinkParticle } from "./Types.js";
+import { getRandom } from "@tsparticles/engine";
 
 export function getLinkKey(ids: number[]): string {
   ids.sort((a, b) => a - b);
