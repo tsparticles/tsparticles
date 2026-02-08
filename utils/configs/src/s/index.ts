@@ -25,6 +25,7 @@ import star from "./star.js";
 import strokeAnimation from "./strokeAnimation.js";
 import style from "./style.js";
 import svgReplace from "./svgReplace.js";
+import svgReplaceAnimated from "./svgReplaceAnimated.js";
 
 export default {
   seaAnemone,
@@ -54,4 +55,5 @@ export default {
   strokeAnimation,
   style,
   svgReplace,
+  svgReplaceAnimated,
 };

@@ -78,10 +78,8 @@ export function ensureInteractivityPluginLoaded(e: InteractivityEngine): void {
 }
 
 export * from "./BaseClasses/ExternalInteractorBase.js";
-export * from "./BaseClasses/GlobalInteractorBase.js";
 export * from "./BaseClasses/ParticlesInteractorBase.js";
 export type * from "./Interfaces/IExternalInteractor.js";
-export type * from "./Interfaces/IGlobalInteractor.js";
 export type * from "./Interfaces/IInteractivityData.js";
 export type * from "./Interfaces/IInteractor.js";
 export type * from "./Interfaces/IParticleInteractorBase.js";

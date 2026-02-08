@@ -16,7 +16,6 @@ import {
   touchStartEvent,
 } from "./InteractivityConstants.js";
 import type { IExternalInteractor } from "./Interfaces/IExternalInteractor.js";
-import type { IGlobalInteractor } from "./Interfaces/IGlobalInteractor.js";
 import type { IInteractivityData } from "./Interfaces/IInteractivityData.js";
 import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { IParticlesInteractor } from "./Interfaces/IParticlesInteractor.js";
@@ -46,12 +45,6 @@ export class InteractionManager {
   private _externalInteractors: IExternalInteractor[];
 
   /**
-   * Registered global interactivity managers
-   * @internal
-   */
-  private readonly _globalInteractors: IGlobalInteractor[];
-
-  /**
    * The interactors that are used for initialization
    * @internal
    */
@@ -77,7 +70,6 @@ export class InteractionManager {
     this._engine = engine;
     this._interactors = [];
     this._externalInteractors = [];
-    this._globalInteractors = [];
     this._particleInteractors = [];
     this._clickHandlers = new Map<string, ContainerClickHandler>();
     this._eventListeners = new InteractivityEventListeners(container, this);
@@ -228,16 +220,6 @@ export class InteractionManager {
     }
   }
 
-  globalInteract(delta: IDelta): void {
-    for (const interactor of this._globalInteractors) {
-      const { interactivityData } = this;
-
-      if (interactor.isEnabled(interactivityData)) {
-        interactor.interact(interactivityData, delta);
-      }
-    }
-  }
-
   handleClickMode(mode: string): void {
     if (this.container.destroyed) {
       return;
@@ -264,10 +246,6 @@ export class InteractionManager {
           break;
         case InteractorType.particles:
           this._particleInteractors.push(interactor as IParticlesInteractor);
-
-          break;
-        case InteractorType.global:
-          this._globalInteractors.push(interactor as IGlobalInteractor);
 
           break;
       }

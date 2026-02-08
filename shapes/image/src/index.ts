@@ -1,6 +1,6 @@
 import { type IImage, shapeTypes } from "./Utils.js";
+import type { ImageContainer, ImageEngine } from "./types.js";
 import type { IPreload } from "./Options/Interfaces/IPreload.js";
-import type { ImageEngine } from "./types.js";
 
 const extLength = 3;
 
@@ -9,18 +9,34 @@ const extLength = 3;
  * @param engine -
  */
 function addLoadImageToEngine(engine: ImageEngine): void {
-  if (engine.loadImage) {
-    return;
-  }
+  engine.getImages ??= (container: ImageContainer): IImage[] => {
+    engine.images ??= new Map();
 
-  engine.loadImage = async (data: IPreload): Promise<void> => {
+    let images = engine.images.get(container);
+
+    if (!images) {
+      images = [];
+
+      engine.images.set(container, images);
+    }
+
+    return images;
+  };
+
+  engine.loadImage ??= async (container: ImageContainer, data: IPreload): Promise<void> => {
+    if (!engine.getImages) {
+      throw new Error("No images collection found");
+    }
+
     if (!data.name && !data.src) {
       throw new Error("No image source provided");
     }
 
-    engine.images ??= [];
+    engine.images ??= new Map();
 
-    if (engine.images.some((t: IImage) => t.name === data.name || t.source === data.src)) {
+    const containerImages = engine.getImages(container);
+
+    if (containerImages.some((t: IImage) => t.name === data.name || t.source === data.src)) {
       return;
     }
 
@@ -36,7 +52,9 @@ function addLoadImageToEngine(engine: ImageEngine): void {
         ratio: data.width && data.height ? data.width / data.height : undefined,
       };
 
-      engine.images.push(image);
+      containerImages.push(image);
+
+      engine.images.set(container, containerImages);
 
       let imageFunc: (image: IImage) => Promise<void>;
 
@@ -75,7 +93,7 @@ export async function loadImageShape(engine: ImageEngine): Promise<void> {
 
     addLoadImageToEngine(e);
 
-    e.addPlugin(new ImagePreloaderPlugin());
+    e.addPlugin(new ImagePreloaderPlugin(e));
     e.addShape(shapeTypes, async () => {
       const { ImageDrawer } = await import("./ImageDrawer.js");
 

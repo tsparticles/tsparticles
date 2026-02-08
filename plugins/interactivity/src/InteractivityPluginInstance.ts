@@ -56,7 +56,6 @@ export class InteractivityPluginInstance implements IContainerPlugin {
   }
 
   postUpdate(delta: IDelta): void {
-    this.interactionManager.globalInteract(delta);
     this.interactionManager.externalInteract(delta);
   }
 
