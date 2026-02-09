@@ -66,7 +66,6 @@ export * from "./Options/Classes/Particles/Size/SizeAnimation.js";
 export * from "./Options/Classes/Particles/ZIndex/ZIndex.js";
 
 export * from "./Options/Classes/ResizeEvent.js";
-export * from "./Options/Classes/Zoom.js";
 export * from "./Options/Classes/ValueWithRandom.js";
 
 export * from "./Utils/CanvasUtils.js";

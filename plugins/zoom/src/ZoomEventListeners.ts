@@ -1,6 +1,8 @@
 import {
   defaultZoom,
   initialTouchDistance,
+  manageListener,
+  safeDocument,
   touchCenterDivisor,
   touchPointIndexFirst,
   touchPointIndexSecond,
@@ -8,9 +10,8 @@ import {
   zoomGestureFactor,
   zoomInFactor,
   zoomOutFactor,
-} from "./Constants.js";
-import { manageListener, safeDocument } from "../../Utils/Utils.js";
-import type { Container } from "../Container.js";
+} from "@tsparticles/engine";
+import type { ZoomContainer } from "./types.js";
 
 interface ZoomEventListenersHandlers {
   readonly gestureChange: EventListenerOrEventListenerObject;
@@ -32,7 +33,7 @@ export class ZoomEventListeners {
    * Zoom events listener constructor
    * @param container - the calling container
    */
-  constructor(private readonly container: Container) {
+  constructor(private readonly container: ZoomContainer) {
     this._gestureScale = defaultZoom as number;
     this._touchDistance = initialTouchDistance as number;
     this._handlers = {
@@ -88,7 +89,7 @@ export class ZoomEventListeners {
 
     const zoomOptions = container.actualOptions.zoom;
 
-    if (!zoomOptions.enable) {
+    if (!zoomOptions?.enable) {
       return;
     }
 
@@ -168,7 +169,7 @@ export class ZoomEventListeners {
       return;
     }
 
-    if (!zoomOptions.enable) {
+    if (!zoomOptions?.enable) {
       return;
     }
 
@@ -230,7 +231,7 @@ export class ZoomEventListeners {
       return;
     }
 
-    if (!zoomOptions.enable) {
+    if (!zoomOptions?.enable) {
       return;
     }
 
@@ -302,7 +303,7 @@ export class ZoomEventListeners {
       return;
     }
 
-    if (add && !options.zoom.enable) {
+    if (add && !options.zoom?.enable) {
       return;
     }
 

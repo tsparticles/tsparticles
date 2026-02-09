@@ -2,7 +2,6 @@ import type { IBackground } from "./Background/IBackground.js";
 import type { IFullScreen } from "./FullScreen/IFullScreen.js";
 import type { IParticlesOptions } from "./Particles/IParticlesOptions.js";
 import type { IResizeEvent } from "./IResizeEvent.js";
-import type { IZoom } from "./IZoom.js";
 import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
@@ -114,9 +113,4 @@ export interface IOptions {
    * The maximum layers used in the z-axis
    */
   zLayers: number;
-
-  /**
-   * Zoom options
-   */
-  zoom: IZoom;
 }

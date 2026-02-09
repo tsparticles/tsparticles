@@ -356,6 +356,9 @@ importers:
       '@tsparticles/plugin-trail':
         specifier: workspace:4.0.0-alpha.22
         version: link:../../plugins/trail/dist
+      '@tsparticles/plugin-zoom':
+        specifier: workspace:4.0.0-alpha.22
+        version: link:../../plugins/zoom/dist
       '@tsparticles/shape-arrow':
         specifier: workspace:4.0.0-alpha.22
         version: link:../../shapes/arrow/dist
@@ -965,6 +968,9 @@ importers:
       '@tsparticles/plugin-trail':
         specifier: workspace:4.0.0-alpha.22
         version: link:../../plugins/trail/dist
+      '@tsparticles/plugin-zoom':
+        specifier: workspace:4.0.0-alpha.22
+        version: link:../../plugins/zoom/dist
       '@tsparticles/shape-arrow':
         specifier: workspace:4.0.0-alpha.22
         version: link:../../shapes/arrow/dist
@@ -1924,6 +1930,13 @@ importers:
     publishDirectory: dist
 
   plugins/trail:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.22
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  plugins/zoom:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.22

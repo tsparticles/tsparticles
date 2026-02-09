@@ -11,7 +11,6 @@ import type { RangeValue } from "../../Types/RangeValue.js";
 import type { RecursivePartial } from "../../Types/RecursivePartial.js";
 import { ResizeEvent } from "./ResizeEvent.js";
 import type { SingleOrMultiple } from "../../Types/SingleOrMultiple.js";
-import { Zoom } from "./Zoom.js";
 import { loadParticlesOptions } from "../../Utils/OptionsUtils.js";
 import { setRangeValue } from "../../Utils/MathUtils.js";
 
@@ -46,7 +45,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   smooth: boolean;
   style: RecursivePartial<CSSStyleDeclaration>;
   zLayers;
-  readonly zoom;
 
   private readonly _container;
   private readonly _engine;
@@ -68,7 +66,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     this.pauseOnBlur = true;
     this.pauseOnOutsideViewport = true;
     this.resize = new ResizeEvent();
-    this.zoom = new Zoom();
     this.smooth = false;
     this.style = {};
     this.zLayers = 100;
@@ -154,8 +151,6 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     this.particles.load(data.particles);
 
     this.resize.load(data.resize);
-
-    this.zoom.load(data.zoom);
 
     this.style = deepExtend(this.style, data.style) as RecursivePartial<CSSStyleDeclaration>;
 

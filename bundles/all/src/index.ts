@@ -51,6 +51,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadSoundsPlugin },
       { loadThemesPlugin },
       { loadTrailPlugin },
+      { loadZoomPlugin },
 
       { loadExportImagePlugin },
       { loadExportJSONPlugin },
@@ -134,6 +135,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-sounds"),
       import("@tsparticles/plugin-themes"),
       import("@tsparticles/plugin-trail"),
+      import("@tsparticles/plugin-zoom"),
 
       import("@tsparticles/plugin-export-image"),
       import("@tsparticles/plugin-export-json"),
@@ -223,6 +225,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadSoundsPlugin(e),
       loadThemesPlugin(e),
       loadTrailPlugin(e),
+      loadZoomPlugin(e),
 
       loadExportImagePlugin(e),
       loadExportJSONPlugin(e),

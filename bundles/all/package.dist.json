@@ -160,6 +160,7 @@
     "@tsparticles/plugin-sounds": "4.0.0-alpha.22",
     "@tsparticles/plugin-themes": "4.0.0-alpha.22",
     "@tsparticles/plugin-trail": "4.0.0-alpha.22",
+    "@tsparticles/plugin-zoom": "4.0.0-alpha.22",
     "@tsparticles/shape-arrow": "4.0.0-alpha.22",
     "@tsparticles/shape-cards": "4.0.0-alpha.22",
     "@tsparticles/shape-cog": "4.0.0-alpha.22",

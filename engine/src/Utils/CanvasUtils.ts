@@ -59,33 +59,13 @@ export function drawParticle(data: IDrawParticleParams): void {
   const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data,
     pos = particle.getPosition(),
     transformData = particle.getTransformData(transform),
-    canvas = container.canvas,
-    zoom = canvas.zoom,
-    drawScale = zoom;
+    drawScale = defaultZoom,
+    drawPosition = {
+      x: pos.x,
+      y: pos.y,
+    };
 
-  let drawPosition = {
-    x: pos.x,
-    y: pos.y,
-  };
-
-  if (zoom !== defaultZoom) {
-    const center = canvas.getZoomCenter(),
-      zoomedX = center.x + (pos.x - center.x) * zoom,
-      zoomedY = center.y + (pos.y - center.y) * zoom;
-
-    drawPosition = { x: zoomedX, y: zoomedY };
-
-    context.setTransform(
-      transformData.a * zoom,
-      transformData.b * zoom,
-      transformData.c * zoom,
-      transformData.d * zoom,
-      zoomedX,
-      zoomedY,
-    );
-  } else {
-    context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
-  }
+  context.setTransform(transformData.a, transformData.b, transformData.c, transformData.d, pos.x, pos.y);
 
   if (colorStyles.fill) {
     context.fillStyle = colorStyles.fill;
@@ -117,6 +97,10 @@ export function drawParticle(data: IDrawParticleParams): void {
     drawPosition,
     drawScale,
   };
+
+  for (const plugin of container.plugins) {
+    plugin.drawParticleTransform?.(drawData);
+  }
 
   drawBeforeEffect(container, drawData);
   drawShapeBeforeDraw(container, drawData);

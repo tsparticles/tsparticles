@@ -18,7 +18,6 @@ import type { ISourceOptions } from "../Types/ISourceOptions.js";
 import { Options } from "../Options/Classes/Options.js";
 import { Particles } from "./Particles.js";
 import { Retina } from "./Retina.js";
-import { ZoomEventListeners } from "./Utils/ZoomEventListeners.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadOptions } from "../Utils/OptionsUtils.js";
 
@@ -144,7 +143,6 @@ export class Container {
   private _paused;
   private _smooth;
   private _sourceOptions;
-  private readonly _zoomListeners;
 
   /**
    * This is the core class, create an instance to have a new working particles manager
@@ -183,7 +181,6 @@ export class Container {
 
     /* ---------- tsParticles - start ------------ */
     this._eventListeners = new EventListeners(this);
-    this._zoomListeners = new ZoomEventListeners(this);
     this._engine.dispatchEvent(EventType.containerBuilt, { container: this });
   }
 
@@ -492,7 +489,6 @@ export class Container {
     await new Promise<void>(resolve => {
       const start = async (): Promise<void> => {
         this._eventListeners.addListeners();
-        this._zoomListeners.addListeners();
 
         for (const plugin of this.plugins) {
           await plugin.start?.();
@@ -526,7 +522,6 @@ export class Container {
     this._firstStart = true;
     this.started = false;
     this._eventListeners.removeListeners();
-    this._zoomListeners.removeListeners();
     this.pause();
     this.particles.clear();
     this.canvas.stop();

@@ -356,18 +356,6 @@ export class Canvas {
     particles.update(delta);
 
     this.draw(ctx => {
-      // Apply zoom transformation
-      const zoom = this.zoom;
-      if (zoom !== defaultZoom) {
-        ctx.save();
-
-        const { x: centerX, y: centerY } = this.getZoomCenter();
-
-        ctx.translate(centerX, centerY);
-        ctx.scale(zoom, zoom);
-        ctx.translate(-centerX, -centerY);
-      }
-
       for (const plugin of this._drawSettingsSetupPlugins) {
         plugin.drawSettingsSetup?.(ctx, delta);
       }
@@ -386,10 +374,6 @@ export class Canvas {
 
       for (const plugin of this._drawSettingsCleanupPlugins) {
         plugin.drawSettingsCleanup?.(ctx, delta);
-      }
-
-      if (zoom !== defaultZoom) {
-        ctx.restore();
       }
     });
   }

@@ -1,8 +1,9 @@
-import { maxZoom, minZoom } from "../../Core/Utils/Constants.js";
-import type { IOptionLoader } from "../Interfaces/IOptionLoader.js";
+import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { IZoom } from "../Interfaces/IZoom.js";
-import type { RecursivePartial } from "../../Types/RecursivePartial.js";
-import { isNull } from "../../Utils/TypeUtils.js";
+
+const defaultZoom = 1,
+  minZoom = 0.1,
+  maxZoom = 5;
 
 export class Zoom implements IZoom, IOptionLoader<IZoom> {
   enable;
@@ -33,3 +34,5 @@ export class Zoom implements IZoom, IOptionLoader<IZoom> {
     }
   }
 }
+
+export { defaultZoom, minZoom, maxZoom };

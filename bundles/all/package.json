@@ -168,6 +168,7 @@
     "@tsparticles/plugin-sounds": "workspace:4.0.0-alpha.22",
     "@tsparticles/plugin-themes": "workspace:4.0.0-alpha.22",
     "@tsparticles/plugin-trail": "workspace:4.0.0-alpha.22",
+    "@tsparticles/plugin-zoom": "workspace:4.0.0-alpha.22",
     "@tsparticles/shape-arrow": "workspace:4.0.0-alpha.22",
     "@tsparticles/shape-cards": "workspace:4.0.0-alpha.22",
     "@tsparticles/shape-cog": "workspace:4.0.0-alpha.22",
