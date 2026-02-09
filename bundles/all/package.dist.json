@@ -117,6 +117,7 @@
     "@tsparticles/path-levy": "4.0.0-alpha.22",
     "@tsparticles/path-perlin-noise": "4.0.0-alpha.22",
     "@tsparticles/path-polygon": "4.0.0-alpha.22",
+    "@tsparticles/path-random": "4.0.0-alpha.22",
     "@tsparticles/path-simplex-noise": "4.0.0-alpha.22",
     "@tsparticles/path-spiral": "4.0.0-alpha.22",
     "@tsparticles/path-svg": "4.0.0-alpha.22",

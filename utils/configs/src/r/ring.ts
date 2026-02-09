@@ -22,6 +22,8 @@ const options: ISourceOptions = {
         delay: {
           value: 0.75,
         },
+        clamp: true,
+        generator: "randomPathGenerator",
       },
     },
     shape: {

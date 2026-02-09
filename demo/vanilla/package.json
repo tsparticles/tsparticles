@@ -92,6 +92,7 @@
     "@tsparticles/path-levy": "workspace:4.0.0-alpha.22",
     "@tsparticles/path-perlin-noise": "workspace:4.0.0-alpha.22",
     "@tsparticles/path-polygon": "workspace:4.0.0-alpha.22",
+    "@tsparticles/path-random": "workspace:4.0.0-alpha.22",
     "@tsparticles/path-simplex-noise": "workspace:4.0.0-alpha.22",
     "@tsparticles/path-spiral": "workspace:4.0.0-alpha.22",
     "@tsparticles/path-svg": "workspace:4.0.0-alpha.22",

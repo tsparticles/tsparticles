@@ -133,6 +133,7 @@ app.use("/path-grid", express.static("./node_modules/@tsparticles/path-grid"));
 app.use("/path-levy", express.static("./node_modules/@tsparticles/path-levy"));
 app.use("/path-perlin-noise", express.static("./node_modules/@tsparticles/path-perlin-noise"));
 app.use("/path-polygon", express.static("./node_modules/@tsparticles/path-polygon"));
+app.use("/path-random", express.static("./node_modules/@tsparticles/path-random"));
 app.use("/path-simplex-noise", express.static("./node_modules/@tsparticles/path-simplex-noise"));
 app.use("/path-spiral", express.static("./node_modules/@tsparticles/path-spiral"));
 app.use("/path-svg", express.static("./node_modules/@tsparticles/path-svg"));
