@@ -42,6 +42,7 @@ export type * from "./Options/Interfaces/IOptionLoader.js";
 export type * from "./Options/Interfaces/IOptions.js";
 export type * from "./Options/Interfaces/IOptionsColor.js";
 export type * from "./Options/Interfaces/IResizeEvent.js";
+export type * from "./Options/Interfaces/IZoom.js";
 export type * from "./Options/Interfaces/IValueWithRandom.js";
 
 export type * from "./Options/Interfaces/Particles/Bounce/IParticlesBounce.js";

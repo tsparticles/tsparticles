@@ -56,17 +56,17 @@ const defaultTransform = {
 
 export class TrailDrawer implements IEffectDrawer<TrailParticle> {
   drawAfter(data: IShapeDrawData<TrailParticle>): void {
-    const { context, radius, particle, transformData } = data,
-      diameter = radius * double,
+    const { context, drawPosition, drawRadius, drawScale, particle, transformData } = data,
+      diameter = drawRadius * double,
       pxRatio = particle.container.retina.pixelRatio,
-      currentPos = particle.getPosition(),
       trail = particle.trail;
 
     if (!trail || !particle.trailLength) {
       return;
     }
 
-    const pathLength = particle.trailLength + radius;
+    const currentPos = drawPosition,
+      pathLength = particle.trailLength * drawScale + drawRadius;
 
     trail.push({
       color: context.fillStyle || context.strokeStyle,
@@ -87,8 +87,8 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
     const trailLength = Math.min(trail.length, pathLength),
       canvasSize = {
-        width: particle.container.canvas.size.width + diameter,
-        height: particle.container.canvas.size.height + diameter,
+        width: particle.container.canvas.size.width * drawScale + diameter,
+        height: particle.container.canvas.size.height * drawScale + diameter,
       },
       trailPos = trail[trailLength - trailLengthOffset];
 
@@ -106,7 +106,17 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       }
 
       const position = step.position,
-        stepTransformData = particle.trailTransform ? (step.transformData ?? defaultTransform) : defaultTransform;
+        stepTransformData = particle.trailTransform ? (step.transformData ?? defaultTransform) : defaultTransform,
+        dx = lastPos.x - position.x,
+        dy = lastPos.y - position.y,
+        distance = Math.sqrt(dx * dx + dy * dy);
+
+      // Skip segment if distance is too large (wrap or zoom change)
+      if (distance > pathLength * double) {
+        lastPos = position;
+
+        continue;
+      }
 
       context.setTransform(
         stepTransformData.a,
@@ -118,33 +128,30 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
       );
 
       context.beginPath();
-      context.moveTo(lastPos.x - position.x, lastPos.y - position.y);
+      context.moveTo(dx, dy);
 
       const warp = {
         x: (lastPos.x + canvasSize.width) % canvasSize.width,
         y: (lastPos.y + canvasSize.height) % canvasSize.height,
       };
 
-      if (
-        Math.abs(lastPos.x - position.x) > canvasSize.width * half ||
-        Math.abs(lastPos.y - position.y) > canvasSize.height * half
-      ) {
+      if (Math.abs(dx) > canvasSize.width * half || Math.abs(dy) > canvasSize.height * half) {
         lastPos = position;
 
         continue;
       }
 
       context.lineTo(
-        Math.abs(lastPos.x - position.x) > canvasSize.width * half ? warp.x : originPoint.x,
-        Math.abs(lastPos.y - position.y) > canvasSize.height * half ? warp.y : originPoint.y,
+        Math.abs(dx) > canvasSize.width * half ? warp.x : originPoint.x,
+        Math.abs(dy) > canvasSize.height * half ? warp.y : originPoint.y,
       );
 
-      const width = Math.max((i / trailLength) * diameter, pxRatio, particle.trailMinWidth ?? minWidth),
+      const width = Math.max((i / trailLength) * diameter, pxRatio, (particle.trailMinWidth ?? minWidth) * drawScale),
         oldAlpha = context.globalAlpha;
 
       context.globalAlpha = particle.trailFade ? i / trailLength : defaultAlpha;
 
-      context.lineWidth = particle.trailMaxWidth ? Math.min(width, particle.trailMaxWidth) : width;
+      context.lineWidth = particle.trailMaxWidth ? Math.min(width, particle.trailMaxWidth * drawScale) : width;
       context.strokeStyle = step.color;
       context.stroke();
 
@@ -152,15 +159,6 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
       lastPos = position;
     }
-
-    context.setTransform(
-      transformData.a,
-      transformData.b,
-      transformData.c,
-      transformData.d,
-      currentPos.x,
-      currentPos.y,
-    );
   }
 
   particleInit(container: Container, particle: TrailParticle): void {
