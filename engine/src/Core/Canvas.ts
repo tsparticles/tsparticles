@@ -6,7 +6,6 @@ import {
   generatedAttribute,
   half,
   minimumSize,
-  originPoint,
   zIndexFactorOffset,
 } from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
@@ -138,7 +137,7 @@ export class Canvas {
   /**
    * Zoom center point (for centered zooming)
    */
-  private _zoomCenter: ICoordinates = { ...originPoint };
+  private _zoomCenter?: ICoordinates;
 
   /**
    * Constructor of canvas manager
@@ -380,12 +379,15 @@ export class Canvas {
 
   getZoomCenter(): ICoordinates {
     const pxRatio = this.container.retina.pixelRatio,
-      zoomCenter = this._zoomCenter,
       { width, height } = this.size;
 
+    if (this._zoomCenter) {
+      return this._zoomCenter;
+    }
+
     return {
-      x: zoomCenter.x || (width * half) / pxRatio,
-      y: zoomCenter.y || (height * half) / pxRatio,
+      x: (width * half) / pxRatio,
+      y: (height * half) / pxRatio,
     };
   }
 
@@ -685,15 +687,14 @@ export class Canvas {
    */
   setZoom(zoomLevel: number, center?: ICoordinates): void {
     this.zoom = zoomLevel;
-    if (center) {
-      this._zoomCenter = center;
-    }
+    this._zoomCenter = center;
   }
 
   stop(): void {
     this._safeMutationObserver(obs => {
       obs.disconnect();
     });
+
     this._mutationObserver = undefined;
 
     this.draw(ctx => {

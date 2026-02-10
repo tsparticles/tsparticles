@@ -5,6 +5,18 @@ declare const __VERSION__: string;
 export type { IZoom } from "./Options/Interfaces/IZoom.js";
 export type { IZoomOptions, ZoomContainer, ZoomOptions } from "./types.js";
 export { Zoom } from "./Options/Classes/Zoom.js";
+export {
+  initialTouchDistance,
+  maxZoom,
+  minZoom,
+  touchCenterDivisor,
+  touchPointIndexFirst,
+  touchPointIndexSecond,
+  touchPointsCount,
+  zoomGestureFactor,
+  zoomInFactor,
+  zoomOutFactor,
+} from "./Utils/Constants.js";
 
 /**
  * @param engine - The engine instance

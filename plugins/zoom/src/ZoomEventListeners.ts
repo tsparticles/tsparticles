@@ -1,8 +1,6 @@
+import { defaultZoom, manageListener, safeDocument } from "@tsparticles/engine";
 import {
-  defaultZoom,
   initialTouchDistance,
-  manageListener,
-  safeDocument,
   touchCenterDivisor,
   touchPointIndexFirst,
   touchPointIndexSecond,
@@ -10,13 +8,14 @@ import {
   zoomGestureFactor,
   zoomInFactor,
   zoomOutFactor,
-} from "@tsparticles/engine";
+} from "./Utils/Constants.js";
 import type { ZoomContainer } from "./types.js";
 
 interface ZoomEventListenersHandlers {
   readonly gestureChange: EventListenerOrEventListenerObject;
   readonly gestureEnd: EventListenerOrEventListenerObject;
   readonly gestureStart: EventListenerOrEventListenerObject;
+  readonly touchEnd: EventListenerOrEventListenerObject;
   readonly touchMove: EventListenerOrEventListenerObject;
   readonly wheel: EventListenerOrEventListenerObject;
 }
@@ -51,6 +50,9 @@ export class ZoomEventListeners {
       },
       touchMove: (e: Event): void => {
         this._handleTouchZoom(e as TouchEvent);
+      },
+      touchEnd: (): void => {
+        this._handleTouchEnd();
       },
     };
   }
@@ -130,6 +132,26 @@ export class ZoomEventListeners {
    * @param event - the gesture event
    */
   private readonly _handleGestureEnd = (event: Event): void => {
+    const container = this.container,
+      canvas = container.canvas as {
+        element?: HTMLCanvasElement;
+      },
+      canvasEl = canvas.element;
+
+    if (!canvasEl) {
+      return;
+    }
+
+    const zoomOptions = container.actualOptions.zoom;
+
+    if (!zoomOptions?.enable) {
+      return;
+    }
+
+    if (!this._isEventInsideCanvas(event, canvasEl)) {
+      return;
+    }
+
     event.preventDefault();
 
     this._gestureScale = defaultZoom as number;
@@ -141,6 +163,26 @@ export class ZoomEventListeners {
    * @param event - the gesture event
    */
   private readonly _handleGestureStart = (event: Event): void => {
+    const container = this.container,
+      canvas = container.canvas as {
+        element?: HTMLCanvasElement;
+      },
+      canvasEl = canvas.element;
+
+    if (!canvasEl) {
+      return;
+    }
+
+    const zoomOptions = container.actualOptions.zoom;
+
+    if (!zoomOptions?.enable) {
+      return;
+    }
+
+    if (!this._isEventInsideCanvas(event, canvasEl)) {
+      return;
+    }
+
     event.preventDefault();
 
     this._gestureScale = defaultZoom as number;
@@ -188,6 +230,15 @@ export class ZoomEventListeners {
       mouseY = (event.clientY - rect.top) * pixelRatio;
 
     canvas.setZoom(newZoom, { x: mouseX, y: mouseY });
+  };
+
+  /**
+   * Handles touch end and touch cancel events to reset touch distance
+   * @internal
+   * @param event - the touch event
+   */
+  private readonly _handleTouchEnd = (): void => {
+    this._touchDistance = initialTouchDistance as number;
   };
 
   /**
@@ -320,5 +371,7 @@ export class ZoomEventListeners {
     manageListener(canvas, "gestureend", handlers.gestureEnd, add, listenerOptions);
     manageListener(canvas, "wheel", handlers.wheel, add, listenerOptions);
     manageListener(canvas, "touchmove", handlers.touchMove, add, listenerOptions);
+    manageListener(canvas, "touchend", handlers.touchEnd, add, listenerOptions);
+    manageListener(canvas, "touchcancel", handlers.touchEnd, add, listenerOptions);
   };
 }
