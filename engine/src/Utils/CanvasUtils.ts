@@ -1,11 +1,9 @@
-import { defaultZoom, lFactor, minStrokeWidth, originPoint } from "../Core/Utils/Constants.js";
-import { AlterType } from "../Enums/Types/AlterType.js";
+import { defaultZoom, minStrokeWidth, originPoint } from "../Core/Utils/Constants.js";
 import type { Container } from "../Core/Container.js";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IDimension } from "../Core/Interfaces/IDimension.js";
 import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams.js";
-import type { IHsl } from "../Core/Interfaces/Colors.js";
 import type { IShapeDrawData } from "../export-types.js";
 import type { Particle } from "../Core/Particle.js";
 
@@ -90,10 +88,7 @@ export function drawParticle(data: IDrawParticleParams): void {
     fill: particle.shapeFill,
     stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
     transformData,
-    position: {
-      x: pos.x,
-      y: pos.y,
-    },
+    position: { ...pos },
     drawPosition,
     drawScale,
   };
@@ -248,19 +243,4 @@ export function drawParticlePlugin(
   }
 
   plugin.drawParticle(context, particle, delta);
-}
-
-/**
- * Alters HSL values for enlighten or darken the given color.
- * @param color - The color to enlighten or darken.
- * @param type - The type of alteration.
- * @param value - The value of the alteration.
- * @returns the altered {@link IHsl} color
- */
-export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
-  return {
-    h: color.h,
-    s: color.s,
-    l: color.l + (type === AlterType.darken ? -lFactor : lFactor) * value,
-  };
 }
