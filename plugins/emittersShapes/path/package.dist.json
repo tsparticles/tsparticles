@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-path",
-  "version": "4.0.0-alpha.22",
+  "version": "4.0.0-alpha.23",
   "description": "tsParticles emitters shape path plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,8 +100,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.22",
-    "@tsparticles/plugin-emitters": "4.0.0-alpha.22"
+    "@tsparticles/engine": "4.0.0-alpha.23",
+    "@tsparticles/plugin-emitters": "4.0.0-alpha.23"
   },
   "publishConfig": {
     "access": "public"

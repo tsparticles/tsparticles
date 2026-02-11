@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/configs",
-  "version": "4.0.0-alpha.22",
+  "version": "4.0.0-alpha.23",
   "homepage": "https://particles.js.org",
   "scripts": {
     "build": "tsparticles-cli build",
@@ -106,7 +106,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.22"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.23"
   },
   "publishConfig": {
     "access": "public",

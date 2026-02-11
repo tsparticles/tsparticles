@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.23](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.22...v4.0.0-alpha.23) (2026-02-11)
+
+### Bug Fixes
+
+- some fixes in the zoom plugin ([9b9b7d0](https://github.com/tsparticles/tsparticles/commit/9b9b7d0355aa53eb37fe25ac04731315740faf21))
+
+### Features
+
+- added zoom feature (disabled by default) ([55f507a](https://github.com/tsparticles/tsparticles/commit/55f507a6c0e0b601b2d85182e326a96dfac7f2bf))
+- moved zoom feature to plugin ([8025e74](https://github.com/tsparticles/tsparticles/commit/8025e74370139b6718c55d554beab5cf3418eed8))
+
 # [4.0.0-alpha.22](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.21...v4.0.0-alpha.22) (2026-02-05)
 
 **Note:** Version bump only for package @tsparticles/engine
