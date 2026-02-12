@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-grab",
-  "version": "4.0.0-alpha.23",
+  "version": "4.0.0-alpha.24",
   "description": "tsParticles grab external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -95,9 +95,9 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/canvas-utils": "workspace:4.0.0-alpha.23",
-    "@tsparticles/engine": "workspace:4.0.0-alpha.23",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.23"
+    "@tsparticles/canvas-utils": "workspace:4.0.0-alpha.24",
+    "@tsparticles/engine": "workspace:4.0.0-alpha.24",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.24"
   },
   "publishConfig": {
     "access": "public",

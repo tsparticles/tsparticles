@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-branches",
-  "version": "4.0.0-alpha.23",
+  "version": "4.0.0-alpha.24",
   "description": "tsParticles branches path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -104,7 +104,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.23"
+    "@tsparticles/engine": "4.0.0-alpha.24"
   },
   "type": "module"
 }
