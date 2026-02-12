@@ -8,6 +8,7 @@ import {
   type RangeValue,
   defaultAlpha,
   double,
+  getDistances,
   getRangeValue,
   half,
   none,
@@ -107,9 +108,7 @@ export class TrailDrawer implements IEffectDrawer<TrailParticle> {
 
       const position = step.position,
         stepTransformData = particle.trailTransform ? (step.transformData ?? defaultTransform) : defaultTransform,
-        dx = lastPos.x - position.x,
-        dy = lastPos.y - position.y,
-        distance = Math.sqrt(dx * dx + dy * dy);
+        { distance, dx, dy } = getDistances(lastPos, position);
 
       // Skip segment if distance is too large (wrap or zoom change)
       if (distance > pathLength * double) {

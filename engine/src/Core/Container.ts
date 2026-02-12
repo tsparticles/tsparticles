@@ -263,7 +263,7 @@ export class Container {
 
     let refreshTime = force;
 
-    const frame = (timestamp: number): void => {
+    this._drawAnimationFrame = animate((timestamp: number): void => {
       if (refreshTime) {
         this._lastFrameTime = undefined;
 
@@ -271,10 +271,6 @@ export class Container {
       }
 
       this._nextFrame(timestamp);
-    };
-
-    this._drawAnimationFrame = animate(timestamp => {
-      frame(timestamp);
     });
   }
 

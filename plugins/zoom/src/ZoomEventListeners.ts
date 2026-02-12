@@ -260,9 +260,7 @@ export class ZoomEventListeners {
       return;
     }
 
-    const dx = touch1.clientX - touch2.clientX,
-      dy = touch1.clientY - touch2.clientY,
-      distance = Math.sqrt(dx * dx + dy * dy);
+    const distance = Math.hypot(touch1.clientX - touch2.clientX, touch1.clientY - touch2.clientY);
 
     if (this._touchDistance === initialTouchDistance) {
       this._touchDistance = distance;

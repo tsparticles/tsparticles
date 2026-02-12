@@ -405,11 +405,10 @@ export class Canvas {
         }
       }
     });
+
     this.resize();
     this._initStyle();
-
     this.initBackground();
-
     this._safeMutationObserver(obs => {
       if (!this.element || !(this.element instanceof Node)) {
         return;
@@ -417,7 +416,6 @@ export class Canvas {
 
       obs.observe(this.element, { attributes: true });
     });
-
     this.initUpdaters();
     this.initPlugins();
     this.paint();
