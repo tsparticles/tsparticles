@@ -3,14 +3,12 @@ import type { IRoundedRectData } from "./IRoundedRectData.js";
 import type { RoundedParticle } from "./RoundedParticle.js";
 import { drawRoundedRect } from "./Utils.js";
 
-const fixFactorSquare = 2,
-  fixFactor = Math.sqrt(fixFactorSquare),
-  defaultRadius = 5;
+const defaultRadius = 5;
 
 export class RoundedRectDrawer implements IShapeDrawer<RoundedParticle> {
   draw(data: IShapeDrawData<RoundedParticle>): void {
     const { context, particle, radius } = data,
-      fixedRadius = radius / fixFactor,
+      fixedRadius = radius * Math.SQRT1_2,
       fixedDiameter = fixedRadius * double,
       borderRadius = particle.borderRadius ?? defaultRadius;
 

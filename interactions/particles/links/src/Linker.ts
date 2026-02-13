@@ -15,8 +15,7 @@ import { CircleWarp } from "./CircleWarp.js";
 import { Links } from "./Options/Classes/Links.js";
 import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
-const squarePower = 2,
-  opacityOffset = 1,
+const opacityOffset = 1,
   minDistance = 0;
 
 /* calculates the shortest distance between two points considering canvas wrap */
@@ -35,7 +34,7 @@ function getWarpDistance(pos1: ICoordinates, pos2: ICoordinates, canvasSize: IDi
       y: Math.min(absDiffs.y, canvasSize.height - absDiffs.y),
     };
 
-  return Math.sqrt(warpDistances.x ** squarePower + warpDistances.y ** squarePower);
+  return Math.hypot(warpDistances.x, warpDistances.y);
 }
 
 export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle> {
