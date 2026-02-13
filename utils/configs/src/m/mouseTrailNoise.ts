@@ -5,22 +5,7 @@ const options: ISourceOptions = {
   name: "Mouse Trail Noise",
   particles: {
     number: {
-      value: 10,
-    },
-    color: {
-      value: {
-        h: 0,
-        s: 40,
-        l: {
-          min: 40,
-          max: 60,
-        },
-      },
-      animation: {
-        enable: true,
-        speed: 180,
-        sync: false,
-      },
+      value: 0,
     },
     shape: {
       type: "triangle",
@@ -50,7 +35,7 @@ const options: ISourceOptions = {
       path: {
         enable: true,
         options: {
-          size: 20,
+          size: 64,
           draw: false,
           increment: 0.005,
         },
@@ -121,6 +106,29 @@ const options: ISourceOptions = {
       trail: {
         delay: 0.1,
         quantity: 10,
+        particles: {
+          color: {
+            value: {
+              h: 0,
+              s: 40,
+              l: {
+                min: 40,
+                max: 60,
+              },
+            },
+          },
+        },
+        colorCoords: {
+          h: {
+            weights: {
+              x: 1,
+            },
+            value: {
+              max: 360,
+              min: 0,
+            },
+          },
+        },
       },
     },
   },
