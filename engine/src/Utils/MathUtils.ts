@@ -64,10 +64,8 @@ export function setAnimationFunctions(
   nextFrame: (callback: FrameRequestCallback) => number,
   cancel: (handle: number) => void,
 ): void {
-  _animationLoop.nextFrame = (callback: FrameRequestCallback): number => nextFrame(callback);
-  _animationLoop.cancel = (handle: number): void => {
-    cancel(handle);
-  };
+  _animationLoop.nextFrame = nextFrame;
+  _animationLoop.cancel = cancel;
 }
 
 /**
@@ -179,10 +177,9 @@ export function setRangeValue(source: RangeValue, value?: number): RangeValue {
  */
 export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { distance: number; dx: number; dy: number } {
   const dx = pointA.x - pointB.x,
-    dy = pointA.y - pointB.y,
-    squareExp = 2;
+    dy = pointA.y - pointB.y;
 
-  return { dx: dx, dy: dy, distance: Math.sqrt(dx ** squareExp + dy ** squareExp) };
+  return { dx: dx, dy: dy, distance: Math.hypot(dx, dy) };
 }
 
 /**

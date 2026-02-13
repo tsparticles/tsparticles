@@ -23,6 +23,7 @@ import {
   hPhase,
   half,
   identity,
+  lFactor,
   lMax,
   lMin,
   midColorValue,
@@ -38,6 +39,7 @@ import {
   triple,
 } from "../Core/Utils/Constants.js";
 import { isArray, isString } from "./TypeUtils.js";
+import { AlterType } from "../Enums/Types/AlterType.js";
 import { AnimationStatus } from "../Enums/AnimationStatus.js";
 import type { Engine } from "../Core/Engine.js";
 import type { HslAnimation } from "../Options/Classes/HslAnimation.js";
@@ -725,4 +727,19 @@ export function updateColor(color: IParticleHslAnimation | undefined, delta: IDe
   updateColorValue(h, ranges.h, false, delta);
   updateColorValue(s, ranges.s, true, delta);
   updateColorValue(l, ranges.l, true, delta);
+}
+
+/**
+ * Alters HSL values for enlighten or darken the given color.
+ * @param color - The color to enlighten or darken.
+ * @param type - The type of alteration.
+ * @param value - The value of the alteration.
+ * @returns the altered {@link IHsl} color
+ */
+export function alterHsl(color: IHsl, type: AlterType, value: number): IHsl {
+  return {
+    h: color.h,
+    s: color.s,
+    l: color.l + (type === AlterType.darken ? -lFactor : lFactor) * value,
+  };
 }

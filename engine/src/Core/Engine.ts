@@ -435,7 +435,9 @@ export class Engine {
    * init method, used by imports
    */
   async init(): Promise<void> {
-    if (this._initialized || this._isRunningLoaders) return;
+    if (this._initialized || this._isRunningLoaders) {
+      return;
+    }
 
     this._isRunningLoaders = true;
 

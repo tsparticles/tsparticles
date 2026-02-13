@@ -124,24 +124,6 @@ export class Vector3d implements ICoordinates3d {
   }
 
   /**
-   * Calculates the distance between the current vector and the given one
-   * @param v - the vector used for calculating the distance from the current one
-   * @returns the distance between the vectors
-   */
-  distanceTo(v: Vector3d): number {
-    return this.sub(v).length;
-  }
-
-  /**
-   * Get the distance squared between two vectors
-   * @param v - the vector used for calculating the distance from the current one
-   * @returns the distance squared between the vectors
-   */
-  distanceToSq(v: Vector3d): number {
-    return this.sub(v).getLengthSq();
-  }
-
-  /**
    * Divides the given scalar and the current vector together, without modifying it
    * @param n - the scalar value to divide from the current vector
    * @returns the divided vector
@@ -215,13 +197,10 @@ export class Vector3d implements ICoordinates3d {
    * Set the vector to the specified velocity
    * @param c - the coordinates used to set the current vector
    */
-  setTo(c: ICoordinates): void {
+  setTo(c: ICoordinates | ICoordinates3d): void {
     this.x = c.x;
     this.y = c.y;
-
-    const v3d = c as ICoordinates3d;
-
-    this.z = v3d.z ? v3d.z : originPoint.z;
+    this.z = "z" in c ? c.z : originPoint.z;
   }
 
   /**
@@ -249,10 +228,10 @@ export class Vector3d implements ICoordinates3d {
    * @param length - the new length
    * @internal
    */
-  private readonly _updateFromAngle: (angle: number, length: number) => void = (angle, length) => {
+  private _updateFromAngle(angle: number, length: number): void {
     this.x = Math.cos(angle) * length;
     this.y = Math.sin(angle) * length;
-  };
+  }
 }
 
 /**

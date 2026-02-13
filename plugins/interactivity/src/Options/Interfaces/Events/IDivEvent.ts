@@ -1,4 +1,4 @@
-import type { DivType } from "../../../DivType.js";
+import type { DivType } from "../../../Enums/DivType.js";
 import type { SingleOrMultiple } from "@tsparticles/engine";
 
 /**

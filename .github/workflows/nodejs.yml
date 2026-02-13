@@ -34,11 +34,18 @@ jobs:
       - name: Initialize Nx Cloud
         run: npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js"
 
-      - name: Setup pnpm cache
-        uses: actions/cache@v5
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v5
+        name: Setup pnpm cache
         with:
-          path: ~/.pnpm-store
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install

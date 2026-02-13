@@ -17,10 +17,13 @@ export async function loadExternalTrailInteraction(engine: Engine): Promise<void
     e.addInteractor?.("externalTrail", async container => {
       const { TrailMaker } = await import("./TrailMaker.js");
 
-      return new TrailMaker(container);
+      return new TrailMaker(e, container);
     });
   });
 }
 
 export * from "./Options/Classes/Trail.js";
 export type * from "./Options/Interfaces/ITrail.js";
+export type { ITrailColorWeight } from "./Options/Interfaces/ITrailColorWeight.js";
+export type { ITrailColorCoords } from "./Options/Interfaces/ITrailColorCoords.js";
+export type { ITrailColorComponent } from "./Options/Interfaces/ITrailColorComponent.js";

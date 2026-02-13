@@ -21,7 +21,7 @@ import {
 } from "./InteractivityConstants.js";
 import type { InteractionManager } from "./InteractionManager.js";
 import type { InteractivityContainer } from "./types.js";
-import { InteractivityDetect } from "./InteractivityDetect.js";
+import { InteractivityDetect } from "./Enums/InteractivityDetect.js";
 
 interface InteractivityEventListenersHandlers {
   readonly mouseDown: EventListenerOrEventListenerObject;
@@ -179,7 +179,7 @@ export class InteractivityEventListeners {
 
     canvas.setPointerEvents(html === canvas.element ? "initial" : "none");
 
-    if (!(options.interactivity?.events.onHover.enable || options.interactivity?.events.onClick.enable)) {
+    if (add && !(options.interactivity?.events.onHover.enable || options.interactivity?.events.onClick.enable)) {
       return;
     }
 
@@ -187,12 +187,19 @@ export class InteractivityEventListeners {
     manageListener(interactivityEl, touchStartEvent, handlers.touchStart, add);
     manageListener(interactivityEl, touchMoveEvent, handlers.touchMove, add);
 
-    if (options.interactivity.events.onClick.enable) {
+    if (add) {
+      if (options.interactivity?.events.onClick.enable) {
+        manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
+        manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
+        manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
+      } else {
+        /* el on touchend */
+        manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
+      }
+    } else {
       manageListener(interactivityEl, touchEndEvent, handlers.touchEndClick, add);
       manageListener(interactivityEl, mouseUpEvent, handlers.mouseUp, add);
       manageListener(interactivityEl, mouseDownEvent, handlers.mouseDown, add);
-    } else {
-      /* el on touchend */
       manageListener(interactivityEl, touchEndEvent, handlers.touchEnd, add);
     }
 

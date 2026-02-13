@@ -95,7 +95,6 @@ export interface IOptions {
    * Resize event options
    */
   resize: IResizeEvent;
-
   /**
    * Enables a smooth effect, by default it's disabled
    * When enabled the animation will speed up or slow down depending on fps

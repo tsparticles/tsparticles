@@ -84,7 +84,7 @@ export class Circle extends BaseRange {
     if (range instanceof Circle || range.type === (RangeType.circle as string)) {
       const circleRange = range as Circle,
         rSum = r + circleRange.radius,
-        dist = Math.sqrt(distPos.x ** squareExp + distPos.y ** squareExp);
+        dist = Math.hypot(distPos.x, distPos.y);
 
       return rSum > dist;
     } else if (range instanceof Rectangle || range.type === (RangeType.rectangle as string)) {

@@ -10,7 +10,7 @@ import type {
   RecursivePartial,
 } from "@tsparticles/engine";
 import type { IInteractivity } from "./Options/Interfaces/IInteractivity.js";
-import type { IInteractor } from "./IInteractor.js";
+import type { IInteractor } from "./Interfaces/IInteractor.js";
 import type { Interactivity } from "./Options/Classes/Interactivity.js";
 
 export type IInteractivityOptions = IOptions & {
