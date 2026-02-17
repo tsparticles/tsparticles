@@ -25,13 +25,6 @@
 - Impact: Lint rules are not protecting these files. File-level `eslint-disable` is especially dangerous as it silences ALL violations of that rule, including future ones.
 - Fix approach: For magic numbers in easing functions, extract named constants (e.g., `const bounceCoefficient = 7.5625`). For `no-non-null-assertion`, add proper null checks. For `no-useless-constructor`, remove empty constructors or use composition.
 
-**Committed Debug Log:**
-
-- Issue: `lerna-debug.log` is committed to the repository and not listed in `.gitignore`.
-- Files: `lerna-debug.log`
-- Impact: Clutters the repo, may contain local path information.
-- Fix approach: Add `lerna-debug.log` to `.gitignore` and remove from tracked files.
-
 **Outdated Security Policy:**
 
 - Issue: `SECURITY.md` lists v2.7.x as the only supported version. The project is currently at v4.0.0-alpha.24. No mention of v3.x or v4.x.
