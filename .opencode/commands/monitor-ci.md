@@ -54,12 +54,13 @@ Parse any overrides from `$ARGUMENTS` and merge with defaults.
 
 **CRITICAL**: The following behaviors are strictly prohibited:
 
-| Anti-Pattern                                                                                    | Why It's Bad                                  |
-| ----------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| Using CI provider CLIs with `--watch` flags (e.g., `gh pr checks --watch`, `glab ci status -w`) | Bypasses Nx Cloud self-healing entirely       |
-| Writing custom CI polling scripts                                                               | Unreliable, pollutes context, no self-healing |
-| Cancelling CI workflows/pipelines                                                               | Destructive, loses CI progress                |
-| Running CI checks on main agent                                                                 | Wastes main agent context tokens              |
+| Anti-Pattern                                                                                    | Why It's Bad                                                       |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Using CI provider CLIs with `--watch` flags (e.g., `gh pr checks --watch`, `glab ci status -w`) | Bypasses Nx Cloud self-healing entirely                            |
+| Writing custom CI polling scripts                                                               | Unreliable, pollutes context, no self-healing                      |
+| Cancelling CI workflows/pipelines                                                               | Destructive, loses CI progress                                     |
+| Running CI checks on main agent                                                                 | Wastes main agent context tokens                                   |
+| Independently analyzing/fixing CI failures while subagent polls                                 | Races with self-healing, causes duplicate fixes and confused state |
 
 **If this skill fails to activate**, the fallback is:
 
@@ -146,7 +147,7 @@ When verifiable (non-e2e) unverified tasks exist:
 | ANY verifiable task fails | Apply-locally + enhance flow |
 
 1. **Apply-locally + enhance flow:**
-   - Run `nx apply-locally <shortLink>`
+   - Run `nx-cloud apply-locally <shortLink>`
    - Enhance the code to fix failing tasks
    - Run failing tasks again to verify fix
    - If still failing → increment `local_verify_count`, loop back to enhance
@@ -192,19 +193,29 @@ The `couldAutoApplyTasks` field indicates whether the fix is eligible for automa
 - **`true`**: Fix is eligible for auto-apply. Subagent keeps polling while verification is in progress. Returns `fix_auto_applying` when verified, or `fix_available` if verification fails.
 - **`false`** or **`null`**: Fix requires manual action (apply via MCP, apply locally, or reject)
 
-**Key point**: When subagent returns `fix_auto_applying`, do NOT call MCP to apply - self-healing handles it. Just spawn a new subagent in wait mode.
+**Key point**: When subagent returns `fix_auto_applying`, do NOT call MCP to apply - self-healing handles it. Just spawn a new subagent in wait mode. No local git operations (no commit, no push).
+
+### Accidental Local Fix Recovery
+
+If you find yourself with uncommitted local changes from your own fix attempt when the subagent returns (e.g., you accidentally analyzed/fixed the failure while the subagent was polling):
+
+1. **Compare your local changes with the self-healing fix** (`suggestedFix` / `suggestedFixDescription`)
+2. **If identical or substantially similar** → discard only the files you modified (`git checkout -- <file1> <file2> ...`), then apply via MCP instead. Self-healing's pipeline is the preferred path. Do NOT discard unrelated user changes.
+3. **If meaningfully different** (your fix addresses something self-healing missed) → proceed with the Apply Locally + Enhance Flow
+
+Self-healing fixes go through proper CI verification. Always prefer the self-healing path when fixes overlap.
 
 ### Apply vs Reject vs Apply Locally
 
 - **Apply via MCP**: Calls `update_self_healing_fix({ shortLink, action: "APPLY" })`. Self-healing agent applies the fix in CI and a new CI Attempt spawns automatically. No local git operations needed.
-- **Apply Locally**: Runs `nx apply-locally <shortLink>`. Applies the patch to your local working directory and sets state to `APPLIED_LOCALLY`. Use this when you want to enhance the fix before pushing.
+- **Apply Locally**: Runs `nx-cloud apply-locally <shortLink>`. Applies the patch to your local working directory and sets state to `APPLIED_LOCALLY`. Use this when you want to enhance the fix before pushing.
 - **Reject via MCP**: Calls `update_self_healing_fix({ shortLink, action: "REJECT" })`. Marks fix as rejected. Use only when the fix is completely wrong and you'll fix from scratch.
 
 ### Apply Locally + Enhance Flow
 
-When the fix needs enhancement (use `nx apply-locally`, NOT reject):
+When the fix needs enhancement (use `nx-cloud apply-locally`, NOT reject):
 
-1. Apply the patch locally: `nx apply-locally <shortLink>` (this also updates state to `APPLIED_LOCALLY`)
+1. Apply the patch locally: `nx-cloud apply-locally <shortLink>` (this also updates state to `APPLIED_LOCALLY`)
 2. Make additional changes as needed
 3. Stage only the files you modified: `git add <file1> <file2> ...`
 4. Commit and push:
@@ -411,6 +422,9 @@ After spawning the background subagent, enter a monitoring loop:
 - Spawn subagent and passively say "Waiting for results..."
 - Check once and say "Still working, I'll wait"
 - Only show output when the subagent finishes
+- Independently analyze CI failures, read task output, or attempt fixes while subagent is polling
+
+**While the subagent is polling, your ONLY job is to relay its output.** Do not read CI task output, diagnose failures, generate fixes, modify code, or run tasks locally. All fix decisions happen in Step 3 AFTER the subagent returns with a status. Self-healing may already be working on a fix — independent local analysis races with it and causes duplicate/conflicting fixes.
 
 ### Step 3: Handle Subagent Response
 
@@ -517,14 +531,14 @@ Users can override default behaviors:
 
 ## Error Handling
 
-| Error                      | Action                                                                                |
-| -------------------------- | ------------------------------------------------------------------------------------- |
-| Git rebase conflict        | Report to user, exit                                                                  |
-| `nx apply-locally` fails   | Report to user, attempt manual patch or exit                                          |
-| MCP tool error             | Retry once, if fails report to user                                                   |
-| Subagent spawn failure     | Retry once, if fails exit with error                                                  |
-| No new CI Attempt detected | If `--auto-fix-workflow`, try lockfile update; otherwise report to user with guidance |
-| Lockfile auto-fix fails    | Report to user, exit with guidance to check CI logs                                   |
+| Error                          | Action                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------------------- |
+| Git rebase conflict            | Report to user, exit                                                                  |
+| `nx-cloud apply-locally` fails | Report to user, attempt manual patch or exit                                          |
+| MCP tool error                 | Retry once, if fails report to user                                                   |
+| Subagent spawn failure         | Retry once, if fails exit with error                                                  |
+| No new CI Attempt detected     | If `--auto-fix-workflow`, try lockfile update; otherwise report to user with guidance |
+| Lockfile auto-fix fails        | Report to user, exit with guidance to check CI logs                                   |
 
 ## Example Session
 

@@ -30,17 +30,12 @@ nx show projects -p 'tag:publishable,!tag:internal'
 # Filter by target (projects that have a specific target)
 nx show projects --withTarget build
 
-# Find affected projects (changed since base branch)
-nx show projects --affected
-nx show projects --affected --base=main
-nx show projects --affected --type app
-
 # Combine filters
 nx show projects --type lib --withTarget test
 nx show projects --affected --exclude="*-e2e"
 nx show projects -p "tag:scope:client,packages/*"
 
-# Negate patterns (use single quotes to prevent bash history expansion)
+# Negate patterns
 nx show projects -p '!tag:private'
 nx show projects -p '!*-e2e'
 
@@ -122,31 +117,7 @@ Key nx.json sections:
 
 ## Affected Projects
 
-Find projects affected by changes in the current branch.
-
-```bash
-# Affected since base branch (auto-detected)
-nx show projects --affected
-
-# Affected with explicit base
-nx show projects --affected --base=main
-nx show projects --affected --base=origin/main
-
-# Affected between two commits
-nx show projects --affected --base=abc123 --head=def456
-
-# Affected apps only
-nx show projects --affected --type app
-
-# Affected excluding e2e projects
-nx show projects --affected --exclude="*-e2e"
-
-# Affected by uncommitted changes
-nx show projects --affected --uncommitted
-
-# Affected by untracked files
-nx show projects --affected --untracked
-```
+If the user is asking about affected projects, read the [affected projects reference](references/AFFECTED.md) for detailed commands and examples.
 
 ## Common Exploration Patterns
 
