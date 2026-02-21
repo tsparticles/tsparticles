@@ -18,6 +18,8 @@ export type LinkContainer = InteractivityContainer & {
 
 export type LinkParticle = InteractivityParticle & {
   links?: ILink[];
+  linksDistance?: number;
+  linksWidth?: number;
   options: ParticlesLinkOptions;
   retina: {
     linksDistance?: number;

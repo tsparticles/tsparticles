@@ -27,11 +27,17 @@ const grabMode = "grab",
  */
 export class Grabber extends ExternalInteractorBase<GrabContainer> {
   private readonly _engine;
+  private _maxDistance;
 
   constructor(container: GrabContainer, engine: Engine) {
     super(container);
 
     this._engine = engine;
+    this._maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(): void {
@@ -45,6 +51,8 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
     if (!grab) {
       return;
     }
+
+    this._maxDistance = grab.distance;
 
     container.retina.grabModeDistance = grab.distance * container.retina.pixelRatio;
   }
@@ -74,7 +82,7 @@ export class Grabber extends ExternalInteractorBase<GrabContainer> {
       return;
     }
 
-    const query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
+    const query = container.particles.grid.queryCircle(mousePos, distance, p =>
       this.isEnabled(interactivityData, p),
     ) as LinkParticle[];
 

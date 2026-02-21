@@ -223,10 +223,13 @@ export class LinkInstance implements IContainerPlugin {
       return;
     }
 
+    particle.linksDistance = particle.options.links.distance;
+    particle.linksWidth = particle.options.links.width;
+
     const ratio = this._container.retina.pixelRatio;
 
-    particle.retina.linksDistance = particle.options.links.distance * ratio;
-    particle.retina.linksWidth = particle.options.links.width * ratio;
+    particle.retina.linksDistance = particle.linksDistance * ratio;
+    particle.retina.linksWidth = particle.linksWidth * ratio;
   }
 
   /**

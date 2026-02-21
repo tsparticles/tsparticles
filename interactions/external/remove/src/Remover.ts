@@ -17,6 +17,8 @@ const removeMode = "remove";
 export class Remover extends ExternalInteractorBase<RemoveContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  readonly maxDistance = 0;
+
   constructor(container: RemoveContainer) {
     super(container);
 

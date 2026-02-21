@@ -32,6 +32,8 @@ const trailMode = "trail",
   defaultWeight = 0;
 
 export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
+  readonly maxDistance = 0;
+
   private _delay: number;
   private readonly _engine;
   private _lastPosition?: ICoordinates;

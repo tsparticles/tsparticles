@@ -57,6 +57,7 @@ export class InteractivityPluginInstance implements IContainerPlugin {
 
   postUpdate(delta: IDelta): void {
     this.interactionManager.externalInteract(delta);
+    this.interactionManager.updateMaxDistance();
   }
 
   async preInit(): Promise<void> {

@@ -47,10 +47,13 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
 
   private readonly _engine;
 
+  private _maxDistance;
+
   constructor(engine: Engine, container: RepulseContainer) {
     super(container);
 
     this._engine = engine;
+    this._maxDistance = 0;
 
     container.repulse ??= { particles: [] };
 
@@ -90,6 +93,10 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     };
   }
 
+  get maxDistance(): number {
+    return this._maxDistance;
+  }
+
   clear(): void {
     // do nothing
   }
@@ -101,6 +108,8 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     if (!repulse) {
       return;
     }
+
+    this._maxDistance = repulse.distance;
 
     container.retina.repulseModeDistance = repulse.distance * container.retina.pixelRatio;
   }
@@ -208,7 +217,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
       }
 
       const range = new Circle(mouseClickPos.x, mouseClickPos.y, repulseRadius),
-        query = container.particles.quadTree.query(range, p => this.isEnabled(interactivityData, p));
+        query = container.particles.grid.query(range, p => this.isEnabled(interactivityData, p));
 
       for (const particle of query) {
         const { dx, dy, distance } = getDistances(mouseClickPos, particle.position),
@@ -255,7 +264,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
     divRepulse?: RepulseDiv,
   ) => void = (interactivityData, position, repulseRadius, area, divRepulse) => {
     const container = this.container,
-      query = container.particles.quadTree.query(area, p => this.isEnabled(interactivityData, p)),
+      query = container.particles.grid.query(area, p => this.isEnabled(interactivityData, p)),
       repulseOptions = container.actualOptions.interactivity?.modes.repulse;
 
     if (!repulseOptions) {
@@ -564,7 +573,7 @@ export class Repulser extends ExternalInteractorBase<RepulseContainer> {
         divRepulse?: RepulseDiv
     ): void {
         const container = this.container,
-            query = container.particles.quadTree.query(area, (p) => this.isEnabled(p)) as RepulseParticle[],
+            query = container.particles.grid.query(area, (p) => this.isEnabled(p)) as RepulseParticle[],
             repulseOptions = container.actualOptions.interactivity.modes.repulse;
 
         if (!repulseOptions) {

@@ -39,11 +39,17 @@ function getWarpDistance(pos1: ICoordinates, pos2: ICoordinates, canvasSize: IDi
 
 export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle> {
   private readonly _engine;
+  private _maxDistance;
 
   constructor(container: LinkContainer, engine: Engine) {
     super(container);
 
     this._engine = engine;
+    this._maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(): void {
@@ -62,6 +68,10 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
 
     p1.links = [];
 
+    if (p1.linksDistance && p1.linksDistance > this._maxDistance) {
+      this._maxDistance = p1.linksDistance;
+    }
+
     const pos1 = p1.getPosition(),
       container = this.container,
       canvasSize = container.canvas.size;
@@ -75,7 +85,7 @@ export class Linker extends ParticlesInteractorBase<LinkContainer, LinkParticle>
       optDistance = p1.retina.linksDistance ?? minDistance,
       warp = linkOpt1.warp,
       range = warp ? new CircleWarp(pos1.x, pos1.y, optDistance, canvasSize) : new Circle(pos1.x, pos1.y, optDistance),
-      query = container.particles.quadTree.query(range) as LinkParticle[];
+      query = container.particles.grid.query(range) as LinkParticle[];
 
     for (const p2 of query) {
       const linkOpt2 = p2.options.links;

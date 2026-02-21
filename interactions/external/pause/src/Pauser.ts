@@ -14,6 +14,8 @@ const pauseMode = "pause";
 export class Pauser extends ExternalInteractorBase {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  readonly maxDistance = 0;
+
   constructor(container: InteractivityContainer) {
     super(container);
 

@@ -1,4 +1,4 @@
-import { type Container, type Particle, getDistances, getRangeValue } from "@tsparticles/engine";
+import { type Container, type Particle, getDistances, getRangeValue, isNull } from "@tsparticles/engine";
 import type { AttractParticle } from "./AttractParticle.js";
 import { ParticlesInteractorBase } from "@tsparticles/plugin-interactivity";
 
@@ -8,9 +8,16 @@ const attractFactor = 1000,
 /**
  */
 export class Attractor extends ParticlesInteractorBase<Container, AttractParticle> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  private _maxDistance;
+
   constructor(container: Container) {
     super(container);
+
+    this._maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(): void {
@@ -24,11 +31,19 @@ export class Attractor extends ParticlesInteractorBase<Container, AttractParticl
   interact(p1: AttractParticle): void {
     const container = this.container;
 
-    p1.attractDistance ??= getRangeValue(p1.options.move.attract.distance) * container.retina.pixelRatio;
+    if (isNull(p1.attractDistance)) {
+      const attractDistance = getRangeValue(p1.options.move.attract.distance);
+
+      if (attractDistance > this._maxDistance) {
+        this._maxDistance = attractDistance;
+      }
+
+      p1.attractDistance = attractDistance * container.retina.pixelRatio;
+    }
 
     const distance = p1.attractDistance,
       pos1 = p1.getPosition(),
-      query = container.particles.quadTree.queryCircle(pos1, distance);
+      query = container.particles.grid.queryCircle(pos1, distance);
 
     for (const p2 of query) {
       if (p1 === p2 || !p2.options.move.attract.enable || p2.destroyed || p2.spawning) {

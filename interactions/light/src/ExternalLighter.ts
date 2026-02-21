@@ -10,6 +10,7 @@ import { drawLight, lightMode } from "./Utils.js";
 import { Light } from "./Options/Classes/Light.js";
 
 export class ExternalLighter extends ExternalInteractorBase<LightContainer> {
+  readonly maxDistance = 0;
   private readonly _engine;
 
   constructor(container: LightContainer, engine: Engine) {

@@ -107,7 +107,7 @@ export class InteractionManager {
             x: pos.x * pxRatio,
             y: pos.y * pxRatio,
           },
-          particles = container.particles.quadTree.queryCircle(posRetina, radius * pxRatio);
+          particles = container.particles.grid.queryCircle(posRetina, radius * pxRatio);
 
         callback(e, particles);
       },
@@ -324,6 +324,20 @@ export class InteractionManager {
     if (interactivityData.element instanceof HTMLElement && this._intersectionObserver) {
       this._intersectionObserver.unobserve(interactivityData.element);
     }
+  }
+
+  updateMaxDistance(): void {
+    let maxTotalDistance = 0;
+
+    for (const interactor of this._interactors) {
+      if (interactor.maxDistance > maxTotalDistance) {
+        maxTotalDistance = interactor.maxDistance;
+      }
+    }
+
+    const container = this.container;
+
+    container.particles.grid.setCellSize(maxTotalDistance * container.retina.pixelRatio);
   }
 
   private readonly _intersectionManager: (entries: IntersectionObserverEntry[]) => void = entries => {

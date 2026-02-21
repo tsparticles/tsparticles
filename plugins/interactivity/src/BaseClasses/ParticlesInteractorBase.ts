@@ -18,6 +18,8 @@ export abstract class ParticlesInteractorBase<
 
   protected readonly container: TContainer;
 
+  abstract maxDistance: number;
+
   /**
    * The particles interactions manager constructor
    * @param container - the parent container

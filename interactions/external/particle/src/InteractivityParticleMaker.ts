@@ -22,6 +22,8 @@ const particleMode = "particle";
 /**
  */
 export class InteractivityParticleMaker extends ExternalInteractorBase<InteractivityParticleContainer> {
+  readonly maxDistance = 0;
+
   private _clearTimeout?: number | NodeJS.Timeout;
   private _lastPosition?: ICoordinates;
   private _particle?: Particle;

@@ -363,8 +363,6 @@ export class Canvas {
         plugin.draw?.(ctx, delta);
       }
 
-      // this.quadTree.draw(ctx);
-
       particles.drawParticles(delta);
 
       for (const plugin of this._clearDrawPlugins) {

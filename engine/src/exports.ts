@@ -1,5 +1,4 @@
 export * from "./Core/Utils/Constants.js";
-export * from "./Core/Utils/Point.js";
 export * from "./Core/Utils/Ranges.js";
 export * from "./Core/Utils/Vectors.js";
 

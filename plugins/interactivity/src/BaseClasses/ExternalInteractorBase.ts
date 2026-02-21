@@ -18,6 +18,8 @@ export abstract class ExternalInteractorBase<
 
   protected readonly container: TContainer;
 
+  abstract maxDistance: number;
+
   /**
    * Constructor of external interactivity manager
    * @param container - the parent container

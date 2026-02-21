@@ -17,9 +17,16 @@ const connectMode = "connect",
  * Particle connection manager
  */
 export class Connector extends ExternalInteractorBase<ConnectContainer> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  private _maxDistance;
+
   constructor(container: ConnectContainer) {
     super(container);
+
+    this._maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(): void {
@@ -33,6 +40,8 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
     if (!connect) {
       return;
     }
+
+    this._maxDistance = connect.distance;
 
     container.retina.connectModeDistance = connect.distance * container.retina.pixelRatio;
     container.retina.connectModeRadius = connect.radius * container.retina.pixelRatio;
@@ -61,7 +70,7 @@ export class Connector extends ExternalInteractorBase<ConnectContainer> {
       }
 
       const distance = Math.abs(connectModeRadius),
-        query = container.particles.quadTree.queryCircle(mousePos, distance, p => this.isEnabled(interactivityData, p));
+        query = container.particles.grid.queryCircle(mousePos, distance, p => this.isEnabled(interactivityData, p));
 
       query.forEach((p1, i) => {
         const pos1 = p1.getPosition(),

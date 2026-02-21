@@ -38,7 +38,7 @@ function processAttract(
     return;
   }
 
-  const query = container.particles.quadTree.query(area, queryCb);
+  const query = container.particles.grid.query(area, queryCb);
 
   for (const particle of query) {
     const { dx, dy, distance } = getDistances(particle.position, position),
