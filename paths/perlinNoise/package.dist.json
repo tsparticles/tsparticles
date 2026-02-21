@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-perlin-noise",
-  "version": "4.0.0-alpha.24",
+  "version": "4.0.0-alpha.25",
   "description": "tsParticles perlin noise path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -104,9 +104,9 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.24",
-    "@tsparticles/noise-field": "4.0.0-alpha.24",
-    "@tsparticles/perlin-noise": "4.0.0-alpha.24"
+    "@tsparticles/engine": "4.0.0-alpha.25",
+    "@tsparticles/noise-field": "4.0.0-alpha.25",
+    "@tsparticles/perlin-noise": "4.0.0-alpha.25"
   },
   "type": "module"
 }

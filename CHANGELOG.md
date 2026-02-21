@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.25](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2026-02-21)
+
+### Bug Fixes
+
+- fixed triangle shape ([ec4bcc8](https://github.com/tsparticles/tsparticles/commit/ec4bcc837e7ef4e152ec7dd7687475d66d275697))
+
+### Features
+
+- **core:** replace QuadTree with SpatialHashGrid ([1aafda1](https://github.com/tsparticles/tsparticles/commit/1aafda144b7eed546dab28fe534305c100dde986))
+- **trail:** add color mapping configuration for particles and refactor trail logic ([9c0db81](https://github.com/tsparticles/tsparticles/commit/9c0db81de29b924b20d7b6cab30ed1ea12adb15f))
+
 # [4.0.0-alpha.24](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.23...v4.0.0-alpha.24) (2026-02-12)
 
 **Note:** Version bump only for package @tsparticles/workspace
