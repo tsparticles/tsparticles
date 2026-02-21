@@ -1,5 +1,5 @@
 import { type IOptionLoader, type RecursivePartial, type SingleOrMultiple, isNull } from "@tsparticles/engine";
-import { DivType } from "../../../DivType.js";
+import { DivType } from "../../../Enums/DivType.js";
 import type { IDivEvent } from "../../Interfaces/Events/IDivEvent.js";
 
 /**

@@ -7,14 +7,6 @@ const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: ["#ff0000", "#00ff00", "#0000ff"],
-      animation: {
-        enable: true,
-        speed: 360,
-        sync: false,
-      },
-    },
     shape: {
       type: "triangle",
     },
@@ -23,19 +15,22 @@ const options: ISourceOptions = {
       animation: {
         enable: true,
         speed: 1,
-        sync: false,
+        sync: true,
         destroy: "min",
       },
     },
     size: {
       value: {
-        min: 4,
-        max: 8,
+        min: 8,
+        max: 14,
       },
     },
     move: {
       enable: true,
-      speed: 6,
+      speed: {
+        min: 3,
+        max: 6,
+      },
       outModes: "destroy",
       path: {
         enable: true,
@@ -109,7 +104,31 @@ const options: ISourceOptions = {
     },
     modes: {
       trail: {
-        delay: 0.01,
+        delay: 0.1,
+        quantity: 10,
+        particles: {
+          color: {
+            value: {
+              h: 0,
+              s: 40,
+              l: {
+                min: 40,
+                max: 60,
+              },
+            },
+          },
+        },
+        colorCoords: {
+          h: {
+            weights: {
+              x: 1,
+            },
+            value: {
+              max: 360,
+              min: 0,
+            },
+          },
+        },
       },
     },
   },

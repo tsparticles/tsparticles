@@ -27,12 +27,15 @@ const emittersMode = "emitters";
 
 export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  readonly maxDistance;
+
   private readonly _instancesManager;
 
   constructor(instancesManager: EmittersInstancesManager, container: EmitterContainer) {
     super(container);
 
     this._instancesManager = instancesManager;
+    this.maxDistance = 0;
 
     this.handleClickMode = (mode, interactivityData): void => {
       const container = this.container,

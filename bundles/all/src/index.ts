@@ -51,6 +51,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadSoundsPlugin },
       { loadThemesPlugin },
       { loadTrailPlugin },
+      { loadZoomPlugin },
 
       { loadExportImagePlugin },
       { loadExportJSONPlugin },
@@ -73,6 +74,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       { loadLevyPath },
       { loadPerlinNoisePath },
       { loadPolygonPath },
+      { loadRandomPath },
       { loadSVGPath },
       { loadSpiralPath },
       { loadZigZagPath },
@@ -133,6 +135,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/plugin-sounds"),
       import("@tsparticles/plugin-themes"),
       import("@tsparticles/plugin-trail"),
+      import("@tsparticles/plugin-zoom"),
 
       import("@tsparticles/plugin-export-image"),
       import("@tsparticles/plugin-export-json"),
@@ -155,6 +158,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       import("@tsparticles/path-levy"),
       import("@tsparticles/path-perlin-noise"),
       import("@tsparticles/path-polygon"),
+      import("@tsparticles/path-random"),
       import("@tsparticles/path-svg"),
       import("@tsparticles/path-spiral"),
       import("@tsparticles/path-zig-zag"),
@@ -221,6 +225,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadSoundsPlugin(e),
       loadThemesPlugin(e),
       loadTrailPlugin(e),
+      loadZoomPlugin(e),
 
       loadExportImagePlugin(e),
       loadExportJSONPlugin(e),
@@ -243,6 +248,7 @@ export async function loadAll(engine: Engine): Promise<void> {
       loadLevyPath(e),
       loadPerlinNoisePath(e),
       loadPolygonPath(e),
+      loadRandomPath(e),
       loadSVGPath(e),
       loadSpiralPath(e),
       loadZigZagPath(e),

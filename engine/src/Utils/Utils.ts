@@ -745,16 +745,13 @@ export async function getItemMapFromInitializer<TItem, TInitializer extends Gene
   let res = map.get(container);
 
   if (!res || force) {
-    res = new Map<string, TItem>();
-
     const entries = await Promise.all(
-      [...initializers.entries()].map(async ([key, initializer]) => [key, await initializer(container)] as const),
+      [...initializers.entries()].map(([key, initializer]) =>
+        initializer(container).then(item => [key, item] as const),
+      ),
     );
 
-    for (const [key, item] of entries) {
-      res.set(key, item);
-    }
-
+    res = new Map(entries);
     map.set(container, res);
   }
 

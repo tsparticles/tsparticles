@@ -1,5 +1,6 @@
 import type { Particle } from "@tsparticles/engine";
 
 export interface TextParticle extends Particle {
-  text?: string;
+  maxTextLength?: number;
+  textLines?: string[];
 }

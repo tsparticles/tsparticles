@@ -7,9 +7,10 @@ import {
   minCount,
   minIndex,
   minLimit,
-  posOffset,
+  /* posOffset,
   qTreeCapacity,
-  sizeFactor,
+  sizeFactor, */
+  spatialHashGridCellSize,
   squareExp,
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
@@ -29,18 +30,10 @@ import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import { Point } from "./Utils/Point.js";
-import { QuadTree } from "./Utils/QuadTree.js";
-import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
-
-const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
-  const { height, width } = canvasSize;
-
-  return new Rectangle(posOffset * width, posOffset * height, sizeFactor * width, sizeFactor * height);
-};
 
 /**
  * Particles manager object
@@ -52,14 +45,11 @@ export class Particles {
 
   effectDrawers: Map<string, IEffectDrawer>;
 
+  grid;
+
   movers: IParticleMover[];
 
   pathGenerators: Map<string, IMovePathGenerator>;
-
-  /**
-   * The quad tree used to search particles withing ranges
-   */
-  quadTree;
 
   shapeDrawers: Map<string, IShapeDrawer>;
 
@@ -103,11 +93,7 @@ export class Particles {
     this._needsSort = false;
     this._minZIndex = 0;
     this._maxZIndex = 0;
-
-    const canvasSize = container.canvas.size;
-
-    this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
-
+    this.grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.effectDrawers = new Map();
     this.movers = [];
     this.availablePathGenerators = new Map();
@@ -264,6 +250,8 @@ export class Particles {
     this._postUpdatePlugins = [];
     this._particleResetPlugins = [];
     this._postParticleUpdatePlugins = [];
+
+    this.grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
 
     for (const plugin of container.plugins) {
       if (plugin.redrawInit) {
@@ -429,10 +417,9 @@ export class Particles {
   }
 
   update(delta: IDelta): void {
-    const container = this._container,
-      particlesToDelete = new Set<Particle>();
+    const particlesToDelete = new Set<Particle>();
 
-    this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
+    this.grid.clear();
 
     for (const pathGenerator of this.pathGenerators.values()) {
       pathGenerator.update();
@@ -478,7 +465,7 @@ export class Particles {
         continue;
       }
 
-      this.quadTree.insert(new Point(particle.getPosition(), particle));
+      this.grid.insert(particle);
     }
 
     if (particlesToDelete.size) {

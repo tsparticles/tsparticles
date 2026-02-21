@@ -88,7 +88,7 @@ export type * from "./Types/ShapeData.js";
 export type * from "./Types/SingleOrMultiple.js";
 
 export type { EventListeners } from "./Core/Utils/EventListeners.js";
-export type { QuadTree } from "./Core/Utils/QuadTree.js";
+export type { SpatialHashGrid } from "./Core/Utils/SpatialHashGrid.js";
 export type { Canvas } from "./Core/Canvas.js";
 export type { Container } from "./Core/Container.js";
 export type { Particle } from "./Core/Particle.js";

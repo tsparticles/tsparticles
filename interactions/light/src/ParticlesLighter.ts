@@ -4,12 +4,15 @@ import type { LightContainer, LightParticle } from "./Types.js";
 import { drawParticleShadow, lightMode } from "./Utils.js";
 
 export class ParticlesLighter extends ParticlesInteractorBase<LightContainer> {
+  readonly maxDistance;
+
   private readonly _engine;
 
   constructor(container: LightContainer, engine: Engine) {
     super(container);
 
     this._engine = engine;
+    this.maxDistance = 0;
   }
 
   clear(): void {

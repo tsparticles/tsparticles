@@ -68,7 +68,7 @@ function processBounce(
   area: BaseRange,
   enabledCb: (p: Particle) => boolean,
 ): void {
-  const query = container.particles.quadTree.query(area, enabledCb);
+  const query = container.particles.grid.query(area, enabledCb);
 
   for (const particle of query) {
     if (area instanceof Circle) {

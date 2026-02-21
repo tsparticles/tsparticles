@@ -15,9 +15,16 @@ import { Bounce } from "./Options/Classes/Bounce.js";
 const bounceMode = "bounce";
 
 export class Bouncer extends ExternalInteractorBase<BounceContainer> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  private _maxDistance;
+
   constructor(container: BounceContainer) {
     super(container);
+
+    this._maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(): void {
@@ -31,6 +38,8 @@ export class Bouncer extends ExternalInteractorBase<BounceContainer> {
     if (!bounce) {
       return;
     }
+
+    this._maxDistance = bounce.distance;
 
     container.retina.bounceModeDistance = bounce.distance * container.retina.pixelRatio;
   }

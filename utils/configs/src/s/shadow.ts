@@ -18,7 +18,6 @@ const options: ISourceOptions = {
       type: "shadow",
       options: {
         shadow: {
-          enable: true,
           color: "#000000",
           blur: 5,
           offset: {

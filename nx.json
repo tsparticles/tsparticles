@@ -9,7 +9,8 @@
             ],
             "outputs": [
                 "{projectRoot}/dist"
-            ]
+            ],
+            "cache": true
         },
         "build:ci": {
             "dependsOn": [
@@ -17,7 +18,8 @@
             ],
             "outputs": [
                 "{projectRoot}/dist"
-            ]
+            ],
+            "cache": true
         },
         "prepare": {
             "dependsOn": [
