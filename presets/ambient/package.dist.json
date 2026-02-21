@@ -99,9 +99,9 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/basic": "^4.0.0-alpha.22",
-    "@tsparticles/engine": "^4.0.0-alpha.22",
-    "@tsparticles/updater-stroke-color": "^4.0.0-alpha.22"
+    "@tsparticles/basic": "^4.0.0-alpha.25",
+    "@tsparticles/engine": "^4.0.0-alpha.25",
+    "@tsparticles/updater-stroke-color": "^4.0.0-alpha.25"
   },
   "publishConfig": {
     "access": "public"

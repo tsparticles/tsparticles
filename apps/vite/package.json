@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@tsparticles/engine": "^4.0.0-alpha.22",
+    "@tsparticles/engine": "^4.0.0-alpha.25",
     "@tsparticles/preset-big-circles": "workspace:^",
     "@tsparticles/preset-bubbles": "workspace:^",
     "@tsparticles/preset-confetti": "workspace:^",

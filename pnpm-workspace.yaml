@@ -5,5 +5,6 @@ packages:
 onlyBuiltDependencies:
   - '@swc/core'
   - '@tsparticles/engine'
+  - canvas
   - esbuild
   - nx
