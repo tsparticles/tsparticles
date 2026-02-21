@@ -15,7 +15,7 @@
         panel.mode = "hardcore";
     }
 
-    const countPanel = stats.addPanel("count", "#ff8", 0, () => {
+    const countPanel = stats.addPanel("count", "#994", 0, () => {
         const container = tsParticles.item(0);
 
         if (container) {
