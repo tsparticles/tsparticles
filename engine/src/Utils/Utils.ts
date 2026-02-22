@@ -213,7 +213,7 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
  */
 export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
   for (const source of sources) {
-    if (source === undefined || source === null) {
+    if (isNull(source)) {
       continue;
     }
 
@@ -223,31 +223,26 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
       continue;
     }
 
-    const sourceIsArray = Array.isArray(source);
-
-    if (sourceIsArray) {
+    if (Array.isArray(source)) {
       if (!Array.isArray(destination)) {
         destination = [];
       }
-    } else {
-      if (!isObject(destination) || Array.isArray(destination)) {
-        destination = {};
-      }
+    } else if (!isObject(destination) || Array.isArray(destination)) {
+      destination = {};
     }
 
-    for (const key in source) {
-      if (key === "__proto__") {
+    for (const key of Object.keys(source)) {
+      if (key === "__proto__" || key === "constructor" || key === "prototype") {
         continue;
       }
 
       const sourceDict = source as Record<string, unknown>,
-        value = sourceDict[key],
-        destDict = destination as Record<string, unknown>;
+        destDict = destination as Record<string, unknown>,
+        value = sourceDict[key];
 
-      destDict[key] =
-        isObject(value) && Array.isArray(value)
-          ? value.map(v => deepExtend(destDict[key], v))
-          : deepExtend(destDict[key], value);
+      destDict[key] = Array.isArray(value)
+        ? value.map(v => deepExtend(undefined, v))
+        : deepExtend(destDict[key], value);
     }
   }
 
