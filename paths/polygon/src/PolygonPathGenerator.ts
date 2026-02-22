@@ -21,9 +21,11 @@ export class PolygonPathGenerator implements IMovePathGenerator {
   dirsList: ICoordinates[];
   readonly options;
   private readonly _container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
     this.dirsList = [];
     this.options = deepExtend({}, defaultOptions) as IPolygonPathOptions;
   }
@@ -46,7 +48,10 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
     const direction = this.dirsList[p.hexDirection]!;
 
-    return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
+    this._res.x = direction.x * p.hexSpeed;
+    this._res.y = direction.y * p.hexSpeed;
+
+    return this._res;
   }
 
   init(): void {

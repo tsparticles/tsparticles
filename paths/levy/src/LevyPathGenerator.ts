@@ -9,9 +9,11 @@ const defaultScale = 1,
 export class LevyPathGenerator implements IMovePathGenerator {
   readonly options: ILevyPathOptions;
   private readonly _container: Container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
 
     this.options = {
       alpha: defaultLevyAlpha,
@@ -47,7 +49,10 @@ export class LevyPathGenerator implements IMovePathGenerator {
     p.velocity.x = 0;
     p.velocity.y = 0;
 
-    return Vector.create(Math.cos(l.angle) * speed, Math.sin(l.angle) * speed);
+    this._res.length = speed;
+    this._res.angle = l.angle;
+
+    return this._res;
   }
 
   init(): void {

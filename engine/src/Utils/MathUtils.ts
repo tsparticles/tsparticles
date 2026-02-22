@@ -183,15 +183,38 @@ export function getDistances(pointA: ICoordinates, pointB: ICoordinates): { dist
 }
 
 /**
+ * Gets the distance squared between two coordinates
+ * @param pointA - the first coordinate
+ * @param pointB - the second coordinate
+ * @returns the distance squared between the two coordinates
+ */
+export function getDistanceSq(pointA: ICoordinates, pointB: ICoordinates): number {
+  const dx = pointA.x - pointB.x,
+    dy = pointA.y - pointB.y;
+
+  return dx * dx + dy * dy;
+}
+
+/**
  * Gets the distance between two coordinates
  * @param pointA - the first coordinate
  * @param pointB - the second coordinate
  * @returns the distance between the two coordinates
  */
 export function getDistance(pointA: ICoordinates, pointB: ICoordinates): number {
-  return getDistances(pointA, pointB).distance;
+  return Math.sqrt(getDistanceSq(pointA, pointB));
 }
 
+/**
+ * Checks if the distance between two coordinates is less than the given distance
+ * @param pointA - the first coordinate
+ * @param pointB - the second coordinate
+ * @param distance - the distance to check
+ * @returns true if the distance between the two coordinates is less than the given distance, false otherwise
+ */
+export function checkDistance(pointA: ICoordinates, pointB: ICoordinates, distance: number): boolean {
+  return getDistanceSq(pointA, pointB) <= distance * distance;
+}
 /**
  * Converts the given degrees to radians
  * @param degrees - the degrees value to convert

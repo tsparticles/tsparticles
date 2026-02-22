@@ -13,7 +13,8 @@ import type { AttractContainer } from "./Types.js";
 import type { IInteractivityData } from "@tsparticles/plugin-interactivity";
 
 const minFactor = 1,
-  minRadius = 0;
+  minRadius = 0,
+  updateVector = Vector.origin;
 
 /**
  *
@@ -47,13 +48,12 @@ function processAttract(
         engine.getEasing(attractOptions.easing)(identity - distance / attractRadius) * velocity,
         minFactor,
         attractOptions.maxSpeed,
-      ),
-      normVec = Vector.create(
-        !distance ? velocity : (dx / distance) * attractFactor,
-        !distance ? velocity : (dy / distance) * attractFactor,
       );
 
-    particle.position.subFrom(normVec);
+    updateVector.x = !distance ? velocity : (dx / distance) * attractFactor;
+    updateVector.y = !distance ? velocity : (dy / distance) * attractFactor;
+
+    particle.position.subFrom(updateVector);
   }
 }
 

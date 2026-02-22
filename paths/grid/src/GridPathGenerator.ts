@@ -26,9 +26,11 @@ const dirs = [
 export class GridPathGenerator implements IMovePathGenerator {
   readonly options: IGridPathOptions;
   private readonly _container: Container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
     this.options = {
       cellSize: 40,
       graph: undefined,
@@ -77,7 +79,10 @@ export class GridPathGenerator implements IMovePathGenerator {
 
     const d = dirs[grid.direction]!;
 
-    return Vector.create(d.x * grid.speed, d.y * grid.speed);
+    this._res.x = d.x * grid.speed;
+    this._res.y = d.y * grid.speed;
+
+    return this._res;
   }
 
   // -------------------------------------------

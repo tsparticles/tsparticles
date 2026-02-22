@@ -2,8 +2,8 @@ import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js
 import { inverseFactorNumerator, none, originPoint, squareExp } from "./Constants.js";
 
 /**
- *
- * @param source
+ * @param source - the vector to get the z coordinate from
+ * @returns the z coordinate of the vector
  */
 function getZ(source: ICoordinates | ICoordinates3d): number {
   return "z" in source ? source.z : originPoint.z;

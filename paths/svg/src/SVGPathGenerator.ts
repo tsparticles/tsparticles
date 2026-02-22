@@ -54,6 +54,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
   private readonly _container;
   private readonly _offset: ICoordinatesWithMode;
   private _paths: SVGPathData[];
+  private readonly _res: Vector;
   private _reverse: boolean;
   private _scale: number;
   private readonly _size: IDimension;
@@ -67,6 +68,7 @@ export class SVGPathGenerator implements IMovePathGenerator {
     this._scale = 1;
     this._offset = { x: 0, y: 0, mode: PixelMode.percent };
     this._width = 0;
+    this._res = Vector.origin;
   }
 
   generate(particle: SVGPathParticle, delta: IDelta): Vector {
@@ -141,7 +143,10 @@ export class SVGPathGenerator implements IMovePathGenerator {
     particle.position.y =
       (pos.y - this._size.height * half) * scale + particle.svgInitialPosition.y + offset.y + particle.svgOffset.height;
 
-    return Vector.origin;
+    this._res.x = 0;
+    this._res.y = 0;
+
+    return this._res;
   }
 
   init(): void {

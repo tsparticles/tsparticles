@@ -24,9 +24,11 @@ const minRadius = 0,
 export class SpiralPathGenerator implements IMovePathGenerator {
   readonly options;
   private readonly _container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as ISpiralOptions;
   }
 
@@ -66,7 +68,10 @@ export class SpiralPathGenerator implements IMovePathGenerator {
     particle.position.x += offsetX;
     particle.position.y += offsetY;
 
-    return Vector.origin;
+    this._res.x = 0;
+    this._res.y = 0;
+
+    return this._res;
   }
 
   init(): void {

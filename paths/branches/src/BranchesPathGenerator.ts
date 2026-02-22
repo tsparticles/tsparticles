@@ -13,9 +13,11 @@ const defaultOptions = {
 export class BranchesPathGenerator implements IMovePathGenerator {
   readonly options: IBranchesPathOptions;
   private readonly _container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
 
     this.options = { ...defaultOptions };
   }
@@ -53,7 +55,10 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     p.velocity.x = 0;
     p.velocity.y = 0;
 
-    return Vector.create(vx, vy);
+    this._res.x = vx;
+    this._res.y = vy;
+
+    return this._res;
   }
 
   init(): void {

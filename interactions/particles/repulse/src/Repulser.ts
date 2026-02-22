@@ -19,11 +19,15 @@ type RepulseParticle = Particle & {
 
 export class Repulser extends ParticlesInteractorBase {
   private _maxDistance;
+  private readonly _normVec: Vector;
+  private readonly _velocityVec: Vector;
 
   constructor(container: InteractivityContainer) {
     super(container);
 
     this._maxDistance = 0;
+    this._normVec = Vector.origin;
+    this._velocityVec = Vector.origin;
   }
 
   get maxDistance(): number {
@@ -62,7 +66,8 @@ export class Repulser extends ParticlesInteractorBase {
     }
 
     const pos1 = p1.getPosition(),
-      query = container.particles.grid.queryCircle(pos1, p1.repulse.distance);
+      query = container.particles.grid.queryCircle(pos1, p1.repulse.distance),
+      p1DistanceFactor = identity / p1.repulse.distance;
 
     for (const p2 of query) {
       if (p1 === p2 || p2.destroyed) {
@@ -71,21 +76,23 @@ export class Repulser extends ParticlesInteractorBase {
 
       const pos2 = p2.getPosition(),
         { dx, dy, distance } = getDistances(pos2, pos1),
+        distanceFactor = identity / distance,
         velocity = p1.repulse.speed * p1.repulse.factor;
 
       if (distance > minDistance) {
-        const repulseFactor = clamp(
-            (identity - Math.pow(distance / p1.repulse.distance, squareExp)) * velocity,
-            minVelocity,
-            velocity,
-          ),
-          normVec = Vector.create((dx / distance) * repulseFactor, (dy / distance) * repulseFactor);
+        const repulseFactor =
+          clamp((identity - Math.pow(distance * p1DistanceFactor, squareExp)) * velocity, minVelocity, velocity) *
+          distanceFactor;
 
-        p2.position.addTo(normVec);
+        this._normVec.x = dx * repulseFactor;
+        this._normVec.y = dy * repulseFactor;
+
+        p2.position.addTo(this._normVec);
       } else {
-        const velocityVec = Vector.create(velocity, velocity);
+        this._velocityVec.x = velocity;
+        this._velocityVec.y = velocity;
 
-        p2.position.addTo(velocityVec);
+        p2.position.addTo(this._velocityVec);
       }
     }
   }

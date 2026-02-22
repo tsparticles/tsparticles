@@ -1,24 +1,26 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
+import { type Container, type IMovePathGenerator, Vector, doublePI, getRandom, identity } from "@tsparticles/engine";
 import type { BrownianPathParticle } from "./BrownianPathParticle.js";
 import type { IBrownianPathOptions } from "./IBrownianPathOptions.js";
 
 export class BrownianPathGenerator implements IMovePathGenerator {
   readonly options: IBrownianPathOptions;
   private readonly _container: Container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
 
     this.options = {
       angleDelta: Math.PI / 12,
-      damping: 1,
+      damping: identity,
     };
   }
 
   generate(p: BrownianPathParticle): Vector {
     p.brownian ??= {
-      angle: getRandom() * Math.PI * 2,
+      angle: getRandom() * doublePI,
       speed: p.velocity.length,
     };
 
@@ -27,12 +29,15 @@ export class BrownianPathGenerator implements IMovePathGenerator {
 
     b.angle += delta;
 
-    const damping = this.options.damping ?? 1;
+    const damping = this.options.damping ?? identity;
 
     p.velocity.x = 0;
     p.velocity.y = 0;
 
-    return Vector.create(Math.cos(b.angle) * b.speed * damping, Math.sin(b.angle) * b.speed * damping);
+    this._res.length = b.speed * damping;
+    this._res.angle = b.angle;
+
+    return this._res;
   }
 
   init(): void {
