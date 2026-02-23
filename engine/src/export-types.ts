@@ -51,7 +51,6 @@ export type * from "./Options/Interfaces/Particles/Effect/IEffect.js";
 export type * from "./Options/Interfaces/Particles/IParticlesOptions.js";
 export type * from "./Options/Interfaces/Particles/IStroke.js";
 
-export type * from "./Options/Interfaces/Particles/Move/IMoveAttract.js";
 export type * from "./Options/Interfaces/Particles/Move/IMove.js";
 export type * from "./Options/Interfaces/Particles/Move/IMoveAngle.js";
 export type * from "./Options/Interfaces/Particles/Move/IMoveCenter.js";

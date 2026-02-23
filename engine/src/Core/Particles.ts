@@ -7,9 +7,6 @@ import {
   minCount,
   minIndex,
   minLimit,
-  /* posOffset,
-  qTreeCapacity,
-  sizeFactor, */
   spatialHashGridCellSize,
   squareExp,
 } from "./Utils/Constants.js";

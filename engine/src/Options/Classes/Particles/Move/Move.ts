@@ -4,7 +4,6 @@ import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMove } from "../../../Interfaces/Particles/Move/IMove.js";
 import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
 import { MoveAngle } from "./MoveAngle.js";
-import { MoveAttract } from "./MoveAttract.js";
 import { MoveCenter } from "./MoveCenter.js";
 import { MoveGravity } from "./MoveGravity.js";
 import { MovePath } from "./Path/MovePath.js";
@@ -19,7 +18,6 @@ import { setRangeValue } from "../../../../Utils/MathUtils.js";
  */
 export class Move implements IMove, IOptionLoader<IMove> {
   readonly angle;
-  readonly attract;
   readonly center: MoveCenter;
   decay: RangeValue;
   direction: MoveDirection | keyof typeof MoveDirection | MoveDirectionAlt | number;
@@ -39,7 +37,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
 
   constructor() {
     this.angle = new MoveAngle();
-    this.attract = new MoveAttract();
     this.center = new MoveCenter();
     this.decay = 0;
     this.distance = {};
@@ -64,7 +61,6 @@ export class Move implements IMove, IOptionLoader<IMove> {
     }
 
     this.angle.load(isNumber(data.angle) ? { value: data.angle } : data.angle);
-    this.attract.load(data.attract);
 
     this.center.load(data.center);
 

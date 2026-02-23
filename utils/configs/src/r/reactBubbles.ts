@@ -58,13 +58,6 @@ const options: ISourceOptions = {
       enable: true,
     },
     move: {
-      attract: {
-        enable: false,
-        rotate: {
-          x: 3000,
-          y: 3000,
-        },
-      },
       direction: "top",
       enable: true,
       speed: {

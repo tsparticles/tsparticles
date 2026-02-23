@@ -1,14 +1,16 @@
-import type { ICoordinates } from "../../../../Core/Interfaces/ICoordinates.js";
-import type { IMoveAttract } from "../../../Interfaces/Particles/Move/IMoveAttract.js";
-import type { IOptionLoader } from "../../../Interfaces/IOptionLoader.js";
-import type { RangeValue } from "../../../../Types/RangeValue.js";
-import type { RecursivePartial } from "../../../../Types/RecursivePartial.js";
-import { isNull } from "../../../../Utils/TypeUtils.js";
-import { setRangeValue } from "../../../../Utils/MathUtils.js";
+import {
+  type ICoordinates,
+  type IOptionLoader,
+  type RangeValue,
+  type RecursivePartial,
+  isNull,
+  setRangeValue,
+} from "@tsparticles/engine";
+import type { IAttract } from "../Interfaces/IAttract.js";
 
 /**
  */
-export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
+export class Attract implements IAttract, IOptionLoader<IAttract> {
   distance: RangeValue;
   enable;
   rotate: ICoordinates;
@@ -22,7 +24,7 @@ export class MoveAttract implements IMoveAttract, IOptionLoader<IMoveAttract> {
     };
   }
 
-  load(data?: RecursivePartial<IMoveAttract>): void {
+  load(data?: RecursivePartial<IAttract>): void {
     if (isNull(data)) {
       return;
     }

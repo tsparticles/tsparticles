@@ -32,13 +32,6 @@ const options: ISourceOptions = {
       width: 1,
     },
     move: {
-      attract: {
-        enable: false,
-        rotate: {
-          x: 3000,
-          y: 3000,
-        },
-      },
       direction: "right",
       enable: true,
       outModes: "bounce",
