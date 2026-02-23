@@ -14,7 +14,6 @@ import type { ILink, IParticlesFrequencies, ITwinkle } from "./Interfaces.js";
 import type { LinkBatch, LinkContainer, LinkParticle, ParticlesLinkOptions, TriangleBatch } from "./Types.js";
 import { setLinkFrequency } from "./Utils.js";
 
-/* Constants for linter satisfaction - No Magic Numbers */
 const minOpacity = 0,
   minDistance = 0,
   minWidth = 0,
@@ -45,12 +44,7 @@ export class LinkInstance implements IContainerPlugin {
     this._freqs = { links: new Map(), triangles: new Map() };
   }
 
-  /**
-   * Main draw call - processes all batched links and triangles
-   * @param context - the canvas 2D context
-   */
   draw(context: CanvasRenderingContext2D): void {
-    /* Rendering triangle batches */
     for (const [, batch] of this._triangleBatches) {
       context.save();
       context.fillStyle = batch.colorStyle;
@@ -58,7 +52,6 @@ export class LinkInstance implements IContainerPlugin {
       context.beginPath();
 
       for (let i = 0; i < batch.coords.length; i += triangleCoordsCount) {
-        /* Nullish coalescing avoids ESLint non-null assertion errors and TS undefined errors */
         const x1 = batch.coords[i + x1Offset] ?? originPoint.x,
           y1 = batch.coords[i + y1Offset] ?? originPoint.y,
           x2 = batch.coords[i + x2Offset] ?? originPoint.x,
@@ -75,7 +68,6 @@ export class LinkInstance implements IContainerPlugin {
       context.restore();
     }
 
-    /* Rendering line batches */
     for (const [, batch] of this._lineBatches) {
       context.save();
       context.strokeStyle = batch.colorStyle;
@@ -84,7 +76,6 @@ export class LinkInstance implements IContainerPlugin {
       context.beginPath();
 
       for (let i = 0; i < batch.coords.length; i += lineCoordsCount) {
-        /* Safely extract coordinates using constant offsets */
         const x1 = batch.coords[i + x1Offset] ?? originPoint.x,
           y1 = batch.coords[i + y1Offset] ?? originPoint.y,
           x2 = batch.coords[i + x2Offset] ?? originPoint.x,
@@ -98,16 +89,10 @@ export class LinkInstance implements IContainerPlugin {
       context.restore();
     }
 
-    /* Clear batches for the next frame */
     this._lineBatches.clear();
     this._triangleBatches.clear();
   }
 
-  /**
-   * Analyzes a particle and collects its links into the drawing batches
-   * @param _context - unused in batching mode
-   * @param particle - the particle to process
-   */
   drawParticle(_context: CanvasRenderingContext2D, particle: LinkParticle): void {
     const { links, options } = particle;
 
@@ -116,106 +101,98 @@ export class LinkInstance implements IContainerPlugin {
     }
 
     const canvasSize = this._container.canvas.size,
-      p1Links = links.filter(
-        l =>
-          options.links &&
-          (options.links.frequency >= maxFrequency ||
-            this._getLinkFrequency(particle, l.destination) <= options.links.frequency),
-      ),
-      pos1 = particle.getPosition();
+      pos1 = particle.getPosition(),
+      linkOpts = options.links;
 
-    for (const link of p1Links) {
-      /* Skip triangles if the link is warped to prevent visual artifacts */
-      if (!link.isWarped) {
-        this._collectTriangles(options, particle, link, p1Links);
+    for (const link of links) {
+      if (
+        linkOpts.frequency < maxFrequency &&
+        this._getLinkFrequency(particle, link.destination) > linkOpts.frequency
+      ) {
+        continue;
       }
 
-      if (link.opacity > minOpacity && (particle.retina.linksWidth ?? minWidth) > minWidth) {
-        let opacity = link.opacity,
-          colorLine = link.color;
+      if (!link.isWarped) {
+        this._collectTriangles(options, particle, link, links, pos1);
+      }
 
-        const twinkle = (particle.options["twinkle"] as ITwinkle | undefined)?.lines;
+      if (link.opacity <= minOpacity || (particle.retina.linksWidth ?? minWidth) <= minWidth) {
+        continue;
+      }
 
-        if (twinkle?.enable && getRandom() < twinkle.frequency) {
-          const twinkleRgb = rangeColorToRgb(this._engine, twinkle.color);
+      let opacity = link.opacity,
+        colorLine = link.color;
 
-          if (twinkleRgb) {
-            colorLine = twinkleRgb;
-            opacity = getRangeValue(twinkle.opacity);
-          }
+      const twinkle = (particle.options["twinkle"] as ITwinkle | undefined)?.lines;
+
+      if (twinkle?.enable && getRandom() < twinkle.frequency) {
+        const twinkleRgb = rangeColorToRgb(this._engine, twinkle.color);
+
+        if (twinkleRgb) {
+          colorLine = twinkleRgb;
+          opacity = getRangeValue(twinkle.opacity);
+        }
+      }
+
+      if (!colorLine) {
+        const linkColor =
+          linkOpts.id !== undefined
+            ? this._container.particles.linksColors.get(linkOpts.id)
+            : this._container.particles.linksColor;
+
+        colorLine = engineGetLinkColor(particle, link.destination, linkColor);
+      }
+
+      if (!colorLine) {
+        continue;
+      }
+
+      const qOpacity = Math.ceil(opacity * opacitySteps) / opacitySteps,
+        colorStyle = this._getCachedStyle(colorLine),
+        width = particle.retina.linksWidth ?? defaultWidth,
+        key = `${colorStyle}_${qOpacity}_${width}`;
+
+      let batch = this._lineBatches.get(key);
+
+      if (!batch) {
+        batch = { colorStyle, opacity: qOpacity, width, coords: [] };
+        this._lineBatches.set(key, batch);
+      }
+
+      const pos2 = link.destination.getPosition();
+
+      if (link.isWarped) {
+        const dx = pos2.x - pos1.x,
+          dy = pos2.y - pos1.y;
+
+        let sx = originPoint.x,
+          sy = originPoint.y;
+
+        if (Math.abs(dx) > canvasSize.width * half) {
+          sx = dx > minDistance ? -canvasSize.width : canvasSize.width;
         }
 
-        if (!colorLine) {
-          const linkColor =
-            options.links.id !== undefined
-              ? this._container.particles.linksColors.get(options.links.id)
-              : this._container.particles.linksColor;
-
-          colorLine = engineGetLinkColor(particle, link.destination, linkColor);
+        if (Math.abs(dy) > canvasSize.height * half) {
+          sy = dy > minDistance ? -canvasSize.height : canvasSize.height;
         }
 
-        if (colorLine) {
-          const qOpacity = Math.ceil(opacity * opacitySteps) / opacitySteps,
-            colorStyle = this._getCachedStyle(colorLine),
-            width = particle.retina.linksWidth ?? defaultWidth,
-            key = `${colorStyle}_${qOpacity}_${width}`;
+        const v2 = { x: pos2.x + sx, y: pos2.y + sy },
+          v1 = { x: pos1.x - sx, y: pos1.y - sy };
 
-          let batch = this._lineBatches.get(key);
-
-          if (!batch) {
-            batch = { colorStyle, opacity: qOpacity, width, coords: [] };
-
-            this._lineBatches.set(key, batch);
-          }
-
-          const pos2 = link.destination.getPosition();
-
-          if (link.isWarped) {
-            /* Warp logic: calculate virtual positions beyond boundaries for clipping */
-            const dx = pos2.x - pos1.x,
-              dy = pos2.y - pos1.y;
-
-            let sx = originPoint.x,
-              sy = originPoint.y;
-
-            if (Math.abs(dx) > canvasSize.width * half) {
-              sx = dx > minDistance ? -canvasSize.width : canvasSize.width;
-            }
-
-            if (Math.abs(dy) > canvasSize.height * half) {
-              sy = dy > minDistance ? -canvasSize.height : canvasSize.height;
-            }
-
-            const v2 = { x: pos2.x + sx, y: pos2.y + sy },
-              v1 = { x: pos1.x - sx, y: pos1.y - sy };
-
-            /* Push both segments of the warped link */
-            batch.coords.push(pos1.x, pos1.y, v2.x, v2.y);
-            batch.coords.push(v1.x, v1.y, pos2.x, pos2.y);
-          } else {
-            /* standard link */
-            batch.coords.push(pos1.x, pos1.y, pos2.x, pos2.y);
-          }
-        }
+        batch.coords.push(pos1.x, pos1.y, v2.x, v2.y, v1.x, v1.y, pos2.x, pos2.y);
+      } else {
+        batch.coords.push(pos1.x, pos1.y, pos2.x, pos2.y);
       }
     }
   }
 
-  /**
-   * Plugin initialization
-   */
-  async init(): Promise<void> {
+  init(): Promise<void> {
     this._freqs.links.clear();
     this._freqs.triangles.clear();
     this._colorCache.clear();
-
-    await Promise.resolve();
+    return Promise.resolve();
   }
 
-  /**
-   * Called when a particle is created, initializes link properties
-   * @param particle - the created particle
-   */
   particleCreated(particle: LinkParticle): void {
     particle.links = [];
 
@@ -232,15 +209,17 @@ export class LinkInstance implements IContainerPlugin {
     particle.retina.linksWidth = particle.linksWidth * ratio;
   }
 
-  /**
-   * Called when a particle is destroyed
-   * @param particle - the destroyed particle
-   */
   particleDestroyed(particle: LinkParticle): void {
     particle.links = [];
   }
 
-  private _collectTriangles(options: ParticlesLinkOptions, p1: LinkParticle, link: ILink, p1Links: ILink[]): void {
+  private _collectTriangles(
+    options: ParticlesLinkOptions,
+    p1: LinkParticle,
+    link: ILink,
+    p1Links: ILink[],
+    pos1: ReturnType<LinkParticle["getPosition"]>,
+  ): void {
     const p2 = link.destination,
       triangleOptions = options.links?.triangles;
 
@@ -248,20 +227,24 @@ export class LinkInstance implements IContainerPlugin {
       return;
     }
 
-    const vertices = p2.links?.filter(t => {
-      return (
-        !t.isWarped &&
-        p2.options.links &&
-        this._getLinkFrequency(p2, t.destination) <= p2.options.links.frequency &&
-        p1Links.some(l => l.destination === t.destination)
-      );
-    });
+    const p1Destinations = new Set(p1Links.map(l => l.destination.id)),
+      p2Links = p2.links;
 
-    if (!vertices?.length) {
+    if (!p2Links?.length) {
       return;
     }
 
-    for (const vertex of vertices) {
+    const pos2 = p2.getPosition();
+
+    for (const vertex of p2Links) {
+      if (
+        vertex.isWarped ||
+        this._getLinkFrequency(p2, vertex.destination) > p2.options.links.frequency ||
+        !p1Destinations.has(vertex.destination.id)
+      ) {
+        continue;
+      }
+
       const p3 = vertex.destination;
 
       if (this._getTriangleFrequency(p1, p2, p3) > (options.links?.triangles.frequency ?? defaultFrequency)) {
@@ -285,9 +268,7 @@ export class LinkInstance implements IContainerPlugin {
         this._triangleBatches.set(key, batch);
       }
 
-      const pos1 = p1.getPosition(),
-        pos2 = p2.getPosition(),
-        pos3 = p3.getPosition();
+      const pos3 = p3.getPosition();
 
       batch.coords.push(pos1.x, pos1.y, pos2.x, pos2.y, pos3.x, pos3.y);
     }
@@ -295,12 +276,10 @@ export class LinkInstance implements IContainerPlugin {
 
   private _getCachedStyle(rgb: IRgb): string {
     const key = `${rgb.r},${rgb.g},${rgb.b}`;
-
     let style = this._colorCache.get(key);
 
     if (!style) {
       style = getStyleFromRgb(rgb, this._container.hdr);
-
       this._colorCache.set(key, style);
     }
 

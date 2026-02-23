@@ -36,7 +36,8 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     for (const p2 of query) {
       if (
         p1 === p2 ||
-        !p1.options.collisions ||
+        p1.id >= p2.id ||
+        !p1.options.collisions?.enable ||
         !p2.options.collisions?.enable ||
         p1.options.collisions.mode !== p2.options.collisions.mode ||
         p2.destroyed ||
