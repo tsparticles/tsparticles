@@ -1,10 +1,9 @@
+import type { IEffectDrawer, IShapeDrawData, IShapeDrawer } from "../export-types.js";
 import { defaultZoom, minStrokeWidth, originPoint } from "../Core/Utils/Constants.js";
-import type { Container } from "../Core/Container.js";
 import type { IContainerPlugin } from "../Core/Interfaces/IContainerPlugin.js";
 import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IDimension } from "../Core/Interfaces/IDimension.js";
 import type { IDrawParticleParams } from "../Core/Interfaces/IDrawParticleParams.js";
-import type { IShapeDrawData } from "../export-types.js";
 import type { Particle } from "../Core/Particle.js";
 
 /**
@@ -15,6 +14,7 @@ import type { Particle } from "../Core/Particle.js";
  */
 export function paintBase(context: CanvasRenderingContext2D, dimension: IDimension, baseColor?: string): void {
   context.fillStyle = baseColor ?? "rgba(0,0,0,0)";
+
   context.fillRect(originPoint.x, originPoint.y, dimension.width, dimension.height);
 }
 
@@ -35,9 +35,13 @@ export function paintImage(
     return;
   }
 
+  const prevAlpha = context.globalAlpha;
+
   context.globalAlpha = opacity;
+
   context.drawImage(image, originPoint.x, originPoint.y, dimension.width, dimension.height);
-  context.globalAlpha = 1;
+
+  context.globalAlpha = prevAlpha;
 }
 
 /**
@@ -55,6 +59,7 @@ export function clear(context: CanvasRenderingContext2D, dimension: IDimension):
  */
 export function drawParticle(data: IDrawParticleParams): void {
   const { container, context, particle, delta, colorStyles, radius, opacity, transform } = data,
+    { effectDrawers, shapeDrawers } = container.particles,
     pos = particle.getPosition(),
     transformData = particle.getTransformData(transform),
     drawScale = defaultZoom,
@@ -97,51 +102,50 @@ export function drawParticle(data: IDrawParticleParams): void {
     plugin.drawParticleTransform?.(drawData);
   }
 
-  drawBeforeEffect(container, drawData);
-  drawShapeBeforeDraw(container, drawData);
-  drawShape(container, drawData);
-  drawShapeAfterDraw(container, drawData);
-  drawAfterEffect(container, drawData);
+  const effect = particle.effect ? effectDrawers.get(particle.effect) : undefined,
+    shape = particle.shape ? shapeDrawers.get(particle.shape) : undefined;
+
+  drawBeforeEffect(effect, drawData);
+  drawShapeBeforeDraw(shape, drawData);
+  drawShape(shape, drawData);
+  drawShapeAfterDraw(shape, drawData);
+  drawAfterEffect(effect, drawData);
+
   context.resetTransform();
 }
 
 /**
  * Draws the particle effect using the plugin's shape renderer.
- * @param container - the container of the particle.
+ * @param drawer - the particle effect drawer.
  * @param data - the function parameters.
  */
-export function drawAfterEffect(container: Container, data: IShapeDrawData): void {
+export function drawAfterEffect(drawer: IEffectDrawer | undefined, data: IShapeDrawData): void {
+  if (!drawer?.drawAfter) {
+    return;
+  }
+
   const { particle } = data;
 
   if (!particle.effect) {
     return;
   }
 
-  const drawer = container.particles.effectDrawers.get(particle.effect),
-    drawFunc = drawer?.drawAfter;
-
-  if (!drawFunc) {
-    return;
-  }
-
-  drawFunc(data);
+  drawer.drawAfter(data);
 }
 
 /**
  * Draws the particle effect using the plugin's shape renderer.
- * @param container - the container of the particle.
+ * @param drawer - the particle effect drawer.
  * @param data - the function parameters.
  */
-export function drawBeforeEffect(container: Container, data: IShapeDrawData): void {
-  const { particle } = data;
-
-  if (!particle.effect) {
+export function drawBeforeEffect(drawer: IEffectDrawer | undefined, data: IShapeDrawData): void {
+  if (!drawer?.drawBefore) {
     return;
   }
 
-  const drawer = container.particles.effectDrawers.get(particle.effect);
+  const { particle } = data;
 
-  if (!drawer?.drawBefore) {
+  if (!particle.effect) {
     return;
   }
 
@@ -150,19 +154,17 @@ export function drawBeforeEffect(container: Container, data: IShapeDrawData): vo
 
 /**
  * Draws the particle shape using the plugin's shape renderer.
- * @param container - the container of the particle.
+ * @param drawer - the particle shape drawer.
  * @param data - the function parameters.
  */
-export function drawShape(container: Container, data: IShapeDrawData): void {
-  const { context, particle, stroke } = data;
-
-  if (!particle.shape) {
+export function drawShape(drawer: IShapeDrawer | undefined, data: IShapeDrawData): void {
+  if (!drawer) {
     return;
   }
 
-  const drawer = container.particles.shapeDrawers.get(particle.shape);
+  const { context, particle, stroke } = data;
 
-  if (!drawer) {
+  if (!particle.shape) {
     return;
   }
 
@@ -185,19 +187,17 @@ export function drawShape(container: Container, data: IShapeDrawData): void {
 
 /**
  * Calls the afterDraw function of the plugin's shape renderer, this is called after drawShape.
- * @param container - the container of the particle.
+ * @param drawer - the particle shape drawer.
  * @param data - the function parameters.
  */
-export function drawShapeAfterDraw(container: Container, data: IShapeDrawData): void {
-  const { particle } = data;
-
-  if (!particle.shape) {
+export function drawShapeAfterDraw(drawer: IShapeDrawer | undefined, data: IShapeDrawData): void {
+  if (!drawer?.afterDraw) {
     return;
   }
 
-  const drawer = container.particles.shapeDrawers.get(particle.shape);
+  const { particle } = data;
 
-  if (!drawer?.afterDraw) {
+  if (!particle.shape) {
     return;
   }
 
@@ -206,19 +206,17 @@ export function drawShapeAfterDraw(container: Container, data: IShapeDrawData): 
 
 /**
  * Calls the beforeDraw function of the plugin's shape renderer, this is called before drawShape.'
- * @param container - the container of the particle.
+ * @param drawer - the particle shape drawer.
  * @param data - the function parameters.
  */
-export function drawShapeBeforeDraw(container: Container, data: IShapeDrawData): void {
-  const { particle } = data;
-
-  if (!particle.shape) {
+export function drawShapeBeforeDraw(drawer: IShapeDrawer | undefined, data: IShapeDrawData): void {
+  if (!drawer?.beforeDraw) {
     return;
   }
 
-  const drawer = container.particles.shapeDrawers.get(particle.shape);
+  const { particle } = data;
 
-  if (!drawer?.beforeDraw) {
+  if (!particle.shape) {
     return;
   }
 
