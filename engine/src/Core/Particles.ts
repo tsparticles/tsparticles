@@ -282,6 +282,10 @@ export class Particles {
 
     await this.initPlugins();
 
+    for (const pathGenerator of this.pathGenerators.values()) {
+      pathGenerator.init();
+    }
+
     for (const drawer of this.effectDrawers.values()) {
       await drawer.init?.(container);
     }
@@ -331,10 +335,6 @@ export class Particles {
     this.pathGenerators = new Map();
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
-
-    for (const pathGenerator of this.pathGenerators.values()) {
-      pathGenerator.init();
-    }
   }
 
   push(
