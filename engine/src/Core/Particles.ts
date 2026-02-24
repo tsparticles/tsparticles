@@ -282,10 +282,6 @@ export class Particles {
 
     await this.initPlugins();
 
-    for (const pathGenerator of this.pathGenerators.values()) {
-      pathGenerator.init();
-    }
-
     for (const drawer of this.effectDrawers.values()) {
       await drawer.init?.(container);
     }
@@ -335,6 +331,14 @@ export class Particles {
     this.pathGenerators = new Map();
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
+
+    for (const pathGenerator of this.pathGenerators.values()) {
+      pathGenerator.init();
+    }
+
+    for (const mover of this.movers) {
+      mover.init();
+    }
   }
 
   push(
@@ -420,6 +424,10 @@ export class Particles {
 
     for (const pathGenerator of this.pathGenerators.values()) {
       pathGenerator.update();
+    }
+
+    for (const mover of this.movers) {
+      mover.update();
     }
 
     for (const plugin of this._updatePlugins) {

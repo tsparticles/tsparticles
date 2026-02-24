@@ -9,10 +9,14 @@ const diffFactor = 2,
 /**
  */
 export class BaseMover implements IParticleMover {
+  init(): void {
+    // no-op for now
+  }
+
   /**
    * @param particle -
    */
-  init(particle: MoveParticle): void {
+  initParticle(particle: MoveParticle): void {
     const options = particle.options,
       gravityOptions = options.move.gravity;
 
@@ -68,5 +72,13 @@ export class BaseMover implements IParticleMover {
     }
 
     applyDistance(particle);
+  }
+
+  particleDestroyed(_particle: Particle): void {
+    // no-op for now
+  }
+
+  update(): void {
+    // no-op for now
   }
 }

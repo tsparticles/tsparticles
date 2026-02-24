@@ -425,6 +425,10 @@ export class Particle {
 
     pathGenerator?.reset(this);
 
+    for (const mover of container.particles.movers) {
+      mover.particleDestroyed(this);
+    }
+
     this._engine.dispatchEvent(EventType.particleDestroyed, {
       container: this.container,
       data: {
@@ -606,26 +610,6 @@ export class Particle {
     this.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
     this.options = particlesOptions;
 
-    const pathOptions = this.options.move.path;
-
-    this.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
-
-    if (pathOptions.generator) {
-      let pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
-
-      if (!pathGenerator) {
-        pathGenerator = this.container.particles.availablePathGenerators.get(pathOptions.generator);
-
-        if (pathGenerator) {
-          this.container.particles.pathGenerators.set(pathOptions.generator, pathGenerator);
-
-          pathGenerator.init();
-        }
-      }
-
-      this.pathGenerator = pathGenerator;
-    }
-
     container.retina.initParticle(this);
 
     /* size */
@@ -685,8 +669,28 @@ export class Particle {
       updater.init(this);
     }
 
+    const pathOptions = this.options.move.path;
+
+    this.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
+
+    if (pathOptions.generator) {
+      let pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
+
+      if (!pathGenerator) {
+        pathGenerator = this.container.particles.availablePathGenerators.get(pathOptions.generator);
+
+        if (pathGenerator) {
+          this.container.particles.pathGenerators.set(pathOptions.generator, pathGenerator);
+
+          pathGenerator.init();
+        }
+      }
+
+      this.pathGenerator = pathGenerator;
+    }
+
     for (const mover of particles.movers) {
-      mover.init(this);
+      mover.initParticle(this);
     }
 
     effectDrawer?.particleInit?.(container, this);
