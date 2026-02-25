@@ -27,6 +27,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
     p.branching ??= {
       angle: getRandom() * doublePI,
+      baseSpeed: p.velocity.length,
       remaining: opts.segmentLength,
       speed: p.velocity.length,
     };
@@ -44,7 +45,7 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
       const speedFactor = 1 + (getRandom() * 2 - 1) * (opts.speedVariation ?? 0);
 
-      b.speed = p.velocity.length * speedFactor;
+      b.speed = b.baseSpeed * speedFactor;
     }
 
     b.remaining -= b.speed;
