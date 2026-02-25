@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 import { type Container, type IMovePathGenerator, Vector, doublePI, getRandom } from "@tsparticles/engine";
+import type { IBranchesInertiaOptions, IBranchesPathOptions } from "./IBranchesPathOptions.js";
 import type { BranchesPathParticle } from "./BranchesPathParticle.js";
-import type { IBranchesPathOptions } from "./IBranchesPathOptions.js";
 
 const defaultOptions = {
   segmentLength: 20,
   branchChance: 0.2,
   maxAngle: Math.PI / 3,
   speedVariation: 0.3,
+  inertia: {
+    enable: false,
+    factor: 0.1,
+  },
 };
 
 export class BranchesPathGenerator implements IMovePathGenerator {
@@ -19,7 +23,10 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     this._container = container;
     this._res = Vector.origin;
 
-    this.options = { ...defaultOptions };
+    this.options = {
+      ...defaultOptions,
+      inertia: { ...defaultOptions.inertia },
+    };
   }
 
   generate(p: BranchesPathParticle): Vector {
@@ -27,14 +34,13 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
     p.branching ??= {
       angle: getRandom() * doublePI,
-      baseSpeed: p.velocity.length,
       remaining: opts.segmentLength,
+      baseSpeed: p.velocity.length,
       speed: p.velocity.length,
     };
 
     const b = p.branching;
 
-    // New segment
     if (b.remaining <= 0) {
       const branch = getRandom() < (opts.branchChance ?? 0),
         maxAngle = opts.maxAngle ?? defaultOptions.maxAngle,
@@ -50,14 +56,25 @@ export class BranchesPathGenerator implements IMovePathGenerator {
 
     b.remaining -= b.speed;
 
-    const vx = Math.cos(b.angle) * b.speed,
-      vy = Math.sin(b.angle) * b.speed;
+    const targetX = Math.cos(b.angle) * b.speed,
+      targetY = Math.sin(b.angle) * b.speed,
+      inertia = opts.inertia;
 
-    p.velocity.x = 0;
-    p.velocity.y = 0;
+    if (inertia?.enable) {
+      const factor = inertia.factor ?? 0.1;
 
-    this._res.x = vx;
-    this._res.y = vy;
+      p.velocity.x += (targetX - p.velocity.x) * factor;
+      p.velocity.y += (targetY - p.velocity.y) * factor;
+
+      this._res.x = p.velocity.x;
+      this._res.y = p.velocity.y;
+    } else {
+      p.velocity.x = 0;
+      p.velocity.y = 0;
+
+      this._res.x = targetX;
+      this._res.y = targetY;
+    }
 
     return this._res;
   }
@@ -66,12 +83,20 @@ export class BranchesPathGenerator implements IMovePathGenerator {
     const source = this._container.actualOptions.particles.move.path.options;
 
     this.options.segmentLength = (source["segmentLength"] as number | undefined) ?? this.options.segmentLength;
-
     this.options.branchChance = (source["branchChance"] as number | undefined) ?? this.options.branchChance;
-
     this.options.maxAngle = (source["maxAngle"] as number | undefined) ?? this.options.maxAngle;
-
     this.options.speedVariation = (source["speedVariation"] as number | undefined) ?? this.options.speedVariation;
+
+    const inertiaSource = source["inertia"] as IBranchesInertiaOptions | undefined;
+
+    if (inertiaSource) {
+      const inertiaOptions = { ...defaultOptions.inertia };
+
+      inertiaOptions.enable = inertiaSource.enable ?? inertiaOptions.enable;
+      inertiaOptions.factor = inertiaSource.factor ?? inertiaOptions.factor;
+
+      this.options.inertia = inertiaOptions;
+    }
   }
 
   reset(p: BranchesPathParticle): void {
