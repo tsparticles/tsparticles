@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-spiral",
-  "version": "4.0.0-alpha.25",
+  "version": "4.0.0-alpha.26",
   "description": "tsParticles spiral path",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -104,8 +104,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.25",
-    "@tsparticles/plugin-move": "4.0.0-alpha.25"
+    "@tsparticles/engine": "4.0.0-alpha.26",
+    "@tsparticles/plugin-move": "4.0.0-alpha.26"
   },
   "type": "module"
 }

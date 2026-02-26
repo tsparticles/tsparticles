@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/interaction-external-slow",
-  "version": "4.0.0-alpha.25",
+  "version": "4.0.0-alpha.26",
   "description": "tsParticles slow external interaction",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -95,8 +95,8 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.25",
-    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.25"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.26",
+    "@tsparticles/plugin-interactivity": "workspace:4.0.0-alpha.26"
   },
   "publishConfig": {
     "access": "public",

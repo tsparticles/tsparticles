@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/shape-arrow",
-  "version": "4.0.0-alpha.25",
+  "version": "4.0.0-alpha.26",
   "description": "tsParticles arrow shape",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -108,7 +108,7 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.25"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.26"
   },
   "publishConfig": {
     "access": "public",

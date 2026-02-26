@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
+
+### Bug Fixes
+
+- security fix for deepExtend ([78e14a8](https://github.com/tsparticles/tsparticles/commit/78e14a86726bb13c2bf7ff370d9c58190719db6a))
+
 # [4.0.0-alpha.25](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2026-02-21)
 
 ### Bug Fixes
