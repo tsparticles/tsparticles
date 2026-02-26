@@ -1,5 +1,6 @@
 import parallax from "./parallax.js";
 import pathBranches from "./pathBranches.js";
+import pathBranchesInertia from "./pathBranchesInertia.js";
 import pathBrownian from "./pathBrownian.js";
 import pathGrid from "./pathGrid.js";
 import pathLevy from "./pathLevy.js";
@@ -18,6 +19,7 @@ import pop from "./pop.js";
 export default {
   parallax,
   pathBranches,
+  pathBranchesInertia,
   pathBrownian,
   pathGrid,
   pathLevy,
