@@ -57,6 +57,8 @@ When `expectedCommitSha` or `previousCipeUrl` is provided, you must detect wheth
   "verifiedTaskIds": "string[]",
   "selfHealingEnabled": "boolean",
   "selfHealingStatus": "NOT_STARTED | IN_PROGRESS | COMPLETED | FAILED | NOT_EXECUTABLE | null",
+  "selfHealingSkippedReason": "string | null",
+  "selfHealingSkipMessage": "string | null",
   "verificationStatus": "NOT_STARTED | IN_PROGRESS | COMPLETED | FAILED | NOT_EXECUTABLE | null",
   "userAction": "NONE | APPLIED | REJECTED | APPLIED_LOCALLY | APPLIED_AUTOMATICALLY | null",
   "failureClassification": "string | null",
@@ -88,7 +90,7 @@ WAIT_FIELDS:
   # Minimal fields for detecting new CI Attempt
 
 LIGHT_FIELDS:
-  "cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,shortLink,confidence,confidenceReasoning,hints"
+  "cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,shortLink,confidence,confidenceReasoning,hints,selfHealingSkippedReason,selfHealingSkipMessage"
   # Status fields for determining actionable state (includes hints for contextual guidance)
 
 HEAVY_FIELDS:
@@ -243,7 +245,7 @@ Only fetch minimal fields needed to detect CI Attempt change. Do NOT fetch heavy
 ```
 ci_information({
   branch: "<branch_name>",
-  select: "cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,shortLink,confidence,confidenceReasoning,hints"
+  select: "cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,shortLink,confidence,confidenceReasoning,hints,selfHealingSkippedReason,selfHealingSkipMessage"
 })
 ```
 
@@ -291,9 +293,11 @@ Continue polling (with backoff) if ANY of these conditions are true:
 | `cipeStatus == 'IN_PROGRESS'`           | CI still running                         |
 | `cipeStatus == 'NOT_STARTED'`           | CI hasn't started yet                    |
 | `selfHealingStatus == 'IN_PROGRESS'`    | Self-healing agent working               |
-| `selfHealingStatus == 'NOT_STARTED'`    | Self-healing not started yet             |
+| `selfHealingStatus == 'NOT_STARTED'`    | Self-healing not started yet (see note)  |
 | `failureClassification == 'FLAKY_TASK'` | Auto-rerun in progress                   |
 | `userAction == 'APPLIED_AUTOMATICALLY'` | New CI Attempt spawning after auto-apply |
+
+**Note:** When `selfHealingSkippedReason` is present, do NOT continue polling on `selfHealingStatus == NOT_STARTED`. The throttled state means self-healing will not start — return `self_healing_throttled` immediately.
 
 When `couldAutoApplyTasks == true`:
 
@@ -337,19 +341,20 @@ sleep 120  # Third and subsequent waits (capped) - BLOCKS until complete
 
 Before returning to main agent, fetch heavy fields if the status requires them:
 
-| Status              | Heavy Fields Needed                                                            |
-| ------------------- | ------------------------------------------------------------------------------ |
-| `ci_success`        | None                                                                           |
-| `fix_auto_applying` | None                                                                           |
-| `fix_available`     | `taskOutputSummary,suggestedFix,suggestedFixReasoning,suggestedFixDescription` |
-| `fix_failed`        | `taskOutputSummary`                                                            |
-| `no_fix`            | `taskOutputSummary`                                                            |
-| `environment_issue` | None                                                                           |
-| `no_new_cipe`       | None                                                                           |
-| `polling_timeout`   | None                                                                           |
-| `cipe_canceled`     | None                                                                           |
-| `cipe_timed_out`    | None                                                                           |
-| `cipe_no_tasks`     | None                                                                           |
+| Status                   | Heavy Fields Needed                                                            |
+| ------------------------ | ------------------------------------------------------------------------------ |
+| `ci_success`             | None                                                                           |
+| `fix_auto_applying`      | None                                                                           |
+| `fix_available`          | `taskOutputSummary,suggestedFix,suggestedFixReasoning,suggestedFixDescription` |
+| `fix_failed`             | `taskOutputSummary`                                                            |
+| `no_fix`                 | `taskOutputSummary`                                                            |
+| `environment_issue`      | None                                                                           |
+| `no_new_cipe`            | None                                                                           |
+| `polling_timeout`        | None                                                                           |
+| `cipe_canceled`          | None                                                                           |
+| `cipe_timed_out`         | None                                                                           |
+| `self_healing_throttled` | `selfHealingSkipMessage`                                                       |
+| `cipe_no_tasks`          | None                                                                           |
 
 ```
 # Example: fetching heavy fields for fix_available
@@ -367,19 +372,20 @@ Merge response into `accumulated_state`, then return merged state to main agent.
 
 Return immediately with structured state if ANY of these conditions are true:
 
-| Status              | Condition                                                                                                                                                 |
-| ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ci_success`        | `cipeStatus == 'SUCCEEDED'`                                                                                                                               |
-| `fix_auto_applying` | `selfHealingStatus == 'COMPLETED'` AND `couldAutoApplyTasks == true` AND `verificationStatus == 'COMPLETED'`                                              |
-| `fix_available`     | `selfHealingStatus == 'COMPLETED'` AND `suggestedFix != null` AND (`couldAutoApplyTasks != true` OR `verificationStatus` in (`FAILED`, `NOT_EXECUTABLE`)) |
-| `fix_failed`        | `selfHealingStatus == 'FAILED'`                                                                                                                           |
-| `environment_issue` | `failureClassification == 'ENVIRONMENT_STATE'`                                                                                                            |
-| `no_fix`            | `cipeStatus == 'FAILED'` AND (`selfHealingEnabled == false` OR `selfHealingStatus == 'NOT_EXECUTABLE'`)                                                   |
-| `no_new_cipe`       | No CI Attempt found for branch (normal mode) or no new CI Attempt detected (wait mode) after `newCipeTimeout` (default 10 min)                            |
-| `polling_timeout`   | Subagent has been polling for > configured timeout (default 30 min)                                                                                       |
-| `cipe_canceled`     | `cipeStatus == 'CANCELED'`                                                                                                                                |
-| `cipe_timed_out`    | `cipeStatus == 'TIMED_OUT'`                                                                                                                               |
-| `cipe_no_tasks`     | `cipeStatus == 'FAILED'` AND `failedTaskIds.length == 0` AND `selfHealingStatus == null`                                                                  |
+| Status                   | Condition                                                                                                                                                 |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci_success`             | `cipeStatus == 'SUCCEEDED'`                                                                                                                               |
+| `fix_auto_applying`      | `selfHealingStatus == 'COMPLETED'` AND `couldAutoApplyTasks == true` AND `verificationStatus == 'COMPLETED'`                                              |
+| `fix_available`          | `selfHealingStatus == 'COMPLETED'` AND `suggestedFix != null` AND (`couldAutoApplyTasks != true` OR `verificationStatus` in (`FAILED`, `NOT_EXECUTABLE`)) |
+| `fix_failed`             | `selfHealingStatus == 'FAILED'`                                                                                                                           |
+| `environment_issue`      | `failureClassification == 'ENVIRONMENT_STATE'`                                                                                                            |
+| `no_fix`                 | `cipeStatus == 'FAILED'` AND (`selfHealingEnabled == false` OR `selfHealingStatus == 'NOT_EXECUTABLE'`)                                                   |
+| `no_new_cipe`            | No CI Attempt found for branch (normal mode) or no new CI Attempt detected (wait mode) after `newCipeTimeout` (default 10 min)                            |
+| `polling_timeout`        | Subagent has been polling for > configured timeout (default 30 min)                                                                                       |
+| `cipe_canceled`          | `cipeStatus == 'CANCELED'`                                                                                                                                |
+| `cipe_timed_out`         | `cipeStatus == 'TIMED_OUT'`                                                                                                                               |
+| `self_healing_throttled` | `selfHealingSkippedReason == 'THROTTLED'`                                                                                                                 |
+| `cipe_no_tasks`          | `cipeStatus == 'FAILED'` AND `failedTaskIds.length == 0` AND `selfHealingStatus == null`                                                                  |
 
 ## Subagent Timeout
 
@@ -586,17 +592,18 @@ Output detailed phase box after every poll:
 
 ### Phase Descriptions (for verbose output)
 
-| Status Combo                                                                              | Description                                 |
-| ----------------------------------------------------------------------------------------- | ------------------------------------------- |
-| `cipeStatus: IN_PROGRESS`                                                                 | "CI running..."                             |
-| `cipeStatus: NOT_STARTED`                                                                 | "Waiting for CI to start..."                |
-| `cipeStatus: FAILED` + `selfHealingStatus: NOT_STARTED`                                   | "CI failed. Self-healing starting..."       |
-| `cipeStatus: FAILED` + `selfHealingStatus: IN_PROGRESS`                                   | "CI failed. Self-healing generating fix..." |
-| `cipeStatus: FAILED` + `selfHealingStatus: COMPLETED` + `verificationStatus: IN_PROGRESS` | "Fix generated! Verification running..."    |
-| `cipeStatus: FAILED` + `selfHealingStatus: COMPLETED` + `verificationStatus: COMPLETED`   | "Fix ready! Verified successfully."         |
-| `cipeStatus: FAILED` + `selfHealingStatus: COMPLETED` + `verificationStatus: FAILED`      | "Fix generated but verification failed."    |
-| `cipeStatus: FAILED` + `selfHealingStatus: FAILED`                                        | "Self-healing could not generate a fix."    |
-| `cipeStatus: SUCCEEDED`                                                                   | "CI passed!"                                |
+| Status Combo                                                                              | Description                                          |
+| ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `cipeStatus: IN_PROGRESS`                                                                 | "CI running..."                                      |
+| `cipeStatus: NOT_STARTED`                                                                 | "Waiting for CI to start..."                         |
+| `cipeStatus: FAILED` + `selfHealingStatus: NOT_STARTED`                                   | "CI failed. Self-healing starting..."                |
+| `cipeStatus: FAILED` + `selfHealingStatus: IN_PROGRESS`                                   | "CI failed. Self-healing generating fix..."          |
+| `cipeStatus: FAILED` + `selfHealingStatus: COMPLETED` + `verificationStatus: IN_PROGRESS` | "Fix generated! Verification running..."             |
+| `cipeStatus: FAILED` + `selfHealingStatus: COMPLETED` + `verificationStatus: COMPLETED`   | "Fix ready! Verified successfully."                  |
+| `cipeStatus: FAILED` + `selfHealingStatus: COMPLETED` + `verificationStatus: FAILED`      | "Fix generated but verification failed."             |
+| `cipeStatus: FAILED` + `selfHealingStatus: FAILED`                                        | "Self-healing could not generate a fix."             |
+| `cipeStatus: FAILED` + `selfHealingSkippedReason: 'THROTTLED'`                            | "Self-healing throttled — too many unapplied fixes." |
+| `cipeStatus: SUCCEEDED`                                                                   | "CI passed!"                                         |
 
 ## Important Notes
 

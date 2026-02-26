@@ -86,20 +86,21 @@ Parse any overrides from `$ARGUMENTS` and merge with defaults.
 
 The subagent returns with one of the following statuses. This table defines the **default behavior** for each status. User instructions can override any of these.
 
-| Status              | Default Behavior                                                                                                                                                              |
-| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ci_success`        | Exit with success. Log "CI passed successfully!"                                                                                                                              |
-| `fix_auto_applying` | Fix will be auto-applied by self-healing. Do NOT call MCP. Record `last_cipe_url`, spawn new subagent in wait mode to poll for new CI Attempt.                                |
-| `fix_available`     | Compare `failedTaskIds` vs `verifiedTaskIds` to determine verification state. See **Fix Available Decision Logic** section below.                                             |
-| `fix_failed`        | Self-healing failed to generate fix. Attempt local fix based on `taskOutputSummary`. If successful → commit, push, loop. If not → exit with failure.                          |
-| `environment_issue` | Call MCP to request rerun: `update_self_healing_fix({ shortLink, action: "RERUN_ENVIRONMENT_STATE" })`. New CI Attempt spawns automatically. Loop to poll for new CI Attempt. |
-| `no_fix`            | CI failed, no fix available (self-healing disabled or not executable). Attempt local fix if possible. Otherwise exit with failure.                                            |
-| `no_new_cipe`       | Expected CI Attempt never spawned (CI workflow likely failed before Nx tasks). Report to user, attempt common fixes if configured, or exit with guidance.                     |
-| `polling_timeout`   | Subagent polling timeout reached. Exit with timeout.                                                                                                                          |
-| `cipe_canceled`     | CI Attempt was canceled. Exit with canceled status.                                                                                                                           |
-| `cipe_timed_out`    | CI Attempt timed out. Exit with timeout status.                                                                                                                               |
-| `cipe_no_tasks`     | CI Attempt exists but failed with no task data (likely infrastructure issue). Retry once with empty commit. If retry fails, exit with failure and guidance.                   |
-| `error`             | Increment `no_progress_count`. If >= 3 → exit with circuit breaker. Otherwise wait 60s and loop.                                                                              |
+| Status                   | Default Behavior                                                                                                                                                              |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ci_success`             | Exit with success. Log "CI passed successfully!"                                                                                                                              |
+| `fix_auto_applying`      | Fix will be auto-applied by self-healing. Do NOT call MCP. Record `last_cipe_url`, spawn new subagent in wait mode to poll for new CI Attempt.                                |
+| `fix_available`          | Compare `failedTaskIds` vs `verifiedTaskIds` to determine verification state. See **Fix Available Decision Logic** section below.                                             |
+| `fix_failed`             | Self-healing failed to generate fix. Attempt local fix based on `taskOutputSummary`. If successful → commit, push, loop. If not → exit with failure.                          |
+| `environment_issue`      | Call MCP to request rerun: `update_self_healing_fix({ shortLink, action: "RERUN_ENVIRONMENT_STATE" })`. New CI Attempt spawns automatically. Loop to poll for new CI Attempt. |
+| `self_healing_throttled` | Self-healing throttled due to unapplied fixes. See **Throttled Self-Healing Flow** below.                                                                                     |
+| `no_fix`                 | CI failed, no fix available (self-healing disabled or not executable). Attempt local fix if possible. Otherwise exit with failure.                                            |
+| `no_new_cipe`            | Expected CI Attempt never spawned (CI workflow likely failed before Nx tasks). Report to user, attempt common fixes if configured, or exit with guidance.                     |
+| `polling_timeout`        | Subagent polling timeout reached. Exit with timeout.                                                                                                                          |
+| `cipe_canceled`          | CI Attempt was canceled. Exit with canceled status.                                                                                                                           |
+| `cipe_timed_out`         | CI Attempt timed out. Exit with timeout status.                                                                                                                               |
+| `cipe_no_tasks`          | CI Attempt exists but failed with no task data (likely infrastructure issue). Retry once with empty commit. If retry fails, exit with failure and guidance.                   |
+| `error`                  | Increment `no_progress_count`. If >= 3 → exit with circuit breaker. Otherwise wait 60s and loop.                                                                              |
 
 ### Fix Available Decision Logic
 
@@ -250,6 +251,26 @@ When `failureClassification == 'ENVIRONMENT_STATE'`:
 1. Call MCP to request rerun: `update_self_healing_fix({ shortLink, action: "RERUN_ENVIRONMENT_STATE" })`
 2. New CI Attempt spawns automatically (no local git operations needed)
 3. Loop to poll for new CI Attempt with `previousCipeUrl` set
+
+### Throttled Self-Healing Flow
+
+When `status == 'self_healing_throttled'`:
+
+Self-healing was skipped because too many previous fixes remain unapplied. The `selfHealingSkipMessage` contains URLs to CIPEs with pending fixes.
+
+1. **Parse throttle message** for CIPE URLs using regex matching `/cipes/{id}` pattern (format: `https://...nx.app/cipes/{cipeId}/self-healing`)
+2. **Reject previous fixes** — for each CIPE URL found:
+   - Call `ci_information({ url: "<cipe_url>" })` to get the `shortLink`
+   - Call `update_self_healing_fix({ shortLink: "<shortLink>", action: "REJECT" })` to reject
+3. **Attempt local fix**:
+   - Use `failedTaskIds` from the current CIPE
+   - Use `taskOutputSummary` (fetch via select if available) for context
+   - Try to fix locally, run tasks to verify
+4. **Fallback if local fix not possible**:
+   - Push empty commit (`git commit --allow-empty -m "ci: rerun after rejecting throttled fixes"`)
+   - Push to trigger new CI
+   - Spawn subagent in wait mode to poll for new CI Attempt
+5. After rejecting fixes and pushing, self-healing should resume since throttle condition (unapplied fixes) is cleared
 
 ### No-New-CI-Attempt Handling
 
@@ -531,14 +552,14 @@ Users can override default behaviors:
 
 ## Error Handling
 
-| Error                          | Action                                                                                |
-| ------------------------------ | ------------------------------------------------------------------------------------- |
-| Git rebase conflict            | Report to user, exit                                                                  |
-| `nx-cloud apply-locally` fails | Report to user, attempt manual patch or exit                                          |
-| MCP tool error                 | Retry once, if fails report to user                                                   |
-| Subagent spawn failure         | Retry once, if fails exit with error                                                  |
-| No new CI Attempt detected     | If `--auto-fix-workflow`, try lockfile update; otherwise report to user with guidance |
-| Lockfile auto-fix fails        | Report to user, exit with guidance to check CI logs                                   |
+| Error                          | Action                                                                                                      |
+| ------------------------------ | ----------------------------------------------------------------------------------------------------------- |
+| Git rebase conflict            | Report to user, exit                                                                                        |
+| `nx-cloud apply-locally` fails | Reject fix via MCP (`action: "REJECT"`), then attempt manual patch (Reject + Fix From Scratch Flow) or exit |
+| MCP tool error                 | Retry once, if fails report to user                                                                         |
+| Subagent spawn failure         | Retry once, if fails exit with error                                                                        |
+| No new CI Attempt detected     | If `--auto-fix-workflow`, try lockfile update; otherwise report to user with guidance                       |
+| Lockfile auto-fix fails        | Report to user, exit with guidance to check CI logs                                                         |
 
 ## Example Session
 

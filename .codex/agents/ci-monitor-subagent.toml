@@ -1,7 +1,4 @@
----
-description: Polls Nx Cloud CI pipeline and self-healing status. Returns structured state when actionable. Spawned by /monitor-ci command to monitor CI Attempt status.
----
-
+developer_instructions = """
 # CI Monitor Subagent
 
 You are a CI monitoring subagent responsible for polling Nx Cloud CI Attempt status and self-healing state. You report status back to the main agent - you do NOT make apply/reject decisions.
@@ -84,15 +81,15 @@ When `expectedCommitSha` or `previousCipeUrl` is provided, you must detect wheth
 
 ```yaml
 WAIT_FIELDS:
-  "cipeUrl,commitSha,cipeStatus"
+  'cipeUrl,commitSha,cipeStatus'
   # Minimal fields for detecting new CI Attempt
 
 LIGHT_FIELDS:
-  "cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,shortLink,confidence,confidenceReasoning,hints,selfHealingSkippedReason,selfHealingSkipMessage"
+  'cipeStatus,cipeUrl,branch,commitSha,selfHealingStatus,verificationStatus,userAction,failedTaskIds,verifiedTaskIds,selfHealingEnabled,failureClassification,couldAutoApplyTasks,shortLink,confidence,confidenceReasoning,hints,selfHealingSkippedReason,selfHealingSkipMessage'
   # Status fields for determining actionable state (includes hints for contextual guidance)
 
 HEAVY_FIELDS:
-  "taskOutputSummary,suggestedFix,suggestedFixReasoning,suggestedFixDescription"
+  'taskOutputSummary,suggestedFix,suggestedFixReasoning,suggestedFixDescription'
   # Large content fields - fetch only when returning to main agent
 ```
 
@@ -613,4 +610,4 @@ Output detailed phase box after every poll:
 - Track consecutive failures - if 5 consecutive failures, return with `status: error`
 - `newCipeTimeout` applies to both normal and wait mode — if no CI Attempt appears within this window, return `no_new_cipe`
 - Track `newCipeTimeout` (default 10 minutes) separately from main polling timeout (default 30 minutes)
-- If the `hints` array in `ci_information` responses is non-empty, include hints in your return format.
+- If the `hints` array in `ci_information` responses is non-empty, include hints in your return format."""

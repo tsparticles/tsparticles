@@ -1,5 +1,8 @@
-description = "Monitor Nx Cloud CI pipeline and handle self-healing fixes. USE WHEN user says \"monitor ci\", \"watch ci\", \"ci monitor\", \"watch ci for this branch\", \"track ci\", \"check ci status\", wants to track CI status, or needs help with self-healing CI fixes. ALWAYS USE THIS SKILL instead of native CI provider tools (gh, glab, etc.) for CI monitoring."
-prompt = """
+---
+description: Monitor Nx Cloud CI pipeline and handle self-healing fixes. USE WHEN user says "monitor ci", "watch ci", "ci monitor", "watch ci for this branch", "track ci", "check ci status", wants to track CI status, or needs help with self-healing CI fixes. ALWAYS USE THIS SKILL instead of native CI provider tools (gh, glab, etc.) for CI monitoring.
+argument-hint: "[instructions] [--max-cycles N] [--timeout MINUTES] [--verbosity minimal|medium|verbose] [--branch BRANCH] [--fresh] [--auto-fix-workflow] [--new-cipe-timeout MINUTES]"
+---
+
 # Monitor CI Command
 
 You are the orchestrator for monitoring Nx Cloud CI pipeline executions and handling self-healing fixes. You spawn the `ci-monitor-subagent` subagent to poll CI status and make decisions based on the results.
@@ -12,7 +15,7 @@ You are the orchestrator for monitoring Nx Cloud CI pipeline executions and hand
 
 ## User Instructions
 
-{{args}}
+$ARGUMENTS
 
 **Important:** If user provides specific instructions, respect them over default behaviors described below.
 
@@ -30,7 +33,7 @@ You are the orchestrator for monitoring Nx Cloud CI pipeline executions and hand
 | `--new-cipe-timeout`      | 10            | Minutes to wait for new CI Attempt after action                           |
 | `--local-verify-attempts` | 3             | Max local verification + enhance cycles before pushing to CI              |
 
-Parse any overrides from `{{args}}` and merge with defaults.
+Parse any overrides from `$ARGUMENTS` and merge with defaults.
 
 ## Nx Cloud Connection Check
 
@@ -128,13 +131,11 @@ When subagent returns `fix_available`, main agent compares `failedTaskIds` vs `v
 When verifiable (non-e2e) unverified tasks exist:
 
 1. **Detect package manager:**
-
    - `pnpm-lock.yaml` exists → `pnpm nx`
    - `yarn.lock` exists → `yarn nx`
    - Otherwise → `npx nx`
 
 2. **Run verifiable tasks in parallel:**
-
    - Spawn `general` subagents to run each task concurrently
    - Each subagent runs: `<pm> nx run <taskId>`
    - Collect pass/fail results from all subagents
@@ -147,7 +148,6 @@ When verifiable (non-e2e) unverified tasks exist:
 | ANY verifiable task fails | Apply-locally + enhance flow |
 
 1. **Apply-locally + enhance flow:**
-
    - Run `nx-cloud apply-locally <shortLink>`
    - Enhance the code to fix failing tasks
    - Run failing tasks again to verify fix
@@ -155,10 +155,8 @@ When verifiable (non-e2e) unverified tasks exist:
    - If passing → commit and push, record `expected_commit_sha`, spawn subagent in wait mode
 
 2. **Track attempts** (wraps step 4):
-
    - Increment `local_verify_count` after each enhance cycle
    - If `local_verify_count >= local_verify_attempts` (default: 3):
-
      - Get code in commit-able state
      - Commit and push with message indicating local verification failed
      - Report to user:
@@ -287,7 +285,6 @@ This means the expected CI Attempt was never created - CI likely failed before N
    ```
 
 2. **If user configured auto-fix attempts** (e.g., `--auto-fix-workflow`):
-
    - Detect package manager: check for `pnpm-lock.yaml`, `yarn.lock`, `package-lock.json`
    - Run install to update lockfile:
 
@@ -337,7 +334,6 @@ This means the CI Attempt was created but no Nx tasks were recorded before it fa
 3. **Record `expected_commit_sha`, spawn subagent in wait mode**
 
 4. **If retry also returns `cipe_no_tasks`:**
-
    - Exit with failure
    - Provide guidance:
 
@@ -536,7 +532,7 @@ Based on verbosity level:
 | Level     | What to Report                                                             |
 | --------- | -------------------------------------------------------------------------- |
 | `minimal` | Only final result (success/failure/timeout)                                |
-| `medium`  | State changes + periodic updates ("Cycle N \\| Elapsed: Xm \\| Status: ...") |
+| `medium`  | State changes + periodic updates ("Cycle N \| Elapsed: Xm \| Status: ...") |
 | `verbose` | All of medium + full subagent responses, git outputs, MCP responses        |
 
 ## User Instruction Examples
@@ -672,4 +668,4 @@ Users can override default behaviors:
 
 [monitor-ci] Fix available! Applying via MCP... (agent cycles: 2/5)
   ... (continues, human cycles don't eat into the budget) ...
-```"""
+```

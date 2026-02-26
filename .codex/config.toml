@@ -1,0 +1,10 @@
+[mcp_servers.nx-mcp]
+command = "npx"
+args = [ "nx-mcp@latest", "--minimal" ]
+
+[features]
+multi_agent = true
+
+[agents.ci-monitor-subagent]
+description = "Polls Nx Cloud CI pipeline and self-healing status. Returns structured state when actionable. Spawned by /monitor-ci command to monitor CI Attempt status."
+config_file = ".codex/agents/ci-monitor-subagent.toml"
