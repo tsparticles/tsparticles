@@ -1,7 +1,6 @@
 import {
   type Container,
   type IDelta,
-  type IMovePathGenerator,
   type RangeValue,
   Vector,
   deepExtend,
@@ -9,6 +8,7 @@ import {
   getRandom,
   getRangeValue,
 } from "@tsparticles/engine";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 import type { ISpiralOptions } from "./ISpiralOptions.js";
 import { SpiralDirection } from "./SpiralDirection.js";
 import type { SpiralParticle } from "./SpiralParticle.js";

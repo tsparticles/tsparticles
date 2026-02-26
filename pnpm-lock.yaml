@@ -1463,6 +1463,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/brownian:
@@ -1470,6 +1473,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/curlNoise:
@@ -1477,6 +1483,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
       '@tsparticles/simplex-noise':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../utils/simplexNoise/dist
@@ -1487,6 +1496,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/fractalNoise:
@@ -1497,6 +1509,9 @@ importers:
       '@tsparticles/fractal-noise':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../utils/fractalNoise/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
       '@tsparticles/noise-field':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../utils/noiseField/dist
@@ -1507,6 +1522,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/levy:
@@ -1514,6 +1532,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/perlinNoise:
@@ -1521,6 +1542,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
       '@tsparticles/noise-field':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../utils/noiseField/dist
@@ -1534,6 +1558,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/random:
@@ -1541,6 +1568,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/simplexNoise:
@@ -1548,6 +1578,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
       '@tsparticles/noise-field':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../utils/noiseField/dist
@@ -1561,6 +1594,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/svg:
@@ -1568,6 +1604,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   paths/zigzag:
@@ -1575,6 +1614,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   plugins/absorbers:
@@ -2198,6 +2240,9 @@ importers:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.25
         version: link:../../engine/dist
+      '@tsparticles/move-base':
+        specifier: workspace:4.0.0-alpha.25
+        version: link:../../move/base/dist
     publishDirectory: dist
 
   utils/pathUtils:

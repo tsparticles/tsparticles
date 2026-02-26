@@ -22,7 +22,6 @@ import {
   doublePI,
   half,
   identity,
-  millisecondsToSeconds,
   minZ,
   randomColorValue,
   squareExp,
@@ -45,7 +44,6 @@ import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IHsl } from "./Interfaces/Colors.js";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
 import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js";
@@ -264,16 +262,6 @@ export class Particle {
   outType!: ParticleOutType;
 
   /**
-   * Gets the delay for every path step
-   */
-  pathDelay!: number;
-
-  /**
-   * Gets the particle's path generator
-   */
-  pathGenerator?: IMovePathGenerator;
-
-  /**
    * Gets if the particle should rotate with path
    */
   pathRotation!: boolean;
@@ -410,7 +398,6 @@ export class Particle {
     this.slow.inRange = false;
 
     const container = this.container,
-      pathGenerator = this.pathGenerator,
       shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
@@ -422,8 +409,6 @@ export class Particle {
     for (const updater of container.particles.updaters) {
       updater.particleDestroyed?.(this, override);
     }
-
-    pathGenerator?.reset(this);
 
     for (const mover of container.particles.movers) {
       mover.particleDestroyed(this);
@@ -667,26 +652,6 @@ export class Particle {
 
     for (const updater of particles.updaters) {
       updater.init(this);
-    }
-
-    const pathOptions = this.options.move.path;
-
-    this.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
-
-    if (pathOptions.generator) {
-      let pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
-
-      if (!pathGenerator) {
-        pathGenerator = this.container.particles.availablePathGenerators.get(pathOptions.generator);
-
-        if (pathGenerator) {
-          this.container.particles.pathGenerators.set(pathOptions.generator, pathGenerator);
-
-          pathGenerator.init();
-        }
-      }
-
-      this.pathGenerator = pathGenerator;
     }
 
     for (const mover of particles.movers) {

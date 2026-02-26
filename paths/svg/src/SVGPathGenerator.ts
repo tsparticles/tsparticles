@@ -5,7 +5,6 @@ import {
   type ICoordinatesWithMode,
   type IDelta,
   type IDimension,
-  type IMovePathGenerator,
   type Particle,
   PixelMode,
   Vector,
@@ -14,6 +13,7 @@ import {
   half,
   randomInRangeValue,
 } from "@tsparticles/engine";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 import type { SVGPathData } from "./types.js";
 import { createSVGPaths } from "./createSVGPaths.js";
 import { loadSVGFromString } from "./loadSVGFromString.js";

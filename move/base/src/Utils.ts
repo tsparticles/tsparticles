@@ -17,7 +17,8 @@ const minVelocity = 0,
   identity = 1,
   moveSpeedFactor = 60,
   minSpinRadius = 0,
-  spinFactor = 0.01;
+  spinFactor = 0.01,
+  defaultPathDelay = 0;
 
 /**
  * @param particle -
@@ -180,7 +181,7 @@ export function spin(particle: MoveParticle, moveSpeed: number, reduceFactor: nu
  * @param particle -
  * @param delta -
  */
-export function applyPath(particle: Particle, delta: IDelta): void {
+export function applyPath(particle: MoveParticle, delta: IDelta): void {
   const particlesOptions = particle.options,
     pathOptions = particlesOptions.move.path,
     pathEnabled = pathOptions.enable;
@@ -189,7 +190,9 @@ export function applyPath(particle: Particle, delta: IDelta): void {
     return;
   }
 
-  if (particle.lastPathTime <= particle.pathDelay) {
+  const pathDelay = particle.pathDelay ?? defaultPathDelay;
+
+  if (particle.lastPathTime <= pathDelay) {
     particle.lastPathTime += delta.value;
 
     return;
@@ -206,7 +209,7 @@ export function applyPath(particle: Particle, delta: IDelta): void {
     particle.velocity.y = clamp(particle.velocity.y, -identity, identity);
   }
 
-  particle.lastPathTime -= particle.pathDelay;
+  particle.lastPathTime -= pathDelay;
 }
 
 /**

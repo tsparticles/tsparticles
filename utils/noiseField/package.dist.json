@@ -92,7 +92,8 @@
   "module": "esm/index.js",
   "types": "types/index.d.ts",
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.25"
+    "@tsparticles/engine": "4.0.0-alpha.25",
+    "@tsparticles/move-base": "4.0.0-alpha.25"
   },
   "exports": {
     ".": {

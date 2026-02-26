@@ -18,7 +18,6 @@ import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
@@ -36,8 +35,6 @@ import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
  * Particles manager object
  */
 export class Particles {
-  availablePathGenerators: Map<string, IMovePathGenerator>;
-
   checkParticlePositionPlugins: IContainerPlugin[];
 
   effectDrawers: Map<string, IEffectDrawer>;
@@ -45,8 +42,6 @@ export class Particles {
   grid;
 
   movers: IParticleMover[];
-
-  pathGenerators: Map<string, IMovePathGenerator>;
 
   shapeDrawers: Map<string, IShapeDrawer>;
 
@@ -93,8 +88,6 @@ export class Particles {
     this.grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.effectDrawers = new Map();
     this.movers = [];
-    this.availablePathGenerators = new Map();
-    this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -198,13 +191,15 @@ export class Particles {
       shapeDrawer.destroy?.(container);
     }
 
+    for (const mover of this.movers) {
+      mover.destroy();
+    }
+
     this._array = [];
     this._pool.length = 0;
     this._zArray = [];
     this.effectDrawers = new Map();
     this.movers = [];
-    this.availablePathGenerators = new Map();
-    this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -327,17 +322,11 @@ export class Particles {
 
     this.effectDrawers = await this._engine.getEffectDrawers(container, true);
     this.movers = await this._engine.getMovers(container, true);
-    this.availablePathGenerators = await this._engine.getPathGenerators(container, true);
-    this.pathGenerators = new Map();
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
 
-    for (const pathGenerator of this.pathGenerators.values()) {
-      pathGenerator.init();
-    }
-
     for (const mover of this.movers) {
-      mover.init();
+      await mover.init();
     }
   }
 
@@ -421,10 +410,6 @@ export class Particles {
     const particlesToDelete = new Set<Particle>();
 
     this.grid.clear();
-
-    for (const pathGenerator of this.pathGenerators.values()) {
-      pathGenerator.update();
-    }
 
     for (const mover of this.movers) {
       mover.update();

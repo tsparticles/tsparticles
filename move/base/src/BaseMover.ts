@@ -1,6 +1,15 @@
-import { type IDelta, type IParticleMover, type Particle, getRangeMax, getRangeValue } from "@tsparticles/engine";
+import {
+  type Container,
+  type IDelta,
+  type IParticleMover,
+  type Particle,
+  getRangeMax,
+  getRangeValue,
+  millisecondsToSeconds,
+} from "@tsparticles/engine";
+import type { MoveEngine, MoveParticle } from "./Types.js";
 import { applyDistance, getProximitySpeedFactor, initSpin, move, spin } from "./Utils.js";
-import type { MoveParticle } from "./Types.js";
+import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 
 const diffFactor = 2,
   defaultSizeFactor = 1,
@@ -9,8 +18,38 @@ const diffFactor = 2,
 /**
  */
 export class BaseMover implements IParticleMover {
-  init(): void {
-    // no-op for now
+  availablePathGenerators: Map<string, IMovePathGenerator>;
+  pathGenerators: Map<string, IMovePathGenerator>;
+
+  private readonly _container;
+  private readonly _engine;
+
+  constructor(engine: MoveEngine, container: Container) {
+    this._engine = engine;
+    this._container = container;
+
+    this.availablePathGenerators = new Map();
+    this.pathGenerators = new Map();
+  }
+
+  destroy(): void {
+    this.availablePathGenerators = new Map();
+    this.pathGenerators = new Map();
+  }
+
+  async init(): Promise<void> {
+    const availablePathGenerators = await this._engine.getPathGenerators?.(this._container, true);
+
+    if (!availablePathGenerators) {
+      return;
+    }
+
+    this.availablePathGenerators = availablePathGenerators;
+    this.pathGenerators = new Map();
+
+    for (const pathGenerator of this.pathGenerators.values()) {
+      pathGenerator.init();
+    }
   }
 
   /**
@@ -18,7 +57,26 @@ export class BaseMover implements IParticleMover {
    */
   initParticle(particle: MoveParticle): void {
     const options = particle.options,
-      gravityOptions = options.move.gravity;
+      gravityOptions = options.move.gravity,
+      pathOptions = options.move.path;
+
+    particle.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
+
+    if (pathOptions.generator) {
+      let pathGenerator = this.pathGenerators.get(pathOptions.generator);
+
+      if (!pathGenerator) {
+        pathGenerator = this.availablePathGenerators.get(pathOptions.generator);
+
+        if (pathGenerator) {
+          this.pathGenerators.set(pathOptions.generator, pathGenerator);
+
+          pathGenerator.init();
+        }
+      }
+
+      particle.pathGenerator = pathGenerator;
+    }
 
     particle.gravity = {
       enable: gravityOptions.enable,
@@ -74,11 +132,15 @@ export class BaseMover implements IParticleMover {
     applyDistance(particle);
   }
 
-  particleDestroyed(_particle: Particle): void {
-    // no-op for now
+  particleDestroyed(particle: MoveParticle): void {
+    const pathGenerator = particle.pathGenerator;
+
+    pathGenerator?.reset(particle);
   }
 
   update(): void {
-    // no-op for now
+    for (const pathGenerator of this.pathGenerators.values()) {
+      pathGenerator.update();
+    }
   }
 }

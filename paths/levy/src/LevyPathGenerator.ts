@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, type IMovePathGenerator, Vector, getRandom } from "@tsparticles/engine";
+import { type Container, Vector, getRandom } from "@tsparticles/engine";
 import type { ILevyPathOptions } from "./ILevyPathOptions.js";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 import type { LevyPathParticle } from "./LevyPathParticle.js";
 
 const defaultScale = 1,

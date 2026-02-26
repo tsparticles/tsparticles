@@ -7,7 +7,6 @@ import type {
   EffectInitializer,
   Initializers,
   MoverInitializer,
-  PathGeneratorInitializer,
   ShapeInitializer,
   UpdaterInitializer,
 } from "../Types/EngineInitializers.js";
@@ -38,7 +37,6 @@ import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
@@ -170,17 +168,11 @@ export class Engine {
   readonly initializers: Initializers = {
     effects: new Map<string, EffectInitializer>(),
     movers: new Map<string, MoverInitializer>(),
-    pathGenerators: new Map<string, PathGeneratorInitializer>(),
     shapes: new Map<string, ShapeInitializer>(),
     updaters: new Map<string, UpdaterInitializer>(),
   };
 
   readonly movers = new Map<Container, IParticleMover[]>();
-
-  /**
-   * The path generators array
-   */
-  readonly pathGenerators = new Map<Container, Map<string, IMovePathGenerator>>();
 
   /**
    * The plugins array
@@ -305,15 +297,6 @@ export class Engine {
   }
 
   /**
-   * addPathGenerator adds a named path generator to tsParticles, this can be called by options
-   * @param name - the path generator name
-   * @param generator - the path generator object
-   */
-  addPathGenerator(name: string, generator: PathGeneratorInitializer): void {
-    this.initializers.pathGenerators.set(name, generator);
-  }
-
-  /**
    * addPlugin adds plugin to tsParticles, if an instance needs it, it will be loaded
    * @param plugin - the plugin implementation of {@link IPlugin}
    */
@@ -393,10 +376,6 @@ export class Engine {
 
   getMovers(container: Container, force = false): Promise<IParticleMover[]> {
     return getItemsFromInitializer(container, this.movers, this.initializers.movers, force);
-  }
-
-  getPathGenerators(container: Container, force = false): Promise<Map<string, IMovePathGenerator>> {
-    return getItemMapFromInitializer(container, this.pathGenerators, this.initializers.pathGenerators, force);
   }
 
   /**

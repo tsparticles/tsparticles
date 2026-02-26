@@ -1,7 +1,6 @@
 import {
   type Container,
   type IDelta,
-  type IMovePathGenerator,
   type Particle,
   type RangeValue,
   Vector,
@@ -10,6 +9,7 @@ import {
   getRangeValue,
   half,
 } from "@tsparticles/engine";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 
 const angularFrequencyFactor = 0.5,
   halfPI = Math.PI * half;

@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, type IMovePathGenerator, Vector, doublePI, getRandom, identity } from "@tsparticles/engine";
+import { type Container, Vector, doublePI, getRandom, identity } from "@tsparticles/engine";
 import type { BrownianPathParticle } from "./BrownianPathParticle.js";
 import type { IBrownianPathOptions } from "./IBrownianPathOptions.js";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 
 export class BrownianPathGenerator implements IMovePathGenerator {
   readonly options: IBrownianPathOptions;

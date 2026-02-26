@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
-import { type Container, type IMovePathGenerator, Vector, doublePI, getRandom } from "@tsparticles/engine";
+import { type Container, Vector, doublePI, getRandom } from "@tsparticles/engine";
 import type { IBranchesInertiaOptions, IBranchesPathOptions } from "./IBranchesPathOptions.js";
 import type { BranchesPathParticle } from "./BranchesPathParticle.js";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 
 const defaultOptions = {
   segmentLength: 20,

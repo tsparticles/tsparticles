@@ -1,16 +1,8 @@
-import {
-  type Container,
-  type IMovePathGenerator,
-  Vector,
-  deepExtend,
-  doublePI,
-  getRandom,
-  isFunction,
-  isString,
-} from "@tsparticles/engine";
+import { type Container, Vector, deepExtend, doublePI, getRandom, isFunction, isString } from "@tsparticles/engine";
 import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 
 const defaultOptions: ICurvesOptions = {
   rndFunc: null,

@@ -1,4 +1,6 @@
-import { type Engine } from "@tsparticles/engine";
+import { type Container, type Engine, getItemMapFromInitializer } from "@tsparticles/engine";
+import type { MoveEngine, PathGeneratorInitializer } from "./Types.js";
+import type { IMovePathGenerator } from "./IMovePathGenerator.js";
 
 declare const __VERSION__: string;
 
@@ -9,10 +11,53 @@ export async function loadBaseMover(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {
-    e.addMover("base", async () => {
+    const moveEngine = e as MoveEngine;
+
+    moveEngine.initializers.pathGenerators ??= new Map<string, PathGeneratorInitializer>();
+    moveEngine.pathGenerators ??= new Map<Container, Map<string, IMovePathGenerator>>();
+
+    /**
+     * addPathGenerator adds a named path generator to tsParticles, this can be called by options
+     * @param name - the path generator name
+     * @param generator - the path generator object
+     */
+    moveEngine.addPathGenerator = (name: string, generator: PathGeneratorInitializer): void => {
+      moveEngine.initializers.pathGenerators ??= new Map<string, PathGeneratorInitializer>();
+
+      moveEngine.initializers.pathGenerators.set(name, generator);
+    };
+
+    moveEngine.getPathGenerators = async (
+      container: Container,
+      force = false,
+    ): Promise<Map<string, IMovePathGenerator>> => {
+      moveEngine.initializers.pathGenerators ??= new Map<string, PathGeneratorInitializer>();
+      moveEngine.pathGenerators ??= new Map<Container, Map<string, IMovePathGenerator>>();
+
+      return getItemMapFromInitializer(
+        container,
+        moveEngine.pathGenerators,
+        moveEngine.initializers.pathGenerators,
+        force,
+      );
+    };
+
+    e.addMover("base", async container => {
       const { BaseMover } = await import("./BaseMover.js");
 
-      return new BaseMover();
+      return new BaseMover(e, container);
     });
   });
 }
+
+/**
+ * @param e -
+ */
+export function ensureBaseMoverLoaded(e: MoveEngine): void {
+  if (!e.addPathGenerator) {
+    throw new Error("tsParticles Base Mover is not loaded");
+  }
+}
+
+export type * from "./IMovePathGenerator.js";
+export type * from "./Types.js";

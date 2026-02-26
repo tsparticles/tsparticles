@@ -2,7 +2,9 @@ import type { IDelta } from "./IDelta.js";
 import type { Particle } from "../Particle.js";
 
 export interface IParticleMover {
-  init(): void;
+  destroy(): void;
+
+  init(): Promise<void>;
 
   initParticle(particle: Particle): void;
 

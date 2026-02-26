@@ -1,6 +1,4 @@
-import type { IDelta } from "./IDelta.js";
-import type { Particle } from "../Particle.js";
-import type { Vector } from "../Utils/Vectors.js";
+import type { IDelta, Particle, Vector } from "@tsparticles/engine";
 
 /**
  */

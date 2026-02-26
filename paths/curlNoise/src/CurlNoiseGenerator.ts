@@ -1,13 +1,6 @@
-import {
-  type Container,
-  type IMovePathGenerator,
-  type Particle,
-  Vector,
-  deepExtend,
-  double,
-  getRandom,
-} from "@tsparticles/engine";
+import { type Container, type Particle, Vector, deepExtend, double, getRandom } from "@tsparticles/engine";
 import type { ICurlOptions } from "./ICurlOptions.js";
+import { type IMovePathGenerator } from "@tsparticles/move-base";
 import { SimplexNoise } from "@tsparticles/simplex-noise";
 
 const defaultOptions: ICurlOptions = {
