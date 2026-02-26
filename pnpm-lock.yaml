@@ -96,10 +96,10 @@ importers:
         specifier: ^9.0.4
         version: 9.0.4(@swc/core@1.15.13)(@types/node@25.3.0)
       nx:
-        specifier: 22.5.2
+        specifier: ^22.5.2
         version: 22.5.2(@swc/core@1.15.13)
       nx-cloud:
-        specifier: 19.1.0
+        specifier: ^19.1.0
         version: 19.1.0
       prettier:
         specifier: ^3.8.1
