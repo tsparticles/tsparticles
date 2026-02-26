@@ -1,5 +1,5 @@
 import { Vector, getRandomInRange } from "@tsparticles/engine";
-import { type IMovePathGenerator } from "@tsparticles/move-base";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const minRandom = -1,
   maxRandom = 1;

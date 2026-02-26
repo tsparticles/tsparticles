@@ -5,67 +5,67 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [4.0.0-alpha.25](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2026-02-21)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.24](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.23...v4.0.0-alpha.24) (2026-02-12)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.23](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.22...v4.0.0-alpha.23) (2026-02-11)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.22](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.21...v4.0.0-alpha.22) (2026-02-05)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.21](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.20...v4.0.0-alpha.21) (2026-02-04)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.20](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.19...v4.0.0-alpha.20) (2026-02-04)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.19](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.18...v4.0.0-alpha.19) (2026-02-04)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.18](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.17...v4.0.0-alpha.18) (2026-02-04)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.17](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.16...v4.0.0-alpha.17) (2026-02-04)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.16](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.15...v4.0.0-alpha.16) (2026-02-03)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.15](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.14...v4.0.0-alpha.15) (2026-02-03)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.14](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.13...v4.0.0-alpha.14) (2026-02-02)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.10](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.9...v4.0.0-alpha.10) (2026-02-02)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.9](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.8...v4.0.0-alpha.9) (2026-02-02)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.8](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.7...v4.0.0-alpha.8) (2026-01-22)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.7](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.6...v4.0.0-alpha.7) (2026-01-22)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.6](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.5...v4.0.0-alpha.6) (2026-01-22)
 
@@ -75,7 +75,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [4.0.0-alpha.5](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.4...v4.0.0-alpha.5) (2026-01-21)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.4](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.3...v4.0.0-alpha.4) (2026-01-21)
 
@@ -89,23 +89,23 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [4.0.0-alpha.3](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.2...v4.0.0-alpha.3) (2026-01-10)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.2](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.1...v4.0.0-alpha.2) (2026-01-08)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.1](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.0...v4.0.0-alpha.1) (2026-01-08)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [4.0.0-alpha.0](https://github.com/tsparticles/tsparticles/compare/v3.9.1...v4.0.0-alpha.0) (2026-01-07)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 ## [3.9.1](https://github.com/tsparticles/tsparticles/compare/v3.9.0...v3.9.1) (2025-08-03)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.9.0](https://github.com/tsparticles/tsparticles/compare/v3.8.1...v3.9.0) (2025-08-01)
 
@@ -145,7 +145,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [3.6.0-beta.1](https://github.com/tsparticles/tsparticles/compare/v3.6.0-beta.0...v3.6.0-beta.1) (2024-10-13)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.6.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v3.5.0...v3.6.0-beta.0) (2024-10-07)
 
@@ -161,7 +161,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [3.5.0](https://github.com/tsparticles/tsparticles/compare/v3.4.0...v3.5.0) (2024-07-01)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.4.0](https://github.com/tsparticles/tsparticles/compare/v3.3.0...v3.4.0) (2024-05-12)
 
@@ -183,7 +183,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [3.2.1](https://github.com/tsparticles/tsparticles/compare/v3.2.0...v3.2.1) (2024-01-31)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.2.0](https://github.com/tsparticles/tsparticles/compare/v3.1.0...v3.2.0) (2024-01-31)
 
@@ -209,11 +209,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [3.0.2](https://github.com/tsparticles/tsparticles/compare/v3.0.1...v3.0.2) (2023-12-06)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 ## [3.0.1](https://github.com/tsparticles/tsparticles/compare/v3.0.0...v3.0.1) (2023-12-06)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.0.0](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.5...v3.0.0) (2023-12-04)
 
@@ -223,7 +223,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [3.0.0-beta.5](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.4...v3.0.0-beta.5) (2023-12-03)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.0.0-beta.4](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.3...v3.0.0-beta.4) (2023-11-16)
 
@@ -233,11 +233,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [3.0.0-beta.3](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.2...v3.0.0-beta.3) (2023-09-20)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.0.0-beta.2](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.1...v3.0.0-beta.2) (2023-09-11)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [3.0.0-beta.1](https://github.com/tsparticles/tsparticles/compare/v3.0.0-beta.0...v3.0.0-beta.1) (2023-08-25)
 
@@ -247,7 +247,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [3.0.0-beta.0](https://github.com/tsparticles/tsparticles/compare/v2.12.0...v3.0.0-beta.0) (2023-08-24)
 
-**Note:** Version bump only for package @tsparticles/move-base
+**Note:** Version bump only for package @tsparticles/plugin-move
 
 # [2.12.0](https://github.com/tsparticles/tsparticles/compare/v2.11.1...v2.12.0) (2023-08-03)
 

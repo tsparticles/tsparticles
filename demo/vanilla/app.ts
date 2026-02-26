@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { fileURLToPath } from 'url';
 import livereload from "livereload";
-import path from "path";
+import path from "node:path";
 import os from "os";
 //import rateLimit from "express-rate-limit";
 import stylus from "stylus";
@@ -123,7 +123,7 @@ app.use("/interaction-light", express.static("./node_modules/@tsparticles/intera
 app.use("/interaction-particles-repulse", express.static("./node_modules/@tsparticles/interaction-particles-repulse"));
 app.use("/updater-gradient", express.static("./node_modules/@tsparticles/updater-gradient"));
 app.use("/updater-orbit", express.static("./node_modules/@tsparticles/updater-orbit"));
-app.use("/move-base", express.static("./node_modules/@tsparticles/move-base"));
+app.use("/plugin-move", express.static("./node_modules/@tsparticles/plugin-move"));
 app.use("/path-branches", express.static("./node_modules/@tsparticles/path-branches"));
 app.use("/path-brownian", express.static("./node_modules/@tsparticles/path-brownian"));
 app.use("/path-curves", express.static("./node_modules/@tsparticles/path-curves"));

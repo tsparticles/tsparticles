@@ -81,7 +81,7 @@
     "@tsparticles/interaction-particles-collisions": "workspace:4.0.0-alpha.25",
     "@tsparticles/interaction-particles-links": "workspace:4.0.0-alpha.25",
     "@tsparticles/interaction-particles-repulse": "workspace:4.0.0-alpha.25",
-    "@tsparticles/move-base": "workspace:4.0.0-alpha.25",
+    "@tsparticles/plugin-move": "workspace:4.0.0-alpha.25",
     "@tsparticles/noise-field": "workspace:4.0.0-alpha.25",
     "@tsparticles/path-branches": "workspace:4.0.0-alpha.25",
     "@tsparticles/path-brownian": "workspace:4.0.0-alpha.25",

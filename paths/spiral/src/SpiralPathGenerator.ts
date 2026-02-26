@@ -8,7 +8,7 @@ import {
   getRandom,
   getRangeValue,
 } from "@tsparticles/engine";
-import { type IMovePathGenerator } from "@tsparticles/move-base";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { ISpiralOptions } from "./ISpiralOptions.js";
 import { SpiralDirection } from "./SpiralDirection.js";
 import type { SpiralParticle } from "./SpiralParticle.js";

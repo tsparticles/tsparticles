@@ -106,7 +106,7 @@
   "dependencies": {
     "@tsparticles/engine": "4.0.0-alpha.25",
     "@tsparticles/fractal-noise": "4.0.0-alpha.25",
-    "@tsparticles/move-base": "4.0.0-alpha.25",
+    "@tsparticles/plugin-move": "4.0.0-alpha.25",
     "@tsparticles/noise-field": "4.0.0-alpha.25"
   },
   "type": "module"

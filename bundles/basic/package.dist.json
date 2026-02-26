@@ -100,7 +100,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "4.0.0-alpha.25",
-    "@tsparticles/move-base": "4.0.0-alpha.25",
+    "@tsparticles/plugin-move": "4.0.0-alpha.25",
     "@tsparticles/plugin-hex-color": "4.0.0-alpha.25",
     "@tsparticles/plugin-hsl-color": "4.0.0-alpha.25",
     "@tsparticles/plugin-rgb-color": "4.0.0-alpha.25",

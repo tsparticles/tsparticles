@@ -2,7 +2,7 @@
 import { type Container, Vector, doublePI, getRandom } from "@tsparticles/engine";
 import type { IBranchesInertiaOptions, IBranchesPathOptions } from "./IBranchesPathOptions.js";
 import type { BranchesPathParticle } from "./BranchesPathParticle.js";
-import { type IMovePathGenerator } from "@tsparticles/move-base";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const defaultOptions = {
   segmentLength: 20,

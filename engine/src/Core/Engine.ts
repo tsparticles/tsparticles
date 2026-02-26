@@ -6,7 +6,6 @@ import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import type {
   EffectInitializer,
   Initializers,
-  MoverInitializer,
   ShapeInitializer,
   UpdaterInitializer,
 } from "../Types/EngineInitializers.js";
@@ -37,7 +36,6 @@ import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
-import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
@@ -167,12 +165,9 @@ export class Engine {
 
   readonly initializers: Initializers = {
     effects: new Map<string, EffectInitializer>(),
-    movers: new Map<string, MoverInitializer>(),
     shapes: new Map<string, ShapeInitializer>(),
     updaters: new Map<string, UpdaterInitializer>(),
   };
-
-  readonly movers = new Map<Container, IParticleMover[]>();
 
   /**
    * The plugins array
@@ -280,14 +275,6 @@ export class Engine {
   }
 
   /**
-   * @param name - the mover name
-   * @param moverInitializer - the mover initializer
-   */
-  addMover(name: string, moverInitializer: MoverInitializer): void {
-    this.initializers.movers.set(name, moverInitializer);
-  }
-
-  /**
    * Adds a particle updater to the collection
    * @param name - the particle updater name used as a key
    * @param updaterInitializer - the particle updater initializer
@@ -348,7 +335,6 @@ export class Engine {
 
   clearPlugins(container: Container): void {
     this.effectDrawers.delete(container);
-    this.movers.delete(container);
     this.shapeDrawers.delete(container);
     this.updaters.delete(container);
   }
@@ -372,10 +358,6 @@ export class Engine {
 
   getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
     return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
-  }
-
-  getMovers(container: Container, force = false): Promise<IParticleMover[]> {
-    return getItemsFromInitializer(container, this.movers, this.initializers.movers, force);
   }
 
   /**

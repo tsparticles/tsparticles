@@ -18,7 +18,6 @@ import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
@@ -40,8 +39,6 @@ export class Particles {
   effectDrawers: Map<string, IEffectDrawer>;
 
   grid;
-
-  movers: IParticleMover[];
 
   shapeDrawers: Map<string, IShapeDrawer>;
 
@@ -87,7 +84,6 @@ export class Particles {
     this._maxZIndex = 0;
     this.grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.effectDrawers = new Map();
-    this.movers = [];
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -191,15 +187,10 @@ export class Particles {
       shapeDrawer.destroy?.(container);
     }
 
-    for (const mover of this.movers) {
-      mover.destroy();
-    }
-
     this._array = [];
     this._pool.length = 0;
     this._zArray = [];
     this.effectDrawers = new Map();
-    this.movers = [];
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -277,10 +268,6 @@ export class Particles {
 
     await this.initPlugins();
 
-    for (const mover of this.movers) {
-      await mover.redrawInit();
-    }
-
     for (const drawer of this.effectDrawers.values()) {
       await drawer.init?.(container);
     }
@@ -325,7 +312,6 @@ export class Particles {
     const container = this._container;
 
     this.effectDrawers = await this._engine.getEffectDrawers(container, true);
-    this.movers = await this._engine.getMovers(container, true);
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
   }
@@ -411,10 +397,6 @@ export class Particles {
 
     this.grid.clear();
 
-    for (const mover of this.movers) {
-      mover.update();
-    }
-
     for (const plugin of this._updatePlugins) {
       plugin.update?.(delta);
     }
@@ -441,12 +423,6 @@ export class Particles {
         }
 
         plugin.particleUpdate?.(particle, delta);
-      }
-
-      for (const mover of this.movers) {
-        if (mover.isEnabled(particle)) {
-          mover.particleUpdate(particle, delta);
-        }
       }
 
       if (particle.destroyed) {

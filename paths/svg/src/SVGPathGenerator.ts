@@ -13,7 +13,7 @@ import {
   half,
   randomInRangeValue,
 } from "@tsparticles/engine";
-import { type IMovePathGenerator } from "@tsparticles/move-base";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { SVGPathData } from "./types.js";
 import { createSVGPaths } from "./createSVGPaths.js";
 import { loadSVGFromString } from "./loadSVGFromString.js";

@@ -12,7 +12,7 @@ import {
 } from "@tsparticles/engine";
 import type { GridPathParticle } from "./GridPathParticle.js";
 import type { IGridPathOptions } from "./IGridPathOptions.js";
-import { type IMovePathGenerator } from "@tsparticles/move-base";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const dirs = [
     Vector.create(identity, originPoint.y), // 0 right

@@ -1,10 +1,10 @@
 [![banner](https://particles.js.org/images/banner2.png)](https://particles.js.org)
 
-# tsParticles Standard Mover
+# tsParticles Move Plugin
 
-[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/move-base/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/move-base)
-[![npmjs](https://badge.fury.io/js/@tsparticles/move-base.svg)](https://www.npmjs.com/package/@tsparticles/move-base)
-[![npmjs](https://img.shields.io/npm/dt/@tsparticles/move-base)](https://www.npmjs.com/package/@tsparticles/move-base) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
+[![jsDelivr](https://data.jsdelivr.com/v1/package/npm/@tsparticles/plugin-move/badge)](https://www.jsdelivr.com/package/npm/@tsparticles/plugin-move)
+[![npmjs](https://badge.fury.io/js/@tsparticles/plugin-move.svg)](https://www.npmjs.com/package/@tsparticles/plugin-move)
+[![npmjs](https://img.shields.io/npm/dt/@tsparticles/plugin-move)](https://www.npmjs.com/package/@tsparticles/plugin-move) [![GitHub Sponsors](https://img.shields.io/github/sponsors/matteobruni)](https://github.com/sponsors/matteobruni)
 
 [tsParticles](https://github.com/tsparticles/tsparticles) move plugin for standard movement effect.
 
@@ -14,10 +14,10 @@
 
 The CDN/Vanilla version JS has one required file in vanilla configuration:
 
-Including the `tsparticles.move.base.min.js` file will export the function to load the interaction plugin:
+Including the `tsparticles.plugin.move.min.js` file will export the function to load the interaction plugin:
 
 ```javascript
-loadBaseMover;
+loadMovePlugin;
 ```
 
 ### Usage
@@ -26,7 +26,7 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 
 ```javascript
 (async () => {
-  await loadBaseMover(tsParticles);
+  await loadMovePlugin(tsParticles);
 
   await tsParticles.load({
     id: "tsparticles",
@@ -42,23 +42,23 @@ Once the scripts are loaded you can set up `tsParticles` and the interaction plu
 This package is compatible also with ES or CommonJS modules, firstly this needs to be installed, like this:
 
 ```shell
-$ npm install @tsparticles/move-base
+$ npm install @tsparticles/plugin-move
 ```
 
 or
 
 ```shell
-$ yarn add @tsparticles/move-base
+$ yarn add @tsparticles/plugin-move
 ```
 
 Then you need to import it in the app, like this:
 
 ```javascript
 const { tsParticles } = require("@tsparticles/engine");
-const { loadBaseMover } = require("@tsparticles/move-base");
+const { loadMovePlugin } = require("@tsparticles/plugin-move");
 
 (async () => {
-  await loadBaseMover(tsParticles);
+  await loadMovePlugin(tsParticles);
 })();
 ```
 
@@ -66,9 +66,9 @@ or
 
 ```javascript
 import { tsParticles } from "@tsparticles/engine";
-import { loadBaseMover } from "@tsparticles/move-base";
+import { loadMovePlugin } from "@tsparticles/plugin-move";
 
 (async () => {
-  await loadBaseMover(tsParticles);
+  await loadMovePlugin(tsParticles);
 })();
 ```

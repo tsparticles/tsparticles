@@ -102,7 +102,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "4.0.0-alpha.25",
-    "@tsparticles/move-base": "4.0.0-alpha.25"
+    "@tsparticles/plugin-move": "4.0.0-alpha.25"
   },
   "publishConfig": {
     "access": "public"

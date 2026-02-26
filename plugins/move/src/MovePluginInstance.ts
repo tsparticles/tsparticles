@@ -1,8 +1,7 @@
 import {
   type Container,
+  type IContainerPlugin,
   type IDelta,
-  type IParticleMover,
-  type Particle,
   decayOffset,
   getRangeMax,
   getRangeValue,
@@ -16,9 +15,7 @@ const diffFactor = 2,
   defaultSizeFactor = 1,
   defaultDeltaFactor = 1;
 
-/**
- */
-export class BaseMover implements IParticleMover {
+export class MovePluginInstance implements IContainerPlugin {
   availablePathGenerators: Map<string, IMovePathGenerator>;
   pathGenerators: Map<string, IMovePathGenerator>;
 
@@ -42,7 +39,7 @@ export class BaseMover implements IParticleMover {
    * @param particle -
    * @returns check if mover is enabled
    */
-  isEnabled(particle: Particle): boolean {
+  isEnabled(particle: MoveParticle): boolean {
     return !particle.destroyed && particle.options.move.enable;
   }
 

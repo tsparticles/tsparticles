@@ -316,10 +316,6 @@ export class Container {
 
     await this.particles.initPlugins();
 
-    for (const mover of this.particles.movers) {
-      await mover.preInit();
-    }
-
     /* options settings */
     this._options = loadContainerOptions(this._engine, this, this._initialSourceOptions, this.sourceOptions);
     this.actualOptions = loadContainerOptions(this._engine, this, this._options);

@@ -7,10 +7,10 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export async function loadBaseMover(engine: Engine): Promise<void> {
+export async function loadMovePlugin(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
-  await engine.register(e => {
+  await engine.register(async e => {
     const moveEngine = e as MoveEngine;
 
     moveEngine.initializers.pathGenerators ??= new Map<string, PathGeneratorInitializer>();
@@ -42,11 +42,9 @@ export async function loadBaseMover(engine: Engine): Promise<void> {
       );
     };
 
-    e.addMover("base", async container => {
-      const { BaseMover } = await import("./BaseMover.js");
+    const { MovePlugin } = await import("./MovePlugin.js");
 
-      return new BaseMover(e, container);
-    });
+    e.addPlugin(new MovePlugin(e));
   });
 }
 

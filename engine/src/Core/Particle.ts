@@ -404,10 +404,6 @@ export class Particle {
       updater.particleDestroyed?.(this, override);
     }
 
-    for (const mover of container.particles.movers) {
-      mover.particleDestroyed(this);
-    }
-
     this._engine.dispatchEvent(EventType.particleDestroyed, {
       container: this.container,
       data: {
@@ -649,10 +645,6 @@ export class Particle {
 
     effectDrawer?.particleInit?.(container, this);
     shapeDrawer?.particleInit?.(container, this);
-
-    for (const mover of particles.movers) {
-      mover.particleCreated(this);
-    }
 
     for (const plugin of container.particleCreatedPlugins) {
       plugin.particleCreated?.(this);

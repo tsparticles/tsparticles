@@ -9,7 +9,7 @@ import {
   getRangeValue,
   half,
 } from "@tsparticles/engine";
-import { type IMovePathGenerator } from "@tsparticles/move-base";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const angularFrequencyFactor = 0.5,
   halfPI = Math.PI * half;

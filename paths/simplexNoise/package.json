@@ -96,7 +96,7 @@
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:4.0.0-alpha.25",
-    "@tsparticles/move-base": "workspace:4.0.0-alpha.25",
+    "@tsparticles/plugin-move": "workspace:4.0.0-alpha.25",
     "@tsparticles/noise-field": "workspace:4.0.0-alpha.25",
     "@tsparticles/simplex-noise": "workspace:4.0.0-alpha.25"
   },

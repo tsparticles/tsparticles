@@ -2,7 +2,7 @@ import { type Container, Vector, deepExtend, doublePI, getRandom, isFunction, is
 import { CurvesPathGen } from "./Curves.js";
 import type { CurvesPathParticle } from "./CurvesPathParticle.js";
 import type { ICurvesOptions } from "./ICurvesOptions.js";
-import { type IMovePathGenerator } from "@tsparticles/move-base";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const defaultOptions: ICurvesOptions = {
   rndFunc: null,
