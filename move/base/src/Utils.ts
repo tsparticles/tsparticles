@@ -18,7 +18,8 @@ const minVelocity = 0,
   moveSpeedFactor = 60,
   minSpinRadius = 0,
   spinFactor = 0.01,
-  defaultPathDelay = 0;
+  defaultPathDelay = 0,
+  noDecay = 1;
 
 /**
  * @param particle -
@@ -106,7 +107,7 @@ export function move(
 
   const decay = particle.moveDecay;
 
-  particle.velocity.multTo(decay);
+  particle.velocity.multTo(decay ?? noDecay);
 
   const velocity = particle.velocity.mult(moveSpeed);
 

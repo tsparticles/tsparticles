@@ -277,6 +277,10 @@ export class Particles {
 
     await this.initPlugins();
 
+    for (const mover of this.movers) {
+      await mover.redrawInit();
+    }
+
     for (const drawer of this.effectDrawers.values()) {
       await drawer.init?.(container);
     }
@@ -324,10 +328,6 @@ export class Particles {
     this.movers = await this._engine.getMovers(container, true);
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
-
-    for (const mover of this.movers) {
-      await mover.init();
-    }
   }
 
   push(
@@ -445,7 +445,7 @@ export class Particles {
 
       for (const mover of this.movers) {
         if (mover.isEnabled(particle)) {
-          mover.move(particle, delta);
+          mover.particleUpdate(particle, delta);
         }
       }
 

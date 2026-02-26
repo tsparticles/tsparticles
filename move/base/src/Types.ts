@@ -24,6 +24,11 @@ export type MoveParticle = Particle & {
   gravity?: IParticleGravity;
 
   /**
+   * Gets particle movement speed decay
+   */
+  moveDecay?: number;
+
+  /**
    * Gets the delay for every path step
    */
   pathDelay?: number;

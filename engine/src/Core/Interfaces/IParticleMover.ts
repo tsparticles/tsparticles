@@ -4,15 +4,17 @@ import type { Particle } from "../Particle.js";
 export interface IParticleMover {
   destroy(): void;
 
-  init(): Promise<void>;
-
-  initParticle(particle: Particle): void;
-
   isEnabled(particle: Particle): boolean;
 
-  move(particle: Particle, delta: IDelta): void;
+  particleCreated(particle: Particle): void;
 
   particleDestroyed(particle: Particle): void;
+
+  particleUpdate(particle: Particle, delta: IDelta): void;
+
+  preInit(): Promise<void>;
+
+  redrawInit(): Promise<void>;
 
   update(): void;
 }

@@ -13,7 +13,13 @@ import {
   setRangeValue,
 } from "../Utils/MathUtils.js";
 import {
-  decayOffset,
+  deepExtend,
+  getPosition,
+  initParticleNumericAnimationValue,
+  isInArray,
+  itemFromSingleOrMultiple,
+} from "../Utils/Utils.js";
+import {
   defaultAngle,
   defaultOpacity,
   defaultRetryCount,
@@ -29,13 +35,6 @@ import {
   tryCountIncrement,
   zIndexFactorOffset,
 } from "./Utils/Constants.js";
-import {
-  deepExtend,
-  getPosition,
-  initParticleNumericAnimationValue,
-  isInArray,
-  itemFromSingleOrMultiple,
-} from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
@@ -238,11 +237,6 @@ export class Particle {
   misplaced!: boolean;
 
   moveCenter!: ICenterCoordinates;
-
-  /**
-   * Gets particle movement speed decay
-   */
-  moveDecay!: number;
 
   /**
    * Gets particle offset position, used for parallax interaction
@@ -614,7 +608,6 @@ export class Particle {
     /* animation - velocity for speed */
     this.initialVelocity = this._calculateVelocity();
     this.velocity = this.initialVelocity.copy();
-    this.moveDecay = decayOffset - getRangeValue(this.options.move.decay);
 
     const particles = container.particles;
 
@@ -654,12 +647,12 @@ export class Particle {
       updater.init(this);
     }
 
-    for (const mover of particles.movers) {
-      mover.initParticle(this);
-    }
-
     effectDrawer?.particleInit?.(container, this);
     shapeDrawer?.particleInit?.(container, this);
+
+    for (const mover of particles.movers) {
+      mover.particleCreated(this);
+    }
 
     for (const plugin of container.particleCreatedPlugins) {
       plugin.particleCreated?.(this);

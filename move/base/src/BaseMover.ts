@@ -3,6 +3,7 @@ import {
   type IDelta,
   type IParticleMover,
   type Particle,
+  decayOffset,
   getRangeMax,
   getRangeValue,
   millisecondsToSeconds,
@@ -37,29 +38,23 @@ export class BaseMover implements IParticleMover {
     this.pathGenerators = new Map();
   }
 
-  async init(): Promise<void> {
-    const availablePathGenerators = await this._engine.getPathGenerators?.(this._container, true);
-
-    if (!availablePathGenerators) {
-      return;
-    }
-
-    this.availablePathGenerators = availablePathGenerators;
-    this.pathGenerators = new Map();
-
-    for (const pathGenerator of this.pathGenerators.values()) {
-      pathGenerator.init();
-    }
+  /**
+   * @param particle -
+   * @returns check if mover is enabled
+   */
+  isEnabled(particle: Particle): boolean {
+    return !particle.destroyed && particle.options.move.enable;
   }
 
   /**
    * @param particle -
    */
-  initParticle(particle: MoveParticle): void {
+  particleCreated(particle: MoveParticle): void {
     const options = particle.options,
       gravityOptions = options.move.gravity,
       pathOptions = options.move.path;
 
+    particle.moveDecay = decayOffset - getRangeValue(options.move.decay);
     particle.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
 
     if (pathOptions.generator) {
@@ -87,19 +82,17 @@ export class BaseMover implements IParticleMover {
     initSpin(particle);
   }
 
-  /**
-   * @param particle -
-   * @returns check if mover is enabled
-   */
-  isEnabled(particle: Particle): boolean {
-    return !particle.destroyed && particle.options.move.enable;
+  particleDestroyed(particle: MoveParticle): void {
+    const pathGenerator = particle.pathGenerator;
+
+    pathGenerator?.reset(particle);
   }
 
   /**
    * @param particle -
    * @param delta -
    */
-  move(particle: MoveParticle, delta: IDelta): void {
+  particleUpdate(particle: MoveParticle, delta: IDelta): void {
     const particleOptions = particle.options,
       moveOptions = particleOptions.move;
 
@@ -132,15 +125,32 @@ export class BaseMover implements IParticleMover {
     applyDistance(particle);
   }
 
-  particleDestroyed(particle: MoveParticle): void {
-    const pathGenerator = particle.pathGenerator;
+  preInit(): Promise<void> {
+    return this._init();
+  }
 
-    pathGenerator?.reset(particle);
+  redrawInit(): Promise<void> {
+    return this._init();
   }
 
   update(): void {
     for (const pathGenerator of this.pathGenerators.values()) {
       pathGenerator.update();
+    }
+  }
+
+  private async _init(): Promise<void> {
+    const availablePathGenerators = await this._engine.getPathGenerators?.(this._container, true);
+
+    if (!availablePathGenerators) {
+      return;
+    }
+
+    this.availablePathGenerators = availablePathGenerators;
+    this.pathGenerators = new Map();
+
+    for (const pathGenerator of this.pathGenerators.values()) {
+      pathGenerator.init();
     }
   }
 }
