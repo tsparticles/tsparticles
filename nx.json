@@ -44,36 +44,14 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "nx-cloud",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "build:ci",
-          "test",
-          "lint",
-          "package",
-          "prepare"
-        ]
-      }
-    },
-    "local": {
-      "runner": "nx/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "build:ci",
-          "lint",
-          "test",
-          "e2e"
-        ]
-      }
+      "runner": "nx-cloud"
     }
   },
   "affected": {
     "defaultBase": "main"
   },
   "pluginsConfig": {
-    "@nrwl/js": {
+    "@nx/js": {
       "analyzeSourceFiles": false
     }
   },

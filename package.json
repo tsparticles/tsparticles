@@ -4,9 +4,9 @@
   "description": "tsParticles monorepository",
   "version": "0.0.0",
   "scripts": {
-    "slimbuild": "pnpm run prettify:readme && nx run-many -t build",
+    "slimbuild": "pnpm run prettify:readme && nx run-many -t build --parallel=100%",
     "slimbuild:ci": "pnpm run prettify:ci:readme && nx run-many -t build:ci",
-    "slimbuild:affected": "pnpm run prettify:readme && nx affected -t build",
+    "slimbuild:affected": "pnpm run prettify:readme && nx affected -t build --parallel=100%",
     "build": "pnpm run slimbuild && pnpm run build:docs",
     "build:ci": "pnpm run slimbuild:ci && pnpm run build:docs",
     "build:affected": "pnpm run slimbuild:affected && pnpm run build:docs",
