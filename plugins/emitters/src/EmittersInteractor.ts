@@ -140,7 +140,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
 
           options.emitters.value.push(tmp);
         }
-      } else if (Object.hasOwn(source.emitters, "value")) {
+      } else if ("value" in source.emitters) {
         const emitterModeOptions = source.emitters as RecursivePartial<IEmitterDataModeOptions>;
 
         options.emitters.random.enable = emitterModeOptions.random?.enable ?? options.emitters.random.enable;

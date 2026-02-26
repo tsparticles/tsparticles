@@ -802,7 +802,7 @@ export class Canvas {
     }
 
     for (const key in options.style) {
-      if (!key || !Object.hasOwn(options.style, key)) {
+      if (!key || !(key in options.style)) {
         continue;
       }
 

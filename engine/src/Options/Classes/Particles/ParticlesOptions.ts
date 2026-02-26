@@ -66,7 +66,7 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
 
     if (data.groups !== undefined) {
       for (const group of Object.keys(data.groups)) {
-        if (!Object.hasOwn(data.groups, group)) {
+        if (!(group in data.groups)) {
           continue;
         }
 

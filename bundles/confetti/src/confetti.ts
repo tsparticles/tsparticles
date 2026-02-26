@@ -183,7 +183,7 @@ async function setConfetti(params: ConfettiParams): Promise<Container | undefine
     if (container && !container.destroyed) {
       const alias = container as EmitterContainer;
 
-      if (Object.hasOwn(alias, "addEmitter")) {
+      if ("addEmitter" in alias) {
         await alias.addEmitter?.({
           startCount: actualOptions.count,
           position: actualOptions.position,

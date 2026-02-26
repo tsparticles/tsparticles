@@ -26,7 +26,7 @@ export class CanvasMaskPixels implements ICanvasMaskPixels, IOptionLoader<ICanva
 
     if (data.filter !== undefined) {
       if (isString(data.filter)) {
-        if (Object.hasOwn(globalThis, data.filter)) {
+        if (data.filter in globalThis) {
           const filter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[data.filter];
 
           if (isFunction(filter)) {

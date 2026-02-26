@@ -41,7 +41,7 @@ export class EmittersCanvasShape extends EmitterShapeBase<EmittersCanvasShapeOpt
     let filterFunc: (pixel: IRgba) => boolean = (pixel): boolean => pixel.a > minAlpha;
 
     if (isString(filter)) {
-      if (Object.hasOwn(globalThis, filter)) {
+      if (filter in globalThis) {
         const wndFilter = (globalThis as unknown as Record<string, (pixel: IRgba) => boolean>)[filter];
 
         if (isFunction(wndFilter)) {

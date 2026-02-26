@@ -610,7 +610,7 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
   for (const key in style) {
     const styleKey = style[key];
 
-    if (!Object.hasOwn(style, key) || isNull(styleKey)) {
+    if (!(key in style) || isNull(styleKey)) {
       continue;
     }
 
@@ -622,10 +622,10 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
 
     const stylePriority = style.getPropertyPriority?.(styleKey);
 
-    if (!stylePriority) {
-      clonedStyle.setProperty(styleKey, styleValue);
-    } else {
+    if (stylePriority) {
       clonedStyle.setProperty(styleKey, styleValue, stylePriority);
+    } else {
+      clonedStyle.setProperty(styleKey, styleValue);
     }
   }
 

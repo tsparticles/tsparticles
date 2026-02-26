@@ -470,11 +470,11 @@ export function colorMix(color1: IRgb | IHsl, color2: IRgb | IHsl, size1: number
   let rgb1 = color1 as IRgb,
     rgb2 = color2 as IRgb;
 
-  if (!Object.hasOwn(rgb1, "r")) {
+  if (!("r" in rgb1)) {
     rgb1 = hslToRgb(color1 as IHsl);
   }
 
-  if (!Object.hasOwn(rgb2, "r")) {
+  if (!("r" in rgb2)) {
     rgb2 = hslToRgb(color2 as IHsl);
   }
 
@@ -555,13 +555,13 @@ export function getLinkRandomColor(
  * @returns returns an animatable HSL color, if needed
  */
 export function getHslFromAnimation(animation?: IParticleHslAnimation): IHsl | undefined {
-  return animation !== undefined
-    ? {
+  return animation === undefined
+    ? undefined
+    : {
         h: animation.h.value,
         s: animation.s.value,
         l: animation.l.value,
-      }
-    : undefined;
+      };
 }
 
 /**
