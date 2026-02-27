@@ -10,6 +10,10 @@ export class BlendPluginInstance implements IContainerPlugin {
   }
 
   drawParticleCleanup(context: CanvasRenderingContext2D, particle: BlendParticle): void {
+    if (!particle.options.blend?.enable) {
+      return;
+    }
+
     context.globalCompositeOperation = particle.originalBlendMode ?? defaultCompositeValue;
 
     particle.originalBlendMode = undefined;
