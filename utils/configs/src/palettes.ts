@@ -1,4 +1,4 @@
-import type { IPalette } from "./IPalette.js";
+import type { IPalette } from "@tsparticles/engine";
 
 export const palettes: Record<string, IPalette> = {
   dualityRedCyan: {
@@ -6,60 +6,70 @@ export const palettes: Record<string, IPalette> = {
     background: "#000000",
     blendMode: "lighter",
     colors: ["#ff0000", "#00ffff"],
+    fill: true,
   },
   dualityGreenMagenta: {
     name: "Duality - Green/Magenta",
     background: "#000000",
     blendMode: "lighter",
     colors: ["#00ff00", "#ff00ff"],
+    fill: true,
   },
   dualityBlueYellow: {
     name: "Duality - Blue/Yellow",
     background: "#111111",
     blendMode: "source-over",
     colors: ["#0000ff", "#ffff00"],
+    fill: true,
   },
   fireSeed: {
     name: "Fire Seed",
     background: "#000000",
     blendMode: "screen",
     colors: ["#ff0000", "#ff8800", "#ffff00"],
+    fill: true,
   },
   iceTriad: {
     name: "Ice Triad",
     background: "#0a0d1a",
     blendMode: "source-over",
     colors: ["#ffffff", "#aaddff", "#88bbff"],
+    fill: true,
   },
   acidPair: {
     name: "Acid Pair",
     background: "#000000",
     blendMode: "screen",
     colors: ["#00ff44", "#aa00ff"],
+    fill: true,
   },
   sunsetBinary: {
     name: "Sunset Binary",
     background: "#1a0d00",
     blendMode: "source-over",
     colors: ["#ff5500", "#0033ff"],
+    fill: true,
   },
   rgbPrimaries: {
     name: "RGB Primaries",
     background: "#000000",
     blendMode: "lighter",
     colors: ["#ff0000", "#00ff00", "#0000ff"],
+    fill: true,
   },
   cmySecondaries: {
     name: "CMY Secondaries",
     background: "#000000",
     blendMode: "screen",
     colors: ["#00ffff", "#ff00ff", "#ffff00"],
+    fill: true,
   },
   heatDuality: {
     name: "Heat Duality",
     background: "#0a0500",
     blendMode: "source-over",
     colors: ["#0022AA", "#FF4400"],
+    fill: true,
   },
   darkMatter: {
     name: "Dark Matter",
@@ -72,6 +82,7 @@ export const palettes: Record<string, IPalette> = {
       "#00AA00",
       "#00FF00",
     ],
+    fill: true,
   },
   fire: {
     name: "Fire - Full",
@@ -89,6 +100,7 @@ export const palettes: Record<string, IPalette> = {
       "#880000",
       "#440000",
     ],
+    fill: true,
   },
   water: {
     name: "Water - Full",
@@ -104,6 +116,7 @@ export const palettes: Record<string, IPalette> = {
       "#002299",
       "#001166",
     ],
+    fill: true,
   },
   plasmaArc: {
     name: "Plasma Arc",
@@ -118,6 +131,7 @@ export const palettes: Record<string, IPalette> = {
       "#FF00FF",
       "#FF0088",
     ],
+    fill: true,
   },
   smokeWarm: {
     name: "Smoke - Warm",
@@ -130,6 +144,7 @@ export const palettes: Record<string, IPalette> = {
       "#BBAA99",
       "#DDCCBB",
     ],
+    fill: true,
   },
   smokeCold: {
     name: "Smoke - Cold",
@@ -142,6 +157,7 @@ export const palettes: Record<string, IPalette> = {
       "#99AABB",
       "#CCDDE0",
     ],
+    fill: true,
   },
   auroraBorealis: {
     name: "Aurora Borealis",
@@ -157,6 +173,7 @@ export const palettes: Record<string, IPalette> = {
       "#8800FF",
       "#CC44FF",
     ],
+    fill: true,
   },
   neonCity: {
     name: "Neon City",
@@ -172,6 +189,7 @@ export const palettes: Record<string, IPalette> = {
       "#00FFFF",
       "#00FF88",
     ],
+    fill: true,
   },
   desertSand: {
     name: "Desert Sand",
@@ -186,6 +204,7 @@ export const palettes: Record<string, IPalette> = {
       "#EECCAA",
       "#F5E8D0",
     ],
+    fill: true,
   },
   bloodAndGore: {
     name: "Blood & Gore",
@@ -200,6 +219,7 @@ export const palettes: Record<string, IPalette> = {
       "#440000",
       "#220000",
     ],
+    fill: true,
   },
   bioluminescence: {
     name: "Bioluminescence",
@@ -214,6 +234,7 @@ export const palettes: Record<string, IPalette> = {
       "#88FFDD",
       "#CCFFEE",
     ],
+    fill: true,
   },
   embersAndAsh: {
     name: "Embers & Ash",
@@ -229,6 +250,7 @@ export const palettes: Record<string, IPalette> = {
       "#BBBBAA",
       "#DDDDD0",
     ],
+    fill: true,
   },
   hologram: {
     name: "Hologram",
@@ -243,6 +265,7 @@ export const palettes: Record<string, IPalette> = {
       "#AAFFFF",
       "#FFFFFF",
     ],
+    fill: true,
   },
   inkInWater: {
     name: "Ink in Water",
@@ -257,6 +280,7 @@ export const palettes: Record<string, IPalette> = {
       "#AABBDD",
       "#EEEEFF",
     ],
+    fill: true,
   },
   pollenAndSpores: {
     name: "Pollen & Spores",
@@ -271,6 +295,7 @@ export const palettes: Record<string, IPalette> = {
       "#886622",
       "#CCCC88",
     ],
+    fill: true,
   },
   lightning: {
     name: "Lightning",
@@ -285,6 +310,7 @@ export const palettes: Record<string, IPalette> = {
       "#0033CC",
       "#AA88FF",
     ],
+    fill: true,
   },
   oilSlick: {
     name: "Oil Slick",
@@ -299,6 +325,7 @@ export const palettes: Record<string, IPalette> = {
       "#FF9900",
       "#CC0044",
     ],
+    fill: true,
   },
   fireflies: {
     name: "Fireflies",
@@ -313,6 +340,7 @@ export const palettes: Record<string, IPalette> = {
       "#DDFF44",
       "#FFFFAA",
     ],
+    fill: true,
   },
   foamAndBubbles: {
     name: "Foam & Bubbles",
@@ -326,6 +354,7 @@ export const palettes: Record<string, IPalette> = {
       "#70AAFF",
       "#C8F0FF",
     ],
+    fill: true,
   },
   lavaLamp: {
     name: "Lava Lamp",
@@ -342,6 +371,7 @@ export const palettes: Record<string, IPalette> = {
       "#DD2200",
       "#BB1100",
     ],
+    fill: true,
   },
   confetti: {
     name: "Confetti",
@@ -359,6 +389,7 @@ export const palettes: Record<string, IPalette> = {
       "#FF6600",
       "#FFFFFF",
     ],
+    fill: true,
   },
   skinAndOrganic: {
     name: "Skin & Organic",
@@ -378,6 +409,7 @@ export const palettes: Record<string, IPalette> = {
       "#BB8866",
       "#886644",
     ],
+    fill: true,
   },
   fullFireGradient: {
     name: "Full Fire Gradient",
@@ -407,6 +439,7 @@ export const palettes: Record<string, IPalette> = {
       "#FFFFBB",
       "#FFFFFF",
     ],
+    fill: true,
   },
   deepOcean: {
     name: "Deep Ocean",
@@ -428,6 +461,7 @@ export const palettes: Record<string, IPalette> = {
       "#000822",
       "#000000",
     ],
+    fill: true,
   },
   galaxyDust: {
     name: "Galaxy Dust",
@@ -451,6 +485,7 @@ export const palettes: Record<string, IPalette> = {
       "#00DDFF",
       "#00FFEE",
     ],
+    fill: true,
   },
   glitch: {
     name: "Glitch - Full RGB Shift",
@@ -473,6 +508,7 @@ export const palettes: Record<string, IPalette> = {
       "#AAAAAA",
       "#000000",
     ],
+    fill: true,
   },
   fullSpectrum: {
     name: "Full Spectrum - High Saturation",
@@ -516,6 +552,7 @@ export const palettes: Record<string, IPalette> = {
       "#FF0033",
       "#FF0000",
     ],
+    fill: true,
   },
   thermalMap: {
     name: "Thermal Map - Cold to Hot",
@@ -567,6 +604,7 @@ export const palettes: Record<string, IPalette> = {
       "#FFEEFF",
       "#FFFFFF",
     ],
+    fill: true,
   },
   rainbow: {
     name: "Rainbow - Maximum Saturation sRGB",
@@ -646,5 +684,6 @@ export const palettes: Record<string, IPalette> = {
       "#FF002B",
       "#FF0015",
     ],
+    fill: true,
   },
 };

@@ -71,6 +71,8 @@ export interface IOptions {
    */
   name?: string;
 
+  palette?: string;
+
   /**
    * The particles options
    */

@@ -36,6 +36,7 @@ import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
+import type { IPalette } from "./Interfaces/IPalette.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
@@ -169,6 +170,8 @@ export class Engine {
     updaters: new Map<string, UpdaterInitializer>(),
   };
 
+  readonly palettes = new Map<string, IPalette>();
+
   /**
    * The plugins array
    */
@@ -274,6 +277,10 @@ export class Engine {
     this._eventDispatcher.addEventListener(type, listener);
   }
 
+  addPalette(name: string, palette: IPalette): void {
+    this.palettes.set(name, palette);
+  }
+
   /**
    * Adds a particle updater to the collection
    * @param name - the particle updater name used as a key
@@ -358,6 +365,10 @@ export class Engine {
 
   getEffectDrawers(container: Container, force = false): Promise<Map<string, IEffectDrawer>> {
     return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
+  }
+
+  getPalette(name: string): IPalette | undefined {
+    return this.palettes.get(name);
   }
 
   /**
