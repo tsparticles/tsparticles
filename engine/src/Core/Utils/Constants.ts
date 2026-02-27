@@ -4,6 +4,7 @@ import type { ICoordinates3d } from "../Interfaces/ICoordinates.js";
  * Project's constants
  */
 export const generatedAttribute = "generated",
+  defaultCompositeValue: GlobalCompositeOperation = "source-over",
   resizeEvent = "resize",
   visibilityChangeEvent = "visibilitychange",
   percentDenominator = 100,

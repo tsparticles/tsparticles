@@ -1,5 +1,5 @@
 import type { BlendContainer, BlendParticle } from "./types.js";
-import { type IContainerPlugin } from "@tsparticles/engine";
+import { type IContainerPlugin, defaultCompositeValue } from "@tsparticles/engine";
 
 export class BlendPluginInstance implements IContainerPlugin {
   private readonly _container;
@@ -10,7 +10,7 @@ export class BlendPluginInstance implements IContainerPlugin {
   }
 
   drawParticleCleanup(context: CanvasRenderingContext2D, particle: BlendParticle): void {
-    context.globalCompositeOperation = particle.originalBlendMode ?? "source-over";
+    context.globalCompositeOperation = particle.originalBlendMode ?? defaultCompositeValue;
 
     particle.originalBlendMode = undefined;
   }

@@ -1,6 +1,7 @@
 import { clear, drawParticle, drawParticlePlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
 import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
 import {
+  defaultCompositeValue,
   defaultTransformValue,
   defaultZoom,
   generatedAttribute,
@@ -565,6 +566,10 @@ export class Canvas {
       willReadFrequently: false,
     };
     this._context = this.element.getContext("2d", this._canvasSettings);
+
+    if (this._context) {
+      this._context.globalCompositeOperation = defaultCompositeValue;
+    }
 
     this._safeMutationObserver(obs => {
       obs.disconnect();
