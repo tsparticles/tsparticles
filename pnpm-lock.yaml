@@ -374,6 +374,9 @@ importers:
       '@tsparticles/shape-infinity':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/infinity/dist
+      '@tsparticles/shape-matrix':
+        specifier: workspace:4.0.0-alpha.26
+        version: link:../../shapes/matrix/dist
       '@tsparticles/shape-path':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/path/dist
@@ -998,6 +1001,9 @@ importers:
       '@tsparticles/shape-line':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/line/dist
+      '@tsparticles/shape-matrix':
+        specifier: workspace:4.0.0-alpha.26
+        version: link:../../shapes/matrix/dist
       '@tsparticles/shape-path':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/path/dist
@@ -2048,6 +2054,13 @@ importers:
     publishDirectory: dist
 
   shapes/line:
+    dependencies:
+      '@tsparticles/engine':
+        specifier: workspace:4.0.0-alpha.26
+        version: link:../../engine/dist
+    publishDirectory: dist
+
+  shapes/matrix:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.26

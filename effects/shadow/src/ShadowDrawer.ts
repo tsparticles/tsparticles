@@ -36,6 +36,15 @@ export class ShadowDrawer implements IEffectDrawer {
     this._engine = engine;
   }
 
+  drawAfter(data: IShapeDrawData): void {
+    const { context } = data;
+
+    context.shadowBlur = 0;
+    context.shadowColor = "transparent";
+    context.shadowOffsetX = 0;
+    context.shadowOffsetY = 0;
+  }
+
   drawBefore(data: IShapeDrawData): void {
     const { particle, context } = data,
       { container } = particle,

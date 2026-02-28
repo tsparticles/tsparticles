@@ -191,6 +191,7 @@ app.use("/shape-cards", express.static("./node_modules/@tsparticles/shape-cards"
 app.use("/shape-cog", express.static("./node_modules/@tsparticles/shape-cog"));
 app.use("/shape-heart", express.static("./node_modules/@tsparticles/shape-heart"));
 app.use("/shape-infinity", express.static("./node_modules/@tsparticles/shape-infinity"));
+app.use("/shape-matrix", express.static("./node_modules/@tsparticles/shape-matrix"));
 app.use("/shape-path", express.static("./node_modules/@tsparticles/shape-path"));
 app.use("/shape-rounded-polygon", express.static("./node_modules/@tsparticles/shape-rounded-polygon"));
 app.use("/shape-rounded-rect", express.static("./node_modules/@tsparticles/shape-rounded-rect"));

@@ -166,6 +166,7 @@
     "@tsparticles/shape-cog": "4.0.0-alpha.26",
     "@tsparticles/shape-heart": "4.0.0-alpha.26",
     "@tsparticles/shape-infinity": "4.0.0-alpha.26",
+    "@tsparticles/shape-matrix": "4.0.0-alpha.26",
     "@tsparticles/shape-path": "4.0.0-alpha.26",
     "@tsparticles/shape-rounded-polygon": "4.0.0-alpha.26",
     "@tsparticles/shape-rounded-rect": "4.0.0-alpha.26",

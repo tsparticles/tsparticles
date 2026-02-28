@@ -1,4 +1,5 @@
 import manual from "./manual.js";
+import matrix from "./matrix.js";
 import motionDisable from "./motionDisable.js";
 import motionReduce from "./motionReduce.js";
 import mouseAttract from "./mouseAttract.js";
@@ -17,6 +18,7 @@ import multiplePolygonMasks from "./multiplePolygonMasks.js";
 
 export default {
   manual,
+  matrix,
   motionDisable,
   motionReduce,
   mouseAttract,

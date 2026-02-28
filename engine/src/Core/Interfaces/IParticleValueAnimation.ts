@@ -16,11 +16,11 @@ export interface IParticleValueAnimation<T> {
   velocity?: number;
 }
 
-export interface IParticleColorAnimation extends IParticleValueAnimation<number> {
-  offset?: RangeValue;
-}
-
 export interface IParticleNumericValueAnimation extends IParticleValueAnimation<number> {
   max: number;
   min: number;
+}
+
+export interface IParticleColorAnimation extends IParticleNumericValueAnimation {
+  offset?: RangeValue;
 }

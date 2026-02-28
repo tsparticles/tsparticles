@@ -157,6 +157,7 @@
     "@tsparticles/shape-image": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-infinity": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-line": "workspace:4.0.0-alpha.26",
+    "@tsparticles/shape-matrix": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-path": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-polygon": "workspace:4.0.0-alpha.26",
     "@tsparticles/shape-rounded-polygon": "workspace:4.0.0-alpha.26",

@@ -3,8 +3,6 @@ import {
   clamp,
   getRandom,
   getRandomInRange,
-  getRangeMax,
-  getRangeMin,
   getRangeValue,
   mix,
   randomInRangeValue,
@@ -48,7 +46,6 @@ import type { IDelta } from "../Core/Interfaces/IDelta.js";
 import type { IOptionsColor } from "../Options/Interfaces/IOptionsColor.js";
 import type { IParticleColorAnimation } from "../Core/Interfaces/IParticleValueAnimation.js";
 import type { IParticleHslAnimation } from "../Core/Interfaces/IParticleHslAnimation.js";
-import type { IRangeValue } from "../Core/Interfaces/IRangeValue.js";
 import type { Particle } from "../Core/Particle.js";
 import { itemFromArray } from "./Utils.js";
 
@@ -580,14 +577,20 @@ export function getHslAnimationFromHsl(
     h: {
       enable: false,
       value: hsl.h,
+      min: hMin,
+      max: hMax,
     },
     s: {
       enable: false,
       value: hsl.s,
+      min: sMin,
+      max: sMax,
     },
     l: {
       enable: false,
       value: hsl.l,
+      min: lMin,
+      max: lMax,
     },
   };
 
@@ -611,6 +614,8 @@ function setColorAnimation(
   reduceFactor: number,
 ): void {
   colorValue.enable = colorAnimation.enable;
+  colorValue.min = colorAnimation.min;
+  colorValue.max = colorAnimation.max;
 
   if (colorValue.enable) {
     colorValue.velocity = (getRangeValue(colorAnimation.speed) / percentDenominator) * reduceFactor;
@@ -635,16 +640,10 @@ function setColorAnimation(
 
 /**
  * @param data -
- * @param range -
  * @param decrease -
  * @param delta -
  */
-export function updateColorValue(
-  data: IParticleColorAnimation,
-  range: IRangeValue,
-  decrease: boolean,
-  delta: IDelta,
-): void {
+export function updateColorValue(data: IParticleColorAnimation, decrease: boolean, delta: IDelta): void {
   const minLoops = 0,
     minDelay = 0,
     identity = 1,
@@ -672,8 +671,8 @@ export function updateColorValue(
   const offset = data.offset ? randomInRangeValue(data.offset) : minOffset,
     velocity = (data.velocity ?? minVelocity) * delta.factor + offset * velocityFactor,
     decay = data.decay ?? identity,
-    max = getRangeMax(range),
-    min = getRangeMin(range);
+    max = data.max,
+    min = data.min;
 
   if (!decrease || data.status === AnimationStatus.increasing) {
     data.value += velocity;
@@ -691,9 +690,7 @@ export function updateColorValue(
   } else {
     data.value -= velocity;
 
-    const minValue = 0;
-
-    if (data.value < minValue) {
+    if (data.value < min) {
       data.loops ??= 0;
       data.loops++;
 
@@ -717,16 +714,11 @@ export function updateColor(color: IParticleHslAnimation | undefined, delta: IDe
     return;
   }
 
-  const { h, s, l } = color,
-    ranges = {
-      h: { min: hMin, max: hMax },
-      s: { min: sMin, max: sMax },
-      l: { min: lMin, max: lMax },
-    };
+  const { h, s, l } = color;
 
-  updateColorValue(h, ranges.h, false, delta);
-  updateColorValue(s, ranges.s, true, delta);
-  updateColorValue(l, ranges.l, true, delta);
+  updateColorValue(h, false, delta);
+  updateColorValue(s, true, delta);
+  updateColorValue(l, true, delta);
 }
 
 /**
