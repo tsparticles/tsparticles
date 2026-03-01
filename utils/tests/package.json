@@ -13,7 +13,7 @@
     "test": "vitest run",
     "test:particle": "vitest run src/tests/Particle.ts",
     "test:ui": "vitest watch --ui",
-    "test:ci": "NODE_ENV=test vitest run --threads=1 --maxConcurrency=2"
+    "test:ci": "NODE_ENV=test vitest run --maxConcurrency=2"
   },
   "dependencies": {
     "@tsparticles/engine": "workspace:4.0.0-alpha.26",
