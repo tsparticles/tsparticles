@@ -72,7 +72,7 @@ Observable Truths (must-haves)
 
 8. "Test runner configuration for canvas fixtures is stable across environments"
    - Status: ✓ VERIFIED (config present)
-   - Evidence: utils/tests/package.json contains test:ci: "NODE_ENV=test vitest run --threads=1 --maxConcurrency=2" per plan; fixtures guard for absent document and best-effort DOM mutations.
+    - Evidence: utils/tests/package.json contains test:ci: "NODE_ENV=test vitest run --maxConcurrency=2" per plan; fixtures guard for absent document and best-effort DOM mutations.
 
 9. "CI runs test:ci without intermittent failures related to fixtures"
    - Status: ? NEEDS HUMAN

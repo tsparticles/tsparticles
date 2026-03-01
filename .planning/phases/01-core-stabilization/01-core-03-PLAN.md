@@ -55,7 +55,7 @@ Output: fixtures file updates and small test harness adjustments.
   <name>Task 2: Configure test:ci to run with stable environment</name>
   <files>utils/tests/package.json</files>
   <action>
-    Ensure package.json test:ci script uses `vitest run --threads=1 --maxConcurrency=2` (or similar) to reduce flakiness, and sets NODE_ENV=test. Add a note in README on running canvas tests locally.
+    Ensure package.json test:ci script uses `vitest run --maxConcurrency=2` (or similar) to reduce flakiness, and sets NODE_ENV=test. Add a note in README on running canvas tests locally.
   </action>
   <verify>
     <automated>pnpm --filter @tsparticles/tests run test:ci || true</automated>

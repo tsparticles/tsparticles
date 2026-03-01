@@ -73,7 +73,7 @@ None - plan executed as specified.
 
 ## Issues Encountered
 
-- Vitest in this environment does not support `--threads`; adjusted test flags to use `--maxWorkers`/`--maxConcurrency` alternatives where applicable. The chosen stable flags were compatible with the installed Vitest version.
+ - Vitest in this environment does not support `--threads`; adjusted test flags to use `--maxWorkers`/`--maxConcurrency` alternatives where applicable. The chosen stable flags were compatible with the installed Vitest version. References to `--threads` in plans and verification updated to use `--maxConcurrency`.
 
 ## User Setup Required
 
