@@ -24,7 +24,7 @@ export class LchColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       lchColor = colorValue.lch ?? (color.value as ILch);
 
-    if (!Object.hasOwn(lchColor, "l") || !Object.hasOwn(lchColor, "c") || !Object.hasOwn(lchColor, "h")) {
+    if (!("l" in lchColor) || !("c" in lchColor) || !("h" in lchColor)) {
       return;
     }
 
@@ -35,7 +35,7 @@ export class LchColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       lchColor = colorValue.lch ?? (color.value as IRangeLch); // Support for LCH
 
-    if (!Object.hasOwn(lchColor, "l") || !Object.hasOwn(lchColor, "c") || !Object.hasOwn(lchColor, "h")) {
+    if (!("l" in lchColor) || !("c" in lchColor) || !("h" in lchColor)) {
       return;
     }
 

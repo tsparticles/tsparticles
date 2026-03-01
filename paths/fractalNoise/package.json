@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/path-fractal-noise",
-  "version": "4.0.0-alpha.20",
+  "version": "4.0.0-alpha.26",
   "description": "tsParticles fractal noise path",
   "homepage": "https://particles.js.org",
   "scripts": {
@@ -109,9 +109,10 @@
     "./package.json": "./dist/package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.20",
-    "@tsparticles/fractal-noise": "workspace:4.0.0-alpha.20",
-    "@tsparticles/noise-field": "workspace:4.0.0-alpha.20"
+    "@tsparticles/engine": "workspace:4.0.0-alpha.26",
+    "@tsparticles/fractal-noise": "workspace:4.0.0-alpha.26",
+    "@tsparticles/noise-field": "workspace:4.0.0-alpha.26",
+    "@tsparticles/plugin-move": "workspace:4.0.0-alpha.26"
   },
   "publishConfig": {
     "access": "public",

@@ -34,7 +34,7 @@ export class HslColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       hslColor = colorValue.hsl ?? (color.value as IHsl);
 
-    if (!Object.hasOwn(hslColor, "h") || !Object.hasOwn(hslColor, "s") || !Object.hasOwn(hslColor, "l")) {
+    if (!("h" in hslColor) || !("s" in hslColor) || !("l" in hslColor)) {
       return;
     }
 
@@ -45,7 +45,7 @@ export class HslColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       hslColor = colorValue.hsl ?? (color.value as IRangeHsl);
 
-    if (!Object.hasOwn(hslColor, "h") || !Object.hasOwn(hslColor, "s") || !Object.hasOwn(hslColor, "l")) {
+    if (!("h" in hslColor) || !("s" in hslColor) || !("l" in hslColor)) {
       return;
     }
 

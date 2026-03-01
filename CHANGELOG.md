@@ -3,6 +3,47 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-alpha.26](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.25...v4.0.0-alpha.26) (2026-02-26)
+
+### Bug Fixes
+
+- security fix for deepExtend ([78e14a8](https://github.com/tsparticles/tsparticles/commit/78e14a86726bb13c2bf7ff370d9c58190719db6a))
+
+# [4.0.0-alpha.25](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.24...v4.0.0-alpha.25) (2026-02-21)
+
+### Bug Fixes
+
+- fixed triangle shape ([ec4bcc8](https://github.com/tsparticles/tsparticles/commit/ec4bcc837e7ef4e152ec7dd7687475d66d275697))
+
+### Features
+
+- **core:** replace QuadTree with SpatialHashGrid ([1aafda1](https://github.com/tsparticles/tsparticles/commit/1aafda144b7eed546dab28fe534305c100dde986))
+- **trail:** add color mapping configuration for particles and refactor trail logic ([9c0db81](https://github.com/tsparticles/tsparticles/commit/9c0db81de29b924b20d7b6cab30ed1ea12adb15f))
+
+# [4.0.0-alpha.24](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.23...v4.0.0-alpha.24) (2026-02-12)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
+# [4.0.0-alpha.23](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.22...v4.0.0-alpha.23) (2026-02-11)
+
+### Bug Fixes
+
+- some fixes in the zoom plugin ([9b9b7d0](https://github.com/tsparticles/tsparticles/commit/9b9b7d0355aa53eb37fe25ac04731315740faf21))
+
+### Features
+
+- added random path plugin ([be97bda](https://github.com/tsparticles/tsparticles/commit/be97bda197b7696450af25e9a75d7435a7d58362))
+- added zoom feature (disabled by default) ([55f507a](https://github.com/tsparticles/tsparticles/commit/55f507a6c0e0b601b2d85182e326a96dfac7f2bf))
+- moved zoom feature to plugin ([8025e74](https://github.com/tsparticles/tsparticles/commit/8025e74370139b6718c55d554beab5cf3418eed8))
+
+# [4.0.0-alpha.22](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.21...v4.0.0-alpha.22) (2026-02-05)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
+# [4.0.0-alpha.21](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.20...v4.0.0-alpha.21) (2026-02-04)
+
+**Note:** Version bump only for package @tsparticles/workspace
+
 # [4.0.0-alpha.20](https://github.com/tsparticles/tsparticles/compare/v4.0.0-alpha.19...v4.0.0-alpha.20) (2026-02-04)
 
 **Note:** Version bump only for package @tsparticles/workspace

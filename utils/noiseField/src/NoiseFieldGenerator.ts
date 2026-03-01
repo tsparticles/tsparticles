@@ -1,13 +1,6 @@
-import {
-  type Container,
-  type IMovePathGenerator,
-  type Particle,
-  Vector,
-  deepExtend,
-  doublePI,
-  getRandom,
-} from "@tsparticles/engine";
+import { type Container, type Particle, Vector, deepExtend, doublePI, getRandom } from "@tsparticles/engine";
 import type { IFactorValues, IOffsetValues } from "./IFactorOffsetValues.js";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { INoiseFieldOptions } from "./INoiseFieldOptions.js";
 import type { INoiseGenerator } from "./INoiseGenerator.js";
 
@@ -49,12 +42,14 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
   readonly noiseGen: INoiseGenerator;
   noiseW: number;
   readonly options: INoiseFieldOptions;
+  private readonly _res: Vector;
 
   protected constructor(container: Container, noiseGen: INoiseGenerator) {
     this.container = container;
     this.noiseGen = noiseGen;
     this.field = [];
     this.noiseW = 0;
+    this._res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as INoiseFieldOptions;
   }
 
@@ -69,7 +64,15 @@ export abstract class NoiseFieldGenerator implements IMovePathGenerator {
       { field } = this,
       fieldPoint = field[point.x]?.[point.y]?.[point.z];
 
-    return fieldPoint ? fieldPoint.copy() : Vector.origin;
+    if (fieldPoint) {
+      this._res.x = fieldPoint.x;
+      this._res.y = fieldPoint.y;
+    } else {
+      this._res.x = 0;
+      this._res.y = 0;
+    }
+
+    return this._res;
   }
 
   init(): void {

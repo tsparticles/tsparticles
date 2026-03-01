@@ -6,8 +6,6 @@ import type { EasingType, EasingTypeAlt } from "../Enums/Types/EasingType.js";
 import type {
   EffectInitializer,
   Initializers,
-  MoverInitializer,
-  PathGeneratorInitializer,
   ShapeInitializer,
   UpdaterInitializer,
 } from "../Types/EngineInitializers.js";
@@ -38,8 +36,7 @@ import { EventType } from "../Enums/Types/EventType.js";
 import type { IColorManager } from "./Interfaces/IColorManager.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { ILoadParams } from "./Interfaces/ILoadParams.js";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
-import type { IParticleMover } from "./Interfaces/IParticleMover.js";
+import type { IPalette } from "./Interfaces/IPalette.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
 import type { IPlugin } from "./Interfaces/IPlugin.js";
@@ -169,18 +166,11 @@ export class Engine {
 
   readonly initializers: Initializers = {
     effects: new Map<string, EffectInitializer>(),
-    movers: new Map<string, MoverInitializer>(),
-    pathGenerators: new Map<string, PathGeneratorInitializer>(),
     shapes: new Map<string, ShapeInitializer>(),
     updaters: new Map<string, UpdaterInitializer>(),
   };
 
-  readonly movers = new Map<Container, IParticleMover[]>();
-
-  /**
-   * The path generators array
-   */
-  readonly pathGenerators = new Map<Container, Map<string, IMovePathGenerator>>();
+  readonly palettes = new Map<string, IPalette>();
 
   /**
    * The plugins array
@@ -287,12 +277,8 @@ export class Engine {
     this._eventDispatcher.addEventListener(type, listener);
   }
 
-  /**
-   * @param name - the mover name
-   * @param moverInitializer - the mover initializer
-   */
-  addMover(name: string, moverInitializer: MoverInitializer): void {
-    this.initializers.movers.set(name, moverInitializer);
+  addPalette(name: string, palette: IPalette): void {
+    this.palettes.set(name, palette);
   }
 
   /**
@@ -302,15 +288,6 @@ export class Engine {
    */
   addParticleUpdater(name: string, updaterInitializer: UpdaterInitializer): void {
     this.initializers.updaters.set(name, updaterInitializer);
-  }
-
-  /**
-   * addPathGenerator adds a named path generator to tsParticles, this can be called by options
-   * @param name - the path generator name
-   * @param generator - the path generator object
-   */
-  addPathGenerator(name: string, generator: PathGeneratorInitializer): void {
-    this.initializers.pathGenerators.set(name, generator);
   }
 
   /**
@@ -365,7 +342,6 @@ export class Engine {
 
   clearPlugins(container: Container): void {
     this.effectDrawers.delete(container);
-    this.movers.delete(container);
     this.shapeDrawers.delete(container);
     this.updaters.delete(container);
   }
@@ -391,12 +367,8 @@ export class Engine {
     return getItemMapFromInitializer(container, this.effectDrawers, this.initializers.effects, force);
   }
 
-  getMovers(container: Container, force = false): Promise<IParticleMover[]> {
-    return getItemsFromInitializer(container, this.movers, this.initializers.movers, force);
-  }
-
-  getPathGenerators(container: Container, force = false): Promise<Map<string, IMovePathGenerator>> {
-    return getItemMapFromInitializer(container, this.pathGenerators, this.initializers.pathGenerators, force);
+  getPalette(name: string): IPalette | undefined {
+    return this.palettes.get(name);
   }
 
   /**
@@ -435,7 +407,9 @@ export class Engine {
    * init method, used by imports
    */
   async init(): Promise<void> {
-    if (this._initialized || this._isRunningLoaders) return;
+    if (this._initialized || this._isRunningLoaders) {
+      return;
+    }
 
     this._isRunningLoaders = true;
 

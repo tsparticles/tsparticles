@@ -28,16 +28,6 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
   }
 
   /**
-   * Adds an image to the given container
-   * @param image - the image to add to the container collection
-   */
-  addImage(image: IImage): void {
-    this._engine.images ??= [];
-
-    this._engine.images.push(image);
-  }
-
-  /**
    * The draw image method
    * @param data - the shape draw data
    */
@@ -87,13 +77,15 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     const promises: Promise<void>[] = [];
 
     for (const imageData of options.preload) {
-      promises.push(this._engine.loadImage(imageData));
+      promises.push(this._engine.loadImage(container, imageData));
     }
 
     await Promise.all(promises);
   }
 
   loadShape(particle: ImageParticle): void {
+    const { container } = particle;
+
     if (!particle.shape || !shapeTypes.includes(particle.shape)) {
       return;
     }
@@ -104,15 +96,14 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    this._engine.images ??= [];
-
-    const image = this._engine.images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+    const images = this._engine.getImages?.(container),
+      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (image) {
       return;
     }
 
-    void this.loadImageShape(imageData).then(() => {
+    void this.loadImageShape(container, imageData).then(() => {
       this.loadShape(particle);
     });
   }
@@ -127,9 +118,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
       return;
     }
 
-    this._engine.images ??= [];
-
-    const images = this._engine.images,
+    const images = this._engine.getImages?.(container),
       imageData = particle.shapeData as IImageShape | undefined;
 
     if (!imageData) {
@@ -137,7 +126,7 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
     }
 
     const color = particle.getFillColor(),
-      image = images.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
+      image = images?.find((t: IImage) => t.name === imageData.name || t.source === imageData.src);
 
     if (!image) {
       return;
@@ -194,15 +183,16 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
 
   /**
    * Loads the image shape
+   * @param container - the particles container, used to load the image
    * @param imageShape - the image shape to load
    * @internal
    */
-  private readonly loadImageShape = async (imageShape: IImageShape): Promise<void> => {
+  private readonly loadImageShape = async (container: ImageContainer, imageShape: IImageShape): Promise<void> => {
     if (!this._engine.loadImage) {
       throw new Error(`Image shape not initialized`);
     }
 
-    await this._engine.loadImage({
+    await this._engine.loadImage(container, {
       gif: imageShape.gif,
       name: imageShape.name,
       replaceColor: imageShape.replaceColor,

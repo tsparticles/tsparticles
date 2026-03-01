@@ -697,8 +697,8 @@ flowchart TD
 
   subgraph bundle-basic [tsParticles Basic]
 
-    subgraph basic-movers [Movers]
-      move-base[Base]
+    subgraph basic-plugins [Plugins]
+      plugin-move[Move]
     end
 
     subgraph basic-shapes [Shapes]

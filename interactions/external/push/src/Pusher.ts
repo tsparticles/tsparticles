@@ -26,6 +26,8 @@ const pushMode = "push",
 export class Pusher extends ExternalInteractorBase<PushContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  readonly maxDistance = 0;
+
   constructor(container: PushContainer) {
     super(container);
 

@@ -1,87 +1,68 @@
 {
-    "$schema": "./node_modules/nx/schemas/nx-schema.json",
-    "extends": "nx/presets/npm.json",
-    "nxCloudId": "62a6df5ddbaff92c46e3b366",
-    "targetDefaults": {
-        "build": {
-            "dependsOn": [
-                "^build"
-            ],
-            "outputs": [
-                "{projectRoot}/dist"
-            ]
-        },
-        "build:ci": {
-            "dependsOn": [
-                "^build:ci"
-            ],
-            "outputs": [
-                "{projectRoot}/dist"
-            ]
-        },
-        "prepare": {
-            "dependsOn": [
-                "^build",
-                "^prepare"
-            ],
-            "outputs": [
-                "{projectRoot}/dist"
-            ]
-        },
-        "package": {
-            "dependsOn": [
-                "^build",
-                "^prepare",
-                "^package"
-            ],
-            "outputs": [
-                "{projectRoot}/dist"
-            ]
-        }
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "extends": "nx/presets/npm.json",
+  "nxCloudId": "62a6df5ddbaff92c46e3b366",
+  "parallel": 5,
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "cache": true
     },
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "nx-cloud",
-            "options": {
-                "cacheableOperations": [
-                    "build",
-                    "build:ci",
-                    "test",
-                    "lint",
-                    "package",
-                    "prepare"
-                ]
-            }
-        },
-        "local": {
-            "runner": "nx/tasks-runners/default",
-            "options": {
-                "cacheableOperations": [
-                    "build",
-                    "build:ci",
-                    "lint",
-                    "test",
-                    "e2e"
-                ]
-            }
-        }
+    "build:ci": {
+      "dependsOn": [
+        "^build:ci"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
+      "cache": true
     },
-    "affected": {
-        "defaultBase": "main"
+    "prepare": {
+      "dependsOn": [
+        "^build",
+        "^prepare"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
     },
-    "pluginsConfig": {
-        "@nrwl/js": {
-            "analyzeSourceFiles": false
-        }
-    },
-    "namedInputs": {
-        "default": [
-            "{projectRoot}/**/*",
-            "sharedGlobals"
-        ],
-        "sharedGlobals": [],
-        "production": [
-            "default"
-        ]
+    "package": {
+      "dependsOn": [
+        "^build",
+        "^prepare",
+        "^package"
+      ],
+      "outputs": [
+        "{projectRoot}/dist"
+      ]
     }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx-cloud"
+    }
+  },
+  "affected": {
+    "defaultBase": "main"
+  },
+  "pluginsConfig": {
+    "@nx/js": {
+      "analyzeSourceFiles": false
+    }
+  },
+  "namedInputs": {
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
+    "sharedGlobals": [],
+    "production": [
+      "default"
+    ]
+  }
 }

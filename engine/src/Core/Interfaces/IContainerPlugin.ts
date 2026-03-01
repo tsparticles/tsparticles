@@ -2,6 +2,7 @@ import type { ExportResult } from "../../Types/ExportResult.js";
 import type { ICoordinates } from "./ICoordinates.js";
 import type { IDelta } from "./IDelta.js";
 import type { IOptionsColor } from "../../Options/Interfaces/IOptionsColor.js";
+import type { IShapeDrawData } from "./IShapeDrawData.js";
 import type { OutModeDirection } from "../../Enums/Directions/OutModeDirection.js";
 import type { Particle } from "../Particle.js";
 
@@ -18,6 +19,7 @@ export interface IContainerPlugin {
   drawParticle?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
   drawParticleCleanup?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
   drawParticleSetup?: (context: CanvasRenderingContext2D, particle: Particle, delta: IDelta) => void;
+  drawParticleTransform?: (data: IShapeDrawData) => void;
   drawSettingsCleanup?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
   drawSettingsSetup?: (context: CanvasRenderingContext2D, delta: IDelta) => void;
   export?: (type: string, data: Record<string, unknown>) => Promise<ExportResult>;

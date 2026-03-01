@@ -1,5 +1,4 @@
 import {
-  type Container,
   type CustomEventArgs,
   DestroyType,
   type Engine,
@@ -18,6 +17,7 @@ import {
   tsParticles,
 } from "@tsparticles/engine";
 import { FireworkOptions } from "./FireworkOptions.js";
+import type { FireworksInstance } from "./FireworksInstance.js";
 import type { IFireworkOptions } from "./IFireworkOptions.js";
 
 declare const __VERSION__: string;
@@ -50,26 +50,6 @@ const explodeSoundCheck = (args: CustomEventArgs): boolean => {
 
   return data.particle.shape === "circle" && !!data.particle.splitCount && data.particle.splitCount < minSplitCount;
 };
-
-class FireworksInstance {
-  private readonly _container: Container;
-
-  constructor(container: Container) {
-    this._container = container;
-  }
-
-  pause(): void {
-    this._container.pause();
-  }
-
-  play(): void {
-    this._container.play();
-  }
-
-  stop(): void {
-    this._container.stop();
-  }
-}
 
 /**
  * @param engine - the engine to use for loading all plugins
@@ -135,8 +115,6 @@ async function initPlugins(engine: Engine): Promise<void> {
   initializing = false;
   initialized = true;
 }
-
-export type { FireworksInstance };
 
 /**
  *
@@ -360,6 +338,8 @@ async function getFireworksInstance(
   if (!container) {
     return;
   }
+
+  const { FireworksInstance } = await import("./FireworksInstance.js");
 
   return new FireworksInstance(container);
 }

@@ -1,12 +1,11 @@
-import { type IDelta, type Particle, clamp, half } from "@tsparticles/engine";
+import { type IDelta, type Particle, clamp } from "@tsparticles/engine";
 import type { CollisionParticle } from "./Types.js";
 
-const absorbFactor = 10,
-  minAbsorbFactor = 0;
+const minAbsorbAmount = 0;
 
 /**
  * @param p1 -
- * @param _r1 -
+ * @param r1 -
  * @param p2 -
  * @param r2 -
  * @param delta -
@@ -14,7 +13,7 @@ const absorbFactor = 10,
  */
 function updateAbsorb(
   p1: CollisionParticle,
-  _r1: number,
+  r1: number,
   p2: CollisionParticle,
   r2: number,
   delta: IDelta,
@@ -24,12 +23,13 @@ function updateAbsorb(
     return;
   }
 
-  const factor = clamp((p1.options.collisions.absorb.speed * delta.factor) / absorbFactor, minAbsorbFactor, r2);
+  const absorbSpeed = p1.options.collisions.absorb.speed,
+    shrinkAmount = clamp(absorbSpeed * delta.factor, minAbsorbAmount, r2);
 
-  p1.size.value += factor * half;
-  p2.size.value -= factor;
+  p1.size.value = Math.sqrt(r1 * r1 + shrinkAmount * shrinkAmount);
+  p2.size.value -= shrinkAmount;
 
-  if (r2 <= pixelRatio) {
+  if (p2.size.value <= pixelRatio) {
     p2.size.value = 0;
     p2.destroy();
   }

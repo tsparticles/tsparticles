@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-easing-expo",
-  "version": "4.0.0-alpha.20",
+  "version": "4.0.0-alpha.26",
   "description": "tsParticles easing expo plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,7 +100,7 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.20"
+    "@tsparticles/engine": "4.0.0-alpha.26"
   },
   "publishConfig": {
     "access": "public"

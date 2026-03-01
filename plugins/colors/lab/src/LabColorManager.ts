@@ -24,7 +24,7 @@ export class LabColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       labColor = colorValue.lab ?? (color.value as ILab);
 
-    if (!Object.hasOwn(labColor, "l") || !Object.hasOwn(labColor, "aAxis") || !Object.hasOwn(labColor, "bAxis")) {
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
       return;
     }
 
@@ -35,7 +35,7 @@ export class LabColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       labColor = colorValue.lab ?? (color.value as IRangeLab); // Support for LAB
 
-    if (!Object.hasOwn(labColor, "l") || !Object.hasOwn(labColor, "aAxis") || !Object.hasOwn(labColor, "bAxis")) {
+    if (!("l" in labColor) || !("aAxis" in labColor) || !("bAxis" in labColor)) {
       return;
     }
 

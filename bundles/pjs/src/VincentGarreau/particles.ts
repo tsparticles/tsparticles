@@ -190,6 +190,13 @@ const defaultMinOpacity = 0,
             },
           },
           particles: {
+            attract: {
+              enable: fixedOptions.particles.move.attract.enable,
+              rotate: {
+                x: fixedOptions.particles.move.attract.rotateX,
+                y: fixedOptions.particles.move.attract.rotateY,
+              },
+            },
             collisions: {
               enable: fixedOptions.particles.move.bounce,
             },
@@ -266,13 +273,6 @@ const defaultMinOpacity = 0,
               random: fixedOptions.particles.move.random,
               straight: fixedOptions.particles.move.straight,
               outModes: fixedOptions.particles.move.out_mode,
-              attract: {
-                enable: fixedOptions.particles.move.attract.enable,
-                rotate: {
-                  x: fixedOptions.particles.move.attract.rotateX,
-                  y: fixedOptions.particles.move.attract.rotateY,
-                },
-              },
             },
           },
           resize: {

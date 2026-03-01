@@ -6,6 +6,7 @@ import {
   PixelMode,
   type RecursivePartial,
   getRangeValue,
+  identity,
   isNumber,
   itemFromSingleOrMultiple,
   loadParticlesOptions,
@@ -22,7 +23,6 @@ const defaultOffset = 0,
   minSplitCount = 0;
 
 /**
- *
  * @param engine -
  * @param container -
  * @param parent -
@@ -43,7 +43,6 @@ function addSplitParticle(
 
   const splitOptions = destroyOptions.split,
     options = loadParticlesOptions(engine, container, parent.options),
-    factor = getRangeValue(splitOptions.factor.value),
     parentColor = parent.getFillColor();
 
   if (splitOptions.color) {
@@ -71,15 +70,16 @@ function addSplitParticle(
       x: parent.position.x,
       y: parent.position.y,
       mode: PixelMode.precise,
-      // radius: parent.size.value,
     },
   });
 
+  const factor = identity / getRangeValue(splitOptions.factor.value);
+
   if (isNumber(options.size.value)) {
-    options.size.value /= factor;
+    options.size.value *= factor;
   } else {
-    options.size.value.min /= factor;
-    options.size.value.max /= factor;
+    options.size.value.min *= factor;
+    options.size.value.max *= factor;
   }
 
   options.load(splitParticlesOptions);
@@ -98,10 +98,7 @@ function addSplitParticle(
     particle.velocity.length = randomInRangeValue(setRangeValue(parent.velocity.length, particle.velocity.length));
     particle.splitCount = (parent.splitCount ?? defaultSplitCount) + increment;
     particle.unbreakable = true;
-
-    setTimeout(() => {
-      particle.unbreakable = false;
-    }, unbreakableTime);
+    particle.unbreakableUntil = performance.now() + unbreakableTime;
 
     return true;
   });
@@ -122,11 +119,12 @@ export function split(engine: Engine, container: Container, particle: DestroyPar
 
   const splitOptions = destroyOptions.split;
 
-  if (
-    splitOptions.count >= minSplitCount &&
-    (particle.splitCount === undefined || particle.splitCount++ > splitOptions.count)
-  ) {
-    return;
+  if (splitOptions.count >= minSplitCount) {
+    if (particle.splitCount === undefined || particle.splitCount > splitOptions.count) {
+      return;
+    }
+
+    particle.splitCount++;
   }
 
   const rate = getRangeValue(splitOptions.rate.value),

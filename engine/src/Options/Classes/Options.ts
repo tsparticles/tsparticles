@@ -37,6 +37,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
   hdr;
   key?: string;
   name?: string;
+  palette?: string;
   readonly particles;
   pauseOnBlur;
   pauseOnOutsideViewport;
@@ -81,9 +82,17 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
     }
 
     if (data.preset !== undefined) {
-      executeOnSingleOrMultiple(data.preset, preset => {
+      this.preset = data.preset;
+
+      executeOnSingleOrMultiple(this.preset, preset => {
         this._importPreset(preset);
       });
+    }
+
+    if (data.palette !== undefined) {
+      this.palette = data.palette;
+
+      this._importPalette(this.palette);
     }
 
     if (data.autoPlay !== undefined) {
@@ -162,6 +171,40 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
       plugin.loadOptions(this._container, this, data);
     });
   }
+
+  private readonly _importPalette: (palette: string) => void = palette => {
+    const paletteData = this._engine.getPalette(palette);
+
+    if (!paletteData) {
+      return;
+    }
+
+    this.load({
+      background: {
+        color: paletteData.background,
+      },
+      blend: {
+        enable: true,
+        mode: paletteData.blendMode,
+      },
+      particles: {
+        color: paletteData.fill
+          ? {
+              value: paletteData.colors,
+            }
+          : undefined,
+        shape: {
+          fill: paletteData.fill,
+        },
+        stroke: !paletteData.fill
+          ? paletteData.colors.map(color => ({
+              color: color,
+              width: 1,
+            }))
+          : undefined,
+      },
+    });
+  };
 
   private readonly _importPreset: (preset: string) => void = preset => {
     this.load(this._engine.getPreset(preset));

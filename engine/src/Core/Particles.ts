@@ -7,9 +7,7 @@ import {
   minCount,
   minIndex,
   minLimit,
-  posOffset,
-  qTreeCapacity,
-  sizeFactor,
+  spatialHashGridCellSize,
   squareExp,
 } from "./Utils/Constants.js";
 import type { Container } from "./Container.js";
@@ -20,8 +18,6 @@ import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
-import type { IParticleMover } from "./Interfaces/IParticleMover.js";
 import type { IParticleUpdater } from "./Interfaces/IParticleUpdater.js";
 import type { IParticlesDensity } from "../Options/Interfaces/Particles/Number/IParticlesDensity.js";
 import type { IParticlesOptions } from "../Options/Interfaces/Particles/IParticlesOptions.js";
@@ -29,37 +25,20 @@ import type { IShapeDrawer } from "./Interfaces/IShapeDrawer.js";
 import { LimitMode } from "../Enums/Modes/LimitMode.js";
 import { Particle } from "./Particle.js";
 import { type ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
-import { Point } from "./Utils/Point.js";
-import { QuadTree } from "./Utils/QuadTree.js";
-import { Rectangle } from "./Utils/Ranges.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
+import { SpatialHashGrid } from "./Utils/SpatialHashGrid.js";
 import { getLogger } from "../Utils/LogUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
-
-const qTreeRectangle = (canvasSize: IDimension): Rectangle => {
-  const { height, width } = canvasSize;
-
-  return new Rectangle(posOffset * width, posOffset * height, sizeFactor * width, sizeFactor * height);
-};
 
 /**
  * Particles manager object
  */
 export class Particles {
-  availablePathGenerators: Map<string, IMovePathGenerator>;
-
   checkParticlePositionPlugins: IContainerPlugin[];
 
   effectDrawers: Map<string, IEffectDrawer>;
 
-  movers: IParticleMover[];
-
-  pathGenerators: Map<string, IMovePathGenerator>;
-
-  /**
-   * The quad tree used to search particles withing ranges
-   */
-  quadTree;
+  grid;
 
   shapeDrawers: Map<string, IShapeDrawer>;
 
@@ -103,15 +82,8 @@ export class Particles {
     this._needsSort = false;
     this._minZIndex = 0;
     this._maxZIndex = 0;
-
-    const canvasSize = container.canvas.size;
-
-    this.quadTree = new QuadTree(qTreeRectangle(canvasSize), qTreeCapacity);
-
+    this.grid = new SpatialHashGrid(spatialHashGridCellSize);
     this.effectDrawers = new Map();
-    this.movers = [];
-    this.availablePathGenerators = new Map();
-    this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -219,9 +191,6 @@ export class Particles {
     this._pool.length = 0;
     this._zArray = [];
     this.effectDrawers = new Map();
-    this.movers = [];
-    this.availablePathGenerators = new Map();
-    this.pathGenerators = new Map();
     this.shapeDrawers = new Map();
     this.updaters = [];
     this.checkParticlePositionPlugins = [];
@@ -264,6 +233,8 @@ export class Particles {
     this._postUpdatePlugins = [];
     this._particleResetPlugins = [];
     this._postParticleUpdatePlugins = [];
+
+    this.grid = new SpatialHashGrid(spatialHashGridCellSize * container.retina.pixelRatio);
 
     for (const plugin of container.plugins) {
       if (plugin.redrawInit) {
@@ -341,15 +312,8 @@ export class Particles {
     const container = this._container;
 
     this.effectDrawers = await this._engine.getEffectDrawers(container, true);
-    this.movers = await this._engine.getMovers(container, true);
-    this.availablePathGenerators = await this._engine.getPathGenerators(container, true);
-    this.pathGenerators = new Map();
     this.shapeDrawers = await this._engine.getShapeDrawers(container, true);
     this.updaters = await this._engine.getUpdaters(container, true);
-
-    for (const pathGenerator of this.pathGenerators.values()) {
-      pathGenerator.init();
-    }
   }
 
   push(
@@ -429,14 +393,9 @@ export class Particles {
   }
 
   update(delta: IDelta): void {
-    const container = this._container,
-      particlesToDelete = new Set<Particle>();
+    const particlesToDelete = new Set<Particle>();
 
-    this.quadTree = new QuadTree(qTreeRectangle(container.canvas.size), qTreeCapacity);
-
-    for (const pathGenerator of this.pathGenerators.values()) {
-      pathGenerator.update();
-    }
+    this.grid.clear();
 
     for (const plugin of this._updatePlugins) {
       plugin.update?.(delta);
@@ -466,19 +425,13 @@ export class Particles {
         plugin.particleUpdate?.(particle, delta);
       }
 
-      for (const mover of this.movers) {
-        if (mover.isEnabled(particle)) {
-          mover.move(particle, delta);
-        }
-      }
-
       if (particle.destroyed) {
         particlesToDelete.add(particle);
 
         continue;
       }
 
-      this.quadTree.insert(new Point(particle.getPosition(), particle));
+      this.grid.insert(particle);
     }
 
     if (particlesToDelete.size) {

@@ -31,7 +31,7 @@ export class RgbColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       rgbColor = colorValue.rgb ?? (color.value as IRgb);
 
-    if (!Object.hasOwn(rgbColor, "r") || !Object.hasOwn(rgbColor, "g") || !Object.hasOwn(rgbColor, "b")) {
+    if (!("r" in rgbColor) || !("g" in rgbColor) || !("b" in rgbColor)) {
       return;
     }
 
@@ -42,7 +42,7 @@ export class RgbColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       rgbColor = colorValue.rgb ?? (color.value as IRangeRgb);
 
-    if (!Object.hasOwn(rgbColor, "r") || !Object.hasOwn(rgbColor, "g") || !Object.hasOwn(rgbColor, "b")) {
+    if (!("r" in rgbColor) || !("g" in rgbColor) || !("b" in rgbColor)) {
       return;
     }
 

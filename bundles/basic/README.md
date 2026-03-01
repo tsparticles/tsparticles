@@ -9,7 +9,7 @@
 **Included Packages**
 
 - [@tsparticles/engine](https://github.com/tsparticles/tsparticles/tree/main/engine)
-- [@tsparticles/move-base](https://github.com/tsparticles/tsparticles/tree/main/move/base)
+- [@tsparticles/plugin-move](https://github.com/tsparticles/tsparticles/tree/main/plugin/move)
 - [@tsparticles/plugin-hex-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/hexColor)
 - [@tsparticles/plugin-hsl-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/hslColor)
 - [@tsparticles/plugin-rgb-color](https://github.com/tsparticles/tsparticles/tree/main/plugins/colors/rgbColor)

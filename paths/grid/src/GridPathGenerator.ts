@@ -5,7 +5,6 @@ import {
   type Container,
   type ICoordinates,
   type IDimension,
-  type IMovePathGenerator,
   Vector,
   getRandom,
   identity,
@@ -13,6 +12,7 @@ import {
 } from "@tsparticles/engine";
 import type { GridPathParticle } from "./GridPathParticle.js";
 import type { IGridPathOptions } from "./IGridPathOptions.js";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const dirs = [
     Vector.create(identity, originPoint.y), // 0 right
@@ -26,9 +26,11 @@ const dirs = [
 export class GridPathGenerator implements IMovePathGenerator {
   readonly options: IGridPathOptions;
   private readonly _container: Container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
     this.options = {
       cellSize: 40,
       graph: undefined,
@@ -77,7 +79,10 @@ export class GridPathGenerator implements IMovePathGenerator {
 
     const d = dirs[grid.direction]!;
 
-    return Vector.create(d.x * grid.speed, d.y * grid.speed);
+    this._res.x = d.x * grid.speed;
+    this._res.y = d.y * grid.speed;
+
+    return this._res;
   }
 
   // -------------------------------------------

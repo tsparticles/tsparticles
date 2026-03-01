@@ -63,9 +63,6 @@ describe("Options tests", () => {
         expect(options.particles.links.width).to.equal(1); */
 
     /* particles move */
-    expect(options.particles.move.attract.enable).to.be.false;
-    expect(options.particles.move.attract.rotate.x).to.equal(3000);
-    expect(options.particles.move.attract.rotate.y).to.equal(3000);
     expect(options.particles.move.direction).to.equal(MoveDirection.none);
     expect(options.particles.move.enable).to.be.false;
     expect(options.particles.move.outModes.default).to.equal(OutMode.out);
@@ -172,13 +169,6 @@ describe("Options tests", () => {
             random: false,
             straight: false,
             outModes: OutMode.out,
-            attract: {
-              enable: false,
-              rotate: {
-                x: 600,
-                y: 1200,
-              },
-            },
           },
           number: {
             value: 80,
@@ -239,9 +229,6 @@ describe("Options tests", () => {
         expect(options.particles.links.width).to.equal(1); */
 
     /* particles move */
-    expect(options.particles.move.attract.enable).to.be.false;
-    expect(options.particles.move.attract.rotate.x).to.equal(600);
-    expect(options.particles.move.attract.rotate.y).to.equal(1200);
     expect(options.particles.move.direction).to.equal(MoveDirection.none);
     expect(options.particles.move.enable).to.be.true;
     expect(options.particles.move.outModes.default).to.equal(OutMode.out);
@@ -332,13 +319,6 @@ describe("Options tests", () => {
             random: false,
             straight: false,
             outModes: OutMode.bounce,
-            attract: {
-              enable: false,
-              rotate: {
-                x: 600,
-                y: 1200,
-              },
-            },
           },
           number: {
             value: 100,
@@ -407,9 +387,6 @@ describe("Options tests", () => {
         expect(options.particles.links.width).to.equal(1); */
 
     /* particles move */
-    expect(options.particles.move.attract.enable).to.be.false;
-    expect(options.particles.move.attract.rotate.x).to.equal(600);
-    expect(options.particles.move.attract.rotate.y).to.equal(1200);
     expect(options.particles.move.direction).to.equal(MoveDirection.none);
     expect(options.particles.move.enable).to.be.true;
     expect(options.particles.move.outModes.default).to.equal(OutMode.bounce);
@@ -493,13 +470,6 @@ describe("Options tests", () => {
           random: false,
           straight: false,
           outModes: OutMode.out,
-          attract: {
-            enable: false,
-            rotate: {
-              x: 600,
-              y: 1200,
-            },
-          },
         },
       },
       container = await tsParticles.load({

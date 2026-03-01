@@ -4,6 +4,7 @@ import type { ICoordinates3d } from "../Interfaces/ICoordinates.js";
  * Project's constants
  */
 export const generatedAttribute = "generated",
+  defaultCompositeValue: GlobalCompositeOperation = "source-over",
   resizeEvent = "resize",
   visibilityChangeEvent = "visibilitychange",
   percentDenominator = 100,
@@ -32,11 +33,12 @@ export const generatedAttribute = "generated",
   defaultRetryCount = 0,
   squareExp = 2,
   qTreeCapacity = 4,
+  spatialHashGridCellSize = 100,
   defaultRemoveQuantity = 1,
   defaultRatio = 1,
   defaultReduceFactor = 1,
   subdivideCount = 4,
-  inverseFactorNumerator = 1.0,
+  inverseFactorNumerator = 1,
   rgbMax = 255,
   hMax = 360,
   sMax = 100,
@@ -93,4 +95,5 @@ export const generatedAttribute = "generated",
   defaultRgbMin = 0,
   defaultVelocity = 0,
   defaultLoops = 0,
-  defaultTime = 0;
+  defaultTime = 0,
+  defaultZoom = 1;

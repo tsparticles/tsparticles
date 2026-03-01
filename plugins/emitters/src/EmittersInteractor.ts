@@ -27,12 +27,15 @@ const emittersMode = "emitters";
 
 export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
+  readonly maxDistance;
+
   private readonly _instancesManager;
 
   constructor(instancesManager: EmittersInstancesManager, container: EmitterContainer) {
     super(container);
 
     this._instancesManager = instancesManager;
+    this.maxDistance = 0;
 
     this.handleClickMode = (mode, interactivityData): void => {
       const container = this.container,
@@ -137,7 +140,7 @@ export class EmittersInteractor extends ExternalInteractorBase<EmitterContainer>
 
           options.emitters.value.push(tmp);
         }
-      } else if (Object.hasOwn(source.emitters, "value")) {
+      } else if ("value" in source.emitters) {
         const emitterModeOptions = source.emitters as RecursivePartial<IEmitterDataModeOptions>;
 
         options.emitters.random.enable = emitterModeOptions.random?.enable ?? options.emitters.random.enable;

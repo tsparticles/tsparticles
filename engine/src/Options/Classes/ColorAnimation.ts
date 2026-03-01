@@ -9,11 +9,15 @@ import { setRangeValue } from "../../Utils/MathUtils.js";
 /**
  */
 export class ColorAnimation extends AnimationOptions implements IColorAnimation, IOptionLoader<IColorAnimation> {
+  max;
+  min;
   offset: RangeValue;
 
-  constructor() {
+  constructor(min: number, max: number) {
     super();
 
+    this.min = min;
+    this.max = max;
     this.offset = 0;
     this.sync = true;
   }
@@ -23,6 +27,14 @@ export class ColorAnimation extends AnimationOptions implements IColorAnimation,
 
     if (isNull(data)) {
       return;
+    }
+
+    if (data.max !== undefined) {
+      this.max = data.max;
+    }
+
+    if (data.min !== undefined) {
+      this.min = data.min;
     }
 
     if (data.offset !== undefined) {

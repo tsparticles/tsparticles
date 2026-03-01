@@ -25,7 +25,7 @@ export class OklabColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IOklab);
 
-    if (!Object.hasOwn(oklabColor, "l") || !Object.hasOwn(oklabColor, "aAxis") || !Object.hasOwn(oklabColor, "bAxis")) {
+    if (!("l" in oklabColor) || !("aAxis" in oklabColor) || !("bAxis" in oklabColor)) {
       return;
     }
 
@@ -36,7 +36,7 @@ export class OklabColorManager implements IColorManager {
     const colorValue = color.value as IRangeValueColor,
       oklabColor = colorValue.oklab ?? (color.value as IRangeOklab);
 
-    if (!Object.hasOwn(oklabColor, "l") || !Object.hasOwn(oklabColor, "aAxis") || !Object.hasOwn(oklabColor, "bAxis")) {
+    if (!("l" in oklabColor) || !("aAxis" in oklabColor) || !("bAxis" in oklabColor)) {
       return;
     }
 

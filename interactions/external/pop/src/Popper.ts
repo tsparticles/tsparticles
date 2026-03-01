@@ -14,6 +14,8 @@ const popMode = "pop";
 export class Popper extends ExternalInteractorBase {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
+  readonly maxDistance = 0;
+
   constructor(container: InteractivityContainer) {
     super(container);
 
@@ -30,7 +32,7 @@ export class Popper extends ExternalInteractorBase {
         return;
       }
 
-      const poppedParticles = container.particles.quadTree.queryCircle(clickPos, container.retina.pixelRatio);
+      const poppedParticles = container.particles.grid.queryCircle(clickPos, container.retina.pixelRatio);
 
       if (!poppedParticles.length) {
         return;

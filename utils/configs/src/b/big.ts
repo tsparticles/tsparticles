@@ -5,7 +5,7 @@ const options: ISourceOptions = {
   name: "Big Particles",
   particles: {
     number: {
-      value: 30,
+      value: 50,
     },
     color: {
       value: [
@@ -58,23 +58,26 @@ const options: ISourceOptions = {
     },
     size: {
       value: {
-        min: 300,
+        min: 30,
         max: 400,
       },
       animation: {
         enable: true,
-        speed: 100,
+        speed: 50,
         sync: false,
       },
     },
     move: {
       enable: true,
-      speed: 10,
+      speed: { min: 3, max: 7 },
       direction: "top",
     },
   },
   background: {
-    color: "#ffffff",
+    color: "rgb(250, 255, 255, 0.625)",
+  },
+  poisson: {
+    enable: true,
   },
 };
 

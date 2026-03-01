@@ -1,15 +1,9 @@
-import { type BaseRange, Circle, type ICoordinates, type IDimension, Rectangle, double } from "@tsparticles/engine";
+import { Circle, type ICoordinates, type IDimension, Rectangle } from "@tsparticles/engine";
 
 /**
+ * Specialized Circle for Warp effect, checks for points across canvas edges
  */
 export class CircleWarp extends Circle {
-  /**
-   * Circle constructor, initialized position and radius
-   * @param x - X coordinate of the position
-   * @param y - Y coordinate of the position
-   * @param radius - Circle's radius
-   * @param canvasSize - the canvas size, used for warp formulas
-   */
   constructor(
     x: number,
     y: number,
@@ -17,52 +11,71 @@ export class CircleWarp extends Circle {
     private readonly canvasSize: IDimension,
   ) {
     super(x, y, radius);
-
-    this.canvasSize = { ...canvasSize };
   }
 
   /**
-   * Check if the given point is inside the circle
+   * Check if point is inside the range, considering canvas wrapping
    * @param point - the point to check
-   * @returns true or false, checking if the given point is inside the circle
+   * @returns true if point is inside the range, false otherwise
    */
   override contains(point: ICoordinates): boolean {
+    if (super.contains(point)) return true;
+
     const { width, height } = this.canvasSize,
       { x, y } = point;
 
+    /* Check phantom positions in all neighboring virtual sectors */
     return (
-      super.contains(point) ||
       super.contains({ x: x - width, y }) ||
+      super.contains({ x: x + width, y }) ||
+      super.contains({ x, y: y - height }) ||
+      super.contains({ x, y: y + height }) ||
       super.contains({ x: x - width, y: y - height }) ||
-      super.contains({ x, y: y - height })
+      super.contains({ x: x + width, y: y + height }) ||
+      super.contains({ x: x - width, y: y + height }) ||
+      super.contains({ x: x + width, y: y - height })
     );
   }
 
   /**
-   * Check if the given range intersects the circle
-   * @param range - the range to check
-   * @returns true or false, checking if the range is intersecting with the circle
+   * Check if range intersects, considering wrap
+   * @param range - the range to check (Rectangle or Circle)
+   * @returns true if range intersects, false otherwise
    */
-  override intersects(range: BaseRange): boolean {
-    if (super.intersects(range)) {
-      return true;
-    }
+  override intersects(range: Rectangle | Circle): boolean {
+    if (super.intersects(range)) return true;
 
-    const rect = range as Rectangle,
-      circle = range as Circle,
-      newPos = {
-        x: range.position.x - this.canvasSize.width,
-        y: range.position.y - this.canvasSize.height,
-      };
+    const { width, height } = this.canvasSize,
+      pos = range.position,
+      /* Define potential shift offsets for warp checking */
+      shifts = [
+        { x: -width, y: 0 },
+        { x: width, y: 0 },
+        { x: 0, y: -height },
+        { x: 0, y: height },
+        { x: -width, y: -height },
+        { x: width, y: height },
+        { x: -width, y: height },
+        { x: width, y: -height },
+      ];
 
-    if (Object.hasOwn(circle, "radius")) {
-      const biggerCircle = new Circle(newPos.x, newPos.y, circle.radius * double);
+    /* Iterate through shifts and create proper class instances to preserve prototypes */
+    for (const shift of shifts) {
+      const shiftedPos = { x: pos.x + shift.x, y: pos.y + shift.y };
 
-      return super.intersects(biggerCircle);
-    } else if (Object.hasOwn(rect, "size")) {
-      const rectSW = new Rectangle(newPos.x, newPos.y, rect.size.width * double, rect.size.height * double);
+      let shiftedRange: Rectangle | Circle;
 
-      return super.intersects(rectSW);
+      if (range instanceof Circle) {
+        /* Instantiate a proper Circle if range is a Circle */
+        shiftedRange = new Circle(shiftedPos.x, shiftedPos.y, range.radius);
+      } else {
+        /* Instantiate a proper Rectangle if range is a Rectangle */
+        const rect = range;
+
+        shiftedRange = new Rectangle(shiftedPos.x, shiftedPos.y, rect.size.width, rect.size.height);
+      }
+
+      if (super.intersects(shiftedRange)) return true;
     }
 
     return false;

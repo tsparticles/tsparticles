@@ -1,10 +1,19 @@
 import { clear, drawParticle, drawParticlePlugin, paintBase, paintImage } from "../Utils/CanvasUtils.js";
 import { cloneStyle, getFullScreenStyle, safeMatchMedia, safeMutationObserver } from "../Utils/Utils.js";
-import { defaultTransformValue, generatedAttribute, minimumSize, zIndexFactorOffset } from "./Utils/Constants.js";
+import {
+  defaultCompositeValue,
+  defaultTransformValue,
+  defaultZoom,
+  generatedAttribute,
+  half,
+  minimumSize,
+  zIndexFactorOffset,
+} from "./Utils/Constants.js";
 import { getStyleFromHsl, getStyleFromRgb, rangeColorToHsl, rangeColorToRgb } from "../Utils/ColorUtils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import type { IContainerPlugin } from "./Interfaces/IContainerPlugin.js";
+import type { ICoordinates } from "./Interfaces/ICoordinates.js";
 import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IDimension } from "./Interfaces/IDimension.js";
 import type { IHsl } from "./Interfaces/Colors.js";
@@ -93,6 +102,11 @@ export class Canvas {
    */
   readonly size: IDimension;
 
+  /**
+   * Current zoom level
+   */
+  zoom = defaultZoom;
+
   private _canvasClearPlugins: IContainerPlugin[];
   private _canvasPaintPlugins: IContainerPlugin[];
   private _canvasSettings?: CanvasRenderingContext2DSettings;
@@ -120,6 +134,11 @@ export class Canvas {
   private readonly _reusablePluginColors: (IHsl | undefined)[] = [undefined, undefined];
   private readonly _reusableTransform: Partial<IParticleTransformValues> = {};
   private readonly _standardSize: IDimension;
+
+  /**
+   * Zoom center point (for centered zooming)
+   */
+  private _zoomCenter?: ICoordinates;
 
   /**
    * Constructor of canvas manager
@@ -345,8 +364,6 @@ export class Canvas {
         plugin.draw?.(ctx, delta);
       }
 
-      // this.quadTree.draw(ctx);
-
       particles.drawParticles(delta);
 
       for (const plugin of this._clearDrawPlugins) {
@@ -357,6 +374,20 @@ export class Canvas {
         plugin.drawSettingsCleanup?.(ctx, delta);
       }
     });
+  }
+
+  getZoomCenter(): ICoordinates {
+    const pxRatio = this.container.retina.pixelRatio,
+      { width, height } = this.size;
+
+    if (this._zoomCenter) {
+      return this._zoomCenter;
+    }
+
+    return {
+      x: (width * half) / pxRatio,
+      y: (height * half) / pxRatio,
+    };
   }
 
   /**
@@ -373,11 +404,10 @@ export class Canvas {
         }
       }
     });
+
     this.resize();
     this._initStyle();
-
     this.initBackground();
-
     this._safeMutationObserver(obs => {
       if (!this.element || !(this.element instanceof Node)) {
         return;
@@ -385,7 +415,6 @@ export class Canvas {
 
       obs.observe(this.element, { attributes: true });
     });
-
     this.initUpdaters();
     this.initPlugins();
     this.paint();
@@ -538,6 +567,10 @@ export class Canvas {
     };
     this._context = this.element.getContext("2d", this._canvasSettings);
 
+    if (this._context) {
+      this._context.globalCompositeOperation = defaultCompositeValue;
+    }
+
     this._safeMutationObserver(obs => {
       obs.disconnect();
     });
@@ -648,10 +681,21 @@ export class Canvas {
     this._repairStyle();
   }
 
+  /**
+   * Sets the zoom level and center point
+   * @param zoomLevel - the new zoom level
+   * @param center - optional center point for zoom (default is canvas center)
+   */
+  setZoom(zoomLevel: number, center?: ICoordinates): void {
+    this.zoom = zoomLevel;
+    this._zoomCenter = center;
+  }
+
   stop(): void {
     this._safeMutationObserver(obs => {
       obs.disconnect();
     });
+
     this._mutationObserver = undefined;
 
     this.draw(ctx => {
@@ -763,7 +807,7 @@ export class Canvas {
     }
 
     for (const key in options.style) {
-      if (!key || !Object.hasOwn(options.style, key)) {
+      if (!key || !(key in options.style)) {
         continue;
       }
 

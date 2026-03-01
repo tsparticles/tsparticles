@@ -4,7 +4,6 @@ import type { ICollisionsAbsorb } from "./ICollisionsAbsorb.js";
 import type { ICollisionsOverlap } from "./ICollisionsOverlap.js";
 
 /**
- 
  * [[include:Collisions.md]]
  */
 export interface ICollisions {

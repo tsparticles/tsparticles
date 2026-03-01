@@ -97,7 +97,7 @@ export class HwbColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       hwbColor = colorValue.hwb ?? (color.value as unknown as IHwb);
 
-    if (!Object.hasOwn(hwbColor, "h") || !Object.hasOwn(hwbColor, "w") || !Object.hasOwn(hwbColor, "b")) {
+    if (!("h" in hwbColor) || !("w" in hwbColor) || !("b" in hwbColor)) {
       return;
     }
 
@@ -108,7 +108,7 @@ export class HwbColorManager implements IColorManager {
     const colorValue = color.value as IValueColor,
       hwbColor = colorValue.hwb ?? (color.value as unknown as IHwb);
 
-    if (!Object.hasOwn(hwbColor, "h") || !Object.hasOwn(hwbColor, "w") || !Object.hasOwn(hwbColor, "b")) {
+    if (!("h" in hwbColor) || !("w" in hwbColor) || !("b" in hwbColor)) {
       return;
     }
 
