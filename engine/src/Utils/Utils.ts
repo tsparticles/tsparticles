@@ -36,19 +36,95 @@ const minRadius = 0;
  * @param fn - the function to memoize
  * @returns the memoized function
  */
-function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result): (...args: Args) => Result {
-  const cache = new Map<string, Result>();
+/**
+ * Memoize a function's results with optional bounded size and TTL.
+ *
+ * Backward compatible: callers using `memoize(fn)` keep the same semantics.
+ * Options: { maxSize?: number, ttlMs?: number, keyFn?: (args) => string }
+ * Default keyer uses a stable serialization of the arguments (sorted keys)
+ * which makes equal-shaped objects produce the same cache key.
+ *
+ * See: .planning/research/PITFALLS.md for tradeoffs of keying/eviction strategies.
+ */
+export function memoize<Args extends unknown[], Result>(
+  fn: (...args: Args) => Result,
+  options?: { maxSize?: number; ttlMs?: number; keyFn?: (args: Args) => string },
+): (...args: Args) => Result {
+  const cache = new Map<string, { value: Result; ts: number }>();
+  const maxSize = options?.maxSize;
+  const ttlMs = options?.ttlMs;
+  const keyFn = options?.keyFn;
 
-  return (...args: Args): Result => {
-    const key = JSON.stringify(args); // Serialize arguments as the cache key
-
-    if (cache.has(key)) {
-      return cache.get(key) as Result; // Return cached result if available
+  const stableStringify = (obj: unknown, seen = new WeakSet()): string => {
+    if (obj === null) {
+      return "null";
     }
 
-    const result = fn(...args); // Compute the result
+    const t = typeof obj;
 
-    cache.set(key, result); // Store result in cache
+    if (t === "undefined") return "undefined";
+    if (t === "number" || t === "boolean" || t === "string") return JSON.stringify(obj);
+    if (t === "function") return obj.toString();
+    if (t === "symbol") return String(obj);
+
+    if (Array.isArray(obj)) {
+      return `[${(obj as unknown[]).map(i => stableStringify(i, seen)).join(",")}]`;
+    }
+
+    // object
+    if (seen.has(obj as object)) {
+      return '"[Circular]"';
+    }
+
+    seen.add(obj as object);
+
+    const keys = Object.keys(obj as Record<string, unknown>).sort();
+
+    return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify((obj as Record<string, unknown>)[k], seen)}`).join(",")}}`;
+  };
+
+  const defaultKeyer = (args: Args) => stableStringify(args);
+
+  const makeKey = (args: Args) => (keyFn ? keyFn(args) : defaultKeyer(args));
+
+  const ensureBounds = () => {
+    if (typeof maxSize === "number" && maxSize >= 0) {
+      while (cache.size > maxSize) {
+        // evict oldest entry (Map preserves insertion order)
+        const firstKey = cache.keys().next().value as string | undefined;
+
+        if (firstKey === undefined) break;
+
+        cache.delete(firstKey);
+      }
+    }
+  };
+
+  return (...args: Args): Result => {
+    const key = makeKey(args as Args);
+
+    const now = Date.now();
+
+    if (cache.has(key)) {
+      const entry = cache.get(key)!;
+
+      if (ttlMs && now - entry.ts > ttlMs) {
+        // expired
+        cache.delete(key);
+      } else {
+        // refresh insertion order: delete then set to move to newest
+        cache.delete(key);
+        cache.set(key, { value: entry.value, ts: entry.ts });
+
+        return entry.value;
+      }
+    }
+
+    const result = fn(...args);
+
+    cache.set(key, { value: result, ts: now });
+
+    ensureBounds();
 
     return result;
   };
@@ -231,8 +307,38 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
       destination = {};
     }
 
-    for (const key of Object.keys(source)) {
-      if (key === "__proto__" || key === "constructor" || key === "prototype") {
+    // Micro-optimization + safety: if the source is a shallow object (no nested objects/arrays),
+    // perform a fast shallow copy for common-case merges. Also explicitly ignore dangerous
+    // prototype/constructor keys to avoid prototype pollution. See .planning/research/PITFALLS.md
+    // for rationale.
+    const sourceKeys = Object.keys(source);
+    const dangerousKeys = new Set(["__proto__", "constructor", "prototype"]);
+
+    // Detect if the source contains nested structures that need full deep merging
+    const hasNested = sourceKeys.some(k => {
+      const v = (source as Record<string, unknown>)[k];
+
+      return isObject(v) || Array.isArray(v);
+    });
+
+    if (!hasNested) {
+      // shallow fast-path
+      const sourceDict = source as Record<string, unknown>;
+      const destDict = destination as Record<string, unknown>;
+
+      for (const key of sourceKeys) {
+        if (dangerousKeys.has(key)) {
+          continue;
+        }
+
+        destDict[key] = sourceDict[key];
+      }
+
+      continue;
+    }
+
+    for (const key of sourceKeys) {
+      if (dangerousKeys.has(key)) {
         continue;
       }
 
