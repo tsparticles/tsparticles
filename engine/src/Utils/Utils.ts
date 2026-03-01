@@ -29,7 +29,14 @@ import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { StartValueType } from "../Enums/Types/StartValueType.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 
-const minRadius = 0;
+const minRadius = 0,
+  minMemoizeSize = 0;
+
+interface MemoizeOptions<TArgs> {
+  keyFn?: (args: TArgs) => string;
+  maxSize?: number;
+  ttlMs?: number;
+}
 
 /**
  *
@@ -45,69 +52,87 @@ const minRadius = 0;
  * which makes equal-shaped objects produce the same cache key.
  *
  * See: .planning/research/PITFALLS.md for tradeoffs of keying/eviction strategies.
+ * @param fn -
+ * @param options -
  */
-export function memoize<Args extends unknown[], Result>(
-  fn: (...args: Args) => Result,
-  options?: { maxSize?: number; ttlMs?: number; keyFn?: (args: Args) => string },
-): (...args: Args) => Result {
-  const cache = new Map<string, { value: Result; ts: number }>();
-  const maxSize = options?.maxSize;
-  const ttlMs = options?.ttlMs;
-  const keyFn = options?.keyFn;
-
-  const stableStringify = (obj: unknown, seen = new WeakSet()): string => {
-    if (obj === null) {
-      return "null";
-    }
-
-    const t = typeof obj;
-
-    if (t === "undefined") return "undefined";
-    if (t === "number" || t === "boolean" || t === "string") return JSON.stringify(obj);
-    if (t === "function") return obj.toString();
-    if (t === "symbol") return String(obj);
-
-    if (Array.isArray(obj)) {
-      return `[${(obj as unknown[]).map(i => stableStringify(i, seen)).join(",")}]`;
-    }
-
-    // object
-    if (seen.has(obj as object)) {
-      return '"[Circular]"';
-    }
-
-    seen.add(obj as object);
-
-    const keys = Object.keys(obj as Record<string, unknown>).sort();
-
-    return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify((obj as Record<string, unknown>)[k], seen)}`).join(",")}}`;
-  };
-
-  const defaultKeyer = (args: Args) => stableStringify(args);
-
-  const makeKey = (args: Args) => (keyFn ? keyFn(args) : defaultKeyer(args));
-
-  const ensureBounds = () => {
-    if (typeof maxSize === "number" && maxSize >= 0) {
-      while (cache.size > maxSize) {
-        // evict oldest entry (Map preserves insertion order)
-        const firstKey = cache.keys().next().value as string | undefined;
-
-        if (firstKey === undefined) break;
-
-        cache.delete(firstKey);
+export function memoize<TArgs extends unknown[], Result>(
+  fn: (...args: TArgs) => Result,
+  options?: MemoizeOptions<TArgs>,
+): (...args: TArgs) => Result {
+  const cache = new Map<string, { ts: number; value: Result }>(),
+    maxSize = options?.maxSize,
+    ttlMs = options?.ttlMs,
+    keyFn = options?.keyFn,
+    stableStringify = (obj: unknown, seen = new WeakSet()): string => {
+      if (obj === null) {
+        return "null";
       }
-    }
-  };
 
-  return (...args: Args): Result => {
-    const key = makeKey(args as Args);
+      const t = typeof obj;
 
-    const now = Date.now();
+      if (t === "undefined") {
+        return "undefined";
+      }
 
-    if (cache.has(key)) {
-      const entry = cache.get(key)!;
+      if (t === "number" || t === "boolean" || t === "string") {
+        return JSON.stringify(obj);
+      }
 
+      if (t === "function") {
+        try {
+          const fn = obj as unknown as (...args: unknown[]) => unknown;
+
+          return fn.toString();
+        } catch {
+          return '"[Function]"';
+        }
+      }
+
+      if (t === "symbol") {
+        try {
+          return (obj as symbol).toString();
+        } catch {
+          // Avoid default object stringification which yields "[object Object]".
+          return '"[Symbol]"';
+        }
+      }
+
+      if (Array.isArray(obj)) {
+        return `[${(obj as unknown[]).map(i => stableStringify(i, seen)).join(",")}]`;
+      }
+
+      // object
+      if (seen.has(obj as object)) {
+        return '"[Circular]"';
+      }
+
+      seen.add(obj as object);
+
+      const keys = Object.keys(obj as Record<string, unknown>).sort();
+
+      return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify((obj as Record<string, unknown>)[k], seen)}`).join(",")}}`;
+    },
+    defaultKeyer = (args: TArgs): string => stableStringify(args),
+    makeKey = (args: TArgs): string => (keyFn ? keyFn(args) : defaultKeyer(args)),
+    ensureBounds = (): void => {
+      if (typeof maxSize === "number" && maxSize >= minMemoizeSize) {
+        while (cache.size > maxSize) {
+          // evict oldest entry (Map preserves insertion order)
+          const firstKey = cache.keys().next().value;
+
+          if (firstKey === undefined) break;
+
+          cache.delete(firstKey);
+        }
+      }
+    };
+
+  return (...args: TArgs): Result => {
+    const key = makeKey(args),
+      now = Date.now(),
+      entry = cache.get(key);
+
+    if (entry !== undefined) {
       if (ttlMs && now - entry.ts > ttlMs) {
         // expired
         cache.delete(key);
@@ -311,27 +336,33 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
     // perform a fast shallow copy for common-case merges. Also explicitly ignore dangerous
     // prototype/constructor keys to avoid prototype pollution. See .planning/research/PITFALLS.md
     // for rationale.
-    const sourceKeys = Object.keys(source);
-    const dangerousKeys = new Set(["__proto__", "constructor", "prototype"]);
+    const sourceKeys = Object.keys(source),
+      dangerousKeys = new Set(["__proto__", "constructor", "prototype"]),
+      // Detect if the source contains nested structures that need full deep merging
+      hasNested = sourceKeys.some(k => {
+        const v = (source as Record<string, unknown>)[k];
 
-    // Detect if the source contains nested structures that need full deep merging
-    const hasNested = sourceKeys.some(k => {
-      const v = (source as Record<string, unknown>)[k];
-
-      return isObject(v) || Array.isArray(v);
-    });
+        return isObject(v) || Array.isArray(v);
+      });
 
     if (!hasNested) {
       // shallow fast-path
-      const sourceDict = source as Record<string, unknown>;
-      const destDict = destination as Record<string, unknown>;
+      const sourceDict = source as Record<string, unknown>,
+        destDict = destination as Record<string, unknown>;
 
       for (const key of sourceKeys) {
         if (dangerousKeys.has(key)) {
           continue;
         }
 
-        destDict[key] = sourceDict[key];
+        // Avoid assigning undefined keys and preserve type-safety
+        if (key in sourceDict) {
+          const v = sourceDict[key];
+
+          if (v !== undefined) {
+            destDict[key] = v;
+          }
+        }
       }
 
       continue;
