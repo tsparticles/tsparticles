@@ -6,7 +6,7 @@ const options: ISourceOptions = {
   fpsLimit: 30,
   particles: {
     number: {
-      value: 150,
+      value: 300,
       density: {
         enable: true,
       },
