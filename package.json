@@ -31,7 +31,7 @@
     "@commitlint/cli": "^20.4.2",
     "@commitlint/config-conventional": "^20.4.2",
     "@swc/core": "^1.15.18",
-    "@tsparticles/cli": "^3.1.7",
+    "@tsparticles/cli": "^3.2.0",
     "@tsparticles/depcruise-config": "^3.1.9",
     "@tsparticles/eslint-config": "^3.1.9",
     "@tsparticles/prettier-config": "^3.1.9",
