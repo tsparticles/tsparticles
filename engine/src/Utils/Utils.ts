@@ -39,21 +39,17 @@ interface MemoizeOptions<TArgs> {
 }
 
 /**
- *
- * @param fn - the function to memoize
- * @returns the memoized function
- */
-/**
  * Memoize a function's results with optional bounded size and TTL.
  *
  * Backward compatible: callers using `memoize(fn)` keep the same semantics.
- * Options: { maxSize?: number, ttlMs?: number, keyFn?: (args) => string }
+ * Options: \{ maxSize?: number, ttlMs?: number, keyFn?: (args) =\> string \}
  * Default keyer uses a stable serialization of the arguments (sorted keys)
  * which makes equal-shaped objects produce the same cache key.
  *
  * See: .planning/research/PITFALLS.md for tradeoffs of keying/eviction strategies.
  * @param fn -
  * @param options -
+ * @returns the memoized function
  */
 export function memoize<TArgs extends unknown[], Result>(
   fn: (...args: TArgs) => Result,
