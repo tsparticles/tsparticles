@@ -2,17 +2,17 @@ import type { LinkParticle } from "./Types.js";
 import { getRandom } from "@tsparticles/engine";
 
 /**
- *
- * @param ids
+ * @param ids -
+ * @returns the link key
  */
 export function getLinkKey(ids: number[]): string {
   return [...ids].sort((a, b) => a - b).join("_");
 }
 
 /**
- *
- * @param particles
- * @param dictionary
+ * @param particles -
+ * @param dictionary -
+ * @returns the link frequency
  */
 export function setLinkFrequency(particles: LinkParticle[], dictionary: Map<string, number>): number {
   const key = getLinkKey(particles.map(t => t.id));
