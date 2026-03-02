@@ -10,8 +10,9 @@ const __filename = fileURLToPath(import.meta.url),
     version = pkg.version;
 
 export default loadParticlesPath({
-    moduleName: "curl.noise",
-    pluginName: "Curl Noise",
-    version,
-    dir: __dirname
+  moduleName: "curl.noise",
+  pluginName: "Curl Noise",
+  version,
+  dir: __dirname,
+  progress: false,
 });
