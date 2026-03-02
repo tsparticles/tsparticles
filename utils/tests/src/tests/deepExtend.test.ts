@@ -1,10 +1,11 @@
-import { describe, it, expect } from "vitest";
-import { deepExtend } from "../../../../engine/src/Utils/Utils.js";
+/* eslint-disable @typescript-eslint/no-magic-numbers */
+import { describe, expect, it } from "vitest";
+import { deepExtend } from "@tsparticles/engine";
 
 describe("deepExtend", () => {
   it("merges nested objects predictably", () => {
-    const a = { x: { y: 1 } };
-    const res = deepExtend({}, a);
+    const a = { x: { y: 1 } },
+      res = deepExtend({}, a);
 
     expect(res).toEqual(a);
   });
@@ -12,22 +13,24 @@ describe("deepExtend", () => {
   it("replaces arrays with source arrays mapped", () => {
     const res = deepExtend({ arr: [1] }, { arr: [2, 3] });
 
-    expect((res as any).arr).toEqual([2, 3]);
+    expect((res as { arr: number[] }).arr).toEqual([2, 3]);
   });
 
   it("does not copy dangerous keys like __proto__ or constructor", () => {
-    const src: any = {};
+    const src: Record<string, unknown> = {};
 
     // attempt to carry dangerous keys as plain properties
     src.__proto__ = { polluted: true };
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     src.constructor = { evil: true };
 
-    const res: any = deepExtend({}, src);
+    const res = deepExtend({}, src) as { constructor?: { evil: boolean }; polluted: boolean };
 
     expect(res.polluted).toBeUndefined();
     // constructor property should remain the native constructor or at least not carry our evil flag
-    expect(res.constructor && (res.constructor as any).evil).toBeUndefined();
-    expect((Object.prototype as any).polluted).toBeUndefined();
+    expect(res.constructor?.evil).toBeUndefined();
+    expect((Object.prototype as { polluted: boolean }).polluted).toBeUndefined();
   });
 
   it("handles null and undefined sources sensibly", () => {
