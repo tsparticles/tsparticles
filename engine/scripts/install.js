@@ -187,20 +187,6 @@ async function checkErrors() {
         }
 
         if (dependencies["svelte"]) {
-            if (dependencies["svelte-particles"]) {
-                console.error(
-                    "\x1b[31m%s\x1b[0m",
-                    "The package svelte-particles has been deprecated and is not supported anymore."
-                );
-                console.error("\x1b[31m%s\x1b[0m", "Please consider switching to @tsparticles/svelte package.");
-                console.error(
-                    "\x1b[31m%s\x1b[0m",
-                    "This error will be fixed once svelte-particles is removed from the package.json file."
-                );
-
-                throw new Error(svelteParticlesFoundError);
-            }
-
             if (!dependencies["@tsparticles/svelte"]) {
                 console.warn(
                     "\x1b[43m\x1b[30m%s\x1b[0m",
