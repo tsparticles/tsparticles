@@ -8,7 +8,6 @@ async function checkErrors() {
         reactParticlesJsFoundError = "react-particles-js-found",
         reactParticlesFoundError = "react-particles-found",
         reactTsParticlesFoundError = "react-tsparticles-found",
-        svelteParticlesFoundError = "svelte-particles-found",
         vue2ParticlesFoundError = "vue2-particles-found",
         vue3ParticlesFoundError = "vue3-particles-found";
 
@@ -240,8 +239,7 @@ async function checkErrors() {
             error.message === reactTsParticlesFoundError ||
             error.message === angularParticlesFoundError ||
             error.message === vue2ParticlesFoundError ||
-            error.message === vue3ParticlesFoundError ||
-            error.message === svelteParticlesFoundError
+            error.message === vue3ParticlesFoundError
         ) {
             throw error;
         }
