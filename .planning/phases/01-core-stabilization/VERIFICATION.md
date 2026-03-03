@@ -4,7 +4,7 @@ Checked plans in: .planning/phases/01-core-stabilization
 
 ## 05-PLAN.md
 
-- ERROR: No frontmatter detected
+- STATUS: frontmatter restored in follow-up (see commit f61cda7c9e)
 
 # Requirement coverage
 
@@ -26,4 +26,4 @@ Total issues: 1
 - Human verification response: approved
 - Approved at: 2026-03-03T10:22:45Z
 
-(Note: The planner surfaced a missing frontmatter issue for 05-PLAN.md. The human reviewer approved proceeding despite this issue; please update 05-PLAN.md frontmatter in a follow-up change.)
+(Note: The planner originally detected a missing frontmatter for 05-PLAN.md. This gap plan (06) restored the required YAML frontmatter and committed the change (commit f61cda7c9e). Re-run plan-checker if available to confirm no remaining parse errors.)
