@@ -1,135 +1,214 @@
 ---
 phase: 01-core-stabilization
-verified: 2026-03-01T20:30:00Z
-status: human_needed
-score: 7/9
+verified: 2026-03-03T12:00:00Z
+status: gaps_found
+score: 9/13
 re_verification: false
-gaps: []
+gaps:
+  - truth: "Plans and changes are verified by plan-checker and pass must-have checks"
+    status: failed
+    reason: "plan-checker output contains an error: 'No frontmatter detected' for 05-PLAN.md (VERIFICATION.md records this). The checker ran but reported an issue; human approval was recorded but the frontmatter/parsing problem remains."
+    artifacts:
+      - path: ".planning/phases/01-core-stabilization/VERIFICATION.md"
+        issue: "Contains 'ERROR: No frontmatter detected' for 05-PLAN.md"
+      - path: ".planning/phases/01-core-stabilization/05-PLAN.md"
+        issue: "Verify YAML frontmatter formatting (checker reported missing frontmatter)."
+    missing:
+      - "Re-run plan-checker after fixing 05-PLAN.md frontmatter; ensure VERIFICATION.md shows PASS or records follow-up issues."
+
+  - truth: "All phase artifacts committed and a phase summary exists"
+    status: failed
+    reason: "STATE.md records several files as created but uncommitted due to a git ref lock; these must be committed to satisfy the must-have 'committed artifacts'."
+    artifacts:
+      - path: ".planning/phases/01-core-stabilization/01-core-stabilization-RESEARCH.md"
+        issue: "Created but may be uncommitted (STATE.md notes uncommitted files)."
+      - path: ".planning/phases/01-core-stabilization/CORE-02-AUDIT.md"
+        issue: "Created but may be uncommitted (STATE.md notes uncommitted files)."
+      - path: ".planning/phases/01-core-stabilization/04-PLAN-SUMMARY.md"
+        issue: "Created but may be uncommitted (STATE.md notes uncommitted files)."
+    missing:
+      - "Run git add/commit as suggested in .planning/STATE.md to finalize these artifacts."
+
+  - truth: "CI will run the same tests (CI wiring in separate plan)"
+    status: partial
+    reason: "CI configuration includes a bundle-size test job (nodejs.yml) but there is no explicit, single CI step observed that runs the utils/tests test:ci across all workflows. The plan claimed CI would run the same tests; wiring is partial."
+    artifacts:
+      - path: ".github/workflows/nodejs.yml"
+        issue: "Contains 'Run bundle size check' step that runs BundleSize.test.ts; does not explicitly run @tsparticles/tests test:ci for unit test suites."
+    missing:
+      - "Add/confirm CI job that runs: pnpm --filter @tsparticles/tests run test:ci (or include utils tests in affected tasks) so unit tests are enforced in CI."
+
+  - truth: "Bundle build step runs deterministically in CI"
+    status: partial
+    reason: "Webpack bundle configs exist and the bundle-size test runs in CI, but determinism must be validated by repeated CI runs or controlled local reproduction."
+    artifacts:
+      - path: "bundles/*/webpack.config.js"
+        issue: "Present for all bundles; provides deterministic build options but determinism is a runtime property."
+    missing:
+      - "Run CI job multiple times or create a small reproducible job to assert deterministic outputs; if flaky, harden webpack configs or test harness."
+
 human_verification:
   - test: "Run unit tests for utils package (memoize & deepExtend)"
-    expected: "All utils tests pass locally: pnpm --filter @tsparticles/tests test (or target files)."
-    why_human: "This environment did not run project tests; we verified files & non-stub implementations but cannot run CI here."
-  - test: "Run CI test matrix to validate reduction in flakiness"
-    expected: "pnpm --filter @tsparticles/tests run test:ci completes reliably in CI and flakiness <1%"
-    why_human: "CI environment and historical flakiness require actual CI runs to confirm reliability."
+    expected: "All utils tests pass locally: pnpm --filter @tsparticles/tests test -- 'utils/tests/src/tests/memoize.test.ts' and 'utils/tests/src/tests/deepExtend.test.ts' (exit 0)."
+    why_human: "This environment cannot execute the workspace test runner; runtime verification requires running tests locally or in CI."
+
+  - test: "Run CI job(s) to validate test:ci and bundle size enforcement"
+    expected: "CI job(s) execute and pass; bundle size test fails on regression; unit tests run and demonstrate stable behavior across repeated runs."
+    why_human: "CI runs and flakiness measurements require actual pipeline executions and environment-specific validation."
+
+next_steps:
+  - 'Fix 05-PLAN.md frontmatter if malformed; re-run plan-checker to clear ''No frontmatter detected'' and regenerate VERIFICATION.md. Use: node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" plan-check .planning/phases/01-core-stabilization'
+  - "Commit the uncommitted research/audit/summary files listed in .planning/STATE.md (git add + git commit) and re-run the plan-checker. See .planning/STATE.md for suggested git commands."
+  - "Add/confirm CI step to run utils/tests test:ci (pnpm --filter @tsparticles/tests run test:ci) or include utils tests in the affected test set so unit tests are enforced in CI."
+  - "Run CI (or local) test:ci multiple times to confirm determinism and flakiness reduction; if flaky, add retries or harden fixtures."
+  - 'After gaps are closed, re-run this verifier or run: node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" phase complete "01-core-stabilization" (or run local manual completion steps if gsd-tools missing).'
 ---
 
 # Phase 01: Core Stabilization — Verification Report
 
 Phase Goal: Ensure core runtime is correct and covered by tests.
 
-Verified: 2026-03-01T20:30:00Z
-Status: human_needed
+Verified: 2026-03-03T12:00:00Z
+Status: gaps_found
 
 Summary
 
-- Requirements requested for this phase: CORE-01, CORE-02, TEST-01 — all are claimed by plans and summaries.
-- What I checked: plan frontmatter, plan summaries, roadmap, requirement mapping, implementation files, test files, and test-runner script.
+- Plans inspected: .planning/phases/01-core-stabilization/\*-PLAN.md
+- Total must-haves (truths) collected from plan frontmatter: 13
+- Verified (artifacts & wiring present): 9
+- Partial / needs runtime validation: 2
+- Failed (missing/uncommitted/wiring broken): 2
 
-Key Findings (high level)
+Score: 9/13 must-haves verified at artifact & wiring level
 
-- Memoize: engine/src/Utils/Utils.ts contains a substantive memoize implementation with options (maxSize, ttlMs, keyFn), stable argument serialization, eviction logic, and TTL handling. Unit tests present at utils/tests/src/tests/memoize.test.ts and import the util.
-- deepExtend: engine/src/Utils/Utils.ts contains a hardened deepExtend implementation with explicit dangerous-keys filtering and a shallow fast-path. Unit tests present at utils/tests/src/tests/deepExtend.test.ts.
-- Canvas fixtures: utils/tests/src/tests/fixtures/canvas-fixtures.ts exists and exports deterministic helpers. utils/tests/package.json updated with test:ci script using vitest flags to limit concurrency.
+Gaps Summary (high level)
 
-Detailed Verification
+- Plan-checker reported a parsing/frontmatter error for 05-PLAN.md which left the plan-check step with an issue recorded in VERIFICATION.md. Human approval was recorded but the parsing issue remains and must be fixed.
+- Several planning artifacts were created but not committed due to a git ref-lock in this environment (STATE.md documents the files and suggests git commands). These files must be committed so the phase artifacts are durable and discoverable.
+- CI partly enforces bundle-size checks (verified), but the plan claim that CI runs the full utils tests is not fully wired — add/confirm CI steps to run utils/tests test:ci to enforce unit tests in CI.
+- Determinism of bundle builds and fixture stability cannot be asserted from static code alone; run CI or repeated local runs to confirm.
 
-Observable Truths (must-haves)
+Required Artifacts Verified (examples)
 
-1. "Memoize behaviour is correct for primitive and object args (cache hit/miss observable)"
-   - Status: ✓ VERIFIED (artifact & substantive implementation present)
-   - Evidence: engine/src/Utils/Utils.ts exports memoize; stableStringify present to produce canonical keys for deep-shaped args; tests in utils/tests/src/tests/memoize.test.ts assert primitive and deep-object behavior and import memoize.
-   - Notes: We validated the implementation is non-stub. We did NOT execute the test runner here — run the command in "Human verification" to confirm behavioral correctness in runtime.
+- engine/src/Utils/Utils.ts — memoize + deepExtend implementations — VERIFIED
+- utils/tests/src/tests/memoize.test.ts — test file exists and imports memoize — VERIFIED
+- utils/tests/src/tests/deepExtend.test.ts — test file exists and imports deepExtend — VERIFIED
+- utils/tests/src/Fixture/CustomCanvas.ts, Window.ts — deterministic jsdom/canvas helpers — VERIFIED
+- bundles/\*/webpack.config.js — bundle configs present for all bundles — VERIFIED
+- utils/tests/package.json — contains test:ci script — VERIFIED
 
-2. "Memoize will not grow unbounded (supports optional max-size or TTL)"
-   - Status: ✓ VERIFIED (artifact & logic present)
-   - Evidence: memoize implementation uses an internal Map, options.maxSize respected via ensureBounds evictions; ttlMs is checked and expired entries removed.
-   - Notes: Edge-case behavior (maxSize=0, ttlMs=0) should be exercised by tests — run unit tests locally.
+Key Links Verified
 
-3. "Unit tests for memoize exist and run in CI/test runner"
-   - Status: ? NEEDS HUMAN
-   - Evidence: utils/tests/src/tests/memoize.test.ts exists and is non-stub. utils/tests/package.json exposes test scripts.
-   - Why human: I could not run the project's test runner in this environment; please execute: pnpm --filter @tsparticles/tests test -- "utils/tests/src/tests/memoize.test.ts" and/or run in CI.
+- tests -> engine utils imports (WIRED)
+- bundle size test -> CI workflow (WIRED)
 
-4. "deepExtend merges objects without prototype pollution and preserves nested structures"
-   - Status: ✓ VERIFIED (artifact & substantive)
-   - Evidence: deepExtend implementation explicitly filters keys ["__proto__","constructor","prototype"]; tests at utils/tests/src/tests/deepExtend.test.ts assert prototype safety and nested merges.
+Human Verification Required
 
-5. "deepExtend performance regression avoided for common sizes"
-   - Status: ✓ VERIFIED (fast-path present)
-   - Evidence: code includes a shallow fast-path (detects hasNested and performs shallow copy for common-case), satisfying the performance criterion at code-level.
-   - Notes: Microbenchmarks would require runtime measurement (human verification optional).
+- Run the utils tests locally and/or in CI and confirm they pass consistently: pnpm --filter @tsparticles/tests run test:ci
+- Re-run plan-checker after fixing frontmatter/parsing issues and ensure VERIFICATION.md no longer reports parsing errors.
 
-6. "Unit tests for deepExtend exist and run in CI"
-   - Status: ? NEEDS HUMAN
-   - Evidence: utils/tests/src/tests/deepExtend.test.ts exists and imports deepExtend; package.json test scripts present.
-   - Why human: Running tests and CI validation required to confirm green status.
+Next Steps
 
-7. "Canvas/jsdom test fixtures run deterministically in CI"
-   - Status: ? NEEDS HUMAN
-   - Evidence: fixtures file exists (utils/tests/src/tests/fixtures/canvas-fixtures.ts) and exposes deterministic RNG/setup/teardown. utils/tests/package.json test:ci script present.
-   - Why human: Determinism and CI flakiness must be confirmed by executing test:ci in CI or local environment replicating CI; cannot assert from static code alone.
+- Fix 05-PLAN.md frontmatter, commit it, re-run plan-checker.
+- Commit uncommitted research/audit/summary files as suggested in .planning/STATE.md.
+- Add/confirm CI step to run utils/tests test:ci so unit tests are enforced in CI.
+- Re-run CI (or run locally) a few times to confirm determinism and address flakiness if observed.
 
-8. "Test runner configuration for canvas fixtures is stable across environments"
-   - Status: ✓ VERIFIED (config present)
-    - Evidence: utils/tests/package.json contains test:ci: "NODE_ENV=test vitest run --maxConcurrency=2" per plan; fixtures guard for absent document and best-effort DOM mutations.
+## _Verifier: Claude (gsd-verifier)_
 
-9. "CI runs test:ci without intermittent failures related to fixtures"
-   - Status: ? NEEDS HUMAN
-   - Evidence: package.json updated; however CI stability must be observed in CI runs.
+phase: 01-core-stabilization
+verified: 2026-03-03T12:30:00Z
+status: gaps_found
+score: 11/13
+re_verification:
+previous_status: gaps_found
+previous_score: 9/13
+gaps_closed: - "05-PLAN.md frontmatter parse issue verified fixed (frontmatter present)" - "Research/audit/summary artifacts committed and recorded in STATE.md"
+gaps_remaining: - "CI does not run utils/tests test:ci (unit tests not enforced in CI)" - "Bundle build determinism requires runtime validation in CI/local environment"
+regressions: []
+gaps:
 
-Score: 7/9 truths verified at code/artifact level; 2/9 require runtime/CI verification.
+- truth: "CI will run the same tests (CI wiring in separate plan)"
+  status: partial
+  reason: "CI workflow includes a bundle-size check but does not run @tsparticles/tests test:ci; unit tests are not enforced in CI."
+  artifacts:
+  - path: ".github/workflows/nodejs.yml"
+    issue: "Runs bundle-size check (BundleSize.test.ts) but no explicit step to run pnpm --filter @tsparticles/tests run test:ci."
+    missing:
+  - "Add CI step to run unit tests (pnpm --filter @tsparticles/tests run test:ci) or include utils tests in the affected test matrix."
 
-Required Artifacts
+- truth: "Bundle build step runs deterministically in CI"
+  status: partial
+  reason: "Webpack configs exist but determinism is an empirical property requiring repeated builds in CI/local environment."
+  artifacts:
+  - path: "bundles/\*/webpack.config.js"
+    issue: "Configs present; determinism must be proven by repeated builds and output comparison."
+    missing:
+  - "Create a repeatable job/script that builds bundles multiple times and compares hashes/sizes to assert determinism."
 
-- engine/src/Utils/Utils.ts — found and substantive (memoize + deepExtend implemented) — ✓ VERIFIED
-- utils/tests/src/tests/memoize.test.ts — found and substantive — ✓ VERIFIED
-- utils/tests/src/tests/deepExtend.test.ts — found and substantive — ✓ VERIFIED
-- utils/tests/src/tests/fixtures/canvas-fixtures.ts — found and substantive — ✓ VERIFIED
-- utils/tests/package.json — test:ci script updated — ✓ VERIFIED
+human_verification:
 
-Key Links (Wiring)
+- test: "Run utils unit tests locally"
+  expected: "pnpm --filter @tsparticles/tests run test:ci exits 0 and memoize/deepExtend tests pass consistently across repeated runs."
+  why_human: "This environment cannot execute the workspace test runner or CI; runtime verification requires execution in local or CI environment."
 
-- utils/tests/src/tests/memoize.test.ts -> engine/src/Utils/Utils.ts via import '../../../../engine/src/Utils/Utils.js' — WIRED (import present)
-- utils/tests/src/tests/deepExtend.test.ts -> engine/src/Utils/Utils.ts via import '../../../../engine/src/Utils/Utils.js' — WIRED
-- utils/tests/src/tests/fixtures/canvas-fixtures.ts -> utils/tests/package.json (test:ci) — PARTIAL (script present; runtime behavior not validated)
+- test: "Validate bundle determinism"
+  expected: "CI job or local script that builds bundles multiple times shows consistent outputs (hash/size)."
+  why_human: "Determinism requires empirical validation; grep-based static checks are insufficient."
 
-Requirements Coverage
+notes:
 
-- CORE-01 (Core engine APIs stable & covered by unit tests): Covered by plans 01 & 02; memoize + deepExtend tests + implementation present — code-level coverage verified; runtime/CI execution needs confirmation.
-- CORE-02 (Fix issues in Utils.ts memoize, deepExtend): Covered by plans 01 & 02; both functions updated in engine/src/Utils/Utils.ts and tests added — ✓ at artifact level.
-- TEST-01 (Ensure utils/tests run deterministically in CI): Covered by plan 03; fixtures & test:ci script updated — requires CI run to certify flakiness reduction.
+- "Attempted to run gsd-tools plan-check but node module not found in this environment. Falling back to static verification (file presence, frontmatter, git index, grep for CI patterns)."
+- "gsd-tools run error: Cannot find module '/Users/matteo/.claude/get-shit-done/bin/gsd-tools.cjs'"
 
-Anti-Patterns / Warnings
+next_steps:
 
-- Several console.log occurrences found in test/support files (utils/tests/src/tests/Utils.ts, ColorUtils test file). These are warnings; noisy tests can mask failures in CI and should be cleaned where unnecessary. Severity: ⚠️ Warning.
-- Multiple files legitimately return null in code paths; not blockers but called out by static grep — informational.
+- "Add a CI step to run unit tests: pnpm --filter @tsparticles/tests run test:ci (suggest inserting after 'Install dependencies' in .github/workflows/nodejs.yml)."
+- "Create a small CI/local job that builds bundles multiple times and compares outputs to assert determinism."
+- "If gsd-tools is available locally, re-run: node \"$HOME/.claude/get-shit-done/bin/gsd-tools.cjs\" plan-check .planning/phases/01-core-stabilization to produce machine-parsable verification output."
+- "After gaps are closed, the orchestrator may run: node \"$HOME/.claude/get-shit-done/bin/gsd-tools.cjs\" phase complete \"01-core-stabilization\" (config.auto_advance is true)."
 
-Human Verification Tasks (what to run locally / in CI)
+---
 
-1.  Run memoize tests locally:
-    - pnpm --filter @tsparticles/tests test -- "utils/tests/src/tests/memoize.test.ts"
-    - Expect: tests pass and caching behavior confirmed.
+# Phase 01: Core Stabilization — Verification Report
 
-2.  Run deepExtend tests locally:
-    - pnpm --filter @tsparticles/tests test -- "utils/tests/src/tests/deepExtend.test.ts"
-    - Expect: prototype-key safety assertions pass.
+Phase Goal: Ensure core runtime is correct and covered by tests.
 
-3.  Run full package CI-like invocation to check for flakiness:
-    - pnpm --filter @tsparticles/tests run test:ci
-    - Repeat a few times or run in CI to observe intermittent failures rate.
+Verified: 2026-03-03T12:30:00Z
+Status: gaps_found
 
-4.  Optional: run small benchmark to confirm shallow fast-path keeps common-case cheap (node script or microbenchmark harness).
+Summary
 
-Gaps / Recommended Next Steps
+- Plans inspected: .planning/phases/01-core-stabilization/\*-PLAN.md
+- Total must-haves (truths) collected from plan frontmatter: 13
+- Verified (artifacts & wiring present): 11
+- Partial / needs runtime validation: 2
+- Failed / blocker: 0
 
-- Execute the tests above in the project environment and in CI. Mark as PASS when green consistently. (Blocker for marking phase 'passed')
-- Remove or silence stray console.log calls in test-support files to reduce noise and potential CI pollution. (Minor)
-- Verify edge cases like maxSize=0 and ttlMs=0 are covered by tests; consider adding explicit tests if not present.
+Score: 11/13 must-haves verified (static checks + wiring)
 
-Conclusion
+Highlights
 
-- At the code level, all required artifacts for CORE-01, CORE-02, and TEST-01 are present and substantive: memoize and deepExtend implementations exist and tests & fixtures have been added.
-- Final confirmation requires running the unit tests and CI test:ci to ensure behavior and flakiness reduction in practice. Because I could not execute the project's test runner here, the phase verification status is human_needed.
+- engine/src/Utils/Utils.ts — memoize + deepExtend implementations — VERIFIED (present and substantive)
+- utils/tests/src/tests/memoize.test.ts — exists and imports memoize — VERIFIED
+- utils/tests/src/tests/deepExtend.test.ts — exists and imports deepExtend — VERIFIED
+- utils/tests/src/Fixture/CustomCanvas.ts, Window.ts — deterministic jsdom/canvas helpers — VERIFIED
+- bundles/\*/webpack.config.js — bundle configs present — VERIFIED
+- utils/tests/package.json — contains test:ci script — VERIFIED
+
+Key Links Verified
+
+- tests -> engine utils imports (WIRED)
+- bundle size test -> CI workflow (WIRED)
+
+Gaps Summary
+
+- CI unit test enforcement: CI workflow does not run pnpm --filter @tsparticles/tests run test:ci; add or confirm this step to ensure unit tests (memoize/deepExtend) are enforced in CI.
+- Bundle determinism: cannot assert determinism statically; create CI or local validation job to build bundles multiple times and compare outputs.
+
+Human Verification Required
+
+- Run the utils unit tests locally or in CI and confirm consistent pass: pnpm --filter @tsparticles/tests run test:ci
+- Run the repeat-build job to validate bundle determinism
 
 _Verifier: Claude (gsd-verifier)_
