@@ -64,6 +64,9 @@ jobs:
       - name: Run bundle size check
         run: pnpm exec vitest --run utils/tests/src/tests/BundleSize.test.ts
 
+      - name: Run unit tests (test:ci)
+        run: pnpm --filter @tsparticles/tests run test:ci
+
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
