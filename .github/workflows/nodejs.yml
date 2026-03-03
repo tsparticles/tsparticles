@@ -12,8 +12,8 @@ concurrency:
 env:
   NX_VERBOSE_LOGGING: true
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
-  NX_CLOUD_ACCESS_TOKEN: '${{ secrets.NX_CLOUD_ACCESS_TOKEN }}'
-  firebaseToken: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+  NX_CLOUD_ACCESS_TOKEN: "${{ secrets.NX_CLOUD_ACCESS_TOKEN }}"
+  firebaseToken: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
 
 jobs:
   build-and-deploy:
@@ -30,7 +30,7 @@ jobs:
 
       - uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: "24"
 
       - uses: pnpm/action-setup@v4.2.0
         with:
@@ -61,19 +61,22 @@ jobs:
       - name: Build packages
         run: npx nx affected -t build:ci
 
+      - name: Run bundle size check
+        run: pnpm exec vitest --run utils/tests/src/tests/BundleSize.test.ts
+
       - if: env.firebaseToken != '' && github.ref == 'refs/heads/main' && github.event_name == 'push'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
           projectId: tsparticles
           channelId: live
 
       - if: env.firebaseToken != '' && github.event_name == 'pull_request' && github.actor == 'matteobruni'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TSPARTICLES }}"
           projectId: tsparticles
 
       - name: Stop Nx Cloud Session
