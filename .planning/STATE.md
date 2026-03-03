@@ -57,6 +57,21 @@ After committing, run `node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" stat
 
 - Attempted to run gsd-tools state update but gsd-tools.cjs was not found in the environment; state was updated locally in this file.
 
+## Finalize instructions for local environment
+
+During automated execution this agent committed changes locally. The environment does not have the gsd-tools helper available for updating global planning state. If you see any git ref lock or commit errors when syncing remotely, run the following locally to finalize and ensure remote state is up to date:
+
+git fetch origin
+git rebase origin/$(git rev-parse --abbrev-ref HEAD)
+git add .planning/phases/01-core-stabilization/05-PLAN.md \
+ .planning/phases/01-core-stabilization/VERIFICATION.md \
+ .planning/phases/01-core-stabilization/06-PLAN-SUMMARY.md
+git commit -m "docs(01-core-stabilization-06): finalize frontmatter fix and verification update"
+
+After committing, if available, run:
+
+node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" state advance-plan || true
+
 ## Last Execution (most recent)
 
 - Last executed plan: 02-core-stabilization / 02
