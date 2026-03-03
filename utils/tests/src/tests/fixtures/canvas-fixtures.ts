@@ -26,6 +26,7 @@ function makeRng(seed = 123456789): () => number {
 
 /**
  * @param opts -
+ * @returns -
  */
 export function createDeterministicCanvas(opts: CanvasFixtureOptions = {}): {
   canvas: HTMLCanvasElement | OffscreenCanvas;
