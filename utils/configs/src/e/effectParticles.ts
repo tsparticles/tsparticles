@@ -33,6 +33,7 @@ const options: ISourceOptions = {
               move: {
                 enable: true,
                 speed: 1,
+                outModes: "destroy",
               },
               life: {
                 duration: {
