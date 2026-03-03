@@ -18,11 +18,6 @@ Provide a stable, well-tested, and easy-to-consume particle engine that can be p
 
 ### Active
 
-- [ ] PUBLISH-01: Ensure CI can build and publish selected bundles to npm (automated via GitHub Actions)
-- [ ] DOCS-01: Generate and publish API docs (typedoc) for core engine and bundles
-- [ ] TEST-01: Increase test coverage for hot-path engine utilities and edge cases
-- [ ] DEMO-01: Improve demo site stability and deploy pipeline (demo/vanilla)
-
 ### Out of Scope
 
 - Native mobile SDKs — the project targets web-first consumption

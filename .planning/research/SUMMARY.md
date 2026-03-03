@@ -11,5 +11,3 @@ Key findings:
 Recommendations for roadmap input:
 
 - Phase 1: Stabilize core engine (tests, fix memoize/deep merge, remove unsafe globals).
-- Phase 2: CI & publishing improvements (automated bundle builds, release workflows).
-- Phase 3: Docs & demos (typedoc publish, demo deploy automation).
