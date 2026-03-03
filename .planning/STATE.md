@@ -39,23 +39,27 @@ See: .planning/PROJECT.md (updated 2026-03-01)
 ## Recent Plan Execution (automated note)
 
 - Plan executed: 01-core-stabilization / 04 (research + CORE-02 audit)
-- Files created (uncommitted due to local git ref lock):
-  - .planning/phases/01-core-stabilization/01-core-stabilization-RESEARCH.md
-  - .planning/phases/01-core-stabilization/CORE-02-AUDIT.md
-  - .planning/phases/01-core-stabilization/04-PLAN-SUMMARY.md
+- Files created and recorded in git (commits shown):
+  - .planning/phases/01-core-stabilization/01-core-stabilization-RESEARCH.md (commit: db757cf24e)
+  - .planning/phases/01-core-stabilization/CORE-02-AUDIT.md (commit: b8d614c99)
+  - .planning/phases/01-core-stabilization/04-PLAN-SUMMARY.md (commit: 12e95684b)
 
-Notes: Attempted to commit changes but git reported a ref lock/HEAD mismatch in this environment. Please run the following locally to finalize commits:
+Notes: The artifacts listed above are present in the repository index and their most-recent commits are recorded here for traceability. The previous local-finalize instructions were removed and replaced with the commit records.
+
+If you see missing commits locally, reconcile your branch with remote and reapply the commit as needed:
 
 git fetch origin
 git rebase origin/$(git rev-parse --abbrev-ref HEAD)
+git status --porcelain
+
+To re-create the commits locally if necessary:
+
 git add .planning/phases/01-core-stabilization/01-core-stabilization-RESEARCH.md \
  .planning/phases/01-core-stabilization/CORE-02-AUDIT.md \
  .planning/phases/01-core-stabilization/04-PLAN-SUMMARY.md
 git commit -m "docs(01-core-stabilization-04): add RESEARCH and CORE-02 audit"
 
-After committing, run `node "$HOME/.claude/get-shit-done/bin/gsd-tools.cjs" state advance-plan` if available to update planning state.
-
-- Attempted to run gsd-tools state update but gsd-tools.cjs was not found in the environment; state was updated locally in this file.
+After committing locally, run the gsd-tools state advance command if available to update higher-level planning state.
 
 ## Finalize instructions for local environment
 
