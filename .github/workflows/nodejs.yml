@@ -52,25 +52,24 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Configure Nx Cloud mode (optional)
+      - name: Enable Nx Cloud distributed execution
+        if: ${{ secrets.NX_CLOUD_ACCESS_TOKEN != '' }}
         run: |
-          if [ -n "${{ env.NX_CLOUD_ACCESS_TOKEN }}" ]; then
-            echo "NX Cloud token present — enabling distributed execution"
-            echo "NX_CLOUD_DISTRIBUTED_EXECUTION=true" >> $GITHUB_ENV
-          else
-            echo "NX Cloud token missing — using local nx execution"
-            echo "NX_CLOUD_DISTRIBUTED_EXECUTION=false" >> $GITHUB_ENV
-          fi
+          echo "NX Cloud token present — enabling distributed execution"
+          echo "NX_CLOUD_DISTRIBUTED_EXECUTION=true" >> $GITHUB_ENV
+
+      - name: Disable Nx Cloud distributed execution
+        if: ${{ secrets.NX_CLOUD_ACCESS_TOKEN == '' }}
+        run: |
+          echo "NX Cloud token missing — using local nx execution"
+          echo "NX_CLOUD_DISTRIBUTED_EXECUTION=false" >> $GITHUB_ENV
 
       - name: Initialize Nx Cloud (optional)
+        if: ${{ secrets.NX_CLOUD_ACCESS_TOKEN != '' }}
         run: |
-          if [ -n "${{ env.NX_CLOUD_ACCESS_TOKEN }}" ]; then
-            echo "Attempting to start nx-cloud (non-fatal)..."
-            # Try to start nx-cloud, but don't fail the job if it isn't available or the command errors.
-            npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" || echo "nx-cloud start failed; continuing with local nx"
-          else
-            echo "No NX_CLOUD_ACCESS_TOKEN — skipping nx-cloud start"
-          fi
+          echo "Attempting to start nx-cloud (non-fatal)..."
+          # Try to start nx-cloud, but don't fail the job if it isn't available or the command errors.
+          npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" || echo "nx-cloud start failed; continuing with local nx"
 
       - name: Prettify README
         run: pnpm run prettify:ci:readme
@@ -97,11 +96,7 @@ jobs:
           projectId: tsparticles
 
       - name: Stop Nx Cloud Session (optional)
-        if: always()
+        if: ${{ always() && secrets.NX_CLOUD_ACCESS_TOKEN != '' }}
         run: |
-          if [ -n "${{ env.NX_CLOUD_ACCESS_TOKEN }}" ]; then
-            # Best-effort stop of nx cloud session; do not fail the job if command isn't available.
-            npx nx fix-ci || echo "nx fix-ci failed or nx-cloud not present"
-          else
-            echo "No NX_CLOUD_ACCESS_TOKEN — nothing to stop"
-          fi
+          # Best-effort stop of nx cloud session; do not fail the job if command isn't available.
+          npx nx fix-ci || echo "nx fix-ci failed or nx-cloud not present"
