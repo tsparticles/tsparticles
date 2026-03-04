@@ -66,10 +66,25 @@ jobs:
 
       - name: Initialize Nx Cloud (optional)
         if: ${{ env.NX_CLOUD_ACCESS_TOKEN != '' }}
+        continue-on-error: true
         run: |
           echo "Attempting to start nx-cloud (non-fatal)..."
-          # Try to start nx-cloud, but don't fail the job if it isn't available or the command errors.
-          npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" || echo "nx-cloud start failed; continuing with local nx"
+          # Show nx-cloud version for debugging (non-sensitive)
+          npx nx-cloud --version || echo "nx-cloud --version not available"
+
+          # Retry start up to 3 times with exponential backoff to handle transient GitHub API errors.
+          retries=0
+          max_retries=3
+          until [ "$retries" -ge "$max_retries" ]; do
+            npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" && break
+            echo "nx-cloud start failed (attempt ${retries}). Retrying in $((2 ** retries))s..."
+            sleep $((2 ** retries))
+            retries=$((retries + 1))
+          done
+
+          if [ "$retries" -ge "$max_retries" ]; then
+            echo "nx-cloud start failed after ${max_retries} attempts; continuing with local nx"
+          fi
 
       - name: Prettify README
         run: pnpm run prettify:ci:readme
@@ -97,6 +112,7 @@ jobs:
 
       - name: Stop Nx Cloud Session (optional)
         if: ${{ always() && env.NX_CLOUD_ACCESS_TOKEN != '' }}
+        continue-on-error: true
         run: |
           # Best-effort stop of nx cloud session; do not fail the job if command isn't available.
           npx nx fix-ci || echo "nx fix-ci failed or nx-cloud not present"
