@@ -76,7 +76,7 @@ jobs:
           retries=0
           max_retries=3
           until [ "$retries" -ge "$max_retries" ]; do
-            npx nx-cloud start-ci-run --distribute-on="5 linux-medium-js" && break
+            npx nx-cloud start-ci-run --distribute-on="2 linux-medium-js" && break
             echo "nx-cloud start failed (attempt ${retries}). Retrying in $((2 ** retries))s..."
             sleep $((2 ** retries))
             retries=$((retries + 1))
