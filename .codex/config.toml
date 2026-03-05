@@ -7,4 +7,4 @@ multi_agent = true
 
 [agents.ci-monitor-subagent]
 description = "Polls Nx Cloud CI pipeline and self-healing status. Returns structured state when actionable. Spawned by /monitor-ci command to monitor CI Attempt status."
-config_file = ".codex/agents/ci-monitor-subagent.toml"
+config_file = "agents/ci-monitor-subagent.toml"

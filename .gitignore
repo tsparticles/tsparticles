@@ -384,3 +384,5 @@ docs.json
 
 .nx/cache
 .nx/workspace-data
+
+.nx/polygraph
