@@ -76,9 +76,14 @@ export interface IEmitter {
   size?: IEmitterSize;
 
   /**
-   * The particle spawn color
+   * The particle spawn fill color
    */
-  spawnColor?: IAnimatableColor;
+  spawnFillColor?: IAnimatableColor;
+
+  /**
+   * The particle spawn stroke color
+   */
+  spawnStrokeColor?: IAnimatableColor;
 
   /**
    * The number of starting particles of the emitter

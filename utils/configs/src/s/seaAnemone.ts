@@ -64,7 +64,7 @@ const options: ISourceOptions = {
       width: 0,
       height: 0,
     },
-    spawnColor: {
+    spawnFillColor: {
       value: "#ff0000",
       animation: {
         enable: true,

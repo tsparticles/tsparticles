@@ -8,11 +8,13 @@ import type {
 } from "@tsparticles/engine";
 
 export interface ISplit {
-  color?: string | IOptionsColor;
-  colorOffset?: Partial<IRangeHsl>;
   count: number;
   factor: IValueWithRandom;
+  fillColor?: string | IOptionsColor;
+  fillColorOffset?: Partial<IRangeHsl>;
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   rate: IValueWithRandom;
   sizeOffset: boolean;
+  strokeColor?: string | IOptionsColor;
+  strokeColorOffset?: Partial<IRangeHsl>;
 }

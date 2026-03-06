@@ -177,13 +177,18 @@ function getOptions(options: IFireworkOptions, canvas?: HTMLCanvasElement): ISou
           rate: {
             value: options.splitCount,
           },
-          colorOffset: {
+          fillColorOffset: {
             s: options.saturation,
             l: options.brightness,
           },
           particles: {
-            color: {
-              value: options.colors,
+            fill: {
+              color: {
+                value: options.colors,
+              },
+            },
+            stroke: {
+              width: 0,
             },
             number: {
               value: 0,

@@ -14,7 +14,7 @@ const options: ISourceOptions = {
     modes: {
       emitters: {
         direction: "none",
-        spawnColor: {
+        spawnFillColor: {
           value: "#ff0000",
           animation: {
             h: {

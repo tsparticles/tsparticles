@@ -283,7 +283,7 @@ export class Canvas {
     }
 
     const pfColor = particle.getFillColor(),
-      psColor = particle.getStrokeColor() ?? pfColor;
+      psColor = particle.getStrokeColor();
 
     let [fColor, sColor] = this._getPluginParticleColors(particle);
 

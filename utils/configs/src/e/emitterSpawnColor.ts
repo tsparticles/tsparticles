@@ -43,7 +43,7 @@ const emitterRate = {
             direction: MoveDirection.bottomRight,
           },
         },
-        spawnColor: {
+        spawnFillColor: {
           value: "#ff0000",
           animation: {
             h: {
@@ -64,7 +64,7 @@ const emitterRate = {
             direction: MoveDirection.topRight,
           },
         },
-        spawnColor: {
+        spawnFillColor: {
           value: "#ff0000",
           animation: {
             s: {
@@ -89,7 +89,7 @@ const emitterRate = {
             direction: MoveDirection.bottomLeft,
           },
         },
-        spawnColor: {
+        spawnFillColor: {
           value: "#ff0000",
           animation: {
             l: {
@@ -114,7 +114,7 @@ const emitterRate = {
             direction: MoveDirection.topLeft,
           },
         },
-        spawnColor: {
+        spawnFillColor: {
           value: "#ff0000",
           animation: {
             h: {
@@ -143,7 +143,7 @@ const emitterRate = {
             direction: MoveDirection.none,
           },
         },
-        spawnColor: {
+        spawnFillColor: {
           value: "#ff0000",
           animation: {
             h: {

@@ -44,21 +44,22 @@ function addSplitParticle(
 
   const splitOptions = destroyOptions.split,
     options = loadParticlesOptions(engine, container, parent.options),
-    parentColor = parent.getFillColor(),
-    fillOptions = itemFromSingleOrMultiple(options.fill);
+    fillOptions = itemFromSingleOrMultiple(options.fill),
+    strokeOptions = itemFromSingleOrMultiple(options.stroke);
 
-  if (fillOptions) {
-    const fillColor = AnimatableColor.create(undefined, fillOptions.color);
+  if (fillOptions?.enable) {
+    const fillColor = AnimatableColor.create(undefined, fillOptions.color),
+      parentFillColor = parent.getFillColor();
 
     if (fillColor.value) {
-      fillColor.load(splitOptions.color);
-    } else if (splitOptions.colorOffset && parentColor) {
+      fillColor.load(splitOptions.fillColor);
+    } else if (splitOptions.fillColorOffset && parentFillColor) {
       fillColor.load({
         value: {
           hsl: {
-            h: parentColor.h + getRangeValue(splitOptions.colorOffset.h ?? defaultOffset),
-            s: parentColor.s + getRangeValue(splitOptions.colorOffset.s ?? defaultOffset),
-            l: parentColor.l + getRangeValue(splitOptions.colorOffset.l ?? defaultOffset),
+            h: parentFillColor.h + getRangeValue(splitOptions.fillColorOffset.h ?? defaultOffset),
+            s: parentFillColor.s + getRangeValue(splitOptions.fillColorOffset.s ?? defaultOffset),
+            l: parentFillColor.l + getRangeValue(splitOptions.fillColorOffset.l ?? defaultOffset),
           },
         },
       });
@@ -66,6 +67,31 @@ function addSplitParticle(
       fillColor.load({
         value: {
           hsl: parent.getFillColor(),
+        },
+      });
+    }
+  }
+
+  if (strokeOptions?.width) {
+    const strokeColor = AnimatableColor.create(undefined, strokeOptions.color),
+      parentStrokeColor = parent.getStrokeColor();
+
+    if (strokeColor.value) {
+      strokeColor.load(splitOptions.strokeColor);
+    } else if (splitOptions.strokeColorOffset && parentStrokeColor) {
+      strokeColor.load({
+        value: {
+          hsl: {
+            h: parentStrokeColor.h + getRangeValue(splitOptions.strokeColorOffset.h ?? defaultOffset),
+            s: parentStrokeColor.s + getRangeValue(splitOptions.strokeColorOffset.s ?? defaultOffset),
+            l: parentStrokeColor.l + getRangeValue(splitOptions.strokeColorOffset.l ?? defaultOffset),
+          },
+        },
+      });
+    } else {
+      strokeColor.load({
+        value: {
+          hsl: parent.getStrokeColor(),
         },
       });
     }
