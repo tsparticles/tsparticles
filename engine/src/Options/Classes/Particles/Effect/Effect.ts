@@ -12,13 +12,11 @@ import { isNull } from "../../../../Utils/TypeUtils.js";
  */
 export class Effect implements IEffect, IOptionLoader<IEffect> {
   close;
-  fill;
   options: ShapeData;
   type: SingleOrMultiple<string>;
 
   constructor() {
     this.close = true;
-    this.fill = true;
     this.options = {};
     this.type = [];
   }
@@ -42,10 +40,6 @@ export class Effect implements IEffect, IOptionLoader<IEffect> {
 
     if (data.close !== undefined) {
       this.close = data.close;
-    }
-
-    if (data.fill !== undefined) {
-      this.fill = data.fill;
     }
 
     if (data.type !== undefined) {

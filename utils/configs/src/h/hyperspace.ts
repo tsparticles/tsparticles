@@ -7,8 +7,11 @@ const options: ISourceOptions = {
     color: "#000",
   },
   particles: {
-    color: {
-      value: ["#3998D0", "#2EB6AF", "#A9BD33", "#FEC73B", "#F89930", "#F45623", "#D62E32", "#EB586E", "#9952CF"],
+    fill: {
+      color: {
+        value: ["#3998D0", "#2EB6AF", "#A9BD33", "#FEC73B", "#F89930", "#F45623", "#D62E32", "#EB586E", "#9952CF"],
+      },
+      enable: true,
     },
     move: {
       enable: true,

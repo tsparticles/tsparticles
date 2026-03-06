@@ -15,12 +15,15 @@ const options: ISourceOptions = {
         value: 0,
       },
     },
-    color: {
-      value: ["#1E00FF", "#FF0061", "#E1FF00", "#00FF9E"],
-      animation: {
-        enable: true,
-        speed: 30,
+    fill: {
+      color: {
+        value: ["#1E00FF", "#FF0061", "#E1FF00", "#00FF9E"],
+        animation: {
+          enable: true,
+          speed: 30,
+        },
       },
+      enable: true,
     },
     move: {
       decay: {

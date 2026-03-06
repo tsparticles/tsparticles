@@ -12,8 +12,11 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
     key: "cardsRolling",
     name: "Cards Rolling",
     particles: {
-      color: {
-        value: "#000",
+      fill: {
+        color: {
+          value: "#000",
+        },
+        enable: true,
       },
       number: {
         value: 52,

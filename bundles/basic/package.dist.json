@@ -105,7 +105,7 @@
     "@tsparticles/plugin-move": "4.0.0-alpha.26",
     "@tsparticles/plugin-rgb-color": "4.0.0-alpha.26",
     "@tsparticles/shape-circle": "4.0.0-alpha.26",
-    "@tsparticles/updater-color": "4.0.0-alpha.26",
+    "@tsparticles/updater-fill-color": "4.0.0-alpha.26",
     "@tsparticles/updater-opacity": "4.0.0-alpha.26",
     "@tsparticles/updater-out-modes": "4.0.0-alpha.26",
     "@tsparticles/updater-size": "4.0.0-alpha.26"

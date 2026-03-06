@@ -40,8 +40,11 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#fff",
+    fill: {
+      color: {
+        value: "#fff",
+      },
+      enable: true,
     },
     number: {
       value: 0,
@@ -63,8 +66,10 @@ const options: ISourceOptions = {
           stroke: {
             width: 0,
           },
-          color: {
-            value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
+          fill: {
+            color: {
+              value: ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"],
+            },
           },
           number: {
             value: 0,

@@ -1,8 +1,8 @@
 import { deepExtend, executeOnSingleOrMultiple } from "../../../Utils/Utils.js";
-import { AnimatableColor } from "../AnimatableColor.js";
 import type { Container } from "../../../Core/Container.js";
 import { Effect } from "./Effect/Effect.js";
 import type { Engine } from "../../../Core/Engine.js";
+import { Fill } from "./Fill.js";
 import type { IOptionLoader } from "../../Interfaces/IOptionLoader.js";
 import type { IParticlesOptions } from "../../Interfaces/Particles/IParticlesOptions.js";
 import { Move } from "./Move/Move.js";
@@ -25,8 +25,8 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
   [name: string]: unknown;
 
   readonly bounce;
-  color;
   readonly effect;
+  fill: SingleOrMultiple<Fill>;
   readonly groups: ParticlesGroups;
   readonly move;
   readonly number;
@@ -45,9 +45,8 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this._container = container;
 
     this.bounce = new ParticlesBounce();
-    this.color = new AnimatableColor();
-    this.color.value = "#fff";
     this.effect = new Effect();
+    this.fill = new Fill();
     this.groups = {};
     this.move = new Move();
     this.number = new ParticlesNumber();
@@ -83,7 +82,6 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     }
 
     this.bounce.load(data.bounce);
-    this.color.load(AnimatableColor.create(this.color, data.color));
     this.effect.load(data.effect);
     this.move.load(data.move);
     this.number.load(data.number);
@@ -91,6 +89,18 @@ export class ParticlesOptions implements IParticlesOptions, IOptionLoader<IParti
     this.shape.load(data.shape);
     this.size.load(data.size);
     this.zIndex.load(data.zIndex);
+
+    const fillToLoad = data.fill;
+
+    if (fillToLoad) {
+      this.fill = executeOnSingleOrMultiple(fillToLoad, t => {
+        const tmp = new Fill();
+
+        tmp.load(t);
+
+        return tmp;
+      });
+    }
 
     const strokeToLoad = data.stroke;
 

@@ -48,7 +48,7 @@ describe("Options tests", () => {
 
     /* particles */
     /* particles color */
-    expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#fff");
+    expect(options.particles.fill).to.be.an("object").to.have.property("enable").to.equal(true);
 
     /* particles line linked */
     /* expect(options.particles.links.blink).to.be.false;
@@ -219,7 +219,7 @@ describe("Options tests", () => {
 
     /* particles */
     /* particles color */
-    expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+    expect(options.particles.fill).to.be.an("object").to.have.property("enable").to.equal(true);
 
     /* particles line linked */
     /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
@@ -377,7 +377,7 @@ describe("Options tests", () => {
 
     /* particles */
     /* particles color */
-    expect(options.particles.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");
+    expect(options.particles.fill).to.be.an("object").to.have.property("enable").to.equal(true);
 
     /* particles line linked */
     /* expect(options.particles.links.color).to.be.an("object").to.have.property("value").to.equal("#ffffff");

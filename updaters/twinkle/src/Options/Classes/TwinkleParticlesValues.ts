@@ -6,15 +6,16 @@ import {
   isNull,
   setRangeValue,
 } from "@tsparticles/engine";
-import type { ITwinkleValues } from "../Interfaces/ITwinkleValues.js";
+import type { ITwinkleParticlesValues } from "../Interfaces/ITwinkleParticlesValues.js";
 
 /**
  */
-export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValues> {
-  color?: OptionsColor;
+export class TwinkleParticlesValues implements ITwinkleParticlesValues, IOptionLoader<ITwinkleParticlesValues> {
   enable;
+  fillColor?: OptionsColor;
   frequency;
   opacity: RangeValue;
+  strokeColor?: OptionsColor;
 
   constructor() {
     this.enable = false;
@@ -22,13 +23,17 @@ export class TwinkleValues implements ITwinkleValues, IOptionLoader<ITwinkleValu
     this.opacity = 1;
   }
 
-  load(data?: RecursivePartial<ITwinkleValues>): void {
+  load(data?: RecursivePartial<ITwinkleParticlesValues>): void {
     if (isNull(data)) {
       return;
     }
 
-    if (data.color !== undefined) {
-      this.color = OptionsColor.create(this.color, data.color);
+    if (data.fillColor !== undefined) {
+      this.fillColor = OptionsColor.create(this.fillColor, data.fillColor);
+    }
+
+    if (data.strokeColor !== undefined) {
+      this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
     }
 
     if (data.enable !== undefined) {

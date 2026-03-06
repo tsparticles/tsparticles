@@ -107,13 +107,15 @@ const options: ISourceOptions = {
         delay: 0.1,
         quantity: 10,
         particles: {
-          color: {
-            value: {
-              h: 0,
-              s: 40,
-              l: {
-                min: 40,
-                max: 60,
+          fill: {
+            color: {
+              value: {
+                h: 0,
+                s: 40,
+                l: {
+                  min: 40,
+                  max: 60,
+                },
               },
             },
           },

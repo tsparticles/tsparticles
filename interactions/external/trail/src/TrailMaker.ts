@@ -1,13 +1,5 @@
 import {
-  ExternalInteractorBase,
-  type IInteractivityData,
-  type IModes,
-  type InteractivityEngine,
-  type InteractivityParticle,
-  type Modes,
-} from "@tsparticles/plugin-interactivity";
-import {
-  type IAnimatableColor,
+  AnimatableColor,
   type ICoordinates,
   type IDelta,
   type IParticlesOptions,
@@ -18,11 +10,20 @@ import {
   getRangeMin,
   hMax,
   isInArray,
+  itemFromSingleOrMultiple,
   lMax,
   millisecondsToSeconds,
   rangeColorToHsl,
   sMax,
 } from "@tsparticles/engine";
+import {
+  ExternalInteractorBase,
+  type IInteractivityData,
+  type IModes,
+  type InteractivityEngine,
+  type InteractivityParticle,
+  type Modes,
+} from "@tsparticles/plugin-interactivity";
 import type { ITrailMode, TrailContainer, TrailMode } from "./Types.js";
 import type { ITrailColorComponent } from "./Options/Interfaces/ITrailColorComponent.js";
 import { Trail } from "./Options/Classes/Trail.js";
@@ -112,9 +113,12 @@ export class TrailMaker extends ExternalInteractorBase<TrailContainer> {
 
             return Math.min(max, Math.max(min, result));
           },
+          fillData = trailOptions.particles?.fill ? itemFromSingleOrMultiple(trailOptions.particles.fill) : undefined,
           // Safe conversion of the particle color option to HSL structure
           // This handles strings, RGB, and existing HSL objects correctly
-          baseHsl = rangeColorToHsl(this._engine, trailOptions.particles?.color as IAnimatableColor),
+          baseHsl = fillData
+            ? rangeColorToHsl(this._engine, AnimatableColor.create(undefined, fillData.color))
+            : undefined,
           h = calculateValue(colorCoords.h, baseHsl?.h, hMax),
           s = calculateValue(colorCoords.s, baseHsl?.s, sMax),
           l = calculateValue(colorCoords.l, baseHsl?.l, lMax);

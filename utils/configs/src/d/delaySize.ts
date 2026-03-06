@@ -9,8 +9,11 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#fff",
+    fill: {
+      color: {
+        value: "#fff",
+      },
+      enable: true,
     },
     number: {
       value: 100,

@@ -188,13 +188,13 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         mode: paletteData.blendMode,
       },
       particles: {
-        color: paletteData.fill
-          ? {
-              value: paletteData.colors,
-            }
-          : undefined,
-        shape: {
-          fill: paletteData.fill,
+        fill: {
+          color: paletteData.fill
+            ? {
+                value: paletteData.colors,
+              }
+            : undefined,
+          enable: paletteData.fill,
         },
         stroke: !paletteData.fill
           ? paletteData.colors.map(color => ({

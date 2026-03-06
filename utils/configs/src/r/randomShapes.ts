@@ -27,8 +27,11 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#000000",
+    fill: {
+      color: {
+        value: "#000000",
+      },
+      enable: true,
     },
     stroke: {
       color: {
@@ -281,29 +284,37 @@ const options: ISourceOptions = {
         },
         spades: {
           particles: {
-            color: {
-              value: "#000000",
+            fill: {
+              color: {
+                value: "#000000",
+              },
             },
           },
         },
         hearts: {
           particles: {
-            color: {
-              value: "#ff0000",
+            fill: {
+              color: {
+                value: "#ff0000",
+              },
             },
           },
         },
         diamonds: {
           particles: {
-            color: {
-              value: "#ff0000",
+            fill: {
+              color: {
+                value: "#ff0000",
+              },
             },
           },
         },
         clubs: {
           particles: {
-            color: {
-              value: "#000000",
+            fill: {
+              color: {
+                value: "#000000",
+              },
             },
           },
         },

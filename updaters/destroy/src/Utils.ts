@@ -1,4 +1,5 @@
 import {
+  AnimatableColor,
   type Container,
   type Engine,
   type IParticlesOptions,
@@ -43,26 +44,31 @@ function addSplitParticle(
 
   const splitOptions = destroyOptions.split,
     options = loadParticlesOptions(engine, container, parent.options),
-    parentColor = parent.getFillColor();
+    parentColor = parent.getFillColor(),
+    fillOptions = itemFromSingleOrMultiple(options.fill);
 
-  if (splitOptions.color) {
-    options.color.load(splitOptions.color);
-  } else if (splitOptions.colorOffset && parentColor) {
-    options.color.load({
-      value: {
-        hsl: {
-          h: parentColor.h + getRangeValue(splitOptions.colorOffset.h ?? defaultOffset),
-          s: parentColor.s + getRangeValue(splitOptions.colorOffset.s ?? defaultOffset),
-          l: parentColor.l + getRangeValue(splitOptions.colorOffset.l ?? defaultOffset),
+  if (fillOptions) {
+    const fillColor = AnimatableColor.create(undefined, fillOptions.color);
+
+    if (fillColor.value) {
+      fillColor.load(splitOptions.color);
+    } else if (splitOptions.colorOffset && parentColor) {
+      fillColor.load({
+        value: {
+          hsl: {
+            h: parentColor.h + getRangeValue(splitOptions.colorOffset.h ?? defaultOffset),
+            s: parentColor.s + getRangeValue(splitOptions.colorOffset.s ?? defaultOffset),
+            l: parentColor.l + getRangeValue(splitOptions.colorOffset.l ?? defaultOffset),
+          },
         },
-      },
-    });
-  } else {
-    options.color.load({
-      value: {
-        hsl: parent.getFillColor(),
-      },
-    });
+      });
+    } else {
+      fillColor.load({
+        value: {
+          hsl: parent.getFillColor(),
+        },
+      });
+    }
   }
 
   options.move.load({

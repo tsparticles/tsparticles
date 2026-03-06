@@ -21,7 +21,7 @@ beautiful confetti effects with ease.
 - [@tsparticles/shape-polygon](https://github.com/tsparticles/tsparticles/tree/main/shapes/polygon)
 - [@tsparticles/shape-square](https://github.com/tsparticles/tsparticles/tree/main/shapes/square)
 - [@tsparticles/shape-star](https://github.com/tsparticles/tsparticles/tree/main/shapes/star)
-- [@tsparticles/updater-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
+- [@tsparticles/updater-fill-color](https://github.com/tsparticles/tsparticles/tree/main/updaters/color)
 - [@tsparticles/updater-life](https://github.com/tsparticles/tsparticles/tree/main/updaters/life)
 - [@tsparticles/updater-opacity](https://github.com/tsparticles/tsparticles/tree/main/updaters/opacity)
 - [@tsparticles/updater-out-modes](https://github.com/tsparticles/tsparticles/tree/main/updaters/outModes)

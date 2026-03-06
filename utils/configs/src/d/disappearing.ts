@@ -27,8 +27,11 @@ const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: "random",
+    fill: {
+      color: {
+        value: "random",
+      },
+      enable: true,
     },
     shape: {
       type: "circle",

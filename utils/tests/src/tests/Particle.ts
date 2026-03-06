@@ -96,7 +96,6 @@ describe("Particle", async () => {
 
         expect(particle?.shapeData).to.eql(squareShapeOptions.particles.shape.options.square);
         expect(particle?.shapeClose).to.eql(squareShapeOptions.particles.shape.options.square.close);
-        expect(particle?.shapeFill).to.eql(squareShapeOptions.particles.shape.options.square.fill);
       });
 
       it("should set shapeData to the configured shape data matching the chosen shape whenever multiple shapes are specified for container Particles", async () => {
@@ -126,7 +125,6 @@ describe("Particle", async () => {
         }
 
         expect(particle.shapeClose).to.eql(expectedShapeData.close);
-        expect(particle.shapeFill).to.eql(expectedShapeData.fill);
       });
 
       afterAll(async () => {

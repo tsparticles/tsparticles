@@ -123,7 +123,7 @@ export class LinkInstance implements IContainerPlugin {
       let opacity = link.opacity,
         colorLine = link.color;
 
-      const twinkle = (particle.options["twinkle"] as ITwinkle | undefined)?.lines;
+      const twinkle = (particle.options["twinkle"] as ITwinkle | undefined)?.links;
 
       if (twinkle?.enable && getRandom() < twinkle.frequency) {
         const twinkleRgb = rangeColorToRgb(this._engine, twinkle.color);

@@ -420,9 +420,9 @@ importers:
       '@tsparticles/shape-circle':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../shapes/circle/dist
-      '@tsparticles/updater-color':
+      '@tsparticles/updater-fill-color':
         specifier: workspace:4.0.0-alpha.26
-        version: link:../../updaters/color/dist
+        version: link:../../updaters/fillColor/dist
       '@tsparticles/updater-opacity':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../updaters/opacity/dist
@@ -1037,12 +1037,12 @@ importers:
       '@tsparticles/smooth-value-noise':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../utils/smoothValueNoise/dist
-      '@tsparticles/updater-color':
-        specifier: workspace:4.0.0-alpha.26
-        version: link:../../updaters/color/dist
       '@tsparticles/updater-destroy':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../updaters/destroy/dist
+      '@tsparticles/updater-fill-color':
+        specifier: workspace:4.0.0-alpha.26
+        version: link:../../updaters/fillColor/dist
       '@tsparticles/updater-gradient':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../updaters/gradient/dist
@@ -2129,14 +2129,14 @@ importers:
         version: link:../../engine/dist
     publishDirectory: dist
 
-  updaters/color:
+  updaters/destroy:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.26
         version: link:../../engine/dist
     publishDirectory: dist
 
-  updaters/destroy:
+  updaters/fillColor:
     dependencies:
       '@tsparticles/engine':
         specifier: workspace:4.0.0-alpha.26

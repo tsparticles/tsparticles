@@ -39,20 +39,29 @@ export class TwinkleUpdater implements IParticleUpdater {
       zOffset = 1,
       zOpacityFactor = (zOffset - particle.zIndexFactor) ** zIndexOptions.opacityRate,
       twinklingOpacity = twinkling ? getRangeValue(twinkle.opacity) * zOpacityFactor : opacity,
-      twinkleRgb = rangeColorToHsl(this._engine, twinkle.color),
-      getTwinkleStyle = (): string | undefined => {
-        if (!twinkleRgb) {
+      twinkleFillRgb = rangeColorToHsl(this._engine, twinkle.fillColor),
+      twinkleStrokeRgb = rangeColorToHsl(this._engine, twinkle.strokeColor),
+      getTwinkleFillStyle = (): string | undefined => {
+        if (!twinkleFillRgb) {
           return undefined;
         }
 
-        return getStyleFromHsl(twinkleRgb, container.hdr, twinklingOpacity);
+        return getStyleFromHsl(twinkleFillRgb, container.hdr, twinklingOpacity);
       },
-      twinkleStyle = getTwinkleStyle(),
-      res: IParticleColorStyle = {},
-      needsTwinkle = twinkling && twinkleStyle;
+      getTwinkleStrokeStyle = (): string | undefined => {
+        if (!twinkleStrokeRgb) {
+          return undefined;
+        }
 
-    res.fill = needsTwinkle ? twinkleStyle : undefined;
-    res.stroke = needsTwinkle ? twinkleStyle : undefined;
+        return getStyleFromHsl(twinkleStrokeRgb, container.hdr, twinklingOpacity);
+      },
+      twinkleFillStyle = getTwinkleFillStyle(),
+      twinkleStrokeStyle = getTwinkleStrokeStyle(),
+      res: IParticleColorStyle = {},
+      needsTwinkle = twinkling && (!!twinkleFillStyle || !!twinkleStrokeStyle);
+
+    res.fill = needsTwinkle ? twinkleFillStyle : undefined;
+    res.stroke = needsTwinkle ? twinkleStrokeStyle : undefined;
 
     return res;
   }

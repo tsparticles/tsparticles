@@ -106,7 +106,6 @@ function loadEffectData(
   return deepExtend(
     {
       close: effectOptions.close,
-      fill: effectOptions.fill,
     },
     itemFromSingleOrMultiple(effectData, id, reduceDuplicates),
   ) as IShapeValues;
@@ -131,7 +130,6 @@ function loadShapeData(
   return deepExtend(
     {
       close: shapeOptions.close,
-      fill: shapeOptions.fill,
     },
     itemFromSingleOrMultiple(shapeData, id, reduceDuplicates),
   ) as IShapeValues;
@@ -171,11 +169,6 @@ export class Particle {
   bubble!: IBubbleParticleData;
 
   /**
-   * Gets the particle color options
-   */
-  color?: IParticleHslAnimation;
-
-  /**
    * Checks if the particle is destroyed
    */
   destroyed!: boolean;
@@ -201,9 +194,19 @@ export class Particle {
   effectData?: IShapeValues;
 
   /**
-   * Checks if the particle effect needs to be filled with a color
+   * Sets the particle fill color
    */
-  effectFill!: boolean;
+  fillColor?: IParticleHslAnimation;
+
+  /**
+   * Sets the particle fill status
+   */
+  fillEnabled?: boolean;
+
+  /**
+   * Sets the particle fill opacity
+   */
+  fillOpacity?: number;
 
   group?: string;
 
@@ -301,11 +304,6 @@ export class Particle {
   shapeData?: IShapeValues;
 
   /**
-   * Checks if the particle shape needs to be filled with a color
-   */
-  shapeFill!: boolean;
-
-  /**
    * Gets the particle side count
    */
   sides!: number;
@@ -356,6 +354,7 @@ export class Particle {
   zIndexFactor!: number;
 
   private readonly _cachedOpacityData: IParticleOpacityData = {
+    fillOpacity: defaultOpacity,
     opacity: defaultOpacity,
     strokeOpacity: defaultOpacity,
   };
@@ -425,7 +424,7 @@ export class Particle {
   }
 
   getFillColor(): IHsl | undefined {
-    return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.color));
+    return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.fillColor));
   }
 
   getMass(): number {
@@ -437,8 +436,10 @@ export class Particle {
       zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
       zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
       opacity = this.bubble.opacity ?? getRangeValue(this.opacity?.value ?? defaultOpacity),
+      fillOpacity = this.fillOpacity ?? opacity,
       strokeOpacity = this.strokeOpacity ?? opacity;
 
+    this._cachedOpacityData.fillOpacity = fillOpacity * zOpacityFactor;
     this._cachedOpacityData.opacity = opacity * zOpacityFactor;
     this._cachedOpacityData.strokeOpacity = strokeOpacity * zOpacityFactor;
 
@@ -497,9 +498,7 @@ export class Particle {
     this.id = id;
     this.group = group;
     this.effectClose = true;
-    this.effectFill = true;
     this.shapeClose = true;
-    this.shapeFill = true;
     this.pathRotation = false;
     this.lastPathTime = 0;
     this.destroyed = false;
@@ -579,9 +578,7 @@ export class Particle {
       particlesOptions.load(shapeData.particles);
     }
 
-    this.effectFill = effectData?.fill ?? particlesOptions.effect.fill;
     this.effectClose = effectData?.close ?? particlesOptions.effect.close;
-    this.shapeFill = shapeData?.fill ?? particlesOptions.shape.fill;
     this.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
     this.options = particlesOptions;
 

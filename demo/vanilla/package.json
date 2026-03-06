@@ -169,7 +169,7 @@
     "@tsparticles/simplex-noise": "workspace:4.0.0-alpha.26",
     "@tsparticles/slim": "workspace:4.0.0-alpha.26",
     "@tsparticles/smooth-value-noise": "workspace:4.0.0-alpha.26",
-    "@tsparticles/updater-color": "workspace:4.0.0-alpha.26",
+    "@tsparticles/updater-fill-color": "workspace:4.0.0-alpha.26",
     "@tsparticles/updater-destroy": "workspace:4.0.0-alpha.26",
     "@tsparticles/updater-gradient": "workspace:4.0.0-alpha.26",
     "@tsparticles/updater-life": "workspace:4.0.0-alpha.26",

@@ -74,7 +74,8 @@ export function drawParticle(data: IDrawParticleParams): void {
     context.fillStyle = colorStyles.fill;
   }
 
-  const strokeWidth = particle.strokeWidth ?? minStrokeWidth;
+  const fillEnabled = !!particle.fillEnabled,
+    strokeWidth = particle.strokeWidth ?? minStrokeWidth;
 
   context.lineWidth = strokeWidth;
 
@@ -90,8 +91,8 @@ export function drawParticle(data: IDrawParticleParams): void {
     opacity,
     delta,
     pixelRatio: container.retina.pixelRatio,
-    fill: particle.shapeFill,
-    stroke: strokeWidth > minStrokeWidth || !particle.shapeFill,
+    fill: fillEnabled,
+    stroke: strokeWidth > minStrokeWidth,
     transformData,
     position: { ...pos },
     drawPosition,
@@ -162,7 +163,7 @@ export function drawShape(drawer: IShapeDrawer | undefined, data: IShapeDrawData
     return;
   }
 
-  const { context, particle, stroke } = data;
+  const { context, fill, particle, stroke } = data;
 
   if (!particle.shape) {
     return;
@@ -180,7 +181,7 @@ export function drawShape(drawer: IShapeDrawer | undefined, data: IShapeDrawData
     context.stroke();
   }
 
-  if (particle.shapeFill) {
+  if (fill) {
     context.fill();
   }
 }

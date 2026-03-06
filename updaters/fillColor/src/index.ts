@@ -5,14 +5,14 @@ declare const __VERSION__: string;
 /**
  * @param engine -
  */
-export async function loadColorUpdater(engine: Engine): Promise<void> {
+export async function loadFillColorUpdater(engine: Engine): Promise<void> {
   engine.checkVersion(__VERSION__);
 
   await engine.register(e => {
     e.addParticleUpdater("color", async container => {
-      const { ColorUpdater } = await import("./ColorUpdater.js");
+      const { FillColorUpdater } = await import("./FillColorUpdater.js");
 
-      return new ColorUpdater(e, container);
+      return new FillColorUpdater(e, container);
     });
   });
 }

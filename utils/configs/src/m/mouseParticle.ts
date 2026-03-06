@@ -10,13 +10,16 @@ const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: ["#ff0000", "#00ff00", "#0000ff"],
-      animation: {
-        enable: true,
-        speed: 180,
-        sync: true,
+    fill: {
+      color: {
+        value: ["#ff0000", "#00ff00", "#0000ff"],
+        animation: {
+          enable: true,
+          speed: 180,
+          sync: true,
+        },
       },
+      enable: true,
     },
     effect: {
       type: "trail",

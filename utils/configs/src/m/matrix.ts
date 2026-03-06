@@ -11,21 +11,24 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: {
-        h: 120,
-        s: 100,
-        l: 50,
-      },
-      animation: {
-        l: {
-          enable: true,
-          speed: 70,
-          sync: false,
-          min: 30,
-          max: 100,
+    fill: {
+      color: {
+        value: {
+          h: 120,
+          s: 100,
+          l: 50,
+        },
+        animation: {
+          l: {
+            enable: true,
+            speed: 70,
+            sync: false,
+            min: 30,
+            max: 100,
+          },
         },
       },
+      enable: true,
     },
     shape: {
       type: "matrix",

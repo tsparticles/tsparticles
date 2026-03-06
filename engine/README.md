@@ -706,7 +706,7 @@ flowchart TD
     end
 
     subgraph basic-updates [Updaters]
-      updater-color[Color]
+      updater-fill-color[Color]
       updater-opacity[Opacity]
       updater-out-modes[Out Modes]
       updater-size[Size]

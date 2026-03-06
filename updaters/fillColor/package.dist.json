@@ -1,18 +1,12 @@
 {
-  "name": "@tsparticles/updater-color",
+  "name": "@tsparticles/updater-fill-color",
   "version": "4.0.0-alpha.26",
-  "description": "tsParticles particles color updater",
+  "description": "tsParticles particles fill color updater",
   "homepage": "https://particles.js.org",
-  "scripts": {
-    "build": "tsparticles-cli build",
-    "build:ci": "tsparticles-cli build --ci",
-    "version": "tsparticles-cli build -d && git add package.dist.json && tsparticles-cli build -p -l && git add .",
-    "prepack": "pnpm run build"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tsparticles/tsparticles.git",
-    "directory": "updaters/color"
+    "directory": "updaters/fillColor"
   },
   "keywords": [
     "front-end",
@@ -69,35 +63,34 @@
     "tsparticles-plugin",
     "@tsparticles/updater"
   ],
-  "publishConfig": {
-    "access": "public",
-    "directory": "dist",
-    "linkDirectory": true
-  },
   "author": "Matteo Bruni <matteo.bruni@me.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tsparticles/tsparticles/issues"
   },
-  "prettier": "@tsparticles/prettier-config",
   "sideEffects": false,
-  "browser": "dist/browser/index.js",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "jsdelivr": "tsparticles.updater.fill-color.min.js",
+  "unpkg": "tsparticles.updater.fill-color.min.js",
+  "browser": "browser/index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "browser": "./dist/browser/index.js",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "umd": "./dist/umd/index.js",
-      "default": "./dist/cjs/index.js"
+      "types": "./types/index.d.ts",
+      "browser": "./browser/index.js",
+      "import": "./esm/index.js",
+      "require": "./cjs/index.js",
+      "umd": "./umd/index.js",
+      "default": "./cjs/index.js"
     },
-    "./package.json": "./dist/package.json"
+    "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "workspace:4.0.0-alpha.26"
+    "@tsparticles/engine": "4.0.0-alpha.26"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "type": "module"
 }

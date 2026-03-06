@@ -17,7 +17,9 @@ import {
   getSize,
   hMax,
   half,
+  isArray,
   isPointInside,
+  isString,
   itemFromSingleOrMultiple,
   lMax,
   millisecondsToSeconds,
@@ -47,11 +49,19 @@ const defaultLifeDelay = 0,
  * @param color -
  */
 function setParticlesOptionsColor(particlesOptions: RecursivePartial<IParticlesOptions>, color: IHsl | IRgb): void {
-  if (particlesOptions.color) {
-    particlesOptions.color.value = color;
+  if (
+    particlesOptions.fill &&
+    !isArray(particlesOptions.fill) &&
+    particlesOptions.fill.color &&
+    !isString(particlesOptions.fill.color)
+  ) {
+    particlesOptions.fill.color.value = color;
   } else {
-    particlesOptions.color = {
-      value: color,
+    particlesOptions.fill = {
+      color: {
+        value: color,
+      },
+      enable: true,
     };
   }
 }

@@ -297,11 +297,11 @@ export class Canvas {
     const container = this.container,
       zIndexOptions = particle.options.zIndex,
       zIndexFactor = zIndexFactorOffset - particle.zIndexFactor,
-      { opacity, strokeOpacity } = particle.getOpacity(),
+      { fillOpacity, opacity, strokeOpacity } = particle.getOpacity(),
       transform = this._reusableTransform,
       colorStyles = this._reusableColorStyles,
-      fill = fColor ? getStyleFromHsl(fColor, container.hdr, opacity) : undefined,
-      stroke = sColor ? getStyleFromHsl(sColor, container.hdr, strokeOpacity) : fill;
+      fill = fColor ? getStyleFromHsl(fColor, container.hdr, fillOpacity * opacity) : undefined,
+      stroke = sColor ? getStyleFromHsl(sColor, container.hdr, strokeOpacity * opacity) : fill;
 
     transform.a = transform.b = transform.c = transform.d = undefined;
 

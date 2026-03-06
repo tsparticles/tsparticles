@@ -10,8 +10,11 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "#ff0000",
+    fill: {
+      color: {
+        value: "#ff0000",
+      },
+      enable: true,
     },
     shape: {
       type: "circle",
@@ -52,11 +55,11 @@ const options: ISourceOptions = {
     twinkle: {
       particles: {
         enable: true,
-        color: "#ffff00",
+        fillColor: "#ffff00",
         frequency: 0.05,
         opacity: 1,
       },
-      lines: {
+      links: {
         enable: true,
         color: "#ff0000",
         frequency: 0.005,

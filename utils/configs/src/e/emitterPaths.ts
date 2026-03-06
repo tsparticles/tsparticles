@@ -7,8 +7,11 @@ const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: "#000000",
+    fill: {
+      color: {
+        value: "#000000",
+      },
+      enable: true,
     },
     move: {
       enable: true,

@@ -20,7 +20,7 @@ export interface IParticlesFrequencies {
 }
 
 export interface ITwinkle {
-  lines: {
+  links: {
     color: IRangeColor;
     enable: boolean;
     frequency: number;

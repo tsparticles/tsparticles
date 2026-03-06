@@ -167,16 +167,13 @@ export class ImageDrawer implements IShapeDrawer<ImageParticle> {
         imageRes.ratio = 1;
       }
 
-      const fill = imageData.fill ?? particle.shapeFill,
-        close = imageData.close ?? particle.shapeClose,
+      const close = imageData.close ?? particle.shapeClose,
         imageShape = {
           image: imageRes,
-          fill,
           close,
         };
 
       particle.image = imageShape.image;
-      particle.shapeFill = imageShape.fill;
       particle.shapeClose = imageShape.close;
     })();
   }

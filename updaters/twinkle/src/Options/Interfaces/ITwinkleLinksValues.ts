@@ -2,7 +2,7 @@ import type { IOptionsColor, RangeValue } from "@tsparticles/engine";
 
 /**
  */
-export interface ITwinkleValues {
+export interface ITwinkleLinksValues {
   color?: string | IOptionsColor;
   enable: boolean;
   frequency: number;
