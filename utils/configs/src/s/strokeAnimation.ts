@@ -10,13 +10,16 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "#ff0000",
-      animation: {
-        enable: true,
-        speed: 60,
-        sync: true,
+    fill: {
+      color: {
+        value: "#ff0000",
+        animation: {
+          enable: true,
+          speed: 60,
+          sync: true,
+        },
       },
+      enable: true,
     },
     stroke: {
       width: 3,

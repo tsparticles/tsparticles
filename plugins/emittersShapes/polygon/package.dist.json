@@ -1,6 +1,6 @@
 {
   "name": "@tsparticles/plugin-emitters-shape-polygon",
-  "version": "4.0.0-alpha.20",
+  "version": "4.0.0-alpha.26",
   "description": "tsParticles emitters shape polygon plugin",
   "homepage": "https://particles.js.org",
   "repository": {
@@ -100,8 +100,8 @@
     "./package.json": "./package.json"
   },
   "dependencies": {
-    "@tsparticles/engine": "4.0.0-alpha.20",
-    "@tsparticles/plugin-emitters": "4.0.0-alpha.20"
+    "@tsparticles/engine": "4.0.0-alpha.26",
+    "@tsparticles/plugin-emitters": "4.0.0-alpha.26"
   },
   "publishConfig": {
     "access": "public"

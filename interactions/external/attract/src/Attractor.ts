@@ -20,11 +20,13 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   private readonly _engine;
+  private _maxDistance;
 
   constructor(engine: Engine, container: AttractContainer) {
     super(container);
 
     this._engine = engine;
+    this._maxDistance = 0;
 
     container.attract ??= { particles: [] };
 
@@ -64,6 +66,10 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     };
   }
 
+  get maxDistance(): number {
+    return this._maxDistance;
+  }
+
   clear(): void {
     // do nothing
   }
@@ -75,6 +81,8 @@ export class Attractor extends ExternalInteractorBase<AttractContainer> {
     if (!attract) {
       return;
     }
+
+    this._maxDistance = attract.distance;
 
     container.retina.attractModeDistance = attract.distance * container.retina.pixelRatio;
   }

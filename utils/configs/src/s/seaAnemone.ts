@@ -4,8 +4,10 @@ const options: ISourceOptions = {
   key: "seaAnemone",
   name: "Sea Anemone",
   particles: {
-    color: {
-      value: "#FF0000",
+    fill: {
+      color: {
+        value: "#FF0000",
+      },
     },
     move: {
       direction: "none",
@@ -62,7 +64,7 @@ const options: ISourceOptions = {
       width: 0,
       height: 0,
     },
-    spawnColor: {
+    spawnFillColor: {
       value: "#ff0000",
       animation: {
         enable: true,

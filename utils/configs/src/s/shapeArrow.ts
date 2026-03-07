@@ -10,11 +10,11 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "none",
+    fill: {
+      enable: false,
     },
     stroke: {
-      color: "#ff0000",
+      color: { value: "#ff0000" },
       width: 1,
     },
     shape: {

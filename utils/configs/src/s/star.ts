@@ -10,8 +10,11 @@ const options: ISourceOptions = {
         enable: false,
       },
     },
-    color: {
-      value: "#fff",
+    fill: {
+      color: {
+        value: "#fff",
+      },
+      enable: true,
     },
     shape: {
       type: "star",

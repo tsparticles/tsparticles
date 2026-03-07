@@ -12,8 +12,11 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
     key: "cards",
     name: "Cards",
     particles: {
-      color: {
-        value: "#fff",
+      fill: {
+        color: {
+          value: "#fff",
+        },
+        enable: true,
       },
       number: {
         value: 52,
@@ -37,7 +40,7 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
       },
       stroke: {
         width: 1,
-        color: "#000",
+        color: { value: "#000" },
       },
     },
     interactivity: {

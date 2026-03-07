@@ -15,6 +15,8 @@ const parallaxMode = "parallax";
  * Particle parallax manager
  */
 export class Parallaxer extends ExternalInteractorBase<ParallaxContainer> {
+  readonly maxDistance = 0;
+
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
   constructor(container: ParallaxContainer) {
     super(container);

@@ -7,8 +7,11 @@ const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
+      enable: true,
     },
     shape: {
       type: "circle",
@@ -105,8 +108,11 @@ const options: ISourceOptions = {
           },
         },
       },
-      color: {
-        value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+      fill: {
+        color: {
+          value: ["#5bc0eb", "#fde74c", "#9bc53d", "#e55934", "#fa7921"],
+        },
+        enable: true,
       },
       links: {
         enable: false,

@@ -7,9 +7,12 @@ import { resolveCollision } from "./ResolveCollision.js";
 /**
  */
 export class Collider extends ParticlesInteractorBase<Container, CollisionParticle> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  readonly maxDistance;
+
   constructor(container: Container) {
     super(container);
+
+    this.maxDistance = 0;
   }
 
   clear(): void {
@@ -28,14 +31,14 @@ export class Collider extends ParticlesInteractorBase<Container, CollisionPartic
     const container = this.container,
       pos1 = p1.getPosition(),
       radius1 = p1.getRadius(),
-      query = container.particles.quadTree.queryCircle(pos1, radius1 * double) as CollisionParticle[];
+      query = container.particles.grid.queryCircle(pos1, radius1 * double) as CollisionParticle[];
 
     for (const p2 of query) {
       if (
         p1 === p2 ||
-        !p1.options.collisions ||
-        !p2.options.collisions ||
-        !p2.options.collisions.enable ||
+        p1.id >= p2.id ||
+        !p1.options.collisions?.enable ||
+        !p2.options.collisions?.enable ||
         p1.options.collisions.mode !== p2.options.collisions.mode ||
         p2.destroyed ||
         p2.spawning

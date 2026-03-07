@@ -2,6 +2,14 @@ import type { ICoordinates, ICoordinates3d } from "../Interfaces/ICoordinates.js
 import { inverseFactorNumerator, none, originPoint, squareExp } from "./Constants.js";
 
 /**
+ * @param source - the vector to get the z coordinate from
+ * @returns the z coordinate of the vector
+ */
+function getZ(source: ICoordinates | ICoordinates3d): number {
+  return "z" in source ? source.z : originPoint.z;
+}
+
+/**
  */
 export class Vector3d implements ICoordinates3d {
   /**
@@ -77,8 +85,8 @@ export class Vector3d implements ICoordinates3d {
    * @param source - the vector to clone
    * @returns a new vector instance, created from the given one
    */
-  static clone(source: Vector3d): Vector3d {
-    return Vector3d.create(source.x, source.y, source.z);
+  static clone(source: ICoordinates | ICoordinates3d): Vector3d {
+    return Vector3d.create(source.x, source.y, getZ(source));
   }
 
   /**
@@ -93,7 +101,7 @@ export class Vector3d implements ICoordinates3d {
       return new Vector3d(x, y ?? originPoint.y, z ?? originPoint.z);
     }
 
-    return new Vector3d(x.x, x.y, Object.hasOwn(x, "z") ? (x as ICoordinates3d).z : originPoint.z);
+    return new Vector3d(x.x, x.y, getZ(x));
   }
 
   /**
@@ -101,18 +109,18 @@ export class Vector3d implements ICoordinates3d {
    * @param v - the vector used for the sum operation
    * @returns the sum vector
    */
-  add(v: Vector3d): Vector3d {
-    return Vector3d.create(this.x + v.x, this.y + v.y, this.z + v.z);
+  add(v: ICoordinates | ICoordinates3d): Vector3d {
+    return Vector3d.create(this.x + v.x, this.y + v.y, this.z + getZ(v));
   }
 
   /**
    * Adds the given vector to the current one, modifying it
    * @param v - the vector to add to the current one
    */
-  addTo(v: Vector3d): void {
+  addTo(v: ICoordinates | ICoordinates3d): void {
     this.x += v.x;
     this.y += v.y;
-    this.z += v.z;
+    this.z += getZ(v);
   }
 
   /**
@@ -121,24 +129,6 @@ export class Vector3d implements ICoordinates3d {
    */
   copy(): Vector3d {
     return Vector3d.clone(this);
-  }
-
-  /**
-   * Calculates the distance between the current vector and the given one
-   * @param v - the vector used for calculating the distance from the current one
-   * @returns the distance between the vectors
-   */
-  distanceTo(v: Vector3d): number {
-    return this.sub(v).length;
-  }
-
-  /**
-   * Get the distance squared between two vectors
-   * @param v - the vector used for calculating the distance from the current one
-   * @returns the distance squared between the vectors
-   */
-  distanceToSq(v: Vector3d): number {
-    return this.sub(v).getLengthSq();
   }
 
   /**
@@ -215,13 +205,10 @@ export class Vector3d implements ICoordinates3d {
    * Set the vector to the specified velocity
    * @param c - the coordinates used to set the current vector
    */
-  setTo(c: ICoordinates): void {
+  setTo(c: ICoordinates | ICoordinates3d): void {
     this.x = c.x;
     this.y = c.y;
-
-    const v3d = c as ICoordinates3d;
-
-    this.z = v3d.z ? v3d.z : originPoint.z;
+    this.z = getZ(c);
   }
 
   /**
@@ -229,18 +216,18 @@ export class Vector3d implements ICoordinates3d {
    * @param v - the vector used for the subtract operation
    * @returns the subtracted vector
    */
-  sub(v: Vector3d): Vector3d {
-    return Vector3d.create(this.x - v.x, this.y - v.y, this.z - v.z);
+  sub(v: ICoordinates | ICoordinates3d): Vector3d {
+    return Vector3d.create(this.x - v.x, this.y - v.y, this.z - getZ(v));
   }
 
   /**
    * Subtracts the given vector from the current one, modifying it
    * @param v - the vector to subtract from the current one
    */
-  subFrom(v: Vector3d): void {
+  subFrom(v: ICoordinates | ICoordinates3d): void {
     this.x -= v.x;
     this.y -= v.y;
-    this.z -= v.z;
+    this.z -= getZ(v);
   }
 
   /**
@@ -249,10 +236,10 @@ export class Vector3d implements ICoordinates3d {
    * @param length - the new length
    * @internal
    */
-  private readonly _updateFromAngle: (angle: number, length: number) => void = (angle, length) => {
+  private _updateFromAngle(angle: number, length: number): void {
     this.x = Math.cos(angle) * length;
     this.y = Math.sin(angle) * length;
-  };
+  }
 }
 
 /**
@@ -281,7 +268,7 @@ export class Vector extends Vector3d {
    * @param source - the vector to clone
    * @returns a new vector instance, created from the given one
    */
-  static override clone(source: Vector): Vector {
+  static override clone(source: ICoordinates): Vector {
     return Vector.create(source.x, source.y);
   }
 

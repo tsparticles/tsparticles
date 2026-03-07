@@ -48,13 +48,14 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
+      enable: true,
     },
     links: {
-      blink: false,
       color: "#ffffff",
-      consent: false,
       distance: 25,
       enable: true,
       opacity: 0.4,

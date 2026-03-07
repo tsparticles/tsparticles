@@ -1,17 +1,18 @@
 import { type IOptionLoader, type RecursivePartial, isNull } from "@tsparticles/engine";
 import type { ITwinkle } from "../Interfaces/ITwinkle.js";
-import { TwinkleValues } from "./TwinkleValues.js";
+import { TwinkleLinksValues } from "./TwinkleLinksValues.js";
+import { TwinkleParticlesValues } from "./TwinkleParticlesValues.js";
 
 /**
  * [[include:Options/Particles/Twinkle.md]]
  */
 export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
-  lines;
+  links;
   particles;
 
   constructor() {
-    this.lines = new TwinkleValues();
-    this.particles = new TwinkleValues();
+    this.links = new TwinkleLinksValues();
+    this.particles = new TwinkleParticlesValues();
   }
 
   load(data?: RecursivePartial<ITwinkle>): void {
@@ -19,7 +20,7 @@ export class Twinkle implements ITwinkle, IOptionLoader<ITwinkle> {
       return;
     }
 
-    this.lines.load(data.lines);
+    this.links.load(data.links);
     this.particles.load(data.particles);
   }
 }

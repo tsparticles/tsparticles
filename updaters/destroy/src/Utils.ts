@@ -1,4 +1,5 @@
 import {
+  AnimatableColor,
   type Container,
   type Engine,
   type IParticlesOptions,
@@ -6,6 +7,7 @@ import {
   PixelMode,
   type RecursivePartial,
   getRangeValue,
+  identity,
   isNumber,
   itemFromSingleOrMultiple,
   loadParticlesOptions,
@@ -22,7 +24,6 @@ const defaultOffset = 0,
   minSplitCount = 0;
 
 /**
- *
  * @param engine -
  * @param container -
  * @param parent -
@@ -43,27 +44,57 @@ function addSplitParticle(
 
   const splitOptions = destroyOptions.split,
     options = loadParticlesOptions(engine, container, parent.options),
-    factor = getRangeValue(splitOptions.factor.value),
-    parentColor = parent.getFillColor();
+    fillOptions = itemFromSingleOrMultiple(options.fill),
+    strokeOptions = itemFromSingleOrMultiple(options.stroke);
 
-  if (splitOptions.color) {
-    options.color.load(splitOptions.color);
-  } else if (splitOptions.colorOffset && parentColor) {
-    options.color.load({
-      value: {
-        hsl: {
-          h: parentColor.h + getRangeValue(splitOptions.colorOffset.h ?? defaultOffset),
-          s: parentColor.s + getRangeValue(splitOptions.colorOffset.s ?? defaultOffset),
-          l: parentColor.l + getRangeValue(splitOptions.colorOffset.l ?? defaultOffset),
+  if (fillOptions?.enable) {
+    const fillColor = AnimatableColor.create(undefined, fillOptions.color),
+      parentFillColor = parent.getFillColor();
+
+    if (fillColor.value) {
+      fillColor.load(splitOptions.fillColor);
+    } else if (splitOptions.fillColorOffset && parentFillColor) {
+      fillColor.load({
+        value: {
+          hsl: {
+            h: parentFillColor.h + getRangeValue(splitOptions.fillColorOffset.h ?? defaultOffset),
+            s: parentFillColor.s + getRangeValue(splitOptions.fillColorOffset.s ?? defaultOffset),
+            l: parentFillColor.l + getRangeValue(splitOptions.fillColorOffset.l ?? defaultOffset),
+          },
         },
-      },
-    });
-  } else {
-    options.color.load({
-      value: {
-        hsl: parent.getFillColor(),
-      },
-    });
+      });
+    } else {
+      fillColor.load({
+        value: {
+          hsl: parent.getFillColor(),
+        },
+      });
+    }
+  }
+
+  if (strokeOptions?.width) {
+    const strokeColor = AnimatableColor.create(undefined, strokeOptions.color),
+      parentStrokeColor = parent.getStrokeColor();
+
+    if (strokeColor.value) {
+      strokeColor.load(splitOptions.strokeColor);
+    } else if (splitOptions.strokeColorOffset && parentStrokeColor) {
+      strokeColor.load({
+        value: {
+          hsl: {
+            h: parentStrokeColor.h + getRangeValue(splitOptions.strokeColorOffset.h ?? defaultOffset),
+            s: parentStrokeColor.s + getRangeValue(splitOptions.strokeColorOffset.s ?? defaultOffset),
+            l: parentStrokeColor.l + getRangeValue(splitOptions.strokeColorOffset.l ?? defaultOffset),
+          },
+        },
+      });
+    } else {
+      strokeColor.load({
+        value: {
+          hsl: parent.getStrokeColor(),
+        },
+      });
+    }
   }
 
   options.move.load({
@@ -71,15 +102,16 @@ function addSplitParticle(
       x: parent.position.x,
       y: parent.position.y,
       mode: PixelMode.precise,
-      // radius: parent.size.value,
     },
   });
 
+  const factor = identity / getRangeValue(splitOptions.factor.value);
+
   if (isNumber(options.size.value)) {
-    options.size.value /= factor;
+    options.size.value *= factor;
   } else {
-    options.size.value.min /= factor;
-    options.size.value.max /= factor;
+    options.size.value.min *= factor;
+    options.size.value.max *= factor;
   }
 
   options.load(splitParticlesOptions);
@@ -98,10 +130,7 @@ function addSplitParticle(
     particle.velocity.length = randomInRangeValue(setRangeValue(parent.velocity.length, particle.velocity.length));
     particle.splitCount = (parent.splitCount ?? defaultSplitCount) + increment;
     particle.unbreakable = true;
-
-    setTimeout(() => {
-      particle.unbreakable = false;
-    }, unbreakableTime);
+    particle.unbreakableUntil = performance.now() + unbreakableTime;
 
     return true;
   });
@@ -122,11 +151,12 @@ export function split(engine: Engine, container: Container, particle: DestroyPar
 
   const splitOptions = destroyOptions.split;
 
-  if (
-    splitOptions.count >= minSplitCount &&
-    (particle.splitCount === undefined || particle.splitCount++ > splitOptions.count)
-  ) {
-    return;
+  if (splitOptions.count >= minSplitCount) {
+    if (particle.splitCount === undefined || particle.splitCount > splitOptions.count) {
+      return;
+    }
+
+    particle.splitCount++;
   }
 
   const rate = getRangeValue(splitOptions.rate.value),

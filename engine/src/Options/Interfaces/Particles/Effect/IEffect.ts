@@ -10,11 +10,6 @@ export interface IEffect {
    */
   close: boolean;
 
-  /**
-   * Set this property to false for creating an empty shape
-   */
-  fill: boolean;
-
   options: ShapeData;
 
   type: SingleOrMultiple<string>;

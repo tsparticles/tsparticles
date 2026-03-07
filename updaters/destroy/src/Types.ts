@@ -17,4 +17,5 @@ export type DestroyParticle = Particle & {
    * Sets the count of particles created when destroyed with split mode
    */
   splitCount?: number;
+  unbreakableUntil?: number;
 };

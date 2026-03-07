@@ -20,8 +20,11 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#FFF",
+    fill: {
+      color: {
+        value: "#FFF",
+      },
+      enable: true,
     },
     links: {
       blink: false,

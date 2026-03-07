@@ -3,10 +3,19 @@
         await loadAll(engine);
     };
 
-    //let schema = {};
-    const stats = new Stats();
+    const stats = new Stats({
+        glass: false,
+        defaultPanelMode: "hardcore",
+    });
 
-    stats.addPanel("count", "#ff8", 0, () => {
+    console.log(stats);
+
+    for (const panel of stats._panels) {
+        panel.thresholds = [];
+        panel.mode = "hardcore";
+    }
+
+    const countPanel = stats.addPanel("count", "#994", 0, () => {
         const container = tsParticles.item(0);
 
         if (container) {
@@ -18,6 +27,8 @@
             };
         }
     });
+
+    countPanel.mode = "hardcore";
 
     let maxParticles = 0;
     stats.showPanel(0);

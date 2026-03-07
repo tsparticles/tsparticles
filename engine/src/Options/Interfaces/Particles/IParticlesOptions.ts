@@ -1,8 +1,8 @@
 /**
  * [[include:Options/Particles.md]]
  */
-import type { IAnimatableColor } from "../IAnimatableColor.js";
 import type { IEffect } from "./Effect/IEffect.js";
+import type { IFill } from "./IFill.js";
 import type { IMove } from "./Move/IMove.js";
 import type { IOpacity } from "./Opacity/IOpacity.js";
 import type { IParticlesBounce } from "./Bounce/IParticlesBounce.js";
@@ -26,14 +26,14 @@ export interface IParticlesOptions {
   bounce: IParticlesBounce;
 
   /**
-   * Particles color options
-   */
-  color: IAnimatableColor;
-
-  /**
    * Particles effects options
    */
   effect: IEffect;
+
+  /**
+   * Particles fill options
+   */
+  fill: SingleOrMultiple<IFill>;
 
   /**
    * Particles groups

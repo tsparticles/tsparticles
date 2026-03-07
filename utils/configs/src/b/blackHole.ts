@@ -10,8 +10,11 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: ["#ffffff", "#77ccff", "#ff3333", "#ffff33"],
+    fill: {
+      color: {
+        value: ["#ffffff", "#77ccff", "#ff3333", "#ffff33"],
+      },
+      enable: true,
     },
     shape: {
       type: "circle",

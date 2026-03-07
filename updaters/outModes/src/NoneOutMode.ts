@@ -4,8 +4,8 @@ import {
   OutMode,
   OutModeDirection,
   type Particle,
-  Vector,
   isPointInside,
+  originPoint,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
@@ -52,7 +52,7 @@ export class NoneOutMode implements IOutModeManager {
         return;
       }
 
-      if (!isPointInside(particle.position, container.canvas.size, Vector.origin, pRadius, direction)) {
+      if (!isPointInside(particle.position, container.canvas.size, originPoint, pRadius, direction)) {
         container.particles.remove(particle);
       }
     } else {

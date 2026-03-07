@@ -12,7 +12,8 @@ import type { ITextShape } from "./ITextShape.js";
 import type { TextParticle } from "./TextParticle.js";
 import { loadFont } from "@tsparticles/canvas-utils";
 
-const firstItem = 0;
+const firstIndex = 0,
+  minLength = 0;
 
 /**
  * Multiline text drawer
@@ -26,9 +27,9 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
     const options = container.actualOptions;
 
     if (validTypes.find(t => isInArray(t, options.particles.shape.type))) {
-      const shapeOptions = validTypes.map(t => options.particles.shape.options[t])[
-          firstItem
-        ] as SingleOrMultiple<ITextShape>,
+      const shapeOptions = validTypes
+          .map(t => options.particles.shape.options[t])
+          .find(t => !!t) as SingleOrMultiple<ITextShape>,
         promises: Promise<void>[] = [];
 
       executeOnSingleOrMultiple(shapeOptions, shape => {
@@ -57,6 +58,13 @@ export class TextDrawer implements IShapeDrawer<TextParticle> {
 
     const textData = character.value;
 
-    particle.text = itemFromSingleOrMultiple(textData, particle.randomIndexData);
+    if (!textData) {
+      return;
+    }
+
+    particle.textLines = itemFromSingleOrMultiple(textData, particle.randomIndexData)?.split("\n") ?? [];
+    particle.maxTextLength = particle.textLines.length
+      ? Math.max(...particle.textLines.map(t => t.length))
+      : (particle.textLines[firstIndex]?.length ?? minLength);
   }
 }

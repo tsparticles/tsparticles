@@ -11,14 +11,15 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
     },
     effect: {
       type: "shadow",
       options: {
         shadow: {
-          enable: true,
           color: "#000000",
           blur: 5,
           offset: {

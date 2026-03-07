@@ -7,8 +7,11 @@ const options: ISourceOptions = {
     number: {
       value: 0,
     },
-    color: {
-      value: "#000",
+    fill: {
+      color: {
+        value: "#000",
+      },
+      enable: true,
     },
     shape: {
       type: "circle",
@@ -101,8 +104,11 @@ const options: ISourceOptions = {
         shape: {
           type: "circle",
         },
-        color: {
-          value: "random",
+        fill: {
+          color: {
+            value: "random",
+          },
+          enable: true,
         },
         links: {
           enable: false,

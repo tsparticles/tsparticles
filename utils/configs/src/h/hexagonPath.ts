@@ -4,12 +4,15 @@ const options: ISourceOptions = {
   key: "hexagonPath",
   name: "Hexagon Path",
   particles: {
-    color: {
-      value: "#FF0000",
-      animation: {
-        enable: true,
-        speed: 10,
+    fill: {
+      color: {
+        value: "#FF0000",
+        animation: {
+          enable: true,
+          speed: 10,
+        },
       },
+      enable: true,
     },
     move: {
       direction: "none",

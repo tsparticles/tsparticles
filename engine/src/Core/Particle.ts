@@ -1,5 +1,6 @@
 import type { ICenterCoordinates, ICoordinates, ICoordinates3d } from "./Interfaces/ICoordinates.js";
 import { Vector, Vector3d } from "./Utils/Vectors.js";
+import { alterHsl, getHslFromAnimation } from "../Utils/ColorUtils.js";
 import {
   calcExactPositionOrRandomFromSize,
   clamp,
@@ -12,7 +13,13 @@ import {
   setRangeValue,
 } from "../Utils/MathUtils.js";
 import {
-  decayOffset,
+  deepExtend,
+  getPosition,
+  initParticleNumericAnimationValue,
+  isInArray,
+  itemFromSingleOrMultiple,
+} from "../Utils/Utils.js";
+import {
   defaultAngle,
   defaultOpacity,
   defaultRetryCount,
@@ -21,7 +28,6 @@ import {
   doublePI,
   half,
   identity,
-  millisecondsToSeconds,
   minZ,
   randomColorValue,
   squareExp,
@@ -29,13 +35,6 @@ import {
   tryCountIncrement,
   zIndexFactorOffset,
 } from "./Utils/Constants.js";
-import {
-  deepExtend,
-  getPosition,
-  initParticleNumericAnimationValue,
-  isInArray,
-  itemFromSingleOrMultiple,
-} from "../Utils/Utils.js";
 import type { Container } from "./Container.js";
 import type { Engine } from "./Engine.js";
 import { EventType } from "../Enums/Types/EventType.js";
@@ -44,7 +43,6 @@ import type { IDelta } from "./Interfaces/IDelta.js";
 import type { IEffect } from "../Options/Interfaces/Particles/Effect/IEffect.js";
 import type { IEffectDrawer } from "./Interfaces/IEffectDrawer.js";
 import type { IHsl } from "./Interfaces/Colors.js";
-import type { IMovePathGenerator } from "./Interfaces/IMovePathGenerator.js";
 import type { IParticleHslAnimation } from "./Interfaces/IParticleHslAnimation.js";
 import type { IParticleNumericValueAnimation } from "./Interfaces/IParticleValueAnimation.js";
 import type { IParticleOpacityData } from "./Interfaces/IParticleOpacityData.js";
@@ -62,8 +60,6 @@ import { OutMode } from "../Enums/Modes/OutMode.js";
 import { ParticleOutType } from "../Enums/Types/ParticleOutType.js";
 import type { ParticlesOptions } from "../Options/Classes/Particles/ParticlesOptions.js";
 import type { RecursivePartial } from "../Types/RecursivePartial.js";
-import { alterHsl } from "../Utils/CanvasUtils.js";
-import { getHslFromAnimation } from "../Utils/ColorUtils.js";
 import { loadParticlesOptions } from "../Utils/OptionsUtils.js";
 
 /**
@@ -110,7 +106,6 @@ function loadEffectData(
   return deepExtend(
     {
       close: effectOptions.close,
-      fill: effectOptions.fill,
     },
     itemFromSingleOrMultiple(effectData, id, reduceDuplicates),
   ) as IShapeValues;
@@ -135,7 +130,6 @@ function loadShapeData(
   return deepExtend(
     {
       close: shapeOptions.close,
-      fill: shapeOptions.fill,
     },
     itemFromSingleOrMultiple(shapeData, id, reduceDuplicates),
   ) as IShapeValues;
@@ -175,11 +169,6 @@ export class Particle {
   bubble!: IBubbleParticleData;
 
   /**
-   * Gets the particle color options
-   */
-  color?: IParticleHslAnimation;
-
-  /**
    * Checks if the particle is destroyed
    */
   destroyed!: boolean;
@@ -205,9 +194,19 @@ export class Particle {
   effectData?: IShapeValues;
 
   /**
-   * Checks if the particle effect needs to be filled with a color
+   * Sets the particle fill color
    */
-  effectFill!: boolean;
+  fillColor?: IParticleHslAnimation;
+
+  /**
+   * Sets the particle fill status
+   */
+  fillEnabled?: boolean;
+
+  /**
+   * Sets the particle fill opacity
+   */
+  fillOpacity?: number;
 
   group?: string;
 
@@ -243,11 +242,6 @@ export class Particle {
   moveCenter!: ICenterCoordinates;
 
   /**
-   * Gets particle movement speed decay
-   */
-  moveDecay!: number;
-
-  /**
    * Gets particle offset position, used for parallax interaction
    */
   offset!: Vector;
@@ -263,16 +257,6 @@ export class Particle {
   options!: ParticlesOptions;
 
   outType!: ParticleOutType;
-
-  /**
-   * Gets the delay for every path step
-   */
-  pathDelay!: number;
-
-  /**
-   * Gets the particle's path generator
-   */
-  pathGenerator?: IMovePathGenerator;
 
   /**
    * Gets if the particle should rotate with path
@@ -318,11 +302,6 @@ export class Particle {
    * Gets particle shape options
    */
   shapeData?: IShapeValues;
-
-  /**
-   * Checks if the particle shape needs to be filled with a color
-   */
-  shapeFill!: boolean;
 
   /**
    * Gets the particle side count
@@ -375,6 +354,7 @@ export class Particle {
   zIndexFactor!: number;
 
   private readonly _cachedOpacityData: IParticleOpacityData = {
+    fillOpacity: defaultOpacity,
     opacity: defaultOpacity,
     strokeOpacity: defaultOpacity,
   };
@@ -411,7 +391,6 @@ export class Particle {
     this.slow.inRange = false;
 
     const container = this.container,
-      pathGenerator = this.pathGenerator,
       shapeDrawer = this.shape ? container.particles.shapeDrawers.get(this.shape) : undefined;
 
     shapeDrawer?.particleDestroy?.(this);
@@ -423,8 +402,6 @@ export class Particle {
     for (const updater of container.particles.updaters) {
       updater.particleDestroyed?.(this, override);
     }
-
-    pathGenerator?.reset(this);
 
     this._engine.dispatchEvent(EventType.particleDestroyed, {
       container: this.container,
@@ -447,7 +424,7 @@ export class Particle {
   }
 
   getFillColor(): IHsl | undefined {
-    return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.color));
+    return this._getRollColor(this.bubble.color ?? getHslFromAnimation(this.fillColor));
   }
 
   getMass(): number {
@@ -459,10 +436,12 @@ export class Particle {
       zIndexFactor = zIndexFactorOffset - this.zIndexFactor,
       zOpacityFactor = zIndexFactor ** zIndexOptions.opacityRate,
       opacity = this.bubble.opacity ?? getRangeValue(this.opacity?.value ?? defaultOpacity),
-      strokeOpacity = this.strokeOpacity ?? opacity;
+      fillOpacity = this.fillOpacity ?? defaultOpacity,
+      strokeOpacity = this.strokeOpacity ?? defaultOpacity;
 
+    this._cachedOpacityData.fillOpacity = opacity * fillOpacity * zOpacityFactor;
     this._cachedOpacityData.opacity = opacity * zOpacityFactor;
-    this._cachedOpacityData.strokeOpacity = strokeOpacity * zOpacityFactor;
+    this._cachedOpacityData.strokeOpacity = opacity * strokeOpacity * zOpacityFactor;
 
     return this._cachedOpacityData;
   }
@@ -519,9 +498,7 @@ export class Particle {
     this.id = id;
     this.group = group;
     this.effectClose = true;
-    this.effectFill = true;
     this.shapeClose = true;
-    this.shapeFill = true;
     this.pathRotation = false;
     this.lastPathTime = 0;
     this.destroyed = false;
@@ -601,31 +578,9 @@ export class Particle {
       particlesOptions.load(shapeData.particles);
     }
 
-    this.effectFill = effectData?.fill ?? particlesOptions.effect.fill;
     this.effectClose = effectData?.close ?? particlesOptions.effect.close;
-    this.shapeFill = shapeData?.fill ?? particlesOptions.shape.fill;
     this.shapeClose = shapeData?.close ?? particlesOptions.shape.close;
     this.options = particlesOptions;
-
-    const pathOptions = this.options.move.path;
-
-    this.pathDelay = getRangeValue(pathOptions.delay.value) * millisecondsToSeconds;
-
-    if (pathOptions.generator) {
-      let pathGenerator = this.container.particles.pathGenerators.get(pathOptions.generator);
-
-      if (!pathGenerator) {
-        pathGenerator = this.container.particles.availablePathGenerators.get(pathOptions.generator);
-
-        if (pathGenerator) {
-          this.container.particles.pathGenerators.set(pathOptions.generator, pathGenerator);
-
-          pathGenerator.init();
-        }
-      }
-
-      this.pathGenerator = pathGenerator;
-    }
 
     container.retina.initParticle(this);
 
@@ -646,7 +601,6 @@ export class Particle {
     /* animation - velocity for speed */
     this.initialVelocity = this._calculateVelocity();
     this.velocity = this.initialVelocity.copy();
-    this.moveDecay = decayOffset - getRangeValue(this.options.move.decay);
 
     const particles = container.particles;
 
@@ -684,10 +638,6 @@ export class Particle {
 
     for (const updater of particles.updaters) {
       updater.init(this);
-    }
-
-    for (const mover of particles.movers) {
-      mover.init(this);
     }
 
     effectDrawer?.particleInit?.(container, this);

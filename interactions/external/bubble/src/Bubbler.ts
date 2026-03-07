@@ -54,11 +54,13 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
   handleClickMode: (mode: string, interactivityData: IInteractivityData) => void;
 
   private readonly _engine;
+  private _maxDistance;
 
   constructor(engine: Engine, container: BubbleContainer) {
     super(container);
 
     this._engine = engine;
+    this._maxDistance = 0;
 
     container.bubble ??= {};
 
@@ -71,6 +73,10 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
 
       container.bubble.clicking = true;
     };
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(particle: Particle, _delta: IDelta, force?: boolean): void {
@@ -91,6 +97,8 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
     if (!bubble) {
       return;
     }
+
+    this._maxDistance = bubble.distance;
 
     container.retina.bubbleModeDistance = bubble.distance * container.retina.pixelRatio;
 
@@ -180,7 +188,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       return;
     }
 
-    const query = container.particles.quadTree.queryCircle(mouseClickPos, distance, p =>
+    const query = container.particles.grid.queryCircle(mouseClickPos, distance, p =>
         this.isEnabled(interactivityData, p),
       ),
       { bubble } = container;
@@ -251,9 +259,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
       return;
     }
 
-    const query = container.particles.quadTree.queryCircle(mousePos, distance, p =>
-      this.isEnabled(interactivityData, p),
-    );
+    const query = container.particles.grid.queryCircle(mousePos, distance, p => this.isEnabled(interactivityData, p));
 
     // for (const { distance, particle } of query) {
     for (const particle of query) {
@@ -466,7 +472,7 @@ export class Bubbler extends ExternalInteractorBase<BubbleContainer> {
                 elem.offsetWidth * pxRatio,
                 elem.offsetHeight * pxRatio,
               ),
-        query = container.particles.quadTree.query(area, p => this.isEnabled(interactivityData, p));
+        query = container.particles.grid.query(area, p => this.isEnabled(interactivityData, p));
 
       for (const particle of query) {
         if (!area.contains(particle.getPosition())) {

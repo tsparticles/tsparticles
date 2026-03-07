@@ -10,12 +10,14 @@ import {
   getDistances,
   getRandom,
   isPointInside,
+  originPoint,
   randomInRangeValue,
 } from "@tsparticles/engine";
 import type { IOutModeManager } from "./IOutModeManager.js";
 
 const minVelocity = 0,
-  minDistance = 0;
+  minDistance = 0,
+  updateVector = Vector.origin;
 
 export class OutOutMode implements IOutModeManager {
   modes: (OutMode | keyof typeof OutMode)[];
@@ -38,15 +40,16 @@ export class OutOutMode implements IOutModeManager {
 
     switch (particle.outType) {
       case ParticleOutType.inside: {
-        const { x: vx, y: vy } = particle.velocity,
-          circVec = Vector.origin;
+        const { x: vx, y: vy } = particle.velocity;
 
-        circVec.length = particle.moveCenter.radius;
-        circVec.angle = particle.velocity.angle + Math.PI;
+        updateVector.setTo(originPoint);
 
-        circVec.addTo(Vector.create(particle.moveCenter));
+        updateVector.length = particle.moveCenter.radius;
+        updateVector.angle = particle.velocity.angle + Math.PI;
 
-        const { dx, dy } = getDistances(particle.position, circVec);
+        updateVector.addTo(particle.moveCenter);
+
+        const { dx, dy } = getDistances(particle.position, updateVector);
 
         if (
           (vx <= minVelocity && dx >= minDistance) ||
@@ -78,7 +81,7 @@ export class OutOutMode implements IOutModeManager {
         break;
       }
       default: {
-        if (isPointInside(particle.position, container.canvas.size, Vector.origin, particle.getRadius(), direction)) {
+        if (isPointInside(particle.position, container.canvas.size, originPoint, particle.getRadius(), direction)) {
           return;
         }
 

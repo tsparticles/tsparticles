@@ -12,13 +12,11 @@ import { isNull } from "../../../../Utils/TypeUtils.js";
  */
 export class Shape implements IShape, IOptionLoader<IShape> {
   close;
-  fill;
   options: ShapeData;
   type: SingleOrMultiple<string>;
 
   constructor() {
     this.close = true;
-    this.fill = true;
     this.options = {};
     this.type = "circle";
   }
@@ -42,10 +40,6 @@ export class Shape implements IShape, IOptionLoader<IShape> {
 
     if (data.close !== undefined) {
       this.close = data.close;
-    }
-
-    if (data.fill !== undefined) {
-      this.fill = data.fill;
     }
 
     if (data.type !== undefined) {

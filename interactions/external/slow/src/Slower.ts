@@ -16,9 +16,16 @@ const slowMode = "slow",
  * Particle slow manager
  */
 export class Slower extends ExternalInteractorBase<SlowContainer> {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
+  private _maxDistance;
+
   constructor(container: SlowContainer) {
     super(container);
+
+    this._maxDistance = 0;
+  }
+
+  get maxDistance(): number {
+    return this._maxDistance;
   }
 
   clear(particle: Particle, _delta: IDelta, force?: boolean): void {
@@ -36,6 +43,8 @@ export class Slower extends ExternalInteractorBase<SlowContainer> {
     if (!slow) {
       return;
     }
+
+    this._maxDistance = slow.radius;
 
     container.retina.slowModeRadius = slow.radius * container.retina.pixelRatio;
   }

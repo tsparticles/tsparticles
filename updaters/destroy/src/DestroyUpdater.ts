@@ -85,8 +85,9 @@ export class DestroyUpdater implements IParticleUpdater {
   }
 
   update(particle: DestroyParticle): void {
-    if (!this.isEnabled(particle)) {
-      return;
+    if (particle.unbreakableUntil !== undefined && performance.now() >= particle.unbreakableUntil) {
+      particle.unbreakable = false;
+      particle.unbreakableUntil = undefined;
     }
 
     const position = particle.getPosition(),

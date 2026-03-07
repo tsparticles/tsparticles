@@ -1,9 +1,10 @@
-import type { ITwinkleValues } from "./ITwinkleValues.js";
+import type { ITwinkleLinksValues } from "./ITwinkleLinksValues.js";
+import type { ITwinkleParticlesValues } from "./ITwinkleParticlesValues.js";
 
 /**
  * [[include:Options/Particles/Twinkle.md]]
  */
 export interface ITwinkle {
-  lines: ITwinkleValues;
-  particles: ITwinkleValues;
+  links: ITwinkleLinksValues;
+  particles: ITwinkleParticlesValues;
 }

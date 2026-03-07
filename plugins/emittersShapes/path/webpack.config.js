@@ -1,12 +1,18 @@
 import { loadParticlesPluginEmittersShape } from "@tsparticles/webpack-plugin";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
-import path from "path";
+import path from "node:path";
 
 const __filename = fileURLToPath(import.meta.url),
-    __dirname = path.dirname(__filename),
-    rootPkgPath = path.join(__dirname, "package.json"),
-    pkg = await fs.readJson(rootPkgPath),
-    version = pkg.version;
+  __dirname = path.dirname(__filename),
+  rootPkgPath = path.join(__dirname, "package.json"),
+  pkg = await fs.readJson(rootPkgPath),
+  version = pkg.version;
 
-export default loadParticlesPluginEmittersShape({ moduleName: "path", pluginName: "Path", version, dir: __dirname });
+export default loadParticlesPluginEmittersShape({
+  moduleName: "path",
+  pluginName: "Path",
+  version,
+  dir: __dirname,
+  progress: false,
+});

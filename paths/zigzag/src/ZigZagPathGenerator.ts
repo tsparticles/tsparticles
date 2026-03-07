@@ -1,7 +1,6 @@
 import {
   type Container,
   type IDelta,
-  type IMovePathGenerator,
   type Particle,
   type RangeValue,
   Vector,
@@ -10,6 +9,7 @@ import {
   getRangeValue,
   half,
 } from "@tsparticles/engine";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 
 const angularFrequencyFactor = 0.5,
   halfPI = Math.PI * half;
@@ -38,9 +38,11 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
   readonly options;
 
   private readonly _container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
     this.options = deepExtend({}, defaultOptions) as IZigZagOptions;
   }
 
@@ -62,7 +64,10 @@ export class ZigZagPathGenerator implements IMovePathGenerator {
     particle.position.x += zigzagAngle * Math.cos(particle.velocity.angle + halfPI);
     particle.position.y += zigzagAngle * Math.sin(particle.velocity.angle + halfPI);
 
-    return Vector.origin;
+    this._res.x = 0;
+    this._res.y = 0;
+
+    return this._res;
   }
 
   init(): void {

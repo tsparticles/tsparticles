@@ -1,7 +1,7 @@
 import { loadParticlesPath } from "@tsparticles/webpack-plugin";
-import { fileURLToPath } from "url";
+import { fileURLToPath } from "node:url";
 import fs from "fs-extra";
-import path from "path";
+import path from "node:path";
 
 const __filename = fileURLToPath(import.meta.url),
     __dirname = path.dirname(__filename),
@@ -10,8 +10,9 @@ const __filename = fileURLToPath(import.meta.url),
     version = pkg.version;
 
 export default loadParticlesPath({
-    moduleName: "curl.noise",
-    pluginName: "Curl Noise",
-    version,
-    dir: __dirname
+  moduleName: "curl.noise",
+  pluginName: "Curl Noise",
+  version,
+  dir: __dirname,
+  progress: false,
 });

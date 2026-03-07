@@ -8,13 +8,16 @@ const options: ISourceOptions = {
       value: 200,
       limit: { value: 200 },
     },
-    color: {
-      value: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],
-      animation: {
-        enable: true,
-        speed: 20,
-        sync: false,
+    fill: {
+      color: {
+        value: ["#ff0000", "#00ff00", "#0000ff", "#ffff00", "#ff00ff", "#00ffff"],
+        animation: {
+          enable: true,
+          speed: 20,
+          sync: false,
+        },
       },
+      enable: true,
     },
     shape: {
       type: ["circle", "square", "triangle", "star", "polygon"],

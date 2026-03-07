@@ -1,6 +1,6 @@
 import { type IContainerPlugin, type ICoordinates, getRangeMax } from "@tsparticles/engine";
 import type { PoissonContainer } from "./types.js";
-import { PoissonDisc } from "./PoissonDisc.js";
+import type { PoissonDisc } from "./PoissonDisc.js";
 
 /**
  * Poisson Disc manager
@@ -48,6 +48,10 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
 
     this.redrawTimeout = setTimeout(() => {
       void (async (): Promise<void> => {
+        if (this._container.destroyed) {
+          return;
+        }
+
         await this._initData();
 
         await container.particles.redraw();
@@ -72,6 +76,8 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
 
     this._currentIndex = 0;
 
+    const { PoissonDisc } = await import("./PoissonDisc.js");
+
     this.poissonDisc = new PoissonDisc(
       canvasSize,
       poissonOptions.radius
@@ -87,7 +93,7 @@ export class PoissonDiscPluginInstance implements IContainerPlugin {
     const noSteps = 0;
 
     if (poissonOptions.steps > noSteps) {
-      await this.poissonDisc.steps(poissonOptions.steps);
+      this.poissonDisc.steps(poissonOptions.steps);
     } else {
       await this.poissonDisc.run();
     }

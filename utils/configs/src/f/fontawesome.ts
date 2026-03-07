@@ -25,8 +25,11 @@ const options: ISourceOptions = {
     },
   },
   particles: {
-    color: {
-      value: "#ffffff",
+    fill: {
+      color: {
+        value: "#ffffff",
+      },
+      enable: true,
     },
     links: {
       blink: false,
@@ -63,14 +66,12 @@ const options: ISourceOptions = {
       options: {
         char: [
           {
-            fill: true,
             font: "Font Awesome 5 Brands",
             style: "",
             value: ["\uf179"],
             weight: "400",
           },
           {
-            fill: true,
             font: "Font Awesome 5 Free",
             style: "",
             value: ["\uf5d1"],
@@ -81,7 +82,7 @@ const options: ISourceOptions = {
       type: "char",
     },
     stroke: {
-      color: "#ffffff",
+      color: { value: "#ffffff" },
       width: 1,
     },
     size: {

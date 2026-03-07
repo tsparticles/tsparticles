@@ -1,7 +1,6 @@
 import type { MoveDirection, MoveDirectionAlt } from "../../../../Enums/Directions/MoveDirection.js";
 import type { IDistance } from "../../../../Core/Interfaces/IDistance.js";
 import type { IMoveAngle } from "./IMoveAngle.js";
-import type { IMoveAttract } from "./IMoveAttract.js";
 import type { IMoveCenter } from "./IMoveCenter.js";
 import type { IMoveGravity } from "./IMoveGravity.js";
 import type { IMovePath } from "./Path/IMovePath.js";
@@ -18,11 +17,6 @@ export interface IMove {
    * The angle value of the particles moving direction, in degrees.
    */
   angle: number | IMoveAngle;
-
-  /**
-   * The attract options for the particles.
-   */
-  attract: IMoveAttract;
 
   /**
    * The center of the particles moving direction. Used when the direction is {@link MoveDirection.inside} or {@link MoveDirection.outside}, or when {@link spin} is enabled.

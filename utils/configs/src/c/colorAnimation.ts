@@ -10,25 +10,28 @@ const options: ISourceOptions = {
         enable: true,
       },
     },
-    color: {
-      value: "#ff0000",
-      animation: {
-        h: {
-          enable: true,
-          speed: { min: 30, max: 60 },
-          sync: true,
-        },
-        s: {
-          enable: true,
-          speed: { min: 5, max: 10 },
-          sync: true,
-        },
-        l: {
-          enable: true,
-          speed: { min: 5, max: 10 },
-          sync: true,
+    fill: {
+      color: {
+        value: "#ff0000",
+        animation: {
+          h: {
+            enable: true,
+            speed: { min: 30, max: 60 },
+            sync: true,
+          },
+          s: {
+            enable: true,
+            speed: { min: 5, max: 10 },
+            sync: true,
+          },
+          l: {
+            enable: true,
+            speed: { min: 5, max: 10 },
+            sync: true,
+          },
         },
       },
+      enable: true,
     },
     stroke: {
       width: 30,

@@ -1,13 +1,7 @@
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import {
-  type Container,
-  type ICoordinates,
-  type IMovePathGenerator,
-  Vector,
-  deepExtend,
-  getRandom,
-} from "@tsparticles/engine";
+import { type Container, type ICoordinates, Vector, deepExtend, getRandom } from "@tsparticles/engine";
+import { type IMovePathGenerator } from "@tsparticles/plugin-move";
 import type { IPolygonPathOptions } from "./IPolygonPathOptions.js";
 import type { PolygonPathParticle } from "./PolygonPathParticle.js";
 
@@ -21,9 +15,11 @@ export class PolygonPathGenerator implements IMovePathGenerator {
   dirsList: ICoordinates[];
   readonly options;
   private readonly _container;
+  private readonly _res: Vector;
 
   constructor(container: Container) {
     this._container = container;
+    this._res = Vector.origin;
     this.dirsList = [];
     this.options = deepExtend({}, defaultOptions) as IPolygonPathOptions;
   }
@@ -46,7 +42,10 @@ export class PolygonPathGenerator implements IMovePathGenerator {
 
     const direction = this.dirsList[p.hexDirection]!;
 
-    return Vector.create(direction.x * p.hexSpeed, direction.y * p.hexSpeed);
+    this._res.x = direction.x * p.hexSpeed;
+    this._res.y = direction.y * p.hexSpeed;
+
+    return this._res;
   }
 
   init(): void {

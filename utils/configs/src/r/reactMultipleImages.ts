@@ -4,8 +4,11 @@ const options: ISourceOptions = {
   key: "reactMultipleImages",
   name: "React Multiple Images",
   particles: {
-    color: {
-      value: "#CCC",
+    fill: {
+      color: {
+        value: "#CCC",
+      },
+      enable: true,
     },
     collisions: {
       enable: true,
@@ -48,24 +51,18 @@ const options: ISourceOptions = {
             replaceColor: true,
             src: "https://particles.js.org/images/hdr/fruits/cherry.png",
             width: 23,
-            fill: true,
-            close: true,
           },
           {
             height: 20,
             replaceColor: true,
             src: "https://particles.js.org/images/hdr/fruits/grapes.png",
             width: 20,
-            fill: true,
-            close: true,
           },
           {
             height: 20,
             replaceColor: true,
             src: "https://particles.js.org/images/hdr/fruits/lemon.png",
             width: 20,
-            fill: true,
-            close: true,
           },
         ],
       },

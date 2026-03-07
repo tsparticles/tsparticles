@@ -29,26 +29,123 @@ import type { SingleOrMultiple } from "../Types/SingleOrMultiple.js";
 import { StartValueType } from "../Enums/Types/StartValueType.js";
 import { Vector } from "../Core/Utils/Vectors.js";
 
-const minRadius = 0;
+const minRadius = 0,
+  minMemoizeSize = 0;
+
+interface MemoizeOptions<TArgs> {
+  keyFn?: (args: TArgs) => string;
+  maxSize?: number;
+  ttlMs?: number;
+}
 
 /**
+ * Memoize a function's results with optional bounded size and TTL.
  *
- * @param fn - the function to memoize
+ * Backward compatible: callers using `memoize(fn)` keep the same semantics.
+ * Options: \{ maxSize?: number, ttlMs?: number, keyFn?: (args) =\> string \}
+ * Default keyer uses a stable serialization of the arguments (sorted keys)
+ * which makes equal-shaped objects produce the same cache key.
+ *
+ * See: .planning/research/PITFALLS.md for tradeoffs of keying/eviction strategies.
+ * @param fn -
+ * @param options -
  * @returns the memoized function
  */
-function memoize<Args extends unknown[], Result>(fn: (...args: Args) => Result): (...args: Args) => Result {
-  const cache = new Map<string, Result>();
+export function memoize<TArgs extends unknown[], Result>(
+  fn: (...args: TArgs) => Result,
+  options?: MemoizeOptions<TArgs>,
+): (...args: TArgs) => Result {
+  const cache = new Map<string, { ts: number; value: Result }>(),
+    maxSize = options?.maxSize,
+    ttlMs = options?.ttlMs,
+    keyFn = options?.keyFn,
+    stableStringify = (obj: unknown, seen = new WeakSet()): string => {
+      if (obj === null) {
+        return "null";
+      }
 
-  return (...args: Args): Result => {
-    const key = JSON.stringify(args); // Serialize arguments as the cache key
+      const t = typeof obj;
 
-    if (cache.has(key)) {
-      return cache.get(key) as Result; // Return cached result if available
+      if (t === "undefined") {
+        return "undefined";
+      }
+
+      if (t === "number" || t === "boolean" || t === "string") {
+        return JSON.stringify(obj);
+      }
+
+      if (t === "function") {
+        try {
+          const fn = obj as unknown as (...args: unknown[]) => unknown;
+
+          return fn.toString();
+        } catch {
+          return '"[Function]"';
+        }
+      }
+
+      if (t === "symbol") {
+        try {
+          return (obj as symbol).toString();
+        } catch {
+          // Avoid default object stringification which yields "[object Object]".
+          return '"[Symbol]"';
+        }
+      }
+
+      if (Array.isArray(obj)) {
+        return `[${(obj as unknown[]).map(i => stableStringify(i, seen)).join(",")}]`;
+      }
+
+      // object
+      if (seen.has(obj as object)) {
+        return '"[Circular]"';
+      }
+
+      seen.add(obj as object);
+
+      const keys = Object.keys(obj as Record<string, unknown>).sort();
+
+      return `{${keys.map(k => `${JSON.stringify(k)}:${stableStringify((obj as Record<string, unknown>)[k], seen)}`).join(",")}}`;
+    },
+    defaultKeyer = (args: TArgs): string => stableStringify(args),
+    makeKey = (args: TArgs): string => (keyFn ? keyFn(args) : defaultKeyer(args)),
+    ensureBounds = (): void => {
+      if (typeof maxSize === "number" && maxSize >= minMemoizeSize) {
+        while (cache.size > maxSize) {
+          // evict oldest entry (Map preserves insertion order)
+          const firstKey = cache.keys().next().value;
+
+          if (firstKey === undefined) break;
+
+          cache.delete(firstKey);
+        }
+      }
+    };
+
+  return (...args: TArgs): Result => {
+    const key = makeKey(args),
+      now = Date.now(),
+      entry = cache.get(key);
+
+    if (entry !== undefined) {
+      if (ttlMs && now - entry.ts > ttlMs) {
+        // expired
+        cache.delete(key);
+      } else {
+        // refresh insertion order: delete then set to move to newest
+        cache.delete(key);
+        cache.set(key, { value: entry.value, ts: entry.ts });
+
+        return entry.value;
+      }
     }
 
-    const result = fn(...args); // Compute the result
+    const result = fn(...args);
 
-    cache.set(key, result); // Store result in cache
+    cache.set(key, { value: result, ts: now });
+
+    ensureBounds();
 
     return result;
   };
@@ -213,7 +310,7 @@ export function calculateBounds(point: ICoordinates, radius: number): IBounds {
  */
 export function deepExtend(destination: unknown, ...sources: unknown[]): unknown {
   for (const source of sources) {
-    if (source === undefined || source === null) {
+    if (isNull(source)) {
       continue;
     }
 
@@ -223,31 +320,62 @@ export function deepExtend(destination: unknown, ...sources: unknown[]): unknown
       continue;
     }
 
-    const sourceIsArray = Array.isArray(source);
-
-    if (sourceIsArray) {
+    if (Array.isArray(source)) {
       if (!Array.isArray(destination)) {
         destination = [];
       }
-    } else {
-      if (!isObject(destination) || Array.isArray(destination)) {
-        destination = {};
-      }
+    } else if (!isObject(destination) || Array.isArray(destination)) {
+      destination = {};
     }
 
-    for (const key in source) {
-      if (key === "__proto__") {
+    // Micro-optimization + safety: if the source is a shallow object (no nested objects/arrays),
+    // perform a fast shallow copy for common-case merges. Also explicitly ignore dangerous
+    // prototype/constructor keys to avoid prototype pollution. See .planning/research/PITFALLS.md
+    // for rationale.
+    const sourceKeys = Object.keys(source),
+      dangerousKeys = new Set(["__proto__", "constructor", "prototype"]),
+      // Detect if the source contains nested structures that need full deep merging
+      hasNested = sourceKeys.some(k => {
+        const v = (source as Record<string, unknown>)[k];
+
+        return isObject(v) || Array.isArray(v);
+      });
+
+    if (!hasNested) {
+      // shallow fast-path
+      const sourceDict = source as Record<string, unknown>,
+        destDict = destination as Record<string, unknown>;
+
+      for (const key of sourceKeys) {
+        if (dangerousKeys.has(key)) {
+          continue;
+        }
+
+        // Avoid assigning undefined keys and preserve type-safety
+        if (key in sourceDict) {
+          const v = sourceDict[key];
+
+          if (v !== undefined) {
+            destDict[key] = v;
+          }
+        }
+      }
+
+      continue;
+    }
+
+    for (const key of sourceKeys) {
+      if (dangerousKeys.has(key)) {
         continue;
       }
 
       const sourceDict = source as Record<string, unknown>,
-        value = sourceDict[key],
-        destDict = destination as Record<string, unknown>;
+        destDict = destination as Record<string, unknown>,
+        value = sourceDict[key];
 
-      destDict[key] =
-        isObject(value) && Array.isArray(value)
-          ? value.map(v => deepExtend(destDict[key], v))
-          : deepExtend(destDict[key], value);
+      destDict[key] = Array.isArray(value)
+        ? value.map(v => deepExtend(undefined, v))
+        : deepExtend(destDict[key], value);
     }
   }
 
@@ -615,7 +743,7 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
   for (const key in style) {
     const styleKey = style[key];
 
-    if (!Object.hasOwn(style, key) || isNull(styleKey)) {
+    if (!(key in style) || isNull(styleKey)) {
       continue;
     }
 
@@ -627,10 +755,10 @@ export function cloneStyle(style: Partial<CSSStyleDeclaration>): CSSStyleDeclara
 
     const stylePriority = style.getPropertyPriority?.(styleKey);
 
-    if (!stylePriority) {
-      clonedStyle.setProperty(styleKey, styleValue);
-    } else {
+    if (stylePriority) {
       clonedStyle.setProperty(styleKey, styleValue, stylePriority);
+    } else {
+      clonedStyle.setProperty(styleKey, styleValue);
     }
   }
 
@@ -745,16 +873,13 @@ export async function getItemMapFromInitializer<TItem, TInitializer extends Gene
   let res = map.get(container);
 
   if (!res || force) {
-    res = new Map<string, TItem>();
-
     const entries = await Promise.all(
-      [...initializers.entries()].map(async ([key, initializer]) => [key, await initializer(container)] as const),
+      [...initializers.entries()].map(([key, initializer]) =>
+        initializer(container).then(item => [key, item] as const),
+      ),
     );
 
-    for (const [key, item] of entries) {
-      res.set(key, item);
-    }
-
+    res = new Map(entries);
     map.set(container, res);
   }
 

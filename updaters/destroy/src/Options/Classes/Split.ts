@@ -14,13 +14,15 @@ import { SplitFactor } from "./SplitFactor.js";
 import { SplitRate } from "./SplitRate.js";
 
 export class Split implements ISplit, IOptionLoader<ISplit> {
-  color?: OptionsColor;
-  colorOffset?: Partial<IRangeHsl>;
   count: number;
   factor: SplitFactor;
+  fillColor?: OptionsColor;
+  fillColorOffset?: Partial<IRangeHsl>;
   particles?: SingleOrMultiple<RecursivePartial<IParticlesOptions>>;
   rate: SplitRate;
   sizeOffset: boolean;
+  strokeColor?: OptionsColor;
+  strokeColorOffset?: Partial<IRangeHsl>;
 
   constructor() {
     this.count = 1;
@@ -34,8 +36,12 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
       return;
     }
 
-    if (data.color !== undefined) {
-      this.color = OptionsColor.create(this.color, data.color);
+    if (data.fillColor !== undefined) {
+      this.fillColor = OptionsColor.create(this.fillColor, data.fillColor);
+    }
+
+    if (data.strokeColor !== undefined) {
+      this.strokeColor = OptionsColor.create(this.strokeColor, data.strokeColor);
     }
 
     if (data.count !== undefined) {
@@ -53,19 +59,35 @@ export class Split implements ISplit, IOptionLoader<ISplit> {
       this.sizeOffset = data.sizeOffset;
     }
 
-    if (data.colorOffset) {
-      this.colorOffset = this.colorOffset ?? {};
+    if (data.fillColorOffset) {
+      this.fillColorOffset = this.fillColorOffset ?? {};
 
-      if (data.colorOffset.h !== undefined) {
-        this.colorOffset.h = data.colorOffset.h;
+      if (data.fillColorOffset.h !== undefined) {
+        this.fillColorOffset.h = data.fillColorOffset.h;
       }
 
-      if (data.colorOffset.s !== undefined) {
-        this.colorOffset.s = data.colorOffset.s;
+      if (data.fillColorOffset.s !== undefined) {
+        this.fillColorOffset.s = data.fillColorOffset.s;
       }
 
-      if (data.colorOffset.l !== undefined) {
-        this.colorOffset.l = data.colorOffset.l;
+      if (data.fillColorOffset.l !== undefined) {
+        this.fillColorOffset.l = data.fillColorOffset.l;
+      }
+    }
+
+    if (data.strokeColorOffset) {
+      this.strokeColorOffset = this.strokeColorOffset ?? {};
+
+      if (data.strokeColorOffset.h !== undefined) {
+        this.strokeColorOffset.h = data.strokeColorOffset.h;
+      }
+
+      if (data.strokeColorOffset.s !== undefined) {
+        this.strokeColorOffset.s = data.strokeColorOffset.s;
+      }
+
+      if (data.strokeColorOffset.l !== undefined) {
+        this.strokeColorOffset.l = data.strokeColorOffset.l;
       }
     }
   }

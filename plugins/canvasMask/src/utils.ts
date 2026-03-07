@@ -72,8 +72,11 @@ export function addParticlesFromCanvasPixels(
       pOptions: RecursivePartial<IParticlesOptions> = {};
 
     if (override.color) {
-      pOptions.color = {
-        value: pixel,
+      pOptions.fill = {
+        color: {
+          value: pixel,
+        },
+        enable: true,
       };
     }
 

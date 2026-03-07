@@ -11,11 +11,6 @@ export interface IShape {
   close: boolean;
 
   /**
-   * Set this property to false for creating an empty shape
-   */
-  fill: boolean;
-
-  /**
    * Shape options
    */
   options: ShapeData;

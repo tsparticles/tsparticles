@@ -33,7 +33,8 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
   rate;
   shape: EmitterShape;
   size?: EmitterSize;
-  spawnColor?: AnimatableColor;
+  spawnFillColor?: AnimatableColor;
+  spawnStrokeColor?: AnimatableColor;
   startCount;
 
   constructor() {
@@ -93,10 +94,16 @@ export class Emitter implements IEmitter, IOptionLoader<IEmitter> {
       }
     }
 
-    if (data.spawnColor !== undefined) {
-      this.spawnColor ??= new AnimatableColor();
+    if (data.spawnFillColor !== undefined) {
+      this.spawnFillColor ??= new AnimatableColor();
 
-      this.spawnColor.load(data.spawnColor);
+      this.spawnFillColor.load(data.spawnFillColor);
+    }
+
+    if (data.spawnStrokeColor !== undefined) {
+      this.spawnStrokeColor ??= new AnimatableColor();
+
+      this.spawnStrokeColor.load(data.spawnStrokeColor);
     }
 
     if (data.startCount !== undefined) {
