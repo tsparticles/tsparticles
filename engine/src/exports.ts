@@ -39,6 +39,7 @@ export * from "./Options/Classes/Particles/Bounce/ParticlesBounce.js";
 export * from "./Options/Classes/Particles/Bounce/ParticlesBounceFactor.js";
 
 export * from "./Options/Classes/Particles/ParticlesOptions.js";
+export * from "./Options/Classes/Particles/Fill.js";
 export * from "./Options/Classes/Particles/Stroke.js";
 
 export * from "./Options/Classes/Particles/Move/Move.js";
