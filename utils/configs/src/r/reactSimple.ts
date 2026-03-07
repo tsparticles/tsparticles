@@ -71,27 +71,6 @@ const options: ISourceOptions = {
       opacity: 1,
     },
   },
-  polygon: {
-    draw: {
-      enable: false,
-      stroke: {
-        color: "rgba(255, 255, 255, .1)",
-        width: 0.5,
-        opacity: 0.1,
-      },
-    },
-    enable: false,
-    inline: {
-      arrangement: "one-per-point",
-    },
-    move: {
-      radius: 10,
-      type: "path",
-    },
-    scale: 1,
-    type: "inline",
-    url: "",
-  },
   backgroundMask: {
     cover: {
       color: "#fff",

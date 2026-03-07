@@ -12,7 +12,7 @@ const options: ISourceOptions = {
     },
     stroke: {
       width: 1,
-      color: "#ffffff",
+      color: { value: "#ffffff" },
     },
     shape: {
       type: "text",

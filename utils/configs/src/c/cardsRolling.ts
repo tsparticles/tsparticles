@@ -36,7 +36,7 @@ const cardSuits = ["spades", "hearts", "diamonds", "clubs"] as const,
       },
       stroke: {
         width: 1,
-        color: "#000",
+        color: { value: "#000" },
       },
       move: {
         enable: true,

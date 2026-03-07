@@ -198,7 +198,7 @@ export class Options implements IOptions, IOptionLoader<IOptions> {
         },
         stroke: !paletteData.fill
           ? paletteData.colors.map(color => ({
-              color: color,
+              color: { value: color },
               width: 1,
             }))
           : undefined,

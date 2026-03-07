@@ -82,7 +82,7 @@ const options: ISourceOptions = {
       type: "circle",
     },
     stroke: {
-      color: "#fff",
+      color: { value: "#fff" },
       width: 1,
     },
     size: {
