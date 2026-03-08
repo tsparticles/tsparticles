@@ -57,7 +57,7 @@ export class ByteStream {
    */
   readSubBlocks(): string {
     let blockString = "",
-      size = 0;
+      size: number;
 
     const minCount = 0,
       emptySize = 0;

@@ -627,7 +627,7 @@ export async function decodeGIF(
     return gif;
   } catch (error) {
     if (error instanceof EvalError) {
-      throw new Error(`error while parsing frame ${frameIndex.toString()} "${error.message}"`);
+      throw new Error(`error while parsing frame ${frameIndex.toString()} "${error.message}"`, { cause: error });
     }
 
     throw error;
