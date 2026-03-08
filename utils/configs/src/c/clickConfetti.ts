@@ -14,26 +14,30 @@ const options: ISourceOptions = {
     modes: {
       emitters: {
         direction: "none",
-        spawnFillColor: {
-          value: "#ff0000",
-          animation: {
-            h: {
-              enable: true,
-              offset: {
-                min: -1.4,
-                max: 1.4,
+        spawn: {
+          fill: {
+            color: {
+              value: "#ff0000",
+              animation: {
+                h: {
+                  enable: true,
+                  offset: {
+                    min: -1.4,
+                    max: 1.4,
+                  },
+                  speed: 0.1,
+                  sync: false,
+                },
+                l: {
+                  enable: true,
+                  offset: {
+                    min: 20,
+                    max: 80,
+                  },
+                  speed: 0,
+                  sync: false,
+                },
               },
-              speed: 0.1,
-              sync: false,
-            },
-            l: {
-              enable: true,
-              offset: {
-                min: 20,
-                max: 80,
-              },
-              speed: 0,
-              sync: false,
             },
           },
         },

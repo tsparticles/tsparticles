@@ -64,11 +64,15 @@ const options: ISourceOptions = {
       width: 0,
       height: 0,
     },
-    spawnFillColor: {
-      value: "#ff0000",
-      animation: {
-        enable: true,
-        speed: 10,
+    spawn: {
+      fill: {
+        color: {
+          value: "#ff0000",
+          animation: {
+            enable: true,
+            speed: 10,
+          },
+        },
       },
     },
     position: {

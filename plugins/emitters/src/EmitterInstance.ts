@@ -1,5 +1,7 @@
 import {
+  AnimatableColor,
   type Container,
+  Fill,
   type IColorAnimation,
   type ICoordinates,
   type IDelta,
@@ -10,16 +12,16 @@ import {
   type IRgb,
   PixelMode,
   type RecursivePartial,
+  Stroke,
   Vector,
   calcPositionOrRandomFromSizeRanged,
   deepExtend,
+  defaultOpacity,
   getRangeValue,
   getSize,
   hMax,
   half,
-  isArray,
   isPointInside,
-  isString,
   itemFromSingleOrMultiple,
   lMax,
   millisecondsToSeconds,
@@ -41,55 +43,45 @@ const defaultLifeDelay = 0,
   defaultEmitDelay = 0,
   defaultLifeCount = -1,
   defaultColorAnimationFactor = 1,
-  colorFactor = 3.6;
+  colorFactor = 3.6,
+  defaultStrokeWidth = 1;
 
 /**
  *
  * @param particlesOptions -
  * @param color -
+ * @param opacity -
+ * @param enable -
  */
-function setParticlesOptionsFillColor(particlesOptions: RecursivePartial<IParticlesOptions>, color: IHsl | IRgb): void {
-  if (
-    particlesOptions.fill &&
-    !isArray(particlesOptions.fill) &&
-    particlesOptions.fill.color &&
-    !isString(particlesOptions.fill.color)
-  ) {
-    particlesOptions.fill.color.value = color;
-  } else {
-    particlesOptions.fill = {
-      color: {
-        value: color,
-      },
-      enable: true,
-    };
-  }
+function setParticlesOptionsFillColor(
+  particlesOptions: RecursivePartial<IParticlesOptions>,
+  color: IHsl | IRgb,
+  opacity: number,
+  enable: boolean,
+): void {
+  particlesOptions.fill = new Fill();
+  particlesOptions.fill.color = AnimatableColor.create(undefined, { value: color });
+  particlesOptions.fill.enable = enable;
+  particlesOptions.fill.opacity = opacity;
 }
 
 /**
  *
- * @param particlesOptions
- * @param color
+ * @param particlesOptions -
+ * @param color -
+ * @param opacity -
+ * @param width -
  */
 function setParticlesOptionsStrokeColor(
   particlesOptions: RecursivePartial<IParticlesOptions>,
   color: IHsl | IRgb,
+  opacity: number,
+  width: number,
 ): void {
-  if (
-    particlesOptions.stroke &&
-    !isArray(particlesOptions.stroke) &&
-    particlesOptions.stroke.color &&
-    !isString(particlesOptions.stroke.color)
-  ) {
-    particlesOptions.stroke.color.value = color;
-  } else {
-    particlesOptions.stroke = {
-      color: {
-        value: color,
-      },
-      width: 1,
-    };
-  }
+  particlesOptions.stroke = new Stroke();
+  particlesOptions.stroke.color = AnimatableColor.create(undefined, { value: color });
+  particlesOptions.stroke.opacity = opacity;
+  particlesOptions.stroke.width = width;
 }
 
 /**
@@ -101,7 +93,11 @@ export class EmitterInstance {
   position: ICoordinates;
   size: IDimension;
   spawnFillColor?: IHsl;
+  spawnFillEnabled?: boolean;
+  spawnFillOpacity?: number;
   spawnStrokeColor?: IHsl;
+  spawnStrokeOpacity?: number;
+  spawnStrokeWidth?: number;
 
   private _currentDuration;
   private _currentEmitDelay;
@@ -159,12 +155,12 @@ export class EmitterInstance {
     particlesOptions.move ??= {};
     particlesOptions.move.direction ??= this.options.direction;
 
-    if (this.options.spawnFillColor) {
-      this.spawnFillColor = rangeColorToHsl(this._engine, this.options.spawnFillColor);
+    if (this.options.spawn.fill?.color) {
+      this.spawnFillColor = rangeColorToHsl(this._engine, this.options.spawn.fill.color);
     }
 
-    if (this.options.spawnStrokeColor) {
-      this.spawnStrokeColor = rangeColorToHsl(this._engine, this.options.spawnStrokeColor);
+    if (this.options.spawn.stroke?.color) {
+      this.spawnStrokeColor = rangeColorToHsl(this._engine, this.options.spawn.stroke.color);
     }
 
     this._paused = !this.options.autoPlay;
@@ -444,21 +440,39 @@ export class EmitterInstance {
   private _emitParticles(quantity: number): void {
     const singleParticlesOptions = (itemFromSingleOrMultiple(this._particlesOptions) ??
         {}) as RecursivePartial<IParticlesOptions>,
-      fillHslAnimation = this.options.spawnFillColor?.animation,
-      strokeHslAnimation = this.options.spawnStrokeColor?.animation,
+      fillHslAnimation = this.options.spawn.fill?.color.animation,
+      fillEnabled = this.options.spawn.fill?.enable ?? !!this.options.spawn.fill?.color,
+      fillOpacity =
+        this.options.spawn.fill?.opacity === undefined
+          ? defaultOpacity
+          : getRangeValue(this.options.spawn.fill.opacity),
+      strokeHslAnimation = this.options.spawn.stroke?.color?.animation,
+      strokeOpacity =
+        this.options.spawn.stroke?.opacity === undefined
+          ? defaultOpacity
+          : getRangeValue(this.options.spawn.stroke.opacity),
+      strokeWidth =
+        this.options.spawn.stroke?.width === undefined
+          ? defaultStrokeWidth
+          : getRangeValue(this.options.spawn.stroke.width),
       reduceFactor = this.container.retina.reduceFactor,
       needsFillColorAnimation = !!fillHslAnimation,
       needsStrokeColorAnimation = !!strokeHslAnimation,
       needsShapeData = !!this._shape,
       needsColorAnimation = needsFillColorAnimation || needsStrokeColorAnimation,
       needsCopy = needsColorAnimation || needsShapeData,
-      maxValues = needsFillColorAnimation ? { h: hMax, s: sMax, l: lMax } : null,
+      maxValues = needsColorAnimation ? { h: hMax, s: sMax, l: lMax } : null,
       shapeOptions = this.options.shape;
 
     for (let i = 0; i < quantity * reduceFactor; i++) {
       const particlesOptions = needsCopy
         ? (deepExtend({}, singleParticlesOptions) as RecursivePartial<IParticlesOptions>)
         : singleParticlesOptions;
+
+      this.spawnFillOpacity = fillOpacity;
+      this.spawnFillEnabled = fillEnabled;
+      this.spawnStrokeOpacity = strokeOpacity;
+      this.spawnStrokeWidth = strokeWidth;
 
       if (this.spawnFillColor) {
         if (fillHslAnimation && maxValues) {
@@ -472,7 +486,12 @@ export class EmitterInstance {
           this.spawnFillColor.l = this._setColorAnimation(fillHslAnimation.l, this.spawnFillColor.l, maxValues.l);
         }
 
-        setParticlesOptionsFillColor(particlesOptions, this.spawnFillColor);
+        setParticlesOptionsFillColor(
+          particlesOptions,
+          this.spawnFillColor,
+          this.spawnFillOpacity,
+          this.spawnFillEnabled,
+        );
       }
 
       if (this.spawnStrokeColor) {
@@ -487,7 +506,12 @@ export class EmitterInstance {
           this.spawnStrokeColor.l = this._setColorAnimation(strokeHslAnimation.l, this.spawnStrokeColor.l, maxValues.l);
         }
 
-        setParticlesOptionsStrokeColor(particlesOptions, this.spawnStrokeColor);
+        setParticlesOptionsStrokeColor(
+          particlesOptions,
+          this.spawnStrokeColor,
+          this.spawnStrokeOpacity,
+          this.spawnStrokeWidth,
+        );
       }
 
       let position: ICoordinates | null = this.position;
@@ -501,17 +525,12 @@ export class EmitterInstance {
           const replaceData = shapeOptions.replace;
 
           if (replaceData.color && shapePosData.color) {
-            setParticlesOptionsFillColor(particlesOptions, shapePosData.color);
-          }
-
-          if (replaceData.opacity) {
-            if (particlesOptions.opacity) {
-              particlesOptions.opacity.value = shapePosData.opacity;
-            } else {
-              particlesOptions.opacity = {
-                value: shapePosData.opacity,
-              };
-            }
+            setParticlesOptionsFillColor(
+              particlesOptions,
+              shapePosData.color,
+              replaceData.opacity ? (shapePosData.opacity ?? defaultOpacity) : defaultOpacity,
+              true,
+            );
           }
         } else {
           position = null;

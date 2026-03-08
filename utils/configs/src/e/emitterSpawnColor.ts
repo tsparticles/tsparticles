@@ -11,6 +11,9 @@ const emitterRate = {
       opacity: {
         value: 1,
       },
+      fill: {
+        enable: false,
+      },
       size: {
         value: 3,
       },
@@ -43,12 +46,16 @@ const emitterRate = {
             direction: MoveDirection.bottomRight,
           },
         },
-        spawnFillColor: {
-          value: "#ff0000",
-          animation: {
-            h: {
-              enable: true,
-              speed: 10,
+        spawn: {
+          fill: {
+            color: {
+              value: "#ff0000",
+              animation: {
+                h: {
+                  enable: true,
+                  speed: 10,
+                },
+              },
             },
           },
         },
@@ -64,15 +71,20 @@ const emitterRate = {
             direction: MoveDirection.topRight,
           },
         },
-        spawnFillColor: {
-          value: "#ff0000",
-          animation: {
-            s: {
-              enable: true,
-              speed: 10,
-              offset: {
-                min: -10,
-                max: 10,
+        spawn: {
+          stroke: {
+            width: 1,
+            color: {
+              value: "#ff0000",
+              animation: {
+                s: {
+                  enable: true,
+                  speed: 10,
+                  offset: {
+                    min: -10,
+                    max: 10,
+                  },
+                },
               },
             },
           },
@@ -89,15 +101,19 @@ const emitterRate = {
             direction: MoveDirection.bottomLeft,
           },
         },
-        spawnFillColor: {
-          value: "#ff0000",
-          animation: {
-            l: {
-              enable: true,
-              speed: 10,
-              offset: {
-                min: -10,
-                max: 10,
+        spawn: {
+          fill: {
+            color: {
+              value: "#ff0000",
+              animation: {
+                l: {
+                  enable: true,
+                  speed: 10,
+                  offset: {
+                    min: -10,
+                    max: 10,
+                  },
+                },
               },
             },
           },
@@ -114,19 +130,24 @@ const emitterRate = {
             direction: MoveDirection.topLeft,
           },
         },
-        spawnFillColor: {
-          value: "#ff0000",
-          animation: {
-            h: {
-              enable: true,
-              speed: 10,
-            },
-            s: {
-              enable: true,
-              speed: 10,
-              offset: {
-                min: -10,
-                max: 10,
+        spawn: {
+          stroke: {
+            width: 1,
+            color: {
+              value: "#ff0000",
+              animation: {
+                h: {
+                  enable: true,
+                  speed: 10,
+                },
+                s: {
+                  enable: true,
+                  speed: 10,
+                  offset: {
+                    min: -10,
+                    max: 10,
+                  },
+                },
               },
             },
           },
@@ -143,19 +164,43 @@ const emitterRate = {
             direction: MoveDirection.none,
           },
         },
-        spawnFillColor: {
-          value: "#ff0000",
-          animation: {
-            h: {
-              enable: true,
-              speed: 10,
+        spawn: {
+          fill: {
+            color: {
+              value: "#ff0000",
+              animation: {
+                h: {
+                  enable: true,
+                  speed: 10,
+                },
+                l: {
+                  enable: true,
+                  speed: 10,
+                  offset: {
+                    min: -10,
+                    max: 10,
+                  },
+                },
+              },
             },
-            l: {
-              enable: true,
-              speed: 10,
-              offset: {
-                min: -10,
-                max: 10,
+          },
+          stroke: {
+            width: 1,
+            color: {
+              value: "#00ff00",
+              animation: {
+                h: {
+                  enable: true,
+                  speed: 10,
+                },
+                l: {
+                  enable: true,
+                  speed: 10,
+                  offset: {
+                    min: -10,
+                    max: 10,
+                  },
+                },
               },
             },
           },
