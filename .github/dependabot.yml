@@ -1,6 +1,6 @@
 version: 2
 updates:
-  - package-ecosystem: "pnpm"
+  - package-ecosystem: "npm"
     target-branch: "v4"
     directory: "/" # Location of package manifests
     schedule:
